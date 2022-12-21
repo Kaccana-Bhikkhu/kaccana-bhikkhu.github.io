@@ -166,9 +166,10 @@ class TagStackItem:
         else:
             self.subtagIndex = None
     
-    def Increment(self):
+    def Increment(self,count = 1):
         if self.subtagIndex:
-            self.subtagIndex += 1
+            self.subtagIndex += count
+    
 
 def LoadTagsFile(database,tagFileName):
     "Load Tag_Raw from a file and parse it to create the Tag dictionary"
@@ -183,6 +184,12 @@ def LoadTagsFile(database,tagFileName):
     for item in rawTagList:
         for flag in flags:
             item[flags[flag]] = flag in item["Flags"]
+        
+        digitFlag = re.search("[0-9]",item["Flags"])
+        if digitFlag:
+            item["Item count"] = int(digitFlag[0])
+        else:
+            item["Item count"] = 0 if item["Virtual"] else 1
     
     database["Tag_Raw"] = rawTagList
     
@@ -235,8 +242,9 @@ def LoadTagsFile(database,tagFileName):
         if curTagLevel > 1:
             tagDesc["Supertags"] = [tagStack[-1].tag]
             if tagStack[-1].subtagIndex:
-                rawTag["Index #"] = str(tagStack[-1].subtagIndex)
-                tagStack[-1].Increment()
+                if rawTag["Item count"]:
+                    rawTag["Index #"] = str(tagStack[-1].subtagIndex)
+                    tagStack[-1].Increment(rawTag["Item count"])
             if tagStack[-1].collectSubtags:
                 tags[tagStack[-1].tag]["Subtags"].append(tagName)
                 #print(tagStack[-1].tag,"<-",tagName,":",tags[tagStack[-1].tag]["Subtags"])
@@ -277,6 +285,9 @@ def CreateTagDisplayList(database):
     for rawTag in database["Tag_Raw"]:
         listItem = {"Level" : rawTag["Level"],"Index #" : rawTag["Index #"]}
         
+        if rawTag["Item count"] > 1:
+            listItem["Index #"] = ','.join(str(n + int(rawTag["Index #"])) for n in range(rawTag["Item count"]))
+        
         text = FirstValidValue(rawTag,["Full tag","Pāli"])
         tag = FirstValidValue(rawTag,["Subsumed under","Abbreviation","Full tag","Pāli abbreviation","Pāli"])
 
@@ -310,9 +321,7 @@ def CreateTagDisplayList(database):
         if not database["Tag"][tag]["Virtual"]:
             index = database["Tag"][tag]["List index"]
             assert tag == tagList[index]["Tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['Tag']}" 
-
-            
-    
+      
 
 def LoadEventFile(database,eventName,directory):
     
@@ -428,7 +437,7 @@ def CountAndVerify(database):
             tagDesc = database["Tag"][tag]
             if tagDesc["Primaries"] > 1:
                 print(f"Warning: {tagDesc['Primaries']} instances of tag {tagDesc['Tag']} are flagged as primary.")
-            if gOptions.verbose >= 2 and tagDesc["Copies"] > 1 and tagDesc["Primaries"] == 0:
+            if gOptions.verbose >= 2 and tagDesc["Copies"] > 1 and tagDesc["Primaries"] == 0 and not tagDesc["Virtual"]:
                 print(f"Notice: None of {tagDesc['Copies']} instances of tag {tagDesc['Tag']} are designated as primary.")
     
 

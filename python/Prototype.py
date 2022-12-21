@@ -7,7 +7,15 @@ def WriteIndentedTagDisplayList(fileName):
         for item in gDatabase["Tag_DisplayList"]:
             indent = "    " * (item["Level"] - 1)
             indexStr = item["Index #"] + ". " if item["Index #"] else ""
-            print(f"{indent}{indexStr}{item['Text']} -> {item['Tag']}",file = file)
+            
+            
+            tagFromText = item['Text'].split(' [')[0].split(' {')[0] # Extract the text before either ' [' or ' {'
+            if tagFromText != item['Tag']:
+                reference = " -> " + item['Tag']
+            else:
+                reference = ""
+            
+            print(''.join([indent,indexStr,item['Text'],reference]),file = file)
     
 
 def AddArguments(parser):
