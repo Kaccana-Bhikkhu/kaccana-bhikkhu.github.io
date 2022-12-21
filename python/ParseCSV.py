@@ -1,7 +1,7 @@
 """A module to read csv files from ./csv and create the database.json file used by subsequent operations"""
 
 import os, re, csv, json
-from collections import namedtuple
+from Utils import slugify
 
 def SniffCSVDialect(inFile,scanLength = 4096):
 	inFile.seek(0)
@@ -192,7 +192,8 @@ def LoadTagsFile(database,tagFileName):
             item["Item count"] = 0 if item["Virtual"] else 1
     
     database["Tag_Raw"] = rawTagList
-    
+    database["Tag_Subsumed"] = {} # A dictionary of subsumed tags for future reference
+
     # Next build the main tag dictionary
     tags = {}
     namePreference = ["Abbreviation","Full tag","Pāli abbreviation","Pāli"]
@@ -256,6 +257,7 @@ def LoadTagsFile(database,tagFileName):
         
         # Subsumed tags don't have a tag entry
         if rawTag["Subsumed under"]:
+            database["Tag_Subsumed"][tagName] = rawTag["Subsumed under"]
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
@@ -271,6 +273,8 @@ def LoadTagsFile(database,tagFileName):
                 tags[tagName]["Primaries"] += tagDesc["Primaries"]
                 AppendUnique(tags[tagName]["Supertags"],tagDesc["Supertags"])
                 continue
+        
+        tagDesc["html file"] = slugify(tagName) + '.html'
         
         tagDesc["List index"] = rawTagIndex
         tags[tagName] = tagDesc
