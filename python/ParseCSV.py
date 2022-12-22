@@ -198,6 +198,7 @@ def LoadTagsFile(database,tagFileName):
     tags = {}
     namePreference = ["Abbreviation","Full tag","Pāli abbreviation","Pāli"]
     paliPreference = ["Pāli abbreviation","Pāli"]
+    fullNamePreference = ["Full tag","Pāli"]
     
     # Remove any blank values from the list before looping over it
     for index in reversed(range(len(rawTagList))):
@@ -217,7 +218,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc = {}
         tagDesc["Tag"] = tagName
         tagDesc["Pāli"] = tagPaliName
-        tagDesc["Full tag"] = rawTag["Full tag"]
+        tagDesc["Full tag"] = FirstValidValue(rawTag,fullNamePreference)
         tagDesc["Full Pāli"] = rawTag["Pāli"]
         for key in ["#","Alt. trans.","See also","Virtual"]:
             tagDesc[key] = rawTag[key]
@@ -292,23 +293,33 @@ def CreateTagDisplayList(database):
         if rawTag["Item count"] > 1:
             listItem["Index #"] = ','.join(str(n + int(rawTag["Index #"])) for n in range(rawTag["Item count"]))
         
-        text = FirstValidValue(rawTag,["Full tag","Pāli"])
-        tag = FirstValidValue(rawTag,["Subsumed under","Abbreviation","Full tag","Pāli abbreviation","Pāli"])
 
+        
+        name = FirstValidValue(rawTag,["Full tag","Pāli"])
+        tag = FirstValidValue(rawTag,["Subsumed under","Abbreviation","Full tag","Pāli abbreviation","Pāli"])
+        text = name
+        
+        try:
+            questionCount = database["Tag"][tag]["Question count"]
+        except KeyError:
+            questionCount = 0
+        subsumed = bool(rawTag["Subsumed under"])
+        
+        if questionCount > 0 and not subsumed:
+            text += " (" + str(questionCount) + ")"
+        
         if rawTag["Full tag"] and rawTag["Pāli"]:
             text += " [" + rawTag["Pāli"] + "]"
 
-        if rawTag["Subsumed under"]:
+        if subsumed:
             text += " see " + rawTag["Subsumed under"]
-        else:
-            try:
-                questionCount = database["Tag"][tag]["Question count"]
-            except KeyError:
-                questionCount = 0
-            
-            if questionCount:
-                text += " {" + str(questionCount) + "}"
-            
+            if questionCount > 0:
+                text += " (" + str(questionCount) + ")"
+        
+        listItem["Name"] = name
+        listItem["Pāli"] = rawTag["Pāli"]
+        listItem["Question count"] = questionCount
+        listItem["Subsumed"] = subsumed
         listItem["Text"] = text
             
         if rawTag["Virtual"]:

@@ -1,7 +1,7 @@
 """Use Mp3DirectCut.exe to split the session audio files into individual questions based on start and end times from database.json"""
 
 import os, json
-from Utils import StrToTimeDelta
+from Utils import StrToTimeDelta, Mp3FileName
 import Mp3DirectCut as Mp3DirectCut
 
 Mp3DirectCut.SetExecutable(os.path.join('tools','Mp3DirectCut'))

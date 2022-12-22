@@ -20,7 +20,24 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['Text'],reference]),file = file)
 
-def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None):
+"Create the default html header"
+head = Airium()
+head.meta(charset="utf-8")
+gDefaultHead = str(head)
+del head # Clean up the global namespace
+
+"Create the top navigation guide"
+nav = Airium()
+with nav.p():
+    with nav.a(href = "../indexes/AllTags.html"):
+        nav("Tag/subtag hierarchy")
+    nav("&nbsp"*5)
+    with nav.a(href = "../indexes/SortedTags.html"):
+        nav("Most common tags")
+gNavigation = str(nav)
+del nav
+
+def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None,navigation:bool = True):
     """Write a complete html file given a title, body, and header.
         fileName - name of the file to write
         title - internal title of the html page
@@ -33,41 +50,22 @@ def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",cus
     a('<!DOCTYPE html>')
     with a.html(lang="en"):
         with a.head():
-            a.meta(charset="utf-8")
             a.title(_t=title)
+            if customHead is None:
+                a(gDefaultHead)
+                a(additionalHead)
+            else:
+                a(customHead)
 
         with a.body():
+            if navigation:
+                a(gNavigation)
             a(body)
     
     with open(fileName,'wb') as file:
         file.write(bytes(a))
 
-"""    "Right mindfulness": {
-      "Tag": "Right mindfulness",
-      "Pāli": "sammā sati",
-      "Full tag": "Right mindfulness",
-      "Full Pāli": "sammā sati",
-      "#": "4",
-      "Alt. trans.": [],
-      "See also": [
-        "Mindfulness"
-      ],
-      "Virtual": false,
-      "Subtags": [
-        "Mindfulness of body",
-        "Mindfulness of feeling",
-        "Mindfulness of mind",
-        "Mindfulness of dhammas"
-      ],
-      "Supertags": [
-        "Eightfold Path"
-      ],
-      "Copies": 1,
-      "Primaries": 0,
-      "List index": 20,
-      "Question count": 6
-    },
-"""
+
 
 def ListItems(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",titleEnd:str = ": ",newLine:str = "<br>") -> str:
     "Format a list of items as a single line in html code"
@@ -81,16 +79,20 @@ def ListItems(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",t
     
     return title + titleEnd + listStr + newLine
 
-def HtmlTagLink(tag:str, relativeTagDir:str = "") -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     """Turn a tag name into a hyperlink to that tag.
-    relativeTagDir - the tag directory relative to the directory this link is embedded in."""
+    Simplying assumption: All html pages (except index.html) are in a subdirectory of prototype.
+    Thus ../tags will reference the tags directory from any other html pages.
+    If fullTag, the link text contains the full tag name."""
     
     try:
         ref = gDatabase["Tag"][tag]["html file"]
+        if fullTag:
+            tag = gDatabase["Tag"][tag]["Full tag"]
     except KeyError:
         ref = gDatabase["Tag"][gDatabase["Tag_Subsumed"][tag]]["html file"]
     
-    return f'<a href = "{ref}">{tag}</a>'
+    return f'<a href = "../tags/{ref}">{tag}</a>'
 
 
 def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
@@ -99,28 +101,92 @@ def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
     linkedTags = [HtmlTagLink(tag) for tag in tags]
     return ListItems(title,linkedTags,*args,**kwargs)
 
-"""{
-      "Event": "TG2013",
-      "Session #": 1,
-      "Question #": 4,
-      "Start time": "22:38 ",
-      "End time": "",
-      "Teacher": [
-        "AP"
-      ],
-      "Question text": "Thank you for the wonderful teachings...Can you further discuss dispassion and nonattachment in the context of the 'middle way.' (particularly for a layperson in a loving relationship)",
-      "Tags": [
-        "Relationships",
-        "Dispassion"
-      ]
-    },"""
+def WriteIndentedHtmlTagList(pageDir: str) -> None:
+    """Write an indented list of tags."""
+    if not os.path.exists(pageDir):
+        os.makedirs(pageDir)
+    
+    tabMeasurement = 'em'
+    tabLength = 2
+    
+    a = Airium()
+    
+    with a.h1():
+        a("Tag/subtag hierarchy:")
+    
+    for item in gDatabase["Tag_DisplayList"]:
+        with a.p(style = f"margin-left: {tabLength * (item['Level']-1)}{tabMeasurement};"):
+            indexStr = item["Index #"] + "." if item["Index #"] else ""
+            
+            countStr = f' ({item["Question count"]})' if item["Question count"] > 0 else ''
+            
+            if item['Tag'] and not item['Subsumed']:
+                nameStr = HtmlTagLink(item['Tag'],True) + countStr
+            else:
+                nameStr = item['Name']
+            
+            if item['Pāli'] and item['Pāli'] != item['Name']:
+                paliStr = '[' + item['Pāli'] + ']'
+            else:
+                paliStr = ''
+            
+            if item['Subsumed']:
+                seeAlsoStr = 'see ' + HtmlTagLink(item['Tag'],False) + countStr
+            else:
+                seeAlsoStr = ''
+                
+            a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
+    
+    WriteHtmlFile(os.path.join(pageDir,"AllTags.html"),"All Tags",str(a))
+
+def QuestionCount(tag:str) -> int:
+    try:
+        return gDatabase["Tag"][tag]["Question count"]
+    except KeyError:
+        return 0
+
+def WriteSortedHtmlTagList(pageDir: str) -> None:
+    """Write a list of tags sorted by number of questions."""
+    if not os.path.exists(pageDir):
+        os.makedirs(pageDir)
+    
+    a = Airium()
+    
+    with a.h1():
+        a("Most common tags:")
+    
+    tagsSortedByQCount = sorted(gDatabase["Tag"],key = QuestionCount,reverse = True)
+    for tag in tagsSortedByQCount:
+        with a.p():
+            tagDesc = gDatabase["Tag"][tag]
+            
+            qCount = QuestionCount(tag)
+            countStr = f' ({qCount})' if qCount > 0 else ''
+            
+            tagStr = HtmlTagLink(tagDesc['Tag'])
+            
+            if tagDesc['Pāli'] and tagDesc['Pāli'] != tagDesc['Tag']:
+                paliStr = '[' + tagDesc['Pāli'] + ']'
+            else:
+                paliStr = ''
+            
+            a(' '.join([countStr,tagStr,paliStr]))
+    
+    WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
+        
+
+class QuestionFormatter: 
+    """A class that formats questions into html"""
+    
+    def __init__(self):
+        pass
 
 def QuestionDesc(question: dict) -> str:
     """Returns a html-format string describing a single question in the database"""
     
     a = Airium()
     
-    a.a(href = "../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #'])).img(src = "../../images/audio.png",width = "30")
+    a.a(href = "../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #'])).img(src = "../images/audio.png",width = "30")
     a(f'“{question["Question text"]}”')
     a(gDatabase["Event"][question["Event"]]["Title"] + ",")
     a(f"Session {question['Session #']}, Question {question['Question #']}")
@@ -132,9 +198,7 @@ def WriteTagPages(tagPageDir: str) -> None:
     
     if not os.path.exists(tagPageDir):
         os.makedirs(tagPageDir)
-    
-    WriteHtmlFile(os.path.join(tagPageDir,'TestTag.html'),"Test page","<p>This is a test page</p>")
-    
+        
     qDB = gDatabase["Questions"]
     
     for tag in gDatabase["Tag"]:
@@ -145,7 +209,12 @@ def WriteTagPages(tagPageDir: str) -> None:
         a = Airium()
         
         with a.h1():
-            a(f"{tag} [{tagInfo['Pāli']}]")
+            if tagInfo['Pāli'] and tagInfo['Pāli'] != tag:
+                a(tag)
+                a(f"[{tagInfo['Pāli']}]:")
+            else:
+                a(tag + ':')
+            
         
         with a.h3():
             a(ListItems("Alternative translations",tagInfo['Alt. trans.'],plural = ""))
@@ -182,6 +251,9 @@ def main(clOptions):
         os.makedirs(gOptions.prototypeDir)
     
     WriteIndentedTagDisplayList(os.path.join(gOptions.prototypeDir,"TagDisplayList.txt"))
+    
+    WriteIndentedHtmlTagList(os.path.join(gOptions.prototypeDir,"indexes"))
+    WriteSortedHtmlTagList(os.path.join(gOptions.prototypeDir,"indexes"))
     
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
     
