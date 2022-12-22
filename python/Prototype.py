@@ -1,7 +1,7 @@
 """A module to create various prototype versions of the website for testing purposes"""
 
 import os, json
-from typing import List
+from typing import List, Type
 from airium import Airium
 from Utils import slugify, Mp3FileName
 
@@ -29,6 +29,9 @@ del head # Clean up the global namespace
 "Create the top navigation guide"
 nav = Airium()
 with nav.p():
+    with nav.a(href = "../indexes/AllQuestions.html"):
+        nav("All questions")
+    nav("&nbsp"*5)
     with nav.a(href = "../indexes/AllTags.html"):
         nav("Tag/subtag hierarchy")
     nav("&nbsp"*5)
@@ -64,8 +67,6 @@ def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",cus
     
     with open(fileName,'wb') as file:
         file.write(bytes(a))
-
-
 
 def ListItems(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",titleEnd:str = ": ",newLine:str = "<br>") -> str:
     "Format a list of items as a single line in html code"
@@ -174,24 +175,59 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
         
+def Mp3FileLink(question: dict) -> str:
+    """Return an html-formatted audio icon linking to a given question.
+    Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
+
+    a = Airium()
+    a.a(href = "../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #']), style="text-decoration: none;").img(src = "../images/audio.png",width = "30")
+    return str(a)
 
 class QuestionFormatter: 
     """A class that formats questions into html"""
     
     def __init__(self):
         pass
+    
+    def Format(self,question:dict) -> str:
+        "Return question formatted in html according to our stored settings."
+        
+        a = Airium()
+        
+        a(Mp3FileLink(question))
+        a(f'({question["Duration"]})')
+        a(f'“{question["Question text"]}”')
+        a(gDatabase["Event"][question["Event"]]["Title"] + ",")
+        a(f"Session {question['Session #']}, Question {question['Question #']}")
+        
+        return str(a)
 
-def QuestionDesc(question: dict) -> str:
-    """Returns a html-format string describing a single question in the database"""
+def HtmlQuestionList(qNumbers: List[int],formatter: Type[QuestionFormatter]) -> str:
+    """Return a html list of the questions given by gDatabase[qNumbers]."""
     
     a = Airium()
     
-    a.a(href = "../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #'])).img(src = "../images/audio.png",width = "30")
-    a(f'“{question["Question text"]}”')
-    a(gDatabase["Event"][question["Event"]]["Title"] + ",")
-    a(f"Session {question['Session #']}, Question {question['Question #']}")
+    qDB = gDatabase["Questions"]
+    for qNum in qNumbers:
+        with a.p():
+            a(formatter.Format(qDB[qNum]))
     
     return str(a)
+
+def WriteAllQuestions(pageDir: str) -> None:
+    """Write a list of tags sorted by number of questions."""
+    if not os.path.exists(pageDir):
+        os.makedirs(pageDir)
+    
+    a = Airium()
+    
+    with a.h1():
+        a("All questions:")
+    
+    formatter = QuestionFormatter()
+    a(HtmlQuestionList(range(len(gDatabase["Questions"])),formatter))
+    
+    WriteHtmlFile(os.path.join(pageDir,"AllQuestions.html"),"All questions",str(a))
 
 def WriteTagPages(tagPageDir: str) -> None:
     """Write a html file for each tag in the database"""
@@ -224,10 +260,9 @@ def WriteTagPages(tagPageDir: str) -> None:
             a(ListLinkedTags("Subtopic",tagInfo['Subtags']))
             a(ListLinkedTags("See also",tagInfo['See also'],plural = ""))
         
+        formatter = QuestionFormatter()
         relevantQs = [n for n in range(len(qDB)) if tag in qDB[n]["Tags"]]
-        for qNum in relevantQs:
-            with a.p():
-                a(QuestionDesc(qDB[qNum]))
+        a(HtmlQuestionList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
 
@@ -254,6 +289,7 @@ def main(clOptions):
     
     WriteIndentedHtmlTagList(os.path.join(gOptions.prototypeDir,"indexes"))
     WriteSortedHtmlTagList(os.path.join(gOptions.prototypeDir,"indexes"))
+    WriteAllQuestions(os.path.join(gOptions.prototypeDir,"indexes"))
     
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
     

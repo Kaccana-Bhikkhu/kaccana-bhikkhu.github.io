@@ -22,6 +22,18 @@ def StrToTimeDelta(inStr):
         
     raise ValueError(inStr + " cannot be converted to a time.")
 
+def TimeDeltaToStr(time):
+    "Convert a timedelta object to the form [HH:]MM:SS"
+    
+    hours = time.seconds // 3600
+    minutes = (time.seconds % 3600) // 60
+    seconds = time.seconds % 60
+
+    if hours:
+        return f"{hours}:{minutes:02d}:{seconds:02d}"
+    else:
+        return f"{minutes}:{seconds:02d}"
+
 def slugify(value, allow_unicode=False):
     """
     Taken from https://github.com/django/django/blob/master/django/utils/text.py

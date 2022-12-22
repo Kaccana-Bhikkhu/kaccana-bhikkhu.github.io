@@ -1,7 +1,7 @@
 """A module to read csv files from ./csv and create the database.json file used by subsequent operations"""
 
 import os, re, csv, json
-from Utils import slugify
+from Utils import slugify, StrToTimeDelta, TimeDeltaToStr
 
 def SniffCSVDialect(inFile,scanLength = 4096):
 	inFile.seek(0)
@@ -381,7 +381,6 @@ def LoadEventFile(database,eventName,directory):
                     print(f"Warning: Session number out of order after question {qNumber} in session {lastSession} of {q['Event']}")
                 qNumber = 1
                 lastSession = q["Session #"]
-                
             else:
                 qNumber += 1
             q["Question #"] = qNumber
@@ -390,7 +389,28 @@ def LoadEventFile(database,eventName,directory):
                 del q["QTag"]
                 del q["ATag"]
                 del q["AListen?"]
+        
+        for qIndex in range(len(questions)):
+            startTime = questions[qIndex]["Start time"]
             
+            endTime = questions[qIndex]["End time"]
+            if not endTime:
+                try:
+                    if questions[qIndex + 1]["Session #"] == questions[qIndex]["Session #"]:
+                        endTime = questions[qIndex + 1]["Start time"]
+                except IndexError:
+                    pass
+            
+            if not endTime:
+                sessionNum = questions[qIndex]["Session #"]
+                
+                for s in sessions:
+                    if s["Session #"] == sessionNum:
+                        endTime = s["Duration"]
+                
+            questions[qIndex]["Duration"] = TimeDeltaToStr(StrToTimeDelta(endTime) - StrToTimeDelta(startTime))
+                
+        
         for index in range(len(questions)):
             questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #"])
         
