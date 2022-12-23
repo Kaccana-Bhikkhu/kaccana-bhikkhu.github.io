@@ -3,7 +3,21 @@
 import os, json
 from typing import List, Type
 from airium import Airium
-from Utils import slugify, Mp3FileName
+from Utils import slugify, Mp3FileName, ReformatDate
+
+def SessionIndex(event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
+    "Return the index of a session specified by event and sessionNum."
+    
+    if not sessionIndexCache:
+        sessionIndexCache = {}
+        s = gDatabase["Sessions"]
+        for index in range(len(s)):
+            sessionIndexCache[(s[index]["Event"],s[index]["Session #"])] = index
+    
+    try:
+        return sessionIndexCache[(event,sessionNum)]
+    except KeyError:
+        raise ValueError(f"Can't locate session {sessionNum} of event {event}")
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -68,17 +82,32 @@ def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",cus
     with open(fileName,'wb') as file:
         file.write(bytes(a))
 
-def ListItems(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",titleEnd:str = ": ",newLine:str = "<br>") -> str:
-    "Format a list of items as a single line in html code"
+def ItemList(items:List[str], joinStr:str = ", ", lastJoinStr:str = None):
+    """Format a list of items"""
+    
+    if lastJoinStr is None:
+        lastJoinStr = joinStr
+    
+    if not items:
+        return ""
+    if len(items) == 1:
+        return items[0]
+    
+    firstItems = joinStr.join(items[:-1])
+    return lastJoinStr.join([firstItems,items[-1]])
+
+def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",lastJoinStr:str = None,titleEnd:str = ": ",endStr:str = "<br>") -> str:
+    """Format a list of items with a title as a single line in html code."""
     
     if not items:
         return ""
     if len(items) > 1:
         title += plural
     
-    listStr = joinStr.join(items)
+    listStr = ItemList(items,joinStr,lastJoinStr)
+    #listStr = joinStr.join(items)
     
-    return title + titleEnd + listStr + newLine
+    return title + titleEnd + listStr + endStr
 
 def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     """Turn a tag name into a hyperlink to that tag.
@@ -100,7 +129,15 @@ def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
     "Write a list of hyperlinked tags"
     
     linkedTags = [HtmlTagLink(tag) for tag in tags]
-    return ListItems(title,linkedTags,*args,**kwargs)
+    return TitledList(title,linkedTags,*args,**kwargs)
+    
+def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
+    """Write a list of hyperlinked teachers.
+    teachers is a list of abbreviated teacher names"""
+    
+    fullNameList = [gDatabase["Teacher"][t]["Full name"] for t in teachers]
+    
+    return ItemList(fullNameList,*args,**kwargs)
 
 def WriteIndentedHtmlTagList(pageDir: str) -> None:
     """Write an indented list of tags."""
@@ -156,7 +193,8 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     with a.h1():
         a("Most common tags:")
     
-    tagsSortedByQCount = sorted(gDatabase["Tag"],key = QuestionCount,reverse = True)
+    # Sort descending by number of questions and in alphabetical order
+    tagsSortedByQCount = sorted((tag for tag in gDatabase["Tag"] if QuestionCount(tag)),key = lambda tag: (-QuestionCount(tag),tag))
     for tag in tagsSortedByQCount:
         with a.p():
             tagDesc = gDatabase["Tag"][tag]
@@ -174,48 +212,103 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
             a(' '.join([countStr,tagStr,paliStr]))
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
-        
-def Mp3FileLink(question: dict) -> str:
+
+def AudioIcon(hyperlink: str,iconWidth = "30") -> str:
+    "Return an audio icon with the given hyperlink"
+    
+    a = Airium(source_minify=True)
+    a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
+        # text-decoration: none ensures the icon isn't underlined
+    return str(a)
+
+def Mp3QuestionLink(question: dict) -> str:
     """Return an html-formatted audio icon linking to a given question.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
 
-    a = Airium()
-    a.a(href = "../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #']), style="text-decoration: none;").img(src = "../images/audio.png",width = "30")
-    return str(a)
+    return AudioIcon("../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #']))
 
-class QuestionFormatter: 
-    """A class that formats questions into html"""
+class Formatter: 
+    """A class that formats lists of events, sessions, and questions into html"""
     
     def __init__(self):
+        self.questionDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
+        self.questionOmitTags = set() # Don't display these tags in question description
+        
+        self.questionShortFormat = True
+        
         pass
     
-    def Format(self,question:dict) -> str:
+    def FormatQuestion(self,question:dict) -> str:
         "Return question formatted in html according to our stored settings."
         
-        a = Airium()
+        a = Airium(source_minify=True)
         
-        a(Mp3FileLink(question))
-        a(f'({question["Duration"]})')
-        a(f'“{question["Question text"]}”')
-        a(gDatabase["Event"][question["Event"]]["Title"] + ",")
-        a(f"Session {question['Session #']}, Question {question['Question #']}")
+        if set(question["Teacher"]) != set(self.questionDefaultTeacher): # Compare items irrespective of order
+            teacherList = [gDatabase["Teacher"][t]["Full name"] for t in question["Teacher"]]
+        else:
+            teacherList = []
+        
+        a(Mp3QuestionLink(question))
+        if self.questionShortFormat:
+            a(' ')
+            with a.b(style="text-decoration: underline;"):
+                a(f"{question['Question #']}.")
+            
+        a(f' ({question["Duration"]})')
+        a(f' “{question["Question text"]}” ')
+        
+        if teacherList:
+            a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')
+        if not self.questionShortFormat:
+            a(gDatabase["Event"][question["Event"]]["Title"] + ",")
+            a(f"Session {question['Session #']}, Question {question['Question #']}")
+        
+        tagStrings = []
+        for tag in question["Tags"]:
+            if tag not in self.questionOmitTags:
+                tagStrings.append('[' + HtmlTagLink(tag) + ']')
+        
+        a(' '.join(tagStrings))
+        
+        return str(a)
+    
+    def FormatSessionHeading(self,session:dict) -> str:
+        "Return an html string representing the heading for this section"
+        
+        a = Airium(source_minify=True)
+        event = gDatabase["Event"][session["Event"]]
+        
+        with a.h2():
+            sessionTitle = f'{event["Title"]}, Session #{session["Session #"]}'
+            dateStr = ReformatDate(session['Date'])
+            teacherList = ListLinkedTeachers(session["Teachers"])
+            a(f'{sessionTitle} - {teacherList} - {dateStr}')
         
         return str(a)
 
-def HtmlQuestionList(qNumbers: List[int],formatter: Type[QuestionFormatter]) -> str:
+def HtmlQuestionList(qNumbers: List[int],formatter: Type[Formatter]) -> str:
     """Return a html list of the questions given by gDatabase[qNumbers]."""
     
     a = Airium()
     
-    qDB = gDatabase["Questions"]
-    for qNum in qNumbers:
+    prevEvent = None
+    prevSession = None
+    for index in qNumbers:
+        q = gDatabase["Questions"][index]
+        if q["Event"] != prevEvent or q["Session #"] != prevSession:
+            sessionIndex = SessionIndex(q["Event"],q["Session #"])
+            a(formatter.FormatSessionHeading(gDatabase["Sessions"][sessionIndex]))
+            prevEvent = q["Event"]
+            prevSession = q["Session #"]
+            formatter.questionDefaultTeacher = set(gDatabase["Sessions"][sessionIndex]["Teachers"])
+            
         with a.p():
-            a(formatter.Format(qDB[qNum]))
+            a(formatter.FormatQuestion(q))
     
     return str(a)
 
 def WriteAllQuestions(pageDir: str) -> None:
-    """Write a list of tags sorted by number of questions."""
+    """Write a single page containing all questions."""
     if not os.path.exists(pageDir):
         os.makedirs(pageDir)
     
@@ -224,7 +317,8 @@ def WriteAllQuestions(pageDir: str) -> None:
     with a.h1():
         a("All questions:")
     
-    formatter = QuestionFormatter()
+    formatter = Formatter()
+    formatter.questionDefaultTeacher = ['AP']
     a(HtmlQuestionList(range(len(gDatabase["Questions"])),formatter))
     
     WriteHtmlFile(os.path.join(pageDir,"AllQuestions.html"),"All questions",str(a))
@@ -252,15 +346,16 @@ def WriteTagPages(tagPageDir: str) -> None:
                 a(tag + ':')
             
         
-        with a.h3():
-            a(ListItems("Alternative translations",tagInfo['Alt. trans.'],plural = ""))
+        with a.h4():
+            a(TitledList("Alternative translations",tagInfo['Alt. trans.'],plural = ""))
         
-        with a.h2():
+        with a.h3():
             a(ListLinkedTags("Parent topic",tagInfo['Supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['Subtags']))
             a(ListLinkedTags("See also",tagInfo['See also'],plural = ""))
         
-        formatter = QuestionFormatter()
+        formatter = Formatter()
+        formatter.questionOmitTags = set([tag])
         relevantQs = [n for n in range(len(qDB)) if tag in qDB[n]["Tags"]]
         a(HtmlQuestionList(relevantQs,formatter))
         

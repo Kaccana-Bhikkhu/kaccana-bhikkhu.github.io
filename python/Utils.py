@@ -1,6 +1,6 @@
 """Utility files to support QAarchive.py modules"""
 
-from datetime import timedelta
+from datetime import timedelta, datetime
 import unicodedata
 import re
 
@@ -33,6 +33,13 @@ def TimeDeltaToStr(time):
         return f"{hours}:{minutes:02d}:{seconds:02d}"
     else:
         return f"{minutes}:{seconds:02d}"
+
+def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
+    "Take a date formated as DD/MM/YYYY and reformat it as mmm d YYYY."
+    
+    date = datetime.strptime(dateStr,"%d/%m/%Y")
+    
+    return f'{date.strftime("%b ")} {int(date.day)}, {int(date.year)}'
 
 def slugify(value, allow_unicode=False):
     """

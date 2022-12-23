@@ -2,6 +2,7 @@
 
 import os
 from datetime import time,timedelta
+from typing import List
 
 Executable = 'mp3DirectCut.exe'
 ExecutableDir = 'mp3DirectCut'
@@ -36,7 +37,7 @@ def WriteCue(cueTime,cueNum,cueFile):
     print(f'    TITLE "(Track {cueNum:02d})"',file=cueFile)
     print(f'    INDEX 01 {TimeToStr(cueTime)}',file=cueFile)
 
-def SplitMp3(file,splitPoints,outputDir = None,deleteCueFile = True):
+def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:str = True):
     """Split an mp3 file into tracks.
     file - Name and path of the file to split. Write access is required to this directory.
     splitPoints - a list of tuples of the format: (trackFileName,startTime[,endTime])
