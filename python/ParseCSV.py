@@ -2,6 +2,7 @@
 
 import os, re, csv, json
 from Utils import slugify, StrToTimeDelta, TimeDeltaToStr
+from typing import List
 
 def SniffCSVDialect(inFile,scanLength = 4096):
 	inFile.seek(0)
@@ -338,6 +339,15 @@ def CreateTagDisplayList(database):
             assert tag == tagList[index]["Tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['Tag']}" 
       
 
+def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
+    "Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not."
+    
+    consent = True
+    for teacher in teachers:
+        if not teacherDB[teacher][policy]:
+            consent = False
+    return consent
+
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
@@ -353,6 +363,7 @@ def LoadEventFile(database,eventName,directory):
         
         
         sessions = CSVToDictList(file,removeKeys = ["Seconds"],endOfSection = '<---->')
+        
         for key in ["Session tags","Teachers"]:
             ListifyKey(sessions,key)
         for key in ["Session #","Questions"]:
@@ -360,6 +371,10 @@ def LoadEventFile(database,eventName,directory):
         for index in range(len(sessions)):
             sessions[index]["Event"] = eventName
             sessions[index] = ReorderKeys(sessions[index],["Event","Session #"])
+            
+        sessions = [s for s in sessions if TeacherConsent(database["Teacher"],s["Teachers"],"Index sessions?")]
+            # Remove sessions we didn't get consent for
+        includedSessions = set(s["Session #"] for s in sessions)
         
         database["Sessions"] += sessions
 
@@ -370,9 +385,13 @@ def LoadEventFile(database,eventName,directory):
             ListifyKey(questions,key)
         ConvertToInteger(questions,"Session #")
         
-        qNumber = 1
-        lastSession = 0
+        questions = [q for q in questions if q["Session #"] in includedSessions]
+        
+        qNumber = 1 # Question number counts only questions allowed by teacher consent policies
+        fileNumber = 1 
+        lastSession = 0 
         for q in questions:
+            
             q["Tags"] = q["QTag"] + q["ATag"]
             q["Event"] = eventName
             
@@ -380,10 +399,15 @@ def LoadEventFile(database,eventName,directory):
                 if lastSession > q["Session #"] and gOptions.verbose > 0:
                     print(f"Warning: Session number out of order after question {qNumber} in session {lastSession} of {q['Event']}")
                 qNumber = 1
+                fileNumber = 1
                 lastSession = q["Session #"]
             else:
-                qNumber += 1
+                fileNumber += 1 # File number counts all questions listed for the event
+                if TeacherConsent(database["Teacher"],q["Teacher"],"Index sessions?"):                   
+                    qNumber += 1 # Question number counts only questions allowed by teacher consent policies
+                    
             q["Question #"] = qNumber
+            q["File #"] = fileNumber
             
             if not gOptions.jsonNoClean:
                 del q["QTag"]
@@ -409,12 +433,21 @@ def LoadEventFile(database,eventName,directory):
                         endTime = s["Duration"]
                 
             questions[qIndex]["Duration"] = TimeDeltaToStr(StrToTimeDelta(endTime) - StrToTimeDelta(startTime))
-                
         
         for index in range(len(questions)):
-            questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #"])
+            questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
+        
+        removedQuestions = [q for q in questions if not TeacherConsent(database["Teacher"],q["Teacher"],"Index sessions?")]
+        questions = [q for q in questions if TeacherConsent(database["Teacher"],q["Teacher"],"Index sessions?")]
+            # Remove sessions we didn't get consent for
         
         database["Questions"] += questions
+        
+        for q in removedQuestions: # Redact information about these questions
+            for key in ["Teacher","Tags","QTag","ATag","AListen?","Question #"]:
+                q.pop(key,None)
+        
+        database["Questions_Redacted"] += removedQuestions
         
 
 def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
@@ -514,12 +547,19 @@ def main(clOptions):
             continue
         
         database[baseName] = ListToDict(CSVFileToDictList(fullPath),baseName)
-        
+    
+    # Convert teacher consent flags to boolean values - all columns end in '?'
+    for name,teacherData in database["Teacher"].items():
+        for key in teacherData:
+            if key[-1] == '?':
+                teacherData[key] = teacherData[key] == 'Yes' # Consent is yes; all other values no
+    
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
     
     database["Event"] = {}
     database["Sessions"] = []
     database["Questions"] = []
+    database["Questions_Redacted"] = []
     for event in database["Summary"]:
         LoadEventFile(database,event,gOptions.csvDir)
     

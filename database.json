@@ -1515,9 +1515,9 @@
       "Index #": "12",
       "Name": "Suffering",
       "Pāli": "dukkha",
-      "Question count": 3,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Suffering (3) [dukkha]",
+      "Text": "Suffering (2) [dukkha]",
       "Tag": "Suffering"
     },
     {
@@ -1545,9 +1545,9 @@
       "Index #": "2",
       "Name": "Suffering",
       "Pāli": "dukkha",
-      "Question count": 3,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Suffering (3) [dukkha]",
+      "Text": "Suffering (2) [dukkha]",
       "Tag": "Suffering"
     },
     {
@@ -2215,9 +2215,9 @@
       "Index #": "",
       "Name": "Kamma",
       "Pāli": "Kamma",
-      "Question count": 14,
+      "Question count": 13,
       "Subsumed": false,
-      "Text": "Kamma (14)",
+      "Text": "Kamma (13)",
       "Tag": "Kamma"
     },
     {
@@ -2225,9 +2225,9 @@
       "Index #": "",
       "Name": "Rebirth",
       "Pāli": "",
-      "Question count": 9,
+      "Question count": 8,
       "Subsumed": false,
-      "Text": "Rebirth (9)",
+      "Text": "Rebirth (8)",
       "Tag": "Rebirth"
     },
     {
@@ -2455,9 +2455,9 @@
       "Index #": "",
       "Name": "Monastic life/Motivation",
       "Pāli": "",
-      "Question count": 2,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Monastic life/Motivation (2)",
+      "Text": "Monastic life/Motivation (1)",
       "Tag": "Monastic life/Motivation"
     },
     {
@@ -5205,7 +5205,7 @@
       "Primaries": 1,
       "html file": "suffering.html",
       "List index": 154,
-      "Question count": 3
+      "Question count": 2
     },
     "Three characteristics": {
       "Tag": "Three characteristics",
@@ -6258,7 +6258,7 @@
       "Primaries": 0,
       "html file": "kamma.html",
       "List index": 221,
-      "Question count": 14
+      "Question count": 13
     },
     "Rebirth": {
       "Tag": "Rebirth",
@@ -6275,7 +6275,7 @@
       "Primaries": 0,
       "html file": "rebirth.html",
       "List index": 222,
-      "Question count": 9
+      "Question count": 8
     },
     "Realms of existence": {
       "Tag": "Realms of existence",
@@ -6720,7 +6720,7 @@
       "Primaries": 0,
       "html file": "monastic-lifemotivation.html",
       "List index": 245,
-      "Question count": 2
+      "Question count": 1
     },
     "Four requisites": {
       "Tag": "Four requisites",
@@ -7220,27 +7220,42 @@
     "AP": {
       "Teacher": "AP",
       "Full name": "Ajahn Pasanno",
-      "Web link": "www.abhayagiri.org/community"
+      "Web link": "www.abhayagiri.org/community",
+      "Index questions?": true,
+      "Index sessions?": true,
+      "Searchable?": true
     },
     "AKd": {
       "Teacher": "AKd",
       "Full name": "Ajahn Karuṇadhammo",
-      "Web link": ""
+      "Web link": "",
+      "Index questions?": false,
+      "Index sessions?": false,
+      "Searchable?": false
     },
     "AÑ": {
       "Teacher": "AÑ",
       "Full name": "Ajahn Ñāniko",
-      "Web link": ""
+      "Web link": "",
+      "Index questions?": false,
+      "Index sessions?": false,
+      "Searchable?": false
     },
     "AKsp": {
       "Teacher": "AKsp",
       "Full name": "Ajahn Kassapo",
-      "Web link": ""
+      "Web link": "",
+      "Index questions?": false,
+      "Index sessions?": false,
+      "Searchable?": false
     },
     "DS": {
       "Teacher": "DS",
       "Full name": "Debbie Stamp",
-      "Web link": ""
+      "Web link": "",
+      "Index questions?": false,
+      "Index sessions?": false,
+      "Searchable?": false
     }
   },
   "Venue": {
@@ -7672,6 +7687,7 @@
       "Event": "TG2013",
       "Session #": 1,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:00 ",
       "End time": "",
       "Teacher": [
@@ -7688,6 +7704,7 @@
       "Event": "TG2013",
       "Session #": 1,
       "Question #": 2,
+      "File #": 2,
       "Start time": "4:25 ",
       "End time": "",
       "Teacher": [
@@ -7703,6 +7720,7 @@
       "Event": "TG2013",
       "Session #": 1,
       "Question #": 3,
+      "File #": 3,
       "Start time": "13:19 ",
       "End time": "",
       "Teacher": [
@@ -7719,6 +7737,7 @@
       "Event": "TG2013",
       "Session #": 1,
       "Question #": 4,
+      "File #": 4,
       "Start time": "22:38 ",
       "End time": "",
       "Teacher": [
@@ -7735,6 +7754,7 @@
       "Event": "TG2013",
       "Session #": 1,
       "Question #": 5,
+      "File #": 5,
       "Start time": "31:37 ",
       "End time": "",
       "Teacher": [
@@ -7750,6 +7770,7 @@
       "Event": "TG2013",
       "Session #": 1,
       "Question #": 6,
+      "File #": 6,
       "Start time": "38:25 ",
       "End time": "",
       "Teacher": [
@@ -7765,6 +7786,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:00 ",
       "End time": "",
       "Teacher": [
@@ -7781,6 +7803,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:51 ",
       "End time": "",
       "Teacher": [
@@ -7798,6 +7821,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 3,
+      "File #": 3,
       "Start time": "7:06 ",
       "End time": "",
       "Teacher": [
@@ -7814,6 +7838,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 4,
+      "File #": 4,
       "Start time": "10:33 ",
       "End time": "",
       "Teacher": [
@@ -7829,6 +7854,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 5,
+      "File #": 5,
       "Start time": "13:20 ",
       "End time": "",
       "Teacher": [
@@ -7845,6 +7871,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 6,
+      "File #": 6,
       "Start time": "17:46 ",
       "End time": "",
       "Teacher": [
@@ -7861,6 +7888,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 7,
+      "File #": 7,
       "Start time": "21:53 ",
       "End time": "",
       "Teacher": [
@@ -7876,6 +7904,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 8,
+      "File #": 8,
       "Start time": "26:51 ",
       "End time": "",
       "Teacher": [
@@ -7892,6 +7921,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 9,
+      "File #": 9,
       "Start time": "32:19 ",
       "End time": "",
       "Teacher": [
@@ -7907,6 +7937,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 10,
+      "File #": 10,
       "Start time": "33:14 ",
       "End time": "",
       "Teacher": [
@@ -7922,6 +7953,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 11,
+      "File #": 11,
       "Start time": "39:17 ",
       "End time": "",
       "Teacher": [
@@ -7939,6 +7971,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 12,
+      "File #": 12,
       "Start time": "44:43 ",
       "End time": "",
       "Teacher": [
@@ -7955,6 +7988,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 13,
+      "File #": 13,
       "Start time": "46:09 ",
       "End time": "",
       "Teacher": [
@@ -7970,6 +8004,7 @@
       "Event": "TG2013",
       "Session #": 2,
       "Question #": 14,
+      "File #": 14,
       "Start time": "49:56 ",
       "End time": "",
       "Teacher": [
@@ -7985,6 +8020,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:00 ",
       "End time": "",
       "Teacher": [
@@ -8000,6 +8036,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:43 ",
       "End time": "",
       "Teacher": [
@@ -8016,6 +8053,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 3,
+      "File #": 3,
       "Start time": "4:16 ",
       "End time": "",
       "Teacher": [
@@ -8031,6 +8069,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 4,
+      "File #": 4,
       "Start time": "6:35 ",
       "End time": "",
       "Teacher": [
@@ -8046,6 +8085,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 5,
+      "File #": 5,
       "Start time": "12:40 ",
       "End time": "",
       "Teacher": [
@@ -8062,6 +8102,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 6,
+      "File #": 6,
       "Start time": "17:18 ",
       "End time": "",
       "Teacher": [
@@ -8077,6 +8118,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 7,
+      "File #": 7,
       "Start time": "23:48 ",
       "End time": "",
       "Teacher": [
@@ -8092,6 +8134,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 8,
+      "File #": 8,
       "Start time": "26:24 ",
       "End time": "",
       "Teacher": [
@@ -8107,6 +8150,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 9,
+      "File #": 9,
       "Start time": "30:16 ",
       "End time": "",
       "Teacher": [
@@ -8125,6 +8169,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 10,
+      "File #": 10,
       "Start time": "34:10 ",
       "End time": "",
       "Teacher": [
@@ -8141,6 +8186,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 11,
+      "File #": 11,
       "Start time": "37:43 ",
       "End time": "",
       "Teacher": [
@@ -8157,6 +8203,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 12,
+      "File #": 12,
       "Start time": "40:42 ",
       "End time": "",
       "Teacher": [
@@ -8173,6 +8220,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 13,
+      "File #": 13,
       "Start time": "42:10 ",
       "End time": "",
       "Teacher": [
@@ -8189,6 +8237,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 14,
+      "File #": 14,
       "Start time": "43:45 ",
       "End time": "",
       "Teacher": [
@@ -8205,6 +8254,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 15,
+      "File #": 15,
       "Start time": "47:20 ",
       "End time": "",
       "Teacher": [
@@ -8221,6 +8271,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 16,
+      "File #": 16,
       "Start time": "50:57 ",
       "End time": "",
       "Teacher": [
@@ -8236,6 +8287,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 17,
+      "File #": 17,
       "Start time": "53:16 ",
       "End time": "",
       "Teacher": [
@@ -8251,6 +8303,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 18,
+      "File #": 18,
       "Start time": "56:47 ",
       "End time": "",
       "Teacher": [
@@ -8266,6 +8319,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 19,
+      "File #": 19,
       "Start time": "59:11 ",
       "End time": "",
       "Teacher": [
@@ -8282,6 +8336,7 @@
       "Event": "TG2013",
       "Session #": 3,
       "Question #": 20,
+      "File #": 20,
       "Start time": "1:04:16 ",
       "End time": "",
       "Teacher": [
@@ -8299,6 +8354,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 1,
+      "File #": 1,
       "Start time": "00:00 ",
       "End time": "",
       "Teacher": [
@@ -8316,6 +8372,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:14 ",
       "End time": "",
       "Teacher": [
@@ -8331,6 +8388,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 3,
+      "File #": 3,
       "Start time": "4:31",
       "End time": "",
       "Teacher": [
@@ -8346,6 +8404,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 4,
+      "File #": 4,
       "Start time": "6:18",
       "End time": "",
       "Teacher": [
@@ -8361,6 +8420,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 5,
+      "File #": 5,
       "Start time": "15:49 ",
       "End time": "",
       "Teacher": [
@@ -8374,6 +8434,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 6,
+      "File #": 6,
       "Start time": "18:12 ",
       "End time": "",
       "Teacher": [
@@ -8387,6 +8448,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 7,
+      "File #": 7,
       "Start time": "19:00 ",
       "End time": "",
       "Teacher": [
@@ -8403,6 +8465,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 8,
+      "File #": 8,
       "Start time": "22:55 ",
       "End time": "",
       "Teacher": [
@@ -8418,6 +8481,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 9,
+      "File #": 9,
       "Start time": "26:20 ",
       "End time": "",
       "Teacher": [
@@ -8436,6 +8500,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 10,
+      "File #": 10,
       "Start time": "33:33 ",
       "End time": "",
       "Teacher": [
@@ -8451,6 +8516,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 11,
+      "File #": 11,
       "Start time": "36:30 ",
       "End time": "",
       "Teacher": [
@@ -8467,6 +8533,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 12,
+      "File #": 12,
       "Start time": "42:38 ",
       "End time": "",
       "Teacher": [
@@ -8480,6 +8547,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 13,
+      "File #": 13,
       "Start time": "43:39 ",
       "End time": "",
       "Teacher": [
@@ -8495,6 +8563,7 @@
       "Event": "TG2013",
       "Session #": 4,
       "Question #": 14,
+      "File #": 14,
       "Start time": "45:38 ",
       "End time": "",
       "Teacher": [
@@ -8511,6 +8580,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 1,
+      "File #": 1,
       "Start time": "00:00 ",
       "End time": "",
       "Teacher": [
@@ -8526,6 +8596,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 2,
+      "File #": 2,
       "Start time": "8:42 ",
       "End time": "",
       "Teacher": [
@@ -8542,6 +8613,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 3,
+      "File #": 3,
       "Start time": "10:33 ",
       "End time": "",
       "Teacher": [
@@ -8557,6 +8629,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 4,
+      "File #": 4,
       "Start time": "14:02 ",
       "End time": "",
       "Teacher": [
@@ -8572,6 +8645,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 5,
+      "File #": 5,
       "Start time": "15:03 ",
       "End time": "",
       "Teacher": [
@@ -8588,6 +8662,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 6,
+      "File #": 6,
       "Start time": "23:25 ",
       "End time": "",
       "Teacher": [
@@ -8604,6 +8679,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 7,
+      "File #": 7,
       "Start time": "26:38",
       "End time": "",
       "Teacher": [
@@ -8620,6 +8696,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 8,
+      "File #": 8,
       "Start time": "30:20 ",
       "End time": "",
       "Teacher": [
@@ -8635,6 +8712,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 9,
+      "File #": 9,
       "Start time": "32:17 ",
       "End time": "",
       "Teacher": [
@@ -8651,6 +8729,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 10,
+      "File #": 10,
       "Start time": "34:25 ",
       "End time": "",
       "Teacher": [
@@ -8666,6 +8745,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 11,
+      "File #": 11,
       "Start time": "39:49 ",
       "End time": "",
       "Teacher": [
@@ -8683,6 +8763,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 12,
+      "File #": 12,
       "Start time": "43:03 ",
       "End time": "",
       "Teacher": [
@@ -8699,6 +8780,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 13,
+      "File #": 13,
       "Start time": "49:38 ",
       "End time": "",
       "Teacher": [
@@ -8714,6 +8796,7 @@
       "Event": "TG2013",
       "Session #": 5,
       "Question #": 14,
+      "File #": 14,
       "Start time": "54:46 ",
       "End time": "",
       "Teacher": [
@@ -8731,6 +8814,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 1,
+      "File #": 1,
       "Start time": "00:00 ",
       "End time": "",
       "Teacher": [
@@ -8747,6 +8831,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:38 ",
       "End time": "",
       "Teacher": [
@@ -8762,6 +8847,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 3,
+      "File #": 3,
       "Start time": "5:23",
       "End time": "",
       "Teacher": [
@@ -8777,6 +8863,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 4,
+      "File #": 4,
       "Start time": "9:34 ",
       "End time": "",
       "Teacher": [
@@ -8794,6 +8881,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 5,
+      "File #": 5,
       "Start time": "12:01 ",
       "End time": "",
       "Teacher": [
@@ -8809,6 +8897,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 6,
+      "File #": 6,
       "Start time": "13:14 ",
       "End time": "",
       "Teacher": [
@@ -8825,6 +8914,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 7,
+      "File #": 7,
       "Start time": "18:01 ",
       "End time": "",
       "Teacher": [
@@ -8841,6 +8931,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 8,
+      "File #": 8,
       "Start time": "23:00 ",
       "End time": "",
       "Teacher": [
@@ -8856,6 +8947,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 9,
+      "File #": 9,
       "Start time": "23:33 ",
       "End time": "",
       "Teacher": [
@@ -8871,6 +8963,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 10,
+      "File #": 10,
       "Start time": "24:00 ",
       "End time": "",
       "Teacher": [
@@ -8888,6 +8981,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 11,
+      "File #": 11,
       "Start time": "27:23 ",
       "End time": "",
       "Teacher": [
@@ -8903,6 +8997,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 12,
+      "File #": 12,
       "Start time": "28:40 ",
       "End time": "",
       "Teacher": [
@@ -8919,6 +9014,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 13,
+      "File #": 13,
       "Start time": "29:52 ",
       "End time": "",
       "Teacher": [
@@ -8935,6 +9031,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 14,
+      "File #": 14,
       "Start time": "35:23 ",
       "End time": "",
       "Teacher": [
@@ -8950,6 +9047,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 15,
+      "File #": 15,
       "Start time": "37:23 ",
       "End time": "",
       "Teacher": [
@@ -8966,6 +9064,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 16,
+      "File #": 16,
       "Start time": "41:41 ",
       "End time": "",
       "Teacher": [
@@ -8981,6 +9080,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 17,
+      "File #": 17,
       "Start time": "42:11",
       "End time": "",
       "Teacher": [
@@ -8996,6 +9096,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 18,
+      "File #": 18,
       "Start time": "45:12 ",
       "End time": "",
       "Teacher": [
@@ -9011,6 +9112,7 @@
       "Event": "TG2013",
       "Session #": 6,
       "Question #": 19,
+      "File #": 19,
       "Start time": "47:27 ",
       "End time": "",
       "Teacher": [
@@ -9026,6 +9128,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 1,
+      "File #": 1,
       "Start time": "00:00 ",
       "End time": "",
       "Teacher": [
@@ -9041,6 +9144,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 2,
+      "File #": 2,
       "Start time": "4:30 ",
       "End time": "",
       "Teacher": [
@@ -9056,6 +9160,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 3,
+      "File #": 3,
       "Start time": "8:22 ",
       "End time": "",
       "Teacher": [
@@ -9072,6 +9177,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 4,
+      "File #": 4,
       "Start time": "10:58 ",
       "End time": "",
       "Teacher": [
@@ -9087,6 +9193,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 5,
+      "File #": 5,
       "Start time": "12:35 ",
       "End time": "",
       "Teacher": [
@@ -9100,6 +9207,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 6,
+      "File #": 6,
       "Start time": "13:57 ",
       "End time": "",
       "Teacher": [
@@ -9116,6 +9224,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 7,
+      "File #": 7,
       "Start time": "15:56 ",
       "End time": "",
       "Teacher": [
@@ -9132,6 +9241,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 8,
+      "File #": 8,
       "Start time": "16:22 ",
       "End time": "",
       "Teacher": [
@@ -9148,6 +9258,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 9,
+      "File #": 9,
       "Start time": "19:14 ",
       "End time": "",
       "Teacher": [
@@ -9165,6 +9276,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 10,
+      "File #": 10,
       "Start time": "22:19 ",
       "End time": "",
       "Teacher": [
@@ -9180,6 +9292,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 11,
+      "File #": 11,
       "Start time": "25:48 ",
       "End time": "",
       "Teacher": [
@@ -9195,6 +9308,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 12,
+      "File #": 12,
       "Start time": "29:23 ",
       "End time": "",
       "Teacher": [
@@ -9211,6 +9325,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 13,
+      "File #": 13,
       "Start time": "32:54 ",
       "End time": "",
       "Teacher": [
@@ -9226,6 +9341,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 14,
+      "File #": 14,
       "Start time": "34:52 ",
       "End time": "",
       "Teacher": [
@@ -9241,6 +9357,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 15,
+      "File #": 15,
       "Start time": "41:23 ",
       "End time": "",
       "Teacher": [
@@ -9256,6 +9373,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 16,
+      "File #": 16,
       "Start time": "43:34 ",
       "End time": "",
       "Teacher": [
@@ -9272,6 +9390,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 17,
+      "File #": 17,
       "Start time": "43:54 ",
       "End time": "",
       "Teacher": [
@@ -9288,6 +9407,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 18,
+      "File #": 18,
       "Start time": "46:56 ",
       "End time": "",
       "Teacher": [
@@ -9304,6 +9424,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 19,
+      "File #": 19,
       "Start time": "49:46 ",
       "End time": "",
       "Teacher": [
@@ -9320,6 +9441,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 20,
+      "File #": 20,
       "Start time": "52:26 ",
       "End time": "",
       "Teacher": [
@@ -9335,6 +9457,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 21,
+      "File #": 21,
       "Start time": "56:12 ",
       "End time": "",
       "Teacher": [
@@ -9350,6 +9473,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 22,
+      "File #": 22,
       "Start time": "57:21 ",
       "End time": "",
       "Teacher": [
@@ -9365,6 +9489,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 23,
+      "File #": 23,
       "Start time": "1:01:21",
       "End time": "",
       "Teacher": [
@@ -9380,6 +9505,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 24,
+      "File #": 24,
       "Start time": "1:02:48 ",
       "End time": "",
       "Teacher": [
@@ -9396,6 +9522,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 25,
+      "File #": 25,
       "Start time": "1:07:13 ",
       "End time": "",
       "Teacher": [
@@ -9411,6 +9538,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 26,
+      "File #": 26,
       "Start time": "1:08:53 ",
       "End time": "",
       "Teacher": [
@@ -9426,6 +9554,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 27,
+      "File #": 27,
       "Start time": "1:14:30 ",
       "End time": "",
       "Teacher": [
@@ -9441,6 +9570,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 28,
+      "File #": 28,
       "Start time": "1:18:43 ",
       "End time": "",
       "Teacher": [
@@ -9457,6 +9587,7 @@
       "Event": "TG2013",
       "Session #": 7,
       "Question #": 29,
+      "File #": 29,
       "Start time": "1:20:01 ",
       "End time": "",
       "Teacher": [
@@ -9472,6 +9603,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 1,
+      "File #": 1,
       "Start time": "00:00 ",
       "End time": "",
       "Teacher": [
@@ -9487,6 +9619,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 2,
+      "File #": 2,
       "Start time": "1:48 ",
       "End time": "",
       "Teacher": [
@@ -9503,6 +9636,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 3,
+      "File #": 3,
       "Start time": "5:10 ",
       "End time": "",
       "Teacher": [
@@ -9518,6 +9652,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 4,
+      "File #": 4,
       "Start time": "5:38 ",
       "End time": "",
       "Teacher": [
@@ -9533,6 +9668,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 5,
+      "File #": 5,
       "Start time": "9:53 ",
       "End time": "",
       "Teacher": [
@@ -9548,6 +9684,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 6,
+      "File #": 6,
       "Start time": "10:50 ",
       "End time": "",
       "Teacher": [
@@ -9563,6 +9700,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 7,
+      "File #": 7,
       "Start time": "11:54 ",
       "End time": "",
       "Teacher": [
@@ -9578,6 +9716,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 8,
+      "File #": 8,
       "Start time": "15:46 ",
       "End time": "",
       "Teacher": [
@@ -9593,6 +9732,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 9,
+      "File #": 9,
       "Start time": "16:16 ",
       "End time": "",
       "Teacher": [
@@ -9608,6 +9748,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 10,
+      "File #": 10,
       "Start time": "18:29 ",
       "End time": "",
       "Teacher": [
@@ -9623,6 +9764,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 11,
+      "File #": 11,
       "Start time": "20:15 ",
       "End time": "",
       "Teacher": [
@@ -9638,6 +9780,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 12,
+      "File #": 12,
       "Start time": "27:36 ",
       "End time": "",
       "Teacher": [
@@ -9653,6 +9796,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 13,
+      "File #": 13,
       "Start time": "30:25 ",
       "End time": "",
       "Teacher": [
@@ -9668,6 +9812,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 14,
+      "File #": 14,
       "Start time": "32:12 ",
       "End time": "",
       "Teacher": [
@@ -9683,6 +9828,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 15,
+      "File #": 15,
       "Start time": "34:17 ",
       "End time": "",
       "Teacher": [
@@ -9698,6 +9844,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 16,
+      "File #": 16,
       "Start time": "38:19 ",
       "End time": "",
       "Teacher": [
@@ -9713,6 +9860,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 17,
+      "File #": 17,
       "Start time": "41:00 ",
       "End time": "",
       "Teacher": [
@@ -9729,6 +9877,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 18,
+      "File #": 18,
       "Start time": "43:18 ",
       "End time": "",
       "Teacher": [
@@ -9742,6 +9891,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 19,
+      "File #": 19,
       "Start time": "43:27 ",
       "End time": "",
       "Teacher": [
@@ -9758,6 +9908,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 20,
+      "File #": 20,
       "Start time": "50:33 ",
       "End time": "",
       "Teacher": [
@@ -9775,6 +9926,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 21,
+      "File #": 21,
       "Start time": "52:11 ",
       "End time": "",
       "Teacher": [
@@ -9791,6 +9943,7 @@
       "Event": "TG2013",
       "Session #": 8,
       "Question #": 22,
+      "File #": 22,
       "Start time": "54:06 ",
       "End time": "",
       "Teacher": [
@@ -9807,6 +9960,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:19",
       "End time": "",
       "Teacher": [
@@ -9822,6 +9976,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 2,
+      "File #": 2,
       "Start time": "5:17",
       "End time": "",
       "Teacher": [
@@ -9837,6 +9992,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 3,
+      "File #": 3,
       "Start time": "8:21",
       "End time": "",
       "Teacher": [
@@ -9852,6 +10008,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 4,
+      "File #": 4,
       "Start time": "17:16",
       "End time": "",
       "Teacher": [
@@ -9867,6 +10024,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 5,
+      "File #": 5,
       "Start time": "22:44",
       "End time": "",
       "Teacher": [
@@ -9882,6 +10040,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 6,
+      "File #": 6,
       "Start time": "29:26",
       "End time": "",
       "Teacher": [
@@ -9897,6 +10056,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 7,
+      "File #": 7,
       "Start time": "36:36",
       "End time": "",
       "Teacher": [
@@ -9913,6 +10073,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 8,
+      "File #": 8,
       "Start time": "39:46",
       "End time": "",
       "Teacher": [
@@ -9928,6 +10089,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 9,
+      "File #": 9,
       "Start time": "44:13",
       "End time": "",
       "Teacher": [
@@ -9943,6 +10105,7 @@
       "Event": "TG2014",
       "Session #": 1,
       "Question #": 10,
+      "File #": 10,
       "Start time": "50:37",
       "End time": "",
       "Teacher": [
@@ -9959,6 +10122,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:12",
       "End time": "",
       "Teacher": [
@@ -9974,6 +10138,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 2,
+      "File #": 2,
       "Start time": "2:29",
       "End time": "",
       "Teacher": [
@@ -9989,6 +10154,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 3,
+      "File #": 3,
       "Start time": "7:11",
       "End time": "",
       "Teacher": [
@@ -10004,6 +10170,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 4,
+      "File #": 4,
       "Start time": "13:15",
       "End time": "",
       "Teacher": [
@@ -10019,6 +10186,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 5,
+      "File #": 5,
       "Start time": "14:58",
       "End time": "",
       "Teacher": [
@@ -10035,6 +10203,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 6,
+      "File #": 6,
       "Start time": "18:38",
       "End time": "",
       "Teacher": [
@@ -10051,6 +10220,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 7,
+      "File #": 7,
       "Start time": "22:41",
       "End time": "",
       "Teacher": [
@@ -10066,6 +10236,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 8,
+      "File #": 8,
       "Start time": "26:36",
       "End time": "",
       "Teacher": [
@@ -10081,6 +10252,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 9,
+      "File #": 9,
       "Start time": "30:42",
       "End time": "",
       "Teacher": [
@@ -10096,6 +10268,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 10,
+      "File #": 10,
       "Start time": "32:16",
       "End time": "",
       "Teacher": [
@@ -10113,6 +10286,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 11,
+      "File #": 11,
       "Start time": "38:01",
       "End time": "",
       "Teacher": [
@@ -10126,6 +10300,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 12,
+      "File #": 12,
       "Start time": "38:36",
       "End time": "",
       "Teacher": [
@@ -10141,6 +10316,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 13,
+      "File #": 13,
       "Start time": "42:53",
       "End time": "",
       "Teacher": [
@@ -10156,6 +10332,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 14,
+      "File #": 14,
       "Start time": "48:27",
       "End time": "",
       "Teacher": [
@@ -10171,6 +10348,7 @@
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 15,
+      "File #": 15,
       "Start time": "54:49",
       "End time": "",
       "Teacher": [
@@ -10186,6 +10364,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:13",
       "End time": "",
       "Teacher": [
@@ -10202,6 +10381,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 2,
+      "File #": 2,
       "Start time": "5:11",
       "End time": "",
       "Teacher": [
@@ -10217,6 +10397,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 3,
+      "File #": 3,
       "Start time": "6:19",
       "End time": "",
       "Teacher": [
@@ -10233,6 +10414,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 4,
+      "File #": 4,
       "Start time": "12:05",
       "End time": "",
       "Teacher": [
@@ -10249,6 +10431,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 5,
+      "File #": 5,
       "Start time": "15:09",
       "End time": "",
       "Teacher": [
@@ -10265,6 +10448,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 6,
+      "File #": 6,
       "Start time": "18:07",
       "End time": "",
       "Teacher": [
@@ -10280,6 +10464,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 7,
+      "File #": 7,
       "Start time": "20:34",
       "End time": "",
       "Teacher": [
@@ -10295,6 +10480,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 8,
+      "File #": 8,
       "Start time": "22:25",
       "End time": "",
       "Teacher": [
@@ -10310,6 +10496,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 9,
+      "File #": 9,
       "Start time": "31:39",
       "End time": "",
       "Teacher": [
@@ -10327,6 +10514,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 10,
+      "File #": 10,
       "Start time": "39:11",
       "End time": "",
       "Teacher": [
@@ -10343,6 +10531,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 11,
+      "File #": 11,
       "Start time": "43:20",
       "End time": "",
       "Teacher": [
@@ -10358,6 +10547,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 12,
+      "File #": 12,
       "Start time": "45:16",
       "End time": "",
       "Teacher": [
@@ -10373,22 +10563,7 @@
       "Event": "TG2014",
       "Session #": 3,
       "Question #": 13,
-      "Start time": "50:59",
-      "End time": "",
-      "Teacher": [
-        "AKd"
-      ],
-      "Question text": "Dear Aj. Karuṇadhammo, could you say a bit more about how you find a belief in rebirth to be motivational? And that it “just makes sense?”  Do you think, perhaps, about the person who will inherit your rebirth and how it would be good to load them up with good kamma? Thanks!",
-      "Tags": [
-        "Rebirth",
-        "Kamma"
-      ],
-      "Duration": "5:16"
-    },
-    {
-      "Event": "TG2014",
-      "Session #": 3,
-      "Question #": 14,
+      "File #": 14,
       "Start time": "56:15",
       "End time": "",
       "Teacher": [
@@ -10404,7 +10579,8 @@
     {
       "Event": "TG2014",
       "Session #": 3,
-      "Question #": 15,
+      "Question #": 14,
+      "File #": 15,
       "Start time": "63:05",
       "End time": "",
       "Teacher": [
@@ -10420,7 +10596,8 @@
     {
       "Event": "TG2014",
       "Session #": 3,
-      "Question #": 16,
+      "Question #": 15,
+      "File #": 16,
       "Start time": "69:18",
       "End time": "",
       "Teacher": [
@@ -10435,7 +10612,8 @@
     {
       "Event": "TG2014",
       "Session #": 3,
-      "Question #": 17,
+      "Question #": 16,
+      "File #": 17,
       "Start time": "71:05",
       "End time": "",
       "Teacher": [
@@ -10450,7 +10628,8 @@
     {
       "Event": "TG2014",
       "Session #": 3,
-      "Question #": 18,
+      "Question #": 17,
+      "File #": 18,
       "Start time": "74:16",
       "End time": "",
       "Teacher": [
@@ -10464,6 +10643,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:03",
       "End time": "",
       "Teacher": [
@@ -10479,6 +10659,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 2,
+      "File #": 2,
       "Start time": "2:03",
       "End time": "",
       "Teacher": [
@@ -10492,6 +10673,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 3,
+      "File #": 3,
       "Start time": "2:31",
       "End time": "",
       "Teacher": [
@@ -10507,6 +10689,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 4,
+      "File #": 4,
       "Start time": "5:22",
       "End time": "",
       "Teacher": [
@@ -10522,6 +10705,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 5,
+      "File #": 5,
       "Start time": "10:28",
       "End time": "",
       "Teacher": [
@@ -10537,6 +10721,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 6,
+      "File #": 6,
       "Start time": "15:03",
       "End time": "",
       "Teacher": [
@@ -10552,6 +10737,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 7,
+      "File #": 7,
       "Start time": "19:51",
       "End time": "",
       "Teacher": [
@@ -10568,6 +10754,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 8,
+      "File #": 8,
       "Start time": "22:16",
       "End time": "",
       "Teacher": [
@@ -10584,6 +10771,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 9,
+      "File #": 9,
       "Start time": "26:09",
       "End time": "",
       "Teacher": [
@@ -10600,6 +10788,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 10,
+      "File #": 10,
       "Start time": "30:40",
       "End time": "",
       "Teacher": [
@@ -10615,6 +10804,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 11,
+      "File #": 11,
       "Start time": "31:30",
       "End time": "",
       "Teacher": [
@@ -10631,6 +10821,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 12,
+      "File #": 12,
       "Start time": "36:35",
       "End time": "",
       "Teacher": [
@@ -10647,6 +10838,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 13,
+      "File #": 13,
       "Start time": "39:09",
       "End time": "",
       "Teacher": [
@@ -10663,6 +10855,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 14,
+      "File #": 14,
       "Start time": "45:25",
       "End time": "",
       "Teacher": [
@@ -10678,6 +10871,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 15,
+      "File #": 15,
       "Start time": "47:56",
       "End time": "",
       "Teacher": [
@@ -10695,6 +10889,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 16,
+      "File #": 16,
       "Start time": "57:30",
       "End time": "",
       "Teacher": [
@@ -10711,6 +10906,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 17,
+      "File #": 17,
       "Start time": "61:33",
       "End time": "",
       "Teacher": [
@@ -10727,6 +10923,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 18,
+      "File #": 18,
       "Start time": "65:48",
       "End time": "",
       "Teacher": [
@@ -10742,6 +10939,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 19,
+      "File #": 19,
       "Start time": "67:40",
       "End time": "",
       "Teacher": [
@@ -10755,6 +10953,7 @@
       "Event": "TG2014",
       "Session #": 4,
       "Question #": 20,
+      "File #": 20,
       "Start time": "68:20",
       "End time": "",
       "Teacher": [
@@ -10770,6 +10969,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:15",
       "End time": "",
       "Teacher": [
@@ -10786,6 +10986,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 2,
+      "File #": 2,
       "Start time": "8:50",
       "End time": "",
       "Teacher": [
@@ -10801,6 +11002,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 3,
+      "File #": 3,
       "Start time": "10:52",
       "End time": "",
       "Teacher": [
@@ -10817,6 +11019,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 4,
+      "File #": 4,
       "Start time": "24:15",
       "End time": "",
       "Teacher": [
@@ -10832,6 +11035,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 5,
+      "File #": 5,
       "Start time": "25:51",
       "End time": "",
       "Teacher": [
@@ -10847,6 +11051,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 6,
+      "File #": 6,
       "Start time": "34:00",
       "End time": "",
       "Teacher": [
@@ -10862,6 +11067,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 7,
+      "File #": 7,
       "Start time": "39:33",
       "End time": "",
       "Teacher": [
@@ -10877,6 +11083,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 8,
+      "File #": 8,
       "Start time": "40:03",
       "End time": "",
       "Teacher": [
@@ -10892,6 +11099,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 9,
+      "File #": 9,
       "Start time": "43:52",
       "End time": "",
       "Teacher": [
@@ -10907,6 +11115,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 10,
+      "File #": 10,
       "Start time": "46:55",
       "End time": "",
       "Teacher": [
@@ -10922,6 +11131,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 11,
+      "File #": 11,
       "Start time": "52:10",
       "End time": "",
       "Teacher": [
@@ -10937,6 +11147,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 12,
+      "File #": 12,
       "Start time": "55:03",
       "End time": "",
       "Teacher": [
@@ -10950,6 +11161,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 13,
+      "File #": 13,
       "Start time": "55:45",
       "End time": "",
       "Teacher": [
@@ -10965,6 +11177,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 14,
+      "File #": 14,
       "Start time": "56:47",
       "End time": "",
       "Teacher": [
@@ -10980,6 +11193,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 15,
+      "File #": 15,
       "Start time": "57:55",
       "End time": "",
       "Teacher": [
@@ -10995,6 +11209,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 16,
+      "File #": 16,
       "Start time": "63:57",
       "End time": "",
       "Teacher": [
@@ -11012,6 +11227,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 17,
+      "File #": 17,
       "Start time": "71:40",
       "End time": "",
       "Teacher": [
@@ -11027,6 +11243,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 18,
+      "File #": 18,
       "Start time": "74:24",
       "End time": "",
       "Teacher": [
@@ -11042,6 +11259,7 @@
       "Event": "TG2014",
       "Session #": 5,
       "Question #": 19,
+      "File #": 19,
       "Start time": "80:06",
       "End time": "",
       "Teacher": [
@@ -11057,6 +11275,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:15",
       "End time": "",
       "Teacher": [
@@ -11074,6 +11293,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:12",
       "End time": "",
       "Teacher": [
@@ -11090,6 +11310,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 3,
+      "File #": 3,
       "Start time": "8:05",
       "End time": "",
       "Teacher": [
@@ -11105,6 +11326,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 4,
+      "File #": 4,
       "Start time": "8:28",
       "End time": "",
       "Teacher": [
@@ -11118,6 +11340,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 5,
+      "File #": 5,
       "Start time": "11:43",
       "End time": "",
       "Teacher": [
@@ -11133,6 +11356,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 6,
+      "File #": 6,
       "Start time": "16:27",
       "End time": "",
       "Teacher": [
@@ -11148,6 +11372,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 7,
+      "File #": 7,
       "Start time": "19:06",
       "End time": "",
       "Teacher": [
@@ -11163,6 +11388,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 8,
+      "File #": 8,
       "Start time": "19:59",
       "End time": "",
       "Teacher": [
@@ -11179,6 +11405,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 9,
+      "File #": 9,
       "Start time": "24:50",
       "End time": "",
       "Teacher": [
@@ -11194,6 +11421,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 10,
+      "File #": 10,
       "Start time": "28:21",
       "End time": "",
       "Teacher": [
@@ -11210,6 +11438,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 11,
+      "File #": 11,
       "Start time": "34:20",
       "End time": "",
       "Teacher": [
@@ -11223,6 +11452,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 12,
+      "File #": 12,
       "Start time": "34:58",
       "End time": "",
       "Teacher": [
@@ -11238,6 +11468,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 13,
+      "File #": 13,
       "Start time": "42:54",
       "End time": "",
       "Teacher": [
@@ -11254,6 +11485,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 14,
+      "File #": 14,
       "Start time": "46:29",
       "End time": "",
       "Teacher": [
@@ -11269,6 +11501,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 15,
+      "File #": 15,
       "Start time": "48:30",
       "End time": "",
       "Teacher": [
@@ -11286,6 +11519,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 16,
+      "File #": 16,
       "Start time": "50:32",
       "End time": "",
       "Teacher": [
@@ -11302,6 +11536,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 17,
+      "File #": 17,
       "Start time": "52:23",
       "End time": "",
       "Teacher": [
@@ -11317,6 +11552,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 18,
+      "File #": 18,
       "Start time": "54:03",
       "End time": "",
       "Teacher": [
@@ -11332,6 +11568,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 19,
+      "File #": 19,
       "Start time": "57:52",
       "End time": "",
       "Teacher": [
@@ -11348,6 +11585,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 20,
+      "File #": 20,
       "Start time": "60:03",
       "End time": "",
       "Teacher": [
@@ -11363,6 +11601,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 21,
+      "File #": 21,
       "Start time": "62:14",
       "End time": "",
       "Teacher": [
@@ -11378,6 +11617,7 @@
       "Event": "TG2014",
       "Session #": 6,
       "Question #": 22,
+      "File #": 22,
       "Start time": "63:31",
       "End time": "",
       "Teacher": [
@@ -11393,6 +11633,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:09",
       "End time": "",
       "Teacher": [
@@ -11408,6 +11649,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 2,
+      "File #": 2,
       "Start time": "0:29",
       "End time": "",
       "Teacher": [
@@ -11423,6 +11665,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 3,
+      "File #": 3,
       "Start time": "3:56",
       "End time": "",
       "Teacher": [
@@ -11438,6 +11681,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 4,
+      "File #": 4,
       "Start time": "8:23",
       "End time": "",
       "Teacher": [
@@ -11453,6 +11697,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 5,
+      "File #": 5,
       "Start time": "10:02",
       "End time": "",
       "Teacher": [
@@ -11469,6 +11714,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 6,
+      "File #": 6,
       "Start time": "19:06",
       "End time": "",
       "Teacher": [
@@ -11485,23 +11731,7 @@
       "Event": "TG2014",
       "Session #": 7,
       "Question #": 7,
-      "Start time": "25:06",
-      "End time": "",
-      "Teacher": [
-        "AÑ",
-        "AKsp"
-      ],
-      "Question text": "Ajahn Ñāniko and Tan Kassapo: “Why be a monk?” Sadhu, sadhu, sadhu.",
-      "Tags": [
-        "Monastic life/Motivation",
-        "Suffering"
-      ],
-      "Duration": "1:13"
-    },
-    {
-      "Event": "TG2014",
-      "Session #": 7,
-      "Question #": 8,
+      "File #": 8,
       "Start time": "26:19",
       "End time": "",
       "Teacher": [
@@ -11517,7 +11747,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 9,
+      "Question #": 8,
+      "File #": 9,
       "Start time": "32:26",
       "End time": "",
       "Teacher": [
@@ -11533,7 +11764,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 10,
+      "Question #": 9,
+      "File #": 10,
       "Start time": "38:37",
       "End time": "",
       "Teacher": [
@@ -11548,7 +11780,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 11,
+      "Question #": 10,
+      "File #": 11,
       "Start time": "45:13",
       "End time": "",
       "Teacher": [
@@ -11563,7 +11796,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 12,
+      "Question #": 11,
+      "File #": 12,
       "Start time": "50:42",
       "End time": "",
       "Teacher": [
@@ -11579,7 +11813,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 13,
+      "Question #": 12,
+      "File #": 13,
       "Start time": "57:01",
       "End time": "",
       "Teacher": [
@@ -11594,7 +11829,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 14,
+      "Question #": 13,
+      "File #": 14,
       "Start time": "59:37",
       "End time": "",
       "Teacher": [
@@ -11610,7 +11846,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 15,
+      "Question #": 14,
+      "File #": 15,
       "Start time": "60:09",
       "End time": "",
       "Teacher": [
@@ -11625,7 +11862,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 16,
+      "Question #": 15,
+      "File #": 16,
       "Start time": "64:11",
       "End time": "",
       "Teacher": [
@@ -11641,7 +11879,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 17,
+      "Question #": 16,
+      "File #": 17,
       "Start time": "70:33",
       "End time": "",
       "Teacher": [
@@ -11657,7 +11896,8 @@
     {
       "Event": "TG2014",
       "Session #": 7,
-      "Question #": 18,
+      "Question #": 17,
+      "File #": 18,
       "Start time": "75:56",
       "End time": "",
       "Teacher": [
@@ -11673,6 +11913,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 1,
+      "File #": 1,
       "Start time": "1:09",
       "End time": "",
       "Teacher": [
@@ -11688,6 +11929,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 2,
+      "File #": 2,
       "Start time": "6:16",
       "End time": "",
       "Teacher": [
@@ -11704,6 +11946,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 3,
+      "File #": 3,
       "Start time": "9:49",
       "End time": "",
       "Teacher": [
@@ -11717,6 +11960,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 4,
+      "File #": 4,
       "Start time": "12:27",
       "End time": "",
       "Teacher": [
@@ -11732,6 +11976,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 5,
+      "File #": 5,
       "Start time": "15:36",
       "End time": "",
       "Teacher": [
@@ -11745,6 +11990,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 6,
+      "File #": 6,
       "Start time": "16:29",
       "End time": "",
       "Teacher": [
@@ -11762,6 +12008,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 7,
+      "File #": 7,
       "Start time": "22:02",
       "End time": "",
       "Teacher": [
@@ -11777,6 +12024,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 8,
+      "File #": 8,
       "Start time": "34:01",
       "End time": "",
       "Teacher": [
@@ -11790,6 +12038,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 9,
+      "File #": 9,
       "Start time": "34:44",
       "End time": "",
       "Teacher": [
@@ -11805,6 +12054,7 @@
       "Event": "TG2015",
       "Session #": 1,
       "Question #": 10,
+      "File #": 10,
       "Start time": "43:00",
       "End time": "",
       "Teacher": [
@@ -11820,6 +12070,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:06",
       "End time": "",
       "Teacher": [
@@ -11836,6 +12087,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 2,
+      "File #": 2,
       "Start time": "2:46",
       "End time": "",
       "Teacher": [
@@ -11849,6 +12101,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 3,
+      "File #": 3,
       "Start time": "6:16",
       "End time": "",
       "Teacher": [
@@ -11864,6 +12117,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 4,
+      "File #": 4,
       "Start time": "12:36",
       "End time": "",
       "Teacher": [
@@ -11879,6 +12133,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 5,
+      "File #": 5,
       "Start time": "14:23",
       "End time": "",
       "Teacher": [
@@ -11895,6 +12150,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 6,
+      "File #": 6,
       "Start time": "20:32",
       "End time": "",
       "Teacher": [
@@ -11910,6 +12166,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 7,
+      "File #": 7,
       "Start time": "24:42",
       "End time": "",
       "Teacher": [
@@ -11925,6 +12182,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 8,
+      "File #": 8,
       "Start time": "33:18",
       "End time": "",
       "Teacher": [
@@ -11940,6 +12198,7 @@
       "Event": "TG2015",
       "Session #": 2,
       "Question #": 9,
+      "File #": 9,
       "Start time": "36:00",
       "End time": "",
       "Teacher": [
@@ -11955,6 +12214,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:22",
       "End time": "",
       "Teacher": [
@@ -11970,6 +12230,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 2,
+      "File #": 2,
       "Start time": "6:27",
       "End time": "",
       "Teacher": [
@@ -11985,6 +12246,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 3,
+      "File #": 3,
       "Start time": "11:03",
       "End time": "",
       "Teacher": [
@@ -12000,6 +12262,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 4,
+      "File #": 4,
       "Start time": "13:22",
       "End time": "",
       "Teacher": [
@@ -12015,6 +12278,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 5,
+      "File #": 5,
       "Start time": "18:50",
       "End time": "",
       "Teacher": [
@@ -12031,6 +12295,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 6,
+      "File #": 6,
       "Start time": "21:02",
       "End time": "",
       "Teacher": [
@@ -12046,6 +12311,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 7,
+      "File #": 7,
       "Start time": "25:53",
       "End time": "",
       "Teacher": [
@@ -12061,6 +12327,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 8,
+      "File #": 8,
       "Start time": "30:44",
       "End time": "",
       "Teacher": [
@@ -12076,6 +12343,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 9,
+      "File #": 9,
       "Start time": "35:54",
       "End time": "",
       "Teacher": [
@@ -12091,6 +12359,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 10,
+      "File #": 10,
       "Start time": "38:39",
       "End time": "",
       "Teacher": [
@@ -12106,6 +12375,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 11,
+      "File #": 11,
       "Start time": "42:29",
       "End time": "",
       "Teacher": [
@@ -12121,6 +12391,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 12,
+      "File #": 12,
       "Start time": "46:46",
       "End time": "",
       "Teacher": [
@@ -12136,6 +12407,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 13,
+      "File #": 13,
       "Start time": "51:02",
       "End time": "",
       "Teacher": [
@@ -12152,6 +12424,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 14,
+      "File #": 14,
       "Start time": "56:05",
       "End time": "",
       "Teacher": [
@@ -12168,6 +12441,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 15,
+      "File #": 15,
       "Start time": "60:30",
       "End time": "",
       "Teacher": [
@@ -12184,6 +12458,7 @@
       "Event": "TG2015",
       "Session #": 3,
       "Question #": 16,
+      "File #": 16,
       "Start time": "63:45",
       "End time": "",
       "Teacher": [
@@ -12199,6 +12474,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:07",
       "End time": "",
       "Teacher": [
@@ -12214,6 +12490,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 2,
+      "File #": 2,
       "Start time": "8:51",
       "End time": "",
       "Teacher": [
@@ -12229,6 +12506,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 3,
+      "File #": 3,
       "Start time": "10:33",
       "End time": "",
       "Teacher": [
@@ -12244,6 +12522,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 4,
+      "File #": 4,
       "Start time": "13:28",
       "End time": "",
       "Teacher": [
@@ -12259,6 +12538,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 5,
+      "File #": 5,
       "Start time": "15:02",
       "End time": "",
       "Teacher": [
@@ -12272,6 +12552,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 6,
+      "File #": 6,
       "Start time": "15:45",
       "End time": "",
       "Teacher": [
@@ -12287,6 +12568,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 7,
+      "File #": 7,
       "Start time": "18:43",
       "End time": "",
       "Teacher": [
@@ -12302,6 +12584,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 8,
+      "File #": 8,
       "Start time": "21:52",
       "End time": "",
       "Teacher": [
@@ -12317,6 +12600,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 9,
+      "File #": 9,
       "Start time": "24:07",
       "End time": "",
       "Teacher": [
@@ -12332,6 +12616,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 10,
+      "File #": 10,
       "Start time": "26:17",
       "End time": "",
       "Teacher": [
@@ -12347,6 +12632,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 11,
+      "File #": 11,
       "Start time": "27:56",
       "End time": "",
       "Teacher": [
@@ -12362,6 +12648,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 12,
+      "File #": 12,
       "Start time": "31:28",
       "End time": "",
       "Teacher": [
@@ -12378,6 +12665,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 13,
+      "File #": 13,
       "Start time": "34:19",
       "End time": "",
       "Teacher": [
@@ -12394,6 +12682,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 14,
+      "File #": 14,
       "Start time": "39:49",
       "End time": "",
       "Teacher": [
@@ -12409,6 +12698,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 15,
+      "File #": 15,
       "Start time": "42:45",
       "End time": "",
       "Teacher": [
@@ -12425,6 +12715,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 16,
+      "File #": 16,
       "Start time": "48:38",
       "End time": "",
       "Teacher": [
@@ -12440,6 +12731,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 17,
+      "File #": 17,
       "Start time": "48:47",
       "End time": "",
       "Teacher": [
@@ -12455,6 +12747,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 18,
+      "File #": 18,
       "Start time": "53:53",
       "End time": "",
       "Teacher": [
@@ -12473,6 +12766,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 19,
+      "File #": 19,
       "Start time": "56:02",
       "End time": "",
       "Teacher": [
@@ -12490,6 +12784,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 20,
+      "File #": 20,
       "Start time": "58:19",
       "End time": "",
       "Teacher": [
@@ -12507,6 +12802,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 21,
+      "File #": 21,
       "Start time": "65:09",
       "End time": "",
       "Teacher": [
@@ -12522,6 +12818,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 22,
+      "File #": 22,
       "Start time": "67:30",
       "End time": "",
       "Teacher": [
@@ -12537,6 +12834,7 @@
       "Event": "TG2015",
       "Session #": 4,
       "Question #": 23,
+      "File #": 23,
       "Start time": "69:51",
       "End time": "",
       "Teacher": [
@@ -12552,6 +12850,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:01",
       "End time": "",
       "Teacher": [
@@ -12568,6 +12867,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 2,
+      "File #": 2,
       "Start time": "2:15",
       "End time": "",
       "Teacher": [
@@ -12584,6 +12884,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 3,
+      "File #": 3,
       "Start time": "9:32",
       "End time": "",
       "Teacher": [
@@ -12599,6 +12900,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 4,
+      "File #": 4,
       "Start time": "14:01",
       "End time": "",
       "Teacher": [
@@ -12614,6 +12916,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 5,
+      "File #": 5,
       "Start time": "21:55",
       "End time": "",
       "Teacher": [
@@ -12629,6 +12932,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 6,
+      "File #": 6,
       "Start time": "26:40",
       "End time": "",
       "Teacher": [
@@ -12644,6 +12948,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 7,
+      "File #": 7,
       "Start time": "29:16",
       "End time": "",
       "Teacher": [
@@ -12661,6 +12966,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 8,
+      "File #": 8,
       "Start time": "33:00",
       "End time": "",
       "Teacher": [
@@ -12677,6 +12983,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 9,
+      "File #": 9,
       "Start time": "38:07",
       "End time": "",
       "Teacher": [
@@ -12692,6 +12999,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 10,
+      "File #": 10,
       "Start time": "41:58",
       "End time": "",
       "Teacher": [
@@ -12708,6 +13016,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 11,
+      "File #": 11,
       "Start time": "43:59",
       "End time": "",
       "Teacher": [
@@ -12723,6 +13032,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 12,
+      "File #": 12,
       "Start time": "51:42",
       "End time": "",
       "Teacher": [
@@ -12740,6 +13050,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 13,
+      "File #": 13,
       "Start time": "55:23",
       "End time": "",
       "Teacher": [
@@ -12758,6 +13069,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 14,
+      "File #": 14,
       "Start time": "60:14",
       "End time": "",
       "Teacher": [
@@ -12771,6 +13083,7 @@
       "Event": "TG2015",
       "Session #": 5,
       "Question #": 15,
+      "File #": 15,
       "Start time": "62:06",
       "End time": "",
       "Teacher": [
@@ -12787,6 +13100,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:00",
       "End time": "",
       "Teacher": [
@@ -12802,6 +13116,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:29",
       "End time": "",
       "Teacher": [
@@ -12817,6 +13132,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 3,
+      "File #": 3,
       "Start time": "4:46",
       "End time": "",
       "Teacher": [
@@ -12832,6 +13148,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 4,
+      "File #": 4,
       "Start time": "8:38",
       "End time": "",
       "Teacher": [
@@ -12847,6 +13164,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 5,
+      "File #": 5,
       "Start time": "12:49",
       "End time": "",
       "Teacher": [
@@ -12862,6 +13180,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 6,
+      "File #": 6,
       "Start time": "20:26",
       "End time": "",
       "Teacher": [
@@ -12877,6 +13196,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 7,
+      "File #": 7,
       "Start time": "26:04",
       "End time": "",
       "Teacher": [
@@ -12892,6 +13212,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 8,
+      "File #": 8,
       "Start time": "26:34",
       "End time": "",
       "Teacher": [
@@ -12907,6 +13228,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 9,
+      "File #": 9,
       "Start time": "28:29",
       "End time": "",
       "Teacher": [
@@ -12923,6 +13245,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 10,
+      "File #": 10,
       "Start time": "35:50",
       "End time": "",
       "Teacher": [
@@ -12939,6 +13262,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 11,
+      "File #": 11,
       "Start time": "36:57",
       "End time": "",
       "Teacher": [
@@ -12954,6 +13278,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 12,
+      "File #": 12,
       "Start time": "40:05",
       "End time": "",
       "Teacher": [
@@ -12969,6 +13294,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 13,
+      "File #": 13,
       "Start time": "43:57",
       "End time": "",
       "Teacher": [
@@ -12984,6 +13310,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 14,
+      "File #": 14,
       "Start time": "50:41",
       "End time": "",
       "Teacher": [
@@ -12999,6 +13326,7 @@
       "Event": "TG2015",
       "Session #": 6,
       "Question #": 15,
+      "File #": 15,
       "Start time": "55:40",
       "End time": "",
       "Teacher": [
@@ -13014,6 +13342,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:12",
       "End time": "",
       "Teacher": [
@@ -13030,6 +13359,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 2,
+      "File #": 2,
       "Start time": "1:00",
       "End time": "",
       "Teacher": [
@@ -13045,6 +13375,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 3,
+      "File #": 3,
       "Start time": "7:40",
       "End time": "",
       "Teacher": [
@@ -13061,6 +13392,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 4,
+      "File #": 4,
       "Start time": "13:29",
       "End time": "",
       "Teacher": [
@@ -13074,6 +13406,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 5,
+      "File #": 5,
       "Start time": "14:08",
       "End time": "",
       "Teacher": [
@@ -13089,6 +13422,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 6,
+      "File #": 6,
       "Start time": "15:10",
       "End time": "",
       "Teacher": [
@@ -13104,6 +13438,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 7,
+      "File #": 7,
       "Start time": "22:23",
       "End time": "",
       "Teacher": [
@@ -13120,6 +13455,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 8,
+      "File #": 8,
       "Start time": "24:27",
       "End time": "",
       "Teacher": [
@@ -13135,6 +13471,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 9,
+      "File #": 9,
       "Start time": "27:42",
       "End time": "",
       "Teacher": [
@@ -13152,6 +13489,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 10,
+      "File #": 10,
       "Start time": "37:35",
       "End time": "",
       "Teacher": [
@@ -13167,6 +13505,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 11,
+      "File #": 11,
       "Start time": "39:40",
       "End time": "",
       "Teacher": [
@@ -13182,6 +13521,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 12,
+      "File #": 12,
       "Start time": "44:12",
       "End time": "",
       "Teacher": [
@@ -13198,6 +13538,7 @@
       "Event": "TG2015",
       "Session #": 7,
       "Question #": 13,
+      "File #": 13,
       "Start time": "48:39",
       "End time": "",
       "Teacher": [
@@ -13213,6 +13554,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 1,
+      "File #": 1,
       "Start time": "0:10",
       "End time": "",
       "Teacher": [
@@ -13228,6 +13570,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 2,
+      "File #": 2,
       "Start time": "3:02",
       "End time": "",
       "Teacher": [
@@ -13244,6 +13587,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 3,
+      "File #": 3,
       "Start time": "5:15",
       "End time": "",
       "Teacher": [
@@ -13260,6 +13604,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 4,
+      "File #": 4,
       "Start time": "9:42",
       "End time": "",
       "Teacher": [
@@ -13276,6 +13621,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 5,
+      "File #": 5,
       "Start time": "21:12",
       "End time": "",
       "Teacher": [
@@ -13291,6 +13637,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 6,
+      "File #": 6,
       "Start time": "26:16",
       "End time": "",
       "Teacher": [
@@ -13306,6 +13653,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 7,
+      "File #": 7,
       "Start time": "30:43",
       "End time": "",
       "Teacher": [
@@ -13321,6 +13669,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 8,
+      "File #": 8,
       "Start time": "34:16",
       "End time": "",
       "Teacher": [
@@ -13337,6 +13686,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 9,
+      "File #": 9,
       "Start time": "45:30",
       "End time": "",
       "Teacher": [
@@ -13353,6 +13703,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 10,
+      "File #": 10,
       "Start time": "48:19",
       "End time": "",
       "Teacher": [
@@ -13368,6 +13719,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 11,
+      "File #": 11,
       "Start time": "49:35",
       "End time": "",
       "Teacher": [
@@ -13383,6 +13735,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 12,
+      "File #": 12,
       "Start time": "51:57",
       "End time": "",
       "Teacher": [
@@ -13398,6 +13751,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 13,
+      "File #": 13,
       "Start time": "54:55",
       "End time": "",
       "Teacher": [
@@ -13415,6 +13769,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 14,
+      "File #": 14,
       "Start time": "55:53",
       "End time": "",
       "Teacher": [
@@ -13430,6 +13785,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 15,
+      "File #": 15,
       "Start time": "57:25",
       "End time": "",
       "Teacher": [
@@ -13445,6 +13801,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 16,
+      "File #": 16,
       "Start time": "59:08",
       "End time": "",
       "Teacher": [
@@ -13460,6 +13817,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 17,
+      "File #": 17,
       "Start time": "60:53",
       "End time": "",
       "Teacher": [
@@ -13475,6 +13833,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 18,
+      "File #": 18,
       "Start time": "62:59",
       "End time": "",
       "Teacher": [
@@ -13490,6 +13849,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 19,
+      "File #": 19,
       "Start time": "70:01",
       "End time": "",
       "Teacher": [
@@ -13505,6 +13865,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 20,
+      "File #": 20,
       "Start time": "76:28",
       "End time": "",
       "Teacher": [
@@ -13521,6 +13882,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 21,
+      "File #": 21,
       "Start time": "77:21",
       "End time": "",
       "Teacher": [
@@ -13536,6 +13898,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 22,
+      "File #": 22,
       "Start time": "78:23",
       "End time": "",
       "Teacher": [
@@ -13551,6 +13914,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 23,
+      "File #": 23,
       "Start time": "79:56",
       "End time": "",
       "Teacher": [
@@ -13566,6 +13930,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 24,
+      "File #": 24,
       "Start time": "82:55",
       "End time": "",
       "Teacher": [
@@ -13581,6 +13946,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 25,
+      "File #": 25,
       "Start time": "86:25",
       "End time": "",
       "Teacher": [
@@ -13597,6 +13963,7 @@
       "Event": "TG2015",
       "Session #": 8,
       "Question #": 26,
+      "File #": 26,
       "Start time": "87:48",
       "End time": "",
       "Teacher": [
@@ -13608,6 +13975,26 @@
         "Right concentration"
       ],
       "Duration": "0:49"
+    }
+  ],
+  "Questions_Redacted": [
+    {
+      "Event": "TG2014",
+      "Session #": 3,
+      "File #": 13,
+      "Start time": "50:59",
+      "End time": "",
+      "Question text": "Dear Aj. Karuṇadhammo, could you say a bit more about how you find a belief in rebirth to be motivational? And that it “just makes sense?”  Do you think, perhaps, about the person who will inherit your rebirth and how it would be good to load them up with good kamma? Thanks!",
+      "Duration": "5:16"
+    },
+    {
+      "Event": "TG2014",
+      "Session #": 7,
+      "File #": 7,
+      "Start time": "25:06",
+      "End time": "",
+      "Question text": "Ajahn Ñāniko and Tan Kassapo: “Why be a monk?” Sadhu, sadhu, sadhu.",
+      "Duration": "1:13"
     }
   ]
 }

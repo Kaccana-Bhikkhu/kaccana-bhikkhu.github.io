@@ -3,8 +3,21 @@
 import os, json
 from Utils import StrToTimeDelta, Mp3FileName
 import Mp3DirectCut as Mp3DirectCut
+from typing import List
 
 Mp3DirectCut.SetExecutable(os.path.join('tools','Mp3DirectCut'))
+
+def IncludeRedactedQuestions() -> List[dict]:
+    "Merge the redacted questions back into the main list in order to split mp3 files"
+    
+    allQuestions = gDatabase["Questions"] + gDatabase["Questions_Redacted"]
+    print(len(allQuestions))
+    orderedEvents = list(gDatabase["Event"].keys()) # Look up the event in this list to sort questions by event order in gDatabase
+    
+    allQuestions.sort(key = lambda q: (orderedEvents.index(q["Event"]),q["Session #"],q["File #"]))
+        # Sort by event, then by session, then by file number
+    
+    return allQuestions
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -26,16 +39,17 @@ def main(clOptions):
         gDatabase = json.load(file)
     
     questionIndex = 0
-    questions = gDatabase["Questions"]
+    questions = IncludeRedactedQuestions()
     for session in gDatabase["Sessions"]:
         
         sessionNumber = session["Session #"]
+        event = session["Event"]
         questionList = []
-        questionNumber = 1
+        fileNumber = 1
         
-        baseFileName = f"{session['Event']}_S{sessionNumber:02d}_"
-        while questionIndex < len(questions) and questions[questionIndex]["Session #"] == sessionNumber:
-            fileName = baseFileName + f"Q{questionNumber:02d}"
+        baseFileName = f"{event}_S{sessionNumber:02d}_"
+        while questionIndex < len(questions) and questions[questionIndex]["Event"] == event and questions[questionIndex]["Session #"] == sessionNumber:
+            fileName = baseFileName + f"Q{fileNumber:02d}"
             startTime = StrToTimeDelta(questions[questionIndex]["Start time"])
             
             endTimeStr = questions[questionIndex]["End time"].strip()
@@ -45,15 +59,15 @@ def main(clOptions):
                 questionList.append((fileName,startTime))
                 
             questionIndex += 1
-            questionNumber += 1
+            fileNumber += 1
         
-        eventDir = os.path.join(gOptions.eventMp3Dir,session["Event"])
+        eventDir = os.path.join(gOptions.eventMp3Dir,event)
         sessionFilePath = os.path.join(eventDir,session["Filename"])
         if not os.path.exists(sessionFilePath):
             print("Warning: Cannot locate "+sessionFilePath)
             continue
         
-        outputDir = os.path.join(gOptions.questionMp3Dir,session["Event"])
+        outputDir = os.path.join(gOptions.questionMp3Dir,event)
         if not os.path.exists(outputDir):
             os.makedirs(outputDir)
         

@@ -225,7 +225,7 @@ def Mp3QuestionLink(question: dict) -> str:
     """Return an html-formatted audio icon linking to a given question.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
 
-    return AudioIcon("../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['Question #']))
+    return AudioIcon("../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['File #']))
 
 class Formatter: 
     """A class that formats lists of events, sessions, and questions into html"""
@@ -331,8 +331,7 @@ def WriteTagPages(tagPageDir: str) -> None:
         
     qDB = gDatabase["Questions"]
     
-    for tag in gDatabase["Tag"]:
-        tagInfo = gDatabase["Tag"][tag]
+    for tag,tagInfo in gDatabase["Tag"].items():
         if not tagInfo["html file"]:
             continue
     
