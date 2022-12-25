@@ -1,7 +1,7 @@
-# Breaking changes to database.json:
+# Breaking changes to `database.json`:
 
 ## 24/12/2022 Kaccana Bhikkhu:
-Added "File #" field for each question in order make it easy to remove questions in the csv files from database.json and the resulting website without breaking mp3 hyperlinks.
+Added "File #" field for each question in order make it easy to remove questions in the csv files from `database.json` and the resulting website without breaking mp3 hyperlinks.
 
 "Question #" is what the user sees; Increments by 1 each question even when questions are hidden.
 
