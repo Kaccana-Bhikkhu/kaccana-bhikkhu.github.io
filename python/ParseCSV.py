@@ -61,6 +61,17 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None):
             break
         elif not BlankDict(row):
             output.append(row)
+        
+        # Increase robustness by stripping values and keys
+        keysToStrip = []
+        for key in row:
+            row[key] = row[key].strip()
+            if key != key.strip():
+                keysToStrip.append(key)
+        for key in keysToStrip:
+            row[key.strip()] = row[key]
+            del row[key]
+        
     
     removeKeys.append("")
     for key in removeKeys:
