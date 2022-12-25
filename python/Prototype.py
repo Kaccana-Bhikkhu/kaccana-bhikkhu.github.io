@@ -243,8 +243,8 @@ class Formatter:
         
         a = Airium(source_minify=True)
         
-        if set(question["Teacher"]) != set(self.questionDefaultTeacher): # Compare items irrespective of order
-            teacherList = [gDatabase["Teacher"][t]["Full name"] for t in question["Teacher"]]
+        if set(question["Teachers"]) != set(self.questionDefaultTeacher): # Compare items irrespective of order
+            teacherList = [gDatabase["Teacher"][t]["Full name"] for t in question["Teachers"]]
         else:
             teacherList = []
         

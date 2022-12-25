@@ -148,7 +148,7 @@ def DictFromPairs(inList,keyKey,valueKey):
 def LoadSummary(database,summaryFileName):
     summaryList = CSVFileToDictList(summaryFileName,skipLines = 1,removeKeys = ["Seconds","SortBy"])
     
-    for numericalKey in ["Sessions","Questions","Answers listened to","Tags","Invalid tags"]:
+    for numericalKey in ["Sessions","Questions","Answers listened to","Tags applied","Invalid tags"]:
         ConvertToInteger(summaryList,numericalKey)
     
     database["Summary"] = ListToDict(summaryList,"Event Code")
@@ -354,9 +354,9 @@ def LoadEventFile(database,eventName,directory):
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
         eventDesc = DictFromPairs(rawEventDesc,"Key","Value")
         
-        for key in ["Teachers","Event tags"]:
+        for key in ["Teachers","Tags"]:
             eventDesc[key] = [s.strip() for s in eventDesc[key].split(',') if s.strip()]
-        for key in ["Sessions","Questions","Answers listened to","Tags","Invalid tags"]:
+        for key in ["Sessions","Questions","Answers listened to","Tags applied","Invalid tags"]:
             eventDesc[key] = int(eventDesc[key])
         
         database["Event"][eventName] = eventDesc
@@ -364,7 +364,7 @@ def LoadEventFile(database,eventName,directory):
         
         sessions = CSVToDictList(file,removeKeys = ["Seconds"],endOfSection = '<---->')
         
-        for key in ["Session tags","Teachers"]:
+        for key in ["Tags","Teachers"]:
             ListifyKey(sessions,key)
         for key in ["Session #","Questions"]:
             ConvertToInteger(sessions,key)
@@ -381,7 +381,7 @@ def LoadEventFile(database,eventName,directory):
         
         questions = CSVToDictList(file)
         
-        for key in ["Teacher","QTag1","ATag1"]:
+        for key in ["Teachers","QTag1","ATag1"]:
             ListifyKey(questions,key)
         ConvertToInteger(questions,"Session #")
         
@@ -403,7 +403,7 @@ def LoadEventFile(database,eventName,directory):
                 lastSession = q["Session #"]
             else:
                 fileNumber += 1 # File number counts all questions listed for the event
-                if TeacherConsent(database["Teacher"],q["Teacher"],"Index sessions?"):                   
+                if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?"):                   
                     qNumber += 1 # Question number counts only questions allowed by teacher consent policies
                     
             q["Question #"] = qNumber
@@ -437,14 +437,14 @@ def LoadEventFile(database,eventName,directory):
         for index in range(len(questions)):
             questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
         
-        removedQuestions = [q for q in questions if not TeacherConsent(database["Teacher"],q["Teacher"],"Index sessions?")]
-        questions = [q for q in questions if TeacherConsent(database["Teacher"],q["Teacher"],"Index sessions?")]
+        removedQuestions = [q for q in questions if not TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?")]
+        questions = [q for q in questions if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?")]
             # Remove sessions we didn't get consent for
         
         database["Questions"] += questions
         
         for q in removedQuestions: # Redact information about these questions
-            for key in ["Teacher","Tags","QTag","ATag","AListen?","Question #"]:
+            for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #"]:
                 q.pop(key,None)
         
         database["Questions_Redacted"] += removedQuestions
@@ -486,8 +486,8 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
 
 def CountAndVerify(database):
     
-    CountInstances(database["Event"],"Event tags",database["Tag"],"Event count",gOptions.zeroCount)
-    CountInstances(database["Sessions"],"Session tags",database["Tag"],"Session count",gOptions.zeroCount)
+    CountInstances(database["Event"],"Tags",database["Tag"],"Event count",gOptions.zeroCount)
+    CountInstances(database["Sessions"],"Tags",database["Tag"],"Session count",gOptions.zeroCount)
     CountInstances(database["Questions"],"Tags",database["Tag"],"Question count",gOptions.zeroCount)
     
     if gOptions.detailedCount:
@@ -496,7 +496,7 @@ def CountAndVerify(database):
         
         CountInstances(database["Event"],"Teachers",database["Teacher"],"Event count",gOptions.zeroCount)
         CountInstances(database["Sessions"],"Teachers",database["Teacher"],"Session count",gOptions.zeroCount)
-        CountInstances(database["Questions"],"Teacher",database["Teacher"],"Question count",gOptions.zeroCount)
+        CountInstances(database["Questions"],"Teachers",database["Teacher"],"Question count",gOptions.zeroCount)
     
     
     # Are tags flagged Primary as needed?
