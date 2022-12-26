@@ -52,6 +52,7 @@ with nav.p():
     nav("&nbsp"*5)
     with nav.a(href = "../indexes/SortedTags.html"):
         nav("Most common tags")
+    nav.hr()
 gNavigation = str(nav)
 del nav
 
@@ -228,6 +229,16 @@ def Mp3QuestionLink(question: dict) -> str:
 
     return AudioIcon("../../audio/questions/" + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['File #']))
 
+def EventLink(event:str, session: int = 0) -> str:
+    "Return a link to a given event and session. If session == 0, link to the top of the event page"
+    
+    directory = "../events/"
+    if session:
+        return f"{directory}{event}.html#{event}_S{session}"
+    else:
+        return f"{directory}{event}.html#"
+    
+
 class Formatter: 
     """A class that formats lists of events, sessions, and questions into html"""
     
@@ -236,6 +247,9 @@ class Formatter:
         self.questionOmitTags = set() # Don't display these tags in question description
         
         self.questionShortFormat = True
+        
+        self.headingShowEvent = True
+        self.headingLinks = True
         
         pass
     
@@ -279,11 +293,25 @@ class Formatter:
         a = Airium(source_minify=True)
         event = gDatabase["Event"][session["Event"]]
         
-        with a.h2():
-            sessionTitle = f'{event["Title"]}, Session #{session["Session #"]}'
+        bookmark = f'{session["Event"]}_S{session["Session #"]}'
+        with a.h2(id = bookmark):
+            if self.headingShowEvent: 
+                if self.headingLinks:
+                    with a.a(href = EventLink(session["Event"])):
+                        a(event["Title"])
+                else:
+                    a(event["Title"])
+                a(", ")
+            
+            if self.headingLinks:
+                with a.a(href = EventLink(session["Event"],session["Session #"])):
+                    a(f'Session {session["Session #"]}')
+            else:
+                a(f'Session {session["Session #"]}')
+
             dateStr = ReformatDate(session['Date'])
             teacherList = ListLinkedTeachers(session["Teachers"])
-            a(f'{sessionTitle} - {teacherList} - {dateStr}')
+            a(f' - {teacherList} - {dateStr}')
         
         return str(a)
 
@@ -361,6 +389,59 @@ def WriteTagPages(tagPageDir: str) -> None:
         
         WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
 
+def WriteEventPages(tagPageDir: str) -> None:
+    """Write a html file for each event in the database"""
+    
+    if not os.path.exists(tagPageDir):
+        os.makedirs(tagPageDir)
+            
+    for event,eventInfo in gDatabase["Event"].items():
+        
+        sessions = [s["Session #"] for s in gDatabase["Sessions"] if s["Event"] == event]
+        questionNums = [n for n in range(len(gDatabase["Questions"])) if gDatabase["Questions"][n]["Event"] == event]
+        a = Airium()
+        
+        with a.h1():
+            title = eventInfo["Title"]
+            if eventInfo["Subtitle"]:
+                title += " - " + eventInfo["Subtitle"]
+            a(title)
+        
+        with a.h2():
+            dateStr = ReformatDate(eventInfo["Start date"])
+            if eventInfo["End date"] and eventInfo["End date"] != eventInfo["Start date"]:
+                dateStr += " - " + ReformatDate(eventInfo["End date"])
+            
+            a(f"{eventInfo['Venue']}, {dateStr}")
+            a.br()
+            
+            a(ListLinkedTeachers(eventInfo["Teachers"]))
+            a.br()
+            
+            with a.a(href = eventInfo["Website"]):
+                a("External website")
+            a.br()
+            a.br()
+            
+            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
+            squish("Sessions:")
+            for s in sessions:
+                squish(4*"&nbsp")
+                with squish.a(href = f"#{event}_S{s}"):
+                    squish(str(s))
+                
+            a(str(squish))
+                    
+        a.hr()
+        
+        formatter = Formatter()
+        formatter.headingShowEvent = False
+        formatter.headingLinks = False
+        a(HtmlQuestionList(questionNums,formatter))
+        
+        WriteHtmlFile(os.path.join(tagPageDir,event+'.html'),eventInfo["Title"],str(a))
+        
+
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
@@ -386,4 +467,6 @@ def main(clOptions,database):
     WriteAllQuestions(os.path.join(gOptions.prototypeDir,"indexes"))
     
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
+    
+    WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
