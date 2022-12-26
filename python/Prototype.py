@@ -37,6 +37,7 @@ def WriteIndentedTagDisplayList(fileName):
 "Create the default html header"
 head = Airium()
 head.meta(charset="utf-8")
+head.meta(name="robots", content="noindex, nofollow")
 gDefaultHead = str(head)
 del head # Clean up the global namespace
 
