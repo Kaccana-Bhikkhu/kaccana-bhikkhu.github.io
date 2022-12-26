@@ -27,7 +27,7 @@ def AddArguments(parser):
 
 gOptions = None
 gDatabase = None
-def main(clOptions):
+def main(clOptions,database):
     """ Split the Q&A session mp3 files into individual questions.
     Read the beginning and end points from database.json."""
     
@@ -35,8 +35,7 @@ def main(clOptions):
     gOptions = clOptions
     
     global gDatabase
-    with open(gOptions.jsonFile, 'r', encoding='utf-8') as file:
-        gDatabase = json.load(file)
+    gDatabase = database
     
     questionIndex = 0
     questions = IncludeRedactedQuestions()

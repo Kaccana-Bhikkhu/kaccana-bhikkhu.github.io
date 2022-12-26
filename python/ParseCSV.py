@@ -530,15 +530,14 @@ def AddArguments(parser):
 
 gOptions = None
 
-def main(clOptions):
-    """ Parse a directory full of csv files into a relational database-like structure, then write it to a .json file
-    Each .csv sheet gets one entry in the database file.
+def main(clOptions,database):
+    """ Parse a directory full of csv files into the dictionary database and write it to a .json file.
+    Each .csv sheet gets one entry in the database.
     Tags.csv and event files indicated by four digits e.g. TG2015.csv are parsed separately."""
     
     global gOptions
     gOptions = clOptions
     
-    database = {}
     LoadSummary(database,os.path.join(gOptions.csvDir,"Summary.csv"))
    
     specialFiles = {'Summary','Tag','EventTemplate'}

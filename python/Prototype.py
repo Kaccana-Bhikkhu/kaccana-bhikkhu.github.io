@@ -367,14 +367,13 @@ def AddArguments(parser):
 
 gOptions = None
 gDatabase = None
-def main(clOptions):
+def main(clOptions,database):
     
     global gOptions
     gOptions = clOptions
     
     global gDatabase
-    with open(gOptions.jsonFile, 'r', encoding='utf-8') as file:
-        gDatabase = json.load(file)
+    gDatabase = database
     
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
