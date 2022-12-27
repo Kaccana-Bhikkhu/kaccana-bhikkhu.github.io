@@ -391,6 +391,23 @@ def WriteAllQuestions(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"AllQuestions.html"),"All questions",str(a))
 
+def WriteAllEvents(pageDir: str) -> None:
+    """Write a page containing a list of all events."""
+    if not os.path.exists(pageDir):
+        os.makedirs(pageDir)
+    
+    a = Airium()
+    
+    with a.h1():
+        a("All events:")
+        
+    for eventCode,e in gDatabase["Event"].items():
+        with a.h2():
+            with a.a(href = EventLink(eventCode))
+                a(e["Title"])
+                
+    WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
+
 def WriteTagPages(tagPageDir: str) -> None:
     """Write a html file for each tag in the database"""
     
@@ -510,9 +527,11 @@ def main(clOptions,database):
     
     WriteIndentedTagDisplayList(os.path.join(gOptions.prototypeDir,"TagDisplayList.txt"))
     
-    WriteIndentedHtmlTagList(os.path.join(gOptions.prototypeDir,"indexes"))
-    WriteSortedHtmlTagList(os.path.join(gOptions.prototypeDir,"indexes"))
-    WriteAllQuestions(os.path.join(gOptions.prototypeDir,"indexes"))
+    indexDir = os.path.join(gOptions.prototypeDir,"indexes")
+    WriteIndentedHtmlTagList(indexDir)
+    WriteSortedHtmlTagList(indexDir)
+    WriteAllQuestions(indexDir)
+    WriteAllEvents(indexDir)
     
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
     
