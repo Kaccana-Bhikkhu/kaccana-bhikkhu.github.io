@@ -20,3 +20,5 @@ Changes which might break already-written code are marked §.
  
  § database.Event: "Event tags" -> "Tags",  database.Sessions: "Session tags" -> "Tags"
   - These match database.Questions field "Tags"; it's obvious from context what the tags apply to
+
+### 27/12/2022 - Added "Location" subfield to Venues - Kaccana Bhikkhu
