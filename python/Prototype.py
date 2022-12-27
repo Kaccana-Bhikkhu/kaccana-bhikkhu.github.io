@@ -315,15 +315,14 @@ class Formatter:
         
         return str(a)
 
-def HtmlQuestionList(qNumbers: List[int],formatter: Type[Formatter]) -> str:
-    """Return a html list of the questions given by gDatabase[qNumbers]."""
+def HtmlQuestionList(questions: List[dict],formatter: Type[Formatter]) -> str:
+    """Return a html list of the questions."""
     
     a = Airium()
     
     prevEvent = None
     prevSession = None
-    for index in qNumbers:
-        q = gDatabase["Questions"][index]
+    for q in questions:
         if q["Event"] != prevEvent or q["Session #"] != prevSession:
             sessionIndex = SessionIndex(q["Event"],q["Session #"])
             a(formatter.FormatSessionHeading(gDatabase["Sessions"][sessionIndex]))
@@ -348,7 +347,7 @@ def WriteAllQuestions(pageDir: str) -> None:
     
     formatter = Formatter()
     formatter.questionDefaultTeacher = ['AP']
-    a(HtmlQuestionList(range(len(gDatabase["Questions"])),formatter))
+    a(HtmlQuestionList(gDatabase["Questions"],formatter))
     
     WriteHtmlFile(os.path.join(pageDir,"AllQuestions.html"),"All questions",str(a))
 
@@ -384,7 +383,7 @@ def WriteTagPages(tagPageDir: str) -> None:
         
         formatter = Formatter()
         formatter.questionOmitTags = set([tag])
-        relevantQs = [n for n in range(len(qDB)) if tag in qDB[n]["Tags"]]
+        relevantQs = [q for q in qDB if tag in q["Tags"]]
         a(HtmlQuestionList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
@@ -397,8 +396,8 @@ def WriteEventPages(tagPageDir: str) -> None:
             
     for event,eventInfo in gDatabase["Event"].items():
         
-        sessions = [s["Session #"] for s in gDatabase["Sessions"] if s["Event"] == event]
-        questionNums = [n for n in range(len(gDatabase["Questions"])) if gDatabase["Questions"][n]["Event"] == event]
+        sessions = [s for s in gDatabase["Sessions"] if s["Event"] == event]
+        questions = [q for q in gDatabase["Questions"] if q["Event"] == event]
         a = Airium()
         
         with a.h1():
@@ -427,8 +426,8 @@ def WriteEventPages(tagPageDir: str) -> None:
             squish("Sessions:")
             for s in sessions:
                 squish(4*"&nbsp")
-                with squish.a(href = f"#{event}_S{s}"):
-                    squish(str(s))
+                with squish.a(href = f"#{event}_S{s['Session #']}"):
+                    squish(str(s['Session #']))
                 
             a(str(squish))
                     
@@ -437,7 +436,7 @@ def WriteEventPages(tagPageDir: str) -> None:
         formatter = Formatter()
         formatter.headingShowEvent = False
         formatter.headingLinks = False
-        a(HtmlQuestionList(questionNums,formatter))
+        a(HtmlQuestionList(questions,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,event+'.html'),eventInfo["Title"],str(a))
         
