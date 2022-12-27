@@ -25,9 +25,11 @@ def StrToTimeDelta(inStr):
 def TimeDeltaToStr(time):
     "Convert a timedelta object to the form [HH:]MM:SS"
     
-    hours = time.seconds // 3600
-    minutes = (time.seconds % 3600) // 60
-    seconds = time.seconds % 60
+    seconds = (time.days * 24 * 60 * 60) + time.seconds
+    
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = seconds % 60
 
     if hours:
         return f"{hours}:{minutes:02d}:{seconds:02d}"
@@ -39,7 +41,7 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     date = datetime.strptime(dateStr,"%d/%m/%Y")
     
-    return f'{date.strftime("%b ")} {int(date.day)}, {int(date.year)}'
+    return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
 def slugify(value, allow_unicode=False):
     """

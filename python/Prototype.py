@@ -4,6 +4,7 @@ import os, json
 from typing import List, Type
 from airium import Airium
 from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr
+from datetime import timedelta
 
 def SessionIndex(event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
     "Return the index of a session specified by event and sessionNum."
@@ -312,13 +313,40 @@ class Formatter:
 
             dateStr = ReformatDate(session['Date'])
             teacherList = ListLinkedTeachers(session["Teachers"])
-            a(f' - {teacherList} - {dateStr}')
+            a(f' – {teacherList} – {dateStr}')
             
             if self.headingAudio and session["external mp3 URL"]:
                 durStr = TimeDeltaToStr(StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
-                a(f' - {AudioIcon(session["external mp3 URL"])} ({durStr}) ')
+                a(f' – {AudioIcon(session["external mp3 URL"])} ({durStr}) ')
         
         return str(a)
+
+def QuestionDurationStr(questions: List[dict],countEvents = True,countSessions = True) -> str:
+    "Return a string describing the duration of the questions we were passed."
+    
+    if not questions:
+        return "No questions"
+    
+    events = set(q["Event"] for q in questions)
+    sessions = set((q["Event"],q["Session #"]) for q in questions) # Use sets to count unique elements
+    duration = sum((StrToTimeDelta(q["Duration"]) for q in questions),start = timedelta())
+    
+    strItems = []
+    
+    if len(events) > 1 and countEvents:
+        strItems.append(f"{len(events)} events,")
+    
+    if len(sessions) > 1 and countSessions:
+        strItems.append(f"{len(sessions)} sessions,")
+    
+    if len(questions) > 1:
+        strItems.append(f"{len(questions)} questions,")
+    else:
+        strItems.append(f"{len(questions)} question,")
+    
+    strItems.append(f"{TimeDeltaToStr(duration)} total duration")
+    
+    return ' '.join(strItems)
 
 def HtmlQuestionList(questions: List[dict],formatter: Type[Formatter]) -> str:
     """Return a html list of the questions."""
@@ -350,6 +378,13 @@ def WriteAllQuestions(pageDir: str) -> None:
     with a.h1():
         a("All questions:")
     
+    with a.h2():
+        a(QuestionDurationStr(gDatabase["Questions"]))
+        a.br()
+    
+    with a.h3():
+        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the question text.")
+    
     formatter = Formatter()
     formatter.questionDefaultTeacher = ['AP']
     a(HtmlQuestionList(gDatabase["Questions"],formatter))
@@ -368,6 +403,8 @@ def WriteTagPages(tagPageDir: str) -> None:
         if not tagInfo["html file"]:
             continue
     
+        relevantQs = [q for q in qDB if tag in q["Tags"]]
+    
         a = Airium()
         
         with a.h1():
@@ -378,17 +415,17 @@ def WriteTagPages(tagPageDir: str) -> None:
                 a(tag + ':')
             
         
-        with a.h4():
+        with a.h3():
             a(TitledList("Alternative translations",tagInfo['Alt. trans.'],plural = ""))
         
-        with a.h3():
+        with a.h3(style = "line-height: 1.5;"):
             a(ListLinkedTags("Parent topic",tagInfo['Supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['Subtags']))
             a(ListLinkedTags("See also",tagInfo['See also'],plural = ""))
+            a(QuestionDurationStr(relevantQs,False,False))
         
         formatter = Formatter()
         formatter.questionOmitTags = set([tag])
-        relevantQs = [q for q in qDB if tag in q["Tags"]]
         a(HtmlQuestionList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
@@ -408,18 +445,24 @@ def WriteEventPages(tagPageDir: str) -> None:
         with a.h1():
             title = eventInfo["Title"]
             if eventInfo["Subtitle"]:
-                title += " - " + eventInfo["Subtitle"]
+                title += " – " + eventInfo["Subtitle"]
             a(title)
         
-        with a.h2():
+        with a.h2(style = "line-height: 1.5;"):
             dateStr = ReformatDate(eventInfo["Start date"])
             if eventInfo["End date"] and eventInfo["End date"] != eventInfo["Start date"]:
-                dateStr += " - " + ReformatDate(eventInfo["End date"])
-            
-            a(f"{eventInfo['Venue']}, {dateStr}")
-            a.br()
+                dateStr += " to " + ReformatDate(eventInfo["End date"])
             
             a(ListLinkedTeachers(eventInfo["Teachers"]))
+            a.br()
+            
+            a(dateStr)
+            a.br()
+            
+            a(f"{eventInfo['Venue']} in {gDatabase['Venue'][eventInfo['Venue']]['Location']}")
+            a.br()
+            
+            a(QuestionDurationStr(questions))
             a.br()
             
             with a.a(href = eventInfo["Website"]):
