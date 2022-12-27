@@ -5,6 +5,7 @@ from typing import List, Type
 from airium import Airium
 from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr
 from datetime import timedelta
+import re
 
 def SessionIndex(event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
     "Return the index of a session specified by event and sessionNum."
@@ -46,7 +47,12 @@ del head # Clean up the global namespace
 
 "Create the top navigation guide"
 nav = Airium(source_minify=True)
+with nav.h1():
+    nav("The Ajahn Pasanno Question and Answer Archive")
 with nav.p():
+    with nav.a(href = "../Index.html"):
+        nav("Homepage")
+    nav("&nbsp"*5)
     with nav.a(href = "../indexes/AllTags.html"):
         nav("Tag/subtag hierarchy")
     nav("&nbsp"*5)
@@ -524,12 +530,33 @@ def WriteEventPages(tagPageDir: str) -> None:
         
         WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["Title"],str(a))
         
-"""def WriteTemplatePage(sourceTemplate: str; pageName: str) -> None:
-    Convert a page edited by an external editor to our style.
-    sourceTemplate: the name of the edited file.
-    pageName: name of the file to write."""
+def ExtractHtmlBody(fileName: str) -> str:
+    """Extract the body text from a html page"""
     
+    with open(fileName,encoding='utf8') as file:
+        htmlPage = file.read()
     
+    bodyStart = re.search(r'<body[^>]*>',htmlPage)
+    bodyEnd = re.search(r'</body',htmlPage)
+    
+    if not bodyStart:
+        raise ValueError("Cannot find <body> tag in " + fileName)
+    if not bodyEnd:
+        raise ValueError("Cannot find </body> tag in " + fileName)
+    
+    return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
+
+def WriteIndexPage(templateName: str,indexPage: str) -> None:
+    """Write the index page by extracting the body from a file created by an external editor and calling WriteHtmlFile to convert it to our (extremely minimal) style.
+    templateName: the file created by an external editor
+    indexPage: the name of the page to write - usually Index.html"""
+    
+    htmlBody = ExtractHtmlBody(templateName)
+    
+    head = gDefaultHead.replace('"../','"') # Index.html lives in the root directory, so modify directory paths accordingly.
+    nav = gNavigation.replace('"../','"')
+    
+    WriteHtmlFile(indexPage,"The Ajahn Pasanno Q&A Archive",nav + '\n' + htmlBody,customHead = head,navigation = False)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -563,5 +590,5 @@ def main(clOptions,database):
     
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
-    # WriteMainPage(os.path.join(gOptions.templateDir,gOptions.indexHtmlTemplate),"Index.html")
+    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"Index.html"))
     
