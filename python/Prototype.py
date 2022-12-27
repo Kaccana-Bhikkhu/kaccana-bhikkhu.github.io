@@ -3,7 +3,7 @@
 import os, json
 from typing import List, Type
 from airium import Airium
-from Utils import slugify, Mp3FileName, ReformatDate
+from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr
 
 def SessionIndex(event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
     "Return the index of a session specified by event and sessionNum."
@@ -315,8 +315,8 @@ class Formatter:
             a(f' - {teacherList} - {dateStr}')
             
             if self.headingAudio and session["external mp3 URL"]:
-                a(" " + AudioIcon(session["external mp3 URL"],iconWidth = "40"))
-                a(f' ({session["Duration"]})')
+                durStr = TimeDeltaToStr(StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
+                a(f' - {AudioIcon(session["external mp3 URL"])} ({durStr}) ')
         
         return str(a)
 
