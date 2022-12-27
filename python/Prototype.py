@@ -248,8 +248,9 @@ class Formatter:
         
         self.questionShortFormat = True
         
-        self.headingShowEvent = True
-        self.headingLinks = True
+        self.headingShowEvent = True # Show the event name in headings?
+        self.headingLinks = True # Link to the event page in our website?
+        self.headingAudio = False # Link to original session audio?
         
         pass
     
@@ -312,6 +313,10 @@ class Formatter:
             dateStr = ReformatDate(session['Date'])
             teacherList = ListLinkedTeachers(session["Teachers"])
             a(f' - {teacherList} - {dateStr}')
+            
+            if self.headingAudio and session["external mp3 URL"]:
+                a(" " + AudioIcon(session["external mp3 URL"],iconWidth = "40"))
+                a(f' ({session["Duration"]})')
         
         return str(a)
 
@@ -436,6 +441,7 @@ def WriteEventPages(tagPageDir: str) -> None:
         formatter = Formatter()
         formatter.headingShowEvent = False
         formatter.headingLinks = False
+        formatter.headingAudio = True
         a(HtmlQuestionList(questions,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,event+'.html'),eventInfo["Title"],str(a))
