@@ -39,20 +39,25 @@ def WriteIndentedTagDisplayList(fileName):
 head = Airium()
 head.meta(charset="utf-8")
 head.meta(name="robots", content="noindex, nofollow")
+with head.style():
+    head('body {background-image: url("../images/PrototypeWatermark.png"); }')
 gDefaultHead = str(head)
 del head # Clean up the global namespace
 
 "Create the top navigation guide"
-nav = Airium()
+nav = Airium(source_minify=True)
 with nav.p():
-    with nav.a(href = "../indexes/AllQuestions.html"):
-        nav("All questions")
-    nav("&nbsp"*5)
     with nav.a(href = "../indexes/AllTags.html"):
         nav("Tag/subtag hierarchy")
     nav("&nbsp"*5)
     with nav.a(href = "../indexes/SortedTags.html"):
-        nav("Most common tags")
+        nav(" Most common tags")
+    nav("&nbsp"*5)
+    with nav.a(href = "../indexes/AllEvents.html"):
+        nav(" All events")
+    nav("&nbsp"*5)
+    with nav.a(href = "../indexes/AllQuestions.html"):
+        nav(" All questions")
     nav.hr()
 gNavigation = str(nav)
 del nav
@@ -239,6 +244,13 @@ def EventLink(event:str, session: int = 0) -> str:
     else:
         return f"{directory}{event}.html#"
     
+def EventDateStr(event: dict) -> str:
+    "Return a string describing when the event occured"
+    
+    dateStr = ReformatDate(event["Start date"])
+    if event["End date"] and event["End date"] != event["Start date"]:
+        dateStr += " to " + ReformatDate(event["End date"])
+    return dateStr
 
 class Formatter: 
     """A class that formats lists of events, sessions, and questions into html"""
@@ -402,9 +414,17 @@ def WriteAllEvents(pageDir: str) -> None:
         a("All events:")
         
     for eventCode,e in gDatabase["Event"].items():
-        with a.h2():
-            with a.a(href = EventLink(eventCode))
-                a(e["Title"])
+        with a.h2(style = "line-height: 1.3;"):
+            with a.a(href = EventLink(eventCode)):
+                a(e["Title"])            
+        
+        with a.h3(style = "line-height: 1.3;"):
+            a(f'{ListLinkedTeachers(e["Teachers"],lastJoinStr = " and ")}')
+            a.br()
+            a(EventDateStr(e))
+            a.br()
+            eventQuestions = [q for q in gDatabase["Questions"] if q["Event"] == eventCode]
+            a(QuestionDurationStr(eventQuestions))
                 
     WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
 
@@ -453,10 +473,10 @@ def WriteEventPages(tagPageDir: str) -> None:
     if not os.path.exists(tagPageDir):
         os.makedirs(tagPageDir)
             
-    for event,eventInfo in gDatabase["Event"].items():
+    for eventCode,eventInfo in gDatabase["Event"].items():
         
-        sessions = [s for s in gDatabase["Sessions"] if s["Event"] == event]
-        questions = [q for q in gDatabase["Questions"] if q["Event"] == event]
+        sessions = [s for s in gDatabase["Sessions"] if s["Event"] == eventCode]
+        questions = [q for q in gDatabase["Questions"] if q["Event"] == eventCode]
         a = Airium()
         
         with a.h1():
@@ -466,11 +486,9 @@ def WriteEventPages(tagPageDir: str) -> None:
             a(title)
         
         with a.h2(style = "line-height: 1.5;"):
-            dateStr = ReformatDate(eventInfo["Start date"])
-            if eventInfo["End date"] and eventInfo["End date"] != eventInfo["Start date"]:
-                dateStr += " to " + ReformatDate(eventInfo["End date"])
+            dateStr = EventDateStr(eventInfo)
             
-            a(ListLinkedTeachers(eventInfo["Teachers"]))
+            a(ListLinkedTeachers(eventInfo["Teachers"],lastJoinStr = " and "))
             a.br()
             
             a(dateStr)
@@ -491,7 +509,7 @@ def WriteEventPages(tagPageDir: str) -> None:
             squish("Sessions:")
             for s in sessions:
                 squish(4*"&nbsp")
-                with squish.a(href = f"#{event}_S{s['Session #']}"):
+                with squish.a(href = f"#{eventCode}_S{s['Session #']}"):
                     squish(str(s['Session #']))
                 
             a(str(squish))
@@ -504,13 +522,21 @@ def WriteEventPages(tagPageDir: str) -> None:
         formatter.headingAudio = True
         a(HtmlQuestionList(questions,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,event+'.html'),eventInfo["Title"],str(a))
+        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["Title"],str(a))
         
+"""def WriteTemplatePage(sourceTemplate: str; pageName: str) -> None:
+    Convert a page edited by an external editor to our style.
+    sourceTemplate: the name of the edited file.
+    pageName: name of the file to write."""
+    
+    
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
+    parser.add_argument('--indexHtmlTemplate',type=str,default='templates/PrototypeIndex.html',help='Use this file to create Index.html; Default: templates/PrototypeIndex.html')
+    
 
 gOptions = None
 gDatabase = None
@@ -536,4 +562,6 @@ def main(clOptions,database):
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
     
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
+    
+    # WriteMainPage(os.path.join(gOptions.templateDir,gOptions.indexHtmlTemplate),"Index.html")
     
