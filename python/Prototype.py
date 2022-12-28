@@ -50,7 +50,7 @@ nav = Airium(source_minify=True)
 with nav.h1():
     nav("The Ajahn Pasanno Question and Answer Archive")
 with nav.p():
-    with nav.a(href = "../Index.html"):
+    with nav.a(href = "../index.html"):
         nav("Homepage")
     nav("&nbsp"*5)
     with nav.a(href = "../indexes/AllTags.html"):
@@ -554,11 +554,11 @@ def ExtractHtmlBody(fileName: str) -> str:
 def WriteIndexPage(templateName: str,indexPage: str) -> None:
     """Write the index page by extracting the body from a file created by an external editor and calling WriteHtmlFile to convert it to our (extremely minimal) style.
     templateName: the file created by an external editor
-    indexPage: the name of the page to write - usually Index.html"""
+    indexPage: the name of the page to write - usually index.html"""
     
     htmlBody = ExtractHtmlBody(templateName)
     
-    head = gDefaultHead.replace('"../','"') # Index.html lives in the root directory, so modify directory paths accordingly.
+    head = gDefaultHead.replace('"../','"') # index.html lives in the root directory, so modify directory paths accordingly.
     styleInfo = Airium()
     with styleInfo.style(type="text/css"):
         styleInfo("p { line-height: 1.3; }")
@@ -573,7 +573,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/Index.html')
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')
     parser.add_argument('--internalMP3',action='store_true',help="Link to mp3 questions at /audio/questions/ instead of in the cloud")
     parser.add_argument('--mp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/questions/',help='URL to fetch mp3s; default: storage.googleapis.com/apqa_archive/audio/questions/')
     
