@@ -86,7 +86,7 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ↓
 
-###### home/audio/questions/TG2013/TG2013_SXX_QYY.mp3 - audio files corresponding to question YY in session XX of retreat TG2013
+###### audio/questions/TG2013/TG2013_SXX_QYY.mp3 - audio files corresponding to question YY in session XX of retreat TG2013
 
 #### In either case:
 
