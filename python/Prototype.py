@@ -562,7 +562,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='templates/PrototypeIndex.html',help='Use this file to create Index.html; Default: templates/PrototypeIndex.html')
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/Index.html',help='Use this file to create Index.html; Default: prototype/templates/Index.html')
     
 
 gOptions = None
