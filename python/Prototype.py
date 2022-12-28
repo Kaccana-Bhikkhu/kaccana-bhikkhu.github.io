@@ -554,9 +554,15 @@ def WriteIndexPage(templateName: str,indexPage: str) -> None:
     htmlBody = ExtractHtmlBody(templateName)
     
     head = gDefaultHead.replace('"../','"') # Index.html lives in the root directory, so modify directory paths accordingly.
+    styleInfo = Airium()
+    with styleInfo.style(type="text/css"):
+        styleInfo("p { line-height: 1.3; }")
+    
     nav = gNavigation.replace('"../','"')
     
-    WriteHtmlFile(indexPage,"The Ajahn Pasanno Q&A Archive",nav + '\n' + htmlBody,customHead = head,navigation = False)
+    sourceComment = f"\n<!-- The content below has been extracted from the body of {templateName} -->\n"
+    
+    WriteHtmlFile(indexPage,"The Ajahn Pasanno Q&A Archive",''.join([nav,sourceComment,htmlBody]),customHead = '\n'.join([head,str(styleInfo)]),navigation = False)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
