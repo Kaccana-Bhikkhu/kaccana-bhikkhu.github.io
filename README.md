@@ -1,31 +1,58 @@
 # Ajahn Pasanno Question and Answer Archive
 
-Documentation 
-[prototype/README.md](prototype/README.md) for information about the purpose and scope of this project and the status of the current prototype.
+## Documentation links
+[prototype/README.md](prototype/README.md) - purpose and scope of this project and status of the current prototype.
+
+[documentaion/DatabaseFormat.md](documentaion/DatabaseFormat.md) - describes database.json
+
+Project achitecture - this file
+
 
 ## Architecture
-The project architecture is a series of scripted operations:
+We build the archive using a series of scripted operations of the form:
+
+`python QAarchive.py operations [options]`,
+
+where `operations` is a comma-separated list. Each operation is the name of a module in the `python/` directory, which are executed in the sequence below. `QAarchive.py All` runs all modules.
 
 ### Textual data flow
-[AP QA archive main](https://docs.google.com/spreadsheets/d/1JIOwbYh6M1Ax9O6tFsgpwWYoDPJRbWEzhB_nwyOSS20/edit?usp=sharing) - Google Sheet (in roughly final form, but the full archive may contain ~25 retreats and ~2,000 questions)
-
-↓
-    
-↓ QAarchive.py DownloadCSV (not written; some easy solutions are buggy; need to research Google API; currently using gs script and manual download)
+[AP QA archive main](https://docs.google.com/spreadsheets/d/1JIOwbYh6M1Ax9O6tFsgpwWYoDPJRbWEzhB_nwyOSS20/edit?usp=sharing) - Google Sheet (in roughly final form); the full archive may contain ~25 retreats and ~2,000 questions)
 
 ↓
 
-home/csv - one .csv file corresponding to each sheet
-    ↓
-    ↓    QAarchive.py ParseCSV (in progress)
-    ↓
-home/database.json (main database file; roughly one dict entry per csv sheet; format still evolving)
-    ↓
-    ↓    QAarchive.py BuildSite (You can write this in whatever language you prefer)
-    ↓
-home/web/index.html, etc. (a self-contained website that doesn't require server php or the equivalent would make development and deployment easier)
+↓ `QAarchive.py DownloadCSV` (not written; some easy solutions are buggy; need to research Google API; currently using gs script and manual download)
+
+↓
+
+[csv/](csv/) - one .csv file corresponding to each sheet
+
+↓
+
+↓ `QAarchive.py ParseCSV` (almost fully functional)
+
+↓
+
+[database.json](database.json) (main database file; roughly one dict entry per csv sheet; format still evolving)
+
+↓
+
+↓ `QAarchive.py Prototype` (almost fully functional)
+
+↓
+
+[prototype/Index.html](prototype/Index.html), etc.
+
+web/Index.html, etc.
+
+↓
+
+↓ `QAarchive.py ParseCSV BuildSite` (Owen writes this in whatever language he prefers)
+
+↓
+web/Index.html, etc.
 
 ### Audio data flow (operations depend on the content of database.json)
+
 home/audio/retreats/TG2013/xxx.mp3 - full-length Q&A sessions given during retreat TG2013 (for example); mp3 filenames match published retreat audio
     ↓
     ↓    QAarchive.py SplitMP3 (interface to Mp3DirectCut written and tested)
