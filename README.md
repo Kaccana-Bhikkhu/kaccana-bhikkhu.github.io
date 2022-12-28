@@ -3,7 +3,7 @@
 ## Documentation links
 [prototype/README.md](prototype/README.md) - purpose and scope of this project and status of the current prototype.
 
-[documentaion/DatabaseFormat.md](documentaion/DatabaseFormat.md) - describes database.json
+[documentation/DatabaseFormat.md](documentation/DatabaseFormat.md) - describes database.json
 
 Project achitecture - this file
 
