@@ -573,7 +573,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/Index.html',help='Use this file to create Index.html; Default: prototype/templates/Index.html')
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/Index.html')
     parser.add_argument('--internalMP3',action='store_true',help="Link to mp3 questions at /audio/questions/ instead of in the cloud")
     parser.add_argument('--mp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/questions/',help='URL to fetch mp3s; default: storage.googleapis.com/apqa_archive/audio/questions/')
     
