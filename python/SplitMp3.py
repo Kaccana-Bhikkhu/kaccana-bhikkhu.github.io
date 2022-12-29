@@ -1,4 +1,4 @@
-"""Use Mp3DirectCut.exe to split the session audio files into individual questions based on start and end times from database.json"""
+"""Use Mp3DirectCut.exe to split the session audio files into individual questions based on start and end times from Database.json"""
 
 import os, json
 from Utils import StrToTimeDelta, Mp3FileName
@@ -29,7 +29,7 @@ gOptions = None
 gDatabase = None
 def main(clOptions,database):
     """ Split the Q&A session mp3 files into individual questions.
-    Read the beginning and end points from database.json."""
+    Read the beginning and end points from Database.json."""
     
     global gOptions
     gOptions = clOptions

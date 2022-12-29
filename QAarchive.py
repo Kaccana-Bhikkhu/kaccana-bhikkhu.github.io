@@ -21,14 +21,14 @@ parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Questio
 AP QA archive main Google Sheet.""")
 
 parser.add_argument('ops',type=str,help="""A comma-separated list of operations to perform. No spaces allowed. Available operations:
-ParseCSV - convert the csv files downloaded from the Google Sheet to database.json.
-SplitMp3 - split mp3 files into individual questions based on the times in database.json.
-Prototype - create various files to illustrate how database.json should be interpreted.
+ParseCSV - convert the csv files downloaded from the Google Sheet to Database.json.
+SplitMp3 - split mp3 files into individual questions based on the times in Database.json.
+Prototype - create various files to illustrate how Database.json should be interpreted.
 All - run all the above modules in sequence.
 """)
 
 parser.add_argument('--homeDir',type=str,default='.',help='All other pathnames are relative to this directory; Default: ./')
-parser.add_argument('--jsonFile',type=str,default='database.json',help='Read/write this json file; Default: database.json')
+parser.add_argument('--jsonFile',type=str,default='Database.json',help='Read/write this json file; Default: Database.json')
 
 for mod in modules:
     modules[mod].AddArguments(parser)

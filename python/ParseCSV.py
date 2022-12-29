@@ -1,4 +1,4 @@
-"""A module to read csv files from ./csv and create the database.json file used by subsequent operations"""
+"""A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
 import os, re, csv, json
 from Utils import slugify, StrToTimeDelta, TimeDeltaToStr
