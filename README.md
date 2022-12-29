@@ -3,7 +3,7 @@
 ## Documentation links
 [prototype/README.md](prototype/README.md) - purpose and scope of this project and status of the current prototype.
 
-[documentation/DatabaseFormat.md](documentation/DatabaseFormat.md) - describes database.json
+[documentation/DatabaseFormat.md](documentation/DatabaseFormat.md) - describes Database.json
 
 Project achitecture - this file
 
@@ -32,7 +32,7 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ↓
 
-###### [database.json](database.json) - main database file; roughly one dict entry per csv sheet; [format](documentaion/DatabaseFormat.md) nearly finalised
+###### [Database.json](Database.json) - main database file; roughly one dict entry per csv sheet; [format](documentaion/DatabaseFormat.md) nearly finalised
 
 ↓
 
@@ -44,7 +44,7 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 #### Prototype website textual data flow
 
-###### [database.json](database.json)
+###### [Database.json](Database.json)
 
 ↓
 
@@ -54,7 +54,7 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ###### [prototype/Index.html](prototype/Index.html), etc.
 
-### Audio data flow (operations depend on the content of database.json)
+### Audio data flow (operations depend on the content of Database.json)
 
 #### First try to download split mp3s from our Google Cloud server:
 
