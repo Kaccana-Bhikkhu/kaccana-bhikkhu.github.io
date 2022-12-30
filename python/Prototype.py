@@ -578,9 +578,15 @@ def WriteIndexPage(templateName: str,indexPage: str) -> None:
     
     nav = gNavigation.replace('"../','"')
     
-    sourceComment = f"\n<!-- The content below has been extracted from the body of {templateName} -->\n"
+    sourceComment = f"<!-- The content below has been extracted from the body of {templateName} -->"
     
-    WriteHtmlFile(indexPage,"The Ajahn Pasanno Q&A Archive",''.join([nav,sourceComment,htmlBody]),customHead = '\n'.join([head,str(styleInfo)]),navigation = False)
+    WriteHtmlFile(indexPage,"The Ajahn Pasanno Q&A Archive",'\n'.join([nav,sourceComment,htmlBody]),customHead = '\n'.join([head,str(styleInfo)]),navigation = False)
+    
+    # Now write prototype/README.md to make this material easily readable on github
+    
+    with open(os.path.join(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
+        print(sourceComment, file = readMe)
+        readMe.write(htmlBody)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"

@@ -1,3 +1,4 @@
+<!-- The content below has been extracted from the body of prototype/templates/index.html -->
 <h2 class="western">Introduction</h2>
 <p>Ajahn Pasanno excels at answering Dhamma questions. I estimate
 there are perhaps 100 hours of his question and answer sessions
@@ -16,12 +17,12 @@ are open to revision if Ajahn Pasanno, Ajahn &Ntilde;&#257;&#7751;iko,
 or the Abhayagiri Sa&#7749;gha object.</p>
 <h2 class="western">Collaborators</h2>
 <p>I created this demonstration prototype, but my web design skills
-go no further. My nephew Owen Leggett (almost 13!) volunteered to
-design a modern website using the same questions database as the
-prototype. Owen&rsquo;s father, Michael Leggett, who once worked on
-the Gmail design team, has already provided valuable advice to both
-of us. I have done all the tagging so far, but I intend to invite
-online volunteers to help with transcription and tagging later on.</p>
+go no further. My nephew Owen (almost 13!) volunteered to design a
+modern website using the same questions database as the prototype.
+Owen&rsquo;s father, Michael, who once worked on the Gmail design
+team, has already provided valuable advice to both of us. I have done
+all the tagging so far, but I intend to invite online volunteers to
+help with transcription and tagging later on.</p>
 <p>I plan to update the prototype as we transcribe additional
 questions and refine the tagging scheme until Owen&rsquo;s modern
 website is up and running.</p>
@@ -105,3 +106,10 @@ barely begins to repay my debt of gratitude to him.</p>
 Ajahn Kacc&#257;na</p>
 <p style="margin-left: 2cm; background: transparent">December 28,
 2022</p>
+<hr/>
+
+<h3 class="western">Version list</h3>
+<p><b>1.0</b>: First publicly available prototype; contains all
+questions from Thanksgiving Retreats 2013-2015 from pre-existing
+transcriptions; subject tags are based on transcription text rather
+than audio content.</p>
