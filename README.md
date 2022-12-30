@@ -40,6 +40,8 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ### Audio data flow (operations depend on the content of Database.json)
 
+The operations below execute only when necessary. If the sessionMp3 and questionMp3 options are both remote, all audio links point elsewhere, and there is no need to download or process audio files.
+
 #### First try to download split mp3s from our Google Cloud server:
 
 ###### https://storage.googleapis.com/apqa_archive/audio/questions/TG2013/TG2013_S01_Q01.mp3 - previously split mp3 files in Google Cloud
