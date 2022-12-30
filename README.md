@@ -28,7 +28,7 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ↓ `QAarchive.py ParseCSV BuildSite` - Owen writes this in whatever language he prefers
 
-###### web/Index.html, etc.
+###### index.html, etc.
 
 #### Prototype website textual data flow
 
