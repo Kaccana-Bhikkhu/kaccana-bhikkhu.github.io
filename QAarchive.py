@@ -65,3 +65,8 @@ for moduleName in moduleList:
     if moduleName in opList:
         PrintModuleSeparator(moduleName)
         modules[moduleName].main(clOptions,database)
+
+if clOptions.ignoreTeacherConsent:
+    print("WARNING: Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
+if clOptions.ignoreExcludes:
+    print("WARNING: Session/question exclusion flags have been ignored. This should only be used for testing and debugging purposes.")

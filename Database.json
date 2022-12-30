@@ -155,9 +155,9 @@
       "Index #": "1",
       "Name": "Killing",
       "Pāli": "pāṇātipātā",
-      "Question count": 3,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Killing (3) [pāṇātipātā]",
+      "Text": "Killing (2) [pāṇātipātā]",
       "Tag": "Killing"
     },
     {
@@ -772,7 +772,7 @@
     },
     {
       "Level": 3,
-      "Index #": "3",
+      "Index #": "3,4",
       "Name": "Conscience and prudence",
       "Pāli": "hiri-otappa",
       "Question count": 0,
@@ -782,7 +782,7 @@
     },
     {
       "Level": 3,
-      "Index #": "4,5",
+      "Index #": "5",
       "Name": "Learning",
       "Pāli": "suta",
       "Question count": 3,
@@ -1715,9 +1715,9 @@
       "Index #": "1",
       "Name": "Killing",
       "Pāli": "pāṇātipātā",
-      "Question count": 3,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Killing (3) [pāṇātipātā]",
+      "Text": "Killing (2) [pāṇātipātā]",
       "Tag": "Killing"
     },
     {
@@ -1785,9 +1785,9 @@
       "Index #": "1",
       "Name": "Killing",
       "Pāli": "pāṇātipātā",
-      "Question count": 3,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Killing (3) [pāṇātipātā]",
+      "Text": "Killing (2) [pāṇātipātā]",
       "Tag": "Killing"
     },
     {
@@ -2441,6 +2441,16 @@
       "Tag": "History/Western Buddhist monasticism"
     },
     {
+      "Level": 4,
+      "Index #": "",
+      "Name": "History/Abhayagiri Monastery",
+      "Pāli": "",
+      "Question count": 0,
+      "Subsumed": false,
+      "Text": "History/Abhayagiri Monastery",
+      "Tag": "History/Abhayagiri Monastery"
+    },
+    {
       "Level": 1,
       "Index #": "",
       "Name": "Monastic life",
@@ -2994,7 +3004,7 @@
       "Primaries": 1,
       "html file": "killing.html",
       "List index": 15,
-      "Question count": 3
+      "Question count": 2
     },
     "Stealing": {
       "Tag": "Stealing",
@@ -6671,7 +6681,9 @@
       "Alt. trans.": [],
       "See also": [],
       "Virtual": false,
-      "Subtags": [],
+      "Subtags": [
+        "History/Abhayagiri Monastery"
+      ],
       "Supertags": [
         "History/Western Buddhism"
       ],
@@ -6680,6 +6692,24 @@
       "html file": "historywestern-buddhist-monasticism.html",
       "List index": 243,
       "Question count": 1
+    },
+    "History/Abhayagiri Monastery": {
+      "Tag": "History/Abhayagiri Monastery",
+      "Pāli": "",
+      "Full tag": "History/Abhayagiri Monastery",
+      "Full Pāli": "",
+      "#": "",
+      "Alt. trans.": [],
+      "See also": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "History/Western Buddhist monasticism"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "historyabhayagiri-monastery.html",
+      "List index": 244
     },
     "Monastic life": {
       "Tag": "Monastic life",
@@ -6700,7 +6730,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "monastic-life.html",
-      "List index": 244,
+      "List index": 245,
       "Question count": 9
     },
     "Monastic life/Motivation": {
@@ -6719,7 +6749,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "monastic-lifemotivation.html",
-      "List index": 245,
+      "List index": 246,
       "Question count": 1
     },
     "Four requisites": {
@@ -6743,7 +6773,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "four-requisites.html",
-      "List index": 246
+      "List index": 247
     },
     "Robes": {
       "Tag": "Robes",
@@ -6761,7 +6791,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "robes.html",
-      "List index": 247
+      "List index": 248
     },
     "Almsfood": {
       "Tag": "Almsfood",
@@ -6779,7 +6809,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "almsfood.html",
-      "List index": 248
+      "List index": 249
     },
     "Shelter": {
       "Tag": "Shelter",
@@ -6797,7 +6827,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "shelter.html",
-      "List index": 249
+      "List index": 250
     },
     "Medicinal requisites": {
       "Tag": "Medicinal requisites",
@@ -6815,7 +6845,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "medicinal-requisites.html",
-      "List index": 250,
+      "List index": 251,
       "Question count": 1
     },
     "Celibacy": {
@@ -6834,7 +6864,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "celibacy.html",
-      "List index": 251
+      "List index": 252
     },
     "Qualities for non-decline": {
       "Tag": "Qualities for non-decline",
@@ -6857,7 +6887,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "qualities-for-non-decline.html",
-      "List index": 252
+      "List index": 253
     },
     "Moderation in eating": {
       "Tag": "Moderation in eating",
@@ -6877,7 +6907,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "moderation-in-eating.html",
-      "List index": 255
+      "List index": 256
     },
     "Devotion to wakefulness": {
       "Tag": "Devotion to wakefulness",
@@ -6897,7 +6927,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "devotion-to-wakefulness.html",
-      "List index": 256,
+      "List index": 257,
       "Question count": 1
     },
     "Nature of mind": {
@@ -6914,7 +6944,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "nature-of-mind.html",
-      "List index": 257,
+      "List index": 258,
       "Question count": 7
     },
     "Women in Buddhism": {
@@ -6931,7 +6961,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "women-in-buddhism.html",
-      "List index": 258,
+      "List index": 259,
       "Question count": 3
     },
     "Humor": {
@@ -6948,7 +6978,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "humor.html",
-      "List index": 259,
+      "List index": 260,
       "Question count": 1
     },
     "Psychic powers": {
@@ -6965,7 +6995,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "psychic-powers.html",
-      "List index": 260,
+      "List index": 261,
       "Question count": 5
     },
     "Chanting": {
@@ -6982,7 +7012,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "chanting.html",
-      "List index": 261,
+      "List index": 262,
       "Question count": 10
     },
     "Long-term practice": {
@@ -6999,7 +7029,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "long-term-practice.html",
-      "List index": 262,
+      "List index": 263,
       "Question count": 9
     },
     "Lay life": {
@@ -7022,7 +7052,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "lay-life.html",
-      "List index": 263,
+      "List index": 264,
       "Question count": 2
     },
     "Work": {
@@ -7043,7 +7073,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "work.html",
-      "List index": 264,
+      "List index": 265,
       "Question count": 4
     },
     "Relationships": {
@@ -7062,7 +7092,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "relationships.html",
-      "List index": 265,
+      "List index": 266,
       "Question count": 5
     },
     "Family": {
@@ -7081,7 +7111,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "family.html",
-      "List index": 266,
+      "List index": 267,
       "Question count": 11
     },
     "Politics and society": {
@@ -7100,7 +7130,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "politics-and-society.html",
-      "List index": 267,
+      "List index": 268,
       "Question count": 3
     },
     "Environment": {
@@ -7119,7 +7149,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "environment.html",
-      "List index": 268,
+      "List index": 269,
       "Question count": 1
     },
     "Question in Thai": {
@@ -7136,7 +7166,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "question-in-thai.html",
-      "List index": 269,
+      "List index": 270,
       "Question count": 2
     }
   },
@@ -7156,8 +7186,8 @@
       "Start date": "21/11/2014",
       "Sessions": 7,
       "Questions": 122,
-      "Answers listened to": 3,
-      "Tags applied": 164,
+      "Answers listened to": 4,
+      "Tags applied": 165,
       "Invalid tags": 0,
       "Duration": "8:10:22"
     },
@@ -7331,8 +7361,8 @@
       "Website": "https://www.abhayagiri.org/media/discs/2014ThanksgivingRetreat/index.html#/",
       "Sessions": 7,
       "Questions": 122,
-      "Answers listened to": 3,
-      "Tags applied": 164,
+      "Answers listened to": 4,
+      "Tags applied": 165,
       "Invalid tags": 0,
       "Duration": "8:10:22"
     },
@@ -7364,7 +7394,6 @@
   },
   "Sessions": [
     {
-      "Event": "TG2013",
       "Session #": 1,
       "Date": "23/11/2013",
       "Filename": "AP_11_23_2013_Monastic_Retreat_eve_Questions_and_Answers_1.mp3",
@@ -7375,10 +7404,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 2,
       "Date": "24/11/2013",
       "Filename": "AP_11_24_2013_Monastic_Retreat_eve_Questions_and_Answers_2.mp3",
@@ -7389,10 +7419,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 3,
       "Date": "25/11/2013",
       "Filename": "AP_11_25_2013_Monastic_Retreat_eve_Questions_and_Answers_3.mp3",
@@ -7403,10 +7434,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 4,
       "Date": "26/11/2013",
       "Filename": "AP_11_26_2013_Monastic_Retreat_eve_Questions_and_Answers_4.mp3",
@@ -7417,10 +7449,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 5,
       "Date": "27/11/2013",
       "Filename": "AP_11_27_2013_Monastic_Retreat_eve_Questions_and_Answers_5.mp3",
@@ -7431,10 +7464,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 6,
       "Date": "28/11/2013",
       "Filename": "AP_11_28_2013_Monastic_Retreat_eve_Questions_and_Answers_6.mp3",
@@ -7445,10 +7479,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 7,
       "Date": "29/11/2013",
       "Filename": "AP_11_29_2013_Monastic_Retreat_eve_Questions_and_Answers_7.mp3",
@@ -7459,10 +7494,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2013",
       "Session #": 8,
       "Date": "30/11/2013",
       "Filename": "AP_11_30_2013_Monastic_Retreat_eve_Questions_and_Answers_8.mp3",
@@ -7473,10 +7509,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2013"
     },
     {
-      "Event": "TG2014",
       "Session #": 1,
       "Date": "22/11/2014",
       "Filename": "AP_11_22_2014_TMR_Questions_and_Answers_1.mp3",
@@ -7487,10 +7524,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2014",
       "Session #": 2,
       "Date": "23/11/2014",
       "Filename": "AP_11_23_2014_TMR_Questions_and_Answers_2.mp3",
@@ -7501,10 +7539,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2014",
       "Session #": 3,
       "Date": "24/11/2014",
       "Filename": "AP_11_24_2014_TMR_Questions_and_Answers_3.mp3",
@@ -7515,10 +7554,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2014",
       "Session #": 4,
       "Date": "25/11/2014",
       "Filename": "AP_11_25_2014_TMR_Questions_and_Answers_4.mp3",
@@ -7529,10 +7569,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2014",
       "Session #": 5,
       "Date": "26/11/2014",
       "Filename": "AP_11_26_2014_TMR_Questions_and_Answers_5.mp3",
@@ -7543,10 +7584,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2014",
       "Session #": 6,
       "Date": "27/11/2014",
       "Filename": "AP_11_27_2014_TMR_Questions_and_Answers_6.mp3",
@@ -7557,10 +7599,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2014",
       "Session #": 7,
       "Date": "28/11/2014",
       "Filename": "AP_11_28_2014_TMR_Questions_and_Answers_7.mp3",
@@ -7571,10 +7614,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2014"
     },
     {
-      "Event": "TG2015",
       "Session #": 1,
       "Date": "21/11/2015",
       "Filename": "04_AP_11_21_2015_TMR_Q_A.mp3",
@@ -7585,10 +7629,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 2,
       "Date": "22/11/2015",
       "Filename": "07_AP_11_22_2015_TMR_Q_A.mp3",
@@ -7599,10 +7644,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 3,
       "Date": "23/11/2015",
       "Filename": "10_AP_11_23_2015_TMR_Q_A.mp3",
@@ -7613,10 +7659,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 4,
       "Date": "24/11/2015",
       "Filename": "13_AP_11_24_2015_TMR_Q_A.mp3",
@@ -7627,10 +7674,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 5,
       "Date": "25/11/2015",
       "Filename": "16_AP_11_25_2015_TMR_Q_A.mp3",
@@ -7641,10 +7689,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 6,
       "Date": "26/11/2015",
       "Filename": "19_AP_11_26_2015_TMR_Q_A.mp3",
@@ -7655,10 +7704,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 7,
       "Date": "27/11/2015",
       "Filename": "22_AP_11_27_2015_TMR_Q_A.mp3",
@@ -7669,10 +7719,11 @@
       "Tags": [],
       "Teachers": [
         "AP"
-      ]
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     },
     {
-      "Event": "TG2015",
       "Session #": 8,
       "Date": "28/11/2015",
       "Filename": "25_AP_11_28_2015_TMR_Q_A.mp3",
@@ -7681,7 +7732,11 @@
       "Remote mp3 URL": "https://www.abhayagiri.org/media/discs/2015ThanksgivingRetreat/Audio/25_AP_11_28_2015_TMR_Q_A.mp3",
       "Questions": 26,
       "Tags": [],
-      "Teachers": []
+      "Teachers": [
+        "AP"
+      ],
+      "Exclude?": "",
+      "Event": "TG2015"
     }
   ],
   "Questions": [
@@ -7700,6 +7755,7 @@
         "Dispassion",
         "Energy"
       ],
+      "Exclude": false,
       "Duration": "4:25"
     },
     {
@@ -7716,6 +7772,7 @@
       "Tags": [
         "Arahant"
       ],
+      "Exclude": false,
       "Duration": "8:54"
     },
     {
@@ -7733,6 +7790,7 @@
         "Relationships",
         "Sexual misconduct"
       ],
+      "Exclude": false,
       "Duration": "9:19"
     },
     {
@@ -7750,6 +7808,7 @@
         "Relationships",
         "Dispassion"
       ],
+      "Exclude": false,
       "Duration": "8:59"
     },
     {
@@ -7766,6 +7825,7 @@
       "Tags": [
         "Pain"
       ],
+      "Exclude": false,
       "Duration": "6:48"
     },
     {
@@ -7782,6 +7842,7 @@
       "Tags": [
         "High and luxurious beds"
       ],
+      "Exclude": false,
       "Duration": "5:12"
     },
     {
@@ -7799,6 +7860,7 @@
         "Sickness",
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "3:51"
     },
     {
@@ -7817,6 +7879,7 @@
         "Volitional formations",
         "Consciousness"
       ],
+      "Exclude": false,
       "Duration": "3:15"
     },
     {
@@ -7834,6 +7897,7 @@
         "Feeling",
         "Mindfulness of feeling"
       ],
+      "Exclude": false,
       "Duration": "3:27"
     },
     {
@@ -7850,6 +7914,7 @@
       "Tags": [
         "Dependent origination"
       ],
+      "Exclude": false,
       "Duration": "2:47"
     },
     {
@@ -7867,6 +7932,7 @@
         "Recollection/Death",
         "Sickness"
       ],
+      "Exclude": false,
       "Duration": "4:26"
     },
     {
@@ -7884,6 +7950,7 @@
         "Relinquishment",
         "Lay life"
       ],
+      "Exclude": false,
       "Duration": "4:07"
     },
     {
@@ -7900,6 +7967,7 @@
       "Tags": [
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "4:58"
     },
     {
@@ -7917,6 +7985,7 @@
         "Mindfulness of body",
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "5:28"
     },
     {
@@ -7933,6 +8002,7 @@
       "Tags": [
         "Guilt/shame/inadequacy"
       ],
+      "Exclude": false,
       "Duration": "0:55"
     },
     {
@@ -7949,6 +8019,7 @@
       "Tags": [
         "Meditation/General advice"
       ],
+      "Exclude": false,
       "Duration": "6:03"
     },
     {
@@ -7967,6 +8038,7 @@
         "Not-self",
         "Death"
       ],
+      "Exclude": false,
       "Duration": "5:26"
     },
     {
@@ -7984,6 +8056,7 @@
         "Dispassion",
         "Equanimity"
       ],
+      "Exclude": false,
       "Duration": "1:26"
     },
     {
@@ -8000,6 +8073,7 @@
       "Tags": [
         "Clinging"
       ],
+      "Exclude": false,
       "Duration": "3:47"
     },
     {
@@ -8016,6 +8090,7 @@
       "Tags": [
         "Five Hindrances"
       ],
+      "Exclude": false,
       "Duration": "3:16"
     },
     {
@@ -8032,6 +8107,7 @@
       "Tags": [
         "Body scanning"
       ],
+      "Exclude": false,
       "Duration": "3:43"
     },
     {
@@ -8050,6 +8126,7 @@
         "Delusion",
         "Self-identity view"
       ],
+      "Exclude": false,
       "Duration": "0:33"
     },
     {
@@ -8066,6 +8143,7 @@
       "Tags": [
         "Learning"
       ],
+      "Exclude": false,
       "Duration": "2:19"
     },
     {
@@ -8082,6 +8160,7 @@
       "Tags": [
         "Family"
       ],
+      "Exclude": false,
       "Duration": "6:05"
     },
     {
@@ -8099,6 +8178,7 @@
         "Seven Factors of Awakening",
         "Gladdening the mind"
       ],
+      "Exclude": false,
       "Duration": "4:38"
     },
     {
@@ -8115,6 +8195,7 @@
       "Tags": [
         "Guilt/shame/inadequacy"
       ],
+      "Exclude": false,
       "Duration": "6:30"
     },
     {
@@ -8131,6 +8212,7 @@
       "Tags": [
         "Jhāna"
       ],
+      "Exclude": false,
       "Duration": "2:36"
     },
     {
@@ -8147,6 +8229,7 @@
       "Tags": [
         "Right concentration"
       ],
+      "Exclude": false,
       "Duration": "3:52"
     },
     {
@@ -8166,6 +8249,7 @@
         "Work",
         "Goodwill"
       ],
+      "Exclude": false,
       "Duration": "3:54"
     },
     {
@@ -8183,6 +8267,7 @@
         "Volitional formations",
         "Volition"
       ],
+      "Exclude": false,
       "Duration": "3:33"
     },
     {
@@ -8200,6 +8285,7 @@
         "Stages of awakening",
         "Contentment"
       ],
+      "Exclude": false,
       "Duration": "2:59"
     },
     {
@@ -8217,6 +8303,7 @@
         "Release",
         "Generosity"
       ],
+      "Exclude": false,
       "Duration": "1:28"
     },
     {
@@ -8234,6 +8321,7 @@
         "Stages of awakening",
         "Ten Fetters"
       ],
+      "Exclude": false,
       "Duration": "1:35"
     },
     {
@@ -8251,6 +8339,7 @@
         "Seclusion",
         "Compassion"
       ],
+      "Exclude": false,
       "Duration": "3:35"
     },
     {
@@ -8268,6 +8357,7 @@
         "Family",
         "Restraint"
       ],
+      "Exclude": false,
       "Duration": "3:37"
     },
     {
@@ -8284,6 +8374,7 @@
       "Tags": [
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "2:19"
     },
     {
@@ -8300,6 +8391,7 @@
       "Tags": [
         "Noting"
       ],
+      "Exclude": false,
       "Duration": "3:31"
     },
     {
@@ -8316,6 +8408,7 @@
       "Tags": [
         "Volitional formations"
       ],
+      "Exclude": false,
       "Duration": "2:24"
     },
     {
@@ -8333,6 +8426,7 @@
         "Precepts",
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "5:05"
     },
     {
@@ -8351,6 +8445,7 @@
         "Kamma",
         "Volition"
       ],
+      "Exclude": false,
       "Duration": "1:44"
     },
     {
@@ -8369,6 +8464,7 @@
         "Concentration",
         "Consciousness"
       ],
+      "Exclude": false,
       "Duration": "3:14"
     },
     {
@@ -8385,6 +8481,7 @@
       "Tags": [
         "Precepts"
       ],
+      "Exclude": false,
       "Duration": "1:17"
     },
     {
@@ -8401,6 +8498,7 @@
       "Tags": [
         "Calming meditation"
       ],
+      "Exclude": false,
       "Duration": "1:47"
     },
     {
@@ -8417,6 +8515,7 @@
       "Tags": [
         "Goodwill"
       ],
+      "Exclude": false,
       "Duration": "9:31"
     },
     {
@@ -8431,6 +8530,7 @@
       ],
       "Question text": "Would you please give an example of how wholesome qualities can condition unwholesome qualities?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "2:23"
     },
     {
@@ -8445,6 +8545,7 @@
       ],
       "Question text": "I feel like a kid whose father has told a story and there is more to tell...Please father do tell (about non-complicated thoughts etc.).",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:48"
     },
     {
@@ -8462,6 +8563,7 @@
         "Relationships",
         "Relinquishment"
       ],
+      "Exclude": false,
       "Duration": "3:55"
     },
     {
@@ -8478,6 +8580,7 @@
       "Tags": [
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "3:25"
     },
     {
@@ -8497,6 +8600,7 @@
         "Dispassion",
         "Contentment"
       ],
+      "Exclude": false,
       "Duration": "7:13"
     },
     {
@@ -8513,6 +8617,7 @@
       "Tags": [
         "Five aggregates"
       ],
+      "Exclude": false,
       "Duration": "2:57"
     },
     {
@@ -8530,6 +8635,7 @@
         "Family",
         "Death"
       ],
+      "Exclude": false,
       "Duration": "6:08"
     },
     {
@@ -8544,6 +8650,7 @@
       ],
       "Question text": "What is meant by 'fools'...the Buddha's definition of a fool.",
       "Tags": [],
+      "Exclude": false,
       "Duration": "1:01"
     },
     {
@@ -8560,6 +8667,7 @@
       "Tags": [
         "Grief"
       ],
+      "Exclude": false,
       "Duration": "1:59"
     },
     {
@@ -8577,6 +8685,7 @@
         "Lay life",
         "Relinquishment"
       ],
+      "Exclude": false,
       "Duration": "12:30"
     },
     {
@@ -8593,6 +8702,7 @@
       "Tags": [
         "Death"
       ],
+      "Exclude": false,
       "Duration": "8:42"
     },
     {
@@ -8610,6 +8720,7 @@
         "Mindfulness",
         "Ageing"
       ],
+      "Exclude": false,
       "Duration": "1:51"
     },
     {
@@ -8626,6 +8737,7 @@
       "Tags": [
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "3:29"
     },
     {
@@ -8642,6 +8754,7 @@
       "Tags": [
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "1:01"
     },
     {
@@ -8659,6 +8772,7 @@
         "Grief",
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "8:22"
     },
     {
@@ -8676,6 +8790,7 @@
         "Gladdening the mind",
         "One pointedness"
       ],
+      "Exclude": false,
       "Duration": "3:13"
     },
     {
@@ -8693,6 +8808,7 @@
         "Family",
         "Intoxicants"
       ],
+      "Exclude": false,
       "Duration": "3:42"
     },
     {
@@ -8709,6 +8825,7 @@
       "Tags": [
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "1:57"
     },
     {
@@ -8726,6 +8843,7 @@
         "Four Noble Truths",
         "Divine Abidings"
       ],
+      "Exclude": false,
       "Duration": "2:08"
     },
     {
@@ -8742,6 +8860,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "5:24"
     },
     {
@@ -8760,6 +8879,7 @@
         "Cessation",
         "Craving"
       ],
+      "Exclude": false,
       "Duration": "3:14"
     },
     {
@@ -8777,6 +8897,7 @@
         "Pain",
         "Posture/Sitting"
       ],
+      "Exclude": false,
       "Duration": "6:35"
     },
     {
@@ -8793,6 +8914,7 @@
       "Tags": [
         "Unattractiveness"
       ],
+      "Exclude": false,
       "Duration": "5:08"
     },
     {
@@ -8811,6 +8933,7 @@
         "Becoming",
         "Ill-will"
       ],
+      "Exclude": false,
       "Duration": "1:48"
     },
     {
@@ -8828,6 +8951,7 @@
         "Ajahn Chah",
         "History/Western Buddhist monasticism"
       ],
+      "Exclude": false,
       "Duration": "3:38"
     },
     {
@@ -8844,6 +8968,7 @@
       "Tags": [
         "Ajahn Pasanno"
       ],
+      "Exclude": false,
       "Duration": "1:45"
     },
     {
@@ -8860,6 +8985,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "4:11"
     },
     {
@@ -8878,6 +9004,7 @@
         "Sloth and torpor",
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "2:27"
     },
     {
@@ -8894,6 +9021,7 @@
       "Tags": [
         "Divine Abidings"
       ],
+      "Exclude": false,
       "Duration": "1:13"
     },
     {
@@ -8911,6 +9039,7 @@
         "Nature of mind",
         "Discernment"
       ],
+      "Exclude": false,
       "Duration": "4:47"
     },
     {
@@ -8928,6 +9057,7 @@
         "Goodwill",
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "4:59"
     },
     {
@@ -8944,6 +9074,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "0:33"
     },
     {
@@ -8960,6 +9091,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "0:27"
     },
     {
@@ -8978,6 +9110,7 @@
         "Psychic powers",
         "Realms of existence"
       ],
+      "Exclude": false,
       "Duration": "3:23"
     },
     {
@@ -8994,6 +9127,7 @@
       "Tags": [
         "Teaching Dhamma"
       ],
+      "Exclude": false,
       "Duration": "1:17"
     },
     {
@@ -9011,6 +9145,7 @@
         "Stages of awakening",
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "1:12"
     },
     {
@@ -9028,6 +9163,7 @@
         "Goodwill",
         "Ill-will"
       ],
+      "Exclude": false,
       "Duration": "5:31"
     },
     {
@@ -9044,6 +9180,7 @@
       "Tags": [
         "Ten Perfections"
       ],
+      "Exclude": false,
       "Duration": "2:00"
     },
     {
@@ -9061,6 +9198,7 @@
         "Death",
         "Teaching Dhamma"
       ],
+      "Exclude": false,
       "Duration": "4:18"
     },
     {
@@ -9077,6 +9215,7 @@
       "Tags": [
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "0:30"
     },
     {
@@ -9093,6 +9232,7 @@
       "Tags": [
         "Sickness"
       ],
+      "Exclude": false,
       "Duration": "3:01"
     },
     {
@@ -9109,6 +9249,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "2:15"
     },
     {
@@ -9125,6 +9266,7 @@
       "Tags": [
         "Meditation"
       ],
+      "Exclude": false,
       "Duration": "8:42"
     },
     {
@@ -9141,6 +9283,7 @@
       "Tags": [
         "Ajahn Pasanno"
       ],
+      "Exclude": false,
       "Duration": "4:30"
     },
     {
@@ -9157,6 +9300,7 @@
       "Tags": [
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "3:52"
     },
     {
@@ -9174,6 +9318,7 @@
         "Psychic powers",
         "Rebirth"
       ],
+      "Exclude": false,
       "Duration": "2:36"
     },
     {
@@ -9190,6 +9335,7 @@
       "Tags": [
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "1:37"
     },
     {
@@ -9204,6 +9350,7 @@
       ],
       "Question text": "I've been reflecting on the buildup of 30 water bottles outside the hall...Can you speak about how we find security in such objects please?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "1:22"
     },
     {
@@ -9221,6 +9368,7 @@
         "Three characteristics",
         "Cessation of suffering"
       ],
+      "Exclude": false,
       "Duration": "1:59"
     },
     {
@@ -9238,6 +9386,7 @@
         "Equanimity",
         "Gladdening the mind"
       ],
+      "Exclude": false,
       "Duration": "0:26"
     },
     {
@@ -9255,6 +9404,7 @@
         "Volition",
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "2:52"
     },
     {
@@ -9273,6 +9423,7 @@
         "Six sense bases",
         "Stream entry"
       ],
+      "Exclude": false,
       "Duration": "3:05"
     },
     {
@@ -9289,6 +9440,7 @@
       "Tags": [
         "Empathetic joy"
       ],
+      "Exclude": false,
       "Duration": "3:29"
     },
     {
@@ -9305,6 +9457,7 @@
       "Tags": [
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "3:35"
     },
     {
@@ -9322,6 +9475,7 @@
         "Elements",
         "Death"
       ],
+      "Exclude": false,
       "Duration": "3:31"
     },
     {
@@ -9338,6 +9492,7 @@
       "Tags": [
         "Teaching Dhamma"
       ],
+      "Exclude": false,
       "Duration": "1:58"
     },
     {
@@ -9354,6 +9509,7 @@
       "Tags": [
         "Goodwill"
       ],
+      "Exclude": false,
       "Duration": "6:31"
     },
     {
@@ -9370,6 +9526,7 @@
       "Tags": [
         "Merit"
       ],
+      "Exclude": false,
       "Duration": "2:11"
     },
     {
@@ -9387,6 +9544,7 @@
         "Merit",
         "Volition"
       ],
+      "Exclude": false,
       "Duration": "0:20"
     },
     {
@@ -9404,6 +9562,7 @@
         "Kamma",
         "Merit"
       ],
+      "Exclude": false,
       "Duration": "3:02"
     },
     {
@@ -9421,6 +9580,7 @@
         "Relationships",
         "Renunciation"
       ],
+      "Exclude": false,
       "Duration": "2:50"
     },
     {
@@ -9438,6 +9598,7 @@
         "Gladdening the mind",
         "Insight meditation"
       ],
+      "Exclude": false,
       "Duration": "2:40"
     },
     {
@@ -9454,6 +9615,7 @@
       "Tags": [
         "Stages of awakening"
       ],
+      "Exclude": false,
       "Duration": "3:46"
     },
     {
@@ -9470,6 +9632,7 @@
       "Tags": [
         "Release"
       ],
+      "Exclude": false,
       "Duration": "1:09"
     },
     {
@@ -9486,6 +9649,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "4:00"
     },
     {
@@ -9502,6 +9666,7 @@
       "Tags": [
         "Ajahn Pasanno/Biography"
       ],
+      "Exclude": false,
       "Duration": "1:27"
     },
     {
@@ -9519,6 +9684,7 @@
         "Continuity of mindfulness",
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "4:25"
     },
     {
@@ -9535,6 +9701,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "1:40"
     },
     {
@@ -9551,6 +9718,7 @@
       "Tags": [
         "Depression"
       ],
+      "Exclude": false,
       "Duration": "5:37"
     },
     {
@@ -9567,6 +9735,7 @@
       "Tags": [
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "4:13"
     },
     {
@@ -9584,6 +9753,7 @@
         "Consciousness",
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "1:18"
     },
     {
@@ -9600,6 +9770,7 @@
       "Tags": [
         "Realms of existence"
       ],
+      "Exclude": false,
       "Duration": "1:23"
     },
     {
@@ -9616,6 +9787,7 @@
       "Tags": [
         "Psychic powers"
       ],
+      "Exclude": false,
       "Duration": "1:48"
     },
     {
@@ -9633,6 +9805,7 @@
         "Long-term practice",
         "Ajahn Pasanno/Biography"
       ],
+      "Exclude": false,
       "Duration": "3:22"
     },
     {
@@ -9649,6 +9822,7 @@
       "Tags": [
         "Ill-will"
       ],
+      "Exclude": false,
       "Duration": "0:28"
     },
     {
@@ -9665,6 +9839,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "4:15"
     },
     {
@@ -9681,6 +9856,7 @@
       "Tags": [
         "Rebirth"
       ],
+      "Exclude": false,
       "Duration": "0:57"
     },
     {
@@ -9697,6 +9873,7 @@
       "Tags": [
         "Women in Buddhism"
       ],
+      "Exclude": false,
       "Duration": "1:04"
     },
     {
@@ -9713,6 +9890,7 @@
       "Tags": [
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "3:52"
     },
     {
@@ -9729,6 +9907,7 @@
       "Tags": [
         "Right speech"
       ],
+      "Exclude": false,
       "Duration": "0:30"
     },
     {
@@ -9745,6 +9924,7 @@
       "Tags": [
         "Elements"
       ],
+      "Exclude": false,
       "Duration": "2:13"
     },
     {
@@ -9761,6 +9941,7 @@
       "Tags": [
         "Triple Gem"
       ],
+      "Exclude": false,
       "Duration": "1:46"
     },
     {
@@ -9777,6 +9958,7 @@
       "Tags": [
         "Devotion to wakefulness"
       ],
+      "Exclude": false,
       "Duration": "7:21"
     },
     {
@@ -9793,6 +9975,7 @@
       "Tags": [
         "Jhāna"
       ],
+      "Exclude": false,
       "Duration": "2:49"
     },
     {
@@ -9809,6 +9992,7 @@
       "Tags": [
         "Becoming"
       ],
+      "Exclude": false,
       "Duration": "1:47"
     },
     {
@@ -9825,6 +10009,7 @@
       "Tags": [
         "Ill-will"
       ],
+      "Exclude": false,
       "Duration": "2:05"
     },
     {
@@ -9841,6 +10026,7 @@
       "Tags": [
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "4:02"
     },
     {
@@ -9857,6 +10043,7 @@
       "Tags": [
         "Ajahn Pasanno/Biography"
       ],
+      "Exclude": false,
       "Duration": "2:41"
     },
     {
@@ -9874,6 +10061,7 @@
         "Kamma",
         "Volition"
       ],
+      "Exclude": false,
       "Duration": "2:18"
     },
     {
@@ -9888,6 +10076,7 @@
       ],
       "Question text": "No room for the second question.",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:09"
     },
     {
@@ -9905,6 +10094,7 @@
         "Intoxicants",
         "Right livelihood"
       ],
+      "Exclude": false,
       "Duration": "7:06"
     },
     {
@@ -9923,6 +10113,7 @@
         "Merit",
         "Goodwill"
       ],
+      "Exclude": false,
       "Duration": "1:38"
     },
     {
@@ -9940,6 +10131,7 @@
         "Five aggregates",
         "Five Faculties"
       ],
+      "Exclude": false,
       "Duration": "1:55"
     },
     {
@@ -9957,6 +10149,7 @@
         "Ignorance",
         "Delusion"
       ],
+      "Exclude": false,
       "Duration": "3:17"
     },
     {
@@ -9973,6 +10166,7 @@
       "Tags": [
         "Stream entry"
       ],
+      "Exclude": false,
       "Duration": "4:58"
     },
     {
@@ -9989,6 +10183,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "3:04"
     },
     {
@@ -10005,6 +10200,7 @@
       "Tags": [
         "Posture/Walking"
       ],
+      "Exclude": false,
       "Duration": "8:55"
     },
     {
@@ -10021,6 +10217,7 @@
       "Tags": [
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "5:28"
     },
     {
@@ -10037,6 +10234,7 @@
       "Tags": [
         "Right mindfulness"
       ],
+      "Exclude": false,
       "Duration": "6:42"
     },
     {
@@ -10053,6 +10251,7 @@
       "Tags": [
         "Posture/Walking"
       ],
+      "Exclude": false,
       "Duration": "7:10"
     },
     {
@@ -10070,6 +10269,7 @@
         "Family",
         "Relinquishment"
       ],
+      "Exclude": false,
       "Duration": "3:10"
     },
     {
@@ -10086,6 +10286,7 @@
       "Tags": [
         "Six sense bases"
       ],
+      "Exclude": false,
       "Duration": "4:27"
     },
     {
@@ -10102,6 +10303,7 @@
       "Tags": [
         "Mindfulness of feeling"
       ],
+      "Exclude": false,
       "Duration": "6:24"
     },
     {
@@ -10119,6 +10321,7 @@
         "Fear",
         "Goodwill"
       ],
+      "Exclude": false,
       "Duration": "4:36"
     },
     {
@@ -10135,6 +10338,7 @@
       "Tags": [
         "Four Noble Truths"
       ],
+      "Exclude": false,
       "Duration": "2:17"
     },
     {
@@ -10151,6 +10355,7 @@
       "Tags": [
         "Work"
       ],
+      "Exclude": false,
       "Duration": "4:42"
     },
     {
@@ -10167,6 +10372,7 @@
       "Tags": [
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "6:04"
     },
     {
@@ -10183,6 +10389,7 @@
       "Tags": [
         "Mindfulness of mind"
       ],
+      "Exclude": false,
       "Duration": "1:43"
     },
     {
@@ -10200,6 +10407,7 @@
         "Mindfulness of mind",
         "Mindfulness of dhammas"
       ],
+      "Exclude": false,
       "Duration": "3:40"
     },
     {
@@ -10217,6 +10425,7 @@
         "Unattractiveness",
         "Dispassion"
       ],
+      "Exclude": false,
       "Duration": "4:03"
     },
     {
@@ -10233,6 +10442,7 @@
       "Tags": [
         "Meditation/General advice"
       ],
+      "Exclude": false,
       "Duration": "3:55"
     },
     {
@@ -10249,6 +10459,7 @@
       "Tags": [
         "Sloth and torpor"
       ],
+      "Exclude": false,
       "Duration": "4:06"
     },
     {
@@ -10265,6 +10476,7 @@
       "Tags": [
         "Ill-will"
       ],
+      "Exclude": false,
       "Duration": "1:34"
     },
     {
@@ -10283,6 +10495,7 @@
         "Rebirth",
         "Stream entry"
       ],
+      "Exclude": false,
       "Duration": "5:45"
     },
     {
@@ -10297,6 +10510,7 @@
       ],
       "Question text": "Is it possible to post a list of the focuses of the 16 steps? It would be a helpful resource for the remainder of the retreat.",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:35"
     },
     {
@@ -10313,6 +10527,7 @@
       "Tags": [
         "Posture/Lying down"
       ],
+      "Exclude": false,
       "Duration": "4:17"
     },
     {
@@ -10329,28 +10544,13 @@
       "Tags": [
         "Recollection/Devas"
       ],
+      "Exclude": false,
       "Duration": "5:34"
     },
     {
       "Event": "TG2014",
       "Session #": 2,
       "Question #": 14,
-      "File #": 14,
-      "Start time": "48:27",
-      "End time": "",
-      "Teachers": [
-        "AP"
-      ],
-      "Question text": "Regarding the 1st precept of non-killing / non-harming, what to do on a practical / decision level regarding something like termites? I sold my last house because I didn't want to fumigate, but I can't keep moving to avoid killing termites / ants that eat at a house. Thank you for your compassion and explanation.",
-      "Tags": [
-        "Killing"
-      ],
-      "Duration": "6:22"
-    },
-    {
-      "Event": "TG2014",
-      "Session #": 2,
-      "Question #": 15,
       "File #": 15,
       "Start time": "54:49",
       "End time": "",
@@ -10361,6 +10561,7 @@
       "Tags": [
         "Meditation/General advice"
       ],
+      "Exclude": false,
       "Duration": "4:18"
     },
     {
@@ -10378,6 +10579,7 @@
         "Tranquility",
         "Meditation/General advice"
       ],
+      "Exclude": false,
       "Duration": "4:58"
     },
     {
@@ -10394,6 +10596,7 @@
       "Tags": [
         "Right mindfulness"
       ],
+      "Exclude": false,
       "Duration": "1:08"
     },
     {
@@ -10411,6 +10614,7 @@
         "Directed thought and evaluation",
         "Gladdening the mind"
       ],
+      "Exclude": false,
       "Duration": "5:46"
     },
     {
@@ -10428,6 +10632,7 @@
         "Mindfulness of breathing",
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "3:04"
     },
     {
@@ -10445,6 +10650,7 @@
         "Humans",
         "Devas"
       ],
+      "Exclude": false,
       "Duration": "2:58"
     },
     {
@@ -10461,6 +10667,7 @@
       "Tags": [
         "Rapture and pleasure"
       ],
+      "Exclude": false,
       "Duration": "2:27"
     },
     {
@@ -10477,6 +10684,7 @@
       "Tags": [
         "Nature of mind"
       ],
+      "Exclude": false,
       "Duration": "1:51"
     },
     {
@@ -10493,6 +10701,7 @@
       "Tags": [
         "Grief"
       ],
+      "Exclude": false,
       "Duration": "9:14"
     },
     {
@@ -10511,6 +10720,7 @@
         "Tranquility",
         "Volitional formations"
       ],
+      "Exclude": false,
       "Duration": "7:32"
     },
     {
@@ -10528,6 +10738,7 @@
         "Mindfulness of breathing",
         "Recollection"
       ],
+      "Exclude": false,
       "Duration": "4:09"
     },
     {
@@ -10544,6 +10755,7 @@
       "Tags": [
         "Right mindfulness"
       ],
+      "Exclude": false,
       "Duration": "1:56"
     },
     {
@@ -10560,6 +10772,7 @@
       "Tags": [
         "Jhāna"
       ],
+      "Exclude": false,
       "Duration": "5:43"
     },
     {
@@ -10577,6 +10790,7 @@
         "Kamma",
         "Volition"
       ],
+      "Exclude": false,
       "Duration": "6:50"
     },
     {
@@ -10594,6 +10808,7 @@
         "Mindfulness of breathing",
         "Relinquishment"
       ],
+      "Exclude": false,
       "Duration": "6:13"
     },
     {
@@ -10610,6 +10825,7 @@
       "Tags": [
         "Mindfulness of feeling"
       ],
+      "Exclude": false,
       "Duration": "1:47"
     },
     {
@@ -10626,6 +10842,7 @@
       "Tags": [
         "Judgementalism"
       ],
+      "Exclude": false,
       "Duration": "3:11"
     },
     {
@@ -10640,6 +10857,7 @@
       ],
       "Question text": "I have enjoyed the mindfulness instruction and Dhamma talks very much. When talking about the main subject in English, could you also please use the equivalent word in Pali? For words such as “the Four Noble Truths,” “hindrances,” and “the Four Foundations of Mindfulness,” etc.",
       "Tags": [],
+      "Exclude": false,
       "Duration": "1:10"
     },
     {
@@ -10656,6 +10874,7 @@
       "Tags": [
         "Mindfulness of body"
       ],
+      "Exclude": false,
       "Duration": "2:00"
     },
     {
@@ -10670,6 +10889,7 @@
       ],
       "Question text": "It's my first time listen to Ajahn Ñāniko. What have you done to him Luang Por?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:28"
     },
     {
@@ -10686,6 +10906,7 @@
       "Tags": [
         "Merit"
       ],
+      "Exclude": false,
       "Duration": "2:51"
     },
     {
@@ -10702,6 +10923,7 @@
       "Tags": [
         "Food"
       ],
+      "Exclude": false,
       "Duration": "5:06"
     },
     {
@@ -10718,6 +10940,7 @@
       "Tags": [
         "Seven Factors of Awakening"
       ],
+      "Exclude": false,
       "Duration": "4:35"
     },
     {
@@ -10734,6 +10957,7 @@
       "Tags": [
         "Question in Thai"
       ],
+      "Exclude": false,
       "Duration": "4:48"
     },
     {
@@ -10751,6 +10975,7 @@
         "Rebirth",
         "Becoming"
       ],
+      "Exclude": false,
       "Duration": "2:25"
     },
     {
@@ -10768,6 +10993,7 @@
         "Wat Pah Pong",
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "3:53"
     },
     {
@@ -10785,6 +11011,7 @@
         "Sickness",
         "Mindfulness of feeling"
       ],
+      "Exclude": false,
       "Duration": "4:31"
     },
     {
@@ -10801,6 +11028,7 @@
       "Tags": [
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "0:50"
     },
     {
@@ -10818,6 +11046,7 @@
         "Sloth and torpor",
         "Posture/Standing"
       ],
+      "Exclude": false,
       "Duration": "5:05"
     },
     {
@@ -10835,6 +11064,7 @@
         "Gratitude",
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "2:34"
     },
     {
@@ -10852,6 +11082,7 @@
         "Family",
         "Relinquishment"
       ],
+      "Exclude": false,
       "Duration": "6:16"
     },
     {
@@ -10868,6 +11099,7 @@
       "Tags": [
         "Family"
       ],
+      "Exclude": false,
       "Duration": "2:31"
     },
     {
@@ -10886,6 +11118,7 @@
         "Rebirth",
         "Impermanence"
       ],
+      "Exclude": false,
       "Duration": "9:34"
     },
     {
@@ -10903,6 +11136,7 @@
         "Calming meditation",
         "Kasiṇa"
       ],
+      "Exclude": false,
       "Duration": "4:03"
     },
     {
@@ -10920,6 +11154,7 @@
         "Rebirth",
         "Psychic powers"
       ],
+      "Exclude": false,
       "Duration": "4:15"
     },
     {
@@ -10936,6 +11171,7 @@
       "Tags": [
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "1:52"
     },
     {
@@ -10950,6 +11186,7 @@
       ],
       "Question text": "Can you provide a reference as to where this printed version of the 16 stages of ānāpānasati comes from? Author, publication?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:40"
     },
     {
@@ -10966,6 +11203,7 @@
       "Tags": [
         "Delusion"
       ],
+      "Exclude": false,
       "Duration": "2:09"
     },
     {
@@ -10983,6 +11221,7 @@
         "Family",
         "Sexual misconduct"
       ],
+      "Exclude": false,
       "Duration": "8:35"
     },
     {
@@ -10999,6 +11238,7 @@
       "Tags": [
         "Stream entry"
       ],
+      "Exclude": false,
       "Duration": "2:02"
     },
     {
@@ -11016,6 +11256,7 @@
         "Disenchantment",
         "Food"
       ],
+      "Exclude": false,
       "Duration": "13:23"
     },
     {
@@ -11032,6 +11273,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "1:36"
     },
     {
@@ -11048,6 +11290,7 @@
       "Tags": [
         "Teaching Dhamma"
       ],
+      "Exclude": false,
       "Duration": "8:09"
     },
     {
@@ -11064,6 +11307,7 @@
       "Tags": [
         "Guilt/shame/inadequacy"
       ],
+      "Exclude": false,
       "Duration": "5:33"
     },
     {
@@ -11080,6 +11324,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "0:30"
     },
     {
@@ -11096,6 +11341,7 @@
       "Tags": [
         "Perception"
       ],
+      "Exclude": false,
       "Duration": "3:49"
     },
     {
@@ -11112,6 +11358,7 @@
       "Tags": [
         "Directed thought and evaluation"
       ],
+      "Exclude": false,
       "Duration": "3:03"
     },
     {
@@ -11128,6 +11375,7 @@
       "Tags": [
         "Dependent origination"
       ],
+      "Exclude": false,
       "Duration": "5:15"
     },
     {
@@ -11144,6 +11392,7 @@
       "Tags": [
         "Investigation of states"
       ],
+      "Exclude": false,
       "Duration": "2:53"
     },
     {
@@ -11158,6 +11407,7 @@
       ],
       "Question text": "Are the teachings being recorded? What happened to the usual football game? Do you know?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:42"
     },
     {
@@ -11174,6 +11424,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "1:02"
     },
     {
@@ -11190,6 +11441,7 @@
       "Tags": [
         "Mindfulness of dhammas"
       ],
+      "Exclude": false,
       "Duration": "1:08"
     },
     {
@@ -11206,6 +11458,7 @@
       "Tags": [
         "Posture/Walking"
       ],
+      "Exclude": false,
       "Duration": "6:02"
     },
     {
@@ -11224,6 +11477,7 @@
         "Impermanence",
         "Suchness"
       ],
+      "Exclude": false,
       "Duration": "7:43"
     },
     {
@@ -11240,6 +11494,7 @@
       "Tags": [
         "Cause of suffering"
       ],
+      "Exclude": false,
       "Duration": "2:44"
     },
     {
@@ -11256,6 +11511,7 @@
       "Tags": [
         "Self-identity view"
       ],
+      "Exclude": false,
       "Duration": "5:42"
     },
     {
@@ -11272,6 +11528,7 @@
       "Tags": [
         "History/Early Buddhism"
       ],
+      "Exclude": false,
       "Duration": "4:40"
     },
     {
@@ -11290,6 +11547,7 @@
         "False speech",
         "Right speech"
       ],
+      "Exclude": false,
       "Duration": "2:57"
     },
     {
@@ -11307,6 +11565,7 @@
         "Not-self",
         "Stages of awakening"
       ],
+      "Exclude": false,
       "Duration": "4:53"
     },
     {
@@ -11323,6 +11582,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "0:23"
     },
     {
@@ -11337,6 +11597,7 @@
       ],
       "Question text": "How and when did Buddhism come to Thailand?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "3:15"
     },
     {
@@ -11353,6 +11614,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "4:44"
     },
     {
@@ -11369,6 +11631,7 @@
       "Tags": [
         "Triple Gem"
       ],
+      "Exclude": false,
       "Duration": "2:39"
     },
     {
@@ -11385,6 +11648,7 @@
       "Tags": [
         "Five Hindrances"
       ],
+      "Exclude": false,
       "Duration": "0:53"
     },
     {
@@ -11402,6 +11666,7 @@
         "Mindfulness of breathing",
         "Mindfulness of mind"
       ],
+      "Exclude": false,
       "Duration": "4:51"
     },
     {
@@ -11418,6 +11683,7 @@
       "Tags": [
         "Noble Truth of suffering"
       ],
+      "Exclude": false,
       "Duration": "3:31"
     },
     {
@@ -11435,6 +11701,7 @@
         "Jhāna",
         "Sensual desire"
       ],
+      "Exclude": false,
       "Duration": "5:59"
     },
     {
@@ -11449,6 +11716,7 @@
       ],
       "Question text": "A limerick composed on the occasion of the 2014 Thanksgiving Retreat: If you’re late for a sit you must hurry in/From washing dishes by a drain smelling like durian (this part is true!)/Then you sit sit sit sit/‘Til you’re tied to be fit/And your belly is empty to put curry in.",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:38"
     },
     {
@@ -11465,6 +11733,7 @@
       "Tags": [
         "Humor"
       ],
+      "Exclude": false,
       "Duration": "7:56"
     },
     {
@@ -11482,6 +11751,7 @@
         "Mindfulness of breathing",
         "Mindfulness of body"
       ],
+      "Exclude": false,
       "Duration": "3:35"
     },
     {
@@ -11498,6 +11768,7 @@
       "Tags": [
         "Abhayagiri Monastery"
       ],
+      "Exclude": false,
       "Duration": "2:01"
     },
     {
@@ -11516,6 +11787,7 @@
         "Five Faculties",
         "Nature of mind"
       ],
+      "Exclude": false,
       "Duration": "2:02"
     },
     {
@@ -11533,6 +11805,7 @@
         "Monastic life",
         "Mindfulness of body"
       ],
+      "Exclude": false,
       "Duration": "1:51"
     },
     {
@@ -11549,6 +11822,7 @@
       "Tags": [
         "Intoxicants"
       ],
+      "Exclude": false,
       "Duration": "1:40"
     },
     {
@@ -11565,6 +11839,7 @@
       "Tags": [
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "3:49"
     },
     {
@@ -11582,6 +11857,7 @@
         "Family",
         "Killing"
       ],
+      "Exclude": false,
       "Duration": "2:11"
     },
     {
@@ -11598,6 +11874,7 @@
       "Tags": [
         "Right mindfulness"
       ],
+      "Exclude": false,
       "Duration": "2:11"
     },
     {
@@ -11614,6 +11891,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "1:17"
     },
     {
@@ -11630,6 +11908,7 @@
       "Tags": [
         "Learning"
       ],
+      "Exclude": false,
       "Duration": "2:56"
     },
     {
@@ -11646,6 +11925,7 @@
       "Tags": [
         "Question in Thai"
       ],
+      "Exclude": false,
       "Duration": "0:20"
     },
     {
@@ -11662,6 +11942,7 @@
       "Tags": [
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "3:27"
     },
     {
@@ -11678,6 +11959,7 @@
       "Tags": [
         "Jhāna"
       ],
+      "Exclude": false,
       "Duration": "4:27"
     },
     {
@@ -11694,6 +11976,7 @@
       "Tags": [
         "Women in Buddhism"
       ],
+      "Exclude": false,
       "Duration": "1:39"
     },
     {
@@ -11711,6 +11994,7 @@
         "Not-self",
         "Grief"
       ],
+      "Exclude": false,
       "Duration": "9:04"
     },
     {
@@ -11728,6 +12012,7 @@
         "Goodwill",
         "Compassion"
       ],
+      "Exclude": false,
       "Duration": "6:00"
     },
     {
@@ -11745,6 +12030,7 @@
         "Monastic life",
         "Five Hindrances"
       ],
+      "Exclude": false,
       "Duration": "6:07"
     },
     {
@@ -11762,6 +12048,7 @@
         "Pain",
         "Elements"
       ],
+      "Exclude": false,
       "Duration": "6:11"
     },
     {
@@ -11778,6 +12065,7 @@
       "Tags": [
         "Teachers"
       ],
+      "Exclude": false,
       "Duration": "6:36"
     },
     {
@@ -11794,6 +12082,7 @@
       "Tags": [
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "5:29"
     },
     {
@@ -11811,6 +12100,7 @@
         "Not-self",
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "6:19"
     },
     {
@@ -11827,6 +12117,7 @@
       "Tags": [
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "2:36"
     },
     {
@@ -11844,6 +12135,7 @@
         "Chanting",
         "Rapture and pleasure"
       ],
+      "Exclude": false,
       "Duration": "0:32"
     },
     {
@@ -11860,6 +12152,7 @@
       "Tags": [
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "4:02"
     },
     {
@@ -11877,6 +12170,7 @@
         "Devas",
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "6:22"
     },
     {
@@ -11894,6 +12188,7 @@
         "Mindfulness of breathing",
         "Jhāna"
       ],
+      "Exclude": false,
       "Duration": "5:23"
     },
     {
@@ -11910,6 +12205,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "2:58"
     },
     {
@@ -11926,6 +12222,7 @@
       "Tags": [
         "Equanimity"
       ],
+      "Exclude": false,
       "Duration": "5:07"
     },
     {
@@ -11943,6 +12240,7 @@
         "Discernment",
         "Craving"
       ],
+      "Exclude": false,
       "Duration": "3:33"
     },
     {
@@ -11957,6 +12255,7 @@
       ],
       "Question text": "This morning you talked about crossing the floods of obsessive thought by not holding on to or pushing them away. I get that, but it feels like there's something missing – a hole that needs to be filled up with something – a solution?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "2:38"
     },
     {
@@ -11973,6 +12272,7 @@
       "Tags": [
         "Food"
       ],
+      "Exclude": false,
       "Duration": "3:09"
     },
     {
@@ -11987,6 +12287,7 @@
       ],
       "Question text": "Could you please repeat the name of the sutta you mentioned this morning that laid out the “whole spiritual path” in a conversation with the devas?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:53"
     },
     {
@@ -12005,6 +12306,7 @@
         "Equanimity",
         "Emptiness"
       ],
+      "Exclude": false,
       "Duration": "5:33"
     },
     {
@@ -12021,6 +12323,7 @@
       "Tags": [
         "Death"
       ],
+      "Exclude": false,
       "Duration": "11:59"
     },
     {
@@ -12035,6 +12338,7 @@
       ],
       "Question text": "Would you tell us again the name of the sutta you spoke of last night and in today's Dhamma talk?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:43"
     },
     {
@@ -12051,6 +12355,7 @@
       "Tags": [
         "Guilt/shame/inadequacy"
       ],
+      "Exclude": false,
       "Duration": "8:16"
     },
     {
@@ -12067,6 +12372,7 @@
       "Tags": [
         "Posture/Lying down"
       ],
+      "Exclude": false,
       "Duration": "9:52"
     },
     {
@@ -12084,6 +12390,7 @@
         "Right mindfulness",
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "2:40"
     },
     {
@@ -12098,6 +12405,7 @@
       ],
       "Question text": "Praise for the question and answer session. Every question is important; can you answer them all?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "3:30"
     },
     {
@@ -12114,6 +12422,7 @@
       "Tags": [
         "Forgiveness"
       ],
+      "Exclude": false,
       "Duration": "6:20"
     },
     {
@@ -12130,6 +12439,7 @@
       "Tags": [
         "Killing"
       ],
+      "Exclude": false,
       "Duration": "1:47"
     },
     {
@@ -12147,6 +12457,7 @@
         "Mindfulness of breathing",
         "Pain"
       ],
+      "Exclude": false,
       "Duration": "6:09"
     },
     {
@@ -12163,6 +12474,7 @@
       "Tags": [
         "Dependent origination"
       ],
+      "Exclude": false,
       "Duration": "4:10"
     },
     {
@@ -12179,6 +12491,7 @@
       "Tags": [
         "Monastic life/Motivation"
       ],
+      "Exclude": false,
       "Duration": "8:36"
     },
     {
@@ -12195,6 +12508,7 @@
       "Tags": [
         "Forgiveness"
       ],
+      "Exclude": false,
       "Duration": "2:42"
     },
     {
@@ -12211,6 +12525,7 @@
       "Tags": [
         "Meditation/Posture"
       ],
+      "Exclude": false,
       "Duration": "4:38"
     },
     {
@@ -12227,6 +12542,7 @@
       "Tags": [
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "6:05"
     },
     {
@@ -12243,6 +12559,7 @@
       "Tags": [
         "Suffering"
       ],
+      "Exclude": false,
       "Duration": "4:36"
     },
     {
@@ -12259,6 +12576,7 @@
       "Tags": [
         "Mindfulness of body"
       ],
+      "Exclude": false,
       "Duration": "2:19"
     },
     {
@@ -12275,6 +12593,7 @@
       "Tags": [
         "Continuity of mindfulness"
       ],
+      "Exclude": false,
       "Duration": "5:28"
     },
     {
@@ -12292,6 +12611,7 @@
         "Kamma",
         "Cessation of suffering"
       ],
+      "Exclude": false,
       "Duration": "2:12"
     },
     {
@@ -12308,6 +12628,7 @@
       "Tags": [
         "Stages of awakening"
       ],
+      "Exclude": false,
       "Duration": "4:51"
     },
     {
@@ -12324,6 +12645,7 @@
       "Tags": [
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "4:51"
     },
     {
@@ -12340,6 +12662,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "5:10"
     },
     {
@@ -12356,6 +12679,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "2:45"
     },
     {
@@ -12372,6 +12696,7 @@
       "Tags": [
         "Visualization"
       ],
+      "Exclude": false,
       "Duration": "3:50"
     },
     {
@@ -12388,6 +12713,7 @@
       "Tags": [
         "Goodwill"
       ],
+      "Exclude": false,
       "Duration": "4:17"
     },
     {
@@ -12404,6 +12730,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "4:16"
     },
     {
@@ -12421,6 +12748,7 @@
         "Mindfulness of breathing",
         "Sloth and torpor"
       ],
+      "Exclude": false,
       "Duration": "5:03"
     },
     {
@@ -12438,6 +12766,7 @@
         "Mindfulness of feeling",
         "Cause of suffering"
       ],
+      "Exclude": false,
       "Duration": "4:25"
     },
     {
@@ -12455,6 +12784,7 @@
         "Nibbāna",
         "Ajahn Chah"
       ],
+      "Exclude": false,
       "Duration": "3:15"
     },
     {
@@ -12471,6 +12801,7 @@
       "Tags": [
         "Teaching Dhamma"
       ],
+      "Exclude": false,
       "Duration": "2:03"
     },
     {
@@ -12487,6 +12818,7 @@
       "Tags": [
         "Precepts"
       ],
+      "Exclude": false,
       "Duration": "8:44"
     },
     {
@@ -12503,6 +12835,7 @@
       "Tags": [
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "1:42"
     },
     {
@@ -12519,6 +12852,7 @@
       "Tags": [
         "Elements"
       ],
+      "Exclude": false,
       "Duration": "2:55"
     },
     {
@@ -12535,6 +12869,7 @@
       "Tags": [
         "Nibbāna"
       ],
+      "Exclude": false,
       "Duration": "1:34"
     },
     {
@@ -12549,6 +12884,7 @@
       ],
       "Question text": "Did you say the defilements are advantageous? (The questioner misheard “adventitious.”)",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:43"
     },
     {
@@ -12565,6 +12901,7 @@
       "Tags": [
         "Politics and society"
       ],
+      "Exclude": false,
       "Duration": "2:58"
     },
     {
@@ -12581,6 +12918,7 @@
       "Tags": [
         "Pain"
       ],
+      "Exclude": false,
       "Duration": "3:09"
     },
     {
@@ -12597,6 +12935,7 @@
       "Tags": [
         "Doubt"
       ],
+      "Exclude": false,
       "Duration": "2:15"
     },
     {
@@ -12613,6 +12952,7 @@
       "Tags": [
         "Pain"
       ],
+      "Exclude": false,
       "Duration": "2:10"
     },
     {
@@ -12629,6 +12969,7 @@
       "Tags": [
         "Volitional formations"
       ],
+      "Exclude": false,
       "Duration": "1:39"
     },
     {
@@ -12645,6 +12986,7 @@
       "Tags": [
         "Meditation/General advice"
       ],
+      "Exclude": false,
       "Duration": "3:32"
     },
     {
@@ -12662,6 +13004,7 @@
         "Five aggregates",
         "Consciousness"
       ],
+      "Exclude": false,
       "Duration": "2:51"
     },
     {
@@ -12679,6 +13022,7 @@
         "Ten Fetters",
         "Five Hindrances"
       ],
+      "Exclude": false,
       "Duration": "5:30"
     },
     {
@@ -12695,6 +13039,7 @@
       "Tags": [
         "Recollection/Death"
       ],
+      "Exclude": false,
       "Duration": "2:56"
     },
     {
@@ -12712,6 +13057,7 @@
         "Family",
         "False speech"
       ],
+      "Exclude": false,
       "Duration": "5:53"
     },
     {
@@ -12728,6 +13074,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "0:09"
     },
     {
@@ -12744,6 +13091,7 @@
       "Tags": [
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "5:06"
     },
     {
@@ -12763,6 +13111,7 @@
         "Impermanence",
         "Nature of mind"
       ],
+      "Exclude": false,
       "Duration": "2:09"
     },
     {
@@ -12781,6 +13130,7 @@
         "Consciousness",
         "Nature of mind"
       ],
+      "Exclude": false,
       "Duration": "2:17"
     },
     {
@@ -12799,6 +13149,7 @@
         "Investigation of states",
         "Recollection"
       ],
+      "Exclude": false,
       "Duration": "6:50"
     },
     {
@@ -12815,6 +13166,7 @@
       "Tags": [
         "Nature of mind"
       ],
+      "Exclude": false,
       "Duration": "2:21"
     },
     {
@@ -12831,6 +13183,7 @@
       "Tags": [
         "Mindfulness of mind"
       ],
+      "Exclude": false,
       "Duration": "2:21"
     },
     {
@@ -12847,6 +13200,7 @@
       "Tags": [
         "Nimmita"
       ],
+      "Exclude": false,
       "Duration": "5:01"
     },
     {
@@ -12864,6 +13218,7 @@
         "Becoming",
         "Cessation of suffering"
       ],
+      "Exclude": false,
       "Duration": "2:14"
     },
     {
@@ -12881,6 +13236,7 @@
         "Ajahn Chah",
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "7:17"
     },
     {
@@ -12897,6 +13253,7 @@
       "Tags": [
         "Gladdening the mind"
       ],
+      "Exclude": false,
       "Duration": "4:29"
     },
     {
@@ -12913,6 +13270,7 @@
       "Tags": [
         "History/Early Buddhism"
       ],
+      "Exclude": false,
       "Duration": "7:54"
     },
     {
@@ -12929,6 +13287,7 @@
       "Tags": [
         "Women in Buddhism"
       ],
+      "Exclude": false,
       "Duration": "4:45"
     },
     {
@@ -12945,6 +13304,7 @@
       "Tags": [
         "Perception"
       ],
+      "Exclude": false,
       "Duration": "2:36"
     },
     {
@@ -12963,6 +13323,7 @@
         "Sickness",
         "Ageing"
       ],
+      "Exclude": false,
       "Duration": "3:44"
     },
     {
@@ -12980,6 +13341,7 @@
         "Realms of existence",
         "Buddha"
       ],
+      "Exclude": false,
       "Duration": "5:07"
     },
     {
@@ -12996,6 +13358,7 @@
       "Tags": [
         "Entertainment and adornment"
       ],
+      "Exclude": false,
       "Duration": "3:51"
     },
     {
@@ -13013,6 +13376,7 @@
         "Consciousness",
         "Nutriment"
       ],
+      "Exclude": false,
       "Duration": "2:01"
     },
     {
@@ -13029,6 +13393,7 @@
       "Tags": [
         "Posture/Bowing"
       ],
+      "Exclude": false,
       "Duration": "7:43"
     },
     {
@@ -13047,6 +13412,7 @@
         "Nutriment",
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "3:41"
     },
     {
@@ -13066,6 +13432,7 @@
         "Volition",
         "Suffering"
       ],
+      "Exclude": false,
       "Duration": "4:51"
     },
     {
@@ -13080,6 +13447,7 @@
       ],
       "Question text": "Would you share one of Pooh's many nuggets of wisdom to inspire?",
       "Tags": [],
+      "Exclude": false,
       "Duration": "1:52"
     },
     {
@@ -13097,6 +13465,7 @@
         "Right intention",
         "Craving"
       ],
+      "Exclude": false,
       "Duration": "7:37"
     },
     {
@@ -13113,6 +13482,7 @@
       "Tags": [
         "Four Noble Truths"
       ],
+      "Exclude": false,
       "Duration": "3:29"
     },
     {
@@ -13129,6 +13499,7 @@
       "Tags": [
         "Cause of suffering"
       ],
+      "Exclude": false,
       "Duration": "1:17"
     },
     {
@@ -13145,6 +13516,7 @@
       "Tags": [
         "Nature of mind"
       ],
+      "Exclude": false,
       "Duration": "3:52"
     },
     {
@@ -13161,6 +13533,7 @@
       "Tags": [
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "4:11"
     },
     {
@@ -13177,6 +13550,7 @@
       "Tags": [
         "Work"
       ],
+      "Exclude": false,
       "Duration": "7:37"
     },
     {
@@ -13193,6 +13567,7 @@
       "Tags": [
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "5:38"
     },
     {
@@ -13209,6 +13584,7 @@
       "Tags": [
         "Middle Path"
       ],
+      "Exclude": false,
       "Duration": "0:30"
     },
     {
@@ -13225,6 +13601,7 @@
       "Tags": [
         "Meditation/Unusual experiences"
       ],
+      "Exclude": false,
       "Duration": "1:55"
     },
     {
@@ -13242,6 +13619,7 @@
         "Eightfold Path",
         "Becoming"
       ],
+      "Exclude": false,
       "Duration": "7:21"
     },
     {
@@ -13259,6 +13637,7 @@
         "Psychic powers",
         "Buddha"
       ],
+      "Exclude": false,
       "Duration": "1:07"
     },
     {
@@ -13275,6 +13654,7 @@
       "Tags": [
         "Medicinal requisites"
       ],
+      "Exclude": false,
       "Duration": "3:08"
     },
     {
@@ -13291,6 +13671,7 @@
       "Tags": [
         "Outflows"
       ],
+      "Exclude": false,
       "Duration": "3:52"
     },
     {
@@ -13307,6 +13688,7 @@
       "Tags": [
         "Gratitude"
       ],
+      "Exclude": false,
       "Duration": "6:44"
     },
     {
@@ -13323,6 +13705,7 @@
       "Tags": [
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "4:59"
     },
     {
@@ -13339,6 +13722,7 @@
       "Tags": [
         "Consciousness"
       ],
+      "Exclude": false,
       "Duration": "11:32"
     },
     {
@@ -13356,6 +13740,7 @@
         "Ajahn Chah",
         "Insight meditation"
       ],
+      "Exclude": false,
       "Duration": "0:48"
     },
     {
@@ -13372,6 +13757,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "6:40"
     },
     {
@@ -13389,6 +13775,7 @@
         "Five Hindrances",
         "Outflows"
       ],
+      "Exclude": false,
       "Duration": "5:49"
     },
     {
@@ -13403,6 +13790,7 @@
       ],
       "Question text": "Can you repeat the Thai words for “Is it worth it?” that you mentioned this morning? I'd like to use it as a mantra.",
       "Tags": [],
+      "Exclude": false,
       "Duration": "0:39"
     },
     {
@@ -13419,6 +13807,7 @@
       "Tags": [
         "Learning"
       ],
+      "Exclude": false,
       "Duration": "1:02"
     },
     {
@@ -13435,6 +13824,7 @@
       "Tags": [
         "Restlessness and worry"
       ],
+      "Exclude": false,
       "Duration": "7:13"
     },
     {
@@ -13452,6 +13842,7 @@
         "Buddha",
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "2:04"
     },
     {
@@ -13468,6 +13859,7 @@
       "Tags": [
         "Posture/Bowing"
       ],
+      "Exclude": false,
       "Duration": "3:15"
     },
     {
@@ -13486,6 +13878,7 @@
         "Consciousness",
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "9:53"
     },
     {
@@ -13502,6 +13895,7 @@
       "Tags": [
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "2:05"
     },
     {
@@ -13518,6 +13912,7 @@
       "Tags": [
         "Triple Gem"
       ],
+      "Exclude": false,
       "Duration": "4:32"
     },
     {
@@ -13535,6 +13930,7 @@
         "Relinquishment",
         "Views"
       ],
+      "Exclude": false,
       "Duration": "4:27"
     },
     {
@@ -13551,6 +13947,7 @@
       "Tags": [
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "9:58"
     },
     {
@@ -13567,6 +13964,7 @@
       "Tags": [
         "Intoxicants"
       ],
+      "Exclude": false,
       "Duration": "2:52"
     },
     {
@@ -13584,6 +13982,7 @@
         "Family",
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "2:13"
     },
     {
@@ -13601,6 +14000,7 @@
         "Faith",
         "Long-term practice"
       ],
+      "Exclude": false,
       "Duration": "4:27"
     },
     {
@@ -13618,6 +14018,7 @@
         "Merit",
         "Rebirth"
       ],
+      "Exclude": false,
       "Duration": "11:30"
     },
     {
@@ -13634,6 +14035,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "5:04"
     },
     {
@@ -13650,6 +14052,7 @@
       "Tags": [
         "Not-self"
       ],
+      "Exclude": false,
       "Duration": "4:27"
     },
     {
@@ -13666,6 +14069,7 @@
       "Tags": [
         "Recollection"
       ],
+      "Exclude": false,
       "Duration": "3:33"
     },
     {
@@ -13683,6 +14087,7 @@
         "Death",
         "Chanting"
       ],
+      "Exclude": false,
       "Duration": "11:14"
     },
     {
@@ -13700,6 +14105,7 @@
         "Feeling",
         "Proliferation"
       ],
+      "Exclude": false,
       "Duration": "2:49"
     },
     {
@@ -13716,6 +14122,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "1:16"
     },
     {
@@ -13732,6 +14139,7 @@
       "Tags": [
         "Work"
       ],
+      "Exclude": false,
       "Duration": "2:22"
     },
     {
@@ -13748,6 +14156,7 @@
       "Tags": [
         "Teaching Dhamma"
       ],
+      "Exclude": false,
       "Duration": "2:58"
     },
     {
@@ -13766,6 +14175,7 @@
         "Four Noble Truths",
         "Craving"
       ],
+      "Exclude": false,
       "Duration": "0:58"
     },
     {
@@ -13782,6 +14192,7 @@
       "Tags": [
         "Forgiveness"
       ],
+      "Exclude": false,
       "Duration": "1:32"
     },
     {
@@ -13798,6 +14209,7 @@
       "Tags": [
         "Monastic life"
       ],
+      "Exclude": false,
       "Duration": "1:43"
     },
     {
@@ -13814,6 +14226,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "1:45"
     },
     {
@@ -13830,6 +14243,7 @@
       "Tags": [
         "Kamma"
       ],
+      "Exclude": false,
       "Duration": "2:06"
     },
     {
@@ -13846,6 +14260,7 @@
       "Tags": [
         "Politics and society"
       ],
+      "Exclude": false,
       "Duration": "7:02"
     },
     {
@@ -13862,6 +14277,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "6:27"
     },
     {
@@ -13879,6 +14295,7 @@
         "Death",
         "Relinquishment"
       ],
+      "Exclude": false,
       "Duration": "0:53"
     },
     {
@@ -13895,6 +14312,7 @@
       "Tags": [
         "Mindfulness of breathing"
       ],
+      "Exclude": false,
       "Duration": "1:02"
     },
     {
@@ -13911,6 +14329,7 @@
       "Tags": [
         "Recollection"
       ],
+      "Exclude": false,
       "Duration": "1:33"
     },
     {
@@ -13927,6 +14346,7 @@
       "Tags": [
         "History/Thai Buddhism"
       ],
+      "Exclude": false,
       "Duration": "2:59"
     },
     {
@@ -13943,6 +14363,7 @@
       "Tags": [
         "Relationships"
       ],
+      "Exclude": false,
       "Duration": "3:30"
     },
     {
@@ -13960,6 +14381,7 @@
         "Nibbāna",
         "Stages of awakening"
       ],
+      "Exclude": false,
       "Duration": "1:23"
     },
     {
@@ -13977,16 +14399,27 @@
         "Right mindfulness",
         "Right concentration"
       ],
+      "Exclude": false,
       "Duration": "0:49"
     }
   ],
   "Questions_Redacted": [
     {
       "Event": "TG2014",
+      "Session #": 2,
+      "File #": 14,
+      "Start time": "48:27",
+      "End time": "",
+      "Exclude": true,
+      "Duration": "6:22"
+    },
+    {
+      "Event": "TG2014",
       "Session #": 3,
       "File #": 13,
       "Start time": "50:59",
       "End time": "",
+      "Exclude": true,
       "Duration": "5:16"
     },
     {
@@ -13995,6 +14428,7 @@
       "File #": 7,
       "Start time": "25:06",
       "End time": "",
+      "Exclude": true,
       "Duration": "1:13"
     }
   ]

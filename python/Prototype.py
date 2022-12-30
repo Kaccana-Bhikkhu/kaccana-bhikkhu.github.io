@@ -3,23 +3,9 @@
 import os, json
 from typing import List, Type
 from airium import Airium
-from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr
+from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr, SessionIndex
 from datetime import timedelta
 import re
-
-def SessionIndex(event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
-    "Return the index of a session specified by event and sessionNum."
-    
-    if not sessionIndexCache:
-        sessionIndexCache = {}
-        s = gDatabase["Sessions"]
-        for index in range(len(s)):
-            sessionIndexCache[(s[index]["Event"],s[index]["Session #"])] = index
-    
-    try:
-        return sessionIndexCache[(event,sessionNum)]
-    except KeyError:
-        raise ValueError(f"Can't locate session {sessionNum} of event {event}")
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -393,7 +379,7 @@ def HtmlQuestionList(questions: List[dict],formatter: Type[Formatter]) -> str:
     prevSession = None
     for q in questions:
         if q["Event"] != prevEvent or q["Session #"] != prevSession:
-            sessionIndex = SessionIndex(q["Event"],q["Session #"])
+            sessionIndex = SessionIndex(gDatabase,q["Event"],q["Session #"])
             a(formatter.FormatSessionHeading(gDatabase["Sessions"][sessionIndex]))
             prevEvent = q["Event"]
             prevSession = q["Session #"]

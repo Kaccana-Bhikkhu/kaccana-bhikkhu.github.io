@@ -43,6 +43,20 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
+def SessionIndex(database:dict, event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
+    "Return the index of a session specified by event and sessionNum."
+    
+    if not sessionIndexCache: # For speed, create a dictionary of sessions the first time we run
+        sessionIndexCache = {}
+        s = database["Sessions"]
+        for index in range(len(s)):
+            sessionIndexCache[(s[index]["Event"],s[index]["Session #"])] = index
+    
+    try:
+        return sessionIndexCache[(event,sessionNum)]
+    except KeyError:
+        raise ValueError(f"Can't locate session {sessionNum} of event {event}")
+
 def slugify(value, allow_unicode=False):
     """
     Taken from https://github.com/django/django/blob/master/django/utils/text.py

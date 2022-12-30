@@ -1,7 +1,7 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
 import os, re, csv, json
-from Utils import slugify, StrToTimeDelta, TimeDeltaToStr
+from Utils import slugify, StrToTimeDelta, TimeDeltaToStr, SessionIndex
 from typing import List
 
 def SniffCSVDialect(inFile,scanLength = 4096):
@@ -26,6 +26,12 @@ def FirstValidValue(inDict,keyList,inDefault = None):
             return inDict[key]
     
     return inDefault
+
+def BooleanValue(text: str) -> bool:
+    """Returns true if the first three characters of text are 'Yes'.
+    This is the standard way of encoding boolean values in the csv files from AP QA Archive main."""
+    
+    return text[:3] == 'Yes'
 
 def AppendUnique(ioList,inToAppend):
     "Append values to a list unless they are already in it"
@@ -353,6 +359,9 @@ def CreateTagDisplayList(database):
 def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
     "Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not."
     
+    if gOptions.ignoreTeacherConsent:
+        return True
+    
     consent = True
     for teacher in teachers:
         if not teacherDB[teacher][policy]:
@@ -379,12 +388,20 @@ def LoadEventFile(database,eventName,directory):
             ListifyKey(sessions,key)
         for key in ["Session #","Questions"]:
             ConvertToInteger(sessions,key)
-        for index in range(len(sessions)):
-            sessions[index]["Event"] = eventName
-            sessions[index] = ReorderKeys(sessions[index],["Event","Session #"])
+            
+        if not gOptions.ignoreExcludes:
+            sessions = [s for s in sessions if not BooleanValue(s["Exclude?"])] # Remove excluded sessions
+        
+        for s in sessions:
+            s["Event"] = eventName
+            s = ReorderKeys(s,["Event","Session #"])
+            if not gOptions.jsonNoClean:
+                del s["Exclude?"]
+            
             
         sessions = [s for s in sessions if TeacherConsent(database["Teacher"],s["Teachers"],"Index sessions?")]
             # Remove sessions we didn't get consent for
+
         includedSessions = set(s["Session #"] for s in sessions)
         
         database["Sessions"] += sessions
@@ -406,16 +423,24 @@ def LoadEventFile(database,eventName,directory):
             q["Tags"] = q["QTag"] + q["ATag"]
             q["Event"] = eventName
             
+            if not q["Teachers"]:
+                
+                q["Teachers"] = database["Sessions"][SessionIndex(database,q["Event"],q["Session #"])]["Teachers"]
+            
             if q["Session #"] != lastSession:
                 if lastSession > q["Session #"] and gOptions.verbose > 0:
                     print(f"Warning: Session number out of order after question {qNumber} in session {lastSession} of {q['Event']}")
-                qNumber = 1
+                qNumber = 0
                 fileNumber = 1
                 lastSession = q["Session #"]
             else:
                 fileNumber += 1 # File number counts all questions listed for the event
-                if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?"):                   
-                    qNumber += 1 # Question number counts only questions allowed by teacher consent policies
+            
+            if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?") and (not BooleanValue(q["Exclude?"]) or gOptions.ignoreExcludes):                   
+                qNumber += 1 # Question number counts only questions allowed by teacher consent and exclusion policies
+                q["Exclude"] = False
+            else:
+                q["Exclude"] = True # Convert this value to boolean
                     
             q["Question #"] = qNumber
             q["File #"] = fileNumber
@@ -448,16 +473,19 @@ def LoadEventFile(database,eventName,directory):
         for index in range(len(questions)):
             questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
         
-        removedQuestions = [q for q in questions if not TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?")]
-        questions = [q for q in questions if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?")]
-            # Remove sessions we didn't get consent for
+        removedQuestions = [q for q in questions if q["Exclude"]]
+        questions = [q for q in questions if not q["Exclude"]]
+            # Remove excluded questions and those we didn't get consent for
+        
+        if not gOptions.jsonNoClean:
+            for q in questions:
+                del q["Exclude?"]
+        
+            for q in removedQuestions: # Redact information about these questions
+                for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #","Exclude?"]:
+                    q.pop(key,None)
         
         database["Questions"] += questions
-        
-        for q in removedQuestions: # Redact information about these questions
-            for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #"]:
-                q.pop(key,None)
-        
         database["Questions_Redacted"] += removedQuestions
         
 
@@ -524,6 +552,8 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
+    parser.add_argument('--ignoreTeacherConsent',action='store_true',help="Ignore teacher consent flags - debugging only")
+    parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and question flags - debugging only")
     parser.add_argument('--zeroCount',action='store_true',help="Write count=0 keys to json file; otherwise write only non-zero keys")
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
@@ -562,7 +592,7 @@ def main(clOptions,database):
     for name,teacherData in database["Teacher"].items():
         for key in teacherData:
             if key[-1] == '?':
-                teacherData[key] = teacherData[key] == 'Yes' # Consent is yes; all other values no
+                teacherData[key] = BooleanValue(teacherData[key]) # Consent is yes; all other values no
     
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
     

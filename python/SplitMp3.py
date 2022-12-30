@@ -11,7 +11,7 @@ def IncludeRedactedQuestions() -> List[dict]:
     "Merge the redacted questions back into the main list in order to split mp3 files"
     
     allQuestions = gDatabase["Questions"] + gDatabase["Questions_Redacted"]
-    print(len(allQuestions))
+    # print(len(allQuestions))
     orderedEvents = list(gDatabase["Event"].keys()) # Look up the event in this list to sort questions by event order in gDatabase
     
     allQuestions.sort(key = lambda q: (orderedEvents.index(q["Event"]),q["Session #"],q["File #"]))
