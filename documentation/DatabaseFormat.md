@@ -25,3 +25,5 @@ Changes which might break already-written code are marked §.
 
 ### 29/12/2022 - § Renamed database.json to Database.json
  - The convention is to use PascalCase for files, camelCase for directories
+
+### 30/12/2022 - § Database.Sessions subfield renamed: "external mp3 URL" -> "Remote mp3 URL"
