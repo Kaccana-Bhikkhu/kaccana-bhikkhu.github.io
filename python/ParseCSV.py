@@ -438,9 +438,9 @@ def LoadEventFile(database,eventName,directory):
             
             if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?") and (not BooleanValue(q["Exclude?"]) or gOptions.ignoreExcludes):                   
                 qNumber += 1 # Question number counts only questions allowed by teacher consent and exclusion policies
-                q["Exclude"] = False
+                q["Exclude?"] = False
             else:
-                q["Exclude"] = True # Convert this value to boolean
+                q["Exclude?"] = True # Convert this value to boolean
                     
             q["Question #"] = qNumber
             q["File #"] = fileNumber
@@ -473,8 +473,8 @@ def LoadEventFile(database,eventName,directory):
         for index in range(len(questions)):
             questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
         
-        removedQuestions = [q for q in questions if q["Exclude"]]
-        questions = [q for q in questions if not q["Exclude"]]
+        removedQuestions = [q for q in questions if q["Exclude?"]]
+        questions = [q for q in questions if not q["Exclude?"]]
             # Remove excluded questions and those we didn't get consent for
         
         if not gOptions.jsonNoClean:
