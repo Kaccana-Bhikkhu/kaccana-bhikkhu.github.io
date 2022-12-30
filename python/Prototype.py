@@ -239,12 +239,25 @@ def Mp3QuestionLink(question: dict) -> str:
     """Return an html-formatted audio icon linking to a given question.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
-    if gOptions.internalMP3:
+    if gOptions.questionMp3 == 'local':
         baseURL = "../../audio/questions/"
     else:
-        baseURL = gOptions.mp3URL
+        baseURL = gOptions.remoteQuestionMp3URL
         
     return AudioIcon(baseURL + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['File #']))
+    
+def Mp3SessionLink(session: dict) -> str:
+    """Return an html-formatted audio icon linking to a given session.
+    Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
+    
+    if gOptions.sessionMp3 == "local":
+        url = "../../audio/events/" + "/" + session["Event"] + "/" + session["Filename"]
+    else:
+        url = session["Remote mp3 URL"]
+        
+    return AudioIcon(url)
+    
+    
 
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -338,9 +351,9 @@ class Formatter:
             teacherList = ListLinkedTeachers(session["Teachers"])
             a(f' – {teacherList} – {dateStr}')
             
-            if self.headingAudio and session["external mp3 URL"]:
+            if self.headingAudio:
                 durStr = TimeDeltaToStr(StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
-                a(f' – {AudioIcon(session["external mp3 URL"])} ({durStr}) ')
+                a(f' – {Mp3SessionLink(session)} ({durStr}) ')
         
         return str(a)
 
@@ -573,10 +586,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')
-    parser.add_argument('--internalMP3',action='store_true',help="Link to mp3 questions at /audio/questions/ instead of in the cloud")
-    parser.add_argument('--mp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/questions/',help='URL to fetch mp3s; default: storage.googleapis.com/apqa_archive/audio/questions/')
-    
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
     
 gOptions = None
 gDatabase = None
