@@ -137,7 +137,7 @@ The arguments --sessionMp3 and --questionMp3 describe where mp3 links should poi
 
 local - /audio/events (for sessions) or /audio/questions (for questions)
 
-remote - Database.Sessions["Remote session URL"] for sessions or --remoteQuestionMp3URL for questions
+remote (default) - Database.Sessions["Remote session URL"] for sessions or --remoteQuestionMp3URL for questions
 
 In the future, more values could be added:
 
