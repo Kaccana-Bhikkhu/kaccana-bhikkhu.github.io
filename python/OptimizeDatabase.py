@@ -5,6 +5,12 @@ from Utils import StrToTimeDelta, Mp3FileName
 from typing import List
 from copy import deepcopy
 
+def SortDict(d: dict) -> dict:
+    "Return a new dict sorted by its keys."
+    keys = list(d.keys())
+    keys.sort()
+    return {k : d[k] for k in keys}
+
 def CamelCase(text: str) -> str: 
     """Convert a string to camel case and remove all diacritics and special characters
     "Based on https://www.w3resource.com/python-exercises/string/python-data-type-string-exercise-96.php"""
@@ -16,7 +22,7 @@ def CamelCase(text: str) -> str:
     #text = text.replace("/"," ")
     #text = text.replace("_"," ")
     
-    s = re.sub(r"[(_|)?+\.\/-]", " ", text).title().replace(" ", "")
+    s = re.sub(r"[(_|)?+:\.\/-]", " ", text).title().replace(" ", "")
     return ''.join([s[0].lower(), s[1:]])
 
 def ConvertKeysToCamelCase(db: dict) -> None:
@@ -37,20 +43,46 @@ def ConvertKeysToCamelCase(db: dict) -> None:
         db[CamelCase(key)] = db[key]
         del db[key]
 
+def TranslateKey(key: str) -> str:
+    "Convert a key to its optimized value"
+    return CamelCase(key)
+
 def OptimizeDatabaseKeys(db: dict) -> (dict, dict):
     """Take the input database and optimize the keys for use with Javascript.
-    Keep a log of the changes.
+    Keep a list of the optimized keys in a new dictionary.
     Returns the tuple (optimizedDatabase, substitutedKeys) """
     
+    """ Simplest implementation, but we can do better
     outDict = deepcopy(db)
-    
     ConvertKeysToCamelCase(outDict)
-
-    return (outDict,{})
+    return (outDict,{})"""
+    
+    outDict = {}
+    substitutions = {}
+    for key, value in db.items():
+        if type(value) == dict:
+            value, newChanges = OptimizeDatabaseKeys(value)
+            substitutions = {**substitutions, **newChanges}
+        elif type(value) == list:
+            newList = []
+            for item in value:
+                if type(item) == dict:
+                    newDict, newChanges = OptimizeDatabaseKeys(item)
+                    newList.append(newDict)
+                    substitutions = {**substitutions, **newChanges}
+                else:
+                    newList.append(item)
+            value = newList
+        
+        newKey = TranslateKey(key)
+        outDict[newKey] = value
+        substitutions[key] = newKey
+    
+    return outDict,substitutions
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    pass
+    parser.add_argument('--keyTranslationTable',type=str,default='prototype/OptimizedKeys.json',help='Log of OptimizeDatabase key substitutions; Default: prototype/OptimizedKeys.json')
     
 gOptions = None
 gDatabase = None
@@ -62,7 +94,11 @@ def main(clOptions,database):
     
     optimizedDatabase, changeLog = OptimizeDatabaseKeys(database)
     
+    changeLog = SortDict(changeLog)
+    
     with open(gOptions.optimizedDatabase, 'w', encoding='utf-8') as file:
         json.dump(optimizedDatabase, file, ensure_ascii=False, indent=2)
     
-    print("Here.")
+    with open(gOptions.keyTranslationTable, 'w', encoding='utf-8') as file:
+        json.dump(changeLog, file, ensure_ascii=False, indent=2)
+    
