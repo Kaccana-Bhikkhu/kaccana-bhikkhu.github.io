@@ -615,6 +615,6 @@ def main(clOptions,database):
         for item in database:
             print(item + ": "+str(len(database[item])))
     
-    with open(gOptions.jsonFile, 'w', encoding='utf-8') as file:
+    with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(database, file, ensure_ascii=False, indent=2)
     
