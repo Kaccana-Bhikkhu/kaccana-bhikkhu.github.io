@@ -4,7 +4,7 @@ ParseCSV.py reads [AP QA archive main](https://docs.google.com/spreadsheets/d/1J
 
 OptimizeDatabase writes Database.json, which contains the same information optimized for the Javascript-based main website.
 
-The best way to study the structure of these files is to compare their contents with the [prototype website](https://storage.googleapis.com/apqa_archive/prototype/indexe.html).
+The best way to study the structure of these files is to compare their contents with the [prototype website](https://storage.googleapis.com/apqa_archive/prototype/index.html).
 
 ## Change log
 
