@@ -23,10 +23,10 @@ def main(clOptions,database):
     global gOptions
     gOptions = clOptions
     
-    # Do nothing for the time being. Owen can write his converter code here.
-    
     optimizedDatabase = deepcopy(database)
         # A deep copy lets you modify optimizedDatabse in place without touching database, which will be used by subsequent modules
+    
+    # Do nothing for the time being. Owen can write his converter code here.
     
     changeLog = {}
     changeLog = SortDict(changeLog)
