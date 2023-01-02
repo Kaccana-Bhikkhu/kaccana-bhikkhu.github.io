@@ -37,3 +37,5 @@ Changes which might break already-written code are marked §.
 ### 1/1/2023 - § Renamed Database.Tag subfields based on Owen's suggestions:
  - "Alt. Trans." -> "Alternate Translations"
  - "See also" -> "Related"
+
+### 2/1/2023 - Added Event.Description and Venue.Description subfields

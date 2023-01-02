@@ -523,7 +523,11 @@ def WriteEventPages(tagPageDir: str) -> None:
                     squish(str(s['Session #']))
                 
             a(str(squish))
-                    
+        
+        if eventInfo["Description"]:
+            with a.p(style = "font-size: 120%;"):
+                a(eventInfo["Description"])
+        
         a.hr()
         
         formatter = Formatter()

@@ -37,8 +37,8 @@ Abhayagiri Q&amp;A Archive. However this is as far as the project
 will go. We will source audio recordings only from abhayagiri.org and
 Abhayagiri&rsquo;s YouTube channel. Perhaps others might create a
 website to index Q&amp;A sessions from other teachers (see Copyright
-below). An <a href="http://www.boenn.org/ajahn_sona/faq2.php">index
-of Ajahn Sona YouTube Q&amp;A sessions</a> already exists.</p>
+below). An <a href="http://birken.ca/qaa/qaa.php">index of Ajahn Sona
+YouTube Q&amp;A sessions</a> already exists.</p>
 <h2 class="western">Teacher consent</h2>
 <p>Not all monks and nuns want their teachings widely distributed.
 Most monastics in this tradition went forth due to their experience
