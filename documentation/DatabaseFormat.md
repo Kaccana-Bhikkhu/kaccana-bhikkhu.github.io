@@ -38,4 +38,4 @@ Changes which might break already-written code are marked §.
  - "Alt. Trans." -> "Alternate Translations"
  - "See also" -> "Related"
 
-### 2/1/2023 - Added Event.Description subfield
+### 2/1/2023 - Added Event.Description and Venue.Description subfields
