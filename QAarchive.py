@@ -14,7 +14,7 @@ def PrintModuleSeparator(moduleName:str):
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
 # The list of code modules/ops to implement
-moduleList = ['ParseCSV','SplitMp3','Prototype']
+moduleList = ['ParseCSV','OptimizeDatabase','SplitMp3','Prototype']
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 
 parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Question and Answer Archive website from mp3 files and the 
@@ -28,7 +28,8 @@ All - run all the above modules in sequence.
 """)
 
 parser.add_argument('--homeDir',type=str,default='.',help='All other pathnames are relative to this directory; Default: ./')
-parser.add_argument('--jsonFile',type=str,default='Database.json',help='Read/write this json file; Default: Database.json')
+parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
+parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
 parser.add_argument('--sessionMp3',type=str,default='remote',help='Session audio file link location; default: remote - use external Mp3 URL from session database')
 parser.add_argument('--questionMp3',type=str,default='remote',help='Question audio file link location; default: remote - use remoteQuestionMp3URL')
 parser.add_argument('--remoteQuestionMp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/questions/',help='remote URL for questions; default: storage.googleapis.com/apqa_archive/audio/questions/')
@@ -55,9 +56,9 @@ for verb in opList:
         print("Unsupported operation "+verb)
 
 if 'ParseCSV' in opList:
-    database = {} # If we're going to execute ParseCSV, let fill up the database
+    database = {} # If we're going to execute ParseCSV, let it fill up the database
 else:
-    with open(clOptions.jsonFile, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
+    with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
         database = json.load(file)
     
 # Then run the specified operations in sequential order

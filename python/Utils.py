@@ -43,10 +43,16 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
-def SessionIndex(database:dict, event:str ,sessionNum: int, sessionIndexCache:dict = None) -> int:
+def SessionIndex(database:dict, event:str ,sessionNum: int) -> int:
     "Return the index of a session specified by event and sessionNum."
     
-    if not sessionIndexCache: # For speed, create a dictionary of sessions the first time we run
+    for index,session in enumerate(database["Sessions"]):
+        if session["Event"] == event and session["Session #"] == sessionNum:
+            return index
+    
+    raise ValueError(f"Can't locate session {sessionNum} of event {event}")
+    
+    """if not sessionIndexCache: # For speed, create a dictionary of sessions the first time we run
         sessionIndexCache = {}
         s = database["Sessions"]
         for index in range(len(s)):
@@ -55,7 +61,7 @@ def SessionIndex(database:dict, event:str ,sessionNum: int, sessionIndexCache:di
     try:
         return sessionIndexCache[(event,sessionNum)]
     except KeyError:
-        raise ValueError(f"Can't locate session {sessionNum} of event {event}")
+        raise ValueError(f"Can't locate session {sessionNum} of event {event}")"""
 
 def slugify(value, allow_unicode=False):
     """

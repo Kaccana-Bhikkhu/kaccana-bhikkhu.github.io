@@ -463,12 +463,12 @@ def WriteTagPages(tagPageDir: str) -> None:
             
         
         with a.h3():
-            a(TitledList("Alternative translations",tagInfo['Alt. trans.'],plural = ""))
+            a(TitledList("Alternative translations",tagInfo['Alternate translations'],plural = ""))
         
         with a.h3(style = "line-height: 1.5;"):
             a(ListLinkedTags("Parent topic",tagInfo['Supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['Subtags']))
-            a(ListLinkedTags("See also",tagInfo['See also'],plural = ""))
+            a(ListLinkedTags("See also",tagInfo['Related'],plural = ""))
             a(QuestionDurationStr(relevantQs,False,False))
         
         formatter = Formatter()

@@ -193,8 +193,8 @@ def LoadTagsFile(database,tagFileName):
     "Load Tag_Raw from a file and parse it to create the Tag dictionary"
     # First load the raw tags from the csv file
     rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["Indented tags","Pali term","Tag menu","Tag count","Pali tag menu"])
-    ListifyKey(rawTagList,"Alt. trans.")
-    ListifyKey(rawTagList,"See also")
+    ListifyKey(rawTagList,"Alternate translations")
+    ListifyKey(rawTagList,"Related")
     ConvertToInteger(rawTagList,"Level")
     
     # Convert the flag codes to boolean values
@@ -238,7 +238,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["Pāli"] = tagPaliName
         tagDesc["Full tag"] = FirstValidValue(rawTag,fullNamePreference)
         tagDesc["Full Pāli"] = rawTag["Pāli"]
-        for key in ["#","Alt. trans.","See also","Virtual"]:
+        for key in ["#","Alternate translations","Related","Virtual"]:
             tagDesc[key] = rawTag[key]
         
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
@@ -366,6 +366,7 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
     for teacher in teachers:
         if not teacherDB[teacher][policy]:
             consent = False
+        
     return consent
 
 def LoadEventFile(database,eventName,directory):
@@ -424,7 +425,6 @@ def LoadEventFile(database,eventName,directory):
             q["Event"] = eventName
             
             if not q["Teachers"]:
-                
                 q["Teachers"] = database["Sessions"][SessionIndex(database,q["Event"],q["Session #"])]["Teachers"]
             
             if q["Session #"] != lastSession:
@@ -436,7 +436,7 @@ def LoadEventFile(database,eventName,directory):
             else:
                 fileNumber += 1 # File number counts all questions listed for the event
             
-            if TeacherConsent(database["Teacher"],q["Teachers"],"Index sessions?") and (not BooleanValue(q["Exclude?"]) or gOptions.ignoreExcludes):                   
+            if TeacherConsent(database["Teacher"],q["Teachers"],"Index questions?") and (not BooleanValue(q["Exclude?"]) or gOptions.ignoreExcludes):                   
                 qNumber += 1 # Question number counts only questions allowed by teacher consent and exclusion policies
                 q["Exclude?"] = False
             else:
@@ -481,9 +481,9 @@ def LoadEventFile(database,eventName,directory):
             for q in questions:
                 del q["Exclude?"]
         
-            for q in removedQuestions: # Redact information about these questions
+            """for q in removedQuestions: # Redact information about these questions
                 for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #","Exclude?"]:
-                    q.pop(key,None)
+                    q.pop(key,None)"""
         
         database["Questions"] += questions
         database["Questions_Redacted"] += removedQuestions
@@ -615,6 +615,6 @@ def main(clOptions,database):
         for item in database:
             print(item + ": "+str(len(database[item])))
     
-    with open(gOptions.jsonFile, 'w', encoding='utf-8') as file:
+    with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(database, file, ensure_ascii=False, indent=2)
     

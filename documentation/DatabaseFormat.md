@@ -1,8 +1,10 @@
-# Database.json format and change log
+# Database.json and SpreadsheetDatabase.json format and change log
 
-ParseCSV.py reads [AP QA archive main](https://docs.google.com/spreadsheets/d/1JIOwbYh6M1Ax9O6tFsgpwWYoDPJRbWEzhB_nwyOSS20/edit?usp=sharing) and writes Database.json. Many sheets are simply read into the database as fields bearing the same name. Bold cell names in the spreadsheet indicate subfield names in the database. Documentation for many subfields can be found in cell comments in the spreadsheet.
+ParseCSV.py reads [AP QA archive main](https://docs.google.com/spreadsheets/d/1JIOwbYh6M1Ax9O6tFsgpwWYoDPJRbWEzhB_nwyOSS20/edit?usp=sharing) and writes prototype/SpreadsheetDatabase.json. Many sheets are simply read into the database as fields bearing the same name. Bold cell names in the spreadsheet indicate subfield names in the database. Documentation for many subfields can be found in cell comments in the spreadsheet.
 
-The best way to study the structure of Database.json is to compare its file contents with the [prototype website](https://storage.googleapis.com/apqa_archive/prototype/indexes/AllQuestions.html).
+OptimizeDatabase writes Database.json, which contains the same information optimized for the Javascript-based main website.
+
+The best way to study the structure of these files is to compare their contents with the [prototype website](https://storage.googleapis.com/apqa_archive/prototype/index.html).
 
 ## Change log
 
@@ -27,3 +29,11 @@ Changes which might break already-written code are marked §.
  - The convention is to use PascalCase for files, camelCase for directories
 
 ### 30/12/2022 - § Database.Sessions subfield renamed: "external mp3 URL" -> "Remote mp3 URL"
+
+### 31/12/2022 - § Database.json forked to two versions:
+ - Spreadsheet Database: prototype/SpreadsheetDatabase.json - dictionary keys match spreadsheet
+ - Optimized Database: Database.json - camel dase dictionary keys for Javascript; extraneous fields deleted
+
+### 1/1/2023 - § Renamed Database.Tag subfields based on Owen's suggestions:
+ - "Alt. Trans." -> "Alternate Translations"
+ - "See also" -> "Related"
