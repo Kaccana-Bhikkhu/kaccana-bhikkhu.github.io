@@ -9,12 +9,14 @@ import json
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
 
-def PrintModuleSeparator(moduleName:str):
+def PrintModuleSeparator(moduleName:str) -> None:
     if clOptions.verbose >= 0:
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
 # The list of code modules/ops to implement
-moduleList = ['ParseCSV','OptimizeDatabase','SplitMp3','Prototype']
+moduleList = ['ParseCSV','SplitMp3','Prototype'] 
+# Owen is using his own conventions for OptimizeDatabase.py, so I removed this module for the time being 
+
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 
 parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Question and Answer Archive website from mp3 files and the 
