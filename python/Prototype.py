@@ -139,7 +139,7 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     
     return ItemList(fullNameList,*args,**kwargs)
 
-def WriteIndentedHtmlTagList(pageDir: str) -> None:
+def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
     """Write an indented list of tags."""
     if not os.path.exists(pageDir):
         os.makedirs(pageDir)
@@ -152,7 +152,17 @@ def WriteIndentedHtmlTagList(pageDir: str) -> None:
     with a.h1():
         a("Tag/subtag hierarchy:")
     
-    for item in gDatabase["Tag_DisplayList"]:
+    skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
+    for index, item in enumerate(gDatabase["Tag_DisplayList"]):
+        if not listDuplicateSubtags:
+            if item["Level"] > skipSubtagLevel:
+                continue
+            # print(index,item["Tag"])
+            if item["Tag"] and gDatabase["Tag"][item["Tag"]]["List index"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
+                skipSubtagLevel = item["Level"] # skip subsequent subtags
+            else:
+                skipSubtagLevel = 999 # otherwise don't skip anything
+        
         with a.p(style = f"margin-left: {tabLength * (item['Level']-1)}{tabMeasurement};"):
             indexStr = item["Index #"] + "." if item["Index #"] else ""
             
@@ -175,7 +185,7 @@ def WriteIndentedHtmlTagList(pageDir: str) -> None:
                 
             a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
     
-    WriteHtmlFile(os.path.join(pageDir,"AllTags.html"),"All Tags",str(a))
+    WriteHtmlFile(os.path.join(pageDir,fileName),"All Tags",str(a))
 
 def QuestionCount(tag:str) -> int:
     try:
@@ -600,7 +610,8 @@ def main(clOptions,database):
     WriteIndentedTagDisplayList(os.path.join(gOptions.prototypeDir,"TagDisplayList.txt"))
     
     indexDir = os.path.join(gOptions.prototypeDir,"indexes")
-    WriteIndentedHtmlTagList(indexDir)
+    WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
+    WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
     WriteSortedHtmlTagList(indexDir)
     WriteAllQuestions(indexDir)
     WriteAllEvents(indexDir)

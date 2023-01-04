@@ -66,6 +66,8 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None):
         if firstDictValue == endOfSection:
             break
         elif not BlankDict(row):
+            if not firstDictValue and gOptions.verbose > 0:
+                print("WARNING: blank first field in",row)
             output.append(row)
         
         # Increase robustness by stripping values and keys
@@ -193,6 +195,7 @@ def LoadTagsFile(database,tagFileName):
     "Load Tag_Raw from a file and parse it to create the Tag dictionary"
     # First load the raw tags from the csv file
     rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["Indented tags","Pali term","Tag menu","Tag count","Pali tag menu"])
+        
     ListifyKey(rawTagList,"Alternate translations")
     ListifyKey(rawTagList,"Related")
     ConvertToInteger(rawTagList,"Level")
@@ -537,7 +540,6 @@ def CountAndVerify(database):
         CountInstances(database["Sessions"],"Teachers",database["Teacher"],"Session count",gOptions.zeroCount)
         CountInstances(database["Questions"],"Teachers",database["Teacher"],"Question count",gOptions.zeroCount)
     
-    
     # Are tags flagged Primary as needed?
     if gOptions.verbose >= 1:
         for tag in database["Tag"]:
@@ -546,7 +548,26 @@ def CountAndVerify(database):
                 print(f"Warning: {tagDesc['Primaries']} instances of tag {tagDesc['Tag']} are flagged as primary.")
             if gOptions.verbose >= 2 and tagDesc["Copies"] > 1 and tagDesc["Primaries"] == 0 and not tagDesc["Virtual"]:
                 print(f"Notice: None of {tagDesc['Copies']} instances of tag {tagDesc['Tag']} are designated as primary.")
-    
+
+def VerifyListCounts(database):
+ # Check that the number of items in each numbered tag list matches the supertag item count
+    for index, tagInfo in enumerate(database["Tag_DisplayList"]):
+        tag = tagInfo["Tag"]
+        if not tag or tagInfo["Subsumed"] or not database["Tag"][tag]["#"]:
+            continue   # Skip virtual, subsumed and unnumbered tags
+        
+        subtagLevel = tagInfo["Level"] + 1 # Count tags one level deeper than us
+        lookaheadIndex = index + 1
+        listCount = 0
+        # Loop through all subtags of this tag
+        while lookaheadIndex < len(database["Tag_DisplayList"]) and database["Tag_DisplayList"][lookaheadIndex]["Level"] >= subtagLevel:
+            if database["Tag_DisplayList"][lookaheadIndex]["Level"] == subtagLevel and database["Tag_DisplayList"][lookaheadIndex]["Index #"]:
+                listCount = int(database["Tag_DisplayList"][lookaheadIndex]["Index #"].split(',')[-1])
+                    # Convert the last item in this comma-separated list to an integer
+            lookaheadIndex += 1
+        
+        if listCount != int(database["Tag"][tag]["#"]):
+            print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["Tag"][tag]["#"]} items, but we count {listCount}')
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -605,7 +626,9 @@ def main(clOptions,database):
     
     CountAndVerify(database)
     CreateTagDisplayList(database)
-    
+    if gOptions.verbose > 0:
+        VerifyListCounts(database)
+        
     database = ReorderKeys(database,["Tag_DisplayList","Tag","Tag_Raw"])
     if not gOptions.jsonNoClean:
         del database["Tag_Raw"]

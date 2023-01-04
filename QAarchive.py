@@ -23,9 +23,10 @@ parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Questio
 AP QA archive main Google Sheet.""")
 
 parser.add_argument('ops',type=str,help="""A comma-separated list of operations to perform. No spaces allowed. Available operations:
-ParseCSV - convert the csv files downloaded from the Google Sheet to Database.json.
-SplitMp3 - split mp3 files into individual questions based on the times in Database.json.
+ParseCSV - convert the csv files downloaded from the Google Sheet to SpreadsheetDatabase.json.
+SplitMp3 - split mp3 files into individual questions based on the times in SpreadsheetDatabase.json.
 Prototype - create various files to illustrate how Database.json should be interpreted.
+OptimizeDatabase - convert SpreadsheetDatabase.json to (optimized) Database.json
 All - run all the above modules in sequence.
 """)
 

@@ -1,6 +1,7 @@
-Count,49,262,26,200,8,7,,11,46,2,272,191,213,543 / 163 unique,213
+Count,59,284,28,218,8,7,,10,48,2,295,208,218,543 / 163 unique,218
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Tag count,Pali tag menu
-1,.,Skillful qualities,,kusalā dhammā,,,,,,,History/Abhayagiri Monastery,kusalā dhammā,,,
+1,.,Skillful qualities,,kusalā dhammā,,,,,,,Skillful qualities,kusalā dhammā,,,
+2,,Middle Path,,majjhimā paṭipadā,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,1,Middle Path [majjhimā paṭipadā]
 2,,Noble Eightfold Path,8,ariyo aṭṭaṅgiko maggo,Eightfold Path,aṭṭaṅgiko maggo,,,,,   Noble Eightfold Path,aṭṭaṅgiko maggo,Eightfold Path,1,Eightfold Path [aṭṭaṅgiko maggo]
 3,,Right view,,sammā diṭṭhi,,,,,Four Noble Truths,,      Right view,sammā diṭṭhi,Right view,0,Right view [sammā diṭṭhi]
 3,,Right intention,3,sammā saṅkappo,,,,,,,      Right intention,sammā saṅkappo,Right intention,2,Right intention [sammā saṅkappo]
@@ -43,7 +44,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Noble Truth of the cause of suffering,,dukkha-samudayo ariya-saccaṃ,Cause of suffering,dukkha-samudayo,,,Craving,,      Noble Truth of the cause of suffering,dukkha-samudayo,Cause of suffering,3,Cause of suffering [dukkha-samudayo]
 3,,Noble Truth of the cessation of suffering,,dukkha-nirodho ariya-saccaṃ,Cessation of suffering,dukkha-nirodho,,,Cessation,,      Noble Truth of the cessation of suffering,dukkha-nirodho,Cessation of suffering,3,Cessation of suffering [dukkha-nirodho]
 3,,Noble Truth of the path to the cessation of suffering,,dukkha-nirodha-gāminī paṭipadā ariya-saccaṃ,Path to the cessation of suffering,dukkha-nirodha-gāminī paṭipadā,,Eightfold Path,,,      Noble Truth of the path to the cessation of suffering,dukkha-nirodha-gāminī paṭipadā,,,
-2,,Middle Path,,majjhimā paṭipadā,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,1,Middle Path [majjhimā paṭipadā]
+,,,,,,,,,,,,,,,
 2,*,Divine Abidings,4,,,,,,,,   Divine Abidings,,Divine Abidings,2,Divine Abidings
 3,*,Goodwill,,mettā,,,,,,,      Goodwill,mettā,Goodwill,9,Goodwill [mettā]
 3,*,Compassion,,karuṇā,,,,,,,      Compassion,karuṇā,Compassion,2,Compassion [karuṇā]
@@ -93,13 +94,13 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Once return,,sakadāgāmi,,,,,,,      Once return,sakadāgāmi,Once return,0,Once return [sakadāgāmi]
 3,,Non-return,,anāgamī,,,,,,,      Non-return,anāgamī,Non-return,0,Non-return [anāgamī]
 3,,,,Arahant,,,,,,,      Arahant,,Arahant,1,Arahant
-2,,,,Nibbāna,,,,,,,   Nibbāna,,Nibbāna,4,Nibbāna
+3,0,,,Nibbāna,,,,,,,      Nibbāna,,Nibbāna,4,Nibbāna
 2,,,,,,,,,,,   ,,,,
 2,,Gratitude,,kataññu,,,,,,,   Gratitude,kataññu,Gratitude,11,Gratitude [kataññu]
 2,,Merit,,puññā,,,,,,,   Merit,puññā,Merit,6,Merit [puññā]
 2,,Forgiveness,,abhaya,,,,,,,   Forgiveness,abhaya,Forgiveness,3,Forgiveness [abhaya]
 2,,Contentment,,santuṭṭhi,,,,,,,   Contentment,santuṭṭhi,Contentment,2,Contentment [santuṭṭhi]
-2,,Restraint,,,,,,,,,   Restraint,,Restraint,1,Restraint
+,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 1,.,Unskillful qualities,,akusalā dhammā,,,,,,,Unskillful qualities,akusalā dhammā,,,
@@ -137,7 +138,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Abuse,,,,,,,,,   Abuse,,Abuse,1,Abuse
 1,.,Indeterminate qualities,,abyākatā dhammā,,,,,,,Indeterminate qualities,abyākatā dhammā,,,
 2,,Five aggregates,5,pañcakkhandhā,,,,,,,   Five aggregates,pañcakkhandhā,Five aggregates,3,Five aggregates [pañcakkhandhā]
-3,*,Form,,rūpa,,,,,,,      Form,rūpa,Form,0,Form [rūpa]
+3,*,Form,,rūpa,,,Body,,,,      Form,rūpa,Form,0,Form [rūpa]
 3,*,Feeling,,vedanā,,,,,,,      Feeling,vedanā,Feeling,2,Feeling [vedanā]
 3,*,Perception,,sañña,,,,,,,      Perception,sañña,Perception,3,Perception [sañña]
 3,*,Volitional formations,,saṅkhāra,,,,,,,      Volitional formations,saṅkhāra,Volitional formations,5,Volitional formations [saṅkhāra]
@@ -168,28 +169,30 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,*,Contact,,phasso,,,,,,,      Contact,phasso,,,
 3,,Mental volition,,manosañcetanā,Volition,cetanā,,,,,      Mental volition,cetanā,Volition,7,Volition [cetanā]
 3,,Consciousness,,viññāṇa,,,,,,,      Consciousness,viññāṇa,,,
+2,,Humor,,,,,,,,,   Humor,,Humor,1,Humor
+,,,,,,,,,,,,,,,
 1,,Triple Gem,3,,,,,,,,Triple Gem,,Triple Gem,3,Triple Gem
 2,,,,Buddha,,,,,,,   Buddha,,Buddha,3,Buddha
 2,,,,Dhamma,,,,,,,   Dhamma,,Dhamma,0,Dhamma
 2,,,,Saṅgha,,,,,,,   Saṅgha,,Saṅgha,0,Saṅgha
 1,,Precepts,,sikkhāpada,,,,,Virtue,,Precepts,sikkhāpada,Precepts,3,Precepts [sikkhāpada]
-2,,Five precepts,5,pañca sikkhāpadāni,,,,,,,   Five precepts,pañca sikkhāpadāni,Five precepts,1,Five precepts [pañca sikkhāpadāni]
+2,*,Five precepts,5,pañca sikkhāpadāni,,,,,,,   Five precepts,pañca sikkhāpadāni,Five precepts,1,Five precepts [pañca sikkhāpadāni]
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,,
 3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,,,
 3,,Stealing,,adinnādānā,,,,,,,      Stealing,adinnādānā,,,
 3,,Sexual misconduct,,kāmesu micchācārā,,,,,,,      Sexual misconduct,kāmesu micchācārā,,,
 3,,False speech,,musā-vādā,,,,,Right speech,,      False speech,musā-vādā,,,
 3,*,Intoxicants,,surāmeraya-majja-pamādaṭṭhānā,,,,,,,      Intoxicants,surāmeraya-majja-pamādaṭṭhānā,Intoxicants,4,Intoxicants [surāmeraya-majja-pamādaṭṭhānā]
-2,,Eight precepts,8,aṭṭha sikkhāpadāni,,,,,Renunciation,,   Eight precepts,aṭṭha sikkhāpadāni,Eight precepts,0,Eight precepts [aṭṭha sikkhāpadāni]
+2,*,Eight precepts,8,aṭṭha sikkhāpadāni,,,,,Renunciation,,   Eight precepts,aṭṭha sikkhāpadāni,Eight precepts,0,Eight precepts [aṭṭha sikkhāpadāni]
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,,
 3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,,,
 3,,Stealing,,adinnādānā,,,,,,,      Stealing,adinnādānā,,,
 3,,Sexual activity,,abrahmacariyā,,,,Celibacy,,,      Sexual activity,abrahmacariyā,,,
 3,,False speech,,musā-vādā,,,,,Right speech,,      False speech,musā-vādā,,,
 3,,Intoxicants,,surāmeraya-majja-pamādaṭṭhānā,,,,,,,      Intoxicants,surāmeraya-majja-pamādaṭṭhānā,,,
-3,,Eating after noon,,vikālabhojanā,,,,,Food,,      Eating after noon,vikālabhojanā,Eating after noon,0,Eating after noon [vikālabhojanā]
-3,,Entertainment and adornment,,nacca-gīta-vādita,,,,,Renunciation,,      Entertainment and adornment,nacca-gīta-vādita,Entertainment and adornment,1,Entertainment and adornment [nacca-gīta-vādita]
-3,,High and luxurious beds,,uccāsayana-mahāsayanā,,,,,Devotion to wakefulness,Energy,      High and luxurious beds,uccāsayana-mahāsayanā,High and luxurious beds,1,High and luxurious beds [uccāsayana-mahāsayanā]
+3,*,Eating after noon,,vikālabhojanā,,,,,Food,,      Eating after noon,vikālabhojanā,Eating after noon,0,Eating after noon [vikālabhojanā]
+3,*,Entertainment and adornment,,nacca-gīta-vādita,,,,,Renunciation,,      Entertainment and adornment,nacca-gīta-vādita,Entertainment and adornment,1,Entertainment and adornment [nacca-gīta-vādita]
+3,*,High and luxurious beds,,uccāsayana-mahāsayanā,,,,,Devotion to wakefulness,Energy,      High and luxurious beds,uccāsayana-mahāsayanā,High and luxurious beds,1,High and luxurious beds [uccāsayana-mahāsayanā]
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 1,,Meditation,,,,,,,,,Meditation,,Meditation,1,Meditation
@@ -218,6 +221,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Recollection/Virtue,,,,,,,Virtue,,      Recollection/Virtue,,Recollection/Virtue,0,Recollection/Virtue
 3,,Recollection/Devas,,,,,,,Devas,,      Recollection/Devas,,Recollection/Devas,1,Recollection/Devas
 3,,Recollection/Death,,,,,,,Death,,      Recollection/Death,,Recollection/Death,3,Recollection/Death
+2,,Chanting,,,,,,,,,   Chanting,,Chanting,10,Chanting
 2,,Meditation/Posture,,,,,,,,,   Meditation/Posture,,Meditation/Posture,1,Meditation/Posture
 3,,Posture/Sitting,,,,,,,,,      Posture/Sitting,,Posture/Sitting,1,Posture/Sitting
 3,,Posture/Walking,,cankama,,,,,,,      Posture/Walking,cankama,Posture/Walking,3,Posture/Walking [cankama]
@@ -227,62 +231,100 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Meditation/Unusual experiences,,,,,,,,,   Meditation/Unusual experiences,,Meditation/Unusual experiences,7,Meditation/Unusual experiences
 2,,,,Nimmita,,,,,,,   Nimmita,,Nimmita,1,Nimmita
 2,,Continuity of mindfulness,,,,,,,,,   Continuity of mindfulness,,Continuity of mindfulness,2,Continuity of mindfulness
-1,,,,Kamma,,,,,,,Kamma,,Kamma,14,Kamma
+2,,Long-term practice,,,,,,,,,   Long-term practice,,Long-term practice,9,Long-term practice
+1,.,Nature of the cosmos,,,,,,,,,Nature of the cosmos,,,,
+2,,,,Kamma,,,,,,,   Kamma,,Kamma,14,Kamma
+2,,Rebirth,,,,,,,,,   Rebirth,,Rebirth,9,Rebirth
+2,,Realms of existence,5,,,,,,,,   Realms of existence,,Realms of existence,3,Realms of existence
+3,,Devas,,,,,,,,,      Devas,,Devas,2,Devas
+3,,Humans,,,,,,,,,      Humans,,Humans,1,Humans
+3,,Ghosts,,,,,,,,,      Ghosts,,Ghosts,0,Ghosts
+3,,Animals,,,,,,,,,      Animals,,Animals,0,Animals
+3,,Hell,,,,,,,,,      Hell,,Hell,0,Hell
+2,,Nature of mind,,,,,,,,,   Nature of mind,,Nature of mind,7,Nature of mind
+2,,Psychic powers,,,,,,,,,   Psychic powers,,Psychic powers,5,Psychic powers
 ,,,,,,,,,,,,,,,
-1,,Rebirth,,,,,,,,,Rebirth,,Rebirth,9,Rebirth
-1,,Realms of existence,5,,,,,,,,Realms of existence,,Realms of existence,3,Realms of existence
-2,,Devas,,,,,,,,,   Devas,,Devas,2,Devas
-2,,Humans,,,,,,,,,   Humans,,Humans,1,Humans
-2,,Ghosts,,,,,,,,,   Ghosts,,Ghosts,0,Ghosts
-2,,Animals,,,,,,,,,   Animals,,Animals,0,Animals
-2,,Hell,,,,,,,,,   Hell,,Hell,0,Hell
 1,,Monasteries,,,,,,,,,Monasteries,,Monasteries,0,Monasteries
 2,,Wat Nong Pah Pong,,,Wat Pah Pong,,,,,,   Wat Nong Pah Pong,,Wat Pah Pong,1,Wat Pah Pong
 2,,Abhayagiri Monastery,,,,,,,,,   Abhayagiri Monastery,,Abhayagiri Monastery,1,Abhayagiri Monastery
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
-1,,Teaching Dhamma,,,,,,,,,Teaching Dhamma,,Teaching Dhamma,6,Teaching Dhamma
+,,,,,,,,,,,,,,,
 1,,Teachers,,,,,,,,,Teachers,,Teachers,1,Teachers
+2,,Teaching Dhamma,,,,,,,,,   Teaching Dhamma,,Teaching Dhamma,6,Teaching Dhamma
 2,,Ajahn Chah,,,,,,,,,   Ajahn Chah,,Ajahn Chah,4,Ajahn Chah
 2,,Ajahn Pasanno,,,,,,,,,   Ajahn Pasanno,,Ajahn Pasanno,2,Ajahn Pasanno
 3,,Ajahn Pasanno/Biography,,,,,,,,,      Ajahn Pasanno/Biography,,Ajahn Pasanno/Biography,3,Ajahn Pasanno/Biography
 3,,Ajahn Pasanno/Pithy,,,,,,,,,      Ajahn Pasanno/Pithy,,Ajahn Pasanno/Pithy,0,Ajahn Pasanno/Pithy
 2,,Ajahn Lee Dhammadharo,,,,,,,,,   Ajahn Lee Dhammadharo,,Ajahn Lee Dhammadharo,1,Ajahn Lee Dhammadharo
-,,,,,,,,,,,,,,,
+1,,Women in Buddhism,,,,,,,,,Women in Buddhism,,Women in Buddhism,3,Women in Buddhism
 1,,History,,,,,,,,,History,,History,0,History
 2,,History/Early Buddhism,,,,,,,,,   History/Early Buddhism,,History/Early Buddhism,2,History/Early Buddhism
 2,,History/Thai Buddhism,,,,,,,,,   History/Thai Buddhism,,History/Thai Buddhism,10,History/Thai Buddhism
 2,,History/Western Buddhism,,,,,,,,,   History/Western Buddhism,,History/Western Buddhism,0,History/Western Buddhism
-3,,History/Western Buddhist monasticism,,,,,,,,,      History/Western Buddhist monasticism,,History/Western Buddhist monasticism,1,History/Western Buddhist monasticism
+3,,History/Western Buddhist monasticism,,,,,,,Western Buddhist monasticism,,      History/Western Buddhist monasticism,,History/Western Buddhist monasticism,1,History/Western Buddhist monasticism
 4,,History/Abhayagiri Monastery,,,,,,,,,         History/Abhayagiri Monastery,,History/Abhayagiri Monastery,1,History/Abhayagiri Monastery
-1,,Monastic life,,,,,,,,,Monastic life,,Monastic life,9,Monastic life
-2,,Monastic life/Motivation,,,,,,,,,   Monastic life/Motivation,,Monastic life/Motivation,2,Monastic life/Motivation
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+1,,Renunciant practice,,,,,,,,,Renunciant practice,,Renunciant practice,0,Renunciant practice
+2,,Eight precepts,8,aṭṭha sikkhāpadāni,,,,,,,   Eight precepts,aṭṭha sikkhāpadāni,,,
+3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,,
+3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,,,
+3,,Stealing,,adinnādānā,,,,,,,      Stealing,adinnādānā,,,
+3,,Sexual activity,,abrahmacariyā,,,,,,,      Sexual activity,abrahmacariyā,,,
+3,,False speech,,musā-vādā,,,,,,,      False speech,musā-vādā,,,
+3,,Intoxicants,,surāmeraya-majja-pamādaṭṭhānā,,,,,,,      Intoxicants,surāmeraya-majja-pamādaṭṭhānā,,,
+3,,Eating after noon,,vikālabhojanā,,,,,,,      Eating after noon,vikālabhojanā,,,
+3,,Entertainment and adornment,,nacca-gīta-vādita,,,,,,,      Entertainment and adornment,nacca-gīta-vādita,,,
+3,,High and luxurious beds,,uccāsayana-mahāsayanā,,,,,,,      High and luxurious beds,uccāsayana-mahāsayanā,,,
+2,,Celibacy,,brahmacariyā,,,,,,,   Celibacy,brahmacariyā,Celibacy,0,Celibacy [brahmacariyā]
 2,,Four requisites,4,,,,,,,,   Four requisites,,Four requisites,0,Four requisites
 3,,Robes,,cīvara,,,,,,,      Robes,cīvara,Robes,0,Robes [cīvara]
 3,,Almsfood,,piṇḍapāta,,,,,,,      Almsfood,piṇḍapāta,Almsfood,0,Almsfood [piṇḍapāta]
 3,,Shelter,,senāsana,,,,,,,      Shelter,senāsana,Shelter,0,Shelter [senāsana]
 3,,Medicinal requisites,,gilāna-paccaya-bhesajja-parikkhāraṃ,,,,,,,      Medicinal requisites,gilāna-paccaya-bhesajja-parikkhāraṃ,Medicinal requisites,1,Medicinal requisites [gilāna-paccaya-bhesajja-parikkhāraṃ]
-2,,Celibacy,,brahmacariyā,,,,,,,   Celibacy,brahmacariyā,Celibacy,0,Celibacy [brahmacariyā]
 2,,Qualities for non-decline,4,aparihānāya dhammā,,,,,,,   Qualities for non-decline,aparihānāya dhammā,Qualities for non-decline,0,Qualities for non-decline [aparihānāya dhammā]
 3,,Accomplishment in virtue,,sīlasampanno,,,,Virtue,,,      Accomplishment in virtue,sīlasampanno,,,
-3,,Sense restraint,,indriyesu guttadvāro,,,,Restraint,,,      Sense restraint,indriyesu guttadvāro,,,
+3,,Sense restraint,,indriyesu guttadvāro,,,,,,,      Sense restraint,indriyesu guttadvāro,Sense restraint,1,Sense restraint [indriyesu guttadvāro]
 3,,Moderation in eating,,bhojane mattaññū,,,,,Food,,      Moderation in eating,bhojane mattaññū,Moderation in eating,0,Moderation in eating [bhojane mattaññū]
 3,,Devotion to wakefulness,,jāgariyaṁ anuyutto,,,,,Energy,,      Devotion to wakefulness,jāgariyaṁ anuyutto,Devotion to wakefulness,1,Devotion to wakefulness [jāgariyaṁ anuyutto]
 ,,,,,,,,,,,,,,,
-1,,Nature of mind,,,,,,,,,Nature of mind,,Nature of mind,7,Nature of mind
-1,,Women in Buddhism,,,,,,,,,Women in Buddhism,,Women in Buddhism,3,Women in Buddhism
-1,,Humor,,,,,,,,,Humor,,Humor,1,Humor
-1,,Psychic powers,,,,,,,,,Psychic powers,,Psychic powers,5,Psychic powers
+2,,Monastic life,,,,,,,,,   Monastic life,,Monastic life,9,Monastic life
+3,,Monastic life/Motivation,,,,,,,,,      Monastic life/Motivation,,Monastic life/Motivation,2,Monastic life/Motivation
+3,,,,Vinaya,,,,,,,      Vinaya,,Vinaya,0,Vinaya
+3,,Respect for elders,,,,,,,,,      Respect for elders,,Respect for elders,0,Respect for elders
+3,,Western Buddhist monasticism,,,,,,,History/Western Buddhist monasticism,,      Western Buddhist monasticism,,Western Buddhist monasticism,0,Western Buddhist monasticism
 ,,,,,,,,,,,,,,,
-1,,Chanting,,,,,,,,,Chanting,,Chanting,10,Chanting
-1,,Long-term practice,,,,,,,,,Long-term practice,,Long-term practice,9,Long-term practice
-1,,Lay life,,,,,,,,,Lay life,,Lay life,2,Lay life
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+1,,Everyday life practice,,,,,,,,,Everyday life practice,,Everyday life practice,0,Everyday life practice
+2,,Lay life,,,,,,,,,   Lay life,,Lay life,2,Lay life
+2,,Five precepts,5,pañca sikkhāpadāni,,,,,,,   Five precepts,pañca sikkhāpadāni,,,
+3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,,
+3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,,,
+3,,Stealing,,adinnādānā,,,,,,,      Stealing,adinnādānā,,,
+3,,Sexual misconduct,,kāmesu micchācārā,,,,,,,      Sexual misconduct,kāmesu micchācārā,,,
+3,,False speech,,musā-vādā,,,,,,,      False speech,musā-vādā,,,
+3,,Intoxicants,,surāmeraya-majja-pamādaṭṭhānā,,,,,,,      Intoxicants,surāmeraya-majja-pamādaṭṭhānā,,,
 2,,Work,,,,,,,Right livelihood,,   Work,,Work,4,Work
 2,,Relationships,,,,,,,,,   Relationships,,Relationships,5,Relationships
 2,,Family,,,,,,,,,   Family,,Family,11,Family
 2,,Politics and society,,,,,,,,,   Politics and society,,Politics and society,3,Politics and society
 2,,Environment,,,,,,,,,   Environment,,Environment,1,Environment
 ,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-1,,Question in Thai,,,,,,,,,Question in Thai,,Question in Thai,2,Question in Thai
+1,.,Language,,,,,,,,,Language,,,,
+2,,Question in Thai,,,,,,,,,   Question in Thai,,Question in Thai,2,Question in Thai
