@@ -37,6 +37,11 @@ def main(clOptions,database):
     global gDatabase
     gDatabase = database
     
+    if gOptions.sessionMp3 == 'remote' and gOptions.questionMp3 == 'remote':
+        if gOptions.verbose > 0:
+            print("   All mp3 links go to remote servers. No mp3 files will be processed.")
+        return # No need to run SplitMp3 if all files are remote
+    
     questionIndex = 0
     questions = IncludeRedactedQuestions()
     for session in gDatabase["Sessions"]:
