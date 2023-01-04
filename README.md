@@ -42,7 +42,7 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ###### index.html, etc.
 
-### Audio data flow (operations depend on the content of Database.json)
+### Audio data flow (operations depend on the content of SpreadsheetDatabase.json)
 
 The operations below execute only when necessary. If the sessionMp3 and questionMp3 options are both remote, all audio links point elsewhere, and there is no need to download or process audio files.
 
