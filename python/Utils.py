@@ -43,12 +43,12 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
-def SessionIndex(database:dict, event:str ,sessionNum: int) -> int:
+def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the index of a session specified by event and sessionNum."
     
-    for index,session in enumerate(database["Sessions"]):
+    for session in sessions:
         if session["Event"] == event and session["Session #"] == sessionNum:
-            return index
+            return session
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
     

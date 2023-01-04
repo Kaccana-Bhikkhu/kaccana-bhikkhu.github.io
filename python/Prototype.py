@@ -3,7 +3,7 @@
 import os, json
 from typing import List, Type
 from airium import Airium
-from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr, SessionIndex
+from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr, FindSession
 from datetime import timedelta
 import re
 
@@ -389,11 +389,11 @@ def HtmlQuestionList(questions: List[dict],formatter: Type[Formatter]) -> str:
     prevSession = None
     for q in questions:
         if q["Event"] != prevEvent or q["Session #"] != prevSession:
-            sessionIndex = SessionIndex(gDatabase,q["Event"],q["Session #"])
-            a(formatter.FormatSessionHeading(gDatabase["Sessions"][sessionIndex]))
+            session = FindSession(gDatabase["Sessions"],q["Event"],q["Session #"])
+            a(formatter.FormatSessionHeading(session))
             prevEvent = q["Event"]
             prevSession = q["Session #"]
-            formatter.questionDefaultTeacher = set(gDatabase["Sessions"][sessionIndex]["Teachers"])
+            formatter.questionDefaultTeacher = set(session["Teachers"])
             
         with a.p():
             a(formatter.FormatQuestion(q))

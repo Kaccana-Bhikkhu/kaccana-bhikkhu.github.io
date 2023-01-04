@@ -1,7 +1,7 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
 import os, re, csv, json
-from Utils import slugify, StrToTimeDelta, TimeDeltaToStr, SessionIndex
+from Utils import slugify, StrToTimeDelta, TimeDeltaToStr, FindSession
 from typing import List
 
 def SniffCSVDialect(inFile,scanLength = 4096):
@@ -407,8 +407,6 @@ def LoadEventFile(database,eventName,directory):
             # Remove sessions we didn't get consent for
 
         includedSessions = set(s["Session #"] for s in sessions)
-        
-        database["Sessions"] += sessions
 
         
         questions = CSVToDictList(file)
@@ -428,7 +426,7 @@ def LoadEventFile(database,eventName,directory):
             q["Event"] = eventName
             
             if not q["Teachers"]:
-                q["Teachers"] = database["Sessions"][SessionIndex(database,q["Event"],q["Session #"])]["Teachers"]
+                q["Teachers"] = FindSession(sessions,q["Event"],q["Session #"])["Teachers"]
             
             if q["Session #"] != lastSession:
                 if lastSession > q["Session #"] and gOptions.verbose > 0:
@@ -488,6 +486,11 @@ def LoadEventFile(database,eventName,directory):
                 for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #","Exclude?"]:
                     q.pop(key,None)"""
         
+        sessionsWithQuestions = set(q["Session #"] for q in questions)
+        sessions = [s for s in sessions if s["Session #"] in sessionsWithQuestions]
+            # Remove sessions that have no questions in them
+        
+        database["Sessions"] += sessions
         database["Questions"] += questions
         database["Questions_Redacted"] += removedQuestions
         

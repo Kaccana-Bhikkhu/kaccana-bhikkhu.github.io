@@ -58,7 +58,7 @@ def main(clOptions,database):
             
             endTimeStr = questions[questionIndex]["End time"].strip()
             if endTimeStr:
-                questionList.append((fileName,startTime,StrToTimeDelta(endTime)))
+                questionList.append((fileName,startTime,StrToTimeDelta(endTimeStr)))
             else:
                 questionList.append((fileName,startTime))
                 
