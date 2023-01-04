@@ -3,7 +3,7 @@
 ## Documentation links
 [prototype/README.md](prototype/README.md) - purpose and scope of this project and status of the current prototype.
 
-[documentation/DatabaseFormat.md](documentation/DatabaseFormat.md) - describes Database.json
+[documentation/DatabaseFormat.md](documentation/DatabaseFormat.md) - describes SpreadsheetDatabase.json and Database.json
 
 Project achitecture and command line flags - this file
 
@@ -24,19 +24,23 @@ where `operations` is a comma-separated list. Each operation is the name of a mo
 
 ↓ `QAarchive.py ParseCSV` (almost fully functional)
 
-###### [Database.json](Database.json) - main database file; roughly one dict entry per csv sheet; [format](documentaion/DatabaseFormat.md) nearly finalised
+###### [prototype/SpreadsheetDatabase.json](prototype/SpreadsheetDatabase.json) - human-readable database file; roughly one dict entry per csv sheet; [format](documentaion/DatabaseFormat.md) nearly finalised
+
+↓ `QAarchive.py Prototype` (almost fully functional)
+
+###### [prototype/index.html](prototype/index.html), etc. - Text-based prototype website
+
+#### Main website
+
+###### [prototype/SpreadsheetDatabase.json](prototype/SpreadsheetDatabase.json)
+
+↓ `QAarchive.py OptimizeDatabase` - Owen writes this
+
+###### [Database.json](Database.json) - Database optimized for template engine and web-based Javascript
 
 ↓ `QAarchive.py ParseCSV BuildSite` - Owen writes this in whatever language he prefers
 
 ###### index.html, etc.
-
-#### Prototype website textual data flow
-
-###### [Database.json](Database.json)
-
-↓ `QAarchive.py Prototype` (almost fully functional)
-
-###### [prototype/Index.html](prototype/Index.html), etc.
 
 ### Audio data flow (operations depend on the content of Database.json)
 
@@ -66,7 +70,7 @@ The operations below execute only when necessary. If the sessionMp3 and question
 
 ###### audio/questions/TG2013/TG2013_S01_Q01.mp3 - local split mp3 files
 
-↓ `QAarchive.py TagMP3` (there are several ID3 tag libraries for python)
+↓ `QAarchive.py TagMP3` (not yet written; there are several ID3 tag libraries for python)
 
 ###### audio/questions/TG2013/TG2013_S01_Q01.mp3 - tagged files keep the same names
 
@@ -74,9 +78,10 @@ The operations below execute only when necessary. If the sessionMp3 and question
 
 **example:** `python QAarchive.py All --questionMp3 local -vv` - Run all modules with increased verbosity and link to local question mp3 files
 
-**usage:** QAarchive.py [-h] [--homeDir HOMEDIR] [--jsonFile JSONFILE] [--sessionMp3 SESSIONMP3]
-                    [--questionMp3 QUESTIONMP3] [--remoteQuestionMp3URL REMOTEQUESTIONMP3URL] [--csvDir CSVDIR]
-                    [--zeroCount] [--detailedCount] [--jsonNoClean] [--eventMp3Dir EVENTMP3DIR]
+**usage:**  QAarchive.py [-h] [--homeDir HOMEDIR] [--spreadsheetDatabase SPREADSHEETDATABASE]
+                    [--optimizedDatabase OPTIMIZEDDATABASE] [--sessionMp3 SESSIONMP3] [--questionMp3 QUESTIONMP3]
+                    [--remoteQuestionMp3URL REMOTEQUESTIONMP3URL] [--csvDir CSVDIR] [--ignoreTeacherConsent]
+                    [--ignoreExcludes] [--zeroCount] [--detailedCount] [--jsonNoClean] [--eventMp3Dir EVENTMP3DIR]
                     [--questionMp3Dir QUESTIONMP3DIR] [--overwriteMp3] [--prototypeDir PROTOTYPEDIR]
                     [--indexHtmlTemplate INDEXHTMLTEMPLATE] [--verbose] [--quiet]
                     ops
@@ -85,19 +90,25 @@ Create the Ajahn Pasanno Question and Answer Archive website from mp3 files and 
 
 **positional arguments:**
   ops                   A comma-separated list of operations to perform. No spaces allowed. Available operations:
-                        **ParseCSV** - convert the csv files downloaded from the Google Sheet to Database.json. **SplitMp3** -
-                        split mp3 files into individual questions based on the times in Database.json. **Prototype** -
-                        create various files to illustrate how Database.json should be interpreted. **All** - run all the
-                        above modules in sequence.
+                        ParseCSV - convert the csv files downloaded from the Google Sheet to SpreadsheetDatabase.json.
+                        SplitMp3 - split mp3 files into individual questions based on the times in
+                        SpreadsheetDatabase.json. Prototype - create various files to illustrate how Database.json
+                        should be interpreted. OptimizeDatabase - convert SpreadsheetDatabase.json to (optimized)
+                        Database.json All - run all the above modules in sequence.
 
-options:
+**options:**
 
   -h, --help            show this help message and exit
   
   --homeDir HOMEDIR     All other pathnames are relative to this directory; Default: ./
   
-  --jsonFile JSONFILE   Read/write this json file; Default: Database.json
-  
+  --spreadsheetDatabase SPREADSHEETDATABASE
+                        Database created from the csv files; keys match spreadsheet headings; Default:
+                        prototype/SpreadsheetDatabase.json
+                        
+  --optimizedDatabase OPTIMIZEDDATABASE
+                        Database optimised for Javascript web code; Default: Database.json
+                        
   --sessionMp3 SESSIONMP3
                         Session audio file link location; default: remote - use external Mp3 URL from session database
                         
@@ -108,6 +119,11 @@ options:
                         remote URL for questions; default: storage.googleapis.com/apqa_archive/audio/questions/
                         
   --csvDir CSVDIR       Read/write csv files in this directory; Default: ./csv
+  
+  --ignoreTeacherConsent
+                        Ignore teacher consent flags - debugging only
+                        
+  --ignoreExcludes      Ignore exclude session and question flags - debugging only
   
   --zeroCount           Write count=0 keys to json file; otherwise write only non-zero keys
   
