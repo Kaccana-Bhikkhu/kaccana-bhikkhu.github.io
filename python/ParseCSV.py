@@ -421,14 +421,13 @@ def LoadEventFile(database,eventName,directory):
         fileNumber = 1 
         lastSession = 0 
         for q in questions:
-            
-            q["Tags"] = q["QTag"] + q["ATag"]
             q["Event"] = eventName
             
             ourSession = FindSession(sessions,eventName,q["Session #"])
             
-            
-            
+            q["Tags"] = q["QTag"] + q["ATag"] + ourSession["Tags"] # Combine question and session tags
+
+
             if not q["Teachers"]:
                 q["Teachers"] = ourSession["Teachers"]
             
@@ -553,7 +552,7 @@ def CountAndVerify(database):
                 print(f"Notice: None of {tagDesc['Copies']} instances of tag {tagDesc['Tag']} are designated as primary.")
 
 def VerifyListCounts(database):
- # Check that the number of items in each numbered tag list matches the supertag item count
+    # Check that the number of items in each numbered tag list matches the supertag item count
     for index, tagInfo in enumerate(database["Tag_DisplayList"]):
         tag = tagInfo["Tag"]
         if not tag or tagInfo["Subsumed"] or not database["Tag"][tag]["#"]:
@@ -571,6 +570,12 @@ def VerifyListCounts(database):
         
         if listCount != int(database["Tag"][tag]["#"]):
             print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["Tag"][tag]["#"]} items, but we count {listCount}')
+    
+    # Check for duplicate tags
+    for q in database["Questions"]:
+        if len(set(q["Tags"])) != len(q["Tags"]) and gOptions.verbosity > 1:
+            print(f"Duplicate tags in f{eventName} S{q['Session #']} Q{q['Question #']} {q['Tags']}")
+    
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
