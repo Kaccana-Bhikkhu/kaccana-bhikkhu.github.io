@@ -425,8 +425,12 @@ def LoadEventFile(database,eventName,directory):
             q["Tags"] = q["QTag"] + q["ATag"]
             q["Event"] = eventName
             
+            ourSession = FindSession(sessions,eventName,q["Session #"])
+            
+            
+            
             if not q["Teachers"]:
-                q["Teachers"] = FindSession(sessions,q["Event"],q["Session #"])["Teachers"]
+                q["Teachers"] = ourSession["Teachers"]
             
             if q["Session #"] != lastSession:
                 if lastSession > q["Session #"] and gOptions.verbose > 0:
@@ -451,25 +455,21 @@ def LoadEventFile(database,eventName,directory):
                 del q["ATag"]
                 del q["AListen?"]
         
-        for qIndex in range(len(questions)):
-            startTime = questions[qIndex]["Start time"]
+        for qIndex, q in enumerate(questions):
+            startTime = q["Start time"]
             
-            endTime = questions[qIndex]["End time"]
+            endTime = q["End time"]
             if not endTime:
                 try:
-                    if questions[qIndex + 1]["Session #"] == questions[qIndex]["Session #"]:
+                    if questions[qIndex + 1]["Session #"] == q["Session #"]:
                         endTime = questions[qIndex + 1]["Start time"]
                 except IndexError:
                     pass
             
             if not endTime:
-                sessionNum = questions[qIndex]["Session #"]
+                endTime = FindSession(sessions,eventName,q["Session #"])["Duration"]
                 
-                for s in sessions:
-                    if s["Session #"] == sessionNum:
-                        endTime = s["Duration"]
-                
-            questions[qIndex]["Duration"] = TimeDeltaToStr(StrToTimeDelta(endTime) - StrToTimeDelta(startTime))
+            q["Duration"] = TimeDeltaToStr(StrToTimeDelta(endTime) - StrToTimeDelta(startTime))
         
         for index in range(len(questions)):
             questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
