@@ -14,8 +14,9 @@ def PrintModuleSeparator(moduleName:str) -> None:
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
 # The list of code modules/ops to implement
-moduleList = ['ParseCSV','SplitMp3','Prototype'] 
-# Owen is using his own conventions for OptimizeDatabase.py, so I removed this module for the time being 
+moduleList = ['ParseCSV','SplitMp3','Prototype','OptimizeDatabase']
+moduleList.remove('OptimizeDatabase')
+# Owen is using his own conventions for OptimizeDatabase.py, so remove this module for the time being 
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 
@@ -25,7 +26,7 @@ AP QA archive main Google Sheet.""")
 parser.add_argument('ops',type=str,help="""A comma-separated list of operations to perform. No spaces allowed. Available operations:
 ParseCSV - convert the csv files downloaded from the Google Sheet to SpreadsheetDatabase.json.
 SplitMp3 - split mp3 files into individual questions based on the times in SpreadsheetDatabase.json.
-Prototype - create various files to illustrate how Database.json should be interpreted.
+Prototype - create html files to illustrate how SpreadsheetDatabase.json should be interpreted.
 OptimizeDatabase - convert SpreadsheetDatabase.json to (optimized) Database.json
 All - run all the above modules in sequence.
 """)
