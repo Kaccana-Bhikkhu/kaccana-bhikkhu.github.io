@@ -278,12 +278,14 @@ class Formatter:
     def __init__(self):
         self.questionDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
         self.questionOmitTags = set() # Don't display these tags in question description
-        
+        self.questionOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.questionShortFormat = True
         
         self.headingShowEvent = True # Show the event name in headings?
+        self.headingShowSessionTitle = False # Show the session title in headings?
         self.headingLinks = True # Link to the event page in our website?
         self.headingAudio = False # Link to original session audio?
+        self.headingShowTags = True # List tags in the session heading
         
         pass
     
@@ -314,7 +316,11 @@ class Formatter:
         
         tagStrings = []
         for tag in question["Tags"]:
-            if tag not in self.questionOmitTags:
+            omitTags = self.questionOmitTags
+            if self.questionOmitSessionTags:
+                omitTags = set.union(omitTags,set(FindSession(gDatabase["Sessions"],question["Event"],question["Session #"])["Tags"]))
+            
+            if tag not in omitTags:
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
         
         a(' '.join(tagStrings))
@@ -337,11 +343,15 @@ class Formatter:
                     a(event["Title"])
                 a(", ")
             
+            sessionTitle = f'Session {session["Session #"]}'
+            if self.headingShowSessionTitle and session["Session title"]:
+                sessionTitle += ': ' + session["Session title"]
+            
             if self.headingLinks:
                 with a.a(href = EventLink(session["Event"],session["Session #"])):
-                    a(f'Session {session["Session #"]}')
+                    a(sessionTitle)
             else:
-                a(f'Session {session["Session #"]}')
+                a(sessionTitle)
 
             dateStr = ReformatDate(session['Date'])
             teacherList = ListLinkedTeachers(session["Teachers"])
@@ -350,6 +360,13 @@ class Formatter:
             if self.headingAudio:
                 durStr = TimeDeltaToStr(StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
                 a(f' – {Mp3SessionLink(session)} ({durStr}) ')
+            
+            if self.headingShowTags:
+                a(' ')
+                tagStrings = []
+                for tag in session["Tags"]:
+                    tagStrings.append('[' + HtmlTagLink(tag) + ']')
+                a(' '.join(tagStrings))
         
         return str(a)
 
@@ -419,6 +436,7 @@ def WriteAllQuestions(pageDir: str) -> None:
     
     formatter = Formatter()
     formatter.questionDefaultTeacher = ['AP']
+    formatter.headingShowSessionTitle = True
     a(HtmlQuestionList(gDatabase["Questions"],formatter))
     
     WriteHtmlFile(os.path.join(pageDir,"AllQuestions.html"),"All questions",str(a))
@@ -483,6 +501,8 @@ def WriteTagPages(tagPageDir: str) -> None:
         
         formatter = Formatter()
         formatter.questionOmitTags = set([tag])
+        formatter.headingShowTags = False
+        formatter.questionOmitSessionTags = False
         a(HtmlQuestionList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
@@ -542,6 +562,7 @@ def WriteEventPages(tagPageDir: str) -> None:
         
         formatter = Formatter()
         formatter.headingShowEvent = False
+        formatter.headingShowSessionTitle = True
         formatter.headingLinks = False
         formatter.headingAudio = True
         a(HtmlQuestionList(questions,formatter))

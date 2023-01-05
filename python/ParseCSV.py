@@ -571,7 +571,7 @@ def VerifyListCounts(database):
         if listCount != int(database["Tag"][tag]["#"]):
             print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["Tag"][tag]["#"]} items, but we count {listCount}')
     
-    # Check for duplicate tags
+    # Check for duplicate question tags
     for q in database["Questions"]:
         if len(set(q["Tags"])) != len(q["Tags"]) and gOptions.verbosity > 1:
             print(f"Duplicate tags in f{eventName} S{q['Session #']} Q{q['Question #']} {q['Tags']}")
