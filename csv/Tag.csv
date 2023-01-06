@@ -1,4 +1,4 @@
-Count,59,285,28,218,8,7,,10,48,2,296,208,219,543 / 163 unique,219
+Count,59,290,28,217,8,7,,10,48,2,301,207,224,543 / 163 unique,224
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Tag count,Pali tag menu
 1,.,Skillful qualities,,kusalā dhammā,,,,,,,Skillful qualities,kusalā dhammā,,,
 2,,Middle Path,,majjhimā paṭipadā,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,1,Middle Path [majjhimā paṭipadā]
@@ -98,7 +98,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,,,,,,,,,,   ,,,,
 2,,Gratitude,,kataññu,,,,,,,   Gratitude,kataññu,Gratitude,11,Gratitude [kataññu]
 2,,Merit,,puññā,,,,,,,   Merit,puññā,Merit,6,Merit [puññā]
-2,,Forgiveness,,abhaya,,,,,,,   Forgiveness,abhaya,Forgiveness,3,Forgiveness [abhaya]
+2,,Forgiveness,,,,,,,,,   Forgiveness,,Forgiveness,3,Forgiveness
 2,,Contentment,,santuṭṭhi,,,,,,,   Contentment,santuṭṭhi,Contentment,2,Contentment [santuṭṭhi]
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -108,7 +108,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Greed,,lobha,,,,,Generosity,,      Greed,lobha,Greed,0,Greed [lobha]
 3,,Hatred,,dosa,,,,Ill-will,,,      Hatred,dosa,,,
 3,,Delusion,,moha,,,,,,,      Delusion,moha,Delusion,3,Delusion [moha]
-2,,Fear,,bhaya,,,,,,,   Fear,bhaya,Fear,1,Fear [bhaya]
+,,,,,,,,,,,,,,,
 2,,Outflows,,āsavā,,,,,,,   Outflows,āsavā,Outflows,2,Outflows [āsavā]
 3,,Sensuality,,kāmāsava,,,,Sensual desire,,,      Sensuality,kāmāsava,,,
 3,*,Becoming,,bhavāsava,,,,,,,      Becoming,bhavāsava,Becoming,5,Becoming [bhavāsava]
@@ -170,7 +170,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Mental volition,,manosañcetanā,Volition,cetanā,,,,,      Mental volition,cetanā,Volition,7,Volition [cetanā]
 3,,Consciousness,,viññāṇa,,,,,,,      Consciousness,viññāṇa,,,
 2,,Humor,,,,,,,,,   Humor,,Humor,1,Humor
-,,,,,,,,,,,,,,,
+2,,Fear,,bhaya,,,,,,,   Fear,bhaya,Fear,1,Fear [bhaya]
 1,,Triple Gem,3,,,,,,,,Triple Gem,,Triple Gem,3,Triple Gem
 2,,,,Buddha,,,,,,,   Buddha,,Buddha,3,Buddha
 2,,,,Dhamma,,,,,,,   Dhamma,,Dhamma,0,Dhamma
@@ -275,9 +275,9 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,History/Western Buddhism,,,,,,,,,   History/Western Buddhism,,History/Western Buddhism,0,History/Western Buddhism
 3,,History/Western Buddhist monasticism,,,,,,,Western Buddhist monasticism,,      History/Western Buddhist monasticism,,History/Western Buddhist monasticism,1,History/Western Buddhist monasticism
 4,,History/Abhayagiri Monastery,,,,,,,,,         History/Abhayagiri Monastery,,History/Abhayagiri Monastery,1,History/Abhayagiri Monastery
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
+2,,History/Cultural context,,,,,,,,,   History/Cultural context,,History/Cultural context,0,History/Cultural context
+2,,Other religions,,,,,,,,,   Other religions,,Other religions,0,Other religions
+3,,Christianity,,,,,,,,,      Christianity,,Christianity,0,Christianity
 1,,Renunciant practice,,,,,,,,,Renunciant practice,,Renunciant practice,0,Renunciant practice
 2,,Eight precepts,8,aṭṭha sikkhāpadāni,,,,,,,   Eight precepts,aṭṭha sikkhāpadāni,,,
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,,
@@ -293,6 +293,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Four requisites,4,,,,,,,,   Four requisites,,Four requisites,0,Four requisites
 3,,Robes,,cīvara,,,,,,,      Robes,cīvara,Robes,0,Robes [cīvara]
 3,,Almsfood,,piṇḍapāta,,,,,,,      Almsfood,piṇḍapāta,Almsfood,0,Almsfood [piṇḍapāta]
+4,,Almsbowl,,,,,,,,,         Almsbowl,,Almsbowl,0,Almsbowl
 3,,Shelter,,senāsana,,,,,,,      Shelter,senāsana,Shelter,0,Shelter [senāsana]
 3,,Medicinal requisites,,gilāna-paccaya-bhesajja-parikkhāraṃ,,,,,,,      Medicinal requisites,gilāna-paccaya-bhesajja-parikkhāraṃ,Medicinal requisites,1,Medicinal requisites [gilāna-paccaya-bhesajja-parikkhāraṃ]
 2,,Qualities for non-decline,4,aparihānāya dhammā,,,,,,,   Qualities for non-decline,aparihānāya dhammā,Qualities for non-decline,0,Qualities for non-decline [aparihānāya dhammā]
@@ -304,6 +305,8 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Monastic life,,,,,,,,,   Monastic life,,Monastic life,9,Monastic life
 3,,Monastic life/Motivation,,,,,,,,,      Monastic life/Motivation,,Monastic life/Motivation,2,Monastic life/Motivation
 3,,,,Vinaya,,,,,,,      Vinaya,,Vinaya,0,Vinaya
+,,,,,,,,,,,,,,,
+3,,Respect,,,,,,,,,      Respect,,Respect,0,Respect
 3,,Respect for elders,,,,,,,,,      Respect for elders,,Respect for elders,0,Respect for elders
 3,,Western Buddhist monasticism,,,,,,,History/Western Buddhist monasticism,,      Western Buddhist monasticism,,Western Buddhist monasticism,0,Western Buddhist monasticism
 ,,,,,,,,,,,,,,,

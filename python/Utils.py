@@ -20,7 +20,7 @@ def StrToTimeDelta(inStr):
     except ValueError:
         pass
         
-    raise ValueError(inStr + " cannot be converted to a time.")
+    raise ValueError("'" + inStr + "' cannot be converted to a time.")
 
 def TimeDeltaToStr(time):
     "Convert a timedelta object to the form [HH:]MM:SS"
