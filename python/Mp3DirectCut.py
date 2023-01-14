@@ -103,9 +103,7 @@ def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFi
     
     if outputDir is None:
         outputDir = directory
-    
-    print(throwawayTracks)
-    
+        
     splitIndex = 0
     for trackNum in range(1,totalTracks + 1):
         trackFile = os.path.join(directory,trackNames[trackNum - 1])
