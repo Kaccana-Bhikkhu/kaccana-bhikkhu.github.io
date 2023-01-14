@@ -86,6 +86,9 @@ def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFi
                 prevTrackEnd = point[2]
             else:
                 prevTrackEnd = None
+        
+        if prevTrackEnd is not None: # If the last track has an end time, discard the last mp3 file from the split operation
+            throwawayTracks.add(trackNum)
             
     totalTracks = trackNum
     trackNames = [fileNameBase + f' Track {track:02d}.mp3' for track in range(1,totalTracks + 1)]
@@ -100,6 +103,8 @@ def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFi
     
     if outputDir is None:
         outputDir = directory
+    
+    print(throwawayTracks)
     
     splitIndex = 0
     for trackNum in range(1,totalTracks + 1):
