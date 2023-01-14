@@ -95,7 +95,7 @@ def CSVFileToDictList(fileName,skipLines = 0,removeKeys = []):
     with open(fileName,encoding='utf8') as file:
         return CSVToDictList(file,skipLines,removeKeys)
 
-def ListifyKey(dictList,key,delimiter=','):
+def ListifyKey(dictList,key,delimiter=';'):
     """Convert the values in a specific key to a list for all dictionaries in dictList.
     First, look for other keys with names like dictKey+'2', etc.
     Then split all these keys using the given delimiter, concatenate the results, and store it in dictKey.
@@ -379,7 +379,7 @@ def LoadEventFile(database,eventName,directory):
         eventDesc = DictFromPairs(rawEventDesc,"Key","Value")
         
         for key in ["Teachers","Tags"]:
-            eventDesc[key] = [s.strip() for s in eventDesc[key].split(',') if s.strip()]
+            eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
         for key in ["Sessions","Questions","Answers listened to","Tags applied","Invalid tags"]:
             eventDesc[key] = int(eventDesc[key])
         
