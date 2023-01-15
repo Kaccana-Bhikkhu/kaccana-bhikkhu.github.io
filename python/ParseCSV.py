@@ -425,8 +425,9 @@ def LoadEventFile(database,eventName,directory):
             
             ourSession = FindSession(sessions,eventName,q["Session #"])
             
-            q["Tags"] = q["QTag"] + q["ATag"] + ourSession["Tags"] # Combine question and session tags
-
+            q["Tags"] = q["QTag"] + q["ATag"] # Combine question and session tags unless the question is off-topic
+            if not BooleanValue(q.pop("Off topic?","No")): # We don't need the off topic key after this, so throw it away with pop
+                q["Tags"] += ourSession["Tags"]
 
             if not q["Teachers"]:
                 q["Teachers"] = ourSession["Teachers"]
