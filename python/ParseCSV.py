@@ -84,8 +84,7 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None):
     removeKeys.append("")
     for key in removeKeys:
         for row in output:
-            if key in row:
-                del row[key]
+            row.pop(key,None)
     
     return output
     
@@ -416,6 +415,8 @@ def LoadEventFile(database,eventName,directory):
         ConvertToInteger(questions,"Session #")
         
         questions = [q for q in questions if q["Session #"] in includedSessions]
+        if gOptions.ignoreAnnotations:
+            questions = [q for q in questions if q["Start time"]] # Annotations leave Start time key blank, so this removes them
         
         qNumber = 1 # Question number counts only questions allowed by teacher consent policies
         fileNumber = 1 
@@ -587,6 +588,7 @@ def AddArguments(parser):
     parser.add_argument('--zeroCount',action='store_true',help="Write count=0 keys to json file; otherwise write only non-zero keys")
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
+    parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process story and reference annotations")
 
 gOptions = None
 
@@ -597,6 +599,7 @@ def main(clOptions,database):
     
     global gOptions
     gOptions = clOptions
+    gOptions.ignoreAnnotations = True # For the time being (Winter Retreat 2023), ignore annotations to avoid too much coding
     
     LoadSummary(database,os.path.join(gOptions.csvDir,"Summary.csv"))
    
