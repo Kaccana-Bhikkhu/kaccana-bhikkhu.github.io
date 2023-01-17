@@ -43,6 +43,8 @@ def main(clOptions,database):
         return # No need to run SplitMp3 if all files are remote
     
     questionIndex = 0
+    sessionCount = 0
+    mp3SplitCount = 0
     questions = IncludeRedactedQuestions()
     for session in gDatabase["Sessions"]:
         
@@ -50,6 +52,8 @@ def main(clOptions,database):
         event = session["Event"]
         questionList = []
         fileNumber = 1
+        
+        sessionCount += 1
         
         baseFileName = f"{event}_S{sessionNumber:02d}_"
         while questionIndex < len(questions) and questions[questionIndex]["Event"] == event and questions[questionIndex]["Session #"] == sessionNumber:
@@ -115,5 +119,9 @@ def main(clOptions,database):
             
             os.rename(scratchFilePath,outputFilePath)
         
+        mp3SplitCount += 1
         if gOptions.verbose >= 2:
             print(f"Split {session['Filename']} into {len(questionList)} files.")
+    
+    if gOptions.verbose > 0:
+        print(f"   {mp3SplitCount} sessions split; all files already present for {sessionCount - mp3SplitCount} sessions.")
