@@ -370,6 +370,18 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
         
     return consent
 
+def AddAnnotation(question: dict,annotation: dict):
+    "Add an annotation to a question"
+    
+    if annotation["Kind / Annotation"] == "Extra tags":
+        question["Tags"] += annotation["QTag"]
+        question["Tags"] += annotation["ATag"]
+    
+    if gOptions.ignoreAnnotations:
+        return
+    
+    print("We don't yet support annotation",annotation["Kind / Annotation"])
+    
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
@@ -404,23 +416,28 @@ def LoadEventFile(database,eventName,directory):
         sessions = [s for s in sessions if TeacherConsent(database["Teacher"],s["Teachers"],"Index sessions?")]
             # Remove sessions we didn't get consent for
 
-        includedSessions = set(s["Session #"] for s in sessions)
-
         
-        questions = CSVToDictList(file)
+        rawQuestions = CSVToDictList(file)
         
         for key in ["Teachers","QTag1","ATag1"]:
-            ListifyKey(questions,key)
-        ConvertToInteger(questions,"Session #")
+            ListifyKey(rawQuestions,key)
+        ConvertToInteger(rawQuestions,"Session #")
         
-        questions = [q for q in questions if q["Session #"] in includedSessions]
-        if gOptions.ignoreAnnotations:
-            questions = [q for q in questions if q["Start time"]] # Annotations leave Start time key blank, so this removes them
+        includedSessions = set(s["Session #"] for s in sessions)
+        rawQuestions = [q for q in rawQuestions if q["Session #"] in includedSessions]
         
         qNumber = 1 # Question number counts only questions allowed by teacher consent policies
         fileNumber = 1 
-        lastSession = 0 
-        for q in questions:
+        lastSession = 0
+        prevQuestion = None
+        questions = []
+        for q in rawQuestions:
+            if not q["Start time"]: # If Start time is blank, this is an annotation to the previous question
+                AddAnnotation(prevQuestion,q)
+                continue
+            else:
+                q["Kind"] = q.pop("Kind / Annotation","") # Otherwise it specifies the kind of question ("" = Question, Story, or Discussion)
+            
             q["Event"] = eventName
             
             ourSession = FindSession(sessions,eventName,q["Session #"])
@@ -446,7 +463,7 @@ def LoadEventFile(database,eventName,directory):
                 q["Exclude?"] = False
             else:
                 q["Exclude?"] = True # Convert this value to boolean
-                    
+            
             q["Question #"] = qNumber
             q["File #"] = fileNumber
             
@@ -454,6 +471,9 @@ def LoadEventFile(database,eventName,directory):
                 del q["QTag"]
                 del q["ATag"]
                 del q["AListen?"]
+                
+            questions.append(q)
+            prevQuestion = q
         
         for qIndex, q in enumerate(questions):
             startTime = q["Start time"]
