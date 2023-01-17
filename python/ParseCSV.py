@@ -405,7 +405,8 @@ def LoadEventFile(database,eventName,directory):
             
         if not gOptions.ignoreExcludes:
             sessions = [s for s in sessions if not BooleanValue(s["Exclude?"])] # Remove excluded sessions
-        
+            # Remove excluded sessions
+            
         for s in sessions:
             s["Event"] = eventName
             s = ReorderKeys(s,["Event","Session #"])
@@ -425,7 +426,8 @@ def LoadEventFile(database,eventName,directory):
         
         includedSessions = set(s["Session #"] for s in sessions)
         rawQuestions = [q for q in rawQuestions if q["Session #"] in includedSessions]
-        
+            # Remove questions and annotations in sessions we didn't get consent for
+            
         qNumber = 1 # Question number counts only questions allowed by teacher consent policies
         fileNumber = 1 
         lastSession = 0
@@ -436,7 +438,7 @@ def LoadEventFile(database,eventName,directory):
                 AddAnnotation(prevQuestion,q)
                 continue
             else:
-                q["Kind"] = q.pop("Kind / Annotation","") # Otherwise it specifies the kind of question ("" = Question, Story, or Discussion)
+                q["Kind"] = q.pop("Kind / Annotation","") # Otherwise Kind / Annotation specifies the kind of question ("" = Question, "Story", or "Discussion")
             
             q["Event"] = eventName
             
@@ -502,9 +504,9 @@ def LoadEventFile(database,eventName,directory):
             for q in questions:
                 del q["Exclude?"]
         
-            """for q in removedQuestions: # Redact information about these questions
-                for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #","Exclude?"]:
-                    q.pop(key,None)"""
+        for q in removedQuestions: # Redact information about these questions
+            for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #","Exclude?","Kind","Duration"]:
+                q.pop(key,None)
         
         sessionsWithQuestions = set(q["Session #"] for q in questions)
         sessions = [s for s in sessions if s["Session #"] in sessionsWithQuestions]
