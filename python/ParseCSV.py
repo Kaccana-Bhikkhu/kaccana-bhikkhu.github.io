@@ -210,9 +210,6 @@ def LoadTagsFile(database,tagFileName):
             item["Item count"] = int(digitFlag[0])
         else:
             item["Item count"] = 0 if item["Virtual"] else 1
-    
-    database["Tag_Raw"] = rawTagList
-    database["Tag_Subsumed"] = {} # A dictionary of subsumed tags for future reference
 
     # Next build the main tag dictionary
     tags = {}
@@ -221,9 +218,9 @@ def LoadTagsFile(database,tagFileName):
     fullNamePreference = ["Full tag","Pāli"]
     
     # Remove any blank values from the list before looping over it
-    for index in reversed(range(len(rawTagList))):
-        if not FirstValidValue(rawTagList[index],namePreference):
-            del rawTagList[index]
+    rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
+    
+    subsumedTags = {} # A dictionary of subsumed tags for future reference
     
     tagStack = [] # Supertag ancestry stack
     
@@ -278,7 +275,7 @@ def LoadTagsFile(database,tagFileName):
         
         # Subsumed tags don't have a tag entry
         if rawTag["Subsumed under"]:
-            database["Tag_Subsumed"][tagName] = rawTag["Subsumed under"]
+            subsumedTags[tagName] = rawTag["Subsumed under"]
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
@@ -301,6 +298,8 @@ def LoadTagsFile(database,tagFileName):
         tags[tagName] = tagDesc
     
     database["Tag"] = tags
+    database["Tag_Raw"] = rawTagList
+    database["Tag_Subsumed"] = subsumedTags
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
