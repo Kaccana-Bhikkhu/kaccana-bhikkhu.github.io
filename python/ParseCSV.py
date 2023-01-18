@@ -546,9 +546,10 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
             try:
                 if countKey not in countDicts[item]:
                     countDicts[item][countKey] = 0
+                countDicts[item][countKey] += 1
             except KeyError:
-                print(f"CountInstances: Can't match key {item} in list of {sourceKey}")
-            countDicts[item][countKey] += 1
+                print(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+            
     
 
 def CountAndVerify(database):
