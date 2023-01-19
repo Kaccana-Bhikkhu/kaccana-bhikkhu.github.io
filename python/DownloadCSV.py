@@ -71,8 +71,8 @@ def main(clOptions,_):
     if gOptions.sheets != 'All' and gOptions.sheets != 'Default':
         gOptions.sheets = gOptions.sheets.split(',')
         
-    downloadSummary = True
     if os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All':
+        downloadSummary = False
         oldSheetIds = ReadSheetIds()
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
@@ -83,10 +83,12 @@ def main(clOptions,_):
             else:
                 gOptions.sheets = gOptions.events + ['Tag']
         
-        downloadSummary = False
+        # If there's a sheet we don't recognize, download Summary.csv to see if we can find it
         for sheet in gOptions.sheets:
             if sheet not in oldSheetIds:
                 downloadSummary = True
+    else:
+        downloadSummary = True
         
     if downloadSummary:
         DownloadSummarySheet()
