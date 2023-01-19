@@ -95,7 +95,7 @@ def main(clOptions,_):
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
         
-        if gOptions.sheets == 'Default':
+        if gOptions.sheets == 'Default': # Default is to download event files and Tag.csv since the other csv files rarely change
             if gOptions.events == 'All':
                 gOptions.sheets = allEvents + ['Tag']
             else:
@@ -110,11 +110,11 @@ def main(clOptions,_):
         DownloadSummarySheet()
         sheetIds = ReadSheetIds()
         if gOptions.verbose > 1:
-            print("   Downloaded Summary.csv")
+            print("Downloaded Summary.csv")
     else:
         sheetIds = oldSheetIds
         if gOptions.verbose > 1:
-            print("   Didn't download Summary.csv")
+            print("Didn't download Summary.csv")
         
     
     sheetIds.pop('Summary',None) # No need to download summary again
