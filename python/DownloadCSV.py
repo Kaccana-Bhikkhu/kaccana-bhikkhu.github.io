@@ -115,5 +115,8 @@ def main(clOptions,_):
     
     DownloadSheets(sheetIds)
     if gOptions.verbose > 0:
-        print(f'   Downloaded {len(sheetIds)} sheets: {", ".join(sheetIds.keys())}')
+        downloadedSheets = list(sheetIds.keys())
+        if downloadSummary:
+            downloadedSheets = ['Summary'] + downloadedSheets
+        print(f'   Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
     
