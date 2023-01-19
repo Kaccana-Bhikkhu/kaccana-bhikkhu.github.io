@@ -11,29 +11,11 @@ def BuildSheetUrl(docId: str, sheetId: str):
     
     return f'https://docs.google.com/spreadsheets/d/{docId}/export?format=csv&gid={sheetId}'
 
-def DownloadFile(url,filename,checkSize = True):
-    if os.path.exists(filename):
-        if checkSize:
-            localSize = os.path.getsize(filename)
-        else:
-            return 0
-    else:
-        localSize = 0
+def DownloadFile(url,filename):
         
     with urllib.request.urlopen(url) as remoteFile:
-        info = remoteFile.info()
-        if "Content-Length" in info:
-            remoteSize = int(remoteFile.info()["Content-Length"])
-            if localSize == remoteSize:
-                return 0
-        
         with open(filename,'wb') as localFile:
             shutil.copyfileobj(remoteFile, localFile)
-            
-        if localSize > 0:
-            return 2
-        else:
-            return 1
 
 def DownloadSheetCSV(docId: str, sheetId: str, filePath: str) -> None:
     "Download a Google Sheet with the given docId and sheetId to filePath"
