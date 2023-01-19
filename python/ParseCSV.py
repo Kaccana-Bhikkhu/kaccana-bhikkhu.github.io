@@ -88,11 +88,11 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None):
     
     return output
     
-def CSVFileToDictList(fileName,skipLines = 0,removeKeys = []):
+def CSVFileToDictList(fileName,*args,**kwArgs):
     """Read a CSV file and convert it to a list of dictionaries"""
     
     with open(fileName,encoding='utf8') as file:
-        return CSVToDictList(file,skipLines,removeKeys)
+        return CSVToDictList(file,*args,**kwArgs)
 
 def ListifyKey(dictList,key,delimiter=';'):
     """Convert the values in a specific key to a list for all dictionaries in dictList.
@@ -164,7 +164,7 @@ def DictFromPairs(inList,keyKey,valueKey):
     return outDict
 
 def LoadSummary(database,summaryFileName):
-    summaryList = CSVFileToDictList(summaryFileName,skipLines = 1,removeKeys = ["Seconds","SortBy"])
+    summaryList = CSVFileToDictList(summaryFileName,skipLines = 1,removeKeys = ["Seconds","SortBy"],endOfSection = '<---->')
     
     for numericalKey in ["Sessions","Questions","Answers listened to","Tags applied","Invalid tags"]:
         ConvertToInteger(summaryList,numericalKey)
@@ -663,7 +663,7 @@ def main(clOptions,database):
     if gOptions.verbose > 0:
         VerifyListCounts(database)
         
-    database = ReorderKeys(database,["Tag_DisplayList","Tag","Tag_Raw"])
+    # database = ReorderKeys(database,["Tag_DisplayList","Tag","Tag_Raw"])
     if not gOptions.jsonNoClean:
         del database["Tag_Raw"]
         
