@@ -3,6 +3,7 @@
 import os, re, csv, json
 from Utils import slugify, StrToTimeDelta, TimeDeltaToStr, FindSession
 from typing import List
+from Prototype import QuestionDurationStr
 
 def SniffCSVDialect(inFile,scanLength = 4096):
 	inFile.seek(0)
@@ -673,4 +674,7 @@ def main(clOptions,database):
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(database, file, ensure_ascii=False, indent=2)
+    
+    if gOptions.verbose > 0:
+        print("   " + QuestionDurationStr(database["Questions"]))
     
