@@ -604,7 +604,6 @@ def VerifyListCounts(database):
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
-    parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
     parser.add_argument('--ignoreTeacherConsent',action='store_true',help="Ignore teacher consent flags - debugging only")
     parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and question flags - debugging only")
     parser.add_argument('--zeroCount',action='store_true',help="Write count=0 keys to json file; otherwise write only non-zero keys")

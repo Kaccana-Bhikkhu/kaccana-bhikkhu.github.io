@@ -14,7 +14,7 @@ def PrintModuleSeparator(moduleName:str) -> None:
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
 # The list of code modules/ops to implement
-moduleList = ['ParseCSV','SplitMp3','Prototype','OptimizeDatabase']
+moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Prototype','OptimizeDatabase']
 moduleList.remove('OptimizeDatabase')
 # Owen is using his own conventions for OptimizeDatabase.py, so remove this module for the time being 
 
@@ -32,6 +32,7 @@ All - run all the above modules in sequence.
 """)
 
 parser.add_argument('--homeDir',type=str,default='.',help='All other pathnames are relative to this directory; Default: ./')
+parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
 parser.add_argument('--sessionMp3',type=str,default='remote',help='Session audio file link location; default: remote - use external Mp3 URL from session database')
@@ -47,7 +48,16 @@ parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbo
 clOptions = parser.parse_args()
 clOptions.verbose -= clOptions.quiet
 
+if not os.path.exists(clOptions.homeDir):
+    os.makedirs(clOptions.homeDir)
 os.chdir(clOptions.homeDir)
+
+if clOptions.verbose > 0 and clOptions.homeDir != '.':
+    print("Home directory:",clOptions.homeDir)
+
+if clOptions.events != 'All':
+    clOptions.events = clOptions.events.split(',')
+        # clOptions.events is now either the string 'All' or a list of strings
 
 if clOptions.ops.strip() == 'All':
     opList = moduleList
@@ -59,8 +69,8 @@ for verb in opList:
     if verb not in moduleList:
         print("Unsupported operation "+verb)
 
-if 'ParseCSV' in opList:
-    database = {} # If we're going to execute ParseCSV, let it fill up the database
+if 'ParseCSV' in opList or opList == ['DownloadCSV']:
+    database = {} # If we're going to execute ParseCSV, let it fill up the database; if we only download CSV files, we don't need the database
 else:
     with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
         database = json.load(file)
