@@ -298,7 +298,7 @@
       "Primaries": 1,
       "html file": "renunciation.html",
       "List index": 5,
-      "Question count": 1
+      "Question count": 2
     },
     "Right speech": {
       "Tag": "Right speech",
@@ -3144,7 +3144,7 @@
       "html file": "sangha.html",
       "List index": 179,
       "Session count": 1,
-      "Question count": 6
+      "Question count": 7
     },
     "Precepts": {
       "Tag": "Precepts",
@@ -3245,7 +3245,8 @@
       "Copies": 2,
       "Primaries": 1,
       "html file": "eight-precepts.html",
-      "List index": 188
+      "List index": 188,
+      "Question count": 1
     },
     "Eating after noon": {
       "Tag": "Eating after noon",
@@ -3969,7 +3970,7 @@
       "Primaries": 0,
       "html file": "long-term-practice.html",
       "List index": 235,
-      "Question count": 9
+      "Question count": 10
     },
     "Nature of the cosmos": {
       "Tag": "Nature of the cosmos",
@@ -4217,14 +4218,15 @@
       "Virtual": false,
       "Subtags": [
         "Teaching Dhamma",
-        "Monastic teachers"
+        "Monastic teachers",
+        "Lay teachers"
       ],
       "Supertags": [],
       "Copies": 1,
       "Primaries": 0,
       "html file": "teachers.html",
       "List index": 248,
-      "Question count": 2
+      "Question count": 4
     },
     "Teaching Dhamma": {
       "Tag": "Teaching Dhamma",
@@ -4243,7 +4245,7 @@
       "Primaries": 0,
       "html file": "teaching-dhamma.html",
       "List index": 249,
-      "Question count": 10
+      "Question count": 11
     },
     "Monastic teachers": {
       "Tag": "Monastic teachers",
@@ -4307,7 +4309,7 @@
       "Primaries": 0,
       "html file": "ajahn-chah.html",
       "List index": 252,
-      "Question count": 15
+      "Question count": 17
     },
     "Ajahn Chah lineage": {
       "Tag": "Ajahn Chah lineage",
@@ -4319,9 +4321,12 @@
       "Related": [],
       "Virtual": false,
       "Subtags": [
+        "Ajahn Jun",
         "Ajahn Liem",
+        "Ajahn Mahā Amon",
         "Ajahn Sumedho",
-        "Ajahn Pasanno"
+        "Ajahn Pasanno",
+        "Ajahn Amaro"
       ],
       "Supertags": [
         "Monastic teachers"
@@ -4330,6 +4335,25 @@
       "Primaries": 0,
       "html file": "ajahn-chah-lineage.html",
       "List index": 253
+    },
+    "Ajahn Jun": {
+      "Tag": "Ajahn Jun",
+      "Pāli": "",
+      "Full tag": "Ajahn Jun",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "ajahn-jun.html",
+      "List index": 254,
+      "Question count": 1
     },
     "Ajahn Liem": {
       "Tag": "Ajahn Liem",
@@ -4347,7 +4371,26 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-liem.html",
-      "List index": 254,
+      "List index": 255,
+      "Question count": 2
+    },
+    "Ajahn Mahā Amon": {
+      "Tag": "Ajahn Mahā Amon",
+      "Pāli": "",
+      "Full tag": "Ajahn Mahā Amon",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "ajahn-maha-amon.html",
+      "List index": 256,
       "Question count": 1
     },
     "Ajahn Sumedho": {
@@ -4366,7 +4409,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-sumedho.html",
-      "List index": 255
+      "List index": 257,
+      "Question count": 2
     },
     "Ajahn Pasanno": {
       "Tag": "Ajahn Pasanno",
@@ -4386,8 +4430,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-pasanno.html",
-      "List index": 256,
-      "Question count": 11
+      "List index": 258,
+      "Question count": 13
     },
     "Ajahn Pasanno/Pithy": {
       "Tag": "Ajahn Pasanno/Pithy",
@@ -4405,8 +4449,27 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-pasannopithy.html",
-      "List index": 257,
-      "Question count": 4
+      "List index": 259,
+      "Question count": 5
+    },
+    "Ajahn Amaro": {
+      "Tag": "Ajahn Amaro",
+      "Pāli": "",
+      "Full tag": "Ajahn Amaro",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "ajahn-amaro.html",
+      "List index": 260,
+      "Question count": 1
     },
     "Other Thai Forest teachers": {
       "Tag": "Other Thai Forest teachers",
@@ -4423,6 +4486,8 @@
         "Ajahn Baen",
         "Ajahn Tongrat",
         "Ajahn Kaew",
+        "Ajahn Buddhadāsa",
+        "P. A. Payutto",
         "Mae Chee Kaew"
       ],
       "Supertags": [
@@ -4431,7 +4496,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "other-thai-forest-teachers.html",
-      "List index": 258
+      "List index": 261
     },
     "Ajahn Lee Dhammadharo": {
       "Tag": "Ajahn Lee Dhammadharo",
@@ -4449,7 +4514,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-lee-dhammadharo.html",
-      "List index": 259,
+      "List index": 262,
       "Question count": 1
     },
     "Ajahn Maha Boowa": {
@@ -4468,8 +4533,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-maha-boowa.html",
-      "List index": 260,
-      "Question count": 2
+      "List index": 263,
+      "Question count": 3
     },
     "Ajahn Baen": {
       "Tag": "Ajahn Baen",
@@ -4487,8 +4552,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-baen.html",
-      "List index": 261,
-      "Question count": 1
+      "List index": 264,
+      "Question count": 2
     },
     "Ajahn Tongrat": {
       "Tag": "Ajahn Tongrat",
@@ -4506,7 +4571,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-tongrat.html",
-      "List index": 262,
+      "List index": 265,
       "Question count": 1
     },
     "Ajahn Kaew": {
@@ -4525,7 +4590,45 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ajahn-kaew.html",
-      "List index": 263,
+      "List index": 266,
+      "Question count": 1
+    },
+    "Ajahn Buddhadāsa": {
+      "Tag": "Ajahn Buddhadāsa",
+      "Pāli": "",
+      "Full tag": "Ajahn Buddhadāsa",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "ajahn-buddhadasa.html",
+      "List index": 267,
+      "Question count": 1
+    },
+    "P. A. Payutto": {
+      "Tag": "P. A. Payutto",
+      "Pāli": "",
+      "Full tag": "P. A. Payutto",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "p-a-payutto.html",
+      "List index": 268,
       "Question count": 1
     },
     "Mae Chee Kaew": {
@@ -4544,7 +4647,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "mae-chee-kaew.html",
-      "List index": 264,
+      "List index": 269,
       "Question count": 1
     },
     "Other Thai monastics": {
@@ -4563,7 +4666,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "other-thai-monastics.html",
-      "List index": 265,
+      "List index": 270,
       "Question count": 1
     },
     "Other Theravāda monastics": {
@@ -4582,7 +4685,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "other-theravada-monastics.html",
-      "List index": 266
+      "List index": 271
     },
     "Mahāyāna monastics": {
       "Tag": "Mahāyāna monastics",
@@ -4594,7 +4697,8 @@
       "Related": [],
       "Virtual": false,
       "Subtags": [
-        "Master Hsuan Hua"
+        "Master Hsuan Hua",
+        "Dōgen"
       ],
       "Supertags": [
         "Monastic teachers"
@@ -4602,7 +4706,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "mahayana-monastics.html",
-      "List index": 267
+      "List index": 272
     },
     "Master Hsuan Hua": {
       "Tag": "Master Hsuan Hua",
@@ -4620,8 +4724,45 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "master-hsuan-hua.html",
-      "List index": 268,
+      "List index": 273,
       "Question count": 1
+    },
+    "Dōgen": {
+      "Tag": "Dōgen",
+      "Pāli": "",
+      "Full tag": "Dōgen",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Mahāyāna monastics"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "dogen.html",
+      "List index": 274,
+      "Question count": 1
+    },
+    "Lay teachers": {
+      "Tag": "Lay teachers",
+      "Pāli": "",
+      "Full tag": "Lay teachers",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Teachers"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "lay-teachers.html",
+      "List index": 275
     },
     "Women in Buddhism": {
       "Tag": "Women in Buddhism",
@@ -4637,8 +4778,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "women-in-buddhism.html",
-      "List index": 269,
-      "Question count": 3
+      "List index": 276,
+      "Question count": 4
     },
     "History": {
       "Tag": "History",
@@ -4658,7 +4799,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "history.html",
-      "List index": 270
+      "List index": 277
     },
     "History/Early Buddhism": {
       "Tag": "History/Early Buddhism",
@@ -4676,7 +4817,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "historyearly-buddhism.html",
-      "List index": 271,
+      "List index": 278,
       "Question count": 3
     },
     "History/Thai Buddhism": {
@@ -4695,7 +4836,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "historythai-buddhism.html",
-      "List index": 272,
+      "List index": 279,
       "Question count": 11
     },
     "History/Western Buddhism": {
@@ -4716,7 +4857,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "historywestern-buddhism.html",
-      "List index": 273
+      "List index": 280,
+      "Question count": 1
     },
     "History/Western Buddhist monasticism": {
       "Tag": "History/Western Buddhist monasticism",
@@ -4734,7 +4876,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "historywestern-buddhist-monasticism.html",
-      "List index": 274,
+      "List index": 281,
       "Question count": 2
     },
     "Monasteries": {
@@ -4748,13 +4890,14 @@
       "Virtual": false,
       "Subtags": [
         "Thai monasteries",
-        "Western Ajahn Chah monasteries"
+        "Western Ajahn Chah monasteries",
+        "Monasteries in other traditions"
       ],
       "Supertags": [],
       "Copies": 1,
       "Primaries": 0,
       "html file": "monasteries.html",
-      "List index": 275
+      "List index": 282
     },
     "Thai monasteries": {
       "Tag": "Thai monasteries",
@@ -4774,7 +4917,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "thai-monasteries.html",
-      "List index": 276
+      "List index": 283
     },
     "Thai Ajahn Chah monasteries": {
       "Tag": "Thai Ajahn Chah monasteries",
@@ -4796,7 +4939,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "thai-ajahn-chah-monasteries.html",
-      "List index": 277
+      "List index": 284
     },
     "Wat Pah Pong": {
       "Tag": "Wat Pah Pong",
@@ -4814,8 +4957,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "wat-pah-pong.html",
-      "List index": 278,
-      "Question count": 2
+      "List index": 285,
+      "Question count": 4
     },
     "Wat Pah Nanachat": {
       "Tag": "Wat Pah Nanachat",
@@ -4833,7 +4976,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "wat-pah-nanachat.html",
-      "List index": 279,
+      "List index": 286,
       "Question count": 1
     },
     "Dtao Dtum": {
@@ -4852,7 +4995,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "dtao-dtum.html",
-      "List index": 280
+      "List index": 287
     },
     "Western Ajahn Chah monasteries": {
       "Tag": "Western Ajahn Chah monasteries",
@@ -4873,7 +5016,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "western-ajahn-chah-monasteries.html",
-      "List index": 281
+      "List index": 288
     },
     "Cittaviveka Monastery": {
       "Tag": "Cittaviveka Monastery",
@@ -4891,7 +5034,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "cittaviveka-monastery.html",
-      "List index": 282
+      "List index": 289,
+      "Question count": 1
     },
     "Abhayagiri Monastery": {
       "Tag": "Abhayagiri Monastery",
@@ -4909,8 +5053,47 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "abhayagiri-monastery.html",
-      "List index": 283,
-      "Question count": 4
+      "List index": 290,
+      "Question count": 5
+    },
+    "Monasteries in other traditions": {
+      "Tag": "Monasteries in other traditions",
+      "Pāli": "",
+      "Full tag": "Monasteries in other traditions",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [
+        "City of Ten Thousand Buddhas"
+      ],
+      "Supertags": [
+        "Monasteries"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "monasteries-in-other-traditions.html",
+      "List index": 291
+    },
+    "City of Ten Thousand Buddhas": {
+      "Tag": "City of Ten Thousand Buddhas",
+      "Pāli": "",
+      "Full tag": "City of Ten Thousand Buddhas",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Monasteries in other traditions"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "city-of-ten-thousand-buddhas.html",
+      "List index": 292,
+      "Question count": 1
     },
     "Cultural context": {
       "Tag": "Cultural context",
@@ -4931,7 +5114,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "cultural-context.html",
-      "List index": 284
+      "List index": 293,
+      "Question count": 1
     },
     "Culture/Natural environment": {
       "Tag": "Culture/Natural environment",
@@ -4949,7 +5133,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "culturenatural-environment.html",
-      "List index": 285
+      "List index": 294
     },
     "Culture/Indian Buddhism": {
       "Tag": "Culture/Indian Buddhism",
@@ -4967,7 +5151,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "cultureindian-buddhism.html",
-      "List index": 286
+      "List index": 295
     },
     "Culture/Thai Buddhism": {
       "Tag": "Culture/Thai Buddhism",
@@ -4985,8 +5169,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "culturethai-buddhism.html",
-      "List index": 287,
-      "Question count": 2
+      "List index": 296,
+      "Question count": 3
     },
     "Culture/Western Buddhism": {
       "Tag": "Culture/Western Buddhism",
@@ -5004,26 +5188,88 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "culturewestern-buddhism.html",
-      "List index": 288,
-      "Question count": 3
+      "List index": 297,
+      "Question count": 4
     },
-    "Other religions": {
-      "Tag": "Other religions",
+    "Other traditions": {
+      "Tag": "Other traditions",
       "Pāli": "",
-      "Full tag": "Other religions",
+      "Full tag": "Other traditions",
       "Full Pāli": "",
       "#": "",
       "Alternate translations": [],
       "Related": [],
       "Virtual": false,
       "Subtags": [
-        "Christianity"
+        "Mahāyāna",
+        "Vajrayāna",
+        "Christianity",
+        "Western psychology"
       ],
       "Supertags": [],
       "Copies": 1,
       "Primaries": 0,
-      "html file": "other-religions.html",
-      "List index": 289
+      "html file": "other-traditions.html",
+      "List index": 298
+    },
+    "Mahāyāna": {
+      "Tag": "Mahāyāna",
+      "Pāli": "",
+      "Full tag": "Mahāyāna",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [
+        "Zen"
+      ],
+      "Supertags": [
+        "Other traditions"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "mahayana.html",
+      "List index": 299,
+      "Question count": 1
+    },
+    "Zen": {
+      "Tag": "Zen",
+      "Pāli": "",
+      "Full tag": "Zen",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Mahāyāna"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "zen.html",
+      "List index": 300,
+      "Question count": 1
+    },
+    "Vajrayāna": {
+      "Tag": "Vajrayāna",
+      "Pāli": "",
+      "Full tag": "Vajrayāna",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Other traditions"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "vajrayana.html",
+      "List index": 301,
+      "Question count": 1
     },
     "Christianity": {
       "Tag": "Christianity",
@@ -5036,13 +5282,31 @@
       "Virtual": false,
       "Subtags": [],
       "Supertags": [
-        "Other religions"
+        "Other traditions"
       ],
       "Copies": 1,
       "Primaries": 0,
       "html file": "christianity.html",
-      "List index": 290,
-      "Question count": 2
+      "List index": 302,
+      "Question count": 3
+    },
+    "Western psychology": {
+      "Tag": "Western psychology",
+      "Pāli": "",
+      "Full tag": "Western psychology",
+      "Full Pāli": "",
+      "#": "",
+      "Alternate translations": [],
+      "Related": [],
+      "Virtual": false,
+      "Subtags": [],
+      "Supertags": [
+        "Other traditions"
+      ],
+      "Copies": 1,
+      "Primaries": 0,
+      "html file": "western-psychology.html",
+      "List index": 303
     },
     "Renunciant practice": {
       "Tag": "Renunciant practice",
@@ -5064,7 +5328,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "renunciant-practice.html",
-      "List index": 291
+      "List index": 304
     },
     "Sexual activity": {
       "Tag": "Sexual activity",
@@ -5082,7 +5346,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "sexual-activity.html",
-      "List index": 296
+      "List index": 309
     },
     "Celibacy": {
       "Tag": "Celibacy",
@@ -5100,7 +5364,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "celibacy.html",
-      "List index": 302,
+      "List index": 315,
       "Question count": 2
     },
     "Four requisites": {
@@ -5124,7 +5388,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "four-requisites.html",
-      "List index": 303,
+      "List index": 316,
       "Question count": 2
     },
     "Robes": {
@@ -5143,7 +5407,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "robes.html",
-      "List index": 304
+      "List index": 317,
+      "Question count": 1
     },
     "Almsfood": {
       "Tag": "Almsfood",
@@ -5164,7 +5429,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "almsfood.html",
-      "List index": 305
+      "List index": 318
     },
     "Almsbowl": {
       "Tag": "Almsbowl",
@@ -5182,7 +5447,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "almsbowl.html",
-      "List index": 306,
+      "List index": 319,
       "Question count": 1
     },
     "Almsround": {
@@ -5201,7 +5466,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "almsround.html",
-      "List index": 307,
+      "List index": 320,
       "Question count": 1
     },
     "Shelter": {
@@ -5220,7 +5485,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "shelter.html",
-      "List index": 308
+      "List index": 321
     },
     "Medicinal requisites": {
       "Tag": "Medicinal requisites",
@@ -5238,7 +5503,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "medicinal-requisites.html",
-      "List index": 309,
+      "List index": 322,
       "Question count": 1
     },
     "Qualities for non-decline": {
@@ -5262,7 +5527,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "qualities-for-non-decline.html",
-      "List index": 310
+      "List index": 323
     },
     "Sense restraint": {
       "Tag": "Sense restraint",
@@ -5280,7 +5545,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "sense-restraint.html",
-      "List index": 312,
+      "List index": 325,
       "Question count": 1
     },
     "Moderation in eating": {
@@ -5301,7 +5566,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "moderation-in-eating.html",
-      "List index": 313
+      "List index": 326
     },
     "Devotion to wakefulness": {
       "Tag": "Devotion to wakefulness",
@@ -5321,7 +5586,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "devotion-to-wakefulness.html",
-      "List index": 314,
+      "List index": 327,
       "Question count": 1
     },
     "Monastic life": {
@@ -5353,10 +5618,10 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "monastic-life.html",
-      "List index": 315,
+      "List index": 328,
       "Event count": 1,
-      "Session count": 5,
-      "Question count": 34
+      "Session count": 6,
+      "Question count": 37
     },
     "Monastic life/Motivation": {
       "Tag": "Monastic life/Motivation",
@@ -5374,7 +5639,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "monastic-lifemotivation.html",
-      "List index": 316,
+      "List index": 329,
       "Question count": 2
     },
     "Vinaya": {
@@ -5395,10 +5660,10 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "vinaya.html",
-      "List index": 317,
+      "List index": 330,
       "Event count": 1,
       "Session count": 1,
-      "Question count": 9
+      "Question count": 11
     },
     "Not handling money": {
       "Tag": "Not handling money",
@@ -5416,8 +5681,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "not-handling-money.html",
-      "List index": 318,
-      "Question count": 1
+      "List index": 331,
+      "Question count": 2
     },
     "Mutual lay/Saṅgha support": {
       "Tag": "Mutual lay/Saṅgha support",
@@ -5435,7 +5700,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "mutual-laysangha-support.html",
-      "List index": 319,
+      "List index": 332,
       "Question count": 1
     },
     "Rains retreat": {
@@ -5454,7 +5719,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "rains-retreat.html",
-      "List index": 320
+      "List index": 333
     },
     "Communal harmony": {
       "Tag": "Communal harmony",
@@ -5472,7 +5737,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "communal-harmony.html",
-      "List index": 322
+      "List index": 335,
+      "Question count": 1
     },
     "Respect": {
       "Tag": "Respect",
@@ -5490,7 +5756,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "respect.html",
-      "List index": 323,
+      "List index": 336,
       "Question count": 3
     },
     "Respect for elders": {
@@ -5509,7 +5775,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "respect-for-elders.html",
-      "List index": 324,
+      "List index": 337,
       "Question count": 7
     },
     "Attending to senior monks": {
@@ -5528,7 +5794,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "attending-to-senior-monks.html",
-      "List index": 325,
+      "List index": 338,
       "Question count": 4
     },
     "Simplicity": {
@@ -5547,7 +5813,8 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "simplicity.html",
-      "List index": 326
+      "List index": 339,
+      "Question count": 1
     },
     "Ascetic practices": {
       "Tag": "Ascetic practices",
@@ -5567,7 +5834,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "ascetic-practices.html",
-      "List index": 327
+      "List index": 340
     },
     "Wandering pilgrimage": {
       "Tag": "Wandering pilgrimage",
@@ -5585,7 +5852,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "wandering-pilgrimage.html",
-      "List index": 328
+      "List index": 341
     },
     "Disrobing": {
       "Tag": "Disrobing",
@@ -5603,7 +5870,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "disrobing.html",
-      "List index": 329
+      "List index": 342
     },
     "Everyday life practice": {
       "Tag": "Everyday life practice",
@@ -5631,7 +5898,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "everyday-life-practice.html",
-      "List index": 330
+      "List index": 343
     },
     "Lay life": {
       "Tag": "Lay life",
@@ -5649,7 +5916,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "lay-life.html",
-      "List index": 331,
+      "List index": 344,
       "Question count": 2
     },
     "Work": {
@@ -5670,7 +5937,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "work.html",
-      "List index": 339,
+      "List index": 352,
       "Question count": 5
     },
     "Relationships": {
@@ -5689,7 +5956,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "relationships.html",
-      "List index": 340,
+      "List index": 353,
       "Question count": 5
     },
     "Family": {
@@ -5708,7 +5975,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "family.html",
-      "List index": 341,
+      "List index": 354,
       "Question count": 11
     },
     "Politics and society": {
@@ -5727,7 +5994,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "politics-and-society.html",
-      "List index": 342,
+      "List index": 355,
       "Question count": 3
     },
     "Environment": {
@@ -5746,7 +6013,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "environment.html",
-      "List index": 343,
+      "List index": 356,
       "Question count": 1
     },
     "Health": {
@@ -5765,7 +6032,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "health.html",
-      "List index": 344
+      "List index": 357
     },
     "Cleanliness": {
       "Tag": "Cleanliness",
@@ -5783,7 +6050,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "cleanliness.html",
-      "List index": 345,
+      "List index": 358,
       "Question count": 1
     },
     "Community": {
@@ -5802,7 +6069,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "community.html",
-      "List index": 346,
+      "List index": 359,
       "Question count": 1
     },
     "Media": {
@@ -5821,7 +6088,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "media.html",
-      "List index": 347
+      "List index": 360
     },
     "Language": {
       "Tag": "Language",
@@ -5841,7 +6108,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "language.html",
-      "List index": 348
+      "List index": 361
     },
     "Pāli": {
       "Tag": "Pāli",
@@ -5859,7 +6126,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "pali.html",
-      "List index": 349
+      "List index": 362
     },
     "Question in Thai": {
       "Tag": "Question in Thai",
@@ -5877,7 +6144,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "question-in-thai.html",
-      "List index": 350,
+      "List index": 363,
       "Question count": 2
     },
     "Etymology": {
@@ -5896,7 +6163,7 @@
       "Copies": 1,
       "Primaries": 0,
       "html file": "etymology.html",
-      "List index": 351
+      "List index": 364
     }
   },
   "Tag_Subsumed": {
@@ -6011,9 +6278,9 @@
       "Website": "https://www.abhayagiri.org/talks/collections/1/104-readings-from-all-traditions-ajahn-chah-biography-and-vinaya-winter-retreat-2018",
       "Description": "Towards the end of Winter Retreat 2018, Tan Suhajjo and the Abhayagiri Community ask Ajahn Pasanno questions related to monastic life.",
       "Sessions": 11,
-      "Questions": 36,
+      "Questions": 39,
       "Answers listened to": 36,
-      "Tags applied": 163,
+      "Tags applied": 224,
       "Invalid tags": 0,
       "Duration": "6:44:55"
     }
@@ -6415,6 +6682,24 @@
       "Remote mp3 URL": "https://www.abhayagiri.org/media/audio/youtube/cWs21TyATEs.mp3",
       "Questions": 9,
       "Tags": [],
+      "Exclude?": "",
+      "Event": "WR2018-2"
+    },
+    {
+      "Session #": 4,
+      "Date": "20/3/2018",
+      "Filename": "2018-03-20 The Monastic Form in the West.mp3",
+      "Duration": "44:03",
+      "Teachers": [
+        "AP"
+      ],
+      "Session title": "The Monastic Form in the West",
+      "References": "",
+      "Remote mp3 URL": "https://www.abhayagiri.org/media/audio/youtube/7iFqaCgij4c.mp3",
+      "Questions": 3,
+      "Tags": [
+        "Monastic life"
+      ],
       "Exclude?": "",
       "Event": "WR2018-2"
     },
@@ -13503,9 +13788,9 @@
       "Kind": "Story",
       "Tags": [
         "Impermanence",
+        "Ajahn Pasanno/Pithy",
         "Teaching Dhamma",
-        "Clear comprehension",
-        "Ajahn Pasanno/Pithy"
+        "Clear comprehension"
       ],
       "Duration": "5:13"
     },
@@ -13563,6 +13848,100 @@
         "Ajahn Chah"
       ],
       "Duration": "4:29"
+    },
+    {
+      "Event": "WR2018-2",
+      "Session #": 4,
+      "Question #": 1,
+      "File #": 1,
+      "Start time": "0:05",
+      "End time": "",
+      "Teachers": [
+        "AP"
+      ],
+      "Question text": "What is the role of mentors and teachers in learning to use the monastic form skillfully?",
+      "Kind": "",
+      "Tags": [
+        "Teachers",
+        "Vinaya",
+        "Saṅgha",
+        "Ajahn Chah",
+        "Wat Pah Pong",
+        "Teaching Dhamma",
+        "Long-term practice",
+        "Monastic life",
+        "Ajahn Pasanno"
+      ],
+      "Duration": "6:57"
+    },
+    {
+      "Event": "WR2018-2",
+      "Session #": 4,
+      "Question #": 2,
+      "File #": 2,
+      "Start time": "7:02",
+      "End time": "",
+      "Teachers": [
+        "AP"
+      ],
+      "Question text": "Who were imporant mentors for you?",
+      "Kind": "",
+      "Tags": [
+        "Ajahn Pasanno",
+        "Teachers",
+        "Ajahn Chah",
+        "Ajahn Jun",
+        "Ajahn Mahā Amon",
+        "Ajahn Liem",
+        "Ajahn Sumedho",
+        "Monastic life",
+        "Ajahn Maha Boowa",
+        "Ajahn Baen",
+        "Ajahn Buddhadāsa",
+        "P. A. Payutto",
+        "Wat Pah Pong"
+      ],
+      "Duration": "6:34"
+    },
+    {
+      "Event": "WR2018-2",
+      "Session #": 4,
+      "Question #": 3,
+      "File #": 3,
+      "Start time": "13:36",
+      "End time": "",
+      "Teachers": [
+        "AP"
+      ],
+      "Question text": "Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?",
+      "Kind": "",
+      "Tags": [
+        "Mahāyāna",
+        "Vajrayāna",
+        "Culture/Western Buddhism",
+        "Culture/Thai Buddhism",
+        "Abhayagiri Monastery",
+        "Women in Buddhism",
+        "Robes",
+        "Cultural context",
+        "Ajahn Pasanno/Pithy",
+        "Monastic life",
+        "Vinaya",
+        "City of Ten Thousand Buddhas",
+        "Dōgen",
+        "Zen",
+        "Ajahn Sumedho",
+        "History/Western Buddhism",
+        "Simplicity",
+        "Christianity",
+        "Renunciation",
+        "Eight precepts",
+        "Not handling money",
+        "Cittaviveka Monastery",
+        "Ajahn Amaro",
+        "Communal harmony"
+      ],
+      "Duration": "30:27"
     },
     {
       "Event": "WR2018-2",
@@ -14005,9 +14384,9 @@
       "Index #": "1",
       "Name": "Renunciation",
       "Pāli": "nekkhamma",
-      "Question count": 1,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Renunciation (1) [nekkhamma]",
+      "Text": "Renunciation (2) [nekkhamma]",
       "Tag": "Renunciation"
     },
     {
@@ -14645,9 +15024,9 @@
       "Index #": "3",
       "Name": "Renunciation",
       "Pāli": "nekkhamma",
-      "Question count": 1,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Renunciation (1) [nekkhamma]",
+      "Text": "Renunciation (2) [nekkhamma]",
       "Tag": "Renunciation"
     },
     {
@@ -15745,9 +16124,9 @@
       "Index #": "3",
       "Name": "Saṅgha",
       "Pāli": "Saṅgha",
-      "Question count": 6,
+      "Question count": 7,
       "Subsumed": false,
-      "Text": "Saṅgha (6)",
+      "Text": "Saṅgha (7)",
       "Tag": "Saṅgha"
     },
     {
@@ -15835,9 +16214,9 @@
       "Index #": "",
       "Name": "Eight precepts",
       "Pāli": "aṭṭha sikkhāpadāni",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Eight precepts [aṭṭha sikkhāpadāni]",
+      "Text": "Eight precepts (1) [aṭṭha sikkhāpadāni]",
       "Tag": "Eight precepts"
     },
     {
@@ -15935,9 +16314,9 @@
       "Index #": "",
       "Name": "Monastic precepts",
       "Pāli": "",
-      "Question count": 9,
+      "Question count": 11,
       "Subsumed": true,
-      "Text": "Monastic precepts see Vinaya (9)",
+      "Text": "Monastic precepts see Vinaya (11)",
       "Tag": "Vinaya"
     },
     {
@@ -16305,9 +16684,9 @@
       "Index #": "",
       "Name": "Long-term practice",
       "Pāli": "",
-      "Question count": 9,
+      "Question count": 10,
       "Subsumed": false,
-      "Text": "Long-term practice (9)",
+      "Text": "Long-term practice (10)",
       "Tag": "Long-term practice"
     },
     {
@@ -16435,9 +16814,9 @@
       "Index #": "",
       "Name": "Teachers",
       "Pāli": "",
-      "Question count": 2,
+      "Question count": 4,
       "Subsumed": false,
-      "Text": "Teachers (2)",
+      "Text": "Teachers (4)",
       "Tag": "Teachers"
     },
     {
@@ -16445,9 +16824,9 @@
       "Index #": "",
       "Name": "Teaching Dhamma",
       "Pāli": "",
-      "Question count": 10,
+      "Question count": 11,
       "Subsumed": false,
-      "Text": "Teaching Dhamma (10)",
+      "Text": "Teaching Dhamma (11)",
       "Tag": "Teaching Dhamma"
     },
     {
@@ -16475,9 +16854,9 @@
       "Index #": "",
       "Name": "Ajahn Chah",
       "Pāli": "",
-      "Question count": 15,
+      "Question count": 17,
       "Subsumed": false,
-      "Text": "Ajahn Chah (15)",
+      "Text": "Ajahn Chah (17)",
       "Tag": "Ajahn Chah"
     },
     {
@@ -16493,21 +16872,41 @@
     {
       "Level": 4,
       "Index #": "",
-      "Name": "Ajahn Liem",
+      "Name": "Ajahn Jun",
       "Pāli": "",
       "Question count": 1,
       "Subsumed": false,
-      "Text": "Ajahn Liem (1)",
+      "Text": "Ajahn Jun (1)",
+      "Tag": "Ajahn Jun"
+    },
+    {
+      "Level": 4,
+      "Index #": "",
+      "Name": "Ajahn Liem",
+      "Pāli": "",
+      "Question count": 2,
+      "Subsumed": false,
+      "Text": "Ajahn Liem (2)",
       "Tag": "Ajahn Liem"
+    },
+    {
+      "Level": 4,
+      "Index #": "",
+      "Name": "Ajahn Mahā Amon",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Ajahn Mahā Amon (1)",
+      "Tag": "Ajahn Mahā Amon"
     },
     {
       "Level": 4,
       "Index #": "",
       "Name": "Ajahn Sumedho",
       "Pāli": "",
-      "Question count": 0,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Ajahn Sumedho",
+      "Text": "Ajahn Sumedho (2)",
       "Tag": "Ajahn Sumedho"
     },
     {
@@ -16515,9 +16914,9 @@
       "Index #": "",
       "Name": "Ajahn Pasanno",
       "Pāli": "",
-      "Question count": 11,
+      "Question count": 13,
       "Subsumed": false,
-      "Text": "Ajahn Pasanno (11)",
+      "Text": "Ajahn Pasanno (13)",
       "Tag": "Ajahn Pasanno"
     },
     {
@@ -16525,10 +16924,20 @@
       "Index #": "",
       "Name": "Ajahn Pasanno/Pithy",
       "Pāli": "",
-      "Question count": 4,
+      "Question count": 5,
       "Subsumed": false,
-      "Text": "Ajahn Pasanno/Pithy (4)",
+      "Text": "Ajahn Pasanno/Pithy (5)",
       "Tag": "Ajahn Pasanno/Pithy"
+    },
+    {
+      "Level": 4,
+      "Index #": "",
+      "Name": "Ajahn Amaro",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Ajahn Amaro (1)",
+      "Tag": "Ajahn Amaro"
     },
     {
       "Level": 3,
@@ -16555,9 +16964,9 @@
       "Index #": "",
       "Name": "Ajahn Maha Boowa",
       "Pāli": "",
-      "Question count": 2,
+      "Question count": 3,
       "Subsumed": false,
-      "Text": "Ajahn Maha Boowa (2)",
+      "Text": "Ajahn Maha Boowa (3)",
       "Tag": "Ajahn Maha Boowa"
     },
     {
@@ -16565,9 +16974,9 @@
       "Index #": "",
       "Name": "Ajahn Baen",
       "Pāli": "",
-      "Question count": 1,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Ajahn Baen (1)",
+      "Text": "Ajahn Baen (2)",
       "Tag": "Ajahn Baen"
     },
     {
@@ -16589,6 +16998,26 @@
       "Subsumed": false,
       "Text": "Ajahn Kaew (1)",
       "Tag": "Ajahn Kaew"
+    },
+    {
+      "Level": 4,
+      "Index #": "",
+      "Name": "Ajahn Buddhadāsa",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Ajahn Buddhadāsa (1)",
+      "Tag": "Ajahn Buddhadāsa"
+    },
+    {
+      "Level": 4,
+      "Index #": "",
+      "Name": "P. A. Payutto",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "P. A. Payutto (1)",
+      "Tag": "P. A. Payutto"
     },
     {
       "Level": 4,
@@ -16641,13 +17070,33 @@
       "Tag": "Master Hsuan Hua"
     },
     {
+      "Level": 4,
+      "Index #": "",
+      "Name": "Dōgen",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Dōgen (1)",
+      "Tag": "Dōgen"
+    },
+    {
+      "Level": 2,
+      "Index #": "",
+      "Name": "Lay teachers",
+      "Pāli": "",
+      "Question count": 0,
+      "Subsumed": false,
+      "Text": "Lay teachers",
+      "Tag": "Lay teachers"
+    },
+    {
       "Level": 1,
       "Index #": "",
       "Name": "Women in Buddhism",
       "Pāli": "",
-      "Question count": 3,
+      "Question count": 4,
       "Subsumed": false,
-      "Text": "Women in Buddhism (3)",
+      "Text": "Women in Buddhism (4)",
       "Tag": "Women in Buddhism"
     },
     {
@@ -16685,9 +17134,9 @@
       "Index #": "",
       "Name": "History/Western Buddhism",
       "Pāli": "",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "History/Western Buddhism",
+      "Text": "History/Western Buddhism (1)",
       "Tag": "History/Western Buddhism"
     },
     {
@@ -16735,9 +17184,9 @@
       "Index #": "",
       "Name": "Wat Nong Pah Pong",
       "Pāli": "",
-      "Question count": 2,
+      "Question count": 4,
       "Subsumed": false,
-      "Text": "Wat Nong Pah Pong (2)",
+      "Text": "Wat Nong Pah Pong (4)",
       "Tag": "Wat Pah Pong"
     },
     {
@@ -16775,9 +17224,9 @@
       "Index #": "",
       "Name": "Cittaviveka Monastery",
       "Pāli": "",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Cittaviveka Monastery",
+      "Text": "Cittaviveka Monastery (1)",
       "Tag": "Cittaviveka Monastery"
     },
     {
@@ -16785,19 +17234,39 @@
       "Index #": "",
       "Name": "Abhayagiri Monastery",
       "Pāli": "",
-      "Question count": 4,
+      "Question count": 5,
       "Subsumed": false,
-      "Text": "Abhayagiri Monastery (4)",
+      "Text": "Abhayagiri Monastery (5)",
       "Tag": "Abhayagiri Monastery"
+    },
+    {
+      "Level": 2,
+      "Index #": "",
+      "Name": "Monasteries in other traditions",
+      "Pāli": "",
+      "Question count": 0,
+      "Subsumed": false,
+      "Text": "Monasteries in other traditions",
+      "Tag": "Monasteries in other traditions"
+    },
+    {
+      "Level": 3,
+      "Index #": "",
+      "Name": "City of Ten Thousand Buddhas",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "City of Ten Thousand Buddhas (1)",
+      "Tag": "City of Ten Thousand Buddhas"
     },
     {
       "Level": 1,
       "Index #": "",
       "Name": "Cultural context",
       "Pāli": "",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Cultural context",
+      "Text": "Cultural context (1)",
       "Tag": "Cultural context"
     },
     {
@@ -16825,9 +17294,9 @@
       "Index #": "",
       "Name": "Culture/Thai Buddhism",
       "Pāli": "",
-      "Question count": 2,
+      "Question count": 3,
       "Subsumed": false,
-      "Text": "Culture/Thai Buddhism (2)",
+      "Text": "Culture/Thai Buddhism (3)",
       "Tag": "Culture/Thai Buddhism"
     },
     {
@@ -16835,30 +17304,70 @@
       "Index #": "",
       "Name": "Culture/Western Buddhism",
       "Pāli": "",
-      "Question count": 3,
+      "Question count": 4,
       "Subsumed": false,
-      "Text": "Culture/Western Buddhism (3)",
+      "Text": "Culture/Western Buddhism (4)",
       "Tag": "Culture/Western Buddhism"
     },
     {
       "Level": 1,
       "Index #": "",
-      "Name": "Other religions",
+      "Name": "Other traditions",
       "Pāli": "",
       "Question count": 0,
       "Subsumed": false,
-      "Text": "Other religions",
-      "Tag": "Other religions"
+      "Text": "Other traditions",
+      "Tag": "Other traditions"
+    },
+    {
+      "Level": 2,
+      "Index #": "",
+      "Name": "Mahāyāna",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Mahāyāna (1)",
+      "Tag": "Mahāyāna"
+    },
+    {
+      "Level": 3,
+      "Index #": "",
+      "Name": "Zen",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Zen (1)",
+      "Tag": "Zen"
+    },
+    {
+      "Level": 2,
+      "Index #": "",
+      "Name": "Vajrayāna",
+      "Pāli": "",
+      "Question count": 1,
+      "Subsumed": false,
+      "Text": "Vajrayāna (1)",
+      "Tag": "Vajrayāna"
     },
     {
       "Level": 2,
       "Index #": "",
       "Name": "Christianity",
       "Pāli": "",
-      "Question count": 2,
+      "Question count": 3,
       "Subsumed": false,
-      "Text": "Christianity (2)",
+      "Text": "Christianity (3)",
       "Tag": "Christianity"
+    },
+    {
+      "Level": 2,
+      "Index #": "",
+      "Name": "Western psychology",
+      "Pāli": "",
+      "Question count": 0,
+      "Subsumed": false,
+      "Text": "Western psychology",
+      "Tag": "Western psychology"
     },
     {
       "Level": 1,
@@ -16875,9 +17384,9 @@
       "Index #": "",
       "Name": "Eight precepts",
       "Pāli": "aṭṭha sikkhāpadāni",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Eight precepts [aṭṭha sikkhāpadāni]",
+      "Text": "Eight precepts (1) [aṭṭha sikkhāpadāni]",
       "Tag": "Eight precepts"
     },
     {
@@ -16995,9 +17504,9 @@
       "Index #": "1",
       "Name": "Robes",
       "Pāli": "cīvara",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Robes [cīvara]",
+      "Text": "Robes (1) [cīvara]",
       "Tag": "Robes"
     },
     {
@@ -17105,9 +17614,9 @@
       "Index #": "",
       "Name": "Monastic life",
       "Pāli": "",
-      "Question count": 34,
+      "Question count": 37,
       "Subsumed": false,
-      "Text": "Monastic life (34)",
+      "Text": "Monastic life (37)",
       "Tag": "Monastic life"
     },
     {
@@ -17125,9 +17634,9 @@
       "Index #": "",
       "Name": "Vinaya",
       "Pāli": "Vinaya",
-      "Question count": 9,
+      "Question count": 11,
       "Subsumed": false,
-      "Text": "Vinaya (9)",
+      "Text": "Vinaya (11)",
       "Tag": "Vinaya"
     },
     {
@@ -17135,9 +17644,9 @@
       "Index #": "",
       "Name": "Not handling money",
       "Pāli": "",
-      "Question count": 1,
+      "Question count": 2,
       "Subsumed": false,
-      "Text": "Not handling money (1)",
+      "Text": "Not handling money (2)",
       "Tag": "Not handling money"
     },
     {
@@ -17165,9 +17674,9 @@
       "Index #": "",
       "Name": "Monastic community",
       "Pāli": "",
-      "Question count": 6,
+      "Question count": 7,
       "Subsumed": true,
-      "Text": "Monastic community see Saṅgha (6)",
+      "Text": "Monastic community see Saṅgha (7)",
       "Tag": "Saṅgha"
     },
     {
@@ -17175,9 +17684,9 @@
       "Index #": "",
       "Name": "Communal harmony",
       "Pāli": "",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Communal harmony",
+      "Text": "Communal harmony (1)",
       "Tag": "Communal harmony"
     },
     {
@@ -17215,9 +17724,9 @@
       "Index #": "",
       "Name": "Simplicity",
       "Pāli": "",
-      "Question count": 0,
+      "Question count": 1,
       "Subsumed": false,
-      "Text": "Simplicity",
+      "Text": "Simplicity (1)",
       "Tag": "Simplicity"
     },
     {
