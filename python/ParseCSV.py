@@ -598,8 +598,8 @@ def VerifyListCounts(database):
     
     # Check for duplicate question tags
     for q in database["Questions"]:
-        if len(set(q["Tags"])) != len(q["Tags"]) and gOptions.verbosity > 1:
-            print(f"Duplicate tags in f{eventName} S{q['Session #']} Q{q['Question #']} {q['Tags']}")
+        if len(set(q["Tags"])) != len(q["Tags"]) and gOptions.verbose > 1:
+            print(f"Duplicate tags in {q['Event']} S{q['Session #']} Q{q['Question #']} {q['Tags']}")
     
 
 def AddArguments(parser):
