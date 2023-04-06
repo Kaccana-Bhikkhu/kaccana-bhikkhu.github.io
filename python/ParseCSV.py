@@ -56,7 +56,7 @@ def ReorderKeys(inDict,firstKeys = [],lastKeys = []):
     
     return outDict
 
-def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None):
+def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True):
     for n in range(skipLines):
         file.readline()
                 
@@ -69,18 +69,19 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None):
         elif not BlankDict(row):
             if not firstDictValue and gOptions.verbose > 0:
                 print("WARNING: blank first field in",row)
+        
+            # Increase robustness by stripping values and keys
+            for key in list(row):
+                row[key] = row[key].strip()
+                if key != key.strip():
+                    row[key.strip()] = row.pop(key)
+            
+            for key in row:
+                if key[-1:] == '?':
+                    row[key] = BooleanValue(row[key])
+
             output.append(row)
-        
-        # Increase robustness by stripping values and keys
-        keysToStrip = []
-        for key in row:
-            row[key] = row[key].strip()
-            if key != key.strip():
-                keysToStrip.append(key)
-        for key in keysToStrip:
-            row[key.strip()] = row[key]
-            del row[key]
-        
+
     
     removeKeys.append("")
     for key in removeKeys:
@@ -405,7 +406,7 @@ def LoadEventFile(database,eventName,directory):
             ConvertToInteger(sessions,key)
             
         if not gOptions.ignoreExcludes:
-            sessions = [s for s in sessions if not BooleanValue(s["Exclude?"])] # Remove excluded sessions
+            sessions = [s for s in sessions if not s["Exclude?"]] # Remove excluded sessions
             # Remove excluded sessions
             
         for s in sessions:
@@ -446,7 +447,7 @@ def LoadEventFile(database,eventName,directory):
             ourSession = Utils.FindSession(sessions,eventName,q["Session #"])
             
             q["Tags"] = q["QTag"] + q["ATag"] # Combine question and session tags unless the question is off-topic
-            if not BooleanValue(q.pop("Off topic?","No")): # We don't need the off topic key after this, so throw it away with pop
+            if not q.pop("Off topic?",False): # We don't need the off topic key after this, so throw it away with pop
                 q["Tags"] += ourSession["Tags"]
 
             if not q["Teachers"]:
@@ -461,7 +462,7 @@ def LoadEventFile(database,eventName,directory):
             else:
                 fileNumber += 1 # File number counts all questions listed for the event
             
-            if TeacherConsent(database["Teacher"],q["Teachers"],"Index questions?") and (not BooleanValue(q["Exclude?"]) or gOptions.ignoreExcludes):                   
+            if TeacherConsent(database["Teacher"],q["Teachers"],"Index questions?") and (not q["Exclude?"] or gOptions.ignoreExcludes):                   
                 qNumber += 1 # Question number counts only questions allowed by teacher consent and exclusion policies
                 q["Exclude?"] = False
             else:
@@ -642,12 +643,6 @@ def main(clOptions,database):
             continue
         
         database[baseName] = ListToDict(CSVFileToDictList(fullPath),baseName)
-    
-    # Convert teacher consent flags to boolean values - all columns end in '?'
-    for name,teacherData in database["Teacher"].items():
-        for key in teacherData:
-            if key[-1] == '?':
-                teacherData[key] = BooleanValue(teacherData[key]) # Consent is yes; all other values no
     
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
     
