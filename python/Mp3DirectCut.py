@@ -58,7 +58,7 @@ def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFi
     cueFileName = fileNameBase + '.cue'
     
     cueFilePath = os.path.join(directory,cueFileName)
-    
+    cueFilePath = cueFilePath.replace('/','\\')
     with open(cueFilePath,'w') as cueFile:
         print('TITLE "(Title N.N.)"',file=cueFile)
         print(f'FILE "{originalFileName}" MP3',file=cueFile)
@@ -96,7 +96,7 @@ def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFi
         if os.path.exists(os.path.join(directory,name)):
             os.remove(os.path.join(directory,name))
     
-    command = mp3DirectCutProgram + ' ' + cueFilePath + ' /split'
+    command = mp3DirectCutProgram + ' "' + cueFilePath + '" /split'
     result = os.system(command)
     if result:
         raise Mp3CutError(f"{command} returned code {result}; mp3 file not split.")
