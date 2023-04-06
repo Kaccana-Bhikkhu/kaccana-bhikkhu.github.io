@@ -1,7 +1,7 @@
 """Use Mp3DirectCut.exe to split the session audio files into individual questions based on start and end times from Database.json"""
 
 import os, json
-from Utils import StrToTimeDelta, Mp3FileName
+import Utils
 import Mp3DirectCut as Mp3DirectCut
 from typing import List
 
@@ -58,11 +58,11 @@ def main(clOptions,database):
         baseFileName = f"{event}_S{sessionNumber:02d}_"
         while questionIndex < len(questions) and questions[questionIndex]["Event"] == event and questions[questionIndex]["Session #"] == sessionNumber:
             fileName = baseFileName + f"Q{fileNumber:02d}"
-            startTime = StrToTimeDelta(questions[questionIndex]["Start time"])
+            startTime = Utils.StrToTimeDelta(questions[questionIndex]["Start time"])
             
             endTimeStr = questions[questionIndex]["End time"].strip()
             if endTimeStr:
-                questionList.append((fileName,startTime,StrToTimeDelta(endTimeStr)))
+                questionList.append((fileName,startTime,Utils.StrToTimeDelta(endTimeStr)))
             else:
                 questionList.append((fileName,startTime))
                 

@@ -3,7 +3,7 @@
 import os, json
 from typing import List, Type
 from airium import Airium
-from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr, FindSession
+import Utils
 from datetime import timedelta
 import re
 
@@ -240,7 +240,7 @@ def Mp3QuestionLink(question: dict) -> str:
     else:
         baseURL = gOptions.remoteQuestionMp3URL
         
-    return AudioIcon(baseURL + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['File #']))
+    return AudioIcon(baseURL + question["Event"] + "/" + Utils.Mp3FileName(question["Event"],question['Session #'],question['File #']))
     
 def Mp3SessionLink(session: dict) -> str:
     """Return an html-formatted audio icon linking to a given session.
@@ -267,9 +267,9 @@ def EventLink(event:str, session: int = 0) -> str:
 def EventDateStr(event: dict) -> str:
     "Return a string describing when the event occured"
     
-    dateStr = ReformatDate(event["Start date"])
+    dateStr = Utils.ReformatDate(event["Start date"])
     if event["End date"] and event["End date"] != event["Start date"]:
-        dateStr += " to " + ReformatDate(event["End date"])
+        dateStr += " to " + Utils.ReformatDate(event["End date"])
     return dateStr
 
 class Formatter: 
@@ -318,7 +318,7 @@ class Formatter:
         for tag in question["Tags"]:
             omitTags = self.questionOmitTags
             if self.questionOmitSessionTags:
-                omitTags = set.union(omitTags,set(FindSession(gDatabase["Sessions"],question["Event"],question["Session #"])["Tags"]))
+                omitTags = set.union(omitTags,set(Utils.FindSession(gDatabase["Sessions"],question["Event"],question["Session #"])["Tags"]))
             
             if tag not in omitTags:
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
@@ -353,12 +353,12 @@ class Formatter:
             else:
                 a(sessionTitle)
 
-            dateStr = ReformatDate(session['Date'])
+            dateStr = Utils.ReformatDate(session['Date'])
             teacherList = ListLinkedTeachers(session["Teachers"])
             a(f' – {teacherList} – {dateStr}')
             
             if self.headingAudio:
-                durStr = TimeDeltaToStr(StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
+                durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
                 a(f' – {Mp3SessionLink(session)} ({durStr}) ')
             
             if self.headingShowTags:
@@ -378,7 +378,7 @@ def QuestionDurationStr(questions: List[dict],countEvents = True,countSessions =
     
     events = set(q["Event"] for q in questions)
     sessions = set((q["Event"],q["Session #"]) for q in questions) # Use sets to count unique elements
-    duration = sum((StrToTimeDelta(q["Duration"]) for q in questions),start = timedelta())
+    duration = sum((Utils.StrToTimeDelta(q["Duration"]) for q in questions),start = timedelta())
     
     strItems = []
     
@@ -393,7 +393,7 @@ def QuestionDurationStr(questions: List[dict],countEvents = True,countSessions =
     else:
         strItems.append(f"{len(questions)} question,")
     
-    strItems.append(f"{TimeDeltaToStr(duration)} total duration")
+    strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
     
     return ' '.join(strItems)
 
@@ -406,7 +406,7 @@ def HtmlQuestionList(questions: List[dict],formatter: Type[Formatter]) -> str:
     prevSession = None
     for q in questions:
         if q["Event"] != prevEvent or q["Session #"] != prevSession:
-            session = FindSession(gDatabase["Sessions"],q["Event"],q["Session #"])
+            session = Utils.FindSession(gDatabase["Sessions"],q["Event"],q["Session #"])
             a(formatter.FormatSessionHeading(session))
             prevEvent = q["Event"]
             prevSession = q["Session #"]

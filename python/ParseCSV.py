@@ -1,7 +1,7 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
 import os, re, csv, json
-from Utils import slugify, StrToTimeDelta, TimeDeltaToStr, FindSession
+import Utils
 from typing import List
 from Prototype import QuestionDurationStr
 
@@ -293,7 +293,7 @@ def LoadTagsFile(database,tagFileName):
                 AppendUnique(tags[tagName]["Supertags"],tagDesc["Supertags"])
                 continue
         
-        tagDesc["html file"] = slugify(tagName) + '.html'
+        tagDesc["html file"] = Utils.slugify(tagName) + '.html'
         
         tagDesc["List index"] = rawTagIndex
         tags[tagName] = tagDesc
@@ -443,7 +443,7 @@ def LoadEventFile(database,eventName,directory):
             
             q["Event"] = eventName
             
-            ourSession = FindSession(sessions,eventName,q["Session #"])
+            ourSession = Utils.FindSession(sessions,eventName,q["Session #"])
             
             q["Tags"] = q["QTag"] + q["ATag"] # Combine question and session tags unless the question is off-topic
             if not BooleanValue(q.pop("Off topic?","No")): # We don't need the off topic key after this, so throw it away with pop
@@ -490,9 +490,9 @@ def LoadEventFile(database,eventName,directory):
                     pass
             
             if not endTime:
-                endTime = FindSession(sessions,eventName,q["Session #"])["Duration"]
+                endTime = Utils.FindSession(sessions,eventName,q["Session #"])["Duration"]
                 
-            q["Duration"] = TimeDeltaToStr(StrToTimeDelta(endTime) - StrToTimeDelta(startTime))
+            q["Duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
         
         for index in range(len(questions)):
             questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
