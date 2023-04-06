@@ -1,9 +1,38 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
-import os, re, csv, json
+import os, re, csv, json, unicodedata
 import Utils
 from typing import List
 from Prototype import QuestionDurationStr
+
+gCamelCaseTranslation = {}
+def CamelCase(input: str) -> str: 
+    """Convert a string to camel case and remove all diacritics and special characters
+    "Based on https://www.w3resource.com/python-exercises/string/python-data-type-string-exercise-96.php"""
+    
+    text = unicodedata.normalize('NFKD', input).encode('ascii', 'ignore').decode('ascii')
+    text = text.replace("#"," Number")
+    
+    text = re.sub(r"([a-zA-Z])([A-Z])(?![A-Z]*\b)",r"\1 \2",text) # Add spaces where the string is already camel case to avoid converting to lower case
+
+    s = re.sub(r"[(_|)?+:\.\/-]", " ", text).title().replace(" ", "")
+    if s:
+        returnValue = ''.join([s[0].lower(), s[1:]])
+    else:
+        returnValue = ''
+
+    gCamelCaseTranslation[input] = returnValue
+    return returnValue
+
+def CamelCaseKeys(d: dict,reallyChange = True):
+    """Convert all keys in dict d to camel case strings"""
+
+    for key in list(d.keys()):
+        if reallyChange:
+            d[CamelCase(key)] = d.pop(key)
+        else:
+            CamelCase(key) # Just log what the change would be in the camel case dictionary
+
 
 def SniffCSVDialect(inFile,scanLength = 4096):
 	inFile.seek(0)
@@ -81,6 +110,7 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
                     row[key] = BooleanValue(row[key])
 
             output.append(row)
+            CamelCaseKeys(row,False)
 
     
     removeKeys.append("")
@@ -661,7 +691,7 @@ def main(clOptions,database):
     # database = ReorderKeys(database,["Tag_DisplayList","Tag","Tag_Raw"])
     if not gOptions.jsonNoClean:
         del database["Tag_Raw"]
-        
+
     if gOptions.verbose >= 2:
         print("Final database contents:")
         for item in database:
@@ -672,4 +702,19 @@ def main(clOptions,database):
     
     if gOptions.verbose > 0:
         print("   " + QuestionDurationStr(database["Questions"]))
-    
+
+    CamelCaseKeys(database,False)
+    for stuff in database.values():
+        try:
+            firstItem = stuff[0]
+        except KeyError:
+            firstItem = next(iter(stuff))
+        
+        try:
+            CamelCaseKeys(firstItem,False)
+        except AttributeError:
+            pass
+
+    print(len(gCamelCaseTranslation),gCamelCaseTranslation)
+    with open('tools/massRename/CamelCaseTranslation.json', 'w', encoding='utf-8') as file:
+        json.dump(gCamelCaseTranslation,file,ensure_ascii=False, indent='\t')

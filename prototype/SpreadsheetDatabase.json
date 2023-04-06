@@ -41,6 +41,31 @@
       "Duration": "6:44:55"
     }
   },
+  "Medium": {
+    "In-person": {
+      "Medium": "In-person"
+    },
+    "Online": {
+      "Medium": "Online"
+    },
+    "Hybrid": {
+      "Medium": "Hybrid"
+    }
+  },
+  "Venue": {
+    "Abhayagiri Buddhist Monastery": {
+      "Venue": "Abhayagiri Buddhist Monastery",
+      "Location": "Redwood Valley, California",
+      "Address": "16201 Tomki Road, Redwood Valley, CA 95470",
+      "Website link": "www.abhayagiri.org"
+    },
+    "Angela Center": {
+      "Venue": "Angela Center",
+      "Location": "Santa Rosa, California",
+      "Address": "535 Angela Dr, Santa Rosa, CA 95403",
+      "Website link": "angelacenter.com/acn"
+    }
+  },
   "Format": {
     "Short teaching": {
       "Format": "Short teaching"
@@ -53,17 +78,6 @@
     },
     "Interview": {
       "Format": "Interview"
-    }
-  },
-  "Medium": {
-    "In-person": {
-      "Medium": "In-person"
-    },
-    "Online": {
-      "Medium": "Online"
-    },
-    "Hybrid": {
-      "Medium": "Hybrid"
     }
   },
   "Series": {
@@ -146,20 +160,6 @@
       "Index questions?": false,
       "Index sessions?": false,
       "Searchable?": false
-    }
-  },
-  "Venue": {
-    "Abhayagiri Buddhist Monastery": {
-      "Venue": "Abhayagiri Buddhist Monastery",
-      "Location": "Redwood Valley, California",
-      "Address": "16201 Tomki Road, Redwood Valley, CA 95470",
-      "Website link": "www.abhayagiri.org"
-    },
-    "Angela Center": {
-      "Venue": "Angela Center",
-      "Location": "Santa Rosa, California",
-      "Address": "535 Angela Dr, Santa Rosa, CA 95403",
-      "Website link": "angelacenter.com/acn"
     }
   },
   "Tag": {
