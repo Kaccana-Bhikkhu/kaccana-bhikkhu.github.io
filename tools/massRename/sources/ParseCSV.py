@@ -723,8 +723,8 @@ def main(clOptions,database):
 
     CamelCase("QTag") #NoCamelCase
     CamelCase("ATag") #NoCamelCase
-    CamelCase("Tag_Raw") #NoCamelCase
-    CamelCase("Full Pāli"); CamelCase("Virtual"); CamelCase("Subtags"); CamelCase("Supertags"); CamelCase("Copies"); CamelCase("List index"); CamelCase("XXXX") #NoCamelCase
+    CamelCase("Tag_Raw"); CamelCase("Item count"); CamelCase("Primary") #NoCamelCase
+    CamelCase("Full Pāli"); CamelCase("Virtual"); CamelCase("Subtags"); CamelCase("Supertags"); CamelCase("Copies"); CamelCase("List index"); CamelCase("Primaries") #NoCamelCase
     print(len(gCamelCaseTranslation),gCamelCaseTranslation)
     with open('tools/massRename/CamelCaseTranslation.json', 'w', encoding='utf-8') as file:
         json.dump(gCamelCaseTranslation,file,ensure_ascii=False, indent='\t')
