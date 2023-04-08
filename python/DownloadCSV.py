@@ -37,12 +37,12 @@ def ReadSheetIds() -> dict:
     "Read Summary.csv and return a dict {sheetName : sheetId}"
     
     with open(os.path.join(gOptions.csvDir,'Summary.csv'),encoding='utf8') as file:
-        CSVToDictList(file,skipLines = 1,endOfSection = '<---->')
+        CSVToDictList(file,skipLines = 1,endOfSection = '<---->',camelCase = False)
             # Skip the first half of the summary file
         
         sheetIds = CSVToDictList(file,skipLines = 2)
     
-    return DictFromPairs(sheetIds,'Sheet','gid')
+    return DictFromPairs(sheetIds,'Sheet','gid',camelCase=False)
 
 def DownloadSheets(sheetIds: dict) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"

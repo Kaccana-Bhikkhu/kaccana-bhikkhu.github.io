@@ -110,7 +110,7 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
                     if key[-1:] == '?':
                         row[key] = BooleanValue(row[key])
 
-            CamelCaseKeys(row,False)
+            CamelCaseKeys(row,camelCase)
             output.append(row)
             
 
@@ -198,7 +198,7 @@ def DictFromPairs(inList,keyKey,valueKey,camelCase = True):
         
         outDict[newKey] = item[valueKey]
     
-    CamelCaseKeys(outDict,False)
+    CamelCaseKeys(outDict,camelCase)
     return outDict
 
 def LoadSummary(database,summaryFileName):
@@ -678,7 +678,7 @@ def main(clOptions,database):
         if re.match(".*[0-9]{4}",baseName): # Event files contain a four-digit year and are loaded after all other files
             continue
         
-        database[baseName] = ListToDict(CSVFileToDictList(fullPath))
+        database[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
     
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
     
