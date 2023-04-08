@@ -47,16 +47,16 @@ def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the index of a session specified by event and sessionNum."
     
     for session in sessions:
-        if session["Event"] == event and session["Session #"] == sessionNum:
+        if session["event"] == event and session["sessionNumber"] == sessionNum:
             return session
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
     
     """if not sessionIndexCache: # For speed, create a dictionary of sessions the first time we run
         sessionIndexCache = {}
-        s = database["Sessions"]
+        s = database["sessions"]
         for index in range(len(s)):
-            sessionIndexCache[(s[index]["Event"],s[index]["Session #"])] = index
+            sessionIndexCache[(s[index]["event"],s[index]["sessionNumber"])] = index
     
     try:
         return sessionIndexCache[(event,sessionNum)]

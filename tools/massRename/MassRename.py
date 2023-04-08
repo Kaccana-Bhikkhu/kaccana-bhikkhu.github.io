@@ -13,8 +13,6 @@ for key, camelCaseKey in camelCaseTranslation.items():
     substitutions[re.escape(singleQuote + key + singleQuote)] = re.escape(singleQuote + camelCaseKey + singleQuote)
     substitutions[re.escape(doubleQuote + key + doubleQuote)] = re.escape(doubleQuote + camelCaseKey + doubleQuote)
 
-substitutions = {}
-
 print(len(camelCaseTranslation),len(substitutions))
 print(len(substitutions),substitutions)
 
