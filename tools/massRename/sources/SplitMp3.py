@@ -10,11 +10,11 @@ Mp3DirectCut.SetExecutable(os.path.join('tools','Mp3DirectCut'))
 def IncludeRedactedQuestions() -> List[dict]:
     "Merge the redacted questions back into the main list in order to split mp3 files"
     
-    allQuestions = gDatabase["Questions"] + gDatabase["Questions_Redacted"]
+    allQuestions = gDatabase["questions"] + gDatabase["questionsRedacted"]
     # print(len(allQuestions))
-    orderedEvents = list(gDatabase["Event"].keys()) # Look up the event in this list to sort questions by event order in gDatabase
+    orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort questions by event order in gDatabase
     
-    allQuestions.sort(key = lambda q: (orderedEvents.index(q["Event"]),q["Session #"],q["File #"]))
+    allQuestions.sort(key = lambda q: (orderedEvents.index(q["event"]),q["sessionNumber"],q["fileNumber"]))
         # Sort by event, then by session, then by file number
     
     return allQuestions
@@ -46,21 +46,21 @@ def main(clOptions,database):
     sessionCount = 0
     mp3SplitCount = 0
     questions = IncludeRedactedQuestions()
-    for session in gDatabase["Sessions"]:
+    for session in gDatabase["sessions"]:
         
-        sessionNumber = session["Session #"]
-        event = session["Event"]
+        sessionNumber = session["sessionNumber"]
+        event = session["event"]
         questionList = []
         fileNumber = 1
         
         sessionCount += 1
         
         baseFileName = f"{event}_S{sessionNumber:02d}_"
-        while questionIndex < len(questions) and questions[questionIndex]["Event"] == event and questions[questionIndex]["Session #"] == sessionNumber:
+        while questionIndex < len(questions) and questions[questionIndex]["event"] == event and questions[questionIndex]["sessionNumber"] == sessionNumber:
             fileName = baseFileName + f"Q{fileNumber:02d}"
-            startTime = Utils.StrToTimeDelta(questions[questionIndex]["Start time"])
+            startTime = Utils.StrToTimeDelta(questions[questionIndex]["startTime"])
             
-            endTimeStr = questions[questionIndex]["End time"].strip()
+            endTimeStr = questions[questionIndex]["endTime"].strip()
             if endTimeStr:
                 questionList.append((fileName,startTime,Utils.StrToTimeDelta(endTimeStr)))
             else:
@@ -70,7 +70,7 @@ def main(clOptions,database):
             fileNumber += 1
         
         eventDir = os.path.join(gOptions.eventMp3Dir,event)
-        sessionFilePath = os.path.join(eventDir,session["Filename"])
+        sessionFilePath = os.path.join(eventDir,session["filename"])
         if not os.path.exists(sessionFilePath):
             print("Warning: Cannot locate "+sessionFilePath)
             continue
@@ -121,7 +121,7 @@ def main(clOptions,database):
         
         mp3SplitCount += 1
         if gOptions.verbose >= 2:
-            print(f"Split {session['Filename']} into {len(questionList)} files.")
+            print(f"Split {session['filename']} into {len(questionList)} files.")
     
     if gOptions.verbose > 0:
         print(f"   {mp3SplitCount} sessions split; all files already present for {sessionCount - mp3SplitCount} sessions.")

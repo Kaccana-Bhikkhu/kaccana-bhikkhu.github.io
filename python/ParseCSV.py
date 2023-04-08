@@ -238,7 +238,7 @@ def LoadTagsFile(database,tagFileName):
     ConvertToInteger(rawTagList,"level")
     
     # Convert the flag codes to boolean values
-    flags = {'.':"Virtual", '*':"Primary"}
+    flags = {'.':"virtual", '*':"Primary"}
     for item in rawTagList:
         for flag in flags:
             item[flags[flag]] = flag in item["flags"]
@@ -247,7 +247,7 @@ def LoadTagsFile(database,tagFileName):
         if digitFlag:
             item["Item count"] = int(digitFlag[0])
         else:
-            item["Item count"] = 0 if item["Virtual"] else 1
+            item["Item count"] = 0 if item["virtual"] else 1
 
     # Next build the main tag dictionary
     tags = {}
@@ -274,8 +274,8 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["tag"] = tagName
         tagDesc["pali"] = tagPaliName
         tagDesc["fullTag"] = FirstValidValue(rawTag,fullNamePreference)
-        tagDesc["Full Pāli"] = rawTag["pali"]
-        for key in ["number","alternateTranslations","related","Virtual"]:
+        tagDesc["fullPali"] = rawTag["pali"]
+        for key in ["number","alternateTranslations","related","virtual"]:
             tagDesc[key] = rawTag[key]
         
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
@@ -288,25 +288,25 @@ def LoadTagsFile(database,tagFileName):
             assert curTagLevel == lastTagLevel + 1, f"Level of tag {tagName} increased by more than one."
             if curTagLevel > 1:
                 if lastTag.collectSubtags: # If the previous tag was flagged as primary, remove subtags from previous instances and accumulate new subtags
-                    tags[lastTag.tag]["Subtags"] = []
-                elif not tags[lastTag.tag]["Subtags"]: # But even if it's not primary, accumulate subtags if there are no prior subtags
+                    tags[lastTag.tag]["subtags"] = []
+                elif not tags[lastTag.tag]["subtags"]: # But even if it's not primary, accumulate subtags if there are no prior subtags
                     lastTag.collectSubtags = True
                 
                 tagStack.append(lastTag)
  
-        tagDesc["Subtags"] = []
+        tagDesc["subtags"] = []
         rawTag["indexNumber"] = ""
         if curTagLevel > 1:
-            tagDesc["Supertags"] = [tagStack[-1].tag]
+            tagDesc["supertags"] = [tagStack[-1].tag]
             if tagStack[-1].subtagIndex:
                 if rawTag["Item count"]:
                     rawTag["indexNumber"] = str(tagStack[-1].subtagIndex)
                     tagStack[-1].Increment(rawTag["Item count"])
             if tagStack[-1].collectSubtags:
-                tags[tagStack[-1].tag]["Subtags"].append(tagName)
-                #print(tagStack[-1].tag,"<-",tagName,":",tags[tagStack[-1].tag]["Subtags"])
+                tags[tagStack[-1].tag]["subtags"].append(tagName)
+                #print(tagStack[-1].tag,"<-",tagName,":",tags[tagStack[-1].tag]["subtags"])
         else:
-            tagDesc["Supertags"] = []
+            tagDesc["supertags"] = []
 
         lastTagLevel = curTagLevel
         lastTag = TagStackItem(tagName,rawTag["Primary"],bool(rawTag["number"])) # Count subtags if this tag is numerical
@@ -317,22 +317,22 @@ def LoadTagsFile(database,tagFileName):
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
-        tagDesc["Copies"] = 1
+        tagDesc["copies"] = 1
         tagDesc["Primaries"] = 1 if rawTag["Primary"] else 0
         if tagName in tags:
             if rawTag["Primary"]:
-                tagDesc["Copies"] += tags[tagName]["Copies"]
+                tagDesc["copies"] += tags[tagName]["copies"]
                 tagDesc["Primaries"] += tags[tagName]["Primaries"]
-                AppendUnique(tagDesc["Supertags"],tags[tagName]["Supertags"])
+                AppendUnique(tagDesc["supertags"],tags[tagName]["supertags"])
             else:
-                tags[tagName]["Copies"] += tagDesc["Copies"]
+                tags[tagName]["copies"] += tagDesc["copies"]
                 tags[tagName]["Primaries"] += tagDesc["Primaries"]
-                AppendUnique(tags[tagName]["Supertags"],tagDesc["Supertags"])
+                AppendUnique(tags[tagName]["supertags"],tagDesc["supertags"])
                 continue
         
         tagDesc["html file"] = Utils.slugify(tagName) + '.html'
         
-        tagDesc["List index"] = rawTagIndex
+        tagDesc["listIndex"] = rawTagIndex
         tags[tagName] = tagDesc
     
     database["tag"] = tags
@@ -379,7 +379,7 @@ def CreateTagDisplayList(database):
         listItem["subsumed"] = subsumed
         listItem["text"] = text
             
-        if rawTag["Virtual"]:
+        if rawTag["virtual"]:
             listItem["tag"] = "" # Virtual tags don't have a display page
         else:
             listItem["tag"] = tag
@@ -390,8 +390,8 @@ def CreateTagDisplayList(database):
     
     # Cross-check tag indexes
     for tag in database["tag"]:
-        if not database["tag"][tag]["Virtual"]:
-            index = database["tag"][tag]["List index"]
+        if not database["tag"][tag]["virtual"]:
+            index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}" 
       
 
@@ -610,8 +610,8 @@ def CountAndVerify(database):
             tagDesc = database["tag"][tag]
             if tagDesc["Primaries"] > 1:
                 print(f"Warning: {tagDesc['Primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
-            if gOptions.verbose >= 2 and tagDesc["Copies"] > 1 and tagDesc["Primaries"] == 0 and not tagDesc["Virtual"]:
-                print(f"Notice: None of {tagDesc['Copies']} instances of tag {tagDesc['tag']} are designated as primary.")
+            if gOptions.verbose >= 2 and tagDesc["copies"] > 1 and tagDesc["Primaries"] == 0 and not tagDesc["virtual"]:
+                print(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
 
 def VerifyListCounts(database):
     # Check that the number of items in each numbered tag list matches the supertag item count
@@ -724,6 +724,7 @@ def main(clOptions,database):
     CamelCase("QTag") #NoCamelCase
     CamelCase("ATag") #NoCamelCase
     CamelCase("Tag_Raw") #NoCamelCase
+    CamelCase("Full Pāli"); CamelCase("Virtual"); CamelCase("Subtags"); CamelCase("Supertags"); CamelCase("Copies"); CamelCase("List index"); CamelCase("XXXX") #NoCamelCase
     print(len(gCamelCaseTranslation),gCamelCaseTranslation)
     with open('tools/massRename/CamelCaseTranslation.json', 'w', encoding='utf-8') as file:
         json.dump(gCamelCaseTranslation,file,ensure_ascii=False, indent='\t')

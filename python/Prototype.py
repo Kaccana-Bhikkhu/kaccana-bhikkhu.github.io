@@ -158,7 +158,7 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
             if item["level"] > skipSubtagLevel:
                 continue
             # print(index,item["tag"])
-            if item["tag"] and gDatabase["tag"][item["tag"]]["List index"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
+            if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
                 skipSubtagLevel = item["level"] # skip subsequent subtags
             else:
                 skipSubtagLevel = 999 # otherwise don't skip anything
@@ -494,8 +494,8 @@ def WriteTagPages(tagPageDir: str) -> None:
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
         
         with a.h3(style = "line-height: 1.5;"):
-            a(ListLinkedTags("Parent topic",tagInfo['Supertags']))
-            a(ListLinkedTags("Subtopic",tagInfo['Subtags']))
+            a(ListLinkedTags("Parent topic",tagInfo['supertags']))
+            a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(QuestionDurationStr(relevantQs,False,False))
         

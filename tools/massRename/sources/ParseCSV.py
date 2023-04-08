@@ -202,12 +202,12 @@ def DictFromPairs(inList,keyKey,valueKey,camelCase = True):
     return outDict
 
 def LoadSummary(database,summaryFileName):
-    summaryList = CSVFileToDictList(summaryFileName,skipLines = 1,removeKeys = ["Seconds","SortBy"],endOfSection = '<---->')
+    summaryList = CSVFileToDictList(summaryFileName,skipLines = 1,removeKeys = ["seconds","sortBy"],endOfSection = '<---->')
     
-    for numericalKey in ["Sessions","Questions","Answers listened to","Tags applied","Invalid tags"]:
+    for numericalKey in ["sessions","questions","answersListenedTo","tagsApplied","invalidTags"]:
         ConvertToInteger(summaryList,numericalKey)
     
-    database["Summary"] = ListToDict(summaryList,"Event Code")
+    database["summary"] = ListToDict(summaryList,"eventCode")
 
 class TagStackItem:
     """Information about a supertag
@@ -231,19 +231,19 @@ class TagStackItem:
 def LoadTagsFile(database,tagFileName):
     "Load Tag_Raw from a file and parse it to create the Tag dictionary"
     # First load the raw tags from the csv file
-    rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["Indented tags","Pali term","Tag menu","Tag count","Pali tag menu"])
+    rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["indentedTags","paliTerm","tagMenu","Tag count","paliTagMenu"])
         
-    ListifyKey(rawTagList,"Alternate translations")
-    ListifyKey(rawTagList,"Related")
-    ConvertToInteger(rawTagList,"Level")
+    ListifyKey(rawTagList,"alternateTranslations")
+    ListifyKey(rawTagList,"related")
+    ConvertToInteger(rawTagList,"level")
     
     # Convert the flag codes to boolean values
     flags = {'.':"Virtual", '*':"Primary"}
     for item in rawTagList:
         for flag in flags:
-            item[flags[flag]] = flag in item["Flags"]
+            item[flags[flag]] = flag in item["flags"]
         
-        digitFlag = re.search("[0-9]",item["Flags"])
+        digitFlag = re.search("[0-9]",item["flags"])
         if digitFlag:
             item["Item count"] = int(digitFlag[0])
         else:
@@ -251,9 +251,9 @@ def LoadTagsFile(database,tagFileName):
 
     # Next build the main tag dictionary
     tags = {}
-    namePreference = ["Abbreviation","Full tag","Pāli abbreviation","Pāli"]
-    paliPreference = ["Pāli abbreviation","Pāli"]
-    fullNamePreference = ["Full tag","Pāli"]
+    namePreference = ["abbreviation","fullTag","paliAbbreviation","pali"]
+    paliPreference = ["paliAbbreviation","pali"]
+    fullNamePreference = ["fullTag","pali"]
     
     # Remove any blank values from the list before looping over it
     rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
@@ -271,15 +271,15 @@ def LoadTagsFile(database,tagFileName):
         tagPaliName = FirstValidValue(rawTag,paliPreference,"")
         
         tagDesc = {}
-        tagDesc["Tag"] = tagName
-        tagDesc["Pāli"] = tagPaliName
-        tagDesc["Full tag"] = FirstValidValue(rawTag,fullNamePreference)
-        tagDesc["Full Pāli"] = rawTag["Pāli"]
-        for key in ["#","Alternate translations","Related","Virtual"]:
+        tagDesc["tag"] = tagName
+        tagDesc["pali"] = tagPaliName
+        tagDesc["fullTag"] = FirstValidValue(rawTag,fullNamePreference)
+        tagDesc["Full Pāli"] = rawTag["pali"]
+        for key in ["number","alternateTranslations","related","Virtual"]:
             tagDesc[key] = rawTag[key]
         
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
-        curTagLevel = rawTag["Level"]        
+        curTagLevel = rawTag["level"]        
         while (curTagLevel < lastTagLevel):
             tagStack.pop()
             lastTagLevel -= 1
@@ -295,12 +295,12 @@ def LoadTagsFile(database,tagFileName):
                 tagStack.append(lastTag)
  
         tagDesc["Subtags"] = []
-        rawTag["Index #"] = ""
+        rawTag["indexNumber"] = ""
         if curTagLevel > 1:
             tagDesc["Supertags"] = [tagStack[-1].tag]
             if tagStack[-1].subtagIndex:
                 if rawTag["Item count"]:
-                    rawTag["Index #"] = str(tagStack[-1].subtagIndex)
+                    rawTag["indexNumber"] = str(tagStack[-1].subtagIndex)
                     tagStack[-1].Increment(rawTag["Item count"])
             if tagStack[-1].collectSubtags:
                 tags[tagStack[-1].tag]["Subtags"].append(tagName)
@@ -309,11 +309,11 @@ def LoadTagsFile(database,tagFileName):
             tagDesc["Supertags"] = []
 
         lastTagLevel = curTagLevel
-        lastTag = TagStackItem(tagName,rawTag["Primary"],bool(rawTag["#"])) # Count subtags if this tag is numerical
+        lastTag = TagStackItem(tagName,rawTag["Primary"],bool(rawTag["number"])) # Count subtags if this tag is numerical
         
         # Subsumed tags don't have a tag entry
-        if rawTag["Subsumed under"]:
-            subsumedTags[tagName] = rawTag["Subsumed under"]
+        if rawTag["subsumedUnder"]:
+            subsumedTags[tagName] = rawTag["subsumedUnder"]
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
@@ -335,64 +335,64 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["List index"] = rawTagIndex
         tags[tagName] = tagDesc
     
-    database["Tag"] = tags
-    database["Tag_Raw"] = rawTagList
-    database["Tag_Subsumed"] = subsumedTags
+    database["tag"] = tags
+    database["tagRaw"] = rawTagList
+    database["tagSubsumed"] = subsumedTags
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
     Format: level, text of display line, tag to open when clicked""" 
     
     tagList = []
-    for rawTag in database["Tag_Raw"]:
-        listItem = {"Level" : rawTag["Level"],"Index #" : rawTag["Index #"]}
+    for rawTag in database["tagRaw"]:
+        listItem = {"level" : rawTag["level"],"indexNumber" : rawTag["indexNumber"]}
         
         if rawTag["Item count"] > 1:
-            listItem["Index #"] = ','.join(str(n + int(rawTag["Index #"])) for n in range(rawTag["Item count"]))
+            listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["Item count"]))
         
 
         
-        name = FirstValidValue(rawTag,["Full tag","Pāli"])
-        tag = FirstValidValue(rawTag,["Subsumed under","Abbreviation","Full tag","Pāli abbreviation","Pāli"])
+        name = FirstValidValue(rawTag,["fullTag","pali"])
+        tag = FirstValidValue(rawTag,["subsumedUnder","abbreviation","fullTag","paliAbbreviation","pali"])
         text = name
         
         try:
-            questionCount = database["Tag"][tag]["Question count"]
+            questionCount = database["tag"][tag]["questionCount"]
         except KeyError:
             questionCount = 0
-        subsumed = bool(rawTag["Subsumed under"])
+        subsumed = bool(rawTag["subsumedUnder"])
         
         if questionCount > 0 and not subsumed:
             text += " (" + str(questionCount) + ")"
         
-        if rawTag["Full tag"] and rawTag["Pāli"]:
-            text += " [" + rawTag["Pāli"] + "]"
+        if rawTag["fullTag"] and rawTag["pali"]:
+            text += " [" + rawTag["pali"] + "]"
 
         if subsumed:
-            text += " see " + rawTag["Subsumed under"]
+            text += " see " + rawTag["subsumedUnder"]
             if questionCount > 0:
                 text += " (" + str(questionCount) + ")"
         
-        listItem["Name"] = name
-        listItem["Pāli"] = rawTag["Pāli"]
-        listItem["Question count"] = questionCount
-        listItem["Subsumed"] = subsumed
-        listItem["Text"] = text
+        listItem["name"] = name
+        listItem["pali"] = rawTag["pali"]
+        listItem["questionCount"] = questionCount
+        listItem["subsumed"] = subsumed
+        listItem["text"] = text
             
         if rawTag["Virtual"]:
-            listItem["Tag"] = "" # Virtual tags don't have a display page
+            listItem["tag"] = "" # Virtual tags don't have a display page
         else:
-            listItem["Tag"] = tag
+            listItem["tag"] = tag
         
         tagList.append(listItem)
     
-    database["Tag_DisplayList"] = tagList
+    database["tagDisplayList"] = tagList
     
     # Cross-check tag indexes
-    for tag in database["Tag"]:
-        if not database["Tag"][tag]["Virtual"]:
-            index = database["Tag"][tag]["List index"]
-            assert tag == tagList[index]["Tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['Tag']}" 
+    for tag in database["tag"]:
+        if not database["tag"][tag]["Virtual"]:
+            index = database["tag"][tag]["List index"]
+            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}" 
       
 
 def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
@@ -411,59 +411,59 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
 def AddAnnotation(question: dict,annotation: dict):
     "Add an annotation to a question"
     
-    if annotation["Kind / Annotation"] == "Extra tags":
-        question["Tags"] += annotation["QTag"]
-        question["Tags"] += annotation["ATag"]
+    if annotation["kindAnnotation"] == "Extra tags":
+        question["tags"] += annotation["qTag"]
+        question["tags"] += annotation["aTag"]
     
     if gOptions.ignoreAnnotations:
         return
     
-    print("We don't yet support annotation",annotation["Kind / Annotation"])
+    print("We don't yet support annotation",annotation["kindAnnotation"])
     
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
-        eventDesc = DictFromPairs(rawEventDesc,"Key","Value")
+        eventDesc = DictFromPairs(rawEventDesc,"key","value")
         
-        for key in ["Teachers","Tags"]:
+        for key in ["teachers","tags"]:
             eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
-        for key in ["Sessions","Questions","Answers listened to","Tags applied","Invalid tags"]:
+        for key in ["sessions","questions","answersListenedTo","tagsApplied","invalidTags"]:
             eventDesc[key] = int(eventDesc[key])
         
-        database["Event"][eventName] = eventDesc
+        database["event"][eventName] = eventDesc
         
         
-        sessions = CSVToDictList(file,removeKeys = ["Seconds"],endOfSection = '<---->')
+        sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
         
-        for key in ["Tags","Teachers"]:
+        for key in ["tags","teachers"]:
             ListifyKey(sessions,key)
-        for key in ["Session #","Questions"]:
+        for key in ["sessionNumber","questions"]:
             ConvertToInteger(sessions,key)
             
         if not gOptions.ignoreExcludes:
-            sessions = [s for s in sessions if not s["Exclude?"]] # Remove excluded sessions
+            sessions = [s for s in sessions if not s["exclude"]] # Remove excluded sessions
             # Remove excluded sessions
             
         for s in sessions:
-            s["Event"] = eventName
-            s = ReorderKeys(s,["Event","Session #"])
+            s["event"] = eventName
+            s = ReorderKeys(s,["event","sessionNumber"])
             if not gOptions.jsonNoClean:
-                del s["Exclude?"]
+                del s["exclude"]
             
             
-        sessions = [s for s in sessions if TeacherConsent(database["Teacher"],s["Teachers"],"Index sessions?")]
+        sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions")]
             # Remove sessions we didn't get consent for
 
         
         rawQuestions = CSVToDictList(file)
         
-        for key in ["Teachers","QTag1","ATag1"]:
+        for key in ["teachers","qTag1","aTag1"]:
             ListifyKey(rawQuestions,key)
-        ConvertToInteger(rawQuestions,"Session #")
+        ConvertToInteger(rawQuestions,"sessionNumber")
         
-        includedSessions = set(s["Session #"] for s in sessions)
-        rawQuestions = [q for q in rawQuestions if q["Session #"] in includedSessions]
+        includedSessions = set(s["sessionNumber"] for s in sessions)
+        rawQuestions = [q for q in rawQuestions if q["sessionNumber"] in includedSessions]
             # Remove questions and annotations in sessions we didn't get consent for
             
         qNumber = 1 # Question number counts only questions allowed by teacher consent policies
@@ -472,87 +472,87 @@ def LoadEventFile(database,eventName,directory):
         prevQuestion = None
         questions = []
         for q in rawQuestions:
-            if not q["Start time"]: # If Start time is blank, this is an annotation to the previous question
+            if not q["startTime"]: # If Start time is blank, this is an annotation to the previous question
                 AddAnnotation(prevQuestion,q)
                 continue
             else:
-                q["Kind"] = q.pop("Kind / Annotation","") # Otherwise Kind / Annotation specifies the kind of question ("" = Question, "Story", or "Discussion")
+                q["kind"] = q.pop("kindAnnotation","") # Otherwise Kind / Annotation specifies the kind of question ("" = Question, "Story", or "Discussion")
             
-            q["Event"] = eventName
+            q["event"] = eventName
             
-            ourSession = Utils.FindSession(sessions,eventName,q["Session #"])
+            ourSession = Utils.FindSession(sessions,eventName,q["sessionNumber"])
             
-            q["Tags"] = q["QTag"] + q["ATag"] # Combine question and session tags unless the question is off-topic
-            if not q.pop("Off topic?",False): # We don't need the off topic key after this, so throw it away with pop
-                q["Tags"] += ourSession["Tags"]
+            q["tags"] = q["qTag"] + q["aTag"] # Combine question and session tags unless the question is off-topic
+            if not q.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
+                q["tags"] += ourSession["tags"]
 
-            if not q["Teachers"]:
-                q["Teachers"] = ourSession["Teachers"]
+            if not q["teachers"]:
+                q["teachers"] = ourSession["teachers"]
             
-            if q["Session #"] != lastSession:
-                if lastSession > q["Session #"] and gOptions.verbose > 0:
-                    print(f"Warning: Session number out of order after question {qNumber} in session {lastSession} of {q['Event']}")
+            if q["sessionNumber"] != lastSession:
+                if lastSession > q["sessionNumber"] and gOptions.verbose > 0:
+                    print(f"Warning: Session number out of order after question {qNumber} in session {lastSession} of {q['event']}")
                 qNumber = 0
                 fileNumber = 1
-                lastSession = q["Session #"]
+                lastSession = q["sessionNumber"]
             else:
                 fileNumber += 1 # File number counts all questions listed for the event
             
-            if TeacherConsent(database["Teacher"],q["Teachers"],"Index questions?") and (not q["Exclude?"] or gOptions.ignoreExcludes):                   
+            if TeacherConsent(database["teacher"],q["teachers"],"indexQuestions") and (not q["exclude"] or gOptions.ignoreExcludes):                   
                 qNumber += 1 # Question number counts only questions allowed by teacher consent and exclusion policies
-                q["Exclude?"] = False
+                q["exclude"] = False
             else:
-                q["Exclude?"] = True # Convert this value to boolean
+                q["exclude"] = True # Convert this value to boolean
             
-            q["Question #"] = qNumber
-            q["File #"] = fileNumber
+            q["questionNumber"] = qNumber
+            q["fileNumber"] = fileNumber
             
             if not gOptions.jsonNoClean:
-                del q["QTag"]
-                del q["ATag"]
-                del q["AListen?"]
+                del q["qTag"]
+                del q["aTag"]
+                del q["aListen"]
                 
             questions.append(q)
             prevQuestion = q
         
         for qIndex, q in enumerate(questions):
-            startTime = q["Start time"]
+            startTime = q["startTime"]
             
-            endTime = q["End time"]
+            endTime = q["endTime"]
             if not endTime:
                 try:
-                    if questions[qIndex + 1]["Session #"] == q["Session #"]:
-                        endTime = questions[qIndex + 1]["Start time"]
+                    if questions[qIndex + 1]["sessionNumber"] == q["sessionNumber"]:
+                        endTime = questions[qIndex + 1]["startTime"]
                 except IndexError:
                     pass
             
             if not endTime:
-                endTime = Utils.FindSession(sessions,eventName,q["Session #"])["Duration"]
+                endTime = Utils.FindSession(sessions,eventName,q["sessionNumber"])["duration"]
                 
-            q["Duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
+            q["duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
         
         for index in range(len(questions)):
-            questions[index] = ReorderKeys(questions[index],["Event","Session #","Question #","File #"])
+            questions[index] = ReorderKeys(questions[index],["event","sessionNumber","questionNumber","fileNumber"])
         
-        removedQuestions = [q for q in questions if q["Exclude?"]]
-        questions = [q for q in questions if not q["Exclude?"]]
+        removedQuestions = [q for q in questions if q["exclude"]]
+        questions = [q for q in questions if not q["exclude"]]
             # Remove excluded questions and those we didn't get consent for
         
         if not gOptions.jsonNoClean:
             for q in questions:
-                del q["Exclude?"]
+                del q["exclude"]
         
         for q in removedQuestions: # Redact information about these questions
-            for key in ["Teachers","Tags","Question text","QTag","ATag","AListen?","Question #","Exclude?","Kind","Duration"]:
+            for key in ["teachers","tags","questionText","qTag","aTag","aListen","questionNumber","exclude","kind","duration"]:
                 q.pop(key,None)
         
-        sessionsWithQuestions = set(q["Session #"] for q in questions)
-        sessions = [s for s in sessions if s["Session #"] in sessionsWithQuestions]
+        sessionsWithQuestions = set(q["sessionNumber"] for q in questions)
+        sessions = [s for s in sessions if s["sessionNumber"] in sessionsWithQuestions]
             # Remove sessions that have no questions in them
         
-        database["Sessions"] += sessions
-        database["Questions"] += questions
-        database["Questions_Redacted"] += removedQuestions
+        database["sessions"] += sessions
+        database["questions"] += questions
+        database["questionsRedacted"] += removedQuestions
         
 
 def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
@@ -592,51 +592,51 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
 
 def CountAndVerify(database):
     
-    CountInstances(database["Event"],"Tags",database["Tag"],"Event count",gOptions.zeroCount)
-    CountInstances(database["Sessions"],"Tags",database["Tag"],"Session count",gOptions.zeroCount)
-    CountInstances(database["Questions"],"Tags",database["Tag"],"Question count",gOptions.zeroCount)
+    CountInstances(database["event"],"tags",database["tag"],"Event count",gOptions.zeroCount)
+    CountInstances(database["sessions"],"tags",database["tag"],"Session count",gOptions.zeroCount)
+    CountInstances(database["questions"],"tags",database["tag"],"questionCount",gOptions.zeroCount)
     
     if gOptions.detailedCount:
-        for key in ["Venue","Series","Format","Medium"]:
-            CountInstances(database["Event"],key,database[key],"Event count",gOptions.zeroCount)
+        for key in ["venue","series","format","medium"]:
+            CountInstances(database["event"],key,database[key],"Event count",gOptions.zeroCount)
         
-        CountInstances(database["Event"],"Teachers",database["Teacher"],"Event count",gOptions.zeroCount)
-        CountInstances(database["Sessions"],"Teachers",database["Teacher"],"Session count",gOptions.zeroCount)
-        CountInstances(database["Questions"],"Teachers",database["Teacher"],"Question count",gOptions.zeroCount)
+        CountInstances(database["event"],"teachers",database["teacher"],"Event count",gOptions.zeroCount)
+        CountInstances(database["sessions"],"teachers",database["teacher"],"Session count",gOptions.zeroCount)
+        CountInstances(database["questions"],"teachers",database["teacher"],"questionCount",gOptions.zeroCount)
     
     # Are tags flagged Primary as needed?
     if gOptions.verbose >= 1:
-        for tag in database["Tag"]:
-            tagDesc = database["Tag"][tag]
+        for tag in database["tag"]:
+            tagDesc = database["tag"][tag]
             if tagDesc["Primaries"] > 1:
-                print(f"Warning: {tagDesc['Primaries']} instances of tag {tagDesc['Tag']} are flagged as primary.")
+                print(f"Warning: {tagDesc['Primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
             if gOptions.verbose >= 2 and tagDesc["Copies"] > 1 and tagDesc["Primaries"] == 0 and not tagDesc["Virtual"]:
-                print(f"Notice: None of {tagDesc['Copies']} instances of tag {tagDesc['Tag']} are designated as primary.")
+                print(f"Notice: None of {tagDesc['Copies']} instances of tag {tagDesc['tag']} are designated as primary.")
 
 def VerifyListCounts(database):
     # Check that the number of items in each numbered tag list matches the supertag item count
-    for index, tagInfo in enumerate(database["Tag_DisplayList"]):
-        tag = tagInfo["Tag"]
-        if not tag or tagInfo["Subsumed"] or not database["Tag"][tag]["#"]:
+    for index, tagInfo in enumerate(database["tagDisplayList"]):
+        tag = tagInfo["tag"]
+        if not tag or tagInfo["subsumed"] or not database["tag"][tag]["number"]:
             continue   # Skip virtual, subsumed and unnumbered tags
         
-        subtagLevel = tagInfo["Level"] + 1 # Count tags one level deeper than us
+        subtagLevel = tagInfo["level"] + 1 # Count tags one level deeper than us
         lookaheadIndex = index + 1
         listCount = 0
         # Loop through all subtags of this tag
-        while lookaheadIndex < len(database["Tag_DisplayList"]) and database["Tag_DisplayList"][lookaheadIndex]["Level"] >= subtagLevel:
-            if database["Tag_DisplayList"][lookaheadIndex]["Level"] == subtagLevel and database["Tag_DisplayList"][lookaheadIndex]["Index #"]:
-                listCount = int(database["Tag_DisplayList"][lookaheadIndex]["Index #"].split(',')[-1])
+        while lookaheadIndex < len(database["tagDisplayList"]) and database["tagDisplayList"][lookaheadIndex]["level"] >= subtagLevel:
+            if database["tagDisplayList"][lookaheadIndex]["level"] == subtagLevel and database["tagDisplayList"][lookaheadIndex]["indexNumber"]:
+                listCount = int(database["tagDisplayList"][lookaheadIndex]["indexNumber"].split(',')[-1])
                     # Convert the last item in this comma-separated list to an integer
             lookaheadIndex += 1
         
-        if listCount != int(database["Tag"][tag]["#"]):
-            print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["Tag"][tag]["#"]} items, but we count {listCount}')
+        if listCount != int(database["tag"][tag]["number"]):
+            print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["tag"][tag]["number"]} items, but we count {listCount}')
     
     # Check for duplicate question tags
-    for q in database["Questions"]:
-        if len(set(q["Tags"])) != len(q["Tags"]) and gOptions.verbose > 1:
-            print(f"Duplicate tags in {q['Event']} S{q['Session #']} Q{q['Question #']} {q['Tags']}")
+    for q in database["questions"]:
+        if len(set(q["tags"])) != len(q["tags"]) and gOptions.verbose > 1:
+            print(f"Duplicate tags in {q['event']} S{q['sessionNumber']} Q{q['questionNumber']} {q['tags']}")
     
 
 def AddArguments(parser):
@@ -682,11 +682,11 @@ def main(clOptions,database):
     
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
     
-    database["Event"] = {}
-    database["Sessions"] = []
-    database["Questions"] = []
-    database["Questions_Redacted"] = []
-    for event in database["Summary"]:
+    database["event"] = {}
+    database["sessions"] = []
+    database["questions"] = []
+    database["questionsRedacted"] = []
+    for event in database["summary"]:
         LoadEventFile(database,event,gOptions.csvDir)
     
     CountAndVerify(database)
@@ -694,9 +694,9 @@ def main(clOptions,database):
     if gOptions.verbose > 0:
         VerifyListCounts(database)
         
-    # database = ReorderKeys(database,["Tag_DisplayList","Tag","Tag_Raw"])
+    # database = ReorderKeys(database,["tagDisplayList","tag","tagRaw"])
     if not gOptions.jsonNoClean:
-        del database["Tag_Raw"]
+        del database["tagRaw"]
 
     if gOptions.verbose >= 2:
         print("Final database contents:")
@@ -707,7 +707,7 @@ def main(clOptions,database):
         json.dump(database, file, ensure_ascii=False, indent=2)
     
     if gOptions.verbose > 0:
-        print("   " + QuestionDurationStr(database["Questions"]))
+        print("   " + QuestionDurationStr(database["questions"]))
 
     CamelCaseKeys(database,False)
     for stuff in database.values():
@@ -724,6 +724,7 @@ def main(clOptions,database):
     CamelCase("QTag") #NoCamelCase
     CamelCase("ATag") #NoCamelCase
     CamelCase("Tag_Raw") #NoCamelCase
+    CamelCase("Full Pāli"); CamelCase("Virtual"); CamelCase("Subtags"); CamelCase("Supertags"); CamelCase("Copies"); CamelCase("List index"); CamelCase("XXXX") #NoCamelCase
     print(len(gCamelCaseTranslation),gCamelCaseTranslation)
     with open('tools/massRename/CamelCaseTranslation.json', 'w', encoding='utf-8') as file:
         json.dump(gCamelCaseTranslation,file,ensure_ascii=False, indent='\t')
