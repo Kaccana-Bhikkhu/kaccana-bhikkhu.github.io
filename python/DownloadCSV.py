@@ -1,4 +1,4 @@
-"""Use Mp3DirectCut.exe to split the session audio files into individual questions based on start and end times from Database.json"""
+"""Use Mp3DirectCut.exe to split the session audio files into individual excerpts based on start and end times from Database.json"""
 
 import os, re
 import urllib.request
@@ -7,7 +7,7 @@ from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
 
 def BuildSheetUrl(docId: str, sheetId: str):
-    "From https://stackoverflow.com/questions/12842341/download-google-docs-public-spreadsheet-to-csv-with-python"
+    "From https://stackoverflow.com/excerpts/12842341/download-google-docs-public-spreadsheet-to-csv-with-python"
     
     return f'https://docs.google.com/spreadsheets/d/{docId}/export?format=csv&gid={sheetId}'
 
@@ -52,14 +52,14 @@ def DownloadSheets(sheetIds: dict) -> None:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--spreadsheet',type=str,default='https://docs.google.com/spreadsheets/d/10bCTyw2NF31_2Lixz_uBIJceY0ToX2hqdXrrJRBA37A/edit#gid=2007732801', help='URL of the QA Archive Main sheet Summary')
+    parser.add_argument('--spreadsheet',type=str,default='https://docs.google.com/spreadsheets/d/1PNFs3BaaXep-bdeWgahgV9c-i7sqd_QHr3kwRHLvjrg/edit#gid=2007732801', help='URL of the QA Archive Main sheet Summary')
     parser.add_argument('--sheets',type=str,default='Default',help='Download this list of named sheets; Default: Tags and the sheets specified by --events')
     parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
     
 gOptions = None
 
 def main(clOptions,_):
-    """ Split the Q&A session mp3 files into individual questions.
+    """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     
     global gOptions

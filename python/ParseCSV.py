@@ -3,7 +3,7 @@
 import os, re, csv, json, unicodedata
 import Utils
 from typing import List
-from Prototype import QuestionDurationStr
+from Prototype import ExcerptDurationStr
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -204,7 +204,7 @@ def DictFromPairs(inList,keyKey,valueKey,camelCase = True):
 def LoadSummary(database,summaryFileName):
     summaryList = CSVFileToDictList(summaryFileName,skipLines = 1,removeKeys = ["seconds","sortBy"],endOfSection = '<---->')
     
-    for numericalKey in ["sessions","questions","answersListenedTo","tagsApplied","invalidTags"]:
+    for numericalKey in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
         ConvertToInteger(summaryList,numericalKey)
     
     database["summary"] = ListToDict(summaryList,"eventCode")
@@ -357,25 +357,25 @@ def CreateTagDisplayList(database):
         text = name
         
         try:
-            questionCount = database["tag"][tag]["questionCount"]
+            excerptCount = database["tag"][tag]["excerptCount"]
         except KeyError:
-            questionCount = 0
+            excerptCount = 0
         subsumed = bool(rawTag["subsumedUnder"])
         
-        if questionCount > 0 and not subsumed:
-            text += " (" + str(questionCount) + ")"
+        if excerptCount > 0 and not subsumed:
+            text += " (" + str(excerptCount) + ")"
         
         if rawTag["fullTag"] and rawTag["pali"]:
             text += " [" + rawTag["pali"] + "]"
 
         if subsumed:
             text += " see " + rawTag["subsumedUnder"]
-            if questionCount > 0:
-                text += " (" + str(questionCount) + ")"
+            if excerptCount > 0:
+                text += " (" + str(excerptCount) + ")"
         
         listItem["name"] = name
         listItem["pali"] = rawTag["pali"]
-        listItem["questionCount"] = questionCount
+        listItem["excerptCount"] = excerptCount
         listItem["subsumed"] = subsumed
         listItem["text"] = text
             
@@ -408,12 +408,12 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
         
     return consent
 
-def AddAnnotation(question: dict,annotation: dict):
-    "Add an annotation to a question"
+def AddAnnotation(excerpt: dict,annotation: dict):
+    "Add an annotation to a excerpt"
     
     if annotation["kindAnnotation"] == "Extra tags":
-        question["tags"] += annotation["qTag"]
-        question["tags"] += annotation["aTag"]
+        excerpt["tags"] += annotation["qTag"]
+        excerpt["tags"] += annotation["aTag"]
     
     if gOptions.ignoreAnnotations:
         return
@@ -428,7 +428,7 @@ def LoadEventFile(database,eventName,directory):
         
         for key in ["teachers","tags"]:
             eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
-        for key in ["sessions","questions","answersListenedTo","tagsApplied","invalidTags"]:
+        for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
             eventDesc[key] = int(eventDesc[key])
         
         database["event"][eventName] = eventDesc
@@ -438,7 +438,7 @@ def LoadEventFile(database,eventName,directory):
         
         for key in ["tags","teachers"]:
             ListifyKey(sessions,key)
-        for key in ["sessionNumber","questions"]:
+        for key in ["sessionNumber","excerpts"]:
             ConvertToInteger(sessions,key)
             
         if not gOptions.ignoreExcludes:
@@ -456,33 +456,33 @@ def LoadEventFile(database,eventName,directory):
             # Remove sessions we didn't get consent for
 
         
-        rawQuestions = CSVToDictList(file)
+        rawExcerpts = CSVToDictList(file)
         
         for key in ["teachers","qTag1","aTag1"]:
-            ListifyKey(rawQuestions,key)
-        ConvertToInteger(rawQuestions,"sessionNumber")
+            ListifyKey(rawExcerpts,key)
+        ConvertToInteger(rawExcerpts,"sessionNumber")
         
         includedSessions = set(s["sessionNumber"] for s in sessions)
-        rawQuestions = [q for q in rawQuestions if q["sessionNumber"] in includedSessions]
-            # Remove questions and annotations in sessions we didn't get consent for
+        rawExcerpts = [q for q in rawExcerpts if q["sessionNumber"] in includedSessions]
+            # Remove excerpts and annotations in sessions we didn't get consent for
             
-        qNumber = 1 # Question number counts only questions allowed by teacher consent policies
+        qNumber = 1 # Excerpt number counts only excerpts allowed by teacher consent policies
         fileNumber = 1 
         lastSession = 0
-        prevQuestion = None
-        questions = []
-        for q in rawQuestions:
-            if not q["startTime"]: # If Start time is blank, this is an annotation to the previous question
-                AddAnnotation(prevQuestion,q)
+        prevExcerpt = None
+        excerpts = []
+        for q in rawExcerpts:
+            if not q["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
+                AddAnnotation(prevExcerpt,q)
                 continue
             else:
-                q["kind"] = q.pop("kindAnnotation","") # Otherwise Kind / Annotation specifies the kind of question ("" = Question, "Story", or "Discussion")
+                q["kind"] = q.pop("kindAnnotation","") # Otherwise Kind / Annotation specifies the kind of excerpt ("" = Excerpt, "Story", or "Discussion")
             
             q["event"] = eventName
             
             ourSession = Utils.FindSession(sessions,eventName,q["sessionNumber"])
             
-            q["tags"] = q["qTag"] + q["aTag"] # Combine question and session tags unless the question is off-topic
+            q["tags"] = q["qTag"] + q["aTag"] # Combine excerpt and session tags unless the excerpt is off-topic
             if not q.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
                 q["tags"] += ourSession["tags"]
 
@@ -491,20 +491,20 @@ def LoadEventFile(database,eventName,directory):
             
             if q["sessionNumber"] != lastSession:
                 if lastSession > q["sessionNumber"] and gOptions.verbose > 0:
-                    print(f"Warning: Session number out of order after question {qNumber} in session {lastSession} of {q['event']}")
+                    print(f"Warning: Session number out of order after excerpt {qNumber} in session {lastSession} of {q['event']}")
                 qNumber = 0
                 fileNumber = 1
                 lastSession = q["sessionNumber"]
             else:
-                fileNumber += 1 # File number counts all questions listed for the event
+                fileNumber += 1 # File number counts all excerpts listed for the event
             
-            if TeacherConsent(database["teacher"],q["teachers"],"indexQuestions") and (not q["exclude"] or gOptions.ignoreExcludes):                   
-                qNumber += 1 # Question number counts only questions allowed by teacher consent and exclusion policies
+            if TeacherConsent(database["teacher"],q["teachers"],"indexExcerpts") and (not q["exclude"] or gOptions.ignoreExcludes):                   
+                qNumber += 1 # Excerpt number counts only excerpts allowed by teacher consent and exclusion policies
                 q["exclude"] = False
             else:
                 q["exclude"] = True # Convert this value to boolean
             
-            q["questionNumber"] = qNumber
+            q["excerptNumber"] = qNumber
             q["fileNumber"] = fileNumber
             
             if not gOptions.jsonNoClean:
@@ -512,17 +512,17 @@ def LoadEventFile(database,eventName,directory):
                 del q["aTag"]
                 del q["aListen"]
                 
-            questions.append(q)
-            prevQuestion = q
+            excerpts.append(q)
+            prevExcerpt = q
         
-        for qIndex, q in enumerate(questions):
+        for qIndex, q in enumerate(excerpts):
             startTime = q["startTime"]
             
             endTime = q["endTime"]
             if not endTime:
                 try:
-                    if questions[qIndex + 1]["sessionNumber"] == q["sessionNumber"]:
-                        endTime = questions[qIndex + 1]["startTime"]
+                    if excerpts[qIndex + 1]["sessionNumber"] == q["sessionNumber"]:
+                        endTime = excerpts[qIndex + 1]["startTime"]
                 except IndexError:
                     pass
             
@@ -531,28 +531,28 @@ def LoadEventFile(database,eventName,directory):
                 
             q["duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
         
-        for index in range(len(questions)):
-            questions[index] = ReorderKeys(questions[index],["event","sessionNumber","questionNumber","fileNumber"])
+        for index in range(len(excerpts)):
+            excerpts[index] = ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
         
-        removedQuestions = [q for q in questions if q["exclude"]]
-        questions = [q for q in questions if not q["exclude"]]
-            # Remove excluded questions and those we didn't get consent for
+        removedExcerpts = [q for q in excerpts if q["exclude"]]
+        excerpts = [q for q in excerpts if not q["exclude"]]
+            # Remove excluded excerpts and those we didn't get consent for
         
         if not gOptions.jsonNoClean:
-            for q in questions:
+            for q in excerpts:
                 del q["exclude"]
         
-        for q in removedQuestions: # Redact information about these questions
-            for key in ["teachers","tags","questionText","qTag","aTag","aListen","questionNumber","exclude","kind","duration"]:
+        for q in removedExcerpts: # Redact information about these excerpts
+            for key in ["teachers","tags","excerptText","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
                 q.pop(key,None)
         
-        sessionsWithQuestions = set(q["sessionNumber"] for q in questions)
-        sessions = [s for s in sessions if s["sessionNumber"] in sessionsWithQuestions]
-            # Remove sessions that have no questions in them
+        sessionsWithExcerpts = set(q["sessionNumber"] for q in excerpts)
+        sessions = [s for s in sessions if s["sessionNumber"] in sessionsWithExcerpts]
+            # Remove sessions that have no excerpts in them
         
         database["sessions"] += sessions
-        database["questions"] += questions
-        database["questionsRedacted"] += removedQuestions
+        database["excerpts"] += excerpts
+        database["excerptsRedacted"] += removedExcerpts
         
 
 def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
@@ -594,7 +594,7 @@ def CountAndVerify(database):
     
     CountInstances(database["event"],"tags",database["tag"],"Event count",gOptions.zeroCount)
     CountInstances(database["sessions"],"tags",database["tag"],"Session count",gOptions.zeroCount)
-    CountInstances(database["questions"],"tags",database["tag"],"questionCount",gOptions.zeroCount)
+    CountInstances(database["excerpts"],"tags",database["tag"],"excerptCount",gOptions.zeroCount)
     
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
@@ -602,7 +602,7 @@ def CountAndVerify(database):
         
         CountInstances(database["event"],"teachers",database["teacher"],"Event count",gOptions.zeroCount)
         CountInstances(database["sessions"],"teachers",database["teacher"],"Session count",gOptions.zeroCount)
-        CountInstances(database["questions"],"teachers",database["teacher"],"questionCount",gOptions.zeroCount)
+        CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount",gOptions.zeroCount)
     
     # Are tags flagged Primary as needed?
     if gOptions.verbose >= 1:
@@ -633,17 +633,17 @@ def VerifyListCounts(database):
         if listCount != int(database["tag"][tag]["number"]):
             print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["tag"][tag]["number"]} items, but we count {listCount}')
     
-    # Check for duplicate question tags
-    for q in database["questions"]:
+    # Check for duplicate excerpt tags
+    for q in database["excerpts"]:
         if len(set(q["tags"])) != len(q["tags"]) and gOptions.verbose > 1:
-            print(f"Duplicate tags in {q['event']} S{q['sessionNumber']} Q{q['questionNumber']} {q['tags']}")
+            print(f"Duplicate tags in {q['event']} S{q['sessionNumber']} Q{q['excerptNumber']} {q['tags']}")
     
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--ignoreTeacherConsent',action='store_true',help="Ignore teacher consent flags - debugging only")
-    parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and question flags - debugging only")
+    parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--zeroCount',action='store_true',help="Write count=0 keys to json file; otherwise write only non-zero keys")
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
@@ -684,8 +684,8 @@ def main(clOptions,database):
     
     database["event"] = {}
     database["sessions"] = []
-    database["questions"] = []
-    database["questionsRedacted"] = []
+    database["excerpts"] = []
+    database["excerptsRedacted"] = []
     for event in database["summary"]:
         LoadEventFile(database,event,gOptions.csvDir)
     
@@ -707,7 +707,7 @@ def main(clOptions,database):
         json.dump(database, file, ensure_ascii=False, indent=2)
     
     if gOptions.verbose > 0:
-        print("   " + QuestionDurationStr(database["questions"]))
+        print("   " + ExcerptDurationStr(database["excerpts"]))
 
     CamelCaseKeys(database,False)
     for stuff in database.values():

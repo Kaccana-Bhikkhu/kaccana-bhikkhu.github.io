@@ -1,4 +1,4 @@
-"""Main program to create the Ajahn Pasanno Question and Answer Archive website
+"""Main program to create the Ajahn Pasanno Question and Story Archive website
 """
 
 import argparse
@@ -20,12 +20,12 @@ moduleList.remove('OptimizeDatabase')
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 
-parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Question and Answer Archive website from mp3 files and the 
+parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Question and Story Archive website from mp3 files and the 
 AP QA archive main Google Sheet.""")
 
 parser.add_argument('ops',type=str,help="""A comma-separated list of operations to perform. No spaces allowed. Available operations:
 ParseCSV - convert the csv files downloaded from the Google Sheet to SpreadsheetDatabase.json.
-SplitMp3 - split mp3 files into individual questions based on the times in SpreadsheetDatabase.json.
+SplitMp3 - split mp3 files into individual excerpts based on the times in SpreadsheetDatabase.json.
 Prototype - create html files to illustrate how SpreadsheetDatabase.json should be interpreted.
 OptimizeDatabase - convert SpreadsheetDatabase.json to (optimized) Database.json
 All - run all the above modules in sequence.
@@ -36,8 +36,8 @@ parser.add_argument('--events',type=str,default='All',help='A comma-separated li
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
 parser.add_argument('--sessionMp3',type=str,default='remote',help='Session audio file link location; default: remote - use external Mp3 URL from session database')
-parser.add_argument('--questionMp3',type=str,default='remote',help='Question audio file link location; default: remote - use remoteQuestionMp3URL')
-parser.add_argument('--remoteQuestionMp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/questions/', help='remote URL for questions; default: storage.googleapis.com/apqa_archive/audio/questions/')
+parser.add_argument('--excerptMp3',type=str,default='remote',help='Excerpt audio file link location; default: remote - use remoteExcerptMp3URL')
+parser.add_argument('--remoteExcerptMp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/excerpts/', help='remote URL for excerpts; default: storage.googleapis.com/apqa_archive/audio/excerpts/')
 
 for mod in modules:
     modules[mod].AddArguments(parser)
@@ -84,4 +84,4 @@ for moduleName in moduleList:
 if clOptions.ignoreTeacherConsent:
     print("WARNING: Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
 if clOptions.ignoreExcludes:
-    print("WARNING: Session/question exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
+    print("WARNING: Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")

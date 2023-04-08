@@ -4,9 +4,9 @@ from datetime import timedelta, datetime
 import unicodedata
 import re
 
-def Mp3FileName(event:str ,session:int ,question:int) -> str:
-    "Return the name of the mp3 file associated with a given event, session, and question"
-    return f"{event}_S{session:02d}_Q{question:02d}.mp3"
+def Mp3FileName(event:str ,session:int ,excerpt:int) -> str:
+    "Return the name of the mp3 file associated with a given event, session, and excerpt"
+    return f"{event}_S{session:02d}_F{excerpt:02d}.mp3"
 
 def StrToTimeDelta(inStr):
     "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
