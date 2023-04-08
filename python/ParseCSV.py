@@ -10,8 +10,12 @@ def CamelCase(input: str) -> str:
     """Convert a string to camel case and remove all diacritics and special characters
     "Based on https://www.w3resource.com/python-exercises/string/python-data-type-string-exercise-96.php"""
     
+    try:
+        return gCamelCaseTranslation[input]
+    except KeyError:
+        pass
     text = unicodedata.normalize('NFKD', input).encode('ascii', 'ignore').decode('ascii')
-    text = text.replace("#"," Number") #NoCamelCase
+    text = text.replace("#"," Number")
     
     text = re.sub(r"([a-zA-Z])([A-Z])(?![A-Z]*\b)",r"\1 \2",text) # Add spaces where the string is already camel case to avoid converting to lower case
 
@@ -662,7 +666,7 @@ def main(clOptions,database):
     
     LoadSummary(database,os.path.join(gOptions.csvDir,"Summary.csv"))
    
-    specialFiles = {'Summary','Tag','EventTemplate'} #NoCamelCase
+    specialFiles = {'Summary','Tag','EventTemplate'}
     for fileName in os.listdir(gOptions.csvDir):
         fullPath = os.path.join(gOptions.csvDir,fileName)
         if not os.path.isfile(fullPath):
@@ -693,8 +697,8 @@ def main(clOptions,database):
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:
         VerifyListCounts(database)
-        
-    # database = ReorderKeys(database,["tagDisplayList","tag","tagRaw"])
+    
+    database["keyCaseTranslation"] = gCamelCaseTranslation
     if not gOptions.jsonNoClean:
         del database["tagRaw"]
 
@@ -708,23 +712,3 @@ def main(clOptions,database):
     
     if gOptions.verbose > 0:
         print("   " + ExcerptDurationStr(database["excerpts"]))
-
-    CamelCaseKeys(database,False)
-    for stuff in database.values():
-        try:
-            firstItem = stuff[0]
-        except KeyError:
-            firstItem = next(iter(stuff))
-        
-        try:
-            CamelCaseKeys(firstItem,False)
-        except AttributeError:
-            pass
-
-    CamelCase("QTag") #NoCamelCase
-    CamelCase("ATag") #NoCamelCase
-    CamelCase("Tag_Raw"); CamelCase("Item count"); CamelCase("Primary") #NoCamelCase
-    CamelCase("Full Pāli"); CamelCase("Virtual"); CamelCase("Subtags"); CamelCase("Supertags"); CamelCase("Copies"); CamelCase("List index"); CamelCase("Primaries") #NoCamelCase
-    """print(len(gCamelCaseTranslation),gCamelCaseTranslation)
-    with open('tools/massRename/CamelCaseTranslation.json', 'w', encoding='utf-8') as file:
-        json.dump(gCamelCaseTranslation,file,ensure_ascii=False, indent='\t')"""
