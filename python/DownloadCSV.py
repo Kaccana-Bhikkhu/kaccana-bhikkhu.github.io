@@ -40,7 +40,7 @@ def ReadSheetIds() -> dict:
         CSVToDictList(file,skipLines = 1,endOfSection = '<---->',camelCase = False)
             # Skip the first half of the summary file
         
-        sheetIds = CSVToDictList(file,skipLines = 2)
+        sheetIds = CSVToDictList(file,camelCase = False,skipLines = 2)
     
     return DictFromPairs(sheetIds,'Sheet','gid',camelCase=False)
 
