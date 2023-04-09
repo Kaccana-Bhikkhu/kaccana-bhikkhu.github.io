@@ -209,8 +209,8 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
         with a.p():
             tagDesc = gDatabase["tag"][tag]
             
-            qCount = ExcerptCount(tag)
-            countStr = f' ({qCount})' if qCount > 0 else ''
+            xCount = ExcerptCount(tag)
+            countStr = f' ({xCount})' if xCount > 0 else ''
             
             tagStr = HtmlTagLink(tagDesc['tag'])
             
@@ -472,13 +472,13 @@ def WriteTagPages(tagPageDir: str) -> None:
     if not os.path.exists(tagPageDir):
         os.makedirs(tagPageDir)
         
-    qDB = gDatabase["excerpts"]
+    xDB = gDatabase["excerpts"]
     
     for tag,tagInfo in gDatabase["tag"].items():
         if not tagInfo["html file"]:
             continue
     
-        relevantQs = [x for x in qDB if tag in x["tags"]]
+        relevantQs = [x for x in xDB if tag in x["tags"]]
     
         a = Airium()
         

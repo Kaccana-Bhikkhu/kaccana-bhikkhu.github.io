@@ -470,7 +470,7 @@ def LoadEventFile(database,eventName,directory):
         rawExcerpts = [x for x in rawExcerpts if x["sessionNumber"] in includedSessions]
             # Remove excerpts and annotations in sessions we didn't get consent for
             
-        qNumber = 1 # Excerpt number counts only excerpts allowed by teacher consent policies
+        xNumber = 1 # Excerpt number counts only excerpts allowed by teacher consent policies
         fileNumber = 1 
         lastSession = 0
         prevExcerpt = None
@@ -495,20 +495,20 @@ def LoadEventFile(database,eventName,directory):
             
             if x["sessionNumber"] != lastSession:
                 if lastSession > x["sessionNumber"] and gOptions.verbose > 0:
-                    print(f"Warning: Session number out of order after excerpt {qNumber} in session {lastSession} of {x['event']}")
-                qNumber = 0
+                    print(f"Warning: Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
+                xNumber = 0
                 fileNumber = 1
                 lastSession = x["sessionNumber"]
             else:
                 fileNumber += 1 # File number counts all excerpts listed for the event
             
             if TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") and (not x["exclude"] or gOptions.ignoreExcludes):                   
-                qNumber += 1 # Excerpt number counts only excerpts allowed by teacher consent and exclusion policies
+                xNumber += 1 # Excerpt number counts only excerpts allowed by teacher consent and exclusion policies
                 x["exclude"] = False
             else:
                 x["exclude"] = True # Convert this value to boolean
             
-            x["excerptNumber"] = qNumber
+            x["excerptNumber"] = xNumber
             x["fileNumber"] = fileNumber
             
             if not gOptions.jsonNoClean:
@@ -519,14 +519,14 @@ def LoadEventFile(database,eventName,directory):
             excerpts.append(x)
             prevExcerpt = x
         
-        for qIndex, x in enumerate(excerpts):
+        for xIndex, x in enumerate(excerpts):
             startTime = x["startTime"]
             
             endTime = x["endTime"]
             if not endTime:
                 try:
-                    if excerpts[qIndex + 1]["sessionNumber"] == x["sessionNumber"]:
-                        endTime = excerpts[qIndex + 1]["startTime"]
+                    if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
+                        endTime = excerpts[xIndex + 1]["startTime"]
                 except IndexError:
                     pass
             
