@@ -376,9 +376,9 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     if not excerpts:
         return "No excerpts"
     
-    events = set(q["event"] for q in excerpts)
-    sessions = set((q["event"],q["sessionNumber"]) for q in excerpts) # Use sets to count unique elements
-    duration = sum((Utils.StrToTimeDelta(q["duration"]) for q in excerpts),start = timedelta())
+    events = set(x["event"] for x in excerpts)
+    sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
+    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts),start = timedelta())
     
     strItems = []
     
@@ -404,16 +404,16 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
     
     prevEvent = None
     prevSession = None
-    for q in excerpts:
-        if q["event"] != prevEvent or q["sessionNumber"] != prevSession:
-            session = Utils.FindSession(gDatabase["sessions"],q["event"],q["sessionNumber"])
+    for x in excerpts:
+        if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
+            session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
             a(formatter.FormatSessionHeading(session))
-            prevEvent = q["event"]
-            prevSession = q["sessionNumber"]
+            prevEvent = x["event"]
+            prevSession = x["sessionNumber"]
             formatter.excerptDefaultTeacher = set(session["teachers"])
             
         with a.p():
-            a(formatter.FormatExcerpt(q))
+            a(formatter.FormatExcerpt(x))
     
     return str(a)
 
@@ -461,7 +461,7 @@ def WriteAllEvents(pageDir: str) -> None:
             a.br()
             a(EventDateStr(e))
             a.br()
-            eventExcerpts = [q for q in gDatabase["excerpts"] if q["event"] == eventCode]
+            eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
             a(ExcerptDurationStr(eventExcerpts))
                 
     WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
@@ -478,7 +478,7 @@ def WriteTagPages(tagPageDir: str) -> None:
         if not tagInfo["html file"]:
             continue
     
-        relevantQs = [q for q in qDB if tag in q["tags"]]
+        relevantQs = [x for x in qDB if tag in x["tags"]]
     
         a = Airium()
         
@@ -516,7 +516,7 @@ def WriteEventPages(tagPageDir: str) -> None:
     for eventCode,eventInfo in gDatabase["event"].items():
         
         sessions = [s for s in gDatabase["sessions"] if s["event"] == eventCode]
-        excerpts = [q for q in gDatabase["excerpts"] if q["event"] == eventCode]
+        excerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a = Airium()
         
         with a.h1():

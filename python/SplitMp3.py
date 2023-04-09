@@ -14,7 +14,7 @@ def IncludeRedactedExcerpts() -> List[dict]:
     # print(len(allExcerpts))
     orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort excerpts by event order in gDatabase
     
-    allExcerpts.sort(key = lambda q: (orderedEvents.index(q["event"]),q["sessionNumber"],q["fileNumber"]))
+    allExcerpts.sort(key = lambda x: (orderedEvents.index(x["event"]),x["sessionNumber"],x["fileNumber"]))
         # Sort by event, then by session, then by file number
     
     return allExcerpts
@@ -80,8 +80,8 @@ def main(clOptions,database):
             os.makedirs(outputDir)
         
         allOutputFilesExist = True
-        for q in excerptList:
-            if not os.path.exists(os.path.join(outputDir,q[0]+'.mp3')):
+        for x in excerptList:
+            if not os.path.exists(os.path.join(outputDir,x[0]+'.mp3')):
                 allOutputFilesExist = False
         
         if allOutputFilesExist and not gOptions.overwriteMp3:
@@ -89,8 +89,8 @@ def main(clOptions,database):
         
         # We use eventDir as scratch space for newly generated mp3 files.
         # So first clean up any files left over from previous runs.
-        for q in excerptList:
-            scratchFilePath = os.path.join(eventDir,q[0]+'.mp3')
+        for x in excerptList:
+            scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
             if os.path.exists(scratchFilePath):
                 os.remove(scratchFilePath)
         
@@ -107,9 +107,9 @@ def main(clOptions,database):
             continue
         
         # Now move the files to their destination
-        for q in excerptList:
-            scratchFilePath = os.path.join(eventDir,q[0]+'.mp3')
-            outputFilePath = os.path.join(outputDir,q[0]+'.mp3')
+        for x in excerptList:
+            scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
+            outputFilePath = os.path.join(outputDir,x[0]+'.mp3')
             if os.path.exists(outputFilePath):
                 if gOptions.overwriteMp3:
                     os.remove(outputFilePath)
