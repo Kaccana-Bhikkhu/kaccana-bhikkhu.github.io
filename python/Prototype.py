@@ -305,8 +305,8 @@ class Formatter:
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
             
-        a(f' ({excerpt["duration"]})')
-        a(f' “{excerpt["text"]}” ')
+        a(f' ({excerpt["duration"]}) ')
+        a(excerpt["rendered"] + ' ')
         
         if teacherList:
             a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')

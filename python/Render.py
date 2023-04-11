@@ -4,6 +4,8 @@ The only remaining work for Prototype.py to do is substitute the list of teacher
 import json
 import ParseCSV
 from typing import Tuple
+from collections import defaultdict
+import pyratemp
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -39,9 +41,25 @@ def PrepareTemplates():
             kind["attribution"].append(attribution)
 
 def RenderExcerpts():
-    """Add a 'rendered' key to each excerpt by applying the specified template to its contents.
+    """Add a "rendered" key to each excerpt by applying the specified template to its contents.
     Prototype.py then uses this key to generate the html file."""
-    pass
+
+    bodyTemplates = defaultdict(list)
+    attributionTemplates = defaultdict(list)
+    for kind, details in gDatabase["kind"].items():
+        for template in details["body"]:
+            bodyTemplates[kind].append(pyratemp.Template(template))
+        
+        for template in details["attribution"]:
+            attributionTemplates[kind].append(pyratemp.Template(template))
+    
+    print(bodyTemplates)
+    print(attributionTemplates)
+
+    # bodyTemplates = {kind : pyratemp.Template(details['body']) for kind,details in gDatabase['kind'].items()}
+
+    for x in gDatabase["excerpts"]:
+        x["rendered"] = x["text"]
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -61,4 +79,4 @@ def main(clOptions,database):
     RenderExcerpts()
 
     with open(gOptions.renderedDatabase, 'w', encoding='utf-8') as file:
-        json.dump(gDatabase["kind"], file, ensure_ascii=False, indent=2)
+        json.dump(gDatabase, file, ensure_ascii=False, indent=2)
