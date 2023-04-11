@@ -415,14 +415,14 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
 def AddAnnotation(excerpt: dict,annotation: dict):
     "Add an annotation to a excerpt"
     
-    if annotation["kindAnnotation"] == "Extra tags":
+    if annotation["kind"] == "Extra tags":
         excerpt["tags"] += annotation["qTag"]
         excerpt["tags"] += annotation["aTag"]
     
     if gOptions.ignoreAnnotations:
         return
     
-    print("We don't yet support annotation",annotation["kindAnnotation"])
+    print("We don't yet support annotation",annotation["kind"])
     
 def LoadEventFile(database,eventName,directory):
     
@@ -480,7 +480,7 @@ def LoadEventFile(database,eventName,directory):
                 AddAnnotation(prevExcerpt,x)
                 continue
             else:
-                x["kind"] = x.pop("kindAnnotation","") # Otherwise Kind / Annotation specifies the kind of excerpt ("" = Excerpt, "Story", or "Discussion")
+                x["kind"] = x.pop("kind","") # Otherwise Kind / Annotation specifies the kind of excerpt ("" = Excerpt, "Story", or "Discussion")
             
             x["event"] = eventName
             
@@ -547,7 +547,7 @@ def LoadEventFile(database,eventName,directory):
                 del x["exclude"]
         
         for x in removedExcerpts: # Redact information about these excerpts
-            for key in ["teachers","tags","excerptText","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
+            for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
                 x.pop(key,None)
         
         sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)

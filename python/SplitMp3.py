@@ -111,11 +111,7 @@ def main(clOptions,database):
             scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
             outputFilePath = os.path.join(outputDir,x[0]+'.mp3')
             if os.path.exists(outputFilePath):
-                if gOptions.overwriteMp3:
-                    os.remove(outputFilePath)
-                else:
-                    os.remove(scratchFilePath)
-                    continue
+                os.remove(outputFilePath)
             
             os.rename(scratchFilePath,outputFilePath)
         

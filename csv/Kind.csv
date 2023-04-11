@@ -1,0 +1,24 @@
+Kind,Category,Default form,Can be excerpt?,Takes times?,Takes teachers?,Takes tags?,Append to excerpt?,Inherit teacher from:,Form 1,Form 2,Form 3
+Question,Questions,3,Yes,Yes,Yes,Yes,No,Session,unimplemented,unimplemented,“{text}”|| aswered by {teacher}.
+Response,Questions,1,No,No,Yes,Yes,No,Session,Response{s}|| by {teacher}||{colon} {text},unimplemented,unimplemented
+Follow-up,Questions,2,No,No,Yes,Yes,No,Excerpt,unimplemented,Follow-up{colon} “{text}”|| aswered by {teacher}.,unimplemented
+,,,,,,,,,,,
+Story,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Stor{'ies' if s else 'y'}{colon} {text}|| told by {teacher}.,unimplemented
+Recollection,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Recollection{s}{colon} {text}|| recounted by {teacher}.,unimplemented
+,,,,,,,,,,,
+Quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Quote: {prefix} “{text}” {suffix}|| — {teacher}.,unimplemented
+Indirect quote,Quotes,3,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,unimplemented,Quote: {prefix} “{text}”{' — ' if suffix else ''}{suffix}|| Quoted by {teacher}.
+,,,,,,,,,,,
+Meditation instruction,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Meditation instruction{s}{colon} {text}|| offered by {teacher}.,unimplemented
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+Reference,References,1,No,No,No,Yes,No,,Reference{s}: {text},unimplemented,unimplemented
+Sutta,References,1,No,No,No,Yes,No,,Sutta{s}: {text},unimplemented,unimplemented
+Vinaya,References,1,No,No,No,Yes,No,,Vinaya: {text},unimplemented,unimplemented
+,,,,,,,,,,,
+,,,,,,,,,,,
+Comment,Other,1,Yes,Yes,Yes,Yes,No,Anon,Comment{s}|| by {teacher}||{colon} {text},Comment{s}{colon} {text}|| contributed by {teacher}.,{text} Comment{s} by {teacher}.
+,,,,,,,,,,,
+,,,,,,,,,,,
+Extra tags,Other,0,No,No,No,Yes,No,,unimplemented,unimplemented,unimplemented
