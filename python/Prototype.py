@@ -315,14 +315,16 @@ class Formatter:
             a(f"Session {excerpt['sessionNumber']}, Excerpt {excerpt['excerptNumber']}")
         
         tagStrings = []
-        for tag in excerpt["tags"]:
+        for n,tag in enumerate(excerpt["tags"]):
             omitTags = self.excerptOmitTags
             if self.excerptOmitSessionTags:
                 omitTags = set.union(omitTags,set(Utils.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
             
+            if n and n == excerpt["qTagCount"]:
+                tagStrings.append("//") # Separate QTags and ATags with the symbol //
             if tag not in omitTags:
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
-        
+            
         a(' '.join(tagStrings))
         
         return str(a)

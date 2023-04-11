@@ -416,8 +416,8 @@ def AddAnnotation(excerpt: dict,annotation: dict):
     "Add an annotation to a excerpt"
     
     if annotation["kind"] == "Extra tags":
-        excerpt["tags"] += annotation["qTag"]
-        excerpt["tags"] += annotation["aTag"]
+        excerpt["qTag"] += annotation["qTag"]
+        excerpt["aTag"] += annotation["aTag"]
     
     if gOptions.ignoreAnnotations:
         return
@@ -480,15 +480,14 @@ def LoadEventFile(database,eventName,directory):
                 AddAnnotation(prevExcerpt,x)
                 continue
             else:
-                x["kind"] = x.pop("kind","") # Otherwise Kind / Annotation specifies the kind of excerpt ("" = Excerpt, "Story", or "Discussion")
+                x["kind"] = x.pop("kind","Question") # Otherwise Kind / Annotation specifies the kind of excerpt (default is "Question")
             
             x["event"] = eventName
             
             ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
             
-            x["tags"] = x["qTag"] + x["aTag"] # Combine excerpt and session tags unless the excerpt is off-topic
             if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
-                x["tags"] += ourSession["tags"]
+                x["qTag"] = ourSession["tags"] + x["qTag"]
 
             if not x["teachers"]:
                 x["teachers"] = ourSession["teachers"]
@@ -510,16 +509,20 @@ def LoadEventFile(database,eventName,directory):
             
             x["excerptNumber"] = xNumber
             x["fileNumber"] = fileNumber
-            
-            if not gOptions.jsonNoClean:
-                del x["qTag"]
-                del x["aTag"]
-                del x["aListen"]
                 
             excerpts.append(x)
             prevExcerpt = x
         
         for xIndex, x in enumerate(excerpts):
+
+            # Combine all tags into a single list, but keep track of how many qTags there are
+            x["tags"] = x["qTag"] + x["aTag"]
+            x["qTagCount"] = len(x["qTag"])
+            if not gOptions.jsonNoClean:
+                del x["qTag"]
+                del x["aTag"]
+                del x["aListen"]
+
             startTime = x["startTime"]
             
             endTime = x["endTime"]
