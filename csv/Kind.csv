@@ -1,5 +1,5 @@
 Kind,Category,Default form,Can be excerpt?,Takes times?,Takes teachers?,Takes tags?,Append to excerpt?,Inherit teacher from:,Form 1,Form 2,Form 3
-Question,Questions,3,Yes,Yes,Yes,Yes,No,Session,unimplemented,unimplemented,“{text}”|| aswered by {teacher}.
+Question,Questions,3,Yes,Yes,Yes,Yes,No,Session,unimplemented,unimplemented,“{text}”|| answered by {teacher}.
 Response,Questions,1,No,No,Yes,Yes,No,Session,Response{s}|| by {teacher}||{colon} {text},unimplemented,unimplemented
 Follow-up,Questions,2,No,No,Yes,Yes,No,Excerpt,unimplemented,Follow-up{colon} “{text}”|| aswered by {teacher}.,unimplemented
 ,,,,,,,,,,,

@@ -1,0 +1,340 @@
+{
+  "Question": {
+    "kind": "Question",
+    "category": "Questions",
+    "defaultForm": "3",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Session",
+    "forms": [
+      "unimplemented",
+      "unimplemented",
+      "“@!text!@”|| answered by @!teacher!@."
+    ],
+    "body": [
+      "unimplemented",
+      "unimplemented",
+      "“@!text!@”{attribution}"
+    ],
+    "attribution": [
+      "",
+      "",
+      " answered by @!teacher!@."
+    ]
+  },
+  "Response": {
+    "kind": "Response",
+    "category": "Questions",
+    "defaultForm": "1",
+    "canBeExcerpt": false,
+    "takesTimes": false,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Session",
+    "forms": [
+      "Response@!s!@|| by @!teacher!@||@!colon!@ @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "body": [
+      "Response@!s!@{attribution}@!colon!@ @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "attribution": [
+      " by @!teacher!@",
+      "",
+      ""
+    ]
+  },
+  "Follow-up": {
+    "kind": "Follow-up",
+    "category": "Questions",
+    "defaultForm": "2",
+    "canBeExcerpt": false,
+    "takesTimes": false,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Excerpt",
+    "forms": [
+      "unimplemented",
+      "Follow-up@!colon!@ “@!text!@”|| aswered by @!teacher!@.",
+      "unimplemented"
+    ],
+    "body": [
+      "unimplemented",
+      "Follow-up@!colon!@ “@!text!@”{attribution}",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      " aswered by @!teacher!@.",
+      ""
+    ]
+  },
+  "Story": {
+    "kind": "Story",
+    "category": "Stories",
+    "defaultForm": "2",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Excerpt",
+    "forms": [
+      "unimplemented",
+      "Stor@!'ies' if s else 'y'!@@!colon!@ @!text!@|| told by @!teacher!@.",
+      "unimplemented"
+    ],
+    "body": [
+      "unimplemented",
+      "Stor@!'ies' if s else 'y'!@@!colon!@ @!text!@{attribution}",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      " told by @!teacher!@.",
+      ""
+    ]
+  },
+  "Recollection": {
+    "kind": "Recollection",
+    "category": "Stories",
+    "defaultForm": "2",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Excerpt",
+    "forms": [
+      "unimplemented",
+      "Recollection@!s!@@!colon!@ @!text!@|| recounted by @!teacher!@.",
+      "unimplemented"
+    ],
+    "body": [
+      "unimplemented",
+      "Recollection@!s!@@!colon!@ @!text!@{attribution}",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      " recounted by @!teacher!@.",
+      ""
+    ]
+  },
+  "Quote": {
+    "kind": "Quote",
+    "category": "Quotes",
+    "defaultForm": "2",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Excerpt",
+    "forms": [
+      "unimplemented",
+      "Quote: @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@.",
+      "unimplemented"
+    ],
+    "body": [
+      "unimplemented",
+      "Quote: @!prefix!@ “@!text!@” @!suffix!@{attribution}",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      " — @!teacher!@.",
+      ""
+    ]
+  },
+  "Indirect quote": {
+    "kind": "Indirect quote",
+    "category": "Quotes",
+    "defaultForm": "3",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Excerpt",
+    "forms": [
+      "unimplemented",
+      "unimplemented",
+      "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@|| Quoted by @!teacher!@."
+    ],
+    "body": [
+      "unimplemented",
+      "unimplemented",
+      "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@{attribution}"
+    ],
+    "attribution": [
+      "",
+      "",
+      " Quoted by @!teacher!@."
+    ]
+  },
+  "Meditation instruction": {
+    "kind": "Meditation instruction",
+    "category": "Meditations",
+    "defaultForm": "2",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Excerpt",
+    "forms": [
+      "unimplemented",
+      "Meditation instruction@!s!@@!colon!@ @!text!@|| offered by @!teacher!@.",
+      "unimplemented"
+    ],
+    "body": [
+      "unimplemented",
+      "Meditation instruction@!s!@@!colon!@ @!text!@{attribution}",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      " offered by @!teacher!@.",
+      ""
+    ]
+  },
+  "Reference": {
+    "kind": "Reference",
+    "category": "References",
+    "defaultForm": "1",
+    "canBeExcerpt": false,
+    "takesTimes": false,
+    "takesTeachers": false,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "",
+    "forms": [
+      "Reference@!s!@: @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "body": [
+      "Reference@!s!@: @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "Sutta": {
+    "kind": "Sutta",
+    "category": "References",
+    "defaultForm": "1",
+    "canBeExcerpt": false,
+    "takesTimes": false,
+    "takesTeachers": false,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "",
+    "forms": [
+      "Sutta@!s!@: @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "body": [
+      "Sutta@!s!@: @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "Vinaya": {
+    "kind": "Vinaya",
+    "category": "References",
+    "defaultForm": "1",
+    "canBeExcerpt": false,
+    "takesTimes": false,
+    "takesTeachers": false,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "",
+    "forms": [
+      "Vinaya: @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "body": [
+      "Vinaya: @!text!@",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "Comment": {
+    "kind": "Comment",
+    "category": "Other",
+    "defaultForm": "1",
+    "canBeExcerpt": true,
+    "takesTimes": true,
+    "takesTeachers": true,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "Anon",
+    "forms": [
+      "Comment@!s!@|| by @!teacher!@||@!colon!@ @!text!@",
+      "Comment@!s!@@!colon!@ @!text!@|| contributed by @!teacher!@.",
+      "@!text!@ Comment@!s!@ by @!teacher!@."
+    ],
+    "body": [
+      "Comment@!s!@{attribution}@!colon!@ @!text!@",
+      "Comment@!s!@@!colon!@ @!text!@{attribution}",
+      "@!text!@ Comment@!s!@ by @!teacher!@."
+    ],
+    "attribution": [
+      " by @!teacher!@",
+      " contributed by @!teacher!@.",
+      ""
+    ]
+  },
+  "Extra tags": {
+    "kind": "Extra tags",
+    "category": "Other",
+    "defaultForm": "0",
+    "canBeExcerpt": false,
+    "takesTimes": false,
+    "takesTeachers": false,
+    "takesTags": true,
+    "appendToExcerpt": false,
+    "inheritTeacherFrom": "",
+    "forms": [
+      "unimplemented",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "body": [
+      "unimplemented",
+      "unimplemented",
+      "unimplemented"
+    ],
+    "attribution": [
+      "",
+      "",
+      ""
+    ]
+  }
+}

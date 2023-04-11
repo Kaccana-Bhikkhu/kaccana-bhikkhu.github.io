@@ -132,13 +132,13 @@ def CSVFileToDictList(fileName,*args,**kwArgs):
     with open(fileName,encoding='utf8') as file:
         return CSVToDictList(file,*args,**kwArgs)
 
-def ListifyKey(dictList,key,delimiter=';'):
+def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
     """Convert the values in a specific key to a list for all dictionaries in dictList.
     First, look for other keys with names like dictKey+'2', etc.
     Then split all these keys using the given delimiter, concatenate the results, and store it in dictKey.
     Remove any other keys found."""
     
-    for d in dictList:
+    for d in Utils.Contents(dictList):
         keyList = [key]
         if key[-1] == '1': # Does the key name end in 1?
             baseKey = key[:-1].strip()
@@ -171,7 +171,7 @@ def ListifyKey(dictList,key,delimiter=';'):
 def ConvertToInteger(dictList,key):
     "Convert the values in key to ints"
     
-    for d in dictList:
+    for d in Utils.Contents(dictList):
         d[key] = int(d[key])
 
 def ListToDict(inList,key = None):
@@ -573,16 +573,8 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
         for key in countDicts:
             if countKey not in countDicts[key]:
                 countDicts[key][countKey] = 0
-    
-    if type(source) == list:
-        iterator = range(len(source))
-    elif type(source) == dict:
-        iterator = source.keys()
-    else:
-        raise TypeError("CountInstances: source must be a list or a dict.")
-    
-    for index in iterator:
-        d = source[index]
+
+    for d in Utils.Contents(source):
         valuesToCount = d[sourceKey]
         if type(valuesToCount) != list:
             valuesToCount = [valuesToCount]
@@ -594,8 +586,6 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
                 countDicts[item][countKey] += 1
             except KeyError:
                 print(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
-            
-    
 
 def CountAndVerify(database):
     
@@ -695,7 +685,7 @@ def main(clOptions,database):
     database["excerptsRedacted"] = []
     for event in database["summary"]:
         LoadEventFile(database,event,gOptions.csvDir)
-    
+
     CountAndVerify(database)
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:

@@ -4,7 +4,13 @@ from datetime import timedelta, datetime
 import unicodedata
 import re
 
-def Mp3FileName(event:str ,session:int ,excerpt:int) -> str:
+def Contents(container:list|dict) -> list:
+    try:
+        return container.values()
+    except AttributeError:
+        return container
+
+def Mp3FileName(event:str, session:int, excerpt:int) -> str:
     "Return the name of the mp3 file associated with a given event, session, and excerpt"
     return f"{event}_S{session:02d}_F{excerpt:02d}.mp3"
 

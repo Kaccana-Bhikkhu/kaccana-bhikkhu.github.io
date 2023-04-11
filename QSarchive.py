@@ -14,7 +14,7 @@ def PrintModuleSeparator(moduleName:str) -> None:
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Prototype','OptimizeDatabase']
+moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Prototype','OptimizeDatabase']
 moduleList.remove('OptimizeDatabase')
 # Owen is using his own conventions for OptimizeDatabase.py, so remove this module for the time being 
 

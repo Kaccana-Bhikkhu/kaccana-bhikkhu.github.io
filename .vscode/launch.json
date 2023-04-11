@@ -28,7 +28,16 @@
             "type": "python",
             "request": "launch",
             "program": "Q:\\qs-archive\\QSArchive.py",
-            "args": ["ParseCSV,Prototype", "-vvv", "--excerptMp3", "local"],
+            "args": ["ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local"],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "QSArchive.py Render",
+            "type": "python",
+            "request": "launch",
+            "program": "Q:\\qs-archive\\QSArchive.py",
+            "args": ["Render", "-vvv", "--excerptMp3", "local"],
             "console": "integratedTerminal",
             "justMyCode": true
         }
