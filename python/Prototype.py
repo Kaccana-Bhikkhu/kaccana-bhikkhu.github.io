@@ -132,11 +132,11 @@ def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     If fullTag, the link text contains the full tag name."""
     
     try:
-        ref = gDatabase["tag"][tag]["html file"]
+        ref = gDatabase["tag"][tag]["htmlFile"]
         if fullTag:
             tag = gDatabase["tag"][tag]["fullTag"]
     except KeyError:
-        ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]]["html file"]
+        ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]]["htmlFile"]
     
     return f'<a href = "../tags/{ref}">{tag}</a>'
 
@@ -493,7 +493,7 @@ def WriteTagPages(tagPageDir: str) -> None:
     xDB = gDatabase["excerpts"]
     
     for tag,tagInfo in gDatabase["tag"].items():
-        if not tagInfo["html file"]:
+        if not tagInfo["htmlFile"]:
             continue
     
         relevantQs = [x for x in xDB if tag in x["tags"]]
@@ -523,7 +523,7 @@ def WriteTagPages(tagPageDir: str) -> None:
         formatter.excerptOmitSessionTags = False
         a(HtmlExcerptList(relevantQs,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
+        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a))
 
 def WriteEventPages(tagPageDir: str) -> None:
     """Write a html file for each event in the database"""

@@ -334,7 +334,7 @@ def LoadTagsFile(database,tagFileName):
                 AppendUnique(tags[tagName]["supertags"],tagDesc["supertags"])
                 continue
         
-        tagDesc["html file"] = Utils.slugify(tagName) + '.html'
+        tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
         
         tagDesc["listIndex"] = rawTagIndex
         tags[tagName] = tagDesc
