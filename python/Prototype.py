@@ -322,10 +322,15 @@ class Formatter:
                 a(f"{excerpt['excerptNumber']}.")
             
         a(f' ({excerpt["duration"]}) ')
-        a(excerpt["rendered"] + ' ')
+
+        if teacherList or gOptions.attributeAll:
+            attribution = excerpt["attribution"]
+        else:
+            attribution = ""
+        a(excerpt["rendered"].replace("{attribution}",attribution) + ' ')
         
-        if teacherList:
-            a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')
+        """if teacherList:
+            a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')"""
         if not self.excerptShortFormat:
             a(gDatabase["event"][excerpt["event"]]["title"] + ",")
             a(f"Session {excerpt['sessionNumber']}, Excerpt {excerpt['excerptNumber']}")
@@ -632,6 +637,7 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
+    parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
 gOptions = None

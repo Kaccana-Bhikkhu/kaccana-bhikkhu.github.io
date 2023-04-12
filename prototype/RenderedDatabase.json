@@ -182,17 +182,17 @@
     "Question": {
       "kind": "Question",
       "category": "Questions",
-      "defaultForm": "3",
+      "defaultForm": 3,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Session",
-      "forms": [
+      "form": [
         "unimplemented",
         "unimplemented",
-        "“@!text!@”|| answered by @!teacher!@."
+        "“@!text!@”|| Answered by @!teacher!@."
       ],
       "body": [
         "unimplemented",
@@ -202,20 +202,20 @@
       "attribution": [
         "",
         "",
-        " answered by @!teacher!@."
+        " Answered by @!teacher!@."
       ]
     },
     "Response": {
       "kind": "Response",
       "category": "Questions",
-      "defaultForm": "1",
+      "defaultForm": 1,
       "canBeExcerpt": false,
       "takesTimes": false,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Session",
-      "forms": [
+      "form": [
         "Response@!s!@|| by @!teacher!@||@!colon!@ @!text!@",
         "unimplemented",
         "unimplemented"
@@ -234,14 +234,14 @@
     "Follow-up": {
       "kind": "Follow-up",
       "category": "Questions",
-      "defaultForm": "2",
+      "defaultForm": 2,
       "canBeExcerpt": false,
       "takesTimes": false,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
-      "forms": [
+      "form": [
         "unimplemented",
         "Follow-up@!colon!@ “@!text!@”|| aswered by @!teacher!@.",
         "unimplemented"
@@ -260,14 +260,14 @@
     "Story": {
       "kind": "Story",
       "category": "Stories",
-      "defaultForm": "2",
+      "defaultForm": 2,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
-      "forms": [
+      "form": [
         "unimplemented",
         "Stor@!'ies' if s else 'y'!@@!colon!@ @!text!@|| told by @!teacher!@.",
         "unimplemented"
@@ -286,14 +286,14 @@
     "Recollection": {
       "kind": "Recollection",
       "category": "Stories",
-      "defaultForm": "2",
+      "defaultForm": 2,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
-      "forms": [
+      "form": [
         "unimplemented",
         "Recollection@!s!@@!colon!@ @!text!@|| recounted by @!teacher!@.",
         "unimplemented"
@@ -312,14 +312,14 @@
     "Quote": {
       "kind": "Quote",
       "category": "Quotes",
-      "defaultForm": "2",
+      "defaultForm": 2,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
-      "forms": [
+      "form": [
         "unimplemented",
         "Quote: @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@.",
         "unimplemented"
@@ -338,14 +338,14 @@
     "Indirect quote": {
       "kind": "Indirect quote",
       "category": "Quotes",
-      "defaultForm": "3",
+      "defaultForm": 3,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
-      "forms": [
+      "form": [
         "unimplemented",
         "unimplemented",
         "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@|| Quoted by @!teacher!@."
@@ -364,14 +364,14 @@
     "Meditation instruction": {
       "kind": "Meditation instruction",
       "category": "Meditations",
-      "defaultForm": "2",
+      "defaultForm": 2,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
-      "forms": [
+      "form": [
         "unimplemented",
         "Meditation instruction@!s!@@!colon!@ @!text!@|| offered by @!teacher!@.",
         "unimplemented"
@@ -390,14 +390,14 @@
     "Reference": {
       "kind": "Reference",
       "category": "References",
-      "defaultForm": "1",
+      "defaultForm": 1,
       "canBeExcerpt": false,
       "takesTimes": false,
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "forms": [
+      "form": [
         "Reference@!s!@: @!text!@",
         "unimplemented",
         "unimplemented"
@@ -416,14 +416,14 @@
     "Sutta": {
       "kind": "Sutta",
       "category": "References",
-      "defaultForm": "1",
+      "defaultForm": 1,
       "canBeExcerpt": false,
       "takesTimes": false,
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "forms": [
+      "form": [
         "Sutta@!s!@: @!text!@",
         "unimplemented",
         "unimplemented"
@@ -442,14 +442,14 @@
     "Vinaya": {
       "kind": "Vinaya",
       "category": "References",
-      "defaultForm": "1",
+      "defaultForm": 1,
       "canBeExcerpt": false,
       "takesTimes": false,
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "forms": [
+      "form": [
         "Vinaya: @!text!@",
         "unimplemented",
         "unimplemented"
@@ -468,14 +468,14 @@
     "Comment": {
       "kind": "Comment",
       "category": "Other",
-      "defaultForm": "1",
+      "defaultForm": 1,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Anon",
-      "forms": [
+      "form": [
         "Comment@!s!@|| by @!teacher!@||@!colon!@ @!text!@",
         "Comment@!s!@@!colon!@ @!text!@|| contributed by @!teacher!@.",
         "@!text!@ Comment@!s!@ by @!teacher!@."
@@ -494,14 +494,14 @@
     "Extra tags": {
       "kind": "Extra tags",
       "category": "Other",
-      "defaultForm": "0",
+      "defaultForm": 0,
       "canBeExcerpt": false,
       "takesTimes": false,
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "forms": [
+      "form": [
         "unimplemented",
         "unimplemented",
         "unimplemented"
@@ -9810,6 +9810,7 @@
       "sessionNumber": 1,
       "excerptNumber": 1,
       "fileNumber": 1,
+      "kind": "Story",
       "flags": "",
       "startTime": "8:10",
       "endTime": "9:17",
@@ -9817,7 +9818,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -9827,13 +9827,15 @@
       ],
       "qTagCount": 3,
       "duration": "1:07",
-      "rendered": "Ajahn Pasanno attempts tudong in California"
+      "rendered": "Story: Ajahn Pasanno attempts tudong in California{attribution}",
+      "attribution": " told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 2,
       "fileNumber": 2,
+      "kind": "Story",
       "flags": "",
       "startTime": "12:07",
       "endTime": "15:48",
@@ -9841,7 +9843,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9851,13 +9852,15 @@
       ],
       "qTagCount": 5,
       "duration": "3:41",
-      "rendered": "Ajahn Chah lets a restless junior monk go tudong in the hot season."
+      "rendered": "Story: Ajahn Chah lets a restless junior monk go tudong in the hot season.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 3,
       "fileNumber": 3,
+      "kind": "Story",
       "flags": "",
       "startTime": "16:47",
       "endTime": "",
@@ -9865,7 +9868,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Jotipālo",
@@ -9876,13 +9878,15 @@
       ],
       "qTagCount": 2,
       "duration": "3:43",
-      "rendered": "Ajahn Jotipālo's tudong north along the Mississippi."
+      "rendered": "Story: Ajahn Jotipālo&#39;s tudong north along the Mississippi.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 4,
       "fileNumber": 4,
+      "kind": "Story",
       "flags": "",
       "startTime": "20:30",
       "endTime": "22:46",
@@ -9890,7 +9894,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9902,13 +9905,15 @@
       ],
       "qTagCount": 5,
       "duration": "2:16",
-      "rendered": "Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk."
+      "rendered": "Story: Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 5,
       "fileNumber": 5,
+      "kind": "Story",
       "flags": "",
       "startTime": "26:15",
       "endTime": "32:13",
@@ -9916,7 +9921,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Mun",
@@ -9928,13 +9932,15 @@
       ],
       "qTagCount": 4,
       "duration": "5:58",
-      "rendered": "Ajahn Mun doesn't spend consecutive rains retreats in the same place until his mid-70s."
+      "rendered": "Story: Ajahn Mun doesn&#39;t spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 6,
       "fileNumber": 6,
+      "kind": "Story",
       "flags": "",
       "startTime": "34:05",
       "endTime": "35:21",
@@ -9942,7 +9948,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Kinaree",
@@ -9950,13 +9955,15 @@
       ],
       "qTagCount": 3,
       "duration": "1:16",
-      "rendered": "Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s."
+      "rendered": "Story: Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 7,
       "fileNumber": 7,
+      "kind": "Story",
       "flags": "",
       "startTime": "37:49",
       "endTime": "48:15",
@@ -9964,7 +9971,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Culture/Thailand",
@@ -9978,13 +9984,15 @@
       ],
       "qTagCount": 4,
       "duration": "10:26",
-      "rendered": "A Thai monk (who??) chooses tudong over further studies."
+      "rendered": "Story: A Thai monk (who??) chooses tudong over further studies.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 8,
       "fileNumber": 8,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "48:15",
       "endTime": "49:20",
@@ -9992,7 +10000,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Protocols",
@@ -10001,13 +10008,15 @@
       ],
       "qTagCount": 4,
       "duration": "1:05",
-      "rendered": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?' | Anonymous"
+      "rendered": "Quote:  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39; | Anonymous”{attribution}",
+      "attribution": " Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 1,
       "excerptNumber": 9,
       "fileNumber": 9,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "49:23",
       "endTime": "51:31",
@@ -10015,7 +10024,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10025,13 +10033,15 @@
       ],
       "qTagCount": 3,
       "duration": "2:08",
-      "rendered": "Instead of going tudong, monks go taludong (through the forest). | Ajahn Chah"
+      "rendered": "Quote:  “Instead of going tudong, monks go taludong (through the forest). | Ajahn Chah”{attribution}",
+      "attribution": " Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 1,
       "fileNumber": 1,
+      "kind": "Question",
       "flags": "",
       "startTime": "0:26",
       "endTime": "",
@@ -10039,19 +10049,20 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong"
       ],
       "qTagCount": 1,
       "duration": "0:34",
-      "rendered": "Did you walk from Mendocino?"
+      "rendered": "“Did you walk from Mendocino?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 2,
       "fileNumber": 2,
+      "kind": "Question",
       "flags": "",
       "startTime": "1:00",
       "endTime": "",
@@ -10059,7 +10070,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Lay life",
@@ -10071,13 +10081,15 @@
       ],
       "qTagCount": 2,
       "duration": "7:07",
-      "rendered": "What is the function of a layperson who accompanies a monk on tudong?"
+      "rendered": "“What is the function of a layperson who accompanies a monk on tudong?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 3,
       "fileNumber": 3,
+      "kind": "Comment",
       "flags": "",
       "startTime": "8:07",
       "endTime": "",
@@ -10085,7 +10097,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Comment",
       "tags": [
         "Tudong",
         "Faith",
@@ -10096,13 +10107,15 @@
       ],
       "qTagCount": 6,
       "duration": "16:28",
-      "rendered": "Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges."
+      "rendered": "Comment{attribution}: Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
+      "attribution": " by Ajahn Pasanno"
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 4,
       "fileNumber": 4,
+      "kind": "Question",
       "flags": "",
       "startTime": "24:35",
       "endTime": "27:56",
@@ -10110,7 +10123,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Similes",
         "Mindfulness",
@@ -10123,13 +10135,15 @@
       ],
       "qTagCount": 5,
       "duration": "3:21",
-      "rendered": "If sati or mindfulness is the cage, what is the use of samatha?"
+      "rendered": "“If sati or mindfulness is the cage, what is the use of samatha?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 5,
       "fileNumber": 5,
+      "kind": "Question",
       "flags": "",
       "startTime": "27:59",
       "endTime": "",
@@ -10137,7 +10151,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10147,13 +10160,15 @@
       ],
       "qTagCount": 5,
       "duration": "8:42",
-      "rendered": "Could you tell of your personal experience with a tiger?"
+      "rendered": "“Could you tell of your personal experience with a tiger?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 6,
       "fileNumber": 6,
+      "kind": "Question",
       "flags": "",
       "startTime": "36:41",
       "endTime": "",
@@ -10161,7 +10176,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Knowing itself",
         "Perception",
@@ -10178,13 +10192,15 @@
       ],
       "qTagCount": 5,
       "duration": "4:42",
-      "rendered": "Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?"
+      "rendered": "“Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 7,
       "fileNumber": 7,
+      "kind": "Question",
       "flags": "",
       "startTime": "41:23",
       "endTime": "",
@@ -10192,20 +10208,21 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Three Unwholesome Roots",
         "Delusion"
       ],
       "qTagCount": 2,
       "duration": "1:35",
-      "rendered": "In the trio of attraction, aversion, and confusion, what does confusion mean?"
+      "rendered": "“In the trio of attraction, aversion, and confusion, what does confusion mean?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 8,
       "fileNumber": 8,
+      "kind": "Question",
       "flags": "",
       "startTime": "42:58",
       "endTime": "44:16",
@@ -10213,7 +10230,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Eightfold Path",
         "Perfectionism",
@@ -10225,21 +10241,22 @@
       ],
       "qTagCount": 3,
       "duration": "1:18",
-      "rendered": "I have an internal voice that's concerned whether I'm doing it right; if I'm not doing it right, then I won't get where I want to go. Is this delusion?"
+      "rendered": "“I have an internal voice that&#39;s concerned whether I&#39;m doing it right; if I&#39;m not doing it right, then I won&#39;t get where I want to go. Is this delusion?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 9,
       "fileNumber": 9,
+      "kind": "Question",
       "flags": "",
       "startTime": "44:21",
       "endTime": "",
-      "text": "For Lent, I practiced mette every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?",
+      "text": "For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?",
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Goodwill",
         "Aversion",
@@ -10253,13 +10270,15 @@
       ],
       "qTagCount": 3,
       "duration": "5:32",
-      "rendered": "For Lent, I practiced mette every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?"
+      "rendered": "“For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 10,
       "fileNumber": 10,
+      "kind": "Question",
       "flags": "",
       "startTime": "49:53",
       "endTime": "54:43",
@@ -10267,7 +10286,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Ajahn Pasanno",
         "Monastic life/Motivation",
@@ -10277,13 +10295,15 @@
       ],
       "qTagCount": 2,
       "duration": "4:50",
-      "rendered": "I'm curious about your pre-monastic lfie and specifically what led you to the monastic life."
+      "rendered": "“I&#39;m curious about your pre-monastic lfie and specifically what led you to the monastic life.”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 11,
       "fileNumber": 11,
+      "kind": "Question",
       "flags": "",
       "startTime": "54:49",
       "endTime": "",
@@ -10291,7 +10311,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Mutual lay/Saṅgha support",
@@ -10302,13 +10321,15 @@
       ],
       "qTagCount": 3,
       "duration": "2:04",
-      "rendered": "If I saw you and the monks walking down the streets of Fairfax, I'm not sure I would know what to do. How should I approach you?"
+      "rendered": "“If I saw you and the monks walking down the streets of Fairfax, I&#39;m not sure I would know what to do. How should I approach you?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 12,
       "fileNumber": 12,
+      "kind": "Question",
       "flags": "",
       "startTime": "56:53",
       "endTime": "",
@@ -10316,7 +10337,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Teaching Dhamma",
@@ -10324,13 +10344,15 @@
       ],
       "qTagCount": 2,
       "duration": "4:14",
-      "rendered": "To what extend is spreading the teachings part of the tudong tradition?"
+      "rendered": "“To what extend is spreading the teachings part of the tudong tradition?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 13,
       "fileNumber": 13,
+      "kind": "Question",
       "flags": "",
       "startTime": "1:01:07",
       "endTime": "",
@@ -10338,7 +10360,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Pace of life",
@@ -10352,13 +10373,15 @@
       ],
       "qTagCount": 7,
       "duration": "4:04",
-      "rendered": "I travelled for six weeks in Thailand and India and found that time really shifted. Having been home about two months, even with a daily meditation practice, time speeds up. How is life at the monastery versus tudong, and what do you have to say to laypeople about the speeding up of time?"
+      "rendered": "“I travelled for six weeks in Thailand and India and found that time really shifted. Having been home about two months, even with a daily meditation practice, time speeds up. How is life at the monastery versus tudong, and what do you have to say to laypeople about the speeding up of time?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 14,
       "fileNumber": 14,
+      "kind": "Question",
       "flags": "",
       "startTime": "1:05:11",
       "endTime": "1:08:30",
@@ -10366,7 +10389,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Gratitude",
         "Monasteries",
@@ -10375,34 +10397,37 @@
       ],
       "qTagCount": 3,
       "duration": "3:19",
-      "rendered": "Is it possible to visit the monastery?"
+      "rendered": "“Is it possible to visit the monastery?”{attribution}",
+      "attribution": " Answered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 2,
       "excerptNumber": 15,
       "fileNumber": 15,
-      "flags": "p",
+      "kind": "Meditation instruction",
+      "flags": "s",
       "startTime": "1:08:38",
       "endTime": "",
       "text": "Walking meditation.",
       "teachers": [
         "AP"
       ],
-      "kind": "Meditation instruction",
       "tags": [
         "Posture/Walking",
         "Abhayagiri"
       ],
       "qTagCount": 1,
       "duration": "2:33",
-      "rendered": "Walking meditation."
+      "rendered": "Meditation instructions: Walking meditation.{attribution}",
+      "attribution": " Offered by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 1,
       "fileNumber": 1,
+      "kind": "Story",
       "flags": "",
       "startTime": "1:37",
       "endTime": "",
@@ -10410,7 +10435,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10420,13 +10444,15 @@
       ],
       "qTagCount": 5,
       "duration": "2:38",
-      "rendered": "Ajahn Chah's first tudong."
+      "rendered": "Story: Ajahn Chah&#39;s first tudong.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 2,
       "fileNumber": 2,
+      "kind": "Story",
       "flags": "",
       "startTime": "4:15",
       "endTime": "8:57",
@@ -10434,7 +10460,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10449,13 +10474,15 @@
       ],
       "qTagCount": 5,
       "duration": "4:42",
-      "rendered": "Ajahn Chah obsesses about getting robes."
+      "rendered": "Story: Ajahn Chah obsesses about getting robes.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 3,
       "fileNumber": 3,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "11:04",
       "endTime": "12:07",
@@ -10463,7 +10490,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Ajahn Maha Boowa",
@@ -10472,13 +10498,15 @@
       ],
       "qTagCount": 4,
       "duration": "1:03",
-      "rendered": "You fall down, you get up, you crawl along. | Ajahn Mahā Boowa"
+      "rendered": "Quote:  “You fall down, you get up, you crawl along. | Ajahn Mahā Boowa”{attribution}",
+      "attribution": " Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 4,
       "fileNumber": 4,
+      "kind": "Story",
       "flags": "",
       "startTime": "12:37",
       "endTime": "17:24",
@@ -10486,7 +10514,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10499,13 +10526,15 @@
       ],
       "qTagCount": 4,
       "duration": "4:47",
-      "rendered": "Ajahn Chah struggles through lust with patience."
+      "rendered": "Story: Ajahn Chah struggles through lust with patience.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 5,
       "fileNumber": 5,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "19:20",
       "endTime": "",
@@ -10513,7 +10542,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10526,13 +10554,15 @@
       ],
       "qTagCount": 7,
       "duration": "2:31",
-      "rendered": "You're inspired, and you put forth effort. You're depressed and fed up, and you put forth effort. You're rested, and you put forth effort. You're tired, and you put forth effort. | Ajahn Chah"
+      "rendered": "Quote:  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. | Ajahn Chah”{attribution}",
+      "attribution": " Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 6,
       "fileNumber": 6,
+      "kind": "Story",
       "flags": "",
       "startTime": "21:51",
       "endTime": "",
@@ -10540,7 +10570,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10551,13 +10580,15 @@
       ],
       "qTagCount": 4,
       "duration": "1:34",
-      "rendered": "How Ajahn Pasanno became abbot of Wat Pah Nanachat."
+      "rendered": "Story: How Ajahn Pasanno became abbot of Wat Pah Nanachat.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 7,
       "fileNumber": 7,
+      "kind": "Story",
       "flags": "",
       "startTime": "23:25",
       "endTime": "",
@@ -10565,7 +10596,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10578,13 +10608,15 @@
       ],
       "qTagCount": 3,
       "duration": "2:27",
-      "rendered": "Ajahn Pasanno's tudong practice."
+      "rendered": "Story: Ajahn Pasanno&#39;s tudong practice.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 8,
       "fileNumber": 8,
+      "kind": "Story",
       "flags": "",
       "startTime": "25:52",
       "endTime": "",
@@ -10592,7 +10624,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10604,13 +10635,15 @@
       ],
       "qTagCount": 5,
       "duration": "3:52",
-      "rendered": "Ajahn Pasanno gets a foot infection on tudong."
+      "rendered": "Story: Ajahn Pasanno gets a foot infection on tudong.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 9,
       "fileNumber": 9,
+      "kind": "Story",
       "flags": "",
       "startTime": "29:44",
       "endTime": "32:28",
@@ -10618,7 +10651,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10630,13 +10662,15 @@
       ],
       "qTagCount": 4,
       "duration": "2:44",
-      "rendered": "Ajahn Pasanno loses his vision on tudong."
+      "rendered": "Story: Ajahn Pasanno loses his vision on tudong.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
       "sessionNumber": 3,
       "excerptNumber": 10,
       "fileNumber": 10,
+      "kind": "Quote",
       "flags": "",
       "startTime": "34:03",
       "endTime": "39:30",
@@ -10644,7 +10678,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Quote",
       "tags": [
         "Tudong",
         "Mindfulness",
@@ -10657,7 +10690,8 @@
       ],
       "qTagCount": 3,
       "duration": "5:27",
-      "rendered": "It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated."
+      "rendered": "Quote:  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
+      "attribution": " — Ajahn Pasanno."
     }
   ],
   "excerptsRedacted": [],
@@ -16174,23 +16208,36 @@
     "Duration": "duration",
     "Seconds": "seconds",
     "SortBy": "sortBy",
+    "Sheet": "sheet",
+    "gid": "gid",
+    "": "",
+    "_Copyright": "copyright",
+    "Summary": "summary",
+    "_EventTemplate": "eventTemplate",
+    "SRD2011": "sRd2011",
+    "TG2013": "tG2013",
+    "TG2014": "tG2014",
+    "TG2015": "tG2015",
+    "WR2018-2": "wR20182",
+    "Kind": "kind",
+    "Category": "category",
+    "Tag": "tag",
+    "Series": "series",
+    "Venue": "venue",
+    "Teacher": "teacher",
     "Format": "format",
     "Medium": "medium",
-    "Series": "series",
+    "_UtilitySheet": "utilitySheet",
     "Abbreviation": "abbreviation",
     "Description": "description",
-    "Venue": "venue",
     "Location": "location",
     "Address": "address",
     "Website link": "websiteLink",
-    "Teacher": "teacher",
     "Full name": "fullName",
     "Web link": "webLink",
     "Index excerpts?": "indexExcerpts",
     "Index sessions?": "indexSessions",
     "Searchable?": "searchable",
-    "Kind": "kind",
-    "Category": "category",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",
@@ -16217,7 +16264,6 @@
     "Pali tag menu": "paliTagMenu",
     "Key": "key",
     "Value": "value",
-    "": "",
     "Title": "title",
     "Subtitle": "subtitle",
     "Code": "code",

@@ -474,12 +474,13 @@ def LoadEventFile(database,eventName,directory):
         prevExcerpt = None
         excerpts = []
         for x in rawExcerpts:
+            if not x["kind"]:
+                x["kind"] = "Question"
+
             if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
                 AddAnnotation(prevExcerpt,x)
                 continue
-            else:
-                x["kind"] = x.pop("kind","Question") # Otherwise Kind / Annotation specifies the kind of excerpt (default is "Question")
-            
+
             x["event"] = eventName
             
             ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])

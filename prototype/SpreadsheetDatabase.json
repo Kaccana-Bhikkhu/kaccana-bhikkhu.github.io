@@ -191,7 +191,7 @@
       "inheritTeacherFrom": "Session",
       "form1": "unimplemented",
       "form2": "unimplemented",
-      "form3": "“{text}”|| answered by {teacher}."
+      "form3": "“{text}”|| Answered by {teacher}."
     },
     "Response": {
       "kind": "Response",
@@ -9654,6 +9654,7 @@
       "sessionNumber": 1,
       "excerptNumber": 1,
       "fileNumber": 1,
+      "kind": "Story",
       "flags": "",
       "startTime": "8:10",
       "endTime": "9:17",
@@ -9661,7 +9662,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -9677,6 +9677,7 @@
       "sessionNumber": 1,
       "excerptNumber": 2,
       "fileNumber": 2,
+      "kind": "Story",
       "flags": "",
       "startTime": "12:07",
       "endTime": "15:48",
@@ -9684,7 +9685,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9700,6 +9700,7 @@
       "sessionNumber": 1,
       "excerptNumber": 3,
       "fileNumber": 3,
+      "kind": "Story",
       "flags": "",
       "startTime": "16:47",
       "endTime": "",
@@ -9707,7 +9708,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Jotipālo",
@@ -9724,6 +9724,7 @@
       "sessionNumber": 1,
       "excerptNumber": 4,
       "fileNumber": 4,
+      "kind": "Story",
       "flags": "",
       "startTime": "20:30",
       "endTime": "22:46",
@@ -9731,7 +9732,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9749,6 +9749,7 @@
       "sessionNumber": 1,
       "excerptNumber": 5,
       "fileNumber": 5,
+      "kind": "Story",
       "flags": "",
       "startTime": "26:15",
       "endTime": "32:13",
@@ -9756,7 +9757,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Mun",
@@ -9774,6 +9774,7 @@
       "sessionNumber": 1,
       "excerptNumber": 6,
       "fileNumber": 6,
+      "kind": "Story",
       "flags": "",
       "startTime": "34:05",
       "endTime": "35:21",
@@ -9781,7 +9782,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Kinaree",
@@ -9795,6 +9795,7 @@
       "sessionNumber": 1,
       "excerptNumber": 7,
       "fileNumber": 7,
+      "kind": "Story",
       "flags": "",
       "startTime": "37:49",
       "endTime": "48:15",
@@ -9802,7 +9803,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Culture/Thailand",
@@ -9822,6 +9822,7 @@
       "sessionNumber": 1,
       "excerptNumber": 8,
       "fileNumber": 8,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "48:15",
       "endTime": "49:20",
@@ -9829,7 +9830,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Protocols",
@@ -9844,6 +9844,7 @@
       "sessionNumber": 1,
       "excerptNumber": 9,
       "fileNumber": 9,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "49:23",
       "endTime": "51:31",
@@ -9851,7 +9852,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9867,6 +9867,7 @@
       "sessionNumber": 2,
       "excerptNumber": 1,
       "fileNumber": 1,
+      "kind": "Question",
       "flags": "",
       "startTime": "0:26",
       "endTime": "",
@@ -9874,7 +9875,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong"
       ],
@@ -9886,6 +9886,7 @@
       "sessionNumber": 2,
       "excerptNumber": 2,
       "fileNumber": 2,
+      "kind": "Question",
       "flags": "",
       "startTime": "1:00",
       "endTime": "",
@@ -9893,7 +9894,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Lay life",
@@ -9911,6 +9911,7 @@
       "sessionNumber": 2,
       "excerptNumber": 3,
       "fileNumber": 3,
+      "kind": "Comment",
       "flags": "",
       "startTime": "8:07",
       "endTime": "",
@@ -9918,7 +9919,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Comment",
       "tags": [
         "Tudong",
         "Faith",
@@ -9935,6 +9935,7 @@
       "sessionNumber": 2,
       "excerptNumber": 4,
       "fileNumber": 4,
+      "kind": "Question",
       "flags": "",
       "startTime": "24:35",
       "endTime": "27:56",
@@ -9942,7 +9943,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Similes",
         "Mindfulness",
@@ -9961,6 +9961,7 @@
       "sessionNumber": 2,
       "excerptNumber": 5,
       "fileNumber": 5,
+      "kind": "Question",
       "flags": "",
       "startTime": "27:59",
       "endTime": "",
@@ -9968,7 +9969,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -9984,6 +9984,7 @@
       "sessionNumber": 2,
       "excerptNumber": 6,
       "fileNumber": 6,
+      "kind": "Question",
       "flags": "",
       "startTime": "36:41",
       "endTime": "",
@@ -9991,7 +9992,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Knowing itself",
         "Perception",
@@ -10014,6 +10014,7 @@
       "sessionNumber": 2,
       "excerptNumber": 7,
       "fileNumber": 7,
+      "kind": "Question",
       "flags": "",
       "startTime": "41:23",
       "endTime": "",
@@ -10021,7 +10022,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Three Unwholesome Roots",
         "Delusion"
@@ -10034,6 +10034,7 @@
       "sessionNumber": 2,
       "excerptNumber": 8,
       "fileNumber": 8,
+      "kind": "Question",
       "flags": "",
       "startTime": "42:58",
       "endTime": "44:16",
@@ -10041,7 +10042,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Eightfold Path",
         "Perfectionism",
@@ -10059,14 +10059,14 @@
       "sessionNumber": 2,
       "excerptNumber": 9,
       "fileNumber": 9,
+      "kind": "Question",
       "flags": "",
       "startTime": "44:21",
       "endTime": "",
-      "text": "For Lent, I practiced mette every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?",
+      "text": "For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?",
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Goodwill",
         "Aversion",
@@ -10086,6 +10086,7 @@
       "sessionNumber": 2,
       "excerptNumber": 10,
       "fileNumber": 10,
+      "kind": "Question",
       "flags": "",
       "startTime": "49:53",
       "endTime": "54:43",
@@ -10093,7 +10094,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Ajahn Pasanno",
         "Monastic life/Motivation",
@@ -10109,6 +10109,7 @@
       "sessionNumber": 2,
       "excerptNumber": 11,
       "fileNumber": 11,
+      "kind": "Question",
       "flags": "",
       "startTime": "54:49",
       "endTime": "",
@@ -10116,7 +10117,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Mutual lay/Saṅgha support",
@@ -10133,6 +10133,7 @@
       "sessionNumber": 2,
       "excerptNumber": 12,
       "fileNumber": 12,
+      "kind": "Question",
       "flags": "",
       "startTime": "56:53",
       "endTime": "",
@@ -10140,7 +10141,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Teaching Dhamma",
@@ -10154,6 +10154,7 @@
       "sessionNumber": 2,
       "excerptNumber": 13,
       "fileNumber": 13,
+      "kind": "Question",
       "flags": "",
       "startTime": "1:01:07",
       "endTime": "",
@@ -10161,7 +10162,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Tudong",
         "Pace of life",
@@ -10181,6 +10181,7 @@
       "sessionNumber": 2,
       "excerptNumber": 14,
       "fileNumber": 14,
+      "kind": "Question",
       "flags": "",
       "startTime": "1:05:11",
       "endTime": "1:08:30",
@@ -10188,7 +10189,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "",
       "tags": [
         "Gratitude",
         "Monasteries",
@@ -10203,14 +10203,14 @@
       "sessionNumber": 2,
       "excerptNumber": 15,
       "fileNumber": 15,
-      "flags": "p",
+      "kind": "Meditation instruction",
+      "flags": "s",
       "startTime": "1:08:38",
       "endTime": "",
       "text": "Walking meditation.",
       "teachers": [
         "AP"
       ],
-      "kind": "Meditation instruction",
       "tags": [
         "Posture/Walking",
         "Abhayagiri"
@@ -10223,6 +10223,7 @@
       "sessionNumber": 3,
       "excerptNumber": 1,
       "fileNumber": 1,
+      "kind": "Story",
       "flags": "",
       "startTime": "1:37",
       "endTime": "",
@@ -10230,7 +10231,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10246,6 +10246,7 @@
       "sessionNumber": 3,
       "excerptNumber": 2,
       "fileNumber": 2,
+      "kind": "Story",
       "flags": "",
       "startTime": "4:15",
       "endTime": "8:57",
@@ -10253,7 +10254,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10274,6 +10274,7 @@
       "sessionNumber": 3,
       "excerptNumber": 3,
       "fileNumber": 3,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "11:04",
       "endTime": "12:07",
@@ -10281,7 +10282,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Ajahn Maha Boowa",
@@ -10296,6 +10296,7 @@
       "sessionNumber": 3,
       "excerptNumber": 4,
       "fileNumber": 4,
+      "kind": "Story",
       "flags": "",
       "startTime": "12:37",
       "endTime": "17:24",
@@ -10303,7 +10304,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10322,6 +10322,7 @@
       "sessionNumber": 3,
       "excerptNumber": 5,
       "fileNumber": 5,
+      "kind": "Indirect quote",
       "flags": "",
       "startTime": "19:20",
       "endTime": "",
@@ -10329,7 +10330,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Indirect quote",
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10348,6 +10348,7 @@
       "sessionNumber": 3,
       "excerptNumber": 6,
       "fileNumber": 6,
+      "kind": "Story",
       "flags": "",
       "startTime": "21:51",
       "endTime": "",
@@ -10355,7 +10356,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10372,6 +10372,7 @@
       "sessionNumber": 3,
       "excerptNumber": 7,
       "fileNumber": 7,
+      "kind": "Story",
       "flags": "",
       "startTime": "23:25",
       "endTime": "",
@@ -10379,7 +10380,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10398,6 +10398,7 @@
       "sessionNumber": 3,
       "excerptNumber": 8,
       "fileNumber": 8,
+      "kind": "Story",
       "flags": "",
       "startTime": "25:52",
       "endTime": "",
@@ -10405,7 +10406,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10423,6 +10423,7 @@
       "sessionNumber": 3,
       "excerptNumber": 9,
       "fileNumber": 9,
+      "kind": "Story",
       "flags": "",
       "startTime": "29:44",
       "endTime": "32:28",
@@ -10430,7 +10431,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Story",
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10448,6 +10448,7 @@
       "sessionNumber": 3,
       "excerptNumber": 10,
       "fileNumber": 10,
+      "kind": "Quote",
       "flags": "",
       "startTime": "34:03",
       "endTime": "39:30",
@@ -10455,7 +10456,6 @@
       "teachers": [
         "AP"
       ],
-      "kind": "Quote",
       "tags": [
         "Tudong",
         "Mindfulness",
@@ -15984,23 +15984,36 @@
     "Duration": "duration",
     "Seconds": "seconds",
     "SortBy": "sortBy",
+    "Sheet": "sheet",
+    "gid": "gid",
+    "": "",
+    "_Copyright": "copyright",
+    "Summary": "summary",
+    "_EventTemplate": "eventTemplate",
+    "SRD2011": "sRd2011",
+    "TG2013": "tG2013",
+    "TG2014": "tG2014",
+    "TG2015": "tG2015",
+    "WR2018-2": "wR20182",
+    "Kind": "kind",
+    "Category": "category",
+    "Tag": "tag",
+    "Series": "series",
+    "Venue": "venue",
+    "Teacher": "teacher",
     "Format": "format",
     "Medium": "medium",
-    "Series": "series",
+    "_UtilitySheet": "utilitySheet",
     "Abbreviation": "abbreviation",
     "Description": "description",
-    "Venue": "venue",
     "Location": "location",
     "Address": "address",
     "Website link": "websiteLink",
-    "Teacher": "teacher",
     "Full name": "fullName",
     "Web link": "webLink",
     "Index excerpts?": "indexExcerpts",
     "Index sessions?": "indexSessions",
     "Searchable?": "searchable",
-    "Kind": "kind",
-    "Category": "category",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",
@@ -16027,7 +16040,6 @@
     "Pali tag menu": "paliTagMenu",
     "Key": "key",
     "Value": "value",
-    "": "",
     "Title": "title",
     "Subtitle": "subtitle",
     "Code": "code",

@@ -1,11 +1,12 @@
 """Render the text of each excerpt in the database with its annotations to html using the pryatemp templates in database["Kind"].
 The only remaining work for Prototype.py to do is substitute the list of teachers for {attribtuion}, {attribtuion2}, and {attribtuion3} when needed."""
 
-import json
-import ParseCSV
-from typing import Tuple
+import json, re
+import ParseCSV, Prototype
+from typing import Tuple, Type
 from collections import defaultdict
 import pyratemp
+from functools import cache
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -29,22 +30,26 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
 
 def PrepareTemplates():
     ParseCSV.ListifyKey(gDatabase["kind"],"form1")
+    ParseCSV.ConvertToInteger(gDatabase["kind"],"defaultForm")
 
     for kind in gDatabase["kind"].values():
-        kind["forms"] = [FStringToPyratemp(f) for f in kind["form"]]
-        del kind["form"]
+        kind["form"] = [FStringToPyratemp(f) for f in kind["form"]]
 
         kind["body"] = []; kind["attribution"] = []
-        for form in kind["forms"]:
+        for form in kind["form"]:
             body, attribution = ExtractAnnotation(form)
             kind["body"].append(body)
             kind["attribution"].append(attribution)
+
+@cache
+def CompileTemplate(template: str) -> Type[pyratemp.Template]:
+    return pyratemp.Template(template)
 
 def RenderExcerpts():
     """Add a "rendered" key to each excerpt by applying the specified template to its contents.
     Prototype.py then uses this key to generate the html file."""
 
-    bodyTemplates = defaultdict(list)
+    """bodyTemplates = defaultdict(list)
     attributionTemplates = defaultdict(list)
     for kind, details in gDatabase["kind"].items():
         for template in details["body"]:
@@ -56,10 +61,39 @@ def RenderExcerpts():
     #print(bodyTemplates)
     #print(attributionTemplates)
 
-    # bodyTemplates = {kind : pyratemp.Template(details['body']) for kind,details in gDatabase['kind'].items()}
+    # bodyTemplates = {kind : pyratemp.Template(details['body']) for kind,details in gDatabase['kind'].items()}"""
 
+    kind = gDatabase["kind"]
     for x in gDatabase["excerpts"]:
-        x["rendered"] = x["text"]
+        kind = gDatabase["kind"][x["kind"]]
+
+        formNumber = kind["defaultForm"] - 1
+
+        bodyTemplateStr = kind["body"][formNumber]
+        bodyTemplate = CompileTemplate(bodyTemplateStr)
+        attributionTemplateStr = kind["attribution"][formNumber]
+        attributionTemplate = CompileTemplate(attributionTemplateStr)
+
+        plural = "s" if ("s" in x["flags"]) else "" # Is the excerpt heading plural?
+
+        teacherList = [gDatabase["teacher"][t]["fullName"] for t in x["teachers"]]
+        teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
+
+        renderDict = {"text": x["text"], "s": plural, "colon": ":", "prefix": "", "suffix": "", "teacher": teacherStr}
+
+        x["rendered"] = bodyTemplate(**renderDict)
+
+        # Does the text before the attribution end in a full stop?
+        fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",x["rendered"]) else ""
+        renderDict["fullStop"] = fullStop
+        
+        attributionStr = attributionTemplate(**renderDict)
+
+        # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
+        if fullStop and "{fullStop}" not in attributionTemplateStr:
+            attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
+
+        x["attribution"] = attributionStr
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
