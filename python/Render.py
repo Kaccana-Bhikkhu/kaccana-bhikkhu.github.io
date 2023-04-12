@@ -46,23 +46,7 @@ def CompileTemplate(template: str) -> Type[pyratemp.Template]:
     return pyratemp.Template(template)
 
 def RenderExcerpts():
-    """Add a "rendered" key to each excerpt by applying the specified template to its contents.
-    Prototype.py then uses this key to generate the html file."""
-
-    """bodyTemplates = defaultdict(list)
-    attributionTemplates = defaultdict(list)
-    for kind, details in gDatabase["kind"].items():
-        for template in details["body"]:
-            bodyTemplates[kind].append(pyratemp.Template(template))
-        
-        for template in details["attribution"]:
-            attributionTemplates[kind].append(pyratemp.Template(template))
-    
-    #print(bodyTemplates)
-    #print(attributionTemplates)
-
-    # bodyTemplates = {kind : pyratemp.Template(details['body']) for kind,details in gDatabase['kind'].items()}"""
-
+    """Use the templates in gDatabase["kind"] to add "body" and "attributin" keys to each except and its annotations"""
     kind = gDatabase["kind"]
     for x in gDatabase["excerpts"]:
         kind = gDatabase["kind"][x["kind"]]
@@ -79,21 +63,40 @@ def RenderExcerpts():
         teacherList = [gDatabase["teacher"][t]["fullName"] for t in x["teachers"]]
         teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
 
-        renderDict = {"text": x["text"], "s": plural, "colon": ":", "prefix": "", "suffix": "", "teacher": teacherStr}
+        text = x["text"]
+        prefix = ""
+        suffix = ""
+        parts = text.split("|")
+        if len(parts) > 1:
+            #print(text,parts)
+            if len(parts) == 2:
+                text, suffix = parts
+            elif len(parts) == 3:
+                prefix, text, suffix = parts
+            else:
+                if gOptions.verbosity >= -1:
+                    print("   Error: ",text," is split into more than 3 parts.")
 
-        x["rendered"] = bodyTemplate(**renderDict)
+        renderDict = {"text": text, "s": plural, "colon": ":", "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
 
-        # Does the text before the attribution end in a full stop?
-        fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",x["rendered"]) else ""
-        renderDict["fullStop"] = fullStop
-        
-        attributionStr = attributionTemplate(**renderDict)
+        x["body"] = bodyTemplate(**renderDict)
 
-        # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
-        if fullStop and "{fullStop}" not in attributionTemplateStr:
-            attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
+        if teacherList:
 
-        x["attribution"] = attributionStr
+            # Does the text before the attribution end in a full stop?
+            fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",x["body"]) else ""
+            renderDict["fullStop"] = fullStop
+            
+            attributionStr = attributionTemplate(**renderDict)
+
+            # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
+            if fullStop and "{fullStop}" not in attributionTemplateStr:
+                attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
+
+            x["attribution"] = attributionStr
+        else:
+            x["body"] = x["body"].replace("{attribution}","")
+            x["attribution"] = ""
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"

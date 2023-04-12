@@ -135,7 +135,8 @@
       "webLink": "www.abhayagiri.org/community",
       "indexExcerpts": true,
       "indexSessions": true,
-      "searchable": true
+      "searchable": true,
+      "attribute": true
     },
     "AKd": {
       "teacher": "AKd",
@@ -143,7 +144,8 @@
       "webLink": "",
       "indexExcerpts": true,
       "indexSessions": false,
-      "searchable": true
+      "searchable": true,
+      "attribute": true
     },
     "ANy": {
       "teacher": "ANy",
@@ -151,7 +153,8 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
     },
     "AKsp": {
       "teacher": "AKsp",
@@ -159,7 +162,8 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
     },
     "DS": {
       "teacher": "DS",
@@ -167,7 +171,8 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
     },
     "Jeed": {
       "teacher": "Jeed",
@@ -175,7 +180,17 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
+    },
+    "Anon": {
+      "teacher": "Anon",
+      "fullName": "anonymous",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": false
     }
   },
   "kind": {
@@ -275,7 +290,7 @@
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
       "form2": "unimplemented",
-      "form3": "Quote: {prefix} “{text}”{' — ' if suffix else ''}{suffix}|| Quoted by {teacher}."
+      "form3": "Quote: {prefix} “{text}”{' — ' if suffix else ''}{suffix}{'.' if suffix else ''}|| Quoted by {teacher}."
     },
     "Meditation instruction": {
       "kind": "Meditation instruction",
@@ -9658,7 +9673,7 @@
       "flags": "",
       "startTime": "8:10",
       "endTime": "9:17",
-      "text": "Ajahn Pasanno attempts tudong in California",
+      "text": "Ajahn Pasanno attempts tudong in California.",
       "teachers": [
         "AP"
       ],
@@ -9826,7 +9841,7 @@
       "flags": "",
       "startTime": "48:15",
       "endTime": "49:20",
-      "text": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?' | Anonymous",
+      "text": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?'|Anonymous",
       "teachers": [
         "AP"
       ],
@@ -9848,7 +9863,7 @@
       "flags": "",
       "startTime": "49:23",
       "endTime": "51:31",
-      "text": "Instead of going tudong, monks go taludong (through the forest). | Ajahn Chah",
+      "text": "Instead of going tudong, monks go taludong (through the forest).|Ajahn Chah",
       "teachers": [
         "AP"
       ],
@@ -9916,9 +9931,7 @@
       "startTime": "8:07",
       "endTime": "",
       "text": "Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
-      "teachers": [
-        "AP"
-      ],
+      "teachers": [],
       "tags": [
         "Tudong",
         "Faith",
@@ -16014,6 +16027,7 @@
     "Index excerpts?": "indexExcerpts",
     "Index sessions?": "indexSessions",
     "Searchable?": "searchable",
+    "Attribute?": "attribute",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",

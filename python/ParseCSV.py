@@ -489,7 +489,11 @@ def LoadEventFile(database,eventName,directory):
                 x["qTag"] = ourSession["tags"] + x["qTag"]
 
             if not x["teachers"]:
-                x["teachers"] = ourSession["teachers"]
+                defaultTeacher = database["kind"][x["kind"]]["inheritTeacherFrom"]
+                if defaultTeacher == "Anon": # Check if the default teacher is anonymous
+                    x["teachers"] = ["Anon"]
+                else:
+                    x["teachers"] = ourSession["teachers"]
             
             if x["sessionNumber"] != lastSession:
                 if lastSession > x["sessionNumber"] and gOptions.verbose > 0:
@@ -504,7 +508,9 @@ def LoadEventFile(database,eventName,directory):
                 xNumber += 1 # Excerpt number counts only excerpts allowed by teacher consent and exclusion policies
                 x["exclude"] = False
             else:
-                x["exclude"] = True # Convert this value to boolean
+                x["exclude"] = True
+            
+            x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
             x["excerptNumber"] = xNumber
             x["fileNumber"] = fileNumber

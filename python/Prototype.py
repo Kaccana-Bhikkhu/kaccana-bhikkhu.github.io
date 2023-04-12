@@ -327,7 +327,7 @@ class Formatter:
             attribution = excerpt["attribution"]
         else:
             attribution = ""
-        a(excerpt["rendered"].replace("{attribution}",attribution) + ' ')
+        a(excerpt["body"].replace("{attribution}",attribution) + ' ')
         
         """if teacherList:
             a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')"""

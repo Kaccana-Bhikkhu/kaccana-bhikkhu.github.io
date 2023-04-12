@@ -135,7 +135,8 @@
       "webLink": "www.abhayagiri.org/community",
       "indexExcerpts": true,
       "indexSessions": true,
-      "searchable": true
+      "searchable": true,
+      "attribute": true
     },
     "AKd": {
       "teacher": "AKd",
@@ -143,7 +144,8 @@
       "webLink": "",
       "indexExcerpts": true,
       "indexSessions": false,
-      "searchable": true
+      "searchable": true,
+      "attribute": true
     },
     "ANy": {
       "teacher": "ANy",
@@ -151,7 +153,8 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
     },
     "AKsp": {
       "teacher": "AKsp",
@@ -159,7 +162,8 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
     },
     "DS": {
       "teacher": "DS",
@@ -167,7 +171,8 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
     },
     "Jeed": {
       "teacher": "Jeed",
@@ -175,7 +180,17 @@
       "webLink": "",
       "indexExcerpts": false,
       "indexSessions": false,
-      "searchable": false
+      "searchable": false,
+      "attribute": true
+    },
+    "Anon": {
+      "teacher": "Anon",
+      "fullName": "anonymous",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": false
     }
   },
   "kind": {
@@ -348,12 +363,12 @@
       "form": [
         "unimplemented",
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@|| Quoted by @!teacher!@."
+        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@@!'.' if suffix else ''!@|| Quoted by @!teacher!@."
       ],
       "body": [
         "unimplemented",
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@{attribution}"
+        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@@!'.' if suffix else ''!@{attribution}"
       ],
       "attribution": [
         "",
@@ -9814,7 +9829,7 @@
       "flags": "",
       "startTime": "8:10",
       "endTime": "9:17",
-      "text": "Ajahn Pasanno attempts tudong in California",
+      "text": "Ajahn Pasanno attempts tudong in California.",
       "teachers": [
         "AP"
       ],
@@ -9827,8 +9842,8 @@
       ],
       "qTagCount": 3,
       "duration": "1:07",
-      "rendered": "Story: Ajahn Pasanno attempts tudong in California{attribution}",
-      "attribution": " told by Ajahn Pasanno."
+      "body": "Story: Ajahn Pasanno attempts tudong in California.{attribution}",
+      "attribution": " Told by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
@@ -9852,7 +9867,7 @@
       ],
       "qTagCount": 5,
       "duration": "3:41",
-      "rendered": "Story: Ajahn Chah lets a restless junior monk go tudong in the hot season.{attribution}",
+      "body": "Story: Ajahn Chah lets a restless junior monk go tudong in the hot season.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9878,7 +9893,7 @@
       ],
       "qTagCount": 2,
       "duration": "3:43",
-      "rendered": "Story: Ajahn Jotipālo&#39;s tudong north along the Mississippi.{attribution}",
+      "body": "Story: Ajahn Jotipālo&#39;s tudong north along the Mississippi.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9905,7 +9920,7 @@
       ],
       "qTagCount": 5,
       "duration": "2:16",
-      "rendered": "Story: Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.{attribution}",
+      "body": "Story: Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9932,7 +9947,7 @@
       ],
       "qTagCount": 4,
       "duration": "5:58",
-      "rendered": "Story: Ajahn Mun doesn&#39;t spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
+      "body": "Story: Ajahn Mun doesn&#39;t spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9955,7 +9970,7 @@
       ],
       "qTagCount": 3,
       "duration": "1:16",
-      "rendered": "Story: Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s.{attribution}",
+      "body": "Story: Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9984,7 +9999,7 @@
       ],
       "qTagCount": 4,
       "duration": "10:26",
-      "rendered": "Story: A Thai monk (who??) chooses tudong over further studies.{attribution}",
+      "body": "Story: A Thai monk (who??) chooses tudong over further studies.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9996,7 +10011,7 @@
       "flags": "",
       "startTime": "48:15",
       "endTime": "49:20",
-      "text": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?' | Anonymous",
+      "text": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?'|Anonymous",
       "teachers": [
         "AP"
       ],
@@ -10008,7 +10023,7 @@
       ],
       "qTagCount": 4,
       "duration": "1:05",
-      "rendered": "Quote:  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39; | Anonymous”{attribution}",
+      "body": "Quote:  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39;” — Anonymous.{attribution}",
       "attribution": " Quoted by Ajahn Pasanno."
     },
     {
@@ -10020,7 +10035,7 @@
       "flags": "",
       "startTime": "49:23",
       "endTime": "51:31",
-      "text": "Instead of going tudong, monks go taludong (through the forest). | Ajahn Chah",
+      "text": "Instead of going tudong, monks go taludong (through the forest).|Ajahn Chah",
       "teachers": [
         "AP"
       ],
@@ -10033,7 +10048,7 @@
       ],
       "qTagCount": 3,
       "duration": "2:08",
-      "rendered": "Quote:  “Instead of going tudong, monks go taludong (through the forest). | Ajahn Chah”{attribution}",
+      "body": "Quote:  “Instead of going tudong, monks go taludong (through the forest).” — Ajahn Chah.{attribution}",
       "attribution": " Quoted by Ajahn Pasanno."
     },
     {
@@ -10054,7 +10069,7 @@
       ],
       "qTagCount": 1,
       "duration": "0:34",
-      "rendered": "“Did you walk from Mendocino?”{attribution}",
+      "body": "“Did you walk from Mendocino?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10081,7 +10096,7 @@
       ],
       "qTagCount": 2,
       "duration": "7:07",
-      "rendered": "“What is the function of a layperson who accompanies a monk on tudong?”{attribution}",
+      "body": "“What is the function of a layperson who accompanies a monk on tudong?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10094,9 +10109,7 @@
       "startTime": "8:07",
       "endTime": "",
       "text": "Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
-      "teachers": [
-        "AP"
-      ],
+      "teachers": [],
       "tags": [
         "Tudong",
         "Faith",
@@ -10107,8 +10120,8 @@
       ],
       "qTagCount": 6,
       "duration": "16:28",
-      "rendered": "Comment{attribution}: Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
-      "attribution": " by Ajahn Pasanno"
+      "body": "Comment: Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
+      "attribution": ""
     },
     {
       "event": "SRD2011",
@@ -10135,7 +10148,7 @@
       ],
       "qTagCount": 5,
       "duration": "3:21",
-      "rendered": "“If sati or mindfulness is the cage, what is the use of samatha?”{attribution}",
+      "body": "“If sati or mindfulness is the cage, what is the use of samatha?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10160,7 +10173,7 @@
       ],
       "qTagCount": 5,
       "duration": "8:42",
-      "rendered": "“Could you tell of your personal experience with a tiger?”{attribution}",
+      "body": "“Could you tell of your personal experience with a tiger?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10192,7 +10205,7 @@
       ],
       "qTagCount": 5,
       "duration": "4:42",
-      "rendered": "“Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?”{attribution}",
+      "body": "“Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10214,7 +10227,7 @@
       ],
       "qTagCount": 2,
       "duration": "1:35",
-      "rendered": "“In the trio of attraction, aversion, and confusion, what does confusion mean?”{attribution}",
+      "body": "“In the trio of attraction, aversion, and confusion, what does confusion mean?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10241,7 +10254,7 @@
       ],
       "qTagCount": 3,
       "duration": "1:18",
-      "rendered": "“I have an internal voice that&#39;s concerned whether I&#39;m doing it right; if I&#39;m not doing it right, then I won&#39;t get where I want to go. Is this delusion?”{attribution}",
+      "body": "“I have an internal voice that&#39;s concerned whether I&#39;m doing it right; if I&#39;m not doing it right, then I won&#39;t get where I want to go. Is this delusion?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10270,7 +10283,7 @@
       ],
       "qTagCount": 3,
       "duration": "5:32",
-      "rendered": "“For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?”{attribution}",
+      "body": "“For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10295,7 +10308,7 @@
       ],
       "qTagCount": 2,
       "duration": "4:50",
-      "rendered": "“I&#39;m curious about your pre-monastic lfie and specifically what led you to the monastic life.”{attribution}",
+      "body": "“I&#39;m curious about your pre-monastic lfie and specifically what led you to the monastic life.”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10321,7 +10334,7 @@
       ],
       "qTagCount": 3,
       "duration": "2:04",
-      "rendered": "“If I saw you and the monks walking down the streets of Fairfax, I&#39;m not sure I would know what to do. How should I approach you?”{attribution}",
+      "body": "“If I saw you and the monks walking down the streets of Fairfax, I&#39;m not sure I would know what to do. How should I approach you?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10344,7 +10357,7 @@
       ],
       "qTagCount": 2,
       "duration": "4:14",
-      "rendered": "“To what extend is spreading the teachings part of the tudong tradition?”{attribution}",
+      "body": "“To what extend is spreading the teachings part of the tudong tradition?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10373,7 +10386,7 @@
       ],
       "qTagCount": 7,
       "duration": "4:04",
-      "rendered": "“I travelled for six weeks in Thailand and India and found that time really shifted. Having been home about two months, even with a daily meditation practice, time speeds up. How is life at the monastery versus tudong, and what do you have to say to laypeople about the speeding up of time?”{attribution}",
+      "body": "“I travelled for six weeks in Thailand and India and found that time really shifted. Having been home about two months, even with a daily meditation practice, time speeds up. How is life at the monastery versus tudong, and what do you have to say to laypeople about the speeding up of time?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10397,7 +10410,7 @@
       ],
       "qTagCount": 3,
       "duration": "3:19",
-      "rendered": "“Is it possible to visit the monastery?”{attribution}",
+      "body": "“Is it possible to visit the monastery?”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10419,7 +10432,7 @@
       ],
       "qTagCount": 1,
       "duration": "2:33",
-      "rendered": "Meditation instructions: Walking meditation.{attribution}",
+      "body": "Meditation instructions: Walking meditation.{attribution}",
       "attribution": " Offered by Ajahn Pasanno."
     },
     {
@@ -10444,7 +10457,7 @@
       ],
       "qTagCount": 5,
       "duration": "2:38",
-      "rendered": "Story: Ajahn Chah&#39;s first tudong.{attribution}",
+      "body": "Story: Ajahn Chah&#39;s first tudong.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10474,7 +10487,7 @@
       ],
       "qTagCount": 5,
       "duration": "4:42",
-      "rendered": "Story: Ajahn Chah obsesses about getting robes.{attribution}",
+      "body": "Story: Ajahn Chah obsesses about getting robes.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10498,7 +10511,7 @@
       ],
       "qTagCount": 4,
       "duration": "1:03",
-      "rendered": "Quote:  “You fall down, you get up, you crawl along. | Ajahn Mahā Boowa”{attribution}",
+      "body": "Quote:  “You fall down, you get up, you crawl along. ” —  Ajahn Mahā Boowa.{attribution}",
       "attribution": " Quoted by Ajahn Pasanno."
     },
     {
@@ -10526,7 +10539,7 @@
       ],
       "qTagCount": 4,
       "duration": "4:47",
-      "rendered": "Story: Ajahn Chah struggles through lust with patience.{attribution}",
+      "body": "Story: Ajahn Chah struggles through lust with patience.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10554,7 +10567,7 @@
       ],
       "qTagCount": 7,
       "duration": "2:31",
-      "rendered": "Quote:  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. | Ajahn Chah”{attribution}",
+      "body": "Quote:  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. ” —  Ajahn Chah.{attribution}",
       "attribution": " Quoted by Ajahn Pasanno."
     },
     {
@@ -10580,7 +10593,7 @@
       ],
       "qTagCount": 4,
       "duration": "1:34",
-      "rendered": "Story: How Ajahn Pasanno became abbot of Wat Pah Nanachat.{attribution}",
+      "body": "Story: How Ajahn Pasanno became abbot of Wat Pah Nanachat.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10608,7 +10621,7 @@
       ],
       "qTagCount": 3,
       "duration": "2:27",
-      "rendered": "Story: Ajahn Pasanno&#39;s tudong practice.{attribution}",
+      "body": "Story: Ajahn Pasanno&#39;s tudong practice.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10635,7 +10648,7 @@
       ],
       "qTagCount": 5,
       "duration": "3:52",
-      "rendered": "Story: Ajahn Pasanno gets a foot infection on tudong.{attribution}",
+      "body": "Story: Ajahn Pasanno gets a foot infection on tudong.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10662,7 +10675,7 @@
       ],
       "qTagCount": 4,
       "duration": "2:44",
-      "rendered": "Story: Ajahn Pasanno loses his vision on tudong.{attribution}",
+      "body": "Story: Ajahn Pasanno loses his vision on tudong.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10690,7 +10703,7 @@
       ],
       "qTagCount": 3,
       "duration": "5:27",
-      "rendered": "Quote:  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
+      "body": "Quote:  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
       "attribution": " — Ajahn Pasanno."
     }
   ],
@@ -16238,6 +16251,7 @@
     "Index excerpts?": "indexExcerpts",
     "Index sessions?": "indexSessions",
     "Searchable?": "searchable",
+    "Attribute?": "attribute",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",
