@@ -54,7 +54,8 @@ with nav.p():
 gNavigation = str(nav)
 del nav
 
-def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None,navigation:bool = True):
+gWrittenHtmlFiles = set()
+def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None,navigation:bool = True) -> None:
     """Write a complete html file given a title, body, and header.
         fileName - name of the file to write
         title - internal title of the html page
@@ -81,6 +82,21 @@ def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",cus
     
     with open(fileName,'wb') as file:
         file.write(bytes(a))
+    
+    gWrittenHtmlFiles.add(fileName)
+
+def DeleteUnwrittenHtmlFiles() -> None:
+    """Remove old html files from previous runs to keep things neat and tidy."""
+
+    dirs = ["events","tags","indexes"]
+    dirs = [os.path.join(gOptions.prototypeDir,dir) for dir in dirs]
+
+    for dir in dirs:
+        fileList = next(os.walk(dir), (None, None, []))[2]
+        for fileName in fileList:
+            fullPath = os.path.join(dir,fileName)
+            if fullPath not in gWrittenHtmlFiles:
+                os.remove(fullPath)
 
 def ItemList(items:List[str], joinStr:str = ", ", lastJoinStr:str = None):
     """Format a list of items"""
@@ -616,7 +632,8 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
-    
+    parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
+
 gOptions = None
 gDatabase = None
 def main(clOptions,database):
@@ -644,4 +661,7 @@ def main(clOptions,database):
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
     WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))
+
+    if not clOptions.keepOldHtmlFiles:
+        DeleteUnwrittenHtmlFiles()
     

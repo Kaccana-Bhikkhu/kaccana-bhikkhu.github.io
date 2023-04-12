@@ -53,8 +53,8 @@ def RenderExcerpts():
         for template in details["attribution"]:
             attributionTemplates[kind].append(pyratemp.Template(template))
     
-    print(bodyTemplates)
-    print(attributionTemplates)
+    #print(bodyTemplates)
+    #print(attributionTemplates)
 
     # bodyTemplates = {kind : pyratemp.Template(details['body']) for kind,details in gDatabase['kind'].items()}
 

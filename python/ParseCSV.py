@@ -354,8 +354,6 @@ def CreateTagDisplayList(database):
         if rawTag["itemCount"] > 1:
             listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))
         
-
-        
         name = FirstValidValue(rawTag,["fullTag","pali"])
         tag = FirstValidValue(rawTag,["subsumedUnder","abbreviation","fullTag","paliAbbreviation","pali"])
         text = name
