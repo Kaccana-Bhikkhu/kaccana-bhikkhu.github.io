@@ -589,17 +589,17 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
 
 def CountAndVerify(database):
     
-    CountInstances(database["event"],"tags",database["tag"],"Event count",gOptions.zeroCount)
-    CountInstances(database["sessions"],"tags",database["tag"],"Session count",gOptions.zeroCount)
-    CountInstances(database["excerpts"],"tags",database["tag"],"excerptCount",gOptions.zeroCount)
+    CountInstances(database["event"],"tags",database["tag"],"Event count")
+    CountInstances(database["sessions"],"tags",database["tag"],"Session count")
+    CountInstances(database["excerpts"],"tags",database["tag"],"excerptCount")
     
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
-            CountInstances(database["event"],key,database[key],"Event count",gOptions.zeroCount)
+            CountInstances(database["event"],key,database[key],"Event count")
         
-        CountInstances(database["event"],"teachers",database["teacher"],"Event count",gOptions.zeroCount)
-        CountInstances(database["sessions"],"teachers",database["teacher"],"Session count",gOptions.zeroCount)
-        CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount",gOptions.zeroCount)
+        CountInstances(database["event"],"teachers",database["teacher"],"Event count")
+        CountInstances(database["sessions"],"teachers",database["teacher"],"Session count")
+        CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
     
     # Are tags flagged Primary as needed?
     if gOptions.verbose >= 1:
@@ -641,10 +641,10 @@ def AddArguments(parser):
     
     parser.add_argument('--ignoreTeacherConsent',action='store_true',help="Ignore teacher consent flags - debugging only")
     parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and excerpt flags - debugging only")
-    parser.add_argument('--zeroCount',action='store_true',help="Write count=0 keys to json file; otherwise write only non-zero keys")
+    parser.add_argument('--parseOnlySpecifiedEvents',action='store_true',help="Load only events specified by --events into the database")
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
-    parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process story and reference annotations")
+    parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process annotations")
 
 gOptions = None
 
@@ -684,7 +684,8 @@ def main(clOptions,database):
     database["excerpts"] = []
     database["excerptsRedacted"] = []
     for event in database["summary"]:
-        LoadEventFile(database,event,gOptions.csvDir)
+        if not clOptions.parseOnlySpecifiedEvents or clOptions.events == "All" or event in clOptions.events:
+            LoadEventFile(database,event,gOptions.csvDir)
 
     CountAndVerify(database)
     CreateTagDisplayList(database)

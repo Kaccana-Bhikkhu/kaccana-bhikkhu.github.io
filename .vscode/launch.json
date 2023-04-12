@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "QSArchive.py All --sheets All",
             "type": "python",
@@ -38,6 +39,15 @@
             "request": "launch",
             "program": "Q:\\qs-archive\\QSArchive.py",
             "args": ["Render", "-vvv", "--excerptMp3", "local"],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+        {
+            "name": "QSArchive.py only SRD2011",
+            "type": "python",
+            "request": "launch",
+            "program": "Q:\\qs-archive\\QSArchive.py",
+            "args": ["ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local", "--events", "SRD2011", "--parseOnlySpecifiedEvents"],
             "console": "integratedTerminal",
             "justMyCode": true
         }
