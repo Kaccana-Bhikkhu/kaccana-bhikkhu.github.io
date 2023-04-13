@@ -531,11 +531,11 @@ def WriteTagPages(tagPageDir: str) -> None:
         a = Airium()
         
         with a.h1():
-            if tagInfo['pali'] and tagInfo['pali'] != tag:
-                a(tag)
-                a(f"[{tagInfo['pali']}]:")
+            if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
+                a(tagInfo['fullTag'])
+                a(f"[{tagInfo['fullPali']}]:")
             else:
-                a(tag + ':')
+                a(tagInfo['fullTag'] + ':')
             
         
         with a.h3():
