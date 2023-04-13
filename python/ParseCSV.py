@@ -113,8 +113,9 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
                 for key in row:
                     if key[-1:] == '?':
                         row[key] = BooleanValue(row[key])
-
-            CamelCaseKeys(row,camelCase)
+            
+            if camelCase:
+                CamelCaseKeys(row)
             output.append(row)
             
 
@@ -202,7 +203,8 @@ def DictFromPairs(inList,keyKey,valueKey,camelCase = True):
         
         outDict[newKey] = item[valueKey]
     
-    CamelCaseKeys(outDict,camelCase)
+    if camelCase:
+        CamelCaseKeys(outDict)
     return outDict
 
 def LoadSummary(database,summaryFileName):
