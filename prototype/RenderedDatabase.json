@@ -137,12 +137,12 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Session",
       "form": [
-        "Response@!s!@|| by @!teacher!@||@!colon!@ @!text!@",
+        "++Response@!s!@++|| by @!teacher!@||@!colon!@ @!text!@",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "Response@!s!@{attribution}@!colon!@ @!text!@",
+        "<b>Response@!s!@</b>{attribution}@!colon!@ @!text!@",
         "unimplemented",
         "unimplemented"
       ],
@@ -164,12 +164,12 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "Follow-up@!colon!@ “@!text!@”|| aswered by @!teacher!@.",
+        "++Follow-up@!colon!@++ “@!text!@”|| aswered by @!teacher!@.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "Follow-up@!colon!@ “@!text!@”{attribution}",
+        "<b>Follow-up@!colon!@</b> “@!text!@”{attribution}",
         "unimplemented"
       ],
       "attribution": [
@@ -190,12 +190,12 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "Stor@!'ies' if s else 'y'!@@!colon!@ @!text!@|| told by @!teacher!@.",
+        "++Stor@!'ies' if s else 'y'!@@!colon!@++ @!text!@|| told by @!teacher!@.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "Stor@!'ies' if s else 'y'!@@!colon!@ @!text!@{attribution}",
+        "<b>Stor@!'ies' if s else 'y'!@@!colon!@</b> @!text!@{attribution}",
         "unimplemented"
       ],
       "attribution": [
@@ -216,12 +216,12 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "Recollection@!s!@@!colon!@ @!text!@|| recounted by @!teacher!@.",
+        "++Recollection@!s!@@!colon!@++ @!text!@|| recounted by @!teacher!@.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "Recollection@!s!@@!colon!@ @!text!@{attribution}",
+        "<b>Recollection@!s!@@!colon!@</b> @!text!@{attribution}",
         "unimplemented"
       ],
       "attribution": [
@@ -242,12 +242,12 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@",
+        "++Quote:++ @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@” @!suffix!@{attribution}",
+        "<b>Quote:</b> @!prefix!@ “@!text!@” @!suffix!@{attribution}",
         "unimplemented"
       ],
       "attribution": [
@@ -259,7 +259,7 @@
     "Indirect quote": {
       "kind": "Indirect quote",
       "category": "Quotes",
-      "defaultForm": 3,
+      "defaultForm": 2,
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
@@ -268,18 +268,18 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "unimplemented",
-        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@||@!'.' if suffix else ''!@ Quoted by @!teacher!@."
+        "++Quote:++ @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@||@!'.' if suffix else ''!@ Quoted by @!teacher!@.",
+        "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "unimplemented",
-        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@{attribution}"
+        "<b>Quote:</b> @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@{attribution}",
+        "unimplemented"
       ],
       "attribution": [
         "",
-        "",
-        "@!'.' if suffix else ''!@ Quoted by @!teacher!@."
+        "@!'.' if suffix else ''!@ Quoted by @!teacher!@.",
+        ""
       ]
     },
     "Meditation instruction": {
@@ -294,12 +294,12 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "Meditation instruction@!s!@@!colon!@ @!text!@|| offered by @!teacher!@.",
+        "++Meditation instruction@!s!@@!colon!@++ @!text!@|| offered by @!teacher!@.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "Meditation instruction@!s!@@!colon!@ @!text!@{attribution}",
+        "<b>Meditation instruction@!s!@@!colon!@</b> @!text!@{attribution}",
         "unimplemented"
       ],
       "attribution": [
@@ -319,12 +319,12 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
       "form": [
-        "Reference@!s!@: @!text!@",
+        "++Reference@!s!@++: @!text!@",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "Reference@!s!@: @!text!@",
+        "<b>Reference@!s!@</b>: @!text!@",
         "unimplemented",
         "unimplemented"
       ],
@@ -345,12 +345,12 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
       "form": [
-        "Sutta@!s!@: @!text!@",
+        "++Sutta@!s!@++: @!text!@",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "Sutta@!s!@: @!text!@",
+        "<b>Sutta@!s!@</b>: @!text!@",
         "unimplemented",
         "unimplemented"
       ],
@@ -371,12 +371,12 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
       "form": [
-        "Vinaya: @!text!@",
+        "++Vinaya:++ @!text!@",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "Vinaya: @!text!@",
+        "<b>Vinaya:</b> @!text!@",
         "unimplemented",
         "unimplemented"
       ],
@@ -397,14 +397,14 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Anon",
       "form": [
-        "Comment@!s!@|| by @!teacher!@||@!colon!@ @!text!@",
-        "Comment@!s!@@!colon!@ @!text!@|| contributed by @!teacher!@.",
-        "@!text!@ Comment@!s!@ by @!teacher!@."
+        "++Comment@!s!@++|| by @!teacher!@||@!colon!@ @!text!@",
+        "++Comment@!s!@@!colon!@++ @!text!@|| contributed by @!teacher!@.",
+        "@!text!@ Comment@!s!@++ by @!teacher!@."
       ],
       "body": [
-        "Comment@!s!@{attribution}@!colon!@ @!text!@",
-        "Comment@!s!@@!colon!@ @!text!@{attribution}",
-        "@!text!@ Comment@!s!@ by @!teacher!@."
+        "<b>Comment@!s!@</b>{attribution}@!colon!@ @!text!@",
+        "<b>Comment@!s!@@!colon!@</b> @!text!@{attribution}",
+        "@!text!@ Comment@!s!@<b> by @!teacher!@.</b>"
       ],
       "attribution": [
         " by @!teacher!@",
@@ -9764,7 +9764,7 @@
       "sessions": 3,
       "excerpts": 35,
       "answersListenedTo": 0,
-      "tagsApplied": 284,
+      "tagsApplied": 283,
       "invalidTags": 0,
       "duration": "2:48:24"
     }
@@ -9778,7 +9778,7 @@
       "teachers": [
         "AP"
       ],
-      "sessionTitle": "Tudong stories part 1",
+      "sessionTitle": "",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock.mp3",
       "excerpts": 9,
       "tags": [
@@ -9795,7 +9795,7 @@
       "teachers": [
         "AP"
       ],
-      "sessionTitle": "Question and answer session",
+      "sessionTitle": "Question and answers",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock_pt2.mp3",
       "excerpts": 16,
       "tags": [
@@ -9812,7 +9812,7 @@
       "teachers": [
         "AP"
       ],
-      "sessionTitle": "Tudong stories part 2",
+      "sessionTitle": "",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock_pt3.mp3",
       "excerpts": 10,
       "tags": [
@@ -9846,7 +9846,7 @@
       ],
       "qTagCount": 3,
       "duration": "1:07",
-      "body": "Story: Ajahn Pasanno attempts tudong in California.{attribution}",
+      "body": "<b>Story:</b> Ajahn Pasanno attempts tudong in California.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9872,7 +9872,7 @@
       ],
       "qTagCount": 5,
       "duration": "3:41",
-      "body": "Story: Ajahn Chah lets a restless junior monk go tudong in the hot season.{attribution}",
+      "body": "<b>Story:</b> Ajahn Chah lets a restless junior monk go tudong in the hot season.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9899,7 +9899,7 @@
       ],
       "qTagCount": 2,
       "duration": "3:43",
-      "body": "Story: Ajahn Jotipālo&#39;s tudong north along the Mississippi.{attribution}",
+      "body": "<b>Story:</b> Ajahn Jotipālo&#39;s tudong north along the Mississippi.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9922,9 +9922,7 @@
           "startTime": "",
           "endTime": "",
           "text": "You mean to say there are no kind people in America?|Ajahn Chah to Ajahn Sumedho",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Ajahn Sumedho",
@@ -9932,7 +9930,7 @@
             "Culture/West"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “You mean to say there are no kind people in America?” — Ajahn Chah to Ajahn Sumedho. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “You mean to say there are no kind people in America?” — Ajahn Chah to Ajahn Sumedho"
         }
       ],
       "tags": [
@@ -9946,7 +9944,7 @@
       ],
       "qTagCount": 5,
       "duration": "2:16",
-      "body": "Story: Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.{attribution}",
+      "body": "<b>Story:</b> Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -9969,9 +9967,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Mun",
             "Abbot",
@@ -9980,24 +9976,22 @@
             "Tudong"
           ],
           "indentLevel": 1,
-          "body": "Story: Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day. Told by Ajahn Pasanno."
+          "body": "<b>Story:</b> Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day."
         },
         {
           "kind": "Story",
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "One million people attend the funeral of Ajahn Mahā Boowa",
-          "teachers": [
-            "AP"
-          ],
+          "text": "One million people attend the funeral of Ajahn Mahā Boowa.",
+          "teachers": [],
           "tags": [
             "Ajahn Maha Boowa",
             "Funerals",
             "History/Thai Buddhism"
           ],
           "indentLevel": 1,
-          "body": "Story: One million people attend the funeral of Ajahn Mahā Boowa told by Ajahn Pasanno."
+          "body": "<b>Story:</b> One million people attend the funeral of Ajahn Mahā Boowa."
         }
       ],
       "tags": [
@@ -10011,7 +10005,7 @@
       ],
       "qTagCount": 4,
       "duration": "5:58",
-      "body": "Story: Ajahn Mun doesn&#39;t spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
+      "body": "<b>Story:</b> Ajahn Mun doesn&#39;t spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10035,7 +10029,7 @@
       ],
       "qTagCount": 3,
       "duration": "1:16",
-      "body": "Story: Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s.{attribution}",
+      "body": "<b>Story:</b> Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10058,16 +10052,14 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno's mother cries when she meets him.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Faith",
             "Rapture"
           ],
           "indentLevel": 1,
-          "body": "Story: Ajahn Pasanno&#39;s mother cries when she meets him. Told by Ajahn Pasanno."
+          "body": "<b>Story:</b> Ajahn Pasanno&#39;s mother cries when she meets him."
         },
         {
           "kind": "Story",
@@ -10075,9 +10067,7 @@
           "startTime": "",
           "endTime": "",
           "text": "A python begins to eat the monk.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Tudong",
             "Animals",
@@ -10085,7 +10075,7 @@
             "Liberation"
           ],
           "indentLevel": 1,
-          "body": "Story: A python begins to eat the monk. Told by Ajahn Pasanno."
+          "body": "<b>Story:</b> A python begins to eat the monk."
         }
       ],
       "tags": [
@@ -10101,7 +10091,7 @@
       ],
       "qTagCount": 4,
       "duration": "10:26",
-      "body": "Story: A Thai monk (who??) chooses tudong over further studies.{attribution}",
+      "body": "<b>Story:</b> A Thai monk (who??) chooses tudong over further studies.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10126,7 +10116,7 @@
       ],
       "qTagCount": 4,
       "duration": "1:05",
-      "body": "Quote:  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39;” — anonymous{attribution}",
+      "body": "<b>Quote:</b>  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39;” — anonymous{attribution}",
       "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
@@ -10152,7 +10142,7 @@
       ],
       "qTagCount": 3,
       "duration": "2:08",
-      "body": "Quote:  “Instead of going tudong, monks go taludong (through the forest).” — Ajahn Chah{attribution}",
+      "body": "<b>Quote:</b>  “Instead of going tudong, monks go taludong (through the forest).” — Ajahn Chah{attribution}",
       "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
@@ -10197,33 +10187,29 @@
           "startTime": "",
           "endTime": "",
           "text": "People who ordain quickly disrobe quickly.|Ajahn Chah",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Ordination",
             "Disrobing"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “People who ordain quickly disrobe quickly.” — Ajahn Chah. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “People who ordain quickly disrobe quickly.” — Ajahn Chah"
         },
         {
           "kind": "Story",
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "Founding of Pacific Hermitage",
-          "teachers": [
-            "AP"
-          ],
+          "text": "Founding of Pacific Hermitage.",
+          "teachers": [],
           "tags": [
             "Pacific Hermitage",
             "Almsround",
             "Almsfood"
           ],
           "indentLevel": 1,
-          "body": "Story: Founding of Pacific Hermitage told by Ajahn Pasanno."
+          "body": "<b>Story:</b> Founding of Pacific Hermitage."
         }
       ],
       "tags": [
@@ -10262,7 +10248,7 @@
             "Virtue"
           ],
           "indentLevel": 1,
-          "body": "Sutta: Dhp 244-245: Life is easy for for one without shame."
+          "body": "<b>Sutta</b>: Dhp 244-245: Life is easy for for one without shame."
         },
         {
           "kind": "Response",
@@ -10284,7 +10270,7 @@
             "Right effort"
           ],
           "indentLevel": 1,
-          "body": "Response by Ajahn Pasanno: &quot;You get more than what you bargained for.&quot;"
+          "body": "<b>Response</b> by Ajahn Pasanno: &quot;You get more than what you bargained for.&quot;"
         },
         {
           "kind": "Sutta",
@@ -10296,7 +10282,7 @@
             "Concentration"
           ],
           "indentLevel": 1,
-          "body": "Sutta: AN 11.1: Virtue leads to non-remorse and samādhi."
+          "body": "<b>Sutta</b>: AN 11.1: Virtue leads to non-remorse and samādhi."
         }
       ],
       "tags": [
@@ -10308,7 +10294,7 @@
       ],
       "qTagCount": 5,
       "duration": "7:09",
-      "body": "Comment: Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
+      "body": "<b>Comment</b>: Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
       "attribution": ""
     },
     {
@@ -10331,15 +10317,13 @@
           "startTime": "",
           "endTime": "",
           "text": "Having a human mind...it's amazing how perverse it can be sometimes.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Humans",
             "Three Unwholesome Roots"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “Having a human mind...it&#39;s amazing how perverse it can be sometimes.”  — Ajahn Pasanno"
+          "body": "<b>Quote:</b>  “Having a human mind...it&#39;s amazing how perverse it can be sometimes.” "
         },
         {
           "kind": "Story",
@@ -10347,9 +10331,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno can't translate guilt into Thai.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Guilt/shame/inadequacy",
@@ -10359,7 +10341,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "Story: Ajahn Pasanno can&#39;t translate guilt into Thai. Told by Ajahn Pasanno."
+          "body": "<b>Story:</b> Ajahn Pasanno can&#39;t translate guilt into Thai."
         },
         {
           "kind": "Indirect quote",
@@ -10367,9 +10349,7 @@
           "startTime": "",
           "endTime": "",
           "text": "All you need to do is create a cage of mindfulness around [unskillful habits].|Ajahn Chah",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Sense restraint",
@@ -10379,29 +10359,25 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “All you need to do is create a cage of mindfulness around [unskillful habits].” — Ajahn Chah. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “All you need to do is create a cage of mindfulness around [unskillful habits].” — Ajahn Chah"
         },
         {
           "kind": "Follow-up",
           "flags": "",
           "text": "What about letting the tiger go instead of keeping it in a cage?",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Three Unwholesome Roots",
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "Follow-up: “What about letting the tiger go instead of keeping it in a cage?” Aswered by Ajahn Pasanno."
+          "body": "<b>Follow-up:</b> “What about letting the tiger go instead of keeping it in a cage?”"
         },
         {
           "kind": "Follow-up",
           "flags": "",
           "text": "What about the case when one feels one is the tiger trapped in a metaphorical cage. How to escape?",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Similes",
             "Liberation",
@@ -10410,7 +10386,7 @@
             "Spiritual friendship"
           ],
           "indentLevel": 1,
-          "body": "Follow-up: “What about the case when one feels one is the tiger trapped in a metaphorical cage. How to escape?” Aswered by Ajahn Pasanno."
+          "body": "<b>Follow-up:</b> “What about the case when one feels one is the tiger trapped in a metaphorical cage. How to escape?”"
         }
       ],
       "tags": [
@@ -10474,9 +10450,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno hears and smells a tiger while doing walking meditation.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Tudong",
@@ -10491,7 +10465,7 @@
             "Clear comprehension"
           ],
           "indentLevel": 1,
-          "body": "Story: Ajahn Pasanno hears and smells a tiger while doing walking meditation. Told by Ajahn Pasanno."
+          "body": "<b>Story:</b> Ajahn Pasanno hears and smells a tiger while doing walking meditation."
         },
         {
           "kind": "Sutta",
@@ -10501,7 +10475,7 @@
             "Fear"
           ],
           "indentLevel": 1,
-          "body": "Sutta: MN 4: Fear and Dread"
+          "body": "<b>Sutta</b>: MN 4: Fear and Dread"
         }
       ],
       "tags": [
@@ -10618,9 +10592,7 @@
           "startTime": "",
           "endTime": "",
           "text": "If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.|Ajahn Tongrat",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Tongrat",
             "Three Unwholesome Roots",
@@ -10628,7 +10600,7 @@
             "Right effort"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.” — Ajahn Tongrat. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.” — Ajahn Tongrat"
         }
       ],
       "tags": [
@@ -10656,7 +10628,7 @@
       "flags": "",
       "startTime": "49:53",
       "endTime": "54:43",
-      "text": "I'm curious about your pre-monastic lfie and specifically what led you to the monastic life.",
+      "text": "I'm curious about your pre-monastic life and specifically what led you to the monastic life.",
       "teachers": [
         "AP"
       ],
@@ -10667,9 +10639,7 @@
           "startTime": "",
           "endTime": "",
           "text": "If you want to stay here, you have to stay at least five years.|Ajahn Chah to Ajahn Pasanno",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Ajahn Pasanno",
@@ -10677,7 +10647,7 @@
             "Sequence of training"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “If you want to stay here, you have to stay at least five years.” — Ajahn Chah to Ajahn Pasanno. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — Ajahn Chah to Ajahn Pasanno"
         }
       ],
       "tags": [
@@ -10689,7 +10659,7 @@
       ],
       "qTagCount": 2,
       "duration": "4:50",
-      "body": "“I&#39;m curious about your pre-monastic lfie and specifically what led you to the monastic life.”{attribution}",
+      "body": "“I&#39;m curious about your pre-monastic life and specifically what led you to the monastic life.”{attribution}",
       "attribution": " Answered by Ajahn Pasanno."
     },
     {
@@ -10742,7 +10712,7 @@
             "Perception of a samaṇa"
           ],
           "indentLevel": 1,
-          "body": "Vinaya: Kd 1.14: Venerable Assaji&#39;s demeanor inspires Sariputta."
+          "body": "<b>Vinaya:</b> Kd 1.14: Venerable Assaji&#39;s demeanor inspires Sariputta."
         },
         {
           "kind": "Story",
@@ -10750,16 +10720,14 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno goes tudong and is asked for lottery numbers.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Tudong",
             "Culture/Thailand"
           ],
           "indentLevel": 1,
-          "body": "Story: Ajahn Pasanno goes tudong and is asked for lottery numbers. Told by Ajahn Pasanno."
+          "body": "<b>Story:</b> Ajahn Pasanno goes tudong and is asked for lottery numbers."
         }
       ],
       "tags": [
@@ -10847,7 +10815,7 @@
       ],
       "qTagCount": 1,
       "duration": "2:33",
-      "body": "Meditation instructions: Walking meditation.{attribution}",
+      "body": "<b>Meditation instructions:</b> Walking meditation.{attribution}",
       "attribution": " Offered by Ajahn Pasanno."
     },
     {
@@ -10873,7 +10841,7 @@
       ],
       "qTagCount": 5,
       "duration": "2:38",
-      "body": "Story: Ajahn Chah&#39;s first tudong.{attribution}",
+      "body": "<b>Story:</b> Ajahn Chah&#39;s first tudong.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10904,7 +10872,7 @@
       ],
       "qTagCount": 5,
       "duration": "4:42",
-      "body": "Story: Ajahn Chah obsesses about getting robes.{attribution}",
+      "body": "<b>Story:</b> Ajahn Chah obsesses about getting robes.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -10929,7 +10897,7 @@
       ],
       "qTagCount": 4,
       "duration": "1:03",
-      "body": "Quote:  “You fall down, you get up, you crawl along. ” —  Ajahn Mahā Boowa{attribution}",
+      "body": "<b>Quote:</b>  “You fall down, you get up, you crawl along. ” —  Ajahn Mahā Boowa{attribution}",
       "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
@@ -10952,33 +10920,28 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Chah to biographer:|If you don't put that in the book, don't bother printing it.|",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Sensual desire",
             "Dhamma books"
           ],
           "indentLevel": 1,
-          "body": "Quote: Ajahn Chah to biographer: “If you don&#39;t put that in the book, don&#39;t bother printing it.” Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b> Ajahn Chah to biographer: “If you don&#39;t put that in the book, don&#39;t bother printing it.”"
         },
         {
-          "kind": "Indirect quote",
+          "kind": "Quote",
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "If you ordain as a monk, your defilements ordain with you.|Ajahn Chah ??",
-          "teachers": [
-            "AP"
-          ],
+          "text": "If you ordain as a monk, your defilements ordain with you.",
+          "teachers": [],
           "tags": [
-            "Ajahn Chah",
             "Monastic life",
             "Three Unwholesome Roots"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “If you ordain as a monk, your defilements ordain with you.” — Ajahn Chah ??. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “If you ordain as a monk, your defilements ordain with you.” "
         }
       ],
       "tags": [
@@ -10993,7 +10956,7 @@
       ],
       "qTagCount": 4,
       "duration": "4:47",
-      "body": "Story: Ajahn Chah struggles through lust with patience.{attribution}",
+      "body": "<b>Story:</b> Ajahn Chah struggles through lust with patience.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -11022,7 +10985,7 @@
       ],
       "qTagCount": 7,
       "duration": "2:31",
-      "body": "Quote:  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. ” —  Ajahn Chah{attribution}",
+      "body": "<b>Quote:</b>  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. ” —  Ajahn Chah{attribution}",
       "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
@@ -11049,7 +11012,7 @@
       ],
       "qTagCount": 4,
       "duration": "1:34",
-      "body": "Story: How Ajahn Pasanno became abbot of Wat Pah Nanachat.{attribution}",
+      "body": "<b>Story:</b> How Ajahn Pasanno became abbot of Wat Pah Nanachat.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -11078,7 +11041,7 @@
       ],
       "qTagCount": 3,
       "duration": "2:27",
-      "body": "Story: Ajahn Pasanno&#39;s tudong practice.{attribution}",
+      "body": "<b>Story:</b> Ajahn Pasanno&#39;s tudong practice.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -11106,7 +11069,7 @@
       ],
       "qTagCount": 5,
       "duration": "3:52",
-      "body": "Story: Ajahn Pasanno gets a foot infection on tudong.{attribution}",
+      "body": "<b>Story:</b> Ajahn Pasanno gets a foot infection on tudong.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -11134,7 +11097,7 @@
       ],
       "qTagCount": 4,
       "duration": "2:44",
-      "body": "Story: Ajahn Pasanno loses his vision on tudong.{attribution}",
+      "body": "<b>Story:</b> Ajahn Pasanno loses his vision on tudong.{attribution}",
       "attribution": " Told by Ajahn Pasanno."
     },
     {
@@ -11157,16 +11120,14 @@
           "startTime": "",
           "endTime": "",
           "text": "The base and foundation is the mindfulness. Being the knowing is always the foundation, and then the mind is able to become still, become settled, become steady.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Mindfulness",
             "Knowing itself",
             "Concentration"
           ],
           "indentLevel": 1,
-          "body": "Quote:  “The base and foundation is the mindfulness. Being the knowing is always the foundation, and then the mind is able to become still, become settled, become steady.”  — Ajahn Pasanno"
+          "body": "<b>Quote:</b>  “The base and foundation is the mindfulness. Being the knowing is always the foundation, and then the mind is able to become still, become settled, become steady.” "
         },
         {
           "kind": "Recollection",
@@ -11174,9 +11135,7 @@
           "startTime": "",
           "endTime": "",
           "text": "\"It's rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.\"",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Pāli",
@@ -11184,7 +11143,7 @@
             "Discernment"
           ],
           "indentLevel": 1,
-          "body": "Recollection: &quot;It&#39;s rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.&quot; recounted by Ajahn Pasanno."
+          "body": "<b>Recollection:</b> &quot;It&#39;s rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.&quot;"
         }
       ],
       "tags": [
@@ -11199,7 +11158,7 @@
       ],
       "qTagCount": 3,
       "duration": "5:27",
-      "body": "Quote:  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
+      "body": "<b>Quote:</b>  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
       "attribution": " — Ajahn Pasanno"
     }
   ],

@@ -348,8 +348,8 @@ class Formatter:
         
         return str(a)
     
-    def FormatAnnotation(self,annotation:dict) -> str:
-        "Return annotation formatted in html according to our stored settings."
+    def FormatAnnotation(self,annotation: dict,tagsAlreadyPrinted: set) -> str:
+        "Return annotation formatted in html according to our stored settings. Don't print tags that have appeared earlier in this excerpt"
         
         a = Airium(source_minify=True)
         
@@ -357,7 +357,7 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation["tags"]):
-            omitTags = self.excerptOmitTags
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags)
             
             if tag not in omitTags:
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
@@ -441,6 +441,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
     
     a = Airium()
     
+    tabMeasurement = 'em'
+    tabLength = 2
+    
     prevEvent = None
     prevSession = None
     for x in excerpts:
@@ -454,9 +457,11 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
         with a.p():
             a(formatter.FormatExcerpt(x))
         
+        tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
-            with a.p():
-                a(formatter.FormatAnnotation(annotation))
+            with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
+                a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
+            tagsAlreadyPrinted = tagsAlreadyPrinted.union(annotation["tags"])
     
     return str(a)
 

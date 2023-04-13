@@ -22,7 +22,7 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
 
     parts = form.split("||")
     if len(parts) == 1:
-        return form,  ""
+        return form, ""
 
     attribution = parts[1]
     parts[1] = "{attribution}"
@@ -37,6 +37,12 @@ def PrepareTemplates():
 
         kind["body"] = []; kind["attribution"] = []
         for form in kind["form"]:
+            parts = form.split("++")
+            if len(parts) > 1:
+                parts.insert(2,"</b>")
+                parts.insert(1,"<b>")
+                form = ''.join(parts)
+            
             body, attribution = ExtractAnnotation(form)
             kind["body"].append(body)
             kind["attribution"].append(attribution)

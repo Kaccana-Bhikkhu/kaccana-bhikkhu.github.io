@@ -455,7 +455,11 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
             excerpt["exclude"] = True # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
             return 
         
-        annotation["teachers"] = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        if set(teacherList) == set(excerpt["teachers"]):
+            teacherList = []
+        
+        annotation["teachers"] = teacherList
     else:
         keysToRemove.append("teachers")
     

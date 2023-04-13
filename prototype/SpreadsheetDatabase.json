@@ -124,7 +124,7 @@
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Session",
-      "form1": "Response{s}|| by {teacher}||{colon} {text}",
+      "form1": "++Response{s}++|| by {teacher}||{colon} {text}",
       "form2": "unimplemented",
       "form3": "unimplemented"
     },
@@ -139,7 +139,7 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "Follow-up{colon} “{text}”|| aswered by {teacher}.",
+      "form2": "++Follow-up{colon}++ “{text}”|| aswered by {teacher}.",
       "form3": "unimplemented"
     },
     "Story": {
@@ -153,7 +153,7 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "Stor{'ies' if s else 'y'}{colon} {text}|| told by {teacher}.",
+      "form2": "++Stor{'ies' if s else 'y'}{colon}++ {text}|| told by {teacher}.",
       "form3": "unimplemented"
     },
     "Recollection": {
@@ -167,7 +167,7 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "Recollection{s}{colon} {text}|| recounted by {teacher}.",
+      "form2": "++Recollection{s}{colon}++ {text}|| recounted by {teacher}.",
       "form3": "unimplemented"
     },
     "Quote": {
@@ -181,13 +181,13 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "Quote: {prefix} “{text}” {suffix}|| — {teacher}",
+      "form2": "++Quote:++ {prefix} “{text}” {suffix}|| — {teacher}",
       "form3": "unimplemented"
     },
     "Indirect quote": {
       "kind": "Indirect quote",
       "category": "Quotes",
-      "defaultForm": "3",
+      "defaultForm": "2",
       "canBeExcerpt": true,
       "takesTimes": true,
       "takesTeachers": true,
@@ -195,8 +195,8 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "unimplemented",
-      "form3": "Quote: {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teacher}."
+      "form2": "++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teacher}.",
+      "form3": "unimplemented"
     },
     "Meditation instruction": {
       "kind": "Meditation instruction",
@@ -209,7 +209,7 @@
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "Meditation instruction{s}{colon} {text}|| offered by {teacher}.",
+      "form2": "++Meditation instruction{s}{colon}++ {text}|| offered by {teacher}.",
       "form3": "unimplemented"
     },
     "Reference": {
@@ -222,7 +222,7 @@
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "form1": "Reference{s}: {text}",
+      "form1": "++Reference{s}++: {text}",
       "form2": "unimplemented",
       "form3": "unimplemented"
     },
@@ -236,7 +236,7 @@
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "form1": "Sutta{s}: {text}",
+      "form1": "++Sutta{s}++: {text}",
       "form2": "unimplemented",
       "form3": "unimplemented"
     },
@@ -250,7 +250,7 @@
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "",
-      "form1": "Vinaya: {text}",
+      "form1": "++Vinaya:++ {text}",
       "form2": "unimplemented",
       "form3": "unimplemented"
     },
@@ -264,9 +264,9 @@
       "takesTags": true,
       "appendToExcerpt": false,
       "inheritTeacherFrom": "Anon",
-      "form1": "Comment{s}|| by {teacher}||{colon} {text}",
-      "form2": "Comment{s}{colon} {text}|| contributed by {teacher}.",
-      "form3": "{text} Comment{s} by {teacher}."
+      "form1": "++Comment{s}++|| by {teacher}||{colon} {text}",
+      "form2": "++Comment{s}{colon}++ {text}|| contributed by {teacher}.",
+      "form3": "{text} Comment{s}++ by {teacher}."
     },
     "Extra tags": {
       "kind": "Extra tags",
@@ -9608,7 +9608,7 @@
       "sessions": 3,
       "excerpts": 35,
       "answersListenedTo": 0,
-      "tagsApplied": 284,
+      "tagsApplied": 283,
       "invalidTags": 0,
       "duration": "2:48:24"
     }
@@ -9622,7 +9622,7 @@
       "teachers": [
         "AP"
       ],
-      "sessionTitle": "Tudong stories part 1",
+      "sessionTitle": "",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock.mp3",
       "excerpts": 9,
       "tags": [
@@ -9639,7 +9639,7 @@
       "teachers": [
         "AP"
       ],
-      "sessionTitle": "Question and answer session",
+      "sessionTitle": "Question and answers",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock_pt2.mp3",
       "excerpts": 16,
       "tags": [
@@ -9656,7 +9656,7 @@
       "teachers": [
         "AP"
       ],
-      "sessionTitle": "Tudong stories part 2",
+      "sessionTitle": "",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock_pt3.mp3",
       "excerpts": 10,
       "tags": [
@@ -9760,9 +9760,7 @@
           "startTime": "",
           "endTime": "",
           "text": "You mean to say there are no kind people in America?|Ajahn Chah to Ajahn Sumedho",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Ajahn Sumedho",
@@ -9804,9 +9802,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Mun",
             "Abbot",
@@ -9821,10 +9817,8 @@
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "One million people attend the funeral of Ajahn Mahā Boowa",
-          "teachers": [
-            "AP"
-          ],
+          "text": "One million people attend the funeral of Ajahn Mahā Boowa.",
+          "teachers": [],
           "tags": [
             "Ajahn Maha Boowa",
             "Funerals",
@@ -9887,9 +9881,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno's mother cries when she meets him.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Faith",
@@ -9903,9 +9895,7 @@
           "startTime": "",
           "endTime": "",
           "text": "A python begins to eat the monk.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Tudong",
             "Animals",
@@ -10016,9 +10006,7 @@
           "startTime": "",
           "endTime": "",
           "text": "People who ordain quickly disrobe quickly.|Ajahn Chah",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Ordination",
@@ -10031,10 +10019,8 @@
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "Founding of Pacific Hermitage",
-          "teachers": [
-            "AP"
-          ],
+          "text": "Founding of Pacific Hermitage.",
+          "teachers": [],
           "tags": [
             "Pacific Hermitage",
             "Almsround",
@@ -10141,9 +10127,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Having a human mind...it's amazing how perverse it can be sometimes.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Humans",
             "Three Unwholesome Roots"
@@ -10156,9 +10140,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno can't translate guilt into Thai.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Guilt/shame/inadequacy",
@@ -10175,9 +10157,7 @@
           "startTime": "",
           "endTime": "",
           "text": "All you need to do is create a cage of mindfulness around [unskillful habits].|Ajahn Chah",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Sense restraint",
@@ -10192,9 +10172,7 @@
           "kind": "Follow-up",
           "flags": "",
           "text": "What about letting the tiger go instead of keeping it in a cage?",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Three Unwholesome Roots",
             "Similes"
@@ -10205,9 +10183,7 @@
           "kind": "Follow-up",
           "flags": "",
           "text": "What about the case when one feels one is the tiger trapped in a metaphorical cage. How to escape?",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Similes",
             "Liberation",
@@ -10275,9 +10251,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno hears and smells a tiger while doing walking meditation.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Tudong",
@@ -10409,9 +10383,7 @@
           "startTime": "",
           "endTime": "",
           "text": "If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.|Ajahn Tongrat",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Tongrat",
             "Three Unwholesome Roots",
@@ -10444,7 +10416,7 @@
       "flags": "",
       "startTime": "49:53",
       "endTime": "54:43",
-      "text": "I'm curious about your pre-monastic lfie and specifically what led you to the monastic life.",
+      "text": "I'm curious about your pre-monastic life and specifically what led you to the monastic life.",
       "teachers": [
         "AP"
       ],
@@ -10455,9 +10427,7 @@
           "startTime": "",
           "endTime": "",
           "text": "If you want to stay here, you have to stay at least five years.|Ajahn Chah to Ajahn Pasanno",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Ajahn Pasanno",
@@ -10532,9 +10502,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Pasanno goes tudong and is asked for lottery numbers.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Pasanno",
             "Tudong",
@@ -10719,9 +10687,7 @@
           "startTime": "",
           "endTime": "",
           "text": "Ajahn Chah to biographer:|If you don't put that in the book, don't bother printing it.|",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Sensual desire",
@@ -10730,16 +10696,13 @@
           "indentLevel": 1
         },
         {
-          "kind": "Indirect quote",
+          "kind": "Quote",
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "If you ordain as a monk, your defilements ordain with you.|Ajahn Chah ??",
-          "teachers": [
-            "AP"
-          ],
+          "text": "If you ordain as a monk, your defilements ordain with you.",
+          "teachers": [],
           "tags": [
-            "Ajahn Chah",
             "Monastic life",
             "Three Unwholesome Roots"
           ],
@@ -10910,9 +10873,7 @@
           "startTime": "",
           "endTime": "",
           "text": "The base and foundation is the mindfulness. Being the knowing is always the foundation, and then the mind is able to become still, become settled, become steady.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Mindfulness",
             "Knowing itself",
@@ -10926,9 +10887,7 @@
           "startTime": "",
           "endTime": "",
           "text": "\"It's rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.\"",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Ajahn Chah",
             "Pāli",
