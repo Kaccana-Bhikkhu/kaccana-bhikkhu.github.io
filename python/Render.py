@@ -59,7 +59,7 @@ def RenderItem(item: dict) -> None:
 
     plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
 
-    teacherList = [gDatabase["teacher"][t]["fullName"] for t in item["teachers"]]
+    teacherList = [gDatabase["teacher"][t]["fullName"] for t in item.get("teachers",())]
     teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
 
     text = item["text"]
@@ -67,7 +67,6 @@ def RenderItem(item: dict) -> None:
     suffix = ""
     parts = text.split("|")
     if len(parts) > 1:
-        #print(text,parts)
         if len(parts) == 2:
             text, suffix = parts
         else:
@@ -90,25 +89,30 @@ def RenderItem(item: dict) -> None:
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
         if fullStop and "{fullStop}" not in attributionTemplateStr:
             attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
-
-        item["attribution"] = attributionStr
     else:
         item["body"] = item["body"].replace("{attribution}","")
-        item["attribution"] = ""
+        attributionStr = ""
+    
+    if "indentLevel" in item: # Is this an annotation?
+        item["body"] = item["body"].replace("{attribution}",attributionStr)
+    else:
+        item["attribution"] = attributionStr
 
-def RenderExcerpts():
+def RenderExcerpts() -> None:
     """Use the templates in gDatabase["kind"] to add "body" and "attribution" keys to each except and its annotations"""
     kind = gDatabase["kind"]
     for x in gDatabase["excerpts"]:
         RenderItem(x)
+        for a in x["annotations"]:
+            RenderItem(a)
 
-def AddArguments(parser):
+def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--renderedDatabase',type=str,default='prototype/RenderedDatabase.json',help='Database after rendering each excerpt; Default: prototype/RenderedDatabase.json')
 
 gOptions = None
 gDatabase = None
-def main(clOptions,database):
+def main(clOptions,database) -> None:
     global gOptions
     gOptions = clOptions
     

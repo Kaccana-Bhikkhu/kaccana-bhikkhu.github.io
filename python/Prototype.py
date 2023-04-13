@@ -329,8 +329,6 @@ class Formatter:
             attribution = ""
         a(excerpt["body"].replace("{attribution}",attribution) + ' ')
         
-        """if teacherList:
-            a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')"""
         if not self.excerptShortFormat:
             a(gDatabase["event"][excerpt["event"]]["title"] + ",")
             a(f"Session {excerpt['sessionNumber']}, Excerpt {excerpt['excerptNumber']}")
@@ -350,6 +348,24 @@ class Formatter:
         
         return str(a)
     
+    def FormatAnnotation(self,annotation:dict) -> str:
+        "Return annotation formatted in html according to our stored settings."
+        
+        a = Airium(source_minify=True)
+        
+        a(annotation["body"] + " ")
+        
+        tagStrings = []
+        for n,tag in enumerate(annotation["tags"]):
+            omitTags = self.excerptOmitTags
+            
+            if tag not in omitTags:
+                tagStrings.append('[' + HtmlTagLink(tag) + ']')
+            
+        a(' '.join(tagStrings))
+        
+        return str(a)
+        
     def FormatSessionHeading(self,session:dict) -> str:
         "Return an html string representing the heading for this section"
         
@@ -437,6 +453,10 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
             
         with a.p():
             a(formatter.FormatExcerpt(x))
+        
+        for annotation in x["annotations"]:
+            with a.p():
+                a(formatter.FormatAnnotation(annotation))
     
     return str(a)
 

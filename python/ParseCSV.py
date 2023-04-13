@@ -468,6 +468,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     for key in keysToRemove:
         annotation.pop(key,None)    # Remove keys that aren't relevant for annotations
     
+    annotation["indentLevel"] = len(annotation["flags"].split("-"))
+    
     excerpt["annotations"].append(annotation)
     
 def LoadEventFile(database,eventName,directory):
