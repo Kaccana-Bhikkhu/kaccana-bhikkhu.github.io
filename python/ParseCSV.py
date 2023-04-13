@@ -433,7 +433,6 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     if annotation["exclude"]:
         return
     
-    print(annotation["kind"],annotation["text"])
     if not annotation["kind"]:
         if gOptions.verbose >= -1:
             print("   Error: Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
@@ -631,13 +630,14 @@ def LoadEventFile(database,eventName,directory):
         database["excerptsRedacted"] += removedExcerpts
         
 
-def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
+def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False):
     """Loop through items in a collection of dicts and count the number of appearances a given str.
         source: A dict of dicts or a list of dicts containing the items to count.
-        sourceKey: The key whose values we should count. This can be either a str or a list of strs.
-        countDict: A dict of dicts that we use to count the items. Each item should be a key in this dict.
-        countKey: The key we add to countDict[item] with the running tally of each item."""
-    
+        sourceKey: The key whose values we should count.
+        countDicts: A dict of dicts that we use to count the items. Each item should be a key in this dict.
+        countKey: The key we add to countDict[item] with the running tally of each item.
+        zeroCount: add countKey even when there are no items counted? """
+        
     if zeroCount:
         for key in countDicts:
             if countKey not in countDicts[key]:
@@ -650,18 +650,21 @@ def CountInstances(source,sourceKey,countDicts,countKey,zeroCount = False):
         
         for item in valuesToCount:
             try:
-                if countKey not in countDicts[item]:
-                    countDicts[item][countKey] = 0
-                countDicts[item][countKey] += 1
+                countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
             except KeyError:
                 print(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
 
 def CountAndVerify(database):
     
-    CountInstances(database["event"],"tags",database["tag"],"Event count")
-    CountInstances(database["sessions"],"tags",database["tag"],"Session count")
-    CountInstances(database["excerpts"],"tags",database["tag"],"excerptCount")
+    tagDB = database["tag"]
+    CountInstances(database["event"],"tags",tagDB,"eventCount")
+    CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
     
+    for x in database["excerpts"]:
+        tagSet = Utils.AllTags(x)
+        for tag in tagSet:
+            tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
+        
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"Event count")

@@ -49,6 +49,15 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
+def AllTags(item: dict) -> set:
+    """Return the set of all tags in item, which is either an excerpt or an annotation."""
+    allTags = set(item["tags"])
+    
+    for annotation in item.get("annotations",()):
+        allTags.update(annotation.get("tags",()))
+    
+    return allTags
+
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the index of a session specified by event and sessionNum."
     
@@ -57,17 +66,6 @@ def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
             return session
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
-    
-    """if not sessionIndexCache: # For speed, create a dictionary of sessions the first time we run
-        sessionIndexCache = {}
-        s = database["sessions"]
-        for index in range(len(s)):
-            sessionIndexCache[(s[index]["event"],s[index]["sessionNumber"])] = index
-    
-    try:
-        return sessionIndexCache[(event,sessionNum)]
-    except KeyError:
-        raise ValueError(f"Can't locate session {sessionNum} of event {event}")"""
 
 def slugify(value, allow_unicode=False):
     """
