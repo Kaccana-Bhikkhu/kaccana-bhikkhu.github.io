@@ -51,6 +51,40 @@
       "duration": "6:44:55"
     }
   },
+  "category": {
+    "Questions": {
+      "category": "Questions",
+      "description": ""
+    },
+    "Stories": {
+      "category": "Stories",
+      "description": ""
+    },
+    "Quotes": {
+      "category": "Quotes",
+      "description": ""
+    },
+    "Teachings": {
+      "category": "Teachings",
+      "description": ""
+    },
+    "Meditations": {
+      "category": "Meditations",
+      "description": ""
+    },
+    "Readings": {
+      "category": "Readings",
+      "description": ""
+    },
+    "References": {
+      "category": "References",
+      "description": ""
+    },
+    "Other": {
+      "category": "Other",
+      "description": ""
+    }
+  },
   "format": {
     "Short teaching": {
       "format": "Short teaching"
@@ -63,134 +97,6 @@
     },
     "Interview": {
       "format": "Interview"
-    }
-  },
-  "medium": {
-    "In-person": {
-      "medium": "In-person"
-    },
-    "Online": {
-      "medium": "Online"
-    },
-    "Hybrid": {
-      "medium": "Hybrid"
-    }
-  },
-  "series": {
-    "Thanksgiving Retreats": {
-      "series": "Thanksgiving Retreats",
-      "abbreviation": "TG",
-      "description": "The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. However, after the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly."
-    },
-    "Abhayagiri Winter Retreats": {
-      "series": "Abhayagiri Winter Retreats",
-      "abbreviation": "WR",
-      "description": "During the months of January, February, and March, the resident community of Abhayagiri Monastery ceases all non-essential work to practice meditation. There are usually Dhamma readings nearly every day, some of which end with questions and answers regarding the teachings."
-    },
-    "Upasika Days": {
-      "series": "Upasika Days",
-      "abbreviation": "UD",
-      "description": ""
-    },
-    "Spirit Rock Daylongs": {
-      "series": "Spirit Rock Daylongs",
-      "abbreviation": "SRD",
-      "description": ""
-    },
-    "Interviews": {
-      "series": "Interviews",
-      "abbreviation": "Interview",
-      "description": ""
-    },
-    "Other": {
-      "series": "Other",
-      "abbreviation": "",
-      "description": ""
-    }
-  },
-  "venue": {
-    "Abhayagiri Buddhist Monastery": {
-      "venue": "Abhayagiri Buddhist Monastery",
-      "location": "Redwood Valley, California",
-      "address": "16201 Tomki Road, Redwood Valley, CA 95470",
-      "websiteLink": "https://www.abhayagiri.org"
-    },
-    "Angela Center": {
-      "venue": "Angela Center",
-      "location": "Santa Rosa, California",
-      "address": "535 Angela Dr, Santa Rosa, CA 95403",
-      "websiteLink": "https://angelacenter.com/acn"
-    },
-    "Spirit Rock Meditation Center": {
-      "venue": "Spirit Rock Meditation Center",
-      "location": "Woodacre, California",
-      "address": "5000 Sir Francis Drake Blvd., PO Box 169, Woodacre, CA 94973",
-      "websiteLink": "https://www.spiritrock.org"
-    }
-  },
-  "teacher": {
-    "AP": {
-      "teacher": "AP",
-      "fullName": "Ajahn Pasanno",
-      "webLink": "www.abhayagiri.org/community",
-      "indexExcerpts": true,
-      "indexSessions": true,
-      "searchable": true,
-      "attribute": true
-    },
-    "AKd": {
-      "teacher": "AKd",
-      "fullName": "Ajahn Karuṇadhammo",
-      "webLink": "",
-      "indexExcerpts": true,
-      "indexSessions": false,
-      "searchable": true,
-      "attribute": true
-    },
-    "ANy": {
-      "teacher": "ANy",
-      "fullName": "Ajahn Ñāniko",
-      "webLink": "",
-      "indexExcerpts": false,
-      "indexSessions": false,
-      "searchable": false,
-      "attribute": true
-    },
-    "AKsp": {
-      "teacher": "AKsp",
-      "fullName": "Ajahn Kassapo",
-      "webLink": "",
-      "indexExcerpts": false,
-      "indexSessions": false,
-      "searchable": false,
-      "attribute": true
-    },
-    "DS": {
-      "teacher": "DS",
-      "fullName": "Debbie Stamp",
-      "webLink": "",
-      "indexExcerpts": false,
-      "indexSessions": false,
-      "searchable": false,
-      "attribute": true
-    },
-    "Jeed": {
-      "teacher": "Jeed",
-      "fullName": "Jeed Chaiboonruang",
-      "webLink": "",
-      "indexExcerpts": false,
-      "indexSessions": false,
-      "searchable": false,
-      "attribute": true
-    },
-    "Anon": {
-      "teacher": "Anon",
-      "fullName": "anonymous",
-      "webLink": "",
-      "indexExcerpts": true,
-      "indexSessions": false,
-      "searchable": false,
-      "attribute": false
     }
   },
   "kind": {
@@ -336,7 +242,7 @@
       "inheritTeacherFrom": "Excerpt",
       "form": [
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@.",
+        "Quote: @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@",
         "unimplemented"
       ],
       "body": [
@@ -346,7 +252,7 @@
       ],
       "attribution": [
         "",
-        " — @!teacher!@.",
+        " — @!teacher!@",
         ""
       ]
     },
@@ -363,17 +269,17 @@
       "form": [
         "unimplemented",
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@@!'.' if suffix else ''!@|| Quoted by @!teacher!@."
+        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@||@!'.' if suffix else ''!@ Quoted by @!teacher!@."
       ],
       "body": [
         "unimplemented",
         "unimplemented",
-        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@@!'.' if suffix else ''!@{attribution}"
+        "Quote: @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@{attribution}"
       ],
       "attribution": [
         "",
         "",
-        " Quoted by @!teacher!@."
+        "@!'.' if suffix else ''!@ Quoted by @!teacher!@."
       ]
     },
     "Meditation instruction": {
@@ -533,38 +439,132 @@
       ]
     }
   },
-  "category": {
-    "Questions": {
-      "category": "Questions",
+  "medium": {
+    "In-person": {
+      "medium": "In-person"
+    },
+    "Online": {
+      "medium": "Online"
+    },
+    "Hybrid": {
+      "medium": "Hybrid"
+    }
+  },
+  "series": {
+    "Thanksgiving Retreats": {
+      "series": "Thanksgiving Retreats",
+      "abbreviation": "TG",
+      "description": "The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. However, after the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly."
+    },
+    "Abhayagiri Winter Retreats": {
+      "series": "Abhayagiri Winter Retreats",
+      "abbreviation": "WR",
+      "description": "During the months of January, February, and March, the resident community of Abhayagiri Monastery ceases all non-essential work to practice meditation. There are usually Dhamma readings nearly every day, some of which end with questions and answers regarding the teachings."
+    },
+    "Upasika Days": {
+      "series": "Upasika Days",
+      "abbreviation": "UD",
       "description": ""
     },
-    "Stories": {
-      "category": "Stories",
+    "Spirit Rock Daylongs": {
+      "series": "Spirit Rock Daylongs",
+      "abbreviation": "SRD",
       "description": ""
     },
-    "Quotes": {
-      "category": "Quotes",
-      "description": ""
-    },
-    "Teachings": {
-      "category": "Teachings",
-      "description": ""
-    },
-    "Meditations": {
-      "category": "Meditations",
-      "description": ""
-    },
-    "Readings": {
-      "category": "Readings",
-      "description": ""
-    },
-    "References": {
-      "category": "References",
+    "Interviews": {
+      "series": "Interviews",
+      "abbreviation": "Interview",
       "description": ""
     },
     "Other": {
-      "category": "Other",
+      "series": "Other",
+      "abbreviation": "",
       "description": ""
+    }
+  },
+  "teacher": {
+    "AP": {
+      "teacher": "AP",
+      "fullName": "Ajahn Pasanno",
+      "webLink": "www.abhayagiri.org/community",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
+      "attribute": true
+    },
+    "AKd": {
+      "teacher": "AKd",
+      "fullName": "Ajahn Karuṇadhammo",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": false,
+      "searchable": true,
+      "attribute": true
+    },
+    "ANy": {
+      "teacher": "ANy",
+      "fullName": "Ajahn Ñāniko",
+      "webLink": "",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": true
+    },
+    "AKsp": {
+      "teacher": "AKsp",
+      "fullName": "Ajahn Kassapo",
+      "webLink": "",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": true
+    },
+    "DS": {
+      "teacher": "DS",
+      "fullName": "Debbie Stamp",
+      "webLink": "",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": true
+    },
+    "Jeed": {
+      "teacher": "Jeed",
+      "fullName": "Jeed Chaiboonruang",
+      "webLink": "",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": true
+    },
+    "Anon": {
+      "teacher": "Anon",
+      "fullName": "anonymous",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": false
+    }
+  },
+  "venue": {
+    "Abhayagiri Buddhist Monastery": {
+      "venue": "Abhayagiri Buddhist Monastery",
+      "location": "Redwood Valley, California",
+      "address": "16201 Tomki Road, Redwood Valley, CA 95470",
+      "websiteLink": "https://www.abhayagiri.org"
+    },
+    "Angela Center": {
+      "venue": "Angela Center",
+      "location": "Santa Rosa, California",
+      "address": "535 Angela Dr, Santa Rosa, CA 95403",
+      "websiteLink": "https://angelacenter.com/acn"
+    },
+    "Spirit Rock Meditation Center": {
+      "venue": "Spirit Rock Meditation Center",
+      "location": "Woodacre, California",
+      "address": "5000 Sir Francis Drake Blvd., PO Box 169, Woodacre, CA 94973",
+      "websiteLink": "https://www.spiritrock.org"
     }
   },
   "tag": {
@@ -10011,7 +10011,7 @@
       "flags": "",
       "startTime": "48:15",
       "endTime": "49:20",
-      "text": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?'|Anonymous",
+      "text": "In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?'|anonymous",
       "teachers": [
         "AP"
       ],
@@ -10023,8 +10023,8 @@
       ],
       "qTagCount": 4,
       "duration": "1:05",
-      "body": "Quote:  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39;” — Anonymous.{attribution}",
-      "attribution": " Quoted by Ajahn Pasanno."
+      "body": "Quote:  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39;” — anonymous{attribution}",
+      "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
@@ -10048,8 +10048,8 @@
       ],
       "qTagCount": 3,
       "duration": "2:08",
-      "body": "Quote:  “Instead of going tudong, monks go taludong (through the forest).” — Ajahn Chah.{attribution}",
-      "attribution": " Quoted by Ajahn Pasanno."
+      "body": "Quote:  “Instead of going tudong, monks go taludong (through the forest).” — Ajahn Chah{attribution}",
+      "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
@@ -10511,8 +10511,8 @@
       ],
       "qTagCount": 4,
       "duration": "1:03",
-      "body": "Quote:  “You fall down, you get up, you crawl along. ” —  Ajahn Mahā Boowa.{attribution}",
-      "attribution": " Quoted by Ajahn Pasanno."
+      "body": "Quote:  “You fall down, you get up, you crawl along. ” —  Ajahn Mahā Boowa{attribution}",
+      "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
@@ -10567,8 +10567,8 @@
       ],
       "qTagCount": 7,
       "duration": "2:31",
-      "body": "Quote:  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. ” —  Ajahn Chah.{attribution}",
-      "attribution": " Quoted by Ajahn Pasanno."
+      "body": "Quote:  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. ” —  Ajahn Chah{attribution}",
+      "attribution": ". Quoted by Ajahn Pasanno."
     },
     {
       "event": "SRD2011",
@@ -10704,7 +10704,7 @@
       "qTagCount": 3,
       "duration": "5:27",
       "body": "Quote:  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
-      "attribution": " — Ajahn Pasanno."
+      "attribution": " — Ajahn Pasanno"
     }
   ],
   "excerptsRedacted": [],
@@ -16241,17 +16241,7 @@
     "Format": "format",
     "Medium": "medium",
     "_UtilitySheet": "utilitySheet",
-    "Abbreviation": "abbreviation",
     "Description": "description",
-    "Location": "location",
-    "Address": "address",
-    "Website link": "websiteLink",
-    "Full name": "fullName",
-    "Web link": "webLink",
-    "Index excerpts?": "indexExcerpts",
-    "Index sessions?": "indexSessions",
-    "Searchable?": "searchable",
-    "Attribute?": "attribute",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",
@@ -16262,6 +16252,16 @@
     "Form 1": "form1",
     "Form 2": "form2",
     "Form 3": "form3",
+    "Abbreviation": "abbreviation",
+    "Full name": "fullName",
+    "Web link": "webLink",
+    "Index excerpts?": "indexExcerpts",
+    "Index sessions?": "indexSessions",
+    "Searchable?": "searchable",
+    "Attribute?": "attribute",
+    "Location": "location",
+    "Address": "address",
+    "Website link": "websiteLink",
     "Level": "level",
     "Flags": "flags",
     "Full tag": "fullTag",

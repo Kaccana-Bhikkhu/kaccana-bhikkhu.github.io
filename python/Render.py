@@ -71,11 +71,10 @@ def RenderExcerpts():
             #print(text,parts)
             if len(parts) == 2:
                 text, suffix = parts
-            elif len(parts) == 3:
-                prefix, text, suffix = parts
             else:
-                if gOptions.verbosity >= -1:
-                    print("   Error: ",text," is split into more than 3 parts.")
+                prefix, text, suffix = parts[0:3]
+                if len(parts) > 3 and gOptions.verbose >= -1:
+                    print("   Warning: '|' occurs more than two times in '",x["text"],"'. Latter sections will be truncated.")
 
         renderDict = {"text": text, "s": plural, "colon": ":", "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
 

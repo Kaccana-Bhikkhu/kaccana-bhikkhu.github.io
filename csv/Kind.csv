@@ -6,8 +6,8 @@ Follow-up,Questions,2,No,No,Yes,Yes,No,Excerpt,unimplemented,Follow-up{colon} �
 Story,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Stor{'ies' if s else 'y'}{colon} {text}|| told by {teacher}.,unimplemented
 Recollection,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Recollection{s}{colon} {text}|| recounted by {teacher}.,unimplemented
 ,,,,,,,,,,,
-Quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Quote: {prefix} “{text}” {suffix}|| — {teacher}.,unimplemented
-Indirect quote,Quotes,3,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,unimplemented,Quote: {prefix} “{text}”{' — ' if suffix else ''}{suffix}{'.' if suffix else ''}|| Quoted by {teacher}.
+Quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Quote: {prefix} “{text}” {suffix}|| — {teacher},unimplemented
+Indirect quote,Quotes,3,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,unimplemented,Quote: {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teacher}.
 ,,,,,,,,,,,
 Meditation instruction,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,Meditation instruction{s}{colon} {text}|| offered by {teacher}.,unimplemented
 ,,,,,,,,,,,
