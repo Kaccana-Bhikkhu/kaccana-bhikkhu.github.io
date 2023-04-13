@@ -841,7 +841,7 @@
       "primaries": 0,
       "htmlFile": "right-effort.html",
       "listIndex": 22,
-      "excerptCount": 3
+      "excerptCount": 2
     },
     "Right mindfulness": {
       "tag": "Right mindfulness",
@@ -987,7 +987,7 @@
       "primaries": 0,
       "htmlFile": "clear-comprehension.html",
       "listIndex": 29,
-      "excerptCount": 2
+      "excerptCount": 1
     },
     "Mindfulness": {
       "tag": "Mindfulness",
@@ -1008,7 +1008,7 @@
       "primaries": 1,
       "htmlFile": "mindfulness.html",
       "listIndex": 62,
-      "excerptCount": 3
+      "excerptCount": 2
     },
     "Right concentration": {
       "tag": "Right concentration",
@@ -10064,7 +10064,6 @@
           "kind": "Sutta",
           "flags": "",
           "text": "Dhp 244-245: Life is easy for for one without shame.",
-          "teachers": [],
           "tags": [
             "Conscience and prudence",
             "Conceit",
@@ -10087,23 +10086,14 @@
             "Ardency",
             "Energy",
             "Discernment",
-            "Guilt/shame/inadequacy"
-          ]
-        },
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
+            "Guilt/shame/inadequacy",
             "Right effort"
           ]
         },
         {
           "kind": "Sutta",
           "flags": "",
-          "text": "AN 11.1 : Virtue leads to non-remorse and samādhi.",
-          "teachers": [],
+          "text": "AN 11.1: Virtue leads to non-remorse and samādhi.",
           "tags": [
             "Virtue",
             "Happiness",
@@ -10116,10 +10106,9 @@
         "Faith",
         "Restlessness and worry",
         "Everyday life",
-        "Conscience and prudence",
-        "Right effort"
+        "Conscience and prudence"
       ],
-      "qTagCount": 6,
+      "qTagCount": 5,
       "duration": "7:09"
     },
     {
@@ -10237,17 +10226,7 @@
       "teachers": [
         "AP"
       ],
-      "annotations": [
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
-            "Three Unwholesome Roots"
-          ]
-        }
-      ],
+      "annotations": [],
       "tags": [
         "Similes",
         "Mindfulness",
@@ -10293,15 +10272,7 @@
             "Animals",
             "Fear",
             "Death",
-            "Impermanence"
-          ]
-        },
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
+            "Impermanence",
             "Mindfulness",
             "Clear comprehension"
           ]
@@ -10310,7 +10281,6 @@
           "kind": "Sutta",
           "flags": "",
           "text": "MN 4: Fear and Dread",
-          "teachers": [],
           "tags": [
             "Fear"
           ]
@@ -10319,11 +10289,9 @@
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
-        "Animals",
-        "Mindfulness",
-        "Clear comprehension"
+        "Animals"
       ],
-      "qTagCount": 5,
+      "qTagCount": 3,
       "duration": "8:42"
     },
     {
@@ -10339,19 +10307,7 @@
       "teachers": [
         "AP"
       ],
-      "annotations": [
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
-            "Delusion",
-            "Mindfulness of body",
-            "Continuity of mindfulness"
-          ]
-        }
-      ],
+      "annotations": [],
       "tags": [
         "Knowing itself",
         "Perception",
@@ -10430,15 +10386,6 @@
         "AP"
       ],
       "annotations": [
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
-            "Clinging"
-          ]
-        },
         {
           "kind": "Indirect quote",
           "flags": "",
@@ -10554,7 +10501,6 @@
           "kind": "Vinaya",
           "flags": "",
           "text": "Kd 1.14: Venerable Assaji's demeanor inspires Sariputta.",
-          "teachers": [],
           "tags": [
             "Great disciples",
             "Perception of a samaṇa"
@@ -10597,18 +10543,7 @@
       "teachers": [
         "AP"
       ],
-      "annotations": [
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
-            "Everyday life",
-            "Monastic life"
-          ]
-        }
-      ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Pace of life",
@@ -10814,18 +10749,7 @@
       "teachers": [
         "AP"
       ],
-      "annotations": [
-        {
-          "kind": "Extra tags",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "tags": [
-            "Depression",
-            "Sloth and torpor"
-          ]
-        }
-      ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -11230,9 +11154,9 @@
       "indexNumber": "6",
       "name": "Right effort",
       "pali": "sammā vāyāmo",
-      "excerptCount": 3,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Right effort (3) [sammā vāyāmo]",
+      "text": "Right effort (2) [sammā vāyāmo]",
       "tag": "Right effort"
     },
     {
@@ -11300,9 +11224,9 @@
       "indexNumber": "",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 2,
+      "excerptCount": 1,
       "subsumed": false,
-      "text": "Clear comprehension (2) [sampajañña]",
+      "text": "Clear comprehension (1) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -11310,9 +11234,9 @@
       "indexNumber": "",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 3,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Mindfulness (3) [sati]",
+      "text": "Mindfulness (2) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -11630,9 +11554,9 @@
       "indexNumber": "3",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 3,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Mindfulness (3) [sati]",
+      "text": "Mindfulness (2) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -11670,9 +11594,9 @@
       "indexNumber": "1",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 3,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Mindfulness (3) [sati]",
+      "text": "Mindfulness (2) [sati]",
       "tag": "Mindfulness"
     },
     {

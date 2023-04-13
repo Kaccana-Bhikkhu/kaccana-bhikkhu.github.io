@@ -414,12 +414,20 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
     """Add an annotation to a excerpt. Returns one of the following:
         added: Annotation added sucessfully
         notAdded: Annotation not added
-        redactExcerpt: Teacher consent requires us to remove the excerpt this is attached to"""
+        redactExcerpt: Teacher consent requires us to remove the excerpt this is attached to
+        extraTags: Extra tags added to excerpt or previous annotation"""
     
     ### Need to fix so that Extra tags assigns tags to annotations
     if annotation["kind"] == "Extra tags":
-        excerpt["qTag"] += annotation["qTag"]
+        for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
+            if "tags" in prevAnnotation:
+                prevAnnotation["tags"] += annotation["qTag"]
+                prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
+                return "extraTags"
+        
+        excerpt["qTag"] += annotation["qTag"] # If no annotation takes the tags, give them to the excerpt
         excerpt["aTag"] += annotation["aTag"]
+        return "extraTags"
     
     if gOptions.ignoreAnnotations:
         return "notAdded"
@@ -433,25 +441,30 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
             print("   Error: Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
         annotation["kind"] = kind = "Comment"
     kind = database["kind"][annotation["kind"]]
-            
-    if not annotation["teachers"]:
-        defaultTeacher = kind["inheritTeacherFrom"]
-        if defaultTeacher == "Anon": # Check if the default teacher is anonymous
-            annotation["teachers"] = ["Anon"]
-        elif defaultTeacher == "Excerpt":
-            annotation["teachers"] = excerpt["teachers"]
-        elif defaultTeacher == "Session":
-            ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
-            annotation["teachers"] = ourSession["teachers"]
-    
-    if not TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts"):
-        return "redactExcerpt" # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
-    
-    annotation["teachers"] = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
-    
-    annotation["tags"] = annotation["qTag"] + annotation["aTag"] # Annotations don't distiguish between q and a tags
     
     keysToRemove = ["sessionNumber","offTopic","aListen","exclude","qTag","aTag"]
+    
+    if kind["takesTeachers"]:
+        if not annotation["teachers"]:
+            defaultTeacher = kind["inheritTeacherFrom"]
+            if defaultTeacher == "Anon": # Check if the default teacher is anonymous
+                annotation["teachers"] = ["Anon"]
+            elif defaultTeacher == "Excerpt":
+                annotation["teachers"] = excerpt["teachers"]
+            elif defaultTeacher == "Session":
+                ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
+                annotation["teachers"] = ourSession["teachers"]
+        
+        if not TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts"):
+            return "redactExcerpt" # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
+        
+        annotation["teachers"] = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+    else:
+        keysToRemove.append("teachers")
+    
+    if kind["takesTags"]:
+        annotation["tags"] = annotation["qTag"] + annotation["aTag"] # Annotations don't distiguish between q and a tags
+    
     if not kind["takesTimes"]:
         keysToRemove += ["startTime","endTime"]
     
@@ -510,9 +523,8 @@ def LoadEventFile(database,eventName,directory):
         rawExcerpts = [x for x in rawExcerpts if x["sessionNumber"] in includedSessions]
             # Remove excerpts and annotations in sessions we didn't get consent for
             
-        xNumber = 1 # Excerpt number counts only excerpts allowed by teacher consent policies
-        fileNumber = 1 
-        lastSession = 0
+        fileNumber = 1
+        lastSession = -1
         prevExcerpt = None
         excerpts = []
         for x in rawExcerpts:
@@ -541,30 +553,25 @@ def LoadEventFile(database,eventName,directory):
                     x["teachers"] = ourSession["teachers"]
             
             if x["sessionNumber"] != lastSession:
-                if lastSession > x["sessionNumber"] and gOptions.verbose > 0:
-                    print(f"Warning: Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
-                xNumber = 0
                 fileNumber = 1
                 lastSession = x["sessionNumber"]
             else:
                 fileNumber += 1 # File number counts all excerpts listed for the event
             
-            if TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") and (not x["exclude"] or gOptions.ignoreExcludes):                   
-                xNumber += 1 # Excerpt number counts only excerpts allowed by teacher consent and exclusion policies
+            if TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") and (not x["exclude"] or gOptions.ignoreExcludes):
                 x["exclude"] = False
             else:
                 x["exclude"] = True
             
             x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
-            x["excerptNumber"] = xNumber
             x["fileNumber"] = fileNumber
                 
             excerpts.append(x)
             prevExcerpt = x
         
         for xIndex, x in enumerate(excerpts):
-
+            
             # Combine all tags into a single list, but keep track of how many qTags there are
             x["tags"] = x["qTag"] + x["aTag"]
             x["qTagCount"] = len(x["qTag"])
@@ -588,12 +595,25 @@ def LoadEventFile(database,eventName,directory):
                 
             x["duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
         
-        for index in range(len(excerpts)):
-            excerpts[index] = ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
-        
         removedExcerpts = [x for x in excerpts if x["exclude"]]
         excerpts = [x for x in excerpts if not x["exclude"]]
             # Remove excluded excerpts and those we didn't get consent for
+        
+        xNumber = 1
+        lastSession = -1
+        for x in excerpts:
+            if x["sessionNumber"] != lastSession:
+                if lastSession > x["sessionNumber"] and gOptions.verbose > 0:
+                    print(f"Warning: Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
+                xNumber = 1
+                lastSession = x["sessionNumber"]
+            else:
+                xNumber += 1
+            
+            x["excerptNumber"] = xNumber
+        
+        for index in range(len(excerpts)):
+            excerpts[index] = ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
         
         if not gOptions.jsonNoClean:
             for x in excerpts:
