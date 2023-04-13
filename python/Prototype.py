@@ -294,6 +294,7 @@ class Formatter:
     def __init__(self):
         self.excerptDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
         self.excerptOmitTags = set() # Don't display these tags in excerpt description
+        self.excerptBoldTags = set() # Display these tags in boldface
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.excerptShortFormat = True
         
@@ -341,7 +342,10 @@ class Formatter:
             
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
-            if tag not in omitTags:
+                
+            if tag in self.excerptBoldTags: # Always print boldface tags
+                tagStrings.append('<b>[' + HtmlTagLink(tag) + ']</b>')
+            elif tag not in omitTags: # Don't print tags which should be omitted
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
             
         a(' '.join(tagStrings))
@@ -359,7 +363,9 @@ class Formatter:
         for n,tag in enumerate(annotation["tags"]):
             omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags)
             
-            if tag not in omitTags:
+            if tag in self.excerptBoldTags: # Always print boldface tags
+                tagStrings.append('<b>[' + HtmlTagLink(tag) + ']</b>')
+            elif tag not in omitTags: # Don't print tags which should be omitted
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
             
         a(' '.join(tagStrings))
@@ -548,7 +554,7 @@ def WriteTagPages(tagPageDir: str) -> None:
             a(ExcerptDurationStr(relevantQs,False,False))
         
         formatter = Formatter()
-        formatter.excerptOmitTags = set([tag])
+        formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
         a(HtmlExcerptList(relevantQs,formatter))
