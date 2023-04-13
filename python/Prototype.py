@@ -155,6 +155,15 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     
     return ItemList(fullNameList,*args,**kwargs)
 
+def AllTags(item: dict) -> set:
+    """Return the set of all tags in item, which is either an excerpt or an annotation."""
+    allTags = set(item["tags"])
+    
+    for annotation in item.get("annotations",()):
+        allTags.update(annotation.get("tags",()))
+    
+    return allTags
+
 def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
     """Write an indented list of tags."""
     if not os.path.exists(pageDir):
@@ -461,7 +470,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
         for annotation in x["annotations"]:
             with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
                 a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
-            tagsAlreadyPrinted = tagsAlreadyPrinted.union(annotation["tags"])
+            tagsAlreadyPrinted.update(annotation["tags"])
     
     return str(a)
 
@@ -526,7 +535,7 @@ def WriteTagPages(tagPageDir: str) -> None:
         if not tagInfo["htmlFile"]:
             continue
     
-        relevantQs = [x for x in xDB if tag in x["tags"]]
+        relevantQs = [x for x in xDB if tag in AllTags(x)]
     
         a = Airium()
         
