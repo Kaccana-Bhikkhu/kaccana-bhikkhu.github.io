@@ -45,57 +45,62 @@ def PrepareTemplates():
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
     return pyratemp.Template(template)
 
+def RenderItem(item: dict) -> None:
+    """Render an excerpt or annotation by adding "body" and "attribution" keys."""
+    
+    kind = gDatabase["kind"][item["kind"]]
+
+    formNumber = kind["defaultForm"] - 1
+
+    bodyTemplateStr = kind["body"][formNumber]
+    bodyTemplate = CompileTemplate(bodyTemplateStr)
+    attributionTemplateStr = kind["attribution"][formNumber]
+    attributionTemplate = CompileTemplate(attributionTemplateStr)
+
+    plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
+
+    teacherList = [gDatabase["teacher"][t]["fullName"] for t in item["teachers"]]
+    teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
+
+    text = item["text"]
+    prefix = ""
+    suffix = ""
+    parts = text.split("|")
+    if len(parts) > 1:
+        #print(text,parts)
+        if len(parts) == 2:
+            text, suffix = parts
+        else:
+            prefix, text, suffix = parts[0:3]
+            if len(parts) > 3 and gOptions.verbose >= -1:
+                print("   Warning: '|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
+
+    renderDict = {"text": text, "s": plural, "colon": ":", "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
+
+    item["body"] = bodyTemplate(**renderDict)
+
+    if teacherList:
+
+        # Does the text before the attribution end in a full stop?
+        fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",item["body"]) else ""
+        renderDict["fullStop"] = fullStop
+        
+        attributionStr = attributionTemplate(**renderDict)
+
+        # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
+        if fullStop and "{fullStop}" not in attributionTemplateStr:
+            attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
+
+        item["attribution"] = attributionStr
+    else:
+        item["body"] = item["body"].replace("{attribution}","")
+        item["attribution"] = ""
+
 def RenderExcerpts():
-    """Use the templates in gDatabase["kind"] to add "body" and "attributin" keys to each except and its annotations"""
+    """Use the templates in gDatabase["kind"] to add "body" and "attribution" keys to each except and its annotations"""
     kind = gDatabase["kind"]
     for x in gDatabase["excerpts"]:
-        kind = gDatabase["kind"][x["kind"]]
-
-        formNumber = kind["defaultForm"] - 1
-
-        bodyTemplateStr = kind["body"][formNumber]
-        bodyTemplate = CompileTemplate(bodyTemplateStr)
-        attributionTemplateStr = kind["attribution"][formNumber]
-        attributionTemplate = CompileTemplate(attributionTemplateStr)
-
-        plural = "s" if ("s" in x["flags"]) else "" # Is the excerpt heading plural?
-
-        teacherList = [gDatabase["teacher"][t]["fullName"] for t in x["teachers"]]
-        teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
-
-        text = x["text"]
-        prefix = ""
-        suffix = ""
-        parts = text.split("|")
-        if len(parts) > 1:
-            #print(text,parts)
-            if len(parts) == 2:
-                text, suffix = parts
-            else:
-                prefix, text, suffix = parts[0:3]
-                if len(parts) > 3 and gOptions.verbose >= -1:
-                    print("   Warning: '|' occurs more than two times in '",x["text"],"'. Latter sections will be truncated.")
-
-        renderDict = {"text": text, "s": plural, "colon": ":", "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
-
-        x["body"] = bodyTemplate(**renderDict)
-
-        if teacherList:
-
-            # Does the text before the attribution end in a full stop?
-            fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",x["body"]) else ""
-            renderDict["fullStop"] = fullStop
-            
-            attributionStr = attributionTemplate(**renderDict)
-
-            # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
-            if fullStop and "{fullStop}" not in attributionTemplateStr:
-                attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
-
-            x["attribution"] = attributionStr
-        else:
-            x["body"] = x["body"].replace("{attribution}","")
-            x["attribution"] = ""
+        RenderItem(x)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"

@@ -410,17 +410,59 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
         
     return consent
 
-def AddAnnotation(excerpt: dict,annotation: dict):
-    "Add an annotation to a excerpt"
+def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
+    """Add an annotation to a excerpt. Returns one of the following:
+        added: Annotation added sucessfully
+        notAdded: Annotation not added
+        redactExcerpt: Teacher consent requires us to remove the excerpt this is attached to"""
     
+    ### Need to fix so that Extra tags assigns tags to annotations
     if annotation["kind"] == "Extra tags":
         excerpt["qTag"] += annotation["qTag"]
         excerpt["aTag"] += annotation["aTag"]
     
     if gOptions.ignoreAnnotations:
-        return
+        return "notAdded"
     
-    print("We don't yet support annotation",annotation["kind"])
+    if annotation["exclude"]:
+        return "notAdded"
+    
+    print(annotation["kind"],annotation["text"])
+    if not annotation["kind"]:
+        if gOptions.verbose >= -1:
+            print("   Error: Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
+        annotation["kind"] = kind = "Comment"
+    kind = database["kind"][annotation["kind"]]
+            
+    if not annotation["teachers"]:
+        defaultTeacher = kind["inheritTeacherFrom"]
+        if defaultTeacher == "Anon": # Check if the default teacher is anonymous
+            annotation["teachers"] = ["Anon"]
+        elif defaultTeacher == "Excerpt":
+            annotation["teachers"] = excerpt["teachers"]
+        elif defaultTeacher == "Session":
+            ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
+            annotation["teachers"] = ourSession["teachers"]
+    
+    if not TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts"):
+        return "redactExcerpt" # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
+    
+    annotation["teachers"] = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+    
+    annotation["tags"] = annotation["qTag"] + annotation["aTag"] # Annotations don't distiguish between q and a tags
+    
+    keysToRemove = ["sessionNumber","offTopic","aListen","exclude","qTag","aTag"]
+    if not kind["takesTimes"]:
+        keysToRemove += ["startTime","endTime"]
+    
+    for key in keysToRemove:
+        annotation.pop(key,None)    # Remove keys that aren't relevant for annotations
+    
+    excerpt["annotations"].append(annotation)
+    return "added"
+    
+    # annotation["excerptNumber"] = excerpt["excerptNumber"]
+    # print("We don't yet support annotation",annotation["kind"])
     
 def LoadEventFile(database,eventName,directory):
     
@@ -456,7 +498,7 @@ def LoadEventFile(database,eventName,directory):
             
         sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions")]
             # Remove sessions we didn't get consent for
-
+        database["sessions"] += sessions
         
         rawExcerpts = CSVToDictList(file)
         
@@ -474,13 +516,16 @@ def LoadEventFile(database,eventName,directory):
         prevExcerpt = None
         excerpts = []
         for x in rawExcerpts:
-            if not x["kind"]:
-                x["kind"] = "Question"
 
             if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
-                AddAnnotation(prevExcerpt,x)
+                if AddAnnotation(database,prevExcerpt,x) == "redactExcerpt":
+                    prevExcerpt["exclude"] = True
                 continue
-
+            else:
+                x["annotations"] = []
+            
+            if not x["kind"]:
+                x["kind"] = "Question"
             x["event"] = eventName
             
             ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
@@ -562,7 +607,6 @@ def LoadEventFile(database,eventName,directory):
         sessions = [s for s in sessions if s["sessionNumber"] in sessionsWithExcerpts]
             # Remove sessions that have no excerpts in them
         
-        database["sessions"] += sessions
         database["excerpts"] += excerpts
         database["excerptsRedacted"] += removedExcerpts
         
@@ -660,7 +704,7 @@ def main(clOptions,database):
     
     global gOptions
     gOptions = clOptions
-    gOptions.ignoreAnnotations = True # For the time being (Winter Retreat 2023), ignore annotations to avoid too much coding
+    #gOptions.ignoreAnnotations = True # For the time being (Winter Retreat 2023), ignore annotations to avoid too much coding
     
     LoadSummary(database,os.path.join(gOptions.csvDir,"Summary.csv"))
    

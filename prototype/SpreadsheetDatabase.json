@@ -987,7 +987,7 @@
       "primaries": 0,
       "htmlFile": "clear-comprehension.html",
       "listIndex": 29,
-      "excerptCount": 1
+      "excerptCount": 2
     },
     "Mindfulness": {
       "tag": "Mindfulness",
@@ -1373,7 +1373,8 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "craving-not-to-become.html",
-      "listIndex": 51
+      "listIndex": 51,
+      "excerptCount": 1
     },
     "Cessation of suffering": {
       "tag": "Cessation of suffering",
@@ -3251,7 +3252,8 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "guiltshameinadequacy.html",
-      "listIndex": 172
+      "listIndex": 172,
+      "excerptCount": 1
     },
     "Self-pity": {
       "tag": "Self-pity",
@@ -3925,7 +3927,8 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "habits.html",
-      "listIndex": 216
+      "listIndex": 216,
+      "excerptCount": 1
     },
     "Humor": {
       "tag": "Humor",
@@ -7769,7 +7772,7 @@
       "primaries": 0,
       "htmlFile": "culturewest.html",
       "listIndex": 433,
-      "excerptCount": 3
+      "excerptCount": 4
     },
     "Buddhist identity": {
       "tag": "Buddhist identity",
@@ -9603,7 +9606,7 @@
       "website": "https://www.abhayagiri.org/talks/collections/6/53-tudong-stories-a-daylong-by-ajahn-pasanno",
       "description": "",
       "sessions": 3,
-      "excerpts": 34,
+      "excerpts": 35,
       "answersListenedTo": 0,
       "tagsApplied": 284,
       "invalidTags": 0,
@@ -9638,7 +9641,7 @@
       ],
       "sessionTitle": "Question and answer session",
       "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_05_01_2011_Tudongstories_at_SpiritRock_pt2.mp3",
-      "excerpts": 15,
+      "excerpts": 16,
       "tags": [
         "Tudong"
       ],
@@ -9677,6 +9680,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -9700,6 +9704,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9723,6 +9728,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Jotipālo",
@@ -9746,6 +9752,24 @@
       "text": "Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "You mean to say there are no kind people in America?|Ajahn Chah to Ajahn Sumedho",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Ajahn Sumedho",
+            "Compassion",
+            "Culture/West"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -9772,6 +9796,40 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Mun",
+            "Abbot",
+            "History/Thai Buddhism",
+            "Saṅgha decision making",
+            "Tudong"
+          ]
+        },
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "One million people attend the funeral of Ajahn Mahā Boowa",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Maha Boowa",
+            "Funerals",
+            "History/Thai Buddhism"
+          ]
+        }
+      ],
       "tags": [
         "Tudong",
         "Ajahn Mun",
@@ -9797,6 +9855,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Kinaree",
@@ -9817,6 +9876,39 @@
       "text": "A Thai monk (who??) chooses tudong over further studies.",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Pasanno's mother cries when she meets him.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Pasanno",
+            "Faith",
+            "Rapture"
+          ]
+        },
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "A python begins to eat the monk.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Tudong",
+            "Animals",
+            "Determination",
+            "Liberation"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -9845,6 +9937,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Protocols",
@@ -9867,6 +9960,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -9890,6 +9984,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong"
       ],
@@ -9908,6 +10003,38 @@
       "text": "What is the function of a layperson who accompanies a monk on tudong?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "People who ordain quickly disrobe quickly.|Ajahn Chah",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Ordination",
+            "Disrobing"
+          ]
+        },
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Founding of Pacific Hermitage",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Pacific Hermitage",
+            "Almsround",
+            "Almsfood"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -9932,6 +10059,58 @@
       "endTime": "",
       "text": "Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges.",
       "teachers": [],
+      "annotations": [
+        {
+          "kind": "Sutta",
+          "flags": "",
+          "text": "Dhp 244-245: Life is easy for for one without shame.",
+          "teachers": [],
+          "tags": [
+            "Conscience and prudence",
+            "Conceit",
+            "Virtue"
+          ]
+        },
+        {
+          "kind": "Response",
+          "flags": "",
+          "text": "\"You get more than what you bargained for.\"",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Happiness",
+            "Culture/West",
+            "Communal harmony",
+            "Trust",
+            "Concentration",
+            "Ardency",
+            "Energy",
+            "Discernment",
+            "Guilt/shame/inadequacy"
+          ]
+        },
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Right effort"
+          ]
+        },
+        {
+          "kind": "Sutta",
+          "flags": "",
+          "text": "AN 11.1 : Virtue leads to non-remorse and samādhi.",
+          "teachers": [],
+          "tags": [
+            "Virtue",
+            "Happiness",
+            "Concentration"
+          ]
+        }
+      ],
       "tags": [
         "Tudong",
         "Faith",
@@ -9941,7 +10120,7 @@
         "Right effort"
       ],
       "qTagCount": 6,
-      "duration": "16:28"
+      "duration": "7:09"
     },
     {
       "event": "SRD2011",
@@ -9950,11 +10129,124 @@
       "fileNumber": 4,
       "kind": "Question",
       "flags": "",
+      "startTime": "15:16",
+      "endTime": "",
+      "text": "Can the practice be used in a punitative or punishing way?",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Having a human mind...it's amazing how perverse it can be sometimes.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Humans",
+            "Three Unwholesome Roots"
+          ]
+        },
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Pasanno can't translate guilt into Thai.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Pasanno",
+            "Guilt/shame/inadequacy",
+            "Translation",
+            "Culture/West",
+            "Culture/Thailand",
+            "Suffering"
+          ]
+        },
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "All you need to do is create a cage of mindfulness around [unskillful habits].|Ajahn Chah",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Sense restraint",
+            "Mindfulness",
+            "Habits",
+            "Unskillful qualities",
+            "Similes"
+          ]
+        },
+        {
+          "kind": "Follow-up",
+          "flags": "",
+          "text": "What about letting the tiger go instead of keeping it in a cage?",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Three Unwholesome Roots",
+            "Similes"
+          ]
+        },
+        {
+          "kind": "Follow-up",
+          "flags": "",
+          "text": "What about the case when one feels one is the tiger trapped in a metaphorical cage. How to escape?",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Similes",
+            "Liberation",
+            "Perception",
+            "Self-identity view",
+            "Spiritual friendship"
+          ]
+        }
+      ],
+      "tags": [
+        "Guilt/shame/inadequacy",
+        "Culture/West",
+        "Habits",
+        "Clear comprehension",
+        "Craving not to become"
+      ],
+      "qTagCount": 1,
+      "duration": "9:19"
+    },
+    {
+      "event": "SRD2011",
+      "sessionNumber": 2,
+      "excerptNumber": 5,
+      "fileNumber": 5,
+      "kind": "Question",
+      "flags": "",
       "startTime": "24:35",
       "endTime": "27:56",
       "text": "If sati or mindfulness is the cage, what is the use of samatha?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Three Unwholesome Roots"
+          ]
+        }
       ],
       "tags": [
         "Similes",
@@ -9972,8 +10264,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 5,
-      "fileNumber": 5,
+      "excerptNumber": 6,
+      "fileNumber": 6,
       "kind": "Question",
       "flags": "",
       "startTime": "27:59",
@@ -9981,6 +10273,48 @@
       "text": "Could you tell of your personal experience with a tiger?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Pasanno hears and smells a tiger while doing walking meditation.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Pasanno",
+            "Tudong",
+            "Dtao Dtum",
+            "Culture/Natural environment",
+            "Posture/Walking",
+            "Animals",
+            "Fear",
+            "Death",
+            "Impermanence"
+          ]
+        },
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Mindfulness",
+            "Clear comprehension"
+          ]
+        },
+        {
+          "kind": "Sutta",
+          "flags": "",
+          "text": "MN 4: Fear and Dread",
+          "teachers": [],
+          "tags": [
+            "Fear"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -9995,8 +10329,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 6,
-      "fileNumber": 6,
+      "excerptNumber": 7,
+      "fileNumber": 7,
       "kind": "Question",
       "flags": "",
       "startTime": "36:41",
@@ -10004,6 +10338,19 @@
       "text": "Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Delusion",
+            "Mindfulness of body",
+            "Continuity of mindfulness"
+          ]
+        }
       ],
       "tags": [
         "Knowing itself",
@@ -10025,8 +10372,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 7,
-      "fileNumber": 7,
+      "excerptNumber": 8,
+      "fileNumber": 8,
       "kind": "Question",
       "flags": "",
       "startTime": "41:23",
@@ -10035,6 +10382,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Three Unwholesome Roots",
         "Delusion"
@@ -10045,8 +10393,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 8,
-      "fileNumber": 8,
+      "excerptNumber": 9,
+      "fileNumber": 9,
       "kind": "Question",
       "flags": "",
       "startTime": "42:58",
@@ -10055,6 +10403,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Eightfold Path",
         "Perfectionism",
@@ -10070,8 +10419,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 9,
-      "fileNumber": 9,
+      "excerptNumber": 10,
+      "fileNumber": 10,
       "kind": "Question",
       "flags": "",
       "startTime": "44:21",
@@ -10079,6 +10428,33 @@
       "text": "For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Clinging"
+          ]
+        },
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.|Ajahn Tongrat",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Tongrat",
+            "Three Unwholesome Roots",
+            "Discernment",
+            "Right effort"
+          ]
+        }
       ],
       "tags": [
         "Goodwill",
@@ -10097,8 +10473,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 10,
-      "fileNumber": 10,
+      "excerptNumber": 11,
+      "fileNumber": 11,
       "kind": "Question",
       "flags": "",
       "startTime": "49:53",
@@ -10106,6 +10482,24 @@
       "text": "I'm curious about your pre-monastic lfie and specifically what led you to the monastic life.",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "If you want to stay here, you have to stay at least five years.|Ajahn Chah to Ajahn Pasanno",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Ajahn Pasanno",
+            "Wat Pah Pong",
+            "Sequence of training"
+          ]
+        }
       ],
       "tags": [
         "Ajahn Pasanno",
@@ -10120,8 +10514,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 11,
-      "fileNumber": 11,
+      "excerptNumber": 12,
+      "fileNumber": 12,
       "kind": "Question",
       "flags": "",
       "startTime": "54:49",
@@ -10130,6 +10524,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Mutual lay/Saṅgha support",
@@ -10144,8 +10539,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 12,
-      "fileNumber": 12,
+      "excerptNumber": 13,
+      "fileNumber": 13,
       "kind": "Question",
       "flags": "",
       "startTime": "56:53",
@@ -10153,6 +10548,33 @@
       "text": "To what extend is spreading the teachings part of the tudong tradition?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Vinaya",
+          "flags": "",
+          "text": "Kd 1.14: Venerable Assaji's demeanor inspires Sariputta.",
+          "teachers": [],
+          "tags": [
+            "Great disciples",
+            "Perception of a samaṇa"
+          ]
+        },
+        {
+          "kind": "Story",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Pasanno goes tudong and is asked for lottery numbers.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Pasanno",
+            "Tudong",
+            "Culture/Thailand"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -10165,8 +10587,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 13,
-      "fileNumber": 13,
+      "excerptNumber": 14,
+      "fileNumber": 14,
       "kind": "Question",
       "flags": "",
       "startTime": "1:01:07",
@@ -10174,6 +10596,18 @@
       "text": "I travelled for six weeks in Thailand and India and found that time really shifted. Having been home about two months, even with a daily meditation practice, time speeds up. How is life at the monastery versus tudong, and what do you have to say to laypeople about the speeding up of time?",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Everyday life",
+            "Monastic life"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -10192,8 +10626,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 14,
-      "fileNumber": 14,
+      "excerptNumber": 15,
+      "fileNumber": 15,
       "kind": "Question",
       "flags": "",
       "startTime": "1:05:11",
@@ -10202,6 +10636,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Gratitude",
         "Monasteries",
@@ -10214,8 +10649,8 @@
     {
       "event": "SRD2011",
       "sessionNumber": 2,
-      "excerptNumber": 15,
-      "fileNumber": 15,
+      "excerptNumber": 16,
+      "fileNumber": 16,
       "kind": "Meditation instruction",
       "flags": "s",
       "startTime": "1:08:38",
@@ -10224,6 +10659,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Posture/Walking",
         "Abhayagiri"
@@ -10244,6 +10680,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10267,6 +10704,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10295,6 +10733,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Maha Boowa",
@@ -10316,6 +10755,38 @@
       "text": "Ajahn Chah struggles through lust with patience.",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah to biographer:|If you don't put that in the book, don't bother printing it.|",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Sensual desire",
+            "Dhamma books"
+          ]
+        },
+        {
+          "kind": "Indirect quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "If you ordain as a monk, your defilements ordain with you.|Ajahn Chah ??",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Monastic life",
+            "Three Unwholesome Roots"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -10343,6 +10814,18 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [
+        {
+          "kind": "Extra tags",
+          "flags": "",
+          "text": "",
+          "teachers": [],
+          "tags": [
+            "Depression",
+            "Sloth and torpor"
+          ]
+        }
+      ],
       "tags": [
         "Tudong",
         "Ajahn Chah",
@@ -10369,6 +10852,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10393,6 +10877,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10419,6 +10904,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10444,6 +10930,7 @@
       "teachers": [
         "AP"
       ],
+      "annotations": [],
       "tags": [
         "Tudong",
         "Ajahn Pasanno",
@@ -10468,6 +10955,39 @@
       "text": "It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.",
       "teachers": [
         "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Quote",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "The base and foundation is the mindfulness. Being the knowing is always the foundation, and then the mind is able to become still, become settled, become steady.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Mindfulness",
+            "Knowing itself",
+            "Concentration"
+          ]
+        },
+        {
+          "kind": "Recollection",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "\"It's rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.\"",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Pāli",
+            "Mindfulness",
+            "Discernment"
+          ]
+        }
       ],
       "tags": [
         "Tudong",
@@ -10780,9 +11300,9 @@
       "indexNumber": "",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 1,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Clear comprehension (1) [sampajañña]",
+      "text": "Clear comprehension (2) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -11000,9 +11520,9 @@
       "indexNumber": "",
       "name": "Craving not to become",
       "pali": "vibhava-taṇhā",
-      "excerptCount": 0,
+      "excerptCount": 1,
       "subsumed": false,
-      "text": "Craving not to become [vibhava-taṇhā]",
+      "text": "Craving not to become (1) [vibhava-taṇhā]",
       "tag": "Craving not to become"
     },
     {
@@ -12210,9 +12730,9 @@
       "indexNumber": "",
       "name": "Guilt/shame/inadequacy",
       "pali": "",
-      "excerptCount": 0,
+      "excerptCount": 1,
       "subsumed": false,
-      "text": "Guilt/shame/inadequacy",
+      "text": "Guilt/shame/inadequacy (1)",
       "tag": "Guilt/shame/inadequacy"
     },
     {
@@ -12650,9 +13170,9 @@
       "indexNumber": "",
       "name": "Habits",
       "pali": "",
-      "excerptCount": 0,
+      "excerptCount": 1,
       "subsumed": false,
-      "text": "Habits",
+      "text": "Habits (1)",
       "tag": "Habits"
     },
     {
@@ -14820,9 +15340,9 @@
       "indexNumber": "",
       "name": "Culture/West",
       "pali": "",
-      "excerptCount": 3,
+      "excerptCount": 4,
       "subsumed": false,
-      "text": "Culture/West (3)",
+      "text": "Culture/West (4)",
       "tag": "Culture/West"
     },
     {
