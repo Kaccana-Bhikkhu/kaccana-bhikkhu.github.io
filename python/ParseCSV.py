@@ -410,12 +410,8 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
         
     return consent
 
-def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
-    """Add an annotation to a excerpt. Returns one of the following:
-        added: Annotation added sucessfully
-        notAdded: Annotation not added
-        redactExcerpt: Teacher consent requires us to remove the excerpt this is attached to
-        extraTags: Extra tags added to excerpt or previous annotation"""
+def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
+    """Add an annotation to a excerpt."""
     
     ### Need to fix so that Extra tags assigns tags to annotations
     if annotation["kind"] == "Extra tags":
@@ -423,17 +419,17 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
             if "tags" in prevAnnotation:
                 prevAnnotation["tags"] += annotation["qTag"]
                 prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
-                return "extraTags"
+                return
         
         excerpt["qTag"] += annotation["qTag"] # If no annotation takes the tags, give them to the excerpt
         excerpt["aTag"] += annotation["aTag"]
-        return "extraTags"
+        return
     
     if gOptions.ignoreAnnotations:
-        return "notAdded"
+        return
     
     if annotation["exclude"]:
-        return "notAdded"
+        return
     
     print(annotation["kind"],annotation["text"])
     if not annotation["kind"]:
@@ -456,7 +452,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
                 annotation["teachers"] = ourSession["teachers"]
         
         if not TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts"):
-            return "redactExcerpt" # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
+            excerpt["exclude"] = True # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
+            return 
         
         annotation["teachers"] = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
     else:
@@ -472,10 +469,6 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> str:
         annotation.pop(key,None)    # Remove keys that aren't relevant for annotations
     
     excerpt["annotations"].append(annotation)
-    return "added"
-    
-    # annotation["excerptNumber"] = excerpt["excerptNumber"]
-    # print("We don't yet support annotation",annotation["kind"])
     
 def LoadEventFile(database,eventName,directory):
     
@@ -530,8 +523,7 @@ def LoadEventFile(database,eventName,directory):
         for x in rawExcerpts:
 
             if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
-                if AddAnnotation(database,prevExcerpt,x) == "redactExcerpt":
-                    prevExcerpt["exclude"] = True
+                AddAnnotation(database,prevExcerpt,x)
                 continue
             else:
                 x["annotations"] = []
