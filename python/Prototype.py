@@ -296,7 +296,9 @@ class Formatter:
         self.excerptOmitTags = set() # Don't display these tags in excerpt description
         self.excerptBoldTags = set() # Display these tags in boldface
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
+        self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
         self.excerptShortFormat = True
+
         
         self.headingShowEvent = True # Show the event name in headings?
         self.headingShowSessionTitle = False # Show the session title in headings?
@@ -321,8 +323,11 @@ class Formatter:
             a(' ')
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
-            
-        a(f' ({excerpt["duration"]}) ')
+        
+        if self.excerptPreferStartTime and excerpt.get("startTime",""):
+            a(f' [{excerpt["startTime"]}] ')
+        else:
+            a(f' ({excerpt["duration"]}) ')
 
         if teacherList or gOptions.attributeAll:
             attribution = excerpt["attribution"]
@@ -619,6 +624,7 @@ def WriteEventPages(tagPageDir: str) -> None:
         formatter.headingShowSessionTitle = True
         formatter.headingLinks = False
         formatter.headingAudio = True
+        formatter.excerptPreferStartTime = True
         a(HtmlExcerptList(excerpts,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a))
