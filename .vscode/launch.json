@@ -4,15 +4,27 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
-
-
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
         {
             "name": "QSArchive.py All --sheets All",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["All", "-vvv", "--excerptMp3", "local", "--sheets", "All"],
+            "args": [
+                "All",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--sheets",
+                "All"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -21,7 +33,12 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["All", "-vvv", "--excerptMp3", "local"],
+            "args": [
+                "All",
+                "-vvv",
+                "--excerptMp3",
+                "local"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -30,7 +47,12 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local"],
+            "args": [
+                "ParseCSV,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -39,7 +61,12 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["Render,Prototype", "-vvv", "--excerptMp3", "local"],
+            "args": [
+                "Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -48,7 +75,17 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["DownloadCSV,ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local", "--events", "SRD2011", "--parseOnlySpecifiedEvents", "--sheets", "SRD2011,Kind,Teacher"],
+            "args": [
+                "ParseCSV,SplitMp3,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "SRD2011",
+                "--parseOnlySpecifiedEvents",
+                "--sheets",
+                "SRD2011,Kind,Teacher"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -57,7 +94,18 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["DownloadCSV,ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local", "--events", "SRD2011", "--parseOnlySpecifiedEvents", "--attributeAll", "--sheets", "SRD2011,Kind,Teacher"],
+            "args": [
+                "DownloadCSV,ParseCSV,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "SRD2011",
+                "--parseOnlySpecifiedEvents",
+                "--attributeAll",
+                "--sheets",
+                "SRD2011,Kind,Teacher"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         }

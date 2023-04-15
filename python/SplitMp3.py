@@ -2,7 +2,7 @@
 
 import os, json
 import Utils
-import Mp3DirectCut as Mp3DirectCut
+import Mp3DirectCut
 from typing import List
 
 Mp3DirectCut.SetExecutable(os.path.join('tools','Mp3DirectCut'))
@@ -96,7 +96,7 @@ def main(clOptions,database):
         
         # Next invoke Mp3DirectCut:
         try:
-            Mp3DirectCut.SplitMp3(sessionFilePath,excerptList)
+            Mp3DirectCut.Split(sessionFilePath,excerptList)
         except Mp3DirectCut.ExecutableNotFound as err:
             print(err)
             print("Continuing to next module.")

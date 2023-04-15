@@ -1,6 +1,6 @@
 """Python wrapper to use mp3DirectCut to split mp3 files"""
 
-import os
+import os, shutil
 from datetime import time,timedelta
 from typing import List
 
@@ -37,7 +37,7 @@ def WriteCue(cueTime,cueNum,cueFile):
     print(f'    TITLE "(Track {cueNum:02d})"',file=cueFile)
     print(f'    INDEX 01 {TimeToStr(cueTime)}',file=cueFile)
 
-def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:str = True):
+def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:str = True):
     """Split an mp3 file into tracks.
     file - Name and path of the file to split. Write access is required to this directory.
     splitPoints - a list of tuples of the format: (trackFileName,startTime[,endTime])
@@ -118,3 +118,28 @@ def SplitMp3(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFi
     
     if deleteCueFile:
         os.remove(cueFilePath)
+
+def Join(fileList: List[str],outputFile: str,heal = True) -> None:
+    """Join mp3 files into a single file using simple file copying operations.
+    fileList: list of pathnames of the files to join.
+    outFile: pathname of output file.
+    heal: Use Mp3DirectCut to clean up the output file. Usually a good idea.
+    This operation fails with mp3 files with different sample rates."""
+
+    if len(fileList) == 1:
+        heal = False # In this case, we're just copying the file
+
+    name, ext = os.path.splitext(outputFile)
+    tempFile = name + "_temp" + ext
+
+    with open(tempFile,'wb') as dest:
+        for fileName in fileList:
+            with open(fileName,'rb') as source:
+                shutil.copyfileobj(source, dest)
+    
+    if heal:
+        dir, name = os.path.split(name)
+        Split(tempFile,[(name,timedelta(0))],dir)
+        os.remove(tempFile)
+    else:
+        os.rename(tempFile,outputFile)
