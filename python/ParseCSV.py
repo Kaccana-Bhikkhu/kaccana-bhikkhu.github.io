@@ -236,6 +236,7 @@ class TagStackItem:
 
 def LoadTagsFile(database,tagFileName):
     "Load Tag_Raw from a file and parse it to create the Tag dictionary"
+
     # First load the raw tags from the csv file
     rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["indentedTags","paliTerm","tagMenu","Tag count","paliTagMenu"])
         
@@ -264,6 +265,11 @@ def LoadTagsFile(database,tagFileName):
     # Remove any blank values from the list before looping over it
     rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
     
+    # Redact tags for teachers who haven't given consent - teacher names are never abbreviated, so use fullTag
+    unallowedTags = [teacher["fullName"] for abbrev,teacher in database["teacher"].items() if not TeacherConsent(database["teacher"],[abbrev],"allowTag")]
+    redactedTags = [tag["fullTag"] for tag in rawTagList if tag["fullTag"] in unallowedTags]
+    rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTags]
+
     subsumedTags = {} # A dictionary of subsumed tags for future reference
     
     tagStack = [] # Supertag ancestry stack
@@ -344,6 +350,7 @@ def LoadTagsFile(database,tagFileName):
     database["tag"] = tags
     database["tagRaw"] = rawTagList
     database["tagSubsumed"] = subsumedTags
+    database["tagRedacted"] = redactedTags
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -490,7 +497,6 @@ def LoadEventFile(database,eventName,directory):
         
         database["event"][eventName] = eventDesc
         
-        
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
         
         for key in ["tags","teachers"]:
@@ -527,7 +533,11 @@ def LoadEventFile(database,eventName,directory):
         lastSession = -1
         prevExcerpt = None
         excerpts = []
+        redactedTagSet = set(database["tagRedacted"])
         for x in rawExcerpts:
+            
+            x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
+            x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
 
             if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
                 AddAnnotation(database,prevExcerpt,x)
