@@ -11,7 +11,7 @@
             "name": "QSArchive.py All --sheets All",
             "type": "python",
             "request": "launch",
-            "program": "Q:\\qs-archive\\QSArchive.py",
+            "program": "${workspaceFolder}\\QSArchive.py",
             "args": ["All", "-vvv", "--excerptMp3", "local", "--sheets", "All"],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -20,7 +20,7 @@
             "name": "QSArchive.py All",
             "type": "python",
             "request": "launch",
-            "program": "Q:\\qs-archive\\QSArchive.py",
+            "program": "${workspaceFolder}\\QSArchive.py",
             "args": ["All", "-vvv", "--excerptMp3", "local"],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -29,7 +29,7 @@
             "name": "QSArchive.py ParseCSV",
             "type": "python",
             "request": "launch",
-            "program": "Q:\\qs-archive\\QSArchive.py",
+            "program": "${workspaceFolder}\\QSArchive.py",
             "args": ["ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local"],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -38,7 +38,7 @@
             "name": "QSArchive.py Render",
             "type": "python",
             "request": "launch",
-            "program": "Q:\\qs-archive\\QSArchive.py",
+            "program": "${workspaceFolder}\\QSArchive.py",
             "args": ["Render", "-vvv", "--excerptMp3", "local"],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -47,8 +47,8 @@
             "name": "QSArchive.py only SRD2011",
             "type": "python",
             "request": "launch",
-            "program": "Q:\\qs-archive\\QSArchive.py",
-            "args": ["DownloadCSV,ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local", "--events", "SRD2011", "--parseOnlySpecifiedEvents"],
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": ["DownloadCSV,ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local", "--events", "SRD2011", "--parseOnlySpecifiedEvents", "--sheets", "SRD2011,Kind,Teacher"],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -56,7 +56,7 @@
             "name": "QSArchive.py only SRD2011 attributeAll",
             "type": "python",
             "request": "launch",
-            "program": "Q:\\qs-archive\\QSArchive.py",
+            "program": "${workspaceFolder}\\QSArchive.py",
             "args": ["DownloadCSV,ParseCSV,Render,Prototype", "-vvv", "--excerptMp3", "local", "--events", "SRD2011", "--parseOnlySpecifiedEvents", "--attributeAll", "--sheets", "SRD2011,Kind,Teacher"],
             "console": "integratedTerminal",
             "justMyCode": true
