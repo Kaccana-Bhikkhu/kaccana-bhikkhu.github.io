@@ -35,11 +35,11 @@
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py Render",
+            "name": "QSArchive.py Render and Prototype",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
-            "args": ["Render", "-vvv", "--excerptMp3", "local"],
+            "args": ["Render,Prototype", "-vvv", "--excerptMp3", "local"],
             "console": "integratedTerminal",
             "justMyCode": true
         },

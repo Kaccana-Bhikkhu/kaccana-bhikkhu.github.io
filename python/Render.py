@@ -2,7 +2,7 @@
 The only remaining work for Prototype.py to do is substitute the list of teachers for {attribtuion}, {attribtuion2}, and {attribtuion3} when needed."""
 
 import json, re
-import ParseCSV, Prototype
+import ParseCSV, Prototype, Utils
 from typing import Tuple, Type
 from collections import defaultdict
 import pyratemp
@@ -106,11 +106,55 @@ def RenderItem(item: dict) -> None:
 
 def RenderExcerpts() -> None:
     """Use the templates in gDatabase["kind"] to add "body" and "attribution" keys to each except and its annotations"""
-    kind = gDatabase["kind"]
+
     for x in gDatabase["excerpts"]:
         RenderItem(x)
         for a in x["annotations"]:
             RenderItem(a)
+
+def LinkSuttas():
+    """Add links to sutta.readingfaithfully.org"""
+
+    def RefToReadingFaithfully(matchObject: re.Match):
+        firstPart = matchObject[0].split("-")[0]
+        dashed = re.sub(r'\s','-',firstPart)
+        #print(matchObject,dashed)
+        return f'<a href = "https://sutta.readingfaithfully.org/?q={dashed}">{matchObject[0]}</a>'
+
+    def LinkItem(item: dict):
+        item["body"],count = re.subn(suttaMatch,RefToReadingFaithfully,item["body"],flags = re.IGNORECASE)
+
+        #if count:
+        #    print(item["body"])
+
+        nonlocal suttasMatched
+        suttasMatched += count
+    
+    suttasMatched = 0
+    with open('tools/citationHelper/Suttas.json', 'r', encoding='utf-8') as file: 
+        suttas = json.load(file)
+    suttaAbbreviations = [s[0] for s in suttas]
+
+    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[-]?[0-9]*"
+    #print(suttaMatch)
+
+    for x in gDatabase["excerpts"]:
+        LinkItem(x)
+        for a in x["annotations"]:
+            LinkItem(a)
+
+    if gOptions.verbose > 1:
+        print(f"{suttasMatched} links generated to suttas")
+
+def LinkReferences() -> None:
+    """Add hyperlinks to references contained in the excerpts and annotations.
+    Allowable formats are:
+    1. [reference](link) - Markdown format for arbitrary hyperlinks
+    2. [title]() - Titles in Reference sheet: 
+    3. title page N - Link to specific pages for titles in Reference sheet 
+    4. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
+
+    LinkSuttas()
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
@@ -128,6 +172,8 @@ def main(clOptions,database) -> None:
     PrepareTemplates()
 
     RenderExcerpts()
+
+    LinkReferences()
 
     with open(gOptions.renderedDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)

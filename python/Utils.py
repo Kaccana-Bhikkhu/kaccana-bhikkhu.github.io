@@ -3,6 +3,7 @@
 from datetime import timedelta, datetime
 import unicodedata
 import re
+from typing import List
 
 def Contents(container:list|dict) -> list:
     try:
@@ -82,3 +83,15 @@ def slugify(value, allow_unicode=False):
         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
+
+def RegexMatchAny(strings: List[str],capturingGroup = True):
+    """Return a regular expression that matches any item in strings.
+    Optionally make it a capturing group."""
+
+    if strings:
+        if capturingGroup:
+            return r"(" + r"|".join(strings) + r")"
+        else:
+            return r"(?:" + r"|".join(strings) + r")"
+    else:
+        return r'a\bc' # Looking for a word boundary between text characters always fails: https://stackoverflow.com/questions/1723182/a-regex-that-will-never-be-matched-by-anything
