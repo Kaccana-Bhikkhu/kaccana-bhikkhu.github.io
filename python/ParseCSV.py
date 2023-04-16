@@ -173,7 +173,13 @@ def ConvertToInteger(dictList,key):
     "Convert the values in key to ints"
     
     for d in Utils.Contents(dictList):
-        d[key] = int(d[key])
+        try:
+            d[key] = int(d[key])
+        except ValueError as err:
+            if not d[key]:
+                d[key] = None
+            else:
+                raise err
 
 def ListToDict(inList,key = None):
     """Convert a list of dicts to a dict of dicts using key. If key is None, use the first key
@@ -567,7 +573,7 @@ def LoadEventFile(database,eventName,directory):
             else:
                 fileNumber += 1 # File number counts all excerpts listed for the event
             
-            if TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") and (not x["exclude"] or gOptions.ignoreExcludes):
+            if (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or x["kind"] == "Reading") and (not x["exclude"] or gOptions.ignoreExcludes):
                 x["exclude"] = False
             else:
                 x["exclude"] = True

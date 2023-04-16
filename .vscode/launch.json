@@ -13,7 +13,7 @@
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py All --sheets All",
+            "name": "AllSheets",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -29,7 +29,7 @@
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py All",
+            "name": "AllEvents",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -43,7 +43,7 @@
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py ParseCSV",
+            "name": "ParseCSV",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -57,7 +57,7 @@
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py Render and Prototype",
+            "name": "Render and Prototype",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -71,26 +71,26 @@
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py only SRD2011",
+            "name": "SRD2010-11",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
             "args": [
-                "ParseCSV,SplitMp3,Render,Prototype",
+                "All",
                 "-vvv",
                 "--excerptMp3",
                 "local",
                 "--events",
-                "SRD2011",
+                "SRD2010,SRD2011",
                 "--parseOnlySpecifiedEvents",
                 "--sheets",
-                "SRD2011,Kind,Teacher"
+                "SRD2010,SRD2011,Kind,Teacher,Tag,Reference"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
-            "name": "QSArchive.py only SRD2011 attributeAll",
+            "name": "SDR2011-attributeAll",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",

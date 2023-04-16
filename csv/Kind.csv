@@ -1,24 +1,30 @@
-Kind,Category,Default form,Can be excerpt?,Takes times?,Takes teachers?,Takes tags?,Append to excerpt?,Inherit teacher from:,Form 1,Form 2,Form 3
-Question,Questions,3,Yes,Yes,Yes,Yes,No,Session,unimplemented,unimplemented,“{text}”|| Answered by {teacher}.
-Response,Questions,1,No,No,Yes,Yes,No,Session,++Response{s}++|| by {teacher}||{colon} {text},unimplemented,unimplemented
-Follow-up,Questions,2,No,No,Yes,Yes,No,Excerpt,unimplemented,++Follow-up{colon}++ “{text}”|| aswered by {teacher}.,unimplemented
-,,,,,,,,,,,
-Story,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Stor{'ies' if s else 'y'}{colon}++ {text}|| told by {teacher}.,unimplemented
-Recollection,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Recollection{s}{colon}++ {text}|| recounted by {teacher}.,unimplemented
-,,,,,,,,,,,
-Quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}” {suffix}|| — {teacher},unimplemented
-Indirect quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teacher}.,unimplemented
-,,,,,,,,,,,
-Meditation instruction,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Meditation instruction{s}{colon}++ {text}|| offered by {teacher}.,unimplemented
-,,,,,,,,,,,
-,,,,,,,,,,,
-,,,,,,,,,,,
-Reference,References,1,No,No,No,Yes,No,,++Reference{s}++: {text},unimplemented,unimplemented
-Sutta,References,1,No,No,No,Yes,No,,++Sutta{s}++: {text},unimplemented,unimplemented
-Vinaya,References,1,No,No,No,Yes,No,,++Vinaya:++ {text},unimplemented,unimplemented
-,,,,,,,,,,,
-,,,,,,,,,,,
-Comment,Other,1,Yes,Yes,Yes,Yes,No,Anon,++Comment{s}++|| by {teacher}||{colon} {text},++Comment{s}{colon}++ {text}|| contributed by {teacher}.,{text} Comment{s}++ by {teacher}.
-,,,,,,,,,,,
-,,,,,,,,,,,
-Extra tags,Other,0,No,No,No,Yes,No,,unimplemented,unimplemented,unimplemented
+Kind,Category,Default form,Can be excerpt?,Takes times?,Takes teachers?,Takes tags?,Append to excerpt?,Inherit teacher from:,Form 1,Form 2,Form 3,Usage notes
+Question,Questions,3,Yes,Yes,Yes,Yes,No,Session,unimplemented,unimplemented,“{text}”|| Answered by {teacher}.,
+Response,Questions,1,No,No,Yes,Yes,No,Session,++Response{s}++|| by {teacher}||{colon} {text},unimplemented,unimplemented,
+Follow-up,Questions,2,No,No,Yes,Yes,No,Excerpt,unimplemented,++Follow-up{colon}++ “{text}”|| aswered by {teacher}.,unimplemented,
+,,,,,,,,,,,,
+Story,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Stor{'ies' if s else 'y'}{colon}++ {text}|| told by {teacher}.,unimplemented,
+Recollection,Stories,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Recollection{s}{colon}++ {text}|| recounted by {teacher}.,unimplemented,
+,,,,,,,,,,,,
+Teaching,Teachings,3,Yes,Yes,Yes,Yes,No,Excerpt,++Teaching{s}++|| by {teacher}||{colon} {text},++Teaching{s}{colon}++ {text}|| contributed by {teacher}.,{text}|| Teaching{s} by {teacher}.,
+Reflection,Teachings,1,Yes,Yes,Yes,Yes,No,Excerpt,++Reflection{s}++|| by {teacher}||{colon} {text},++Reflection{s}{colon}++ {text}|| contributed by {teacher}.,{text}|| Reflection{s} by {teacher}.,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+Quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}” {suffix}|| — {teacher},unimplemented,A quote from the teacher him/herself.
+Indirect quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teacher}.,unimplemented,"The teacher quoting someone else. If the person quoted in a teacher, they should get the first tag."
+,,,,,,,,,,,,
+Meditation instruction,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Meditation instruction{s}{colon}++ {text}|| offered by {teacher}.,unimplemented,
+,,,,,,,,,,,,
+Reading,Readings,1,Yes,Yes,Yes,Yes,No,None,++Reading{s}{colon}++ {text},++Reading{s}{colon}++ {text},unimplemented,"{teacher} should be the author of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teacher} will be set and "" by {teacher}"" inserted automatically. If not, plug both in manually along with the hyperlink if relevant."
+,,,,,,,,,,,,
+Reference,References,1,No,No,No,Yes,No,,++Reference{s}++: {text},unimplemented,unimplemented,
+Sutta,References,1,No,No,No,Yes,No,,++Sutta{s}++: {text},unimplemented,unimplemented,
+Vinaya,References,1,No,No,No,Yes,No,,++Vinaya:++ {text},unimplemented,unimplemented,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+Comment,Other,1,Yes,Yes,Yes,Yes,No,Anon,++Comment{s}++|| by {teacher}||{colon} {text},++Comment{s}{colon}++ {text}|| contributed by {teacher}.,{text}|| Comment{s} by {teacher}.,
+Other,Other,0,Yes,Yes,Yes,Yes,No,None,unimplemented,unimplemented,unimplemented,
+,,,,,,,,,,,,
+Read by,Attribution,1,No,No,Yes,No,Yes,Session,{'Read by ' if text else ''}{text}||Read by {teacher},unimplemented,unimplemented,"If the reader is not a teacher, {teacher} should be Anon and {text} specifies the name of the reader."
+,,,,,,,,,,,,
+Extra tags,Other,0,No,No,No,Yes,No,,unimplemented,unimplemented,unimplemented,

@@ -365,7 +365,7 @@ class Formatter:
         a(annotation["body"] + " ")
         
         tagStrings = []
-        for n,tag in enumerate(annotation["tags"]):
+        for n,tag in enumerate(annotation.get("tags",())):
             omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags)
             
             if tag in self.excerptBoldTags: # Always print boldface tags
@@ -472,7 +472,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
         for annotation in x["annotations"]:
             with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
                 a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
-            tagsAlreadyPrinted.update(annotation["tags"])
+            tagsAlreadyPrinted.update(annotation.get("tags",()))
     
     return str(a)
 

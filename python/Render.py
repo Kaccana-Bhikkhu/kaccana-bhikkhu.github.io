@@ -8,6 +8,13 @@ from collections import defaultdict
 import pyratemp
 from functools import cache
 
+def PrepareReferences() -> None:
+    """Prepare gDatabase["reference"] for use."""
+    reference = gDatabase["reference"]
+
+    ParseCSV.ListifyKey(reference,"author1")
+    ParseCSV.ConvertToInteger(reference,"pdfPageOffset")
+
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
     prya = fString.replace("{","@!").replace("}","!@")
@@ -58,7 +65,10 @@ def RenderItem(item: dict) -> None:
 
     formNumber = kind["defaultForm"] - 1
 
-    bodyTemplateStr = kind["body"][formNumber]
+    if formNumber >= 0:
+        bodyTemplateStr = kind["body"][formNumber]
+    else:
+        bodyTemplateStr = item["text"]
     bodyTemplate = CompileTemplate(bodyTemplateStr)
     attributionTemplateStr = kind["attribution"][formNumber]
     attributionTemplate = CompileTemplate(attributionTemplateStr)
@@ -80,7 +90,8 @@ def RenderItem(item: dict) -> None:
             if len(parts) > 3 and gOptions.verbose >= -1:
                 print("   Warning: '|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
 
-    renderDict = {"text": text, "s": plural, "colon": ":", "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
+    colon = "" if re.match(r"\s*[a-z]",text) else ":"
+    renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
 
     item["body"] = bodyTemplate(**renderDict)
 
@@ -169,6 +180,7 @@ def main(clOptions,database) -> None:
     global gDatabase
     gDatabase = database
 
+    PrepareReferences()
     PrepareTemplates()
 
     RenderExcerpts()
