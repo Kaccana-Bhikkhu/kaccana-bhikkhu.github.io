@@ -2,11 +2,12 @@
 The only remaining work for Prototype.py to do is substitute the list of teachers for {attribtuion}, {attribtuion2}, and {attribtuion3} when needed."""
 
 import json, re
-import ParseCSV, Prototype, Utils
+import markdown
 from typing import Tuple, Type
 from collections import defaultdict
 import pyratemp
 from functools import cache
+import ParseCSV, Prototype, Utils
 
 def PrepareReferences() -> None:
     """Prepare gDatabase["reference"] for use."""
@@ -157,6 +158,40 @@ def LinkSuttas():
     if gOptions.verbose > 1:
         print(f"{suttasMatched} links generated to suttas")
 
+def LinkKnownReferences() -> None:
+    """Search for references of the form [title]() OR title page|p. N, add author and link information.
+    If the excerpt is a reading, make the author the teacher."""
+
+    def LinkItem(item: dict):
+        refs2 = re.findall(refForm2,item["body"],flags = re.IGNORECASE)
+        if refs2:
+            print("Ref form 2:",refs2)
+        
+        refs3 = re.findall(refForm3,item["body"],flags = re.IGNORECASE)
+        if refs3:
+            print("Ref form 3:",refs3)
+
+    escapedTitles = [re.escape(title) for title in gDatabase["reference"]]
+    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\(\)'
+    print(refForm2)
+    refForm3 = Utils.RegexMatchAny(escapedTitles) + r'\s+(?:page|p\.)\s+([0-9]+)'
+
+    for x in gDatabase["excerpts"]:
+        LinkItem(x)
+        for a in x["annotations"]:
+            LinkItem(a)
+
+
+def MarkdownFormat(text: str) -> str:
+    """Format a single-line string using markdown, and eliminate the <p> tags"""
+
+    md = markdown.markdown(text).replace("<p>","").replace("</p>","")
+    if md != text:
+        print(text,"|",md)
+    
+    return md
+
+
 def LinkReferences() -> None:
     """Add hyperlinks to references contained in the excerpts and annotations.
     Allowable formats are:
@@ -166,6 +201,13 @@ def LinkReferences() -> None:
     4. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
 
     LinkSuttas()
+    LinkKnownReferences()
+
+    for x in gDatabase["excerpts"]:
+        x["body"] = MarkdownFormat(x["body"])
+        for a in x["annotations"]:
+            a["body"] = MarkdownFormat(a["body"])
+    
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
