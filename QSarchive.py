@@ -5,6 +5,7 @@ import argparse
 import importlib
 import os, sys
 import json
+from typing import List
 
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
@@ -12,6 +13,21 @@ sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./py
 def PrintModuleSeparator(moduleName:str) -> None:
     if clOptions.verbose >= 0:
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
+
+def ReadJobOptions(jobName: str) -> List[str]:
+    "Read a list of job options from the .vscode/launch.json"
+    
+    with open(".vscode/launch.json", "r") as file:
+        fixed_json = ''.join(line for line in file if not line.lstrip().startswith('//'))
+        config = json.loads(fixed_json)
+    
+    for job in config["configurations"]:
+        if job["name"] == jobName:
+            return job["args"]
+    
+    allJobs = [job["name"] for job in config["configurations"]]
+    print(f"{repr(jobName)} does not appear in .vscode/launch.json.\nAvailable jobs: {allJobs}")
+    quit()
 
 # The list of code modules/ops to implement
 moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Prototype','OptimizeDatabase']
@@ -45,7 +61,14 @@ for mod in modules:
 parser.add_argument('--verbose','-v',default=0,action='count',help='increase verbosity')
 parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbosity')
 
-clOptions = parser.parse_args()
+if sys.argv[1] == "Job": # If ops == "Job", 
+    jobOptionsList = ReadJobOptions(sys.argv[2])
+    argList = jobOptionsList + sys.argv[3:]
+else:
+    argList = sys.argv[1:]
+
+print(argList)
+clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 
 if not os.path.exists(clOptions.homeDir):
