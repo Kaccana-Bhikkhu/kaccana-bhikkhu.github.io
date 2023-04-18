@@ -3,6 +3,7 @@ The only remaining work for Prototype.py to do is substitute the list of teacher
 
 import json, re
 import markdown
+from markdown_newtab import NewTabExtension
 from typing import Tuple, Type
 from collections import defaultdict
 import pyratemp
@@ -15,6 +16,11 @@ def PrepareReferences() -> None:
 
     ParseCSV.ListifyKey(reference,"author1")
     ParseCSV.ConvertToInteger(reference,"pdfPageOffset")
+    
+    # Convert the key of each reference to lowercase for dictionary matching
+    # ref["title"] still has the correct case
+    for ref in list(reference.keys()): 
+        reference[ref.lower()] = reference.pop(ref)
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -127,13 +133,13 @@ def RenderExcerpts() -> None:
 def LinkSuttas():
     """Add links to sutta.readingfaithfully.org"""
 
-    def RefToReadingFaithfully(matchObject: re.Match):
+    def RefToReadingFaithfully(matchObject: re.Match) -> str:
         firstPart = matchObject[0].split("-")[0]
         dashed = re.sub(r'\s','-',firstPart)
         #print(matchObject,dashed)
         return f'<a href = "https://sutta.readingfaithfully.org/?q={dashed}">{matchObject[0]}</a>'
 
-    def LinkItem(item: dict):
+    def LinkItem(item: dict) -> None:
         item["body"],count = re.subn(suttaMatch,RefToReadingFaithfully,item["body"],flags = re.IGNORECASE)
 
         #if count:
@@ -162,19 +168,29 @@ def LinkKnownReferences() -> None:
     """Search for references of the form [title]() OR title page|p. N, add author and link information.
     If the excerpt is a reading, make the author the teacher."""
 
-    def LinkItem(item: dict):
-        refs2 = re.findall(refForm2,item["body"],flags = re.IGNORECASE)
-        if refs2:
-            print("Ref form 2:",refs2)
+    def RefToBook(matchObject: re.Match) -> str:
+        print(matchObject[0],matchObject[1])
+        try:
+            reference = gDatabase["reference"][matchObject[1].lower()]
+        except KeyError:
+            if gOptions.verbosity > 0:
+                print(f"Cannot find title {matchObject[1]} in the list of references.")
+            return matchObject[1]
+        
+        return matchObject[0].replace("()",f"({reference['remoteUrl']})")
+
+    def LinkItem(item: dict) -> None:
+        item["body"],count = re.subn(refForm2,RefToBook,item["body"],flags = re.IGNORECASE)
+        if count:
+            print("Ref form 2:",item["body"])
         
         refs3 = re.findall(refForm3,item["body"],flags = re.IGNORECASE)
         if refs3:
             print("Ref form 3:",refs3)
 
     escapedTitles = [re.escape(title) for title in gDatabase["reference"]]
-    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\(\)'
-    print(refForm2)
-    refForm3 = Utils.RegexMatchAny(escapedTitles) + r'\s+(?:page|p\.)\s+([0-9]+)'
+    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles,capturingGroup = True) + r'\]\(\)'
+    refForm3 = Utils.RegexMatchAny(escapedTitles,) + r'\s+(?:page|p\.)\s+([0-9]+)'
 
     for x in gDatabase["excerpts"]:
         LinkItem(x)
@@ -185,7 +201,7 @@ def LinkKnownReferences() -> None:
 def MarkdownFormat(text: str) -> str:
     """Format a single-line string using markdown, and eliminate the <p> tags"""
 
-    md = markdown.markdown(text).replace("<p>","").replace("</p>","")
+    md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabExtension()]), flags=re.IGNORECASE)
     if md != text:
         print(text,"|",md)
     
