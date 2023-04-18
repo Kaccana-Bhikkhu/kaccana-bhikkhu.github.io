@@ -168,8 +168,17 @@ def LinkKnownReferences() -> None:
     """Search for references of the form [title]() OR title page|p. N, add author and link information.
     If the excerpt is a reading, make the author the teacher."""
 
+    def TeacherString(reference: dict) -> str:
+        "Given a book reference, return the list of authors"
+        if reference["author"]:
+            teacherList = [gDatabase["teacher"][t]["fullName"] for t in reference["author"]]
+            return Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
+        else:
+            return reference["authorIfNotTeacher"]
+        
     def RefToBook(matchObject: re.Match) -> str:
         print(matchObject[0],matchObject[1])
+        
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
@@ -177,10 +186,15 @@ def LinkKnownReferences() -> None:
                 print(f"Cannot find title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        return matchObject[0].replace("()",f"({reference['remoteUrl']})")
+        teacherStr = TeacherString(reference)
+        
+        nonlocal foundReferences # use this to pass the title of the matched book back to LinkItem
+        foundReferences.append(reference)
+        return f"[{matchObject[1]}]({reference['remoteUrl']}) by {teacherStr}"
 
     def RefToPage(matchObject: re.Match) -> str:
         print(matchObject[0],matchObject[1],matchObject[2])
+        
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
@@ -188,20 +202,30 @@ def LinkKnownReferences() -> None:
                 print(f"Cannot find title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        return f"[{matchObject[0]}]({reference['remoteUrl']}#page={int(matchObject[2]) + reference['pdfPageOffset']})"
+        teacherStr = TeacherString(reference)
+        
+        nonlocal foundReferences # use this to pass the title of the matched book back to LinkItem
+        foundReferences.append(reference)
+        return f"[{matchObject[0]}]({reference['remoteUrl']}#page={int(matchObject[2]) + reference['pdfPageOffset']}) by {teacherStr}"
     
     def LinkItem(item: dict) -> None:
-        item["body"],count = re.subn(refForm2,RefToBook,item["body"],flags = re.IGNORECASE)
-        if count:
-            print("Ref form 2:",item["body"])
+        nonlocal foundReferences
         
-        item["body"],count = re.subn(refForm3,RefToPage,item["body"],flags = re.IGNORECASE)
-        if count:
+        foundReferences = []
+        item["body"] = re.sub(refForm2,RefToBook,item["body"],flags = re.IGNORECASE)
+        if foundReferences:
+            print("Ref form 2:",item["body"])
+            
+        foundReferences = []
+        item["body"] = re.sub(refForm3,RefToPage,item["body"],flags = re.IGNORECASE)
+        if foundReferences:
             print("Ref form 3:",item["body"])
 
     escapedTitles = [re.escape(title) for title in gDatabase["reference"]]
     refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\(\)'
     refForm3 = Utils.RegexMatchAny(escapedTitles,) + r'\s+(?:page|p\.)\s+([0-9]+)'
+
+    foundReferences = []
 
     for x in gDatabase["excerpts"]:
         LinkItem(x)
