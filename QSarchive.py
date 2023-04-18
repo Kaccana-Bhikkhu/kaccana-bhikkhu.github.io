@@ -64,7 +64,7 @@ parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbo
 if sys.argv[1] == "Job": # If ops == "Job", 
     jobOptionsList = ReadJobOptions(sys.argv[2])
     argList = jobOptionsList + sys.argv[3:]
-    print(sys.argv[0]," ".join(argList))
+    print('python',sys.argv[0]," ".join(argList))
 else:
     argList = sys.argv[1:]
 

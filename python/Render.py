@@ -179,17 +179,28 @@ def LinkKnownReferences() -> None:
         
         return matchObject[0].replace("()",f"({reference['remoteUrl']})")
 
+    def RefToPage(matchObject: re.Match) -> str:
+        print(matchObject[0],matchObject[1],matchObject[2])
+        try:
+            reference = gDatabase["reference"][matchObject[1].lower()]
+        except KeyError:
+            if gOptions.verbosity > 0:
+                print(f"Cannot find title {matchObject[1]} in the list of references.")
+            return matchObject[1]
+        
+        return f"[{matchObject[0]}]({reference['remoteUrl']}#page={int(matchObject[2]) + reference['pdfPageOffset']})"
+    
     def LinkItem(item: dict) -> None:
         item["body"],count = re.subn(refForm2,RefToBook,item["body"],flags = re.IGNORECASE)
         if count:
             print("Ref form 2:",item["body"])
         
-        refs3 = re.findall(refForm3,item["body"],flags = re.IGNORECASE)
-        if refs3:
-            print("Ref form 3:",refs3)
+        item["body"],count = re.subn(refForm3,RefToPage,item["body"],flags = re.IGNORECASE)
+        if count:
+            print("Ref form 3:",item["body"])
 
     escapedTitles = [re.escape(title) for title in gDatabase["reference"]]
-    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles,capturingGroup = True) + r'\]\(\)'
+    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\(\)'
     refForm3 = Utils.RegexMatchAny(escapedTitles,) + r'\s+(?:page|p\.)\s+([0-9]+)'
 
     for x in gDatabase["excerpts"]:
