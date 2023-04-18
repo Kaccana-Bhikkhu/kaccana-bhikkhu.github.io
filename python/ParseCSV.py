@@ -564,7 +564,7 @@ def LoadEventFile(database,eventName,directory):
                 defaultTeacher = database["kind"][x["kind"]]["inheritTeacherFrom"]
                 if defaultTeacher == "Anon": # Check if the default teacher is anonymous
                     x["teachers"] = ["Anon"]
-                else:
+                elif defaultTeacher != "None":
                     x["teachers"] = ourSession["teachers"]
             
             if x["sessionNumber"] != lastSession:

@@ -610,13 +610,26 @@
   },
   "reference": {
     "stillness flowing": {
+      "abbreviation": "Stillness Flowing",
       "title": "Stillness Flowing",
-      "authorIfNotTeacher": "",
+      "attribution": "by Ajahn Jayasaro",
       "pdfPageOffset": 22,
       "filename": "stillness-flowing - 2018-08-31.pdf",
       "remoteUrl": "https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf",
       "author": [
         "AJaya"
+      ]
+    },
+    "collected teachings": {
+      "abbreviation": "Collected Teachings",
+      "title": "Collected Teachings of Ajahn Chah",
+      "attribution": "",
+      "pdfPageOffset": 38,
+      "filename": "Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf",
+      "remoteUrl": "https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf",
+      "author": [
+        "AChah",
+        "AP"
       ]
     }
   },
@@ -653,6 +666,16 @@
     }
   },
   "teacher": {
+    "AChah": {
+      "teacher": "AChah",
+      "fullName": "Ajahn Chah",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
+      "attribute": true,
+      "allowTag": true
+    },
     "AP": {
       "teacher": "AP",
       "fullName": "Ajahn Pasanno",
@@ -10337,9 +10360,7 @@
       "startTime": "5:30",
       "endTime": "8:55",
       "text": "Outline of the day; progress of Ajahn Jayasaro's biography of Ajahn Chah.",
-      "teachers": [
-        "AP"
-      ],
+      "teachers": [],
       "annotations": [
         {
           "kind": "Reference",
@@ -10415,7 +10436,7 @@
           "text": "Stillness Flowing p. 22",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=44\" target=\"_blank\">Stillness Flowing p. 22</a> by Ajahn Jayasaro"
+          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=44\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro"
         }
       ],
       "tags": [
@@ -10459,7 +10480,7 @@
           "text": "Stillness Flowing p. 25",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=47\" target=\"_blank\">Stillness Flowing p. 25</a> by Ajahn Jayasaro"
+          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=47\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro"
         }
       ],
       "tags": [
@@ -10526,7 +10547,7 @@
           "text": "Stillness Flowing p. 34",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=56\" target=\"_blank\">Stillness Flowing p. 34</a> by Ajahn Jayasaro"
+          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=56\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro"
         }
       ],
       "tags": [
@@ -10571,7 +10592,7 @@
           "text": "Stillness Flowing p. 37",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=59\" target=\"_blank\">Stillness Flowing p. 37</a> by Ajahn Jayasaro"
+          "body": "<b>Reference</b>: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=59\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro"
         }
       ],
       "tags": [
@@ -17443,16 +17464,16 @@
     "Form 3": "form3",
     "Usage notes": "usageNotes",
     "Medium": "medium",
+    "Abbreviation": "abbreviation",
     "Title": "title",
     "Author1": "author1",
     "Author2": "author2",
-    "Author if not teacher": "authorIfNotTeacher",
+    "Attribution": "attribution",
     "PDF page offset": "pdfPageOffset",
     "Filename": "filename",
     "Remote URL": "remoteUrl",
     "Reference": "reference",
     "Series": "series",
-    "Abbreviation": "abbreviation",
     "Teacher": "teacher",
     "Full name": "fullName",
     "Web link": "webLink",

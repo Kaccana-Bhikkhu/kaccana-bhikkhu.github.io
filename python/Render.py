@@ -8,6 +8,7 @@ from typing import Tuple, Type
 from collections import defaultdict
 import pyratemp
 from functools import cache
+import itertools
 import ParseCSV, Prototype, Utils
 
 def PrepareReferences() -> None:
@@ -17,7 +18,7 @@ def PrepareReferences() -> None:
     ParseCSV.ListifyKey(reference,"author1")
     ParseCSV.ConvertToInteger(reference,"pdfPageOffset")
     
-    # Convert the key of each reference to lowercase for dictionary matching
+    # Convert ref["abbreviation"] to lowercase for dictionary matching
     # ref["title"] still has the correct case
     for ref in list(reference.keys()): 
         reference[ref.lower()] = reference.pop(ref)
@@ -162,83 +163,85 @@ def LinkSuttas():
             LinkItem(a)
 
     if gOptions.verbose > 1:
-        print(f"{suttasMatched} links generated to suttas")
+        print(f"   {suttasMatched} links generated to suttas")
 
 def LinkKnownReferences() -> None:
-    """Search for references of the form [title]() OR title page|p. N, add author and link information.
+    """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
     If the excerpt is a reading, make the author the teacher."""
-
-    def TeacherString(reference: dict) -> str:
-        "Given a book reference, return the list of authors"
-        if reference["author"]:
-            teacherList = [gDatabase["teacher"][t]["fullName"] for t in reference["author"]]
-            return Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
-        else:
-            return reference["authorIfNotTeacher"]
         
-    def RefToBook(matchObject: re.Match) -> str:
-        print(matchObject[0],matchObject[1])
+    def RefToHiddenPage(matchObject: re.Match) -> str:
+        #print(matchObject[0],matchObject[1],matchObject[2])
         
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
             if gOptions.verbosity > 0:
-                print(f"Cannot find title {matchObject[1]} in the list of references.")
+                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        teacherStr = TeacherString(reference)
-        
-        nonlocal foundReferences # use this to pass the title of the matched book back to LinkItem
+        url = reference['remoteUrl']
+        if matchObject[2]: # Did we match a page number?
+           url +=  f"#page={int(matchObject[2]) + reference['pdfPageOffset']}"
+        nonlocal foundReferences # use this to pass the abbreviation of the matched book back to LinkItem
         foundReferences.append(reference)
-        return f"[{matchObject[1]}]({reference['remoteUrl']}) by {teacherStr}"
+        return f"[{reference['title']}]({url}) {reference['attribution']}"
 
     def RefToPage(matchObject: re.Match) -> str:
-        print(matchObject[0],matchObject[1],matchObject[2])
+        #print(matchObject[0],matchObject[1],matchObject[2])
         
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
             if gOptions.verbosity > 0:
-                print(f"Cannot find title {matchObject[1]} in the list of references.")
+                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
-        
-        teacherStr = TeacherString(reference)
-        
+                
         nonlocal foundReferences # use this to pass the title of the matched book back to LinkItem
         foundReferences.append(reference)
-        return f"[{matchObject[0]}]({reference['remoteUrl']}#page={int(matchObject[2]) + reference['pdfPageOffset']}) by {teacherStr}"
+        return f"[{reference['title']}]({reference['remoteUrl']}#page={int(matchObject[2]) + reference['pdfPageOffset']}) {reference['attribution']}"
     
     def LinkItem(item: dict) -> None:
-        nonlocal foundReferences
+        nonlocal foundReferences, referenceCount
         
         foundReferences = []
-        item["body"] = re.sub(refForm2,RefToBook,item["body"],flags = re.IGNORECASE)
+        item["body"] = re.sub(refForm2,RefToHiddenPage,item["body"],flags = re.IGNORECASE)
+        referenceCount += len(foundReferences)
         if foundReferences:
-            print("Ref form 2:",item["body"])
+            if item["kind"] == "Reading": # If this is a reading, set the teachers to
+                #print(foundReferences)
+                item["teachers"] += list(set(itertools.chain.from_iterable(ref["author"] for ref in foundReferences)))
+            #print("Ref form 2:",item["body"],item.get("teachers",[]))
             
         foundReferences = []
         item["body"] = re.sub(refForm3,RefToPage,item["body"],flags = re.IGNORECASE)
+        referenceCount += len(foundReferences)
         if foundReferences:
-            print("Ref form 3:",item["body"])
+            if item["kind"] == "Reading":
+                #print(foundReferences)
+                item["teachers"] += list(set(itertools.chain.from_iterable(ref["author"] for ref in foundReferences)))
+            #print("Ref form 3:",item["body"],item.get("teachers",[]))
 
-    escapedTitles = [re.escape(title) for title in gDatabase["reference"]]
-    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\(\)'
+    escapedTitles = [re.escape(abbrev) for abbrev in gDatabase["reference"]]
+    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\((?:(?:page|p.)\s+([0-9]+))?\)'
     refForm3 = Utils.RegexMatchAny(escapedTitles,) + r'\s+(?:page|p\.)\s+([0-9]+)'
 
     foundReferences = []
+    referenceCount = 0
 
     for x in gDatabase["excerpts"]:
         LinkItem(x)
         for a in x["annotations"]:
             LinkItem(a)
-
+    
+    if gOptions.verbose > 1:
+        print(f"   {referenceCount} links generated to references")
 
 def MarkdownFormat(text: str) -> str:
     """Format a single-line string using markdown, and eliminate the <p> tags"""
 
     md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabExtension()]), flags=re.IGNORECASE)
-    if md != text:
-        print(text,"|",md)
+    #if md != text:
+    #    print(text,"|",md)
     
     return md
 
@@ -247,8 +250,8 @@ def LinkReferences() -> None:
     """Add hyperlinks to references contained in the excerpts and annotations.
     Allowable formats are:
     1. [reference](link) - Markdown format for arbitrary hyperlinks
-    2. [title]() - Titles in Reference sheet: 
-    3. title page N - Link to specific pages for titles in Reference sheet 
+    2. [title]() or [title](page N) - Titles in Reference sheet; if page N or p. N appears between the parenthesis, link to this page in the pdf, but don't display in the html
+    3. title page N - Link to specific page for titles in Reference sheet which shows the page number
     4. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
 
     LinkSuttas()

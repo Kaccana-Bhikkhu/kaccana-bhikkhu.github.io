@@ -394,13 +394,24 @@
   },
   "reference": {
     "Stillness Flowing": {
+      "abbreviation": "Stillness Flowing",
       "title": "Stillness Flowing",
       "author1": "AJaya",
       "author2": "",
-      "authorIfNotTeacher": "",
+      "attribution": "by Ajahn Jayasaro",
       "pdfPageOffset": "22",
       "filename": "stillness-flowing - 2018-08-31.pdf",
       "remoteUrl": "https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf"
+    },
+    "Collected Teachings": {
+      "abbreviation": "Collected Teachings",
+      "title": "Collected Teachings of Ajahn Chah",
+      "author1": "AChah",
+      "author2": "AP",
+      "attribution": "",
+      "pdfPageOffset": "38",
+      "filename": "Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf",
+      "remoteUrl": "https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf"
     }
   },
   "series": {
@@ -436,6 +447,16 @@
     }
   },
   "teacher": {
+    "AChah": {
+      "teacher": "AChah",
+      "fullName": "Ajahn Chah",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
+      "attribute": true,
+      "allowTag": true
+    },
     "AP": {
       "teacher": "AP",
       "fullName": "Ajahn Pasanno",
@@ -10115,9 +10136,7 @@
       "startTime": "5:30",
       "endTime": "8:55",
       "text": "Outline of the day; progress of Ajahn Jayasaro's biography of Ajahn Chah.",
-      "teachers": [
-        "AP"
-      ],
+      "teachers": [],
       "annotations": [
         {
           "kind": "Reference",
@@ -17103,16 +17122,16 @@
     "Form 3": "form3",
     "Usage notes": "usageNotes",
     "Medium": "medium",
+    "Abbreviation": "abbreviation",
     "Title": "title",
     "Author1": "author1",
     "Author2": "author2",
-    "Author if not teacher": "authorIfNotTeacher",
+    "Attribution": "attribution",
     "PDF page offset": "pdfPageOffset",
     "Filename": "filename",
     "Remote URL": "remoteUrl",
     "Reference": "reference",
     "Series": "series",
-    "Abbreviation": "abbreviation",
     "Teacher": "teacher",
     "Full name": "fullName",
     "Web link": "webLink",
