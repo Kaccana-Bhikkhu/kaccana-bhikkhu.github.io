@@ -179,8 +179,18 @@ def LinkSuttas():
 def LinkKnownReferences() -> None:
     """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
     If the excerpt is a reading, make the author the teacher."""
-        
-    def RefToHiddenPage(matchObject: re.Match) -> str:
+
+    def ParsePageNumber(text: str) -> int|None:
+        "Extract the page number from a text string"
+        if not text:
+            return None
+        pageNumber = re.search(r"[0-9]+",text)
+        if pageNumber:
+            return int(pageNumber[0])
+        else:
+            return None
+
+    def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         #print(matchObject[0],matchObject[1],matchObject[2])
         
         try:
@@ -191,14 +201,31 @@ def LinkKnownReferences() -> None:
             return matchObject[1]
         
         url = reference['remoteUrl']
-        if matchObject[2]: # Did we match a page number?
-           url +=  f"#page={int(matchObject[2]) + reference['pdfPageOffset']}"
-        nonlocal foundReferences # use this to pass the abbreviation of the matched book back to LinkItem
+        page = ParsePageNumber(matchObject[2])
+        if page:
+           url +=  f"#page={page + reference['pdfPageOffset']}"
+
+        nonlocal foundReferences # use this to pass the abbreviation of the matched book back to ReferenceForm2
         foundReferences.append(reference)
         return f"[{reference['title']}]({url}) {reference['attribution']}"
 
-    def RefToPage(matchObject: re.Match) -> str:
-        #print(matchObject[0],matchObject[1],matchObject[2])
+    def ReferenceForm2(bodyStr,item: dict) -> Tuple[str,int]:
+        """Search for references of the form: [title]() or [title](page N)"""
+        nonlocal foundReferences
+        foundReferences = []
+        returnStr = re.sub(refForm2,ReferenceForm2Substitution,bodyStr,flags = re.IGNORECASE)
+
+        if foundReferences:
+            if item["kind"] == "Reading": # If this is a reading, add the authors to the teacher list
+                #print(foundReferences)
+                for ref in foundReferences:
+                    Utils.AppendUnique(item["teachers"],ref["author"])
+            #print("Ref form 2:",item["body"],item.get("teachers",[]))
+        
+        return returnStr,len(foundReferences)
+    
+    def ReferenceForm3Substitution(matchObject: re.Match) -> str:
+        #print(repr(matchObject[0]),repr(matchObject[1]),repr(matchObject[2]))
         
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -206,43 +233,43 @@ def LinkKnownReferences() -> None:
             if gOptions.verbosity > 0:
                 print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
-                
-        nonlocal foundReferences # use this to pass the title of the matched book back to LinkItem
-        foundReferences.append(reference)
-        return f"[{reference['title']}]({reference['remoteUrl']}#page={int(matchObject[2]) + reference['pdfPageOffset']}) {reference['attribution']}"
-    
-    def LinkItem(item: dict) -> None:
-        nonlocal foundReferences, referenceCount
         
+        url = reference['remoteUrl']
+        page = ParsePageNumber(matchObject[2])
+        if page:
+           url +=  f"#page={page + reference['pdfPageOffset']}"
+
+        nonlocal foundReferences # use this to pass the abbreviation of the matched book back to ReferenceForm2
+        foundReferences.append(reference)
+        return f"{reference['title']} {reference['attribution']} [{matchObject[2]}]({url})"
+
+    def ReferenceForm3(bodyStr,item: dict) -> Tuple[str,int]:
+        """Search for references of the form: title page N"""
+        nonlocal foundReferences
         foundReferences = []
-        item["body"] = re.sub(refForm2,RefToHiddenPage,item["body"],flags = re.IGNORECASE)
-        referenceCount += len(foundReferences)
+        returnStr = re.sub(refForm3,ReferenceForm3Substitution,bodyStr,flags = re.IGNORECASE)
+
         if foundReferences:
-            if item["kind"] == "Reading": # If this is a reading, set the teachers to
+            if item["kind"] == "Reading": # If this is a reading, add the authors to the teacher list
                 #print(foundReferences)
-                item["teachers"] += list(set(itertools.chain.from_iterable(ref["author"] for ref in foundReferences)))
-            #print("Ref form 2:",item["body"],item.get("teachers",[]))
-            
-        foundReferences = []
-        item["body"] = re.sub(refForm3,RefToPage,item["body"],flags = re.IGNORECASE)
-        referenceCount += len(foundReferences)
-        if foundReferences:
-            if item["kind"] == "Reading":
-                #print(foundReferences)
-                item["teachers"] += list(set(itertools.chain.from_iterable(ref["author"] for ref in foundReferences)))
+                for ref in foundReferences:
+                    Utils.AppendUnique(item["teachers"],ref["author"])
             #print("Ref form 3:",item["body"],item.get("teachers",[]))
+        
+        return returnStr,len(foundReferences)
 
     escapedTitles = [re.escape(abbrev) for abbrev in gDatabase["reference"]]
-    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\((?:(?:page|p.)\s+([0-9]+))?\)'
-    refForm3 = Utils.RegexMatchAny(escapedTitles,) + r'\s+(?:page|p\.)\s+([0-9]+)'
+    pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
+
+    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\((' + pageReference + ')?\)'
+    #print(refForm2)
+    refForm3 = Utils.RegexMatchAny(escapedTitles) + r'\s+(' + pageReference + ')'
+    #print(refForm3)
 
     foundReferences = []
-    referenceCount = 0
 
-    for x in gDatabase["excerpts"]:
-        LinkItem(x)
-        for a in x["annotations"]:
-            LinkItem(a)
+    referenceCount = ApplyToBodyText(ReferenceForm2,passItemAsSecondArgument=True)
+    referenceCount = ApplyToBodyText(ReferenceForm3,passItemAsSecondArgument=True)
     
     if gOptions.verbose > 1:
         print(f"   {referenceCount} links generated to references")

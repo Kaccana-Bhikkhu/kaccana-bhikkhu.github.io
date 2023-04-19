@@ -11,6 +11,14 @@ def Contents(container:list|dict) -> list:
     except AttributeError:
         return container
 
+def AppendUnique(dest: list, source: list) -> list:
+    "Append the items in source to dest, preserving order but eliminating duplicates."
+
+    destSet = set(dest)
+    for item in source:
+        if item not in destSet:
+            dest.append(item)
+
 def Mp3FileName(event:str, session:int, excerpt:int) -> str:
     "Return the name of the mp3 file associated with a given event, session, and excerpt"
     return f"{event}_S{session:02d}_F{excerpt:02d}.mp3"
