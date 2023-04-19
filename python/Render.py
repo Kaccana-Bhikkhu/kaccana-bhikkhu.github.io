@@ -4,7 +4,7 @@ The only remaining work for Prototype.py to do is substitute the list of teacher
 import json, re
 import markdown
 from markdown_newtab import NewTabExtension
-from typing import Tuple, Type
+from typing import Tuple, Type, Callable
 from collections import defaultdict
 import pyratemp
 from functools import cache
@@ -28,6 +28,27 @@ def FStringToPyratemp(fString: str) -> str:
     prya = fString.replace("{","@!").replace("}","!@")
     
     return prya
+
+def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgument: bool = False) -> int:
+    """Apply operation transform on each string considered body text in the database.
+    If passItemAsSecondArgument is True, transform has the form transform(bodyText,item), otherwise transform(bodyText).
+    transform returns a tuple (changedText,changeCount). Return the total number of changes made."""
+    
+    if not passItemAsSecondArgument:
+        twoVariableTransform = lambda bodyStr,_: transform(bodyStr)
+    else:
+        twoVariableTransform = transform
+
+    changeCount = 0
+    for x in gDatabase["excerpts"]:
+        x["body"],count = twoVariableTransform(x["body"],x)
+        changeCount += count
+        for a in x["annotations"]:
+            a["body"],count = twoVariableTransform(a["body"],a)
+            changeCount += count
+
+    return changeCount
+    
 
 def ExtractAnnotation(form: str) -> Tuple[str,str]:
     """Split the form into body and attribution parts, which are separated by ||.
@@ -140,30 +161,20 @@ def LinkSuttas():
         #print(matchObject,dashed)
         return f'[{matchObject[0]}](https://sutta.readingfaithfully.org/?q={dashed})'
 
-    def LinkItem(item: dict) -> None:
-        item["body"],count = re.subn(suttaMatch,RefToReadingFaithfully,item["body"],flags = re.IGNORECASE)
-
-        #if count:
-        #    print(item["body"])
-
-        nonlocal suttasMatched
-        suttasMatched += count
+    def LinkItem(bodyStr: str) -> Tuple[str,int]:
+        return re.subn(suttaMatch,RefToReadingFaithfully,bodyStr,flags = re.IGNORECASE)
     
-    suttasMatched = 0
     with open('tools/citationHelper/Suttas.json', 'r', encoding='utf-8') as file: 
         suttas = json.load(file)
     suttaAbbreviations = [s[0] for s in suttas]
 
     suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[-]?[0-9]*"
-    #print(suttaMatch)
 
-    for x in gDatabase["excerpts"]:
-        LinkItem(x)
-        for a in x["annotations"]:
-            LinkItem(a)
+    suttasMatched = ApplyToBodyText(LinkItem)
 
     if gOptions.verbose > 1:
         print(f"   {suttasMatched} links generated to suttas")
+
 
 def LinkKnownReferences() -> None:
     """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
@@ -236,14 +247,15 @@ def LinkKnownReferences() -> None:
     if gOptions.verbose > 1:
         print(f"   {referenceCount} links generated to references")
 
-def MarkdownFormat(text: str) -> str:
-    """Format a single-line string using markdown, and eliminate the <p> tags"""
+def MarkdownFormat(text: str) -> Tuple[str,int]:
+    """Format a single-line string using markdown, and eliminate the <p> tags.
+    The second item of the tuple is 1 if the item has changed and zero otherwise"""
 
     md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabExtension()]), flags=re.IGNORECASE)
-    #if md != text:
-    #    print(text,"|",md)
-    
-    return md
+    if md != text:
+        return md, 1
+    else:
+        return text,0
 
 
 def LinkReferences() -> None:
@@ -257,10 +269,9 @@ def LinkReferences() -> None:
     LinkSuttas()
     LinkKnownReferences()
 
-    for x in gDatabase["excerpts"]:
-        x["body"] = MarkdownFormat(x["body"])
-        for a in x["annotations"]:
-            a["body"] = MarkdownFormat(a["body"])
+    markdownChanges = ApplyToBodyText(MarkdownFormat)
+    if gOptions.verbose > 1:
+        print(f"   {markdownChanges} items changed by markdown")
     
 
 def AddArguments(parser) -> None:
