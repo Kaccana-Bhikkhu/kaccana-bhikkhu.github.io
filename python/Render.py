@@ -138,7 +138,7 @@ def LinkSuttas():
         firstPart = matchObject[0].split("-")[0]
         dashed = re.sub(r'\s','-',firstPart)
         #print(matchObject,dashed)
-        return f'<a href = "https://sutta.readingfaithfully.org/?q={dashed}">{matchObject[0]}</a>'
+        return f'[{matchObject[0]}](https://sutta.readingfaithfully.org/?q={dashed})'
 
     def LinkItem(item: dict) -> None:
         item["body"],count = re.subn(suttaMatch,RefToReadingFaithfully,item["body"],flags = re.IGNORECASE)
