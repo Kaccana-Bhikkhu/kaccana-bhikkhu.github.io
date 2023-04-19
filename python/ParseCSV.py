@@ -456,7 +456,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     
     if kind["takesTeachers"]:
         if not annotation["teachers"]:
-            defaultTeacher = kind["inheritTeacherFrom"]
+            defaultTeacher = kind["inheritTeachersFrom"]
             if defaultTeacher == "Anon": # Check if the default teacher is anonymous
                 annotation["teachers"] = ["Anon"]
             elif defaultTeacher == "Excerpt":
@@ -561,7 +561,7 @@ def LoadEventFile(database,eventName,directory):
                 x["qTag"] = ourSession["tags"] + x["qTag"]
 
             if not x["teachers"]:
-                defaultTeacher = database["kind"][x["kind"]]["inheritTeacherFrom"]
+                defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
                 if defaultTeacher == "Anon": # Check if the default teacher is anonymous
                     x["teachers"] = ["Anon"]
                 elif defaultTeacher != "None":

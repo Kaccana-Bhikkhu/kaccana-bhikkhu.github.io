@@ -52,9 +52,9 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
 
 def ExtractAnnotation(form: str) -> Tuple[str,str]:
     """Split the form into body and attribution parts, which are separated by ||.
-    Example: Story|| told by @!teacher!@||: @!text!@ ->
+    Example: Story|| told by @!teachers!@||: @!text!@ ->
     body = Story||{attribution}||:: @!text!@
-    attribution = told by @!teacher!@"""
+    attribution = told by @!teachers!@"""
 
     parts = form.split("||")
     if len(parts) == 1:
@@ -82,6 +82,10 @@ def PrepareTemplates():
             body, attribution = ExtractAnnotation(form)
             kind["body"].append(body)
             kind["attribution"].append(attribution)
+
+def AddImplicitAttributions() -> None:
+    "If an excerpt of kind Reading doesn't have a Read by annotation, attribute it to the session teachers"
+    pass
 
 @cache
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
@@ -120,7 +124,7 @@ def RenderItem(item: dict) -> None:
                 print("   Warning: '|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
 
     colon = "" if re.match(r"\s*[a-z]",text) else ":"
-    renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teacher": teacherStr}
+    renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
     item["body"] = bodyTemplate(**renderDict)
 
@@ -316,6 +320,8 @@ def main(clOptions,database) -> None:
 
     PrepareReferences()
     PrepareTemplates()
+
+    AddImplicitAttributions()
 
     RenderExcerpts()
 

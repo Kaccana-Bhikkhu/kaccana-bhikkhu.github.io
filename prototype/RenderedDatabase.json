@@ -182,12 +182,12 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Session",
+      "inheritTeachersFrom": "Session",
       "usageNotes": "",
       "form": [
         "unimplemented",
         "unimplemented",
-        "“@!text!@”|| Answered by @!teacher!@."
+        "“@!text!@”|| Answered by @!teachers!@."
       ],
       "body": [
         "unimplemented",
@@ -197,7 +197,7 @@
       "attribution": [
         "",
         "",
-        " Answered by @!teacher!@."
+        " Answered by @!teachers!@."
       ]
     },
     "Response": {
@@ -209,10 +209,10 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Session",
+      "inheritTeachersFrom": "Session",
       "usageNotes": "",
       "form": [
-        "++Response@!s!@++|| by @!teacher!@||@!colon!@ @!text!@",
+        "++Response@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
         "unimplemented",
         "unimplemented"
       ],
@@ -222,7 +222,7 @@
         "unimplemented"
       ],
       "attribution": [
-        " by @!teacher!@",
+        " by @!teachers!@",
         "",
         ""
       ]
@@ -236,11 +236,11 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Follow-up@!colon!@++ “@!text!@”|| aswered by @!teacher!@.",
+        "++Follow-up@!colon!@++ “@!text!@”|| aswered by @!teachers!@.",
         "unimplemented"
       ],
       "body": [
@@ -250,7 +250,7 @@
       ],
       "attribution": [
         "",
-        " aswered by @!teacher!@.",
+        " aswered by @!teachers!@.",
         ""
       ]
     },
@@ -263,11 +263,11 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Stor@!'ies' if s else 'y'!@@!colon!@++ @!text!@|| told by @!teacher!@.",
+        "++Stor@!'ies' if s else 'y'!@@!colon!@++ @!text!@|| told by @!teachers!@.",
         "unimplemented"
       ],
       "body": [
@@ -277,7 +277,7 @@
       ],
       "attribution": [
         "",
-        " told by @!teacher!@.",
+        " told by @!teachers!@.",
         ""
       ]
     },
@@ -290,11 +290,11 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Recollection@!s!@@!colon!@++ @!text!@|| recounted by @!teacher!@.",
+        "++Recollection@!s!@@!colon!@++ @!text!@|| recounted by @!teachers!@.",
         "unimplemented"
       ],
       "body": [
@@ -304,7 +304,7 @@
       ],
       "attribution": [
         "",
-        " recounted by @!teacher!@.",
+        " recounted by @!teachers!@.",
         ""
       ]
     },
@@ -317,12 +317,12 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
-        "++Teaching@!s!@++|| by @!teacher!@||@!colon!@ @!text!@",
-        "++Teaching@!s!@@!colon!@++ @!text!@|| contributed by @!teacher!@.",
-        "@!text!@|| Teaching@!s!@ by @!teacher!@."
+        "++Teaching@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
+        "++Teaching@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
+        "@!text!@|| Teaching@!s!@ by @!teachers!@."
       ],
       "body": [
         "<b>Teaching@!s!@</b>{attribution}@!colon!@ @!text!@",
@@ -330,9 +330,9 @@
         "@!text!@{attribution}"
       ],
       "attribution": [
-        " by @!teacher!@",
-        " contributed by @!teacher!@.",
-        " Teaching@!s!@ by @!teacher!@."
+        " by @!teachers!@",
+        " contributed by @!teachers!@.",
+        " Teaching@!s!@ by @!teachers!@."
       ]
     },
     "Reflection": {
@@ -344,12 +344,12 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
-        "++Reflection@!s!@++|| by @!teacher!@||@!colon!@ @!text!@",
-        "++Reflection@!s!@@!colon!@++ @!text!@|| contributed by @!teacher!@.",
-        "@!text!@|| Reflection@!s!@ by @!teacher!@."
+        "++Reflection@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
+        "++Reflection@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
+        "@!text!@|| Reflection@!s!@ by @!teachers!@."
       ],
       "body": [
         "<b>Reflection@!s!@</b>{attribution}@!colon!@ @!text!@",
@@ -357,9 +357,9 @@
         "@!text!@{attribution}"
       ],
       "attribution": [
-        " by @!teacher!@",
-        " contributed by @!teacher!@.",
-        " Reflection@!s!@ by @!teacher!@."
+        " by @!teachers!@",
+        " contributed by @!teachers!@.",
+        " Reflection@!s!@ by @!teachers!@."
       ]
     },
     "Quote": {
@@ -371,11 +371,11 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "A quote from the teacher him/herself.",
       "form": [
         "unimplemented",
-        "++Quote:++ @!prefix!@ “@!text!@” @!suffix!@|| — @!teacher!@",
+        "++Quote:++ @!prefix!@ “@!text!@” @!suffix!@|| — @!teachers!@",
         "unimplemented"
       ],
       "body": [
@@ -385,7 +385,7 @@
       ],
       "attribution": [
         "",
-        " — @!teacher!@",
+        " — @!teachers!@",
         ""
       ]
     },
@@ -398,11 +398,11 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "The teacher quoting someone else. If the person quoted in a teacher, they should get the first tag.",
       "form": [
         "unimplemented",
-        "++Quote:++ @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@||@!'.' if suffix else ''!@ Quoted by @!teacher!@.",
+        "++Quote:++ @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@||@!'.' if suffix else ''!@ Quoted by @!teachers!@.",
         "unimplemented"
       ],
       "body": [
@@ -412,7 +412,7 @@
       ],
       "attribution": [
         "",
-        "@!'.' if suffix else ''!@ Quoted by @!teacher!@.",
+        "@!'.' if suffix else ''!@ Quoted by @!teachers!@.",
         ""
       ]
     },
@@ -425,11 +425,11 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Excerpt",
+      "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Meditation instruction@!s!@@!colon!@++ @!text!@|| offered by @!teacher!@.",
+        "++Meditation instruction@!s!@@!colon!@++ @!text!@|| offered by @!teachers!@.",
         "unimplemented"
       ],
       "body": [
@@ -439,7 +439,7 @@
       ],
       "attribution": [
         "",
-        " offered by @!teacher!@.",
+        " offered by @!teachers!@.",
         ""
       ]
     },
@@ -452,8 +452,8 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "None",
-      "usageNotes": "{teacher} should be the author of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teacher} will be set and \" by {teacher}\" inserted automatically. If not, plug both in manually along with the hyperlink if relevant.",
+      "inheritTeachersFrom": "None",
+      "usageNotes": "{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and \" by {teachers}\" inserted automatically. If not, plug both in manually along with the hyperlink if relevant.",
       "form": [
         "++Reading@!s!@@!colon!@++ @!text!@",
         "++Reading@!s!@@!colon!@++ @!text!@",
@@ -479,7 +479,7 @@
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "",
+      "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
         "++Reference@!s!@++: @!text!@",
@@ -506,7 +506,7 @@
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "",
+      "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
         "++Sutta@!s!@++: @!text!@",
@@ -533,7 +533,7 @@
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "",
+      "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
         "++Vinaya:++ @!text!@",
@@ -560,12 +560,12 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "Anon",
+      "inheritTeachersFrom": "Anon",
       "usageNotes": "",
       "form": [
-        "++Comment@!s!@++|| by @!teacher!@||@!colon!@ @!text!@",
-        "++Comment@!s!@@!colon!@++ @!text!@|| contributed by @!teacher!@.",
-        "@!text!@|| Comment@!s!@ by @!teacher!@."
+        "++Comment@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
+        "++Comment@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
+        "@!text!@|| Comment@!s!@ by @!teachers!@."
       ],
       "body": [
         "<b>Comment@!s!@</b>{attribution}@!colon!@ @!text!@",
@@ -573,9 +573,9 @@
         "@!text!@{attribution}"
       ],
       "attribution": [
-        " by @!teacher!@",
-        " contributed by @!teacher!@.",
-        " Comment@!s!@ by @!teacher!@."
+        " by @!teachers!@",
+        " contributed by @!teachers!@.",
+        " Comment@!s!@ by @!teachers!@."
       ]
     },
     "Other": {
@@ -587,7 +587,7 @@
       "takesTeachers": true,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "None",
+      "inheritTeachersFrom": "None",
       "usageNotes": "",
       "form": [
         "unimplemented",
@@ -614,10 +614,10 @@
       "takesTeachers": true,
       "takesTags": false,
       "appendToExcerpt": true,
-      "inheritTeacherFrom": "Session",
-      "usageNotes": "If the reader is not a teacher, {teacher} should be Anon and {text} specifies the name of the reader.",
+      "inheritTeachersFrom": "Session",
+      "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader.",
       "form": [
-        "@!'Read by ' if text else ''!@@!text!@||Read by @!teacher!@",
+        "@!'Read by ' if text else ''!@@!text!@||Read by @!teachers!@",
         "unimplemented",
         "unimplemented"
       ],
@@ -627,7 +627,7 @@
         "unimplemented"
       ],
       "attribution": [
-        "Read by @!teacher!@",
+        "Read by @!teachers!@",
         "",
         ""
       ]
@@ -641,7 +641,7 @@
       "takesTeachers": false,
       "takesTags": true,
       "appendToExcerpt": false,
-      "inheritTeacherFrom": "",
+      "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
         "unimplemented",
@@ -17512,7 +17512,7 @@
     "Takes teachers?": "takesTeachers",
     "Takes tags?": "takesTags",
     "Append to excerpt?": "appendToExcerpt",
-    "Inherit teacher from:": "inheritTeacherFrom",
+    "Inherit teachers from:": "inheritTeachersFrom",
     "Form 1": "form1",
     "Form 2": "form2",
     "Form 3": "form3",
