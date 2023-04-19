@@ -1,7 +1,7 @@
 """A module to create various prototype versions of the website for testing purposes"""
 
 import os, json
-from typing import List, Type
+from typing import List, Type, Tuple 
 from airium import Airium
 import Utils
 from datetime import timedelta
@@ -313,11 +313,6 @@ class Formatter:
         
         a = Airium(source_minify=True)
         
-        if set(excerpt["teachers"]) != set(self.excerptDefaultTeacher): # Compare items irrespective of order
-            teacherList = [gDatabase["teacher"][t]["fullName"] for t in excerpt["teachers"]]
-        else:
-            teacherList = []
-        
         a(Mp3ExcerptLink(excerpt))
         if self.excerptShortFormat:
             a(' ')
@@ -329,11 +324,29 @@ class Formatter:
         else:
             a(f' ({excerpt["duration"]}) ')
 
-        if teacherList or gOptions.attributeAll:
-            attribution = excerpt["attribution"]
-        else:
-            attribution = ""
-        a(excerpt["body"].replace("{attribution}",attribution) + ' ')
+        def ListAttributionKeys() -> Tuple[str,str]:
+            for num in range(1,10):
+                numStr = str(num) if num > 1 else ""
+                yield ("attribution" + numStr, "teachers" + numStr)
+
+        bodyWithAttributions = excerpt["body"]
+        for attrKey,teacherKey in ListAttributionKeys():
+            if attrKey not in excerpt:
+                break
+
+            if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher): # Compare items irrespective of order
+                teacherList = [gDatabase["teacher"][t]["fullName"] for t in excerpt[teacherKey]]
+            else:
+                teacherList = []
+
+            if teacherList or gOptions.attributeAll:
+                attribution = excerpt[attrKey]
+            else:
+                attribution = ""
+            
+            bodyWithAttributions = bodyWithAttributions.replace("{"+ attrKey + "}",attribution)
+        
+        a(bodyWithAttributions + ' ')
         
         if not self.excerptShortFormat:
             a(gDatabase["event"][excerpt["event"]]["title"] + ",")
@@ -361,7 +374,7 @@ class Formatter:
         "Return annotation formatted in html according to our stored settings. Don't print tags that have appeared earlier in this excerpt"
         
         a = Airium(source_minify=True)
-        
+
         a(annotation["body"] + " ")
         
         tagStrings = []
@@ -470,9 +483,10 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
-            with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
-                a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
-            tagsAlreadyPrinted.update(annotation.get("tags",()))
+            if annotation["body"]:
+                with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
+                    a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
+                tagsAlreadyPrinted.update(annotation.get("tags",()))
     
     return str(a)
 

@@ -423,7 +423,7 @@
       "takesTags": false,
       "appendToExcerpt": true,
       "inheritTeachersFrom": "Session",
-      "form1": "{'Read by ' if text else ''}{text}||Read by {teachers}",
+      "form1": "{'Read by ' if text else ''}{text}{'.' if text else ''}||Read by {teachers}.",
       "form2": "unimplemented",
       "form3": "unimplemented",
       "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
@@ -10070,7 +10070,7 @@
       "flags": "",
       "startTime": "0:30",
       "endTime": "",
-      "text": "My connection with Ajahn Chah",
+      "text": "My connection with Ajahn Chah.",
       "teachers": [
         "AP"
       ],
@@ -10336,10 +10336,8 @@
         {
           "kind": "Read by",
           "flags": "",
-          "text": "",
-          "teachers": [
-            "AP"
-          ],
+          "text": "Someone else",
+          "teachers": [],
           "indentLevel": 1
         },
         {

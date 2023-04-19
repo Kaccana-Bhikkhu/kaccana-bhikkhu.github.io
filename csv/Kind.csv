@@ -25,6 +25,6 @@ Vinaya,References,1,No,No,No,Yes,No,,++Vinaya:++ {text},unimplemented,unimplemen
 Comment,Other,1,Yes,Yes,Yes,Yes,No,Anon,++Comment{s}++|| by {teachers}||{colon} {text},++Comment{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| Comment{s} by {teachers}.,
 Other,Other,0,Yes,Yes,Yes,Yes,No,None,unimplemented,unimplemented,unimplemented,
 ,,,,,,,,,,,,
-Read by,Attribution,1,No,No,Yes,No,Yes,Session,{'Read by ' if text else ''}{text}||Read by {teachers},unimplemented,unimplemented,"If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
+Read by,Attribution,1,No,No,Yes,No,Yes,Session,{'Read by ' if text else ''}{text}{'.' if text else ''}||Read by {teachers}.,unimplemented,unimplemented,"If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
 ,,,,,,,,,,,,
 Extra tags,Other,0,No,No,No,Yes,No,,unimplemented,unimplemented,unimplemented,

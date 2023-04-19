@@ -617,17 +617,17 @@
       "inheritTeachersFrom": "Session",
       "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader.",
       "form": [
-        "@!'Read by ' if text else ''!@@!text!@||Read by @!teachers!@",
+        "@!'Read by ' if text else ''!@@!text!@@!'.' if text else ''!@||Read by @!teachers!@.",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "@!'Read by ' if text else ''!@@!text!@{attribution}",
+        "@!'Read by ' if text else ''!@@!text!@@!'.' if text else ''!@{attribution}",
         "unimplemented",
         "unimplemented"
       ],
       "attribution": [
-        "Read by @!teachers!@",
+        "Read by @!teachers!@.",
         "",
         ""
       ]
@@ -10289,7 +10289,7 @@
       "flags": "",
       "startTime": "0:30",
       "endTime": "",
-      "text": "My connection with Ajahn Chah",
+      "text": "My connection with Ajahn Chah.",
       "teachers": [
         "AP"
       ],
@@ -10347,8 +10347,8 @@
       ],
       "qTagCount": 2,
       "duration": "5:00",
-      "body": "<b>Recollection:</b> My connection with Ajahn Chah{attribution}",
-      "attribution": " recounted by Ajahn Pasanno."
+      "body": "<b>Recollection:</b> My connection with Ajahn Chah.{attribution}",
+      "attribution": " Recounted by Ajahn Pasanno."
     },
     {
       "event": "SRD2010",
@@ -10428,7 +10428,7 @@
             "AP"
           ],
           "indentLevel": 1,
-          "body": "Read by Ajahn Pasanno"
+          "body": ""
         },
         {
           "kind": "Reference",
@@ -10447,8 +10447,12 @@
       ],
       "qTagCount": 4,
       "duration": "4:29",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah&#39;s birthplace and early life.",
-      "attribution": ""
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah&#39;s birthplace and early life. {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by Ajahn Pasanno.",
+      "teachers2": [
+        "AP"
+      ]
     },
     {
       "event": "SRD2010",
@@ -10472,7 +10476,7 @@
             "AP"
           ],
           "indentLevel": 1,
-          "body": "Read by Ajahn Pasanno"
+          "body": ""
         },
         {
           "kind": "Reference",
@@ -10490,8 +10494,12 @@
       ],
       "qTagCount": 3,
       "duration": "2:28",
-      "body": "<b>Reading</b> from the draft biography: At the age of nine, Ajahn Chah asks to go to the village monastery.",
-      "attribution": ""
+      "body": "<b>Reading</b> from the draft biography: At the age of nine, Ajahn Chah asks to go to the village monastery. {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by Ajahn Pasanno.",
+      "teachers2": [
+        "AP"
+      ]
     },
     {
       "event": "SRD2010",
@@ -10539,7 +10547,7 @@
             "AP"
           ],
           "indentLevel": 1,
-          "body": "Read by Ajahn Pasanno"
+          "body": ""
         },
         {
           "kind": "Reference",
@@ -10559,8 +10567,12 @@
       ],
       "qTagCount": 2,
       "duration": "4:10",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah falls in love.",
-      "attribution": ""
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah falls in love. {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by Ajahn Pasanno.",
+      "teachers2": [
+        "AP"
+      ]
     },
     {
       "event": "SRD2010",
@@ -10579,12 +10591,10 @@
         {
           "kind": "Read by",
           "flags": "",
-          "text": "",
-          "teachers": [
-            "AP"
-          ],
+          "text": "Someone else",
+          "teachers": [],
           "indentLevel": 1,
-          "body": "Read by Ajahn Pasanno"
+          "body": ""
         },
         {
           "kind": "Reference",
@@ -10600,7 +10610,7 @@
       ],
       "qTagCount": 1,
       "duration": "2:54",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah ordains at age 20.",
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah ordains at age 20. Read by Someone else.",
       "attribution": ""
     },
     {

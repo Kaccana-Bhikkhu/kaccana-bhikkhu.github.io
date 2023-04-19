@@ -85,11 +85,35 @@ def PrepareTemplates():
 
 def AddImplicitAttributions() -> None:
     "If an excerpt of kind Reading doesn't have a Read by annotation, attribute it to the session teachers"
-    pass
+    for x in gDatabase["excerpts"]:
+        if x["kind"] == "Reading":
+            readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
+            if not readBy:
+                print("We're going to add something soon.")
 
 @cache
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
     return pyratemp.Template(template)
+
+def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
+    "Append annotation a to the end of excerpt x."
+    #print(f"{a=},{x=}")
+
+    if "{attribution}" in a["body"]:
+        attrNum = 2
+        attrKey = "attribution" + str(attrNum)
+        while attrKey in x: # Find the first available key of this form
+            attrNum += 1
+            attrKey = "attribution" + str(attrNum)
+        
+        a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
+        x[attrKey] = a["attribution"]
+        x["teachers" + str(attrNum)] = a["teachers"]
+
+    x["body"] += " " + a["body"]
+
+    a["body"] = ""
+    del a["attribution"]
 
 def RenderItem(item: dict) -> None:
     """Render an excerpt or annotation by adding "body" and "attribution" keys."""
@@ -143,7 +167,7 @@ def RenderItem(item: dict) -> None:
         item["body"] = item["body"].replace("{attribution}","")
         attributionStr = ""
     
-    if "indentLevel" in item: # Is this an annotation?
+    if "indentLevel" in item and not kind["appendToExcerpt"]: # Is this an annotation listed below the excerpt?
         item["body"] = item["body"].replace("{attribution}",attributionStr)
     else:
         item["attribution"] = attributionStr
@@ -151,10 +175,14 @@ def RenderItem(item: dict) -> None:
 def RenderExcerpts() -> None:
     """Use the templates in gDatabase["kind"] to add "body" and "attribution" keys to each except and its annotations"""
 
+    kinds = gDatabase["kind"]
     for x in gDatabase["excerpts"]:
         RenderItem(x)
         for a in x["annotations"]:
             RenderItem(a)
+            if kinds[a["kind"]]["appendToExcerpt"]:
+                AppendAnnotationToExcerpt(a,x)
+
 
 def LinkSuttas():
     """Add links to sutta.readingfaithfully.org"""
