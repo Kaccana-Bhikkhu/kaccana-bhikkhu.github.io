@@ -466,8 +466,13 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 annotation["teachers"] = ourSession["teachers"]
         
         if not TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts"):
-            excerpt["exclude"] = True # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
-            return 
+            # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
+            if excerpt["kind"] == "Reading" and excerpt["teachers"] == annotation["teachers"]:
+                # Unless the annotation comes as part of a reading
+                pass
+            else:
+                excerpt["exclude"] = True 
+                return 
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         if set(teacherList) == set(excerpt["teachers"]):
@@ -541,7 +546,7 @@ def LoadEventFile(database,eventName,directory):
         excerpts = []
         redactedTagSet = set(database["tagRedacted"])
         for x in rawExcerpts:
-            
+
             x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
             x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
 
@@ -581,7 +586,7 @@ def LoadEventFile(database,eventName,directory):
             x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
             x["fileNumber"] = fileNumber
-                
+            print(x)
             excerpts.append(x)
             prevExcerpt = x
         
@@ -614,6 +619,8 @@ def LoadEventFile(database,eventName,directory):
         excerpts = [x for x in excerpts if not x["exclude"]]
             # Remove excluded excerpts and those we didn't get consent for
         
+        print(excerpts)
+        print("Remvoved:",removedExcerpts)
         xNumber = 1
         lastSession = -1
         for x in excerpts:
