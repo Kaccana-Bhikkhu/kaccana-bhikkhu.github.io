@@ -26,7 +26,9 @@ def ReadJobOptions(jobName: str) -> List[str]:
             return job["args"]
     
     allJobs = [job["name"] for job in config["configurations"]]
-    print(f"{repr(jobName)} does not appear in .vscode/launch.json.\nAvailable jobs: {allJobs}")
+    if jobName:
+        print(f"{repr(jobName)} does not appear in .vscode/launch.json.")
+    print(f"Available jobs: {allJobs}")
     quit()
 
 # The list of code modules/ops to implement
@@ -62,7 +64,7 @@ parser.add_argument('--verbose','-v',default=0,action='count',help='increase ver
 parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbosity')
 
 if sys.argv[1] == "Job": # If ops == "Job", 
-    jobOptionsList = ReadJobOptions(sys.argv[2])
+    jobOptionsList = ReadJobOptions(sys.argv[2] if len(sys.argv) >= 3 else None)
     argList = jobOptionsList + sys.argv[3:]
     print('python',sys.argv[0]," ".join(argList))
 else:

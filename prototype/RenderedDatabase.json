@@ -10591,8 +10591,10 @@
         {
           "kind": "Read by",
           "flags": "",
-          "text": "Someone else",
-          "teachers": [],
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
           "indentLevel": 1,
           "body": ""
         },
@@ -10610,8 +10612,12 @@
       ],
       "qTagCount": 1,
       "duration": "2:54",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah ordains at age 20. Read by Someone else.",
-      "attribution": ""
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah ordains at age 20. {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by Ajahn Pasanno.",
+      "teachers2": [
+        "AP"
+      ]
     },
     {
       "event": "SRD2010",
@@ -10628,14 +10634,29 @@
         "AChah",
         "AP"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
       "tags": [
         "Ajahn Chah"
       ],
       "qTagCount": 1,
       "duration": "2:00",
-      "body": "<b>Reading:</b> No page number: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro; page number: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=32\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro; page range: <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=48\" target=\"_blank\">Collected Teachings of Ajahn Chah</a> ",
-      "attribution": ""
+      "body": "<b>Reading:</b> No page number: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro; page number: <a href=\"https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=32\" target=\"_blank\">Stillness Flowing</a> by Ajahn Jayasaro; page range: <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=48\" target=\"_blank\">Collected Teachings of Ajahn Chah</a>  {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by Ajahn Pasanno.",
+      "teachers2": [
+        "AP"
+      ]
     },
     {
       "event": "SRD2010",
@@ -10651,14 +10672,29 @@
         "AChah",
         "AP"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
       "tags": [
         "Ajahn Chah"
       ],
       "qTagCount": 1,
       "duration": "22:08",
-      "body": "<b>Reading:</b> Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=138\" target=\"_blank\">pages 100-120</a>",
-      "attribution": ""
+      "body": "<b>Reading:</b> Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=138\" target=\"_blank\">pages 100-120</a> {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by Ajahn Pasanno.",
+      "teachers2": [
+        "AP"
+      ]
     },
     {
       "event": "SRD2011",

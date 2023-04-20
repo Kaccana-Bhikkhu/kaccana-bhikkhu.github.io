@@ -68,7 +68,7 @@ def AllTags(item: dict) -> set:
     return allTags
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
-    "Return the index of a session specified by event and sessionNum."
+    "Return the session specified by event and sessionNum."
     
     for session in sessions:
         if session["event"] == event and session["sessionNumber"] == sessionNum:

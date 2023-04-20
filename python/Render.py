@@ -89,7 +89,10 @@ def AddImplicitAttributions() -> None:
         if x["kind"] == "Reading":
             readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
             if not readBy:
-                print("We're going to add something soon.")
+                sessionTeachers = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])["teachers"]
+                newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": sessionTeachers,"indentLevel": 1}
+                x["annotations"].insert(0,newAnnotation)
+                
 
 @cache
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
