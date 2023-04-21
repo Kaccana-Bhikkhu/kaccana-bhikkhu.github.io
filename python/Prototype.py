@@ -334,7 +334,7 @@ class Formatter:
             if attrKey not in excerpt:
                 break
 
-            if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher): # Compare items irrespective of order
+            if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher) or "a" in excerpt["flags"]: # Compare items irrespective of order
                 teacherList = [gDatabase["teacher"][t]["fullName"] for t in excerpt[teacherKey]]
             else:
                 teacherList = []

@@ -56,6 +56,12 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
     body = Story||{attribution}||:: @!text!@
     attribution = told by @!teachers!@"""
 
+    parts = form.split("++")
+    if len(parts) > 1:
+        parts.insert(2,"</b>")
+        parts.insert(1,"<b>")
+        form = ''.join(parts)
+
     parts = form.split("||")
     if len(parts) == 1:
         return form, ""
@@ -73,11 +79,6 @@ def PrepareTemplates():
 
         kind["body"] = []; kind["attribution"] = []
         for form in kind["form"]:
-            parts = form.split("++")
-            if len(parts) > 1:
-                parts.insert(2,"</b>")
-                parts.insert(1,"<b>")
-                form = ''.join(parts)
             
             body, attribution = ExtractAnnotation(form)
             kind["body"].append(body)
@@ -137,16 +138,20 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
 
     if formNumber >= 0:
         bodyTemplateStr = kind["body"][formNumber]
+        attributionTemplateStr = kind["attribution"][formNumber]
     else:
-        bodyTemplateStr = item["text"]
+        bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(item["text"])
+    
+    if "u" in item["flags"]: # This flag indicates no quotes
+        bodyTemplateStr = re.sub('[“”]','',bodyTemplateStr) # Templates should use only double smart quotes
+
     bodyTemplate = CompileTemplate(bodyTemplateStr)
-    attributionTemplateStr = kind["attribution"][formNumber]
     attributionTemplate = CompileTemplate(attributionTemplateStr)
 
     plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers):
+    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"]:
         teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
     teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')

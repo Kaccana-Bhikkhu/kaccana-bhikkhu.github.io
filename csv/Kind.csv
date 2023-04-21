@@ -14,6 +14,8 @@ Quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Quote:++ {prefix} “{
 Indirect quote,Quotes,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teachers}.,unimplemented,"The teacher quoting someone else. If the person quoted in a teacher, they should get the first tag."
 ,,,,,,,,,,,,
 Meditation instruction,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Meditation instruction{s}{colon}++ {text}|| offered by {teachers}.,unimplemented,
+Guided meditation,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Guided meditation{s}{colon}++ {text}|| offered by {teachers}.,unimplemented,
+Chanting,Meditations,2,Yes,Yes,Yes,Yes,No,Excerpt,unimplemented,++Chanting{s}{colon}++ {text}|| offered by {teachers}.,unimplemented,
 ,,,,,,,,,,,,
 Reading,Readings,1,Yes,Yes,Yes,Yes,No,None,++Reading{s}{colon}++ {text},++Reading{s}{colon}++ {text},unimplemented,"{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and "" by {teachers}"" inserted automatically. If not, plug both in manually along with the hyperlink if relevant."
 ,,,,,,,,,,,,
