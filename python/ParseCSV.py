@@ -475,8 +475,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 return 
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
-        if set(teacherList) == set(excerpt["teachers"]):
-            teacherList = []
+        #if set(teacherList) == set(excerpt["teachers"]):
+        #    teacherList = []
         
         annotation["teachers"] = teacherList
     else:

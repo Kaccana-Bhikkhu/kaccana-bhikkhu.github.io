@@ -118,7 +118,7 @@ def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
     a["body"] = ""
     del a["attribution"]
 
-def RenderItem(item: dict,owner: dict|None = None) -> None:
+def RenderItem(item: dict,container: dict|None = None) -> None:
     """Render an excerpt or annotation by adding "body" and "attribution" keys.
     If item is an attribution, container is the excerpt containing it."""
     
@@ -145,7 +145,10 @@ def RenderItem(item: dict,owner: dict|None = None) -> None:
 
     plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
 
-    teacherList = [gDatabase["teacher"][t]["fullName"] for t in item.get("teachers",())]
+    teachers = item.get("teachers",())
+    if container and set(container["teachers"]) == set(teachers):
+        teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
+    teacherList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
     teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
 
     text = item["text"]
@@ -180,7 +183,7 @@ def RenderItem(item: dict,owner: dict|None = None) -> None:
         item["body"] = item["body"].replace("{attribution}","")
         attributionStr = ""
     
-    if "indentLevel" in item and not kind["appendToExcerpt"]: # Is this an annotation listed below the excerpt?
+    if container and not kind["appendToExcerpt"]: # Is this an annotation listed below the excerpt?
         item["body"] = item["body"].replace("{attribution}",attributionStr)
     else:
         item["attribution"] = attributionStr
