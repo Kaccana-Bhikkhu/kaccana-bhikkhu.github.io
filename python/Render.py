@@ -118,12 +118,22 @@ def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
     a["body"] = ""
     del a["attribution"]
 
-def RenderItem(item: dict) -> None:
-    """Render an excerpt or annotation by adding "body" and "attribution" keys."""
+def RenderItem(item: dict,owner: dict|None = None) -> None:
+    """Render an excerpt or annotation by adding "body" and "attribution" keys.
+    If item is an attribution, container is the excerpt containing it."""
     
     kind = gDatabase["kind"][item["kind"]]
 
-    formNumber = kind["defaultForm"] - 1
+    formNumberStr = re.search("[0-9]+",item["flags"])
+    if formNumberStr:
+        formNumber = int(formNumberStr[0]) - 1
+        if formNumber >= 0:
+            if formNumber >= len(kind["body"]) or kind["body"][formNumber] == "unimplemented":
+                formNumber = kind["defaultForm"] - 1
+                if gOptions.verbose >= 0:
+                    print(f"   {kind['kind']} does not implement form {formNumberStr[0]}. Reverting to default form number {formNumber + 1}.")
+    else:
+        formNumber = kind["defaultForm"] - 1
 
     if formNumber >= 0:
         bodyTemplateStr = kind["body"][formNumber]
@@ -182,7 +192,7 @@ def RenderExcerpts() -> None:
     for x in gDatabase["excerpts"]:
         RenderItem(x)
         for a in x["annotations"]:
-            RenderItem(a)
+            RenderItem(a,x)
             if kinds[a["kind"]]["appendToExcerpt"]:
                 AppendAnnotationToExcerpt(a,x)
 

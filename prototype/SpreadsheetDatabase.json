@@ -260,7 +260,7 @@
       "inheritTeachersFrom": "Excerpt",
       "form1": "++Teaching{s}++|| by {teachers}||{colon} {text}",
       "form2": "++Teaching{s}{colon}++ {text}|| contributed by {teachers}.",
-      "form3": "{text}|| Teaching{s} by {teachers}.",
+      "form3": "{text}|| ++Teaching{s}++ by {teachers}.",
       "usageNotes": ""
     },
     "Reflection": {
@@ -275,7 +275,7 @@
       "inheritTeachersFrom": "Excerpt",
       "form1": "++Reflection{s}++|| by {teachers}||{colon} {text}",
       "form2": "++Reflection{s}{colon}++ {text}|| contributed by {teachers}.",
-      "form3": "{text}|| Reflection{s} by {teachers}.",
+      "form3": "{text}|| ++Reflection{s}++ by {teachers}.",
       "usageNotes": ""
     },
     "Quote": {
@@ -395,7 +395,7 @@
       "inheritTeachersFrom": "Anon",
       "form1": "++Comment{s}++|| by {teachers}||{colon} {text}",
       "form2": "++Comment{s}{colon}++ {text}|| contributed by {teachers}.",
-      "form3": "{text}|| Comment{s} by {teachers}.",
+      "form3": "{text}|| ++Comment{s}++ by {teachers}.",
       "usageNotes": ""
     },
     "Other": {
@@ -10427,11 +10427,13 @@
         },
         {
           "kind": "Reflection",
-          "flags": "0",
+          "flags": "4",
           "startTime": "",
           "endTime": "",
-          "text": "Ajahn Pasanno reflects on the singular quality of Ajahn Chah's resolution.",
-          "teachers": [],
+          "text": "The singular quality of Ajahn Chah's resolution.",
+          "teachers": [
+            "AP"
+          ],
           "tags": [
             "Ajahn Chah",
             "Determination"

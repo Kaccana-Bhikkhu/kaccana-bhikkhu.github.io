@@ -322,7 +322,7 @@
       "form": [
         "++Teaching@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
         "++Teaching@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
-        "@!text!@|| Teaching@!s!@ by @!teachers!@."
+        "@!text!@|| ++Teaching@!s!@++ by @!teachers!@."
       ],
       "body": [
         "<b>Teaching@!s!@</b>{attribution}@!colon!@ @!text!@",
@@ -332,7 +332,7 @@
       "attribution": [
         " by @!teachers!@",
         " contributed by @!teachers!@.",
-        " Teaching@!s!@ by @!teachers!@."
+        " <b>Teaching@!s!@</b> by @!teachers!@."
       ]
     },
     "Reflection": {
@@ -349,7 +349,7 @@
       "form": [
         "++Reflection@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
         "++Reflection@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
-        "@!text!@|| Reflection@!s!@ by @!teachers!@."
+        "@!text!@|| ++Reflection@!s!@++ by @!teachers!@."
       ],
       "body": [
         "<b>Reflection@!s!@</b>{attribution}@!colon!@ @!text!@",
@@ -359,7 +359,7 @@
       "attribution": [
         " by @!teachers!@",
         " contributed by @!teachers!@.",
-        " Reflection@!s!@ by @!teachers!@."
+        " <b>Reflection@!s!@</b> by @!teachers!@."
       ]
     },
     "Quote": {
@@ -565,7 +565,7 @@
       "form": [
         "++Comment@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
         "++Comment@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
-        "@!text!@|| Comment@!s!@ by @!teachers!@."
+        "@!text!@|| ++Comment@!s!@++ by @!teachers!@."
       ],
       "body": [
         "<b>Comment@!s!@</b>{attribution}@!colon!@ @!text!@",
@@ -575,7 +575,7 @@
       "attribution": [
         " by @!teachers!@",
         " contributed by @!teachers!@.",
-        " Comment@!s!@ by @!teachers!@."
+        " <b>Comment@!s!@</b> by @!teachers!@."
       ]
     },
     "Other": {
@@ -10757,17 +10757,19 @@
         },
         {
           "kind": "Reflection",
-          "flags": "0",
+          "flags": "4",
           "startTime": "",
           "endTime": "",
-          "text": "Ajahn Pasanno reflects on the singular quality of Ajahn Chah's resolution.",
-          "teachers": [],
+          "text": "The singular quality of Ajahn Chah's resolution.",
+          "teachers": [
+            "AP"
+          ],
           "tags": [
             "Ajahn Chah",
             "Determination"
           ],
           "indentLevel": 1,
-          "body": "<b>Reflection</b>: Ajahn Pasanno reflects on the singular quality of Ajahn Chah&#39;s resolution."
+          "body": "<b>Reflection</b> by Ajahn Pasanno: The singular quality of Ajahn Chah&#39;s resolution."
         }
       ],
       "tags": [

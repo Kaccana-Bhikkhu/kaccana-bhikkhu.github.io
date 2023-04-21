@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Python: Current File",
             "type": "python",
@@ -62,7 +63,7 @@
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
             "args": [
-                "Render,Prototype",
+                "ParseCSV,Render,Prototype",
                 "-vvv",
                 "--excerptMp3",
                 "local",

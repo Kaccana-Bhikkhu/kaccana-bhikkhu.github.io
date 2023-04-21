@@ -586,7 +586,6 @@ def LoadEventFile(database,eventName,directory):
             x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
             x["fileNumber"] = fileNumber
-            print(x)
             excerpts.append(x)
             prevExcerpt = x
         
@@ -619,8 +618,6 @@ def LoadEventFile(database,eventName,directory):
         excerpts = [x for x in excerpts if not x["exclude"]]
             # Remove excluded excerpts and those we didn't get consent for
         
-        print(excerpts)
-        print("Remvoved:",removedExcerpts)
         xNumber = 1
         lastSession = -1
         for x in excerpts:
