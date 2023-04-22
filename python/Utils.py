@@ -3,10 +3,25 @@
 from datetime import timedelta, datetime
 import unicodedata
 import re
+from typing import List
 
-def Mp3FileName(event:str ,session:int ,question:int) -> str:
-    "Return the name of the mp3 file associated with a given event, session, and question"
-    return f"{event}_S{session:02d}_Q{question:02d}.mp3"
+def Contents(container:list|dict) -> list:
+    try:
+        return container.values()
+    except AttributeError:
+        return container
+
+def AppendUnique(dest: list, source: list) -> list:
+    "Append the items in source to dest, preserving order but eliminating duplicates."
+
+    destSet = set(dest)
+    for item in source:
+        if item not in destSet:
+            dest.append(item)
+
+def Mp3FileName(event:str, session:int, excerpt:int) -> str:
+    "Return the name of the mp3 file associated with a given event, session, and excerpt"
+    return f"{event}_S{session:02d}_F{excerpt:02d}.mp3"
 
 def StrToTimeDelta(inStr):
     "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
@@ -20,7 +35,7 @@ def StrToTimeDelta(inStr):
     except ValueError:
         pass
         
-    raise ValueError(inStr + " cannot be converted to a time.")
+    raise ValueError("'" + inStr + "' cannot be converted to a time.")
 
 def TimeDeltaToStr(time):
     "Convert a timedelta object to the form [HH:]MM:SS"
@@ -43,25 +58,23 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
+def AllTags(item: dict) -> set:
+    """Return the set of all tags in item, which is either an excerpt or an annotation."""
+    allTags = set(item["tags"])
+    
+    for annotation in item.get("annotations",()):
+        allTags.update(annotation.get("tags",()))
+    
+    return allTags
+
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
-    "Return the index of a session specified by event and sessionNum."
+    "Return the session specified by event and sessionNum."
     
     for session in sessions:
-        if session["Event"] == event and session["Session #"] == sessionNum:
+        if session["event"] == event and session["sessionNumber"] == sessionNum:
             return session
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
-    
-    """if not sessionIndexCache: # For speed, create a dictionary of sessions the first time we run
-        sessionIndexCache = {}
-        s = database["Sessions"]
-        for index in range(len(s)):
-            sessionIndexCache[(s[index]["Event"],s[index]["Session #"])] = index
-    
-    try:
-        return sessionIndexCache[(event,sessionNum)]
-    except KeyError:
-        raise ValueError(f"Can't locate session {sessionNum} of event {event}")"""
 
 def slugify(value, allow_unicode=False):
     """
@@ -78,3 +91,15 @@ def slugify(value, allow_unicode=False):
         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
+
+def RegexMatchAny(strings: List[str],capturingGroup = True):
+    """Return a regular expression that matches any item in strings.
+    Optionally make it a capturing group."""
+
+    if strings:
+        if capturingGroup:
+            return r"(" + r"|".join(strings) + r")"
+        else:
+            return r"(?:" + r"|".join(strings) + r")"
+    else:
+        return r'a\bc' # Looking for a word boundary between text characters always fails: https://stackoverflow.com/questions/1723182/a-regex-that-will-never-be-matched-by-anything

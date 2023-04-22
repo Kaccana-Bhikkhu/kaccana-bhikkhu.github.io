@@ -1,4 +1,10 @@
-# Ajahn Pasanno Question and Answer Archive
+# Ajahn Pasanno Question and Story Archive
+
+## in-progress Prototype Version 2
+
+The biggest changes that will be made in Version 2 of the archive are to allow the spreadsheet to define multiple types of excerpts (stories, quotes, etc. rather than just questions) and allow annotations to be added to each excerpt to further describe and tag the content within. This allows us to gracefully mark up the common scenario where Ajahn Pasanno tells a good story not directly connected to the question at hand but then returns to answer the question after the story. The excerpt contains the entire audio clip. A search for text or tags associated with the story will display the entire excerpt.
+
+## Caution: All documentation below is potentially obsolete
 
 ## Documentation links
 [prototype/README.md](prototype/README.md) - purpose and scope of this project and status of the current prototype.

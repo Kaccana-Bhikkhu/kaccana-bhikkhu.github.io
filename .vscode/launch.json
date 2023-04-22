@@ -1,0 +1,134 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "AllSheets",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--sheets",
+                "All"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "AllEvents",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
+                "--excerptMp3",
+                "local"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "ParseCSV",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "ParseCSV,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Render and Prototype",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "ParseCSV,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "SRD2010,SRD2011",
+                "--parseOnlySpecifiedEvents"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "SRD2010-11",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "SRD2010,SRD2011",
+                "--parseOnlySpecifiedEvents",
+                "--sheets",
+                "SRD2010,SRD2011,Kind,Teacher,Tag,Reference"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildGithubV1.9",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
+                "--events",
+                "SRD2010,SRD2011,TG2013,TG2014,TG2015",
+                "--parseOnlySpecifiedEvents",
+                "--sheets",
+                "All"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "SDR2011-attributeAll",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "DownloadCSV,ParseCSV,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "SRD2011",
+                "--parseOnlySpecifiedEvents",
+                "--attributeAll",
+                "--sheets",
+                "SRD2011,Kind,Teacher"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

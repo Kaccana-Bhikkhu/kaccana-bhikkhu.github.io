@@ -1,26 +1,26 @@
 """A module to create various prototype versions of the website for testing purposes"""
 
 import os, json
-from typing import List, Type
+from typing import List, Type, Tuple 
 from airium import Airium
-from Utils import slugify, Mp3FileName, ReformatDate, StrToTimeDelta, TimeDeltaToStr, FindSession
+import Utils
 from datetime import timedelta
 import re
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
-        for item in gDatabase["Tag_DisplayList"]:
-            indent = "    " * (item["Level"] - 1)
-            indexStr = item["Index #"] + ". " if item["Index #"] else ""
+        for item in gDatabase["tagDisplayList"]:
+            indent = "    " * (item["level"] - 1)
+            indexStr = item["indexNumber"] + ". " if item["indexNumber"] else ""
             
             
-            tagFromText = item['Text'].split(' [')[0].split(' {')[0] # Extract the text before either ' [' or ' {'
-            if tagFromText != item['Tag']:
-                reference = " -> " + item['Tag']
+            tagFromText = item['text'].split(' [')[0].split(' {')[0] # Extract the text before either ' [' or ' {'
+            if tagFromText != item['tag']:
+                reference = " -> " + item['tag']
             else:
                 reference = ""
             
-            print(''.join([indent,indexStr,item['Text'],reference]),file = file)
+            print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
 "Create the default html header"
 head = Airium()
@@ -34,7 +34,7 @@ del head # Clean up the global namespace
 "Create the top navigation guide"
 nav = Airium(source_minify=True)
 with nav.h1():
-    nav("The Ajahn Pasanno Question and Answer Archive")
+    nav("The Ajahn Pasanno Question and Story Archive")
 with nav.p():
     with nav.a(href = "../index.html"):
         nav("Homepage")
@@ -48,13 +48,14 @@ with nav.p():
     with nav.a(href = "../indexes/AllEvents.html"):
         nav(" All events")
     nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllQuestions.html"):
-        nav(" All questions")
+    with nav.a(href = "../indexes/AllExcerpts.html"):
+        nav(" All excerpts")
     nav.hr()
 gNavigation = str(nav)
 del nav
 
-def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None,navigation:bool = True):
+gWrittenHtmlFiles = set()
+def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None,navigation:bool = True) -> None:
     """Write a complete html file given a title, body, and header.
         fileName - name of the file to write
         title - internal title of the html page
@@ -81,6 +82,21 @@ def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",cus
     
     with open(fileName,'wb') as file:
         file.write(bytes(a))
+    
+    gWrittenHtmlFiles.add(fileName)
+
+def DeleteUnwrittenHtmlFiles() -> None:
+    """Remove old html files from previous runs to keep things neat and tidy."""
+
+    dirs = ["events","tags","indexes"]
+    dirs = [os.path.join(gOptions.prototypeDir,dir) for dir in dirs]
+
+    for dir in dirs:
+        fileList = next(os.walk(dir), (None, None, []))[2]
+        for fileName in fileList:
+            fullPath = os.path.join(dir,fileName)
+            if fullPath not in gWrittenHtmlFiles:
+                os.remove(fullPath)
 
 def ItemList(items:List[str], joinStr:str = ", ", lastJoinStr:str = None):
     """Format a list of items"""
@@ -116,11 +132,11 @@ def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     If fullTag, the link text contains the full tag name."""
     
     try:
-        ref = gDatabase["Tag"][tag]["html file"]
+        ref = gDatabase["tag"][tag]["htmlFile"]
         if fullTag:
-            tag = gDatabase["Tag"][tag]["Full tag"]
+            tag = gDatabase["tag"][tag]["fullTag"]
     except KeyError:
-        ref = gDatabase["Tag"][gDatabase["Tag_Subsumed"][tag]]["html file"]
+        ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]]["htmlFile"]
     
     return f'<a href = "../tags/{ref}">{tag}</a>'
 
@@ -135,7 +151,7 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     """Write a list of hyperlinked teachers.
     teachers is a list of abbreviated teacher names"""
     
-    fullNameList = [gDatabase["Teacher"][t]["Full name"] for t in teachers]
+    fullNameList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
     
     return ItemList(fullNameList,*args,**kwargs)
 
@@ -153,33 +169,33 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
         a("Tag/subtag hierarchy:")
     
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
-    for index, item in enumerate(gDatabase["Tag_DisplayList"]):
+    for index, item in enumerate(gDatabase["tagDisplayList"]):
         if not listDuplicateSubtags:
-            if item["Level"] > skipSubtagLevel:
+            if item["level"] > skipSubtagLevel:
                 continue
-            # print(index,item["Tag"])
-            if item["Tag"] and gDatabase["Tag"][item["Tag"]]["List index"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
-                skipSubtagLevel = item["Level"] # skip subsequent subtags
+            # print(index,item["tag"])
+            if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
+                skipSubtagLevel = item["level"] # skip subsequent subtags
             else:
                 skipSubtagLevel = 999 # otherwise don't skip anything
         
-        with a.p(style = f"margin-left: {tabLength * (item['Level']-1)}{tabMeasurement};"):
-            indexStr = item["Index #"] + "." if item["Index #"] else ""
+        with a.p(style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+            indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
             
-            countStr = f' ({item["Question count"]})' if item["Question count"] > 0 else ''
+            countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
             
-            if item['Tag'] and not item['Subsumed']:
-                nameStr = HtmlTagLink(item['Tag'],True) + countStr
+            if item['tag'] and not item['subsumed']:
+                nameStr = HtmlTagLink(item['tag'],True) + countStr
             else:
-                nameStr = item['Name']
+                nameStr = item['name']
             
-            if item['Pāli'] and item['Pāli'] != item['Name']:
-                paliStr = '[' + item['Pāli'] + ']'
+            if item['pali'] and item['pali'] != item['name']:
+                paliStr = '[' + item['pali'] + ']'
             else:
                 paliStr = ''
             
-            if item['Subsumed']:
-                seeAlsoStr = 'see ' + HtmlTagLink(item['Tag'],False) + countStr
+            if item['subsumed']:
+                seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
             else:
                 seeAlsoStr = ''
                 
@@ -187,14 +203,14 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
     
     WriteHtmlFile(os.path.join(pageDir,fileName),"All Tags",str(a))
 
-def QuestionCount(tag:str) -> int:
+def ExcerptCount(tag:str) -> int:
     try:
-        return gDatabase["Tag"][tag]["Question count"]
+        return gDatabase["tag"][tag]["excerptCount"]
     except KeyError:
         return 0
 
 def WriteSortedHtmlTagList(pageDir: str) -> None:
-    """Write a list of tags sorted by number of questions."""
+    """Write a list of tags sorted by number of excerpts."""
     if not os.path.exists(pageDir):
         os.makedirs(pageDir)
     
@@ -203,19 +219,19 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     with a.h1():
         a("Most common tags:")
     
-    # Sort descending by number of questions and in alphabetical order
-    tagsSortedByQCount = sorted((tag for tag in gDatabase["Tag"] if QuestionCount(tag)),key = lambda tag: (-QuestionCount(tag),tag))
+    # Sort descending by number of excerpts and in alphabetical order
+    tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
         with a.p():
-            tagDesc = gDatabase["Tag"][tag]
+            tagDesc = gDatabase["tag"][tag]
             
-            qCount = QuestionCount(tag)
-            countStr = f' ({qCount})' if qCount > 0 else ''
+            xCount = ExcerptCount(tag)
+            countStr = f' ({xCount})' if xCount > 0 else ''
             
-            tagStr = HtmlTagLink(tagDesc['Tag'])
+            tagStr = HtmlTagLink(tagDesc['tag'])
             
-            if tagDesc['Pāli'] and tagDesc['Pāli'] != tagDesc['Tag']:
-                paliStr = '[' + tagDesc['Pāli'] + ']'
+            if tagDesc['pali'] and tagDesc['pali'] != tagDesc['tag']:
+                paliStr = '[' + tagDesc['pali'] + ']'
             else:
                 paliStr = ''
             
@@ -231,25 +247,25 @@ def AudioIcon(hyperlink: str,iconWidth = "30") -> str:
         # text-decoration: none ensures the icon isn't underlined
     return str(a)
 
-def Mp3QuestionLink(question: dict) -> str:
-    """Return an html-formatted audio icon linking to a given question.
+def Mp3ExcerptLink(excerpt: dict) -> str:
+    """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
-    if gOptions.questionMp3 == 'local':
-        baseURL = "../../audio/questions/"
+    if gOptions.excerptMp3 == 'local':
+        baseURL = "../../audio/excerpts/"
     else:
-        baseURL = gOptions.remoteQuestionMp3URL
+        baseURL = gOptions.remoteExcerptMp3URL
         
-    return AudioIcon(baseURL + question["Event"] + "/" + Mp3FileName(question["Event"],question['Session #'],question['File #']))
+    return AudioIcon(baseURL + excerpt["event"] + "/" + Utils.Mp3FileName(excerpt["event"],excerpt['sessionNumber'],excerpt['fileNumber']))
     
 def Mp3SessionLink(session: dict) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
     if gOptions.sessionMp3 == "local":
-        url = "../../audio/events/" + "/" + session["Event"] + "/" + session["Filename"]
+        url = "../../audio/events/" + "/" + session["event"] + "/" + session["filename"]
     else:
-        url = session["Remote mp3 URL"]
+        url = session["remoteMp3Url"]
         
     return AudioIcon(url)
     
@@ -267,19 +283,22 @@ def EventLink(event:str, session: int = 0) -> str:
 def EventDateStr(event: dict) -> str:
     "Return a string describing when the event occured"
     
-    dateStr = ReformatDate(event["Start date"])
-    if event["End date"] and event["End date"] != event["Start date"]:
-        dateStr += " to " + ReformatDate(event["End date"])
+    dateStr = Utils.ReformatDate(event["startDate"])
+    if event["endDate"] and event["endDate"] != event["startDate"]:
+        dateStr += " to " + Utils.ReformatDate(event["endDate"])
     return dateStr
 
 class Formatter: 
-    """A class that formats lists of events, sessions, and questions into html"""
+    """A class that formats lists of events, sessions, and excerpts into html"""
     
     def __init__(self):
-        self.questionDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
-        self.questionOmitTags = set() # Don't display these tags in question description
-        self.questionOmitSessionTags = True # Omit tags already mentioned by the session heading
-        self.questionShortFormat = True
+        self.excerptDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
+        self.excerptOmitTags = set() # Don't display these tags in excerpt description
+        self.excerptBoldTags = set() # Display these tags in boldface
+        self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
+        self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
+        self.excerptShortFormat = True
+
         
         self.headingShowEvent = True # Show the event name in headings?
         self.headingShowSessionTitle = False # Show the session title in headings?
@@ -289,96 +308,140 @@ class Formatter:
         
         pass
     
-    def FormatQuestion(self,question:dict) -> str:
-        "Return question formatted in html according to our stored settings."
+    def FormatExcerpt(self,excerpt:dict) -> str:
+        "Return excerpt formatted in html according to our stored settings."
         
         a = Airium(source_minify=True)
         
-        if set(question["Teachers"]) != set(self.questionDefaultTeacher): # Compare items irrespective of order
-            teacherList = [gDatabase["Teacher"][t]["Full name"] for t in question["Teachers"]]
-        else:
-            teacherList = []
-        
-        a(Mp3QuestionLink(question))
-        if self.questionShortFormat:
+        a(Mp3ExcerptLink(excerpt))
+        if self.excerptShortFormat:
             a(' ')
             with a.b(style="text-decoration: underline;"):
-                a(f"{question['Question #']}.")
-            
-        a(f' ({question["Duration"]})')
-        a(f' “{question["Question text"]}” ')
+                a(f"{excerpt['excerptNumber']}.")
         
-        if teacherList:
-            a(' Answered by ' + ItemList(items = teacherList,lastJoinStr = ' and ') + '. ')
-        if not self.questionShortFormat:
-            a(gDatabase["Event"][question["Event"]]["Title"] + ",")
-            a(f"Session {question['Session #']}, Question {question['Question #']}")
+        if self.excerptPreferStartTime and excerpt.get("startTime",""):
+            a(f' [{excerpt["startTime"]}] ')
+        else:
+            a(f' ({excerpt["duration"]}) ')
+
+        def ListAttributionKeys() -> Tuple[str,str]:
+            for num in range(1,10):
+                numStr = str(num) if num > 1 else ""
+                yield ("attribution" + numStr, "teachers" + numStr)
+
+        bodyWithAttributions = excerpt["body"]
+        for attrKey,teacherKey in ListAttributionKeys():
+            if attrKey not in excerpt:
+                break
+
+            if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher) or "a" in excerpt["flags"]: # Compare items irrespective of order
+                teacherList = [gDatabase["teacher"][t]["fullName"] for t in excerpt[teacherKey]]
+            else:
+                teacherList = []
+
+            if teacherList or gOptions.attributeAll:
+                attribution = excerpt[attrKey]
+            else:
+                attribution = ""
+            
+            bodyWithAttributions = bodyWithAttributions.replace("{"+ attrKey + "}",attribution)
+        
+        a(bodyWithAttributions + ' ')
+        
+        if not self.excerptShortFormat:
+            a(gDatabase["event"][excerpt["event"]]["title"] + ",")
+            a(f"Session {excerpt['sessionNumber']}, Excerpt {excerpt['excerptNumber']}")
         
         tagStrings = []
-        for tag in question["Tags"]:
-            omitTags = self.questionOmitTags
-            if self.questionOmitSessionTags:
-                omitTags = set.union(omitTags,set(FindSession(gDatabase["Sessions"],question["Event"],question["Session #"])["Tags"]))
+        for n,tag in enumerate(excerpt["tags"]):
+            omitTags = self.excerptOmitTags
+            if self.excerptOmitSessionTags:
+                omitTags = set.union(omitTags,set(Utils.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
             
-            if tag not in omitTags:
+            if n and n == excerpt["qTagCount"]:
+                tagStrings.append("//") # Separate QTags and ATags with the symbol //
+                
+            if tag in self.excerptBoldTags: # Always print boldface tags
+                tagStrings.append('<b>[' + HtmlTagLink(tag) + ']</b>')
+            elif tag not in omitTags: # Don't print tags which should be omitted
                 tagStrings.append('[' + HtmlTagLink(tag) + ']')
-        
+            
         a(' '.join(tagStrings))
         
         return str(a)
     
+    def FormatAnnotation(self,annotation: dict,tagsAlreadyPrinted: set) -> str:
+        "Return annotation formatted in html according to our stored settings. Don't print tags that have appeared earlier in this excerpt"
+        
+        a = Airium(source_minify=True)
+
+        a(annotation["body"] + " ")
+        
+        tagStrings = []
+        for n,tag in enumerate(annotation.get("tags",())):
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags)
+            
+            if tag in self.excerptBoldTags: # Always print boldface tags
+                tagStrings.append('<b>[' + HtmlTagLink(tag) + ']</b>')
+            elif tag not in omitTags: # Don't print tags which should be omitted
+                tagStrings.append('[' + HtmlTagLink(tag) + ']')
+            
+        a(' '.join(tagStrings))
+        
+        return str(a)
+        
     def FormatSessionHeading(self,session:dict) -> str:
         "Return an html string representing the heading for this section"
         
         a = Airium(source_minify=True)
-        event = gDatabase["Event"][session["Event"]]
+        event = gDatabase["event"][session["event"]]
         
-        bookmark = f'{session["Event"]}_S{session["Session #"]}'
+        bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
         with a.h2(id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
-                    with a.a(href = EventLink(session["Event"])):
-                        a(event["Title"])
+                    with a.a(href = EventLink(session["event"])):
+                        a(event["title"])
                 else:
-                    a(event["Title"])
+                    a(event["title"])
                 a(", ")
             
-            sessionTitle = f'Session {session["Session #"]}'
-            if self.headingShowSessionTitle and session["Session title"]:
-                sessionTitle += ': ' + session["Session title"]
+            sessionTitle = f'Session {session["sessionNumber"]}'
+            if self.headingShowSessionTitle and session["sessionTitle"]:
+                sessionTitle += ': ' + session["sessionTitle"]
             
             if self.headingLinks:
-                with a.a(href = EventLink(session["Event"],session["Session #"])):
+                with a.a(href = EventLink(session["event"],session["sessionNumber"])):
                     a(sessionTitle)
             else:
                 a(sessionTitle)
 
-            dateStr = ReformatDate(session['Date'])
-            teacherList = ListLinkedTeachers(session["Teachers"])
+            dateStr = Utils.ReformatDate(session['date'])
+            teacherList = ListLinkedTeachers(session["teachers"])
             a(f' – {teacherList} – {dateStr}')
             
             if self.headingAudio:
-                durStr = TimeDeltaToStr(StrToTimeDelta(session["Duration"])) # Pretty-print duration by converting it to seconds and back
+                durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
                 a(f' – {Mp3SessionLink(session)} ({durStr}) ')
             
             if self.headingShowTags:
                 a(' ')
                 tagStrings = []
-                for tag in session["Tags"]:
+                for tag in session["tags"]:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
         
         return str(a)
 
-def QuestionDurationStr(questions: List[dict],countEvents = True,countSessions = True) -> str:
-    "Return a string describing the duration of the questions we were passed."
+def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True) -> str:
+    "Return a string describing the duration of the excerpts we were passed."
     
-    if not questions:
-        return "No questions"
+    if not excerpts:
+        return "No excerpts"
     
-    events = set(q["Event"] for q in questions)
-    sessions = set((q["Event"],q["Session #"]) for q in questions) # Use sets to count unique elements
-    duration = sum((StrToTimeDelta(q["Duration"]) for q in questions),start = timedelta())
+    events = set(x["event"] for x in excerpts)
+    sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
+    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts),start = timedelta())
     
     strItems = []
     
@@ -388,58 +451,68 @@ def QuestionDurationStr(questions: List[dict],countEvents = True,countSessions =
     if len(sessions) > 1 and countSessions:
         strItems.append(f"{len(sessions)} sessions,")
     
-    if len(questions) > 1:
-        strItems.append(f"{len(questions)} questions,")
+    if len(excerpts) > 1:
+        strItems.append(f"{len(excerpts)} excerpts,")
     else:
-        strItems.append(f"{len(questions)} question,")
+        strItems.append(f"{len(excerpts)} excerpt,")
     
-    strItems.append(f"{TimeDeltaToStr(duration)} total duration")
+    strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
     
     return ' '.join(strItems)
 
-def HtmlQuestionList(questions: List[dict],formatter: Type[Formatter]) -> str:
-    """Return a html list of the questions."""
+def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
+    """Return a html list of the excerpts."""
     
     a = Airium()
     
+    tabMeasurement = 'em'
+    tabLength = 2
+    
     prevEvent = None
     prevSession = None
-    for q in questions:
-        if q["Event"] != prevEvent or q["Session #"] != prevSession:
-            session = FindSession(gDatabase["Sessions"],q["Event"],q["Session #"])
+    for x in excerpts:
+        if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
+            session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
             a(formatter.FormatSessionHeading(session))
-            prevEvent = q["Event"]
-            prevSession = q["Session #"]
-            formatter.questionDefaultTeacher = set(session["Teachers"])
+            prevEvent = x["event"]
+            prevSession = x["sessionNumber"]
+            formatter.excerptDefaultTeacher = set(session["teachers"])
             
         with a.p():
-            a(formatter.FormatQuestion(q))
+            a(formatter.FormatExcerpt(x))
+        
+        tagsAlreadyPrinted = set(x["tags"])
+        for annotation in x["annotations"]:
+            if annotation["body"]:
+                with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
+                    a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
+                tagsAlreadyPrinted.update(annotation.get("tags",()))
     
     return str(a)
 
-def WriteAllQuestions(pageDir: str) -> None:
-    """Write a single page containing all questions."""
+def WriteAllExcerpts(pageDir: str) -> None:
+    """Write a single page containing all excerpts."""
     if not os.path.exists(pageDir):
         os.makedirs(pageDir)
     
     a = Airium()
     
     with a.h1():
-        a("All questions:")
+        a("All excerpts:")
     
     with a.h2():
-        a(QuestionDurationStr(gDatabase["Questions"]))
+        a(ExcerptDurationStr(gDatabase["excerpts"]))
         a.br()
     
     with a.h3():
-        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the question text.")
+        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
     
     formatter = Formatter()
-    formatter.questionDefaultTeacher = ['AP']
+    formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
-    a(HtmlQuestionList(gDatabase["Questions"],formatter))
+    a(HtmlExcerptList(gDatabase["excerpts"],formatter))
     
-    WriteHtmlFile(os.path.join(pageDir,"AllQuestions.html"),"All questions",str(a))
+    WriteHtmlFile(os.path.join(pageDir,"AllExcerpts.html"),"All excerpts",str(a))
 
 def WriteAllEvents(pageDir: str) -> None:
     """Write a page containing a list of all events."""
@@ -451,18 +524,18 @@ def WriteAllEvents(pageDir: str) -> None:
     with a.h1():
         a("All events:")
         
-    for eventCode,e in gDatabase["Event"].items():
+    for eventCode,e in gDatabase["event"].items():
         with a.h2(style = "line-height: 1.3;"):
             with a.a(href = EventLink(eventCode)):
-                a(e["Title"])            
+                a(e["title"])            
         
         with a.h3(style = "line-height: 1.3;"):
-            a(f'{ListLinkedTeachers(e["Teachers"],lastJoinStr = " and ")}')
+            a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
             a.br()
             a(EventDateStr(e))
             a.br()
-            eventQuestions = [q for q in gDatabase["Questions"] if q["Event"] == eventCode]
-            a(QuestionDurationStr(eventQuestions))
+            eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+            a(ExcerptDurationStr(eventExcerpts))
                 
     WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
 
@@ -472,40 +545,40 @@ def WriteTagPages(tagPageDir: str) -> None:
     if not os.path.exists(tagPageDir):
         os.makedirs(tagPageDir)
         
-    qDB = gDatabase["Questions"]
+    xDB = gDatabase["excerpts"]
     
-    for tag,tagInfo in gDatabase["Tag"].items():
-        if not tagInfo["html file"]:
+    for tag,tagInfo in gDatabase["tag"].items():
+        if not tagInfo["htmlFile"]:
             continue
     
-        relevantQs = [q for q in qDB if tag in q["Tags"]]
+        relevantQs = [x for x in xDB if tag in Utils.AllTags(x)]
     
         a = Airium()
         
         with a.h1():
-            if tagInfo['Pāli'] and tagInfo['Pāli'] != tag:
-                a(tag)
-                a(f"[{tagInfo['Pāli']}]:")
+            if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
+                a(tagInfo['fullTag'])
+                a(f"[{tagInfo['fullPali']}]:")
             else:
-                a(tag + ':')
+                a(tagInfo['fullTag'] + ':')
             
         
         with a.h3():
-            a(TitledList("Alternative translations",tagInfo['Alternate translations'],plural = ""))
+            a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
         
         with a.h3(style = "line-height: 1.5;"):
-            a(ListLinkedTags("Parent topic",tagInfo['Supertags']))
-            a(ListLinkedTags("Subtopic",tagInfo['Subtags']))
-            a(ListLinkedTags("See also",tagInfo['Related'],plural = ""))
-            a(QuestionDurationStr(relevantQs,False,False))
+            a(ListLinkedTags("Parent topic",tagInfo['supertags']))
+            a(ListLinkedTags("Subtopic",tagInfo['subtags']))
+            a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
+            a(ExcerptDurationStr(relevantQs,False,False))
         
         formatter = Formatter()
-        formatter.questionOmitTags = set([tag])
+        formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
-        formatter.questionOmitSessionTags = False
-        a(HtmlQuestionList(relevantQs,formatter))
+        formatter.excerptOmitSessionTags = False
+        a(HtmlExcerptList(relevantQs,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["html file"]),tag,str(a))
+        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a))
 
 def WriteEventPages(tagPageDir: str) -> None:
     """Write a html file for each event in the database"""
@@ -513,34 +586,34 @@ def WriteEventPages(tagPageDir: str) -> None:
     if not os.path.exists(tagPageDir):
         os.makedirs(tagPageDir)
             
-    for eventCode,eventInfo in gDatabase["Event"].items():
+    for eventCode,eventInfo in gDatabase["event"].items():
         
-        sessions = [s for s in gDatabase["Sessions"] if s["Event"] == eventCode]
-        questions = [q for q in gDatabase["Questions"] if q["Event"] == eventCode]
+        sessions = [s for s in gDatabase["sessions"] if s["event"] == eventCode]
+        excerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a = Airium()
         
         with a.h1():
-            title = eventInfo["Title"]
-            if eventInfo["Subtitle"]:
-                title += " – " + eventInfo["Subtitle"]
+            title = eventInfo["title"]
+            if eventInfo["subtitle"]:
+                title += " – " + eventInfo["subtitle"]
             a(title)
         
         with a.h2(style = "line-height: 1.5;"):
             dateStr = EventDateStr(eventInfo)
             
-            a(ListLinkedTeachers(eventInfo["Teachers"],lastJoinStr = " and "))
+            a(ListLinkedTeachers(eventInfo["teachers"],lastJoinStr = " and "))
             a.br()
             
             a(dateStr)
             a.br()
             
-            a(f"{eventInfo['Venue']} in {gDatabase['Venue'][eventInfo['Venue']]['Location']}")
+            a(f"{eventInfo['venue']} in {gDatabase['venue'][eventInfo['venue']]['location']}")
             a.br()
             
-            a(QuestionDurationStr(questions))
+            a(ExcerptDurationStr(excerpts))
             a.br()
             
-            with a.a(href = eventInfo["Website"]):
+            with a.a(href = eventInfo["website"]):
                 a("External website")
             a.br()
             a.br()
@@ -549,14 +622,14 @@ def WriteEventPages(tagPageDir: str) -> None:
             squish("Sessions:")
             for s in sessions:
                 squish(4*"&nbsp")
-                with squish.a(href = f"#{eventCode}_S{s['Session #']}"):
-                    squish(str(s['Session #']))
+                with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
+                    squish(str(s['sessionNumber']))
                 
             a(str(squish))
         
-        if eventInfo["Description"]:
+        if eventInfo["description"]:
             with a.p(style = "font-size: 120%;"):
-                a(eventInfo["Description"])
+                a(eventInfo["description"])
         
         a.hr()
         
@@ -565,9 +638,10 @@ def WriteEventPages(tagPageDir: str) -> None:
         formatter.headingShowSessionTitle = True
         formatter.headingLinks = False
         formatter.headingAudio = True
-        a(HtmlQuestionList(questions,formatter))
+        formatter.excerptPreferStartTime = True
+        a(HtmlExcerptList(excerpts,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["Title"],str(a))
+        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a))
         
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
@@ -601,7 +675,7 @@ def WriteIndexPage(templateName: str,indexPage: str) -> None:
     
     sourceComment = f"<!-- The content below has been extracted from the body of {templateName} -->"
     
-    WriteHtmlFile(indexPage,"The Ajahn Pasanno Q&A Archive",'\n'.join([nav,sourceComment,htmlBody]),customHead = '\n'.join([head,str(styleInfo)]),navigation = False)
+    WriteHtmlFile(indexPage,"The Ajahn Pasanno Question and Story Archive",'\n'.join([nav,sourceComment,htmlBody]),customHead = '\n'.join([head,str(styleInfo)]),navigation = False)
     
     # Now write prototype/README.md to make this material easily readable on github
     
@@ -614,7 +688,9 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
-    
+    parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
+    parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
+
 gOptions = None
 gDatabase = None
 def main(clOptions,database):
@@ -634,7 +710,7 @@ def main(clOptions,database):
     WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
     WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
     WriteSortedHtmlTagList(indexDir)
-    WriteAllQuestions(indexDir)
+    WriteAllExcerpts(indexDir)
     WriteAllEvents(indexDir)
     
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
@@ -642,4 +718,7 @@ def main(clOptions,database):
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
     WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))
+
+    if not clOptions.keepOldHtmlFiles:
+        DeleteUnwrittenHtmlFiles()
     
