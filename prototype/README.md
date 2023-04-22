@@ -12,6 +12,11 @@ The questions are organised by event and tagged by subject. The web
 design is ancient (hopefully you aren&rsquo;t using a mobile
 device!), but it&rsquo;s enough to demonstrate the principle and
 debug the database.</p>
+<p>As I began to transcribe question and answer sessions during
+Winter Retreat 2023 at Cittaviveka Monastery, I realized that the
+stories that Ajahn Pasanno tells in the course of answering Dhamma
+questions are as valuable as the questions themselves. The project
+now includes these as well.</p>
 <p>The principles described below are my best thinking so far. They
 are open to revision if Ajahn Pasanno, Ajahn &Ntilde;&#257;&#7751;iko,
 or the Abhayagiri Sa&#7749;gha object.</p>
@@ -113,3 +118,9 @@ Ajahn Kacc&#257;na</p>
 questions from Thanksgiving Retreats 2013-2015 from pre-existing
 transcriptions; subject tags are based on transcription text rather
 than audio content.</p>
+<p><b>1.9</b><span style="font-weight: normal">: Index stories,
+quotes, and readings in addition to questions. Added Spirit Rock
+daylong events from 2010 and 2011. The tag list has expanded to
+include tags from many events transcribed on paper that have not yet
+been entered into the online archive. Almost all documentation still
+applies to version 1.0.</span></p>
