@@ -94,6 +94,23 @@
             "justMyCode": true
         },
         {
+            "name": "BuildGithubV1.9",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
+                "--events",
+                "SRD2010,SRD2011,TG2013,TG2014,TG2015",
+                "--parseOnlySpecifiedEvents",
+                "--sheets",
+                "All"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "SDR2011-attributeAll",
             "type": "python",
             "request": "launch",

@@ -546,6 +546,8 @@ def LoadEventFile(database,eventName,directory):
         excerpts = []
         redactedTagSet = set(database["tagRedacted"])
         for x in rawExcerpts:
+            x["flags"] = x.get("flags","")
+            x["kind"] = x.get("kind","")
 
             x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
             x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]

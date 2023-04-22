@@ -55,7 +55,7 @@ parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/Spreadsh
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
 parser.add_argument('--sessionMp3',type=str,default='remote',help='Session audio file link location; default: remote - use external Mp3 URL from session database')
 parser.add_argument('--excerptMp3',type=str,default='remote',help='Excerpt audio file link location; default: remote - use remoteExcerptMp3URL')
-parser.add_argument('--remoteExcerptMp3URL',type=str,default='http://storage.googleapis.com/apqa_archive/audio/excerpts/', help='remote URL for excerpts; default: storage.googleapis.com/apqa_archive/audio/excerpts/')
+parser.add_argument('--remoteExcerptMp3URL',type=str,default='http://storage.googleapis.com/apqs_archive/audio/excerpts/', help='remote URL for excerpts; default: storage.googleapis.com/apqa_archive/audio/excerpts/')
 
 for mod in modules:
     modules[mod].AddArguments(parser)
