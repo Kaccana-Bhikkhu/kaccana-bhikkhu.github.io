@@ -168,7 +168,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
             if len(parts) > 3 and gOptions.verbose >= -1:
                 print("   Warning: '|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
 
-    colon = "" if re.match(r"\s*[a-z]",text) else ":"
+    colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
     item["body"] = bodyTemplate(**renderDict)

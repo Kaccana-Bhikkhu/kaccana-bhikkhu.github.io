@@ -523,6 +523,26 @@
       "pdfPageOffset": "9",
       "filename": "Chanting-Book-Vol-1-Web.pdf",
       "remoteUrl": "https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf"
+    },
+    "BMC": {
+      "abbreviation": "BMC",
+      "title": "Buddhist Monastic Code",
+      "author1": "AThan",
+      "author2": "",
+      "attribution": "",
+      "pdfPageOffset": "11",
+      "filename": "BMC1&2_220701.pdf",
+      "remoteUrl": "https://www.dhammatalks.org/Archive/Writings/Ebooks/BMC1&2_220701.pdf"
+    },
+    "BMC II": {
+      "abbreviation": "BMC II",
+      "title": "Buddhist Monastic Code Vol. 2",
+      "author1": "AThan",
+      "author2": "",
+      "attribution": "",
+      "pdfPageOffset": "806",
+      "filename": "BMC1&2_220701.pdf",
+      "remoteUrl": "https://www.dhammatalks.org/Archive/Writings/Ebooks/BMC1&2_220701.pdf"
     }
   },
   "teacher": {
@@ -563,6 +583,16 @@
       "indexExcerpts": true,
       "indexSessions": true,
       "searchable": true,
+      "attribute": true,
+      "allowTag": true
+    },
+    "AThan": {
+      "teacher": "AThan",
+      "fullName": "Ajahn Ṭhānissaro",
+      "webLink": "",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
       "attribute": true,
       "allowTag": true
     },
@@ -3018,7 +3048,7 @@
       "primaries": 0,
       "htmlFile": "aversion.html",
       "listIndex": 139,
-      "excerptCount": 2
+      "excerptCount": 3
     },
     "Delusion": {
       "tag": "Delusion",
@@ -3300,7 +3330,7 @@
       "primaries": 0,
       "htmlFile": "self-identity-view.html",
       "listIndex": 153,
-      "excerptCount": 6
+      "excerptCount": 7
     },
     "Attachment to rites and rituals": {
       "tag": "Attachment to rites and rituals",
@@ -4299,7 +4329,7 @@
       "primaries": 0,
       "htmlFile": "buddha.html",
       "listIndex": 220,
-      "excerptCount": 5
+      "excerptCount": 4
     },
     "Buddha/Biography": {
       "tag": "Buddha/Biography",
@@ -4337,7 +4367,8 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "buddha-images.html",
-      "listIndex": 237
+      "listIndex": 237,
+      "excerptCount": 1
     },
     "Dhamma": {
       "tag": "Dhamma",
@@ -4588,7 +4619,7 @@
       "primaries": 0,
       "htmlFile": "relics.html",
       "listIndex": 234,
-      "excerptCount": 2
+      "excerptCount": 3
     },
     "Stupas/monuments": {
       "tag": "Stupas/monuments",
@@ -8200,7 +8231,7 @@
       "primaries": 0,
       "htmlFile": "culturethailand.html",
       "listIndex": 436,
-      "excerptCount": 23
+      "excerptCount": 24
     },
     "Culture/West": {
       "tag": "Culture/West",
@@ -10231,8 +10262,8 @@
       "description": "Towards the end of Winter Retreat 2018, Tan Suhajjo and the Abhayagiri Community ask Ajahn Pasanno questions related to monastic life.",
       "sessions": 4,
       "excerpts": 0,
-      "answersListenedTo": 66,
-      "tagsApplied": 346,
+      "answersListenedTo": 67,
+      "tagsApplied": 351,
       "invalidTags": 0,
       "duration": "2:52:36"
     }
@@ -14060,19 +14091,29 @@
       "sessionNumber": 2,
       "excerptNumber": 4,
       "fileNumber": 4,
-      "kind": "Question",
+      "kind": "Comment",
       "flags": "",
       "startTime": "23:09",
       "endTime": "25:25",
       "text": "I notice that you sometimes don't react to the seemingly disrespectful behavior of visitors.",
-      "teachers": [
-        "AP"
+      "teachers": [],
+      "annotations": [
+        {
+          "kind": "Response",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Buddha"
+          ],
+          "indentLevel": 1
+        }
       ],
-      "annotations": [],
       "tags": [
         "Respect",
-        "Teaching Dhamma",
-        "Buddha"
+        "Teaching Dhamma"
       ],
       "qTagCount": 2,
       "duration": "2:16"
@@ -14798,7 +14839,7 @@
         {
           "kind": "Vinaya",
           "flags": "",
-          "text": "Kd 18: _Vattakkhandhaka_ - Protocols",
+          "text": "[Cv 8: _Vattakkhandhaka_ - Protocols](https://www.dhammatalks.org/vinaya/bmc/Section0048.html)",
           "tags": [
             "Protocols"
           ],
@@ -14932,7 +14973,11 @@
           "teachers": [
             "AP"
           ],
-          "tags": [],
+          "tags": [
+            "Ajahn Pasanno",
+            "Wat Pah Nanachat",
+            "History/Western Buddhist monasticism"
+          ],
           "indentLevel": 1
         },
         {
@@ -14951,10 +14996,7 @@
         "Saṅgha",
         "Sickness",
         "Ageing",
-        "Death",
-        "Ajahn Pasanno",
-        "Wat Pah Nanachat",
-        "History/Western Buddhist monasticism"
+        "Death"
       ],
       "qTagCount": 5,
       "duration": "8:59"
@@ -15002,13 +15044,14 @@
       "tags": [
         "Monastic life",
         "Generosity",
+        "Culture/Thailand",
         "Chanting",
         "Upatakh",
         "Wat Pah Pong",
         "Ajahn Chah",
         "Cleanliness"
       ],
-      "qTagCount": 2,
+      "qTagCount": 3,
       "duration": "7:25"
     },
     {
@@ -15020,7 +15063,7 @@
       "flags": "",
       "startTime": "13:50",
       "endTime": "",
-      "text": "Can you talk about Ajahn Chah's use of communal pūjās and chores?",
+      "text": "Can you talk about Ajahn Chah's use of bowing, communal pūjās, and chores?",
       "teachers": [
         "AP"
       ],
@@ -15034,7 +15077,10 @@
           "teachers": [
             "AP"
           ],
-          "tags": [],
+          "tags": [
+            "Ajahn Chah",
+            "Posture/Bowing"
+          ],
           "indentLevel": 1
         }
       ],
@@ -15093,7 +15139,7 @@
       "annotations": [],
       "tags": [
         "Monastic life",
-        "Buddha",
+        "Buddha images",
         "Posture/Bowing",
         "History/Early Buddhism",
         "Abhayagiri"
@@ -15129,18 +15175,6 @@
             "Ajahn Pasanno"
           ],
           "indentLevel": 1
-        },
-        {
-          "kind": "Comment",
-          "flags": "",
-          "startTime": "",
-          "endTime": "",
-          "text": "What do you think might have happened to the few relics in my house when it burned down?",
-          "teachers": [],
-          "tags": [
-            "Relics"
-          ],
-          "indentLevel": 1
         }
       ],
       "tags": [
@@ -15154,7 +15188,27 @@
         "Ajahn Chah"
       ],
       "qTagCount": 2,
-      "duration": "12:18"
+      "duration": "10:38"
+    },
+    {
+      "event": "WR2018-2",
+      "sessionNumber": 7,
+      "excerptNumber": 7,
+      "fileNumber": 7,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "40:46",
+      "endTime": "",
+      "text": "What do you think might have happened to the few relics in my house when it burned down?",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [],
+      "tags": [
+        "Relics"
+      ],
+      "qTagCount": 1,
+      "duration": "1:40"
     },
     {
       "event": "WR2018-2",
@@ -15260,15 +15314,27 @@
       "sessionNumber": 8,
       "excerptNumber": 5,
       "fileNumber": 5,
-      "kind": "Question",
+      "kind": "Comment",
       "flags": "",
       "startTime": "12:30",
       "endTime": "",
       "text": "Some deep-seated patterns may be more visible to others than ourselves.",
-      "teachers": [
-        "AP"
+      "teachers": [],
+      "annotations": [
+        {
+          "kind": "Response",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Aversion",
+            "Self-identity view"
+          ],
+          "indentLevel": 1
+        }
       ],
-      "annotations": [],
       "tags": [
         "Monastic life",
         "Saṅgha",
@@ -15334,7 +15400,7 @@
           "indentLevel": 1
         },
         {
-          "kind": "Sutta",
+          "kind": "Vinaya",
           "flags": "",
           "text": "Cv Vinaya protocols about mutual teacher/student admonishement??",
           "tags": [],
@@ -17204,9 +17270,9 @@
       "indexNumber": "2",
       "name": "Aversion",
       "pali": "dosa",
-      "excerptCount": 2,
+      "excerptCount": 3,
       "subsumed": false,
-      "text": "Aversion (2) [dosa]",
+      "text": "Aversion (3) [dosa]",
       "tag": "Aversion"
     },
     {
@@ -17344,9 +17410,9 @@
       "indexNumber": "1",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 6,
+      "excerptCount": 7,
       "subsumed": false,
-      "text": "Self-identity view (6) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (7) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -18014,9 +18080,9 @@
       "indexNumber": "1",
       "name": "Buddha",
       "pali": "Buddha",
-      "excerptCount": 5,
+      "excerptCount": 4,
       "subsumed": false,
-      "text": "Buddha (5)",
+      "text": "Buddha (4)",
       "tag": "Buddha"
     },
     {
@@ -18034,9 +18100,9 @@
       "indexNumber": "",
       "name": "Buddha images",
       "pali": "",
-      "excerptCount": 0,
+      "excerptCount": 1,
       "subsumed": false,
-      "text": "Buddha images",
+      "text": "Buddha images (1)",
       "tag": "Buddha images"
     },
     {
@@ -18154,9 +18220,9 @@
       "indexNumber": "",
       "name": "Relics",
       "pali": "",
-      "excerptCount": 2,
+      "excerptCount": 3,
       "subsumed": false,
-      "text": "Relics (2)",
+      "text": "Relics (3)",
       "tag": "Relics"
     },
     {
@@ -18184,9 +18250,9 @@
       "indexNumber": "",
       "name": "Buddha images",
       "pali": "",
-      "excerptCount": 0,
+      "excerptCount": 1,
       "subsumed": false,
-      "text": "Buddha images",
+      "text": "Buddha images (1)",
       "tag": "Buddha images"
     },
     {
@@ -20174,9 +20240,9 @@
       "indexNumber": "",
       "name": "Culture/Thailand",
       "pali": "",
-      "excerptCount": 23,
+      "excerptCount": 24,
       "subsumed": false,
-      "text": "Culture/Thailand (23)",
+      "text": "Culture/Thailand (24)",
       "tag": "Culture/Thailand"
     },
     {
