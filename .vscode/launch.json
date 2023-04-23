@@ -94,6 +94,25 @@
             "justMyCode": true
         },
         {
+            "name": "AllNew",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "SRD2010,SRD2011,WR2018-2",
+                "--parseOnlySpecifiedEvents",
+                "--sheets",
+                "SRD2010,SRD2011,WR2018-2,Kind,Teacher,Tag,Reference"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "BuildGithubV1.9",
             "type": "python",
             "request": "launch",
