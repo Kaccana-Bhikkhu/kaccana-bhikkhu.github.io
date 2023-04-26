@@ -504,7 +504,8 @@ def LoadEventFile(database,eventName,directory):
         for key in ["teachers","tags"]:
             eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
         for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
-            eventDesc[key] = int(eventDesc[key])
+            if key in eventDesc:
+                eventDesc[key] = int(eventDesc[key])
         
         database["event"][eventName] = eventDesc
         
@@ -599,7 +600,7 @@ def LoadEventFile(database,eventName,directory):
             if not gOptions.jsonNoClean:
                 del x["qTag"]
                 del x["aTag"]
-                del x["aListen"]
+                x.pop("aListen",None)
 
             startTime = x["startTime"]
             
