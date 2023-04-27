@@ -2,7 +2,7 @@
 
 import os, re, csv, json, unicodedata
 import Utils
-from typing import List
+from typing import List, Iterator, Tuple
 from Prototype import ExcerptDurationStr
 
 gCamelCaseTranslation = {}
@@ -409,8 +409,24 @@ def CreateTagDisplayList(database):
     for tag in database["tag"]:
         if not database["tag"][tag]["virtual"]:
             index = database["tag"][tag]["listIndex"]
-            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}" 
-      
+            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
+
+def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
+    """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
+    tagStack = []
+    for tag in tagDisplayList:
+        tagLevel = tag["level"]
+        while len(tagStack) > tagLevel: # If the tag level drops, then return 
+            children = tagStack.pop()
+            parent = tagStack[-1][-1] # The last item of the next-highest level is the parent tag
+            yield parent,children
+        
+        if tagLevel > len(tagStack):
+            assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
+            tagStack.append([])
+        
+        tagStack[-1].append(tag)
+        
 
 def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
     "Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not."
@@ -690,10 +706,10 @@ def CountAndVerify(database):
         
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
-            CountInstances(database["event"],key,database[key],"Event count")
+            CountInstances(database["event"],key,database[key],"eventCount")
         
-        CountInstances(database["event"],"teachers",database["teacher"],"Event count")
-        CountInstances(database["sessions"],"teachers",database["teacher"],"Session count")
+        CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
+        CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
         CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
     
     # Are tags flagged Primary as needed?
@@ -801,3 +817,6 @@ def main(clOptions,database):
     
     if gOptions.verbose > 0:
         print("   " + ExcerptDurationStr(database["excerpts"]))
+    
+    #for parent,children in WalkTags(database["tagDisplayList"]):
+    #    print(repr(parent["tag"]),[t["tag"] for t in children])
