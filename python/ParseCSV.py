@@ -307,7 +307,7 @@ def LoadTagsFile(database,tagFileName):
             if curTagLevel > 1:
                 if lastTag.collectSubtags: # If the previous tag was flagged as primary, remove subtags from previous instances and accumulate new subtags
                     tags[lastTag.tag]["subtags"] = []
-                elif not tags[lastTag.tag]["subtags"]: # But even if it's not primary, accumulate subtags if there are no prior subtags
+                elif lastTag.tag not in subsumedTags and not tags[lastTag.tag]["subtags"]: # But even if it's not primary, accumulate subtags if there are no prior subtags
                     lastTag.collectSubtags = True
                 
                 tagStack.append(lastTag)
