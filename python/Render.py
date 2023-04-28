@@ -216,13 +216,17 @@ def LinkSuttas():
 
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
+    titleRegex = Utils.RegexMatchAny(escapedTitles)
     pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
 
-    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\((' + pageReference + ')?\)'
+    refForm2 = r'\[' + titleRegex + r'\]\((' + pageReference + ')?\)'
     #print(refForm2)
-    refForm3 = Utils.RegexMatchAny(escapedTitles) + r'\s+(' + pageReference + ')'
-    #print(refForm3)
-    return refForm2, refForm3
+    refForm3 = r'\]\(' + titleRegex + r'(\s+' + pageReference + ')?\)'
+
+    refForm4 = titleRegex + r'\s+(' + pageReference + ')'
+    #print(refForm4)
+
+    return refForm2, refForm3, refForm4
 
 def LinkKnownReferences() -> None:
     """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
@@ -257,8 +261,28 @@ def LinkKnownReferences() -> None:
     def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: [title]() or [title](page N)"""
         return re.subn(refForm2,ReferenceForm2Substitution,bodyStr,flags = re.IGNORECASE)
-            
+    
     def ReferenceForm3Substitution(matchObject: re.Match) -> str:
+        try:
+            reference = gDatabase["reference"][matchObject[1].lower()]
+        except KeyError:
+            if gOptions.verbosity > 0:
+                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            return matchObject[1]
+        
+        url = reference['remoteUrl']
+        
+        page = ParsePageNumber(matchObject[2])
+        if page:
+           url +=  f"#page={page + reference['pdfPageOffset']}"""
+
+        return f"]({url})"
+
+    def ReferenceForm3(bodyStr: str) -> tuple[str,int]:
+        """Search for references of the form: [xxxxx](title) or [xxxxx](title page N)"""
+        return re.subn(refForm3,ReferenceForm3Substitution,bodyStr,flags = re.IGNORECASE)
+
+    def ReferenceForm4Substitution(matchObject: re.Match) -> str:
         #print(repr(matchObject[0]),repr(matchObject[1]),repr(matchObject[2]))
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -274,14 +298,15 @@ def LinkKnownReferences() -> None:
 
         return f"{reference['title']} {reference['attribution']} [{matchObject[2]}]({url})"
 
-    def ReferenceForm3(bodyStr: str) -> tuple[str,int]:
+    def ReferenceForm4(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: title page N"""
-        return re.subn(refForm3,ReferenceForm3Substitution,bodyStr,flags = re.IGNORECASE)
+        return re.subn(refForm4,ReferenceForm4Substitution,bodyStr,flags = re.IGNORECASE)
         
-    refForm2, refForm3 = ReferenceMatchRegExs(gDatabase["reference"])
+    refForm2, refForm3, refForm4 = ReferenceMatchRegExs(gDatabase["reference"])
 
     referenceCount = ApplyToBodyText(ReferenceForm2)
     referenceCount += ApplyToBodyText(ReferenceForm3)
+    referenceCount += ApplyToBodyText(ReferenceForm4)
     
     if gOptions.verbose > 1:
         print(f"   {referenceCount} links generated to references")
@@ -302,8 +327,9 @@ def LinkReferences() -> None:
     Allowable formats are:
     1. [reference](link) - Markdown format for arbitrary hyperlinks
     2. [title]() or [title](page N) - Titles in Reference sheet; if page N or p. N appears between the parenthesis, link to this page in the pdf, but don't display in the html
-    3. title page N - Link to specific page for titles in Reference sheet which shows the page number
-    4. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
+    3. [xxxxx](title) or [xxxxx](title page N) - Apply hyperlink from title to arbitrary text xxxxx
+    4. title page N - Link to specific page for titles in Reference sheet which shows the page number
+    5. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
 
     LinkSuttas()
     LinkKnownReferences()
