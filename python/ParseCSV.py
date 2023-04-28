@@ -1,6 +1,7 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
 import os, re, csv, json, unicodedata
+import Render
 import Utils
 from typing import List, Iterator, Tuple
 from Prototype import ExcerptDurationStr
@@ -441,6 +442,17 @@ def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> b
         
     return consent
 
+def PrepareReferences(reference) -> None:
+    """Prepare database["reference"] for use."""
+
+    ListifyKey(reference,"author1")
+    ConvertToInteger(reference,"pdfPageOffset")
+
+    # Convert ref["abbreviation"] to lowercase for dictionary matching
+    # ref["title"] still has the correct case
+    for ref in list(reference.keys()):
+        reference[ref.lower()] = reference.pop(ref)
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
@@ -510,7 +522,17 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     annotation["indentLevel"] = len(annotation["flags"].split("-"))
     
     excerpt["annotations"].append(annotation)
-    
+
+def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
+    regexList = Render.ReferenceMatchRegExs(referenceDB)
+    authors = []
+    for regex in regexList:
+        matches = re.findall(regex,textToScan,flags = re.IGNORECASE)
+        for match in matches:
+            AppendUnique(authors,referenceDB[match[0].lower()]["author"])
+
+    return authors
+
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
@@ -589,7 +611,10 @@ def LoadEventFile(database,eventName,directory):
                 if defaultTeacher == "Anon": # Check if the default teacher is anonymous
                     x["teachers"] = ["Anon"]
                 elif defaultTeacher != "None":
-                    x["teachers"] = ourSession["teachers"]
+                    x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
+            
+            if x["kind"] == "Reading":
+                AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
             
             if x["sessionNumber"] != lastSession:
                 fileNumber = 1
@@ -789,7 +814,8 @@ def main(clOptions,database):
         database[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
     
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
-    
+    PrepareReferences(database["reference"])
+
     database["event"] = {}
     database["sessions"] = []
     database["excerpts"] = []
