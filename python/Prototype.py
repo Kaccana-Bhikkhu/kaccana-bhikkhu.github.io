@@ -404,11 +404,15 @@ class Formatter:
                         a(event["title"])
                 else:
                     a(event["title"])
-                a(", ")
+                if session["sessionNumber"] > 0:
+                    a(", ")
             
-            sessionTitle = f'Session {session["sessionNumber"]}'
-            if self.headingShowSessionTitle and session["sessionTitle"]:
-                sessionTitle += ': ' + session["sessionTitle"]
+            if session["sessionNumber"] > 0:
+                sessionTitle = f'Session {session["sessionNumber"]}'
+                if self.headingShowSessionTitle and session["sessionTitle"]:
+                    sessionTitle += ': ' + session["sessionTitle"]
+            else:
+                sessionTitle = ""
             
             if self.headingLinks:
                 with a.a(href = EventLink(session["event"],session["sessionNumber"])):
@@ -418,7 +422,9 @@ class Formatter:
 
             dateStr = Utils.ReformatDate(session['date'])
             teacherList = ListLinkedTeachers(session["teachers"])
-            a(f' – {teacherList} – {dateStr}')
+            if self.headingShowEvent or sessionTitle:
+                a(' – ')
+            a(f'{teacherList} – {dateStr}')
             
             if self.headingAudio:
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
@@ -618,14 +624,15 @@ def WriteEventPages(tagPageDir: str) -> None:
             a.br()
             a.br()
             
-            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
-            squish("Sessions:")
-            for s in sessions:
-                squish(4*"&nbsp")
-                with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
-                    squish(str(s['sessionNumber']))
+            if len(sessions) > 1:
+                squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
+                squish("Sessions:")
+                for s in sessions:
+                    squish(4*"&nbsp")
+                    with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
+                        squish(str(s['sessionNumber']))
                 
-            a(str(squish))
+                a(str(squish))
         
         if eventInfo["description"]:
             with a.p(style = "font-size: 120%;"):
