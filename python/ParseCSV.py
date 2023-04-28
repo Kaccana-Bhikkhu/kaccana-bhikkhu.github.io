@@ -268,6 +268,7 @@ def LoadTagsFile(database,tagFileName):
     namePreference = ["abbreviation","fullTag","paliAbbreviation","pali"]
     paliPreference = ["paliAbbreviation","pali"]
     fullNamePreference = ["fullTag","pali"]
+    referencedTag = ["subsumedUnder","abbreviation","fullTag","paliAbbreviation","pali"]
     
     # Remove any blank values from the list before looping over it
     rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
@@ -288,7 +289,9 @@ def LoadTagsFile(database,tagFileName):
         rawTagIndex += 1
         tagName = FirstValidValue(rawTag,namePreference)
         tagPaliName = FirstValidValue(rawTag,paliPreference,"")
-        
+
+        rawTag["tag"] = FirstValidValue(rawTag,referencedTag)
+
         tagDesc = {}
         tagDesc["tag"] = tagName
         tagDesc["pali"] = tagPaliName
@@ -296,7 +299,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["fullPali"] = rawTag["pali"]
         for key in ["number","alternateTranslations","related","virtual"]:
             tagDesc[key] = rawTag[key]
-        
+                
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
         curTagLevel = rawTag["level"]        
         while (curTagLevel < lastTagLevel):
@@ -359,6 +362,56 @@ def LoadTagsFile(database,tagFileName):
     database["tagSubsumed"] = subsumedTags
     database["tagRedacted"] = redactedTags
 
+def RemoveUnusedTags(database: dict) -> None:
+    """Remove unused tags from the raw tag list before building the tag display list."""
+
+    def UsedTag(tag: dict) -> bool:
+        return tag.get("excerptCount",0) or tag.get("sessionCount",0) or tag.get("sessionCount",0)
+
+    usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
+    print(len(usedTags),"tags used.")
+    
+    prevTagCount = 0
+    round = 0
+    while prevTagCount < len(usedTags):
+        round += 1
+        prevTagCount = len(usedTags)
+        print(f"{round=}, {prevTagCount=}")
+
+        for parent,children in WalkTags(database["tagRaw"]):
+            if not parent:
+                continue
+            
+            anyTagUsed = numberedTagUsed = False
+            for childTag in children:
+                if childTag["tag"] in usedTags:
+                    anyTagUsed = True
+                    if childTag["indexNumber"]:
+                        numberedTagUsed = True
+
+            if anyTagUsed: # Mark the parent tag as used if any of the children are in use
+                usedTags.add(parent["tag"])
+
+    print(f"Finished; {prevTagCount=}")
+
+    remainingTags = set(usedTags)
+    with open("prototype/UsedTags.txt",mode="w",encoding='utf-8') as file:
+        for rawTag in database["tagRaw"]:
+            tag = rawTag["tag"]
+            name = FirstValidValue(rawTag,["fullTag","pali"])
+
+            indent = "     " * (rawTag["level"] - 1)
+
+            if tag in usedTags:
+                remainingTags.discard(tag)
+                name = name.upper()
+
+            display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name
+
+            print(display,file=file)
+    
+    print("Remaining tags:",remainingTags)
+
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
     Format: level, text of display line, tag to open when clicked""" 
@@ -371,7 +424,7 @@ def CreateTagDisplayList(database):
             listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))
         
         name = FirstValidValue(rawTag,["fullTag","pali"])
-        tag = FirstValidValue(rawTag,["subsumedUnder","abbreviation","fullTag","paliAbbreviation","pali"])
+        tag = rawTag["tag"]
         text = name
         
         try:
@@ -417,7 +470,7 @@ def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
     tagStack = []
     for tag in tagDisplayList:
         tagLevel = tag["level"]
-        while len(tagStack) > tagLevel: # If the tag level drops, then return 
+        while len(tagStack) > tagLevel: # If the tag level drops, then yield the accumulated tags and their parent 
             children = tagStack.pop()
             parent = tagStack[-1][-1] # The last item of the next-highest level is the parent tag
             yield parent,children
@@ -427,6 +480,14 @@ def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
             tagStack.append([])
         
         tagStack[-1].append(tag)
+    
+    while len(tagStack) > 1: # Yield sibling tags still in the list
+        children = tagStack.pop()
+        parent = tagStack[-1][-1] # The last item of the next-highest level is the parent tag
+        yield parent,children
+    
+    if tagStack:
+        yield None,tagStack[0]
         
 
 def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
@@ -779,6 +840,7 @@ def AddArguments(parser):
     parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--parseOnlySpecifiedEvents',action='store_true',help="Load only events specified by --events into the database")
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
+    parser.add_argument('--keepUnusedTags',action='store_true',help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
     parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process annotations")
 
@@ -825,6 +887,9 @@ def main(clOptions,database):
             LoadEventFile(database,event,gOptions.csvDir)
 
     CountAndVerify(database)
+    if not clOptions.keepUnusedTags:
+        RemoveUnusedTags(database)
+
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:
         VerifyListCounts(database)
@@ -843,6 +908,3 @@ def main(clOptions,database):
     
     if gOptions.verbose > 0:
         print("   " + ExcerptDurationStr(database["excerpts"]))
-    
-    #for parent,children in WalkTags(database["tagDisplayList"]):
-    #    print(repr(parent["tag"]),[t["tag"] for t in children])
