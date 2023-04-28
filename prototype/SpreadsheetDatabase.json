@@ -217,25 +217,25 @@
       "filename": "Chanting-Book-Vol-1-Web.pdf",
       "remoteUrl": "https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf"
     },
-    "BMC": {
-      "abbreviation": "BMC",
-      "title": "Buddhist Monastic Code",
-      "author1": "AThan",
+    "Ajahn Mun Biography": {
+      "abbreviation": "Ajahn Mun Biography",
+      "title": "Venerable Ācariya Mun Bhūridatta Thera: A Spiritual Biography",
+      "author1": "AMahaB",
       "author2": "",
-      "attribution": "",
-      "pdfPageOffset": "11",
-      "filename": "BMC1&2_220701.pdf",
-      "remoteUrl": "https://www.dhammatalks.org/Archive/Writings/Ebooks/BMC1&2_220701.pdf"
+      "attribution": "by Ajahn Mahā Boowa",
+      "pdfPageOffset": "24",
+      "filename": "maha_boowa_acariya_mun_a_spiritual_biography.pdf",
+      "remoteUrl": "https://www.abhayagiri.org/media/books/maha_boowa_acariya_mun_a_spiritual_biography.pdf"
     },
-    "BMC II": {
-      "abbreviation": "BMC II",
-      "title": "Buddhist Monastic Code Vol. 2",
-      "author1": "AThan",
+    "Ajahn Lee Biography": {
+      "abbreviation": "Ajahn Lee Biography",
+      "title": "The Autobiography of Phra Ajahn Lee",
+      "author1": "ALee",
       "author2": "",
-      "attribution": "",
-      "pdfPageOffset": "806",
-      "filename": "BMC1&2_220701.pdf",
-      "remoteUrl": "https://www.dhammatalks.org/Archive/Writings/Ebooks/BMC1&2_220701.pdf"
+      "attribution": "by Ajahn Lee Dhammadharo",
+      "pdfPageOffset": "0",
+      "filename": "lee_autobiography_of_phra_ajaan_lee.pdf",
+      "remoteUrl": "https://www.abhayagiri.org/media/books/lee_autobiography_of_phra_ajaan_lee.pdf"
     }
   },
   "teacher": {
@@ -262,6 +262,26 @@
     "AChah": {
       "teacher": "AChah",
       "fullName": "Ajahn Chah",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
+      "attribute": true,
+      "allowTag": true
+    },
+    "ALee": {
+      "teacher": "ALee",
+      "fullName": "Ajahn Lee Dhammadharo",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
+      "attribute": true,
+      "allowTag": true
+    },
+    "AMahaB": {
+      "teacher": "AMahaB",
+      "fullName": "Ajahn Mahā Boowa",
       "webLink": "",
       "indexExcerpts": true,
       "indexSessions": true,
