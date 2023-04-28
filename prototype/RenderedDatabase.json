@@ -5,7 +5,7 @@
       "startDate": "19/09/2010",
       "sessions": 3,
       "excerpts": 16,
-      "answersListenedTo": 0,
+      "answersListenedTo": 16,
       "tagsApplied": 380,
       "invalidTags": 0,
       "duration": "1:06:13"
@@ -15,7 +15,7 @@
       "startDate": "02/06/2011",
       "sessions": 3,
       "excerpts": 35,
-      "answersListenedTo": 0,
+      "answersListenedTo": 35,
       "tagsApplied": 286,
       "invalidTags": 0,
       "duration": "2:48:24"
@@ -29,6 +29,16 @@
       "tagsApplied": 209,
       "invalidTags": 0,
       "duration": "7:52:27"
+    },
+    "DRBU2014": {
+      "eventCode": "DRBU2014",
+      "startDate": "2014-11-18",
+      "sessions": 1,
+      "excerpts": 26,
+      "answersListenedTo": 0,
+      "tagsApplied": 32,
+      "invalidTags": 0,
+      "duration": "1:32:32"
     },
     "TG2014": {
       "eventCode": "TG2014",
@@ -54,9 +64,9 @@
       "eventCode": "WR2018-2",
       "startDate": "12/3/2018",
       "sessions": 4,
-      "excerpts": 0,
-      "answersListenedTo": 66,
-      "tagsApplied": 346,
+      "excerpts": 44,
+      "answersListenedTo": 44,
+      "tagsApplied": 459,
       "invalidTags": 0,
       "duration": "2:52:36"
     }
@@ -598,6 +608,33 @@
         " by @!teachers!@",
         " contributed by @!teachers!@.",
         " <b>Comment@!s!@</b> by @!teachers!@."
+      ]
+    },
+    "Note": {
+      "kind": "Note",
+      "category": "Other",
+      "defaultForm": 1,
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": false,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "usageNotes": "",
+      "form": [
+        "++Note@!s!@++: @!text!@",
+        "unimplemented",
+        "unimplemented"
+      ],
+      "body": [
+        "<b>Note@!s!@</b>: @!text!@",
+        "unimplemented",
+        "unimplemented"
+      ],
+      "attribution": [
+        "",
+        "",
+        ""
       ]
     },
     "Other": {
@@ -4336,42 +4373,6 @@
       "htmlFile": "craving.html",
       "listIndex": 201,
       "excerptCount": 6
-    },
-    "Craving for sensuality": {
-      "tag": "Craving for sensuality",
-      "pali": "kāma-taṇhā",
-      "fullTag": "Craving for sensuality",
-      "fullPali": "kāma-taṇhā",
-      "number": "",
-      "alternateTranslations": [],
-      "related": [],
-      "virtual": false,
-      "subtags": [],
-      "supertags": [
-        "Craving"
-      ],
-      "copies": 1,
-      "primaries": 0,
-      "htmlFile": "craving-for-sensuality.html",
-      "listIndex": 202
-    },
-    "Craving to become": {
-      "tag": "Craving to become",
-      "pali": "bhava-taṇhā",
-      "fullTag": "Craving to become",
-      "fullPali": "bhava-taṇhā",
-      "number": "",
-      "alternateTranslations": [],
-      "related": [],
-      "virtual": false,
-      "subtags": [],
-      "supertags": [
-        "Craving"
-      ],
-      "copies": 1,
-      "primaries": 0,
-      "htmlFile": "craving-to-become.html",
-      "listIndex": 203
     },
     "Clinging": {
       "tag": "Clinging",
@@ -11304,6 +11305,29 @@
       "invalidTags": 0,
       "duration": "2:48:24"
     },
+    "DRBU2014": {
+      "title": "Questions and Answers with Dharma Realm Buddhist University",
+      "subtitle": "",
+      "code": "DRBU2014",
+      "series": "Other",
+      "venue": "Abhayagiri Buddhist Monastery",
+      "teachers": [
+        "AP"
+      ],
+      "startDate": "18/11/2014",
+      "endDate": "",
+      "format": "Short teaching",
+      "medium": "In-person",
+      "tags": [],
+      "website": "https://www.abhayagiri.org/talks/6265-questions-answers-with-the-dharma-realm-buddhist-university",
+      "description": "A small group from the Dharma Realm Buddhist University (DRBU) located at the City of Ten Thousand Buddhas (CTTB) spent the morning at Abhayagiri. The group included two bhikkshunis as well as a number of resident volunteers at the CTTB. The students are in DRBU’s Masters of Arts in Buddhist Classics program. This semester the students have been reading various spiritual biographies including the biographies of the Thai Forest masters Ajahn Mun, Ajahn Tate and Ajahn Lee Dhammadharo. The audio is from their question and answer session with Ajahn Pasanno.",
+      "sessions": 1,
+      "excerpts": 0,
+      "answersListenedTo": 0,
+      "tagsApplied": 218,
+      "invalidTags": 0,
+      "duration": "1:32:32"
+    },
     "WR2018-2": {
       "title": "The Teaching and the Training",
       "subtitle": "Eleven interviews with Ajahn Pasanno",
@@ -11564,6 +11588,21 @@
       ],
       "exclude": false,
       "event": "SRD2011"
+    },
+    {
+      "sessionNumber": 1,
+      "date": "18/11/2014",
+      "filename": "2014-11-18 Questions & Answers With the Dharma Realm Buddhist University.mp3",
+      "duration": "1:32:32",
+      "teachers": [
+        "AP"
+      ],
+      "sessionTitle": "",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/audio/AP_11_18_2014_DRBU_Q_and_A.mp3",
+      "excerpts": 0,
+      "tags": [],
+      "exclude": false,
+      "event": "DRBU2014"
     },
     {
       "sessionNumber": 1,
@@ -20270,20 +20309,20 @@
       "indexNumber": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 0,
-      "subsumed": false,
-      "text": "Craving for sensuality [kāma-taṇhā]",
-      "tag": "Craving for sensuality"
+      "excerptCount": 5,
+      "subsumed": true,
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (5)",
+      "tag": "Sensual desire"
     },
     {
       "level": 4,
       "indexNumber": "",
       "name": "Craving to become",
       "pali": "bhava-taṇhā",
-      "excerptCount": 0,
-      "subsumed": false,
-      "text": "Craving to become [bhava-taṇhā]",
-      "tag": "Craving to become"
+      "excerptCount": 2,
+      "subsumed": true,
+      "text": "Craving to become [bhava-taṇhā] see Becoming (2)",
+      "tag": "Becoming"
     },
     {
       "level": 4,
