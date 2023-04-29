@@ -59,7 +59,7 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
     
     cueFilePath = os.path.join(directory,cueFileName)
     cueFilePath = cueFilePath.replace('/','\\')
-    with open(cueFilePath,'w') as cueFile:
+    with open(cueFilePath,'w', encoding='utf-8') as cueFile:
         print('TITLE "(Title N.N.)"',file=cueFile)
         print(f'FILE "{originalFileName}" MP3',file=cueFile)
         

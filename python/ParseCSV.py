@@ -490,15 +490,19 @@ def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
         yield None,tagStack[0]
         
 
-def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
-    "Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not."
+def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str, singleConsentOK = False) -> bool:
+    """Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not.
+    If singleConsentOK then only one teacher must consent to return True."""
     
     if gOptions.ignoreTeacherConsent:
         return True
     
     consent = True
     for teacher in teachers:
-        if not teacherDB[teacher][policy]:
+        if teacherDB[teacher][policy]:
+            if singleConsentOK:
+                return True
+        else:
             consent = False
         
     return consent
@@ -626,8 +630,8 @@ def LoadEventFile(database,eventName,directory):
                 del s["exclude"]
             
             
-        sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions")]
-            # Remove sessions we didn't get consent for
+        sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True)]
+            # Remove sessions if none of the session teachers have given consent
         database["sessions"] += sessions
         
         rawExcerpts = CSVToDictList(file)
