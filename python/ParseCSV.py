@@ -392,6 +392,12 @@ def RemoveUnusedTags(database: dict) -> None:
             if anyTagUsed: # Mark the parent tag as used if any of the children are in use
                 usedTags.add(parent["tag"])
 
+            # Mark all numbered tags as used if either the parent or any other numbered tag is in use
+            if parent["tag"] in usedTags or numberedTagUsed: # Mark all numbered tags as used if
+                for childTag in children:
+                    if childTag["indexNumber"]:
+                        usedTags.add(childTag["tag"])
+
     print(f"Finished; {prevTagCount=}")
 
     remainingTags = set(usedTags)
@@ -410,7 +416,34 @@ def RemoveUnusedTags(database: dict) -> None:
 
             print(display,file=file)
     
-    print("Remaining tags:",remainingTags)
+    database["tagRaw"] = [tag for tag in database["tagRaw"] if tag["tag"] in usedTags]
+    database["tag"] = {tagName:tag for tagName,tag in database["tag"].items() if tagName in usedTags}
+
+    for tag in database["tag"].values():
+        tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
+        tag["related"] = [t for t in tag["related"] if t in usedTags]
+
+
+    #print("Remaining tags:",remainingTags)
+
+def IndexTags(database: dict) -> None:
+    """Add listIndex tag to raw tags after we have removed unused tags."""
+    tagsSoFar = set()
+    for n,tag in enumerate(database["tagRaw"]):
+        tagName = tag["tag"]
+        if tag["subsumedUnder"]:
+            continue
+        if tagName in tagsSoFar and not tag["primary"]:
+            continue
+
+        tagsSoFar.add(tagName)
+        databaseTagNumber = database['tag'][tagName]['listIndex']
+        
+        database["tag"][tagName]["listIndex"] = n
+    
+    """for tag in database["tag"].values():
+        if tag["listIndex"] != tag["newListIndex"]:
+            print(f"Mismatched numbers: {tag['tag']}: {tag['listIndex']=}, {tag['newListIndex']=}")"""
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -893,6 +926,7 @@ def main(clOptions,database):
     CountAndVerify(database)
     if not clOptions.keepUnusedTags:
         RemoveUnusedTags(database)
+    IndexTags(database)
 
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:
