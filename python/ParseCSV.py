@@ -1,8 +1,9 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
 import os, re, csv, json, unicodedata
+import Render
 import Utils
-from typing import List
+from typing import List, Iterator, Tuple
 from Prototype import ExcerptDurationStr
 
 gCamelCaseTranslation = {}
@@ -267,6 +268,7 @@ def LoadTagsFile(database,tagFileName):
     namePreference = ["abbreviation","fullTag","paliAbbreviation","pali"]
     paliPreference = ["paliAbbreviation","pali"]
     fullNamePreference = ["fullTag","pali"]
+    referencedTag = ["subsumedUnder","abbreviation","fullTag","paliAbbreviation","pali"]
     
     # Remove any blank values from the list before looping over it
     rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
@@ -287,7 +289,9 @@ def LoadTagsFile(database,tagFileName):
         rawTagIndex += 1
         tagName = FirstValidValue(rawTag,namePreference)
         tagPaliName = FirstValidValue(rawTag,paliPreference,"")
-        
+
+        rawTag["tag"] = FirstValidValue(rawTag,referencedTag)
+
         tagDesc = {}
         tagDesc["tag"] = tagName
         tagDesc["pali"] = tagPaliName
@@ -295,7 +299,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["fullPali"] = rawTag["pali"]
         for key in ["number","alternateTranslations","related","virtual"]:
             tagDesc[key] = rawTag[key]
-        
+                
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
         curTagLevel = rawTag["level"]        
         while (curTagLevel < lastTagLevel):
@@ -307,7 +311,7 @@ def LoadTagsFile(database,tagFileName):
             if curTagLevel > 1:
                 if lastTag.collectSubtags: # If the previous tag was flagged as primary, remove subtags from previous instances and accumulate new subtags
                     tags[lastTag.tag]["subtags"] = []
-                elif not tags[lastTag.tag]["subtags"]: # But even if it's not primary, accumulate subtags if there are no prior subtags
+                elif lastTag.tag not in subsumedTags and not tags[lastTag.tag]["subtags"]: # But even if it's not primary, accumulate subtags if there are no prior subtags
                     lastTag.collectSubtags = True
                 
                 tagStack.append(lastTag)
@@ -358,6 +362,90 @@ def LoadTagsFile(database,tagFileName):
     database["tagSubsumed"] = subsumedTags
     database["tagRedacted"] = redactedTags
 
+def RemoveUnusedTags(database: dict) -> None:
+    """Remove unused tags from the raw tag list before building the tag display list."""
+
+    def UsedTag(tag: dict) -> bool:
+        return tag.get("excerptCount",0) or tag.get("sessionCount",0) or tag.get("sessionCount",0)
+
+    usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
+    print(len(usedTags),"tags used.")
+    
+    prevTagCount = 0
+    round = 0
+    while prevTagCount < len(usedTags):
+        round += 1
+        prevTagCount = len(usedTags)
+        print(f"{round=}, {prevTagCount=}")
+
+        for parent,children in WalkTags(database["tagRaw"]):
+            if not parent:
+                continue
+            
+            anyTagUsed = numberedTagUsed = False
+            for childTag in children:
+                if childTag["tag"] in usedTags:
+                    anyTagUsed = True
+                    if childTag["indexNumber"]:
+                        numberedTagUsed = True
+
+            if anyTagUsed: # Mark the parent tag as used if any of the children are in use
+                usedTags.add(parent["tag"])
+
+            # Mark all numbered tags as used if either the parent or any other numbered tag is in use
+            if parent["tag"] in usedTags or numberedTagUsed: # Mark all numbered tags as used if
+                for childTag in children:
+                    if childTag["indexNumber"]:
+                        usedTags.add(childTag["tag"])
+
+    print(f"Finished; {prevTagCount=}")
+
+    remainingTags = set(usedTags)
+    with open("prototype/UsedTags.txt",mode="w",encoding='utf-8') as file:
+        for rawTag in database["tagRaw"]:
+            tag = rawTag["tag"]
+            name = FirstValidValue(rawTag,["fullTag","pali"])
+
+            indent = "     " * (rawTag["level"] - 1)
+
+            if tag in usedTags:
+                remainingTags.discard(tag)
+                name = name.upper()
+
+            display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name
+
+            print(display,file=file)
+    
+    database["tagRaw"] = [tag for tag in database["tagRaw"] if tag["tag"] in usedTags]
+    database["tagRemoved"] = [tagName for tagName,tag in database["tag"].items() if tagName not in usedTags]
+    database["tag"] = {tagName:tag for tagName,tag in database["tag"].items() if tagName in usedTags}
+
+    for tag in database["tag"].values():
+        tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
+        tag["related"] = [t for t in tag["related"] if t in usedTags]
+
+    IndexTags(database)
+    #print("Remaining tags:",remainingTags)
+
+def IndexTags(database: dict) -> None:
+    """Add listIndex tag to raw tags after we have removed unused tags."""
+    tagsSoFar = set()
+    for n,tag in enumerate(database["tagRaw"]):
+        tagName = tag["tag"]
+        if tag["subsumedUnder"]:
+            continue
+        if tagName in tagsSoFar and not tag["primary"]:
+            continue
+
+        tagsSoFar.add(tagName)
+        databaseTagNumber = database['tag'][tagName]['listIndex']
+        
+        database["tag"][tagName]["listIndex"] = n
+    
+    """for tag in database["tag"].values():
+        if tag["listIndex"] != tag["newListIndex"]:
+            print(f"Mismatched numbers: {tag['tag']}: {tag['listIndex']=}, {tag['newListIndex']=}")"""
+
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
     Format: level, text of display line, tag to open when clicked""" 
@@ -370,7 +458,7 @@ def CreateTagDisplayList(database):
             listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))
         
         name = FirstValidValue(rawTag,["fullTag","pali"])
-        tag = FirstValidValue(rawTag,["subsumedUnder","abbreviation","fullTag","paliAbbreviation","pali"])
+        tag = rawTag["tag"]
         text = name
         
         try:
@@ -409,21 +497,60 @@ def CreateTagDisplayList(database):
     for tag in database["tag"]:
         if not database["tag"][tag]["virtual"]:
             index = database["tag"][tag]["listIndex"]
-            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}" 
-      
+            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
-def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str) -> bool:
-    "Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not."
+def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
+    """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
+    tagStack = []
+    for tag in tagDisplayList:
+        tagLevel = tag["level"]
+        while len(tagStack) > tagLevel: # If the tag level drops, then yield the accumulated tags and their parent 
+            children = tagStack.pop()
+            parent = tagStack[-1][-1] # The last item of the next-highest level is the parent tag
+            yield parent,children
+        
+        if tagLevel > len(tagStack):
+            assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
+            tagStack.append([])
+        
+        tagStack[-1].append(tag)
+    
+    while len(tagStack) > 1: # Yield sibling tags still in the list
+        children = tagStack.pop()
+        parent = tagStack[-1][-1] # The last item of the next-highest level is the parent tag
+        yield parent,children
+    
+    if tagStack:
+        yield None,tagStack[0]
+        
+
+def TeacherConsent(teacherDB: List[dict], teachers: List[str], policy: str, singleConsentOK = False) -> bool:
+    """Scan teacherDB to see if all teachers in the list have consented to the given policy. Return False if not.
+    If singleConsentOK then only one teacher must consent to return True."""
     
     if gOptions.ignoreTeacherConsent:
         return True
     
     consent = True
     for teacher in teachers:
-        if not teacherDB[teacher][policy]:
+        if teacherDB[teacher][policy]:
+            if singleConsentOK:
+                return True
+        else:
             consent = False
         
     return consent
+
+def PrepareReferences(reference) -> None:
+    """Prepare database["reference"] for use."""
+
+    ListifyKey(reference,"author1")
+    ConvertToInteger(reference,"pdfPageOffset")
+
+    # Convert ref["abbreviation"] to lowercase for dictionary matching
+    # ref["title"] still has the correct case
+    for ref in list(reference.keys()):
+        reference[ref.lower()] = reference.pop(ref)
 
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
@@ -494,7 +621,17 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     annotation["indentLevel"] = len(annotation["flags"].split("-"))
     
     excerpt["annotations"].append(annotation)
-    
+
+def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
+    regexList = Render.ReferenceMatchRegExs(referenceDB)
+    authors = []
+    for regex in regexList:
+        matches = re.findall(regex,textToScan,flags = re.IGNORECASE)
+        for match in matches:
+            AppendUnique(authors,referenceDB[match[0].lower()]["author"])
+
+    return authors
+
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
@@ -504,7 +641,8 @@ def LoadEventFile(database,eventName,directory):
         for key in ["teachers","tags"]:
             eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
         for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
-            eventDesc[key] = int(eventDesc[key])
+            if key in eventDesc:
+                eventDesc[key] = int(eventDesc[key])
         
         database["event"][eventName] = eventDesc
         
@@ -526,8 +664,8 @@ def LoadEventFile(database,eventName,directory):
                 del s["exclude"]
             
             
-        sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions")]
-            # Remove sessions we didn't get consent for
+        sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True)]
+            # Remove sessions if none of the session teachers have given consent
         database["sessions"] += sessions
         
         rawExcerpts = CSVToDictList(file)
@@ -572,7 +710,10 @@ def LoadEventFile(database,eventName,directory):
                 if defaultTeacher == "Anon": # Check if the default teacher is anonymous
                     x["teachers"] = ["Anon"]
                 elif defaultTeacher != "None":
-                    x["teachers"] = ourSession["teachers"]
+                    x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
+            
+            if x["kind"] == "Reading":
+                AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
             
             if x["sessionNumber"] != lastSession:
                 fileNumber = 1
@@ -599,7 +740,7 @@ def LoadEventFile(database,eventName,directory):
             if not gOptions.jsonNoClean:
                 del x["qTag"]
                 del x["aTag"]
-                del x["aListen"]
+                x.pop("aListen",None)
 
             startTime = x["startTime"]
             
@@ -689,10 +830,10 @@ def CountAndVerify(database):
         
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
-            CountInstances(database["event"],key,database[key],"Event count")
+            CountInstances(database["event"],key,database[key],"eventCount")
         
-        CountInstances(database["event"],"teachers",database["teacher"],"Event count")
-        CountInstances(database["sessions"],"teachers",database["teacher"],"Session count")
+        CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
+        CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
         CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
     
     # Are tags flagged Primary as needed?
@@ -737,6 +878,7 @@ def AddArguments(parser):
     parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--parseOnlySpecifiedEvents',action='store_true',help="Load only events specified by --events into the database")
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
+    parser.add_argument('--keepUnusedTags',action='store_true',help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
     parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process annotations")
 
@@ -772,7 +914,8 @@ def main(clOptions,database):
         database[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
     
     LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
-    
+    PrepareReferences(database["reference"])
+
     database["event"] = {}
     database["sessions"] = []
     database["excerpts"] = []
@@ -782,6 +925,9 @@ def main(clOptions,database):
             LoadEventFile(database,event,gOptions.csvDir)
 
     CountAndVerify(database)
+    if not clOptions.keepUnusedTags:
+        RemoveUnusedTags(database)
+
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:
         VerifyListCounts(database)

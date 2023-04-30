@@ -4,24 +4,10 @@ The only remaining work for Prototype.py to do is substitute the list of teacher
 import json, re
 import markdown
 from markdown_newtab import NewTabExtension
-from typing import Tuple, Type, Callable
-from collections import defaultdict
+from typing import Tuple, Type, Callable, List, Dict
 import pyratemp
 from functools import cache
-import itertools
 import ParseCSV, Prototype, Utils
-
-def PrepareReferences() -> None:
-    """Prepare gDatabase["reference"] for use."""
-    reference = gDatabase["reference"]
-
-    ParseCSV.ListifyKey(reference,"author1")
-    ParseCSV.ConvertToInteger(reference,"pdfPageOffset")
-    
-    # Convert ref["abbreviation"] to lowercase for dictionary matching
-    # ref["title"] still has the correct case
-    for ref in list(reference.keys()): 
-        reference[ref.lower()] = reference.pop(ref)
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -168,7 +154,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
             if len(parts) > 3 and gOptions.verbose >= -1:
                 print("   Warning: '|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
 
-    colon = "" if re.match(r"\s*[a-z]",text) else ":"
+    colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
     item["body"] = bodyTemplate(**renderDict)
@@ -228,6 +214,19 @@ def LinkSuttas():
     if gOptions.verbose > 1:
         print(f"   {suttasMatched} links generated to suttas")
 
+def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
+    escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
+    titleRegex = Utils.RegexMatchAny(escapedTitles)
+    pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
+
+    refForm2 = r'\[' + titleRegex + r'\]\((' + pageReference + ')?\)'
+    #print(refForm2)
+    refForm3 = r'\]\(' + titleRegex + r'(\s+' + pageReference + ')?\)'
+
+    refForm4 = titleRegex + r'\s+(' + pageReference + ')'
+    #print(refForm4)
+
+    return refForm2, refForm3, refForm4
 
 def LinkKnownReferences() -> None:
     """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
@@ -245,7 +244,6 @@ def LinkKnownReferences() -> None:
 
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         #print(matchObject[0],matchObject[1],matchObject[2])
-        
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
@@ -258,28 +256,34 @@ def LinkKnownReferences() -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        nonlocal foundReferences # use this to pass the abbreviation of the matched book back to ReferenceForm2
-        foundReferences.append(reference)
         return f"[{reference['title']}]({url}) {reference['attribution']}"
 
-    def ReferenceForm2(bodyStr,item: dict) -> Tuple[str,int]:
+    def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: [title]() or [title](page N)"""
-        nonlocal foundReferences
-        foundReferences = []
-        returnStr = re.sub(refForm2,ReferenceForm2Substitution,bodyStr,flags = re.IGNORECASE)
-
-        if foundReferences:
-            if item["kind"] == "Reading": # If this is a reading, add the authors to the teacher list
-                #print(foundReferences)
-                for ref in foundReferences:
-                    Utils.AppendUnique(item["teachers"],ref["author"])
-            #print("Ref form 2:",item["body"],item.get("teachers",[]))
-        
-        return returnStr,len(foundReferences)
+        return re.subn(refForm2,ReferenceForm2Substitution,bodyStr,flags = re.IGNORECASE)
     
     def ReferenceForm3Substitution(matchObject: re.Match) -> str:
-        #print(repr(matchObject[0]),repr(matchObject[1]),repr(matchObject[2]))
+        try:
+            reference = gDatabase["reference"][matchObject[1].lower()]
+        except KeyError:
+            if gOptions.verbosity > 0:
+                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            return matchObject[1]
         
+        url = reference['remoteUrl']
+        
+        page = ParsePageNumber(matchObject[2])
+        if page:
+           url +=  f"#page={page + reference['pdfPageOffset']}"""
+
+        return f"]({url})"
+
+    def ReferenceForm3(bodyStr: str) -> tuple[str,int]:
+        """Search for references of the form: [xxxxx](title) or [xxxxx](title page N)"""
+        return re.subn(refForm3,ReferenceForm3Substitution,bodyStr,flags = re.IGNORECASE)
+
+    def ReferenceForm4Substitution(matchObject: re.Match) -> str:
+        #print(repr(matchObject[0]),repr(matchObject[1]),repr(matchObject[2]))
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
@@ -292,37 +296,17 @@ def LinkKnownReferences() -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        nonlocal foundReferences # use this to pass the abbreviation of the matched book back to ReferenceForm2
-        foundReferences.append(reference)
         return f"{reference['title']} {reference['attribution']} [{matchObject[2]}]({url})"
 
-    def ReferenceForm3(bodyStr,item: dict) -> Tuple[str,int]:
+    def ReferenceForm4(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: title page N"""
-        nonlocal foundReferences
-        foundReferences = []
-        returnStr = re.sub(refForm3,ReferenceForm3Substitution,bodyStr,flags = re.IGNORECASE)
-
-        if foundReferences:
-            if item["kind"] == "Reading": # If this is a reading, add the authors to the teacher list
-                #print(foundReferences)
-                for ref in foundReferences:
-                    Utils.AppendUnique(item["teachers"],ref["author"])
-            #print("Ref form 3:",item["body"],item.get("teachers",[]))
+        return re.subn(refForm4,ReferenceForm4Substitution,bodyStr,flags = re.IGNORECASE)
         
-        return returnStr,len(foundReferences)
+    refForm2, refForm3, refForm4 = ReferenceMatchRegExs(gDatabase["reference"])
 
-    escapedTitles = [re.escape(abbrev) for abbrev in gDatabase["reference"]]
-    pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
-
-    refForm2 = r'\[' + Utils.RegexMatchAny(escapedTitles) + r'\]\((' + pageReference + ')?\)'
-    #print(refForm2)
-    refForm3 = Utils.RegexMatchAny(escapedTitles) + r'\s+(' + pageReference + ')'
-    #print(refForm3)
-
-    foundReferences = []
-
-    referenceCount = ApplyToBodyText(ReferenceForm2,passItemAsSecondArgument=True)
-    referenceCount = ApplyToBodyText(ReferenceForm3,passItemAsSecondArgument=True)
+    referenceCount = ApplyToBodyText(ReferenceForm2)
+    referenceCount += ApplyToBodyText(ReferenceForm3)
+    referenceCount += ApplyToBodyText(ReferenceForm4)
     
     if gOptions.verbose > 1:
         print(f"   {referenceCount} links generated to references")
@@ -343,8 +327,9 @@ def LinkReferences() -> None:
     Allowable formats are:
     1. [reference](link) - Markdown format for arbitrary hyperlinks
     2. [title]() or [title](page N) - Titles in Reference sheet; if page N or p. N appears between the parenthesis, link to this page in the pdf, but don't display in the html
-    3. title page N - Link to specific page for titles in Reference sheet which shows the page number
-    4. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
+    3. [xxxxx](title) or [xxxxx](title page N) - Apply hyperlink from title to arbitrary text xxxxx
+    4. title page N - Link to specific page for titles in Reference sheet which shows the page number
+    5. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
 
     LinkSuttas()
     LinkKnownReferences()
@@ -367,7 +352,6 @@ def main(clOptions,database) -> None:
     global gDatabase
     gDatabase = database
 
-    PrepareReferences()
     PrepareTemplates()
 
     AddImplicitAttributions()

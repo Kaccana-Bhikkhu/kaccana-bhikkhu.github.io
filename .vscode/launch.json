@@ -68,14 +68,31 @@
                 "--excerptMp3",
                 "local",
                 "--events",
-                "SRD2010,SRD2011",
+                "SRD2010,SRD2011,WR2018-2,DRBU2014,UD2020",
                 "--parseOnlySpecifiedEvents"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
-            "name": "SRD2010-11",
+            "name": "UD2020",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "ParseCSV,Render,Prototype",
+                "-vvv",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "UD2020",
+                "--parseOnlySpecifiedEvents"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "AllNew",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -85,25 +102,22 @@
                 "--excerptMp3",
                 "local",
                 "--events",
-                "SRD2010,SRD2011",
+                "SRD2010,SRD2011,WR2018-2,DRBU2014,UD2020",
                 "--parseOnlySpecifiedEvents",
                 "--sheets",
-                "SRD2010,SRD2011,Kind,Teacher,Tag,Reference"
+                "SRD2010,SRD2011,WR2018-2,DRBU2014,Kind,Teacher,Tag,Reference,UD2020"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
-            "name": "BuildGithubV1.9",
+            "name": "BuildGithubV2",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
             "args": [
                 "All",
                 "-vvv",
-                "--events",
-                "SRD2010,SRD2011,TG2013,TG2014,TG2015",
-                "--parseOnlySpecifiedEvents",
                 "--sheets",
                 "All"
             ],

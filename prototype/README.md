@@ -124,3 +124,8 @@ daylong events from 2010 and 2011. The tag list has expanded to
 include tags from many events transcribed on paper that have not yet
 been entered into the online archive. Almost all documentation still
 applies to version 1.0.</span></p>
+<p><b>1.9</b><b>1</b><span style="font-weight: normal">: Added
+</span><span style="font-weight: normal">events: DRBU Q&amp;A, The
+Teaching and the Training, and Living in a Changing Society</span><span style="font-weight: normal">.
+</span><span style="font-weight: normal">Remove unused tags from the
+tag list (possibly still a few glitches).</span></p>
