@@ -111,16 +111,13 @@
             "justMyCode": true
         },
         {
-            "name": "BuildGithubV1.9",
+            "name": "BuildGithubV2",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
             "args": [
                 "All",
                 "-vvv",
-                "--events",
-                "SRD2010,SRD2011,TG2013,TG2014,TG2015",
-                "--parseOnlySpecifiedEvents",
                 "--sheets",
                 "All"
             ],

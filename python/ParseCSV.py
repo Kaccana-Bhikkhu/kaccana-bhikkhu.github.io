@@ -417,13 +417,14 @@ def RemoveUnusedTags(database: dict) -> None:
             print(display,file=file)
     
     database["tagRaw"] = [tag for tag in database["tagRaw"] if tag["tag"] in usedTags]
+    database["tagRemoved"] = [tagName for tagName,tag in database["tag"].items() if tagName not in usedTags]
     database["tag"] = {tagName:tag for tagName,tag in database["tag"].items() if tagName in usedTags}
 
     for tag in database["tag"].values():
         tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
         tag["related"] = [t for t in tag["related"] if t in usedTags]
 
-
+    IndexTags(database)
     #print("Remaining tags:",remainingTags)
 
 def IndexTags(database: dict) -> None:
@@ -926,7 +927,6 @@ def main(clOptions,database):
     CountAndVerify(database)
     if not clOptions.keepUnusedTags:
         RemoveUnusedTags(database)
-    IndexTags(database)
 
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:

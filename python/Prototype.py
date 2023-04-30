@@ -421,7 +421,7 @@ class Formatter:
                 a(sessionTitle)
 
             dateStr = Utils.ReformatDate(session['date'])
-            teacherList = ListLinkedTeachers(session["teachers"])
+            teacherList = ListLinkedTeachers(session["teachers"],lastJoinStr = " and ")
             if self.headingShowEvent or sessionTitle:
                 a(' – ')
             a(f'{teacherList} – {dateStr}')
