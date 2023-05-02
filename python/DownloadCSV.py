@@ -58,12 +58,9 @@ def AddArguments(parser):
     
 gOptions = None
 
-def main(clOptions,_):
+def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
-    
-    global gOptions
-    gOptions = clOptions
     
     gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
     gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')

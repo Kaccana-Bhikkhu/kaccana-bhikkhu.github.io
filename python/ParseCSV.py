@@ -901,17 +901,14 @@ def AddArguments(parser):
     parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process annotations")
 
 gOptions = None
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
-def main(clOptions,database):
+def main():
     """ Parse a directory full of csv files into the dictionary database and write it to a .json file.
     Each .csv sheet gets one entry in the database.
     Tags.csv and event files indicated by four digits e.g. TG2015.csv are parsed separately."""
-    
-    global gOptions
-    gOptions = clOptions
-    #gOptions.ignoreAnnotations = True # For the time being (Winter Retreat 2023), ignore annotations to avoid too much coding
-    
-    LoadSummary(database,os.path.join(gOptions.csvDir,"Summary.csv"))
+
+    LoadSummary(gDatabase,os.path.join(gOptions.csvDir,"Summary.csv"))
    
     specialFiles = {'Summary','Tag','EventTemplate'}
     for fileName in os.listdir(gOptions.csvDir):
@@ -929,42 +926,42 @@ def main(clOptions,database):
         if re.match(".*[0-9]{4}",baseName): # Event files contain a four-digit year and are loaded after all other files
             continue
         
-        database[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
+        gDatabase[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
     
-    LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
-    PrepareReferences(database["reference"])
+    LoadTagsFile(gDatabase,os.path.join(gOptions.csvDir,"Tag.csv"))
+    PrepareReferences(gDatabase["reference"])
 
-    database["event"] = {}
-    database["sessions"] = []
-    database["excerpts"] = []
-    database["excerptsRedacted"] = []
-    for event in database["summary"]:
-        if not clOptions.parseOnlySpecifiedEvents or clOptions.events == "All" or event in clOptions.events:
-            LoadEventFile(database,event,gOptions.csvDir)
+    gDatabase["event"] = {}
+    gDatabase["sessions"] = []
+    gDatabase["excerpts"] = []
+    gDatabase["excerptsRedacted"] = []
+    for event in gDatabase["summary"]:
+        if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
+            LoadEventFile(gDatabase,event,gOptions.csvDir)
 
-    CountAndVerify(database)
-    if not clOptions.keepUnusedTags:
-        RemoveUnusedTags(database)
+    CountAndVerify(gDatabase)
+    if not gOptions.keepUnusedTags:
+        RemoveUnusedTags(gDatabase)
     else:
-        database["tagRemoved"] = []
+        gDatabase["tagRemoved"] = []
 
-    PrepareTeachers(database["teacher"])
+    PrepareTeachers(gDatabase["teacher"])
 
-    CreateTagDisplayList(database)
+    CreateTagDisplayList(gDatabase)
     if gOptions.verbose > 0:
-        VerifyListCounts(database)
+        VerifyListCounts(gDatabase)
     
-    database["keyCaseTranslation"] = gCamelCaseTranslation
+    gDatabase["keyCaseTranslation"] = gCamelCaseTranslation
     if not gOptions.jsonNoClean:
-        del database["tagRaw"]
+        del gDatabase["tagRaw"]
 
     if gOptions.verbose >= 2:
-        print("Final database contents:")
-        for item in database:
-            print(item + ": "+str(len(database[item])))
+        print("Final gDatabase contents:")
+        for item in gDatabase:
+            print(item + ": "+str(len(gDatabase[item])))
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
-        json.dump(database, file, ensure_ascii=False, indent=2)
+        json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
     if gOptions.verbose > 0:
-        print("   " + Prototype.ExcerptDurationStr(database["excerpts"]))
+        print("   " + Prototype.ExcerptDurationStr(gDatabase["excerpts"]))

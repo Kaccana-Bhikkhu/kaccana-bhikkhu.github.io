@@ -5,16 +5,17 @@ import argparse
 import importlib
 import os, sys
 import json
-from typing import List
 
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
+
+import Utils
 
 def PrintModuleSeparator(moduleName:str) -> None:
     if clOptions.verbose >= 0:
             print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
-def ReadJobOptions(jobName: str) -> List[str]:
+def ReadJobOptions(jobName: str) -> list[str]:
     "Read a list of job options from the .vscode/launch.json"
     
     with open(".vscode/launch.json", "r") as file:
@@ -75,6 +76,7 @@ clOptions.verbose -= clOptions.quiet
 
 for mod in modules:
     modules[mod].gOptions = clOptions
+    Utils.gOptions = clOptions
 
 if not os.path.exists(clOptions.homeDir):
     os.makedirs(clOptions.homeDir)
@@ -105,12 +107,13 @@ else:
 
 for mod in modules:
     modules[mod].gDatabase = database
+    Utils.gDatabase = database
 
 # Then run the specified operations in sequential order
 for moduleName in moduleList:
     if moduleName in opList:
         PrintModuleSeparator(moduleName)
-        modules[moduleName].main(clOptions,database)
+        modules[moduleName].main()
 
 if clOptions.ignoreTeacherConsent:
     print("WARNING: Teacher consent has been ignored. This should only be used for testing and debugging purposes.")

@@ -137,7 +137,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"]:
+    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"] and not gOptions.attributeAll:
         teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
@@ -343,13 +343,9 @@ def AddArguments(parser) -> None:
     parser.add_argument('--renderedDatabase',type=str,default='prototype/RenderedDatabase.json',help='Database after rendering each excerpt; Default: prototype/RenderedDatabase.json')
 
 gOptions = None
-gDatabase = None
-def main(clOptions,database) -> None:
-    global gOptions
-    gOptions = clOptions
-    
-    global gDatabase
-    gDatabase = database
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
+def main() -> None:
 
     PrepareTemplates()
 

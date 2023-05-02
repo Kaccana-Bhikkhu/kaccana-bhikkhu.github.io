@@ -26,17 +26,11 @@ def AddArguments(parser):
     parser.add_argument('--overwriteMp3',action='store_true',help="Overwrite existing mp3 files; otherwise leave existing files untouched")
 
 gOptions = None
-gDatabase = None
-def main(clOptions,database):
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
+def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
-    
-    global gOptions
-    gOptions = clOptions
-    
-    global gDatabase
-    gDatabase = database
-    
     if gOptions.sessionMp3 == 'remote' and gOptions.excerptMp3 == 'remote':
         if gOptions.verbose > 0:
             print("   All mp3 links go to remote servers. No mp3 files will be processed.")

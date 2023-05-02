@@ -786,15 +786,9 @@ def AddArguments(parser):
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
 gOptions = None
-gDatabase = None
-def main(clOptions,database):
-    
-    global gOptions
-    gOptions = clOptions
-    
-    global gDatabase
-    gDatabase = database
-    
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
+def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
@@ -815,6 +809,6 @@ def main(clOptions,database):
     
     WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))
 
-    if not clOptions.keepOldHtmlFiles:
+    if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()
     
