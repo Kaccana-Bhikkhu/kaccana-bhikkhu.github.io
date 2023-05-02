@@ -255,7 +255,7 @@ def LinkKnownReferences() -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        return f"[{reference['title']}]({url}) {reference['attribution']}"
+        return f"[{reference['title']}]({url}) {Prototype.LinkTeachersInText(reference['attribution'])}"
 
     def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: [title]() or [title](page N)"""
@@ -295,7 +295,7 @@ def LinkKnownReferences() -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        return f"{reference['title']} {reference['attribution']} [{matchObject[2]}]({url})"
+        return f"{reference['title']} {Prototype.LinkTeachersInText(reference['attribution'])} [{matchObject[2]}]({url})"
 
     def ReferenceForm4(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: title page N"""
