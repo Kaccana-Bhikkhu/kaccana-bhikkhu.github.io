@@ -4,7 +4,7 @@ import os, re, csv, json, unicodedata
 import Render
 import Utils
 from typing import List, Iterator, Tuple
-from Prototype import ExcerptDurationStr
+import Prototype
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -561,6 +561,15 @@ def PrepareReferences(reference) -> None:
     for ref in list(reference.keys()):
         reference[ref.lower()] = reference.pop(ref)
 
+
+def PrepareTeachers(teacherDB) -> None:
+    """Prepare database["teacher"] for use."""
+    for t in teacherDB.values():
+        if TeacherConsent(teacherDB,[t["teacher"]],"searchable") and t.get("excerptCount",0):
+            t["htmlFile"] = Utils.slugify(t["fullName"]) + ".html"
+        else:
+            t["htmlFile"] = ""
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
@@ -837,13 +846,13 @@ def CountAndVerify(database):
         for tag in tagSet:
             tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
         
+    CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
+    CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
+    CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
+    
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"eventCount")
-        
-        CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
-        CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
-        CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
     
     # Are tags flagged Primary as needed?
     if gOptions.verbose >= 1:
@@ -939,6 +948,8 @@ def main(clOptions,database):
     else:
         database["tagRemoved"] = []
 
+    PrepareTeachers(database["teacher"])
+
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:
         VerifyListCounts(database)
@@ -956,4 +967,4 @@ def main(clOptions,database):
         json.dump(database, file, ensure_ascii=False, indent=2)
     
     if gOptions.verbose > 0:
-        print("   " + ExcerptDurationStr(database["excerpts"]))
+        print("   " + Prototype.ExcerptDurationStr(database["excerpts"]))

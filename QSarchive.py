@@ -73,6 +73,9 @@ else:
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 
+for mod in modules:
+    modules[mod].gOptions = clOptions
+
 if not os.path.exists(clOptions.homeDir):
     os.makedirs(clOptions.homeDir)
 os.chdir(clOptions.homeDir)
@@ -99,7 +102,10 @@ if 'ParseCSV' in opList or opList == ['DownloadCSV']:
 else:
     with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
         database = json.load(file)
-    
+
+for mod in modules:
+    modules[mod].gDatabase = database
+
 # Then run the specified operations in sequential order
 for moduleName in moduleList:
     if moduleName in opList:

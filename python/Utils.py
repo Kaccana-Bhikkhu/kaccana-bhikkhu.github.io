@@ -67,6 +67,15 @@ def AllTags(item: dict) -> set:
     
     return allTags
 
+def AllTeachers(item: dict) -> set:
+    """Return the set of all teachers in item, which is either an excerpt or an annotation."""
+    allTeachers = set(item.get("teachers",()))
+    
+    for annotation in item.get("annotations",()):
+        allTeachers.update(annotation.get("teachers",()))
+    
+    return allTeachers
+
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
     

@@ -11,7 +11,7 @@ import ParseCSV, Prototype, Utils
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
-    prya = fString.replace("{","@!").replace("}","!@")
+    prya = fString.replace("{","$!").replace("}","!$")
     
     return prya
 
@@ -139,8 +139,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     teachers = item.get("teachers",())
     if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"]:
         teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
-    teacherList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
-    teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
+    teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
     text = item["text"]
     prefix = ""
@@ -159,7 +158,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
 
     item["body"] = bodyTemplate(**renderDict)
 
-    if teacherList:
+    if teachers:
 
         # Does the text before the attribution end in a full stop?
         fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",item["body"]) else ""

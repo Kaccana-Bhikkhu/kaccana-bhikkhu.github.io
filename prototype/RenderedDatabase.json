@@ -263,7 +263,9 @@
       "indexSessions": true,
       "searchable": true,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "excerptCount": 1,
+      "htmlFile": "abhayagiri-sangha.html"
     },
     "AmSangha": {
       "teacher": "AmSangha",
@@ -273,7 +275,8 @@
       "indexSessions": true,
       "searchable": true,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "htmlFile": ""
     },
     "AChah": {
       "teacher": "AChah",
@@ -283,7 +286,9 @@
       "indexSessions": true,
       "searchable": true,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "excerptCount": 10,
+      "htmlFile": "ajahn-chah.html"
     },
     "ALee": {
       "teacher": "ALee",
@@ -293,7 +298,8 @@
       "indexSessions": true,
       "searchable": true,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "htmlFile": ""
     },
     "AMahaB": {
       "teacher": "AMahaB",
@@ -303,7 +309,8 @@
       "indexSessions": true,
       "searchable": true,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "htmlFile": ""
     },
     "AP": {
       "teacher": "AP",
@@ -313,7 +320,11 @@
       "indexSessions": true,
       "searchable": true,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "eventCount": 5,
+      "sessionCount": 27,
+      "excerptCount": 167,
+      "htmlFile": "ajahn-pasanno.html"
     },
     "AThan": {
       "teacher": "AThan",
@@ -323,7 +334,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": true
+      "allowTag": true,
+      "htmlFile": ""
     },
     "AJaya": {
       "teacher": "AJaya",
@@ -333,7 +345,9 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "excerptCount": 6,
+      "htmlFile": ""
     },
     "AKd": {
       "teacher": "AKd",
@@ -343,7 +357,9 @@
       "indexSessions": false,
       "searchable": true,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "excerptCount": 1,
+      "htmlFile": "ajahn-karunadhammo.html"
     },
     "AJoti": {
       "teacher": "AJoti",
@@ -353,7 +369,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "htmlFile": ""
     },
     "ANy": {
       "teacher": "ANy",
@@ -363,7 +380,10 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "eventCount": 1,
+      "sessionCount": 1,
+      "htmlFile": ""
     },
     "AKsp": {
       "teacher": "AKsp",
@@ -373,7 +393,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "htmlFile": ""
     },
     "DS": {
       "teacher": "DS",
@@ -383,7 +404,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "htmlFile": ""
     },
     "JKorn": {
       "teacher": "JKorn",
@@ -393,7 +415,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "htmlFile": ""
     },
     "Jeed": {
       "teacher": "Jeed",
@@ -403,7 +426,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
-      "allowTag": false
+      "allowTag": false,
+      "htmlFile": ""
     },
     "Anon": {
       "teacher": "Anon",
@@ -413,7 +437,8 @@
       "indexSessions": false,
       "searchable": false,
       "attribute": false,
-      "allowTag": false
+      "allowTag": false,
+      "htmlFile": ""
     }
   },
   "kind": {
@@ -430,18 +455,18 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Question@!s!@@!colon!@++ @!text!@|| answered by @!teachers!@.",
-        "“@!text!@”|| Answered by @!teachers!@."
+        "++Question$!s!$$!colon!$++ $!text!$|| answered by $!teachers!$.",
+        "“$!text!$”|| Answered by $!teachers!$."
       ],
       "body": [
         "unimplemented",
-        "<b>Question@!s!@@!colon!@</b> @!text!@{attribution}",
-        "“@!text!@”{attribution}"
+        "<b>Question$!s!$$!colon!$</b> $!text!${attribution}",
+        "“$!text!$”{attribution}"
       ],
       "attribution": [
         "",
-        " answered by @!teachers!@.",
-        " Answered by @!teachers!@."
+        " answered by $!teachers!$.",
+        " Answered by $!teachers!$."
       ]
     },
     "Response": {
@@ -456,17 +481,17 @@
       "inheritTeachersFrom": "Session",
       "usageNotes": "",
       "form": [
-        "++Response@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
+        "++Response$!s!$++|| by $!teachers!$||$!colon!$ $!text!$",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "<b>Response@!s!@</b>{attribution}@!colon!@ @!text!@",
+        "<b>Response$!s!$</b>{attribution}$!colon!$ $!text!$",
         "unimplemented",
         "unimplemented"
       ],
       "attribution": [
-        " by @!teachers!@",
+        " by $!teachers!$",
         "",
         ""
       ]
@@ -484,17 +509,17 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Follow-up@!colon!@++ “@!text!@”|| aswered by @!teachers!@.",
+        "++Follow-up$!colon!$++ “$!text!$”|| aswered by $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Follow-up@!colon!@</b> “@!text!@”{attribution}",
+        "<b>Follow-up$!colon!$</b> “$!text!$”{attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        " aswered by @!teachers!@.",
+        " aswered by $!teachers!$.",
         ""
       ]
     },
@@ -511,18 +536,18 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Stor@!'ies' if s else 'y'!@@!colon!@++ @!text!@|| told by @!teachers!@.",
-        "@!text!@|| ++Stor@!'ies' if s else 'y'!@@!colon!@++ told by @!teachers!@."
+        "++Stor$!'ies' if s else 'y'!$$!colon!$++ $!text!$|| told by $!teachers!$.",
+        "$!text!$|| ++Stor$!'ies' if s else 'y'!$$!colon!$++ told by $!teachers!$."
       ],
       "body": [
         "unimplemented",
-        "<b>Stor@!'ies' if s else 'y'!@@!colon!@</b> @!text!@{attribution}",
-        "@!text!@{attribution}"
+        "<b>Stor$!'ies' if s else 'y'!$$!colon!$</b> $!text!${attribution}",
+        "$!text!${attribution}"
       ],
       "attribution": [
         "",
-        " told by @!teachers!@.",
-        " <b>Stor@!'ies' if s else 'y'!@@!colon!@</b> told by @!teachers!@."
+        " told by $!teachers!$.",
+        " <b>Stor$!'ies' if s else 'y'!$$!colon!$</b> told by $!teachers!$."
       ]
     },
     "Recollection": {
@@ -538,18 +563,18 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Recollection@!s!@@!colon!@++ @!text!@|| recounted by @!teachers!@.",
-        "@!text!@|| ++Recollection@!s!@++ by @!teachers!@."
+        "++Recollection$!s!$$!colon!$++ $!text!$|| recounted by $!teachers!$.",
+        "$!text!$|| ++Recollection$!s!$++ by $!teachers!$."
       ],
       "body": [
         "unimplemented",
-        "<b>Recollection@!s!@@!colon!@</b> @!text!@{attribution}",
-        "@!text!@{attribution}"
+        "<b>Recollection$!s!$$!colon!$</b> $!text!${attribution}",
+        "$!text!${attribution}"
       ],
       "attribution": [
         "",
-        " recounted by @!teachers!@.",
-        " <b>Recollection@!s!@</b> by @!teachers!@."
+        " recounted by $!teachers!$.",
+        " <b>Recollection$!s!$</b> by $!teachers!$."
       ]
     },
     "Teaching": {
@@ -564,19 +589,19 @@
       "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
-        "++Teaching@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
-        "++Teaching@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
-        "@!text!@|| ++Teaching@!s!@++ by @!teachers!@."
+        "++Teaching$!s!$++|| by $!teachers!$||$!colon!$ $!text!$",
+        "++Teaching$!s!$$!colon!$++ $!text!$|| contributed by $!teachers!$.",
+        "$!text!$|| ++Teaching$!s!$++ by $!teachers!$."
       ],
       "body": [
-        "<b>Teaching@!s!@</b>{attribution}@!colon!@ @!text!@",
-        "<b>Teaching@!s!@@!colon!@</b> @!text!@{attribution}",
-        "@!text!@{attribution}"
+        "<b>Teaching$!s!$</b>{attribution}$!colon!$ $!text!$",
+        "<b>Teaching$!s!$$!colon!$</b> $!text!${attribution}",
+        "$!text!${attribution}"
       ],
       "attribution": [
-        " by @!teachers!@",
-        " contributed by @!teachers!@.",
-        " <b>Teaching@!s!@</b> by @!teachers!@."
+        " by $!teachers!$",
+        " contributed by $!teachers!$.",
+        " <b>Teaching$!s!$</b> by $!teachers!$."
       ]
     },
     "Reflection": {
@@ -591,19 +616,19 @@
       "inheritTeachersFrom": "Excerpt",
       "usageNotes": "",
       "form": [
-        "++Reflection@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
-        "++Reflection@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
-        "@!text!@|| ++Reflection@!s!@++ by @!teachers!@."
+        "++Reflection$!s!$++|| by $!teachers!$||$!colon!$ $!text!$",
+        "++Reflection$!s!$$!colon!$++ $!text!$|| contributed by $!teachers!$.",
+        "$!text!$|| ++Reflection$!s!$++ by $!teachers!$."
       ],
       "body": [
-        "<b>Reflection@!s!@</b>{attribution}@!colon!@ @!text!@",
-        "<b>Reflection@!s!@@!colon!@</b> @!text!@{attribution}",
-        "@!text!@{attribution}"
+        "<b>Reflection$!s!$</b>{attribution}$!colon!$ $!text!$",
+        "<b>Reflection$!s!$$!colon!$</b> $!text!${attribution}",
+        "$!text!${attribution}"
       ],
       "attribution": [
-        " by @!teachers!@",
-        " contributed by @!teachers!@.",
-        " <b>Reflection@!s!@</b> by @!teachers!@."
+        " by $!teachers!$",
+        " contributed by $!teachers!$.",
+        " <b>Reflection$!s!$</b> by $!teachers!$."
       ]
     },
     "Simile": {
@@ -619,17 +644,17 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Simile@!s!@@!colon!@++ @!text!@|| — @!teachers!@.",
+        "++Simile$!s!$$!colon!$++ $!text!$|| — $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Simile@!s!@@!colon!@</b> @!text!@{attribution}",
+        "<b>Simile$!s!$$!colon!$</b> $!text!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        " — @!teachers!@.",
+        " — $!teachers!$.",
         ""
       ]
     },
@@ -646,17 +671,17 @@
       "usageNotes": "A quote from the teacher him/herself.",
       "form": [
         "unimplemented",
-        "++Quote:++ @!prefix!@ “@!text!@” @!suffix!@|| — @!teachers!@",
+        "++Quote:++ $!prefix!$ “$!text!$” $!suffix!$|| — $!teachers!$",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Quote:</b> @!prefix!@ “@!text!@” @!suffix!@{attribution}",
+        "<b>Quote:</b> $!prefix!$ “$!text!$” $!suffix!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        " — @!teachers!@",
+        " — $!teachers!$",
         ""
       ]
     },
@@ -673,17 +698,17 @@
       "usageNotes": "The teacher quoting someone else. If the person quoted in a teacher, they should get the first tag.",
       "form": [
         "unimplemented",
-        "++Quote:++ @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@||@!'.' if suffix else ''!@ Quoted by @!teachers!@.",
+        "++Quote:++ $!prefix!$ “$!text!$”$!' — ' if suffix else ''!$$!suffix!$||$!'.' if suffix else ''!$ Quoted by $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Quote:</b> @!prefix!@ “@!text!@”@!' — ' if suffix else ''!@@!suffix!@{attribution}",
+        "<b>Quote:</b> $!prefix!$ “$!text!$”$!' — ' if suffix else ''!$$!suffix!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        "@!'.' if suffix else ''!@ Quoted by @!teachers!@.",
+        "$!'.' if suffix else ''!$ Quoted by $!teachers!$.",
         ""
       ]
     },
@@ -700,17 +725,17 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Meditation instruction@!s!@@!colon!@++ @!text!@|| offered by @!teachers!@.",
+        "++Meditation instruction$!s!$$!colon!$++ $!text!$|| offered by $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Meditation instruction@!s!@@!colon!@</b> @!text!@{attribution}",
+        "<b>Meditation instruction$!s!$$!colon!$</b> $!text!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        " offered by @!teachers!@.",
+        " offered by $!teachers!$.",
         ""
       ]
     },
@@ -727,17 +752,17 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Guided meditation@!s!@@!colon!@++ @!text!@|| offered by @!teachers!@.",
+        "++Guided meditation$!s!$$!colon!$++ $!text!$|| offered by $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Guided meditation@!s!@@!colon!@</b> @!text!@{attribution}",
+        "<b>Guided meditation$!s!$$!colon!$</b> $!text!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        " offered by @!teachers!@.",
+        " offered by $!teachers!$.",
         ""
       ]
     },
@@ -754,17 +779,17 @@
       "usageNotes": "",
       "form": [
         "unimplemented",
-        "++Chanting@!s!@@!colon!@++ @!text!@|| offered by @!teachers!@.",
+        "++Chanting$!s!$$!colon!$++ $!text!$|| offered by $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Chanting@!s!@@!colon!@</b> @!text!@{attribution}",
+        "<b>Chanting$!s!$$!colon!$</b> $!text!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        " offered by @!teachers!@.",
+        " offered by $!teachers!$.",
         ""
       ]
     },
@@ -780,13 +805,13 @@
       "inheritTeachersFrom": "None",
       "usageNotes": "{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and \" by {teachers}\" inserted automatically. If not, plug both in manually along with the hyperlink if relevant.",
       "form": [
-        "++Reading@!s!@@!colon!@++ @!text!@",
-        "++Reading@!s!@@!colon!@++ @!text!@",
+        "++Reading$!s!$$!colon!$++ $!text!$",
+        "++Reading$!s!$$!colon!$++ $!text!$",
         "unimplemented"
       ],
       "body": [
-        "<b>Reading@!s!@@!colon!@</b> @!text!@",
-        "<b>Reading@!s!@@!colon!@</b> @!text!@",
+        "<b>Reading$!s!$$!colon!$</b> $!text!$",
+        "<b>Reading$!s!$$!colon!$</b> $!text!$",
         "unimplemented"
       ],
       "attribution": [
@@ -807,12 +832,12 @@
       "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
-        "++Reference@!s!@++: @!text!@",
+        "++Reference$!s!$++: $!text!$",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "<b>Reference@!s!@</b>: @!text!@",
+        "<b>Reference$!s!$</b>: $!text!$",
         "unimplemented",
         "unimplemented"
       ],
@@ -834,12 +859,12 @@
       "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
-        "++Sutta@!s!@++: @!text!@",
+        "++Sutta$!s!$++: $!text!$",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "<b>Sutta@!s!@</b>: @!text!@",
+        "<b>Sutta$!s!$</b>: $!text!$",
         "unimplemented",
         "unimplemented"
       ],
@@ -861,12 +886,12 @@
       "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
-        "++Vinaya:++ @!text!@",
+        "++Vinaya:++ $!text!$",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "<b>Vinaya:</b> @!text!@",
+        "<b>Vinaya:</b> $!text!$",
         "unimplemented",
         "unimplemented"
       ],
@@ -888,19 +913,19 @@
       "inheritTeachersFrom": "Anon",
       "usageNotes": "",
       "form": [
-        "++Comment@!s!@++|| by @!teachers!@||@!colon!@ @!text!@",
-        "++Comment@!s!@@!colon!@++ @!text!@|| contributed by @!teachers!@.",
-        "@!text!@|| ++Comment@!s!@++ by @!teachers!@."
+        "++Comment$!s!$++|| by $!teachers!$||$!colon!$ $!text!$",
+        "++Comment$!s!$$!colon!$++ $!text!$|| contributed by $!teachers!$.",
+        "$!text!$|| ++Comment$!s!$++ by $!teachers!$."
       ],
       "body": [
-        "<b>Comment@!s!@</b>{attribution}@!colon!@ @!text!@",
-        "<b>Comment@!s!@@!colon!@</b> @!text!@{attribution}",
-        "@!text!@{attribution}"
+        "<b>Comment$!s!$</b>{attribution}$!colon!$ $!text!$",
+        "<b>Comment$!s!$$!colon!$</b> $!text!${attribution}",
+        "$!text!${attribution}"
       ],
       "attribution": [
-        " by @!teachers!@",
-        " contributed by @!teachers!@.",
-        " <b>Comment@!s!@</b> by @!teachers!@."
+        " by $!teachers!$",
+        " contributed by $!teachers!$.",
+        " <b>Comment$!s!$</b> by $!teachers!$."
       ]
     },
     "Note": {
@@ -915,12 +940,12 @@
       "inheritTeachersFrom": "",
       "usageNotes": "",
       "form": [
-        "++Note@!s!@++: @!text!@",
+        "++Note$!s!$++: $!text!$",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "<b>Note@!s!@</b>: @!text!@",
+        "<b>Note$!s!$</b>: $!text!$",
         "unimplemented",
         "unimplemented"
       ],
@@ -969,17 +994,17 @@
       "inheritTeachersFrom": "Session",
       "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader.",
       "form": [
-        "@!'Read by ' if text else ''!@@!text!@@!'.' if text else ''!@||Read by @!teachers!@.",
+        "$!'Read by ' if text else ''!$$!text!$$!'.' if text else ''!$||Read by $!teachers!$.",
         "unimplemented",
         "unimplemented"
       ],
       "body": [
-        "@!'Read by ' if text else ''!@@!text!@@!'.' if text else ''!@{attribution}",
+        "$!'Read by ' if text else ''!$$!text!$$!'.' if text else ''!${attribution}",
         "unimplemented",
         "unimplemented"
       ],
       "attribution": [
-        "Read by @!teachers!@.",
+        "Read by $!teachers!$.",
         "",
         ""
       ]
@@ -9356,7 +9381,7 @@
       "qTagCount": 2,
       "duration": "5:00",
       "body": "<b>Recollection:</b> My connection with Ajahn Chah.{attribution}",
-      "attribution": " Recounted by Ajahn Pasanno."
+      "attribution": " Recounted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -9412,7 +9437,7 @@
       "qTagCount": 1,
       "duration": "2:55",
       "body": "<b>Reflection</b>{attribution}: The impact and inspiration of Ajahn Chah",
-      "attribution": " by Ajahn Pasanno"
+      "attribution": " by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>"
     },
     {
       "event": "SRD2010",
@@ -9455,9 +9480,9 @@
       ],
       "qTagCount": 4,
       "duration": "4:29",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah&#39;s birthplace and early life. {attribution2}",
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah's birthplace and early life. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9504,7 +9529,7 @@
       "duration": "2:28",
       "body": "<b>Reading</b> from the draft biography: At the age of nine, Ajahn Chah asks to go to the village monastery. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9531,7 +9556,7 @@
       "qTagCount": 3,
       "duration": "1:36",
       "body": "<b>Story:</b> Novice Chah disrobes at age 16.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -9577,7 +9602,7 @@
       "duration": "4:10",
       "body": "<b>Reading</b> from the draft biography: Ajahn Chah falls in love. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9629,7 +9654,7 @@
       "duration": "4:15",
       "body": "<b>Reading</b> from the draft biography: Ajahn Chah ordains at age 20. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9680,7 +9705,7 @@
             "Food"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Close the doors. I&#39;m going to eat noodles today!” — Ajahn Chah. Quoted by Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “Close the doors. I'm going to eat noodles today!” — Ajahn Chah. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -9692,7 +9717,7 @@
       "duration": "1:53",
       "body": "<b>Reading</b> from the draft biography: Ajahn Chah obsesses about food. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9773,7 +9798,7 @@
             "Determination"
           ],
           "indentLevel": 1,
-          "body": "The singular quality of Ajahn Chah&#39;s resolution. <B>Reflection</b> by Ajahn Pasanno."
+          "body": "The singular quality of Ajahn Chah's resolution. <B>Reflection</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -9789,9 +9814,9 @@
       ],
       "qTagCount": 6,
       "duration": "6:02",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah accepts his dying father&#39;s request to stay as a monk for life. {attribution2}",
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah accepts his dying father's request to stay as a monk for life. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9820,7 +9845,7 @@
       "qTagCount": 2,
       "duration": "2:22",
       "body": "<b>Story:</b> Ajahn Chah begins wandering in search of teachers{attribution}",
-      "attribution": " told by Ajahn Pasanno."
+      "attribution": " told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -9893,9 +9918,9 @@
       ],
       "qTagCount": 3,
       "duration": "5:04",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Mun&#39;s character and legacy {attribution2}",
+      "body": "<b>Reading</b> from the draft biography: Ajahn Mun's character and legacy {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9952,7 +9977,7 @@
       "duration": "6:56",
       "body": "<b>Reading</b> from the draft biography: Ajahn Chah visits Ajahn Mun. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -9987,7 +10012,7 @@
           "text": "Collected Teachings p. 255 \"Just Do It!\"",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=293\" target=\"_blank\">p. 255</a> &quot;Just Do It!&quot;"
+          "body": "<b>Reference</b>: Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=293\" target=\"_blank\">p. 255</a> \"Just Do It!\""
         }
       ],
       "tags": [
@@ -9997,7 +10022,7 @@
       "duration": "6:02",
       "body": "Aware of the in-breath, aware of the out-breath. <b>Guided meditation</b> from Ajahn Chah. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10032,7 +10057,7 @@
             "Fierce/direct teaching"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  Ajahn Chah admonishes the monks: &quot;I&#39;ve looked at the huts in the forest where you monks live. I see the walking meditation paths, and I don&#39;t see human tracks. All I see are dog tracks!&quot;"
+          "body": "<b>Quote:</b>  Ajahn Chah admonishes the monks: \"I've looked at the huts in the forest where you monks live. I see the walking meditation paths, and I don't see human tracks. All I see are dog tracks!\""
         }
       ],
       "tags": [
@@ -10046,7 +10071,7 @@
       "qTagCount": 2,
       "duration": "5:33",
       "body": "<b>Teaching</b>{attribution}: The role of walking meditation.",
-      "attribution": " by Ajahn Pasanno"
+      "attribution": " by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>"
     },
     {
       "event": "SRD2010",
@@ -10069,7 +10094,7 @@
           "text": "Collected Teachings p. 258 \"Just Do It!\"",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=296\" target=\"_blank\">p. 258</a> &quot;Just Do It!&quot;"
+          "body": "<b>Reference</b>: Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=296\" target=\"_blank\">p. 258</a> \"Just Do It!\""
         },
         {
           "kind": "Quote",
@@ -10124,8 +10149,8 @@
       ],
       "qTagCount": 2,
       "duration": "2:01",
-      "body": "<b>Reflection</b>{attribution}: Context of Ajahn Chah&#39;s early efforts at meditation.",
-      "attribution": " by Ajahn Pasanno"
+      "body": "<b>Reflection</b>{attribution}: Context of Ajahn Chah's early efforts at meditation.",
+      "attribution": " by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>"
     },
     {
       "event": "SRD2010",
@@ -10147,7 +10172,7 @@
           "text": "Collected Teachings p. 467 \"Unshakeable Peace\"",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=505\" target=\"_blank\">p. 467</a> &quot;Unshakeable Peace&quot;"
+          "body": "<b>Reference</b>: Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=505\" target=\"_blank\">p. 467</a> \"Unshakeable Peace\""
         },
         {
           "kind": "Read by",
@@ -10179,8 +10204,8 @@
       "qTagCount": 4,
       "duration": "6:38",
       "body": "<b>Teaching</b>{attribution}: Skillful effort in meditation. {attribution2}",
-      "attribution": " by Ajahn Chah",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution": " by <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10219,8 +10244,8 @@
       "qTagCount": 3,
       "duration": "0:50",
       "body": "<b>Teaching</b>{attribution}: The contemplation of conditionality leads to the Dhamma. {attribution2}",
-      "attribution": " by Ajahn Chah",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution": " by <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10260,8 +10285,8 @@
       "qTagCount": 4,
       "duration": "0:36",
       "body": "<b>Teaching</b>{attribution}: Meditation is like a single piece of wood. Insight is one end of the stick, and serenity is the other. {attribution2}",
-      "attribution": " by Ajahn Chah",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution": " by <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10293,7 +10318,7 @@
       "qTagCount": 5,
       "duration": "0:47",
       "body": "<b>Quote:</b>  “I sacrificed my life for the Dhamma because I had faith in the reality of enlightenment and the path to get there.” — Ajahn Chah{attribution}",
-      "attribution": ". Quoted by Ajahn Pasanno."
+      "attribution": ". Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10320,7 +10345,7 @@
       "qTagCount": 4,
       "duration": "3:44",
       "body": "The tradition of almsround.{attribution}",
-      "attribution": " <B>Reflection</b> by Ajahn Pasanno."
+      "attribution": " <B>Reflection</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10344,8 +10369,8 @@
       ],
       "qTagCount": 3,
       "duration": "1:11",
-      "body": "The monks&#39; requisites sustain our livelihood and are a focal point for our cultivation of mindfulness and attention.{attribution}",
-      "attribution": " <B>Reflection</b> by Ajahn Pasanno."
+      "body": "The monks' requisites sustain our livelihood and are a focal point for our cultivation of mindfulness and attention.{attribution}",
+      "attribution": " <B>Reflection</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10394,7 +10419,7 @@
       "qTagCount": 5,
       "duration": "7:20",
       "body": "<b>Story:</b> A group of military generals ask Ajahn Chah to bless amulets to create a kitchen fund.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10487,7 +10512,7 @@
             "Culture/Thailand"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Nowadays there aren&#39;t any tudong monks left. There&#39;s only taludong (through the forest) monks.” — Ajahn Chah"
+          "body": "<b>Quote:</b>  “Nowadays there aren't any tudong monks left. There's only taludong (through the forest) monks.” — Ajahn Chah"
         }
       ],
       "tags": [
@@ -10506,7 +10531,7 @@
       "qTagCount": 6,
       "duration": "5:34",
       "body": "“You talked about having lost a gread deal of institutional knowledge in the Forest Tradition through not having monasteries. Do you think Ajahn Chah wanted to have the knowledge from Ajahn Mun passed down? Is that why he had lots of monasteries?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10536,7 +10561,7 @@
             "Military"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Abhayagiri&#39;s bell is an American bomb casing."
+          "body": "<b>Story:</b> Abhayagiri's bell is an American bomb casing."
         },
         {
           "kind": "Recollection",
@@ -10555,7 +10580,7 @@
             "Lunar observance days"
           ],
           "indentLevel": 1,
-          "body": "Diligent lay meditators attend Wat Pah Pong&#39;s all-night vigil on the lunar observance days. <B>Recollection</b> by Ajahn Pasanno."
+          "body": "Diligent lay meditators attend Wat Pah Pong's all-night vigil on the lunar observance days. <B>Recollection</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -10574,7 +10599,7 @@
       "qTagCount": 5,
       "duration": "7:40",
       "body": "“When you and other Western seekers went to Thailand [and returned to teach], are the teachings of lay and monastic disciples of Ajahn Chah the same or different? How can we as laypeople relate to the teachings and tradition of the monastic establishment?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10600,7 +10625,7 @@
       "qTagCount": 4,
       "duration": "2:34",
       "body": "“What characteristics differentiate Thai Buddhism from Tibetan Kadampa or Japanese Zen?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10653,7 +10678,7 @@
       "qTagCount": 2,
       "duration": "3:44",
       "body": "<b>Reflection</b>{attribution}: Why Ajahn Chah spent only three days with Ajahn Mun.",
-      "attribution": " by Ajahn Pasanno"
+      "attribution": " by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>"
     },
     {
       "event": "SRD2010",
@@ -10733,9 +10758,9 @@
       ],
       "qTagCount": 4,
       "duration": "5:05",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah&#39;s mentors: Ajahn Tongrat and Ajahn Kinaree {attribution2}",
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah's mentors: Ajahn Tongrat and Ajahn Kinaree {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10783,7 +10808,7 @@
             "Blame and praise"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Where is the good person? He lies within us. If we&#39;re good, then wherever we go, the goodness stays with us.”"
+          "body": "<b>Quote:</b>  “Where is the good person? He lies within us. If we're good, then wherever we go, the goodness stays with us.”"
         }
       ],
       "tags": [
@@ -10797,7 +10822,7 @@
       "duration": "3:04",
       "body": "<b>Reading</b> from the draft biography: Ajahn Chah leaves his companions and stays alone. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10900,7 +10925,7 @@
       "duration": "15:32",
       "body": "<b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From \"<a href=\"https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm\" target=\"_blank\">The Key to Liberation</a>\" by Ajahn Chah. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -10932,7 +10957,7 @@
       "qTagCount": 3,
       "duration": "5:33",
       "body": "<b>Guided meditation:</b> The rythym of the sensation of the body as it is walking.{attribution}",
-      "attribution": " Offered by Ajahn Pasanno."
+      "attribution": " Offered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -10978,7 +11003,7 @@
       "duration": "5:23",
       "body": "<b>Reading:</b> Beyond Doubt. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11033,7 +11058,7 @@
       "duration": "0:50",
       "body": "<b>Reading:</b> Everyday. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11076,7 +11101,7 @@
       "duration": "1:40",
       "body": "<b>Reading:</b> Catching a Lizard. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11117,7 +11142,7 @@
       "duration": "1:45",
       "body": "<b>Reading:</b> One Seat. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11183,7 +11208,7 @@
       "qTagCount": 2,
       "duration": "7:06",
       "body": "<b>Question</b> about how Ajahn Chah taught to deal with people externally.{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -11231,7 +11256,7 @@
       "qTagCount": 4,
       "duration": "7:30",
       "body": "“Did you as a Westerner have any difficulties meeting Ajahn Chah either with Buddhism or with Thailand? How did it get resolved or did it get resolved?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -11274,7 +11299,7 @@
       "qTagCount": 4,
       "duration": "3:23",
       "body": "“As an abbot taking care of a community, how do you handle it when a kerfluffle comes up?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -11315,8 +11340,8 @@
       ],
       "qTagCount": 3,
       "duration": "1:34",
-      "body": "“When I&#39;m mindful, then I become more aware of suffering. I could just go into story and not know that I&#39;m suffering, so why would we choose to become aware of the suffering?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“When I'm mindful, then I become more aware of suffering. I could just go into story and not know that I'm suffering, so why would we choose to become aware of the suffering?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -11342,8 +11367,8 @@
       ],
       "qTagCount": 2,
       "duration": "2:03",
-      "body": "<b>Story:</b> Ajahn Chah&#39;s practice matures and he receives permission to teach.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "body": "<b>Story:</b> Ajahn Chah's practice matures and he receives permission to teach.{attribution}",
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -11402,7 +11427,7 @@
       "duration": "2:43",
       "body": "<b>Reading</b> from the draft biography: Ajahn Chah in the early years: spare, stern, and vigorous. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11466,7 +11491,7 @@
       "duration": "3:04",
       "body": "<b>Reading</b> from the draft biography: Building the road to Tam Sang Pet. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11517,9 +11542,9 @@
       ],
       "qTagCount": 4,
       "duration": "5:19",
-      "body": "<b>Reading</b> from the draft biography: Ajahn Chah&#39;s ability to draw people in and respond with compassion. {attribution2}",
+      "body": "<b>Reading</b> from the draft biography: Ajahn Chah's ability to draw people in and respond with compassion. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11566,9 +11591,9 @@
       ],
       "qTagCount": 3,
       "duration": "5:07",
-      "body": "<b>Reading:</b> Ajahn Chah&#39;s first Western disciple. {attribution2}",
+      "body": "<b>Reading:</b> Ajahn Chah's first Western disciple. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11619,9 +11644,9 @@
       ],
       "qTagCount": 3,
       "duration": "3:37",
-      "body": "<b>Reading:</b> Ajahn Gavesako&#39;s first impressions of Wat Pah Pong. {attribution2}",
+      "body": "<b>Reading:</b> Ajahn Gavesako's first impressions of Wat Pah Pong. {attribution2}",
       "attribution": "",
-      "attribution2": "Read by Ajahn Pasanno.",
+      "attribution2": "Read by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>.",
       "teachers2": [
         "AP"
       ]
@@ -11650,7 +11675,7 @@
       "qTagCount": 3,
       "duration": "1:07",
       "body": "<b>Story:</b> Ajahn Pasanno attempts tudong in California.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11676,7 +11701,7 @@
       "qTagCount": 5,
       "duration": "3:41",
       "body": "<b>Story:</b> Ajahn Chah lets a restless junior monk go tudong in the hot season.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11701,8 +11726,8 @@
       ],
       "qTagCount": 1,
       "duration": "3:43",
-      "body": "<b>Story:</b> Ajahn Jotipālo&#39;s tudong north along the Mississippi.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "body": "<b>Story:</b> Ajahn Jotipālo's tudong north along the Mississippi.{attribution}",
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11749,7 +11774,7 @@
       "qTagCount": 5,
       "duration": "2:16",
       "body": "<b>Story:</b> Ajahn Chah asks Ajahn Sumedho if he might go back to America as a monk.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11813,8 +11838,8 @@
       ],
       "qTagCount": 4,
       "duration": "5:58",
-      "body": "<b>Story:</b> Ajahn Mun doesn&#39;t spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "body": "<b>Story:</b> Ajahn Mun doesn't spend consecutive rains retreats in the same place until his mid-70s.{attribution}",
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11838,7 +11863,7 @@
       "qTagCount": 3,
       "duration": "1:16",
       "body": "<b>Story:</b> Ajahn Kinaree walks to India over the course of 15 years in the 1920s and 30s.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11870,7 +11895,7 @@
             "Rapture"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Ajahn Pasanno&#39;s mother cries when she meets Ajahn Supah."
+          "body": "<b>Story:</b> Ajahn Pasanno's mother cries when she meets Ajahn Supah."
         },
         {
           "kind": "Story",
@@ -11907,7 +11932,7 @@
       "qTagCount": 5,
       "duration": "10:26",
       "body": "<b>Story:</b> Ajahn Supah chooses tudong over further studies.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11931,8 +11956,8 @@
       ],
       "qTagCount": 4,
       "duration": "1:05",
-      "body": "<b>Quote:</b>  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, &#39;Is there a cell phone signal?&#39;” — anonymous{attribution}",
-      "attribution": ". Quoted by Ajahn Pasanno."
+      "body": "<b>Quote:</b>  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, 'Is there a cell phone signal?'” — anonymous{attribution}",
+      "attribution": ". Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11958,7 +11983,7 @@
       "qTagCount": 3,
       "duration": "2:08",
       "body": "<b>Quote:</b>  “Instead of going tudong, monks go taludong (through the forest).” — Ajahn Chah{attribution}",
-      "attribution": ". Quoted by Ajahn Pasanno."
+      "attribution": ". Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -11980,7 +12005,7 @@
       "qTagCount": 1,
       "duration": "0:34",
       "body": "“Did you walk from Mendocino?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12043,7 +12068,7 @@
       "qTagCount": 2,
       "duration": "7:07",
       "body": "“What is the function of a layperson who accompanies a monk on tudong?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12089,7 +12114,7 @@
             "Right effort"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno: &quot;You get more than what you bargained for.&quot;"
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>: \"You get more than what you bargained for.\""
         },
         {
           "kind": "Sutta",
@@ -12144,7 +12169,7 @@
             "Unwholesome Roots"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Having a human mind...it&#39;s amazing how perverse it can be sometimes.” "
+          "body": "<b>Quote:</b>  “Having a human mind...it's amazing how perverse it can be sometimes.” "
         },
         {
           "kind": "Story",
@@ -12164,7 +12189,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Ajahn Pasanno can&#39;t translate guilt into Thai."
+          "body": "<b>Story:</b> Ajahn Pasanno can't translate guilt into Thai."
         },
         {
           "kind": "Indirect quote",
@@ -12228,7 +12253,7 @@
       "qTagCount": 1,
       "duration": "9:19",
       "body": "“Can the practice be used in a punitative or punishing way?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12257,7 +12282,7 @@
       "qTagCount": 5,
       "duration": "3:21",
       "body": "“If sati or mindfulness is the cage, what is the use of samatha?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12317,7 +12342,7 @@
       "qTagCount": 3,
       "duration": "8:42",
       "body": "“Could you tell of your personal experience with a tiger?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12350,7 +12375,7 @@
       "qTagCount": 5,
       "duration": "4:42",
       "body": "“Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12373,7 +12398,7 @@
       "qTagCount": 2,
       "duration": "1:35",
       "body": "“In the trio of attraction, aversion, and confusion, what does confusion mean?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12400,8 +12425,8 @@
       ],
       "qTagCount": 3,
       "duration": "1:18",
-      "body": "“I have an internal voice that&#39;s concerned whether I&#39;m doing it right; if I&#39;m not doing it right, then I won&#39;t get where I want to go. Is this delusion?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“I have an internal voice that's concerned whether I'm doing it right; if I'm not doing it right, then I won't get where I want to go. Is this delusion?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12450,7 +12475,7 @@
       "qTagCount": 3,
       "duration": "5:32",
       "body": "“For Lent, I practiced metta every day for six weeks for a person who I was very angry at. By the end of Lent, I was even more angry. Could you speak to this?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12494,8 +12519,8 @@
       ],
       "qTagCount": 2,
       "duration": "4:50",
-      "body": "“I&#39;m curious about your pre-monastic life and specifically what led you to the monastic life.”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“I'm curious about your pre-monastic life and specifically what led you to the monastic life.”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12521,8 +12546,8 @@
       ],
       "qTagCount": 3,
       "duration": "2:04",
-      "body": "“If I saw you and the monks walking down the streets of Fairfax, I&#39;m not sure I would know what to do. How should I approach you?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“If I saw you and the monks walking down the streets of Fairfax, I'm not sure I would know what to do. How should I approach you?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12547,7 +12572,7 @@
             "Perception of a samaṇa"
           ],
           "indentLevel": 1,
-          "body": "<b>Vinaya:</b> <a href=\"https://sutta.readingfaithfully.org/?q=Kd-1.14\" target=\"_blank\">Kd 1.14</a>: Venerable Assaji&#39;s demeanor inspires Sariputta."
+          "body": "<b>Vinaya:</b> <a href=\"https://sutta.readingfaithfully.org/?q=Kd-1.14\" target=\"_blank\">Kd 1.14</a>: Venerable Assaji's demeanor inspires Sariputta."
         },
         {
           "kind": "Story",
@@ -12575,7 +12600,7 @@
       "qTagCount": 2,
       "duration": "4:14",
       "body": "“To what extend is spreading the teachings part of the tudong tradition?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12605,7 +12630,7 @@
       "qTagCount": 7,
       "duration": "4:04",
       "body": "“I travelled for six weeks in Thailand and India and found that time really shifted. Having been home about two months, even with a daily meditation practice, time speeds up. How is life at the monastery versus tudong, and what do you have to say to laypeople about the speeding up of time?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12630,7 +12655,7 @@
       "qTagCount": 3,
       "duration": "3:19",
       "body": "“Is it possible to visit the monastery?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12653,7 +12678,7 @@
       "qTagCount": 1,
       "duration": "2:33",
       "body": "<b>Meditation instructions:</b> Walking meditation.{attribution}",
-      "attribution": " Offered by Ajahn Pasanno."
+      "attribution": " Offered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12678,8 +12703,8 @@
       ],
       "qTagCount": 5,
       "duration": "2:38",
-      "body": "<b>Story:</b> Ajahn Chah&#39;s first tudong.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "body": "<b>Story:</b> Ajahn Chah's first tudong.{attribution}",
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12710,7 +12735,7 @@
       "qTagCount": 5,
       "duration": "4:42",
       "body": "<b>Story:</b> Ajahn Chah obsesses about getting robes.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12735,7 +12760,7 @@
       "qTagCount": 4,
       "duration": "1:03",
       "body": "<b>Quote:</b>  “You fall down, you get up, you crawl along. ” —  Ajahn Mahā Boowa{attribution}",
-      "attribution": ". Quoted by Ajahn Pasanno."
+      "attribution": ". Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12766,7 +12791,7 @@
             "Dhamma books"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b> Ajahn Chah to biographer: “If you don&#39;t put that in the book, don&#39;t bother printing it.”"
+          "body": "<b>Quote:</b> Ajahn Chah to biographer: “If you don't put that in the book, don't bother printing it.”"
         },
         {
           "kind": "Quote",
@@ -12798,7 +12823,7 @@
       "qTagCount": 4,
       "duration": "4:47",
       "body": "<b>Story:</b> Ajahn Chah struggles through lust with patience.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12826,8 +12851,8 @@
       ],
       "qTagCount": 7,
       "duration": "2:31",
-      "body": "<b>Quote:</b>  “You&#39;re inspired, and you put forth effort. You&#39;re depressed and fed up, and you put forth effort. You&#39;re rested, and you put forth effort. You&#39;re tired, and you put forth effort. ” —  Ajahn Chah{attribution}",
-      "attribution": ". Quoted by Ajahn Pasanno."
+      "body": "<b>Quote:</b>  “You're inspired, and you put forth effort. You're depressed and fed up, and you put forth effort. You're rested, and you put forth effort. You're tired, and you put forth effort. ” —  Ajahn Chah{attribution}",
+      "attribution": ". Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12854,7 +12879,7 @@
       "qTagCount": 4,
       "duration": "1:34",
       "body": "<b>Story:</b> How Ajahn Pasanno became abbot of Wat Pah Nanachat.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12882,8 +12907,8 @@
       ],
       "qTagCount": 3,
       "duration": "2:27",
-      "body": "<b>Story:</b> Ajahn Pasanno&#39;s tudong practice.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "body": "<b>Story:</b> Ajahn Pasanno's tudong practice.{attribution}",
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12911,7 +12936,7 @@
       "qTagCount": 5,
       "duration": "3:52",
       "body": "<b>Story:</b> Ajahn Pasanno gets a foot infection on tudong.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12939,7 +12964,7 @@
       "qTagCount": 4,
       "duration": "2:44",
       "body": "<b>Story:</b> Ajahn Pasanno loses his vision on tudong.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -12988,7 +13013,7 @@
             "Discernment"
           ],
           "indentLevel": 1,
-          "body": "<b>Recollection:</b> &quot;It&#39;s rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.&quot;"
+          "body": "<b>Recollection:</b> \"It's rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.\""
         }
       ],
       "tags": [
@@ -13004,7 +13029,7 @@
       "qTagCount": 3,
       "duration": "5:27",
       "body": "<b>Quote:</b>  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
-      "attribution": " — Ajahn Pasanno"
+      "attribution": " — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>"
     },
     {
       "event": "DRBU2014",
@@ -13029,8 +13054,8 @@
       ],
       "qTagCount": 1,
       "duration": "3:47",
-      "body": "“What is Abhayagiri&#39;s daily schedule?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“What is Abhayagiri's daily schedule?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13060,8 +13085,8 @@
       ],
       "qTagCount": 4,
       "duration": "6:18",
-      "body": "“<a href=\"https://www.abhayagiri.org/media/books/lee_autobiography_of_phra_ajaan_lee.pdf\" target=\"_blank\">Ajahn Lee&#39;s biography</a> contrasts the lives of city and forest monks. Is the lifesytle here (Abhayagiri) similar to the dhutaṅga monks?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“<a href=\"https://www.abhayagiri.org/media/books/lee_autobiography_of_phra_ajaan_lee.pdf\" target=\"_blank\">Ajahn Lee's biography</a> contrasts the lives of city and forest monks. Is the lifesytle here (Abhayagiri) similar to the dhutaṅga monks?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13086,8 +13111,8 @@
       ],
       "qTagCount": 2,
       "duration": "3:27",
-      "body": "“What are the connotations of &quot;dhutaṅga monk?&quot; Is it a slur?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“What are the connotations of \"dhutaṅga monk?\" Is it a slur?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13109,7 +13134,7 @@
           "text": "\"[Circles of Blessing: Our Redwood Tudong](https://www.abhayagiri.org/talks/6254-circles-of-blessing-our-redwood-tudong)\"",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: &quot;<a href=\"https://www.abhayagiri.org/talks/6254-circles-of-blessing-our-redwood-tudong\" target=\"_blank\">Circles of Blessing: Our Redwood Tudong</a>&quot;"
+          "body": "<b>Reference</b>: \"<a href=\"https://www.abhayagiri.org/talks/6254-circles-of-blessing-our-redwood-tudong\" target=\"_blank\">Circles of Blessing: Our Redwood Tudong</a>\""
         }
       ],
       "tags": [
@@ -13119,8 +13144,8 @@
       ],
       "qTagCount": 3,
       "duration": "2:54",
-      "body": "<b>Story:</b> Ajahn Ñāṇiko&#39;s tudong up the California coast.{attribution}",
-      "attribution": " Told by Ajahn Pasanno."
+      "body": "<b>Story:</b> Ajahn Ñāṇiko's tudong up the California coast.{attribution}",
+      "attribution": " Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13145,7 +13170,7 @@
       "qTagCount": 4,
       "duration": "1:13",
       "body": "“Did they (Ajahn Ñāṇiko and Tan Pamutto) have backpacking gear?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13171,7 +13196,7 @@
       "qTagCount": 3,
       "duration": "1:30",
       "body": "<b>Story:</b> The two-month tudong to Pacific Hermitage{attribution}",
-      "attribution": " told by Ajahn Pasanno."
+      "attribution": " told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13194,8 +13219,8 @@
       ],
       "qTagCount": 2,
       "duration": "0:50",
-      "body": "“So it&#39;s pretty rare to get food every day when you&#39;re on a walk?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“So it's pretty rare to get food every day when you're on a walk?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13221,7 +13246,7 @@
       "qTagCount": 2,
       "duration": "2:06",
       "body": "“Do you have to educate the local people about almsround when you go on tudong?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13247,7 +13272,7 @@
       "qTagCount": 1,
       "duration": "2:08",
       "body": "“How does tudong help you on the spiritual path?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13309,7 +13334,7 @@
       "qTagCount": 2,
       "duration": "4:17",
       "body": "“Is there a requirement for monks in the Forest Tradition to walk tudong?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13336,7 +13361,7 @@
       "qTagCount": 2,
       "duration": "1:55",
       "body": "“Can bhikkhshunis walk tudong?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13362,7 +13387,7 @@
       "qTagCount": 2,
       "duration": "2:37",
       "body": "“What is the ordination process of someone who wants to become a monk?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13389,7 +13414,7 @@
       "qTagCount": 4,
       "duration": "3:20",
       "body": "“Is the decision to ordain a novice by democratic vote?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13412,7 +13437,7 @@
       "qTagCount": 2,
       "duration": "1:11",
       "body": "“What happens after five years?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13438,7 +13463,7 @@
       "qTagCount": 4,
       "duration": "2:05",
       "body": "“How often does the community reject someone who wants to go forth?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13472,7 +13497,7 @@
       "qTagCount": 3,
       "duration": "6:40",
       "body": "“May I ask for your secret? [Why is Abhayagiri monastic training so often successful?]”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13497,7 +13522,7 @@
       "qTagCount": 3,
       "duration": "2:23",
       "body": "“Do American monks have a culture shock when they visit Thailand?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13543,7 +13568,7 @@
             "Knowing itself"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The literal meaning of Buddho is &#39;the one who knows,&#39; but it&#39;s also being the one who knows, where you have the opportunity for us to be that knowing.” "
+          "body": "<b>Quote:</b>  “The literal meaning of Buddho is 'the one who knows,' but it's also being the one who knows, where you have the opportunity for us to be that knowing.” "
         }
       ],
       "tags": [
@@ -13566,7 +13591,7 @@
       "qTagCount": 5,
       "duration": "8:51",
       "body": "“How do we take refuge in awareness (Buddho) in daily life?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13611,8 +13636,8 @@
       ],
       "qTagCount": 4,
       "duration": "0:39",
-      "body": "“So being the one who knows, you don&#39;t have to react to dislike and like?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“So being the one who knows, you don't have to react to dislike and like?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13637,7 +13662,7 @@
       "qTagCount": 2,
       "duration": "1:02",
       "body": "“So why can awareness be the place where we take refuge?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13668,7 +13693,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you objectify awareness, you&#39;re going to suffer.” "
+          "body": "<b>Quote:</b>  “If you objectify awareness, you're going to suffer.” "
         },
         {
           "kind": "Quote",
@@ -13685,7 +13710,7 @@
             "Everyday life"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “These Four Noble Truths are not an endpoint, they are something that you&#39;re internalizing and using in your meditation practice and in your daily life.” "
+          "body": "<b>Quote:</b>  “These Four Noble Truths are not an endpoint, they are something that you're internalizing and using in your meditation practice and in your daily life.” "
         }
       ],
       "tags": [
@@ -13700,7 +13725,7 @@
       "qTagCount": 3,
       "duration": "2:19",
       "body": "“How do you not objectify this awareness?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13750,7 +13775,7 @@
       "qTagCount": 1,
       "duration": "2:47",
       "body": "The values of the Thai Forest Tradition.{attribution}",
-      "attribution": " <B>Teaching</b> by Ajahn Pasanno."
+      "attribution": " <B>Teaching</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13775,7 +13800,7 @@
       "qTagCount": 2,
       "duration": "1:01",
       "body": "“Is the peaceful mind your home?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13817,7 +13842,7 @@
             "Personality"
           ],
           "indentLevel": 1,
-          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=AN-4.243\" target=\"_blank\">AN 4.243</a>: &quot;But Ānanda, when has Anuruddha ever concerned himself with disciplinary issues in the midst of the Saṅgha?&quot;"
+          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=AN-4.243\" target=\"_blank\">AN 4.243</a>: \"But Ānanda, when has Anuruddha ever concerned himself with disciplinary issues in the midst of the Saṅgha?\""
         }
       ],
       "tags": [
@@ -13832,8 +13857,8 @@
       ],
       "qTagCount": 4,
       "duration": "5:41",
-      "body": "“<a href=\"https://www.abhayagiri.org/media/books/maha_boowa_acariya_mun_a_spiritual_biography.pdf\" target=\"_blank\">Ajahn Mun&#39;s biography</a> describes a constant fierce vigilance, watching the mind. But meeting you guys, you&#39;re so peaceful and calm. How does this work in terms of practice?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“<a href=\"https://www.abhayagiri.org/media/books/maha_boowa_acariya_mun_a_spiritual_biography.pdf\" target=\"_blank\">Ajahn Mun's biography</a> describes a constant fierce vigilance, watching the mind. But meeting you guys, you're so peaceful and calm. How does this work in terms of practice?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13873,7 +13898,7 @@
             "Wat Pah Nanachat"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  &quot;What are the mind states of an enlightened being?&quot; &quot;Only compassion.&quot; — Ajahn Mahā Boowa"
+          "body": "<b>Quote:</b>  \"What are the mind states of an enlightened being?\" \"Only compassion.\" — Ajahn Mahā Boowa"
         }
       ],
       "tags": [
@@ -13889,7 +13914,7 @@
       "qTagCount": 1,
       "duration": "5:18",
       "body": "“So what about the Bodhisattva practice?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13915,7 +13940,7 @@
       "qTagCount": 2,
       "duration": "2:28",
       "body": "“What are the practicalities of metta practice? How does it relate to compassion?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13944,7 +13969,7 @@
       "qTagCount": 4,
       "duration": "3:26",
       "body": "“Ajahn Amaro writes about transforming the energy of sense contact into compassion and metta. How does this work?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -13971,7 +13996,7 @@
       "qTagCount": 3,
       "duration": "0:59",
       "body": "“What are the natural inclinations that can lead to well-being and peace?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "DRBU2014",
@@ -14004,7 +14029,7 @@
             "Investigation of states"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The teaching of the Buddha isn&#39;t about language....The teaching of the Buddha is the language of experience.” — Ajahn Chah"
+          "body": "<b>Quote:</b>  “The teaching of the Buddha isn't about language....The teaching of the Buddha is the language of experience.” — Ajahn Chah"
         }
       ],
       "tags": [
@@ -14019,8 +14044,8 @@
       ],
       "qTagCount": 3,
       "duration": "3:51",
-      "body": "“The Buddha teaches to end suffering, but from the ordinary person&#39;s view, cultivating the practices of forest monks is also suffering. Who is right?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“The Buddha teaches to end suffering, but from the ordinary person's view, cultivating the practices of forest monks is also suffering. Who is right?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14045,8 +14070,8 @@
       ],
       "qTagCount": 4,
       "duration": "4:51",
-      "body": "“The Buddha described his teaching as Dhamma-vinaya. Can you explain why it wasn&#39;t just Dhamma? What does this term mean?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“The Buddha described his teaching as Dhamma-vinaya. Can you explain why it wasn't just Dhamma? What does this term mean?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14074,7 +14099,7 @@
       "qTagCount": 5,
       "duration": "7:04",
       "body": "“In order to come to the training as Westerners, we often had to not follow cultural traditions and authorities. Monastic life has so many rules and the traditions are well established. How do we switch gears?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14103,7 +14128,7 @@
       "qTagCount": 4,
       "duration": "11:32",
       "body": "“How do we expand our faith into other aspects of training?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14129,7 +14154,7 @@
       "qTagCount": 3,
       "duration": "4:47",
       "body": "“Is vinaya about taking responsibility for your actions and mental states and how that affects other people?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14157,7 +14182,7 @@
       "qTagCount": 3,
       "duration": "5:46",
       "body": "“Can you talk about skillful means to become more sensitive to the nuances of monastic training?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14182,7 +14207,7 @@
       "qTagCount": 3,
       "duration": "7:54",
       "body": "“Can you talk about respect in the context of horizontal and vertical relationships in monastic life?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14217,7 +14242,7 @@
       "qTagCount": 4,
       "duration": "6:02",
       "body": "“Are their multiple levels of brahmacariyā (celibacy)?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14246,7 +14271,7 @@
       "qTagCount": 3,
       "duration": "9:06",
       "body": "“Can you speak to the development of respect for the symbols of monastic life as opposed to respect for individual teachers?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14271,7 +14296,7 @@
             "Buddha"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -14280,7 +14305,7 @@
       ],
       "qTagCount": 2,
       "duration": "2:16",
-      "body": "<b>Comment</b>: I notice that you sometimes don&#39;t react to the seemingly disrespectful behavior of visitors.",
+      "body": "<b>Comment</b>: I notice that you sometimes don't react to the seemingly disrespectful behavior of visitors.",
       "attribution": ""
     },
     {
@@ -14306,7 +14331,7 @@
       "qTagCount": 3,
       "duration": "5:58",
       "body": "“Western culture seems to have no context for celibacy as a good thing.”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14336,7 +14361,7 @@
             "Vinaya"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “You can&#39;t mandate goodness.” "
+          "body": "<b>Quote:</b>  “You can't mandate goodness.” "
         }
       ],
       "tags": [
@@ -14347,7 +14372,7 @@
       "qTagCount": 2,
       "duration": "2:27",
       "body": "“Why are the precepts worded as things not to do rather than as aspirations?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14371,7 +14396,7 @@
       "qTagCount": 2,
       "duration": "7:32",
       "body": "“How does the Vinaya encourage monks to keep rules?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14398,7 +14423,7 @@
       "qTagCount": 2,
       "duration": "6:25",
       "body": "“What is the role of confession and other tools for recifying offenses?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14422,7 +14447,7 @@
       "qTagCount": 3,
       "duration": "1:32",
       "body": "“When the Buddha mentions stream entry, he often mentions both sīla (virtue) and view.”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14464,7 +14489,7 @@
       "qTagCount": 2,
       "duration": "5:07",
       "body": "“What about Sarakāni (<a href=\"https://sutta.readingfaithfully.org/?q=SN-55.24\" target=\"_blank\">SN 55.24-25</a>), the stream enterer who took to drink?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14489,8 +14514,8 @@
       ],
       "qTagCount": 3,
       "duration": "5:13",
-      "body": "“Can you talk more about &quot;Skillfully contributing to an upredictable situation&quot;?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Can you talk more about \"Skillfully contributing to an upredictable situation\"?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14512,8 +14537,8 @@
       ],
       "qTagCount": 2,
       "duration": "1:49",
-      "body": "“Have you been in situations where you didn&#39;t know what to do?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Have you been in situations where you didn't know what to do?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14535,8 +14560,8 @@
       ],
       "qTagCount": 2,
       "duration": "1:12",
-      "body": "“I appreciate your saying &quot;The trancendance of doubt isn&#39;t getting the answers to your doubt, it&#39;s being comfortable with the doubt.&quot;”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“I appreciate your saying \"The trancendance of doubt isn't getting the answers to your doubt, it's being comfortable with the doubt.\"”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14578,8 +14603,8 @@
       ],
       "qTagCount": 2,
       "duration": "4:29",
-      "body": "“When the suttas describe a practitioner as &quot;having gone beyond doubt,&quot; (e.g. <a href=\"https://sutta.readingfaithfully.org/?q=DN-3\" target=\"_blank\">DN 3</a>) what do they mean?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“When the suttas describe a practitioner as \"having gone beyond doubt,\" (e.g. <a href=\"https://sutta.readingfaithfully.org/?q=DN-3\" target=\"_blank\">DN 3</a>) what do they mean?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14610,7 +14635,7 @@
       "qTagCount": 4,
       "duration": "6:57",
       "body": "“What is the role of mentors and teachers in learning to use the monastic form skillfully?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14663,7 +14688,7 @@
       "qTagCount": 4,
       "duration": "6:34",
       "body": "“Who were imporant mentors for you?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14693,7 +14718,7 @@
             "Pace of life"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I&#39;d rather focus my attention here.” "
+          "body": "<b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I'd rather focus my attention here.” "
         },
         {
           "kind": "Quote",
@@ -14708,7 +14733,7 @@
             "Culture/West"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “There&#39;s no reason to fit into American culture.” "
+          "body": "<b>Quote:</b>  “There's no reason to fit into American culture.” "
         },
         {
           "kind": "Story",
@@ -14744,7 +14769,7 @@
             "Communal harmony"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we&#39;re trying to set conditions that give us the opportunity for learning.” "
+          "body": "<b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we're trying to set conditions that give us the opportunity for learning.” "
         }
       ],
       "tags": [
@@ -14776,7 +14801,7 @@
       "qTagCount": 7,
       "duration": "27:35",
       "body": "“Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14800,7 +14825,7 @@
       "qTagCount": 3,
       "duration": "1:42",
       "body": "“Have you had strong relationships with Buddhist lay teachers in the West?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14831,7 +14856,7 @@
             "Ajahn Pasanno"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Ajahn Maha Boowa visits after Ajahn Chah&#39;s death."
+          "body": "<b>Story:</b> Ajahn Maha Boowa visits after Ajahn Chah's death."
         },
         {
           "kind": "Story",
@@ -14848,7 +14873,7 @@
             "Fierce/direct teaching"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Ajahn Baen admonishes Ajahn Pasanno at Ajahn Chah&#39;s cremation."
+          "body": "<b>Story:</b> Ajahn Baen admonishes Ajahn Pasanno at Ajahn Chah's cremation."
         },
         {
           "kind": "Indirect quote",
@@ -14865,7 +14890,7 @@
             "Fierce/direct teaching"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “You don&#39;t have to visit me! You know what to do already! It&#39;s all right here (pointing at his heart).” — Ajahn Baen to Ajahn Pasanno"
+          "body": "<b>Quote:</b>  “You don't have to visit me! You know what to do already! It's all right here (pointing at his heart).” — Ajahn Baen to Ajahn Pasanno"
         }
       ],
       "tags": [
@@ -14878,7 +14903,7 @@
       "qTagCount": 2,
       "duration": "11:57",
       "body": "“What can we learn when we pay respects to mentors?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14901,7 +14926,7 @@
       "qTagCount": 2,
       "duration": "0:33",
       "body": "“How many monks are with Luang Por Baen?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14935,8 +14960,8 @@
       ],
       "qTagCount": 2,
       "duration": "7:29",
-      "body": "“What about senior monks who don&#39;t meet our expectations of conduct or practice?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“What about senior monks who don't meet our expectations of conduct or practice?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14968,8 +14993,8 @@
       ],
       "qTagCount": 2,
       "duration": "1:05",
-      "body": "“Do you remember the sutta that compares people&#39;s behaivor to a puddle?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Do you remember the sutta that compares people's behaivor to a puddle?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -14993,8 +15018,8 @@
       ],
       "qTagCount": 4,
       "duration": "2:39",
-      "body": "“Do you have any reflections on the &quot;Do or die&quot; attitude?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Do you have any reflections on the \"Do or die\" attitude?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15038,7 +15063,7 @@
       "qTagCount": 4,
       "duration": "6:20",
       "body": "“Can you talk about the dangers of misplaced or wrongly directed faith in a teacher?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15098,7 +15123,7 @@
       "qTagCount": 5,
       "duration": "11:26",
       "body": "“How does upatakhing fit into our training and what can we learn from it?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15127,7 +15152,7 @@
       "qTagCount": 4,
       "duration": "14:59",
       "body": "“I assume at Abhayagiri the upatakh sleeps in his own dwelling place? (in contrast to the previous story of Ajahn Lee)”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15157,7 +15182,7 @@
       "qTagCount": 2,
       "duration": "11:36",
       "body": "“What is the value of living in community?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15179,8 +15204,8 @@
       ],
       "qTagCount": 0,
       "duration": "2:04",
-      "body": "“Do you think it&#39;s true that how we treat others is in large part how we treat ourselves?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Do you think it's true that how we treat others is in large part how we treat ourselves?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15207,7 +15232,7 @@
             "History/Western Buddhist monasticism"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         },
         {
           "kind": "Vinaya",
@@ -15230,7 +15255,7 @@
       ],
       "qTagCount": 5,
       "duration": "8:59",
-      "body": "<b>Comment</b>: It&#39;s important for the Saṅgha to look after all members in terms of sickness and ageing.",
+      "body": "<b>Comment</b>: It's important for the Saṅgha to look after all members in terms of sickness and ageing.",
       "attribution": ""
     },
     {
@@ -15259,7 +15284,7 @@
       "qTagCount": 2,
       "duration": "6:25",
       "body": "“Why do upatakhs do things for their ajahns that the ajahns can do better themselves?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15288,7 +15313,7 @@
       "qTagCount": 3,
       "duration": "7:25",
       "body": "“In Thailand, dāna (generosity) usually means giving food to a monk. But is dāna more of a mindset?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15318,7 +15343,7 @@
             "Posture/Bowing"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> A Westerner asks Ajahn Chah, &quot;Why do we bow?&quot;"
+          "body": "<b>Story:</b> A Westerner asks Ajahn Chah, \"Why do we bow?\""
         }
       ],
       "tags": [
@@ -15334,8 +15359,8 @@
       ],
       "qTagCount": 6,
       "duration": "6:46",
-      "body": "“Can you talk about Ajahn Chah&#39;s use of bowing, communal pūjās, and chores?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Can you talk about Ajahn Chah's use of bowing, communal pūjās, and chores?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15361,8 +15386,8 @@
       ],
       "qTagCount": 6,
       "duration": "2:50",
-      "body": "“Can you clarify what &quot;field of merit&quot; means?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Can you clarify what \"field of merit\" means?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15388,7 +15413,7 @@
       "qTagCount": 3,
       "duration": "6:42",
       "body": "“Why do we bow to images?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15418,7 +15443,7 @@
             "Ajahn Pasanno"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Ajahn Pasanno&#39;s mother observes multiplying relics."
+          "body": "<b>Story:</b> Ajahn Pasanno's mother observes multiplying relics."
         }
       ],
       "tags": [
@@ -15434,7 +15459,7 @@
       "qTagCount": 2,
       "duration": "10:38",
       "body": "“What about relics?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15456,7 +15481,7 @@
       "qTagCount": 1,
       "duration": "1:40",
       "body": "“What do you think might have happened to the few relics in my house when it burned down?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15485,7 +15510,7 @@
       "qTagCount": 4,
       "duration": "5:57",
       "body": "“Ajahn Chah encouraged his monks to all come together for communal chores and stay until the chores are finished. Why is that?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15510,7 +15535,7 @@
       "qTagCount": 3,
       "duration": "2:04",
       "body": "“What does morning pūjā contribute?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15536,7 +15561,7 @@
       "qTagCount": 5,
       "duration": "1:47",
       "body": "“Will practice as a group help us in solitude?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15563,7 +15588,7 @@
       "qTagCount": 5,
       "duration": "2:37",
       "body": "“How do we balance solitude and communal aspects of practice?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15589,7 +15614,7 @@
             "Self-identity view"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -15628,8 +15653,8 @@
       ],
       "qTagCount": 5,
       "duration": "2:47",
-      "body": "“Is there a place to point out others&#39; difficulties?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“Is there a place to point out others' difficulties?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15672,7 +15697,7 @@
       "qTagCount": 4,
       "duration": "6:02",
       "body": "“What is the role of admonishement? How do we admonish skillfully?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15697,7 +15722,7 @@
       "qTagCount": 4,
       "duration": "1:47",
       "body": "“Does the proper timing of admonishment depend on the severity of the offense?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15722,7 +15747,7 @@
       "qTagCount": 4,
       "duration": "2:17",
       "body": "“When and how should one respond to offenses of middling severity?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15749,8 +15774,8 @@
       ],
       "qTagCount": 7,
       "duration": "1:15",
-      "body": "“I&#39;ve heard that someone asked Ajahn Chah if he could read his students&#39; minds. He replied that he didn&#39;t need to; he just watched how they walked in the door and bowed. Do you get a feel for this over time?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“I've heard that someone asked Ajahn Chah if he could read his students' minds. He replied that he didn't need to; he just watched how they walked in the door and bowed. Do you get a feel for this over time?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15774,7 +15799,7 @@
       "qTagCount": 3,
       "duration": "3:24",
       "body": "“When is it skillful to try to help people who are suffering?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15801,7 +15826,7 @@
       "qTagCount": 5,
       "duration": "2:13",
       "body": "“Have you found it necessary to recommend psychotherapy or medication for monks who have deep-seated ruts of suffering?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15824,7 +15849,7 @@
       "qTagCount": 2,
       "duration": "3:19",
       "body": "“Is the Dhamma sufficient for ordinary neurosis or do I need a psychotherapist?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15848,7 +15873,7 @@
       "qTagCount": 3,
       "duration": "4:00",
       "body": "“A senior lay teacher I respect has started seeing a psychotherapist. Any reflections?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15872,7 +15897,7 @@
       "qTagCount": 3,
       "duration": "1:12",
       "body": "“Does the stability of monastic community help prevent spiritual bypassing?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15893,7 +15918,7 @@
       ],
       "qTagCount": 3,
       "duration": "0:28",
-      "body": "<b>Comment</b>: When one visits different monasteries and sees the same thing happening over and over, it&#39;s harder to believe &quot;It&#39;s not me.&quot;",
+      "body": "<b>Comment</b>: When one visits different monasteries and sees the same thing happening over and over, it's harder to believe \"It's not me.\"",
       "attribution": ""
     },
     {
@@ -15922,8 +15947,8 @@
       ],
       "qTagCount": 6,
       "duration": "5:05",
-      "body": "“Abhayagiri&#39;s daily and yearly schedule provide a good balance of individual and communal practice. How did this happen?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno and Ajahn Karuṇadhammo."
+      "body": "“Abhayagiri's daily and yearly schedule provide a good balance of individual and communal practice. How did this happen?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>."
     },
     {
       "event": "WR2018-2",
@@ -15957,7 +15982,7 @@
       "qTagCount": 2,
       "duration": "14:28",
       "body": "“What is the purpose of dhutaṅga practices?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -15989,7 +16014,7 @@
             "Determination"
           ],
           "indentLevel": 1,
-          "body": "<b>Story:</b> Ajahn Jayasaro determines sitter&#39;s practice until Ajahn Chah dies."
+          "body": "<b>Story:</b> Ajahn Jayasaro determines sitter's practice until Ajahn Chah dies."
         }
       ],
       "tags": [
@@ -16008,7 +16033,7 @@
       "qTagCount": 4,
       "duration": "7:35",
       "body": "“How do we discern the benefit of dhutaṅga practices and how much is too much?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16034,8 +16059,8 @@
       ],
       "qTagCount": 3,
       "duration": "3:14",
-      "body": "“What do you recommend when we make a determination and either realize that it&#39;s not working out or break it? How do we continue from there?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“What do you recommend when we make a determination and either realize that it's not working out or break it? How do we continue from there?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16059,7 +16084,7 @@
       "qTagCount": 3,
       "duration": "1:53",
       "body": "“Can adhiṭṭhānas be made in a formal way?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16087,8 +16112,8 @@
       ],
       "qTagCount": 4,
       "duration": "3:32",
-      "body": "“How do we perceive which ruts we are stuck in and which tools to use to get out of them? Are there tools besides dhutaṅgas to use when we&#39;re stuck in strong habits?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“How do we perceive which ruts we are stuck in and which tools to use to get out of them? Are there tools besides dhutaṅgas to use when we're stuck in strong habits?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16119,7 +16144,7 @@
       "qTagCount": 3,
       "duration": "7:34",
       "body": "“What is the importance of the brahmavihārās in balancing out dhutaṅga practices?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16142,7 +16167,7 @@
       "qTagCount": 2,
       "duration": "1:40",
       "body": "“What are the results of making good use of the ascetic practices?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16170,7 +16195,7 @@
       "qTagCount": 3,
       "duration": "9:20",
       "body": "“The Krooba Ajahns often deemphasize study. What is the context in which they said this and how should we work with this?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16195,7 +16220,7 @@
       "qTagCount": 3,
       "duration": "1:09",
       "body": "“Ajahn Piyadhammo encourages study to develop a personal relationship with the Buddha, cultivating Buddhanussati. Does this make sense?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16223,7 +16248,7 @@
       "qTagCount": 3,
       "duration": "6:14",
       "body": "“In Thailand, is the only way to study the suttas to go to a study monastery?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16250,7 +16275,7 @@
             "Ajahn Mun"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -16261,7 +16286,7 @@
       ],
       "qTagCount": 4,
       "duration": "2:16",
-      "body": "<b>Comment</b>: We&#39;re blessed to have study guides in English to learn the basics of Pāli and then go straight to the suttas.",
+      "body": "<b>Comment</b>: We're blessed to have study guides in English to learn the basics of Pāli and then go straight to the suttas.",
       "attribution": ""
     },
     {
@@ -16299,7 +16324,7 @@
       "qTagCount": 3,
       "duration": "6:01",
       "body": "“How do we use sutta study in our practice and what are the pitfalls?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16325,7 +16350,7 @@
             "Relinquishment"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -16363,7 +16388,7 @@
       "qTagCount": 2,
       "duration": "6:58",
       "body": "“Have you done much memorization practice?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16388,7 +16413,7 @@
       "qTagCount": 2,
       "duration": "3:12",
       "body": "“What encouragement or adjustments in their lives have you given struggling monks that have helped them remain in robes?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16411,7 +16436,7 @@
           ],
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -16421,7 +16446,7 @@
       ],
       "qTagCount": 3,
       "duration": "1:12",
-      "body": "<b>Comment</b>: I&#39;ve heard that you advise monks contemplating disrobing to recollect their initial intention why they became a monk.",
+      "body": "<b>Comment</b>: I've heard that you advise monks contemplating disrobing to recollect their initial intention why they became a monk.",
       "attribution": ""
     },
     {
@@ -16447,7 +16472,7 @@
       "qTagCount": 2,
       "duration": "6:00",
       "body": "“What role does spending time at other monasteries play in our training?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16472,7 +16497,7 @@
       "qTagCount": 3,
       "duration": "2:03",
       "body": "“What are guidelines you might advise monks as to where to go for their third or fifth Vassa?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16528,7 +16553,7 @@
       "qTagCount": 1,
       "duration": "15:11",
       "body": "“How can those just entering monastic life lay a good foundation?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16564,7 +16589,7 @@
       "qTagCount": 2,
       "duration": "5:14",
       "body": "“Would you be willing to speak on the importance of having faith in rebirth?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16591,7 +16616,7 @@
             "Faith"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> by Ajahn Pasanno "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -16639,7 +16664,7 @@
             "Cessation"
           ],
           "indentLevel": 1,
-          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=SN-56.11\" target=\"_blank\">SN 56.11</a>: &quot;Whatever is of the nature to arise, that is of the nature to cease.&quot;"
+          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=SN-56.11\" target=\"_blank\">SN 56.11</a>: \"Whatever is of the nature to arise, that is of the nature to cease.\""
         },
         {
           "kind": "Quote",
@@ -16669,8 +16694,8 @@
       ],
       "qTagCount": 3,
       "duration": "5:04",
-      "body": "“At the beginning of this retreat, Tan Ajahn Anan advised us, &quot;Don&#39;t forget Nibbāna.&quot; How do we orient ourselves towards Nibbāna?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“At the beginning of this retreat, Tan Ajahn Anan advised us, \"Don't forget Nibbāna.\" How do we orient ourselves towards Nibbāna?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16711,7 +16736,7 @@
       "qTagCount": 2,
       "duration": "5:36",
       "body": "“I was reading the book <em>Hooked</em> about desire, consumerism, and society. The author writes about the desire to know things. How does the desire to know relate to practice?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16737,7 +16762,7 @@
       "qTagCount": 4,
       "duration": "1:25",
       "body": "“Do the Four Iddhipādas apply to the way we develop sammā sati and sammā samādhi?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -16761,8 +16786,8 @@
       ],
       "qTagCount": 4,
       "duration": "1:27",
-      "body": "“So you&#39;ve asked all your questions?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“So you've asked all your questions?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16793,7 +16818,7 @@
       "qTagCount": 2,
       "duration": "7:20",
       "body": "“Ajahn Chah was ill for the last ten years of his life. How could he endure that and why did this take place?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16819,7 +16844,7 @@
       "qTagCount": 1,
       "duration": "6:38",
       "body": "“I lead two Zoom sessions a week and am running out of material. Can you suggest guided meditations from this tradition?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16841,8 +16866,8 @@
       ],
       "qTagCount": 1,
       "duration": "1:05",
-      "body": "“If you get the mind empty, you get everything.&#39; How to understand this?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "body": "“If you get the mind empty, you get everything.' How to understand this?”{attribution}",
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16893,7 +16918,7 @@
       "qTagCount": 5,
       "duration": "7:50",
       "body": "“Is there something called fierce compassion in the Theravāda tradition? If so, how is that different from resentment or anger?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16919,7 +16944,7 @@
       "qTagCount": 2,
       "duration": "3:16",
       "body": "“How is it possible to not eat after noon while remaining active in everyday life?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16958,7 +16983,7 @@
       "qTagCount": 2,
       "duration": "6:01",
       "body": "“How do we overcome unpleasant mental or physical feelings in the present moment?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {
       "event": "UD2020",
@@ -16991,7 +17016,7 @@
       "qTagCount": 2,
       "duration": "8:29",
       "body": "“What is the difference between emptiness, nothingness, and space? How can I use colors to develop the mind?”{attribution}",
-      "attribution": " Answered by Ajahn Pasanno."
+      "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     }
   ],
   "excerptsRedacted": [
