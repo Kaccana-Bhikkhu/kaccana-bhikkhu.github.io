@@ -362,21 +362,28 @@ def LoadTagsFile(database,tagFileName):
     database["tagSubsumed"] = subsumedTags
     database["tagRedacted"] = redactedTags
 
+kNumberNames = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"]
+
 def RemoveUnusedTags(database: dict) -> None:
     """Remove unused tags from the raw tag list before building the tag display list."""
 
     def UsedTag(tag: dict) -> bool:
         return tag.get("excerptCount",0) or tag.get("sessionCount",0) or tag.get("sessionCount",0)
 
+    def NamedNumberTag(tag: dict) -> bool:
+        "Does this tag explicitly mention a numbered list?"
+        return tag["number"] and kNumberNames[int(tag["number"])] in tag["fullTag"]
+
     usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
-    print(len(usedTags),"tags used.")
+    if gOptions.verbose > 2:
+        print("   ",len(usedTags),"tags used.")
     
     prevTagCount = 0
     round = 0
     while prevTagCount < len(usedTags):
         round += 1
         prevTagCount = len(usedTags)
-        print(f"{round=}, {prevTagCount=}")
+        #print(f"{round=}, {prevTagCount=}")
 
         for parent,children in WalkTags(database["tagRaw"]):
             if not parent:
@@ -392,13 +399,15 @@ def RemoveUnusedTags(database: dict) -> None:
             if anyTagUsed: # Mark the parent tag as used if any of the children are in use
                 usedTags.add(parent["tag"])
 
-            # Mark all numbered tags as used if either the parent or any other numbered tag is in use
-            if parent["tag"] in usedTags or numberedTagUsed: # Mark all numbered tags as used if
+            # Mark all numbered tags as used if any other numbered tag is in use or we expect to see a numbered list i.e. "Four Noble Truths"
+            if (parent["tag"] in usedTags and NamedNumberTag(parent)) or numberedTagUsed: # Mark all numbered tags as used if
+                seenNumberedTagYet = False
                 for childTag in children:
-                    if childTag["indexNumber"]:
+                    if childTag["indexNumber"] or not seenNumberedTagYet: # Tags before the numbered list are essential headings
                         usedTags.add(childTag["tag"])
+                        seenNumberedTagYet = True
 
-    print(f"Finished; {prevTagCount=}")
+    #print(f"Finished; {prevTagCount=}")
 
     remainingTags = set(usedTags)
     with open("prototype/UsedTags.txt",mode="w",encoding='utf-8') as file:
@@ -927,6 +936,8 @@ def main(clOptions,database):
     CountAndVerify(database)
     if not clOptions.keepUnusedTags:
         RemoveUnusedTags(database)
+    else:
+        database["tagRemoved"] = []
 
     CreateTagDisplayList(database)
     if gOptions.verbose > 0:
