@@ -262,12 +262,21 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
 
-def AudioIcon(hyperlink: str,iconWidth = "30") -> str:
+def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None) -> str:
     "Return an audio icon with the given hyperlink"
     
+    if not linkKind:
+        linkKind = gOptions.audioLinks
+
     a = Airium(source_minify=True)
-    a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
-        # text-decoration: none ensures the icon isn't underlined
+    if linkKind == "img":
+        a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
+            # text-decoration: none ensures the icon isn't underlined
+    else:
+        with a.audio(controls = "",src = hyperlink, style="vertical-align: middle;"):
+            with a.a(href = hyperlink):
+                a("Download audio")
+        a.br()
     return str(a)
 
 def Mp3ExcerptLink(excerpt: dict) -> str:
@@ -352,8 +361,10 @@ class Formatter:
         
         if self.excerptPreferStartTime and excerpt.get("startTime",""):
             a(f' [{excerpt["startTime"]}] ')
-        else:
+        elif gOptions.audioLinks != "audio":
             a(f' ({excerpt["duration"]}) ')
+        else:
+            a(' ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
             for num in range(1,10):
@@ -426,7 +437,7 @@ class Formatter:
         
         a = Airium(source_minify=True)
         event = gDatabase["event"][session["event"]]
-        
+
         bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
         with a.h2(id = bookmark):
             if self.headingShowEvent: 
@@ -457,7 +468,7 @@ class Formatter:
                 a(' – ')
             a(f'{teacherList} – {dateStr}')
             
-            if self.headingAudio:
+            if self.headingAudio and gOptions.audioLinks == "img":
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
                 a(f' – {Mp3SessionLink(session)} ({durStr}) ')
             
@@ -467,6 +478,9 @@ class Formatter:
                 for tag in session["tags"]:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
+            
+            if self.headingAudio and gOptions.audioLinks == "audio":
+                a(Mp3SessionLink(session))
         
         return str(a)
 
@@ -507,6 +521,11 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
     
     prevEvent = None
     prevSession = None
+    if excerpts:
+        lastExcerpt = excerpts[-1]
+    else:
+        lastExcerpt = None
+    
     for x in excerpts:
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
@@ -524,6 +543,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
                 with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
                     a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
+        
+        if gOptions.audioLinks == "audio" and x is not lastExcerpt:
+            a.hr()
     
     return str(a)
 
@@ -782,6 +804,7 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
+    parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
