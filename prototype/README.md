@@ -127,5 +127,12 @@ applies to version 1.0.</span></p>
 Q&amp;A, The Teaching and the Training, and Living in a Changing
 Society. Remove unused tags from the tag list (possibly still a few
 glitches).</span></p>
-<p><b>1.9</b><b>2</b><span style="font-weight: normal">: Added Teen Weekend 2017. Added
-teacher pages.</span></p>
+<p><b>1.92</b><span style="font-weight: normal">: Added Teen Weekend
+2017. Added teacher pages.</span></p>
+<p><b>1.9</b><b>3</b><span style="font-weight: normal">: Added </span><span style="font-weight: normal">Tea
+Time Q&amp;A and Abhayagiri Kaṭhina 2021. Embed audio players in
+the page for each excerpt. This allows one to read transcriptions
+while listening to the talk, but clutters the visual interface. The
+<a href="https://www.abhayagiri.org/20/index.html">Abhayagiri 20</a></span><a href="https://www.abhayagiri.org/20/index.html"><sup><span style="font-weight: normal">th</span></sup><span style="font-weight: normal">
+Anniversary page</span></a><span style="font-weight: normal">
+demonstrates a good solution, but it’s well beyond my web skills.</span></p>

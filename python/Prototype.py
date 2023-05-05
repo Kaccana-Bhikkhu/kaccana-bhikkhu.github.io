@@ -29,6 +29,7 @@ head.meta(charset="utf-8")
 head.meta(name="robots", content="noindex, nofollow")
 with head.style():
     head('body {background-image: url("../images/PrototypeWatermark.png"); }')
+    head('p {font-size: 110%;}')
 gDefaultHead = str(head)
 del head # Clean up the global namespace
 
