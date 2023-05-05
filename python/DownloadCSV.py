@@ -58,12 +58,9 @@ def AddArguments(parser):
     
 gOptions = None
 
-def main(clOptions,_):
+def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
-    
-    global gOptions
-    gOptions = clOptions
     
     gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
     gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
@@ -77,11 +74,12 @@ def main(clOptions,_):
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
         
-        if gOptions.sheets == 'Default': # Default is to download event files and Tag.csv since the other csv files rarely change
+        defaultSheets = ['Tag','Teacher','Reference'] # Sheets to download unless otherwise specified
+        if gOptions.sheets == 'Default': # Default is to download event files and defaultSheets since other csv files rarely change
             if gOptions.events == 'All':
-                gOptions.sheets = allEvents + ['Tag']
+                gOptions.sheets = allEvents + defaultSheets
             else:
-                gOptions.sheets = gOptions.events + ['Tag']
+                gOptions.sheets = gOptions.events + defaultSheets
         
         # If there's a sheet we don't recognize, download Summary.csv to see if we can find it
         for sheet in gOptions.sheets:

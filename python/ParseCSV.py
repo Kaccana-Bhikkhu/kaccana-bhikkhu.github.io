@@ -4,7 +4,7 @@ import os, re, csv, json, unicodedata
 import Render
 import Utils
 from typing import List, Iterator, Tuple
-from Prototype import ExcerptDurationStr
+import Prototype
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -362,21 +362,28 @@ def LoadTagsFile(database,tagFileName):
     database["tagSubsumed"] = subsumedTags
     database["tagRedacted"] = redactedTags
 
+kNumberNames = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"]
+
 def RemoveUnusedTags(database: dict) -> None:
     """Remove unused tags from the raw tag list before building the tag display list."""
 
     def UsedTag(tag: dict) -> bool:
         return tag.get("excerptCount",0) or tag.get("sessionCount",0) or tag.get("sessionCount",0)
 
+    def NamedNumberTag(tag: dict) -> bool:
+        "Does this tag explicitly mention a numbered list?"
+        return tag["number"] and kNumberNames[int(tag["number"])] in tag["fullTag"]
+
     usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
-    print(len(usedTags),"tags used.")
+    if gOptions.verbose > 2:
+        print("   ",len(usedTags),"tags used.")
     
     prevTagCount = 0
     round = 0
     while prevTagCount < len(usedTags):
         round += 1
         prevTagCount = len(usedTags)
-        print(f"{round=}, {prevTagCount=}")
+        #print(f"{round=}, {prevTagCount=}")
 
         for parent,children in WalkTags(database["tagRaw"]):
             if not parent:
@@ -392,13 +399,15 @@ def RemoveUnusedTags(database: dict) -> None:
             if anyTagUsed: # Mark the parent tag as used if any of the children are in use
                 usedTags.add(parent["tag"])
 
-            # Mark all numbered tags as used if either the parent or any other numbered tag is in use
-            if parent["tag"] in usedTags or numberedTagUsed: # Mark all numbered tags as used if
+            # Mark all numbered tags as used if any other numbered tag is in use or we expect to see a numbered list i.e. "Four Noble Truths"
+            if (parent["tag"] in usedTags and NamedNumberTag(parent)) or numberedTagUsed: # Mark all numbered tags as used if
+                seenNumberedTagYet = False
                 for childTag in children:
-                    if childTag["indexNumber"]:
+                    if childTag["indexNumber"] or not seenNumberedTagYet: # Tags before the numbered list are essential headings
                         usedTags.add(childTag["tag"])
+                        seenNumberedTagYet = True
 
-    print(f"Finished; {prevTagCount=}")
+    #print(f"Finished; {prevTagCount=}")
 
     remainingTags = set(usedTags)
     with open("prototype/UsedTags.txt",mode="w",encoding='utf-8') as file:
@@ -552,6 +561,15 @@ def PrepareReferences(reference) -> None:
     for ref in list(reference.keys()):
         reference[ref.lower()] = reference.pop(ref)
 
+
+def PrepareTeachers(teacherDB) -> None:
+    """Prepare database["teacher"] for use."""
+    for t in teacherDB.values():
+        if TeacherConsent(teacherDB,[t["teacher"]],"searchable") and t.get("excerptCount",0):
+            t["htmlFile"] = Utils.slugify(t["fullName"]) + ".html"
+        else:
+            t["htmlFile"] = ""
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
@@ -598,8 +616,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 # Unless the annotation comes as part of a reading
                 pass
             else:
-                excerpt["exclude"] = True 
-                return 
+                excerpt["exclude"] = True
+                return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         #if set(teacherList) == set(excerpt["teachers"]):
@@ -725,7 +743,7 @@ def LoadEventFile(database,eventName,directory):
                 x["exclude"] = False
             else:
                 x["exclude"] = True
-            
+
             x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
             x["fileNumber"] = fileNumber
@@ -828,13 +846,13 @@ def CountAndVerify(database):
         for tag in tagSet:
             tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
         
+    CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
+    CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
+    CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
+    
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"eventCount")
-        
-        CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
-        CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
-        CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
     
     # Are tags flagged Primary as needed?
     if gOptions.verbose >= 1:
@@ -883,17 +901,14 @@ def AddArguments(parser):
     parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process annotations")
 
 gOptions = None
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
-def main(clOptions,database):
+def main():
     """ Parse a directory full of csv files into the dictionary database and write it to a .json file.
     Each .csv sheet gets one entry in the database.
     Tags.csv and event files indicated by four digits e.g. TG2015.csv are parsed separately."""
-    
-    global gOptions
-    gOptions = clOptions
-    #gOptions.ignoreAnnotations = True # For the time being (Winter Retreat 2023), ignore annotations to avoid too much coding
-    
-    LoadSummary(database,os.path.join(gOptions.csvDir,"Summary.csv"))
+
+    LoadSummary(gDatabase,os.path.join(gOptions.csvDir,"Summary.csv"))
    
     specialFiles = {'Summary','Tag','EventTemplate'}
     for fileName in os.listdir(gOptions.csvDir):
@@ -911,38 +926,42 @@ def main(clOptions,database):
         if re.match(".*[0-9]{4}",baseName): # Event files contain a four-digit year and are loaded after all other files
             continue
         
-        database[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
+        gDatabase[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
     
-    LoadTagsFile(database,os.path.join(gOptions.csvDir,"Tag.csv"))
-    PrepareReferences(database["reference"])
+    LoadTagsFile(gDatabase,os.path.join(gOptions.csvDir,"Tag.csv"))
+    PrepareReferences(gDatabase["reference"])
 
-    database["event"] = {}
-    database["sessions"] = []
-    database["excerpts"] = []
-    database["excerptsRedacted"] = []
-    for event in database["summary"]:
-        if not clOptions.parseOnlySpecifiedEvents or clOptions.events == "All" or event in clOptions.events:
-            LoadEventFile(database,event,gOptions.csvDir)
+    gDatabase["event"] = {}
+    gDatabase["sessions"] = []
+    gDatabase["excerpts"] = []
+    gDatabase["excerptsRedacted"] = []
+    for event in gDatabase["summary"]:
+        if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
+            LoadEventFile(gDatabase,event,gOptions.csvDir)
 
-    CountAndVerify(database)
-    if not clOptions.keepUnusedTags:
-        RemoveUnusedTags(database)
+    CountAndVerify(gDatabase)
+    if not gOptions.keepUnusedTags:
+        RemoveUnusedTags(gDatabase)
+    else:
+        gDatabase["tagRemoved"] = []
 
-    CreateTagDisplayList(database)
+    PrepareTeachers(gDatabase["teacher"])
+
+    CreateTagDisplayList(gDatabase)
     if gOptions.verbose > 0:
-        VerifyListCounts(database)
+        VerifyListCounts(gDatabase)
     
-    database["keyCaseTranslation"] = gCamelCaseTranslation
+    gDatabase["keyCaseTranslation"] = gCamelCaseTranslation
     if not gOptions.jsonNoClean:
-        del database["tagRaw"]
+        del gDatabase["tagRaw"]
 
     if gOptions.verbose >= 2:
-        print("Final database contents:")
-        for item in database:
-            print(item + ": "+str(len(database[item])))
+        print("Final gDatabase contents:")
+        for item in gDatabase:
+            print(item + ": "+str(len(gDatabase[item])))
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
-        json.dump(database, file, ensure_ascii=False, indent=2)
+        json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
     if gOptions.verbose > 0:
-        print("   " + ExcerptDurationStr(database["excerpts"]))
+        print("   " + Prototype.ExcerptDurationStr(gDatabase["excerpts"]))

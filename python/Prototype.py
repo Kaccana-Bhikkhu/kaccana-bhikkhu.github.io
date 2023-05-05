@@ -6,6 +6,7 @@ from airium import Airium
 import Utils
 from datetime import timedelta
 import re
+import ParseCSV
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -28,6 +29,7 @@ head.meta(charset="utf-8")
 head.meta(name="robots", content="noindex, nofollow")
 with head.style():
     head('body {background-image: url("../images/PrototypeWatermark.png"); }')
+    head('p {font-size: 110%;}')
 gDefaultHead = str(head)
 del head # Clean up the global namespace
 
@@ -46,7 +48,10 @@ with nav.p():
         nav(" Most common tags")
     nav("&nbsp"*5)
     with nav.a(href = "../indexes/AllEvents.html"):
-        nav(" All events")
+        nav(" Events")
+    nav("&nbsp"*5)
+    with nav.a(href = "../indexes/AllTeachers.html"):
+        nav(" Teachers")
     nav("&nbsp"*5)
     with nav.a(href = "../indexes/AllExcerpts.html"):
         nav(" All excerpts")
@@ -88,7 +93,7 @@ def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",cus
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
-    dirs = ["events","tags","indexes"]
+    dirs = ["events","tags","indexes","teachers"]
     dirs = [os.path.join(gOptions.prototypeDir,dir) for dir in dirs]
 
     for dir in dirs:
@@ -146,14 +151,32 @@ def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
     
     linkedTags = [HtmlTagLink(tag) for tag in tags]
     return TitledList(title,linkedTags,*args,**kwargs)
+
+gTeacherRegex = ""
+gReverseTeacherLookup = {}
+def LinkTeachersInText(text: str) -> str:
+    """Search text for the names of teachers with teacher pages and add hyperlinks accordingly."""
+
+    global gTeacherRegex,gReverseTeacherLookup
+    if not gTeacherRegex:
+        gTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
+        gReverseTeacherLookup = {gDatabase["teacher"][abbr]["fullName"]:abbr for abbr in gDatabase["teacher"]}
     
+    def HtmlTeacherLink(matchObject: re.Match) -> str:
+        teacher = gReverseTeacherLookup[matchObject[1]]
+        htmlFile = TeacherLink(teacher)
+        return f'<a href = {htmlFile}>{matchObject[1]}</a>'
+
+    return re.sub(gTeacherRegex,HtmlTeacherLink,text)
+
+
 def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     """Write a list of hyperlinked teachers.
     teachers is a list of abbreviated teacher names"""
     
     fullNameList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
     
-    return ItemList(fullNameList,*args,**kwargs)
+    return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
 def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
     """Write an indented list of tags."""
@@ -239,12 +262,21 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
 
-def AudioIcon(hyperlink: str,iconWidth = "30") -> str:
+def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None) -> str:
     "Return an audio icon with the given hyperlink"
     
+    if not linkKind:
+        linkKind = gOptions.audioLinks
+
     a = Airium(source_minify=True)
-    a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
-        # text-decoration: none ensures the icon isn't underlined
+    if linkKind == "img":
+        a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
+            # text-decoration: none ensures the icon isn't underlined
+    else:
+        with a.audio(controls = "",src = hyperlink, style="vertical-align: middle;"):
+            with a.a(href = hyperlink):
+                a("Download audio")
+        a.br()
     return str(a)
 
 def Mp3ExcerptLink(excerpt: dict) -> str:
@@ -269,8 +301,6 @@ def Mp3SessionLink(session: dict) -> str:
         
     return AudioIcon(url)
     
-    
-
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
     
@@ -279,6 +309,16 @@ def EventLink(event:str, session: int = 0) -> str:
         return f"{directory}{event}.html#{event}_S{session}"
     else:
         return f"{directory}{event}.html#"
+
+def TeacherLink(teacher:str) -> str:
+    "Return a link to a given teacher page. Return an empty string if the teacher doesn't have a page."
+    directory = "../teachers/"
+
+    htmlFile = gDatabase["teacher"][teacher]["htmlFile"]
+    if htmlFile:
+        return f"{directory}{htmlFile}"
+    else:
+        return ""
     
 def EventDateStr(event: dict) -> str:
     "Return a string describing when the event occured"
@@ -321,8 +361,10 @@ class Formatter:
         
         if self.excerptPreferStartTime and excerpt.get("startTime",""):
             a(f' [{excerpt["startTime"]}] ')
-        else:
+        elif gOptions.audioLinks != "audio":
             a(f' ({excerpt["duration"]}) ')
+        else:
+            a(' ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
             for num in range(1,10):
@@ -395,7 +437,7 @@ class Formatter:
         
         a = Airium(source_minify=True)
         event = gDatabase["event"][session["event"]]
-        
+
         bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
         with a.h2(id = bookmark):
             if self.headingShowEvent: 
@@ -426,7 +468,7 @@ class Formatter:
                 a(' – ')
             a(f'{teacherList} – {dateStr}')
             
-            if self.headingAudio:
+            if self.headingAudio and gOptions.audioLinks == "img":
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
                 a(f' – {Mp3SessionLink(session)} ({durStr}) ')
             
@@ -436,6 +478,9 @@ class Formatter:
                 for tag in session["tags"]:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
+            
+            if self.headingAudio and gOptions.audioLinks == "audio":
+                a(Mp3SessionLink(session))
         
         return str(a)
 
@@ -476,6 +521,11 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
     
     prevEvent = None
     prevSession = None
+    if excerpts:
+        lastExcerpt = excerpts[-1]
+    else:
+        lastExcerpt = None
+    
     for x in excerpts:
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
@@ -493,6 +543,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
                 with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
                     a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
+        
+        if gOptions.audioLinks == "audio" and x is not lastExcerpt:
+            a.hr()
     
     return str(a)
 
@@ -585,6 +638,60 @@ def WriteTagPages(tagPageDir: str) -> None:
         a(HtmlExcerptList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a))
+
+def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
+    """Write a html file for each teacher in the database and an index page for all teachers"""
+    
+    if not os.path.exists(teacherPageDir):
+        os.makedirs(teacherPageDir)
+        
+    xDB = gDatabase["excerpts"]
+    teacherDB = gDatabase["teacher"]
+
+    teacherPageData = {}
+
+    for t,tInfo in teacherDB.items():
+        if not tInfo["htmlFile"]:
+            continue
+
+        if tInfo["fullName"] in gDatabase["tag"]:
+            relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
+        else:
+            relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
+    
+        a = Airium()
+        
+        with a.h1():
+            a(tInfo["fullName"])
+        
+        excerptInfo = ExcerptDurationStr(relevantQs,False,False)
+        teacherPageData[t] = excerptInfo
+        with a.h3(style = "line-height: 1.5;"):
+            a(excerptInfo)
+        
+        formatter = Formatter()
+        formatter.headingShowTags = False
+        formatter.excerptOmitSessionTags = False
+        a(HtmlExcerptList(relevantQs,formatter))
+        
+        WriteHtmlFile(os.path.join(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
+    
+    # Now write a page with the list of teachers:
+    a = Airium()
+    with a.h1():
+        a("Teachers:")
+        
+    for t in teacherPageData:
+        tInfo = teacherDB[t]
+        with a.h2(style = "line-height: 1.3;"):
+            with a.a(href = TeacherLink(t)):
+                a(tInfo["fullName"])
+
+        with a.h3(style = "line-height: 1.3;"):
+            a(teacherPageData[t])
+
+    WriteHtmlFile(os.path.join(indexDir,"AllTeachers.html"),"Teachers",str(a))
+
 
 def WriteEventPages(tagPageDir: str) -> None:
     """Write a html file for each event in the database"""
@@ -695,19 +802,14 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
+    parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
 gOptions = None
-gDatabase = None
-def main(clOptions,database):
-    
-    global gOptions
-    gOptions = clOptions
-    
-    global gDatabase
-    gDatabase = database
-    
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
+def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
@@ -721,11 +823,13 @@ def main(clOptions,database):
     WriteAllEvents(indexDir)
     
     WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
+
+    WriteTeacherPages(os.path.join(gOptions.prototypeDir,"teachers"),indexDir)
     
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
     WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))
 
-    if not clOptions.keepOldHtmlFiles:
+    if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()
     

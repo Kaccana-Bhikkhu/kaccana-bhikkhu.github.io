@@ -11,7 +11,7 @@ import ParseCSV, Prototype, Utils
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
-    prya = fString.replace("{","@!").replace("}","!@")
+    prya = fString.replace("{","$!").replace("}","!$")
     
     return prya
 
@@ -32,6 +32,9 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
         for a in x["annotations"]:
             a["body"],count = twoVariableTransform(a["body"],a)
             changeCount += count
+
+    for e in gDatabase["event"].values():
+        e["description"],count = twoVariableTransform(e["description"],e)
 
     return changeCount
     
@@ -137,10 +140,9 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"]:
+    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"] and not gOptions.attributeAll:
         teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
-    teacherList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
-    teacherStr = Prototype.ItemList(items = teacherList,lastJoinStr = ' and ')
+    teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
     text = item["text"]
     prefix = ""
@@ -159,7 +161,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
 
     item["body"] = bodyTemplate(**renderDict)
 
-    if teacherList:
+    if teachers:
 
         # Does the text before the attribution end in a full stop?
         fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",item["body"]) else ""
@@ -256,7 +258,7 @@ def LinkKnownReferences() -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        return f"[{reference['title']}]({url}) {reference['attribution']}"
+        return f"[{reference['title']}]({url}) {Prototype.LinkTeachersInText(reference['attribution'])}"
 
     def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: [title]() or [title](page N)"""
@@ -296,7 +298,7 @@ def LinkKnownReferences() -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        return f"{reference['title']} {reference['attribution']} [{matchObject[2]}]({url})"
+        return f"{reference['title']} {Prototype.LinkTeachersInText(reference['attribution'])} [{matchObject[2]}]({url})"
 
     def ReferenceForm4(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: title page N"""
@@ -344,13 +346,9 @@ def AddArguments(parser) -> None:
     parser.add_argument('--renderedDatabase',type=str,default='prototype/RenderedDatabase.json',help='Database after rendering each excerpt; Default: prototype/RenderedDatabase.json')
 
 gOptions = None
-gDatabase = None
-def main(clOptions,database) -> None:
-    global gOptions
-    gOptions = clOptions
-    
-    global gDatabase
-    gDatabase = database
+gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
+def main() -> None:
 
     PrepareTemplates()
 
