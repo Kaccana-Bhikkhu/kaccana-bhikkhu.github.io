@@ -74,11 +74,12 @@ def main():
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
         
-        if gOptions.sheets == 'Default': # Default is to download event files and Tag.csv since the other csv files rarely change
+        defaultSheets = ['Tag','Teacher','Reference'] # Sheets to download unless otherwise specified
+        if gOptions.sheets == 'Default': # Default is to download event files and defaultSheets since other csv files rarely change
             if gOptions.events == 'All':
-                gOptions.sheets = allEvents + ['Tag']
+                gOptions.sheets = allEvents + defaultSheets
             else:
-                gOptions.sheets = gOptions.events + ['Tag']
+                gOptions.sheets = gOptions.events + defaultSheets
         
         # If there's a sheet we don't recognize, download Summary.csv to see if we can find it
         for sheet in gOptions.sheets:

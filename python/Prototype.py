@@ -159,7 +159,6 @@ def LinkTeachersInText(text: str) -> str:
     global gTeacherRegex,gReverseTeacherLookup
     if not gTeacherRegex:
         gTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
-        print(gTeacherRegex)
         gReverseTeacherLookup = {gDatabase["teacher"][abbr]["fullName"]:abbr for abbr in gDatabase["teacher"]}
     
     def HtmlTeacherLink(matchObject: re.Match) -> str:
@@ -653,8 +652,6 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     for t,tInfo in teacherDB.items():
         if not tInfo["htmlFile"]:
             continue
-
-        print(tInfo["fullName"])
 
         if tInfo["fullName"] in gDatabase["tag"]:
             relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]

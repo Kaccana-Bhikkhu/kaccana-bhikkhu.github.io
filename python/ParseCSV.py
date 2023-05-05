@@ -616,8 +616,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 # Unless the annotation comes as part of a reading
                 pass
             else:
-                excerpt["exclude"] = True 
-                return 
+                excerpt["exclude"] = True
+                return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         #if set(teacherList) == set(excerpt["teachers"]):
@@ -743,7 +743,7 @@ def LoadEventFile(database,eventName,directory):
                 x["exclude"] = False
             else:
                 x["exclude"] = True
-            
+
             x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
             x["fileNumber"] = fileNumber
