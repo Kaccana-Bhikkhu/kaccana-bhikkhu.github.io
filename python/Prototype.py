@@ -723,12 +723,17 @@ def WriteEventPages(tagPageDir: str) -> None:
             a(title)
         
         with a.h2(style = "line-height: 1.5;"):
-            dateStr = EventDateStr(eventInfo)
             
             a(ListLinkedTeachers(eventInfo["teachers"],lastJoinStr = " and "))
             a.br()
             
-            a(dateStr)
+            
+            joinItems = []
+            series = eventInfo["series"]
+            if series != "Other":
+                joinItems.append(re.sub(r's$','',series))
+            joinItems.append(EventDateStr(eventInfo))
+            a(", ".join(joinItems))
             a.br()
             
             a(f"{eventInfo['venue']} in {gDatabase['venue'][eventInfo['venue']]['location']}")
