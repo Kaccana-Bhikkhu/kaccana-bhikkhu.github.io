@@ -273,7 +273,7 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None) -> str:
         a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
     else:
-        with a.audio(controls = "",src = hyperlink, style="vertical-align: middle;"):
+        with a.audio(controls = "",src = hyperlink, preload = "metadata", style="vertical-align: middle;"):
             with a.a(href = hyperlink):
                 a("Download audio")
         a.br()
@@ -343,6 +343,7 @@ class Formatter:
         self.headingShowEvent = True # Show the event name in headings?
         self.headingShowSessionTitle = False # Show the session title in headings?
         self.headingLinks = True # Link to the event page in our website?
+        self.headingShowTeacher = True # Include the teacher name in headings?
         self.headingAudio = False # Link to original session audio?
         self.headingShowTags = True # List tags in the session heading
         
@@ -461,17 +462,24 @@ class Formatter:
                     a(sessionTitle)
             else:
                 a(sessionTitle)
-
-            dateStr = Utils.ReformatDate(session['date'])
-            teacherList = ListLinkedTeachers(session["teachers"],lastJoinStr = " and ")
-            if self.headingShowEvent or sessionTitle:
-                a(' – ')
-            a(f'{teacherList} – {dateStr}')
             
+            itemsToJoin = []
+            if self.headingShowEvent or sessionTitle:
+                itemsToJoin.append("") # add an initial - if we've already printed part of the heading
+            
+            teacherList = ListLinkedTeachers(session["teachers"],lastJoinStr = " and ")
+            
+            if teacherList and self.headingShowTeacher:
+                itemsToJoin.append(teacherList)
+            
+            itemsToJoin.append(Utils.ReformatDate(session['date']))
+
             if self.headingAudio and gOptions.audioLinks == "img":
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
-                a(f' – {Mp3SessionLink(session)} ({durStr}) ')
+                itemsToJoin.append(f'{Mp3SessionLink(session)} ({durStr}) ')
             
+            a(' – '.join(itemsToJoin))
+
             if self.headingShowTags:
                 a(' ')
                 tagStrings = []
@@ -532,7 +540,8 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
             a(formatter.FormatSessionHeading(session))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
-            formatter.excerptDefaultTeacher = set(session["teachers"])
+            if formatter.headingShowTeacher:
+                formatter.excerptDefaultTeacher = set(session["teachers"])
             
         with a.p():
             a(formatter.FormatExcerpt(x))
@@ -671,7 +680,9 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         
         formatter = Formatter()
         formatter.headingShowTags = False
+        formatter.headingShowTeacher = False
         formatter.excerptOmitSessionTags = False
+        formatter.excerptDefaultTeacher = set([t])
         a(HtmlExcerptList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
