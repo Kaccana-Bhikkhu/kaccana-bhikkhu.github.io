@@ -188,9 +188,6 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
     
     a = Airium()
     
-    with a.h1():
-        a("Tag/subtag hierarchy:")
-    
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     for index, item in enumerate(gDatabase["tagDisplayList"]):
         if not listDuplicateSubtags:
@@ -224,7 +221,7 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
                 
             a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
     
-    WriteHtmlFile(os.path.join(pageDir,fileName),"All Tags",str(a))
+    WriteHtmlFile(os.path.join(pageDir,fileName),"Tag/subtag hierarchy",str(a))
 
 def ExcerptCount(tag:str) -> int:
     try:
@@ -238,9 +235,6 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
         os.makedirs(pageDir)
     
     a = Airium()
-    
-    with a.h1():
-        a("Most common tags:")
     
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
@@ -565,15 +559,10 @@ def WriteAllExcerpts(pageDir: str) -> None:
     
     a = Airium()
     
-    with a.h1():
-        a("All excerpts:")
+    a(ExcerptDurationStr(gDatabase["excerpts"]))
+    a.br()
     
-    with a.h2():
-        a(ExcerptDurationStr(gDatabase["excerpts"]))
-        a.br()
-    
-    with a.h3():
-        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
+    a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
     
     formatter = Formatter()
     formatter.excerptDefaultTeacher = ['AP']
@@ -589,21 +578,21 @@ def WriteAllEvents(pageDir: str) -> None:
     
     a = Airium()
     
-    with a.h1():
-        a("All events:")
-        
+    firstEvent = True
     for eventCode,e in gDatabase["event"].items():
-        with a.h2(style = "line-height: 1.3;"):
+        if not firstEvent:
+            a.hr()
+        firstEvent = False
+        with a.h3(style = "line-height: 1.3;"):
             with a.a(href = EventLink(eventCode)):
                 a(e["title"])            
         
-        with a.h3(style = "line-height: 1.3;"):
-            a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
-            a.br()
-            a(EventDateStr(e))
-            a.br()
-            eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
-            a(ExcerptDurationStr(eventExcerpts))
+        a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
+        a.br()
+        a(EventDateStr(e))
+        a.br()
+        eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+        a(ExcerptDurationStr(eventExcerpts))
                 
     WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
 
@@ -623,30 +612,28 @@ def WriteTagPages(tagPageDir: str) -> None:
     
         a = Airium()
         
-        with a.h1():
-            if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
-                a(tagInfo['fullTag'])
-                a(f"[{tagInfo['fullPali']}]:")
-            else:
-                a(tagInfo['fullTag'] + ':')
-            
-        
-        with a.h3():
+        with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-        
-        with a.h3(style = "line-height: 1.5;"):
+            
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(ExcerptDurationStr(relevantQs,False,False))
         
+        a.hr()
+
         formatter = Formatter()
         formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
         a(HtmlExcerptList(relevantQs,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a))
+        if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
+            tagPlusPali = f"{tagInfo['fullTag']} [{tagInfo['fullPali']}]"
+        else:
+            tagPlusPali = tag
+
+        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a),titleInBody=tagPlusPali)
 
 def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     """Write a html file for each teacher in the database and an index page for all teachers"""
@@ -670,14 +657,11 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     
         a = Airium()
         
-        with a.h1():
-            a(tInfo["fullName"])
-        
         excerptInfo = ExcerptDurationStr(relevantQs,False,False)
         teacherPageData[t] = excerptInfo
-        with a.h3(style = "line-height: 1.5;"):
-            a(excerptInfo)
-        
+        a(excerptInfo)
+        a.hr()
+
         formatter = Formatter()
         formatter.headingShowTags = False
         formatter.headingShowTeacher = False
@@ -689,17 +673,13 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     
     # Now write a page with the list of teachers:
     a = Airium()
-    with a.h1():
-        a("Teachers:")
         
     for t in teacherPageData:
         tInfo = teacherDB[t]
-        with a.h2(style = "line-height: 1.3;"):
-            with a.a(href = TeacherLink(t)):
-                a(tInfo["fullName"])
+        with a.a(href = TeacherLink(t)):
+            a(tInfo["fullName"])
 
-        with a.h3(style = "line-height: 1.3;"):
-            a(teacherPageData[t])
+        a(teacherPageData[t])
 
     WriteHtmlFile(os.path.join(indexDir,"AllTeachers.html"),"Teachers",str(a))
 
