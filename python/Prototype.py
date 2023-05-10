@@ -1,12 +1,12 @@
 """A module to create various prototype versions of the website for testing purposes"""
 
-import os, json
+import os
 from typing import List, Type, Tuple 
 from airium import Airium
 import Utils
 from datetime import timedelta
 import re
-import ParseCSV
+from collections import namedtuple
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -23,6 +23,20 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
+MenuItem = namedtuple("MenuItem",["name","link"])
+
+def HorizontalMenu(items: List[MenuItem],spaces: int = 5) -> str:
+    """Return an html-formatted horizontal menu"""
+    
+    menuItems = []
+    for name,link in items:
+        itemText = Airium(source_minify=True)
+        with itemText.a(href = link):
+            itemText(name)
+        menuItems.append(str(itemText))
+    
+    return (" " + "&nbsp"*spaces).join(menuItems)
+
 "Create the default html header"
 head = Airium()
 head.meta(charset="utf-8")
@@ -38,23 +52,14 @@ nav = Airium(source_minify=True)
 with nav.h1():
     nav("The Ajahn Pasanno Question and Story Archive")
 with nav.p():
-    with nav.a(href = "../index.html"):
-        nav("Homepage")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllTags.html"):
-        nav("Tag/subtag hierarchy")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/SortedTags.html"):
-        nav(" Most common tags")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllEvents.html"):
-        nav(" Events")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllTeachers.html"):
-        nav(" Teachers")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllExcerpts.html"):
-        nav(" All excerpts")
+    mainMenu = []
+    mainMenu.append(MenuItem("Homepage","../index.html"))
+    mainMenu.append(MenuItem("Tag/subtag hierarchy","../indexes/AllTags.html"))
+    mainMenu.append(MenuItem("Most common tags","../indexes/SortedTags.html"))
+    mainMenu.append(MenuItem("Events","../indexes/AllEvents.html"))
+    mainMenu.append(MenuItem("Teachers","../indexes/AllTeachers.html"))
+    mainMenu.append(MenuItem("All excerpts","../indexes/AllExcerpts.html"))
+    nav(HorizontalMenu(mainMenu))
     nav.hr()
 gNavigation = str(nav)
 del nav
