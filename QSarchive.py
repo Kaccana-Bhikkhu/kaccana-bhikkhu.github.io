@@ -1,6 +1,8 @@
 """Main program to create the Ajahn Pasanno Question and Story Archive website
 """
 
+from __future__ import annotations
+
 import argparse
 import importlib
 import os, sys

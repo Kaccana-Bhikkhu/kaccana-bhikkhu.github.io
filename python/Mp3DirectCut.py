@@ -1,5 +1,7 @@
 """Python wrapper to use mp3DirectCut to split mp3 files"""
 
+from __future__ import annotations
+
 import os, shutil
 from datetime import time,timedelta
 from typing import List

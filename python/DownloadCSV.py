@@ -1,5 +1,7 @@
 """Use Mp3DirectCut.exe to split the session audio files into individual excerpts based on start and end times from Database.json"""
 
+from __future__ import annotations
+
 import os, re
 import urllib.request
 import shutil

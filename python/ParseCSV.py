@@ -1,5 +1,7 @@
 """A module to read csv files from ./csv and create the Database.json file used by subsequent operations"""
 
+from __future__ import annotations
+
 import os, re, csv, json, unicodedata
 import Render
 import Utils

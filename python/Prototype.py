@@ -1,12 +1,16 @@
 """A module to create various prototype versions of the website for testing purposes"""
 
-import os, json
+from __future__ import annotations
+
+import os
 from typing import List, Type, Tuple 
 from airium import Airium
 import Utils
 from datetime import timedelta
 import re
-import ParseCSV
+from collections import namedtuple
+import pyratemp
+from functools import lru_cache
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -23,6 +27,20 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
+MenuItem = namedtuple("MenuItem",["name","link"])
+
+def HorizontalMenu(items: List[MenuItem],spaces: int = 5) -> str:
+    """Return an html-formatted horizontal menu"""
+    
+    menuItems = []
+    for name,link in items:
+        itemText = Airium(source_minify=True)
+        with itemText.a(href = link):
+            itemText(name)
+        menuItems.append(str(itemText))
+    
+    return (" " + "&nbsp"*spaces).join(menuItems)
+
 "Create the default html header"
 head = Airium()
 head.meta(charset="utf-8")
@@ -35,58 +53,42 @@ del head # Clean up the global namespace
 
 "Create the top navigation guide"
 nav = Airium(source_minify=True)
-with nav.h1():
-    nav("The Ajahn Pasanno Question and Story Archive")
-with nav.p():
-    with nav.a(href = "../index.html"):
-        nav("Homepage")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllTags.html"):
-        nav("Tag/subtag hierarchy")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/SortedTags.html"):
-        nav(" Most common tags")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllEvents.html"):
-        nav(" Events")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllTeachers.html"):
-        nav(" Teachers")
-    nav("&nbsp"*5)
-    with nav.a(href = "../indexes/AllExcerpts.html"):
-        nav(" All excerpts")
-    nav.hr()
+mainMenu = []
+mainMenu.append(MenuItem("Homepage","../index.html"))
+mainMenu.append(MenuItem("Tag/subtag hierarchy","../indexes/AllTags.html"))
+mainMenu.append(MenuItem("Most common tags","../indexes/SortedTags.html"))
+mainMenu.append(MenuItem("Events","../indexes/AllEvents.html"))
+mainMenu.append(MenuItem("Teachers","../indexes/AllTeachers.html"))
+mainMenu.append(MenuItem("All excerpts","../indexes/AllExcerpts.html"))
+nav(HorizontalMenu(mainMenu))
 gNavigation = str(nav)
 del nav
 
 gWrittenHtmlFiles = set()
-def WriteHtmlFile(fileName: str,title: str,body: str,additionalHead:str = "",customHead:str = None,navigation:bool = True) -> None:
+
+@lru_cache(maxsize = None)
+def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
+    with open(gOptions.globalTemplate,encoding='utf-8') as file:
+        temp = file.read()
+
+    temp = temp.replace('"../','"' + '../' * directoryDepth)
+    return pyratemp.Template(temp)
+
+def WriteHtmlFile(fileName: str,title: str,body: str,directoryDepth:int = 1,titleInBody:str|None = None) -> None:
     """Write a complete html file given a title, body, and header.
         fileName - name of the file to write
         title - internal title of the html page
         body - website body page - can be quite a long string
-        additionalHead - text written after the default header
-        customHead - text written instead of default header; ignore additionalHead when provided"""
+       directoryDepth - how deep is the file we're writing?"""
     
-    a = Airium()
+    globalTemplate = GlobalTemplate(directoryDepth)
+    navigation = gNavigation.replace('"../','"' + '../' * directoryDepth)
 
-    a('<!DOCTYPE html>')
-    with a.html(lang="en"):
-        with a.head():
-            a.title(_t=title)
-            if customHead is None:
-                a(gDefaultHead)
-                a(additionalHead)
-            else:
-                a(customHead)
+    if not titleInBody:
+        titleInBody = title
 
-        with a.body():
-            if navigation:
-                a(gNavigation)
-            a(body)
-    
-    with open(fileName,'wb') as file:
-        file.write(bytes(a))
+    with open(fileName,'w',encoding='utf-8') as file:
+        print(globalTemplate(title = title,body = body,mainMenu=navigation,titleInBody = titleInBody),file=file)
     
     gWrittenHtmlFiles.add(fileName)
 
@@ -188,9 +190,6 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
     
     a = Airium()
     
-    with a.h1():
-        a("Tag/subtag hierarchy:")
-    
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     for index, item in enumerate(gDatabase["tagDisplayList"]):
         if not listDuplicateSubtags:
@@ -224,7 +223,7 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
                 
             a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
     
-    WriteHtmlFile(os.path.join(pageDir,fileName),"All Tags",str(a))
+    WriteHtmlFile(os.path.join(pageDir,fileName),"Tag/subtag hierarchy",str(a))
 
 def ExcerptCount(tag:str) -> int:
     try:
@@ -238,9 +237,6 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
         os.makedirs(pageDir)
     
     a = Airium()
-    
-    with a.h1():
-        a("Most common tags:")
     
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
@@ -273,7 +269,7 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None) -> str:
         a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
     else:
-        with a.audio(controls = "",src = hyperlink, style="vertical-align: middle;"):
+        with a.audio(controls = "",src = hyperlink, preload = "metadata", style="vertical-align: middle;"):
             with a.a(href = hyperlink):
                 a("Download audio")
         a.br()
@@ -343,6 +339,7 @@ class Formatter:
         self.headingShowEvent = True # Show the event name in headings?
         self.headingShowSessionTitle = False # Show the session title in headings?
         self.headingLinks = True # Link to the event page in our website?
+        self.headingShowTeacher = True # Include the teacher name in headings?
         self.headingAudio = False # Link to original session audio?
         self.headingShowTags = True # List tags in the session heading
         
@@ -439,7 +436,7 @@ class Formatter:
         event = gDatabase["event"][session["event"]]
 
         bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
-        with a.h2(id = bookmark):
+        with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
                     with a.a(href = EventLink(session["event"])):
@@ -461,17 +458,24 @@ class Formatter:
                     a(sessionTitle)
             else:
                 a(sessionTitle)
-
-            dateStr = Utils.ReformatDate(session['date'])
-            teacherList = ListLinkedTeachers(session["teachers"],lastJoinStr = " and ")
-            if self.headingShowEvent or sessionTitle:
-                a(' – ')
-            a(f'{teacherList} – {dateStr}')
             
+            itemsToJoin = []
+            if self.headingShowEvent or sessionTitle:
+                itemsToJoin.append("") # add an initial - if we've already printed part of the heading
+            
+            teacherList = ListLinkedTeachers(session["teachers"],lastJoinStr = " and ")
+            
+            if teacherList and self.headingShowTeacher:
+                itemsToJoin.append(teacherList)
+            
+            itemsToJoin.append(Utils.ReformatDate(session['date']))
+
             if self.headingAudio and gOptions.audioLinks == "img":
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
-                a(f' – {Mp3SessionLink(session)} ({durStr}) ')
+                itemsToJoin.append(f'{Mp3SessionLink(session)} ({durStr}) ')
             
+            a(' – '.join(itemsToJoin))
+
             if self.headingShowTags:
                 a(' ')
                 tagStrings = []
@@ -479,8 +483,9 @@ class Formatter:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
             
-            if self.headingAudio and gOptions.audioLinks == "audio":
-                a(Mp3SessionLink(session))
+        if self.headingAudio and gOptions.audioLinks == "audio":
+            a(Mp3SessionLink(session))
+            a.hr()
         
         return str(a)
 
@@ -515,7 +520,6 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
     """Return a html list of the excerpts."""
     
     a = Airium()
-    
     tabMeasurement = 'em'
     tabLength = 2
     
@@ -532,7 +536,8 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
             a(formatter.FormatSessionHeading(session))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
-            formatter.excerptDefaultTeacher = set(session["teachers"])
+            if formatter.headingShowTeacher:
+                formatter.excerptDefaultTeacher = set(session["teachers"])
             
         with a.p():
             a(formatter.FormatExcerpt(x))
@@ -546,7 +551,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
         
         if gOptions.audioLinks == "audio" and x is not lastExcerpt:
             a.hr()
-    
+        
     return str(a)
 
 def WriteAllExcerpts(pageDir: str) -> None:
@@ -556,15 +561,10 @@ def WriteAllExcerpts(pageDir: str) -> None:
     
     a = Airium()
     
-    with a.h1():
-        a("All excerpts:")
+    a(ExcerptDurationStr(gDatabase["excerpts"]))
+    a.br()
     
-    with a.h2():
-        a(ExcerptDurationStr(gDatabase["excerpts"]))
-        a.br()
-    
-    with a.h3():
-        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
+    a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
     
     formatter = Formatter()
     formatter.excerptDefaultTeacher = ['AP']
@@ -580,21 +580,21 @@ def WriteAllEvents(pageDir: str) -> None:
     
     a = Airium()
     
-    with a.h1():
-        a("All events:")
-        
+    firstEvent = True
     for eventCode,e in gDatabase["event"].items():
-        with a.h2(style = "line-height: 1.3;"):
+        if not firstEvent:
+            a.hr()
+        firstEvent = False
+        with a.h3(style = "line-height: 1.3;"):
             with a.a(href = EventLink(eventCode)):
                 a(e["title"])            
         
-        with a.h3(style = "line-height: 1.3;"):
-            a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
-            a.br()
-            a(EventDateStr(e))
-            a.br()
-            eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
-            a(ExcerptDurationStr(eventExcerpts))
+        a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
+        a.br()
+        a(EventDateStr(e))
+        a.br()
+        eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+        a(ExcerptDurationStr(eventExcerpts))
                 
     WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
 
@@ -614,30 +614,28 @@ def WriteTagPages(tagPageDir: str) -> None:
     
         a = Airium()
         
-        with a.h1():
-            if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
-                a(tagInfo['fullTag'])
-                a(f"[{tagInfo['fullPali']}]:")
-            else:
-                a(tagInfo['fullTag'] + ':')
-            
-        
-        with a.h3():
+        with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-        
-        with a.h3(style = "line-height: 1.5;"):
+            
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(ExcerptDurationStr(relevantQs,False,False))
         
+        a.hr()
+
         formatter = Formatter()
         formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
         a(HtmlExcerptList(relevantQs,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a))
+        if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
+            tagPlusPali = f"{tagInfo['fullTag']} [{tagInfo['fullPali']}]"
+        else:
+            tagPlusPali = tag
+
+        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a),titleInBody=tagPlusPali)
 
 def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     """Write a html file for each teacher in the database and an index page for all teachers"""
@@ -654,41 +652,39 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         if not tInfo["htmlFile"]:
             continue
 
+        """ For the time being, teacher pages list only excerpts by the teacher, not about the teacher.
         if tInfo["fullName"] in gDatabase["tag"]:
             relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
-        else:
-            relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
+        else: """
+        relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
     
         a = Airium()
         
-        with a.h1():
-            a(tInfo["fullName"])
-        
         excerptInfo = ExcerptDurationStr(relevantQs,False,False)
         teacherPageData[t] = excerptInfo
-        with a.h3(style = "line-height: 1.5;"):
-            a(excerptInfo)
-        
+        a(excerptInfo)
+        a.hr()
+
         formatter = Formatter()
         formatter.headingShowTags = False
+        formatter.headingShowTeacher = False
         formatter.excerptOmitSessionTags = False
+        formatter.excerptDefaultTeacher = set([t])
         a(HtmlExcerptList(relevantQs,formatter))
         
         WriteHtmlFile(os.path.join(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
     
     # Now write a page with the list of teachers:
     a = Airium()
-    with a.h1():
-        a("Teachers:")
         
     for t in teacherPageData:
         tInfo = teacherDB[t]
-        with a.h2(style = "line-height: 1.3;"):
+        with a.h3(style = "line-height: 1.3;"):
             with a.a(href = TeacherLink(t)):
                 a(tInfo["fullName"])
 
-        with a.h3(style = "line-height: 1.3;"):
-            a(teacherPageData[t])
+        a(teacherPageData[t])
+        a.hr()
 
     WriteHtmlFile(os.path.join(indexDir,"AllTeachers.html"),"Teachers",str(a))
 
@@ -705,45 +701,42 @@ def WriteEventPages(tagPageDir: str) -> None:
         excerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a = Airium()
         
-        with a.h1():
-            title = eventInfo["title"]
-            if eventInfo["subtitle"]:
-                title += " – " + eventInfo["subtitle"]
-            a(title)
-        
-        with a.h2(style = "line-height: 1.5;"):
-            dateStr = EventDateStr(eventInfo)
-            
+        with a.strong():
             a(ListLinkedTeachers(eventInfo["teachers"],lastJoinStr = " and "))
-            a.br()
-            
-            a(dateStr)
-            a.br()
-            
+        a.br()
+
+        joinItems = []
+        series = eventInfo["series"]
+        if series != "Other":
+            joinItems.append(re.sub(r's$','',series))
+        joinItems.append(EventDateStr(eventInfo))
+        a(", ".join(joinItems))
+        a.br()
+        
+        with a.strong():
             a(f"{eventInfo['venue']} in {gDatabase['venue'][eventInfo['venue']]['location']}")
             a.br()
             
             a(ExcerptDurationStr(excerpts))
-            a.br()
-            
-            with a.a(href = eventInfo["website"]):
-                a("External website")
-            a.br()
-            a.br()
-            
-            if len(sessions) > 1:
-                squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
-                squish("Sessions:")
-                for s in sessions:
-                    squish(4*"&nbsp")
-                    with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
-                        squish(str(s['sessionNumber']))
-                
-                a(str(squish))
+        a.br()
         
         if eventInfo["description"]:
-            with a.p(style = "font-size: 120%;"):
+            with a.p():
                 a(eventInfo["description"])
+
+        with a.a(href = eventInfo["website"]):
+            a("External website")
+        a.br()
+        
+        if len(sessions) > 1:
+            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
+            squish("Sessions:")
+            for s in sessions:
+                squish(4*"&nbsp")
+                with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
+                    squish(str(s['sessionNumber']))
+            
+            a(str(squish))
         
         a.hr()
         
@@ -755,7 +748,11 @@ def WriteEventPages(tagPageDir: str) -> None:
         formatter.excerptPreferStartTime = True
         a(HtmlExcerptList(excerpts,formatter))
         
-        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a))
+        titleInBody = eventInfo["title"]
+        if eventInfo["subtitle"]:
+            titleInBody += " – " + eventInfo["subtitle"]
+
+        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
         
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
@@ -789,7 +786,7 @@ def WriteIndexPage(templateName: str,indexPage: str) -> None:
     
     sourceComment = f"<!-- The content below has been extracted from the body of {templateName} -->"
     
-    WriteHtmlFile(indexPage,"The Ajahn Pasanno Question and Story Archive",'\n'.join([nav,sourceComment,htmlBody]),customHead = '\n'.join([head,str(styleInfo)]),navigation = False)
+    WriteHtmlFile(indexPage,"The Ajahn Pasanno Question and Story Archive",'\n'.join([sourceComment,htmlBody]),directoryDepth=0)
     
     # Now write prototype/README.md to make this material easily readable on github
     
@@ -801,6 +798,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
+    parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
     parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")

@@ -50,9 +50,7 @@
             "program": "${workspaceFolder}\\QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
-                "-vvv",
-                "--excerptMp3",
-                "local"
+                "-vvv"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -66,10 +64,7 @@
                 "ParseCSV,Render,Prototype",
                 "-vvv",
                 "--excerptMp3",
-                "local",
-                "--events",
-                "SRD2010,SRD2011,WR2018-2,DRBU2014,UD2020",
-                "--parseOnlySpecifiedEvents"
+                "local"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

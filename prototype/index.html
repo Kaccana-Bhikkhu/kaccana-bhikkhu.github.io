@@ -1,21 +1,29 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Ajahn Pasanno Question and Story Archive</title>
-    <meta charset="utf-8" />
 <meta name="robots" content="noindex, nofollow" />
-<style>
-  body {background-image: url("images/PrototypeWatermark.png"); }
-  p {font-size: 110%;}
-</style>
-<style type="text/css">
-  p { line-height: 1.3; }
-</style>
-  </head>
-  <body>
-    <h1>The Ajahn Pasanno Question and Story Archive</h1><p><a href="index.html">Homepage</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllTags.html">Tag/subtag hierarchy</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/SortedTags.html"> Most common tags</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllEvents.html"> Events</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllTeachers.html"> Teachers</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllExcerpts.html"> All excerpts</a><hr /></p>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+  <div id="header">
+    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
+    <br>
+    <h4><a href="index.html">Homepage</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllTags.html">Tag/subtag hierarchy</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/SortedTags.html">Most common tags</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllEvents.html">Events</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllTeachers.html">Teachers</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="indexes/AllExcerpts.html">All excerpts</a></h4>
+  </div>
+<br>
+  <div class="title">The Ajahn Pasanno Question and Story Archive</div>
+
+<div class="intro">
 <!-- The content below has been extracted from the body of prototype/templates/index.html -->
-<h2 class="western">Introduction</h2>
+
+<img src="images/AjahnPasanno.jpg" width="200">
+<h3 class="western">Introduction</h3>
 <p>Ajahn Pasanno excels at answering Dhamma questions. I estimate
 there are perhaps 100 hours of his question and answer sessions
 posted online. If you have a Dhamma question, it’s likely that
@@ -36,7 +44,7 @@ now includes these as well.</p>
 <p>The principles described below are my best thinking so far. They
 are open to revision if Ajahn Pasanno, Ajahn Ñāṇiko, or the
 Abhayagiri Saṅgha object.</p>
-<h2 class="western">Collaborators</h2>
+<h3 class="western">Collaborators</h3>
 <p>I created this demonstration prototype, but my web design skills
 go no further. My nephew Owen (almost 13!) volunteered to design a
 modern website using the same questions database as the prototype.
@@ -47,7 +55,7 @@ with transcription and tagging later on.</p>
 <p>I plan to update the prototype as we transcribe additional
 questions and refine the tagging scheme until Owen’s modern website
 is up and running.</p>
-<h2 class="western">Scope</h2>
+<h3 class="western">Scope</h3>
 <p>Initially the project will focus on Q&amp;A sessions with Ajahn
 Pasanno, although we will transcribe questions incidentally answered
 by other teachers in these Q&amp;A sessions. If there is energy and
@@ -60,7 +68,7 @@ Abhayagiri’s YouTube channel. Perhaps others might create a website
 to index Q&amp;A sessions from other teachers (see Copyright below).
 An <a href="http://birken.ca/qaa/qaa.php">index of Ajahn Sona YouTube
 Q&amp;A sessions</a> already exists.</p>
-<h2 class="western">Teacher consent</h2>
+<h3 class="western">Teacher consent</h3>
 <p>Not all monks and nuns want their teachings widely distributed.
 Most monastics in this tradition went forth due to their experience
 of suffering and faith in the Dhamma rather than a desire or ability
@@ -83,7 +91,7 @@ become available online.</p>
 <p>This part of the software is already functional. As of now, the
 prototype archive excludes two questions answered by teachers other
 than Ajahn Pasanno because I haven’t yet asked their preferences.</p>
-<h2 class="western">Copyright</h2>
+<h3 class="western">Copyright</h3>
 <p>There are three distinct parts to this project:</p>
 <ol>
 	<li><p>The audio Q&amp;A database format and the website engines
@@ -109,7 +117,7 @@ copyright matters. Thus for the time being, all newly created
 material in the project is:</p>
 <p style="margin-left: 2cm; background: transparent; page-break-before: auto; page-break-after: auto">
 © Kaccāna Bhikkhu, All rights reserved</p>
-<h2 class="western">Dedication</h2>
+<h3 class="western">Dedication</h3>
 <p>This project is dedicated to Luang Por Pasanno (Tan Chao Khun Phra
 Rajabodhividesa), my preceptor, teacher, and mentor. He has given his
 life to continuing Luang Pu Chah’s efforts to establish Westerners
@@ -145,13 +153,15 @@ Society. Remove unused tags from the tag list (possibly still a few
 glitches).</span></p>
 <p><b>1.92</b><span style="font-weight: normal">: Added Teen Weekend
 2017. Added teacher pages.</span></p>
-<p><b>1.9</b><b>3</b><span style="font-weight: normal">: Added </span><span style="font-weight: normal">Tea
-Time Q&amp;A and Abhayagiri Kaṭhina 2021. Embed audio players in
-the page for each excerpt. This allows one to read transcriptions
-while listening to the talk, but clutters the visual interface. The
-<a href="https://www.abhayagiri.org/20/index.html">Abhayagiri 20</a></span><a href="https://www.abhayagiri.org/20/index.html"><sup><span style="font-weight: normal">th</span></sup><span style="font-weight: normal">
-Anniversary page</span></a><span style="font-weight: normal">
-demonstrates a good solution, but it’s well beyond my web skills.</span></p>
+<p><b>1.93</b><span style="font-weight: normal">: Added Tea Time Q&amp;A
+and Abhayagiri Kaṭhina 2021. Embed audio players in the page for
+each excerpt. This allows one to read transcriptions while listening
+to the talk, but clutters the visual interface. The <a href="https://www.abhayagiri.org/20/index.html">Abhayagiri
+20</a></span><a href="https://www.abhayagiri.org/20/index.html"><sup><span style="font-weight: normal">th</span></sup>
+<span style="font-weight: normal">Anniversary page</span></a>
+<span style="font-weight: normal">demonstrates a good solution, but
+it’s well beyond my web skills.</span></p>
 
-  </body>
+</div>
+</body>
 </html>
