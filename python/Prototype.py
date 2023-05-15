@@ -652,10 +652,11 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         if not tInfo["htmlFile"]:
             continue
 
+        """ For the time being, teacher pages list only excerpts by the teacher, not about the teacher.
         if tInfo["fullName"] in gDatabase["tag"]:
             relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
-        else:
-            relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
+        else: """
+        relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
     
         a = Airium()
         
@@ -678,10 +679,12 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         
     for t in teacherPageData:
         tInfo = teacherDB[t]
-        with a.a(href = TeacherLink(t)):
-            a(tInfo["fullName"])
+        with a.h3(style = "line-height: 1.3;"):
+            with a.a(href = TeacherLink(t)):
+                a(tInfo["fullName"])
 
         a(teacherPageData[t])
+        a.hr()
 
     WriteHtmlFile(os.path.join(indexDir,"AllTeachers.html"),"Teachers",str(a))
 
