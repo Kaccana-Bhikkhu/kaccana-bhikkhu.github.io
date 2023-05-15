@@ -136,96 +136,6 @@
       "medium": "Hybrid"
     }
   },
-  "series": {
-    "Thanksgiving Retreats": {
-      "series": "Thanksgiving Retreats",
-      "abbreviation": "TG",
-      "description": "The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. However, after the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly."
-    },
-    "Abhayagiri Winter Retreats": {
-      "series": "Abhayagiri Winter Retreats",
-      "abbreviation": "WR",
-      "description": "During the months of January, February, and March, the resident community of Abhayagiri Monastery ceases all non-essential work to practice meditation. There are usually Dhamma readings nearly every day, some of which end with questions and answers regarding the teachings."
-    },
-    "Upasika Days": {
-      "series": "Upasika Days",
-      "abbreviation": "UD",
-      "description": ""
-    },
-    "Spirit Rock Daylongs": {
-      "series": "Spirit Rock Daylongs",
-      "abbreviation": "SRD",
-      "description": ""
-    },
-    "Interviews": {
-      "series": "Interviews",
-      "abbreviation": "Interview",
-      "description": ""
-    },
-    "Other": {
-      "series": "Other",
-      "abbreviation": "",
-      "description": ""
-    }
-  },
-  "venue": {
-    "Abhayagiri Buddhist Monastery": {
-      "venue": "Abhayagiri Buddhist Monastery",
-      "location": "Redwood Valley, California",
-      "address": "16201 Tomki Road, Redwood Valley, CA 95470",
-      "websiteLink": "https://www.abhayagiri.org"
-    },
-    "Angela Center": {
-      "venue": "Angela Center",
-      "location": "Santa Rosa, California",
-      "address": "535 Angela Dr, Santa Rosa, CA 95403",
-      "websiteLink": "https://angelacenter.com/acn"
-    },
-    "Spirit Rock Meditation Center": {
-      "venue": "Spirit Rock Meditation Center",
-      "location": "Woodacre, California",
-      "address": "5000 Sir Francis Drake Blvd., PO Box 169, Woodacre, CA 94973",
-      "websiteLink": "https://www.spiritrock.org"
-    }
-  },
-  "category": {
-    "Questions": {
-      "category": "Questions",
-      "description": ""
-    },
-    "Stories": {
-      "category": "Stories",
-      "description": ""
-    },
-    "Quotes": {
-      "category": "Quotes",
-      "description": ""
-    },
-    "Teachings": {
-      "category": "Teachings",
-      "description": ""
-    },
-    "Meditations": {
-      "category": "Meditations",
-      "description": ""
-    },
-    "Readings": {
-      "category": "Readings",
-      "description": ""
-    },
-    "References": {
-      "category": "References",
-      "description": ""
-    },
-    "Attribution": {
-      "category": "Attribution",
-      "description": ""
-    },
-    "Other": {
-      "category": "Other",
-      "description": ""
-    }
-  },
   "reference": {
     "stillness flowing": {
       "abbreviation": "Stillness Flowing",
@@ -282,6 +192,38 @@
       "author": [
         "ALee"
       ]
+    }
+  },
+  "series": {
+    "Thanksgiving Retreats": {
+      "series": "Thanksgiving Retreats",
+      "abbreviation": "TG",
+      "description": "The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. However, after the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly."
+    },
+    "Abhayagiri Winter Retreats": {
+      "series": "Abhayagiri Winter Retreats",
+      "abbreviation": "WR",
+      "description": "During the months of January, February, and March, the resident community of Abhayagiri Monastery ceases all non-essential work to practice meditation. There are usually Dhamma readings nearly every day, some of which end with questions and answers regarding the teachings."
+    },
+    "Upasika Days": {
+      "series": "Upasika Days",
+      "abbreviation": "UD",
+      "description": ""
+    },
+    "Spirit Rock Daylongs": {
+      "series": "Spirit Rock Daylongs",
+      "abbreviation": "SRD",
+      "description": ""
+    },
+    "Interviews": {
+      "series": "Interviews",
+      "abbreviation": "Interview",
+      "description": ""
+    },
+    "Other": {
+      "series": "Other",
+      "abbreviation": "",
+      "description": ""
     }
   },
   "teacher": {
@@ -827,6 +769,64 @@
       "form2": "unimplemented",
       "form3": "unimplemented",
       "usageNotes": ""
+    }
+  },
+  "category": {
+    "Questions": {
+      "category": "Questions",
+      "description": ""
+    },
+    "Stories": {
+      "category": "Stories",
+      "description": ""
+    },
+    "Quotes": {
+      "category": "Quotes",
+      "description": ""
+    },
+    "Teachings": {
+      "category": "Teachings",
+      "description": ""
+    },
+    "Meditations": {
+      "category": "Meditations",
+      "description": ""
+    },
+    "Readings": {
+      "category": "Readings",
+      "description": ""
+    },
+    "References": {
+      "category": "References",
+      "description": ""
+    },
+    "Attribution": {
+      "category": "Attribution",
+      "description": ""
+    },
+    "Other": {
+      "category": "Other",
+      "description": ""
+    }
+  },
+  "venue": {
+    "Abhayagiri Buddhist Monastery": {
+      "venue": "Abhayagiri Buddhist Monastery",
+      "location": "Redwood Valley, California",
+      "address": "16201 Tomki Road, Redwood Valley, CA 95470",
+      "websiteLink": "https://www.abhayagiri.org"
+    },
+    "Angela Center": {
+      "venue": "Angela Center",
+      "location": "Santa Rosa, California",
+      "address": "535 Angela Dr, Santa Rosa, CA 95403",
+      "websiteLink": "https://angelacenter.com/acn"
+    },
+    "Spirit Rock Meditation Center": {
+      "venue": "Spirit Rock Meditation Center",
+      "location": "Woodacre, California",
+      "address": "5000 Sir Francis Drake Blvd., PO Box 169, Woodacre, CA 94973",
+      "websiteLink": "https://www.spiritrock.org"
     }
   },
   "tag": {
@@ -32079,14 +32079,7 @@
     "SortBy": "sortBy",
     "Format": "format",
     "Medium": "medium",
-    "Series": "series",
     "Abbreviation": "abbreviation",
-    "Description": "description",
-    "Venue": "venue",
-    "Location": "location",
-    "Address": "address",
-    "Website link": "websiteLink",
-    "Category": "category",
     "Title": "title",
     "Author1": "author1",
     "Author2": "author2",
@@ -32095,6 +32088,8 @@
     "Filename": "filename",
     "Remote URL": "remoteUrl",
     "Reference": "reference",
+    "Series": "series",
+    "Description": "description",
     "Teacher": "teacher",
     "Full name": "fullName",
     "Web link": "webLink",
@@ -32104,6 +32099,7 @@
     "Attribute?": "attribute",
     "Allow tag?": "allowTag",
     "Kind": "kind",
+    "Category": "category",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",
@@ -32115,6 +32111,10 @@
     "Form 2": "form2",
     "Form 3": "form3",
     "Usage notes": "usageNotes",
+    "Venue": "venue",
+    "Location": "location",
+    "Address": "address",
+    "Website link": "websiteLink",
     "Level": "level",
     "Flags": "flags",
     "Full tag": "fullTag",

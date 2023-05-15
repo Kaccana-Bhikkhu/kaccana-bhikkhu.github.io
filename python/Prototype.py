@@ -1,5 +1,7 @@
 """A module to create various prototype versions of the website for testing purposes"""
 
+from __future__ import annotations
+
 import os
 from typing import List, Type, Tuple 
 from airium import Airium
@@ -8,7 +10,7 @@ from datetime import timedelta
 import re
 from collections import namedtuple
 import pyratemp
-from functools import cache
+from functools import lru_cache
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -64,7 +66,7 @@ del nav
 
 gWrittenHtmlFiles = set()
 
-@cache
+@lru_cache(maxsize = None)
 def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     with open(gOptions.globalTemplate,encoding='utf-8') as file:
         temp = file.read()

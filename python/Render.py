@@ -1,12 +1,14 @@
 """Render the text of each excerpt in the database with its annotations to html using the pryatemp templates in database["Kind"].
 The only remaining work for Prototype.py to do is substitute the list of teachers for {attribtuion}, {attribtuion2}, and {attribtuion3} when needed."""
 
+from __future__ import annotations
+
 import json, re
 import markdown
 from markdown_newtab import NewTabExtension
 from typing import Tuple, Type, Callable, List, Dict
 import pyratemp
-from functools import cache
+from functools import lru_cache
 import ParseCSV, Prototype, Utils
 
 def FStringToPyratemp(fString: str) -> str:
@@ -84,7 +86,7 @@ def AddImplicitAttributions() -> None:
                 x["annotations"].insert(0,newAnnotation)
                 
 
-@cache
+@lru_cache(maxsize = None)
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
     return pyratemp.Template(template)
 

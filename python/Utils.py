@@ -1,5 +1,7 @@
 """Utility files to support QAarchive.py modules"""
 
+from __future__ import annotations
+
 from datetime import timedelta, datetime
 import unicodedata
 import re

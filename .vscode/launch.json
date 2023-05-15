@@ -50,9 +50,7 @@
             "program": "${workspaceFolder}\\QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
-                "-vvv",
-                "--excerptMp3",
-                "local"
+                "-vvv"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
