@@ -54,7 +54,7 @@ def DownloadSheets(sheetIds: dict) -> None:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--spreadsheet',type=str,default='https://docs.google.com/spreadsheets/d/1Yetmz19RGTGTPt36lkx0w2wI0mZB6TdIRv1IAFabyAs/edit#gid=2007732801', help='URL of the QS Archive Main sheet Summary')
+    parser.add_argument('--spreadsheet',type=str,default='https://docs.google.com/spreadsheets/d/1cURolGNXe1nyLR8u_pslrGQFvcEE5udV9UVpPPl60es/edit#gid=2007732801', help='URL of the QS Archive Main sheet Summary')
     parser.add_argument('--sheets',type=str,default='Default',help='Download this list of named sheets; Default: Tags and the sheets specified by --events')
     parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
     
