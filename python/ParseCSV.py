@@ -378,7 +378,7 @@ def RemoveUnusedTags(database: dict) -> None:
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
     if gOptions.verbose > 2:
-        print("   ",len(usedTags),"tags used.")
+        print("   ",len(usedTags),"unique tags applied.")
     
     prevTagCount = 0
     round = 0
@@ -813,19 +813,21 @@ def LoadEventFile(database,eventName,directory):
         database["excerptsRedacted"] += removedExcerpts
         
 
-def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False):
+def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False) -> int:
     """Loop through items in a collection of dicts and count the number of appearances a given str.
         source: A dict of dicts or a list of dicts containing the items to count.
         sourceKey: The key whose values we should count.
         countDicts: A dict of dicts that we use to count the items. Each item should be a key in this dict.
         countKey: The key we add to countDict[item] with the running tally of each item.
-        zeroCount: add countKey even when there are no items counted? """
+        zeroCount: add countKey even when there are no items counted?
+        return the total number of items counted"""
         
     if zeroCount:
         for key in countDicts:
             if countKey not in countDicts[key]:
                 countDicts[key][countKey] = 0
 
+    totalCount = 0
     for d in Utils.Contents(source):
         valuesToCount = d[sourceKey]
         if type(valuesToCount) != list:
@@ -834,20 +836,27 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
         for item in valuesToCount:
             try:
                 countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
+                totalCount += 1
             except KeyError:
                 print(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+    
+    return totalCount
 
 def CountAndVerify(database):
     
     tagDB = database["tag"]
-    CountInstances(database["event"],"tags",tagDB,"eventCount")
-    CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
+    tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
+    tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
     
     for x in database["excerpts"]:
         tagSet = Utils.AllTags(x)
         for tag in tagSet:
             tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
-        
+            tagCount += 1
+    
+    if gOptions.verbose > 2:
+        print("   ",tagCount,"total tags applied.")
+    
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
     CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
