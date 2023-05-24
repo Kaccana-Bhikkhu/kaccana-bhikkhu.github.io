@@ -6,6 +6,7 @@ import os, re, csv, json, unicodedata
 import Render
 import Utils
 from typing import List, Iterator, Tuple
+from datetime import timedelta
 import Prototype
 
 gCamelCaseTranslation = {}
@@ -752,8 +753,8 @@ def LoadEventFile(database,eventName,directory):
             excerpts.append(x)
             prevExcerpt = x
         
+        prevSession = None
         for xIndex, x in enumerate(excerpts):
-            
             # Combine all tags into a single list, but keep track of how many qTags there are
             x["tags"] = x["qTag"] + x["aTag"]
             x["qTagCount"] = len(x["qTag"])
@@ -763,7 +764,6 @@ def LoadEventFile(database,eventName,directory):
                 x.pop("aListen",None)
 
             startTime = x["startTime"]
-            
             endTime = x["endTime"]
             if not endTime:
                 try:
@@ -774,8 +774,24 @@ def LoadEventFile(database,eventName,directory):
             
             if not endTime:
                 endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-                
-            x["duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
+            
+            startTime = Utils.StrToTimeDelta(startTime)
+            endTime = Utils.StrToTimeDelta(endTime)
+
+            session = (x["event"],x["sessionNumber"])
+            if session != prevSession: # A new session starts at time zero
+                prevEndTime = timedelta(seconds = 0)
+                prevSession = session
+
+            if startTime < prevEndTime: # Does this overlap with the previous excerpt?
+                startTime = prevEndTime
+                x["startTime"] = Utils.TimeDeltaToStr(startTime)
+                if "o" not in x["flags"]:
+                    if gOptions.verbose >= 0:
+                        print(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+            x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
+            prevEndTime = endTime
         
         removedExcerpts = [x for x in excerpts if x["exclude"]]
         excerpts = [x for x in excerpts if not x["exclude"]]

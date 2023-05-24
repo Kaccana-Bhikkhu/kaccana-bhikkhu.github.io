@@ -72,7 +72,7 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
         for point in splitPoints:
             if prevTrackEnd is not None:
                 if point[1] < prevTrackEnd:
-                    raise ValueError("Tracks to extract must be in sequential order.")
+                    raise ValueError(f"Split point {point}: Tracks to extract must be in sequential order.")
                 elif point[1] > prevTrackEnd:
                     throwawayTracks.add(trackNum)
             
@@ -82,7 +82,7 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
             
             if len(point) > 2:
                 if point[1] >= point[2]:
-                    raise ValueError("Track end must be after track begin.")
+                    raise ValueError(f"Split point {point}: Track end must be after track begin.")
                 trackNum += 1
                 WriteCue(point[2],trackNum,cueFile)
                 prevTrackEnd = point[2]
