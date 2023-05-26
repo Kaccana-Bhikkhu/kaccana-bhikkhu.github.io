@@ -712,7 +712,11 @@ def LoadEventFile(database,eventName,directory):
             x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
 
             if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
-                AddAnnotation(database,prevExcerpt,x)
+                if prevExcerpt is not None:
+                    AddAnnotation(database,prevExcerpt,x)
+                else:
+                    if gOptions.verbose >= 0:
+                        print(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
                 continue
             else:
                 x["annotations"] = []
@@ -867,8 +871,11 @@ def CountAndVerify(database):
     for x in database["excerpts"]:
         tagSet = Utils.AllTags(x)
         for tag in tagSet:
-            tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
-            tagCount += 1
+            try:
+                tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
+                tagCount += 1
+            except KeyError:
+                print(f"CountAndVerify: Tag {tag} is not defined.")
     
     if gOptions.verbose > 2:
         print("   ",tagCount,"total tags applied.")
