@@ -200,9 +200,25 @@ def LinkSuttas():
 
     def RefToReadingFaithfully(matchObject: re.Match) -> str:
         firstPart = matchObject[0].split("-")[0]
-        dashed = re.sub(r'\s','-',firstPart)
-        #print(matchObject,dashed)
-        return f'[{matchObject[0]}](https://sutta.readingfaithfully.org/?q={dashed})'
+
+        if firstPart.startswith("Kd"): # For Kd, link to SuttaCentral directly
+            print(firstPart)
+            print(f"{matchObject[1]=},{matchObject[2]=},{matchObject[3]=},{matchObject[4]=}")
+            chapter = matchObject[2]
+
+            if matchObject[3]:
+                if matchObject[4]:
+                    subheading = f"#{matchObject[3]}.{matchObject[4]}.1"
+                else:
+                    subheading = f"#{matchObject[3]}.1.1"
+            else:
+                subheading = ""
+            link = f"https://suttacentral.net/pli-tv-kd{chapter}/en/brahmali?layout=plain&reference=main&notes=asterisk&highlight=false&script=latin{subheading}"
+        else: # All other links go to readingfaithfully.org
+            dashed = re.sub(r'\s','-',firstPart)
+            link = f"https://sutta.readingfaithfully.org/?q={dashed}"
+
+        return f'[{matchObject[0]}]({link})'
 
     def LinkItem(bodyStr: str) -> Tuple[str,int]:
         return re.subn(suttaMatch,RefToReadingFaithfully,bodyStr,flags = re.IGNORECASE)
@@ -211,7 +227,7 @@ def LinkSuttas():
         suttas = json.load(file)
     suttaAbbreviations = [s[0] for s in suttas]
 
-    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[-]?[0-9]*"
+    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[.:]?([0-9]+)?[-]?[0-9]*"
 
     suttasMatched = ApplyToBodyText(LinkItem)
 
