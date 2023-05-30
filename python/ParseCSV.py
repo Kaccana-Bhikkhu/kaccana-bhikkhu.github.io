@@ -705,6 +705,9 @@ def LoadEventFile(database,eventName,directory):
         excerpts = []
         redactedTagSet = set(database["tagRedacted"])
         for x in rawExcerpts:
+            if all(not value for key,value in x.items() if key != "sessionNumber"): # Skip lines which have a session number and nothing else
+                continue
+
             x["flags"] = x.get("flags","")
             x["kind"] = x.get("kind","")
 

@@ -202,8 +202,6 @@ def LinkSuttas():
         firstPart = matchObject[0].split("-")[0]
 
         if firstPart.startswith("Kd"): # For Kd, link to SuttaCentral directly
-            print(firstPart)
-            print(f"{matchObject[1]=},{matchObject[2]=},{matchObject[3]=},{matchObject[4]=}")
             chapter = matchObject[2]
 
             if matchObject[3]:
