@@ -70,6 +70,7 @@ def main():
         sessionFilePath = os.path.join(eventDir,session["filename"])
         if not os.path.exists(sessionFilePath):
             print("Warning: Cannot locate "+sessionFilePath)
+            errorCount += 1
             continue
         
         outputDir = os.path.join(gOptions.excerptMp3Dir,event)
