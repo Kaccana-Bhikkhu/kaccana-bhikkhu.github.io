@@ -19,14 +19,14 @@ debug the database.</p>
 Winter Retreat 2023 at Cittaviveka Monastery, I realized that the
 stories that Ajahn Pasanno tells in the course of answering Dhamma
 questions are as valuable as the questions themselves. The project
-now includes these as well.</p>
+now includes stories, quotes, and sutta references as well as questions and answers.</p>
 <p>The principles described below are my best thinking so far. They
 are open to revision if Ajahn Pasanno, Ajahn &Ntilde;&#257;&#7751;iko,
 or the Abhayagiri Sa&#7749;gha object.</p>
 <h3 class="western">Collaborators</h3>
 <p>I created this demonstration prototype, but my web design skills
-go no further. My nephew Owen (almost 13!) volunteered to design a
-modern website using the same questions database as the prototype.
+go no further. My nephew Owen) volunteered to design a
+modern website using the same database as the prototype.
 Owen&rsquo;s father, Michael, who once worked on the Gmail design
 team, has already provided valuable advice to both of us. I have done
 all the tagging so far, but I intend to invite online volunteers to
@@ -37,11 +37,11 @@ website is up and running.</p>
 <h3 class="western">Scope</h3>
 <p>Initially the project will focus on Q&amp;A sessions with Ajahn
 Pasanno, although we will transcribe questions incidentally answered
-by other teachers in these Q&amp;A sessions. If there is energy and
+by other teachers in these Q&amp;A sessions. Events including particularly valuable stories will be annotated in greater detail. If there is energy and
 interest, we might expand the scope to include questions and answers
 from other Abhayagiri teachers or non-Abhayagiri teachers at
 Abhayagiri-sponsored events. In this case, it would become the
-Abhayagiri Q&amp;A Archive. However this is as far as the project
+Abhayagiri Question and Story Archive. However this is as far as the project
 will go. We will source audio recordings only from abhayagiri.org and
 Abhayagiri&rsquo;s YouTube channel. Perhaps others might create a
 website to index Q&amp;A sessions from other teachers (see Copyright
@@ -67,10 +67,7 @@ transcribe a question based all these factors, so the database keeps
 track of which teachers have given their consent for what. The
 website generation engine excludes questions accordingly before they
 become available online.</p>
-<p>This part of the software is already functional. As of now, the
-prototype archive excludes two questions answered by teachers other
-than Ajahn Pasanno because I haven&rsquo;t yet asked their
-preferences.</p>
+<p>This part of the software is already functional.</p>
 <h3 class="western">Copyright</h3>
 <p>There are three distinct parts to this project:</p>
 <ol>
@@ -89,14 +86,9 @@ BY-NC-ND</a> license to prevent modification and commercial use. #3
 falls in this category, and it&rsquo;s important to reassure teachers
 that their recordings and question transcripts won&rsquo;t be reused
 in harmful or undesired ways.</p>
-<p>Most Abhayagiri publications are &copy; Abhayagiri Buddhist
-Monastery. This seems the most suitable organisation to assign the
-copyright to #3, but I haven&rsquo;t asked Abhayagiri yet. I would
-like to consult with people more knowledgeable than I before deciding
-on license and copyright matters. Thus for the time being, all newly
-created material in the project is:</p>
+<p>We will finalize copyright and licensing details in the first official release of the archive. For the time being, all newly created material in the project is:</p>
 <p style="margin-left: 0.79in; background: transparent; page-break-before: auto; page-break-after: auto">
-&copy; Kacc&#257;na Bhikkhu, All rights reserved</p>
+&copy; 2023 Abhayagiri Buddhist Monastery. All rights reserved</p>
 <h3 class="western">Dedication</h3>
 <p>This project is dedicated to Luang Por Pasanno (Tan Chao Khun Phra
 Rajabodhividesa), my preceptor, teacher, and mentor. He has given his
@@ -108,12 +100,12 @@ Holy Life well-lived, and I&rsquo;ve watched him handle many
 challenging situations with confidence and ease. The epithet of the
 Sa&#7749;gha, &ldquo;They give occasion for incomparable goodness to
 arise in the world&rdquo; certainly applies to Luang Por.</p>
-<p>Organising Luang Por&rsquo;s questions so others can find them
+<p>Organising Luang Por&rsquo;s questions and stories so others can find them
 barely begins to repay my debt of gratitude to him.</p>
 <p style="margin-left: 0.79in; background: transparent; page-break-before: auto; page-break-after: auto">
 Ajahn Kacc&#257;na</p>
-<p style="margin-left: 0.79in; background: transparent">December 28,
-2022</p>
+<p style="margin-left: 0.79in; background: transparent">June 6,
+2023</p>
 <hr/>
 
 <h3 class="western">Version list</h3>
@@ -147,3 +139,5 @@ Claudius.</span></p>
 <p><b>2.1</b> <span style="font-weight: normal">Added three Upasika
 Days: Thai Forest Tradition, Mindfulness of Breathing, and Jh&#257;na:
 A Practical Approach</span></p>
+<p><b>2.1.1</b> <span style="font-weight: normal">Added three Upasika Days: Honoring the Buddha, The Middle Way of Not-self, and Death and Dying. Added the Spirit Rock Daylong about Friendship.</span></p>
+<p><b>2.1.2</b> <span style="font-weight: normal">Added the 2008 Metta Retreat. Assigned copyright to Abhayagiri Buddhist Monastery.</span></p>
