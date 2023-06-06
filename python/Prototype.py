@@ -324,6 +324,15 @@ def EventDateStr(event: dict) -> str:
         dateStr += " to " + Utils.ReformatDate(event["endDate"])
     return dateStr
 
+def EventSeriesAndDateStr(event: dict) -> str:
+    "Return a string describing the event series and date"
+    joinItems = []
+    series = event["series"]
+    if series != "Other":
+        joinItems.append(re.sub(r's$','',series))
+    joinItems.append(EventDateStr(event))
+    return ", ".join(joinItems)
+
 class Formatter: 
     """A class that formats lists of events, sessions, and excerpts into html"""
     
@@ -593,7 +602,7 @@ def WriteAllEvents(pageDir: str) -> None:
         
         a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
         a.br()
-        a(EventDateStr(e))
+        a(EventSeriesAndDateStr(e))
         a.br()
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
@@ -707,12 +716,7 @@ def WriteEventPages(tagPageDir: str) -> None:
             a(ListLinkedTeachers(eventInfo["teachers"],lastJoinStr = " and "))
         a.br()
 
-        joinItems = []
-        series = eventInfo["series"]
-        if series != "Other":
-            joinItems.append(re.sub(r's$','',series))
-        joinItems.append(EventDateStr(eventInfo))
-        a(", ".join(joinItems))
+        a(EventSeriesAndDateStr(eventInfo))
         a.br()
         
         with a.strong():
