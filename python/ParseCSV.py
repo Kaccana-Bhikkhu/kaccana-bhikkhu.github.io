@@ -370,14 +370,14 @@ kNumberNames = ["zero","one","two","three","four","five","six","seven","eight","
 def RemoveUnusedTags(database: dict) -> None:
     """Remove unused tags from the raw tag list before building the tag display list."""
 
-    def UsedTag(tag: dict) -> bool:
-        return tag.get("excerptCount",0) or tag.get("sessionCount",0) or tag.get("sessionCount",0)
+    def TagCount(tag: dict) -> bool:
+        return tag.get("excerptCount",0) + tag.get("sessionCount",0) + tag.get("sessionCount",0)
 
     def NamedNumberTag(tag: dict) -> bool:
         "Does this tag explicitly mention a numbered list?"
         return tag["number"] and kNumberNames[int(tag["number"])] in tag["fullTag"]
 
-    usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
+    usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
     if gOptions.verbose > 2:
         print("   ",len(usedTags),"unique tags applied.")
     
@@ -424,7 +424,7 @@ def RemoveUnusedTags(database: dict) -> None:
                 remainingTags.discard(tag)
                 name = name.upper()
 
-            display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name
+            display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name + f" ({TagCount(database['tag'][tag])})"
 
             print(display,file=file)
     
