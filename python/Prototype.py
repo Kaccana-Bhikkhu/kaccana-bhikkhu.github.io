@@ -543,8 +543,11 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             a(formatter.FormatSessionHeading(session))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
-            if formatter.headingShowTeacher:
+            if formatter.headingShowTeacher and len(session["teachers"]) == 1: 
+                    # If there's only one teacher who is mentioned in the session heading, don't mention him/her in the excerpts
                 formatter.excerptDefaultTeacher = set(session["teachers"])
+            else:
+                formatter.excerptDefaultTeacher = set()
             
         if count > 20:
             options = {"preload": "none"}

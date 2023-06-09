@@ -1,4 +1,4 @@
-Count,114,637,35,328,33,16,,21,52,3,660,306,627,627
+Count,116,663,35,329,33,16,,21,52,3,687,306,654,654
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -20,6 +20,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Right action,3,samma kammanto,,,,,Precepts,,      Right action,samma kammanto,Right action,Right action [samma kammanto]
 4,.,Abstaining from:,,veramaṇī,,,,,,,         Abstaining from:,veramaṇī,,
 4,*,Killing,,pāṇātipātā,,,,,,,         Killing,pāṇātipātā,Killing,Killing [pāṇātipātā]
+5,*,Vegetarianism,,,,,,,,,            Vegetarianism,,Vegetarianism,Vegetarianism
 5,*,Suicide,,,,,,,,,            Suicide,,Suicide,Suicide
 5,*,Euthanasia,,,,,,,,,            Euthanasia,,Euthanasia,Euthanasia
 5,*,Abortion,,,,,,,,,            Abortion,,Abortion,Abortion
@@ -258,6 +259,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,,,Saṅgha,,,,,,,   Saṅgha,,Saṅgha,Saṅgha
 1,,Devotional practice,,,,,,,Faith,,Devotional practice,,Devotional practice,Devotional practice
 2,,Ceremony/ritual,,,,,,,,,   Ceremony/ritual,,Ceremony/ritual,Ceremony/ritual
+3,,,,Pūjā,,,,,,,      Pūjā,,Pūjā,Pūjā
 2,,Chanting,,,,,,,,,   Chanting,,Chanting,Chanting
 2,,Festival days,,,,,,,,,   Festival days,,Festival days,Festival days
 3,*,Lunar observance days,,uposatha,,,,,,,      Lunar observance days,uposatha,Lunar observance days,Lunar observance days [uposatha]
@@ -269,6 +271,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Stupas/monuments,,,,,,,,,      Stupas/monuments,,Stupas/monuments,Stupas/monuments
 3,,Bodhi Tree,,,,,,,,,      Bodhi Tree,,Bodhi Tree,Bodhi Tree
 3,*,Buddha images,,,,,,,,,      Buddha images,,Buddha images,Buddha images
+3,,Malas,,,,,,,,,      Malas,,Malas,Malas
 3,,Amulets,,,,,,,,,      Amulets,,Amulets,Amulets
 2,,Funerals,,,,,,,,,   Funerals,,Funerals,Funerals
 2,,Superstition,,,,,,,,,   Superstition,,Superstition,Superstition
@@ -278,6 +281,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,*,Five Precepts,5,pañca sikkhāpadāni,,,,,,,   Five Precepts,pañca sikkhāpadāni,Five Precepts,Five Precepts [pañca sikkhāpadāni]
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,
 3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,Killing,Killing [pāṇātipātā]
+4,,Vegetarianism,,,,,,,,,         Vegetarianism,,Vegetarianism,Vegetarianism
 4,,Suicide,,,,,,,,,         Suicide,,Suicide,Suicide
 4,,Euthanasia,,,,,,,,,         Euthanasia,,Euthanasia,Euthanasia
 4,,Abortion,,,,,,,,,         Abortion,,Abortion,Abortion
@@ -288,6 +292,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,*,Eight Precepts,8,aṭṭha sikkhāpadāni,,,,,Renunciation,,   Eight Precepts,aṭṭha sikkhāpadāni,Eight Precepts,Eight Precepts [aṭṭha sikkhāpadāni]
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,
 3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,Killing,Killing [pāṇātipātā]
+4,,Vegetarianism,,,,,,,,,         Vegetarianism,,Vegetarianism,Vegetarianism
 4,,Suicide,,,,,,,,,         Suicide,,Suicide,Suicide
 4,,Euthanasia,,,,,,,,,         Euthanasia,,Euthanasia,Euthanasia
 4,,Abortion,,,,,,,,,         Abortion,,Abortion,Abortion
@@ -340,6 +345,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,
 3,,Mantra,,,,,,,,,      Mantra,,Mantra,Mantra
 4,*,Buddho mantra,,,,,,,,,         Buddho mantra,,Buddho mantra,Buddho mantra
+3,,Movement meditation,,,,,,,,,      Movement meditation,,Movement meditation,Movement meditation
 3,,Hua tou,,<em>Chinese</em>,,,,,,,      Hua tou,<em>Chinese</em>,Hua tou,Hua tou [<em>Chinese</em>]
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
@@ -403,6 +409,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Personal presence,,,,,,,,,   Personal presence,,Personal presence,Personal presence
 2,,Admonishment/feedback,,,,,,,,,   Admonishment/feedback,,Admonishment/feedback,Admonishment/feedback
 2,,Fierce/direct teaching,,,,,,,,,   Fierce/direct teaching,,Fierce/direct teaching,Fierce/direct teaching
+2,,Stories,,,,,,,,,   Stories,,Stories,Stories
 2,,Similes,,,,,,,,,   Similes,,Similes,Similes
 2,,Symbolism,,,,,,,,,   Symbolism,,Symbolism,Symbolism
 2,,Dhamma books,,,,,,,,,   Dhamma books,,Dhamma books,Dhamma books
@@ -431,6 +438,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 5,,Ajahn Anan,,,,,,,,,            Ajahn Anan,,Ajahn Anan,Ajahn Anan
 5,,Ajahn Sucitto,,,,,,,,,            Ajahn Sucitto,,Ajahn Sucitto,Ajahn Sucitto
 5,,Ajahn Jundee,,,,,,,,,            Ajahn Jundee,,Ajahn Jundee,Ajahn Jundee
+5,,Ajahn Ñāṇadhammo,,,,,,,,,            Ajahn Ñāṇadhammo,,Ajahn Ñāṇadhammo,Ajahn Ñāṇadhammo
 5,,Ajahn Soṇa,,,,,,,,,            Ajahn Soṇa,,Ajahn Soṇa,Ajahn Soṇa
 5,,Ajahn Gavesako,,,,,,,,,            Ajahn Gavesako,,Ajahn Gavesako,Ajahn Gavesako
 5,,Ajahn Amaro,,,,,,,,,            Ajahn Amaro,,Ajahn Amaro,Ajahn Amaro
@@ -446,6 +454,9 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 5,,Ajahn Lee Dhammadharo,,,,,,,,,            Ajahn Lee Dhammadharo,,Ajahn Lee Dhammadharo,Ajahn Lee Dhammadharo
 5,,Ajahn Tongrat,,,,,,,,,            Ajahn Tongrat,,Ajahn Tongrat,Ajahn Tongrat
 5,,Ajahn Kinaree,,,,,,,,,            Ajahn Kinaree,,Ajahn Kinaree,Ajahn Kinaree
+5,,Ajahn Fun,,,,,,,,,            Ajahn Fun,,Ajahn Fun,Ajahn Fun
+5,,Ajahn Dune,,,,,,,,,            Ajahn Dune,,Ajahn Dune,Ajahn Dune
+5,,Ajahn Utane,,,,,,,,,            Ajahn Utane,,Ajahn Utane,Ajahn Utane
 5,,Ajahn Supah,,,,,,,,,            Ajahn Supah,,Ajahn Supah,Ajahn Supah
 5,,Ajahn Mahā Boowa,,,,,,,,,            Ajahn Mahā Boowa,,Ajahn Mahā Boowa,Ajahn Mahā Boowa
 5,,Ajahn Baen,,,,,,,,,            Ajahn Baen,,Ajahn Baen,Ajahn Baen
@@ -456,6 +467,8 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 5,,Ajahnn Mahā Chatchai,,,,,,,,,            Ajahnn Mahā Chatchai,,Ajahnn Mahā Chatchai,Ajahnn Mahā Chatchai
 5,,Ajahn Buddhadāsa,,,,,,,,,            Ajahn Buddhadāsa,,Ajahn Buddhadāsa,Ajahn Buddhadāsa
 5,,Ajahn Paññānanda,,,,,,,,,            Ajahn Paññānanda,,Ajahn Paññānanda,Ajahn Paññānanda
+5,,Ajahn Suwat,,,,,,,,,            Ajahn Suwat,,Ajahn Suwat,Ajahn Suwat
+5,,Ajahn Khantipālo,,,,,,,,,            Ajahn Khantipālo,,Ajahn Khantipālo,Ajahn Khantipālo
 5,,Ajahn Wanchai,,,,,,,,,            Ajahn Wanchai,,Ajahn Wanchai,Ajahn Wanchai
 5,,Ajahn Piyadhammo,,,,,,,,,            Ajahn Piyadhammo,,Ajahn Piyadhammo,Ajahn Piyadhammo
 5,,Ajahn Ṭhānissaro,,,,,,,,,            Ajahn Ṭhānissaro,,Ajahn Ṭhānissaro,Ajahn Ṭhānissaro
@@ -468,10 +481,11 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Other Theravāda monastics,,,,,,,,,      Other Theravāda monastics,,Other Theravāda monastics,Other Theravāda monastics
 4,,Mahasi Sayadaw,,,,,,,,,         Mahasi Sayadaw,,Mahasi Sayadaw,Mahasi Sayadaw
 4,,Ven. Ñāṇamoli,,,,,,,,,         Ven. Ñāṇamoli,,Ven. Ñāṇamoli,Ven. Ñāṇamoli
-,,,,,,,,,,,,,,
+4,,Pa Auk Sayadaw,,,,,,,,,         Pa Auk Sayadaw,,Pa Auk Sayadaw,Pa Auk Sayadaw
 4,,Preah Mahāghosānanda,,,,,,,,,         Preah Mahāghosānanda,,Preah Mahāghosānanda,Preah Mahāghosānanda
 4,,Bhante Gunaratana,,,,,,,,,         Bhante Gunaratana,,Bhante Gunaratana,Bhante Gunaratana
 4,,Bhikkhu Bodhi,,,,,,,,,         Bhikkhu Bodhi,,Bhikkhu Bodhi,Bhikkhu Bodhi
+,,,,,,,,,,,,,,
 4,,Ayya Tāthalokā,,,,,,,,,         Ayya Tāthalokā,,Ayya Tāthalokā,Ayya Tāthalokā
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
@@ -517,7 +531,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,
 2,,History/Western Buddhism,,,,,,,,,   History/Western Buddhism,,History/Western Buddhism,History/Western Buddhism
 3,,History/Western Buddhist monasticism,,,,,,,,,      History/Western Buddhist monasticism,,History/Western Buddhist monasticism,History/Western Buddhist monasticism
-,,,,,,,,,,,,,,
+2,,Geography/Thailand,,,,,,,,,   Geography/Thailand,,Geography/Thailand,Geography/Thailand
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
@@ -526,12 +540,14 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Thai Ajahn Chah monasteries,,,,,,,,,      Thai Ajahn Chah monasteries,,Thai Ajahn Chah monasteries,Thai Ajahn Chah monasteries
 4,,Wat Nong Pah Pong,,,Wat Pah Pong,,,,,,         Wat Nong Pah Pong,,Wat Pah Pong,Wat Pah Pong
 4,,Tam Saeng Pet,,,,,,,,,         Tam Saeng Pet,,Tam Saeng Pet,Tam Saeng Pet
+4,,Wat Keun,,,,,,,,,         Wat Keun,,Wat Keun,Wat Keun
 4,,Wat Pah Nanachat,,,,,,,,,         Wat Pah Nanachat,,Wat Pah Nanachat,Wat Pah Nanachat
 4,,Dtao Dtum,,,,,,,,,         Dtao Dtum,,Dtao Dtum,Dtao Dtum
 4,,Poo Jum Gom,,,,,,,,,         Poo Jum Gom,,Poo Jum Gom,Poo Jum Gom
 4,,Anandagiri Monastery,,,Anandagiri,,,,,,         Anandagiri Monastery,,Anandagiri,Anandagiri
 3,,Thai forest monasteries,,,,,,,,,      Thai forest monasteries,,Thai forest monasteries,Thai forest monasteries
 4,,Wat Khao Wongkot,,,,,,,,,         Wat Khao Wongkot,,Wat Khao Wongkot,Wat Khao Wongkot
+4,,Wat Asokaram,,,,,,,,,         Wat Asokaram,,Wat Asokaram,Wat Asokaram
 4,,Wat Pah Ban Tat,,,,,,,,,         Wat Pah Ban Tat,,Wat Pah Ban Tat,Wat Pah Ban Tat
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
@@ -545,6 +561,14 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,
 3,,Abhayagiri Monastery,,,Abhayagiri,,,,,,      Abhayagiri Monastery,,Abhayagiri,Abhayagiri
 3,,Pacific Hermitage,,,,,,,,,      Pacific Hermitage,,Pacific Hermitage,Pacific Hermitage
+2,,Thai Forest monasteries in the West,,,,,,,,,   Thai Forest monasteries in the West,,Thai Forest monasteries in the West,Thai Forest monasteries in the West
+3,,Wat Buridat,,,,,,,,,      Wat Buridat,,Wat Buridat,Wat Buridat
+3,,Wat Metta,,,,,,,,,      Wat Metta,,Wat Metta,Wat Metta
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
 2,,Monasteries in other traditions,,,,,,,,,   Monasteries in other traditions,,Monasteries in other traditions,Monasteries in other traditions
 3,,City of Ten Thousand Buddhas,,,,,,,,,      City of Ten Thousand Buddhas,,City of Ten Thousand Buddhas,City of Ten Thousand Buddhas
 ,,,,,,,,,,,,,,
@@ -581,6 +605,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Eight Precepts,8,aṭṭha sikkhāpadāni,,,,,,,   Eight Precepts,aṭṭha sikkhāpadāni,Eight Precepts,Eight Precepts [aṭṭha sikkhāpadāni]
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,
 3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,Killing,Killing [pāṇātipātā]
+4,,Vegetarianism,,,,,,,,,         Vegetarianism,,Vegetarianism,Vegetarianism
 4,,Suicide,,,,,,,,,         Suicide,,Suicide,Suicide
 4,,Euthanasia,,,,,,,,,         Euthanasia,,Euthanasia,Euthanasia
 4,,Abortion,,,,,,,,,         Abortion,,Abortion,Abortion
@@ -611,6 +636,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Monastic life,,,,,,,,,   Monastic life,,Monastic life,Monastic life
 3,,Monastic life/Motivation,,,,,,,,,      Monastic life/Motivation,,Monastic life/Motivation,Monastic life/Motivation
 3,,Ordination,,,,,,,,,      Ordination,,Ordination,Ordination
+4,,Temporary ordination,,,,,,,,,         Temporary ordination,,Temporary ordination,Temporary ordination
 3,*,Mentoring,,,,,,,,,      Mentoring,,Mentoring,Mentoring
 3,,,,Vinaya,,,,,,,      Vinaya,,Vinaya,Vinaya
 4,,,,Pāṭimokkha,,,,,,,         Pāṭimokkha,,Pāṭimokkha,Pāṭimokkha
@@ -632,6 +658,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,
 3,,Perception of a samaṇa,,samaṇa saññā,,,,,,,      Perception of a samaṇa,samaṇa saññā,Perception of a samaṇa,Perception of a samaṇa [samaṇa saññā]
 3,,Respect,,,,,,,,,      Respect,,Respect,Respect
+4,,Monastic titles,,,,,,,,,         Monastic titles,,Monastic titles,Monastic titles
 4,,Respect for elders,,,,,,,,,         Respect for elders,,Respect for elders,Respect for elders
 4,,Upatakh,,<em>Thai</em> attending to senior monks,,,,,,,         Upatakh,<em>Thai</em> attending to senior monks,Upatakh,Upatakh [<em>Thai</em> attending to senior monks]
 ,,,,,,,,,,,,,,
@@ -639,14 +666,16 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Ascetic practices,,dhutaṅga,,,,,,,      Ascetic practices,dhutaṅga,Ascetic practices,Ascetic practices [dhutaṅga]
 4,,Tudong,,<em>Thai</em> ascetic wandering,,,,,,,         Tudong,<em>Thai</em> ascetic wandering,Tudong,Tudong [<em>Thai</em> ascetic wandering]
 4,,Fasting,,,,,,,,,         Fasting,,Fasting,Fasting
+4,,Sitter's practice,,,,,,,,,         Sitter's practice,,Sitter's practice,Sitter's practice
 3,,Monastic crafts,,,,,,,,,      Monastic crafts,,Monastic crafts,Monastic crafts
 3,,Types of monks,,,,,,,,,      Types of monks,,Types of monks,Types of monks
 4,,Forest versus city monks,,,,,,,,,         Forest versus city monks,,Forest versus city monks,Forest versus city monks
 4,,Study monks,,,,,,,,,         Study monks,,Study monks,Study monks
 4,,Older monks,,,,,,,,,         Older monks,,Older monks,Older monks
-4,,Temporary monks,,,,,,,,,         Temporary monks,,Temporary monks,Temporary monks
-4,,Novices/anagārikas,,,,,,,,,         Novices/anagārikas,,Novices/anagārikas,Novices/anagārikas
+4,*,Temporary ordination,,,,,,,,,         Temporary ordination,,Temporary ordination,Temporary ordination
 4,,Thai sects,,,,,,,,,         Thai sects,,Thai sects,Thai sects
+4,,Novices,,,,,,,,,         Novices,,Novices,Novices
+4,,Anagārikas/pakows,,,,,,,,,         Anagārikas/pakows,,Anagārikas/pakows,Anagārikas/pakows
 3,*,Women's monastic forms,,,,,,,,,      Women's monastic forms,,Women's monastic forms,Women's monastic forms
 4,*,,,Bhikkhunī,,,,,,,         Bhikkhunī,,Bhikkhunī,Bhikkhunī
 4,*,,,Sīladharā,,,,,,,         Sīladharā,,Sīladharā,Sīladharā
@@ -665,6 +694,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Five Precepts,5,pañca sikkhāpadāni,,,,,,,   Five Precepts,pañca sikkhāpadāni,Five Precepts,Five Precepts [pañca sikkhāpadāni]
 3,.,Abstaining from:,,veramaṇī,,,,,,,      Abstaining from:,veramaṇī,,
 3,,Killing,,pāṇātipātā,,,,,,,      Killing,pāṇātipātā,Killing,Killing [pāṇātipātā]
+4,,Vegetarianism,,,,,,,,,         Vegetarianism,,Vegetarianism,Vegetarianism
 4,,Suicide,,,,,,,,,         Suicide,,Suicide,Suicide
 4,,Euthanasia,,,,,,,,,         Euthanasia,,Euthanasia,Euthanasia
 4,,Abortion,,,,,,,,,         Abortion,,Abortion,Abortion
@@ -700,6 +730,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Meditation groups,,,,,,,,,      Meditation groups,,Meditation groups,Meditation groups
 3,,Politics and society,,,,,,,,,      Politics and society,,Politics and society,Politics and society
 4,,Leadership,,,,,,,,,         Leadership,,Leadership,Leadership
+4,,Royalty,,,,,,,,,         Royalty,,Royalty,Royalty
 4,,Service,,,,,,,,,         Service,,Service,Service
 4,,Activism,,,,,,,,,         Activism,,Activism,Activism
 4,,Non-profit organizations,,,,,,,,,         Non-profit organizations,,Non-profit organizations,Non-profit organizations
