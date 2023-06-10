@@ -723,7 +723,7 @@ def LoadEventFile(database,eventName,directory):
                 continue
             else:
                 x["annotations"] = []
-            
+
             if not x["kind"]:
                 x["kind"] = "Question"
             x["event"] = eventName
@@ -744,8 +744,12 @@ def LoadEventFile(database,eventName,directory):
                 AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
             
             if x["sessionNumber"] != lastSession:
-                fileNumber = 1
                 lastSession = x["sessionNumber"]
+                if x["startTime"] == "Session":
+                    fileNumber = 0
+                    x["exclude"] = True # Temporarily remove session excerpts until we write code to deal with them.
+                else:
+                    fileNumber = 1
             else:
                 fileNumber += 1 # File number counts all excerpts listed for the event
             
@@ -759,7 +763,7 @@ def LoadEventFile(database,eventName,directory):
             x["fileNumber"] = fileNumber
             excerpts.append(x)
             prevExcerpt = x
-        
+
         prevSession = None
         for xIndex, x in enumerate(excerpts):
             # Combine all tags into a single list, but keep track of how many qTags there are
@@ -770,8 +774,13 @@ def LoadEventFile(database,eventName,directory):
                 del x["aTag"]
                 x.pop("aListen",None)
 
+            # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
             endTime = x["endTime"]
+            if startTime == "Session": # The session excerpt has the length of the session
+                x["duration"] = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
+                continue
+
             if not endTime:
                 try:
                     if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
