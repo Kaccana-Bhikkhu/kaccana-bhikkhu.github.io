@@ -36,11 +36,11 @@
     "UD2013-1": {
       "eventCode": "UD2013-1",
       "startDate": "21/04/2013",
-      "teachers": "AP;AKd",
+      "teachers": "AP;AY;AKd",
       "sessions": 2,
-      "excerpts": 9,
+      "excerpts": 36,
       "answersListenedTo": 0,
-      "tagsApplied": 44,
+      "tagsApplied": 183,
       "invalidTags": 0,
       "duration": "1:58:48"
     },
@@ -813,33 +813,6 @@
         ""
       ]
     },
-    "Commentary": {
-      "kind": "Commentary",
-      "category": "References",
-      "defaultForm": 1,
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "usageNotes": "",
-      "form": [
-        "++Commentary:++ $!text!$",
-        "unimplemented",
-        "unimplemented"
-      ],
-      "body": [
-        "<b>Commentary:</b> $!text!$",
-        "unimplemented",
-        "unimplemented"
-      ],
-      "attribution": [
-        "",
-        "",
-        ""
-      ]
-    },
     "Comment": {
       "kind": "Comment",
       "category": "Other",
@@ -912,6 +885,33 @@
       ],
       "body": [
         "unimplemented",
+        "unimplemented",
+        "unimplemented"
+      ],
+      "attribution": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "Commentary": {
+      "kind": "Commentary",
+      "category": "References",
+      "defaultForm": 1,
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "usageNotes": "",
+      "form": [
+        "++Commentary:++ $!text!$",
+        "unimplemented",
+        "unimplemented"
+      ],
+      "body": [
+        "<b>Commentary:</b> $!text!$",
         "unimplemented",
         "unimplemented"
       ],
@@ -19531,7 +19531,7 @@
       "flags": "",
       "startTime": "13:47",
       "endTime": "",
-      "text": "Could you talk more about the particular professions that the Buddha laid out as wrong livelihood? Why is being in the military not on the list?",
+      "text": "Could you talk more about the particular professions that the Buddha laid out as wrong livelihood (AN 5.177)? Why is being in the military not on the list?",
       "teachers": [
         "AP"
       ],
@@ -19576,7 +19576,7 @@
       ],
       "qTagCount": 3,
       "duration": "6:08",
-      "body": "“Could you talk more about the particular professions that the Buddha laid out as wrong livelihood? Why is being in the military not on the list?” {attribution}",
+      "body": "“Could you talk more about the particular professions that the Buddha laid out as wrong livelihood (<a href=\"https://sutta.readingfaithfully.org/?q=AN-5.177\" target=\"_blank\">AN 5.177</a>)? Why is being in the military not on the list?” {attribution}",
       "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
     },
     {

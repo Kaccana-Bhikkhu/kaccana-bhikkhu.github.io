@@ -36,11 +36,11 @@
     "UD2013-1": {
       "eventCode": "UD2013-1",
       "startDate": "21/04/2013",
-      "teachers": "AP;AKd",
+      "teachers": "AP;AY;AKd",
       "sessions": 2,
-      "excerpts": 9,
+      "excerpts": 36,
       "answersListenedTo": 0,
-      "tagsApplied": 44,
+      "tagsApplied": 183,
       "invalidTags": 0,
       "duration": "1:58:48"
     },
@@ -609,21 +609,6 @@
       "form3": "unimplemented",
       "usageNotes": ""
     },
-    "Commentary": {
-      "kind": "Commentary",
-      "category": "References",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "++Commentary:++ {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
     "Comment": {
       "kind": "Comment",
       "category": "Other",
@@ -665,6 +650,21 @@
       "appendToExcerpt": false,
       "inheritTeachersFrom": "None",
       "form1": "unimplemented",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Commentary": {
+      "kind": "Commentary",
+      "category": "References",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "++Commentary:++ {text}",
       "form2": "unimplemented",
       "form3": "unimplemented",
       "usageNotes": ""
@@ -18500,7 +18500,7 @@
       "flags": "",
       "startTime": "13:47",
       "endTime": "",
-      "text": "Could you talk more about the particular professions that the Buddha laid out as wrong livelihood? Why is being in the military not on the list?",
+      "text": "Could you talk more about the particular professions that the Buddha laid out as wrong livelihood (AN 5.177)? Why is being in the military not on the list?",
       "teachers": [
         "AP"
       ],
