@@ -258,7 +258,7 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
 
-def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None) -> str:
+def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadata") -> str:
     "Return an audio icon with the given hyperlink"
     
     if not linkKind:
@@ -269,13 +269,13 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None) -> str:
         a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
     else:
-        with a.audio(controls = "",src = hyperlink, preload = "metadata", style="vertical-align: middle;"):
+        with a.audio(controls = "",src = hyperlink, preload = preload, style="vertical-align: middle;"):
             with a.a(href = hyperlink):
                 a("Download audio")
         a.br()
     return str(a)
 
-def Mp3ExcerptLink(excerpt: dict) -> str:
+def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
@@ -284,9 +284,9 @@ def Mp3ExcerptLink(excerpt: dict) -> str:
     else:
         baseURL = gOptions.remoteExcerptMp3URL
         
-    return AudioIcon(baseURL + excerpt["event"] + "/" + Utils.Mp3FileName(excerpt["event"],excerpt['sessionNumber'],excerpt['fileNumber']))
+    return AudioIcon(baseURL + excerpt["event"] + "/" + Utils.Mp3FileName(excerpt["event"],excerpt['sessionNumber'],excerpt['fileNumber']),**kwArgs)
     
-def Mp3SessionLink(session: dict) -> str:
+def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
@@ -295,7 +295,7 @@ def Mp3SessionLink(session: dict) -> str:
     else:
         url = session["remoteMp3Url"]
         
-    return AudioIcon(url)
+    return AudioIcon(url,**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -324,6 +324,15 @@ def EventDateStr(event: dict) -> str:
         dateStr += " to " + Utils.ReformatDate(event["endDate"])
     return dateStr
 
+def EventSeriesAndDateStr(event: dict) -> str:
+    "Return a string describing the event series and date"
+    joinItems = []
+    series = event["series"]
+    if series != "Other":
+        joinItems.append(re.sub(r's$','',series))
+    joinItems.append(EventDateStr(event))
+    return ", ".join(joinItems)
+
 class Formatter: 
     """A class that formats lists of events, sessions, and excerpts into html"""
     
@@ -345,12 +354,12 @@ class Formatter:
         
         pass
     
-    def FormatExcerpt(self,excerpt:dict) -> str:
+    def FormatExcerpt(self,excerpt:dict,**kwArgs) -> str:
         "Return excerpt formatted in html according to our stored settings."
         
         a = Airium(source_minify=True)
         
-        a(Mp3ExcerptLink(excerpt))
+        a(Mp3ExcerptLink(excerpt,**kwArgs))
         if self.excerptShortFormat:
             a(' ')
             with a.b(style="text-decoration: underline;"):
@@ -358,10 +367,8 @@ class Formatter:
         
         if self.excerptPreferStartTime and excerpt.get("startTime",""):
             a(f' [{excerpt["startTime"]}] ')
-        elif gOptions.audioLinks != "audio":
+        else: # elif gOptions.audioLinks != "audio" or kwArgs.get("preload","") == "none":
             a(f' ({excerpt["duration"]}) ')
-        else:
-            a(' ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
             for num in range(1,10):
@@ -516,7 +523,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     
     return ' '.join(strItems)
 
-def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
+def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     """Return a html list of the excerpts."""
     
     a = Airium()
@@ -530,17 +537,24 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Type[Formatter]) -> str:
     else:
         lastExcerpt = None
     
-    for x in excerpts:
+    for count,x in enumerate(excerpts):
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
             a(formatter.FormatSessionHeading(session))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
-            if formatter.headingShowTeacher:
+            if formatter.headingShowTeacher and len(session["teachers"]) == 1: 
+                    # If there's only one teacher who is mentioned in the session heading, don't mention him/her in the excerpts
                 formatter.excerptDefaultTeacher = set(session["teachers"])
+            else:
+                formatter.excerptDefaultTeacher = set()
             
+        if count > 20:
+            options = {"preload": "none"}
+        else:
+            options = {}
         with a.p():
-            a(formatter.FormatExcerpt(x))
+            a(formatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
@@ -591,7 +605,7 @@ def WriteAllEvents(pageDir: str) -> None:
         
         a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
         a.br()
-        a(EventDateStr(e))
+        a(EventSeriesAndDateStr(e))
         a.br()
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
@@ -705,12 +719,7 @@ def WriteEventPages(tagPageDir: str) -> None:
             a(ListLinkedTeachers(eventInfo["teachers"],lastJoinStr = " and "))
         a.br()
 
-        joinItems = []
-        series = eventInfo["series"]
-        if series != "Other":
-            joinItems.append(re.sub(r's$','',series))
-        joinItems.append(EventDateStr(eventInfo))
-        a(", ".join(joinItems))
+        a(EventSeriesAndDateStr(eventInfo))
         a.br()
         
         with a.strong():

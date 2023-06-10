@@ -6,6 +6,7 @@ import os, re, csv, json, unicodedata
 import Render
 import Utils
 from typing import List, Iterator, Tuple
+from datetime import timedelta
 import Prototype
 
 gCamelCaseTranslation = {}
@@ -369,16 +370,16 @@ kNumberNames = ["zero","one","two","three","four","five","six","seven","eight","
 def RemoveUnusedTags(database: dict) -> None:
     """Remove unused tags from the raw tag list before building the tag display list."""
 
-    def UsedTag(tag: dict) -> bool:
-        return tag.get("excerptCount",0) or tag.get("sessionCount",0) or tag.get("sessionCount",0)
+    def TagCount(tag: dict) -> bool:
+        return tag.get("excerptCount",0) + tag.get("sessionCount",0) + tag.get("sessionCount",0)
 
     def NamedNumberTag(tag: dict) -> bool:
         "Does this tag explicitly mention a numbered list?"
         return tag["number"] and kNumberNames[int(tag["number"])] in tag["fullTag"]
 
-    usedTags = set(tag["tag"] for tag in database["tag"].values() if UsedTag(tag))
+    usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
     if gOptions.verbose > 2:
-        print("   ",len(usedTags),"tags used.")
+        print("   ",len(usedTags),"unique tags applied.")
     
     prevTagCount = 0
     round = 0
@@ -423,7 +424,7 @@ def RemoveUnusedTags(database: dict) -> None:
                 remainingTags.discard(tag)
                 name = name.upper()
 
-            display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name
+            display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name + f" ({TagCount(database['tag'][tag])})"
 
             print(display,file=file)
     
@@ -704,6 +705,9 @@ def LoadEventFile(database,eventName,directory):
         excerpts = []
         redactedTagSet = set(database["tagRedacted"])
         for x in rawExcerpts:
+            if all(not value for key,value in x.items() if key != "sessionNumber"): # Skip lines which have a session number and nothing else
+                continue
+
             x["flags"] = x.get("flags","")
             x["kind"] = x.get("kind","")
 
@@ -711,11 +715,15 @@ def LoadEventFile(database,eventName,directory):
             x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
 
             if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
-                AddAnnotation(database,prevExcerpt,x)
+                if prevExcerpt is not None:
+                    AddAnnotation(database,prevExcerpt,x)
+                else:
+                    if gOptions.verbose >= 0:
+                        print(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
                 continue
             else:
                 x["annotations"] = []
-            
+
             if not x["kind"]:
                 x["kind"] = "Question"
             x["event"] = eventName
@@ -736,8 +744,12 @@ def LoadEventFile(database,eventName,directory):
                 AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
             
             if x["sessionNumber"] != lastSession:
-                fileNumber = 1
                 lastSession = x["sessionNumber"]
+                if x["startTime"] == "Session":
+                    fileNumber = 0
+                    x["exclude"] = True # Temporarily remove session excerpts until we write code to deal with them.
+                else:
+                    fileNumber = 1
             else:
                 fileNumber += 1 # File number counts all excerpts listed for the event
             
@@ -751,9 +763,9 @@ def LoadEventFile(database,eventName,directory):
             x["fileNumber"] = fileNumber
             excerpts.append(x)
             prevExcerpt = x
-        
+
+        prevSession = None
         for xIndex, x in enumerate(excerpts):
-            
             # Combine all tags into a single list, but keep track of how many qTags there are
             x["tags"] = x["qTag"] + x["aTag"]
             x["qTagCount"] = len(x["qTag"])
@@ -762,9 +774,13 @@ def LoadEventFile(database,eventName,directory):
                 del x["aTag"]
                 x.pop("aListen",None)
 
+            # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
-            
             endTime = x["endTime"]
+            if startTime == "Session": # The session excerpt has the length of the session
+                x["duration"] = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
+                continue
+
             if not endTime:
                 try:
                     if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
@@ -774,8 +790,24 @@ def LoadEventFile(database,eventName,directory):
             
             if not endTime:
                 endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-                
-            x["duration"] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(endTime) - Utils.StrToTimeDelta(startTime))
+            
+            startTime = Utils.StrToTimeDelta(startTime)
+            endTime = Utils.StrToTimeDelta(endTime)
+
+            session = (x["event"],x["sessionNumber"])
+            if session != prevSession: # A new session starts at time zero
+                prevEndTime = timedelta(seconds = 0)
+                prevSession = session
+
+            if startTime < prevEndTime: # Does this overlap with the previous excerpt?
+                startTime = prevEndTime
+                x["startTime"] = Utils.TimeDeltaToStr(startTime)
+                if "o" not in x["flags"]:
+                    if gOptions.verbose >= 0:
+                        print(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+            x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
+            prevEndTime = endTime
         
         removedExcerpts = [x for x in excerpts if x["exclude"]]
         excerpts = [x for x in excerpts if not x["exclude"]]
@@ -813,19 +845,21 @@ def LoadEventFile(database,eventName,directory):
         database["excerptsRedacted"] += removedExcerpts
         
 
-def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False):
+def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False) -> int:
     """Loop through items in a collection of dicts and count the number of appearances a given str.
         source: A dict of dicts or a list of dicts containing the items to count.
         sourceKey: The key whose values we should count.
         countDicts: A dict of dicts that we use to count the items. Each item should be a key in this dict.
         countKey: The key we add to countDict[item] with the running tally of each item.
-        zeroCount: add countKey even when there are no items counted? """
+        zeroCount: add countKey even when there are no items counted?
+        return the total number of items counted"""
         
     if zeroCount:
         for key in countDicts:
             if countKey not in countDicts[key]:
                 countDicts[key][countKey] = 0
 
+    totalCount = 0
     for d in Utils.Contents(source):
         valuesToCount = d[sourceKey]
         if type(valuesToCount) != list:
@@ -834,20 +868,30 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
         for item in valuesToCount:
             try:
                 countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
+                totalCount += 1
             except KeyError:
                 print(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+    
+    return totalCount
 
 def CountAndVerify(database):
     
     tagDB = database["tag"]
-    CountInstances(database["event"],"tags",tagDB,"eventCount")
-    CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
+    tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
+    tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
     
     for x in database["excerpts"]:
         tagSet = Utils.AllTags(x)
         for tag in tagSet:
-            tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
-        
+            try:
+                tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
+                tagCount += 1
+            except KeyError:
+                print(f"CountAndVerify: Tag {tag} is not defined.")
+    
+    if gOptions.verbose > 2:
+        print("   ",tagCount,"total tags applied.")
+    
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
     CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")

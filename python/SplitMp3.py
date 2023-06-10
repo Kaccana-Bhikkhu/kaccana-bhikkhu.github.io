@@ -11,6 +11,7 @@ def IncludeRedactedExcerpts() -> List[dict]:
     "Merge the redacted excerpts back into the main list in order to split mp3 files"
     
     allExcerpts = gDatabase["excerpts"] + gDatabase["excerptsRedacted"]
+    allExcerpts = [x for x in allExcerpts if x["startTime"] != "Session"] # Session excerpts don't need split mp3 files
     # print(len(allExcerpts))
     orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort excerpts by event order in gDatabase
     
@@ -36,37 +37,41 @@ def main():
             print("   All mp3 links go to remote servers. No mp3 files will be processed.")
         return # No need to run SplitMp3 if all files are remote
     
-    excerptIndex = 0
     sessionCount = 0
     mp3SplitCount = 0
+    errorCount = 0
+    alreadySplit = 0
     excerpts = IncludeRedactedExcerpts()
     for session in gDatabase["sessions"]:
         
         sessionNumber = session["sessionNumber"]
         event = session["event"]
+        if gOptions.events != "All" and event not in gOptions.events:
+            continue
+
         excerptList = []
         fileNumber = 1
-        
         sessionCount += 1
         
         baseFileName = f"{event}_S{sessionNumber:02d}_"
-        while excerptIndex < len(excerpts) and excerpts[excerptIndex]["event"] == event and excerpts[excerptIndex]["sessionNumber"] == sessionNumber:
+        sessionExcerpts = [x for x in excerpts if x["event"] == event and x["sessionNumber"] == sessionNumber]
+        for x in sessionExcerpts:
             fileName = baseFileName + f"F{fileNumber:02d}"
-            startTime = Utils.StrToTimeDelta(excerpts[excerptIndex]["startTime"])
+            startTime = Utils.StrToTimeDelta(x["startTime"])
             
-            endTimeStr = excerpts[excerptIndex]["endTime"].strip()
+            endTimeStr = x["endTime"].strip()
             if endTimeStr:
                 excerptList.append((fileName,startTime,Utils.StrToTimeDelta(endTimeStr)))
             else:
                 excerptList.append((fileName,startTime))
                 
-            excerptIndex += 1
             fileNumber += 1
         
         eventDir = os.path.join(gOptions.eventMp3Dir,event)
         sessionFilePath = os.path.join(eventDir,session["filename"])
         if not os.path.exists(sessionFilePath):
             print("Warning: Cannot locate "+sessionFilePath)
+            errorCount += 1
             continue
         
         outputDir = os.path.join(gOptions.excerptMp3Dir,event)
@@ -79,6 +84,7 @@ def main():
                 allOutputFilesExist = False
         
         if allOutputFilesExist and not gOptions.overwriteMp3:
+            alreadySplit += 1
             continue
         
         # We use eventDir as scratch space for newly generated mp3 files.
@@ -99,6 +105,11 @@ def main():
             print(err)
             print("Continuing to next mp3 file.")
             continue
+        except (ValueError,OSError) as err:
+            print(f"Error: {err} occured when processing session {session}")
+            errorCount += 1
+            print("Continuing to next mp3 file.")
+            continue
         
         # Now move the files to their destination
         for x in excerptList:
@@ -114,4 +125,4 @@ def main():
             print(f"Split {session['filename']} into {len(excerptList)} files.")
     
     if gOptions.verbose > 0:
-        print(f"   {mp3SplitCount} sessions split; all files already present for {sessionCount - mp3SplitCount} sessions.")
+        print(f"   {mp3SplitCount} sessions split; {errorCount} sessions had errors; all files already present for {alreadySplit} sessions.")

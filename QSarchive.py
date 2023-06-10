@@ -45,6 +45,7 @@ parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Questio
 AP QA archive main Google Sheet.""")
 
 parser.add_argument('ops',type=str,help="""A comma-separated list of operations to perform. No spaces allowed. Available operations:
+DownloadCSV - download csv files from the Google Sheet.
 ParseCSV - convert the csv files downloaded from the Google Sheet to SpreadsheetDatabase.json.
 SplitMp3 - split mp3 files into individual excerpts based on the times in SpreadsheetDatabase.json.
 Prototype - create html files to illustrate how SpreadsheetDatabase.json should be interpreted.
@@ -107,6 +108,7 @@ else:
     with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
         database = json.load(file)
 
+# Set up the global namespace for each module - this allows the modules to call each other out of order
 for mod in modules:
     modules[mod].gDatabase = database
     Utils.gDatabase = database
