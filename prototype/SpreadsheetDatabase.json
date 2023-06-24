@@ -290,464 +290,6 @@
       "medium": "Hybrid"
     }
   },
-  "series": {
-    "Thanksgiving Retreats": {
-      "series": "Thanksgiving Retreats",
-      "abbreviation": "TG",
-      "description": "The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. However, after the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly."
-    },
-    "Abhayagiri Winter Retreats": {
-      "series": "Abhayagiri Winter Retreats",
-      "abbreviation": "WR",
-      "description": "During the months of January, February, and March, the resident community of Abhayagiri Monastery ceases all non-essential work to practice meditation. There are usually Dhamma readings nearly every day, some of which end with questions and answers regarding the teachings."
-    },
-    "Upasika Days": {
-      "series": "Upasika Days",
-      "abbreviation": "UD",
-      "description": "Upasika Day categories: Devotion, social aspects, daily life practice, meditation, sutta study"
-    },
-    "Spirit Rock Daylongs": {
-      "series": "Spirit Rock Daylongs",
-      "abbreviation": "SRD",
-      "description": ""
-    },
-    "Q&ampA sessions": {
-      "series": "Q&ampA sessions",
-      "abbreviation": "varies",
-      "description": "Single question and answer sessions with groups of visitors or online participants."
-    },
-    "Other": {
-      "series": "Other",
-      "abbreviation": "",
-      "description": ""
-    }
-  },
-  "venue": {
-    "Abhayagiri Buddhist Monastery": {
-      "venue": "Abhayagiri Buddhist Monastery",
-      "location": "Redwood Valley, California",
-      "address": "16201 Tomki Road, Redwood Valley, CA 95470",
-      "websiteLink": "https://www.abhayagiri.org"
-    },
-    "Angela Center": {
-      "venue": "Angela Center",
-      "location": "Santa Rosa, California",
-      "address": "535 Angela Dr, Santa Rosa, CA 95403",
-      "websiteLink": "https://angelacenter.com/acn"
-    },
-    "Spirit Rock Meditation Center": {
-      "venue": "Spirit Rock Meditation Center",
-      "location": "Woodacre, California",
-      "address": "5000 Sir Francis Drake Blvd., PO Box 169, Woodacre, CA 94973",
-      "websiteLink": "https://www.spiritrock.org"
-    },
-    "Padmasambhava Peace Institute": {
-      "venue": "Padmasambhava Peace Institute",
-      "location": "Cazadero, California",
-      "address": "23125 Fort Ross Rd. Cazadero, CA 95421",
-      "websiteLink": "https://padmapeace.org/"
-    }
-  },
-  "category": {
-    "Questions": {
-      "category": "Questions",
-      "description": ""
-    },
-    "Stories": {
-      "category": "Stories",
-      "description": ""
-    },
-    "Quotes": {
-      "category": "Quotes",
-      "description": ""
-    },
-    "Teachings": {
-      "category": "Teachings",
-      "description": ""
-    },
-    "Meditations": {
-      "category": "Meditations",
-      "description": ""
-    },
-    "Readings": {
-      "category": "Readings",
-      "description": ""
-    },
-    "References": {
-      "category": "References",
-      "description": ""
-    },
-    "Attribution": {
-      "category": "Attribution",
-      "description": ""
-    },
-    "Other": {
-      "category": "Other",
-      "description": ""
-    }
-  },
-  "kind": {
-    "Question": {
-      "kind": "Question",
-      "category": "Questions",
-      "defaultForm": "3",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Session",
-      "form1": "unimplemented",
-      "form2": "++Question{s}{colon}++ {text}|| answered by {teachers}.",
-      "form3": "{prefix} “{text}” {suffix}|| Answered by {teachers}.",
-      "usageNotes": ""
-    },
-    "Response": {
-      "kind": "Response",
-      "category": "Questions",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Session",
-      "form1": "++Response{s}++|| by {teachers}||{colon} {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Follow-up": {
-      "kind": "Follow-up",
-      "category": "Questions",
-      "defaultForm": "2",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Follow-up{colon}++ “{text}”|| aswered by {teachers}.",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Story": {
-      "kind": "Story",
-      "category": "Stories",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Stor{'ies' if s else 'y'}{colon}++ {text}|| told by {teachers}.",
-      "form3": "{text}|| ++Stor{'ies' if s else 'y'}{colon}++ told by {teachers}.",
-      "usageNotes": ""
-    },
-    "Recollection": {
-      "kind": "Recollection",
-      "category": "Stories",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Recollection{s}{colon}++ {text}|| recounted by {teachers}.",
-      "form3": "{text}|| ++Recollection{s}++ by {teachers}.",
-      "usageNotes": ""
-    },
-    "Teaching": {
-      "kind": "Teaching",
-      "category": "Teachings",
-      "defaultForm": "3",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "++Teaching{s}++|| by {teachers}||{colon} {text}",
-      "form2": "++Teaching{s}{colon}++ {text}|| contributed by {teachers}.",
-      "form3": "{text}|| ++Teaching{s}++ by {teachers}.",
-      "usageNotes": ""
-    },
-    "Reflection": {
-      "kind": "Reflection",
-      "category": "Teachings",
-      "defaultForm": "1",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "++Reflection{s}++|| by {teachers}||{colon} {text}",
-      "form2": "++Reflection{s}{colon}++ {text}|| contributed by {teachers}.",
-      "form3": "{text}|| ++Reflection{s}++ by {teachers}.",
-      "usageNotes": ""
-    },
-    "Simile": {
-      "kind": "Simile",
-      "category": "Teachings",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Simile{s}{colon}++ {text}|| — {teachers}.",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Quote": {
-      "kind": "Quote",
-      "category": "Quotes",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Quote:++ {prefix} “{text}” {suffix}|| — {teachers}",
-      "form3": "unimplemented",
-      "usageNotes": "A quote from the teacher him/herself."
-    },
-    "Indirect quote": {
-      "kind": "Indirect quote",
-      "category": "Quotes",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teachers}.",
-      "form3": "unimplemented",
-      "usageNotes": "The teacher quoting someone else. If the person quoted in a teacher, they should get the first tag."
-    },
-    "Meditation instruction": {
-      "kind": "Meditation instruction",
-      "category": "Meditations",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Meditation instruction{s}{colon}++ {text}|| offered by {teachers}.",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Guided meditation": {
-      "kind": "Guided meditation",
-      "category": "Meditations",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Guided meditation{s}{colon}++ {text}|| offered by {teachers}.",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Chanting": {
-      "kind": "Chanting",
-      "category": "Meditations",
-      "defaultForm": "2",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Excerpt",
-      "form1": "unimplemented",
-      "form2": "++Chanting{s}{colon}++ {text}|| offered by {teachers}.",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Reading": {
-      "kind": "Reading",
-      "category": "Readings",
-      "defaultForm": "1",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "None",
-      "form1": "++Reading{s}{colon}++ {text}",
-      "form2": "++Reading{s}{colon}++ {text}",
-      "form3": "unimplemented",
-      "usageNotes": "{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and \" by {teachers}\" inserted automatically. If not, plug both in manually along with the hyperlink if relevant."
-    },
-    "Reference": {
-      "kind": "Reference",
-      "category": "References",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "++Reference{s}++: {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Sutta": {
-      "kind": "Sutta",
-      "category": "References",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "++Sutta{s}++: {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Vinaya": {
-      "kind": "Vinaya",
-      "category": "References",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "++Vinaya:++ {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Comment": {
-      "kind": "Comment",
-      "category": "Other",
-      "defaultForm": "1",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "Anon",
-      "form1": "++Comment{s}++|| by {teachers}||{colon} {text}",
-      "form2": "++Comment{s}{colon}++ {text}|| contributed by {teachers}.",
-      "form3": "{text}|| ++Comment{s}++ by {teachers}.",
-      "usageNotes": ""
-    },
-    "Note": {
-      "kind": "Note",
-      "category": "Other",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": false,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "++Note{s}++: {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Other": {
-      "kind": "Other",
-      "category": "Other",
-      "defaultForm": "0",
-      "canBeExcerpt": true,
-      "takesTimes": true,
-      "takesTeachers": true,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "None",
-      "form1": "unimplemented",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Commentary": {
-      "kind": "Commentary",
-      "category": "References",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "++Commentary:++ {text}",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Read by": {
-      "kind": "Read by",
-      "category": "Attribution",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": true,
-      "takesTags": false,
-      "appendToExcerpt": true,
-      "inheritTeachersFrom": "Session",
-      "form1": "{'Read by ' if text else ''}{text}{'.' if text else ''}||Read by {teachers}.",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
-    },
-    "Translated by": {
-      "kind": "Translated by",
-      "category": "Attribution",
-      "defaultForm": "1",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": true,
-      "takesTags": false,
-      "appendToExcerpt": true,
-      "inheritTeachersFrom": "Session",
-      "form1": "{'Translated by ' if text else ''}{text}{'.' if text else ''}||Translated by {teachers}.",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    },
-    "Extra tags": {
-      "kind": "Extra tags",
-      "category": "Other",
-      "defaultForm": "0",
-      "canBeExcerpt": false,
-      "takesTimes": false,
-      "takesTeachers": false,
-      "takesTags": true,
-      "appendToExcerpt": false,
-      "inheritTeachersFrom": "",
-      "form1": "unimplemented",
-      "form2": "unimplemented",
-      "form3": "unimplemented",
-      "usageNotes": ""
-    }
-  },
   "reference": {
     "stillness flowing": {
       "abbreviation": "Stillness Flowing",
@@ -892,6 +434,38 @@
       "author": [
         "GSharp"
       ]
+    }
+  },
+  "series": {
+    "Thanksgiving Retreats": {
+      "series": "Thanksgiving Retreats",
+      "abbreviation": "TG",
+      "description": "The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. However, after the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly."
+    },
+    "Abhayagiri Winter Retreats": {
+      "series": "Abhayagiri Winter Retreats",
+      "abbreviation": "WR",
+      "description": "During the months of January, February, and March, the resident community of Abhayagiri Monastery ceases all non-essential work to practice meditation. There are usually Dhamma readings nearly every day, some of which end with questions and answers regarding the teachings."
+    },
+    "Upasika Days": {
+      "series": "Upasika Days",
+      "abbreviation": "UD",
+      "description": "Upasika Day categories: Devotion, social aspects, daily life practice, meditation, sutta study"
+    },
+    "Spirit Rock Daylongs": {
+      "series": "Spirit Rock Daylongs",
+      "abbreviation": "SRD",
+      "description": ""
+    },
+    "Q&ampA sessions": {
+      "series": "Q&ampA sessions",
+      "abbreviation": "varies",
+      "description": "Single question and answer sessions with groups of visitors or online participants."
+    },
+    "Other": {
+      "series": "Other",
+      "abbreviation": "",
+      "description": ""
     }
   },
   "teacher": {
@@ -1289,6 +863,432 @@
       "attribute": false,
       "allowTag": false,
       "htmlFile": ""
+    }
+  },
+  "kind": {
+    "Question": {
+      "kind": "Question",
+      "category": "Questions",
+      "defaultForm": "3",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Session",
+      "form1": "unimplemented",
+      "form2": "++Question{s}{colon}++ {text}|| answered by {teachers}.",
+      "form3": "{prefix} “{text}” {suffix}|| Answered by {teachers}.",
+      "usageNotes": ""
+    },
+    "Response": {
+      "kind": "Response",
+      "category": "Questions",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Session",
+      "form1": "++Response{s}++|| by {teachers}||{colon} {text}",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Follow-up": {
+      "kind": "Follow-up",
+      "category": "Questions",
+      "defaultForm": "2",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Follow-up{colon}++ “{text}”|| aswered by {teachers}.",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Story": {
+      "kind": "Story",
+      "category": "Stories",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Stor{'ies' if s else 'y'}{colon}++ {text}|| told by {teachers}.",
+      "form3": "{text}|| ++Stor{'ies' if s else 'y'}{colon}++ told by {teachers}.",
+      "usageNotes": ""
+    },
+    "Recollection": {
+      "kind": "Recollection",
+      "category": "Stories",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Recollection{s}{colon}++ {text}|| recounted by {teachers}.",
+      "form3": "{text}|| ++Recollection{s}++ by {teachers}.",
+      "usageNotes": ""
+    },
+    "Teaching": {
+      "kind": "Teaching",
+      "category": "Teachings",
+      "defaultForm": "3",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "++Teaching{s}++|| by {teachers}||{colon} {text}",
+      "form2": "++Teaching{s}{colon}++ {text}|| contributed by {teachers}.",
+      "form3": "{text}|| ++Teaching{s}++ by {teachers}.",
+      "usageNotes": ""
+    },
+    "Reflection": {
+      "kind": "Reflection",
+      "category": "Teachings",
+      "defaultForm": "1",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "++Reflection{s}++|| by {teachers}||{colon} {text}",
+      "form2": "++Reflection{s}{colon}++ {text}|| contributed by {teachers}.",
+      "form3": "{text}|| ++Reflection{s}++ by {teachers}.",
+      "usageNotes": ""
+    },
+    "Simile": {
+      "kind": "Simile",
+      "category": "Teachings",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Simile{s}{colon}++ {text}|| — {teachers}.",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Quote": {
+      "kind": "Quote",
+      "category": "Quotes",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Quote:++ {prefix} “{text}” {suffix}|| — {teachers}",
+      "form3": "unimplemented",
+      "usageNotes": "A quote from the teacher him/herself."
+    },
+    "Indirect quote": {
+      "kind": "Indirect quote",
+      "category": "Quotes",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teachers}.",
+      "form3": "unimplemented",
+      "usageNotes": "The teacher quoting someone else. If the person quoted in a teacher, they should get the first tag."
+    },
+    "Meditation instruction": {
+      "kind": "Meditation instruction",
+      "category": "Meditations",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Meditation instruction{s}{colon}++ {text}|| offered by {teachers}.",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Guided meditation": {
+      "kind": "Guided meditation",
+      "category": "Meditations",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Guided meditation{s}{colon}++ {text}|| offered by {teachers}.",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Chanting": {
+      "kind": "Chanting",
+      "category": "Meditations",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Excerpt",
+      "form1": "unimplemented",
+      "form2": "++Chanting{s}{colon}++ {text}|| offered by {teachers}.",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Reading": {
+      "kind": "Reading",
+      "category": "Readings",
+      "defaultForm": "1",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "None",
+      "form1": "++Reading{s}{colon}++ {text}",
+      "form2": "++Reading{s}{colon}++ {text}",
+      "form3": "unimplemented",
+      "usageNotes": "{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and \" by {teachers}\" inserted automatically. If not, plug both in manually along with the hyperlink if relevant."
+    },
+    "Reference": {
+      "kind": "Reference",
+      "category": "References",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "++Reference{s}++: {text}",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Sutta": {
+      "kind": "Sutta",
+      "category": "References",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "++Sutta{s}++: {text}",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Vinaya": {
+      "kind": "Vinaya",
+      "category": "References",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "++Vinaya:++ {text}",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Comment": {
+      "kind": "Comment",
+      "category": "Other",
+      "defaultForm": "1",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Anon",
+      "form1": "++Comment{s}++|| by {teachers}||{colon} {text}",
+      "form2": "++Comment{s}{colon}++ {text}|| contributed by {teachers}.",
+      "form3": "{text}|| ++Comment{s}++ by {teachers}.",
+      "usageNotes": ""
+    },
+    "Note": {
+      "kind": "Note",
+      "category": "Other",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": false,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "++Note{s}++: {text}",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Other": {
+      "kind": "Other",
+      "category": "Other",
+      "defaultForm": "0",
+      "canBeExcerpt": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "None",
+      "form1": "unimplemented",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Commentary": {
+      "kind": "Commentary",
+      "category": "References",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "++Commentary:++ {text}",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Read by": {
+      "kind": "Read by",
+      "category": "Attribution",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": true,
+      "takesTags": false,
+      "appendToExcerpt": true,
+      "inheritTeachersFrom": "Session",
+      "form1": "{'Read by ' if text else ''}{text}{'.' if text else ''}||Read by {teachers}.",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
+    },
+    "Translated by": {
+      "kind": "Translated by",
+      "category": "Attribution",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": true,
+      "takesTags": false,
+      "appendToExcerpt": true,
+      "inheritTeachersFrom": "Session",
+      "form1": "{'Translated by ' if text else ''}{text}{'.' if text else ''}||Translated by {teachers}.",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    },
+    "Extra tags": {
+      "kind": "Extra tags",
+      "category": "Other",
+      "defaultForm": "0",
+      "canBeExcerpt": false,
+      "takesTimes": false,
+      "takesTeachers": false,
+      "takesTags": true,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "unimplemented",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "usageNotes": ""
+    }
+  },
+  "category": {
+    "Questions": {
+      "category": "Questions",
+      "description": ""
+    },
+    "Stories": {
+      "category": "Stories",
+      "description": ""
+    },
+    "Quotes": {
+      "category": "Quotes",
+      "description": ""
+    },
+    "Teachings": {
+      "category": "Teachings",
+      "description": ""
+    },
+    "Meditations": {
+      "category": "Meditations",
+      "description": ""
+    },
+    "Readings": {
+      "category": "Readings",
+      "description": ""
+    },
+    "References": {
+      "category": "References",
+      "description": ""
+    },
+    "Attribution": {
+      "category": "Attribution",
+      "description": ""
+    },
+    "Other": {
+      "category": "Other",
+      "description": ""
+    }
+  },
+  "venue": {
+    "Abhayagiri Buddhist Monastery": {
+      "venue": "Abhayagiri Buddhist Monastery",
+      "location": "Redwood Valley, California",
+      "address": "16201 Tomki Road, Redwood Valley, CA 95470",
+      "websiteLink": "https://www.abhayagiri.org"
+    },
+    "Angela Center": {
+      "venue": "Angela Center",
+      "location": "Santa Rosa, California",
+      "address": "535 Angela Dr, Santa Rosa, CA 95403",
+      "websiteLink": "https://angelacenter.com/acn"
+    },
+    "Spirit Rock Meditation Center": {
+      "venue": "Spirit Rock Meditation Center",
+      "location": "Woodacre, California",
+      "address": "5000 Sir Francis Drake Blvd., PO Box 169, Woodacre, CA 94973",
+      "websiteLink": "https://www.spiritrock.org"
+    },
+    "Padmasambhava Peace Institute": {
+      "venue": "Padmasambhava Peace Institute",
+      "location": "Cazadero, California",
+      "address": "23125 Fort Ross Rd. Cazadero, CA 95421",
+      "websiteLink": "https://padmapeace.org/"
     }
   },
   "tag": {
@@ -48018,15 +48018,27 @@
     "SortBy": "sortBy",
     "Format": "format",
     "Medium": "medium",
-    "Series": "series",
     "Abbreviation": "abbreviation",
+    "Title": "title",
+    "Author1": "author1",
+    "Author2": "author2",
+    "Attribution": "attribution",
+    "PDF page offset": "pdfPageOffset",
+    "Filename": "filename",
+    "Remote URL": "remoteUrl",
+    "Reference": "reference",
+    "Series": "series",
     "Description": "description",
-    "Venue": "venue",
-    "Location": "location",
-    "Address": "address",
-    "Website link": "websiteLink",
-    "Category": "category",
+    "Teacher": "teacher",
+    "Full name": "fullName",
+    "Web link": "webLink",
+    "Index excerpts?": "indexExcerpts",
+    "Index sessions?": "indexSessions",
+    "Searchable?": "searchable",
+    "Attribute?": "attribute",
+    "Allow tag?": "allowTag",
     "Kind": "kind",
+    "Category": "category",
     "Default form": "defaultForm",
     "Can be excerpt?": "canBeExcerpt",
     "Takes times?": "takesTimes",
@@ -48038,22 +48050,10 @@
     "Form 2": "form2",
     "Form 3": "form3",
     "Usage notes": "usageNotes",
-    "Title": "title",
-    "Author1": "author1",
-    "Author2": "author2",
-    "Attribution": "attribution",
-    "PDF page offset": "pdfPageOffset",
-    "Filename": "filename",
-    "Remote URL": "remoteUrl",
-    "Reference": "reference",
-    "Teacher": "teacher",
-    "Full name": "fullName",
-    "Web link": "webLink",
-    "Index excerpts?": "indexExcerpts",
-    "Index sessions?": "indexSessions",
-    "Searchable?": "searchable",
-    "Attribute?": "attribute",
-    "Allow tag?": "allowTag",
+    "Venue": "venue",
+    "Location": "location",
+    "Address": "address",
+    "Website link": "websiteLink",
     "Level": "level",
     "Flags": "flags",
     "Full tag": "fullTag",
