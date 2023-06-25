@@ -278,24 +278,14 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadat
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
-    
-    if gOptions.excerptMp3 == 'local':
-        baseURL = "../../audio/excerpts/"
-    else:
-        baseURL = gOptions.remoteExcerptMp3URL
         
-    return AudioIcon(baseURL + excerpt["event"] + "/" + Utils.Mp3FileName(excerpt["event"],excerpt['sessionNumber'],excerpt['fileNumber']),**kwArgs)
+    return AudioIcon(Utils.Mp3Link(excerpt),**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
-    
-    if gOptions.sessionMp3 == "local":
-        url = "../../audio/events/" + "/" + session["event"] + "/" + session["filename"]
-    else:
-        url = session["remoteMp3Url"]
         
-    return AudioIcon(url,**kwArgs)
+    return AudioIcon(Utils.Mp3Link(session),**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -342,8 +332,6 @@ class Formatter:
         self.excerptBoldTags = set() # Display these tags in boldface
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
-        self.excerptShortFormat = True
-
         
         self.headingShowEvent = True # Show the event name in headings?
         self.headingShowSessionTitle = False # Show the session title in headings?
@@ -360,12 +348,12 @@ class Formatter:
         a = Airium(source_minify=True)
         
         a(Mp3ExcerptLink(excerpt,**kwArgs))
-        if self.excerptShortFormat:
+        if excerpt['excerptNumber']:
             a(' ')
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
         
-        if self.excerptPreferStartTime and excerpt.get("startTime",""):
+        if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
             a(f' [{excerpt["startTime"]}] ')
         else: # elif gOptions.audioLinks != "audio" or kwArgs.get("preload","") == "none":
             a(f' ({excerpt["duration"]}) ')
@@ -393,10 +381,6 @@ class Formatter:
             bodyWithAttributions = bodyWithAttributions.replace("{"+ attrKey + "}",attribution)
         
         a(bodyWithAttributions + ' ')
-        
-        if not self.excerptShortFormat:
-            a(gDatabase["event"][excerpt["event"]]["title"] + ",")
-            a(f"Session {excerpt['sessionNumber']}, Excerpt {excerpt['excerptNumber']}")
         
         tagStrings = []
         for n,tag in enumerate(excerpt["tags"]):
@@ -436,9 +420,12 @@ class Formatter:
         
         return str(a)
         
-    def FormatSessionHeading(self,session:dict) -> str:
+    def FormatSessionHeading(self,session:dict,linkSessionAudio = None,horizontalRule = True) -> str:
         "Return an html string representing the heading for this section"
         
+        if linkSessionAudio is None:
+            linkSessionAudio = self.headingAudio
+
         a = Airium(source_minify=True)
         event = gDatabase["event"][session["event"]]
 
@@ -477,7 +464,7 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if self.headingAudio and gOptions.audioLinks == "img":
+            if linkSessionAudio and gOptions.audioLinks == "img":
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
                 itemsToJoin.append(f'{Mp3SessionLink(session)} ({durStr}) ')
             
@@ -490,9 +477,10 @@ class Formatter:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
             
-        if self.headingAudio and gOptions.audioLinks == "audio":
+        if linkSessionAudio and gOptions.audioLinks == "audio":
             a(Mp3SessionLink(session))
-            a.hr()
+            if horizontalRule:
+                a.hr()
         
         return str(a)
 
@@ -540,7 +528,13 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     for count,x in enumerate(excerpts):
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
-            a(formatter.FormatSessionHeading(session))
+
+            linkSessionAudio = formatter.headingAudio and not (x["startTime"] == "Session" and x["body"])
+                # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
+            hr = x["startTime"] != "Session" or x["body"]
+                # Omit the horzional rule if the first excerpt is a session excerpt with no body
+                
+            a(formatter.FormatSessionHeading(session,linkSessionAudio,hr))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
             if formatter.headingShowTeacher and len(session["teachers"]) == 1: 
@@ -553,8 +547,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {"preload": "none"}
         else:
             options = {}
-        with a.p():
-            a(formatter.FormatExcerpt(x,**options))
+        if x["body"]:
+            with a.p():
+                a(formatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:

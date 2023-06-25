@@ -747,7 +747,7 @@ def LoadEventFile(database,eventName,directory):
                 lastSession = x["sessionNumber"]
                 if x["startTime"] == "Session":
                     fileNumber = 0
-                    x["exclude"] = True # Temporarily remove session excerpts until we write code to deal with them.
+                    # x["exclude"] = True # Temporarily remove session excerpts until we write code to deal with them.
                 else:
                     fileNumber = 1
             else:
@@ -819,7 +819,10 @@ def LoadEventFile(database,eventName,directory):
             if x["sessionNumber"] != lastSession:
                 if lastSession > x["sessionNumber"] and gOptions.verbose > 0:
                     print(f"Warning: Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
-                xNumber = 1
+                if x["startTime"] == "Session":
+                    xNumber = 0
+                else:
+                    xNumber = 1
                 lastSession = x["sessionNumber"]
             else:
                 xNumber += 1

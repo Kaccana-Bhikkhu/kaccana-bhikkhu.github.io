@@ -1,7 +1,6 @@
 <!-- The content below has been extracted from the body of prototype/templates/index.html -->
-<p><img src="images/AjahnPasanno.jpg" name="Image1" align="bottom" width="200" border="0"/>
 
-</p>
+	<img src="images/AjahnPasanno.jpg" id="cover" align="bottom" width="200" border="0"/>
 <h3 class="western">Introduction</h3>
 <p>Ajahn Pasanno excels at answering Dhamma questions. I estimate
 there are perhaps 100 hours of his question and answer sessions
@@ -142,3 +141,4 @@ A Practical Approach</span></p>
 <p><b>2.1.1</b> <span style="font-weight: normal">Added three Upasika Days: Honoring the Buddha, The Middle Way of Not-self, and Death and Dying. Added the Spirit Rock Daylong about Friendship.</span></p>
 <p><b>2.1.2</b> <span style="font-weight: normal">Added the 2008 Metta Retreat and the Spirit Rock Daylong Desire or Aspiration. Assigned copyright to Abhayagiri Buddhist Monastery.</span></p>
 <p><b>2.1.3</b> <span style="font-weight: normal">Added Upasika Day: Right Livelihood.</span></p>
+<p><b>2.2</b> <span style="font-weight: normal">Implemented session excerpts. Added Stanford Communtiy Dhamma Discussion and Upasika Day: Buddhist Identity. Added three sessions from Winter Retreat 2014 for testing purposes.</span></p>

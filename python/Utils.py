@@ -7,6 +7,9 @@ import unicodedata
 import re
 from typing import List
 
+gOptions = None
+gDatabase = None # These will be set later by QSarchive.py
+
 def Contents(container:list|dict) -> list:
     try:
         return container.values()
@@ -21,9 +24,24 @@ def AppendUnique(dest: list, source: list) -> list:
         if item not in destSet:
             dest.append(item)
 
-def Mp3FileName(event:str, session:int, excerpt:int) -> str:
-    "Return the name of the mp3 file associated with a given event, session, and excerpt"
-    return f"{event}_S{session:02d}_F{excerpt:02d}.mp3"
+def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
+    """Return a link to the mp3 file associated with a given excerpt or session.
+    item: a dict representing an excerpt or session.
+    directoryDepth: depth of the html file we are writing relative to the home directory"""
+
+    if "fileNumber" in item and item["fileNumber"]: # Is this is a non-session excerpt?
+        if gOptions.excerptMp3 == 'local':
+            baseURL = ("../" * directoryDepth) + "audio/excerpts/"
+        else:
+            baseURL = gOptions.remoteExcerptMp3URL
+
+        return f"{baseURL}{item['event']}/{item['event']}_S{item['sessionNumber']:02d}_F{item['fileNumber']:02d}.mp3"
+    
+    session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
+    if gOptions.sessionMp3 == "local":
+        return ("../" * directoryDepth) + "audio/events/" + "/" + session["event"] + "/" + session["filename"]
+    else:
+        return session["remoteMp3Url"]
 
 def StrToTimeDelta(inStr):
     "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
