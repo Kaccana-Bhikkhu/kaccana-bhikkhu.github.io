@@ -9,7 +9,7 @@ from markdown_newtab import NewTabExtension
 from typing import Tuple, Type, Callable, List, Dict
 import pyratemp
 from functools import lru_cache
-import ParseCSV, Prototype, Utils
+import ParseCSV, Prototype, Utils, Alert
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -92,7 +92,6 @@ def CompileTemplate(template: str) -> Type[pyratemp.Template]:
 
 def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
     "Append annotation a to the end of excerpt x."
-    #print(f"{a=},{x=}")
 
     if "{attribution}" in a["body"]:
         attrNum = 2
@@ -122,8 +121,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         if formNumber >= 0:
             if formNumber >= len(kind["body"]) or kind["body"][formNumber] == "unimplemented":
                 formNumber = kind["defaultForm"] - 1
-                if gOptions.verbose >= 0:
-                    print(f"   {kind['kind']} does not implement form {formNumberStr[0]}. Reverting to default form number {formNumber + 1}.")
+                Alert.warning.Show(f"   {kind['kind']} does not implement form {formNumberStr[0]}. Reverting to default form number {formNumber + 1}.")
     else:
         formNumber = kind["defaultForm"] - 1
 
@@ -155,8 +153,8 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
             text, suffix = parts
         else:
             prefix, text, suffix = parts[0:3]
-            if len(parts) > 3 and gOptions.verbose >= -1:
-                print("   Warning: '|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
+            if len(parts) > 3:
+                Alert.warning.Show("'|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
 
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
@@ -229,8 +227,7 @@ def LinkSuttas():
 
     suttasMatched = ApplyToBodyText(LinkItem)
 
-    if gOptions.verbose > 1:
-        print(f"   {suttasMatched} links generated to suttas")
+    Alert.extra.Show(f"{suttasMatched} links generated to suttas")
 
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
@@ -238,11 +235,9 @@ def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
 
     refForm2 = r'\[' + titleRegex + r'\]\((' + pageReference + ')?\)'
-    #print(refForm2)
     refForm3 = r'\]\(' + titleRegex + r'(\s+' + pageReference + ')?\)'
 
     refForm4 = titleRegex + r'\s+(' + pageReference + ')'
-    #print(refForm4)
 
     return refForm2, refForm3, refForm4
 
@@ -261,12 +256,10 @@ def LinkKnownReferences() -> None:
             return None
 
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
-        #print(matchObject[0],matchObject[1],matchObject[2])
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
-            if gOptions.verbosity > 0:
-                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            Alert.warning.Show(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
         url = reference['remoteUrl']
@@ -284,8 +277,7 @@ def LinkKnownReferences() -> None:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
-            if gOptions.verbosity > 0:
-                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            Alert.warning.Show(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
         url = reference['remoteUrl']
@@ -301,12 +293,10 @@ def LinkKnownReferences() -> None:
         return re.subn(refForm3,ReferenceForm3Substitution,bodyStr,flags = re.IGNORECASE)
 
     def ReferenceForm4Substitution(matchObject: re.Match) -> str:
-        #print(repr(matchObject[0]),repr(matchObject[1]),repr(matchObject[2]))
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
-            if gOptions.verbosity > 0:
-                print(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            Alert.warning.Show(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
         url = reference['remoteUrl']
@@ -326,8 +316,7 @@ def LinkKnownReferences() -> None:
     referenceCount += ApplyToBodyText(ReferenceForm3)
     referenceCount += ApplyToBodyText(ReferenceForm4)
     
-    if gOptions.verbose > 1:
-        print(f"   {referenceCount} links generated to references")
+    Alert.extra.Show(f"{referenceCount} links generated to references")
 
 def MarkdownFormat(text: str) -> Tuple[str,int]:
     """Format a single-line string using markdown, and eliminate the <p> tags.
@@ -353,8 +342,7 @@ def LinkReferences() -> None:
     LinkKnownReferences()
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
-    if gOptions.verbose > 1:
-        print(f"   {markdownChanges} items changed by markdown")
+    Alert.extra.Show(f"{markdownChanges} items changed by markdown")
     
 
 def AddArguments(parser) -> None:

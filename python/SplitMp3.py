@@ -1,7 +1,7 @@
 """Use Mp3DirectCut.exe to split the session audio files into individual excerpts based on start and end times from Database.json"""
 
 import os, json
-import Utils
+import Utils, Alert
 import Mp3DirectCut
 from typing import List
 
@@ -12,7 +12,6 @@ def IncludeRedactedExcerpts() -> List[dict]:
     
     allExcerpts = gDatabase["excerpts"] + gDatabase["excerptsRedacted"]
     allExcerpts = [x for x in allExcerpts if x["startTime"] != "Session"] # Session excerpts don't need split mp3 files
-    # print(len(allExcerpts))
     orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort excerpts by event order in gDatabase
     
     allExcerpts.sort(key = lambda x: (orderedEvents.index(x["event"]),x["sessionNumber"],x["fileNumber"]))
@@ -33,8 +32,7 @@ def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     if gOptions.sessionMp3 == 'remote' and gOptions.excerptMp3 == 'remote':
-        if gOptions.verbose > 0:
-            print("   All mp3 links go to remote servers. No mp3 files will be processed.")
+        Alert.info.Show("All mp3 links go to remote servers. No mp3 files will be processed.")
         return # No need to run SplitMp3 if all files are remote
     
     sessionCount = 0
@@ -70,7 +68,7 @@ def main():
         eventDir = os.path.join(gOptions.eventMp3Dir,event)
         sessionFilePath = os.path.join(eventDir,session["filename"])
         if not os.path.exists(sessionFilePath):
-            print("Warning: Cannot locate "+sessionFilePath)
+            Alert.warning.Show("Cannot locate",sessionFilePath)
             errorCount += 1
             continue
         
@@ -98,17 +96,17 @@ def main():
         try:
             Mp3DirectCut.Split(sessionFilePath,excerptList)
         except Mp3DirectCut.ExecutableNotFound as err:
-            print(err)
-            print("Continuing to next module.")
+            Alert.error.Show(err)
+            Alert.status.Show("Continuing to next module.")
             return
         except Mp3DirectCut.Mp3CutError as err:
-            print(err)
-            print("Continuing to next mp3 file.")
+            Alert.error.Show(err)
+            Alert.status.Show("Continuing to next mp3 file.")
             continue
         except (ValueError,OSError) as err:
-            print(f"Error: {err} occured when processing session {session}")
+            Alert.error.Show(f"Error: {err} occured when processing session {session}")
             errorCount += 1
-            print("Continuing to next mp3 file.")
+            Alert.status.Show("Continuing to next mp3 file.")
             continue
         
         # Now move the files to their destination
@@ -121,8 +119,6 @@ def main():
             os.rename(scratchFilePath,outputFilePath)
         
         mp3SplitCount += 1
-        if gOptions.verbose >= 2:
-            print(f"Split {session['filename']} into {len(excerptList)} files.")
+        Alert.info.Show(f"Split {session['filename']} into {len(excerptList)} files.")
     
-    if gOptions.verbose > 0:
-        print(f"   {mp3SplitCount} sessions split; {errorCount} sessions had errors; all files already present for {alreadySplit} sessions.")
+    Alert.status.Show(f"   {mp3SplitCount} sessions split; {errorCount} sessions had errors; all files already present for {alreadySplit} sessions.")

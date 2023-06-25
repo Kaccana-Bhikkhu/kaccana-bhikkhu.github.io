@@ -7,6 +7,7 @@ import urllib.request
 import shutil
 from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
+import Alert
 
 def BuildSheetUrl(docId: str, sheetId: str):
     "From https://stackoverflow.com/excerpts/12842341/download-google-docs-public-spreadsheet-to-csv-with-python"
@@ -93,12 +94,10 @@ def main():
     if downloadSummary:
         DownloadSummarySheet()
         sheetIds = ReadSheetIds()
-        if gOptions.verbose > 1:
-            print("Downloaded Summary.csv")
+        Alert.info.Show("Downloaded Summary.csv")
     else:
         sheetIds = oldSheetIds
-        if gOptions.verbose > 1:
-            print("Didn't download Summary.csv")
+        Alert.info.Show("Didn't download Summary.csv")
         
     
     sheetIds.pop('Summary',None) # No need to download summary again
@@ -108,15 +107,12 @@ def main():
     if gOptions.sheets != 'All':
         for sheetName in gOptions.sheets:
             if sheetName not in sheetIds:
-                if gOptions.verbose >= 0:
-                    print('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
+                Alert.warning.Show('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
         
         sheetIds = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
     
     DownloadSheets(sheetIds)
-    if gOptions.verbose > 0:
-        downloadedSheets = list(sheetIds.keys())
-        if downloadSummary:
-            downloadedSheets = ['Summary'] + downloadedSheets
-        print(f'   Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
-    
+    downloadedSheets = list(sheetIds.keys())
+    if downloadSummary:
+        downloadedSheets = ['Summary'] + downloadedSheets
+    Alert.info.Show(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')

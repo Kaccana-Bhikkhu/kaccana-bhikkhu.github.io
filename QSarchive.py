@@ -11,11 +11,10 @@ import json
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
 
-import Utils
+import Utils, Alert
 
 def PrintModuleSeparator(moduleName:str) -> None:
-    if clOptions.verbose >= 0:
-            print(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
+    Alert.structure.Show(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
 
 def ReadJobOptions(jobName: str) -> list[str]:
     "Read a list of job options from the .vscode/launch.json"
@@ -70,12 +69,13 @@ parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbo
 if sys.argv[1] == "Job": # If ops == "Job", 
     jobOptionsList = ReadJobOptions(sys.argv[2] if len(sys.argv) >= 3 else None)
     argList = jobOptionsList + sys.argv[3:]
-    print('python',sys.argv[0]," ".join(argList))
+    Alert.essential.Show('python',sys.argv[0]," ".join(argList))
 else:
     argList = sys.argv[1:]
 
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
+Alert.verbosity = clOptions.verbose
 
 for mod in modules:
     modules[mod].gOptions = clOptions
@@ -85,8 +85,8 @@ if not os.path.exists(clOptions.homeDir):
     os.makedirs(clOptions.homeDir)
 os.chdir(clOptions.homeDir)
 
-if clOptions.verbose > 0 and clOptions.homeDir != '.':
-    print("Home directory:",clOptions.homeDir)
+if clOptions.homeDir != '.':
+    Alert.info.Show("Home directory:",clOptions.homeDir)
 
 if clOptions.events != 'All':
     clOptions.events = clOptions.events.split(',')
@@ -100,7 +100,7 @@ else:
 # Check for unsuppported ops
 for verb in opList:
     if verb not in moduleList:
-        print("Unsupported operation "+verb)
+        Alert.warning.Show("Unsupported operation",verb)
 
 if 'ParseCSV' in opList or opList == ['DownloadCSV']:
     database = {} # If we're going to execute ParseCSV, let it fill up the database; if we only download CSV files, we don't need the database
@@ -120,6 +120,6 @@ for moduleName in moduleList:
         modules[moduleName].main()
 
 if clOptions.ignoreTeacherConsent:
-    print("WARNING: Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
+    Alert.warning.Show("Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
 if clOptions.ignoreExcludes:
-    print("WARNING: Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
+    Alert.warning.Show("Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
