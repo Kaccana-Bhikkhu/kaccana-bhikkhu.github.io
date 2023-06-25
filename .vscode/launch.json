@@ -21,6 +21,20 @@
             "args": [
                 "All",
                 "-vvv",
+                "--sheets",
+                "All"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "AllSheetsLocal",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv",
                 "--excerptMp3",
                 "local",
                 "--sheets",
@@ -31,6 +45,18 @@
         },
         {
             "name": "AllEvents",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "All",
+                "-vvv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+                {
+        "name": "AllEventsLocal",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -56,7 +82,33 @@
             "justMyCode": true
         },
         {
-            "name": "Render and Prototype",
+            "name": "ParseCSVLocal",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "ParseCSV,Render,Prototype",
+                "-vvv",
+                 "--excerptMp3",
+                "local"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "RenderAndPrototype",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\QSArchive.py",
+            "args": [
+                "ParseCSV,Render,Prototype",
+                "-vvv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "RenderAndPrototypeLocal",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\QSArchive.py",
@@ -65,42 +117,6 @@
                 "-vvv",
                 "--excerptMp3",
                 "local"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "UD2020",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
-            "args": [
-                "ParseCSV,Render,Prototype",
-                "-vvv",
-                "--excerptMp3",
-                "local",
-                "--events",
-                "UD2020",
-                "--parseOnlySpecifiedEvents"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "AllNew",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
-            "args": [
-                "All",
-                "-vvv",
-                "--excerptMp3",
-                "local",
-                "--events",
-                "SRD2010,SRD2011,WR2018-2,DRBU2014,UD2020",
-                "--parseOnlySpecifiedEvents",
-                "--sheets",
-                "SRD2010,SRD2011,WR2018-2,DRBU2014,Kind,Teacher,Tag,Reference,UD2020"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -115,26 +131,6 @@
                 "-vvv",
                 "--sheets",
                 "All"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "SDR2011-attributeAll",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
-            "args": [
-                "DownloadCSV,ParseCSV,Render,Prototype",
-                "-vvv",
-                "--excerptMp3",
-                "local",
-                "--events",
-                "SRD2011",
-                "--parseOnlySpecifiedEvents",
-                "--attributeAll",
-                "--sheets",
-                "SRD2011,Kind,Teacher"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
