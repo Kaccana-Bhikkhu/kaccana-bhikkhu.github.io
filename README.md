@@ -19,6 +19,9 @@ The biggest changes made in Version 2 of the archive are to allow the spreadshee
 - Much more material has been added.
 - Copyright assigned to Abhayagiri Buddhist Monastery.
 
+## Prototype Version 2.2
+- The first excerpt in a session can now be designated as a Session Excerpt, which applies to the entire session audio.
+
 ## Caution: All documentation below is significantly obsolete
 
 ## Documentation links
