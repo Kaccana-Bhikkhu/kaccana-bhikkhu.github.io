@@ -17,7 +17,7 @@
             "name": "AllSheets",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "-vvv",
@@ -31,7 +31,7 @@
             "name": "AllSheetsLocal",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "-vvv",
@@ -47,7 +47,7 @@
             "name": "AllEvents",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "-vvv"
@@ -59,7 +59,7 @@
         "name": "AllEventsLocal",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "-vvv",
@@ -73,7 +73,7 @@
             "name": "ParseCSV",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
                 "-vvv"
@@ -85,7 +85,7 @@
             "name": "ParseCSVLocal",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
                 "-vvv",
@@ -99,7 +99,7 @@
             "name": "RenderAndPrototype",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
                 "-vvv"
@@ -111,7 +111,7 @@
             "name": "RenderAndPrototypeLocal",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
                 "-vvv",
@@ -125,7 +125,7 @@
             "name": "BuildGithubV2",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\QSArchive.py",
+            "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "-vvv",
