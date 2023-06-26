@@ -7,7 +7,7 @@ import Render
 import Utils
 from typing import List, Iterator, Tuple
 from datetime import timedelta
-import Prototype
+import Prototype, Alert
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -104,8 +104,8 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
         if firstDictValue == endOfSection:
             break
         elif not BlankDict(row):
-            if not firstDictValue and gOptions.verbose > 0:
-                print("WARNING: blank first field in",row)
+            if not firstDictValue:
+                Alert.warning.Show("WARNING: blank first field in",row)
         
             # Increase robustness by stripping values and keys
             for key in list(row):
@@ -329,7 +329,6 @@ def LoadTagsFile(database,tagFileName):
                     tagStack[-1].Increment(rawTag["itemCount"])
             if tagStack[-1].collectSubtags:
                 tags[tagStack[-1].tag]["subtags"].append(tagName)
-                #print(tagStack[-1].tag,"<-",tagName,":",tags[tagStack[-1].tag]["subtags"])
         else:
             tagDesc["supertags"] = []
 
@@ -378,15 +377,13 @@ def RemoveUnusedTags(database: dict) -> None:
         return tag["number"] and kNumberNames[int(tag["number"])] in tag["fullTag"]
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
-    if gOptions.verbose > 2:
-        print("   ",len(usedTags),"unique tags applied.")
+    Alert.extra.Show(len(usedTags),"unique tags applied.")
     
     prevTagCount = 0
     round = 0
     while prevTagCount < len(usedTags):
         round += 1
         prevTagCount = len(usedTags)
-        #print(f"{round=}, {prevTagCount=}")
 
         for parent,children in WalkTags(database["tagRaw"]):
             if not parent:
@@ -409,8 +406,6 @@ def RemoveUnusedTags(database: dict) -> None:
                     if childTag["indexNumber"] or not seenNumberedTagYet: # Tags before the numbered list are essential headings
                         usedTags.add(childTag["tag"])
                         seenNumberedTagYet = True
-
-    #print(f"Finished; {prevTagCount=}")
 
     remainingTags = set(usedTags)
     with open("prototype/UsedTags.txt",mode="w",encoding='utf-8') as file:
@@ -437,7 +432,6 @@ def RemoveUnusedTags(database: dict) -> None:
         tag["related"] = [t for t in tag["related"] if t in usedTags]
 
     IndexTags(database)
-    #print("Remaining tags:",remainingTags)
 
 def IndexTags(database: dict) -> None:
     """Add listIndex tag to raw tags after we have removed unused tags."""
@@ -595,8 +589,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         return
     
     if not annotation["kind"]:
-        if gOptions.verbose >= -1:
-            print("   Error: Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
+        Alert.warning.Show("Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
         annotation["kind"] = kind = "Comment"
     kind = database["kind"][annotation["kind"]]
     
@@ -718,8 +711,7 @@ def LoadEventFile(database,eventName,directory):
                 if prevExcerpt is not None:
                     AddAnnotation(database,prevExcerpt,x)
                 else:
-                    if gOptions.verbose >= 0:
-                        print(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
+                    Alert.error.Show(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
                 continue
             else:
                 x["annotations"] = []
@@ -803,8 +795,7 @@ def LoadEventFile(database,eventName,directory):
                 startTime = prevEndTime
                 x["startTime"] = Utils.TimeDeltaToStr(startTime)
                 if "o" not in x["flags"]:
-                    if gOptions.verbose >= 0:
-                        print(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+                    Alert.warning.Show(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
             x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
             prevEndTime = endTime
@@ -817,8 +808,8 @@ def LoadEventFile(database,eventName,directory):
         lastSession = -1
         for x in excerpts:
             if x["sessionNumber"] != lastSession:
-                if lastSession > x["sessionNumber"] and gOptions.verbose > 0:
-                    print(f"Warning: Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
+                if lastSession > x["sessionNumber"]:
+                    Alert.warning.Show(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
                 if x["startTime"] == "Session":
                     xNumber = 0
                 else:
@@ -873,7 +864,7 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
                 countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
                 totalCount += 1
             except KeyError:
-                print(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+                Alert.warning.Show(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
     
     return totalCount
 
@@ -890,10 +881,9 @@ def CountAndVerify(database):
                 tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                print(f"CountAndVerify: Tag {tag} is not defined.")
+                Alert.error.Show(f"CountAndVerify: Tag {tag} is not defined.")
     
-    if gOptions.verbose > 2:
-        print("   ",tagCount,"total tags applied.")
+    Alert.info.Show(tagCount,"total tags applied.")
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
@@ -904,13 +894,12 @@ def CountAndVerify(database):
             CountInstances(database["event"],key,database[key],"eventCount")
     
     # Are tags flagged Primary as needed?
-    if gOptions.verbose >= 1:
-        for tag in database["tag"]:
-            tagDesc = database["tag"][tag]
-            if tagDesc["primaries"] > 1:
-                print(f"Warning: {tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
-            if gOptions.verbose >= 2 and tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and not tagDesc["virtual"]:
-                print(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
+    for tag in database["tag"]:
+        tagDesc = database["tag"][tag]
+        if tagDesc["primaries"] > 1:
+            Alert.caution.Show(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
+        if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and not tagDesc["virtual"]:
+            Alert.notice.Show(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
 
 def VerifyListCounts(database):
     # Check that the number of items in each numbered tag list matches the supertag item count
@@ -930,12 +919,12 @@ def VerifyListCounts(database):
             lookaheadIndex += 1
         
         if listCount != int(database["tag"][tag]["number"]):
-            print(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["tag"][tag]["number"]} items, but we count {listCount}')
+            Alert.warning.Show(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["tag"][tag]["number"]} items, but we count {listCount}')
     
     # Check for duplicate excerpt tags
     for x in database["excerpts"]:
-        if len(set(x["tags"])) != len(x["tags"]) and gOptions.verbose > 1:
-            print(f"Duplicate tags in {x['event']} S{x['sessionNumber']} Q{x['excerptNumber']} {x['tags']}")
+        if len(set(x["tags"])) != len(x["tags"]):
+            Alert.caution.Show(f"Duplicate tags in {x['event']} S{x['sessionNumber']} Q{x['excerptNumber']} {x['tags']}")
     
 
 def AddArguments(parser):
@@ -1004,13 +993,11 @@ def main():
     if not gOptions.jsonNoClean:
         del gDatabase["tagRaw"]
 
-    if gOptions.verbose >= 2:
-        print("Final gDatabase contents:")
-        for item in gDatabase:
-            print(item + ": "+str(len(gDatabase[item])))
+    Alert.extra.Show("Final gDatabase contents:")
+    for item in gDatabase:
+        Alert.extra.Show(item + ": "+str(len(gDatabase[item])))
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
-    if gOptions.verbose > 0:
-        print("   " + Prototype.ExcerptDurationStr(gDatabase["excerpts"]))
+    Alert.info.Show(Prototype.ExcerptDurationStr(gDatabase["excerpts"]))

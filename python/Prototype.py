@@ -195,7 +195,6 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
         if not listDuplicateSubtags:
             if item["level"] > skipSubtagLevel:
                 continue
-            # print(index,item["tag"])
             if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
                 skipSubtagLevel = item["level"] # skip subsequent subtags
             else:
