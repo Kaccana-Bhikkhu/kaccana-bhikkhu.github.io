@@ -31,10 +31,8 @@ def DownloadSummarySheet() -> None:
         
     if not os.path.exists(gOptions.csvDir):
         os.makedirs(gOptions.csvDir)
-    
-    summarySheetId = re.search(r'gid=([0-9]*)',gOptions.spreadsheet).groups()[0]
-    
-    DownloadSheetCSV(gOptions.spreadsheetId,summarySheetId,gOptions.summaryFilePath)
+        
+    DownloadSheetCSV(gOptions.spreadsheetId,gOptions.summarySheetID,gOptions.summaryFilePath)
 
 def ReadSheetIds() -> dict:
     "Read Summary.csv and return a dict {sheetName : sheetId}"
@@ -55,7 +53,8 @@ def DownloadSheets(sheetIds: dict) -> None:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--spreadsheet',type=str,default='https://docs.google.com/spreadsheets/d/1cURolGNXe1nyLR8u_pslrGQFvcEE5udV9UVpPPl60es/edit#gid=2007732801', help='URL of the QS Archive Main sheet Summary')
+    parser.add_argument('--spreadsheet',type=str, help='URL of the QS Archive main Google Sheet')
+    parser.add_argument('--summarySheetID',type=int,default = 0,help='GID of the "Summary" sheet in spreadsheet')
     parser.add_argument('--sheets',type=str,default='Default',help='Download this list of named sheets; Default: Tags and the sheets specified by --events')
     parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
     

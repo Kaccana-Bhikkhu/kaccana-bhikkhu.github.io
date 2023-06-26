@@ -28,22 +28,6 @@
             "justMyCode": true
         },
         {
-            "name": "AllSheetsLocal",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/QSArchive.py",
-            "args": [
-                "All",
-                "-vvv",
-                "--excerptMp3",
-                "local",
-                "--sheets",
-                "All"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
             "name": "AllEvents",
             "type": "python",
             "request": "launch",
@@ -51,20 +35,6 @@
             "args": [
                 "All",
                 "-vvv"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-                {
-        "name": "AllEventsLocal",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/QSArchive.py",
-            "args": [
-                "All",
-                "-vvv",
-                "--excerptMp3",
-                "local"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -82,20 +52,6 @@
             "justMyCode": true
         },
         {
-            "name": "ParseCSVLocal",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/QSArchive.py",
-            "args": [
-                "ParseCSV,Render,Prototype",
-                "-vvv",
-                 "--excerptMp3",
-                "local"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
             "name": "RenderAndPrototype",
             "type": "python",
             "request": "launch",
@@ -103,20 +59,6 @@
             "args": [
                 "ParseCSV,Render,Prototype",
                 "-vvv"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "RenderAndPrototypeLocal",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/QSArchive.py",
-            "args": [
-                "ParseCSV,Render,Prototype",
-                "-vvv",
-                "--excerptMp3",
-                "local"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
