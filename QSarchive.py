@@ -14,7 +14,10 @@ sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./py
 import Utils, Alert
 
 def PrintModuleSeparator(moduleName:str) -> None:
-    Alert.structure.Show(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
+    if moduleName:
+        Alert.structure.Show(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
+    else:
+        Alert.structure.Show('-'*37)
 
 def ReadJobOptions(jobName: str) -> list[str]:
     "Read a list of job options from the .vscode/launch.json"
@@ -118,8 +121,22 @@ for moduleName in moduleList:
     if moduleName in opList:
         PrintModuleSeparator(moduleName)
         modules[moduleName].main()
+PrintModuleSeparator("")
 
 if clOptions.ignoreTeacherConsent:
     Alert.warning.Show("Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
 if clOptions.ignoreExcludes:
     Alert.warning.Show("Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
+
+errorCountList = []
+for error in [Alert.error, Alert.warning, Alert.caution, Alert.notice]:
+    countString = error.CountString()
+    if countString:
+        errorCountList.append(countString)
+
+if errorCountList:
+    Alert.essential.Show("  ***** " + ", ".join(errorCountList) + " ****")
+else:
+    Alert.status.Show("No errors reported.")
+
+Alert.structure.Show("QSarchive.py finished.")

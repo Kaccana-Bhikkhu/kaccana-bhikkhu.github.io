@@ -5,19 +5,27 @@ verbosity = 0
 ObjectPrinter = repr # Call this function to convert items to print into strings
 
 class AlertClass:
-    def __init__(self,name: str,message: str|None = None, printAtVerbosity: int = 0, logging:bool = False,indent = 0):
+    def __init__(self,name: str,message: str|None = None, plural = None, printAtVerbosity: int = 0, logging:bool = False,indent = 0):
         "Defines a specific type of alert."
         self.name = name
         self.message = message if message is not None else name + ":"
+        if plural:
+            self.plural = plural
+        elif plural is None:
+            self.plural = self.name + "s"
+        else:
+            self.plural = self.name
         self.printAtVerbosity = printAtVerbosity
         self.logging = logging # log these alerts?
         self.log = {} # A log of e
         self.indent = indent
+        self.count = 0
 
-    def Show(self,*items):
+    def Show(self,*items) -> None:
         """Generate aan alert from a list of items to print.
         Print it if verbosity is high enough.
         Log it if we are logging."""
+        self.count += 1
         if verbosity >= self.printAtVerbosity or self.logging:
             strings = []
             if self.indent:
@@ -32,10 +40,20 @@ class AlertClass:
             
             if verbosity >= self.printAtVerbosity:
                 print(" ".join(strings))
+    
+    def CountString(self) -> str:
+        "Return a string describing how many alerts have occured."
+
+        if self.count > 1:
+            return f"{self.count} {self.plural}"
+        elif self.count == 1:
+            return f"{self.count} {self.name}"
+        else:
+            return ""
 
 error = AlertClass("Error","ERROR:",printAtVerbosity=-2,logging=True)
 warning = AlertClass("Warning","WARNING:",printAtVerbosity = -1,logging = True)
-caution = AlertClass("Caaution",printAtVerbosity = 0, logging = True)
+caution = AlertClass("Caution",printAtVerbosity = 0, logging = True)
 notice = AlertClass("Notice",printAtVerbosity = 1,logging=True)
 
 essential = AlertClass("Essential","",printAtVerbosity = -1,indent = 3)
