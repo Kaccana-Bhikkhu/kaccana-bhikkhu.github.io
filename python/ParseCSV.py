@@ -606,14 +606,12 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
                 annotation["teachers"] = ourSession["teachers"]
         
-        if not TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts"):
+        if not (TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts") or database["kind"][annotation["kind"]]["ignoreConsent"]):
             # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
-            if excerpt["kind"] == "Reading" and excerpt["teachers"] == annotation["teachers"]:
-                # Unless the annotation comes as part of a reading
-                pass
-            else:
-                excerpt["exclude"] = True
-                return
+            excerpt["exclude"] = True
+            print("Excluded excerpt due to annotation",annotation)
+            print()
+            return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         #if set(teacherList) == set(excerpt["teachers"]):
@@ -676,7 +674,6 @@ def LoadEventFile(database,eventName,directory):
             s = ReorderKeys(s,["event","sessionNumber"])
             if not gOptions.jsonNoClean:
                 del s["exclude"]
-            
             
         sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True)]
             # Remove sessions if none of the session teachers have given consent
@@ -745,10 +742,12 @@ def LoadEventFile(database,eventName,directory):
             else:
                 fileNumber += 1 # File number counts all excerpts listed for the event
             
-            if (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or x["kind"] == "Reading") and (not x["exclude"] or gOptions.ignoreExcludes):
+            if (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]) and (not x["exclude"] or gOptions.ignoreExcludes):
                 x["exclude"] = False
             else:
                 x["exclude"] = True
+                print("Excluded",x,"due to excerpt teacher.")
+                print()
 
             x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
             
@@ -803,7 +802,10 @@ def LoadEventFile(database,eventName,directory):
         removedExcerpts = [x for x in excerpts if x["exclude"]]
         excerpts = [x for x in excerpts if not x["exclude"]]
             # Remove excluded excerpts and those we didn't get consent for
-        
+        """for n, x in enumerate(removedExcerpts):
+            print("Removed excert",n,x)
+            print()"""
+
         xNumber = 1
         lastSession = -1
         for x in excerpts:
