@@ -89,6 +89,7 @@ if sys.argv[1] == "Job" or sys.argv[1] == "Jobs": # If ops == "Job",
     Alert.essential.Show('python',sys.argv[0]," ".join(argList))
 else:
     argList = sys.argv[1:]
+PrintModuleSeparator("")
 
 ## STEP 1: Parse the command line argument list to set the home directory
 baseOptions = parser.parse_args(argList)
