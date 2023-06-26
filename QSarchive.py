@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-import argparse
+import argparse, shlex
 import importlib
 import os, sys
 import json
@@ -36,6 +36,21 @@ def ReadJobOptions(jobName: str) -> list[str]:
     print(f"Available jobs: {allJobs}")
     quit()
 
+def ApplyDefaults(argsFileName: str,parser: argparse.ArgumentParser) -> None:
+    "Read the specified .args file and apply these as default values to parser."
+    with open(argsFileName,"r",encoding="utf-8") as argsFile:
+        argumentStrings = []
+        for line in argsFile:
+            line = line.strip()
+            if line and not line.startswith("//"):
+                argumentStrings.append(line)
+
+        commandArgs = ["DummyOp"] + shlex.split(" ".join(argumentStrings))
+        print(commandArgs)
+        defaultArgs = parser.parse_args(commandArgs)
+        print(defaultArgs)
+        parser.set_defaults(**vars(defaultArgs))
+
 # The list of code modules/ops to implement
 moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Prototype','OptimizeDatabase']
 moduleList.remove('OptimizeDatabase')
@@ -56,6 +71,7 @@ All - run all the above modules in sequence.
 """)
 
 parser.add_argument('--homeDir',type=str,default='.',help='All other pathnames are relative to this directory; Default: ./')
+parser.add_argument('--defaults',type=str,default='python/config/Default.args,python/config/LocalDefault.args',help='A comma-separated list of .args default argument files; see python/config/Default.args')
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
@@ -69,27 +85,47 @@ for mod in modules:
 parser.add_argument('--verbose','-v',default=0,action='count',help='increase verbosity')
 parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbosity')
 
-if sys.argv[1] == "Job": # If ops == "Job", 
+if sys.argv[1] == "Job" or sys.argv[1] == "Jobs": # If ops == "Job", 
     jobOptionsList = ReadJobOptions(sys.argv[2] if len(sys.argv) >= 3 else None)
     argList = jobOptionsList + sys.argv[3:]
     Alert.essential.Show('python',sys.argv[0]," ".join(argList))
 else:
     argList = sys.argv[1:]
 
+## STEP 1: Parse the command line argument list to set the home directory
+baseOptions = parser.parse_args(argList)
+if not os.path.exists(baseOptions.homeDir):
+    os.makedirs(baseOptions.homeDir)
+os.chdir(baseOptions.homeDir)
+
+Alert.verbosity = baseOptions.verbose - baseOptions.quiet
+if baseOptions.homeDir != '.':
+    Alert.info.Show("Home directory:",baseOptions.homeDir)
+
+## STEP 2: Configure parser with default options read from the .args files
+parsedFiles = []
+errorFiles = []
+for argsFile in baseOptions.defaults.split(","):
+    try:
+        ApplyDefaults(argsFile,parser)
+        parsedFiles.append(argsFile)
+    except OSError:
+        errorFiles.append(argsFile)
+if parsedFiles:
+    Alert.structure.Show("Using default values from:",*parsedFiles)
+if errorFiles:
+    Alert.structure.Show("Could not read:",*errorFiles)
+
+## STEP 3: Parse the command line again to override arguments specified by the .args files
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
 
+print(f"{clOptions.verbose=}")
+
 for mod in modules:
     modules[mod].gOptions = clOptions
     Utils.gOptions = clOptions
-
-if not os.path.exists(clOptions.homeDir):
-    os.makedirs(clOptions.homeDir)
-os.chdir(clOptions.homeDir)
-
-if clOptions.homeDir != '.':
-    Alert.info.Show("Home directory:",clOptions.homeDir)
 
 if clOptions.events != 'All':
     clOptions.events = clOptions.events.split(',')
