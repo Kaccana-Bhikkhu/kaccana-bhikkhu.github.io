@@ -12,4 +12,8 @@
 
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
+// DownloadCSV options:
+--spreadsheet "https://docs.google.com/spreadsheets/d/1cURolGNXe1nyLR8u_pslrGQFvcEE5udV9UVpPPl60es/edit"
+--summarySheetID 2007732801
+
 -vvv

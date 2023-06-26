@@ -46,9 +46,7 @@ def ApplyDefaults(argsFileName: str,parser: argparse.ArgumentParser) -> None:
                 argumentStrings.append(line)
 
         commandArgs = ["DummyOp"] + shlex.split(" ".join(argumentStrings))
-        print(commandArgs)
         defaultArgs = parser.parse_args(commandArgs)
-        print(defaultArgs)
         parser.set_defaults(**vars(defaultArgs))
 
 # The list of code modules/ops to implement
@@ -112,16 +110,14 @@ for argsFile in baseOptions.defaults.split(","):
     except OSError:
         errorFiles.append(argsFile)
 if parsedFiles:
-    Alert.structure.Show("Using default values from:",*parsedFiles)
+    Alert.structure.Show("Read default values from:",", ".join(parsedFiles))
 if errorFiles:
-    Alert.structure.Show("Could not read:",*errorFiles)
+    Alert.structure.Show("Could not read:",", ".join(parsedFiles))
 
 ## STEP 3: Parse the command line again to override arguments specified by the .args files
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
-
-print(f"{clOptions.verbose=}")
 
 for mod in modules:
     modules[mod].gOptions = clOptions
