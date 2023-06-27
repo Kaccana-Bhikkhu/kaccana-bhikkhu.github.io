@@ -983,7 +983,7 @@ def main():
         del gDatabase["tagRaw"]    
     gDatabase["keyCaseTranslation"] = gCamelCaseTranslation
 
-    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium"])
+    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
     Alert.extra.Show("Final gDatabase contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)

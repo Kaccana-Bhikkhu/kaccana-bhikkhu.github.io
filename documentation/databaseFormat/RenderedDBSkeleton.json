@@ -1,5 +1,10 @@
+// A json file with comments to illustrate the format of RenderedDatabase.json
+// The second question in the Metta 2008 retreat is used for reference.
 
-// Rendered database contents:
+// The rendered webpage is https://storage.googleapis.com/apqs_archive/prototype/events/Metta2008.html
+// The source spreadsheet is https://docs.google.com/spreadsheets/d/1cURolGNXe1nyLR8u_pslrGQFvcEE5udV9UVpPPl60es/edit#gid=975147409
+// 
+// RenderedDatabase.json contents:
 //     Key                      Type[len]
 //
 //     excerpts:                list[1005]
@@ -14,79 +19,85 @@
 //     format:                  dict[4]
 //     medium:                  dict[3]
 //     reference:               dict[13]
-//     tagSubsumed:             dict[19]
 //     tagDisplayList:          list[600]
+//     tagSubsumed:             dict[19]
 //     keyCaseTranslation:      dict[96]
 //
 // Item counts are as of Version 2.2, June 27, 2023
 
 {
-    "excerpts": {
-        "event": "Metta2008",
-        "sessionNumber": 1,
-        "excerptNumber": 2,
-        "fileNumber": 2,
-        "kind": "Question",
-        "flags": "",
-        "startTime": "0:24",
-        "endTime": "6:45",
-        "text": "Can you speak a little about samatha/vipassana and explain the difference between serenity and equanimity?",
-        "teachers": [
-          "AP"
-        ],
-        "annotations": [
-          {
-            "kind": "Indirect quote",
+    "excerpts": [
+        {
+            "event": "Metta2008", // db.event
+            "sessionNumber": 1,
+            "excerptNumber": 2,
+            "fileNumber": 2, // Audio files are at audio/excerpts/{excerpt.event}/{excerpt.event}_S{excerpt.sessionNumber:02d}_F{excerpt.fileNumber:02d}.mp3
+            // i.e. audio/excerpts/Metta2008/Metta2008_S01_F02.mp3
+            "kind": "Question", // db.kind
             "flags": "",
-            "startTime": "",
-            "endTime": "",
-            "text": "Samatha-vipassanā is like a green mango and a ripe mango. Same mango.|Ajahn Chah",
-            "teachers": [
-              "AP"
+            "startTime": "0:24",
+            "endTime": "6:45",
+            "text": "Can you speak a little about samatha/vipassana and explain the difference between serenity and equanimity?",
+            "teachers": [ // db.teacher
+                "AP"
             ],
-            "tags": [
-              "Ajahn Chah",
-              "Calming meditation",
-              "Insight meditation",
-              "Similes"
+            "annotations": [
+            {
+                "kind": "Indirect quote", // db.kind
+                "flags": "",
+                "startTime": "",
+                "endTime": "",
+                "text": "Samatha-vipassanā is like a green mango and a ripe mango. Same mango.|Ajahn Chah",
+                "teachers": [ // db.teacher
+                    "AP"
+                ],
+                "tags": [ // db.tag
+                    "Ajahn Chah",
+                    "Calming meditation",
+                    "Insight meditation",
+                    "Similes"
+                ],
+                "indentLevel": 1,
+                // annotation.body is rendered html
+                "body": "<b>Quote:</b>  “Samatha-vipassanā is like a green mango and a ripe mango. Same mango.” — Ajahn Chah"
+            }
             ],
-            "indentLevel": 1,
-            "body": "<b>Quote:</b>  “Samatha-vipassanā is like a green mango and a ripe mango. Same mango.” — Ajahn Chah"
-          }
-        ],
-        "tags": [
-          "Calming meditation",
-          "Insight meditation",
-          "Equanimity",
-          "Commentaries",
-          "Ajahn Chah",
-          "Relinquishment",
-          "Liberation",
-          "Concentration",
-          "Divine Abidings",
-          "Factors of Awakening",
-          "Discernment"
-        ],
-        "qTagCount": 3,
-        "duration": "6:21",
-        "body": "“Can you speak a little about samatha/vipassana and explain the difference between serenity and equanimity?” {attribution}",
-        "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
-      },
+            "tags": [ // db.tag
+                "Calming meditation",
+                "Insight meditation",
+                "Equanimity",
+                "Commentaries",
+                "Ajahn Chah",
+                "Relinquishment",
+                "Liberation",
+                "Concentration",
+                "Divine Abidings",
+                "Factors of Awakening",
+                "Discernment"
+            ],
+            "qTagCount": 3, // This is the number of tags in excerpt.tags that apply to the question. The remaining tags apply to the response to the question.
+            "duration": "6:21",
+            // excerpt.body is rendered html
+            // except that one must substitute either excerpt.attribution or "" for {attribution}
+            "body": "“Can you speak a little about samatha/vipassana and explain the difference between serenity and equanimity?” {attribution}",
+            "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
+        }
+    ],
     "event": {
         "Metta2008": {
           "title": "Metta Retreat",
           "subtitle": "",
           "code": "Metta2008",
-          "series": "Other",
-          "venue": "Padmasambhava Peace Institute",
-          "teachers": [
+          "series": "Other", // db.series
+          "venue": "Padmasambhava Peace Institute", // db.venue
+          "teachers": [ // db.teacher
             "AP"
           ],
           "startDate": "08/09/2008",
           "endDate": "14/09/2008",
-          "format": "Multiday event",
-          "medium": "In-person",
-          "tags": [
+          "format": "Multiday event", // db.format
+          "medium": "In-person", // db.medium
+          "tags": [ //db.tag
             "Goodwill"
           ],
           "website": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2008%20Metta%20Retreat/Index.html",
@@ -100,24 +111,24 @@
     },
     "sessions": [
         {
-          "event": "Metta2008",
+          "event": "Metta2008", // db.event
           "sessionNumber": 1,
           "date": "09/09/2008",
-          "filename": "Day 2 eve - Questions and Answers 1.mp3",
+          "filename": "Day 2 eve - Questions and Answers 1.mp3", // in directory audio/events/Metta2008/
           "duration": "58:21",
-          "teachers": [
+          "teachers": [ // db.teacher
             "AP"
           ],
           "sessionTitle": "",
           "remoteMp3Url": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2008%20Metta%20Retreat/Day%202%20eve%20-%20Questions%20and%20Answers%201.mp3",
           "excerpts": 7,
-          "tags": []
+          "tags": [] // db.tags
         }
     ],
     "kind": {
         "Question": {
           "kind": "Question",
-          "category": "Questions",
+          "category": "Questions", // db.category
           "defaultForm": 3,
           "canBeExcerpt": true,
           "canBeAnnotation": false,
@@ -128,11 +139,14 @@
           "appendToExcerpt": false,
           "inheritTeachersFrom": "Session",
           "usageNotes": "",
+          // kind.form
           "form": [
             "unimplemented",
             "++Question$!s!$$!colon!$++ $!text!$|| answered by $!teachers!$.",
             "$!prefix!$ “$!text!$” $!suffix!$|| Answered by $!teachers!$."
           ],
+          // kind.body and kind.attribution are generated from kind.form. They are pyratemp templates that are used to
+          // generate excerpt.body and excerpt.annotation from excerpt.text and excerpt.teachers.
           "body": [
             "unimplemented",
             "<b>Question$!s!$$!colon!$</b> $!text!${attribution}",
@@ -164,7 +178,7 @@
             "eventCount": 24,
             "sessionCount": 81,
             "excerptCount": 862,
-            "htmlFile": "ajahn-pasanno.html"
+            "htmlFile": "ajahn-pasanno.html" // in prototype/teachers
           }
     },
     "tag": {
@@ -189,7 +203,7 @@
             ],
             "copies": 2,
             "primaries": 1,
-            "htmlFile": "divine-abidings.html",
+            "htmlFile": "divine-abidings.html", // in prototype/tags
             "listIndex": 62,
             "excerptCount": 13
           }
@@ -232,9 +246,6 @@
             ]
         }
     },
-    "tagSubsumed": {
-        "Non-ill-will": "Goodwill"
-    },
     "tagDisplay": [ // This is the hierarchial list of tags shown at https://storage.googleapis.com/apqs_archive/prototype/indexes/AllTags.html
         {
             "level": 2,
@@ -247,6 +258,9 @@
             "tag": "Divine Abidings"
         }
     ],
+    "tagSubsumed": { // A dictionary of tags in the hierarchial list that have been merged with nearly identical tags.
+        "Non-ill-will": "Goodwill"
+    },
     "keyCaseTranslation": { // Dictionary of camel case translation of spreadsheet headings
         "Event Code": "eventCode"
     }
