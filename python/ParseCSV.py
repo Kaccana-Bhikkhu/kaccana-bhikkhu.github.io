@@ -608,10 +608,13 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         
         if not (TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts") or database["kind"][annotation["kind"]]["ignoreConsent"]):
             # If a teacher of one of the annotations hasn't given consent, we redact the excerpt itself
-            excerpt["exclude"] = True
-            print("Excluded excerpt due to annotation",annotation)
-            print()
-            return
+            if annotation["teachers"] == excerpt["teachers"] and database["kind"][excerpt["kind"]]["ignoreConsent"]:
+                pass # Unless the annotation has the same teachers as the excerpt and the excerpt kind ignores consent; e.g. "Reading"
+            else:
+                excerpt["exclude"] = True
+                print("Excluded excerpt due to annotation",annotation)
+                print()
+                return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         #if set(teacherList) == set(excerpt["teachers"]):
