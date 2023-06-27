@@ -64,6 +64,11 @@ def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     
+    if not gOptions.spreadsheet:
+        Alert.error.Show("A spreadsheet must be specified using --spreadsheet")
+        Alert.error.Show("DownloadCSV aborting.")
+        return
+
     gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
     gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
     
