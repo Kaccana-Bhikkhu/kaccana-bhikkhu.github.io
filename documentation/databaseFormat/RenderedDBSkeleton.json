@@ -1,0 +1,253 @@
+
+// Rendered database contents:
+//     Key                      Type[len]
+//
+//     excerpts:                list[1005]
+//     event:                   dict[24]
+//     sessions:                list[85]
+//     kind:                    dict[24]
+//     category:                dict[9]
+//     teacher:                 dict[33]
+//     tag:                     dict[467]
+//     series:                  dict[6]
+//     venue:                   dict[4]
+//     format:                  dict[4]
+//     medium:                  dict[3]
+//     reference:               dict[13]
+//     tagSubsumed:             dict[19]
+//     tagDisplayList:          list[600]
+//     keyCaseTranslation:      dict[96]
+//
+// Item counts are as of Version 2.2, June 27, 2023
+
+{
+    "excerpts": {
+        "event": "Metta2008",
+        "sessionNumber": 1,
+        "excerptNumber": 2,
+        "fileNumber": 2,
+        "kind": "Question",
+        "flags": "",
+        "startTime": "0:24",
+        "endTime": "6:45",
+        "text": "Can you speak a little about samatha/vipassana and explain the difference between serenity and equanimity?",
+        "teachers": [
+          "AP"
+        ],
+        "annotations": [
+          {
+            "kind": "Indirect quote",
+            "flags": "",
+            "startTime": "",
+            "endTime": "",
+            "text": "Samatha-vipassanā is like a green mango and a ripe mango. Same mango.|Ajahn Chah",
+            "teachers": [
+              "AP"
+            ],
+            "tags": [
+              "Ajahn Chah",
+              "Calming meditation",
+              "Insight meditation",
+              "Similes"
+            ],
+            "indentLevel": 1,
+            "body": "<b>Quote:</b>  “Samatha-vipassanā is like a green mango and a ripe mango. Same mango.” — Ajahn Chah"
+          }
+        ],
+        "tags": [
+          "Calming meditation",
+          "Insight meditation",
+          "Equanimity",
+          "Commentaries",
+          "Ajahn Chah",
+          "Relinquishment",
+          "Liberation",
+          "Concentration",
+          "Divine Abidings",
+          "Factors of Awakening",
+          "Discernment"
+        ],
+        "qTagCount": 3,
+        "duration": "6:21",
+        "body": "“Can you speak a little about samatha/vipassana and explain the difference between serenity and equanimity?” {attribution}",
+        "attribution": " Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>."
+      },
+    "event": {
+        "Metta2008": {
+          "title": "Metta Retreat",
+          "subtitle": "",
+          "code": "Metta2008",
+          "series": "Other",
+          "venue": "Padmasambhava Peace Institute",
+          "teachers": [
+            "AP"
+          ],
+          "startDate": "08/09/2008",
+          "endDate": "14/09/2008",
+          "format": "Multiday event",
+          "medium": "In-person",
+          "tags": [
+            "Goodwill"
+          ],
+          "website": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2008%20Metta%20Retreat/Index.html",
+          "description": "",
+          "sessions": 5,
+          "excerpts": 68,
+          "tagsApplied": 631,
+          "invalidTags": 0,
+          "duration": "5:45:11"
+        }
+    },
+    "sessions": [
+        {
+          "event": "Metta2008",
+          "sessionNumber": 1,
+          "date": "09/09/2008",
+          "filename": "Day 2 eve - Questions and Answers 1.mp3",
+          "duration": "58:21",
+          "teachers": [
+            "AP"
+          ],
+          "sessionTitle": "",
+          "remoteMp3Url": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2008%20Metta%20Retreat/Day%202%20eve%20-%20Questions%20and%20Answers%201.mp3",
+          "excerpts": 7,
+          "tags": []
+        }
+    ],
+    "kind": {
+        "Question": {
+          "kind": "Question",
+          "category": "Questions",
+          "defaultForm": 3,
+          "canBeExcerpt": true,
+          "canBeAnnotation": false,
+          "takesTimes": true,
+          "takesTeachers": true,
+          "takesTags": true,
+          "ignoreConsent": false,
+          "appendToExcerpt": false,
+          "inheritTeachersFrom": "Session",
+          "usageNotes": "",
+          "form": [
+            "unimplemented",
+            "++Question$!s!$$!colon!$++ $!text!$|| answered by $!teachers!$.",
+            "$!prefix!$ “$!text!$” $!suffix!$|| Answered by $!teachers!$."
+          ],
+          "body": [
+            "unimplemented",
+            "<b>Question$!s!$$!colon!$</b> $!text!${attribution}",
+            "$!prefix!$ “$!text!$” $!suffix!${attribution}"
+          ],
+          "attribution": [
+            "",
+            " answered by $!teachers!$.",
+            " Answered by $!teachers!$."
+          ]
+        }
+    },
+    "category": {
+      "Questions": {
+        "category": "Questions",
+        "description": ""
+      }
+    },
+    "teacher": {
+        "AP": {
+            "teacher": "AP",
+            "fullName": "Ajahn Pasanno",
+            "webLink": "www.abhayagiri.org/community",
+            "indexExcerpts": true,
+            "indexSessions": true,
+            "searchable": true,
+            "attribute": true,
+            "allowTag": true,
+            "eventCount": 24,
+            "sessionCount": 81,
+            "excerptCount": 862,
+            "htmlFile": "ajahn-pasanno.html"
+          }
+    },
+    "tag": {
+        "Divine Abidings": {
+            "tag": "Divine Abidings",
+            "pali": "brahmavihārā",
+            "fullTag": "Divine Abidings",
+            "fullPali": "brahmavihārā",
+            "number": "4",
+            "alternateTranslations": [],
+            "related": [],
+            "virtual": false,
+            "subtags": [
+              "Goodwill",
+              "Compassion",
+              "Empathetic joy",
+              "Equanimity"
+            ],
+            "supertags": [
+              "Skillful qualities",
+              "Meditation/Techniques"
+            ],
+            "copies": 2,
+            "primaries": 1,
+            "htmlFile": "divine-abidings.html",
+            "listIndex": 62,
+            "excerptCount": 13
+          }
+        },
+    "series": {
+        "Other": {
+            "series": "Other",
+            "abbreviation": "",
+            "description": ""
+            }
+        },
+    "venue": {
+        "Padmasambhava Peace Institute": {
+            "venue": "Padmasambhava Peace Institute",
+            "location": "Cazadero, California",
+            "address": "23125 Fort Ross Rd. Cazadero, CA 95421",
+            "websiteLink": "https://padmapeace.org/"
+        }
+    },
+    "format": {
+        "Multiday event": {
+            "format": "Multiday event"
+        }
+    },
+    "medium": {
+        "In-person": {
+            "medium": "In-person"
+        }
+    },
+    "reference": { // List of references to pdf files and probably other formats in the future
+        "stillness flowing": {
+            "abbreviation": "Stillness Flowing",
+            "title": "Stillness Flowing",
+            "attribution": "by Ajahn Jayasaro",
+            "pdfPageOffset": 22,
+            "filename": "stillness-flowing - 2018-08-31.pdf",
+            "remoteUrl": "https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf",
+            "author": [
+            "AJaya"
+            ]
+        }
+    },
+    "tagSubsumed": {
+        "Non-ill-will": "Goodwill"
+    },
+    "tagDisplay": [ // This is the hierarchial list of tags shown at https://storage.googleapis.com/apqs_archive/prototype/indexes/AllTags.html
+        {
+            "level": 2,
+            "indexNumber": "",
+            "name": "Divine Abidings",
+            "pali": "brahmavihārā",
+            "excerptCount": 13,
+            "subsumed": false,
+            "text": "Divine Abidings (13) [brahmavihārā]",
+            "tag": "Divine Abidings"
+        }
+    ],
+    "keyCaseTranslation": { // Dictionary of camel case translation of spreadsheet headings
+        "Event Code": "eventCode"
+    }
+}
