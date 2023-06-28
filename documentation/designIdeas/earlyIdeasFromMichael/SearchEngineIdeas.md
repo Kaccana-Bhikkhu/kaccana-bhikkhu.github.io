@@ -2,7 +2,9 @@ From an email from Michael Dec. 3, 2022:
 
 The spreadsheet is looking good. 
 
-Instead of trying to build something in HTML, I'd suggest just drawing a few wireframes on paper to give me a little more about your vision. Attached is a really quick wireframe (dharma_talks_explorer.png) of one idea that came to my mind when looking at the data. 
+Instead of trying to build something in HTML, I'd suggest just drawing a few wireframes on paper to give me a little more about your vision. Attached is a really quick wireframe of one idea that came to my mind when looking at the data. 
+
+![Early design idea](dharma_talks_explorer.png)
 
 A few more details:
 
