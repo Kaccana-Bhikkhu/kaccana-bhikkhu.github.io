@@ -365,8 +365,8 @@ def main() -> None:
     for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary"]:
         del gDatabase[key]
 
-    Alert.extra.Show("Rendered database contents:",indent = 0)
-    Utils.SummarizeDict(gDatabase,Alert.extra)
+    #Alert.extra.Show("Rendered database contents:",indent = 0)
+    #Utils.SummarizeDict(gDatabase,Alert.extra)
 
     with open(gOptions.renderedDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)

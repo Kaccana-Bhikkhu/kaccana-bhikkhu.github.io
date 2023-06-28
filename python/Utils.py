@@ -45,6 +45,74 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     else:
         return session["remoteMp3Url"]
 
+def SearchForOwningExcerpt(annotation: dict) -> dict:
+    """Search the global database of excerpts to find which one owns this annotation.
+    This is a slow function and should be called infrequently."""
+    if not gDatabase:
+        return None
+    for x in gDatabase["excerpts"]:
+        for a in x["annotations"]:
+            if annotation is a:
+                return x
+    return None
+
+def EllideText(s: str,maxLength = 50) -> str:
+    "Truncate a string to keep the number of characters under maxLength."
+    if len(s) <= maxLength:
+        return s
+    else:
+        return s[:maxLength - 3] + "..."
+
+def ItemRepr(item: dict) -> str:
+    """Generate a repr-style string for various dict types in gDatabase. 
+    Check the dict keys to guess what it is.
+    If we can't identify it, return repr(item)."""
+
+    if type(item) == dict:
+        if "tag" in item:
+            if "level" in item:
+                kind = "tagDisplay"
+            else:
+                kind = "tag"
+            return(f"{kind}({repr(item['tag'])})")
+        
+        event = session = fileNumber = None
+        args = []
+        if "code" in item and "subtitle" in item:
+            kind = "event"
+            event = item["code"]
+        elif "sessionTitle" in item:
+            kind = "session"
+            event = item["event"]
+            session = item["sessionNumber"]
+        elif "kind" in item and "sessionNumber" in item:
+            if "annotations" in item:
+                kind = "excerpt"
+                event = item["event"]
+                session = item["sessionNumber"]
+                fileNumber = item.get("fileNumber",None)
+            else:
+                kind = "annotation"
+                x = SearchForOwningExcerpt(item)
+                if x:
+                    event = x["event"]
+                    session = x["sessionNumber"]
+            args = [item['kind'],EllideText(item['text'])]
+        else:   
+            return(repr(item))
+        
+        if event:
+            name = event
+            if session is not None:
+                name += f"_S{session:02d}"
+            if fileNumber is not None:
+                name += f"_F{fileNumber:02d}"
+            args = [name] + args
+        
+        return f"{kind}({', '.join(repr(i) for i in args)})"
+    else:
+        return repr(item)
+
 def StrToTimeDelta(inStr):
     "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
     

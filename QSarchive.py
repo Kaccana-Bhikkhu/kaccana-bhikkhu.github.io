@@ -12,6 +12,7 @@ scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
 
 import Utils, Alert
+Alert.ObjectPrinter = Utils.ItemRepr
 
 def PrintModuleSeparator(moduleName:str) -> None:
     if moduleName:

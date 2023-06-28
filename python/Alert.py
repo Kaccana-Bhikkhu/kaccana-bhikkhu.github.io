@@ -25,7 +25,8 @@ class AlertClass:
         """Generate aan alert from a list of items to print.
         Print it if verbosity is high enough.
         Log it if we are logging."""
-        self.count += 1
+        if items:
+            self.count += 1
         if verbosity >= self.printAtVerbosity or self.logging:
             if indent is None:
                 indent = self.indent
