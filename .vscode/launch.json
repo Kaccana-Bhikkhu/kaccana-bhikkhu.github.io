@@ -46,8 +46,7 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV,Render,Prototype",
-                "-vvv",
-                "--explainExcludes"
+                "-vvv"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -59,8 +58,7 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV",
-                "-vvv",
-                "--explainExcludes"
+                "-vvv"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

@@ -2896,7 +2896,7 @@
           "body": "<b>Quote:</b>  “<em>Mai bpen rai</em>.” "
         },
         {
-          "kind": "Question",
+          "kind": "Quote",
           "flags": "",
           "startTime": "",
           "endTime": "",
@@ -2911,7 +2911,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "“'If there was a culture that was steeped in Buddhism, that would really solve all the problems of the world.' No it wouldn't. There are still human beings there. They'll create suffering wherever they go.” "
+          "body": "<b>Quote:</b>  “'If there was a culture that was steeped in Buddhism, that would really solve all the problems of the world.' No it wouldn't. There are still human beings there. They'll create suffering wherever they go.” "
         }
       ],
       "tags": [
@@ -8361,14 +8361,12 @@
       "sessionNumber": 3,
       "excerptNumber": 2,
       "fileNumber": 2,
-      "kind": "Commentary",
+      "kind": "Comment",
       "flags": "",
       "startTime": "2:42",
       "endTime": "",
       "text": "The more we become like monks and nuns, the more we will be helping the climate change situation.",
-      "teachers": [
-        "AP"
-      ],
+      "teachers": [],
       "annotations": [
         {
           "kind": "Response",
@@ -8384,7 +8382,7 @@
             "Human"
           ],
           "indentLevel": 1,
-          "body": "<b>Response</b> "
+          "body": "<b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> "
         }
       ],
       "tags": [
@@ -8393,7 +8391,7 @@
       ],
       "qTagCount": 2,
       "duration": "0:52",
-      "body": "<b>Commentary:</b> The more we become like monks and nuns, the more we will be helping the climate change situation.",
+      "body": "<b>Comment</b>: The more we become like monks and nuns, the more we will be helping the climate change situation.",
       "attribution": ""
     },
     {
@@ -8451,14 +8449,9 @@
       ],
       "annotations": [
         {
-          "kind": "Reading",
-          "flags": "",
-          "startTime": "",
-          "endTime": "",
-          "text": "from unnamed recent Ajahn Chah book.",
-          "teachers": [
-            "AChah"
-          ],
+          "kind": "Reference",
+          "flags": "0",
+          "text": "++Reading++ from an unnamed recent Ajahn Chah book.",
           "tags": [
             "Ajahn Chah",
             "Relinquishment",
@@ -8466,7 +8459,7 @@
             "Discernment"
           ],
           "indentLevel": 1,
-          "body": "<b>Reading</b> from unnamed recent Ajahn Chah book."
+          "body": "<b>Reading</b> from an unnamed recent Ajahn Chah book."
         },
         {
           "kind": "Simile",
@@ -14712,15 +14705,12 @@
       "sessionNumber": 2,
       "excerptNumber": 13,
       "fileNumber": 13,
-      "kind": "Commentary",
+      "kind": "Comment",
       "flags": "",
       "startTime": "49:22",
       "endTime": "50:41",
       "text": "I'm reminded of the encouragement to come back to the body as a basis.",
-      "teachers": [
-        "AP",
-        "AKd"
-      ],
+      "teachers": [],
       "annotations": [
         {
           "kind": "Response",
@@ -14743,7 +14733,7 @@
       ],
       "qTagCount": 2,
       "duration": "1:19",
-      "body": "<b>Commentary:</b> I'm reminded of the encouragement to come back to the body as a basis.",
+      "body": "<b>Comment</b>: I'm reminded of the encouragement to come back to the body as a basis.",
       "attribution": ""
     },
     {
@@ -14914,17 +14904,14 @@
       ],
       "annotations": [
         {
-          "kind": "Reading",
+          "kind": "Reference",
           "flags": "",
-          "startTime": "",
-          "endTime": "",
           "text": "Questions and answers regarding the primal mind from Collected Teachings p. 478.",
-          "teachers": [],
           "tags": [
             "Nature of mind"
           ],
           "indentLevel": 1,
-          "body": "<b>Reading:</b> Questions and answers regarding the primal mind from Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=516\" target=\"_blank\">p. 478</a>."
+          "body": "<b>Reference</b>: Questions and answers regarding the primal mind from Collected Teachings of Ajahn Chah  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=516\" target=\"_blank\">p. 478</a>."
         }
       ],
       "tags": [
@@ -34493,7 +34480,7 @@
       "allowTag": true,
       "eventCount": 24,
       "sessionCount": 81,
-      "excerptCount": 862,
+      "excerptCount": 860,
       "htmlFile": "ajahn-pasanno.html"
     },
     "AThan": {
@@ -34557,7 +34544,7 @@
       "allowTag": false,
       "eventCount": 7,
       "sessionCount": 2,
-      "excerptCount": 20,
+      "excerptCount": 19,
       "htmlFile": "ajahn-karunadhammo.html"
     },
     "AJoti": {

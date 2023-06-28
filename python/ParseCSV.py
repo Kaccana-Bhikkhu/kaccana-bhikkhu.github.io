@@ -688,17 +688,19 @@ def LoadEventFile(database,eventName,directory):
         x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
         x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
 
+        if not x["kind"]:
+            x["kind"] = "Question"
+
         if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
+            if not database["kind"][x["kind"]]["canBeAnnotation"]:
+                Alert.warning.Show(x,"to",prevExcerpt,f": Kind {repr(x['kind'])} is not allowed for annotations.")
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
                 Alert.error.Show(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
             continue
-        else:
-            x["annotations"] = []
 
-        if not x["kind"]:
-            x["kind"] = "Question"
+        x["annotations"] = []    
         x["event"] = eventName
         
         ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
@@ -726,8 +728,10 @@ def LoadEventFile(database,eventName,directory):
             fileNumber += 1 # File number counts all excerpts listed for the event
         x["fileNumber"] = fileNumber
 
-        excludeReason = []
+        if not database["kind"][x["kind"]]["canBeExcerpt"]:
+                Alert.warning.Show(x,f": Kind {repr(x['kind'])} is not allowed for excerpts.")
 
+        excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):

@@ -2699,7 +2699,7 @@
           "indentLevel": 1
         },
         {
-          "kind": "Question",
+          "kind": "Quote",
           "flags": "",
           "startTime": "",
           "endTime": "",
@@ -7454,14 +7454,12 @@
       "sessionNumber": 3,
       "excerptNumber": 2,
       "fileNumber": 2,
-      "kind": "Commentary",
+      "kind": "Comment",
       "flags": "",
       "startTime": "2:42",
       "endTime": "",
       "text": "The more we become like monks and nuns, the more we will be helping the climate change situation.",
-      "teachers": [
-        "AP"
-      ],
+      "teachers": [],
       "annotations": [
         {
           "kind": "Response",
@@ -7538,14 +7536,9 @@
       ],
       "annotations": [
         {
-          "kind": "Reading",
-          "flags": "",
-          "startTime": "",
-          "endTime": "",
-          "text": "from unnamed recent Ajahn Chah book.",
-          "teachers": [
-            "AChah"
-          ],
+          "kind": "Reference",
+          "flags": "0",
+          "text": "++Reading++ from an unnamed recent Ajahn Chah book.",
           "tags": [
             "Ajahn Chah",
             "Relinquishment",
@@ -13203,15 +13196,12 @@
       "sessionNumber": 2,
       "excerptNumber": 13,
       "fileNumber": 13,
-      "kind": "Commentary",
+      "kind": "Comment",
       "flags": "",
       "startTime": "49:22",
       "endTime": "50:41",
       "text": "I'm reminded of the encouragement to come back to the body as a basis.",
-      "teachers": [
-        "AP",
-        "AKd"
-      ],
+      "teachers": [],
       "annotations": [
         {
           "kind": "Response",
@@ -13387,12 +13377,9 @@
       ],
       "annotations": [
         {
-          "kind": "Reading",
+          "kind": "Reference",
           "flags": "",
-          "startTime": "",
-          "endTime": "",
           "text": "Questions and answers regarding the primal mind from Collected Teachings p. 478.",
-          "teachers": [],
           "tags": [
             "Nature of mind"
           ],
@@ -31346,7 +31333,7 @@
       "allowTag": true,
       "eventCount": 24,
       "sessionCount": 81,
-      "excerptCount": 862,
+      "excerptCount": 860,
       "htmlFile": "ajahn-pasanno.html"
     },
     "AThan": {
@@ -31410,7 +31397,7 @@
       "allowTag": false,
       "eventCount": 7,
       "sessionCount": 2,
-      "excerptCount": 20,
+      "excerptCount": 19,
       "htmlFile": "ajahn-karunadhammo.html"
     },
     "AJoti": {
