@@ -34,10 +34,16 @@ class AudioChip extends HTMLElement {
 		const button = document.createElement("button");
 		button.classList.add("play");
 
+		button.addEventListener("click", () => {
+			this.audio.play();
+		});
+
 		const time = document.createElement("span");
 		this.audio.addEventListener("canplaythrough", () => {
 			let duration = Math.round(this.audio.duration);
-			time.innerText = `${Math.floor(duration / 60)}:${duration % 60}`;
+			time.innerText = `${Math.floor(duration / 60)}:${(duration % 60)
+				.toString()
+				.padStart(2, "0")}`;
 		});
 
 		const style = document.createElement("style");
