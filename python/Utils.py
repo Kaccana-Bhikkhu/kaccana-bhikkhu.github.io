@@ -207,7 +207,7 @@ def RegexMatchAny(strings: List[str],capturingGroup = True):
 def ReorderKeys(ioDict: dict,firstKeys = [],lastKeys = []) -> None:
     "Reorder the keys in ioDict"
 
-    spareDict = {key:value for key,value in ioDict.items()} # Make a shallow copy
+    spareDict = copy.copy(ioDict) # Make a shallow copy
     ioDict.clear()
 
     for key in firstKeys:
