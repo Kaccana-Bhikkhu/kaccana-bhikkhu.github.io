@@ -54,7 +54,7 @@ del head # Clean up the global namespace
 "Create the top navigation guide"
 nav = Airium(source_minify=True)
 mainMenu = []
-mainMenu.append(MenuItem("Homepage","../index.html"))
+mainMenu.append(MenuItem("Homepage","../homepage.html"))
 mainMenu.append(MenuItem("Tag/subtag hierarchy","../indexes/AllTags.html"))
 mainMenu.append(MenuItem("Most common tags","../indexes/SortedTags.html"))
 mainMenu.append(MenuItem("Events","../indexes/AllEvents.html"))
@@ -803,7 +803,7 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/homepage.html',help='Use this file to create homepage.html; Default: prototype/templates/homepage.html')    
     parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
@@ -830,7 +830,7 @@ def main():
     
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
-    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))
+    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"homepage.html"))
 
     if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()
