@@ -255,8 +255,18 @@
             "excerptCount": 13,
             "subsumed": false,
             "text": "Divine Abidings (13) [brahmavihārā]",
-            "tag": "Divine Abidings"
-        }
+            "tag": "Divine Abidings" // When subsumed == false, tag == name
+        },
+        {
+            "level": 4,
+            "indexNumber": "2",
+            "name": "Non-ill-will",
+            "pali": "abyāpāda",
+            "excerptCount": 47,
+            "subsumed": true,
+            "text": "Non-ill-will [abyāpāda] see Goodwill (47)",
+            "tag": "Goodwill" // For subsumed list items, name != tag
+          }
     ],
     "tagSubsumed": { // A dictionary of tags in the hierarchial list that have been merged with nearly identical tags.
         "Non-ill-will": "Goodwill"
