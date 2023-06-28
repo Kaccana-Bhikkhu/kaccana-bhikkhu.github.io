@@ -21,15 +21,17 @@ class AlertClass:
         self.indent = indent
         self.count = 0
 
-    def Show(self,*items) -> None:
+    def Show(self,*items,indent:int|None = None) -> None:
         """Generate aan alert from a list of items to print.
         Print it if verbosity is high enough.
         Log it if we are logging."""
         self.count += 1
         if verbosity >= self.printAtVerbosity or self.logging:
+            if indent is None:
+                indent = self.indent
             strings = []
-            if self.indent:
-                strings.append(" " * (self.indent - 1))
+            if indent:
+                strings.append(" " * (indent - 1))
             if self.message:
                 strings.append(self.message)
             for item in items:

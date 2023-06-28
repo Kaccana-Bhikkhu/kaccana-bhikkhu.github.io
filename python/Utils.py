@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from datetime import timedelta, datetime
+import copy
 import unicodedata
 import re
 from typing import List
+import Alert
 
 gOptions = None
 gDatabase = None # These will be set later by QSarchive.py
@@ -132,3 +134,31 @@ def RegexMatchAny(strings: List[str],capturingGroup = True):
             return r"(?:" + r"|".join(strings) + r")"
     else:
         return r'a\bc' # Looking for a word boundary between text characters always fails: https://stackoverflow.com/questions/1723182/a-regex-that-will-never-be-matched-by-anything
+
+
+def ReorderKeys(ioDict: dict,firstKeys = [],lastKeys = []) -> None:
+    "Reorder the keys in ioDict"
+
+    spareDict = {key:value for key,value in ioDict.items()} # Make a shallow copy
+    ioDict.clear()
+
+    for key in firstKeys:
+        ioDict[key] = spareDict.pop(key)
+
+    for key in spareDict:
+        if key not in lastKeys:
+            ioDict[key] = spareDict[key]
+
+    for key in lastKeys:
+        ioDict[key] = spareDict[key]
+
+def SummarizeDict(d: dict,printer: Alert.AlertClass) -> None:
+    "Print a summary of dict d, one line per key."
+    for key,value in d.items():
+        desc = f"{key}: {value.__class__.__name__}"
+        try:
+            desc += f"[{len(value)}]"
+        except TypeError:
+            pass
+        printer.Show(desc)
+    

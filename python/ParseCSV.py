@@ -77,22 +77,6 @@ def AppendUnique(ioList,inToAppend):
         if not item in ioList:
             ioList.append(item)
 
-def ReorderKeys(inDict,firstKeys = [],lastKeys = []):
-    "Return a dict with the same data, but reordered keys"
-    
-    outDict = {}
-    for key in firstKeys:
-        outDict[key] = inDict[key]
-        
-    for key in inDict:
-        if key not in lastKeys:
-            outDict[key] = inDict[key]
-    
-    for key in lastKeys:
-        outDict[key] = inDict[key]
-    
-    return outDict
-
 def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True,camelCase = True):
     for n in range(skipLines):
         file.readline()
@@ -674,7 +658,7 @@ def LoadEventFile(database,eventName,directory):
             
         for s in sessions:
             s["event"] = eventName
-            s = ReorderKeys(s,["event","sessionNumber"])
+            Utils.ReorderKeys(s,["event","sessionNumber"])
             if not gOptions.jsonNoClean:
                 del s["exclude"]
             
@@ -826,7 +810,7 @@ def LoadEventFile(database,eventName,directory):
             x["excerptNumber"] = xNumber
         
         for index in range(len(excerpts)):
-            excerpts[index] = ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
+            Utils.ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
         
         if not gOptions.jsonNoClean:
             for x in excerpts:
@@ -951,6 +935,7 @@ def main():
     Each .csv sheet gets one entry in the database.
     Tags.csv and event files indicated by four digits e.g. TG2015.csv are parsed separately."""
 
+    global gDatabase
     LoadSummary(gDatabase,os.path.join(gOptions.csvDir,"Summary.csv"))
    
     specialFiles = {'Summary','Tag','EventTemplate'}
@@ -993,16 +978,17 @@ def main():
     CreateTagDisplayList(gDatabase)
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
-    
-    gDatabase["keyCaseTranslation"] = gCamelCaseTranslation
-    if not gOptions.jsonNoClean:
-        del gDatabase["tagRaw"]
 
-    Alert.extra.Show("Final gDatabase contents:")
-    for item in gDatabase:
-        Alert.extra.Show(item + ": "+str(len(gDatabase[item])))
+    if not gOptions.jsonNoClean:
+        del gDatabase["tagRaw"]    
+    gDatabase["keyCaseTranslation"] = gCamelCaseTranslation
+
+    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
+
+    Alert.extra.Show("Final gDatabase contents:",indent = 0)
+    Utils.SummarizeDict(gDatabase,Alert.extra)
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
-    Alert.info.Show(Prototype.ExcerptDurationStr(gDatabase["excerpts"]))
+    Alert.info.Show(Prototype.ExcerptDurationStr(gDatabase["excerpts"]),indent = 0)
