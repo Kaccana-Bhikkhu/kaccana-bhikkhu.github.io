@@ -134,7 +134,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
 
 def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     """Turn a tag name into a hyperlink to that tag.
-    Simplying assumption: All html pages (except index.html) are in a subdirectory of prototype.
+    Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
     If fullTag, the link text contains the full tag name."""
     
@@ -257,7 +257,7 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
 
-def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadata") -> str:
+def AudioIcon(hyperlink: str,title: str, iconWidth = "30",linkKind = None,preload = "metadata") -> str:
     "Return an audio icon with the given hyperlink"
     
     if not linkKind:
@@ -265,15 +265,20 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadat
 
     a = Airium(source_minify=True)
     if linkKind == "img":
-        a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
+        a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
+    elif linkKind == "audio":
+        with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
+            with a.a(href = hyperlink):
+                a("Download audio")
+        a.br()
     else:
-        with a.audio(controls = "", src = hyperlink, preload = preload, style="vertical-align: middle;"):
+        with a.get_tag_('audio-chip')(src = hyperlink, title = title, style="vertical-align: middle;"):
             with a.a(href = hyperlink):
                 a("Download audio")
         a.br()
 	
-    return str(a).replace("<audio", "<audio-chip").replace("</audio", "</audio-chip")
+    return str(a)
 
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
@@ -466,7 +471,7 @@ class Formatter:
 
             if linkSessionAudio and gOptions.audioLinks == "img":
                 durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
-                itemsToJoin.append(f'{Mp3SessionLink(session)} ({durStr}) ')
+                itemsToJoin.append(f'{Mp3SessionLink(session,"Test session title")} ({durStr}) ')
             
             a(' – '.join(itemsToJoin))
 
@@ -478,7 +483,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session))
+            a(Mp3SessionLink(session,"Test session title"))
             if horizontalRule:
                 a.hr()
         
@@ -549,7 +554,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {}
         if x["body"]:
             with a.p():
-                a(formatter.FormatExcerpt(x,**options))
+                a(formatter.FormatExcerpt(x,title = "Test excerpt title",**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
@@ -777,11 +782,11 @@ def ExtractHtmlBody(fileName: str) -> str:
 def WriteIndexPage(templateName: str,indexPage: str) -> None:
     """Write the index page by extracting the body from a file created by an external editor and calling WriteHtmlFile to convert it to our (extremely minimal) style.
     templateName: the file created by an external editor
-    indexPage: the name of the page to write - usually index.html"""
+    indexPage: the name of the page to write - usually homepage.html"""
     
     htmlBody = ExtractHtmlBody(templateName)
     
-    head = gDefaultHead.replace('"../','"') # index.html lives in the root directory, so modify directory paths accordingly.
+    head = gDefaultHead.replace('"../','"') # homepage.html lives in the root directory, so modify directory paths accordingly.
     styleInfo = Airium()
     with styleInfo.style(type="text/css"):
         styleInfo("p { line-height: 1.3; }")
@@ -804,7 +809,7 @@ def AddArguments(parser):
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/homepage.html',help='Use this file to create homepage.html; Default: prototype/templates/homepage.html')    
-    parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
+    parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
