@@ -435,6 +435,10 @@ class Formatter:
         event = gDatabase["event"][session["event"]]
 
         bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
+        title = f'{gDatabase["event"][session["event"]]["title"]}'
+        if session["sessionNumber"] > 0:
+            title += f', Session {session["sessionNumber"]}'
+            
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
@@ -469,9 +473,13 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and gOptions.audioLinks == "img":
-                durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
-                itemsToJoin.append(f'{Mp3SessionLink(session,"Test session title")} ({durStr}) ')
+            if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
+                audioLink = Mp3SessionLink(session,title = title)
+                if gOptions.audioLinks == "img":
+                    durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
+                else:
+                    durStr = ''
+                itemsToJoin.append(audioLink + durStr + ' ')
             
             a(' – '.join(itemsToJoin))
 
@@ -483,7 +491,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session,"Test session title"))
+            a(Mp3SessionLink(session,title = title))
             if horizontalRule:
                 a.hr()
         
