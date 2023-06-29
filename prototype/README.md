@@ -1,4 +1,4 @@
-<!-- The content below has been extracted from the body of prototype/templates/index.html -->
+<!-- The content below has been extracted from the body of prototype/templates/homepage.html -->
 
 		<img
 			src="images/AjahnPasanno.jpg"

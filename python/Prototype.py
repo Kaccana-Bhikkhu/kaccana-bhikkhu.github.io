@@ -273,7 +273,7 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadat
                 a("Download audio")
         a.br()
 	
-    return str(a).replace("<audio", "<audio-chip")
+    return str(a).replace("<audio", "<audio-chip").replace("</audio", "</audio-chip")
 
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
