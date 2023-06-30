@@ -630,8 +630,17 @@ def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
 def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.AlertClass,message: str) -> list:
     """Return [i for in items if filter(i)].
     Print a message for each excluded item using printer and message."""
-    pass
+    filteredItems = []
+    excludedItems = []
+    for i in items:
+        if filter(i):
+            filteredItems.append(i)
+        else:
+            excludedItems.append(i)
 
+    for i in excludedItems:
+        printer.Show(i,message)
+    return filteredItems
 
 def LoadEventFile(database,eventName,directory):
     
@@ -655,21 +664,23 @@ def LoadEventFile(database,eventName,directory):
         ListifyKey(sessions,key)
     for key in ["sessionNumber","excerpts"]:
         ConvertToInteger(sessions,key)
-        
-    if not gOptions.ignoreExcludes:
-        sessions = [s for s in sessions if not s["exclude"]] # Remove excluded sessions
-        # Remove excluded sessions
-        
+
     for s in sessions:
         s["event"] = eventName
         Utils.ReorderKeys(s,["event","sessionNumber"])
+
+    if not gOptions.ignoreExcludes:
+        sessions = FilterAndExplain(sessions,lambda s: not s["exclude"],excludeAlert,"- exclude flag Yes.")
+        # Remove excluded sessions
+        
+    for s in sessions:
         if not gOptions.jsonNoClean:
             del s["exclude"]
-        
-    sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True)]
+    
+    sessions = FilterAndExplain(sessions,lambda s: TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True),excludeAlert,"due to teacher consent.")
         # Remove sessions if none of the session teachers have given consent
     database["sessions"] += sessions
-    
+
 
     for key in ["teachers","qTag1","aTag1"]:
         ListifyKey(rawExcerpts,key)
@@ -831,7 +842,7 @@ def LoadEventFile(database,eventName,directory):
             x.pop(key,None)
     
     sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
-    sessions = [s for s in sessions if s["sessionNumber"] in sessionsWithExcerpts]
+    sessions = FilterAndExplain(sessions,lambda s: s["sessionNumber"] in sessionsWithExcerpts,excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     
     database["excerpts"] += excerpts
