@@ -10866,6 +10866,43 @@
     {
       "event": "WR2014",
       "sessionNumber": 55,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Reading",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "\"Training under Ajahn Chah\" by Ajahn Tong Jon from _Twigs and Branches of the Bodhinyana_.",
+      "teachers": [
+        "ATongJan"
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "DS"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Translated by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AKov"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [],
+      "qTagCount": 0,
+      "duration": "41:00"
+    },
+    {
+      "event": "WR2014",
+      "sessionNumber": 55,
       "excerptNumber": 1,
       "fileNumber": 1,
       "kind": "Question",
@@ -31273,7 +31310,8 @@
       "searchable": true,
       "attribute": true,
       "allowTag": true,
-      "htmlFile": ""
+      "excerptCount": 1,
+      "htmlFile": "ajahn-tong-jan.html"
     },
     "Nyanamoli": {
       "teacher": "Nyanamoli",
@@ -31465,7 +31503,7 @@
       "teacher": "AKov",
       "fullName": "Ajahn Kovilo",
       "webLink": "",
-      "indexExcerpts": false,
+      "indexExcerpts": true,
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
@@ -31573,6 +31611,17 @@
       "indexExcerpts": false,
       "indexSessions": false,
       "searchable": false,
+      "attribute": true,
+      "allowTag": true,
+      "htmlFile": ""
+    },
+    "GKappel": {
+      "teacher": "GKappel",
+      "fullName": "Gail Kappel",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
       "attribute": true,
       "allowTag": true,
       "htmlFile": ""
@@ -47761,26 +47810,6 @@
     "Debbie Stamp"
   ],
   "excerptsRedacted": [
-    {
-      "sessionNumber": 55,
-      "flags": "",
-      "startTime": "Session",
-      "endTime": "",
-      "annotations": [
-        {
-          "kind": "Read by",
-          "flags": "",
-          "text": "",
-          "teachers": [
-            "DS"
-          ],
-          "indentLevel": 1
-        }
-      ],
-      "event": "WR2014",
-      "fileNumber": 0,
-      "qTagCount": 0
-    },
     {
       "sessionNumber": 2,
       "flags": "",

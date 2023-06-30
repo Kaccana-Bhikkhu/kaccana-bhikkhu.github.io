@@ -5,7 +5,7 @@ from __future__ import annotations
 import os, re, csv, json, unicodedata
 import Render
 import Utils
-from typing import List, Iterator, Tuple
+from typing import List, Iterator, Tuple, Callable, Any
 from datetime import timedelta
 import Prototype, Alert
 
@@ -626,6 +626,12 @@ def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
             AppendUnique(authors,referenceDB[match[0].lower()]["author"])
 
     return authors
+
+def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.AlertClass,message: str) -> list:
+    """Return [i for in items if filter(i)].
+    Print a message for each excluded item using printer and message."""
+    pass
+
 
 def LoadEventFile(database,eventName,directory):
     

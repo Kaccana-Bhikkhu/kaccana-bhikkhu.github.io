@@ -12099,6 +12099,55 @@
     {
       "event": "WR2014",
       "sessionNumber": 55,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Reading",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "\"Training under Ajahn Chah\" by Ajahn Tong Jon from _Twigs and Branches of the Bodhinyana_.",
+      "teachers": [
+        "ATongJan"
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "DS"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Translated by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AKov"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [],
+      "qTagCount": 0,
+      "duration": "41:00",
+      "body": "<b>Reading:</b> \"Training under Ajahn Chah\" by Ajahn Tong Jon from <em>Twigs and Branches of the Bodhinyana</em>. {attribution2} {attribution3}",
+      "attribution": "",
+      "attribution2": "Read by Debbie Stamp.",
+      "teachers2": [
+        "DS"
+      ],
+      "attribution3": "Translated by Ajahn Kovilo.",
+      "teachers3": [
+        "AKov"
+      ]
+    },
+    {
+      "event": "WR2014",
+      "sessionNumber": 55,
       "excerptNumber": 1,
       "fileNumber": 1,
       "kind": "Question",
@@ -34420,7 +34469,8 @@
       "searchable": true,
       "attribute": true,
       "allowTag": true,
-      "htmlFile": ""
+      "excerptCount": 1,
+      "htmlFile": "ajahn-tong-jan.html"
     },
     "Nyanamoli": {
       "teacher": "Nyanamoli",
@@ -34612,7 +34662,7 @@
       "teacher": "AKov",
       "fullName": "Ajahn Kovilo",
       "webLink": "",
-      "indexExcerpts": false,
+      "indexExcerpts": true,
       "indexSessions": false,
       "searchable": false,
       "attribute": true,
@@ -34720,6 +34770,17 @@
       "indexExcerpts": false,
       "indexSessions": false,
       "searchable": false,
+      "attribute": true,
+      "allowTag": true,
+      "htmlFile": ""
+    },
+    "GKappel": {
+      "teacher": "GKappel",
+      "fullName": "Gail Kappel",
+      "webLink": "",
+      "indexExcerpts": true,
+      "indexSessions": true,
+      "searchable": true,
       "attribute": true,
       "allowTag": true,
       "htmlFile": ""
