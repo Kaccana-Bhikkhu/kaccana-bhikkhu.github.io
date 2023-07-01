@@ -21,6 +21,7 @@ function changeURL(url) {
 				el.href = "#" + url;
 
 				el.addEventListener("click", () => {
+					history.pushState({}, "", "#" + url);
 					changeURL(url);
 				});
 			});
@@ -28,3 +29,7 @@ function changeURL(url) {
 }
 
 changeURL(location.hash.slice(1) || frame.dataset.url);
+
+addEventListener("popstate", () => {
+	changeURL(location.hash.slice(1) || frame.dataset.url);
+});
