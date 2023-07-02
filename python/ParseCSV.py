@@ -840,11 +840,7 @@ def LoadEventFile(database,eventName,directory):
     for x in removedExcerpts: # Redact information about these excerpts
         for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
             x.pop(key,None)
-    
-    sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
-    sessions = FilterAndExplain(sessions,lambda s: s["sessionNumber"] in sessionsWithExcerpts,excludeAlert,"since it has no excerpts.")
-        # Remove sessions that have no excerpts in them
-    
+
     database["excerpts"] += excerpts
     database["excerptsRedacted"] += removedExcerpts
     
@@ -994,7 +990,9 @@ def main():
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             LoadEventFile(gDatabase,event,gOptions.csvDir)
     excludeAlert.Show(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.\n")
-
+    gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
+        # Remove sessions that have no excerpts in them
+    
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)
