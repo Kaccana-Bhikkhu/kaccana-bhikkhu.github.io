@@ -196,7 +196,7 @@ def RenderExcerpts() -> None:
 def LinkSuttas():
     """Add links to sutta.readingfaithfully.org"""
 
-    def RefToReadingFaithfully(matchObject: re.Match) -> str:
+    def RawRefToReadingFaithfully(matchObject: re.Match) -> str:
         firstPart = matchObject[0].split("-")[0]
 
         if firstPart.startswith("Kd"): # For Kd, link to SuttaCentral directly
@@ -214,8 +214,14 @@ def LinkSuttas():
             dashed = re.sub(r'\s','-',firstPart)
             link = f"https://sutta.readingfaithfully.org/?q={dashed}"
 
-        return f'[{matchObject[0]}]({link})'
+        return link
 
+    def RefToReadingFaithfully(matchObject: re.Match) -> str:
+        return f'[{matchObject[0]}]({RawRefToReadingFaithfully(matchObject)})'
+
+    def SuttasWithinMarkdownLink(bodyStr: str) -> Tuple[str,int]:
+        return re.subn(markdownLinkToSutta,RawRefToReadingFaithfully,bodyStr,flags = re.IGNORECASE)
+    
     def LinkItem(bodyStr: str) -> Tuple[str,int]:
         return re.subn(suttaMatch,RefToReadingFaithfully,bodyStr,flags = re.IGNORECASE)
     
@@ -224,10 +230,15 @@ def LinkSuttas():
     suttaAbbreviations = [s[0] for s in suttas]
 
     suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[.:]?([0-9]+)?[-]?[0-9]*"
+    
+    markdownLinkToSutta = r"(?<=\]\()" + suttaMatch + r"(?=\))"
+    markdownLinksMatched = ApplyToBodyText(SuttasWithinMarkdownLink)
+        # Use lookbehind and lookahead assertions to first match suttas links within markdown format, e.g. [Sati](MN 10)
 
     suttasMatched = ApplyToBodyText(LinkItem)
+        # Then match all remaining sutta links
 
-    Alert.extra.Show(f"{suttasMatched} links generated to suttas")
+    Alert.extra.Show(f"{suttasMatched + markdownLinksMatched} links generated to suttas, {markdownLinksMatched} within markdown links")
 
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
@@ -336,7 +347,8 @@ def LinkReferences() -> None:
     2. [title]() or [title](page N) - Titles in Reference sheet; if page N or p. N appears between the parenthesis, link to this page in the pdf, but don't display in the html
     3. [xxxxx](title) or [xxxxx](title page N) - Apply hyperlink from title to arbitrary text xxxxx
     4. title page N - Link to specific page for titles in Reference sheet which shows the page number
-    5. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org"""
+    5. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org
+    6. [reference](SS N.N) - Markdown hyperlink pointing to sutta.."""
 
     LinkSuttas()
     LinkKnownReferences()
