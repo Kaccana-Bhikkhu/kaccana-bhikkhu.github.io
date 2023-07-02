@@ -5,7 +5,7 @@ verbosity = 0
 ObjectPrinter = repr # Call this function to convert items to print into strings
 
 class AlertClass:
-    def __init__(self,name: str,message: str|None = None, plural = None, printAtVerbosity: int = 0, logging:bool = False,indent = 0):
+    def __init__(self,name: str,message: str|None = None, plural = None, printAtVerbosity: int = 0, logging:bool = False,indent = 0,lineSpacing = 0):
         "Defines a specific type of alert."
         self.name = name
         self.message = message if message is not None else name + ":"
@@ -17,9 +17,10 @@ class AlertClass:
             self.plural = self.name
         self.printAtVerbosity = printAtVerbosity
         self.logging = logging # log these alerts?
-        self.log = {} # A log of e
-        self.indent = indent
+        self.log = {} # A log of printed alerts
         self.count = 0
+        self.indent = indent # print this many spaces before the message
+        self.lineSpacing = lineSpacing # print this many blank lines after the alert
 
     def Show(self,*items,indent:int|None = None) -> None:
         """Generate aan alert from a list of items to print.
@@ -43,6 +44,8 @@ class AlertClass:
             
             if verbosity >= self.printAtVerbosity:
                 print(" ".join(strings))
+                for _ in range(self.lineSpacing):
+                    print()
     
     def CountString(self) -> str:
         "Return a string describing how many alerts have occured."
@@ -54,10 +57,10 @@ class AlertClass:
         else:
             return ""
 
-error = AlertClass("Error","ERROR:",printAtVerbosity=-2,logging=True)
-warning = AlertClass("Warning","WARNING:",printAtVerbosity = -1,logging = True)
-caution = AlertClass("Caution",printAtVerbosity = 0, logging = True)
-notice = AlertClass("Notice",printAtVerbosity = 1,logging=True)
+error = AlertClass("Error","ERROR:",printAtVerbosity=-2,logging=True,lineSpacing = 1)
+warning = AlertClass("Warning","WARNING:",printAtVerbosity = -1,logging = True,lineSpacing = 1)
+caution = AlertClass("Caution",printAtVerbosity = 0, logging = True,lineSpacing = 1)
+notice = AlertClass("Notice",printAtVerbosity = 1,logging=True,lineSpacing = 1)
 
 essential = AlertClass("Essential","",printAtVerbosity = -1,indent = 3)
 structure = AlertClass("Structure","",printAtVerbosity = 0)

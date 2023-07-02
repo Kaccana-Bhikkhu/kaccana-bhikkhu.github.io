@@ -551,10 +551,29 @@ def PrepareTeachers(teacherDB) -> None:
         else:
             t["htmlFile"] = ""
 
+itemAllowedFields = {"startTime": "takesTimes", "endTime": "takesTimes", "teachers": "takesTeachers", "aTag": "takesTags", "qTag": "takesTags"}
+
+def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
+    """Print alerts if there are unexpectedly blank or filled fields in item based on its kind."""
+
+    isExcerpt = bool(item["startTime"]) and kind["canBeExcerpt"]
+        # excerpts specify a start time
+    
+    if not isExcerpt and not kind["canBeAnnotation"]:
+        Alert.warning.Show(item,"to",prevExcerpt,f": Kind {repr(item['kind'])} is not allowed for annotations.")
+    
+    for key,permission in itemAllowedFields.items():
+        if item[key] and not kind[permission]:
+            message = f"has ['{key}'] = {repr(item[key])}, but kind {repr(item['kind'])} does not allow this."
+            if isExcerpt or not prevExcerpt:
+                Alert.caution.Show(item,message)
+            else:
+                Alert.caution.Show(item,"to",prevExcerpt,message)
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
-    ### Need to fix so that Extra tags assigns tags to annotations
+    CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
     if annotation["kind"] == "Extra tags":
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
             if "tags" in prevAnnotation:
@@ -569,9 +588,6 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     if annotation["exclude"]:
         return
     
-    if not annotation["kind"]:
-        Alert.warning.Show("Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
-        annotation["kind"] = kind = "Comment"
     kind = database["kind"][annotation["kind"]]
     
     keysToRemove = ["sessionNumber","offTopic","aListen","exclude","qTag","aTag"]
@@ -593,7 +609,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 pass # Unless the annotation has the same teachers as the excerpt and the excerpt kind ignores consent; e.g. "Reading"
             else:
                 excerpt["exclude"] = True
-                excludeAlert.Show(excerpt,"due to teachers",annotation["teachers"],"of",annotation,"\n")
+                excludeAlert.Show(excerpt,"due to teachers",annotation["teachers"],"of",annotation)
                 return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
@@ -694,9 +710,11 @@ def LoadEventFile(database,eventName,directory):
     lastSession = -1
     prevExcerpt = None
     excerpts = []
+    blankExcerpts = 0
     redactedTagSet = set(database["tagRedacted"])
     for x in rawExcerpts:
         if all(not value for key,value in x.items() if key != "sessionNumber"): # Skip lines which have a session number and nothing else
+            blankExcerpts += 1
             continue
 
         x["flags"] = x.get("flags","")
@@ -709,8 +727,6 @@ def LoadEventFile(database,eventName,directory):
             x["kind"] = "Question"
 
         if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
-            if not database["kind"][x["kind"]]["canBeAnnotation"]:
-                Alert.warning.Show(x,"to",prevExcerpt,f": Kind {repr(x['kind'])} is not allowed for annotations.")
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
@@ -745,8 +761,7 @@ def LoadEventFile(database,eventName,directory):
             fileNumber += 1 # File number counts all excerpts listed for the event
         x["fileNumber"] = fileNumber
 
-        if not database["kind"][x["kind"]]["canBeExcerpt"]:
-                Alert.warning.Show(x,f": Kind {repr(x['kind'])} is not allowed for excerpts.")
+        CheckItemContents(x,None,database["kind"][x["kind"]])
 
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
@@ -756,12 +771,15 @@ def LoadEventFile(database,eventName,directory):
             excludeReason = [x,"due to excerpt teachers",x["teachers"]]
         
         if excludeReason:
-            excludeAlert.Show(*excludeReason,"\n")
+            excludeAlert.Show(*excludeReason)
 
         x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         
         excerpts.append(x)
         prevExcerpt = x
+
+    if blankExcerpts:
+        Alert.notice.Show(blankExcerpts," blank excerpts in",eventDesc)
 
     prevSession = None
     for xIndex, x in enumerate(excerpts):
@@ -948,7 +966,7 @@ gOptions = None
 gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 # AlertClass for explanations of excluded excerpts. Don't show by default.
-excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False)
+excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)
 
 def main():
     """ Parse a directory full of csv files into the dictionary database and write it to a .json file.
@@ -989,7 +1007,7 @@ def main():
     for event in gDatabase["summary"]:
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             LoadEventFile(gDatabase,event,gOptions.csvDir)
-    excludeAlert.Show(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.\n")
+    excludeAlert.Show(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     

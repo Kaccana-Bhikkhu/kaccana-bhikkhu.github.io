@@ -169,7 +169,7 @@ for error in [Alert.error, Alert.warning, Alert.caution, Alert.notice]:
         errorCountList.append(countString)
 
 if errorCountList:
-    Alert.essential.Show("  ***** " + ", ".join(errorCountList) + " ****")
+    Alert.essential.Show("  ***** " + ", ".join(errorCountList) + " *****")
 else:
     Alert.status.Show("No errors reported.")
 
