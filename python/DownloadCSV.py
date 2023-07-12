@@ -80,11 +80,14 @@ def main():
     gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
     gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
     
+    downloadSummary = False
     if gOptions.sheets != 'All' and gOptions.sheets != 'Default':
         gOptions.sheets = gOptions.sheets.split(',')
+        if 'Summary' in gOptions.sheets:
+            downloadSummary = True
+            gOptions.sheets.remove('Summary')
         
-    if os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All':
-        downloadSummary = False
+    if os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All' and not downloadSummary:
         oldSheetIds = ReadSheetIds()
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
