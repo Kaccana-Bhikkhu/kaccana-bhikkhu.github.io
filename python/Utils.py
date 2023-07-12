@@ -45,6 +45,13 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     else:
         return session["remoteMp3Url"]
 
+def EllideText(s: str,maxLength = 50) -> str:
+    "Truncate a string to keep the number of characters under maxLength."
+    if len(s) <= maxLength:
+        return s
+    else:
+        return s[:maxLength - 3] + "..."
+
 def StrToTimeDelta(inStr):
     "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
     
