@@ -40,6 +40,12 @@ const playAudio = (title, audio) => {
 		playButton.classList.toggle("playing");
 		audio.paused ? audio.play() : audio.pause();
 	});
+	audio.addEventListener("ended", () => {
+		currentlyPlaying = null;
+		audio.currentTime = 0;
+		audioPlayer.classList.remove("show");
+		playButton.classList.remove("playing");
+	});
 };
 
 setInterval(() => {
