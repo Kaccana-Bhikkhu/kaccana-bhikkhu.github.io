@@ -428,7 +428,7 @@ class Formatter:
         a = Airium(source_minify=True)
         event = gDatabase["event"][session["event"]]
 
-        bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
+        bookmark = Utils.ItemCode(session)
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
@@ -547,7 +547,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         else:
             options = {}
         if x["body"]:
-            with a.p():
+            with a.p(id = Utils.ItemCode(x)):
                 a(formatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
@@ -736,7 +736,7 @@ def WriteEventPages(tagPageDir: str) -> None:
             squish("Sessions:")
             for s in sessions:
                 squish(4*"&nbsp")
-                with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
+                with squish.a(href = f"#{Utils.ItemCode(s)}"):
                     squish(str(s['sessionNumber']))
             
             a(str(squish))

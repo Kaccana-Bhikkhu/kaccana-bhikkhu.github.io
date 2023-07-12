@@ -26,6 +26,21 @@ def AppendUnique(dest: list, source: list) -> list:
         if item not in destSet:
             dest.append(item)
 
+def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
+    "Return a code for this item. "
+
+    if item:
+        event = item.get("event",None)
+        session = item.get("sessionNumber",None)
+        fileNumber = item.get("fileNumber",None)
+    
+    outputStr = event
+    if session is not None:
+        outputStr += f"_S{session:02d}"
+    if fileNumber is not None:
+        outputStr += f"_F{fileNumber:02d}"
+    return outputStr
+
 def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     """Return a link to the mp3 file associated with a given excerpt or session.
     item: a dict representing an excerpt or session.
@@ -37,7 +52,7 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
         else:
             baseURL = gOptions.remoteExcerptMp3URL
 
-        return f"{baseURL}{item['event']}/{item['event']}_S{item['sessionNumber']:02d}_F{item['fileNumber']:02d}.mp3"
+        return f"{baseURL}{item['event']}/{ItemCode(item)}.mp3"
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
     if gOptions.sessionMp3 == "local":
