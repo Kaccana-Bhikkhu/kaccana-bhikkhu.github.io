@@ -23,15 +23,15 @@ const playAudio = (title, audio) => {
 	audioPlayer.classList.add("show");
 	playButton.classList.add("playing");
 
-	playBar.max = duration;
-	playBar.value = 0;
-
 	if (currentlyPlaying instanceof HTMLAudioElement) {
 		currentlyPlaying.pause();
 		currentlyPlaying.currentTime = 0;
 	}
 	currentlyPlaying = audio;
 	audio.play();
+
+	playBar.max = duration;
+	playBar.value = 0;
 
 	playBar.addEventListener("change", () => {
 		audio.currentTime = playBar.value;
