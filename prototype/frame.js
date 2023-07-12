@@ -1,5 +1,5 @@
 const frame = document.querySelector("div#frame");
-const title = document.querySelector("title");
+const titleEl = document.querySelector("title");
 
 let path = "";
 
@@ -10,7 +10,7 @@ function changeURL(url) {
 			frame.innerHTML = text;
 
 			let innerTitle = frame.querySelector("title");
-			title.innerHTML = innerTitle.innerHTML;
+			titleEl.innerHTML = innerTitle.innerHTML;
 			innerTitle.remove();
 
 			frame.querySelectorAll("a").forEach((el) => {
