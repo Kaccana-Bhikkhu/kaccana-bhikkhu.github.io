@@ -14,11 +14,14 @@
 
 // Main program options:
 --sessionMp3 remote
---excerptMp3 remote
+--excerptMp3 local
 --remoteExcerptMp3URL "http://storage.googleapis.com/apqs_archive/audio/excerpts/"
 
 // DownloadCSV options:
 --spreadsheet "https://docs.google.com/spreadsheets/d/1-uHcXO5upPnN4mAnCYmcuu2eDBiKdn4F2lG46ZGrbDs/edit#gid=1779066455"
 --summarySheetID 2007732801
 
+// 
+
+// Increase verbosity to maximum
 -vvv
