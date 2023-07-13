@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import NamedTuple
 import pyratemp
 import os
+from collections.abc import Iterator, Iterable, Callable
+import copy
 
 # The most basic information about a webpage
 class PageInfo(NamedTuple):
@@ -12,6 +14,12 @@ class PageInfo(NamedTuple):
     file: str|None = None
 
 class Menu:
+    items: list[PageInfo]
+    highlightedItem:int|None
+    separator:int|str
+    highlightTags:tuple(str,str)
+    renderAfterSection: int|None
+
     def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlightTags:tuple(str,str) = ("<b>","</b>")) -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
@@ -52,6 +60,13 @@ class PageDesc:
         self.section = {0:""} # A dict describing the content of the page. Sequential sections are given by integer keys, non-sequential sections by string keys.
         self.menus = [] # A list of menus on the page
     
+    def Clone(self) -> PageDesc:
+        """Clone this page so we can add more material to the new page without affecting the original."""
+        clone = copy.copy(self)
+        clone.section = copy.copy(self.section)
+        clone.menus = copy.deepcopy(self.menus) # menus are mutable objects, so deep copy this list
+        return clone
+
     def AddContent(self,content: str,section:int|str|None = None) -> None:
         """Add html content to the specified section."""
         if section is None:
@@ -91,6 +106,8 @@ class PageDesc:
         pageHtml = pyratemp.Template(temp)(page = self)
         
         directoryDepth = len(self.info.file.split("/")) - 1
+        # All relative file paths in the template and menus are written as if the page is at directory depth 1.
+        # If the page will be written somewhere else, change the paths accordingly
         if directoryDepth != 1:
             pageHtml = pageHtml.replace('"../','"' + '../' * directoryDepth)
         return pageHtml
@@ -100,9 +117,76 @@ class PageDesc:
         pageHtml = self.RenderWithTemplate(templateFile)
         filePath = os.path.join(directory,self.info.file)
 
+        os.makedirs(directory,exist_ok=True)
         with open(filePath,'w',encoding='utf-8') as file:
             print(pageHtml,file=file)
 
+def PagesFromMenuIterators(basePage: PageDesc,menuIterators: Iterable[Callable[[PageDesc],Iterable[PageInfo|PageDesc]]]) -> Iterator[PageDesc]:
+    """Generate a series of PageDesc objects from a list of functions that each describe one item in a menu.
+    basePage: The page we have constructed so far.
+    menuIterators: An iterable (often a list) of generator functions, each of which describes a menu item and its associated pages.
+        Each generator function takes a PageDesc object describing the page constructed up to this point.
+        Each generator function first returns a PageInfo object containing the menu title and link.
+        Next it returns a series of PageDesc objects which have been cloned from basePage plus the menu with additional material added.
+        An empty generator means that no menu item is generated.
+    PagesFromMenuDescriptors is a simpler version of this function."""
+    
+    menuIterators = [m(basePage) for m in menuIterators]
+    menuItems = [next(m,None) for m in menuIterators]
+    menuIterators = [m for m,item in zip(menuIterators,menuItems,strict=True) if item]
+    menuItems = [m for m in menuItems if m]
+
+    print(menuItems)
+    basePage.AddMenu(Menu(menuItems))
+
+    for menuItem,menuIterator in zip(menuItems,menuIterators):
+        for page in menuIterator:
+            yield page
+
+def PagesFromMenuDescriptors(basePage: PageDesc,menuDescriptors: Iterable[Iterable[PageInfo|tuple(PageInfo,str)]]) -> Iterator[PageDesc]:
+    """Generate a series of PageDesc objects from a list of iterables that each describe one item in a menu.
+    basePage: The page we have constructed so far.
+    menuIterators: An iterable of iterables (usually list of a generator functions), in which each item describes a menu item and its associated pages.
+        The first item in each iterable is a PageInfo object containing the menu item and link.
+        Next it returns a series of PageDesc objects which have been cloned from basePage plus the menu with additional material added.
+        Each subsequent item a tuple (pageInfo,htmlBody) describing each page associated with this menu item.
+        An empty generator means that no menu item is generated."""
+    
+    def AppendBodyToPage(basePage: PageDesc,menuDescriptor: Iterable[PageInfo|tuple(PageInfo,str)]) -> Iterable[PageInfo|PageDesc]:
+        """A glue function so we can re-use the functionality of PagesFromMenuIterators."""
+        menuDescriptor = iter(menuDescriptor)
+        value = next(menuDescriptor,None)
+        if value:
+            yield value # First yield the menu item name and link
+        else:
+            return
+        
+        for pageInfo,pageBody in menuDescriptor: # Then yield PageDesc objects for the remaining pages
+            newPage = basePage.Clone()
+            newPage.info = pageInfo
+            newPage.AddContent(pageBody)
+            yield newPage
+
+    for n,m in enumerate(menuDescriptors):
+        print(n,m)
+    menuFunctions = [lambda bp,m=m: AppendBodyToPage(bp,m) for m in menuDescriptors]
+    "See https://docs.python.org/3.4/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result for why we need to use m = m."
+    yield from PagesFromMenuIterators(basePage,menuFunctions)
+
+
+page = PageDesc()
+page.AddContent("Title in body")
+
+mainMenu = []
+mainMenu.append([PageInfo("Home","home.html"),(PageInfo("Here is home","home.html"),"Text of home page.")])
+mainMenu.append([PageInfo("Tag/subtag hierarchy","tags.html"),(PageInfo("Tags","tags.html"),"Some tags go here.")])
+mainMenu.append([])
+mainMenu.append([PageInfo("Events","events.html"),(PageInfo("Events","events.html"),"Some events go here.")])
+
+for newPage in PagesFromMenuDescriptors(page,mainMenu):
+    newPage.WriteFile("prototype/templates/Global.html","testDir")
+
+"""
 mainMenu = []
 mainMenu.append(PageInfo("Homepage","../index.html"))
 mainMenu.append(PageInfo("Tag/subtag hierarchy","../indexes/AllTags.html"))
@@ -117,4 +201,4 @@ page.info = PageInfo("Home Page","homepage.html")
 page.AddMenu(Menu(mainMenu))
 page.AddContent("<p>This is the text of a new page.</p>")
 
-page.WriteFile("prototype/templates/Global.html","prototype")
+page.WriteFile("prototype/templates/Global.html","prototype")"""
