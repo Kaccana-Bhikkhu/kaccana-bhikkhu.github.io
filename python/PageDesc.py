@@ -42,8 +42,9 @@ class Menu:
         
         menuLinks = [f'<a href = "{i.file}">{i.title}</a>' for i in self.items]
         if self.highlightedItem is not None:
-            menuLinks[self.highlightedItem] = separator[0] + menuLinks[self.highlightedItem] + separator[1]
-        
+            menuLinks[self.highlightedItem] = highlightTags[0] + menuLinks[self.highlightedItem] + highlightTags[1]
+
+        print(self.highlightedItem, menuLinks[self.highlightedItem])
         return separator.join(menuLinks)
 
 class PageDesc:
@@ -105,7 +106,7 @@ class PageDesc:
 
         pageHtml = pyratemp.Template(temp)(page = self)
         
-        directoryDepth = len(self.info.file.split("/")) - 1
+        directoryDepth = 1
         # All relative file paths in the template and menus are written as if the page is at directory depth 1.
         # If the page will be written somewhere else, change the paths accordingly
         if directoryDepth != 1:
@@ -131,16 +132,18 @@ def PagesFromMenuIterators(basePage: PageDesc,menuIterators: Iterable[Callable[[
         An empty generator means that no menu item is generated.
     PagesFromMenuDescriptors is a simpler version of this function."""
     
-    menuIterators = [m(basePage) for m in menuIterators]
-    menuItems = [next(m,None) for m in menuIterators]
-    menuIterators = [m for m,item in zip(menuIterators,menuItems,strict=True) if item]
-    menuItems = [m for m in menuItems if m]
+    menuIterators = [m(basePage) for m in menuIterators] # Initialize the menu iterators
+    menuItems = [next(m,None) for m in menuIterators] # The menu items are the first item in each iterator
+    menuIterators = [m for m,item in zip(menuIterators,menuItems,strict=True) if item] # Remove menu iterators if the menu doesn't exist
+    menuItems = [m for m in menuItems if m] # Same for menu items
 
     print(menuItems)
     basePage.AddMenu(Menu(menuItems))
 
-    for menuItem,menuIterator in zip(menuItems,menuIterators):
+    for itemNumber,menuIterator in enumerate(menuIterators):
+        basePage.menus[-1].highlightedItem = itemNumber
         for page in menuIterator:
+
             yield page
 
 def PagesFromMenuDescriptors(basePage: PageDesc,menuDescriptors: Iterable[Iterable[PageInfo|tuple(PageInfo,str)]]) -> Iterator[PageDesc]:
@@ -170,8 +173,11 @@ def PagesFromMenuDescriptors(basePage: PageDesc,menuDescriptors: Iterable[Iterab
     for n,m in enumerate(menuDescriptors):
         print(n,m)
     menuFunctions = [lambda bp,m=m: AppendBodyToPage(bp,m) for m in menuDescriptors]
-    "See https://docs.python.org/3.4/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result for why we need to use m = m."
+        # See https://docs.python.org/3.4/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result 
+        # and https://stackoverflow.com/questions/452610/how-do-i-create-a-list-of-lambdas-in-a-list-comprehension-for-loop 
+        # for why we need to use m = m.
     yield from PagesFromMenuIterators(basePage,menuFunctions)
+
 
 
 page = PageDesc()
@@ -184,7 +190,8 @@ mainMenu.append([])
 mainMenu.append([PageInfo("Events","events.html"),(PageInfo("Events","events.html"),"Some events go here.")])
 
 for newPage in PagesFromMenuDescriptors(page,mainMenu):
-    newPage.WriteFile("prototype/templates/Global.html","testDir")
+    newPage.WriteFile("prototype/templates/Global.html","prototype/testDir")
+
 
 """
 mainMenu = []
