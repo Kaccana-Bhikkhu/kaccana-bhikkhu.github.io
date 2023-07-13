@@ -18,6 +18,9 @@ function changeURL(url) {
 					.getAttribute("href")
 					.replaceAll("../", "")
 					.replaceAll("index.html", "homepage.html");
+
+				if (url.includes("://")) return;
+
 				el.href = "#" + url;
 
 				el.addEventListener("click", () => {
