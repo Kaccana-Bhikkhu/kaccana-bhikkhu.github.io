@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import NamedTuple
 import pyratemp
+import os
 
 # The most basic information about a webpage
 class PageInfo(NamedTuple):
@@ -26,6 +27,8 @@ class Menu:
         """Return an html string corresponding to the rendered menu."""
         if separator is None:
             separator = self.separator
+        if type(separator) == int:
+            separator = " " + (separator - 1) * "&nbsp"
         if highlightTags is None:
             highlightTags = self.highlightTags
         
@@ -33,7 +36,7 @@ class Menu:
         if self.highlightedItem is not None:
             menuLinks[self.highlightedItem] = separator[0] + menuLinks[self.highlightedItem] + separator[1]
         
-        return " ".join(menuLinks)
+        return separator.join(menuLinks)
 
 class PageDesc:
     """A PageDesc object is used gradually build a complete description of the content of a page.
@@ -85,9 +88,20 @@ class PageDesc:
         with open(templateFile,encoding='utf-8') as file:
             temp = file.read()
 
+        pageHtml = pyratemp.Template(temp)(page = self)
+        
         directoryDepth = len(self.info.file.split("/")) - 1
-        temp = temp.replace('"../','"' + '../' * directoryDepth)
-        return pyratemp.Template(temp)(page = self)
+        if directoryDepth != 1:
+            pageHtml = pageHtml.replace('"../','"' + '../' * directoryDepth)
+        return pageHtml
+    
+    def WriteFile(self,templateFile: str,directory = ".") -> None:
+        """Write this page to disk."""
+        pageHtml = self.RenderWithTemplate(templateFile)
+        filePath = os.path.join(directory,self.info.file)
+
+        with open(filePath,'w',encoding='utf-8') as file:
+            print(pageHtml,file=file)
 
 mainMenu = []
 mainMenu.append(PageInfo("Homepage","../index.html"))
@@ -103,4 +117,4 @@ page.info = PageInfo("Home Page","homepage.html")
 page.AddMenu(Menu(mainMenu))
 page.AddContent("<p>This is the text of a new page.</p>")
 
-print(page.RenderWithTemplate("prototype/templates/Global.html"))
+page.WriteFile("prototype/templates/Global.html","prototype")
