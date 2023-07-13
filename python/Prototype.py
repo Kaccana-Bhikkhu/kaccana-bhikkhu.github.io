@@ -257,6 +257,24 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
     
     WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
 
+def PlayerTitle(item:dict) -> str:
+    """Generate a title string for the audio player for an excerpt or session.
+    The string will be no longer than gOptions.maxPlayerTitleLength characters."""
+
+    sessionNumber = item.get("sessionNumber",None)
+    excerptNumber = item.get("excerptNumber",None)
+    titleItems = []
+    if sessionNumber:
+        titleItems.append(f"S{sessionNumber}")
+    if excerptNumber:
+        titleItems.append(f"E{excerptNumber}")
+    
+    lengthSoFar = len(" ".join(titleItems))
+    fullEventTitle = gDatabase['event'][item['event']]['title']
+    titleItems.insert(0,Utils.EllideText(fullEventTitle,gOptions.maxPlayerTitleLength - lengthSoFar - 1))
+    return " ".join(titleItems)
+    
+
 def AudioIcon(hyperlink: str,title: str, iconWidth = "30",linkKind = None,preload = "metadata") -> str:
     "Return an audio icon with the given hyperlink"
     
@@ -435,9 +453,6 @@ class Formatter:
         event = gDatabase["event"][session["event"]]
 
         bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
-        title = f'{gDatabase["event"][session["event"]]["title"]}'
-        if session["sessionNumber"] > 0:
-            title += f', Session {session["sessionNumber"]}'
             
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
@@ -474,7 +489,7 @@ class Formatter:
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
             if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session,title = title)
+                audioLink = Mp3SessionLink(session,title = PlayerTitle(session))
                 if gOptions.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
                 else:
@@ -491,7 +506,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session,title = title))
+            a(Mp3SessionLink(session,title = PlayerTitle(session)))
             if horizontalRule:
                 a.hr()
         
@@ -566,7 +581,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         title += f", Excerpt {x['excerptNumber']}"
         if x["body"]:
             with a.p():
-                a(formatter.FormatExcerpt(x,title = title,**options))
+                a(formatter.FormatExcerpt(x,title = PlayerTitle(x),**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
@@ -823,6 +838,7 @@ def AddArguments(parser):
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/homepage.html',help='Use this file to create homepage.html; Default: prototype/templates/homepage.html')    
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
+    parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
 gOptions = None
