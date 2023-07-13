@@ -32,21 +32,19 @@ const playAudio = (title, audio) => {
 
 	playBar.max = duration;
 	playBar.value = 0;
-
-	playBar.addEventListener("change", () => {
-		audio.currentTime = playBar.value;
-	});
-	playButton.addEventListener("click", () => {
-		playButton.classList.toggle("playing");
-		audio.paused ? audio.play() : audio.pause();
-	});
-	audio.addEventListener("ended", () => {
-		currentlyPlaying = null;
-		audio.currentTime = 0;
-		audioPlayer.classList.remove("show");
-		playButton.classList.remove("playing");
-	});
 };
+
+playBar.addEventListener("change", () => {
+	let currentTime = Math.round(currentlyPlaying.currentTime);
+	currentlyPlaying.currentTime = playBar.value;
+	durationTitle.innerText = `${time(currentTime)} / ${time(
+		Math.round(currentlyPlaying.duration)
+	)}`;
+});
+playButton.addEventListener("click", () => {
+	playButton.classList.toggle("playing");
+	currentlyPlaying.paused ? currentlyPlaying.play() : currentlyPlaying.pause();
+});
 
 setInterval(() => {
 	if (currentlyPlaying != null) {
@@ -55,6 +53,15 @@ setInterval(() => {
 		durationTitle.innerText = `${time(currentTime)} / ${time(
 			Math.round(currentlyPlaying.duration)
 		)}`;
+
+		if (currentTime === Math.round(currentlyPlaying.duration)) {
+			console.log("closing player");
+			currentlyPlaying.currentTime = 0;
+			currentlyPlaying.pause();
+			audioPlayer.classList.remove("show");
+			playButton.classList.remove("playing");
+			currentlyPlaying = null;
+		}
 	}
 }, 1000);
 
