@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import List, Type, Tuple 
+from typing import List, Tuple 
 from airium import Airium
 import Utils
 from datetime import timedelta
@@ -271,11 +271,13 @@ def PlayerTitle(item:dict) -> str:
     
     lengthSoFar = len(" ".join(titleItems))
     fullEventTitle = gDatabase['event'][item['event']]['title']
+    if titleItems:
+        fullEventTitle += ","
     titleItems.insert(0,Utils.EllideText(fullEventTitle,gOptions.maxPlayerTitleLength - lengthSoFar - 1))
     return " ".join(titleItems)
     
 
-def AudioIcon(hyperlink: str,title: str, iconWidth = "30",linkKind = None,preload = "metadata") -> str:
+def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,preload:str = "metadata",dur:str = "") -> str:
     "Return an audio icon with the given hyperlink"
     
     if not linkKind:
@@ -291,7 +293,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth = "30",linkKind = None,preloa
                 a("Download audio")
         a.br()
     else:
-        with a.get_tag_('audio-chip')(src = hyperlink, title = title, style="vertical-align: middle;"):
+        with a.get_tag_('audio-chip')(src = hyperlink, title = title, dur = dur):
             with a.a(href = hyperlink):
                 a("Download audio")
         a.br()
@@ -302,13 +304,13 @@ def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(excerpt),**kwArgs)
+    return AudioIcon(Utils.Mp3Link(excerpt),dur = excerpt["duration"],**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(session),**kwArgs)
+    return AudioIcon(Utils.Mp3Link(session),dur = session["duration"],**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
