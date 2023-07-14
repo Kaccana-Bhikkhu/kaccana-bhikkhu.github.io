@@ -20,13 +20,19 @@ function changeURL(url) {
 					.replaceAll("index.html", "homepage.html");
 
 				if (url.includes("://")) return;
+				else if (url.startsWith("#")) {
+					el.href = location.hash;
+					el.addEventListener("click", () => {
+						document.getElementById(url.slice(1)).scrollIntoView();
+					});
+				} else {
+					el.href = "#" + url;
 
-				el.href = "#" + url;
-
-				el.addEventListener("click", () => {
-					history.pushState({}, "", "#" + url);
-					changeURL(url);
-				});
+					el.addEventListener("click", () => {
+						history.pushState({}, "", "#" + url);
+						changeURL(url);
+					});
+				}
 			});
 		});
 }
