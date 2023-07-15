@@ -608,11 +608,8 @@ def WriteAllEvents(pageDir: str) -> None:
                 
     WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
 
-def WriteTagPages(tagPageDir: str) -> None:
+def TagPages(tagPageDir: str) -> PageDesc.PageAugmentorType:
     """Write a html file for each tag in the database"""
-    
-    if not os.path.exists(tagPageDir):
-        os.makedirs(tagPageDir)
         
     xDB = gDatabase["excerpts"]
     
@@ -645,7 +642,7 @@ def WriteTagPages(tagPageDir: str) -> None:
         else:
             tagPlusPali = tag
 
-        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a),titleInBody=tagPlusPali)
+        yield PageDesc.PageInfo(tag,os.path.join(tagPageDir,tagInfo["htmlFile"]),tagPlusPali),str(a)
 
 def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     """Write a html file for each teacher in the database and an index page for all teachers"""
@@ -801,7 +798,7 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     tagMenu = []
     tagMenu.append(SortedHtmlTagList("indexes"))
     tagMenu.append(IndentedHtmlTagList("indexes","AllTags.html",listDuplicateSubtags=False))
-
+    tagMenu.append(TagPages("tags"))
     yield PageDesc.PageInfo("Tags",os.path.join(indexDir,"SortedTags.html"))
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu)
 

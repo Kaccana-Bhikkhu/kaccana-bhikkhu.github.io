@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import NamedTuple
 import pyratemp
-import os
+import itertools
 from pathlib import Path
 from collections.abc import Iterator, Iterable, Callable
 import copy
@@ -245,23 +245,17 @@ class PageDesc:
             """A glue function so we can re-use the functionality of PagesFromMenuGenerators."""
             menuDescriptor = iter(menuDescriptor)
             menuItem = next(menuDescriptor,None)
-            pageToProcessLater = None
+            pageToProcessLater = []
             if menuItem:
                 if type(menuItem) == PageInfo:
                     yield menuItem # If it's a menu item and link, yield that
                 else:
-                    pageToProcessLater = menuItem
+                    pageToProcessLater = [menuItem]
                     yield None # Otherwise process the page later and return None to continue building the menu
             else:
                 return
             
-            if pageToProcessLater:
-                newPage = basePage.Clone()
-                newPage.info = menuItem
-                newPage.Augment(pageToProcessLater)
-                yield newPage
-
-            for pageData in menuDescriptor: # Then yield PageDesc objects for the remaining pages
+            for pageData in itertools.chain(pageToProcessLater,menuDescriptor): # Then yield PageDesc objects for the remaining pages
                 newPage = basePage.Clone()
                 newPage.info = menuItem
                 newPage.Augment(pageData)
