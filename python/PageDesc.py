@@ -78,13 +78,16 @@ class Menu:
 class PageDesc: # Define a dummy PageDesc class for the type definitions below
     pass
 
-PageAugmentationMenuItem = Callable[[PageDesc],Iterable[PageInfo|PageDesc]]
+PageAugmentorType = [str | tuple[PageInfo,str] | PageDesc]
+"""The acceptable types that can be passed to PageDesc.Augment."""
+
+PageGeneratorMenuItem = Callable[[PageDesc],Iterable[PageInfo|PageDesc]]
 """Type defintion for a generator function that returns an iterator of pages associated with a menu item.
 See PagesFromMenuGenerators for a full description."""
 
 PageDescriptorMenuItem = Iterable[PageInfo | str | tuple[PageInfo,str] | PageDesc]
 """An iterable that describes a menu item and pages associate with it.
-It first yields a PageInfo object containing the menu title and link.
+It first (optionally) yields a PageInfo object containing the menu title and link. If the first item isn't a PageInfo object, no menu item is generated, but pages are produced as below.
 For each page associated with the menu it then yields one of the following:
     str: html of the page following the menu. The page title and file name are those associated with the menu item.
         Note: if the iterable returns more than one str value, the pages will overwrite each other
@@ -110,8 +113,8 @@ class PageDesc:
         """Clone this page so we can add more material to the new page without affecting the original."""
         return copy.deepcopy(self)
 
-    def AddContent(self,content: str,section:int|str|None = None) -> None:
-        """Add html content to the specified section."""
+    def AppendContent(self,content: str,section:int|str|None = None) -> None:
+        """Append html content to the specified section."""
         if not content:
             return
         if section is None:
@@ -144,16 +147,29 @@ class PageDesc:
             menu.renderAfterSection += self.numberedSections - 1
         self.menus += pageToAppend.menus
         
-        self.AddContent(pageToAppend.section[0])
+        self.AppendContent(pageToAppend.section[0])
         for sectionNum in range(1,pageToAppend.numberedSections):
             self.BeginNewSection()
-            self.AddContent(pageToAppend.section[sectionNum])
+            self.AppendContent(pageToAppend.section[sectionNum])
         
         for key,content in pageToAppend.section.items():
             if type(key) != int:
-                self.AddContent(content,key)
-        
+                self.AppendContent(content,key)
     
+    def Augment(self,newData: PageAugmentorType):
+        """Append content depending on the type of newData as follows:
+        str: add this html to the latest section.
+        tuple(PageInfo,str): set info = PageInfo and add str to the latest section.
+        PageDesc: call self.Merge."""
+        if type(newData) == str:
+            self.AppendContent(newData)
+        elif type(newData) == PageDesc:
+            self.Merge(newData)
+        else:
+            pageInfo,pageBody = newData
+            self.info = pageInfo
+            self.AppendContent(pageBody)
+
     def PageText(self,startingWithSection: int = 0) -> str:
         """Return a string of the text of the page."""
         textToJoin = []
@@ -187,30 +203,37 @@ class PageDesc:
         with open(filePath,'w',encoding='utf-8') as file:
             print(pageHtml,file=file)
 
-    def _PagesFromMenuGenerators(self,menuGenerators: Iterable[PageAugmentationMenuItem],**menuStyle) -> Iterator[PageDesc]:
+    def _PagesFromMenuGenerators(self,menuGenerators: Iterable[PageGeneratorMenuItem],**menuStyle) -> Iterator[PageDesc]:
         """Generate a series of PageDesc objects from a list of functions that each describe one item in a menu.
         self: The page we have constructed so far.
         menuGenerators: An iterable (often a list) of generator functions, each of which describes a menu item and its associated pages.
             Each generator function takes a PageDesc object describing the page constructed up to this point.
-            Each generator function first yields a PageInfo object containing the menu title and link.
+            Each generator function (optionally) first yields a PageInfo object containing the menu title and link.
             Next it yields a series of PageDesc objects which have been cloned from basePage plus the menu with additional material added.
             An empty generator means that no menu item is generated.
         PagesFromMenuDescriptors is a simpler version of this function."""
         
         menuGenerators = [m(self) for m in menuGenerators] # Initialize the menu iterators
         menuItems = [next(m,None) for m in menuGenerators] # The menu items are the first item in each iterator
-        menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item] # Remove menu iterators if the menu doesn't exist
-        menuItems = [m for m in menuItems if m] # Same for menu items
+        # menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item] # Remove generators that yielded no items
+        # menuItems = [item for item in menuItems if item] # Remove the corresponding menu items so the lists match up
+
+        # Generators that yielded something other than a PageInfo object aren't associated with a menu item and will be proccessed last.
+        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems,strict=True) if type(item) != PageInfo]
+        menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if type(item) == PageInfo]
+        menuItems = [item for item in menuItems if type(item) == PageInfo]
 
         self.AddMenu(Menu(menuItems,**menuStyle))
 
         for itemNumber,menuIterator in enumerate(menuGenerators):
             self.menus[-1].highlightedItem = itemNumber
-            for page in menuIterator:
+            yield from menuIterator
+        
+        self.menus[-1].highlightedItem = None
+        for morePages in generatorsWithNoAssociatedMenuItem:
+            yield from morePages
 
-                yield page
-
-    def AddMenuAndYieldPages(self,menuDescriptors: Iterable[PageAugmentationMenuItem | PageDescriptorMenuItem],**menuStyle) -> Iterator[PageDesc]:
+    def AddMenuAndYieldPages(self,menuDescriptors: Iterable[PageGeneratorMenuItem | PageDescriptorMenuItem],**menuStyle) -> Iterator[PageDesc]:
         """Add a menu described by the first item yielded by each item in menuDescriptors.
         Then generate a series of PageDesc objects from the remaining iterator items in menuDescriptors.
         this: The page we have constructed so far.
@@ -218,26 +241,30 @@ class PageDesc:
             Each item can be of type PageAugmentationMenuItem or PageDescriptorMenuItem.
             See the description of these types for what they mean."""
         
-        def AppendBodyToPage(basePage: PageDesc,menuDescriptor: PageAugmentationMenuItem | PageDescriptorMenuItem) -> Iterable[PageInfo|PageDesc]:
+        def AppendBodyToPage(basePage: PageDesc,menuDescriptor: PageGeneratorMenuItem | PageDescriptorMenuItem) -> Iterable[PageInfo|PageDesc]:
             """A glue function so we can re-use the functionality of PagesFromMenuGenerators."""
             menuDescriptor = iter(menuDescriptor)
             menuItem = next(menuDescriptor,None)
+            pageToProcessLater = None
             if menuItem:
-                yield menuItem # First yield the menu item name and link
+                if type(menuItem) == PageInfo:
+                    yield menuItem # If it's a menu item and link, yield that
+                else:
+                    pageToProcessLater = menuItem
+                    yield None # Otherwise process the page later and return None to continue building the menu
             else:
                 return
             
+            if pageToProcessLater:
+                newPage = basePage.Clone()
+                newPage.info = menuItem
+                newPage.Augment(pageToProcessLater)
+                yield newPage
+
             for pageData in menuDescriptor: # Then yield PageDesc objects for the remaining pages
                 newPage = basePage.Clone()
-                if type(pageData) == str: # Simplest case: the page corresponds exactly to the menu item
-                    newPage.info = menuItem
-                    newPage.AddContent(pageData)
-                elif type(pageData) == PageDesc:
-                    newPage.Merge(pageData)
-                else:
-                    pageInfo,pageBody = pageData
-                    newPage.info = pageInfo
-                    newPage.AddContent(pageBody)
+                newPage.info = menuItem
+                newPage.Augment(pageData)
                 yield newPage
 
         menuFunctions = [lambda bp,m=m: AppendBodyToPage(bp,m) for m in menuDescriptors]

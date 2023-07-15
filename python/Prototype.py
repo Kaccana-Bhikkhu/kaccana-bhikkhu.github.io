@@ -567,7 +567,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
 
 def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a single page containing all excerpts."""
-    
+
     a = Airium()
     
     a(ExcerptDurationStr(gDatabase["excerpts"]))
@@ -801,6 +801,7 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     tagMenu = []
     tagMenu.append(SortedHtmlTagList("indexes"))
     tagMenu.append(IndentedHtmlTagList("indexes","AllTags.html",listDuplicateSubtags=False))
+
     yield PageDesc.PageInfo("Tags",os.path.join(indexDir,"SortedTags.html"))
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu)
 
