@@ -69,7 +69,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV,Render,Prototype",
+                "Render,Prototype",
                 "-vvv"
             ],
             "console": "integratedTerminal",

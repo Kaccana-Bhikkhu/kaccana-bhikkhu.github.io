@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import os
-from typing import List, Type, Tuple 
+from typing import List, Iterator, Tuple 
 from airium import Airium
-import Utils
+import Utils, PageDesc
 from datetime import timedelta
 import re
 from collections import namedtuple
@@ -91,6 +91,12 @@ def WriteHtmlFile(fileName: str,title: str,body: str,directoryDepth:int = 1,titl
         print(globalTemplate(title = title,body = body,mainMenu=navigation,titleInBody = titleInBody),file=file)
     
     gWrittenHtmlFiles.add(fileName)
+
+def WritePage(page: PageDesc) -> None:
+    """Write an html file for page using the global template"""
+    page.WriteFile(gOptions.globalTemplate,gOptions.prototypeDir)
+    gWrittenHtmlFiles.add(os.path.join(gOptions.prototypeDir,page.info.file))
+    print(f"Write file: {page.info.file}")
 
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
@@ -180,10 +186,8 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
-def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
+def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
     """Write an indented list of tags."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
     
     tabMeasurement = 'em'
     tabLength = 2
@@ -222,7 +226,8 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
                 
             a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
     
-    WriteHtmlFile(os.path.join(pageDir,fileName),"Tag/subtag hierarchy",str(a))
+    yield PageDesc.PageInfo("Tag/subtag hierarchy",os.path.join(pageDir,fileName))
+    yield str(a)
 
 def ExcerptCount(tag:str) -> int:
     try:
@@ -230,13 +235,10 @@ def ExcerptCount(tag:str) -> int:
     except KeyError:
         return 0
 
-def WriteSortedHtmlTagList(pageDir: str) -> None:
+def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
     
     a = Airium()
-    
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
@@ -255,7 +257,8 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
             
             a(' '.join([countStr,tagStr,paliStr]))
     
-    WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
+    yield PageDesc.PageInfo("Most common tags",os.path.join(pageDir,"SortedTags.html"))
+    yield str(a)
 
 def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadata") -> str:
     "Return an audio icon with the given hyperlink"
@@ -562,10 +565,8 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         
     return str(a)
 
-def WriteAllExcerpts(pageDir: str) -> None:
+def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a single page containing all excerpts."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
     
     a = Airium()
     
@@ -579,7 +580,8 @@ def WriteAllExcerpts(pageDir: str) -> None:
     formatter.headingShowSessionTitle = True
     a(HtmlExcerptList(gDatabase["excerpts"],formatter))
     
-    WriteHtmlFile(os.path.join(pageDir,"AllExcerpts.html"),"All excerpts",str(a))
+    yield PageDesc.PageInfo("All excerpts",os.path.join(pageDir,"AllExcerpts.html"))
+    yield str(a)
 
 def WriteAllEvents(pageDir: str) -> None:
     """Write a page containing a list of all events."""
@@ -779,23 +781,28 @@ def WriteIndexPage(templateName: str,indexPage: str) -> None:
     indexPage: the name of the page to write - usually index.html"""
     
     htmlBody = ExtractHtmlBody(templateName)
-    
-    head = gDefaultHead.replace('"../','"') # index.html lives in the root directory, so modify directory paths accordingly.
-    styleInfo = Airium()
-    with styleInfo.style(type="text/css"):
-        styleInfo("p { line-height: 1.3; }")
-    
-    nav = gNavigation.replace('"../','"')
-    
+        
     sourceComment = f"<!-- The content below has been extracted from the body of {templateName} -->"
     
     WriteHtmlFile(indexPage,"The Ajahn Pasanno Question and Story Archive",'\n'.join([sourceComment,htmlBody]),directoryDepth=0)
     
     # Now write prototype/README.md to make this material easily readable on github
     
-    with open(os.path.join(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
+    """with open(os.path.join(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
         print(sourceComment, file = readMe)
-        readMe.write(htmlBody)
+        readMe.write(htmlBody)"""
+
+def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Create the Tags menu item and its associated submenus.
+    Also write a page for each tag."""
+
+    baseTagPage = PageDesc.PageDesc()
+
+    tagMenu = []
+    tagMenu.append(SortedHtmlTagList("indexes"))
+    tagMenu.append(IndentedHtmlTagList("indexes","AllTags.html",listDuplicateSubtags=False))
+    yield PageDesc.PageInfo("Tags",os.path.join(indexDir,"SortedTags.html"))
+    yield from baseTagPage.AddMenuAndYieldPages(tagMenu)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -817,7 +824,7 @@ def main():
     WriteIndentedTagDisplayList(os.path.join(gOptions.prototypeDir,"TagDisplayList.txt"))
     
     indexDir = os.path.join(gOptions.prototypeDir,"indexes")
-    WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
+    """WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
     WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
     WriteSortedHtmlTagList(indexDir)
     WriteAllExcerpts(indexDir)
@@ -829,7 +836,22 @@ def main():
     
     WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
     
-    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))
+    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))"""
+
+    basePage = PageDesc.PageDesc()
+
+    mainMenu = []
+    mainMenu.append([PageDesc.PageInfo("About","about/index.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
+    mainMenu.append(TagMenu("indexes"))
+    mainMenu.append(AllExcerpts("indexes"))
+    """mainMenu.append([PageDesc.PageInfo("Home","home.html","Title in Home Page"),"Text of home page."])
+    mainMenu.append([PageDesc.PageInfo("Tag/subtag hierarchy","tags.html"),(PageDesc.PageInfo("Tags","tags.html"),"Some tags go here.")])
+    mainMenu.append([])
+    mainMenu.append([PageDesc.PageInfo("Events","events.html"),(PageDesc.PageInfo("Events","events.html"),"Some events go here.")])
+    """
+
+    for newPage in basePage.AddMenuAndYieldPages(mainMenu):
+        WritePage(newPage)
 
     if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()
