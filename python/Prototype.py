@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple 
 from airium import Airium
-import Utils, PageDesc
+import Utils, PageDesc, Alert
 from datetime import timedelta
 import re
 from collections import namedtuple
@@ -96,7 +96,7 @@ def WritePage(page: PageDesc) -> None:
     """Write an html file for page using the global template"""
     page.WriteFile(gOptions.globalTemplate,gOptions.prototypeDir)
     gWrittenHtmlFiles.add(os.path.join(gOptions.prototypeDir,page.info.file))
-    print(f"Write file: {page.info.file}")
+    Alert.debug.Show(f"Write file: {page.info.file}")
 
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""

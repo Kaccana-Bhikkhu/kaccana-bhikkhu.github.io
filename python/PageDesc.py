@@ -215,13 +215,11 @@ class PageDesc:
         
         menuGenerators = [m(self) for m in menuGenerators] # Initialize the menu iterators
         menuItems = [next(m,None) for m in menuGenerators] # The menu items are the first item in each iterator
-        # menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item] # Remove generators that yielded no items
-        # menuItems = [item for item in menuItems if item] # Remove the corresponding menu items so the lists match up
 
-        # Generators that yielded something other than a PageInfo object aren't associated with a menu item and will be proccessed last.
-        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems,strict=True) if type(item) != PageInfo]
-        menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if type(item) == PageInfo]
-        menuItems = [item for item in menuItems if type(item) == PageInfo]
+        # Generators that yield None aren't associated with a menu item and will be proccessed last.
+        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems,strict=True) if not item]
+        menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item]
+        menuItems = [item for item in menuItems if item]
 
         self.AddMenu(Menu(menuItems,**menuStyle))
 

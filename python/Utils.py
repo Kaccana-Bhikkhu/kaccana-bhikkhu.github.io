@@ -8,6 +8,7 @@ import unicodedata
 import re
 from typing import List
 import Alert
+import pathlib
 
 gOptions = None
 gDatabase = None # These will be set later by QSarchive.py
@@ -40,6 +41,9 @@ def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fil
     if fileNumber is not None:
         outputStr += f"_F{fileNumber:02d}"
     return outputStr
+
+def PosixJoin(*paths):
+    return str(pathlib.PurePosixPath(*paths))
 
 def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     """Return a link to the mp3 file associated with a given excerpt or session.
