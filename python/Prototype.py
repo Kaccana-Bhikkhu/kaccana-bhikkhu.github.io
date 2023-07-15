@@ -95,19 +95,19 @@ def WriteHtmlFile(fileName: str,title: str,body: str,directoryDepth:int = 1,titl
 def WritePage(page: PageDesc) -> None:
     """Write an html file for page using the global template"""
     page.WriteFile(gOptions.globalTemplate,gOptions.prototypeDir)
-    gWrittenHtmlFiles.add(os.path.join(gOptions.prototypeDir,page.info.file))
+    gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
     Alert.debug.Show(f"Write file: {page.info.file}")
 
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     dirs = ["events","tags","indexes","teachers"]
-    dirs = [os.path.join(gOptions.prototypeDir,dir) for dir in dirs]
+    dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
 
     for dir in dirs:
         fileList = next(os.walk(dir), (None, None, []))[2]
         for fileName in fileList:
-            fullPath = os.path.join(dir,fileName)
+            fullPath = Utils.PosixJoin(dir,fileName)
             if fullPath not in gWrittenHtmlFiles:
                 os.remove(fullPath)
 
@@ -226,7 +226,7 @@ def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True)
                 
             a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
     
-    yield PageDesc.PageInfo("Tag/subtag hierarchy",os.path.join(pageDir,fileName))
+    yield PageDesc.PageInfo("Tag/subtag hierarchy",Utils.PosixJoin(pageDir,fileName))
     yield str(a)
 
 def ExcerptCount(tag:str) -> int:
@@ -257,7 +257,7 @@ def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             
             a(' '.join([countStr,tagStr,paliStr]))
     
-    yield PageDesc.PageInfo("Most common tags",os.path.join(pageDir,"SortedTags.html"))
+    yield PageDesc.PageInfo("Most common tags",Utils.PosixJoin(pageDir,"SortedTags.html"))
     yield str(a)
 
 def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadata") -> str:
@@ -580,7 +580,7 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     formatter.headingShowSessionTitle = True
     a(HtmlExcerptList(gDatabase["excerpts"],formatter))
     
-    yield PageDesc.PageInfo("All excerpts",os.path.join(pageDir,"AllExcerpts.html"))
+    yield PageDesc.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
     yield str(a)
 
 def WriteAllEvents(pageDir: str) -> None:
@@ -606,7 +606,7 @@ def WriteAllEvents(pageDir: str) -> None:
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
                 
-    WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
+    WriteHtmlFile(Utils.PosixJoin(pageDir,"AllEvents.html"),"All events",str(a))
 
 def TagPages(tagPageDir: str) -> PageDesc.PageAugmentorType:
     """Write a html file for each tag in the database"""
@@ -642,7 +642,7 @@ def TagPages(tagPageDir: str) -> PageDesc.PageAugmentorType:
         else:
             tagPlusPali = tag
 
-        yield PageDesc.PageInfo(tag,os.path.join(tagPageDir,tagInfo["htmlFile"]),tagPlusPali),str(a)
+        yield PageDesc.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali),str(a)
 
 def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
     """Write a html file for each teacher in the database and an index page for all teachers"""
@@ -679,7 +679,7 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         formatter.excerptDefaultTeacher = set([t])
         a(HtmlExcerptList(relevantQs,formatter))
         
-        WriteHtmlFile(os.path.join(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
+        WriteHtmlFile(Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
     
     # Now write a page with the list of teachers:
     a = Airium()
@@ -693,7 +693,7 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         a(teacherPageData[t])
         a.hr()
 
-    WriteHtmlFile(os.path.join(indexDir,"AllTeachers.html"),"Teachers",str(a))
+    WriteHtmlFile(Utils.PosixJoin(indexDir,"AllTeachers.html"),"Teachers",str(a))
 
 
 def WriteEventPages(tagPageDir: str) -> None:
@@ -754,7 +754,7 @@ def WriteEventPages(tagPageDir: str) -> None:
         if eventInfo["subtitle"]:
             titleInBody += " – " + eventInfo["subtitle"]
 
-        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
+        WriteHtmlFile(Utils.PosixJoin(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
         
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
@@ -785,7 +785,7 @@ def WriteIndexPage(templateName: str,indexPage: str) -> None:
     
     # Now write prototype/README.md to make this material easily readable on github
     
-    """with open(os.path.join(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
+    """with open(Utils.PosixJoin(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
         print(sourceComment, file = readMe)
         readMe.write(htmlBody)"""
 
@@ -799,7 +799,7 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     tagMenu.append(SortedHtmlTagList("indexes"))
     tagMenu.append(IndentedHtmlTagList("indexes","AllTags.html",listDuplicateSubtags=False))
     tagMenu.append(TagPages("tags"))
-    yield PageDesc.PageInfo("Tags",os.path.join(indexDir,"SortedTags.html"))
+    yield PageDesc.PageInfo("Tags",Utils.PosixJoin(indexDir,"SortedTags.html"))
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu)
 
 def AddArguments(parser):
@@ -819,22 +819,22 @@ def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
-    WriteIndentedTagDisplayList(os.path.join(gOptions.prototypeDir,"TagDisplayList.txt"))
+    WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
     
-    indexDir = os.path.join(gOptions.prototypeDir,"indexes")
+    indexDir = Utils.PosixJoin(gOptions.prototypeDir,"indexes")
     """WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
     WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
     WriteSortedHtmlTagList(indexDir)
     WriteAllExcerpts(indexDir)
     WriteAllEvents(indexDir)
     
-    WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
+    WriteTagPages(Utils.PosixJoin(gOptions.prototypeDir,"tags"))
 
-    WriteTeacherPages(os.path.join(gOptions.prototypeDir,"teachers"),indexDir)
+    WriteTeacherPages(Utils.PosixJoin(gOptions.prototypeDir,"teachers"),indexDir)
     
-    WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
+    WriteEventPages(Utils.PosixJoin(gOptions.prototypeDir,"events"))
     
-    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"index.html"))"""
+    WriteIndexPage(gOptions.indexHtmlTemplate,Utils.PosixJoin(gOptions.prototypeDir,"index.html"))"""
 
     basePage = PageDesc.PageDesc()
 
