@@ -239,9 +239,9 @@ def EventLink(event:str, session: int = 0) -> str:
     
     directory = "../events/"
     if session:
-        return f"{directory}{event}.html#{event}_S{session}"
+        return f"{directory}{event}.html#{event}_S{session:02d}"
     else:
-        return f"{directory}{event}.html#"
+        return f"{directory}{event}.html"
 
 def TeacherLink(teacher:str) -> str:
     "Return a link to a given teacher page. Return an empty string if the teacher doesn't have a page."
