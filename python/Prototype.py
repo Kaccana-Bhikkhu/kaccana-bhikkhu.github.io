@@ -566,7 +566,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     return str(a)
 
 def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
-    """Write a single page containing all excerpts."""
+    """Generate a single page containing all excerpts."""
 
     a = Airium()
     
@@ -583,10 +583,8 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     yield PageDesc.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
     yield str(a)
 
-def WriteAllEvents(pageDir: str) -> None:
-    """Write a page containing a list of all events."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
+def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Generate a page containing a list of all events."""
     
     a = Airium()
     
@@ -606,7 +604,9 @@ def WriteAllEvents(pageDir: str) -> None:
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
                 
-    WriteHtmlFile(Utils.PosixJoin(pageDir,"AllEvents.html"),"All events",str(a))
+    # WriteHtmlFile(Utils.PosixJoin(pageDir,"AllEvents.html"),"All events",str(a))
+    yield PageDesc.PageInfo("All events",Utils.PosixJoin(pageDir,"AllEvents.html"))
+    yield str(a)
 
 def TagPages(tagPageDir: str) -> PageDesc.PageAugmentorType:
     """Write a html file for each tag in the database"""
@@ -644,12 +644,11 @@ def TagPages(tagPageDir: str) -> PageDesc.PageAugmentorType:
 
         yield PageDesc.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali),str(a)
 
-def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
-    """Write a html file for each teacher in the database and an index page for all teachers"""
+def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Yield a menu item for the teacher page and a page for each teacher"""
     
-    if not os.path.exists(teacherPageDir):
-        os.makedirs(teacherPageDir)
-        
+    yield PageDesc.PageInfo("Teachers",Utils.PosixJoin(indexDir,"AllTeachers.html"))
+
     xDB = gDatabase["excerpts"]
     teacherDB = gDatabase["teacher"]
 
@@ -679,9 +678,9 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         formatter.excerptDefaultTeacher = set([t])
         a(HtmlExcerptList(relevantQs,formatter))
         
-        WriteHtmlFile(Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
+        yield (PageDesc.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"])),str(a))
     
-    # Now write a page with the list of teachers:
+    # Now generate a page with the list of teachers:
     a = Airium()
         
     for t in teacherPageData:
@@ -693,14 +692,10 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         a(teacherPageData[t])
         a.hr()
 
-    WriteHtmlFile(Utils.PosixJoin(indexDir,"AllTeachers.html"),"Teachers",str(a))
+    yield str(a)
 
-
-def WriteEventPages(tagPageDir: str) -> None:
-    """Write a html file for each event in the database"""
-    
-    if not os.path.exists(tagPageDir):
-        os.makedirs(tagPageDir)
+def EventPages(eventPageDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Generate html for each event in the database"""
             
     for eventCode,eventInfo in gDatabase["event"].items():
         
@@ -754,7 +749,8 @@ def WriteEventPages(tagPageDir: str) -> None:
         if eventInfo["subtitle"]:
             titleInBody += " – " + eventInfo["subtitle"]
 
-        WriteHtmlFile(Utils.PosixJoin(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
+        # WriteHtmlFile(Utils.PosixJoin(eventPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
+        yield (PageDesc.PageInfo(eventInfo["title"],Utils.PosixJoin(eventPageDir,eventCode+'.html'),titleInBody),str(a))
         
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
@@ -821,7 +817,6 @@ def main():
     
     WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
     
-    indexDir = Utils.PosixJoin(gOptions.prototypeDir,"indexes")
     """WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
     WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
     WriteSortedHtmlTagList(indexDir)
@@ -838,10 +833,15 @@ def main():
 
     basePage = PageDesc.PageDesc()
 
+    indexDir ="indexes"
     mainMenu = []
     mainMenu.append([PageDesc.PageInfo("About","about/index.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
-    mainMenu.append(TagMenu("indexes"))
-    mainMenu.append(AllExcerpts("indexes"))
+    mainMenu.append(TagMenu(indexDir))
+    mainMenu.append(AllEvents(indexDir))
+    mainMenu.append(EventPages("events"))
+    mainMenu.append(TeacherPages("teachers",indexDir))
+    mainMenu.append(AllExcerpts(indexDir))
+
     """mainMenu.append([PageDesc.PageInfo("Home","home.html","Title in Home Page"),"Text of home page."])
     mainMenu.append([PageDesc.PageInfo("Tag/subtag hierarchy","tags.html"),(PageDesc.PageInfo("Tags","tags.html"),"Some tags go here.")])
     mainMenu.append([])

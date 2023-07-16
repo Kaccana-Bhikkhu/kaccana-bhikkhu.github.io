@@ -81,6 +81,13 @@ class Menu(Renderable):
             items.append(self.suffix)
         return " ".join(items)
 
+    def HighlightItem(self,itemFileName:str) -> None:
+        "Highlight the item (if any) corresponding to itemFileName."
+        self.highlightedItem = None
+        for n,item in enumerate(self.items):
+            if item.file == itemFileName:
+                self.highlightedItem = n
+    
 class PageDesc: # Define a dummy PageDesc class for the type definitions below
     pass
 
