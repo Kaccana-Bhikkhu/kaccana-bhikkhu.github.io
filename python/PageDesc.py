@@ -9,8 +9,8 @@ from pathlib import Path
 from collections.abc import Iterator, Iterable, Callable
 import copy
 
-# The most basic information about a webpage
 class PageInfo(NamedTuple):
+    "The most basic information about a webpage. titleIB means titleInBody"
     title: str|None = None
     file: str|None = None
     titleIB: str|None = None
@@ -22,7 +22,19 @@ class PageInfo(NamedTuple):
         else:
             return self.title
 
-class Menu:
+class Renderable:
+    """An object that supports the Render method to (optionally) substitute attributes and then convert to a str."""
+
+    def Render(self,**attributes) -> str:
+        if attributes:
+            clone = copy(self)
+            for attribute,value in attributes.items():
+                setattr(clone,attribute,value)
+            return str(clone)
+        else:
+            return str(self)
+
+class Menu(Renderable):
     items: list[PageInfo]
     highlightedItem:int|None
     prefix:str
@@ -44,18 +56,8 @@ class Menu:
         self.highlightTags = highlightTags
         self.renderAfterSection = None # The menu appears after this section
     
-    def Render(self,separator:int|str|None = None,highlightTags:tuple(str,str)|None = None,prefix:str|None = None,suffix:str|None = None) -> str:
+    def __str__(self) -> str:
         """Return an html string corresponding to the rendered menu."""
-        if separator is None:
-            separator = self.separator
-        if type(separator) == int:
-            separator = " " + (separator - 1) * "&nbsp"
-        if highlightTags is None:
-            highlightTags = self.highlightTags
-        if prefix is None:
-            prefix = self.prefix
-        if suffix is None:
-            suffix = self.suffix
         
         def RelativeLink(link: str) -> bool:
             return not ("://" in link or link.startswith("#"))
@@ -64,15 +66,19 @@ class Menu:
         menuLinks = [f'<a href = "{"../" + i.file if RelativeLink(i.file) else i.file}">{i.title}</a>' for i in self.items]
 
         if self.highlightedItem is not None:
-            menuLinks[self.highlightedItem] = highlightTags[0] + menuLinks[self.highlightedItem] + highlightTags[1]
+            menuLinks[self.highlightedItem] = self.highlightTags[0] + menuLinks[self.highlightedItem] + self.highlightTags[1]
+
+        separator = self.separator
+        if type(separator) == int:
+            separator = " " + (separator - 1) * "&nbsp"
 
         rawMenu = separator.join(menuLinks)
-        if prefix:
-            items = [prefix,rawMenu]
+        if self.prefix:
+            items = [self.prefix,rawMenu]
         else:
             items = [rawMenu]
-        if suffix:
-            items.append(suffix)
+        if self.suffix:
+            items.append(self.suffix)
         return " ".join(items)
 
 class PageDesc: # Define a dummy PageDesc class for the type definitions below
@@ -100,41 +106,52 @@ class PageDesc:
     When complete, the object will be passed to a pyratemp template to generate a page and write it to disk."""
     info: PageInfo
     numberedSections:int
-    section:dict[int|str,str]
-    menus: list[Menu]
+    section:dict[int|str,str|Renderable]
 
     def __init__(self,info: PageInfo = PageInfo()) -> None:
         self.info = info # Basic information about the page
         self.numberedSections = 1
         self.section = {0:""} # A dict describing the content of the page. Sequential sections are given by integer keys, non-sequential sections by string keys.
-        self.menus = [] # A list of menus on the page
     
     def Clone(self) -> PageDesc:
         """Clone this page so we can add more material to the new page without affecting the original."""
         return copy.deepcopy(self)
 
-    def AppendContent(self,content: str,section:int|str|None = None) -> None:
-        """Append html content to the specified section."""
+    def HasSection(self,sectionName: int|str) -> bool:
+        return bool(self.section.get(sectionName,False))
+
+    def AppendContent(self,content: str|Renderable,section:int|str|None = None,newSection:bool = False,overwrite:bool = False,joinStr = ' ') -> int|str|None:
+        """Append html content to the specified section. Return the name of the section that was added to."""
+        if newSection:
+            self.BeginNewSection()
         if not content:
-            return
+            return None
         if section is None:
             section = self.numberedSections - 1
+        
+        if type(section) == int and section >= self.numberedSections:
+            raise ValueError(f"Cannot write to section {section} since there are only {self.NumberedSections} numbered sections.")
+
         existingSection = self.section.get(section,"")
-        if existingSection:
-            self.section[section] = " ".join([existingSection,content])
-        else:
+        if overwrite or not existingSection:
             self.section[section] = content
+            return section
+        
+        canMerge = type(existingSection) == str and type(content) == str
+        if canMerge:
+            self.section[section] = " ".join([existingSection,content])
+            return section
+        elif type(section) == int:
+            self.BeginNewSection() # If we can't merge with a numbered section, create a new section
+            self.section[self.numberedSections - 1] = content
+            return self.numberedSections - 1
+        else:
+            raise TypeError(f"Cannot merge section type {type(existingSection)} with new content {type(content)}.")
     
     def BeginNewSection(self) -> None:
         "Begin a new numbered section."
         self.section[self.numberedSections] = ""
         self.numberedSections += 1
-    
-    def AddMenu(self,menu: Menu) -> None:
-        "Add a menu to the page."
-        menu.renderAfterSection = self.numberedSections - 1
-        self.menus.append(menu)
-        self.BeginNewSection()
     
     def Merge(self,pageToAppend: PageDesc) -> None:
         """Append an entire page to the end of this one.
@@ -142,10 +159,6 @@ class PageDesc:
         pageToAppend is modified and becomes unusable after this call."""
     
         self.info = pageToAppend.info # Substitute the information of the second page
-        
-        for menu in pageToAppend.menus:
-            menu.renderAfterSection += self.numberedSections - 1
-        self.menus += pageToAppend.menus
         
         self.AppendContent(pageToAppend.section[0])
         for sectionNum in range(1,pageToAppend.numberedSections):
@@ -155,7 +168,7 @@ class PageDesc:
         for key,content in pageToAppend.section.items():
             if type(key) != int:
                 self.AppendContent(content,key)
-    
+
     def Augment(self,newData: PageAugmentorType):
         """Append content depending on the type of newData as follows:
         str: add this html to the latest section.
@@ -170,14 +183,16 @@ class PageDesc:
             self.info = pageInfo
             self.AppendContent(pageBody)
 
-    def PageText(self,startingWithSection: int = 0) -> str:
+    def PageText(self,startSection:int = 0,stopSection:int = 9999999) -> str:
         """Return a string of the text of the page."""
         textToJoin = []
-        for sectionNumber in range(startingWithSection,self.numberedSections):
-            textToJoin.append(self.section[sectionNumber])
-            renderedMenus = [m.Render() for m in self.menus if m.renderAfterSection == sectionNumber]
-            textToJoin += renderedMenus
-        
+        for sectionNumber in range(startSection,min(self.numberedSections,stopSection)):
+            try:
+                text = self.section[sectionNumber].Render()
+            except AttributeError:
+                text = str(self.section[sectionNumber])
+            textToJoin.append(text)
+
         return " ".join(textToJoin)
 
     def RenderWithTemplate(self,templateFile: str) -> str:
@@ -203,7 +218,7 @@ class PageDesc:
         with open(filePath,'w',encoding='utf-8') as file:
             print(pageHtml,file=file)
 
-    def _PagesFromMenuGenerators(self,menuGenerators: Iterable[PageGeneratorMenuItem],**menuStyle) -> Iterator[PageDesc]:
+    def _PagesFromMenuGenerators(self,menuGenerators: Iterable[PageGeneratorMenuItem],menuSection:str|None = None,**menuStyle) -> Iterator[PageDesc]:
         """Generate a series of PageDesc objects from a list of functions that each describe one item in a menu.
         self: The page we have constructed so far.
         menuGenerators: An iterable (often a list) of generator functions, each of which describes a menu item and its associated pages.
@@ -221,17 +236,17 @@ class PageDesc:
         menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item]
         menuItems = [item for item in menuItems if item]
 
-        self.AddMenu(Menu(menuItems,**menuStyle))
+        menuSection = self.AppendContent(Menu(menuItems,**menuStyle),section=menuSection)
 
         for itemNumber,menuIterator in enumerate(menuGenerators):
-            self.menus[-1].highlightedItem = itemNumber
+            self.section[menuSection].highlightedItem = itemNumber
             yield from menuIterator
         
-        self.menus[-1].highlightedItem = None
+        self.section[menuSection].highlightedItem = None
         for morePages in generatorsWithNoAssociatedMenuItem:
             yield from morePages
 
-    def AddMenuAndYieldPages(self,menuDescriptors: Iterable[PageGeneratorMenuItem | PageDescriptorMenuItem],**menuStyle) -> Iterator[PageDesc]:
+    def AddMenuAndYieldPages(self,menuDescriptors: Iterable[PageGeneratorMenuItem | PageDescriptorMenuItem],menuSection:str|None = None,**menuStyle) -> Iterator[PageDesc]:
         """Add a menu described by the first item yielded by each item in menuDescriptors.
         Then generate a series of PageDesc objects from the remaining iterator items in menuDescriptors.
         this: The page we have constructed so far.
@@ -263,7 +278,7 @@ class PageDesc:
             # See https://docs.python.org/3.4/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result 
             # and https://stackoverflow.com/questions/452610/how-do-i-create-a-list-of-lambdas-in-a-list-comprehension-for-loop 
             # for why we need to use m = m.
-        yield from self._PagesFromMenuGenerators(menuFunctions,**menuStyle)
+        yield from self._PagesFromMenuGenerators(menuFunctions,menuSection=menuSection,**menuStyle)
 
 """page = PageDesc()
 page.AddContent("This shouldn't show.")

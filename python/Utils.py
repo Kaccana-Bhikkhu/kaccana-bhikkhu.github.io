@@ -43,7 +43,7 @@ def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fil
     return outputStr
 
 def PosixJoin(*paths):
-    "Join directories using / to make nicer html code. Python handles this graciously even on Windows."
+    "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
     return str(pathlib.PurePosixPath(*paths))
 
 def Mp3Link(item: dict,directoryDepth: int = 2) -> str:

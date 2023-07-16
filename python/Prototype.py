@@ -800,7 +800,7 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     tagMenu.append(IndentedHtmlTagList("indexes","AllTags.html",listDuplicateSubtags=False))
     tagMenu.append(TagPages("tags"))
     yield PageDesc.PageInfo("Tags",Utils.PosixJoin(indexDir,"SortedTags.html"))
-    yield from baseTagPage.AddMenuAndYieldPages(tagMenu)
+    yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -848,7 +848,7 @@ def main():
     mainMenu.append([PageDesc.PageInfo("Events","events.html"),(PageDesc.PageInfo("Events","events.html"),"Some events go here.")])
     """
 
-    for newPage in basePage.AddMenuAndYieldPages(mainMenu):
+    for newPage in basePage.AddMenuAndYieldPages(mainMenu,menuSection="mainMenu"):
         WritePage(newPage)
 
     if not gOptions.keepOldHtmlFiles:

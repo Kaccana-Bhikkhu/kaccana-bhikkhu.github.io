@@ -14,20 +14,20 @@
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
     <br>
-    <h4>$!page.menus[0].Render()!$</h4>
+    <h4>$!page.section["mainMenu"].Render()!$</h4>
   </div>
 <br>
 
-<!--(if len(page.menus) >= 2)-->
+<!--(if page.HasSection("subMenu"))-->
   <div class="intro">
-    $!page.menus[1].Render()!$
+    $!page.section["subMenu"].Render()!$
   </div>
 <!--(end)-->
 
   <div class="title">$!page.info.titleInBody!$</div>
 
 <div class="intro">
-$!page.PageText(startingWithSection = (1 if (len(page.menus) < 2) else 2))!$
+$!page.PageText()!$
 </div>
 
 <footer>
