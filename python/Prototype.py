@@ -27,43 +27,6 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
-MenuItem = namedtuple("MenuItem",["name","link"])
-
-def HorizontalMenu(items: List[MenuItem],spaces: int = 5) -> str:
-    """Return an html-formatted horizontal menu"""
-    
-    menuItems = []
-    for name,link in items:
-        itemText = Airium(source_minify=True)
-        with itemText.a(href = link):
-            itemText(name)
-        menuItems.append(str(itemText))
-    
-    return (" " + "&nbsp"*spaces).join(menuItems)
-
-"Create the default html header"
-head = Airium()
-head.meta(charset="utf-8")
-head.meta(name="robots", content="noindex, nofollow")
-with head.style():
-    head('body {background-image: url("../images/PrototypeWatermark.png"); }')
-    head('p {font-size: 110%;}')
-gDefaultHead = str(head)
-del head # Clean up the global namespace
-
-"Create the top navigation guide"
-nav = Airium(source_minify=True)
-mainMenu = []
-mainMenu.append(MenuItem("Homepage","../index.html"))
-mainMenu.append(MenuItem("Tag/subtag hierarchy","../indexes/AllTags.html"))
-mainMenu.append(MenuItem("Most common tags","../indexes/SortedTags.html"))
-mainMenu.append(MenuItem("Events","../indexes/AllEvents.html"))
-mainMenu.append(MenuItem("Teachers","../indexes/AllTeachers.html"))
-mainMenu.append(MenuItem("All excerpts","../indexes/AllExcerpts.html"))
-nav(HorizontalMenu(mainMenu))
-gNavigation = str(nav)
-del nav
-
 gWrittenHtmlFiles = set()
 
 @lru_cache(maxsize = None)
@@ -73,24 +36,6 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
 
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
-
-def WriteHtmlFile(fileName: str,title: str,body: str,directoryDepth:int = 1,titleInBody:str|None = None) -> None:
-    """Write a complete html file given a title, body, and header.
-        fileName - name of the file to write
-        title - internal title of the html page
-        body - website body page - can be quite a long string
-       directoryDepth - how deep is the file we're writing?"""
-    
-    globalTemplate = GlobalTemplate(directoryDepth)
-    navigation = gNavigation.replace('"../','"' + '../' * directoryDepth)
-
-    if not titleInBody:
-        titleInBody = title
-
-    with open(fileName,'w',encoding='utf-8') as file:
-        print(globalTemplate(title = title,body = body,mainMenu=navigation,titleInBody = titleInBody),file=file)
-    
-    gWrittenHtmlFiles.add(fileName)
 
 def WritePage(page: PageDesc) -> None:
     """Write an html file for page using the global template"""
@@ -186,8 +131,8 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
-def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
-    """Write an indented list of tags."""
+def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> PageDesc.PageDescriptorMenuItem:
+    """Generate html for an indented list of tags."""
     
     tabMeasurement = 'em'
     tabLength = 2
@@ -608,7 +553,7 @@ def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     yield PageDesc.PageInfo("All events",Utils.PosixJoin(pageDir,"AllEvents.html"))
     yield str(a)
 
-def TagPages(tagPageDir: str) -> PageDesc.PageAugmentorType:
+def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
     """Write a html file for each tag in the database"""
         
     xDB = gDatabase["excerpts"]
@@ -694,7 +639,7 @@ def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMe
 
     yield str(a)
 
-def EventPages(eventPageDir: str) -> PageDesc.PageDescriptorMenuItem:
+def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
     """Generate html for each event in the database"""
             
     for eventCode,eventInfo in gDatabase["event"].items():
@@ -768,23 +713,6 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
-def WriteIndexPage(templateName: str,indexPage: str) -> None:
-    """Write the index page by extracting the body from a file created by an external editor and calling WriteHtmlFile to convert it to our (extremely minimal) style.
-    templateName: the file created by an external editor
-    indexPage: the name of the page to write - usually index.html"""
-    
-    htmlBody = ExtractHtmlBody(templateName)
-        
-    sourceComment = f"<!-- The content below has been extracted from the body of {templateName} -->"
-    
-    WriteHtmlFile(indexPage,"The Ajahn Pasanno Question and Story Archive",'\n'.join([sourceComment,htmlBody]),directoryDepth=0)
-    
-    # Now write prototype/README.md to make this material easily readable on github
-    
-    """with open(Utils.PosixJoin(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
-        print(sourceComment, file = readMe)
-        readMe.write(htmlBody)"""
-
 def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
     Also write a page for each tag."""
@@ -816,20 +744,6 @@ def main():
         os.makedirs(gOptions.prototypeDir)
     
     WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
-    
-    """WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
-    WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
-    WriteSortedHtmlTagList(indexDir)
-    WriteAllExcerpts(indexDir)
-    WriteAllEvents(indexDir)
-    
-    WriteTagPages(Utils.PosixJoin(gOptions.prototypeDir,"tags"))
-
-    WriteTeacherPages(Utils.PosixJoin(gOptions.prototypeDir,"teachers"),indexDir)
-    
-    WriteEventPages(Utils.PosixJoin(gOptions.prototypeDir,"events"))
-    
-    WriteIndexPage(gOptions.indexHtmlTemplate,Utils.PosixJoin(gOptions.prototypeDir,"index.html"))"""
 
     basePage = PageDesc.PageDesc()
 
@@ -841,12 +755,6 @@ def main():
     mainMenu.append(EventPages("events"))
     mainMenu.append(TeacherPages("teachers",indexDir))
     mainMenu.append(AllExcerpts(indexDir))
-
-    """mainMenu.append([PageDesc.PageInfo("Home","home.html","Title in Home Page"),"Text of home page."])
-    mainMenu.append([PageDesc.PageInfo("Tag/subtag hierarchy","tags.html"),(PageDesc.PageInfo("Tags","tags.html"),"Some tags go here.")])
-    mainMenu.append([])
-    mainMenu.append([PageDesc.PageInfo("Events","events.html"),(PageDesc.PageInfo("Events","events.html"),"Some events go here.")])
-    """
 
     for newPage in basePage.AddMenuAndYieldPages(mainMenu,menuSection="mainMenu"):
         WritePage(newPage)
