@@ -13,6 +13,8 @@ const css = `
 		cursor: pointer;
 	}
 `;
+const time = (sec) =>
+	`${Math.floor(sec / 60)}:${(sec % 60).toString().padStart(2, "0")}`;
 
 class AudioChip extends HTMLElement {
 	/** @type {HTMLAudioElement} */
@@ -26,7 +28,9 @@ class AudioChip extends HTMLElement {
 
 	connectedCallback() {
 		this.audio = new Audio(this.getAttribute("src"));
-		this.audio.load();
+		let loadAudio = this.dataset.duration == null;
+		// let loadAudio = true;
+		if (loadAudio) this.audio.load();
 
 		const wrapper = document.createElement("div");
 		wrapper.classList.add("wrapper");
@@ -38,19 +42,19 @@ class AudioChip extends HTMLElement {
 			playAudio(this.title, this.audio);
 		});
 
-		const time = document.createElement("span");
-		time.innerText = "...";
-		this.audio.addEventListener("canplaythrough", () => {
-			let duration = Math.round(this.audio.duration);
-			time.innerText = `${Math.floor(duration / 60)}:${(duration % 60)
-				.toString()
-				.padStart(2, "0")}`;
-		});
+		const timeLabel = document.createElement("span");
+		if (loadAudio) {
+			timeLabel.innerText = "...";
+			this.audio.addEventListener("canplaythrough", () => {
+				let duration = Math.round(this.audio.duration);
+				timeLabel.innerText = time(duration);
+			});
+		} else timeLabel.innerText = time(this.dataset.duration);
 
 		const style = document.createElement("style");
 		style.innerText = css;
 
-		wrapper.append(button, time);
+		wrapper.append(button, timeLabel);
 		this.shadowRoot.append(style, wrapper);
 	}
 }
