@@ -3,8 +3,8 @@ const titleEl = document.querySelector("title");
 
 let path = "";
 
-function changeURL(url) {
-	fetch("./" + url)
+async function changeURL(url) {
+	await fetch("./" + url)
 		.then((r) => r.text())
 		.then((text) => {
 			frame.innerHTML = text;
@@ -28,9 +28,14 @@ function changeURL(url) {
 				} else {
 					el.href = "#" + url;
 
-					el.addEventListener("click", () => {
+					el.addEventListener("click", async () => {
 						history.pushState({}, "", "#" + url);
-						changeURL(url);
+						await changeURL(url);
+						window.scrollTo(0, 0);
+
+						if (url.includes("#")) {
+							document.getElementById(url.split("#")[1]).scrollIntoView();
+						}
 					});
 				}
 			});
