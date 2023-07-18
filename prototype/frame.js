@@ -31,17 +31,11 @@ async function changeURL(url) {
 					el.addEventListener("click", async () => {
 						history.pushState({}, "", "#" + url);
 						await changeURL(url);
-						if (url.includes("#")) {
-							if (!url.endsWith("#_keep_scroll")) {
-								bookmark = document.getElementById(url.split("#")[1])
-								if (bookmark != null) {
-									bookmark.scrollIntoView();
-								} else {
-									window.scrollTo(0, 0);
-								}
-							}
-						} else {
+
+						if (!url.endsWith("#_keep_scroll")) {
 							window.scrollTo(0, 0);
+							if (url.includes("#"))
+								document.getElementById(url.split("#")[1])?.scrollIntoView();
 						}
 					});
 				}
