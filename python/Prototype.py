@@ -7,7 +7,7 @@ from typing import List, Iterator, Tuple
 from airium import Airium
 import Utils, PageDesc, Alert
 from datetime import timedelta
-import re
+import re, copy
 from collections import namedtuple
 import pyratemp
 from functools import lru_cache
@@ -510,7 +510,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         
     return str(a)
 
-def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 100) -> Iterator[PageDesc.PageAugmentorType]:
+def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0) -> Iterator[PageDesc.PageAugmentorType]:
     """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
         pageInfo: The description of the first/main page to write. Later pages add "-N" to the file name.
         excerpts, formatter: As in HtmlExcerptList
@@ -521,6 +521,8 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
     excerptsInThisPage = []
     prevSession = None
     baseName,ext = os.path.splitext(basePage.info.file)
+    if itemLimit == 0:
+        itemLimit = gOptions.excerptsPerPage
 
     def PageHtml() -> PageDesc.PageAugmentorType:
         if pageNumber > 1:
@@ -535,7 +537,7 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
     for x in excerpts:
         thisSession = (x["event"],x["sessionNumber"])
         if prevSession != thisSession:
-            if len(excerptsInThisPage) >= itemLimit:
+            if itemLimit and len(excerptsInThisPage) >= itemLimit:
                 menuItems.append(PageHtml())
                 pageNumber += 1
                 excerptsInThisPage = []
@@ -543,10 +545,15 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
         excerptsInThisPage.append(x)
         prevSession = thisSession
     
-    if excerptsInThisPage:
+    if excerptsInThisPage or not menuItems:
         menuItems.append(PageHtml())
     
-    yield from basePage.AddMenuAndYieldPages(menuItems,prefix = "<p>Page: " + 2*"&nbsp",suffix = "</p>")
+    if len(menuItems) > 1:
+        yield from basePage.AddMenuAndYieldPages(menuItems,prefix = "<p>Page: " + 2*"&nbsp",suffix = "</p>")
+    else:
+        clone = basePage.Clone()
+        clone.AppendContent(menuItems[0][1])
+        yield clone
 
 def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
@@ -568,7 +575,7 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     # formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
 
-    yield from MultiPageExcerptList(basePage,gDatabase["excerpts"],formatter,itemLimit = gOptions.excerptsPerPage)
+    yield from MultiPageExcerptList(basePage,gDatabase["excerpts"],formatter)
 
 def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Generate a page containing a list of all events."""
@@ -622,14 +629,17 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
-        a(HtmlExcerptList(relevantQs,formatter))
         
         if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
             tagPlusPali = f"{tagInfo['fullTag']} [{tagInfo['fullPali']}]"
         else:
             tagPlusPali = tag
 
-        yield PageDesc.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali),str(a)
+        pageInfo = PageDesc.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
+        basePage = PageDesc.PageDesc(pageInfo)
+        basePage.AppendContent(str(a))
+
+        yield from MultiPageExcerptList(basePage,relevantQs,formatter)
 
 def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Yield a menu item for the teacher page and a page for each teacher"""
@@ -663,9 +673,12 @@ def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMe
         formatter.headingShowTeacher = False
         formatter.excerptOmitSessionTags = False
         formatter.excerptDefaultTeacher = set([t])
-        a(HtmlExcerptList(relevantQs,formatter))
-        
-        yield (PageDesc.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"])),str(a))
+
+        pageInfo = PageDesc.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]))
+        basePage = PageDesc.PageDesc(pageInfo)
+        basePage.AppendContent(str(a))
+
+        yield from MultiPageExcerptList(basePage,relevantQs,formatter)
     
     # Now generate a page with the list of teachers:
     a = Airium()
