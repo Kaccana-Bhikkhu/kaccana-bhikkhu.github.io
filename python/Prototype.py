@@ -148,8 +148,9 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     a = Airium()
     
+    tagList = gDatabase["tagDisplayList"]
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
-    for index, item in enumerate(gDatabase["tagDisplayList"]):
+    for index, item in enumerate(tagList):
         if item["level"] > skipSubtagLevel:
             continue
 
@@ -167,6 +168,21 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
             skipSubtagLevel = 999 # otherwise don't skip anything
         
         with a.p(style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+            drilldownLink = ''
+            if expandTagLink:
+                if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
+                    if index in expandSpecificTags: # Is it already expanded?
+                        tagAtPrevLevel = -1
+                        for reverseIndex in range(index - 1,-1,-1):
+                            if tagList[reverseIndex]["level"] < item["level"]:
+                                tagAtPrevLevel = reverseIndex
+                                break
+                        drilldownLink = f'<a href="{expandTagLink(tagAtPrevLevel)}">⊟</a>'
+                    else:
+                        drilldownLink = f'<a href="{expandTagLink(index)}">⊞</a>'
+                else:
+                    drilldownLink = "&nbsp"
+
             indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
             
             countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
@@ -185,20 +201,21 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                 seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
             else:
                 seeAlsoStr = ''
-                
-            a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
+            
+            joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
+            a(' '.join(joinBits))
     
     return str(a)
 
+def DrilldownPageFile(tagNumber: int) -> str:
+    "Return the name of the page that has this numbered tag expanded."
+    if tagNumber == -1:
+        tagNumber = 999
+    fileName = f"tag-{tagNumber:03d}.html"
+    return fileName
+
 def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmentorType]:
     """Write a series of html files to create a hierarchial drill-down list of tags."""
-
-    def DrilldownPageFile(tagNumber: int|None) -> str:
-        "Return the name of the page that has this numbered tag expanded."
-        if tagNumber == None:
-            tagNumber = 999
-        fileName = f"tag-{tagNumber:03d}.html"
-        return Utils.PosixJoin(pageInfo.file,fileName)
 
     tagList = gDatabase["tagDisplayList"]
 
@@ -213,7 +230,7 @@ def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmento
                     nextLevelToExpand = tagList[reverseIndex]["level"] - 1
                 reverseIndex -= 1
             
-            yield (pageInfo._replace(file=DrilldownPageFile(n)),IndentedHtmlTagList(expandSpecificTags=tagsToExpand))
+            yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
 
 def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
@@ -816,7 +833,7 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
 
     tagMenu = []
-    tagMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set()))])
+    tagMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
     tagMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
     tagMenu.append(SortedHtmlTagList("indexes"))
     tagMenu.append(TagPages("tags"))
