@@ -510,27 +510,73 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         
     return str(a)
 
+def MultiPageExcerptList(pageInfo: PageDesc.PageInfo,excerpts: List[dict],formatter: Formatter,itemLimit:int = 100) -> Iterator[PageDesc.PageAugmentorType]:
+    """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
+        pageInfo: The description of the first/main page to write. Later pages add "-N" to the file name.
+        excerpts, formatter: As in HtmlExcerptList
+        itemLimit: Limit lists to roughly this many items, but break pages only at session boundaries."""
+
+    pageNumber = 1
+    menuItems = []
+    excerptsInThisPage = []
+    prevSession = None
+    baseName,ext = os.path.splitext(pageInfo.file)
+
+    def PageHtml() -> PageDesc.PageAugmentorType:
+        if pageNumber > 1:
+            fileName = f"{baseName}-{pageNumber}{ext}"
+        else:
+            fileName = pageInfo.file
+        menuItem = PageDesc.PageInfo(str(pageNumber),fileName,pageInfo.titleInBody)
+        
+        pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
+        return menuItem,pageHtml
+
+    for x in excerpts:
+        thisSession = (x["event"],x["sessionNumber"])
+        if prevSession != thisSession:
+            if len(excerptsInThisPage) >= itemLimit:
+                menuItems.append(PageHtml())
+                pageNumber += 1
+                excerptsInThisPage = []
+
+        excerptsInThisPage.append(x)
+        prevSession = thisSession
+    
+    if excerptsInThisPage:
+        menuItems.append(PageHtml())
+    
+    basePage = PageDesc.PageDesc()
+    yield from basePage.AddMenuAndYieldPages(menuItems,prefix = "<p>Page: " + 2*"&nbsp",suffix = "</p>")
+
 def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
 
+    pageInfo = PageDesc.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
+    yield pageInfo
+
     a = Airium()
     
-    a(ExcerptDurationStr(gDatabase["excerpts"]))
-    a.br()
-    
-    a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
-    
+    with a.p():
+        a(ExcerptDurationStr(gDatabase["excerpts"]))
+        a.br()
+        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
+
+    basePage = PageDesc.PageDesc()
+    basePage.AppendContent(str(a))
+
     formatter = Formatter()
-    formatter.excerptDefaultTeacher = ['AP']
+    # formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
-    a(HtmlExcerptList(gDatabase["excerpts"],formatter))
-    
-    yield PageDesc.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
-    yield str(a)
+
+    for page in MultiPageExcerptList(pageInfo,gDatabase["excerpts"],formatter,itemLimit = gOptions.excerptsPerPage):
+        yield basePage.Clone().Augment(page)
 
 def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Generate a page containing a list of all events."""
     
+    yield PageDesc.PageInfo("All events",Utils.PosixJoin(pageDir,"AllEvents.html"))
+
     a = Airium()
     
     firstEvent = True
@@ -549,8 +595,6 @@ def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
                 
-    # WriteHtmlFile(Utils.PosixJoin(pageDir,"AllEvents.html"),"All events",str(a))
-    yield PageDesc.PageInfo("All events",Utils.PosixJoin(pageDir,"AllEvents.html"))
     yield str(a)
 
 def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
@@ -694,7 +738,6 @@ def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         if eventInfo["subtitle"]:
             titleInBody += " – " + eventInfo["subtitle"]
 
-        # WriteHtmlFile(Utils.PosixJoin(eventPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
         yield (PageDesc.PageInfo(eventInfo["title"],Utils.PosixJoin(eventPageDir,eventCode+'.html'),titleInBody),str(a))
         
 def ExtractHtmlBody(fileName: str) -> str:
@@ -733,6 +776,7 @@ def AddArguments(parser):
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
     parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
     parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
+    parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
@@ -755,7 +799,7 @@ def main():
     mainMenu.append(EventPages("events"))
     mainMenu.append(TeacherPages("teachers",indexDir))
     mainMenu.append(AllExcerpts(indexDir))
-
+    
     for newPage in basePage.AddMenuAndYieldPages(mainMenu,menuSection="mainMenu"):
         WritePage(newPage)
 

@@ -36,12 +36,11 @@ class Renderable:
 
 class Menu(Renderable):
     items: list[PageInfo]
-    highlightedItem:int|None
-    prefix:str
-    separator:int|str
-    suffix:str
-    highlightTags:tuple(str,str)
-    renderAfterSection: int|None
+    menu_highlightedItem:int|None
+    menu_prefix:str
+    menu_separator:int|str
+    menu_suffix:str
+    menu_highlightTags:tuple(str,str)
 
     def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlightTags:tuple[str,str] = ("<b>","</b>"),prefix:str = "",suffix:str = "") -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
@@ -49,12 +48,11 @@ class Menu(Renderable):
         separator: html code between each menu item; defaults to 6 spaces.
         highlightTags: the tags to apply to the highlighted menu item."""
         self.items = items
-        self.highlightedItem = highlightedItem
-        self.prefix = prefix
-        self.separator = separator
-        self.suffix = suffix
-        self.highlightTags = highlightTags
-        self.renderAfterSection = None # The menu appears after this section
+        self.menu_highlightedItem = highlightedItem
+        self.menu_prefix = prefix
+        self.menu_separator = separator
+        self.menu_suffix = suffix
+        self.menu_highlightTags = highlightTags
     
     def __str__(self) -> str:
         """Return an html string corresponding to the rendered menu."""
@@ -65,28 +63,28 @@ class Menu(Renderable):
         # Render relative links as if the file is at directory depth 1. PageDesc.RenderWithTemplate will later produce the correct
         menuLinks = [f'<a href = "{"../" + i.file if RelativeLink(i.file) else i.file}">{i.title}</a>' for i in self.items]
 
-        if self.highlightedItem is not None:
-            menuLinks[self.highlightedItem] = self.highlightTags[0] + menuLinks[self.highlightedItem] + self.highlightTags[1]
+        if self.menu_highlightedItem is not None:
+            menuLinks[self.menu_highlightedItem] = self.menu_highlightTags[0] + menuLinks[self.menu_highlightedItem] + self.menu_highlightTags[1]
 
-        separator = self.separator
+        separator = self.menu_separator
         if type(separator) == int:
             separator = " " + (separator - 1) * "&nbsp"
 
         rawMenu = separator.join(menuLinks)
-        if self.prefix:
-            items = [self.prefix,rawMenu]
+        if self.menu_prefix:
+            items = [self.menu_prefix,rawMenu]
         else:
             items = [rawMenu]
-        if self.suffix:
-            items.append(self.suffix)
+        if self.menu_suffix:
+            items.append(self.menu_suffix)
         return " ".join(items)
 
     def HighlightItem(self,itemFileName:str) -> None:
         "Highlight the item (if any) corresponding to itemFileName."
-        self.highlightedItem = None
+        self.menu_highlightedItem = None
         for n,item in enumerate(self.items):
             if item.file == itemFileName:
-                self.highlightedItem = n
+                self.menu_highlightedItem = n
     
 class PageDesc: # Define a dummy PageDesc class for the type definitions below
     pass
@@ -160,7 +158,7 @@ class PageDesc:
         self.section[self.numberedSections] = ""
         self.numberedSections += 1
     
-    def Merge(self,pageToAppend: PageDesc) -> None:
+    def Merge(self,pageToAppend: PageDesc) -> PageDesc:
         """Append an entire page to the end of this one.
         Replace our page description with the new one.
         pageToAppend is modified and becomes unusable after this call."""
@@ -175,8 +173,10 @@ class PageDesc:
         for key,content in pageToAppend.section.items():
             if type(key) != int:
                 self.AppendContent(content,key)
+        
+        return self
 
-    def Augment(self,newData: PageAugmentorType):
+    def Augment(self,newData: PageAugmentorType) -> PageDesc:
         """Append content depending on the type of newData as follows:
         str: add this html to the latest section.
         tuple(PageInfo,str): set info = PageInfo and add str to the latest section.
@@ -189,6 +189,8 @@ class PageDesc:
             pageInfo,pageBody = newData
             self.info = pageInfo
             self.AppendContent(pageBody)
+        
+        return self
 
     def PageText(self,startSection:int = 0,stopSection:int = 9999999) -> str:
         """Return a string of the text of the page."""
@@ -246,10 +248,10 @@ class PageDesc:
         menuSection = self.AppendContent(Menu(menuItems,**menuStyle),section=menuSection)
 
         for itemNumber,menuIterator in enumerate(menuGenerators):
-            self.section[menuSection].highlightedItem = itemNumber
+            self.section[menuSection].menu_highlightedItem = itemNumber
             yield from menuIterator
         
-        self.section[menuSection].highlightedItem = None
+        self.section[menuSection].menu_highlightedItem = None
         for morePages in generatorsWithNoAssociatedMenuItem:
             yield from morePages
 
