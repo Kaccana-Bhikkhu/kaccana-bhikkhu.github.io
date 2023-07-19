@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import List, Iterator, Tuple 
+from typing import List, Iterator, Tuple, Callable
 from airium import Airium
 import Utils, PageDesc, Alert
 from datetime import timedelta
@@ -131,8 +131,17 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
-def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> PageDesc.PageDescriptorMenuItem:
-    """Generate html for an indented list of tags."""
+def ExcerptCount(tag:str) -> int:
+    try:
+        return gDatabase["tag"][tag]["excerptCount"]
+    except KeyError:
+        return 0
+
+def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None) -> str:
+    """Generate html for an indented list of tags.
+    If expandSpecificTags is specified, then expand only tags with index numbers in this set.
+    If not, then expand all tags if expandDuplicateSubtags; otherwise expand only primary tags.
+    If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
     
     tabMeasurement = 'em'
     tabLength = 2
@@ -141,13 +150,21 @@ def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True)
     
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     for index, item in enumerate(gDatabase["tagDisplayList"]):
-        if not listDuplicateSubtags:
-            if item["level"] > skipSubtagLevel:
-                continue
+        if item["level"] > skipSubtagLevel:
+            continue
+
+        skipSubtags = False
+        if expandSpecificTags is not None:
+            if index not in expandSpecificTags:
+                skipSubtags = True
+        elif not expandDuplicateSubtags:
             if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
-                skipSubtagLevel = item["level"] # skip subsequent subtags
-            else:
-                skipSubtagLevel = 999 # otherwise don't skip anything
+                skipSubtags = True
+
+        if skipSubtags:
+            skipSubtagLevel = item["level"] # skip tags deeper than this level
+        else:
+            skipSubtagLevel = 999 # otherwise don't skip anything
         
         with a.p(style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
             indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
@@ -171,14 +188,32 @@ def IndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True)
                 
             a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
     
-    yield PageDesc.PageInfo("Tag/subtag hierarchy",Utils.PosixJoin(pageDir,fileName))
-    yield str(a)
+    return str(a)
 
-def ExcerptCount(tag:str) -> int:
-    try:
-        return gDatabase["tag"][tag]["excerptCount"]
-    except KeyError:
-        return 0
+def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmentorType]:
+    """Write a series of html files to create a hierarchial drill-down list of tags."""
+
+    def DrilldownPageFile(tagNumber: int|None) -> str:
+        "Return the name of the page that has this numbered tag expanded."
+        if tagNumber == None:
+            tagNumber = 999
+        fileName = f"tag-{tagNumber:03d}.html"
+        return Utils.PosixJoin(pageInfo.file,fileName)
+
+    tagList = gDatabase["tagDisplayList"]
+
+    for n,tag in enumerate(tagList[:-1]):
+        if tagList[n+1]["level"] > tag["level"]: # If the next tag is deeper, then we can expand this one
+            tagsToExpand = {n}
+            reverseIndex = n - 1
+            nextLevelToExpand = tag["level"] - 1
+            while reverseIndex >= 0 and nextLevelToExpand > 0:
+                if tagList[reverseIndex]["level"] <= nextLevelToExpand:
+                    tagsToExpand.add(reverseIndex)
+                    nextLevelToExpand = tagList[reverseIndex]["level"] - 1
+                reverseIndex -= 1
+            
+            yield (pageInfo._replace(file=DrilldownPageFile(n)),IndentedHtmlTagList(expandSpecificTags=tagsToExpand))
 
 def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
@@ -774,10 +809,19 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
 
     baseTagPage = PageDesc.PageDesc()
 
+    drilldownDir = "drilldown"
+    drilldownTitle = "Tag/subtag hierarchy"
+    drilldownItem = PageDesc.PageInfo(drilldownTitle,drilldownDir,drilldownTitle)
+    contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,"tag-999.html"))
+    expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+
     tagMenu = []
+    tagMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set()))])
+    tagMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
     tagMenu.append(SortedHtmlTagList("indexes"))
-    tagMenu.append(IndentedHtmlTagList("indexes","AllTags.html",listDuplicateSubtags=False))
     tagMenu.append(TagPages("tags"))
+    tagMenu.append(DrilldownTags(drilldownItem))
+
     yield PageDesc.PageInfo("Tags",Utils.PosixJoin(indexDir,"SortedTags.html"))
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")
 
