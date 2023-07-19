@@ -472,6 +472,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     else:
         lastExcerpt = None
     
+    localFormatter = copy.deepcopy(formatter) # Make a copy in case the formatter object is reused
     for count,x in enumerate(excerpts):
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
@@ -481,14 +482,14 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             hr = x["startTime"] != "Session" or x["body"]
                 # Omit the horzional rule if the first excerpt is a session excerpt with no body
                 
-            a(formatter.FormatSessionHeading(session,linkSessionAudio,hr))
+            a(localFormatter.FormatSessionHeading(session,linkSessionAudio,hr))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
-            if formatter.headingShowTeacher and len(session["teachers"]) == 1: 
+            if localFormatter.headingShowTeacher and len(session["teachers"]) == 1: 
                     # If there's only one teacher who is mentioned in the session heading, don't mention him/her in the excerpts
-                formatter.excerptDefaultTeacher = set(session["teachers"])
+                localFormatter.excerptDefaultTeacher = set(session["teachers"])
             else:
-                formatter.excerptDefaultTeacher = set()
+                localFormatter.excerptDefaultTeacher = formatter.excerptDefaultTeacher
             
         if count > 20:
             options = {"preload": "none"}
@@ -496,13 +497,13 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {}
         if x["body"]:
             with a.p(id = Utils.ItemCode(x)):
-                a(formatter.FormatExcerpt(x,**options))
+                a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
             if annotation["body"]:
                 with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
-                    a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
+                    a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
         if gOptions.audioLinks == "audio" and x is not lastExcerpt:
