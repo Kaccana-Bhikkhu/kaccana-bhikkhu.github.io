@@ -510,7 +510,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         
     return str(a)
 
-def MultiPageExcerptList(pageInfo: PageDesc.PageInfo,excerpts: List[dict],formatter: Formatter,itemLimit:int = 100) -> Iterator[PageDesc.PageAugmentorType]:
+def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 100) -> Iterator[PageDesc.PageAugmentorType]:
     """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
         pageInfo: The description of the first/main page to write. Later pages add "-N" to the file name.
         excerpts, formatter: As in HtmlExcerptList
@@ -520,14 +520,14 @@ def MultiPageExcerptList(pageInfo: PageDesc.PageInfo,excerpts: List[dict],format
     menuItems = []
     excerptsInThisPage = []
     prevSession = None
-    baseName,ext = os.path.splitext(pageInfo.file)
+    baseName,ext = os.path.splitext(basePage.info.file)
 
     def PageHtml() -> PageDesc.PageAugmentorType:
         if pageNumber > 1:
             fileName = f"{baseName}-{pageNumber}{ext}"
         else:
-            fileName = pageInfo.file
-        menuItem = PageDesc.PageInfo(str(pageNumber),fileName,pageInfo.titleInBody)
+            fileName = basePage.info.file
+        menuItem = PageDesc.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
         
         pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
         return menuItem,pageHtml
@@ -546,7 +546,6 @@ def MultiPageExcerptList(pageInfo: PageDesc.PageInfo,excerpts: List[dict],format
     if excerptsInThisPage:
         menuItems.append(PageHtml())
     
-    basePage = PageDesc.PageDesc()
     yield from basePage.AddMenuAndYieldPages(menuItems,prefix = "<p>Page: " + 2*"&nbsp",suffix = "</p>")
 
 def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
@@ -562,15 +561,14 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         a.br()
         a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
 
-    basePage = PageDesc.PageDesc()
+    basePage = PageDesc.PageDesc(pageInfo)
     basePage.AppendContent(str(a))
 
     formatter = Formatter()
     # formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
 
-    for page in MultiPageExcerptList(pageInfo,gDatabase["excerpts"],formatter,itemLimit = gOptions.excerptsPerPage):
-        yield basePage.Clone().Augment(page)
+    yield from MultiPageExcerptList(basePage,gDatabase["excerpts"],formatter,itemLimit = gOptions.excerptsPerPage)
 
 def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Generate a page containing a list of all events."""
@@ -799,7 +797,7 @@ def main():
     mainMenu.append(EventPages("events"))
     mainMenu.append(TeacherPages("teachers",indexDir))
     mainMenu.append(AllExcerpts(indexDir))
-    
+
     for newPage in basePage.AddMenuAndYieldPages(mainMenu,menuSection="mainMenu"):
         WritePage(newPage)
 
