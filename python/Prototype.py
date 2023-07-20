@@ -585,7 +585,7 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
         menuItem = PageDesc.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
         
         pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
-        return menuItem,pageHtml
+        return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
     for x in excerpts:
         thisSession = (x["event"],x["sessionNumber"])
@@ -605,7 +605,7 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
         yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=PageDesc.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
     else:
         clone = basePage.Clone()
-        clone.AppendContent(menuItems[0][1])
+        clone.AppendContent(menuItems[0][1][1])
         yield clone
 
 def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Formatter, mainPageInfo:PageDesc.PageInfo, menuTitle:str, fileExt:str = "") -> PageDesc.PageDescriptorMenuItem:
