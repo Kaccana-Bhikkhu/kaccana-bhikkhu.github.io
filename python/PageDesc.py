@@ -9,6 +9,10 @@ from pathlib import Path
 from collections.abc import Iterator, Iterable, Callable
 import copy
 
+class Wrapper(NamedTuple):
+    "A prefix and suffix to wrap an html object in."
+    prefix: str = ""
+    suffix: str = ""
 class PageInfo(NamedTuple):
     "The most basic information about a webpage. titleIB means titleInBody"
     title: str|None = None
@@ -37,21 +41,19 @@ class Renderable:
 class Menu(Renderable):
     items: list[PageInfo]
     menu_highlightedItem:int|None
-    menu_prefix:str
     menu_separator:int|str
-    menu_suffix:str
-    menu_highlightTags:tuple(str,str)
+    menu_wrapper:Wrapper
+    menu_highlightTags:Wrapper
 
-    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlightTags:tuple[str,str] = ("<b>","</b>"),prefix:str = "",suffix:str = "") -> None:
+    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlightTags:Wrapper = Wrapper("<b>","</b>"),wrapper:Wrapper = Wrapper()) -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
         separator: html code between each menu item; defaults to 6 spaces.
         highlightTags: the tags to apply to the highlighted menu item."""
         self.items = items
         self.menu_highlightedItem = highlightedItem
-        self.menu_prefix = prefix
         self.menu_separator = separator
-        self.menu_suffix = suffix
+        self.menu_wrapper = wrapper
         self.menu_highlightTags = highlightTags
     
     def __str__(self) -> str:
@@ -64,19 +66,19 @@ class Menu(Renderable):
         menuLinks = [f'<a href = "{"../" + i.file if RelativeLink(i.file) else i.file}">{i.title}</a>' for i in self.items]
 
         if self.menu_highlightedItem is not None:
-            menuLinks[self.menu_highlightedItem] = self.menu_highlightTags[0] + menuLinks[self.menu_highlightedItem] + self.menu_highlightTags[1]
+            menuLinks[self.menu_highlightedItem] = self.menu_highlightTags.prefix + menuLinks[self.menu_highlightedItem] + self.menu_highlightTags.suffix
 
         separator = self.menu_separator
         if type(separator) == int:
             separator = " " + (separator - 1) * "&nbsp"
 
         rawMenu = separator.join(menuLinks)
-        if self.menu_prefix:
-            items = [self.menu_prefix,rawMenu]
+        if self.menu_wrapper.prefix:
+            items = [self.menu_wrapper.prefix,rawMenu]
         else:
             items = [rawMenu]
-        if self.menu_suffix:
-            items.append(self.menu_suffix)
+        if self.menu_wrapper.suffix:
+            items.append(self.menu_wrapper.suffix)
         return " ".join(items)
 
     def HighlightItem(self,itemFileName:str) -> None:

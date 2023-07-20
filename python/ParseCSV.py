@@ -489,7 +489,7 @@ def CreateTagDisplayList(database):
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
-def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
+def WalkTags(tagDisplayList: list) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
     tagStack = []
     for tag in tagDisplayList:

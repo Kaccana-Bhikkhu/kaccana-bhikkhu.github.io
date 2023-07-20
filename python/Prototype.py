@@ -46,7 +46,7 @@ def WritePage(page: PageDesc) -> None:
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
-    dirs = ["events","tags","indexes","teachers"]
+    dirs = ["events","tags","indexes","teachers","drilldown","about"]
     dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
 
     for dir in dirs:
@@ -140,7 +140,7 @@ def ExcerptCount(tag:str) -> int:
 def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None) -> str:
     """Generate html for an indented list of tags.
     If expandSpecificTags is specified, then expand only tags with index numbers in this set.
-    If not, then expand all tags if expandDuplicateSubtags; otherwise expand only primary tags.
+    If not, then expand all tags if expandDuplicateSubtags; otherwise expand only tags with primary subtags.
     If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
     
     tabMeasurement = 'em'
@@ -602,7 +602,7 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
         menuItems.append(PageHtml())
     
     if len(menuItems) > 1:
-        yield from basePage.AddMenuAndYieldPages(menuItems,prefix = "<p>Page: " + 2*"&nbsp",suffix = "</p>")
+        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=PageDesc.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
     else:
         clone = basePage.Clone()
         clone.AppendContent(menuItems[0][1])
@@ -820,26 +820,37 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
+def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Create a submentu for the tag drilldown pages."""
+    
+    drilldownTitle = "Tag/subtag hierarchy"
+    drilldownItem = PageDesc.PageInfo(drilldownTitle,drilldownDir,drilldownTitle)
+    contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
+    expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+
+    yield contractAllItem
+
+    drilldownMenu = []
+    drilldownMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
+    drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
+    drilldownMenu.append(DrilldownTags(drilldownItem))
+
+    basePage = PageDesc.PageDesc()
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,wrapper=PageDesc.Wrapper("<p>","</p><hr>"))
+
 def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
     Also write a page for each tag."""
 
-    baseTagPage = PageDesc.PageDesc()
-
     drilldownDir = "drilldown"
-    drilldownTitle = "Tag/subtag hierarchy"
-    drilldownItem = PageDesc.PageInfo(drilldownTitle,drilldownDir,drilldownTitle)
-    contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,"tag-999.html"))
-    expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+    yield PageDesc.PageInfo("Tags",file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
 
     tagMenu = []
-    tagMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
-    tagMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
+    tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
     tagMenu.append(SortedHtmlTagList("indexes"))
     tagMenu.append(TagPages("tags"))
-    tagMenu.append(DrilldownTags(drilldownItem))
 
-    yield PageDesc.PageInfo("Tags",Utils.PosixJoin(indexDir,"SortedTags.html"))
+    baseTagPage = PageDesc.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")
 
 def AddArguments(parser):
