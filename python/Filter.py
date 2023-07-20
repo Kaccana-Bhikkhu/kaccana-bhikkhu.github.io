@@ -4,10 +4,13 @@ from __future__ import annotations
 
 from collections.abc import Iterator, Iterable, Callable
 
+gDatabase = None # This will be overwritten by the main program
+
 Filter = Callable[[dict],bool]
 "Returns whether the dict matches our filter function."
 
-gDatabase = None # This will be overwritten by the main program
+def PassAll(_) -> bool:
+    return True
 
 class InverseSet:
     """A class which contains everything except the objects in self.inverse"""

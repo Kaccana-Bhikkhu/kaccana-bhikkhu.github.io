@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import timedelta, datetime
 import copy
 import unicodedata
-import re
+import re, os
 from typing import List
 import Alert
 import pathlib
@@ -45,6 +45,11 @@ def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fil
 def PosixJoin(*paths):
     "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
     return str(pathlib.PurePosixPath(*paths))
+
+def AppendToFilename(filename:str, appendStr: str) -> str:
+    "Append to fileName before the file extension"
+    name,ext = os.path.splitext(filename)
+    return name + appendStr + ext
 
 def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     """Return a link to the mp3 file associated with a given excerpt or session.
