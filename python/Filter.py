@@ -78,6 +78,19 @@ def Tag(tag: str|set(str),kind:str|set(str) = All,category:str|set(str) = All) -
 
     return lambda item,tag=tag,kind=kind,category=category: _Tag(item,tag,kind,category)
 
+def _QTag(excerpt: dict,tag:str) -> bool:
+    return tag in excerpt["tags"][0:excerpt["qTagCount"]]
+
+def QTag(tag:str) -> Filter:
+    """Returns excerpts in which tag appears as a qTag, in other words, the subject of a question."""
+
+    return lambda excerpt,tag=tag: _QTag(excerpt,tag)
+
+def ATag(tag:str) -> Filter:
+    """Returns excerpts in which tag appears but not as a qTag, in other words, part of the answer to a question."""
+
+    return lambda excerpt,tag=tag: _Tag(excerpt,tag,All,All) and not _QTag(excerpt,tag)
+
 def AllTags(item: dict) -> set:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""
     allTags = set(item["tags"])

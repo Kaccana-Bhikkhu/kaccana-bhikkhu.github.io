@@ -717,7 +717,10 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         if len(relevantQs) >= gOptions.minSubsearchExcerpts:
             filterMenu = []
             filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.PassAll,formatter,pageInfo,"All excerpts"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quotes"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.QTag(tag),formatter,pageInfo,"Questions about","qtag"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.ATag(tag),formatter,pageInfo,"Answers involving","atag"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.Tag(tag,category="Stories"),formatter,pageInfo,"Stories","story"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quote"))
             
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
