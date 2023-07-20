@@ -168,24 +168,6 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
-def AllTags(item: dict) -> set:
-    """Return the set of all tags in item, which is either an excerpt or an annotation."""
-    allTags = set(item["tags"])
-    
-    for annotation in item.get("annotations",()):
-        allTags.update(annotation.get("tags",()))
-    
-    return allTags
-
-def AllTeachers(item: dict) -> set:
-    """Return the set of all teachers in item, which is either an excerpt or an annotation."""
-    allTeachers = set(item.get("teachers",()))
-    
-    for annotation in item.get("annotations",()):
-        allTeachers.update(annotation.get("teachers",()))
-    
-    return allTeachers
-
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
     

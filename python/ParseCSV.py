@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os, re, csv, json, unicodedata
+import Filter
 import Render
 import Utils
 from typing import List, Iterator, Tuple, Callable, Any
@@ -899,7 +900,7 @@ def CountAndVerify(database):
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
     
     for x in database["excerpts"]:
-        tagSet = Utils.AllTags(x)
+        tagSet = Filter.AllTags(x)
         for tag in tagSet:
             try:
                 tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1

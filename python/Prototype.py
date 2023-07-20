@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils, PageDesc, Alert
+import Utils, PageDesc, Alert, Filter
 from datetime import timedelta
 import re, copy
 from collections import namedtuple
@@ -664,8 +664,9 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         if not tagInfo["htmlFile"]:
             continue
     
-        relevantQs = [x for x in xDB if tag in Utils.AllTags(x)]
+        #relevantQs = [x for x in xDB if tag in Filter.AllTags(x)]
     
+        relevantQs = list(Filter.Apply(gDatabase["excerpts"],Filter.Tag(tag)))
         a = Airium()
         
         with a.strong():
@@ -712,7 +713,7 @@ def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMe
         if tInfo["fullName"] in gDatabase["tag"]:
             relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
         else: """
-        relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
+        relevantQs = [x for x in xDB if t in Filter.AllTeachers(x)]
     
         a = Airium()
         
