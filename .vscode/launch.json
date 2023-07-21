@@ -52,6 +52,18 @@
             "justMyCode": true
         },
         {
+            "name": "ParseCSVOnly",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "ParseCSV",
+                "-vvv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "RenderAndPrototype",
             "type": "python",
             "request": "launch",

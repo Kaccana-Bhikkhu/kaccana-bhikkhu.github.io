@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os, re
-import urllib.request
+import urllib.request, urllib.error
 import shutil
 from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
@@ -14,11 +14,19 @@ def BuildSheetUrl(docId: str, sheetId: str):
     
     return f'https://docs.google.com/spreadsheets/d/{docId}/export?format=csv&gid={sheetId}'
 
-def DownloadFile(url,filename):
+def DownloadFile(url:str,filename:str,retries:int = 2):
+    
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(url) as remoteFile:
+                with open(filename,'wb') as localFile:
+                    shutil.copyfileobj(remoteFile, localFile)
+        except urllib.error.HTTPError:
+            if attempt < retries:
+                Alert.caution.Show(f"HTTP error when attempting to download {filename}. Retrying.")
+            else:
+                Alert.error.Show(f"HTTP error when attempting to download {filename}. Giving up after {retries + 1} attempts.")
         
-    with urllib.request.urlopen(url) as remoteFile:
-        with open(filename,'wb') as localFile:
-            shutil.copyfileobj(remoteFile, localFile)
 
 def DownloadSheetCSV(docId: str, sheetId: str, filePath: str) -> None:
     "Download a Google Sheet with the given docId and sheetId to filePath"
@@ -72,11 +80,14 @@ def main():
     gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
     gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
     
+    downloadSummary = False
     if gOptions.sheets != 'All' and gOptions.sheets != 'Default':
         gOptions.sheets = gOptions.sheets.split(',')
+        if 'Summary' in gOptions.sheets:
+            downloadSummary = True
+            gOptions.sheets.remove('Summary')
         
-    if os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All':
-        downloadSummary = False
+    if os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All' and not downloadSummary:
         oldSheetIds = ReadSheetIds()
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]

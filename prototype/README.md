@@ -176,96 +176,40 @@
 		<p style="margin-left: 0.79in; background: transparent">June 6, 2023</p>
 		<hr />
 
-		<h3 class="western">Version list</h3>
-		<p>
-			<b>1.0</b>: First publicly available prototype; contains all questions
-			from Thanksgiving Retreats 2013-2015 from pre-existing transcriptions;
-			subject tags are based on transcription text rather than audio content.
-		</p>
-		<p>
-			<b>1.9</b
-			><span style="font-weight: normal"
-				>: Index stories, quotes, and readings in addition to questions. Added
-				Spirit Rock daylong events from 2010 and 2011. The tag list has expanded
-				to include tags from many events transcribed on paper that have not yet
-				been entered into the online archive. Almost all documentation still
-				applies to version 1.0.</span
-			>
-		</p>
-		<p>
-			<b>1.91</b
-			><span style="font-weight: normal"
-				>: Added events: DRBU Q&amp;A, The Teaching and the Training, and Living
-				in a Changing Society. Remove unused tags from the tag list (possibly
-				still a few glitches).</span
-			>
-		</p>
-		<p>
-			<b>1.92</b
-			><span style="font-weight: normal"
-				>: Added Teen Weekend 2017. Added teacher pages.</span
-			>
-		</p>
-		<p>
-			<b>1.93</b
-			><span style="font-weight: normal"
-				>: Added Tea Time Q&amp;A and Abhayagiri Ka&#7789;hina 2021. Embed audio
-				players in the page for each excerpt. This allows one to read
-				transcriptions while listening to the talk, but clutters the visual
-				interface. The
-				<a href="https://www.abhayagiri.org/20/index.html"
-					>Abhayagiri 20</a
-				></span
-			><a href="https://www.abhayagiri.org/20/index.html"
-				><sup><span style="font-weight: normal">th</span></sup>
-				<span style="font-weight: normal">Anniversary page</span></a
-			>
-			<span style="font-weight: normal"
-				>demonstrates a good solution, but it&rsquo;s well beyond my web
-				skills.</span
-			>
-		</p>
-		<p>
-			<b>2.0</b>
-			<span style="font-weight: normal"
-				>(May 15, 2023): All pages look much better thanks to css code
-				contributed by Chris Claudius.</span
-			>
-		</p>
-		<p>
-			<b>2.1</b>
-			<span style="font-weight: normal"
-				>Added three Upasika Days: Thai Forest Tradition, Mindfulness of
-				Breathing, and Jh&#257;na: A Practical Approach</span
-			>
-		</p>
-		<p>
-			<b>2.1.1</b>
-			<span style="font-weight: normal"
-				>Added three Upasika Days: Honoring the Buddha, The Middle Way of
-				Not-self, and Death and Dying. Added the Spirit Rock Daylong about
-				Friendship.</span
-			>
-		</p>
-		<p>
-			<b>2.1.2</b>
-			<span style="font-weight: normal"
-				>Added the 2008 Metta Retreat and the Spirit Rock Daylong Desire or
-				Aspiration. Assigned copyright to Abhayagiri Buddhist Monastery.</span
-			>
-		</p>
-		<p>
-			<b>2.1.3</b>
-			<span style="font-weight: normal"
-				>Added Upasika Day: Right Livelihood.</span
-			>
-		</p>
-		<p>
-			<b>2.2</b>
-			<span style="font-weight: normal"
-				>Implemented session excerpts. Added Stanford Communtiy Dhamma
-				Discussion and Upasika Day: Buddhist Identity. Added three sessions from
-				Winter Retreat 2014 for testing purposes.</span
-			>
-		</p>
-	
+<h3 class="western">Version list</h3>
+<p><b>1.0</b>: First publicly available prototype; contains all
+questions from Thanksgiving Retreats 2013-2015 from pre-existing
+transcriptions; subject tags are based on transcription text rather
+than audio content.</p>
+<p><b>1.9</b><span style="font-weight: normal">: Index stories,
+quotes, and readings in addition to questions. Added Spirit Rock
+daylong events from 2010 and 2011. The tag list has expanded to
+include tags from many events transcribed on paper that have not yet
+been entered into the online archive. Almost all documentation still
+applies to version 1.0.</span></p>
+<p><b>1.91</b><span style="font-weight: normal">: Added events: DRBU
+Q&amp;A, The Teaching and the Training, and Living in a Changing
+Society. Remove unused tags from the tag list (possibly still a few
+glitches).</span></p>
+<p><b>1.92</b><span style="font-weight: normal">: Added Teen Weekend
+2017. Added teacher pages.</span></p>
+<p><b>1.93</b><span style="font-weight: normal">: Added Tea Time Q&amp;A
+and Abhayagiri Ka&#7789;hina 2021. Embed audio players in the page
+for each excerpt. This allows one to read transcriptions while
+listening to the talk, but clutters the visual interface. The
+<a href="https://www.abhayagiri.org/20/index.html">Abhayagiri 20</a></span><a href="https://www.abhayagiri.org/20/index.html"><sup><span style="font-weight: normal">th</span></sup>
+<span style="font-weight: normal">Anniversary page</span></a>
+<span style="font-weight: normal">demonstrates a good solution, but
+it&rsquo;s well beyond my web skills.</span></p>
+<p><b>2.0</b> <span style="font-weight: normal">(May 15, 2023): All
+pages look much better thanks to css code contributed by Chris
+Claudius.</span></p>
+<p><b>2.1</b> <span style="font-weight: normal">Added three Upasika
+Days: Thai Forest Tradition, Mindfulness of Breathing, and Jh&#257;na:
+A Practical Approach</span></p>
+<p><b>2.1.1</b> <span style="font-weight: normal">Added three Upasika Days: Honoring the Buddha, The Middle Way of Not-self, and Death and Dying. Added the Spirit Rock Daylong about Friendship.</span></p>
+<p><b>2.1.2</b> <span style="font-weight: normal">Added the 2008 Metta Retreat and the Spirit Rock Daylong Desire or Aspiration. Assigned copyright to Abhayagiri Buddhist Monastery.</span></p>
+<p><b>2.1.3</b> <span style="font-weight: normal">Added Upasika Day: Right Livelihood.</span></p>
+<p><b>2.2</b> <span style="font-weight: normal">Implemented session excerpts. Added Stanford Communtiy Dhamma Discussion and Upasika Day: Buddhist Identity. Added three sessions from Winter Retreat 2014 for testing purposes.</span></p>
+<p><b>2.3</b> <span style="font-weight: normal">Added Chanting Upasika Day and Path of Practice weekend.</span></p>
+<p><b>2.3.1</b> <span style="font-weight: normal">Added three more Upasika Days and BIA New Year, New Life.</span></p>

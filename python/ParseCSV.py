@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import os, re, csv, json, unicodedata
+import Filter
 import Render
 import Utils
-from typing import List, Iterator, Tuple
+from typing import List, Iterator, Tuple, Callable, Any
 from datetime import timedelta
 import Prototype, Alert
 
@@ -489,7 +490,7 @@ def CreateTagDisplayList(database):
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
-def WalkTags(tagDisplayList: dict) -> Iterator[Tuple[dict,List[dict]]]:
+def WalkTags(tagDisplayList: list) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
     tagStack = []
     for tag in tagDisplayList:
@@ -551,10 +552,29 @@ def PrepareTeachers(teacherDB) -> None:
         else:
             t["htmlFile"] = ""
 
+itemAllowedFields = {"startTime": "takesTimes", "endTime": "takesTimes", "teachers": "takesTeachers", "aTag": "takesTags", "qTag": "takesTags"}
+
+def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
+    """Print alerts if there are unexpectedly blank or filled fields in item based on its kind."""
+
+    isExcerpt = bool(item["startTime"]) and kind["canBeExcerpt"]
+        # excerpts specify a start time
+    
+    if not isExcerpt and not kind["canBeAnnotation"]:
+        Alert.warning.Show(item,"to",prevExcerpt,f": Kind {repr(item['kind'])} is not allowed for annotations.")
+    
+    for key,permission in itemAllowedFields.items():
+        if item[key] and not kind[permission]:
+            message = f"has ['{key}'] = {repr(item[key])}, but kind {repr(item['kind'])} does not allow this."
+            if isExcerpt or not prevExcerpt:
+                Alert.caution.Show(item,message)
+            else:
+                Alert.caution.Show(item,"to",prevExcerpt,message)
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
-    ### Need to fix so that Extra tags assigns tags to annotations
+    CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
     if annotation["kind"] == "Extra tags":
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
             if "tags" in prevAnnotation:
@@ -566,15 +586,9 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if gOptions.ignoreAnnotations:
-        return
-    
     if annotation["exclude"]:
         return
     
-    if not annotation["kind"]:
-        Alert.warning.Show("Annotations must specify a kind; defaulting to Comment. ",annotation["text"])
-        annotation["kind"] = kind = "Comment"
     kind = database["kind"][annotation["kind"]]
     
     keysToRemove = ["sessionNumber","offTopic","aListen","exclude","qTag","aTag"]
@@ -596,8 +610,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 pass # Unless the annotation has the same teachers as the excerpt and the excerpt kind ignores consent; e.g. "Reading"
             else:
                 excerpt["exclude"] = True
-                print("Excluded excerpt due to annotation",annotation)
-                print()
+                excludeAlert.Show(excerpt,"due to teachers",annotation["teachers"],"of",annotation)
                 return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
@@ -631,202 +644,225 @@ def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
 
     return authors
 
+def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.AlertClass,message: str) -> list:
+    """Return [i for in items if filter(i)].
+    Print a message for each excluded item using printer and message."""
+    filteredItems = []
+    excludedItems = []
+    for i in items:
+        if filter(i):
+            filteredItems.append(i)
+        else:
+            excludedItems.append(i)
+
+    for i in excludedItems:
+        printer.Show(i,message)
+    return filteredItems
+
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
-        eventDesc = DictFromPairs(rawEventDesc,"key","value")
-        
-        for key in ["teachers","tags"]:
-            eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
-        for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
-            if key in eventDesc:
-                eventDesc[key] = int(eventDesc[key])
-        
-        database["event"][eventName] = eventDesc
-        
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
-        
-        for key in ["tags","teachers"]:
-            ListifyKey(sessions,key)
-        for key in ["sessionNumber","excerpts"]:
-            ConvertToInteger(sessions,key)
-            
-        if not gOptions.ignoreExcludes:
-            sessions = [s for s in sessions if not s["exclude"]] # Remove excluded sessions
-            # Remove excluded sessions
-            
-        for s in sessions:
-            s["event"] = eventName
-            Utils.ReorderKeys(s,["event","sessionNumber"])
-            if not gOptions.jsonNoClean:
-                del s["exclude"]
-            
-        sessions = [s for s in sessions if TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True)]
-            # Remove sessions if none of the session teachers have given consent
-        database["sessions"] += sessions
-        
         rawExcerpts = CSVToDictList(file)
+
+    eventDesc = DictFromPairs(rawEventDesc,"key","value")
+    
+    for key in ["teachers","tags"]:
+        eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
+    for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
+        if key in eventDesc:
+            eventDesc[key] = int(eventDesc[key])
+    
+    database["event"][eventName] = eventDesc
+    
+    
+    for key in ["tags","teachers"]:
+        ListifyKey(sessions,key)
+    for key in ["sessionNumber","excerpts"]:
+        ConvertToInteger(sessions,key)
+
+    for s in sessions:
+        s["event"] = eventName
+        Utils.ReorderKeys(s,["event","sessionNumber"])
+
+    if not gOptions.ignoreExcludes:
+        sessions = FilterAndExplain(sessions,lambda s: not s["exclude"],excludeAlert,"- exclude flag Yes.")
+        # Remove excluded sessions
         
-        for key in ["teachers","qTag1","aTag1"]:
-            ListifyKey(rawExcerpts,key)
-        ConvertToInteger(rawExcerpts,"sessionNumber")
-        
-        includedSessions = set(s["sessionNumber"] for s in sessions)
-        rawExcerpts = [x for x in rawExcerpts if x["sessionNumber"] in includedSessions]
-            # Remove excerpts and annotations in sessions we didn't get consent for
-            
-        fileNumber = 1
-        lastSession = -1
-        prevExcerpt = None
-        excerpts = []
-        redactedTagSet = set(database["tagRedacted"])
-        for x in rawExcerpts:
-            if all(not value for key,value in x.items() if key != "sessionNumber"): # Skip lines which have a session number and nothing else
-                continue
-
-            x["flags"] = x.get("flags","")
-            x["kind"] = x.get("kind","")
-
-            x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
-            x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
-
-            if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
-                if prevExcerpt is not None:
-                    AddAnnotation(database,prevExcerpt,x)
-                else:
-                    Alert.error.Show(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
-                continue
-            else:
-                x["annotations"] = []
-
-            if not x["kind"]:
-                x["kind"] = "Question"
-            x["event"] = eventName
-            
-            ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
-            
-            if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
-                x["qTag"] = ourSession["tags"] + x["qTag"]
-
-            if not x["teachers"]:
-                defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
-                if defaultTeacher == "Anon": # Check if the default teacher is anonymous
-                    x["teachers"] = ["Anon"]
-                elif defaultTeacher != "None":
-                    x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
-            
-            if x["kind"] == "Reading":
-                AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
-            
-            if x["sessionNumber"] != lastSession:
-                lastSession = x["sessionNumber"]
-                if x["startTime"] == "Session":
-                    fileNumber = 0
-                    # x["exclude"] = True # Temporarily remove session excerpts until we write code to deal with them.
-                else:
-                    fileNumber = 1
-            else:
-                fileNumber += 1 # File number counts all excerpts listed for the event
-            
-            if (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]) and (not x["exclude"] or gOptions.ignoreExcludes):
-                x["exclude"] = False
-            else:
-                x["exclude"] = True
-                print("Excluded",x,"due to excerpt teacher.")
-                print()
-
-            x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
-            
-            x["fileNumber"] = fileNumber
-            excerpts.append(x)
-            prevExcerpt = x
-
-        prevSession = None
-        for xIndex, x in enumerate(excerpts):
-            # Combine all tags into a single list, but keep track of how many qTags there are
-            x["tags"] = x["qTag"] + x["aTag"]
-            x["qTagCount"] = len(x["qTag"])
-            if not gOptions.jsonNoClean:
-                del x["qTag"]
-                del x["aTag"]
-                x.pop("aListen",None)
-
-            # Calculate the duration of each excerpt and handle overlapping excerpts
-            startTime = x["startTime"]
-            endTime = x["endTime"]
-            if startTime == "Session": # The session excerpt has the length of the session
-                x["duration"] = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-                continue
-
-            if not endTime:
-                try:
-                    if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
-                        endTime = excerpts[xIndex + 1]["startTime"]
-                except IndexError:
-                    pass
-            
-            if not endTime:
-                endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-            
-            startTime = Utils.StrToTimeDelta(startTime)
-            endTime = Utils.StrToTimeDelta(endTime)
-
-            session = (x["event"],x["sessionNumber"])
-            if session != prevSession: # A new session starts at time zero
-                prevEndTime = timedelta(seconds = 0)
-                prevSession = session
-
-            if startTime < prevEndTime: # Does this overlap with the previous excerpt?
-                startTime = prevEndTime
-                x["startTime"] = Utils.TimeDeltaToStr(startTime)
-                if "o" not in x["flags"]:
-                    Alert.warning.Show(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
-
-            x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
-            prevEndTime = endTime
-        
-        removedExcerpts = [x for x in excerpts if x["exclude"]]
-        excerpts = [x for x in excerpts if not x["exclude"]]
-            # Remove excluded excerpts and those we didn't get consent for
-        """for n, x in enumerate(removedExcerpts):
-            print("Removed excert",n,x)
-            print()"""
-
-        xNumber = 1
-        lastSession = -1
-        for x in excerpts:
-            if x["sessionNumber"] != lastSession:
-                if lastSession > x["sessionNumber"]:
-                    Alert.warning.Show(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
-                if x["startTime"] == "Session":
-                    xNumber = 0
-                else:
-                    xNumber = 1
-                lastSession = x["sessionNumber"]
-            else:
-                xNumber += 1
-            
-            x["excerptNumber"] = xNumber
-        
-        for index in range(len(excerpts)):
-            Utils.ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
-        
+    for s in sessions:
         if not gOptions.jsonNoClean:
-            for x in excerpts:
-                del x["exclude"]
+            del s["exclude"]
+    
+    sessions = FilterAndExplain(sessions,lambda s: TeacherConsent(database["teacher"],s["teachers"],"indexSessions",singleConsentOK=True),excludeAlert,"due to teacher consent.")
+        # Remove sessions if none of the session teachers have given consent
+    database["sessions"] += sessions
+
+
+    for key in ["teachers","qTag1","aTag1"]:
+        ListifyKey(rawExcerpts,key)
+    ConvertToInteger(rawExcerpts,"sessionNumber")
+    
+    includedSessions = set(s["sessionNumber"] for s in sessions)
+    rawExcerpts = [x for x in rawExcerpts if x["sessionNumber"] in includedSessions]
+        # Remove excerpts and annotations in sessions we didn't get consent for
         
-        for x in removedExcerpts: # Redact information about these excerpts
-            for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
-                x.pop(key,None)
+    fileNumber = 1
+    lastSession = -1
+    prevExcerpt = None
+    excerpts = []
+    blankExcerpts = 0
+    redactedTagSet = set(database["tagRedacted"])
+    for x in rawExcerpts:
+        if all(not value for key,value in x.items() if key != "sessionNumber"): # Skip lines which have a session number and nothing else
+            blankExcerpts += 1
+            continue
+
+        x["flags"] = x.get("flags","")
+        x["kind"] = x.get("kind","")
+
+        x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
+        x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
+
+        if not x["kind"]:
+            x["kind"] = "Question"
+
+        if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
+            if prevExcerpt is not None:
+                AddAnnotation(database,prevExcerpt,x)
+            else:
+                Alert.error.Show(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
+            continue
+
+        x["annotations"] = []    
+        x["event"] = eventName
         
-        sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
-        sessions = [s for s in sessions if s["sessionNumber"] in sessionsWithExcerpts]
-            # Remove sessions that have no excerpts in them
+        ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
         
-        database["excerpts"] += excerpts
-        database["excerptsRedacted"] += removedExcerpts
+        if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
+            x["qTag"] = ourSession["tags"] + x["qTag"]
+
+        if not x["teachers"]:
+            defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
+            if defaultTeacher == "Anon": # Check if the default teacher is anonymous
+                x["teachers"] = ["Anon"]
+            elif defaultTeacher != "None":
+                x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
         
+        if x["kind"] == "Reading":
+            AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
+        
+        if x["sessionNumber"] != lastSession:
+            lastSession = x["sessionNumber"]
+            if x["startTime"] == "Session":
+                fileNumber = 0
+            else:
+                fileNumber = 1
+        else:
+            fileNumber += 1 # File number counts all excerpts listed for the event
+        x["fileNumber"] = fileNumber
+
+        CheckItemContents(x,None,database["kind"][x["kind"]])
+
+        excludeReason = []
+        if x["exclude"] and not gOptions.ignoreExcludes:
+            excludeReason = [x," - marked for exclusion in spreadsheet"]
+        elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
+            x["exclude"] = True
+            excludeReason = [x,"due to excerpt teachers",x["teachers"]]
+        
+        if excludeReason:
+            excludeAlert.Show(*excludeReason)
+
+        x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        
+        excerpts.append(x)
+        prevExcerpt = x
+
+    if blankExcerpts:
+        Alert.notice.Show(blankExcerpts," blank excerpts in",eventDesc)
+
+    prevSession = None
+    for xIndex, x in enumerate(excerpts):
+        # Combine all tags into a single list, but keep track of how many qTags there are
+        x["tags"] = x["qTag"] + x["aTag"]
+        x["qTagCount"] = len(x["qTag"])
+        if not gOptions.jsonNoClean:
+            del x["qTag"]
+            del x["aTag"]
+            x.pop("aListen",None)
+
+        # Calculate the duration of each excerpt and handle overlapping excerpts
+        startTime = x["startTime"]
+        endTime = x["endTime"]
+        if startTime == "Session": # The session excerpt has the length of the session
+            x["duration"] = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
+            continue
+
+        if not endTime:
+            try:
+                if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
+                    endTime = excerpts[xIndex + 1]["startTime"]
+            except IndexError:
+                pass
+        
+        if not endTime:
+            endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
+        
+        startTime = Utils.StrToTimeDelta(startTime)
+        endTime = Utils.StrToTimeDelta(endTime)
+
+        session = (x["event"],x["sessionNumber"])
+        if session != prevSession: # A new session starts at time zero
+            prevEndTime = timedelta(seconds = 0)
+            prevSession = session
+
+        if startTime < prevEndTime: # Does this overlap with the previous excerpt?
+            startTime = prevEndTime
+            x["startTime"] = Utils.TimeDeltaToStr(startTime)
+            if "o" not in x["flags"]:
+                Alert.warning.Show(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+        x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
+        prevEndTime = endTime
+    
+    removedExcerpts = [x for x in excerpts if x["exclude"]]
+    excerpts = [x for x in excerpts if not x["exclude"]]
+        # Remove excluded excerpts and those we didn't get consent for
+    """for n, x in enumerate(removedExcerpts):
+        print("Removed excert",n,x)
+        print()"""
+
+    xNumber = 1
+    lastSession = -1
+    for x in excerpts:
+        if x["sessionNumber"] != lastSession:
+            if lastSession > x["sessionNumber"]:
+                Alert.warning.Show(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
+            if x["startTime"] == "Session":
+                xNumber = 0
+            else:
+                xNumber = 1
+            lastSession = x["sessionNumber"]
+        else:
+            xNumber += 1
+        
+        x["excerptNumber"] = xNumber
+    
+    for index in range(len(excerpts)):
+        Utils.ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])
+    
+    if not gOptions.jsonNoClean:
+        for x in excerpts:
+            del x["exclude"]
+    
+    for x in removedExcerpts: # Redact information about these excerpts
+        for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
+            x.pop(key,None)
+
+    database["excerpts"] += excerpts
+    database["excerptsRedacted"] += removedExcerpts
+    
 
 def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False) -> int:
     """Loop through items in a collection of dicts and count the number of appearances a given str.
@@ -864,7 +900,7 @@ def CountAndVerify(database):
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
     
     for x in database["excerpts"]:
-        tagSet = Utils.AllTags(x)
+        tagSet = Filter.AllTags(x)
         for tag in tagSet:
             try:
                 tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
@@ -925,10 +961,13 @@ def AddArguments(parser):
     parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
     parser.add_argument('--keepUnusedTags',action='store_true',help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
-    parser.add_argument('--ignoreAnnotations',action='store_true',help="Don't process annotations")
+    parser.add_argument('--explainExcludes',action='store_true',help="Print a message for each excluded/redacted excerpt")
 
 gOptions = None
 gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
+# AlertClass for explanations of excluded excerpts. Don't show by default.
+excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)
 
 def main():
     """ Parse a directory full of csv files into the dictionary database and write it to a .json file.
@@ -959,6 +998,9 @@ def main():
     LoadTagsFile(gDatabase,os.path.join(gOptions.csvDir,"Tag.csv"))
     PrepareReferences(gDatabase["reference"])
 
+    if gOptions.explainExcludes:
+        excludeAlert.printAtVerbosity = -999
+
     gDatabase["event"] = {}
     gDatabase["sessions"] = []
     gDatabase["excerpts"] = []
@@ -966,7 +1008,10 @@ def main():
     for event in gDatabase["summary"]:
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             LoadEventFile(gDatabase,event,gOptions.csvDir)
-
+    excludeAlert.Show(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
+    gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
+        # Remove sessions that have no excerpts in them
+    
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)

@@ -11,7 +11,8 @@ import json
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
 
-import Utils, Alert
+import Utils, Alert, Filter
+Alert.ObjectPrinter = Utils.ItemRepr
 
 def PrintModuleSeparator(moduleName:str) -> None:
     if moduleName:
@@ -148,6 +149,7 @@ else:
 for mod in modules:
     modules[mod].gDatabase = database
     Utils.gDatabase = database
+    Filter.gDatabase = database
 
 # Then run the specified operations in sequential order
 for moduleName in moduleList:
@@ -168,7 +170,7 @@ for error in [Alert.error, Alert.warning, Alert.caution, Alert.notice]:
         errorCountList.append(countString)
 
 if errorCountList:
-    Alert.essential.Show("  ***** " + ", ".join(errorCountList) + " ****")
+    Alert.essential.Show("  ***** " + ", ".join(errorCountList) + " *****")
 else:
     Alert.status.Show("No errors reported.")
 

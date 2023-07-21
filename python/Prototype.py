@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import List, Tuple 
+from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils
+import Utils, PageDesc, Alert, Filter
 from datetime import timedelta
-import re
+import re, copy, itertools
 from collections import namedtuple
-import pyratemp
+import pyratemp, markdown
 from functools import lru_cache
 
 def WriteIndentedTagDisplayList(fileName):
@@ -27,43 +27,6 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
-MenuItem = namedtuple("MenuItem",["name","link"])
-
-def HorizontalMenu(items: List[MenuItem],spaces: int = 5) -> str:
-    """Return an html-formatted horizontal menu"""
-    
-    menuItems = []
-    for name,link in items:
-        itemText = Airium(source_minify=True)
-        with itemText.a(href = link):
-            itemText(name)
-        menuItems.append(str(itemText))
-    
-    return (" " + "&nbsp"*spaces).join(menuItems)
-
-"Create the default html header"
-head = Airium()
-head.meta(charset="utf-8")
-head.meta(name="robots", content="noindex, nofollow")
-with head.style():
-    head('body {background-image: url("../images/PrototypeWatermark.png"); }')
-    head('p {font-size: 110%;}')
-gDefaultHead = str(head)
-del head # Clean up the global namespace
-
-"Create the top navigation guide"
-nav = Airium(source_minify=True)
-mainMenu = []
-mainMenu.append(MenuItem("Homepage","../homepage.html"))
-mainMenu.append(MenuItem("Tag/subtag hierarchy","../indexes/AllTags.html"))
-mainMenu.append(MenuItem("Most common tags","../indexes/SortedTags.html"))
-mainMenu.append(MenuItem("Events","../indexes/AllEvents.html"))
-mainMenu.append(MenuItem("Teachers","../indexes/AllTeachers.html"))
-mainMenu.append(MenuItem("All excerpts","../indexes/AllExcerpts.html"))
-nav(HorizontalMenu(mainMenu))
-gNavigation = str(nav)
-del nav
-
 gWrittenHtmlFiles = set()
 
 @lru_cache(maxsize = None)
@@ -74,34 +37,22 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WriteHtmlFile(fileName: str,title: str,body: str,directoryDepth:int = 1,titleInBody:str|None = None) -> None:
-    """Write a complete html file given a title, body, and header.
-        fileName - name of the file to write
-        title - internal title of the html page
-        body - website body page - can be quite a long string
-       directoryDepth - how deep is the file we're writing?"""
-    
-    globalTemplate = GlobalTemplate(directoryDepth)
-    navigation = gNavigation.replace('"../','"' + '../' * directoryDepth)
-
-    if not titleInBody:
-        titleInBody = title
-
-    with open(fileName,'w',encoding='utf-8') as file:
-        print(globalTemplate(title = title,body = body,mainMenu=navigation,titleInBody = titleInBody),file=file)
-    
-    gWrittenHtmlFiles.add(fileName)
+def WritePage(page: PageDesc) -> None:
+    """Write an html file for page using the global template"""
+    page.WriteFile(gOptions.globalTemplate,gOptions.prototypeDir)
+    gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
+    Alert.debug.Show(f"Write file: {page.info.file}")
 
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
-    dirs = ["events","tags","indexes","teachers"]
-    dirs = [os.path.join(gOptions.prototypeDir,dir) for dir in dirs]
+    dirs = ["events","tags","indexes","teachers","drilldown","about"]
+    dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
 
     for dir in dirs:
         fileList = next(os.walk(dir), (None, None, []))[2]
         for fileName in fileList:
-            fullPath = os.path.join(dir,fileName)
+            fullPath = Utils.PosixJoin(dir,fileName)
             if fullPath not in gWrittenHtmlFiles:
                 os.remove(fullPath)
 
@@ -180,27 +131,58 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
-def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = True) -> None:
-    """Write an indented list of tags."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
+def ExcerptCount(tag:str) -> int:
+    try:
+        return gDatabase["tag"][tag]["excerptCount"]
+    except KeyError:
+        return 0
+
+def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None) -> str:
+    """Generate html for an indented list of tags.
+    If expandSpecificTags is specified, then expand only tags with index numbers in this set.
+    If not, then expand all tags if expandDuplicateSubtags; otherwise expand only tags with primary subtags.
+    If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
     
     tabMeasurement = 'em'
     tabLength = 2
     
     a = Airium()
     
+    tagList = gDatabase["tagDisplayList"]
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
-    for index, item in enumerate(gDatabase["tagDisplayList"]):
-        if not listDuplicateSubtags:
-            if item["level"] > skipSubtagLevel:
-                continue
+    for index, item in enumerate(tagList):
+        if item["level"] > skipSubtagLevel:
+            continue
+
+        skipSubtags = False
+        if expandSpecificTags is not None:
+            if index not in expandSpecificTags:
+                skipSubtags = True
+        elif not expandDuplicateSubtags:
             if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
-                skipSubtagLevel = item["level"] # skip subsequent subtags
-            else:
-                skipSubtagLevel = 999 # otherwise don't skip anything
+                skipSubtags = True
+
+        if skipSubtags:
+            skipSubtagLevel = item["level"] # skip tags deeper than this level
+        else:
+            skipSubtagLevel = 999 # otherwise don't skip anything
         
         with a.p(style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+            drilldownLink = ''
+            if expandTagLink:
+                if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
+                    if index in expandSpecificTags: # Is it already expanded?
+                        tagAtPrevLevel = -1
+                        for reverseIndex in range(index - 1,-1,-1):
+                            if tagList[reverseIndex]["level"] < item["level"]:
+                                tagAtPrevLevel = reverseIndex
+                                break
+                        drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll">⊟</a>'
+                    else:
+                        drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll">⊞</a>'
+                else:
+                    drilldownLink = "&nbsp"
+
             indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
             
             countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
@@ -219,24 +201,41 @@ def WriteIndentedHtmlTagList(pageDir: str,fileName: str, listDuplicateSubtags = 
                 seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
             else:
                 seeAlsoStr = ''
-                
-            a(' '.join([indexStr,nameStr,paliStr,seeAlsoStr]))
+            
+            joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
+            a(' '.join(joinBits))
     
-    WriteHtmlFile(os.path.join(pageDir,fileName),"Tag/subtag hierarchy",str(a))
+    return str(a)
 
-def ExcerptCount(tag:str) -> int:
-    try:
-        return gDatabase["tag"][tag]["excerptCount"]
-    except KeyError:
-        return 0
+def DrilldownPageFile(tagNumber: int) -> str:
+    "Return the name of the page that has this numbered tag expanded."
+    if tagNumber == -1:
+        tagNumber = 999
+    fileName = f"tag-{tagNumber:03d}.html"
+    return fileName
 
-def WriteSortedHtmlTagList(pageDir: str) -> None:
+def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmentorType]:
+    """Write a series of html files to create a hierarchial drill-down list of tags."""
+
+    tagList = gDatabase["tagDisplayList"]
+
+    for n,tag in enumerate(tagList[:-1]):
+        if tagList[n+1]["level"] > tag["level"]: # If the next tag is deeper, then we can expand this one
+            tagsToExpand = {n}
+            reverseIndex = n - 1
+            nextLevelToExpand = tag["level"] - 1
+            while reverseIndex >= 0 and nextLevelToExpand > 0:
+                if tagList[reverseIndex]["level"] <= nextLevelToExpand:
+                    tagsToExpand.add(reverseIndex)
+                    nextLevelToExpand = tagList[reverseIndex]["level"] - 1
+                reverseIndex -= 1
+            
+            yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+
+def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
     
     a = Airium()
-    
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
@@ -255,7 +254,8 @@ def WriteSortedHtmlTagList(pageDir: str) -> None:
             
             a(' '.join([countStr,tagStr,paliStr]))
     
-    WriteHtmlFile(os.path.join(pageDir,"SortedTags.html"),"Most common tags",str(a))
+    yield PageDesc.PageInfo("Most common tags",Utils.PosixJoin(pageDir,"SortedTags.html"))
+    yield str(a)
 
 def PlayerTitle(item:dict) -> str:
     """Generate a title string for the audio player for an excerpt or session.
@@ -320,9 +320,9 @@ def EventLink(event:str, session: int = 0) -> str:
     
     directory = "../events/"
     if session:
-        return f"{directory}{event}.html#{event}_S{session}"
+        return f"{directory}{event}.html#{event}_S{session:02d}"
     else:
-        return f"{directory}{event}.html#"
+        return f"{directory}{event}.html"
 
 def TeacherLink(teacher:str) -> str:
     "Return a link to a given teacher page. Return an empty string if the teacher doesn't have a page."
@@ -457,8 +457,7 @@ class Formatter:
         a = Airium(source_minify=True)
         event = gDatabase["event"][session["event"]]
 
-        bookmark = f'{session["event"]}_S{session["sessionNumber"]}'
-            
+        bookmark = Utils.ItemCode(session)
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
@@ -558,6 +557,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     else:
         lastExcerpt = None
     
+    localFormatter = copy.deepcopy(formatter) # Make a copy in case the formatter object is reused
     for count,x in enumerate(excerpts):
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
@@ -567,32 +567,28 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             hr = x["startTime"] != "Session" or x["body"]
                 # Omit the horzional rule if the first excerpt is a session excerpt with no body
                 
-            a(formatter.FormatSessionHeading(session,linkSessionAudio,hr))
+            a(localFormatter.FormatSessionHeading(session,linkSessionAudio,hr))
             prevEvent = x["event"]
             prevSession = x["sessionNumber"]
-            if formatter.headingShowTeacher and len(session["teachers"]) == 1: 
+            if localFormatter.headingShowTeacher and len(session["teachers"]) == 1: 
                     # If there's only one teacher who is mentioned in the session heading, don't mention him/her in the excerpts
-                formatter.excerptDefaultTeacher = set(session["teachers"])
+                localFormatter.excerptDefaultTeacher = set(session["teachers"])
             else:
-                formatter.excerptDefaultTeacher = set()
+                localFormatter.excerptDefaultTeacher = formatter.excerptDefaultTeacher
             
         if count > 20:
             options = {"preload": "none"}
         else:
             options = {}
-        title = gDatabase['event'][x['event']]['title']
-        if x["sessionNumber"]:
-            title += f", Session {x['sessionNumber']}"
-        title += f", Excerpt {x['excerptNumber']}"
         if x["body"]:
-            with a.p():
-                a(formatter.FormatExcerpt(x,title = PlayerTitle(x),**options))
+            with a.p(id = Utils.ItemCode(x)):
+                a(localFormatter.FormatExcerpt(x,title=PlayerTitle(x),**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
             if annotation["body"]:
                 with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
-                    a(formatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
+                    a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
         if gOptions.audioLinks == "audio" and x is not lastExcerpt:
@@ -600,30 +596,113 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         
     return str(a)
 
-def WriteAllExcerpts(pageDir: str) -> None:
-    """Write a single page containing all excerpts."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
+def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0) -> Iterator[PageDesc.PageAugmentorType]:
+    """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
+        basePage: Content of the page above the menu and excerpt list. Later pages add "-N" to the file name.
+        excerpts, formatter: As in HtmlExcerptList
+        itemLimit: Limit lists to roughly this many items, but break pages only at session boundaries."""
+
+    pageNumber = 1
+    menuItems = []
+    excerptsInThisPage = []
+    prevSession = None
+    baseName,ext = os.path.splitext(basePage.info.file)
+    if itemLimit == 0:
+        itemLimit = gOptions.excerptsPerPage
+
+    def PageHtml() -> PageDesc.PageAugmentorType:
+        if pageNumber > 1:
+            fileName = f"{baseName}-{pageNumber}{ext}"
+        else:
+            fileName = basePage.info.file
+        menuItem = PageDesc.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
+        
+        pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
+        return menuItem,(basePage.info._replace(file=fileName),pageHtml)
+
+    for x in excerpts:
+        thisSession = (x["event"],x["sessionNumber"])
+        if prevSession != thisSession:
+            if itemLimit and len(excerptsInThisPage) >= itemLimit:
+                menuItems.append(PageHtml())
+                pageNumber += 1
+                excerptsInThisPage = []
+
+        excerptsInThisPage.append(x)
+        prevSession = thisSession
     
+    if excerptsInThisPage or not menuItems:
+        menuItems.append(PageHtml())
+    
+    if len(menuItems) > 1:
+        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=PageDesc.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
+    else:
+        clone = basePage.Clone()
+        clone.AppendContent(menuItems[0][1][1])
+        yield clone
+
+def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Formatter, mainPageInfo:PageDesc.PageInfo, menuTitle:str, fileExt:str = "") -> PageDesc.PageDescriptorMenuItem:
+    """Describes a menu item generated by applying a filter to a list of excerpts.
+    excerpts: the list of excerpts.
+    filter: the filter to apply.
+    formatter: the formatter object to pass to HtmlExcerptList.
+    mainPageInfo: description of the main page
+    menuTitle: the title in the menu.
+    fileExt: the extension to add to the main page file for the filtered page."""
+
+    filteredExcerpts = list(Filter.Apply(excerpts,filter))
+
+    if not filteredExcerpts:
+        return []
+
+    if fileExt:
+        pageInfo = mainPageInfo._replace(file = Utils.AppendToFilename(mainPageInfo.file,"-" + fileExt))
+    else:
+        pageInfo = mainPageInfo
+    menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredExcerpts)})")
+
+    blankPage = PageDesc.PageDesc(pageInfo)
+    return itertools.chain([menuItem],MultiPageExcerptList(blankPage,filteredExcerpts,formatter))
+
+
+def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Generate a single page containing all excerpts."""
+
+    pageInfo = PageDesc.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
+    yield pageInfo
+
     a = Airium()
     
-    a(ExcerptDurationStr(gDatabase["excerpts"]))
-    a.br()
-    
-    a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
-    
-    formatter = Formatter()
-    formatter.excerptDefaultTeacher = ['AP']
-    formatter.headingShowSessionTitle = True
-    a(HtmlExcerptList(gDatabase["excerpts"],formatter))
-    
-    WriteHtmlFile(os.path.join(pageDir,"AllExcerpts.html"),"All excerpts",str(a))
+    with a.p():
+        a(ExcerptDurationStr(gDatabase["excerpts"]))
+        a.br()
+        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
 
-def WriteAllEvents(pageDir: str) -> None:
-    """Write a page containing a list of all events."""
-    if not os.path.exists(pageDir):
-        os.makedirs(pageDir)
+    basePage = PageDesc.PageDesc(pageInfo)
+    basePage.AppendContent(str(a))
+
+    formatter = Formatter()
+    # formatter.excerptDefaultTeacher = ['AP']
+    formatter.headingShowSessionTitle = True
+
+    filterMenu = []
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.PassAll,formatter,pageInfo,"All excerpts"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Questions"),formatter,pageInfo,"Questions","question"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Stories"),formatter,pageInfo,"Stories","story"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Quotes"),formatter,pageInfo,"Quotes","quote"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Meditations"),formatter,pageInfo,"Meditations","meditation"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Teachings"),formatter,pageInfo,"Teachings","teaching"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(kind={"Reference"}),formatter,pageInfo,"References","ref"))
+
+    filterMenu = [f for f in filterMenu if f] # Remove blank menu items
+    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
+
+def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Generate a page containing a list of all events."""
     
+    yield PageDesc.PageInfo("All events",Utils.PosixJoin(pageDir,"AllEvents.html"))
+
     a = Airium()
     
     firstEvent = True
@@ -642,22 +721,17 @@ def WriteAllEvents(pageDir: str) -> None:
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
                 
-    WriteHtmlFile(os.path.join(pageDir,"AllEvents.html"),"All events",str(a))
+    yield str(a)
 
-def WriteTagPages(tagPageDir: str) -> None:
+def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
     """Write a html file for each tag in the database"""
-    
-    if not os.path.exists(tagPageDir):
-        os.makedirs(tagPageDir)
-        
-    xDB = gDatabase["excerpts"]
-    
+            
     for tag,tagInfo in gDatabase["tag"].items():
         if not tagInfo["htmlFile"]:
             continue
-    
-        relevantQs = [x for x in xDB if tag in Utils.AllTags(x)]
-    
+
+        relevantExcerpts = list(Filter.Apply(gDatabase["excerpts"],Filter.Tag(tag)))
+
         a = Airium()
         
         with a.strong():
@@ -666,7 +740,7 @@ def WriteTagPages(tagPageDir: str) -> None:
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
-            a(ExcerptDurationStr(relevantQs,False,False))
+            a(ExcerptDurationStr(relevantExcerpts,False,False))
         
         a.hr()
 
@@ -674,21 +748,42 @@ def WriteTagPages(tagPageDir: str) -> None:
         formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
-        a(HtmlExcerptList(relevantQs,formatter))
         
         if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
             tagPlusPali = f"{tagInfo['fullTag']} [{tagInfo['fullPali']}]"
         else:
             tagPlusPali = tag
 
-        WriteHtmlFile(os.path.join(tagPageDir,tagInfo["htmlFile"]),tag,str(a),titleInBody=tagPlusPali)
+        pageInfo = PageDesc.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
+        basePage = PageDesc.PageDesc(pageInfo)
+        basePage.AppendContent(str(a))
 
-def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
-    """Write a html file for each teacher in the database and an index page for all teachers"""
+        if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
+            questions = Filter.Apply(relevantExcerpts,Filter.Kind(category="Questions"))
+            qTags,aTags = Filter.Partition(questions,Filter.QTag(tag))
+
+            filterMenu = []
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"))
+            filterMenu.append(FilteredExcerptsMenuItem(qTags,Filter.PassAll,formatter,pageInfo,"Questions about","qtag"))
+            filterMenu.append(FilteredExcerptsMenuItem(aTags,Filter.PassAll,formatter,pageInfo,"Answers involving","atag"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Stories"),formatter,pageInfo,"Stories","story"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quote"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Reference"}),formatter,pageInfo,"References","ref"))
+
+            filterMenu = [f for f in filterMenu if f] # Remove blank menu items
+            if len(filterMenu) > 1:
+                yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
+            else:
+                yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
+        else:
+            yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
+
+def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Yield a menu item for the teacher page and a page for each teacher"""
     
-    if not os.path.exists(teacherPageDir):
-        os.makedirs(teacherPageDir)
-        
+    yield PageDesc.PageInfo("Teachers",Utils.PosixJoin(indexDir,"AllTeachers.html"))
+
     xDB = gDatabase["excerpts"]
     teacherDB = gDatabase["teacher"]
 
@@ -702,7 +797,7 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         if tInfo["fullName"] in gDatabase["tag"]:
             relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
         else: """
-        relevantQs = [x for x in xDB if t in Utils.AllTeachers(x)]
+        relevantQs = [x for x in xDB if t in Filter.AllTeachers(x)]
     
         a = Airium()
         
@@ -716,11 +811,14 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         formatter.headingShowTeacher = False
         formatter.excerptOmitSessionTags = False
         formatter.excerptDefaultTeacher = set([t])
-        a(HtmlExcerptList(relevantQs,formatter))
-        
-        WriteHtmlFile(os.path.join(teacherPageDir,tInfo["htmlFile"]),tInfo["fullName"],str(a))
+
+        pageInfo = PageDesc.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]))
+        basePage = PageDesc.PageDesc(pageInfo)
+        basePage.AppendContent(str(a))
+
+        yield from MultiPageExcerptList(basePage,relevantQs,formatter)
     
-    # Now write a page with the list of teachers:
+    # Now generate a page with the list of teachers:
     a = Airium()
         
     for t in teacherPageData:
@@ -732,14 +830,10 @@ def WriteTeacherPages(teacherPageDir: str,indexDir: str) -> None:
         a(teacherPageData[t])
         a.hr()
 
-    WriteHtmlFile(os.path.join(indexDir,"AllTeachers.html"),"Teachers",str(a))
+    yield str(a)
 
-
-def WriteEventPages(tagPageDir: str) -> None:
-    """Write a html file for each event in the database"""
-    
-    if not os.path.exists(tagPageDir):
-        os.makedirs(tagPageDir)
+def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
+    """Generate html for each event in the database"""
             
     for eventCode,eventInfo in gDatabase["event"].items():
         
@@ -774,7 +868,7 @@ def WriteEventPages(tagPageDir: str) -> None:
             squish("Sessions:")
             for s in sessions:
                 squish(4*"&nbsp")
-                with squish.a(href = f"#{eventCode}_S{s['sessionNumber']}"):
+                with squish.a(href = f"#{Utils.ItemCode(s)}"):
                     squish(str(s['sessionNumber']))
             
             a(str(squish))
@@ -793,7 +887,7 @@ def WriteEventPages(tagPageDir: str) -> None:
         if eventInfo["subtitle"]:
             titleInBody += " – " + eventInfo["subtitle"]
 
-        WriteHtmlFile(os.path.join(tagPageDir,eventCode+'.html'),eventInfo["title"],str(a),titleInBody = titleInBody)
+        yield (PageDesc.PageInfo(eventInfo["title"],Utils.PosixJoin(eventPageDir,eventCode+'.html'),titleInBody),str(a))
         
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
@@ -811,37 +905,96 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
-def WriteIndexPage(templateName: str,indexPage: str) -> None:
-    """Write the index page by extracting the body from a file created by an external editor and calling WriteHtmlFile to convert it to our (extremely minimal) style.
-    templateName: the file created by an external editor
-    indexPage: the name of the page to write - usually homepage.html"""
+def AboutMenu(aboutDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Read markdown pages from documentation/about, convert them to html, and create a menu out of them. """
+
+    titleInPage = "The Ajahn Pasanno Question and Story Archive"
+    homepageFile = PageDesc.PageInfo("About","homepage.html",titleInPage)
+    yield homepageFile
+
+    aboutMenu = []
+    documentationDir = "documentation/about"
+
+    firstFile = True
+    for fileName in sorted(os.listdir(documentationDir)):
+        fullPath = Utils.PosixJoin(documentationDir,fileName)
+        if not os.path.isfile(fullPath) or not fileName.endswith(".md"):
+            continue
+        
+        with open(fullPath,encoding='utf8') as file:
+            html = markdown.markdown(file.read())
+        
+        html = re.sub(r"&lt;--!HTML(.*?)--&gt;",r"\1",html) 
+        # Markdown converts html comment '<--!' to '&lt;--!, so we search for that.
+
+        if firstFile:
+            fileInfo = homepageFile
+            firstFile = False
+        else:
+            m = re.match(r"[0-9]*_([^.]*)",fileName)
+            fileInfo = PageDesc.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
+            firstFile = False
+        
+        """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
+        if titleMatch:
+            fileInfo = fileInfo._replace(titleIB = titleMatch[1]) - Unused code to read title from the page body """
+        
+        html = re.sub(r"&lt;--!(.*?)--&gt;","",html) # Remove any remaining html comments
+
+        aboutMenu.append([fileInfo,html])
     
-    htmlBody = ExtractHtmlBody(templateName)
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
+
+    """tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
+    tagMenu.append(SortedHtmlTagList("indexes"))
+    tagMenu.append(TagPages("tags"))
+
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")"""
+
+def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Create a submentu for the tag drilldown pages."""
     
-    head = gDefaultHead.replace('"../','"') # homepage.html lives in the root directory, so modify directory paths accordingly.
-    styleInfo = Airium()
-    with styleInfo.style(type="text/css"):
-        styleInfo("p { line-height: 1.3; }")
-    
-    nav = gNavigation.replace('"../','"')
-    
-    sourceComment = f"<!-- The content below has been extracted from the body of {templateName} -->"
-    
-    WriteHtmlFile(indexPage,"The Ajahn Pasanno Question and Story Archive",'\n'.join([sourceComment,htmlBody]),directoryDepth=0)
-    
-    # Now write prototype/README.md to make this material easily readable on github
-    
-    with open(os.path.join(gOptions.prototypeDir,'README.md'), 'w', encoding='utf-8') as readMe:
-        print(sourceComment, file = readMe)
-        readMe.write(htmlBody)
+    drilldownTitle = "Tag/subtag hierarchy"
+    drilldownItem = PageDesc.PageInfo(drilldownTitle,drilldownDir,drilldownTitle)
+    contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
+    expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+
+    yield contractAllItem
+
+    drilldownMenu = []
+    drilldownMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
+    drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
+    drilldownMenu.append(DrilldownTags(drilldownItem))
+
+    basePage = PageDesc.PageDesc()
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,wrapper=PageDesc.Wrapper("<p>","</p><hr>"))
+
+def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Create the Tags menu item and its associated submenus.
+    Also write a page for each tag."""
+
+    drilldownDir = "drilldown"
+    yield PageDesc.PageInfo("Tags",file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
+
+    tagMenu = []
+    tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
+    tagMenu.append(SortedHtmlTagList("indexes"))
+    tagMenu.append(TagPages("tags"))
+
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/homepage.html',help='Use this file to create homepage.html; Default: prototype/templates/homepage.html')    
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create homepage.html; Default: prototype/templates/index.html')    
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
+    parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
+    parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')  
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
@@ -853,22 +1006,22 @@ def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
-    WriteIndentedTagDisplayList(os.path.join(gOptions.prototypeDir,"TagDisplayList.txt"))
-    
-    indexDir = os.path.join(gOptions.prototypeDir,"indexes")
-    WriteIndentedHtmlTagList(indexDir,"AllTags.html",False)
-    WriteIndentedHtmlTagList(indexDir,"AllTagsExpanded.html",True)
-    WriteSortedHtmlTagList(indexDir)
-    WriteAllExcerpts(indexDir)
-    WriteAllEvents(indexDir)
-    
-    WriteTagPages(os.path.join(gOptions.prototypeDir,"tags"))
+    WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
 
-    WriteTeacherPages(os.path.join(gOptions.prototypeDir,"teachers"),indexDir)
-    
-    WriteEventPages(os.path.join(gOptions.prototypeDir,"events"))
-    
-    WriteIndexPage(gOptions.indexHtmlTemplate,os.path.join(gOptions.prototypeDir,"homepage.html"))
+    basePage = PageDesc.PageDesc()
+
+    indexDir ="indexes"
+    mainMenu = []
+    # mainMenu.append([PageDesc.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
+    mainMenu.append(AboutMenu("about"))
+    mainMenu.append(TagMenu(indexDir))
+    mainMenu.append(AllEvents(indexDir))
+    mainMenu.append(EventPages("events"))
+    mainMenu.append(TeacherPages("teachers",indexDir))
+    mainMenu.append(AllExcerpts(indexDir))
+
+    for newPage in basePage.AddMenuAndYieldPages(mainMenu,menuSection="mainMenu"):
+        WritePage(newPage)
 
     if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()

@@ -5,9 +5,10 @@ from __future__ import annotations
 from datetime import timedelta, datetime
 import copy
 import unicodedata
-import re
+import re, os
 from typing import List
 import Alert
+import pathlib
 
 gOptions = None
 gDatabase = None # These will be set later by QSarchive.py
@@ -26,6 +27,30 @@ def AppendUnique(dest: list, source: list) -> list:
         if item not in destSet:
             dest.append(item)
 
+def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
+    "Return a code for this item. "
+
+    if item:
+        event = item.get("event",None)
+        session = item.get("sessionNumber",None)
+        fileNumber = item.get("fileNumber",None)
+    
+    outputStr = event
+    if session is not None:
+        outputStr += f"_S{session:02d}"
+    if fileNumber is not None:
+        outputStr += f"_F{fileNumber:02d}"
+    return outputStr
+
+def PosixJoin(*paths):
+    "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
+    return str(pathlib.PurePosixPath(*paths))
+
+def AppendToFilename(filename:str, appendStr: str) -> str:
+    "Append to fileName before the file extension"
+    name,ext = os.path.splitext(filename)
+    return name + appendStr + ext
+
 def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     """Return a link to the mp3 file associated with a given excerpt or session.
     item: a dict representing an excerpt or session.
@@ -37,7 +62,7 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
         else:
             baseURL = gOptions.remoteExcerptMp3URL
 
-        return f"{baseURL}{item['event']}/{item['event']}_S{item['sessionNumber']:02d}_F{item['fileNumber']:02d}.mp3"
+        return f"{baseURL}{item['event']}/{ItemCode(item)}.mp3"
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
     if gOptions.sessionMp3 == "local":
@@ -45,12 +70,73 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     else:
         return session["remoteMp3Url"]
 
+def SearchForOwningExcerpt(annotation: dict) -> dict:
+    """Search the global database of excerpts to find which one owns this annotation.
+    This is a slow function and should be called infrequently."""
+    if not gDatabase:
+        return None
+    for x in gDatabase["excerpts"]:
+        for a in x["annotations"]:
+            if annotation is a:
+                return x
+    return None
+
 def EllideText(s: str,maxLength = 50) -> str:
     "Truncate a string to keep the number of characters under maxLength."
     if len(s) <= maxLength:
         return s
     else:
         return s[:maxLength - 3] + "..."
+
+def ItemRepr(item: dict) -> str:
+    """Generate a repr-style string for various dict types in gDatabase. 
+    Check the dict keys to guess what it is.
+    If we can't identify it, return repr(item)."""
+
+    if type(item) == dict:
+        if "tag" in item:
+            if "level" in item:
+                kind = "tagDisplay"
+            else:
+                kind = "tag"
+            return(f"{kind}({repr(item['tag'])})")
+        
+        event = session = fileNumber = None
+        args = []
+        if "code" in item and "subtitle" in item:
+            kind = "event"
+            event = item["code"]
+        elif "sessionTitle" in item:
+            kind = "session"
+            event = item["event"]
+            session = item["sessionNumber"]
+        elif "kind" in item and "sessionNumber" in item:
+            if "annotations" in item:
+                kind = "excerpt"
+                event = item["event"]
+                session = item["sessionNumber"]
+                fileNumber = item.get("fileNumber",None)
+            else:
+                kind = "annotation"
+                x = SearchForOwningExcerpt(item)
+                if x:
+                    event = x["event"]
+                    session = x["sessionNumber"]
+            args = [item['kind'],EllideText(item['text'])]
+        else:   
+            return(repr(item))
+        
+        if event:
+            name = event
+            if session is not None:
+                name += f"_S{session:02d}"
+            if fileNumber is not None:
+                name += f"_F{fileNumber:02d}"
+            args = [name] + args
+        
+        return f"{kind}({', '.join(repr(i) for i in args)})"
+    else:
+        return repr(item)
 
 def StrToTimeDelta(inStr):
     "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
@@ -86,24 +172,6 @@ def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
     date = datetime.strptime(dateStr,"%d/%m/%Y")
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
-
-def AllTags(item: dict) -> set:
-    """Return the set of all tags in item, which is either an excerpt or an annotation."""
-    allTags = set(item["tags"])
-    
-    for annotation in item.get("annotations",()):
-        allTags.update(annotation.get("tags",()))
-    
-    return allTags
-
-def AllTeachers(item: dict) -> set:
-    """Return the set of all teachers in item, which is either an excerpt or an annotation."""
-    allTeachers = set(item.get("teachers",()))
-    
-    for annotation in item.get("annotations",()):
-        allTeachers.update(annotation.get("teachers",()))
-    
-    return allTeachers
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
@@ -146,7 +214,7 @@ def RegexMatchAny(strings: List[str],capturingGroup = True):
 def ReorderKeys(ioDict: dict,firstKeys = [],lastKeys = []) -> None:
     "Reorder the keys in ioDict"
 
-    spareDict = {key:value for key,value in ioDict.items()} # Make a shallow copy
+    spareDict = copy.copy(ioDict) # Make a shallow copy
     ioDict.clear()
 
     for key in firstKeys:
