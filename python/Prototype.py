@@ -580,13 +580,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {"preload": "none"}
         else:
             options = {}
-        title = gDatabase['event'][x['event']]['title']
-        if x["sessionNumber"]:
-            title += f", Session {x['sessionNumber']}"
-        title += f", Excerpt {x['excerptNumber']}"
         if x["body"]:
             with a.p(id = Utils.ItemCode(x)):
-                a(localFormatter.FormatExcerpt(x,**options))
+                a(localFormatter.FormatExcerpt(x,title=PlayerTitle(x),**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
