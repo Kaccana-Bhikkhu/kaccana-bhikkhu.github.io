@@ -6,7 +6,7 @@ from __future__ import annotations
 import json, re
 import markdown
 from markdown_newtab import NewTabExtension
-from typing import Tuple, Type, Callable, List, Dict
+from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
 import ParseCSV, Prototype, Utils, Alert

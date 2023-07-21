@@ -85,7 +85,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
 
 def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     """Turn a tag name into a hyperlink to that tag.
-    Simplying assumption: All html pages (except index.html) are in a subdirectory of prototype.
+    Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
     If fullTag, the link text contains the full tag name."""
     
@@ -257,7 +257,27 @@ def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     yield PageDesc.PageInfo("Most common tags",Utils.PosixJoin(pageDir,"SortedTags.html"))
     yield str(a)
 
-def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadata") -> str:
+def PlayerTitle(item:dict) -> str:
+    """Generate a title string for the audio player for an excerpt or session.
+    The string will be no longer than gOptions.maxPlayerTitleLength characters."""
+
+    sessionNumber = item.get("sessionNumber",None)
+    excerptNumber = item.get("excerptNumber",None)
+    titleItems = []
+    if sessionNumber:
+        titleItems.append(f"S{sessionNumber}")
+    if excerptNumber:
+        titleItems.append(f"E{excerptNumber}")
+    
+    lengthSoFar = len(" ".join(titleItems))
+    fullEventTitle = gDatabase['event'][item['event']]['title']
+    if titleItems:
+        fullEventTitle += ","
+    titleItems.insert(0,Utils.EllideText(fullEventTitle,gOptions.maxPlayerTitleLength - lengthSoFar - 1))
+    return " ".join(titleItems)
+    
+
+def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,preload:str = "metadata",dataDuration:str = "") -> str:
     "Return an audio icon with the given hyperlink"
     
     if not linkKind:
@@ -265,26 +285,35 @@ def AudioIcon(hyperlink: str,iconWidth = "30",linkKind = None,preload = "metadat
 
     a = Airium(source_minify=True)
     if linkKind == "img":
-        a.a(href = hyperlink, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
+        a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
-    else:
-        with a.audio(controls = "",src = hyperlink, preload = preload, style="vertical-align: middle;"):
+    elif linkKind == "audio":
+        with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
             with a.a(href = hyperlink):
                 a("Download audio")
         a.br()
+    else:
+        durationDict = {}
+        if dataDuration:
+            durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
+        with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
+            with a.a(href = hyperlink):
+                a("Download audio")
+        a.br()
+	
     return str(a)
 
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(excerpt),**kwArgs)
+    return AudioIcon(Utils.Mp3Link(excerpt),dataDuration = excerpt["duration"],**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(session),**kwArgs)
+    return AudioIcon(Utils.Mp3Link(session),dataDuration = session["duration"],**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -463,9 +492,13 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and gOptions.audioLinks == "img":
-                durStr = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"])) # Pretty-print duration by converting it to seconds and back
-                itemsToJoin.append(f'{Mp3SessionLink(session)} ({durStr}) ')
+            if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
+                audioLink = Mp3SessionLink(session,title = PlayerTitle(session))
+                if gOptions.audioLinks == "img":
+                    durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
+                else:
+                    durStr = ''
+                itemsToJoin.append(audioLink + durStr + ' ')
             
             a(' – '.join(itemsToJoin))
 
@@ -477,7 +510,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session))
+            a(Mp3SessionLink(session,title = PlayerTitle(session)))
             if horizontalRule:
                 a.hr()
         
@@ -547,6 +580,10 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {"preload": "none"}
         else:
             options = {}
+        title = gDatabase['event'][x['event']]['title']
+        if x["sessionNumber"]:
+            title += f", Session {x['sessionNumber']}"
+        title += f", Excerpt {x['excerptNumber']}"
         if x["body"]:
             with a.p(id = Utils.ItemCode(x)):
                 a(localFormatter.FormatExcerpt(x,**options))
@@ -894,11 +931,12 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create index.html; Default: prototype/templates/index.html')    
-    parser.add_argument('--audioLinks',type=str,default='audio',help='Options: img (simple image), audio (html 5 audio player)')
+    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create homepage.html; Default: prototype/templates/index.html')    
+    parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')  
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
+    parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
 gOptions = None
