@@ -685,7 +685,18 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     # formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
 
-    yield from MultiPageExcerptList(basePage,gDatabase["excerpts"],formatter)
+    filterMenu = []
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.PassAll,formatter,pageInfo,"All excerpts"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Questions"),formatter,pageInfo,"Questions","question"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Stories"),formatter,pageInfo,"Stories","story"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Quotes"),formatter,pageInfo,"Quotes","quote"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Meditations"),formatter,pageInfo,"Meditations","meditation"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(category="Teachings"),formatter,pageInfo,"Teachings","teaching"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"))
+    filterMenu.append(FilteredExcerptsMenuItem(gDatabase["excerpts"],Filter.Kind(kind={"Reference"}),formatter,pageInfo,"References","ref"))
+
+    filterMenu = [f for f in filterMenu if f] # Remove blank menu items
+    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
 
 def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Generate a page containing a list of all events."""
@@ -719,7 +730,7 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         if not tagInfo["htmlFile"]:
             continue
 
-        relevantQs = list(Filter.Apply(gDatabase["excerpts"],Filter.Tag(tag)))
+        relevantExcerpts = list(Filter.Apply(gDatabase["excerpts"],Filter.Tag(tag)))
 
         a = Airium()
         
@@ -729,7 +740,7 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
-            a(ExcerptDurationStr(relevantQs,False,False))
+            a(ExcerptDurationStr(relevantExcerpts,False,False))
         
         a.hr()
 
@@ -747,21 +758,26 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         basePage = PageDesc.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
 
-        if len(relevantQs) >= gOptions.minSubsearchExcerpts:
+        if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
+            questions = Filter.Apply(relevantExcerpts,Filter.Kind(category="Questions"))
+            qTags,aTags = Filter.Partition(questions,Filter.QTag(tag))
+
             filterMenu = []
-            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.PassAll,formatter,pageInfo,"All excerpts"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.QTag(tag),formatter,pageInfo,"Questions about","qtag"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.ATag(tag),formatter,pageInfo,"Answers involving","atag"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.Tag(tag,category="Stories"),formatter,pageInfo,"Stories","story"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantQs,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quote"))
-            
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"))
+            filterMenu.append(FilteredExcerptsMenuItem(qTags,Filter.PassAll,formatter,pageInfo,"Questions about","qtag"))
+            filterMenu.append(FilteredExcerptsMenuItem(aTags,Filter.PassAll,formatter,pageInfo,"Answers involving","atag"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Stories"),formatter,pageInfo,"Stories","story"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quote"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"))
+            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Reference"}),formatter,pageInfo,"References","ref"))
+
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
                 yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
             else:
-                yield from MultiPageExcerptList(basePage,relevantQs,formatter)
+                yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
         else:
-            yield from MultiPageExcerptList(basePage,relevantQs,formatter)
+            yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
 
 def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Yield a menu item for the teacher page and a page for each teacher"""

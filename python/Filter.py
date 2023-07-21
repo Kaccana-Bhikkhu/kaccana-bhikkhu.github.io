@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator, Iterable, Callable
+from collections.abc import Iterable, Callable
+from typing import Tuple
 
 gDatabase = None # This will be overwritten by the main program
 
@@ -37,6 +38,13 @@ def StrToSet(item:str|set) -> set:
     else:
         return item
 
+def AllItems(excerpt: dict) -> Iterable[dict]:
+    """If this is an excerpt, iterate over the excerpt and annotations.
+    If not, iterate just this item."""
+
+    yield excerpt
+    yield from excerpt.get("annotations",())
+
 def Apply(items:Iterable[dict],filter: Filter) -> Iterable[dict]:
     """Apply filter to items."""
     for i in items:
@@ -49,24 +57,41 @@ def Indexes(items:Iterable[dict],filter: Filter) -> Iterable[int]:
         if filter(i):
             yield n
 
+def Partition(items:Iterable[dict],filter: Filter) -> Tuple[list[dict],list[dict]]:
+    "Split items into two lists depending on the filter function."
+
+    trueList = []
+    falseList = []
+
+    for i in items:
+        (trueList if filter(i) else falseList).append(i)
+    
+    return trueList,falseList
+
+def _Kind(item: dict,kind:set(str),category:set(str)) -> bool:
+    "Helper function for Tag."
+
+    for i in AllItems(item):
+        if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
+            return True
+
+def Kind(kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
+    """Returns a Filter that passes any item with a given tag.
+    If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
+
+    kind = StrToSet(kind)
+    category = StrToSet(category)
+
+    return lambda item,kind=kind,category=category: _Kind(item,kind,category)
+
 def _Tag(item: dict,tag:set(str),kind:set(str),category:set(str)) -> bool:
     "Helper function for Tag."
 
-    returnValue = False
-    for t in item.get("tags",()):
-        if t in tag:
-            returnValue = True
-    
-    if returnValue and "kind" in item:
-        if item["kind"] not in kind:
-            returnValue = False
-        if gDatabase["kind"][item["kind"]]["category"] not in category:
-            returnValue = False
-    
-    if not returnValue:
-        return any(_Tag(annotation,tag,kind,category) for annotation in item.get("annotations",()))
-    else:
-        return True
+    for i in AllItems(item):
+        for t in i.get("tags",()):
+            if t in tag:
+                if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
+                    return True
 
 def Tag(tag: str|set(str),kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
     """Returns a Filter that passes any item with a given tag.
