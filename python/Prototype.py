@@ -914,7 +914,7 @@ def main():
 
     indexDir ="indexes"
     mainMenu = []
-    mainMenu.append([PageDesc.PageInfo("About","about/index.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
+    mainMenu.append([PageDesc.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
     mainMenu.append(TagMenu(indexDir))
     mainMenu.append(AllEvents(indexDir))
     mainMenu.append(EventPages("events"))
