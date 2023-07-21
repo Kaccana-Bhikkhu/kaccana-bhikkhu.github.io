@@ -9,7 +9,7 @@ import Utils, PageDesc, Alert, Filter
 from datetime import timedelta
 import re, copy, itertools
 from collections import namedtuple
-import pyratemp
+import pyratemp, markdown
 from functools import lru_cache
 
 def WriteIndentedTagDisplayList(fileName):
@@ -905,6 +905,54 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
+def AboutMenu(aboutDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Read markdown pages from documentation/about, convert them to html, and create a menu out of them. """
+
+    titleInPage = "The Ajahn Pasanno Question and Story Archive"
+    homepageFile = PageDesc.PageInfo("About","homepage.html",titleInPage)
+    yield homepageFile
+
+    aboutMenu = []
+    documentationDir = "documentation/about"
+
+    firstFile = True
+    for fileName in sorted(os.listdir(documentationDir)):
+        fullPath = Utils.PosixJoin(documentationDir,fileName)
+        if not os.path.isfile(fullPath) or not fileName.endswith(".md"):
+            continue
+        
+        with open(fullPath,encoding='utf8') as file:
+            html = markdown.markdown(file.read())
+        
+        html = re.sub(r"&lt;--!HTML(.*?)--&gt;",r"\1",html) 
+        # Markdown converts html comment '<--!' to '&lt;--!, so we search for that.
+
+        if firstFile:
+            fileInfo = homepageFile
+            firstFile = False
+        else:
+            m = re.match(r"[0-9]*_([^.]*)",fileName)
+            fileInfo = PageDesc.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
+            firstFile = False
+        
+        """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
+        if titleMatch:
+            fileInfo = fileInfo._replace(titleIB = titleMatch[1]) - Unused code to read title from the page body """
+        
+        html = re.sub(r"&lt;--!(.*?)--&gt;","",html) # Remove any remaining html comments
+
+        aboutMenu.append([fileInfo,html])
+    
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
+
+    """tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
+    tagMenu.append(SortedHtmlTagList("indexes"))
+    tagMenu.append(TagPages("tags"))
+
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")"""
+
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
@@ -964,7 +1012,8 @@ def main():
 
     indexDir ="indexes"
     mainMenu = []
-    mainMenu.append([PageDesc.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
+    # mainMenu.append([PageDesc.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
+    mainMenu.append(AboutMenu("about"))
     mainMenu.append(TagMenu(indexDir))
     mainMenu.append(AllEvents(indexDir))
     mainMenu.append(EventPages("events"))

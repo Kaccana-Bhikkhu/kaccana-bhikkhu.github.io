@@ -1,3 +1,5 @@
+<--!TITLE:Version List-->
+
 - 1.0: First publicly available prototype; contains all questions from Thanksgiving Retreats 2013-2015 from pre-existing transcriptions; subject tags are based on transcription text rather than audio content.
 
 - 1.9: Index stories, quotes, and readings in addition to questions. Added Spirit Rock daylong events from 2010 and 2011. The tag list has expanded to include tags from many events transcribed on paper that have not yet been entered into the online archive. Almost all documentation still applies to version 1.0.

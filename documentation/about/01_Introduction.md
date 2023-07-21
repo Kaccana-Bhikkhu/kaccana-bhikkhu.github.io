@@ -1,3 +1,6 @@
+<--!TITLE:The Ajahn Pasanno Question and Story Archive-->
+<--!HTML <img src="images/AjahnPasanno.jpg" id="cover" align="bottom" width="200" border="0"/> -->
+
 ### Introduction
 Ajahn Pasanno excels at answering Dhamma questions. I estimate there are perhaps 100 hours of his question and answer sessions posted online. If you have a Dhamma question, it’s likely that Ajahn Pasanno has spoken to it in the past. But how will you find his answer amidst the hours of available recordings?
 
