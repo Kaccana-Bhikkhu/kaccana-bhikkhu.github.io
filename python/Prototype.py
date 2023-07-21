@@ -177,9 +177,9 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                             if tagList[reverseIndex]["level"] < item["level"]:
                                 tagAtPrevLevel = reverseIndex
                                 break
-                        drilldownLink = f'<a href="{expandTagLink(tagAtPrevLevel)}">⊟</a>'
+                        drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll">⊟</a>'
                     else:
-                        drilldownLink = f'<a href="{expandTagLink(index)}">⊞</a>'
+                        drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll">⊞</a>'
                 else:
                     drilldownLink = "&nbsp"
 
