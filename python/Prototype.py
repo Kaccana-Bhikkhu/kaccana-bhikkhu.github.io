@@ -991,7 +991,6 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create homepage.html; Default: prototype/templates/index.html')    
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')  
@@ -1006,13 +1005,12 @@ def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
-    WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
+    # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
 
     basePage = PageDesc.PageDesc()
 
     indexDir ="indexes"
     mainMenu = []
-    # mainMenu.append([PageDesc.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
     mainMenu.append(AboutMenu("about"))
     mainMenu.append(TagMenu(indexDir))
     mainMenu.append(AllEvents(indexDir))
