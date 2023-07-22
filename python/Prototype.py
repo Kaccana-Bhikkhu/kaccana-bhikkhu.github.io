@@ -290,7 +290,8 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
             with a.a(href = hyperlink):
-                a("Download audio")
+                a(f"Download audio")
+            a(f" ({dataDuration})")
         a.br()
     else:
         durationDict = {}
@@ -298,7 +299,8 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
             durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
         with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
             with a.a(href = hyperlink):
-                a("Download audio")
+                a(f"Download audio")
+            a(f" ({dataDuration})")
         a.br()
 	
     return str(a)
@@ -381,10 +383,11 @@ class Formatter:
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
         
+        a(" ")
         if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
-            a(f' [{excerpt["startTime"]}] ')
-        else: # elif gOptions.audioLinks != "audio" or kwArgs.get("preload","") == "none":
-            a(f' ({excerpt["duration"]}) ')
+            a(f'[{excerpt["startTime"]}] ')
+        elif gOptions.audioLinks != "chip":
+            a(f'({excerpt["duration"]}) ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
             for num in range(1,10):
@@ -591,7 +594,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
                     a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
-        if gOptions.audioLinks == "audio" and x is not lastExcerpt:
+        if (gOptions.audioLinks == "audio" or gOptions.audioLinks == "chip") and x is not lastExcerpt:
             a.hr()
         
     return str(a)
