@@ -392,7 +392,7 @@ def RemoveUnusedTags(database: dict) -> None:
                         usedTags.add(childTag["tag"])
                         seenNumberedTagYet = True
 
-    remainingTags = set(usedTags)
+    """remainingTags = set(usedTags)
     with open("prototype/UsedTags.txt",mode="w",encoding='utf-8') as file:
         for rawTag in database["tagRaw"]:
             tag = rawTag["tag"]
@@ -406,7 +406,7 @@ def RemoveUnusedTags(database: dict) -> None:
 
             display = indent + (f"{rawTag['indexNumber']}. " if rawTag["indexNumber"] else "") + name + f" ({TagCount(database['tag'][tag])})"
 
-            print(display,file=file)
+            print(display,file=file)"""
     
     database["tagRaw"] = [tag for tag in database["tagRaw"] if tag["tag"] in usedTags]
     database["tagRemoved"] = [tagName for tagName,tag in database["tag"].items() if tagName not in usedTags]

@@ -290,7 +290,8 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
             with a.a(href = hyperlink):
-                a("Download audio")
+                a(f"Download audio")
+            a(f" ({dataDuration})")
         a.br()
     else:
         durationDict = {}
@@ -298,7 +299,8 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
             durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
         with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
             with a.a(href = hyperlink):
-                a("Download audio")
+                a(f"Download audio")
+            a(f" ({dataDuration})")
         a.br()
 	
     return str(a)
@@ -381,10 +383,11 @@ class Formatter:
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
         
+        a(" ")
         if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
-            a(f' [{excerpt["startTime"]}] ')
-        else: # elif gOptions.audioLinks != "audio" or kwArgs.get("preload","") == "none":
-            a(f' ({excerpt["duration"]}) ')
+            a(f'[{excerpt["startTime"]}] ')
+        elif gOptions.audioLinks != "chip":
+            a(f'({excerpt["duration"]}) ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
             for num in range(1,10):
@@ -591,7 +594,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
                     a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
-        if gOptions.audioLinks == "audio" and x is not lastExcerpt:
+        if (gOptions.audioLinks == "audio" or gOptions.audioLinks == "chip") and x is not lastExcerpt:
             a.hr()
         
     return str(a)
@@ -991,7 +994,6 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
-    parser.add_argument('--indexHtmlTemplate',type=str,default='prototype/templates/index.html',help='Use this file to create homepage.html; Default: prototype/templates/index.html')    
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')  
@@ -1006,13 +1008,12 @@ def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
-    WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
+    # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
 
     basePage = PageDesc.PageDesc()
 
     indexDir ="indexes"
     mainMenu = []
-    # mainMenu.append([PageDesc.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),ExtractHtmlBody(gOptions.indexHtmlTemplate)])
     mainMenu.append(AboutMenu("about"))
     mainMenu.append(TagMenu(indexDir))
     mainMenu.append(AllEvents(indexDir))
