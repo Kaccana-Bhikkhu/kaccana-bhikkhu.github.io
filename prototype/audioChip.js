@@ -27,7 +27,13 @@ class AudioChip extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.audio = new Audio(this.getAttribute("src"));
+		let src = this.getAttribute("src");
+		if (src.startsWith("../")) {
+			src = src.replace("../","")
+		}; // Hack: We reference local audio files from prototype/index.html, rather than prototype/(subdirectory)/(file).html,
+		// So remove ../ from local references, just as we do for a href links in frame.js
+
+		this.audio = new Audio(src);
 		let loadAudio = this.dataset.duration == null;
 		// let loadAudio = true;
 		if (loadAudio) this.audio.load();
