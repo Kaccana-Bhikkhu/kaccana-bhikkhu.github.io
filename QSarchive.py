@@ -55,6 +55,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     "Scan the list of specified ops to see if we can load a database to save time. Add any ops needed to support those specified."
 
     newDB = {}
+    opSet = set(opSet) # Clone opSet
 
     if 'DownloadCSV' in opSet:
         if len(opSet) > 1: # If we do anything other than DownloadCSV, we need to parse the newly-downloaded files
@@ -176,7 +177,7 @@ for verb in opSet:
 
 database, newOpSet = LoadDatabaseAndAddMissingOps(opSet)
 if newOpSet != opSet:
-    Alert.info.Show(f"Will run additional modules {newOpSet.difference(opSet)}.")
+    Alert.info.Show(f"Will run additional module(s): {newOpSet.difference(opSet)}.")
     opSet = newOpSet
 
 # Set up the global namespace for each module - this allows the modules to call each other out of order
