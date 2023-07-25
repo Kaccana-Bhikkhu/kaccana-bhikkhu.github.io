@@ -88,6 +88,18 @@
             ],
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "Testing",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "Prototype",
+                "-vvv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }
