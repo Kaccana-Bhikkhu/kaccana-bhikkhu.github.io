@@ -11,6 +11,7 @@ import re, copy, itertools
 from collections import namedtuple
 import pyratemp, markdown
 from functools import lru_cache
+import contextlib
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -96,7 +97,10 @@ def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     except KeyError:
         ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]]["htmlFile"]
     
-    return f'<a href = "../tags/{ref}">{tag}</a>'
+    if "tags" in gOptions.build:
+        return f'<a href = "../tags/{ref}">{tag}</a>'
+    else:
+        return tag
 
 
 def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
@@ -118,7 +122,10 @@ def LinkTeachersInText(text: str) -> str:
     def HtmlTeacherLink(matchObject: re.Match) -> str:
         teacher = gReverseTeacherLookup[matchObject[1]]
         htmlFile = TeacherLink(teacher)
-        return f'<a href = {htmlFile}>{matchObject[1]}</a>'
+        if "teachers" in gOptions.build:
+            return f'<a href = {htmlFile}>{matchObject[1]}</a>'
+        else:
+            return matchObject[1]
 
     return re.sub(gTeacherRegex,HtmlTeacherLink,text)
 
@@ -235,6 +242,8 @@ def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmento
 def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
     
+    yield PageDesc.PageInfo("Most common tags",Utils.PosixJoin(pageDir,"SortedTags.html"))
+
     a = Airium()
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
@@ -254,7 +263,6 @@ def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             
             a(' '.join([countStr,tagStr,paliStr]))
     
-    yield PageDesc.PageInfo("Most common tags",Utils.PosixJoin(pageDir,"SortedTags.html"))
     yield str(a)
 
 def PlayerTitle(item:dict) -> str:
@@ -464,7 +472,7 @@ class Formatter:
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
-                    with a.a(href = EventLink(session["event"])):
+                    with (a.a(href = EventLink(session["event"]))) if "events" in gOptions.build else contextlib.nullcontext():
                         a(event["title"])
                 else:
                     a(event["title"])
@@ -479,7 +487,7 @@ class Formatter:
                 sessionTitle = ""
             
             if self.headingLinks:
-                with a.a(href = EventLink(session["event"],session["sessionNumber"])):
+                with a.a(href = EventLink(session["event"],session["sessionNumber"])) if "events" in gOptions.build else contextlib.nullcontext():
                     a(sessionTitle)
             else:
                 a(sessionTitle)
@@ -714,7 +722,7 @@ def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             a.hr()
         firstEvent = False
         with a.h3(style = "line-height: 1.3;"):
-            with a.a(href = EventLink(eventCode)):
+            with a.a(href = EventLink(eventCode) if "events" in gOptions.build else contextlib.nullcontext()):
                 a(e["title"])            
         
         a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
@@ -827,7 +835,7 @@ def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMe
     for t in teacherPageData:
         tInfo = teacherDB[t]
         with a.h3(style = "line-height: 1.3;"):
-            with a.a(href = TeacherLink(t)):
+            with a.a(href = TeacherLink(t)) if "teachers" in gOptions.build else contextlib.nullcontext():
                 a(tInfo["fullName"])
 
         a(teacherPageData[t])
@@ -978,11 +986,15 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
     Also write a page for each tag."""
 
-    drilldownDir = "drilldown"
-    yield PageDesc.PageInfo("Tags",file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
+    if "drilldown" in gOptions.build:
+        drilldownDir = "drilldown"
+        yield PageDesc.PageInfo("Tags",file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
+    else:
+        yield PageDesc.PageInfo("Tags",file=Utils.PosixJoin(indexDir,"SortedTags.html"))
 
     tagMenu = []
-    tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
+    if "drilldown" in gOptions.build:
+        tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
     tagMenu.append(SortedHtmlTagList("indexes"))
     tagMenu.append(TagPages("tags"))
 
@@ -994,6 +1006,7 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
+    parser.add_argument('--build',type=str,default='All',help='Build which sections? Set of Tags,Drilldown,Events,Teachers,AllExcerpts. Default: All')
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')  
@@ -1004,22 +1017,48 @@ def AddArguments(parser):
 gOptions = None
 gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
+def ParseBuildSections():
+    if type(gOptions.build) == set:
+        return
+    allSections = {"tags","drilldown","events","teachers","allexcerpts"}
+    if gOptions.build.lower() == "all":
+        gOptions.build = allSections
+    else:
+        gOptions.build = set(section.strip().lower() for section in gOptions.build.split(','))
+        if "drilldown" in gOptions.build:
+            gOptions.build.add("tags")
+        unknownSections = gOptions.build.difference(allSections)
+        if unknownSections:
+            Alert.warning.Show(f"--build: Unrecognized section(s) {unknownSections} will be ignored.")
+            gOptions.build = gOptions.build.difference(unknownSections)
+    
+    if gOptions.build != allSections:
+        if gOptions.build:
+            Alert.warning.Show(f"Building only sections {gOptions.build}. This should be used only for testing and debugging purposes.")
+        else:
+            Alert.warning.Show(f"No sections built. This should be used only for testing and debugging purposes.")
+
 def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
     # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
+    ParseBuildSections()
 
     basePage = PageDesc.PageDesc()
 
     indexDir ="indexes"
     mainMenu = []
     mainMenu.append(AboutMenu("about"))
-    mainMenu.append(TagMenu(indexDir))
-    mainMenu.append(AllEvents(indexDir))
-    mainMenu.append(EventPages("events"))
-    mainMenu.append(TeacherPages("teachers",indexDir))
-    mainMenu.append(AllExcerpts(indexDir))
+    if "tags" in gOptions.build:
+        mainMenu.append(TagMenu(indexDir))
+    if "events" in gOptions.build:
+        mainMenu.append(AllEvents(indexDir))
+        mainMenu.append(EventPages("events"))
+    if "teachers" in gOptions.build:
+        mainMenu.append(TeacherPages("teachers",indexDir))
+    if "allexcerpts" in gOptions.build:
+        mainMenu.append(AllExcerpts(indexDir))
 
     for newPage in basePage.AddMenuAndYieldPages(mainMenu,menuSection="mainMenu"):
         WritePage(newPage)

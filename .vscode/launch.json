@@ -95,8 +95,10 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV,Prototype",
-                "-vvv"
+                "Prototype",
+                "-vvv",
+                "--build",
+                "tags"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

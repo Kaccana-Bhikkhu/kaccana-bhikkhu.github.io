@@ -366,6 +366,8 @@ gDatabase = None # These globals are overwritten by QSArchive.py, but we define 
 
 def main() -> None:
 
+    Prototype.ParseBuildSections()
+
     PrepareTemplates()
 
     AddImplicitAttributions()
