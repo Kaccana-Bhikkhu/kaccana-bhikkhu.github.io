@@ -84,7 +84,9 @@
                 "All",
                 "-vvv",
                 "--sheets",
-                "All"
+                "All",
+                "--excerptMp3",
+                "remote"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
