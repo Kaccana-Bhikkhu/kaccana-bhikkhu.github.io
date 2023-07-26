@@ -64,12 +64,12 @@
             "justMyCode": true
         },
         {
-            "name": "RenderAndPrototype",
+            "name": "Prototype",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Render,Prototype",
+                "Prototype",
                 "-vvv"
             ],
             "console": "integratedTerminal",
