@@ -1,10 +1,12 @@
+import posix from "./path.js";
+const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
 
 let path = "";
 
-async function changeURL(url) {
-	await fetch("./" + url)
+async function changeURL(pUrl) {
+	await fetch("./" + pUrl)
 		.then((r) => r.text())
 		.then((text) => {
 			frame.innerHTML = text;
@@ -14,10 +16,10 @@ async function changeURL(url) {
 			innerTitle.remove();
 
 			frame.querySelectorAll("a").forEach((el) => {
-				let url = el
-					.getAttribute("href")
-					.replaceAll("../", "")
-					.replaceAll("index.html", "homepage.html");
+				let url = join(
+					dirname(pUrl),
+					el.getAttribute("href").replaceAll("index.html", "homepage.html")
+				);
 
 				if (url.includes("://")) return;
 				else if (url.startsWith("#")) {

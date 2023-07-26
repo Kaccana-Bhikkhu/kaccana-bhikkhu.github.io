@@ -1,38 +1,25 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$!page.info.title!$</title>
-<meta name="robots" content="noindex, nofollow" />
-<link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
-    
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>$!title!$</title>
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="../fa/css/regular.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
+			<br />
+			<h4>$!mainMenu!$</h4>
+		</div>
+		<br />
+		<div class="title">$!titleInBody!$</div>
 
-  <div id="header">
-    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
-    <br>
-    <h4>$!page.section["mainMenu"].Render()!$</h4>
-  </div>
-<br>
+		<div class="intro">$!body!$</div>
 
-<!--(if page.HasSection("subMenu"))-->
-  <div class="intro">
-    $!page.section["subMenu"].Render()!$
-  </div>
-<!--(end)-->
-
-  <div class="title">$!page.info.titleInBody!$</div>
-
-<div class="intro">
-$!page.PageText()!$
-</div>
-
-<footer>
-    <p>&copy; 2023 Abhayagiri Buddhist Monastery. All rights reserved.</p>
-</footer>
-
-</body>
+		<footer>
+			<p>&copy; 2023 Abhayagiri Buddhist Monastery. All rights reserved.</p>
+		</footer>
+	</body>
 </html>
