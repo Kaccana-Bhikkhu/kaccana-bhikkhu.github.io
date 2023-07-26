@@ -709,15 +709,14 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
     yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
 
-def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
-    """Generate a page containing a list of all events."""
+def ListDetailedEvents(events: list[dict]) -> str:
+    """Generate html containing a detailed list of all events."""
     
-    yield PageDesc.PageInfo("All events",Utils.PosixJoin(pageDir,"AllEvents.html"))
-
     a = Airium()
     
     firstEvent = True
-    for eventCode,e in gDatabase["event"].items():
+    for e in events:
+        eventCode = e["code"]
         if not firstEvent:
             a.hr()
         firstEvent = False
@@ -732,7 +731,50 @@ def AllEvents(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a(ExcerptDurationStr(eventExcerpts))
                 
-    yield str(a)
+    return str(a)
+
+def EventSeries(event: dict) -> str:
+    return event["series"]
+
+def EventDescription(event: dict) -> str:
+    if "events" in gOptions.buildOnly:
+        href = PageDesc.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
+    else:
+        href = PageDesc.Wrapper()
+    return f"<p> {href.Wrap(event['title'])} ({event['excerpts']}) </p>"
+
+def ListEventsBySeries(events: list[dict]) -> str:
+    """Return html code listing these events by series."""
+
+    def SeriesIndex(event: dict) -> int:
+        "Return the index of the series of this event for sorting purposes"
+        return list(gDatabase["series"]).index(event["series"])
+    
+    eventsSorted = sorted(events,key=SeriesIndex)
+    return str(PageDesc.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e)) ))
+
+def ListEventsByYear(events: list[dict]) -> str:
+    """Return html code listing these events by series."""
+    
+    return str(PageDesc.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ))
+
+def EventsMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Create the Tags menu item and its associated submenus.
+    Also write a page for each tag."""
+
+    seriesInfo = PageDesc.PageInfo("Series",Utils.PosixJoin(indexDir,"EventsBySeries.html"),"All events – Series")
+    chronologicalInfo = PageDesc.PageInfo("Chronological",Utils.PosixJoin(indexDir,"EventsChronological.html"),"All events – Chronological")
+    detailInfo = PageDesc.PageInfo("Detailed",Utils.PosixJoin(indexDir,"EventDetails.html"),"All events – Detailed")
+
+    yield seriesInfo._replace(title="Events")
+
+    eventMenu = []
+    eventMenu.append([seriesInfo,ListEventsBySeries(gDatabase["event"].values())])
+    eventMenu.append([chronologicalInfo,ListEventsByYear(gDatabase["event"].values())])
+    eventMenu.append([detailInfo,ListDetailedEvents(gDatabase["event"].values())])
+
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(eventMenu,menuSection = "subMenu")
 
 def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
     """Write a html file for each tag in the database"""
@@ -1057,7 +1099,7 @@ def main():
     if "tags" in gOptions.buildOnly:
         mainMenu.append(TagMenu(indexDir))
     if "events" in gOptions.buildOnly:
-        mainMenu.append(AllEvents(indexDir))
+        mainMenu.append(EventsMenu(indexDir))
         mainMenu.append(EventPages("events"))
     if "teachers" in gOptions.buildOnly:
         mainMenu.append(TeacherPages("teachers",indexDir))

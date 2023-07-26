@@ -166,10 +166,15 @@ def TimeDeltaToStr(time):
     else:
         return f"{minutes}:{seconds:02d}"
 
-def ReformatDate(dateStr:str, formatStr:str = "%b %d, %Y") -> str:
+def ParseDate(dateStr:str) -> datetime.date:
+    "Read a date formated as DD/MM/YYYY and return datetime.date."
+    
+    return datetime.strptime(dateStr,"%d/%m/%Y").date()
+
+def ReformatDate(dateStr:str) -> str:
     "Take a date formated as DD/MM/YYYY and reformat it as mmm d YYYY."
     
-    date = datetime.strptime(dateStr,"%d/%m/%Y")
+    date = ParseDate(dateStr)
     
     return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
 
