@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os, re
 import urllib.request, urllib.error
+from concurrent.futures import ThreadPoolExecutor
 import shutil
 from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
@@ -56,8 +57,9 @@ def ReadSheetIds() -> dict:
 def DownloadSheets(sheetIds: dict) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"
     
-    for sheetName,sheetId in sheetIds.items():
-        DownloadSheetCSV(gOptions.spreadsheetId,sheetId,os.path.join(gOptions.csvDir,sheetName + '.csv'))
+    with ThreadPoolExecutor() as pool:
+        for sheetName,sheetId in sheetIds.items():
+            pool.submit(DownloadSheetCSV,gOptions.spreadsheetId,sheetId,os.path.join(gOptions.csvDir,sheetName + '.csv'))
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"

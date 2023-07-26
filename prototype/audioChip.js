@@ -28,10 +28,10 @@ class AudioChip extends HTMLElement {
 
 	connectedCallback() {
 		let src = this.getAttribute("src");
-		if (src.startsWith("../")) {
-			src = src.replace("../","")
-		}; // Hack: We reference local audio files from prototype/index.html, rather than prototype/(subdirectory)/(file).html,
-		// So remove ../ from local references, just as we do for a href links in frame.js
+		if (!src.includes("://")) {
+			src = "../" + src.replaceAll("../","")
+		} // Hack: Relative to index.html, audio files are stored at ../audio/excerpts/..., but local references in a page depend on its directory depth.
+		// Thus we change src to have exactly one "../" in its path.
 
 		this.audio = new Audio(src);
 		let loadAudio = this.dataset.duration == null;

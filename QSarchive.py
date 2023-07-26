@@ -7,6 +7,7 @@ import argparse, shlex
 import importlib
 import os, sys
 import json
+from typing import Tuple
 
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python')) # Look for modules in the ./python in the same directory as QAarchive.py
@@ -49,6 +50,41 @@ def ApplyDefaults(argsFileName: str,parser: argparse.ArgumentParser) -> None:
         commandArgs = ["DummyOp"] + shlex.split(" ".join(argumentStrings))
         defaultArgs = parser.parse_args(commandArgs)
         parser.set_defaults(**vars(defaultArgs))
+
+def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
+    "Scan the list of specified ops to see if we can load a database to save time. Add any ops needed to support those specified."
+
+    newDB = {}
+    opSet = set(opSet) # Clone opSet
+
+    if 'DownloadCSV' in opSet:
+        if len(opSet) > 1: # If we do anything other than DownloadCSV, we need to parse the newly-downloaded files
+            opSet.add('ParseCSV')
+        else:
+            return newDB,opSet
+    
+    requireSpreadsheetDB = {'SplitMp3','Render'}
+    requireRenderedDB = {'Prototype'}
+
+    if opSet.intersection(requireRenderedDB):
+        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB):
+            try:
+                with open(clOptions.renderedDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
+                    newDB = json.load(file)
+                    return newDB,opSet
+            except OSError:
+                pass
+        opSet.add('Render')
+    
+    if 'ParseCSV' not in opSet and opSet.intersection(requireSpreadsheetDB):
+        try:
+            with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
+                newDB = json.load(file)
+                return newDB,opSet
+        except OSError:
+            opSet.add('ParseCSV')
+    
+    return newDB,opSet
 
 # The list of code modules/ops to implement
 moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Prototype','OptimizeDatabase']
@@ -130,20 +166,19 @@ if clOptions.events != 'All':
         # clOptions.events is now either the string 'All' or a list of strings
 
 if clOptions.ops.strip() == 'All':
-    opList = moduleList
+    opSet = set(moduleList)
 else:
-    opList = [verb.strip() for verb in clOptions.ops.split(',')]
+    opSet = set(verb.strip() for verb in clOptions.ops.split(','))
 
 # Check for unsuppported ops
-for verb in opList:
+for verb in opSet:
     if verb not in moduleList:
         Alert.warning.Show("Unsupported operation",verb)
 
-if 'ParseCSV' in opList or opList == ['DownloadCSV']:
-    database = {} # If we're going to execute ParseCSV, let it fill up the database; if we only download CSV files, we don't need the database
-else:
-    with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
-        database = json.load(file)
+database, newOpSet = LoadDatabaseAndAddMissingOps(opSet)
+if newOpSet != opSet:
+    Alert.info.Show(f"Will run additional module(s): {newOpSet.difference(opSet)}.")
+    opSet = newOpSet
 
 # Set up the global namespace for each module - this allows the modules to call each other out of order
 for mod in modules:
@@ -153,7 +188,7 @@ for mod in modules:
 
 # Then run the specified operations in sequential order
 for moduleName in moduleList:
-    if moduleName in opList:
+    if moduleName in opSet:
         PrintModuleSeparator(moduleName)
         modules[moduleName].main()
 PrintModuleSeparator("")

@@ -64,12 +64,12 @@
             "justMyCode": true
         },
         {
-            "name": "RenderAndPrototype",
+            "name": "Prototype",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Render,Prototype",
+                "Prototype",
                 "-vvv"
             ],
             "console": "integratedTerminal",
@@ -84,7 +84,23 @@
                 "All",
                 "-vvv",
                 "--sheets",
-                "All"
+                "All",
+                "--excerptMp3",
+                "remote"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Testing",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "Prototype",
+                "-vvv",
+                "--build",
+                "tags"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

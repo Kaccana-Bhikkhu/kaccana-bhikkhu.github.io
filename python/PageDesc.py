@@ -13,6 +13,15 @@ class Wrapper(NamedTuple):
     "A prefix and suffix to wrap an html object in."
     prefix: str = ""
     suffix: str = ""
+    def Wrap(self,contents: str, joinStr: str = "") -> str:
+        items = []
+        if self.prefix:
+            items.append(self.prefix)
+        items.append(contents)
+        if self.suffix:
+            items.append(self.suffix)
+        return joinStr.join(items)
+    
 class PageInfo(NamedTuple):
     "The most basic information about a webpage. titleIB means titleInBody"
     title: str|None = None
@@ -66,20 +75,14 @@ class Menu(Renderable):
         menuLinks = [f'<a href = "{"../" + i.file if RelativeLink(i.file) else i.file}">{i.title}</a>' for i in self.items]
 
         if self.menu_highlightedItem is not None:
-            menuLinks[self.menu_highlightedItem] = self.menu_highlightTags.prefix + menuLinks[self.menu_highlightedItem] + self.menu_highlightTags.suffix
+            menuLinks[self.menu_highlightedItem] = self.menu_highlightTags.Wrap(menuLinks[self.menu_highlightedItem])
 
         separator = self.menu_separator
         if type(separator) == int:
             separator = " " + (separator - 1) * "&nbsp"
 
         rawMenu = separator.join(menuLinks)
-        if self.menu_wrapper.prefix:
-            items = [self.menu_wrapper.prefix,rawMenu]
-        else:
-            items = [rawMenu]
-        if self.menu_wrapper.suffix:
-            items.append(self.menu_wrapper.suffix)
-        return " ".join(items)
+        return self.menu_wrapper.Wrap(rawMenu,joinStr=" ")
 
     def HighlightItem(self,itemFileName:str) -> None:
         "Highlight the item (if any) corresponding to itemFileName."
