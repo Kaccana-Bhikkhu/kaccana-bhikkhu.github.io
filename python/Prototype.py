@@ -869,10 +869,11 @@ def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         if eventInfo["description"]:
             with a.p():
                 a(eventInfo["description"])
-
-        with a.a(href = eventInfo["website"]):
-            a("External website")
-        a.br()
+        
+        if eventInfo["website"]:
+            with a.a(href = eventInfo["website"]):
+                a("External website")
+            a.br()
         
         if len(sessions) > 1:
             squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
