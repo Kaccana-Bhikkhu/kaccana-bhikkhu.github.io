@@ -850,7 +850,7 @@ def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMe
         if tInfo["fullName"] in gDatabase["tag"]:
             relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
         else: """
-        relevantQs = [x for x in xDB if t in Filter.AllTeachers(x)]
+        relevantQs = list(Filter.Apply(xDB,Filter.Teacher(t)))
     
         a = Airium()
         

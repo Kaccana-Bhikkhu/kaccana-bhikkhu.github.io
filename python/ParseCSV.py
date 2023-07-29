@@ -913,6 +913,10 @@ def CountAndVerify(database):
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
     CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
+
+    for teacher in database["teacher"].values():
+        teacher["excerptCount"] = len(list(Filter.Apply(database["excerpts"],Filter.Teacher(teacher["teacher"]))))
+        # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
     
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:

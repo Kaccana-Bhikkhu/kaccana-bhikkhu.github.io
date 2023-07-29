@@ -97,10 +97,10 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype",
+                "ParseCSV,Prototype",
                 "-vvv",
                 "--build",
-                "events"
+                "teachers"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
