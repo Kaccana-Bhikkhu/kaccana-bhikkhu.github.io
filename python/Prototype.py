@@ -759,8 +759,7 @@ def ListEventsByYear(events: list[dict]) -> str:
     return str(PageDesc.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ))
 
 def EventsMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
-    """Create the Tags menu item and its associated submenus.
-    Also write a page for each tag."""
+    """Create the Events menu item and its associated submenus."""
 
     seriesInfo = PageDesc.PageInfo("Series",Utils.PosixJoin(indexDir,"EventsBySeries.html"),"All events – Series")
     chronologicalInfo = PageDesc.PageInfo("Chronological",Utils.PosixJoin(indexDir,"EventsChronological.html"),"All events – Chronological")
@@ -832,7 +831,7 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         else:
             yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
 
-def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+def Old_TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Yield a menu item for the teacher page and a page for each teacher"""
     
     yield PageDesc.PageInfo("Teachers",Utils.PosixJoin(indexDir,"AllTeachers.html"))
@@ -884,6 +883,93 @@ def TeacherPages(teacherPageDir: str,indexDir: str) -> PageDesc.PageDescriptorMe
         a.hr()
 
     yield str(a)
+
+def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Yield a page for each individual teacher"""
+    
+    xDB = gDatabase["excerpts"]
+    teacherDB = gDatabase["teacher"]
+
+    teacherPageData = {}
+
+    for t,tInfo in teacherDB.items():
+        if not tInfo["htmlFile"]:
+            continue
+
+        """ For the time being, teacher pages list only excerpts by the teacher, not about the teacher.
+        if tInfo["fullName"] in gDatabase["tag"]:
+            relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
+        else: """
+        relevantQs = list(Filter.Apply(xDB,Filter.Teacher(t)))
+    
+        a = Airium()
+        
+        excerptInfo = ExcerptDurationStr(relevantQs,False,False)
+        teacherPageData[t] = excerptInfo
+        a(excerptInfo)
+        a.hr()
+
+        formatter = Formatter()
+        formatter.headingShowTags = False
+        formatter.headingShowTeacher = False
+        formatter.excerptOmitSessionTags = False
+        formatter.excerptDefaultTeacher = set([t])
+
+        pageInfo = PageDesc.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]))
+        basePage = PageDesc.PageDesc(pageInfo)
+        basePage.AppendContent(str(a))
+
+        yield from MultiPageExcerptList(basePage,relevantQs,formatter)
+
+def TeacherDescription(teacher: dict) -> str:
+    if "teachers" in gOptions.buildOnly:
+        href = PageDesc.Wrapper(f"<a href = {TeacherLink(teacher['teacher'])}>","</a>")
+    else:
+        href = PageDesc.Wrapper()
+    return f"<p> {href.Wrap(teacher['fullName'])} ({teacher['excerptCount']}) </p>"
+
+def ListTeachersChronological(teachers: list[dict]) -> str:
+    """Return html code listing these teachers by group and chronologically."""
+    
+    groups = list(gDatabase["group"])
+    chronological = sorted(teachers,key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
+    chronological.sort(key=lambda t: groups.index(t["group"]))
+    return str(PageDesc.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
+
+def ListTeachersLineage(teachers: list[dict]) -> str:
+    """Return html code listing teachers by lineage."""
+    
+    lineages = list(gDatabase["lineage"])
+    hasLineage = [t for t in teachers if t["lineage"]]
+    hasLineage.sort(key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
+        # NOTE: We will sort by teacher date once this information gets into the spreadsheet
+    hasLineage.sort(key=lambda t: lineages.index(t["lineage"]))
+    return str(PageDesc.ListWithHeadings(hasLineage,lambda t: (t["lineage"],TeacherDescription(t)) ))
+
+def ListTeachersByExcerpts(teachers: list[dict]) -> str:
+    """Return html code listing teachers by lineage."""
+    
+    sortedByExcerpts = sorted(teachers,key=lambda t: t["excerptCount"],reverse=True)
+    return "\n".join(TeacherDescription(t) for t in sortedByExcerpts)
+
+def TeacherMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Create the Teacher menu item and its associated submenus."""
+
+    chronologicalInfo = PageDesc.PageInfo("Chronological",Utils.PosixJoin(indexDir,"TeachersChronological.html"),"Teachers – Chronological")
+    lineageInfo = PageDesc.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – By lineage")
+    excerptInfo = PageDesc.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
+
+    yield chronologicalInfo._replace(title="Teachers")
+
+    teachersInUse = [t for t in gDatabase["teacher"].values() if t["excerptCount"]]
+
+    teacherMenu = []
+    teacherMenu.append([chronologicalInfo,ListTeachersChronological(teachersInUse)])
+    teacherMenu.append([lineageInfo,ListTeachersLineage(teachersInUse)])
+    teacherMenu.append([excerptInfo,ListTeachersByExcerpts(teachersInUse)])
+
+    baseTagPage = PageDesc.PageDesc()
+    yield from baseTagPage.AddMenuAndYieldPages(teacherMenu,menuSection = "subMenu")
 
 def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
     """Generate html for each event in the database"""
@@ -1102,7 +1188,8 @@ def main():
         mainMenu.append(EventsMenu(indexDir))
         mainMenu.append(EventPages("events"))
     if "teachers" in gOptions.buildOnly:
-        mainMenu.append(TeacherPages("teachers",indexDir))
+        mainMenu.append(TeacherMenu("teachers"))
+        mainMenu.append(TeacherPages("teachers"))
     if "allexcerpts" in gOptions.buildOnly:
         mainMenu.append(AllExcerpts(indexDir))
 

@@ -311,7 +311,7 @@ class PageDesc(Renderable):
 
 
 T = TypeVar("T")
-def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],headingWrapper:Wrapper = Wrapper('<h3 id="HEADING_ID">','</h3>'),addMenu = True) -> PageDesc:
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],headingWrapper:Wrapper = Wrapper('<h3 id="HEADING_ID">','</h3>'),addMenu = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
     itemRenderer: Takes an item and returns the tuple heading,htmlBody.
@@ -326,6 +326,8 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],h
     for item in items:
         heading,htmlBody = itemRenderer(item)
         if heading != prevHeading:
+            if prevHeading is not None and betweenSections:
+                bodyParts.append(betweenSections)
             headingID = Utils.slugify(heading)
             menuItems.append(PageInfo(heading,f"#{headingID}"))
             idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
