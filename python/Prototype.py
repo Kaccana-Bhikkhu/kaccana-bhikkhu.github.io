@@ -956,7 +956,7 @@ def TeacherMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create the Teacher menu item and its associated submenus."""
 
     chronologicalInfo = PageDesc.PageInfo("Chronological",Utils.PosixJoin(indexDir,"TeachersChronological.html"),"Teachers – Chronological")
-    lineageInfo = PageDesc.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – By lineage")
+    lineageInfo = PageDesc.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
     excerptInfo = PageDesc.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
 
     yield chronologicalInfo._replace(title="Teachers")
