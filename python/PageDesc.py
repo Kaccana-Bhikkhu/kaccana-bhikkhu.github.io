@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from typing import NamedTuple, TypeVar
 import pyratemp
 import itertools
 from pathlib import Path
 from collections.abc import Iterator, Iterable, Callable
 import copy
+import Utils
 
 class Wrapper(NamedTuple):
     "A prefix and suffix to wrap an html object in."
@@ -46,6 +47,12 @@ class Renderable:
             return str(clone)
         else:
             return str(self)
+
+def Render(item: Renderable | str,**attributes) -> str:
+    try:
+        return item.Render(**attributes)
+    except AttributeError:
+        return str(item)
 
 class Menu(Renderable):
     items: list[PageInfo]
@@ -111,7 +118,7 @@ For each page associated with the menu it then yields one of the following:
     PageDesc: The description of the page after the menu, which will be merged with the base page and menu.
 """
 
-class PageDesc:
+class PageDesc(Renderable):
     """A PageDesc object is used gradually build a complete description of the content of a page.
     When complete, the object will be passed to a pyratemp template to generate a page and write it to disk."""
     info: PageInfo
@@ -197,15 +204,23 @@ class PageDesc:
         
         return self
 
-    def PageText(self,startSection:int = 0,stopSection:int = 9999999) -> str:
+    def __str__(self) -> str:
+        textToJoin = []
+        for sect in self.section.values():
+            textToJoin.append(Render(sect))
+        return " ".join(textToJoin)
+    
+    def Render(self,**attributes) -> str: # Override Renderable.Render
+        textToJoin = []
+        for sect in self.section.values():
+            textToJoin.append(Render(sect,**attributes))
+        return " ".join(textToJoin)
+    
+    def RenderNumberedSections(self,startSection:int = 0,stopSection:int = 9999999,**attributes) -> str:
         """Return a string of the text of the page."""
         textToJoin = []
         for sectionNumber in range(startSection,min(self.numberedSections,stopSection)):
-            try:
-                text = self.section[sectionNumber].Render()
-            except AttributeError:
-                text = str(self.section[sectionNumber])
-            textToJoin.append(text)
+            textToJoin.append(Render(self.section[sectionNumber]),**attributes)
 
         return " ".join(textToJoin)
 
@@ -294,32 +309,48 @@ class PageDesc:
             # for why we need to use m = m.
         yield from self._PagesFromMenuGenerators(menuFunctions,menuSection=menuSection,**menuStyle)
 
-"""page = PageDesc()
-page.AddContent("This shouldn't show.")
 
-mainMenu = []
-mainMenu.append([PageInfo("Home","home.html","Title in Home Page"),"Text of home page."])
-mainMenu.append([PageInfo("Tag/subtag hierarchy","tags.html"),(PageInfo("Tags","tags.html"),"Some tags go here.")])
-mainMenu.append([])
-mainMenu.append([PageInfo("Events","events.html"),(PageInfo("Events","events.html"),"Some events go here.")])
+T = TypeVar("T")
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],headingWrapper:Wrapper = Wrapper('<h3 id="HEADING_ID">','</h3>'),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
+    """Create a list grouped by headings from items.
+    items: The list of items; should be sorted into groups which each have the same heading.
+    itemRenderer: Takes an item and returns the tuple heading,htmlBody.
+    headingWrapper: Wrap the heading in the body with this html code.
+    addMenu: Generate a horizontal menu linking to each section at the top?
+    """
 
-for newPage in PagesFromMenuDescriptors(page,mainMenu):
-    newPage.WriteFile("prototype/templates/Global.html","prototype/testDir")
-"""
+    bodyParts = []
+    menuItems = []
 
-"""
-mainMenu = []
-mainMenu.append(PageInfo("Homepage","../index.html"))
-mainMenu.append(PageInfo("Tag/subtag hierarchy","../indexes/AllTags.html"))
-mainMenu.append(PageInfo("Most common tags","../indexes/SortedTags.html"))
-mainMenu.append(PageInfo("Events","../indexes/AllEvents.html"))
-mainMenu.append(PageInfo("Teachers","../indexes/AllTeachers.html"))
-mainMenu.append(PageInfo("All excerpts","../indexes/AllExcerpts.html"))
+    itemCount = 0
+    prevHeading = None
+    for item in items:
+        heading,htmlBody = itemRenderer(item)
+        if heading != prevHeading:
+            if prevHeading is not None and betweenSections:
+                bodyParts.append(betweenSections)
+            
+            if countItems and menuItems: # Append the number of items to the previous menu item
+                menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
 
-page = PageDesc()
-page.info = PageInfo("Home Page","homepage.html")
-#page.AddContent("Title in body")
-page.AddMenu(Menu(mainMenu))
-page.AddContent("<p>This is the text of a new page.</p>")
+            headingID = Utils.slugify(heading)
+            menuItems.append(PageInfo(heading,f"#{headingID}"))
+            idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
+            bodyParts.append(idWrapper.Wrap(heading))
 
-page.WriteFile("prototype/templates/Global.html","prototype")"""
+            prevHeading = heading
+            itemCount = 0
+        bodyParts.append(htmlBody)
+        itemCount += 1
+    
+    page = PageDesc()
+    if addMenu:
+        if countItems: # Append the number of items to the last menu item
+            menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
+        menu = Menu(menuItems)
+        page.AppendContent(menu,section = addMenu if type(addMenu) == str else None)
+    
+    page.AppendContent("<hr>")
+    page.AppendContent("\n".join(bodyParts))
+
+    return page
