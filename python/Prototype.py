@@ -84,7 +84,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     return title + titleEnd + listStr + endStr
 
-def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False,text = "") -> str:
     """Turn a tag name into a hyperlink to that tag.
     Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
@@ -97,10 +97,12 @@ def HtmlTagLink(tag:str, fullTag: bool = False) -> str:
     except KeyError:
         ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]]["htmlFile"]
     
+    if not text:
+        text = tag
     if "tags" in gOptions.buildOnly:
-        return f'<a href = "../tags/{ref}">{tag}</a>'
+        return f'<a href = "../tags/{ref}">{text}</a>'
     else:
-        return tag
+        return text
 
 
 def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
@@ -174,7 +176,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
         else:
             skipSubtagLevel = 999 # otherwise don't skip anything
         
-        with a.p(style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+        with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
             drilldownLink = ''
             if expandTagLink:
                 if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
@@ -778,6 +780,17 @@ def EventsMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     baseTagPage = PageDesc.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(eventMenu,menuSection = "subMenu")
 
+def LinkToTeacherPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
+    "Link to the teacher page if this tag represents a teacher."
+
+    for teacher in gDatabase["teacher"].values():
+        if teacher["fullName"] == page.info.title:
+            link = TeacherLink(teacher["teacher"])
+            if link:
+                page.AppendContent(f'<a href="{link}">Teachings by {teacher["fullName"]}</a>',"smallTitle")
+    
+    return page
+
 def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
     """Write a html file for each tag in the database"""
             
@@ -828,11 +841,19 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
+                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>")))
             else:
-                yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
+                yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
-            yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
+            yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
+
+def LinkToTagPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
+    "Link to the tag page if this teacher has a tag."
+
+    if page.info.title in gDatabase["tag"]:
+        page.AppendContent(HtmlTagLink(page.info.title,text = f'Teachings about {page.info.title}'),"smallTitle")
+
+    return page
 
 def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Yield a page for each individual teacher"""
@@ -881,9 +902,9 @@ def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-            yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
+            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>")))
         else:
-            yield from MultiPageExcerptList(basePage,relevantExcerpts,formatter)
+            yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
 def TeacherDescription(teacher: dict) -> str:
     if "teachers" in gOptions.buildOnly:

@@ -100,7 +100,7 @@
                 "Prototype",
                 "-vvv",
                 "--buildOnly",
-                "events,teachers"
+                "tags,teachers,drilldown"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

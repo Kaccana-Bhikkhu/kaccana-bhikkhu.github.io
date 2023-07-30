@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -24,7 +25,11 @@
   </div>
 <!--(end)-->
 
-  <div class="title">$!page.info.titleInBody!$</div>
+  <div class="title">$!page.info.titleInBody!$
+    <!--(if page.HasSection("smallTitle"))-->
+    &nbsp&nbsp<span style="font-size:65%;">$!page.section["smallTitle"]!$</span>
+    <!--(end)-->
+  </div>
 
 <div class="intro">
 $!page.RenderNumberedSections()!$
