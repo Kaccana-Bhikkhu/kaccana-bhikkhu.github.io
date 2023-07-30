@@ -757,7 +757,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
     
-    return str(PageDesc.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ))
+    return str(PageDesc.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ,countItems=False))
 
 def EventsMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create the Events menu item and its associated submenus."""
