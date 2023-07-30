@@ -946,7 +946,7 @@ def TeacherMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
 
     yield chronologicalInfo._replace(title="Teachers")
 
-    teachersInUse = [t for t in gDatabase["teacher"].values() if t["excerptCount"]]
+    teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 
     teacherMenu = [
         [chronologicalInfo,ListTeachersChronological(teachersInUse)],
