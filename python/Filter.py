@@ -132,6 +132,7 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str)) -> boo
                         return True
                 else:
                     return True
+
     if i.get("kind") == "Indirect quote":
         if i.get("tags",(None))[0] in fullNames:
             return True

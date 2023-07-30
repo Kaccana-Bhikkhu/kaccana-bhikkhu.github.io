@@ -99,8 +99,8 @@
             "args": [
                 "Prototype",
                 "-vvv",
-                "--build",
-                "teachers"
+                "--buildOnly",
+                "events,teachers"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
