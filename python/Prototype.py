@@ -329,11 +329,16 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     for tag in gDatabase["tag"].values():
         if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
             continue
+        
+        if tag["tag"] == tag["pali"]: # If this is a Pali-only tag, add it to the pali list and go on to the next tag
+            entry = EnglishEntry(tag,tag["tag"])
+            paliList.append(entry._replace(html=entry.html.lower()))
+            continue
 
-        englishList.append(EnglishEntry(tag,tag["tag"]))
-        if tag["fullTag"] != tag["tag"]:
-            englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-    
+        englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+        if not tag["fullTag"].startswith(tag["tag"]): # File the abbreviated tag separately if it's not a simple truncation
+            englishList.append(EnglishEntry(tag,tag["tag"]))
+                
         if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
             entry = PaliEntry(tag,tag["pali"])
             if entry:
