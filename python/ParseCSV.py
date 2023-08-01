@@ -106,8 +106,6 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
             if camelCase:
                 CamelCaseKeys(row)
             output.append(row)
-            
-
     
     removeKeys.append("")
     for key in removeKeys:

@@ -12,6 +12,7 @@ from collections import namedtuple
 import pyratemp, markdown
 from functools import lru_cache
 import contextlib
+from typing import NamedTuple
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -84,7 +85,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     return title + titleEnd + listStr + endStr
 
-def HtmlTagLink(tag:str, fullTag: bool = False,text = "") -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "") -> str:
     """Turn a tag name into a hyperlink to that tag.
     Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
@@ -141,10 +142,7 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
 def ExcerptCount(tag:str) -> int:
-    try:
-        return gDatabase["tag"][tag]["excerptCount"]
-    except KeyError:
-        return 0
+    return gDatabase["tag"][tag].get("excerptCount",0)
 
 def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None) -> str:
     """Generate html for an indented list of tags.
@@ -241,31 +239,111 @@ def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmento
             
             yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
 
-def SortedHtmlTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "") -> str:
+    "Return html code describing this tag."
+    
+    xCount = ExcerptCount(tag["tag"])
+    countStr = f' ({xCount})' if xCount > 0 else ''
+    
+    tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs)
+    
+    if tag['pali'] and tag['pali'] != tag['tag']:
+        if fullTag:
+            paliStr = '[' + tag['fullPali'] + ']'
+        else:
+            paliStr = '[' + tag['pali'] + ']'
+    else:
+        paliStr = ''
+    
+    if style == "tagFirst":
+        return ' '.join([tagStr,paliStr,countStr])
+    elif style == "numberFirst":
+        return ' '.join([countStr,tagStr,paliStr])
+    elif style == "noPali":
+        return ' '.join([tagStr,countStr])
+
+def MostCommonTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
     
-    yield PageDesc.PageInfo("Most common tags",Utils.PosixJoin(pageDir,"SortedTags.html"))
+    yield PageDesc.PageInfo("Most common",Utils.PosixJoin(pageDir,"SortedTags.html"),"Tags – Most common")
 
     a = Airium()
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
         with a.p():
-            tagDesc = gDatabase["tag"][tag]
-            
-            xCount = ExcerptCount(tag)
-            countStr = f' ({xCount})' if xCount > 0 else ''
-            
-            tagStr = HtmlTagLink(tagDesc['tag'])
-            
-            if tagDesc['pali'] and tagDesc['pali'] != tagDesc['tag']:
-                paliStr = '[' + tagDesc['pali'] + ']'
-            else:
-                paliStr = ''
-            
-            a(' '.join([countStr,tagStr,paliStr]))
+            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="countFirst"))
     
     yield str(a)
+
+class Alphabetize(NamedTuple):
+    "Helper tuple to alphabetize a list."
+    sortBy: str
+    html: str
+
+def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+    """Write a list of tags sorted by number of excerpts."""
+    
+    yield PageDesc.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
+
+    honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
+        # Sort honorifics so the longest honorifics match first
+    honorificRegex = Utils.RegexMatchAny(honorifics,capturingGroup=True) + r" (.+)"
+    def AlphabetizeHonorifics(string: str) -> str:
+        match = re.match(honorificRegex,string)
+        if match:
+            return match[2] + ", " + match[1]
+        else:
+            return string
+
+    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> Alphabetize:
+        "Return an entry for an English item in the alphabetized list"
+        tagName = AlphabetizeHonorifics(tagName)
+        sortBy = Utils.RemoveDiacritics(tagName).lower()
+        html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
+        return Alphabetize(sortBy,html)
+
+    def RemoveItalics(pali: str) -> str:
+        """Remove the italic text that indicates the language a tag is given in.
+        For example: '<em>Thai</em> ascetic wandering' -> 'Ascetic wandering' """
+        noItalics,substituted = re.subn(r"<em>.*</em>","",pali,flags=re.IGNORECASE)
+        if substituted:
+            return noItalics.strip().capitalize()
+        else:
+            return pali
+
+    def PaliEntry(tag: dict,pali: str,fullTag:bool = False) -> Alphabetize:
+        pali = AlphabetizeHonorifics(RemoveItalics(pali))
+        if not pali:
+            return None
+        sortBy = Utils.RemoveDiacritics(pali).lower()
+        html = f"{pali} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
+        return Alphabetize(sortBy,html)
+
+    listing = []
+    for tag in gDatabase["tag"].values():
+        if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
+            continue
+
+        listing.append(EnglishEntry(tag,tag["tag"]))
+        if tag["fullTag"] != tag["tag"]:
+            listing.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+    
+        if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
+            entry = PaliEntry(tag,tag["pali"])
+            if entry:
+                listing.append(entry)
+        if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the Pali tag name
+            entry = PaliEntry(tag,tag["fullPali"],fullTag=True)
+            if entry:
+                listing.append(entry)
+        
+    listing.sort()
+    
+    def TagItem(line:Alphabetize) -> str:
+        return line.sortBy[0].upper(),"".join(("<p>",line.html,"</p>"))
+
+    yield str(PageDesc.ListWithHeadings(listing,TagItem,addMenu=True,countItems=False))
 
 def PlayerTitle(item:dict) -> str:
     """Generate a title string for the audio player for an excerpt or session.
@@ -1080,18 +1158,10 @@ def AboutMenu(aboutDir: str) -> PageDesc.PageDescriptorMenuItem:
     baseTagPage = PageDesc.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
 
-    """tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
-    tagMenu.append(SortedHtmlTagList("indexes"))
-    tagMenu.append(TagPages("tags"))
-
-    baseTagPage = PageDesc.PageDesc()
-    yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")"""
-
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
-    drilldownTitle = "Tag/subtag hierarchy"
-    drilldownItem = PageDesc.PageInfo(drilldownTitle,drilldownDir,drilldownTitle)
+    drilldownItem = PageDesc.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
 
@@ -1117,10 +1187,12 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
     drilldownDir = "drilldown"
     yield next(iter(TagHierarchyMenu(indexDir,drilldownDir)))._replace(title="Tags")
 
-    tagMenu = []
-    tagMenu.append(TagHierarchyMenu(indexDir,drilldownDir))
-    tagMenu.append(SortedHtmlTagList("indexes"))
-    tagMenu.append(TagPages("tags"))
+    tagMenu = [
+        TagHierarchyMenu(indexDir,drilldownDir),
+        AlphabeticalTagList(indexDir),
+        MostCommonTagList(indexDir),
+        TagPages("tags")
+    ]
 
     baseTagPage = PageDesc.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")

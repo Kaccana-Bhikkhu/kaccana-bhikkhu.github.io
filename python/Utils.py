@@ -187,6 +187,10 @@ def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
 
+def RemoveDiacritics(string: str) -> str:
+    "Remove diacritics from string."
+    return unicodedata.normalize('NFKD', string).encode('ascii', 'ignore').decode('ascii')
+
 def slugify(value, allow_unicode=False):
     """
     Taken from https://github.com/django/django/blob/master/django/utils/text.py

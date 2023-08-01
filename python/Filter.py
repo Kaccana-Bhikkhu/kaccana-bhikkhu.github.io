@@ -126,9 +126,6 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str)) -> boo
 
     fullNames = set(gDatabase["teacher"][t]["fullName"] for t in teacher)
 
-    if "samatha/vipassana" in item["text"] and "AChah" in teacher and category == {"Quotes"}:
-        print("here")
-
     for i in AllItems(item):
         for t in i.get("teachers",()):
             if t in teacher:
