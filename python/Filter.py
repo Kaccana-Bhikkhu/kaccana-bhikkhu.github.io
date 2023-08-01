@@ -74,6 +74,7 @@ def _Kind(item: dict,kind:set(str),category:set(str)) -> bool:
     for i in AllItems(item):
         if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
             return True
+    return False
 
 def Kind(kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
     """Returns a Filter that passes any item with a given tag.
@@ -95,6 +96,7 @@ def _Tag(item: dict,tag:set(str),kind:set(str),category:set(str)) -> bool:
                         return True
                 else:
                     return True
+    return False
 
 def Tag(tag: str|set(str),kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
     """Returns a Filter that passes any item with a given tag.
@@ -124,6 +126,9 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str)) -> boo
 
     fullNames = set(gDatabase["teacher"][t]["fullName"] for t in teacher)
 
+    if "samatha/vipassana" in item["text"] and "AChah" in teacher and category == {"Quotes"}:
+        print("here")
+
     for i in AllItems(item):
         for t in i.get("teachers",()):
             if t in teacher:
@@ -133,9 +138,12 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str)) -> boo
                 else:
                     return True
 
-    if i.get("kind") == "Indirect quote":
-        if i.get("tags",(None))[0] in fullNames:
-            return True
+        if i.get("kind") == "Indirect quote":
+            if i.get("tags",(None))[0] in fullNames:
+                if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
+                    return True
+    
+    return False
 
 def Teacher(teacher: str|set(str),kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
     """Returns a Filter that passes any item with a given teacher.

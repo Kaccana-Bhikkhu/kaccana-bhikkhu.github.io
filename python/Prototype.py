@@ -707,6 +707,7 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         FilteredExcerptsMenuItem(excerpts,Filter.Kind(category="Quotes"),formatter,pageInfo,"Quotes","quote"),
         FilteredExcerptsMenuItem(excerpts,Filter.Kind(category="Meditations"),formatter,pageInfo,"Meditations","meditation"),
         FilteredExcerptsMenuItem(excerpts,Filter.Kind(category="Teachings"),formatter,pageInfo,"Teachings","teaching"),
+        FilteredExcerptsMenuItem(excerpts,Filter.Kind(category="Readings"),formatter,pageInfo,"Readings","reading"),
         FilteredExcerptsMenuItem(excerpts,Filter.Kind(kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"),
         FilteredExcerptsMenuItem(excerpts,Filter.Kind(kind={"Reference"}),formatter,pageInfo,"References","ref")
     ]
@@ -832,14 +833,15 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
             questions = Filter.Apply(relevantExcerpts,Filter.Kind(category="Questions"))
             qTags,aTags = Filter.Partition(questions,Filter.QTag(tag))
 
-            filterMenu = []
-            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"))
-            filterMenu.append(FilteredExcerptsMenuItem(qTags,Filter.PassAll,formatter,pageInfo,"Questions about","qtag"))
-            filterMenu.append(FilteredExcerptsMenuItem(aTags,Filter.PassAll,formatter,pageInfo,"Answers involving","atag"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Stories"),formatter,pageInfo,"Stories","story"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quote"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"))
-            filterMenu.append(FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Reference"}),formatter,pageInfo,"References","ref"))
+            filterMenu = [
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
+                FilteredExcerptsMenuItem(qTags,Filter.PassAll,formatter,pageInfo,"Questions about","qtag"),
+                FilteredExcerptsMenuItem(aTags,Filter.PassAll,formatter,pageInfo,"Answers involving","atag"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Stories"),formatter,pageInfo,"Stories","story"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,category="Quotes"),formatter,pageInfo,"Quotes","quote"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Sutta","Vinaya","Commentary"}),formatter,pageInfo,"Texts","text"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Reference"}),formatter,pageInfo,"References","ref")
+            ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
@@ -901,6 +903,8 @@ def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Quotes"),formatter,pageInfo,"Quotes","quote"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Meditations"),formatter,pageInfo,"Meditations","meditation"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Teachings"),formatter,pageInfo,"Teachings","teaching"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Readings"),formatter,pageInfo,"Readings from","read-from"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Read by"),formatter,pageInfo,"Readings by","read-by")
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
