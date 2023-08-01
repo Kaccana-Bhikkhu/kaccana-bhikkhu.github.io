@@ -690,6 +690,8 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         a.br()
         a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
 
+    a.hr()
+
     basePage = PageDesc.PageDesc(pageInfo)
     basePage.AppendContent(str(a))
 
@@ -851,7 +853,7 @@ def LinkToTagPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
     "Link to the tag page if this teacher has a tag."
 
     if page.info.title in gDatabase["tag"]:
-        page.AppendContent(HtmlTagLink(page.info.title,text = f'Teachings about {page.info.title}'),"smallTitle")
+        page.AppendContent(HtmlTagLink(page.info.title,text = f'Tag [{page.info.title}]'),"smallTitle")
 
     return page
 
