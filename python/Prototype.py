@@ -272,7 +272,7 @@ def MostCommonTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
         with a.p():
-            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="countFirst"))
+            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst"))
     
     yield str(a)
 
@@ -289,7 +289,10 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
         # Sort honorifics so the longest honorifics match first
     honorificRegex = Utils.RegexMatchAny(honorifics,capturingGroup=True) + r" (.+)"
-    def AlphabetizeHonorifics(string: str) -> str:
+    noAlphabetize = {"alphabetize":""}
+    def AlphabetizeNames(string: str) -> str:
+        if gDatabase["people"].get(string,noAlphabetize)["alphabetize"]:
+            return gDatabase["people"][string]["alphabetize"]
         match = re.match(honorificRegex,string)
         if match:
             return match[2] + ", " + match[1]
@@ -298,7 +301,7 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
 
     def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> Alphabetize:
         "Return an entry for an English item in the alphabetized list"
-        tagName = AlphabetizeHonorifics(tagName)
+        tagName = AlphabetizeNames(tagName)
         sortBy = Utils.RemoveDiacritics(tagName).lower()
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
         return Alphabetize(sortBy,html)
@@ -313,7 +316,7 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             return pali
 
     def PaliEntry(tag: dict,pali: str,fullTag:bool = False) -> Alphabetize:
-        pali = AlphabetizeHonorifics(RemoveItalics(pali))
+        pali = AlphabetizeNames(RemoveItalics(pali))
         if not pali:
             return None
         sortBy = Utils.RemoveDiacritics(pali).lower()
@@ -337,6 +340,10 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             entry = PaliEntry(tag,tag["fullPali"],fullTag=True)
             if entry:
                 listing.append(entry)
+        
+        for translation in tag["alternateTranslations"]:
+            html = f"{translation} – alternative translation of {PaliEntry(tag,tag['fullPali'],fullTag=True).html}"
+            listing.append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
         
     listing.sort()
     
