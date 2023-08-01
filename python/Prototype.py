@@ -284,7 +284,8 @@ class Alphabetize(NamedTuple):
 def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
     
-    yield PageDesc.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
+    pageInfo = PageDesc.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
+    yield pageInfo
 
     honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
         # Sort honorifics so the longest honorifics match first
@@ -323,34 +324,46 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         html = f"{pali} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
         return Alphabetize(sortBy,html)
 
-    listing = []
+    englishList = []
+    paliList = []
     for tag in gDatabase["tag"].values():
         if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
             continue
 
-        listing.append(EnglishEntry(tag,tag["tag"]))
+        englishList.append(EnglishEntry(tag,tag["tag"]))
         if tag["fullTag"] != tag["tag"]:
-            listing.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+            englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
     
         if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
             entry = PaliEntry(tag,tag["pali"])
             if entry:
-                listing.append(entry)
+                paliList.append(entry)
         if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the Pali tag name
             entry = PaliEntry(tag,tag["fullPali"],fullTag=True)
             if entry:
-                listing.append(entry)
+                paliList.append(entry)
         
         for translation in tag["alternateTranslations"]:
             html = f"{translation} – alternative translation of {PaliEntry(tag,tag['fullPali'],fullTag=True).html}"
-            listing.append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
-        
-    listing.sort()
+            englishList.append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
     
+    englishList.sort()
+    paliList.sort()
+    allList = sorted(itertools.chain(englishList,paliList))
+
     def TagItem(line:Alphabetize) -> str:
         return line.sortBy[0].upper(),"".join(("<p>",line.html,"</p>"))
 
-    yield str(PageDesc.ListWithHeadings(listing,TagItem,addMenu=True,countItems=False))
+    subMenu = [
+        [pageInfo._replace(title = "All tags"),str(PageDesc.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "English only",file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
+            str(PageDesc.ListWithHeadings(englishList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "Pāli only",file=Utils.PosixJoin(pageDir,"PaliTags.html")),
+            str(PageDesc.ListWithHeadings(paliList,TagItem,addMenu=True,countItems=False))]
+    ]
+
+    basePage = PageDesc.PageDesc()
+    yield from basePage.AddMenuAndYieldPages(subMenu,wrapper=PageDesc.Wrapper("<p>","</p><hr>"))
 
 def PlayerTitle(item:dict) -> str:
     """Generate a title string for the audio player for an excerpt or session.
