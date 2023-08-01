@@ -200,7 +200,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                 nameStr = item['name']
             
             if item['pali'] and item['pali'] != item['name']:
-                paliStr = '[' + item['pali'] + ']'
+                paliStr = '(' + item['pali'] + ')'
             else:
                 paliStr = ''
             
@@ -249,9 +249,9 @@ def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs
     
     if tag['pali'] and tag['pali'] != tag['tag']:
         if fullTag:
-            paliStr = '[' + tag['fullPali'] + ']'
+            paliStr = '(' + tag['fullPali'] + ')'
         else:
-            paliStr = '[' + tag['pali'] + ']'
+            paliStr = '(' + tag['pali'] + ')'
     else:
         paliStr = ''
     
@@ -919,7 +919,7 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         formatter.excerptOmitSessionTags = False
         
         if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
-            tagPlusPali = f"{tagInfo['fullTag']} [{tagInfo['fullPali']}]"
+            tagPlusPali = f"{tagInfo['fullTag']} ({tagInfo['fullPali']})"
         else:
             tagPlusPali = tag
 
