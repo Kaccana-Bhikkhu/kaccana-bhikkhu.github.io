@@ -336,8 +336,9 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             continue
 
         englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-        if not tag["fullTag"].startswith(tag["tag"]): # File the abbreviated tag separately if it's not a simple truncation
+        if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
             englishList.append(EnglishEntry(tag,tag["tag"]))
+            # File the abbreviated tag separately if it's not a simple truncation
                 
         if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
             entry = PaliEntry(tag,tag["pali"])
