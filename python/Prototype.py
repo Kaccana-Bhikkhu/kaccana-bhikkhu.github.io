@@ -1033,6 +1033,7 @@ def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
     
     groups = list(gDatabase["group"])
+    groups.append("") # Prevent an error if group is blank
     chronological = sorted(teachers,key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
     chronological.sort(key=lambda t: groups.index(t["group"]))
     return str(PageDesc.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
@@ -1041,6 +1042,7 @@ def ListTeachersLineage(teachers: list[dict]) -> str:
     """Return html code listing teachers by lineage."""
     
     lineages = list(gDatabase["lineage"])
+    lineages.append("") # Prevent an error if group is blank
     hasLineage = [t for t in teachers if t["lineage"]]
     hasLineage.sort(key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
         # NOTE: We will sort by teacher date once this information gets into the spreadsheet

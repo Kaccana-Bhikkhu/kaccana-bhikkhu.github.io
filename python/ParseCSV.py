@@ -587,7 +587,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"]:
+    if annotation["exclude"] or database["kind"][annotation["kind"]]["exclude"]:
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -768,6 +768,8 @@ def LoadEventFile(database,eventName,directory):
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
+        elif database["kind"][x["kind"]]["exclude"]:
+            excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
             excludeReason = [x,"due to excerpt teachers",x["teachers"]]
