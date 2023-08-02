@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils, PageDesc, Alert, Filter
+import Utils, PageDesc, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
 from collections import namedtuple
@@ -159,23 +159,26 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     a = Airium()
     
     tagList = gDatabase["tagDisplayList"]
+    if expandSpecificTags is None:
+        if expandDuplicateSubtags:
+            expandSpecificTags = range(len(tagList))
+        else:
+            expandSpecificTags = set()
+            for parent,children in ParseCSV.WalkTags(tagList,returnIndices=True):
+                for n in children:
+                    tag = tagList[n]["tag"]
+                    if n in expandSpecificTags or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
+                        expandSpecificTags.add(parent) # Then expand the parent tag
+                    
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     for index, item in enumerate(tagList):
         if item["level"] > skipSubtagLevel:
             continue
 
-        skipSubtags = False
-        if expandSpecificTags is not None:
-            if index not in expandSpecificTags:
-                skipSubtags = True
-        elif not expandDuplicateSubtags:
-            if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
-                skipSubtags = True
-
-        if skipSubtags:
-            skipSubtagLevel = item["level"] # skip tags deeper than this level
+        if index in expandSpecificTags:
+            skipSubtagLevel = 999 # don't skip anything
         else:
-            skipSubtagLevel = 999 # otherwise don't skip anything
+            skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
         
         with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
             drilldownLink = ''

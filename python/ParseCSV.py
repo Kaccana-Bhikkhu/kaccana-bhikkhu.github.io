@@ -488,10 +488,10 @@ def CreateTagDisplayList(database):
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
-def WalkTags(tagDisplayList: list) -> Iterator[Tuple[dict,List[dict]]]:
+def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
     tagStack = []
-    for tag in tagDisplayList:
+    for n,tag in enumerate(tagDisplayList):
         tagLevel = tag["level"]
         while len(tagStack) > tagLevel: # If the tag level drops, then yield the accumulated tags and their parent 
             children = tagStack.pop()
@@ -502,7 +502,10 @@ def WalkTags(tagDisplayList: list) -> Iterator[Tuple[dict,List[dict]]]:
             assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
             tagStack.append([])
         
-        tagStack[-1].append(tag)
+        if returnIndices:
+            tagStack[-1].append(n)
+        else:
+            tagStack[-1].append(tag)
     
     while len(tagStack) > 1: # Yield sibling tags still in the list
         children = tagStack.pop()
