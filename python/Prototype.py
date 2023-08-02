@@ -852,12 +852,17 @@ def ListDetailedEvents(events: list[dict]) -> str:
 def EventSeries(event: dict) -> str:
     return event["series"]
 
-def EventDescription(event: dict) -> str:
+def EventDescription(event: dict,showMonth = False) -> str:
     if "events" in gOptions.buildOnly:
         href = PageDesc.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
     else:
         href = PageDesc.Wrapper()
-    return f"<p> {href.Wrap(event['title'])} ({event['excerpts']}) </p>"
+    if showMonth:
+        date = Utils.ParseDate(event["startDate"])
+        monthStr = f' – {date.strftime("%B")} {int(date.year)}'
+    else:
+        monthStr = ""
+    return f"<p>{href.Wrap(event['title'])} ({event['excerpts']}){monthStr}</p>"
 
 def ListEventsBySeries(events: list[dict]) -> str:
     """Return html code listing these events by series."""
@@ -867,7 +872,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
         return list(gDatabase["series"]).index(event["series"])
     
     eventsSorted = sorted(events,key=SeriesIndex)
-    return str(PageDesc.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e)) ))
+    return str(PageDesc.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e,showMonth=True)) ))
 
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
