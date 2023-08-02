@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils, PageDesc, Alert, Filter
+import Utils, PageDesc, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
 from collections import namedtuple
@@ -41,7 +41,10 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
 
 def WritePage(page: PageDesc) -> None:
     """Write an html file for page using the global template"""
-    page.WriteFile(gOptions.globalTemplate,gOptions.prototypeDir)
+    template = gOptions.globalTemplate
+    if page.info.file.endswith("_print.html"):
+        template = Utils.AppendToFilename(gOptions.globalTemplate,"_print")
+    page.WriteFile(template,gOptions.prototypeDir)
     gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
     Alert.debug.Show(f"Write file: {page.info.file}")
 
@@ -156,23 +159,26 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     a = Airium()
     
     tagList = gDatabase["tagDisplayList"]
+    if expandSpecificTags is None:
+        if expandDuplicateSubtags:
+            expandSpecificTags = range(len(tagList))
+        else:
+            expandSpecificTags = set()
+            for parent,children in ParseCSV.WalkTags(tagList,returnIndices=True):
+                for n in children:
+                    tag = tagList[n]["tag"]
+                    if n in expandSpecificTags or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
+                        expandSpecificTags.add(parent) # Then expand the parent tag
+                    
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     for index, item in enumerate(tagList):
         if item["level"] > skipSubtagLevel:
             continue
 
-        skipSubtags = False
-        if expandSpecificTags is not None:
-            if index not in expandSpecificTags:
-                skipSubtags = True
-        elif not expandDuplicateSubtags:
-            if item["tag"] and gDatabase["tag"][item["tag"]]["listIndex"] != index: # If the primary tag is at another position in the list (i.e. it's not us)
-                skipSubtags = True
-
-        if skipSubtags:
-            skipSubtagLevel = item["level"] # skip tags deeper than this level
+        if index in expandSpecificTags:
+            skipSubtagLevel = 999 # don't skip anything
         else:
-            skipSubtagLevel = 999 # otherwise don't skip anything
+            skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
         
         with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
             drilldownLink = ''
@@ -336,8 +342,9 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
             continue
 
         englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-        if not tag["fullTag"].startswith(tag["tag"]): # File the abbreviated tag separately if it's not a simple truncation
+        if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
             englishList.append(EnglishEntry(tag,tag["tag"]))
+            # File the abbreviated tag separately if it's not a simple truncation
                 
         if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
             entry = PaliEntry(tag,tag["pali"])
@@ -845,12 +852,17 @@ def ListDetailedEvents(events: list[dict]) -> str:
 def EventSeries(event: dict) -> str:
     return event["series"]
 
-def EventDescription(event: dict) -> str:
+def EventDescription(event: dict,showMonth = False) -> str:
     if "events" in gOptions.buildOnly:
         href = PageDesc.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
     else:
         href = PageDesc.Wrapper()
-    return f"<p> {href.Wrap(event['title'])} ({event['excerpts']}) </p>"
+    if showMonth:
+        date = Utils.ParseDate(event["startDate"])
+        monthStr = f' – {date.strftime("%B")} {int(date.year)}'
+    else:
+        monthStr = ""
+    return f"<p>{href.Wrap(event['title'])} ({event['excerpts']}){monthStr}</p>"
 
 def ListEventsBySeries(events: list[dict]) -> str:
     """Return html code listing these events by series."""
@@ -860,7 +872,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
         return list(gDatabase["series"]).index(event["series"])
     
     eventsSorted = sorted(events,key=SeriesIndex)
-    return str(PageDesc.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e)) ))
+    return str(PageDesc.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e,showMonth=True)) ))
 
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
@@ -1026,6 +1038,7 @@ def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
     
     groups = list(gDatabase["group"])
+    groups.append("") # Prevent an error if group is blank
     chronological = sorted(teachers,key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
     chronological.sort(key=lambda t: groups.index(t["group"]))
     return str(PageDesc.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
@@ -1034,6 +1047,7 @@ def ListTeachersLineage(teachers: list[dict]) -> str:
     """Return html code listing teachers by lineage."""
     
     lineages = list(gDatabase["lineage"])
+    lineages.append("") # Prevent an error if group is blank
     hasLineage = [t for t in teachers if t["lineage"]]
     hasLineage.sort(key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
         # NOTE: We will sort by teacher date once this information gets into the spreadsheet
@@ -1189,6 +1203,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptor
     drilldownItem = PageDesc.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+    printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
     if "drilldown" in gOptions.buildOnly:
         yield contractAllItem
@@ -1199,6 +1214,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptor
     if "drilldown" in gOptions.buildOnly:
         drilldownMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
+    drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
     if "drilldown" in gOptions.buildOnly:
         drilldownMenu.append(DrilldownTags(drilldownItem))
 

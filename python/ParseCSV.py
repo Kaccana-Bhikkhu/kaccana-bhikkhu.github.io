@@ -488,10 +488,10 @@ def CreateTagDisplayList(database):
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
-def WalkTags(tagDisplayList: list) -> Iterator[Tuple[dict,List[dict]]]:
+def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
     tagStack = []
-    for tag in tagDisplayList:
+    for n,tag in enumerate(tagDisplayList):
         tagLevel = tag["level"]
         while len(tagStack) > tagLevel: # If the tag level drops, then yield the accumulated tags and their parent 
             children = tagStack.pop()
@@ -502,7 +502,10 @@ def WalkTags(tagDisplayList: list) -> Iterator[Tuple[dict,List[dict]]]:
             assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
             tagStack.append([])
         
-        tagStack[-1].append(tag)
+        if returnIndices:
+            tagStack[-1].append(n)
+        else:
+            tagStack[-1].append(tag)
     
     while len(tagStack) > 1: # Yield sibling tags still in the list
         children = tagStack.pop()
@@ -584,7 +587,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"]:
+    if annotation["exclude"] or database["kind"][annotation["kind"]]["exclude"]:
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -765,6 +768,8 @@ def LoadEventFile(database,eventName,directory):
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
+        elif database["kind"][x["kind"]]["exclude"]:
+            excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
             excludeReason = [x,"due to excerpt teachers",x["teachers"]]
