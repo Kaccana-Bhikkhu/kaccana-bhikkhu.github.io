@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>$!page.info.title!$</title>
+    <meta name="robots" content="noindex, nofollow" />
+<style>
+  p {font-size: 110%;}
+</style>
+    
+</head>
+<body>
+
+<h1>The Ajahn Pasanno Question and Story Archive</h1>
+
+<h4>$!page.section["mainMenu"].Render()!$</h4>
+
+<!--(if page.HasSection("subMenu"))-->
+<h4>$!page.section["subMenu"].Render()!$</h4>
+<!--(end)-->
+
+$!page.RenderNumberedSections()!$
+  
+</body>
+</html>

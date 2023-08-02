@@ -41,7 +41,10 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
 
 def WritePage(page: PageDesc) -> None:
     """Write an html file for page using the global template"""
-    page.WriteFile(gOptions.globalTemplate,gOptions.prototypeDir)
+    template = gOptions.globalTemplate
+    if page.info.file.endswith("_print.html"):
+        template = Utils.AppendToFilename(gOptions.globalTemplate,"_print")
+    page.WriteFile(template,gOptions.prototypeDir)
     gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
     Alert.debug.Show(f"Write file: {page.info.file}")
 
@@ -1190,6 +1193,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptor
     drilldownItem = PageDesc.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+    printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
     if "drilldown" in gOptions.buildOnly:
         yield contractAllItem
@@ -1200,6 +1204,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptor
     if "drilldown" in gOptions.buildOnly:
         drilldownMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
+    drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
     if "drilldown" in gOptions.buildOnly:
         drilldownMenu.append(DrilldownTags(drilldownItem))
 
