@@ -1050,7 +1050,7 @@ def main():
 
     Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
-    Alert.extra.Show("Final gDatabase contents:",indent = 0)
+    Alert.extra.Show("Spreadsheet database contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
