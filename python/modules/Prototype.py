@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils, PageDesc, Alert, Filter, ParseCSV
+import Utils, Html, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
@@ -38,7 +38,7 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WritePage(page: PageDesc) -> None:
+def WritePage(page: Html) -> None:
     """Write an html file for page using the global template"""
     template = Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate)
     if page.info.file.endswith("_print.html"):
@@ -226,7 +226,7 @@ def DrilldownPageFile(tagNumber: int) -> str:
     fileName = f"tag-{tagNumber:03d}.html"
     return fileName
 
-def DrilldownTags(pageInfo: PageDesc.PageInfo) -> Iterator[PageDesc.PageAugmentorType]:
+def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
     """Write a series of html files to create a hierarchial drill-down list of tags."""
 
     tagList = gDatabase["tagDisplayList"]
@@ -267,10 +267,10 @@ def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs
     elif style == "noPali":
         return ' '.join([tagStr,countStr])
 
-def MostCommonTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
     
-    yield PageDesc.PageInfo("Most common",Utils.PosixJoin(pageDir,"SortedTags.html"),"Tags – Most common")
+    yield Html.PageInfo("Most common",Utils.PosixJoin(pageDir,"SortedTags.html"),"Tags – Most common")
 
     a = Airium()
     # Sort descending by number of excerpts and in alphabetical order
@@ -286,10 +286,10 @@ class Alphabetize(NamedTuple):
     sortBy: str
     html: str
 
-def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
     
-    pageInfo = PageDesc.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
+    pageInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
     yield pageInfo
 
     honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
@@ -366,15 +366,15 @@ def AlphabeticalTagList(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
         return line.sortBy[0].upper(),"".join(("<p>",line.html,"</p>"))
 
     subMenu = [
-        [pageInfo._replace(title = "All tags"),str(PageDesc.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "All tags"),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
         [pageInfo._replace(title = "English only",file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
-            str(PageDesc.ListWithHeadings(englishList,TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(englishList,TagItem,addMenu=True,countItems=False))],
         [pageInfo._replace(title = "Pāli only",file=Utils.PosixJoin(pageDir,"PaliTags.html")),
-            str(PageDesc.ListWithHeadings(paliList,TagItem,addMenu=True,countItems=False))]
+            str(Html.ListWithHeadings(paliList,TagItem,addMenu=True,countItems=False))]
     ]
 
-    basePage = PageDesc.PageDesc()
-    yield from basePage.AddMenuAndYieldPages(subMenu,wrapper=PageDesc.Wrapper("<p>","</p><hr>"))
+    basePage = Html.PageDesc()
+    yield from basePage.AddMenuAndYieldPages(subMenu,wrapper=Html.Wrapper("<p>","</p><hr>"))
 
 def PlayerTitle(item:dict) -> str:
     """Generate a title string for the audio player for an excerpt or session.
@@ -718,7 +718,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         
     return str(a)
 
-def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0) -> Iterator[PageDesc.PageAugmentorType]:
+def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0) -> Iterator[Html.PageAugmentorType]:
     """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
         basePage: Content of the page above the menu and excerpt list. Later pages add "-N" to the file name.
         excerpts, formatter: As in HtmlExcerptList
@@ -732,12 +732,12 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
     if itemLimit == 0:
         itemLimit = gOptions.excerptsPerPage
 
-    def PageHtml() -> PageDesc.PageAugmentorType:
+    def PageHtml() -> Html.PageAugmentorType:
         if pageNumber > 1:
             fileName = f"{baseName}-{pageNumber}{ext}"
         else:
             fileName = basePage.info.file
-        menuItem = PageDesc.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
+        menuItem = Html.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
         
         pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
@@ -757,13 +757,13 @@ def MultiPageExcerptList(basePage: PageDesc.PageDesc,excerpts: List[dict],format
         menuItems.append(PageHtml())
     
     if len(menuItems) > 1:
-        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=PageDesc.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
+        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
     else:
         clone = basePage.Clone()
         clone.AppendContent(menuItems[0][1][1])
         yield clone
 
-def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Formatter, mainPageInfo:PageDesc.PageInfo, menuTitle:str, fileExt:str = "") -> PageDesc.PageDescriptorMenuItem:
+def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Formatter, mainPageInfo:Html.PageInfo, menuTitle:str, fileExt:str = "") -> Html.PageDescriptorMenuItem:
     """Describes a menu item generated by applying a filter to a list of excerpts.
     excerpts: the list of excerpts.
     filter: the filter to apply.
@@ -783,13 +783,13 @@ def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Forma
         pageInfo = mainPageInfo
     menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredExcerpts)})")
 
-    blankPage = PageDesc.PageDesc(pageInfo)
+    blankPage = Html.PageDesc(pageInfo)
     return itertools.chain([menuItem],MultiPageExcerptList(blankPage,filteredExcerpts,formatter))
 
-def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
+def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
 
-    pageInfo = PageDesc.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
+    pageInfo = Html.PageInfo("All excerpts",Utils.PosixJoin(pageDir,"AllExcerpts.html"))
     yield pageInfo
 
     a = Airium()
@@ -801,7 +801,7 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
 
     a.hr()
 
-    basePage = PageDesc.PageDesc(pageInfo)
+    basePage = Html.PageDesc(pageInfo)
     basePage.AppendContent(str(a))
 
     formatter = Formatter()
@@ -822,7 +822,7 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     ]
 
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>"))
+    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>"))
 
 def ListDetailedEvents(events: list[dict]) -> str:
     """Generate html containing a detailed list of all events."""
@@ -853,9 +853,9 @@ def EventSeries(event: dict) -> str:
 
 def EventDescription(event: dict,showMonth = False) -> str:
     if "events" in gOptions.buildOnly:
-        href = PageDesc.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
+        href = Html.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
     else:
-        href = PageDesc.Wrapper()
+        href = Html.Wrapper()
     if showMonth:
         date = Utils.ParseDate(event["startDate"])
         monthStr = f' – {date.strftime("%B")} {int(date.year)}'
@@ -871,19 +871,19 @@ def ListEventsBySeries(events: list[dict]) -> str:
         return list(gDatabase["series"]).index(event["series"])
     
     eventsSorted = sorted(events,key=SeriesIndex)
-    return str(PageDesc.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e,showMonth=True)) ))
+    return str(Html.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e,showMonth=True)) ))
 
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
     
-    return str(PageDesc.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ,countItems=False))
+    return str(Html.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ,countItems=False))
 
-def EventsMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Events menu item and its associated submenus."""
 
-    seriesInfo = PageDesc.PageInfo("Series",Utils.PosixJoin(indexDir,"EventsBySeries.html"),"Events – By series")
-    chronologicalInfo = PageDesc.PageInfo("Chronological",Utils.PosixJoin(indexDir,"EventsChronological.html"),"Events – Chronological")
-    detailInfo = PageDesc.PageInfo("Detailed",Utils.PosixJoin(indexDir,"EventDetails.html"),"Events – Detailed view")
+    seriesInfo = Html.PageInfo("Series",Utils.PosixJoin(indexDir,"EventsBySeries.html"),"Events – By series")
+    chronologicalInfo = Html.PageInfo("Chronological",Utils.PosixJoin(indexDir,"EventsChronological.html"),"Events – Chronological")
+    detailInfo = Html.PageInfo("Detailed",Utils.PosixJoin(indexDir,"EventDetails.html"),"Events – Detailed view")
 
     yield seriesInfo._replace(title="Events")
 
@@ -894,10 +894,10 @@ def EventsMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
         EventPages("events")
     ]
 
-    baseTagPage = PageDesc.PageDesc()
+    baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(eventMenu,menuSection = "subMenu")
 
-def LinkToTeacherPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
+def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the teacher page if this tag represents a teacher."
 
     for teacher in gDatabase["teacher"].values():
@@ -908,7 +908,7 @@ def LinkToTeacherPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
     
     return page
 
-def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
+def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Write a html file for each tag in the database"""
             
     for tag,tagInfo in gDatabase["tag"].items():
@@ -939,8 +939,8 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         else:
             tagPlusPali = tag
 
-        pageInfo = PageDesc.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
-        basePage = PageDesc.PageDesc(pageInfo)
+        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
+        basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
 
         if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
@@ -959,13 +959,13 @@ def TagPages(tagPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>")))
+                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>")))
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
             yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
-def LinkToTagPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
+def LinkToTagPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the tag page if this teacher has a tag."
 
     if page.info.title in gDatabase["tag"]:
@@ -973,7 +973,7 @@ def LinkToTagPage(page: PageDesc.PageDesc) -> PageDesc.PageDesc:
 
     return page
 
-def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
+def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
     """Yield a page for each individual teacher"""
     
     xDB = gDatabase["excerpts"]
@@ -1004,8 +1004,8 @@ def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
         formatter.excerptOmitSessionTags = False
         formatter.excerptDefaultTeacher = set([t])
 
-        pageInfo = PageDesc.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]))
-        basePage = PageDesc.PageDesc(pageInfo)
+        pageInfo = Html.PageInfo(tInfo["fullName"],Utils.PosixJoin(teacherPageDir,tInfo["htmlFile"]))
+        basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
 
         if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
@@ -1022,15 +1022,15 @@ def TeacherPages(teacherPageDir: str) -> PageDesc.PageDescriptorMenuItem:
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=PageDesc.Wrapper("<p>","</p>")))
+            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>")))
         else:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
 def TeacherDescription(teacher: dict) -> str:
     if "teachers" in gOptions.buildOnly:
-        href = PageDesc.Wrapper(f"<a href = {TeacherLink(teacher['teacher'])}>","</a>")
+        href = Html.Wrapper(f"<a href = {TeacherLink(teacher['teacher'])}>","</a>")
     else:
-        href = PageDesc.Wrapper()
+        href = Html.Wrapper()
     return f"<p> {href.Wrap(teacher['fullName'])} ({teacher['excerptCount']}) </p>"
 
 def ListTeachersChronological(teachers: list[dict]) -> str:
@@ -1040,7 +1040,7 @@ def ListTeachersChronological(teachers: list[dict]) -> str:
     groups.append("") # Prevent an error if group is blank
     chronological = sorted(teachers,key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
     chronological.sort(key=lambda t: groups.index(t["group"]))
-    return str(PageDesc.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
+    return str(Html.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
 
 def ListTeachersLineage(teachers: list[dict]) -> str:
     """Return html code listing teachers by lineage."""
@@ -1051,7 +1051,7 @@ def ListTeachersLineage(teachers: list[dict]) -> str:
     hasLineage.sort(key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
         # NOTE: We will sort by teacher date once this information gets into the spreadsheet
     hasLineage.sort(key=lambda t: lineages.index(t["lineage"]))
-    return str(PageDesc.ListWithHeadings(hasLineage,lambda t: (t["lineage"],TeacherDescription(t)) ))
+    return str(Html.ListWithHeadings(hasLineage,lambda t: (t["lineage"],TeacherDescription(t)) ))
 
 def ListTeachersByExcerpts(teachers: list[dict]) -> str:
     """Return html code listing teachers by lineage."""
@@ -1059,12 +1059,12 @@ def ListTeachersByExcerpts(teachers: list[dict]) -> str:
     sortedByExcerpts = sorted(teachers,key=lambda t: t["excerptCount"],reverse=True)
     return "\n".join(TeacherDescription(t) for t in sortedByExcerpts)
 
-def TeacherMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Teacher menu item and its associated submenus."""
 
-    chronologicalInfo = PageDesc.PageInfo("Chronological",Utils.PosixJoin(indexDir,"TeachersChronological.html"),"Teachers – Chronological")
-    lineageInfo = PageDesc.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
-    excerptInfo = PageDesc.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
+    chronologicalInfo = Html.PageInfo("Chronological",Utils.PosixJoin(indexDir,"TeachersChronological.html"),"Teachers – Chronological")
+    lineageInfo = Html.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
+    excerptInfo = Html.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
 
     yield chronologicalInfo._replace(title="Teachers")
 
@@ -1077,11 +1077,11 @@ def TeacherMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
         TeacherPages("teachers")
     ]
 
-    baseTagPage = PageDesc.PageDesc()
+    baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(teacherMenu,menuSection = "subMenu")
 
 
-def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
+def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Generate html for each event in the database"""
             
     for eventCode,eventInfo in gDatabase["event"].items():
@@ -1137,7 +1137,7 @@ def EventPages(eventPageDir: str) -> Iterator[PageDesc.PageAugmentorType]:
         if eventInfo["subtitle"]:
             titleInBody += " – " + eventInfo["subtitle"]
 
-        yield (PageDesc.PageInfo(eventInfo["title"],Utils.PosixJoin(eventPageDir,eventCode+'.html'),titleInBody),str(a))
+        yield (Html.PageInfo(eventInfo["title"],Utils.PosixJoin(eventPageDir,eventCode+'.html'),titleInBody),str(a))
         
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
@@ -1155,11 +1155,11 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
-def AboutMenu(aboutDir: str) -> PageDesc.PageDescriptorMenuItem:
+def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
     """Read markdown pages from documentation/about, convert them to html, and create a menu out of them. """
 
     titleInPage = "The Ajahn Pasanno Question and Story Archive"
-    homepageFile = PageDesc.PageInfo("About","homepage.html",titleInPage)
+    homepageFile = Html.PageInfo("About","homepage.html",titleInPage)
     yield homepageFile
 
     aboutMenu = []
@@ -1182,7 +1182,7 @@ def AboutMenu(aboutDir: str) -> PageDesc.PageDescriptorMenuItem:
             firstFile = False
         else:
             m = re.match(r"[0-9]*_([^.]*)",fileName)
-            fileInfo = PageDesc.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
+            fileInfo = Html.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
             firstFile = False
         
         """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
@@ -1193,13 +1193,13 @@ def AboutMenu(aboutDir: str) -> PageDesc.PageDescriptorMenuItem:
 
         aboutMenu.append([fileInfo,html])
     
-    baseTagPage = PageDesc.PageDesc()
+    baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
 
-def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptorMenuItem:
+def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
-    drilldownItem = PageDesc.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
+    drilldownItem = Html.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
@@ -1217,10 +1217,10 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> PageDesc.PageDescriptor
     if "drilldown" in gOptions.buildOnly:
         drilldownMenu.append(DrilldownTags(drilldownItem))
 
-    basePage = PageDesc.PageDesc()
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,wrapper=PageDesc.Wrapper("<p>","</p><hr>"))
+    basePage = Html.PageDesc()
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,wrapper=Html.Wrapper("<p>","</p><hr>"))
 
-def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
+def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
     Also write a page for each tag."""
 
@@ -1234,7 +1234,7 @@ def TagMenu(indexDir: str) -> PageDesc.PageDescriptorMenuItem:
         TagPages("tags")
     ]
 
-    baseTagPage = PageDesc.PageDesc()
+    baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,menuSection = "subMenu")
 
 def AddArguments(parser):
@@ -1283,7 +1283,7 @@ def main():
     # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
     ParseBuildSections()
 
-    basePage = PageDesc.PageDesc()
+    basePage = Html.PageDesc()
 
     indexDir ="indexes"
     mainMenu = []
