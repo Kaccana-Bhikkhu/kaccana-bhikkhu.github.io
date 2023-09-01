@@ -1,8 +1,8 @@
-Count,133,715,37,368,41,22,,27,57,4,729,334,689,689
+Count,145,731,47,383,47,29,,34,57,4,746,350,702,702
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
-2,,Noble Eightfold Path,8,ariyo aṭṭaṅgiko maggo,Eightfold Path,aṭṭaṅgiko maggo,,,,,   Noble Eightfold Path,aṭṭaṅgiko maggo,Eightfold Path,Eightfold Path [aṭṭaṅgiko maggo]
+2,*,Noble Eightfold Path,8,ariyo aṭṭaṅgiko maggo,Eightfold Path,aṭṭaṅgiko maggo,,,,,   Noble Eightfold Path,aṭṭaṅgiko maggo,Eightfold Path,Eightfold Path [aṭṭaṅgiko maggo]
 3,,Right view,,sammā diṭṭhi,,,,,Four Noble Truths,,      Right view,sammā diṭṭhi,Right view,Right view [sammā diṭṭhi]
 3,,Right intention,3,sammā saṅkappo,,,,,,,      Right intention,sammā saṅkappo,Right intention,Right intention [sammā saṅkappo]
 4,*,Renunciation,,nekkhamma,,,,,,,         Renunciation,nekkhamma,Renunciation,Renunciation [nekkhamma]
@@ -27,24 +27,29 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,*,Stealing,,adinnādānā,,,,,,,         Stealing,adinnādānā,Stealing,Stealing [adinnādānā]
 4,*,Sexual misconduct,,kāmesu micchācārā,,,,,,,         Sexual misconduct,kāmesu micchācārā,Sexual misconduct,Sexual misconduct [kāmesu micchācārā]
 3,,Right livelihood,,sammā ājīvo,,,,,,,      Right livelihood,sammā ājīvo,Right livelihood,Right livelihood [sammā ājīvo]
-3,*,Right effort,,sammā vāyāmo,,,,,Energy,,      Right effort,sammā vāyāmo,Right effort,Right effort [sammā vāyāmo]
+3,*,Right effort,4,sammā vāyāmo,,,,,Energy,,      Right effort,sammā vāyāmo,Right effort,Right effort [sammā vāyāmo]
+4,.,Effort for the,,,,,,,,,,,,
+4,,"Non-arising of unarisen evil, unskillful qualities",,anuppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ anuppādāya,,,,Right effort,,,"         Non-arising of unarisen evil, unskillful qualities",anuppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ anuppādāya,,
+4,,"Abandoning of arisen evil, unskillful qualities",,uppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ pahānāya,,,,Right effort,,,"         Abandoning of arisen evil, unskillful qualities",uppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ pahānāya,,
+4,,Arising of unarisen skillful qualities,,anuppannānaṁ kusalānaṁ dhammānaṁ uppādāya,,,,Right effort,,,         Arising of unarisen skillful qualities,anuppannānaṁ kusalānaṁ dhammānaṁ uppādāya,,
+4,,Fulfillment of arisen skillful qualities,,uppannānaṁ kusalānaṁ dhammānaṁ pāripūriyā,,,,Right effort,,,         Fulfillment of arisen skillful qualities,uppannānaṁ kusalānaṁ dhammānaṁ pāripūriyā,,
 3,*,Right mindfulness,4,sammā sati,,,,,Mindfulness,,      Right mindfulness,sammā sati,Right mindfulness,Right mindfulness [sammā sati]
 4,*,Mindfulness of body,,kāyagatā-sati,,,,,,,         Mindfulness of body,kāyagatā-sati,Mindfulness of body,Mindfulness of body [kāyagatā-sati]
-5,,Mindfulness of breathing,,ānāpānassati,,,,,,,,,,
-5,,Postures,,,,,,,,,,,,
-5,,Clear comprehension,,sampajañña,,,,,,,,,,
-5,,Unattractiveness,,asubha,,,,,,,,,,
-5,,Elements,,dhatu,,,Properties,,,,,,,
-5,,Recollection/Death,,maraṇassati,,,,,,,,,,
+5,,Mindfulness of breathing,,ānāpānassati,,,,,,,            Mindfulness of breathing,ānāpānassati,Mindfulness of breathing,Mindfulness of breathing [ānāpānassati]
+5,,Postures,,,,,,,,,            Postures,,Postures,Postures
+5,,Clear comprehension,,sampajañña,,,,,,,            Clear comprehension,sampajañña,Clear comprehension,Clear comprehension [sampajañña]
+5,,Unattractiveness,,asubha,,,,,,,            Unattractiveness,asubha,Unattractiveness,Unattractiveness [asubha]
+5,,Elements,,dhatu,,,Properties,,,,            Elements,dhatu,Elements,Elements [dhatu]
+5,,Recollection/Death,,maraṇassati,,,,,,,            Recollection/Death,maraṇassati,Recollection/Death,Recollection/Death [maraṇassati]
 ,,,,,,,,,,,,,,
 4,*,Mindfulness of feeling,,vedanā-sati,,,,,,,         Mindfulness of feeling,vedanā-sati,Mindfulness of feeling,Mindfulness of feeling [vedanā-sati]
 4,*,Mindfulness of mind,,citta-sati,,,,,,,         Mindfulness of mind,citta-sati,Mindfulness of mind,Mindfulness of mind [citta-sati]
 4,*,Mindfulness of dhammas,,dhammā-sati,,,,,Investigation of states,,         Mindfulness of dhammas,dhammā-sati,Mindfulness of dhammas,Mindfulness of dhammas [dhammā-sati]
-5,,Five Hindrances,,pañca nīvaraṇāni,Hindrances,nīvaraṇāni,,,,,,,,
-5,,Five Aggregates,,pañcakkhandhā,Aggregates,khandhā,,,,,,,,
-5,,Six Sense Bases,,saḷ-āyatana,Sense bases,āyatana,,,,,,,,
-5,,Seven Factors of Awakening,,bojjhaṅga,Factors of Awakening,,,,,,,,,
-5,,Four Noble Truths,,cattāri ariya-saccāni,,,,,,,,,,
+5,,Five Hindrances,,pañca nīvaraṇāni,Hindrances,nīvaraṇāni,,,,,            Five Hindrances,nīvaraṇāni,Hindrances,Hindrances [nīvaraṇāni]
+5,,Five Aggregates,,pañcakkhandhā,Aggregates,khandhā,,,,,            Five Aggregates,khandhā,Aggregates,Aggregates [khandhā]
+5,,Six Sense Bases,,saḷ-āyatana,Sense bases,āyatana,,,,,            Six Sense Bases,āyatana,Sense bases,Sense bases [āyatana]
+5,,Seven Factors of Awakening,,satta bojjhaṅgā,Factors of Awakening,bojjhaṅgā,,,,,            Seven Factors of Awakening,bojjhaṅgā,Factors of Awakening,Factors of Awakening [bojjhaṅgā]
+5,,Four Noble Truths,,cattāri ariya-saccāni,,,,,,,            Four Noble Truths,cattāri ariya-saccāni,Four Noble Truths,Four Noble Truths [cattāri ariya-saccāni]
 4,0*,Ardency,,atapi,,,,,Energy,,         Ardency,atapi,Ardency,Ardency [atapi]
 4,0*,Clear comprehension,,sampajañña,,,,,Discernment,,         Clear comprehension,sampajañña,Clear comprehension,Clear comprehension [sampajañña]
 4,0,Mindfulness,,sati,,,,,,,         Mindfulness,sati,Mindfulness,Mindfulness [sati]
@@ -54,7 +59,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,*,Directed thought and evaluation,,vitakka-vicāra,,,Applied and sustained thought,,,,         Directed thought and evaluation,vitakka-vicāra,Directed thought and evaluation,Directed thought and evaluation [vitakka-vicāra]
 4,,Rapture,,pīti,,,,,,,         Rapture,pīti,Rapture,Rapture [pīti]
 4,*,Happiness,,sukha,,,Pleasure,,,,         Happiness,sukha,Happiness,Happiness [sukha]
-,,,,,,,,,,,,,,
+4,,Equanimity,,upekkhā,,,,,,,         Equanimity,upekkhā,Equanimity,Equanimity [upekkhā]
 4,*,One pointedness,,ekaggatā,,,Unification,,,,         One pointedness,ekaggatā,One pointedness,One pointedness [ekaggatā]
 4,*,Formless attainments,,āruppa,,,,,,,         Formless attainments,āruppa,Formless attainments,Formless attainments [āruppa]
 2,*,Four Noble Truths,4,cattāri ariya-saccāni,,,,,,,   Four Noble Truths,cattāri ariya-saccāni,Four Noble Truths,Four Noble Truths [cattāri ariya-saccāni]
@@ -63,6 +68,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,*,Ageing,,jarā,,,,,,,         Ageing,jarā,Ageing,Ageing [jarā]
 4,*,Sickness,,byādi,,,,,,,         Sickness,byādi,Sickness,Sickness [byādi]
 4,*,Death,,maraṇa,,,,,,,         Death,maraṇa,Death,Death [maraṇa]
+4,,Suffering,,dukkha,,,,,,,,,,
 4,*,Pain,,dukkha,,,,,,,         Pain,dukkha,Pain,Pain [dukkha]
 4,*,Grief,,domanassa,,,,,,,         Grief,domanassa,Grief,Grief [domanassa]
 4,,Five aggregates affected by clinging,,pañcupādānakkhandhā,,,,Aggregates,,,         Five aggregates affected by clinging,pañcupādānakkhandhā,,
@@ -77,18 +83,28 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Release,,vossagga,,,,,Relinquishment,,         Release,vossagga,Release,Release [vossagga]
 4,,Liberation,,vimutti,,,Freedom,,,,         Liberation,vimutti,Liberation,Liberation [vimutti]
 3,*,Noble Truth of the path to the cessation of suffering,,dukkha-nirodha-gāminī paṭipadā ariya-saccaṃ,Path to the cessation of suffering,dukkha-nirodha-gāminī paṭipadā,,Eightfold Path,,,      Noble Truth of the path to the cessation of suffering,dukkha-nirodha-gāminī paṭipadā,,
+2,*,Aids to Enlightenment,37,bodhipakkhiyādhammā,,,Wings to Awakening,,,,,,,
+3,4,Four Foundations of Mindfulness,4,cattāro satipaṭṭhānā,Foundations of Mindfulness,satipaṭṭhānā,,Right mindfulness,,,,,,
+3,4,Four Right Efforts,4,cattāro sammappadhānā,,,,Right effort,,,,,,
+3,4,Four Bases of Success,4,cattāro iddhipādā,Bases of Success,iddhipādā,,,,,,,,
+3,5,Five Faculties,5,pañca indriya,Faculties,,,,,,,,,
+3,5,Five Powers,5,pañca bala,Powers,balā,,Faculties,,,,,,
+3,7,Seven Factors of Awakening,7,satta bojjhaṅgā,Factors of Awakening,bojjhaṅgā,,,,,,,,
+3,8,Noble Eightfold Path,8,ariyo aṭṭaṅgiko maggo,Eightfold Path,aṭṭaṅgiko maggo,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
 2,*,Divine Abidings,4,brahmavihārā,,,,,,,   Divine Abidings,brahmavihārā,Divine Abidings,Divine Abidings [brahmavihārā]
 3,*,Goodwill,,mettā,,,,,,,      Goodwill,mettā,Goodwill,Goodwill [mettā]
 3,*,Compassion,,karuṇā,,,,,,,      Compassion,karuṇā,Compassion,Compassion [karuṇā]
 3,*,Empathetic joy,,muditā,,,,,,,      Empathetic joy,muditā,Empathetic joy,Empathetic joy [muditā]
 3,*,Equanimity,,upekkhā,,,,,,,      Equanimity,upekkhā,Equanimity,Equanimity [upekkhā]
-2,,Five Faculties,5,indriya,Faculties,,,,,,   Five Faculties,indriya,Faculties,Faculties [indriya]
+2,*,Five Faculties,5,pañca indriya,Faculties,,,,,,   Five Faculties,pañca indriya,Faculties,Faculties [pañca indriya]
 3,*,Faith,,saddhā,,,,,,,      Faith,saddhā,Faith,Faith [saddhā]
 3,*,Energy,,viriya,,,,,,,      Energy,viriya,Energy,Energy [viriya]
 3,*,Mindfulness,,sati,,,,,,,      Mindfulness,sati,Mindfulness,Mindfulness [sati]
 3,*,Concentration,,samādhi,,,,,,,      Concentration,samādhi,Concentration,Concentration [samādhi]
 3,*,Discernment,,paññā,,,,,,,      Discernment,paññā,Discernment,Discernment [paññā]
-2,*,Seven Factors of Awakening,7,bojjhaṅga,Factors of Awakening,,,,,,   Seven Factors of Awakening,bojjhaṅga,Factors of Awakening,Factors of Awakening [bojjhaṅga]
+2,*,Seven Factors of Awakening,7,satta bojjhaṅgā,Factors of Awakening,bojjhaṅgā,,,,,   Seven Factors of Awakening,bojjhaṅgā,Factors of Awakening,Factors of Awakening [bojjhaṅgā]
 3,,Mindfulness,,sati,,,,,Right mindfulness,,      Mindfulness,sati,Mindfulness,Mindfulness [sati]
 3,,Investigation of states,,dhamma-vicaya,,,,,Mindfulness of dhammas,,      Investigation of states,dhamma-vicaya,Investigation of states,Investigation of states [dhamma-vicaya]
 3,,Energy,,viriya,,,,,Right effort,,      Energy,viriya,Energy,Energy [viriya]
@@ -96,7 +112,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Tranquility,,passaddhi,,,,,,,      Tranquility,passaddhi,Tranquility,Tranquility [passaddhi]
 3,,Concentration,,samādhi,,,,,,,      Concentration,samādhi,Concentration,Concentration [samādhi]
 3,,Equanimity,,upekkhā,,,,,,,      Equanimity,upekkhā,Equanimity,Equanimity [upekkhā]
-2,,Four Bases of Success,4,cattāro iddhipādā,Bases of Success,iddhipādā,,,,,   Four Bases of Success,iddhipādā,Bases of Success,Bases of Success [iddhipādā]
+2,*,Four Bases of Success,4,cattāro iddhipādā,Bases of Success,iddhipādā,,,,,   Four Bases of Success,iddhipādā,Bases of Success,Bases of Success [iddhipādā]
 3,.,Concentration based on exertion and,,sa­mā­dhi­­p­padhāna­saṅkhā­rasa­ma­n­nāga­taṁ,,,,,,,      Concentration based on exertion and,sa­mā­dhi­­p­padhāna­saṅkhā­rasa­ma­n­nāga­taṁ,,
 3,,Desire,,chanda,,,,,,,      Desire,chanda,Desire,Desire [chanda]
 3,,Energy,,viriya,,,,,,,      Energy,viriya,Energy,Energy [viriya]
@@ -324,7 +340,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,
 1,,Meditation,,bhāvanā,,,,,,,Meditation,bhāvanā,Meditation,Meditation [bhāvanā]
 2,,Meditation/General advice,,,,,,,,,   Meditation/General advice,,Meditation/General advice,Meditation/General advice
-2,,Right effort,,sammā vāyāmo,,,,,,,   Right effort,sammā vāyāmo,Right effort,Right effort [sammā vāyāmo]
+2,,Right effort,4,sammā vāyāmo,,,,,,,   Right effort,sammā vāyāmo,Right effort,Right effort [sammā vāyāmo]
 2,,Four Foundations of Mindfulness,4,cattāro satipaṭṭhānā,Foundations of Mindfulness,satipaṭṭhānā,,Right mindfulness,,,   Four Foundations of Mindfulness,satipaṭṭhānā,,
 3,,Mindfulness of body,,kāyagatā-sati,,,,,,,      Mindfulness of body,kāyagatā-sati,Mindfulness of body,Mindfulness of body [kāyagatā-sati]
 3,,Mindfulness of feeling,,vedanā-sati,,,,,,,      Mindfulness of feeling,vedanā-sati,Mindfulness of feeling,Mindfulness of feeling [vedanā-sati]
@@ -339,7 +355,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Directed thought and evaluation,,vitakka-vicāra,,,,,,,      Directed thought and evaluation,vitakka-vicāra,Directed thought and evaluation,Directed thought and evaluation [vitakka-vicāra]
 3,,Rapture,,pīti,,,,,,,      Rapture,pīti,Rapture,Rapture [pīti]
 3,,Happiness,,sukha,,,,,,,      Happiness,sukha,Happiness,Happiness [sukha]
-,,,,,,,,,,,,,,
+3,,Equanimity,,upekkhā,,,,,,,      Equanimity,upekkhā,Equanimity,Equanimity [upekkhā]
 3,,One pointedness,,ekaggatā,,,,,,,      One pointedness,ekaggatā,One pointedness,One pointedness [ekaggatā]
 3,,Formless attainments,,āruppa,,,,,,,      Formless attainments,āruppa,Formless attainments,Formless attainments [āruppa]
 ,,,,,,,,,,,,,,

@@ -349,6 +349,7 @@ def LoadTagsFile(database,tagFileName):
 
 kNumberNames = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"]
 
+
 def RemoveUnusedTags(database: dict) -> None:
     """Remove unused tags from the raw tag list before building the tag display list."""
 
@@ -357,7 +358,10 @@ def RemoveUnusedTags(database: dict) -> None:
 
     def NamedNumberTag(tag: dict) -> bool:
         "Does this tag explicitly mention a numbered list?"
-        return tag["number"] and kNumberNames[int(tag["number"])] in tag["fullTag"]
+        if tag["number"] and int(tag["number"]) < len(kNumberNames):
+            return kNumberNames[int(tag["number"])] in tag["fullTag"]
+        else:
+            return False
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
     Alert.extra.Show(len(usedTags),"unique tags applied.")
@@ -443,8 +447,15 @@ def CreateTagDisplayList(database):
     for rawTag in database["tagRaw"]:
         listItem = {"level" : rawTag["level"],"indexNumber" : rawTag["indexNumber"]}
         
-        if rawTag["itemCount"] > 1:
-            listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))
+        itemCount = rawTag["itemCount"]
+        if itemCount > 1:
+            indexNumber = int(rawTag["indexNumber"])
+            separator = '-' if itemCount > 1 else ','
+            listItem["indexNumber"] = separator.join((str(indexNumber),str(indexNumber + itemCount - 1)))
+            """if rawTag["itemCount"] > 2:
+                listItem["indexNumber"] = ','
+            else:
+                listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))"""
         
         name = FirstValidValue(rawTag,["fullTag","pali"])
         tag = rawTag["tag"]
@@ -935,24 +946,26 @@ def CountAndVerify(database):
 
 def VerifyListCounts(database):
     # Check that the number of items in each numbered tag list matches the supertag item count
-    for index, tagInfo in enumerate(database["tagDisplayList"]):
-        tag = tagInfo["tag"]
-        if not tag or tagInfo["subsumed"] or not database["tag"][tag]["number"]:
+    tagList = database["tagDisplayList"]
+    for tagIndex,subtagIndices in WalkTags(tagList,returnIndices=True):
+        if not tagIndex:
+            continue
+        tag = tagList[tagIndex]["tag"]
+        if not tag:
+            continue
+        tagSubitemCount = database["tag"][tag]["number"]
+        if tagList[tagIndex]["subsumed"] or not tagSubitemCount:
             continue   # Skip virtual, subsumed and unnumbered tags
         
-        subtagLevel = tagInfo["level"] + 1 # Count tags one level deeper than us
-        lookaheadIndex = index + 1
-        listCount = 0
-        # Loop through all subtags of this tag
-        while lookaheadIndex < len(database["tagDisplayList"]) and database["tagDisplayList"][lookaheadIndex]["level"] >= subtagLevel:
-            if database["tagDisplayList"][lookaheadIndex]["level"] == subtagLevel and database["tagDisplayList"][lookaheadIndex]["indexNumber"]:
-                listCount = int(database["tagDisplayList"][lookaheadIndex]["indexNumber"].split(',')[-1])
-                    # Convert the last item in this comma-separated list to an integer
-            lookaheadIndex += 1
-        
-        if listCount != int(database["tag"][tag]["number"]):
-            Alert.warning.Show(f'Notice: Mismatched list count in line {index} of tag list. {tag} indicates {database["tag"][tag]["number"]} items, but we count {listCount}')
-    
+        finalIndex = 0
+        for subtag in subtagIndices:
+            finalIndexStr = tagList[subtag]["indexNumber"]
+            if finalIndexStr:
+                finalIndex = re.split(r"[-,]",finalIndexStr)[-1]
+
+        if tagSubitemCount != finalIndex: # Note that this compares two strings
+            Alert.warning.Show(f'Notice: Mismatched list count in line {tagIndex} of tag list. {tag} indicates {tagSubitemCount} items, but we count {finalIndex}')
+
     # Check for duplicate excerpt tags
     for x in database["excerpts"]:
         if len(set(x["tags"])) != len(x["tags"]):

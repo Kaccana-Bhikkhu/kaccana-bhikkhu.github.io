@@ -97,7 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype",
+                "DownloadCSV,Prototype",
+                "--sheets",
+                "Tag",
                 "-vvv",
                 "--buildOnly",
                 "tags"
