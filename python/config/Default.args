@@ -16,12 +16,17 @@
 --sessionMp3 remote
 --excerptMp3 remote
 --remoteExcerptMp3URL "http://storage.googleapis.com/apqs_archive/audio/excerpts/"
+--spreadsheetDatabase pages/SpreadsheetDatabase.json
 
 // DownloadCSV options:
 --spreadsheet "https://docs.google.com/spreadsheets/d/10wyp4RjydPTRdVwrrkPjkLxDFmKA59TFP6-7Hpyu8XM/"
 --summarySheetID 2007732801
 
-// 
+// Render options:
+--renderedDatabase pages/RenderedDatabase.json
+
+// Prototype options:
+--prototypeDir pages
 
 // Increase verbosity to maximum
 -vvv

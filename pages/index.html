@@ -1,35 +1,94 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Question and Answer Archive</title>
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="fa.css" />
+		<title>The Ajahn Pasanno Question and Story Archive</title>
+		<meta name="robots" content="noindex, nofollow" />
+		<style>
+			.overlay {
+				position: fixed;
+			}
+
+			#audio-player {
+				display: grid;
+				bottom: 16px;
+				right: 16px;
+				padding: 10px;
+				min-height: 40px;
+				width: 300px;
+				max-width: calc(100vw - 52px);
+
+				background-color: #f0f0f0;
+				border-radius: 0.4rem;
+				color: #a68b55;
+
+				grid-template-columns: 40px 1fr;
+				grid-template-rows: 1fr 18px;
+				column-gap: 3%;
+				row-gap: 0px;
+				box-shadow: 0 2px #a68b5599;
+
+				transform: translateY(85px);
+				transition: transform 200ms ease-out;
+			}
+
+			#audio-player.show {
+				transform: none;
+			}
+
+			#audio-player button.play {
+				grid-area: 1 / 1 / 3 / 2;
+
+				vertical-align: middle;
+				height: 100%;
+				width: 40px;
+				border-radius: 0.4rem;
+				border: none;
+				margin-right: 7px;
+
+				background: url(assets/play.svg) center no-repeat;
+				background-size: 40%;
+				background-color: #e3e3e3;
+				cursor: pointer;
+			}
+			#audio-player button.play.playing {
+				background-image: url(assets/pause.svg);
+			}
+
+			#audio-player span.audio-title {
+				grid-area: 1 / 2 / 2 / 3;
+
+				font-size: 15px;
+				vertical-align: middle;
+			}
+			#audio-player span.audio-title span {
+				float: right;
+			}
+
+			#audio-player input {
+				grid-area: 2 / 2 / 3 / 3;
+				appearance: auto;
+				padding: 0;
+				accent-color: #a68b55;
+			}
+		</style>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h1>Ajahn Pasanno Question and Answer Archive</h1>
-		<div id="search-list" class="">
-			<div id="search-bar">
-				<i class="fa-solid fa-magnifying-glass"></i>
-				<input type="text" placeholder="Search the archives" />
-			</div>
-			<div class="center-content">
-				<div id="search-results">
-					<p class="card">
-						<img
-							class="thumbnail"
-							src="./images/Screenshot 2022-12-30 at 9.56.10 AM.png"
-						/>
-						<-- This is not Ajahn Pasanno. We should put a picture of Ajahn
-						Pasanno there. Lorem ipsum, dolor sit amet consectetur adipisicing
-						elit. Numquam veritatis exercitationem, repellat quia incidunt
-						obcaecati id commodi, animi necessitatibus illum similique.
-						Praesentium debitis modi distinctio? Eum maxime quasi repellat
-						explicabo.
-					</p>
-				</div>
-			</div>
+		<div id="frame" data-url="homepage.html"></div>
+		<div id="audio-player" class="overlay">
+			<button class="play"></button>
+			<span class="audio-title"> <span> </span></span>
+			<input type="range" />
 		</div>
+
+		<script src="./audioPlayer.js" type="module"></script>
+		<script src="./audioChip.js"></script>
+		<script src="./frame.js"></script>
+
+		<noscript>
+			<p>It looks like your browser has Javascript turned off.</p>
+			<p>Please enable Javascript and refresh this page or go to the <a href="homepage.html">legacy version</a>.</p>
+		</noscript>
 	</body>
 </html>

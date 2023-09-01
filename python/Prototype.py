@@ -33,7 +33,7 @@ gWrittenHtmlFiles = set()
 
 @lru_cache(maxsize = None)
 def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
-    with open(gOptions.globalTemplate,encoding='utf-8') as file:
+    with open(Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate),encoding='utf-8') as file:
         temp = file.read()
 
     temp = temp.replace('"../','"' + '../' * directoryDepth)
@@ -41,9 +41,9 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
 
 def WritePage(page: PageDesc) -> None:
     """Write an html file for page using the global template"""
-    template = gOptions.globalTemplate
+    template = Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate)
     if page.info.file.endswith("_print.html"):
-        template = Utils.AppendToFilename(gOptions.globalTemplate,"_print")
+        template = Utils.AppendToFilename(template,"_print")
     page.WriteFile(template,gOptions.prototypeDir)
     gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
     Alert.debug.Show(f"Write file: {page.info.file}")
@@ -1242,7 +1242,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
-    parser.add_argument('--globalTemplate',type=str,default='prototype/templates/Global.html',help='Template for all pages; Default: prototype/templates/Global.html')
+    parser.add_argument('--globalTemplate',type=str,default='templates/Global.html',help='Template for all pages relative to prototypeDir; Default: templates/Global.html')
     parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of Tags,Drilldown,Events,Teachers,AllExcerpts.')
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
