@@ -225,7 +225,7 @@ def LinkSuttas():
     def LinkItem(bodyStr: str) -> Tuple[str,int]:
         return re.subn(suttaMatch,RefToReadingFaithfully,bodyStr,flags = re.IGNORECASE)
     
-    with open('tools/citationHelper/Suttas.json', 'r', encoding='utf-8') as file: 
+    with open(Utils.PosixJoin(gOptions.prototypeDir,'assets/citationHelper/Suttas.json'), 'r', encoding='utf-8') as file: 
         suttas = json.load(file)
     suttaAbbreviations = [s[0] for s in suttas]
 
