@@ -687,7 +687,7 @@ def AllExcerpts(pageDir: str) -> PageDesc.PageDescriptorMenuItem:
     with a.p():
         a(ExcerptDurationStr(gDatabase["excerpts"]))
         a.br()
-        a("Use your browser's find command (Ctrl-F or ⌘-F) to search the excerpt text.")
+        a("Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.")
 
     basePage = PageDesc.PageDesc(pageInfo)
     basePage.AppendContent(str(a))
