@@ -29,7 +29,7 @@ class AudioChip extends HTMLElement {
 	connectedCallback() {
 		let src = this.getAttribute("src");
 		if (!src.includes("://")) {
-			src = "../" + src.replaceAll("../","")
+			src = "../" + src.replaceAll("../", "");
 		} // Hack: Relative to index.html, audio files are stored at ../audio/excerpts/..., but local references in a page depend on its directory depth.
 		// Thus we change src to have exactly one "../" in its path.
 
@@ -44,18 +44,30 @@ class AudioChip extends HTMLElement {
 		const button = document.createElement("button");
 		button.classList.add("play");
 
+		let loaded = loadAudio;
+		this.audio.addEventListener("canplaythrough", () => {
+			loaded = true;
+		});
 		button.addEventListener("click", () => {
-			playAudio(this.title, this.audio);
+			if (loaded) {
+				console.log("audio loaded");
+				playAudio(this.title, this.audio);
+			} else {
+				console.log("waiting for audio loading");
+				this.audio.addEventListener("canplaythrough", () => {
+					console.log("starting");
+					playAudio(this.title, this.audio);
+				});
+			}
 		});
 
 		const timeLabel = document.createElement("span");
-		if (loadAudio) {
-			timeLabel.innerText = "...";
-			this.audio.addEventListener("canplaythrough", () => {
-				let duration = Math.round(this.audio.duration);
-				timeLabel.innerText = time(duration);
-			});
-		} else timeLabel.innerText = time(this.dataset.duration);
+		if (loadAudio) timeLabel.innerText = "...";
+		else timeLabel.innerHTML = `<i>${time(this.dataset.duration)}</i>`;
+		this.audio.addEventListener("canplaythrough", () => {
+			let duration = Math.round(this.audio.duration);
+			timeLabel.innerText = time(duration);
+		});
 
 		const style = document.createElement("style");
 		style.innerText = css;
