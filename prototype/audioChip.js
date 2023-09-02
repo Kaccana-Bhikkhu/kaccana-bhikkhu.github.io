@@ -1,6 +1,19 @@
 const css = `
+	.wrapper {
+		height: 40px;
+		width: max-content;
+
+		display: grid;
+		grid-template-columns: 40px 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-column-gap: 5px;
+		grid-row-gap: 0px; 
+		align-items: center;
+	}
+
 	button.play {
-		vertical-align: middle;
+		grid-area: 1 / 1 / 3 / 2;
+
 		height: 40px;
 		width: 40px;
 		border-radius: 0.4rem;
@@ -11,6 +24,17 @@ const css = `
 		background-size: 40%;
 		background-color: #f0f0f0;
 		cursor: pointer;
+	}
+
+	a {
+		opacity: 0.5;
+		color: #0088cc !important;
+		transition: opacity 200ms ease-out;
+		font-size: 0.9em;
+	}
+
+	a:hover {
+		opacity: 1;
 	}
 `;
 const time = (sec) =>
@@ -69,10 +93,16 @@ class AudioChip extends HTMLElement {
 			timeLabel.innerText = time(duration);
 		});
 
+		const download = document.createElement("a");
+		download.innerHTML = "Download audio";
+		download.href = src;
+		download.download = this.title + ".mp3";
+		// download.target = "_blank";
+
 		const style = document.createElement("style");
 		style.innerText = css;
 
-		wrapper.append(button, timeLabel);
+		wrapper.append(button, timeLabel, download);
 		this.shadowRoot.append(style, wrapper);
 	}
 }
