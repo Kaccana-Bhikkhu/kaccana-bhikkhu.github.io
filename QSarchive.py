@@ -65,7 +65,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
             return newDB,opSet
     
     requireSpreadsheetDB = {'SplitMp3','Render'}
-    requireRenderedDB = {'Prototype'}
+    requireRenderedDB = {'Document','Prototype'}
 
     if opSet.intersection(requireRenderedDB):
         if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB):
@@ -88,9 +88,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Prototype','OptimizeDatabase']
-moduleList.remove('OptimizeDatabase')
-# Owen is using his own conventions for OptimizeDatabase.py, so remove this module for the time being 
+moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Document','Prototype']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 

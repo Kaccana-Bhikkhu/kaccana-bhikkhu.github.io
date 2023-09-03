@@ -8,7 +8,7 @@ This is a demonstration prototype of a search engine to answer this question. Th
 
 As I began to transcribe question and answer sessions during Winter Retreat 2023 at Cittaviveka Monastery, I realized that the stories that Ajahn Pasanno tells in the course of answering Dhamma questions are as valuable as the questions themselves. The project now includes stories, quotes, and sutta references as well as questions and answers.
 
-The principles described below are my best thinking so far. They are open to revision if Ajahn Pasanno, Ajahn Ñāṇiko, or the Abhayagiri Saṅgha object. Testing references: [MN 18:](https://sutta.readingfaithfully.org/?q=MN-18:) Honeyball Sutta
+The principles described below are my best thinking so far. They are open to revision if Ajahn Pasanno, Ajahn Ñāṇiko, or the Abhayagiri Saṅgha object. Testing references: MN 18: Honeyball Sutta
 
 ## Collaborators
 I created this demonstration prototype, but my web design skills go no further. My nephew Owen volunteered to design a modern website using the same database as the prototype. Owen’s father, Michael, who once worked on the Gmail design team, has already provided valuable advice to both of us. I have done all the tagging so far, but I intend to invite online volunteers to help with transcription and tagging later on.
@@ -46,4 +46,3 @@ Organising Luang Por’s questions and stories so others can find them barely be
 Ajahn Kaccāna
 
 June 6, 2023
-

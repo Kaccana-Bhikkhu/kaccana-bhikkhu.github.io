@@ -29,4 +29,3 @@
 - 3.0 Floating media player (Thanks Owen!). Drill-down tag hierarchy. Category subsearch on All Excerpts and tag pages. About pages are rendered from markdown files in documentation/about.
 
 - 3.1 Alphabetical tag listings. List events by series and year. List teachers chronologically and by lineage. Category search on teacher pages. Links between teacher and tag pages. Calming the Busy Mind Upasika Day.
-

@@ -97,12 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV,Prototype",
-                "--sheets",
-                "Tag",
-                "-vvv",
+                "Document,Prototype",
                 "--buildOnly",
-                "tags"
+                "None"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
