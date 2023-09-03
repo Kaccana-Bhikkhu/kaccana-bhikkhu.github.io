@@ -8,7 +8,6 @@ from airium import Airium
 import Utils, PageDesc, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
-from collections import namedtuple
 import pyratemp, markdown
 from functools import lru_cache
 import contextlib
