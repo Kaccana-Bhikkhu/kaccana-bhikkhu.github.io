@@ -331,11 +331,18 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,tagDictCache = {}) -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences()."""
 
     pageTypes = Utils.RegexMatchAny(["tag","drilldown","event","session","excerpt","teacher","about"])
     linkRegex = r"\[([^][]+)\]\(" + pageTypes + r":([^()]*)\)"
+
+    if not tagDictCache: # modify the value of a default argument to create a cache of potential tag references
+        tagDB = gDatabase["tag"]
+        tagDictCache.update((tag,tag) for tag in tagDB)
+        tagDictCache.update((tagDB[tag]["fullTag"],tag) for tag in tagDB)
+        tagDictCache.update((tagDB[tag]["pali"],tag) for tag in tagDB if tagDB[tag]["pali"])
+        tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
         text,pageType,link = matchObject.groups()
@@ -348,12 +355,13 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                 tag = link
             else:
                 tag = text
-            if tag not in gDatabase["tag"]:
-                Alert.warning.Show("Cannot link to tag",repr(tag),"in link",repr(matchObject[0]))
+            if tag not in tagDictCache:
+                Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
             else:
-                linkTo = "../tags/" + gDatabase["tag"][tag]["htmlFile"]
-
-        """elif pageType == "drilldown":
+                linkTo = f"../tags/{gDatabase['tag'][tagDictCache[tag]]['htmlFile']}"
+            if not link:
+                wrapper = Html.Wrapper("[","]")
+        elif pageType == "drilldown":
             if link:
                 tag = link
             else:
@@ -361,14 +369,13 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             tagNumber = None
             if tag.lower() == "root":
                 tagNumber = -1
-            elif tag not in gDatabase["tag"][tag]["htmlFile"]:
-                Alert.warning.Show("Cannot link to tag",repr(tag),"in link",repr(matchObject[0]))
-            elif:
-                tagNumber = gDatabase["tag"][tag]
-                if pageType == "tag":
-                    linkTo = "../tags/" + gDatabase["tag"][tag]["htmlFile"]
-                else:
-                    linkTo = "../drilldown/"""
+            elif tag not in tagDictCache:
+                Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+            else:
+                tagNumber = gDatabase["tag"][tagDictCache[tag]]["listIndex"]
+            
+            if tagNumber is not None:
+                linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
 
         if linkTo:
             return wrapper("[" + text +"](" + linkTo + ")")

@@ -224,6 +224,17 @@ def DrilldownPageFile(tagNumber: int) -> str:
     "Return the name of the page that has this numbered tag expanded."
     if tagNumber == -1:
         tagNumber = 999
+    else:
+        tagList = gDatabase["tagDisplayList"]
+        ourLevel = tagList[tagNumber]["level"]
+        if tagNumber + 1 >= len(tagList) or tagList[tagNumber + 1]["level"] <= ourLevel:
+            # If this tag doesn't have subtags, find its parent tag
+            while tagList[tagNumber]["level"] >= ourLevel:
+                tagNumber -= 1
+        
+        tag = gDatabase["tagDisplayList"][tagNumber]["tag"]
+
+
     fileName = f"tag-{tagNumber:03d}.html"
     return fileName
 
