@@ -9,6 +9,7 @@ import re, os
 from typing import List
 import Alert
 import pathlib
+from collections.abc import Iterable
 
 gOptions = None
 gDatabase = None # These will be set later by QSarchive.py
@@ -41,6 +42,22 @@ def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fil
     if fileNumber is not None:
         outputStr += f"_F{fileNumber:02d}"
     return outputStr
+
+def ParseItemCode(itemCode:str) -> tuple(str,int|None,int|None):
+    "Parse an item code into (eventCode,session,fileNumber). If parsing fails, return ("",None,None)."
+
+    m = re.match(r"([^_]*)(?:_S([0-9]+))?(?:_F([0-9]+))?",itemCode)
+    session = None
+    fileNumber = None
+    if m:
+        if m[2]:
+            session = int(m[2])
+        if m[3]:
+            fileNumber = int(m[3])
+        return m[1],session,fileNumber
+    else:
+        return "",None,None
+
 
 def PosixJoin(*paths):
     "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
@@ -80,6 +97,18 @@ def SearchForOwningExcerpt(annotation: dict) -> dict:
             if annotation is a:
                 return x
     return None
+
+def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
+    "Search for a tag based on any of its various names. Return the base tag name."
+
+    if not tagDictCache: # modify the value of a default argument to create a cache of potential tag references
+        tagDB = gDatabase["tag"]
+        tagDictCache.update((tag,tag) for tag in tagDB)
+        tagDictCache.update((tagDB[tag]["fullTag"],tag) for tag in tagDB)
+        tagDictCache.update((tagDB[tag]["pali"],tag) for tag in tagDB if tagDB[tag]["pali"])
+        tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
+    
+    return tagDictCache.get(tagRef,None)
 
 def EllideText(s: str,maxLength = 50) -> str:
     "Truncate a string to keep the number of characters under maxLength."
@@ -207,7 +236,7 @@ def slugify(value, allow_unicode=False):
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
 
-def RegexMatchAny(strings: List[str],capturingGroup = True):
+def RegexMatchAny(strings: Iterable[str],capturingGroup = True):
     """Return a regular expression that matches any item in strings.
     Optionally make it a capturing group."""
 

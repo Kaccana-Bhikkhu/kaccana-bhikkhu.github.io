@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json, re, os
-import Utils, Render
+import Utils, Render, Alert
 from typing import Tuple, Type, Callable
 import pyratemp
 
@@ -35,9 +35,10 @@ def main() -> None:
                 fileText,changeCount = transform(fileText)
                 return changeCount
             
-            Render.LinkSuttas(ApplyToText)
-            Render.LinkKnownReferences(ApplyToText)
+            Alert.extra.Show(f"{destPath}:",indent = 0)
             Render.LinkSubpages(ApplyToText)
+            Render.LinkKnownReferences(ApplyToText)
+            Render.LinkSuttas(ApplyToText)
 
             with open(destPath,'w',encoding='utf-8') as file:
                 print(fileText,file=file)

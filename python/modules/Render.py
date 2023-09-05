@@ -230,7 +230,7 @@ def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
         suttas = json.load(file)
     suttaAbbreviations = [s[0] for s in suttas]
 
-    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[.:]?([0-9]+)?[-]?[0-9]*"
+    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s+([0-9]+)[.:]?([0-9]+)?[.:]?([0-9]+)?[-]?[0-9]*"
     
     markdownLinkToSutta = r"(?<=\]\()" + suttaMatch + r"(?=\))"
     markdownLinksMatched = ApplyToFunction(SuttasWithinMarkdownLink)
@@ -331,18 +331,13 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,tagDictCache = {}) -> None:
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences()."""
 
-    pageTypes = Utils.RegexMatchAny(["tag","drilldown","event","session","excerpt","teacher","about"])
+    tagTypes = {"tag","drilldown"}
+    excerptTypes = {"event","excerpt","session"}
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher"}))
     linkRegex = r"\[([^][]+)\]\(" + pageTypes + r":([^()]*)\)"
-
-    if not tagDictCache: # modify the value of a default argument to create a cache of potential tag references
-        tagDB = gDatabase["tag"]
-        tagDictCache.update((tag,tag) for tag in tagDB)
-        tagDictCache.update((tagDB[tag]["fullTag"],tag) for tag in tagDB)
-        tagDictCache.update((tagDB[tag]["pali"],tag) for tag in tagDB if tagDB[tag]["pali"])
-        tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
         text,pageType,link = matchObject.groups()
@@ -350,32 +345,38 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,tagDictCache = {}) -
 
         linkTo = ""
         wrapper = Html.Wrapper()
-        if pageType == "tag":
+        if pageType in tagTypes:
             if link:
                 tag = link
             else:
                 tag = text
-            if tag not in tagDictCache:
-                Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+    
+            realTag = Utils.TagLookup(tag)            
+            if pageType == "tag":
+                if realTag:
+                    linkTo = f"../tags/{gDatabase['tag'][realTag]['htmlFile']}"
+                else:
+                    Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+                if not link:
+                    wrapper = Html.Wrapper("[","]")
             else:
-                linkTo = f"../tags/{gDatabase['tag'][tagDictCache[tag]]['htmlFile']}"
-            if not link:
-                wrapper = Html.Wrapper("[","]")
-        elif pageType == "drilldown":
-            if link:
-                tag = link
+                if tag.lower() == "root":
+                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(-1)}"
+                elif realTag:
+                    tagNumber = gDatabase["tag"][realTag]["listIndex"]
+                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                else:
+                    Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+        elif pageType in excerptTypes:
+            event,session,fileNumber = Utils.ParseItemCode(link)
+            if event in gDatabase["event"]:
+                if session or fileNumber:
+                    bookmark = "#" + Utils.ItemCode(event=event,session=session,fileNumber=fileNumber)
+                else:
+                    bookmark = ""
+                linkTo = f"../events/{event}.html{bookmark}"
             else:
-                tag = text
-            tagNumber = None
-            if tag.lower() == "root":
-                tagNumber = -1
-            elif tag not in tagDictCache:
-                Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
-            else:
-                tagNumber = gDatabase["tag"][tagDictCache[tag]]["listIndex"]
-            
-            if tagNumber is not None:
-                linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
 
         if linkTo:
             return wrapper("[" + text +"](" + linkTo + ")")
@@ -385,7 +386,8 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,tagDictCache = {}) -
     def ReplaceSubpageLinks(bodyStr) -> tuple[str,int]:
         return re.subn(linkRegex,SubpageSubstitution,bodyStr,flags = re.IGNORECASE)
     
-    ApplyToFunction(ReplaceSubpageLinks)
+    linkCount = ApplyToFunction(ReplaceSubpageLinks)
+    Alert.extra.Show(f"{linkCount} links generated to subpages")
 
 def MarkdownFormat(text: str) -> Tuple[str,int]:
     """Format a single-line string using markdown, and eliminate the <p> tags.
@@ -412,12 +414,11 @@ def LinkReferences() -> None:
         drilldown - Link to the primary tag given by pageName
         event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
             pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
-        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
-        about - link to the about page specified by pageName"""
+        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP"""
 
-    LinkSuttas()
-    LinkKnownReferences()
     LinkSubpages()
+    LinkKnownReferences()
+    LinkSuttas()
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra.Show(f"{markdownChanges} items changed by markdown")

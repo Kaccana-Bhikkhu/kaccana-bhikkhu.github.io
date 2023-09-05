@@ -903,6 +903,7 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
         [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
         [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
+        [Html.PageInfo("About event series","../about/04_Series.html")],
         EventPages("events")
     ]
 
@@ -1186,6 +1187,7 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
         with open(fullPath,encoding='utf8') as file:
             html = markdown.markdown(file.read(),extensions = ["sane_lists"])
         
+        html = "<hr>\n" + html # Add a horizontal line at the top of each file
         html = re.sub(r"&lt;--!HTML(.*?)--&gt;",r"\1",html)
         # Markdown converts html comment '<--!' to '&lt;--!, so we search for that.
 
@@ -1243,6 +1245,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         MostCommonTagList(indexDir),
+        [Html.PageInfo("About tags","../about/05_Tags.html")],
         TagPages("tags")
     ]
 
