@@ -16,17 +16,18 @@ async function changeURL(pUrl) {
 			innerTitle.remove();
 
 			frame.querySelectorAll("a").forEach((el) => {
+				let href = el.getAttribute("href");
 				if (el.getAttribute("href").includes("://")) return;
 
 				let url = join(
 					dirname(pUrl),
-					el.getAttribute("href").replaceAll("index.html", "homepage.html")
+					href.replaceAll("index.html", "homepage.html")
 				);
 
-				if (url.startsWith("#")) {
-					el.href = location.hash;
+				if (href.startsWith("#")) {
+					el.href = "javascript:void 0";
 					el.addEventListener("click", () => {
-						document.getElementById(url.slice(1)).scrollIntoView();
+						document.getElementById(href.slice(1)).scrollIntoView();
 					});
 				} else {
 					el.href = "#" + url;
@@ -42,18 +43,17 @@ async function changeURL(pUrl) {
 						}
 					});
 				}
-				console.log("ye");
 			});
 		});
 }
 
 changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-	// if (location.hash.slice(1).includes("#")) {
-	// 	console.log("double hash!");
-	// 	document
-	// 		.getElementById(location.hash.slice(1).split("#")[1])
-	// 		?.scrollIntoView();
-	// }
+	if (location.hash.slice(1).includes("#")) {
+		console.log("double hash!");
+		document
+			.getElementById(location.hash.slice(1).split("#")[1])
+			?.scrollIntoView();
+	}
 });
 
 addEventListener("popstate", () => {
