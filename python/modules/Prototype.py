@@ -1188,8 +1188,8 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
             html = markdown.markdown(file.read(),extensions = ["sane_lists"])
         
         html = "<hr>\n" + html # Add a horizontal line at the top of each file
-        html = re.sub(r"&lt;--!HTML(.*?)--&gt;",r"\1",html)
-        # Markdown converts html comment '<--!' to '&lt;--!, so we search for that.
+        html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)
+        # Markdown converts html comment '<!--' to '&lt;!--', so we search for that.
 
         if firstFile:
             fileInfo = homepageFile

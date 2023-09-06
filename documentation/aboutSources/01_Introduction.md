@@ -1,5 +1,5 @@
-<--!TITLE:The Ajahn Pasanno Question and Story Archive-->
-<--!HTML <img src="images/AjahnPasanno.jpg" id="cover" align="bottom" width="200" border="0"/> -->
+<!--TITLE:The Ajahn Pasanno Question and Story Archive-->
+<!--HTML <img src="images/AjahnPasanno.jpg" id="cover" align="bottom" width="200" border="0"/> -->
 
 ## Introduction
 

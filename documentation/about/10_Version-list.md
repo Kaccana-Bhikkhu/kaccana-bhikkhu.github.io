@@ -1,4 +1,4 @@
-<--!TITLE:Version list-->
+<!--TITLE:Version list-->
 # Version list
 - 1.0: First publicly available prototype; contains all questions from Thanksgiving Retreats 2013-2015 from pre-existing transcriptions; subject tags are based on transcription text rather than audio content.
 
