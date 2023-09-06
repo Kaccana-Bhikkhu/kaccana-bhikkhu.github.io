@@ -49,7 +49,6 @@ async function changeURL(pUrl) {
 
 changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
 	if (location.hash.slice(1).includes("#")) {
-		console.log("double hash!");
 		document
 			.getElementById(location.hash.slice(1).split("#")[1])
 			?.scrollIntoView();
