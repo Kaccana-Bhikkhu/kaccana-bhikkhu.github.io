@@ -60,9 +60,9 @@ Other somewhat arbitrary choices regarding specific tags include the following:
 The root tags [History](tag:) and [Cultural context](tag:) contain many similar subtags. History tags apply to verifiable statements about people, dates, etc., while culture tags apply to generalized statements about culture in particular times and places. The latter are invariably subjective. The frequency of [Culture/Thailand](tag:) and [Culture/West](tag:) reflects an ongoing dialogue about how to skillfully adapt (or not adapt) the practices and attitudes of the Thai Forest Tradition to the modern Western context.
 
 ## Other Details
+ - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.
+ - Monastic teacher tags are sorted by date of ordination regardless of gender. Lay teacher tags are sorted by date of birth.
  - The traditional three [Characteristics of existence](tag:) increase to nine with the inclusion of an [additional six](The Island p. 116) by Ajahn Buddhadāsa.
- - Monastic teachers are sorted by date of ordination regardless of gender. Lay teachers are sorted by date of birth.
-
 
 
 
