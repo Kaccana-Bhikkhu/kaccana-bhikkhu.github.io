@@ -1,10 +1,12 @@
+import posix from "./path.js";
+const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
 
 let path = "";
 
-async function changeURL(url) {
-	await fetch("./" + url)
+async function changeURL(pUrl) {
+	await fetch("./" + pUrl)
 		.then((r) => r.text())
 		.then((text) => {
 			frame.innerHTML = text;
@@ -14,16 +16,18 @@ async function changeURL(url) {
 			innerTitle.remove();
 
 			frame.querySelectorAll("a").forEach((el) => {
-				let url = el
-					.getAttribute("href")
-					.replaceAll("../", "")
-					.replaceAll("index.html", "homepage.html");
+				let href = el.getAttribute("href");
+				if (el.getAttribute("href").includes("://")) return;
 
-				if (url.includes("://")) return;
-				else if (url.startsWith("#")) {
-					el.href = location.hash;
+				let url = join(
+					dirname(pUrl),
+					href.replaceAll("index.html", "homepage.html")
+				);
+
+				if (href.startsWith("#")) {
+					el.href = "javascript:void 0";
 					el.addEventListener("click", () => {
-						document.getElementById(url.slice(1)).scrollIntoView();
+						document.getElementById(href.slice(1)).scrollIntoView();
 					});
 				} else {
 					el.href = "#" + url;
@@ -43,7 +47,13 @@ async function changeURL(url) {
 		});
 }
 
-changeURL(location.hash.slice(1) || frame.dataset.url);
+changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
+	if (location.hash.slice(1).includes("#")) {
+		document
+			.getElementById(location.hash.slice(1).split("#")[1])
+			?.scrollIntoView();
+	}
+});
 
 addEventListener("popstate", () => {
 	changeURL(location.hash.slice(1) || frame.dataset.url);

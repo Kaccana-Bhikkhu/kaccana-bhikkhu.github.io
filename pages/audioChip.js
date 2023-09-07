@@ -1,6 +1,19 @@
 const css = `
+	.wrapper {
+		height: 40px;
+		width: max-content;
+
+		display: grid;
+		grid-template-columns: 40px 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-column-gap: 5px;
+		grid-row-gap: 0px; 
+		align-items: center;
+	}
+
 	button.play {
-		vertical-align: middle;
+		grid-area: 1 / 1 / 3 / 2;
+
 		height: 40px;
 		width: 40px;
 		border-radius: 0.4rem;
@@ -11,6 +24,17 @@ const css = `
 		background-size: 40%;
 		background-color: #f0f0f0;
 		cursor: pointer;
+	}
+
+	a {
+		opacity: 0.5;
+		color: #0088cc !important;
+		transition: opacity 200ms ease-out;
+		font-size: 0.9em;
+	}
+
+	a:hover {
+		opacity: 1;
 	}
 `;
 const time = (sec) =>
@@ -29,7 +53,7 @@ class AudioChip extends HTMLElement {
 	connectedCallback() {
 		let src = this.getAttribute("src");
 		if (!src.includes("://")) {
-			src = "../" + src.replaceAll("../","")
+			src = "../" + src.replaceAll("../", "");
 		} // Hack: Relative to index.html, audio files are stored at ../audio/excerpts/..., but local references in a page depend on its directory depth.
 		// Thus we change src to have exactly one "../" in its path.
 
@@ -44,23 +68,41 @@ class AudioChip extends HTMLElement {
 		const button = document.createElement("button");
 		button.classList.add("play");
 
+		let loaded = loadAudio;
+		this.audio.addEventListener("canplaythrough", () => {
+			loaded = true;
+		});
 		button.addEventListener("click", () => {
-			playAudio(this.title, this.audio);
+			if (loaded) {
+				console.log("audio loaded");
+				playAudio(this.title, this.audio);
+			} else {
+				console.log("waiting for audio loading");
+				this.audio.addEventListener("canplaythrough", () => {
+					console.log("starting");
+					playAudio(this.title, this.audio);
+				});
+			}
 		});
 
 		const timeLabel = document.createElement("span");
-		if (loadAudio) {
-			timeLabel.innerText = "...";
-			this.audio.addEventListener("canplaythrough", () => {
-				let duration = Math.round(this.audio.duration);
-				timeLabel.innerText = time(duration);
-			});
-		} else timeLabel.innerText = time(this.dataset.duration);
+		if (loadAudio) timeLabel.innerText = "...";
+		else timeLabel.innerHTML = `<i>${time(this.dataset.duration)}</i>`;
+		this.audio.addEventListener("canplaythrough", () => {
+			let duration = Math.round(this.audio.duration);
+			timeLabel.innerText = time(duration);
+		});
+
+		const download = document.createElement("a");
+		download.innerHTML = "Download audio";
+		download.href = src;
+		download.download = this.title + ".mp3";
+		// download.target = "_blank";
 
 		const style = document.createElement("style");
 		style.innerText = css;
 
-		wrapper.append(button, timeLabel);
+		wrapper.append(button, timeLabel, download);
 		this.shadowRoot.append(style, wrapper);
 	}
 }

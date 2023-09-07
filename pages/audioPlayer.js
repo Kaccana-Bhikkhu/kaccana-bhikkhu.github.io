@@ -5,6 +5,7 @@ let durationTitle = audioTitle.querySelector("span");
 const playBar = audioPlayer.querySelector("input[type=range]");
 /** @type {HTMLAudioElement} */
 let currentlyPlaying = null;
+let shouldClose = false;
 
 const time = (sec) =>
 	`${Math.floor(sec / 60)}:${(sec % 60).toString().padStart(2, "0")}`;
@@ -34,7 +35,17 @@ const playAudio = (title, audio) => {
 	playBar.value = 0;
 };
 
+const closePlayer = () => {
+	console.log("closing player");
+	currentlyPlaying.currentTime = 0;
+	currentlyPlaying.pause();
+	audioPlayer.classList.remove("show");
+	playButton.classList.remove("playing");
+	currentlyPlaying = null;
+};
+
 playBar.addEventListener("change", () => {
+	shouldClose = false;
 	let currentTime = Math.round(currentlyPlaying.currentTime);
 	currentlyPlaying.currentTime = playBar.value;
 	durationTitle.innerText = `${time(currentTime)} / ${time(
@@ -42,6 +53,7 @@ playBar.addEventListener("change", () => {
 	)}`;
 });
 playButton.addEventListener("click", () => {
+	shouldClose = false;
 	playButton.classList.toggle("playing");
 	currentlyPlaying.paused ? currentlyPlaying.play() : currentlyPlaying.pause();
 });
@@ -49,18 +61,23 @@ playButton.addEventListener("click", () => {
 setInterval(() => {
 	if (currentlyPlaying != null) {
 		let currentTime = Math.round(currentlyPlaying.currentTime);
-		playBar.value = currentTime;
-		durationTitle.innerText = `${time(currentTime)} / ${time(
-			Math.round(currentlyPlaying.duration)
-		)}`;
+		let duration = Math.round(currentlyPlaying.duration);
+		if (!currentlyPlaying.paused) {
+			playBar.value = currentTime;
+			durationTitle.innerText = `${time(currentTime)} / ${time(duration)}`;
+		}
 
-		if (currentTime === Math.round(currentlyPlaying.duration)) {
-			console.log("closing player");
-			currentlyPlaying.currentTime = 0;
-			currentlyPlaying.pause();
-			audioPlayer.classList.remove("show");
+		if (currentTime === duration) {
 			playButton.classList.remove("playing");
-			currentlyPlaying = null;
+			currentlyPlaying.pause();
+			currentlyPlaying.currentTime = 0;
+			durationTitle.innerText = `${time(currentTime)} / ${time(duration)}`;
+
+			shouldClose = true;
+			console.log("set close timer");
+			setTimeout(() => {
+				if (shouldClose) closePlayer();
+			}, 10_000);
 		}
 	}
 }, 1000);
