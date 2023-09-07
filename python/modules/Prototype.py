@@ -658,7 +658,8 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     
     events = set(x["event"] for x in excerpts)
     sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
-    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts),start = timedelta())
+    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts if x["fileNumber"]),start = timedelta())
+        # Don't sum session excerpts (fileNumber = 0)
     
     strItems = []
     
