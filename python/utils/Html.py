@@ -23,6 +23,8 @@ class Wrapper(NamedTuple):
             items.append(self.suffix)
         return joinStr.join(items)
     
+    __call__ = Wrap
+    
 class PageInfo(NamedTuple):
     "The most basic information about a webpage. titleIB means titleInBody"
     title: str|None = None

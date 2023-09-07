@@ -9,7 +9,7 @@ from markdown_newtab import NewTabExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
-import ParseCSV, Prototype, Utils, Alert
+import ParseCSV, Prototype, Utils, Alert, Html
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -193,8 +193,9 @@ def RenderExcerpts() -> None:
                 AppendAnnotationToExcerpt(a,x)
 
 
-def LinkSuttas():
-    """Add links to sutta.readingfaithfully.org"""
+def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
+    """Add links to sutta.readingfaithfully.org to the excerpts
+    ApplyToFunction allows us to apply these same operations to other collections of text (e.g. documentation)"""
 
     def RawRefToReadingFaithfully(matchObject: re.Match) -> str:
         firstPart = matchObject[0].split("-")[0]
@@ -229,13 +230,13 @@ def LinkSuttas():
         suttas = json.load(file)
     suttaAbbreviations = [s[0] for s in suttas]
 
-    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s*([0-9]+)[.:]?([0-9]+)?[.:]?([0-9]+)?[-]?[0-9]*"
+    suttaMatch = r"\b" + Utils.RegexMatchAny(suttaAbbreviations)+ r"\s+([0-9]+)[.:]?([0-9]+)?[.:]?([0-9]+)?[-]?[0-9]*"
     
     markdownLinkToSutta = r"(?<=\]\()" + suttaMatch + r"(?=\))"
-    markdownLinksMatched = ApplyToBodyText(SuttasWithinMarkdownLink)
+    markdownLinksMatched = ApplyToFunction(SuttasWithinMarkdownLink)
         # Use lookbehind and lookahead assertions to first match suttas links within markdown format, e.g. [Sati](MN 10)
 
-    suttasMatched = ApplyToBodyText(LinkItem)
+    suttasMatched = ApplyToFunction(LinkItem)
         # Then match all remaining sutta links
 
     Alert.extra.Show(f"{suttasMatched + markdownLinksMatched} links generated to suttas, {markdownLinksMatched} within markdown links")
@@ -252,9 +253,10 @@ def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
 
     return refForm2, refForm3, refForm4
 
-def LinkKnownReferences() -> None:
+def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
-    If the excerpt is a reading, make the author the teacher."""
+    If the excerpt is a reading, make the author the teacher.
+    ApplyToFunction allows us to apply these same operations to other collections of text (e.g. documentation)"""
 
     def ParsePageNumber(text: str) -> int|None:
         "Extract the page number from a text string"
@@ -323,11 +325,69 @@ def LinkKnownReferences() -> None:
         
     refForm2, refForm3, refForm4 = ReferenceMatchRegExs(gDatabase["reference"])
 
-    referenceCount = ApplyToBodyText(ReferenceForm2)
-    referenceCount += ApplyToBodyText(ReferenceForm3)
-    referenceCount += ApplyToBodyText(ReferenceForm4)
+    referenceCount = ApplyToFunction(ReferenceForm2)
+    referenceCount += ApplyToFunction(ReferenceForm3)
+    referenceCount += ApplyToFunction(ReferenceForm4)
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
+
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
+    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences()."""
+
+    tagTypes = {"tag","drilldown"}
+    excerptTypes = {"event","excerpt","session"}
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher"}))
+    linkRegex = r"\[([^][]+)\]\(" + pageTypes + r":([^()]*)\)"
+
+    def SubpageSubstitution(matchObject: re.Match) -> str:
+        text,pageType,link = matchObject.groups()
+        pageType = pageType.lower()
+
+        linkTo = ""
+        wrapper = Html.Wrapper()
+        if pageType in tagTypes:
+            if link:
+                tag = link
+            else:
+                tag = text
+    
+            realTag = Utils.TagLookup(tag)            
+            if pageType == "tag":
+                if realTag:
+                    linkTo = f"../tags/{gDatabase['tag'][realTag]['htmlFile']}"
+                else:
+                    Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+                if not link:
+                    wrapper = Html.Wrapper("[","]")
+            else:
+                if tag.lower() == "root":
+                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(-1)}"
+                elif realTag:
+                    tagNumber = gDatabase["tag"][realTag]["listIndex"]
+                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                else:
+                    Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+        elif pageType in excerptTypes:
+            event,session,fileNumber = Utils.ParseItemCode(link)
+            if event in gDatabase["event"]:
+                if session or fileNumber:
+                    bookmark = "#" + Utils.ItemCode(event=event,session=session,fileNumber=fileNumber)
+                else:
+                    bookmark = ""
+                linkTo = f"../events/{event}.html{bookmark}"
+            else:
+                Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
+
+        if linkTo:
+            return wrapper("[" + text +"](" + linkTo + ")")
+        else:
+            return text
+        
+    def ReplaceSubpageLinks(bodyStr) -> tuple[str,int]:
+        return re.subn(linkRegex,SubpageSubstitution,bodyStr,flags = re.IGNORECASE)
+    
+    linkCount = ApplyToFunction(ReplaceSubpageLinks)
+    Alert.extra.Show(f"{linkCount} links generated to subpages")
 
 def MarkdownFormat(text: str) -> Tuple[str,int]:
     """Format a single-line string using markdown, and eliminate the <p> tags.
@@ -348,10 +408,17 @@ def LinkReferences() -> None:
     3. [xxxxx](title) or [xxxxx](title page N) - Apply hyperlink from title to arbitrary text xxxxx
     4. title page N - Link to specific page for titles in Reference sheet which shows the page number
     5. SS N.N - Link to Sutta/vinaya SS section N.N at sutta.readingfaithfully.org
-    6. [reference](SS N.N) - Markdown hyperlink pointing to sutta.."""
+    6. [reference](SS N.N) - Markdown hyperlink pointing to sutta..
+    7. [subpage](pageType:pageName) - Link to a subpage within the QS Archive. Options for pageType are:
+        tag - Link to the named tag page - Link to tag subpage and enclose the entire reference in brackets if pageName is ommited
+        drilldown - Link to the primary tag given by pageName
+        event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
+            pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
+        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP"""
 
-    LinkSuttas()
+    LinkSubpages()
     LinkKnownReferences()
+    LinkSuttas()
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra.Show(f"{markdownChanges} items changed by markdown")

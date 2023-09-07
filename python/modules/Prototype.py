@@ -9,6 +9,7 @@ import Utils, Html, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
+import markdown.extensions
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
@@ -223,6 +224,17 @@ def DrilldownPageFile(tagNumber: int) -> str:
     "Return the name of the page that has this numbered tag expanded."
     if tagNumber == -1:
         tagNumber = 999
+    else:
+        tagList = gDatabase["tagDisplayList"]
+        ourLevel = tagList[tagNumber]["level"]
+        if tagNumber + 1 >= len(tagList) or tagList[tagNumber + 1]["level"] <= ourLevel:
+            # If this tag doesn't have subtags, find its parent tag
+            while tagList[tagNumber]["level"] >= ourLevel:
+                tagNumber -= 1
+        
+        tag = gDatabase["tagDisplayList"][tagNumber]["tag"]
+
+
     fileName = f"tag-{tagNumber:03d}.html"
     return fileName
 
@@ -891,6 +903,7 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
         [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
         [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
+        [Html.PageInfo("About event series","../about/04_Series.html")],
         EventPages("events")
     ]
 
@@ -1172,10 +1185,11 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
             continue
         
         with open(fullPath,encoding='utf8') as file:
-            html = markdown.markdown(file.read())
+            html = markdown.markdown(file.read(),extensions = ["sane_lists"])
         
-        html = re.sub(r"&lt;--!HTML(.*?)--&gt;",r"\1",html) 
-        # Markdown converts html comment '<--!' to '&lt;--!, so we search for that.
+        html = "<hr>\n" + html # Add a horizontal line at the top of each file
+        html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)
+        # Markdown converts html comment '<!--' to '&lt;!--', so we search for that.
 
         if firstFile:
             fileInfo = homepageFile
@@ -1231,6 +1245,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         MostCommonTagList(indexDir),
+        [Html.PageInfo("About tags","../about/05_Tags.html")],
         TagPages("tags")
     ]
 
