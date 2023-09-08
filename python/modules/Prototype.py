@@ -9,7 +9,7 @@ import Utils, Html, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
-import markdown.extensions
+from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
@@ -1186,7 +1186,7 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
             continue
         
         with open(fullPath,encoding='utf8') as file:
-            html = markdown.markdown(file.read(),extensions = ["sane_lists"])
+            html = markdown.markdown(file.read(),extensions = ["sane_lists",NewTabRemoteExtension()])
         
         html = "<hr>\n" + html # Add a horizontal line at the top of each file
         html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)

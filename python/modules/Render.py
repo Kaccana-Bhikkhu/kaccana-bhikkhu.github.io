@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import json, re
 import markdown
-from markdown_newtab import NewTabExtension
+from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
@@ -393,7 +393,7 @@ def MarkdownFormat(text: str) -> Tuple[str,int]:
     """Format a single-line string using markdown, and eliminate the <p> tags.
     The second item of the tuple is 1 if the item has changed and zero otherwise"""
 
-    md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabExtension()]), flags=re.IGNORECASE)
+    md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabRemoteExtension()]), flags=re.IGNORECASE)
     if md != text:
         return md, 1
     else:

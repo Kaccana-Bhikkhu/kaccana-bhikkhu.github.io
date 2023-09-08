@@ -30,16 +30,16 @@
 <hr />
 <h2>Ways Anyone Can Contribute:</h2>
 <h3>Find stories in Dhamma talks</h3>
-<p>The APQS Archive indexes stories told in Q&amp;A sessions and Dhamma discussions. Ajahn Pasanno tells many stories during Dhamma talks, but I’m not planning to hunt for them all. If you remember inspiring stories told by or about Ajahn Pasanno contained in recordings on <a href="https://www.abhayagiri.org/talks">abhayagiri.org</a>, please send them to me. If the story isn’t duplicated elsewhere in the archive and seems worthy to be included, I’ll aim to add it to a future version of the Archive.</p>
+<p>The APQS Archive indexes stories told in Q&amp;A sessions and Dhamma discussions. Ajahn Pasanno tells many stories during Dhamma talks, but I’m not planning to hunt for them all. If you remember inspiring stories told by or about Ajahn Pasanno contained in recordings on <a href="https://www.abhayagiri.org/talks" target="_blank">abhayagiri.org</a>, please send them to me. If the story isn’t duplicated elsewhere in the archive and seems worthy to be included, I’ll aim to add it to a future version of the Archive.</p>
 <p>When you submit stories, please include:</p>
 <ol>
 <li>The title and date of the Dhamma talk.</li>
-<li>A link to the talk on <a href="https://www.abhayagiri.org/">abhayagiri.org</a> or the <a href="https://www.youtube.com/channel/UCFAuQ5fmYYVv5_Dim0EQpVA">Abhayagiri YouTube Channel</a>.</li>
+<li>A link to the talk on <a href="https://www.abhayagiri.org/" target="_blank">abhayagiri.org</a> or the <a href="https://www.youtube.com/channel/UCFAuQ5fmYYVv5_Dim0EQpVA" target="_blank">Abhayagiri YouTube Channel</a>.</li>
 <li>The time the story begins in the recording.</li>
 <li>A suggested title for the story.</li>
 </ol>
 <p>For example: “Master Hsu Yun and the Bandits,” 13:49 in the talk “Developing in Virtue” given by Ajahn Pasanno on May 19, 2012.</p>
-<p><a href="player:https://storage.googleapis.com/apqs_archive/audio/events/Talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3"></a></p>
+<p><a href="player:https://storage.googleapis.com/apqs_archive/audio/events/Talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" target="_blank"></a></p>
 <hr />
 <h3>Point out typos or tagging errors</h3>
 <p>There is so much potential material for the Archive that I do little proofreading after typing in transcriptions. Thus typos are inevitable, and some tags intended for one excerpt might end up on another. There’s no need for the Archive to be as polished as a printed book, and it often quotes imperfectly phrased questions verbatim. Nevertheless, please let me know if you find any glitches.</p>
@@ -54,11 +54,11 @@
 <h3>Help with programming</h3>
 <p><strong>Requirements:</strong> Proficiency with Javascript web programming, python, and/or Google Sheets gs script</p>
 <p><strong>Time commitment:</strong> Variable, but programming projects always take longer than you think.</p>
-<p>There are many ways a skilled and generous programmer could help with the <a href="https://github.com/Kaccana-Bhikkhu/qs-archive">Archive</a>. Here are my ideas, ranked roughly in order of usefulness with the really big project last.</p>
+<p>There are many ways a skilled and generous programmer could help with the <a href="https://github.com/Kaccana-Bhikkhu/qs-archive" target="_blank">Archive</a>. Here are my ideas, ranked roughly in order of usefulness with the really big project last.</p>
 <p><strong>Add search features:</strong> The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let me know your ideas or just go ahead and build something.</p>
-<p><strong>Track changes in the main spreadsheet:</strong> The <a href="https://docs.google.com/spreadsheets/d/1PR197U5m4dtSi-q2ibMwc2xA7TSczA_Df7YP8JGJ3No/edit#gid=2007732801">main spreadsheet</a> contains 50 sheets and continues to grow. There is currently no way to know which sheets have changed, so one must either remember which sheets have changed or download them all.</p>
+<p><strong>Track changes in the main spreadsheet:</strong> The <a href="https://docs.google.com/spreadsheets/d/1PR197U5m4dtSi-q2ibMwc2xA7TSczA_Df7YP8JGJ3No/edit#gid=2007732801" target="_blank">main spreadsheet</a> contains 50 sheets and continues to grow. There is currently no way to know which sheets have changed, so one must either remember which sheets have changed or download them all.</p>
 <p>Modifying the Summary sheet to track the modification time of each sheet would solve this problem. The script needs to handle adding, deleting, renaming, and reordering sheets without breaking.</p>
-<p><strong>Write a cross-platform mp3 splitter:</strong> The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. It appears that <a href="https://stackoverflow.com/questions/310765/python-library-to-modify-mp3-audio-without-transcoding">no cross-platform equivalent exists</a>. One could write a lossy mp3 splitter using pyaudio or similar module that could be used when mp3DirectCut wasn’t available. This would also enable splitting formats other than mp3.</p>
+<p><strong>Write a cross-platform mp3 splitter:</strong> The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. It appears that <a href="https://stackoverflow.com/questions/310765/python-library-to-modify-mp3-audio-without-transcoding" target="_blank">no cross-platform equivalent exists</a>. One could write a lossy mp3 splitter using pyaudio or similar module that could be used when mp3DirectCut wasn’t available. This would also enable splitting formats other than mp3.</p>
 <p>Alternatively, one could write a python module equivalent to mp3DirectCut. This would need to work on VBR mp3 files and be tested extensively before it would be ready to use.</p>
 <p><strong>Note:</strong> I plan to rewrite the audio splitting functions in the next few months. If you’re interested in this project, you might want to wait until I’ve done so.</p>
 <p><strong>Create a modern search-driven website:</strong> It had originally been my intention to write only the back end of the Archive and partner with a web developer to build the website. The current website began as a prototype to illustrate how to render excerpts and annotations from the database. However, my potential partner had much less time to dedicate to the project than a full website would require, and I found that an enhanced version of the prototype to be usable even on mobile devices.</p>
