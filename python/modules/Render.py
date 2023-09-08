@@ -336,8 +336,8 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher"}))
-    linkRegex = r"\[([^][]+)\]\(" + pageTypes + r":([^()]*)\)"
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about"}))
+    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
         text,pageType,link = matchObject.groups()
@@ -377,6 +377,12 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                 linkTo = f"../events/{event}.html{bookmark}"
             else:
                 Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
+        elif pageType == "about":
+            aboutPage = Utils.AboutPageLookup(link)
+            if aboutPage:
+                linkTo = f"../{aboutPage}"
+            else:
+                Alert.warning.Show("Cannot link about page",link,"in link",matchObject[0])
 
         if linkTo:
             return wrapper("[" + text +"](" + linkTo + ")")
@@ -414,7 +420,8 @@ def LinkReferences() -> None:
         drilldown - Link to the primary tag given by pageName
         event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
             pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
-        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP"""
+        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
+        about - Link to about page pageName"""
 
     LinkSubpages()
     LinkKnownReferences()
