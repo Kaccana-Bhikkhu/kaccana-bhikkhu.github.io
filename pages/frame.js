@@ -25,7 +25,8 @@ async function changeURL(pUrl) {
 				);
 
 				if (href.startsWith("#")) {
-					el.href = "javascript:void 0";
+					let noBookmark = location.href.split("#").slice(0,2).join("#")
+					el.href = noBookmark+href;
 					el.addEventListener("click", () => {
 						document.getElementById(href.slice(1)).scrollIntoView();
 					});
