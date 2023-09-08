@@ -18,7 +18,7 @@ In greater detail, portions of the Archive may be distributed under three licens
 
 __1. CC BY-NC-ND__
 
-__Scope:__ _The archive as a whole._ At a minimum, this means all files needed to display the complete website and play each audio clip. Along with these files, you may additionally include any other new material created as part of the Archive (items #2 and #3 below) and any parts of the Archive drawn from other sources (e.g. session audio recordings and pdf files of the references) that you have permission to distribute in this way. 
+__Scope:__ _The archive as a whole._ At a minimum, this means all files needed to display the complete website and play each audio clip. Along with these files, you may additionally include any other new material created as part of the Archive (including items #2 and #3 below) and any parts of the Archive drawn from other sources (e.g. session audio recordings and pdf files of the references) that you have permission to distribute in this way. 
 
 __2. CC BY-NC__
 
@@ -30,4 +30,4 @@ __Scope:__ _The database format and website generation engine._ This includes al
 
 -----
 
-This license applies to all versions of the Archive that have been posted on abhayagiri.org. However, we encourage anyone distributing or mirroring the Archive to keep your copy up to date.
+This license applies to all versions of the Archive that have been posted on abhayagiri.org. However, we encourage anyone distributing or mirroring the Archive to keep your distribution up to date.
