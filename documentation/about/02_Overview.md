@@ -24,8 +24,6 @@ Excerpts may further be described by a series of annotations, which the website 
 
 The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../tags/death.html)] and [[Rebirth](../tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
 
-<!-- <figure> <img src="../../pages/images/ExampleExcerpt.png"> <figcaption> Excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../tags/death.html)] and [[Rebirth](../tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.</figcaption> </figure>-->
-
 ## Searching the Archive
 The website menus link to a series of static pages which allow the user to browse the tags, events, and teachers contained in the archive in a variety of ways. Links to particular tags, events, and teachers go to static pages which list each relevant excerpt. Event pages simply list each excerpt in each of the event sessions. The tag and teacher pages also group excerpts by event and session, but additionally allow the user to narrow the search by excerpt kind. (Pages containing fewer than 10 excerpts don’t have this feature.) Selecting the “All excerpts” menu item allows one to see all excerpts of a particular kind in the archive.
 
