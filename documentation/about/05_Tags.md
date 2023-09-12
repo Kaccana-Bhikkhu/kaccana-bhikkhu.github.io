@@ -55,6 +55,9 @@ Other somewhat arbitrary choices regarding specific tags include the following:
  - Sensual pleasure and sensual desire are both tagged [[Sensual desire](../tags/sensual-desire.html)].
  - Several Thai words are frequently translated as “the one who knows.” These are tagged [[Knowing itself](../tags/knowing-itself.html)]
  - Moods of the mind refers specifically to the Thai phrase arom kong jit, and is distinct from the English tag [[Emotion](../tags/emotion.html)]
+ - Defilement is tagged Unwholesome roots
+ - Attachment is tagged [[Clinging](../tags/clinging.html)]
+
 ## History and Culture Tags
 
 The root tags [[History](../tags/history.html)] and [[Cultural context](../tags/cultural-context.html)] contain many similar subtags. History tags apply to verifiable statements about people, dates, etc., while culture tags apply to generalized statements about culture in particular times and places. The latter are invariably subjective. The frequency of [[Culture/Thailand](../tags/culturethailand.html)] and [[Culture/West](../tags/culturewest.html)] reflects an ongoing dialogue about how to skillfully adapt (or not adapt) the practices and attitudes of the Thai Forest Tradition to the modern Western context.

@@ -42,7 +42,7 @@ __Requirements:__ Proficiency with Javascript web programming, python, and/or Go
 
 __Time commitment:__ Variable, but programming projects always take longer than you think.
 
-There are many ways a skilled and generous programmer could help with the [Archive](https://github.com/Kaccana-Bhikkhu/qs-archive). Here are my ideas, ranked roughly in order of usefulness with the really big project last.
+There are many ways a skilled and generous programmer could help with the Archive ([github](https://github.com/Kaccana-Bhikkhu/qs-archive)). Here are my ideas, ranked roughly in order of usefulness with the really big project last.
 
 
 __Add search features:__ The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let me know your ideas or just go ahead and build something.
@@ -59,7 +59,7 @@ __Write a cross-platform mp3 splitter:__ The project currently uses Windows-only
 
 Alternatively, one could write a python module equivalent to mp3DirectCut. This would need to work on VBR mp3 files and be tested extensively before it would be ready to use.
 
-__Note:__ I plan to rewrite the audio splitting functions in the next few months. If you’re interested in this project, you might want to wait until I’ve done so.
+__Note:__ I plan to rewrite the audio splitting functions in the next few months. If you’re interested in the first approach to this project, you may want to wait until I’ve done so.
 
 
 
