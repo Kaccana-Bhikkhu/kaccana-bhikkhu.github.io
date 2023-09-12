@@ -27,6 +27,7 @@ def AppendUnique(dest: list, source: list) -> list:
     for item in source:
         if item not in destSet:
             dest.append(item)
+    return dest
 
 def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
     "Return a code for this item. "

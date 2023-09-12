@@ -752,7 +752,7 @@ def LoadEventFile(database,eventName,directory):
         ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
-            x["qTag"] = ourSession["tags"] + x["qTag"]
+            Utils.AppendUnique(x["qTag"],ourSession["tags"])
 
         if not x["teachers"]:
             defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
