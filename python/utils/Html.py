@@ -264,8 +264,8 @@ class PageDesc(Renderable):
         menuItems = [next(m,None) for m in menuGenerators] # The menu items are the first item in each iterator
 
         # Generators that yield None aren't associated with a menu item and will be proccessed last.
-        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems,strict=True) if not item]
-        menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item]
+        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems) if not item]
+        menuGenerators = [m for m,item in zip(menuGenerators,menuItems) if item]
         menuItems = [item for item in menuItems if item]
 
         menuSection = self.AppendContent(Menu(menuItems,**menuStyle),section=menuSection)
