@@ -1123,7 +1123,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a(eventInfo["description"])
         
         if eventInfo["website"]:
-            with a.a(href = eventInfo["website"]):
+            with a.a(href = eventInfo["website"],target="_blank"):
                 a("External website")
             a.br()
         
