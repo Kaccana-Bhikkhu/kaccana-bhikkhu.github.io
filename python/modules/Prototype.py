@@ -9,7 +9,7 @@ import Utils, Html, Alert, Filter, ParseCSV
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
-import markdown.extensions
+from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
@@ -304,14 +304,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     pageInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
     yield pageInfo
 
-    honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
-        # Sort honorifics so the longest honorifics match first
-    honorificRegex = Utils.RegexMatchAny(honorifics,capturingGroup=True) + r" (.+)"
+    prefixes = sorted(list(gDatabase["prefix"]),key=len,reverse=True)
+        # Sort prefixes so the longest prefix matches first
+    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r" (.+)"
     noAlphabetize = {"alphabetize":""}
     def AlphabetizeNames(string: str) -> str:
-        if gDatabase["people"].get(string,noAlphabetize)["alphabetize"]:
-            return gDatabase["people"][string]["alphabetize"]
-        match = re.match(honorificRegex,string)
+        if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
+            return gDatabase["name"][string]["alphabetize"]
+        match = re.match(prefixRegex,string)
         if match:
             return match[2] + ", " + match[1]
         else:
@@ -658,7 +658,8 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     
     events = set(x["event"] for x in excerpts)
     sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
-    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts),start = timedelta())
+    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts if x["fileNumber"]),start = timedelta())
+        # Don't sum session excerpts (fileNumber = 0)
     
     strItems = []
     
@@ -1122,7 +1123,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a(eventInfo["description"])
         
         if eventInfo["website"]:
-            with a.a(href = eventInfo["website"]):
+            with a.a(href = eventInfo["website"],target="_blank"):
                 a("External website")
             a.br()
         
@@ -1185,7 +1186,7 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
             continue
         
         with open(fullPath,encoding='utf8') as file:
-            html = markdown.markdown(file.read(),extensions = ["sane_lists"])
+            html = markdown.markdown(file.read(),extensions = ["sane_lists",NewTabRemoteExtension()])
         
         html = "<hr>\n" + html # Add a horizontal line at the top of each file
         html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)

@@ -9,32 +9,32 @@ __A. Mental qualities__
 
 1. [Skillful qualities](../drilldown/tag-000.html#0)
 2. [Unskillful qualities](../drilldown/tag-172.html#172)
-3. [Indeterminate qualities](../drilldown/tag-213.html#213)
+3. [Indeterminate qualities](../drilldown/tag-215.html#215)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../drilldown/tag-265.html#265)
-5. [Devotional practice](../drilldown/tag-272.html#272)
-6. [Precepts](../drilldown/tag-290.html#290)
-7. [Meditation](../drilldown/tag-317.html#317)
+4. [Three Refuges](../drilldown/tag-268.html#268)
+5. [Devotional practice](../drilldown/tag-275.html#275)
+6. [Precepts](../drilldown/tag-293.html#293)
+7. [Meditation](../drilldown/tag-320.html#320)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../drilldown/tag-389.html#389)
-9. [Teachers](../drilldown/tag-425.html#425)
-10. [Monasteries](../drilldown/tag-491.html#491)
+8. [Teaching Dhamma](../drilldown/tag-392.html#392)
+9. [Teachers](../drilldown/tag-429.html#429)
+10. [Monasteries](../drilldown/tag-495.html#495)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../drilldown/tag-514.html#514)
-12. [History](../drilldown/tag-533.html#533)
-13. [Cultural context](../drilldown/tag-543.html#543)
-14. [Spiritual traditions](../drilldown/tag-560.html#560)
+11. [Nature of the cosmos](../drilldown/tag-518.html#518)
+12. [History](../drilldown/tag-538.html#538)
+13. [Cultural context](../drilldown/tag-548.html#548)
+14. [Spiritual traditions](../drilldown/tag-567.html#567)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../drilldown/tag-572.html#572)
-16. [Everyday life](../drilldown/tag-639.html#639)
+15. [Renunciant practice](../drilldown/tag-579.html#579)
+16. [Everyday life](../drilldown/tag-647.html#647)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -55,14 +55,17 @@ Other somewhat arbitrary choices regarding specific tags include the following:
  - Sensual pleasure and sensual desire are both tagged [[Sensual desire](../tags/sensual-desire.html)].
  - Several Thai words are frequently translated as “the one who knows.” These are tagged [[Knowing itself](../tags/knowing-itself.html)]
  - Moods of the mind refers specifically to the Thai phrase arom kong jit, and is distinct from the English tag [[Emotion](../tags/emotion.html)]
+ - Defilement is tagged [[Unwholesome Roots](../tags/unwholesome-roots.html)]
+ - Attachment is tagged [[Clinging](../tags/clinging.html)]
+
 ## History and Culture Tags
 
 The root tags [[History](../tags/history.html)] and [[Cultural context](../tags/cultural-context.html)] contain many similar subtags. History tags apply to verifiable statements about people, dates, etc., while culture tags apply to generalized statements about culture in particular times and places. The latter are invariably subjective. The frequency of [[Culture/Thailand](../tags/culturethailand.html)] and [[Culture/West](../tags/culturewest.html)] reflects an ongoing dialogue about how to skillfully adapt (or not adapt) the practices and attitudes of the Thai Forest Tradition to the modern Western context.
 
 ## Other Details
+ - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.
+ - Monastic teacher tags are sorted by date of ordination regardless of gender. Lay teacher tags are sorted by date of birth.
  - The traditional three [[Characteristics of existence](../tags/characteristics-of-existence.html)] increase to nine with the inclusion of an [additional six](https://www.abhayagiri.org/media/books/The-Island-Web-2020%20ed..pdf#page=115) by Ajahn Buddhadāsa.
- - Monastic teachers are sorted by date of ordination regardless of gender. Lay teachers are sorted by date of birth.
-
 
 
 

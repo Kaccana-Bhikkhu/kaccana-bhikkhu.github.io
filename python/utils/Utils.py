@@ -27,6 +27,7 @@ def AppendUnique(dest: list, source: list) -> list:
     for item in source:
         if item not in destSet:
             dest.append(item)
+    return dest
 
 def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
     "Return a code for this item. "
@@ -109,6 +110,21 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
         tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
     
     return tagDictCache.get(tagRef,None)
+
+def AboutPageLookup(pageName:str,aboutPageCache:dict = {}) -> str|None:
+    "Search for an about page based on its name. Return the path to the page relative to prototypeDir."
+
+    if not aboutPageCache: # modify the value of a default argument to create a cache of potential tag references
+        dirs = ["about"]
+        for dir in dirs:
+            fileList = os.listdir(PosixJoin(gOptions.prototypeDir,dir))
+            for file in fileList:
+                m = re.match(r"[0-9]*_?(.*)\.html",file)
+                if m:
+                    aboutPageCache[m[1].lower()] = PosixJoin(dir,m[0])
+        print(aboutPageCache)
+
+    return aboutPageCache.get(pageName.lower().replace(" ","-"),None)
 
 def EllideText(s: str,maxLength = 50) -> str:
     "Truncate a string to keep the number of characters under maxLength."
