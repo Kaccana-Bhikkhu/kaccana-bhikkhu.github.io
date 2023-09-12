@@ -304,14 +304,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     pageInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
     yield pageInfo
 
-    honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
-        # Sort honorifics so the longest honorifics match first
-    honorificRegex = Utils.RegexMatchAny(honorifics,capturingGroup=True) + r" (.+)"
+    prefixes = sorted(list(gDatabase["prefix"]),key=len,reverse=True)
+        # Sort prefixes so the longest prefix matches first
+    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r" (.+)"
     noAlphabetize = {"alphabetize":""}
     def AlphabetizeNames(string: str) -> str:
-        if gDatabase["people"].get(string,noAlphabetize)["alphabetize"]:
-            return gDatabase["people"][string]["alphabetize"]
-        match = re.match(honorificRegex,string)
+        if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
+            return gDatabase["name"][string]["alphabetize"]
+        match = re.match(prefixRegex,string)
         if match:
             return match[2] + ", " + match[1]
         else:

@@ -55,7 +55,7 @@ Other somewhat arbitrary choices regarding specific tags include the following:
  - Sensual pleasure and sensual desire are both tagged [[Sensual desire](../tags/sensual-desire.html)].
  - Several Thai words are frequently translated as “the one who knows.” These are tagged [[Knowing itself](../tags/knowing-itself.html)]
  - Moods of the mind refers specifically to the Thai phrase arom kong jit, and is distinct from the English tag [[Emotion](../tags/emotion.html)]
- - Defilement is tagged Unwholesome roots
+ - Defilement is tagged [[Unwholesome Roots](../tags/unwholesome-roots.html)]
  - Attachment is tagged [[Clinging](../tags/clinging.html)]
 
 ## History and Culture Tags
