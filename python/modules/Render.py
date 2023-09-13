@@ -331,8 +331,9 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
-    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences()."""
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype = "../") -> None:
+    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
+    pathToPrototype is the path from the directory where the files are written to the prototype directory"""
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
@@ -354,17 +355,17 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             realTag = Utils.TagLookup(tag)            
             if pageType == "tag":
                 if realTag:
-                    linkTo = f"../tags/{gDatabase['tag'][realTag]['htmlFile']}"
+                    linkTo = f"tags/{gDatabase['tag'][realTag]['htmlFile']}"
                 else:
                     Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
                 if not link:
                     wrapper = Html.Wrapper("[","]")
             else:
                 if tag.lower() == "root":
-                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(-1)}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(-1)}"
                 elif realTag:
                     tagNumber = gDatabase["tag"][realTag]["listIndex"]
-                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
                 else:
                     Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:
@@ -374,18 +375,18 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                     bookmark = "#" + Utils.ItemCode(event=event,session=session,fileNumber=fileNumber)
                 else:
                     bookmark = ""
-                linkTo = f"../events/{event}.html{bookmark}"
+                linkTo = f"events/{event}.html{bookmark}"
             else:
                 Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
         elif pageType == "about":
             aboutPage = Utils.AboutPageLookup(link)
             if aboutPage:
-                linkTo = f"../{aboutPage}"
+                linkTo = f"{aboutPage}"
             else:
                 Alert.warning.Show("Cannot link about page",link,"in link",matchObject[0])
 
         if linkTo:
-            return wrapper("[" + text +"](" + linkTo + ")")
+            return wrapper(f"[{text}]({Utils.PosixJoin(pathToPrototype,linkTo)})")
         else:
             return text
         

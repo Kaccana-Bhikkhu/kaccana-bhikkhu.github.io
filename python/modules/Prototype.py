@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils, Html, Alert, Filter, ParseCSV
+import Utils, Html, Alert, Filter, ParseCSV, Document
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
@@ -1177,37 +1177,11 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
     yield homepageFile
 
     aboutMenu = []
-    documentationDir = "documentation/about"
-
-    firstFile = True
-    for fileName in sorted(os.listdir(documentationDir)):
-        fullPath = Utils.PosixJoin(documentationDir,fileName)
-        if not os.path.isfile(fullPath) or not fileName.endswith(".md"):
-            continue
+    for page in Document.RenderDocumentationFiles("about","about",html = True):
+        if not aboutMenu:
+            page.info = homepageFile
+        aboutMenu.append([page.info,page])
         
-        with open(fullPath,encoding='utf8') as file:
-            html = markdown.markdown(file.read(),extensions = ["sane_lists",NewTabRemoteExtension()])
-        
-        html = "<hr>\n" + html # Add a horizontal line at the top of each file
-        html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)
-        # Markdown converts html comment '<!--' to '&lt;!--', so we search for that.
-
-        if firstFile:
-            fileInfo = homepageFile
-            firstFile = False
-        else:
-            m = re.match(r"[0-9]*_([^.]*)",fileName)
-            fileInfo = Html.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
-            firstFile = False
-        
-        """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
-        if titleMatch:
-            fileInfo = fileInfo._replace(titleIB = titleMatch[1]) - Unused code to read title from the page body """
-        
-        html = re.sub(r"&lt;--!(.*?)--&gt;","",html) # Remove any remaining html comments
-
-        aboutMenu.append([fileInfo,html])
-    
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
 

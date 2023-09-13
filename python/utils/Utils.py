@@ -64,6 +64,11 @@ def PosixJoin(*paths):
     "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
     return str(pathlib.PurePosixPath(*paths))
 
+def ReplaceExtension(filename:str, newExt: str) -> str:
+    "Replace the extension of filename before the file extension"
+    name,_ = os.path.splitext(filename)
+    return name + newExt
+
 def AppendToFilename(filename:str, appendStr: str) -> str:
     "Append to fileName before the file extension"
     name,ext = os.path.splitext(filename)
@@ -122,7 +127,6 @@ def AboutPageLookup(pageName:str,aboutPageCache:dict = {}) -> str|None:
                 m = re.match(r"[0-9]*_?(.*)\.html",file)
                 if m:
                     aboutPageCache[m[1].lower()] = PosixJoin(dir,m[0])
-        print(aboutPageCache)
 
     return aboutPageCache.get(pageName.lower().replace(" ","-"),None)
 
