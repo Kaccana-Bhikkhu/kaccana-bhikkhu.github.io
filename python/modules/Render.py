@@ -331,13 +331,15 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype = "../") -> None:
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../") -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
-    pathToPrototype is the path from the directory where the files are written to the prototype directory"""
+    pathToPrototype is the path from the directory where the files are written to the prototype directory.
+    pathToBaseForNonPages is the path to root directory from this file for links that don't go to html pages.
+    It is necessary to distinguish between the two since frame.js modifies paths to local html files"""
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about"}))
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image"}))
     linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
@@ -345,6 +347,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype = ".
         pageType = pageType.lower()
 
         linkTo = ""
+        linkToPage = True
         wrapper = Html.Wrapper()
         if pageType in tagTypes:
             if link:
@@ -384,9 +387,13 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype = ".
                 linkTo = f"{aboutPage}"
             else:
                 Alert.warning.Show("Cannot link about page",link,"in link",matchObject[0])
+        elif pageType == "image":
+            linkToPage = False
+            linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
 
         if linkTo:
-            return wrapper(f"[{text}]({Utils.PosixJoin(pathToPrototype,linkTo)})")
+            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToBaseForNonPages,linkTo)
+            return wrapper(f"[{text}]({path})")
         else:
             return text
         
@@ -422,7 +429,8 @@ def LinkReferences() -> None:
         event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
             pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
-        about - Link to about page pageName"""
+        about - Link to about page pageName
+        image - Link to images in prototypeDir/images"""
 
     LinkSubpages()
     LinkKnownReferences()

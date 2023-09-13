@@ -20,7 +20,7 @@ Excerpts may further be described by a series of annotations, which the website 
 
 ### Example Excerpt
 
-![ExampleExcerpt](../../pages/images/ExampleExcerpt.png)
+![ExampleExcerpt](image:ExampleExcerpt.png)
 
 The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [Death](tag:) and [Rebirth](tag:) are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
 

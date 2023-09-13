@@ -8,11 +8,13 @@ from typing import Tuple, Type, Callable
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
 
-def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype = "../",html:bool = True) -> list[Html.PageDesc]:
+def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str = "../",pathToBaseForNonPages = "../../",html:bool = True) -> list[Html.PageDesc]:
     """Read and render the documentation files. Return a list of PageDesc objects.
     aboutDir: the name of the directory to read from; files are read from aboutDir + "Sources".
     destDir: the destination directory; set to aboutDir if not given.
     pathToPrototype: path from the where the documentation will be written to the prototype directory.
+    pathToBaseForNonPages: the path to the base directory for links not going to html pages
+        We must distinguish between pages and nonpages since frame.js modifes links to pages but not other links
     html: Render the file into html? - Leave in .md format if false.
     """
 
@@ -39,7 +41,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype = ".
         
         return changeCount
             
-    Render.LinkSubpages(ApplyToText,pathToPrototype)
+    Render.LinkSubpages(ApplyToText,pathToPrototype,pathToBaseForNonPages)
     Render.LinkKnownReferences(ApplyToText)
     Render.LinkSuttas(ApplyToText)
 
@@ -81,6 +83,6 @@ gDatabase = None # These globals are overwritten by QSArchive.py, but we define 
 
 def main() -> None:
     for directory in ['about']:
-        for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),html=False):
+        for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBaseForNonPages="../../",html=False):
             with open(page.info.file,'w',encoding='utf-8') as file:
                 print(str(page),file=file)
