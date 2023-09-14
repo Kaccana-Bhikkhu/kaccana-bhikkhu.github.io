@@ -331,7 +331,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../") -> None:
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../../") -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
     pathToPrototype is the path from the directory where the files are written to the prototype directory.
     pathToBaseForNonPages is the path to root directory from this file for links that don't go to html pages.
