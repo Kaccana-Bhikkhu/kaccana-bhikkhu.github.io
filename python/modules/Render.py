@@ -331,12 +331,15 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
-    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences()."""
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../../") -> None:
+    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
+    pathToPrototype is the path from the directory where the files are written to the prototype directory.
+    pathToBaseForNonPages is the path to root directory from this file for links that don't go to html pages.
+    It is necessary to distinguish between the two since frame.js modifies paths to local html files"""
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about"}))
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","player"}))
     linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
@@ -344,6 +347,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         pageType = pageType.lower()
 
         linkTo = ""
+        linkToPage = True
         wrapper = Html.Wrapper()
         if pageType in tagTypes:
             if link:
@@ -354,17 +358,17 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             realTag = Utils.TagLookup(tag)            
             if pageType == "tag":
                 if realTag:
-                    linkTo = f"../tags/{gDatabase['tag'][realTag]['htmlFile']}"
+                    linkTo = f"tags/{gDatabase['tag'][realTag]['htmlFile']}"
                 else:
                     Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
                 if not link:
                     wrapper = Html.Wrapper("[","]")
             else:
                 if tag.lower() == "root":
-                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(-1)}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(-1)}"
                 elif realTag:
                     tagNumber = gDatabase["tag"][realTag]["listIndex"]
-                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
                 else:
                     Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:
@@ -374,18 +378,50 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                     bookmark = "#" + Utils.ItemCode(event=event,session=session,fileNumber=fileNumber)
                 else:
                     bookmark = ""
-                linkTo = f"../events/{event}.html{bookmark}"
+                linkTo = f"events/{event}.html{bookmark}"
             else:
                 Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
+        elif pageType == "player":
+            event,session,fileNumber = Utils.ParseItemCode(link)
+            if fileNumber is not None:
+                x = Utils.FindExcerpt(event,session,fileNumber)
+                if x:
+                    linkTo = Prototype.Mp3ExcerptLink(x)
+                else:
+                    Alert.warning.Show("Cannot find excerpt corresponding to code",link,"in link",matchObject[0])
+                    return text
+
+            if not linkTo:
+                linkTo = Prototype.AudioIcon(link,title=text)
+            return f"<!--HTML{linkTo}-->"
+        elif pageType == "teacher":
+            if link:
+                teacher = link
+            else:
+                teacher = text
+            
+            teacherCode = Utils.TeacherLookup(teacher)
+            if teacherCode:
+                htmlPage = gDatabase['teacher'][teacherCode]['htmlFile']
+                if htmlPage:
+                    linkTo = f"teachers/{htmlPage}"
+                else:
+                    Alert.caution.Show("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
+            else:
+                Alert.warning.Show("Cannot link to teacher",teacher,"in link",matchObject[0])
         elif pageType == "about":
             aboutPage = Utils.AboutPageLookup(link)
             if aboutPage:
-                linkTo = f"../{aboutPage}"
+                linkTo = f"{aboutPage}"
             else:
                 Alert.warning.Show("Cannot link about page",link,"in link",matchObject[0])
+        elif pageType == "image":
+            linkToPage = False
+            linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
 
         if linkTo:
-            return wrapper("[" + text +"](" + linkTo + ")")
+            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToBaseForNonPages,linkTo)
+            return wrapper(f"[{text}]({path})")
         else:
             return text
         
@@ -419,9 +455,12 @@ def LinkReferences() -> None:
         tag - Link to the named tag page - Link to tag subpage and enclose the entire reference in brackets if pageName is ommited
         drilldown - Link to the primary tag given by pageName
         event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
-            pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
+            pageName is of the form Event20XX_SYY_FZZ produced by Utils.ItemCode()
+        player - Insert an audio player; pageName is either an item code as above or a hyperlink to an audio file.
+            In the latter case, subpage specifies the title of the audio.
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
-        about - Link to about page pageName"""
+        about - Link to about page pageName
+        image - Link to images in prototypeDir/images"""
 
     LinkSubpages()
     LinkKnownReferences()

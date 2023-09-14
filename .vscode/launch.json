@@ -97,7 +97,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Document,Prototype",
+                "Document",
                 "--buildOnly",
                 "none"
             ],

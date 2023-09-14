@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Tuple, Callable
 from airium import Airium
-import Utils, Html, Alert, Filter, ParseCSV
+import Utils, Html, Alert, Filter, ParseCSV, Document
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
@@ -439,14 +439,14 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
-        
-    return AudioIcon(Utils.Mp3Link(excerpt),dataDuration = excerpt["duration"],**kwArgs)
+    
+    return AudioIcon(Utils.Mp3Link(excerpt),title=PlayerTitle(excerpt),dataDuration = excerpt["duration"],**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(session),dataDuration = session["duration"],**kwArgs)
+    return AudioIcon(Utils.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -627,7 +627,7 @@ class Formatter:
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
             if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session,title = PlayerTitle(session))
+                audioLink = Mp3SessionLink(session)
                 if gOptions.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
                 else:
@@ -644,7 +644,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session,title = PlayerTitle(session)))
+            a(Mp3SessionLink(session))
             if horizontalRule:
                 a.hr()
         
@@ -717,7 +717,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {}
         if x["body"]:
             with a.p(id = Utils.ItemCode(x)):
-                a(localFormatter.FormatExcerpt(x,title=PlayerTitle(x),**options))
+                a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
@@ -1177,37 +1177,11 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
     yield homepageFile
 
     aboutMenu = []
-    documentationDir = "documentation/about"
-
-    firstFile = True
-    for fileName in sorted(os.listdir(documentationDir)):
-        fullPath = Utils.PosixJoin(documentationDir,fileName)
-        if not os.path.isfile(fullPath) or not fileName.endswith(".md"):
-            continue
+    for page in Document.RenderDocumentationFiles("about","about",pathToPrototype="../",pathToBaseForNonPages="../",html = True):
+        if not aboutMenu:
+            page.info = homepageFile
+        aboutMenu.append([page.info,page])
         
-        with open(fullPath,encoding='utf8') as file:
-            html = markdown.markdown(file.read(),extensions = ["sane_lists",NewTabRemoteExtension()])
-        
-        html = "<hr>\n" + html # Add a horizontal line at the top of each file
-        html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)
-        # Markdown converts html comment '<!--' to '&lt;!--', so we search for that.
-
-        if firstFile:
-            fileInfo = homepageFile
-            firstFile = False
-        else:
-            m = re.match(r"[0-9]*_([^.]*)",fileName)
-            fileInfo = Html.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
-            firstFile = False
-        
-        """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
-        if titleMatch:
-            fileInfo = fileInfo._replace(titleIB = titleMatch[1]) - Unused code to read title from the page body """
-        
-        html = re.sub(r"&lt;--!(.*?)--&gt;","",html) # Remove any remaining html comments
-
-        aboutMenu.append([fileInfo,html])
-    
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
 

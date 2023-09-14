@@ -3,9 +3,74 @@
 from __future__ import annotations
 
 import json, re, os
-import Utils, Render, Alert
+import Utils, Render, Alert, Html
 from typing import Tuple, Type, Callable
-import pyratemp
+import pyratemp, markdown
+from markdown_newtab_remote import NewTabRemoteExtension
+
+def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str = "../",pathToBaseForNonPages = "../../",html:bool = True) -> list[Html.PageDesc]:
+    """Read and render the documentation files. Return a list of PageDesc objects.
+    aboutDir: the name of the directory to read from; files are read from aboutDir + "Sources".
+    destDir: the destination directory; set to aboutDir if not given.
+    pathToPrototype: path from the where the documentation will be written to the prototype directory.
+    pathToBaseForNonPages: the path to the base directory for links not going to html pages
+        We must distinguish between pages and nonpages since frame.js modifes links to pages but not other links
+    html: Render the file into html? - Leave in .md format if false.
+    """
+
+    aboutDir = Utils.PosixJoin(gOptions.documentationDir,aboutDir)
+    if not destDir:
+        destDir = aboutDir
+    sourceDir = aboutDir + "Sources"
+    
+    fileContents = {}
+    for fileName in sorted(os.listdir(sourceDir)):
+        sourcePath = Utils.PosixJoin(sourceDir,fileName)
+
+        if not os.path.isfile(sourcePath) or not fileName.endswith(".md"):
+            continue
+
+        with open(sourcePath,encoding='utf8') as file:
+            fileContents[fileName] = file.read()
+            
+    def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:
+        changeCount = 0
+        for fileName in fileContents.keys():
+            fileContents[fileName],changes = transform(fileContents[fileName])
+            changeCount += changes
+        
+        return changeCount
+            
+    Render.LinkSubpages(ApplyToText,pathToPrototype,pathToBaseForNonPages)
+    Render.LinkKnownReferences(ApplyToText)
+    Render.LinkSuttas(ApplyToText)
+
+    if html:
+        htmlFiles = {}
+        for fileName in fileContents:
+            html = markdown.markdown(fileContents[fileName],extensions = ["sane_lists",NewTabRemoteExtension()])
+        
+            html = "<hr>\n" + html # Add a horizontal line at the top of each file
+            html = re.sub(r"<!--HTML(.*?)-->",r"\1",html) # Remove comments around HTML code
+            htmlFiles[Utils.ReplaceExtension(fileName,".html")] = html
+        fileContents = htmlFiles
+
+    titleInPage = "The Ajahn Pasanno Question and Story Archive"
+    renderedPages = []
+    for fileName,fileText in fileContents.items():
+        titleMatch = re.search(r"<!--TITLE:(.*?)-->",fileText)
+        if titleMatch:
+            title = titleMatch[1]
+        else:
+            m = re.match(r"[0-9]*_([^.]*)",fileName)
+            title = m[1].replace("-"," ")
+
+        page = Html.PageDesc(Html.PageInfo(title,Utils.PosixJoin(destDir,fileName),titleInPage))
+        page.AppendContent(fileText)
+        renderedPages.append(page)
+
+    return renderedPages
+
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
@@ -16,33 +81,7 @@ gOptions = None
 gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main() -> None:
-    scanDirectories = [Utils.PosixJoin(gOptions.documentationDir,dir) for dir in ['about']]
-
-    for destDir in scanDirectories:
-        sourceDir = destDir + "Sources"
-        for fileName in sorted(os.listdir(sourceDir)):
-            sourcePath = Utils.PosixJoin(sourceDir,fileName)
-            destPath = Utils.PosixJoin(destDir,fileName)
-
-            if not os.path.isfile(sourcePath) or not fileName.endswith(".md"):
-                continue
-
-            with open(sourcePath,encoding='utf8') as file:
-                fileText = file.read()
-            
-            def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:
-                nonlocal fileText
-                fileText,changeCount = transform(fileText)
-                return changeCount
-            
-            Alert.extra.Show(f"{destPath}:",indent = 0)
-            Render.LinkSubpages(ApplyToText)
-            Render.LinkKnownReferences(ApplyToText)
-            Render.LinkSuttas(ApplyToText)
-
-            with open(destPath,'w',encoding='utf-8') as file:
-                print(fileText,file=file)
-                
-
-
-
+    for directory in ['about']:
+        for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBaseForNonPages="../../",html=False):
+            with open(page.info.file,'w',encoding='utf-8') as file:
+                print(str(page),file=file)
