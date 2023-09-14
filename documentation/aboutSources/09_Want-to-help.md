@@ -1,4 +1,5 @@
-## Want to help?
+<!--TITLE:Want to help? -->
+## Want to Help?
 If you would like to contribute to the Ajahn Pasanno Question and Story Archive, here are some possibilities.
 
 -----
@@ -66,4 +67,3 @@ __Note:__ I plan to rewrite the audio splitting functions in the next few months
 __Create a modern search-driven website:__ It had originally been my intention to write only the back end of the Archive and partner with a web developer to build the website. The current website began as a prototype to illustrate how to render excerpts and annotations from the database. However, my potential partner had much less time to dedicate to the project than a full website would require, and I found that an enhanced version of the prototype to be usable even on mobile devices.
 
 Nevertheless, a modern website designed for mobile devices and fully integrated into abhayagiri.org would make the archive material substantially more accessible. If someone wanted to try his or her hand at this substantial project, I would be happy to support them, at least until I decide to call this project complete to focus on other aspects of monastic life. 
-

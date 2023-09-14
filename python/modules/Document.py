@@ -58,13 +58,12 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
     titleInPage = "The Ajahn Pasanno Question and Story Archive"
     renderedPages = []
     for fileName,fileText in fileContents.items():
-
-        """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
+        titleMatch = re.search(r"<!--TITLE:(.*?)-->",fileText)
         if titleMatch:
-            fileInfo = fileInfo._replace(titleIB = titleMatch[1]) - Unused code to read title from the page body """
-
-        m = re.match(r"[0-9]*_([^.]*)",fileName)
-        title = m[1].replace("-"," ")
+            title = titleMatch[1]
+        else:
+            m = re.match(r"[0-9]*_([^.]*)",fileName)
+            title = m[1].replace("-"," ")
 
         page = Html.PageDesc(Html.PageInfo(title,Utils.PosixJoin(destDir,fileName),titleInPage))
         page.AppendContent(fileText)
