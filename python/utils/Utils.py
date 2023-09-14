@@ -93,17 +93,6 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     else:
         return session["remoteMp3Url"]
 
-def SearchForOwningExcerpt(annotation: dict) -> dict:
-    """Search the global database of excerpts to find which one owns this annotation.
-    This is a slow function and should be called infrequently."""
-    if not gDatabase:
-        return None
-    for x in gDatabase["excerpts"]:
-        for a in x["annotations"]:
-            if annotation is a:
-                return x
-    return None
-
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
 
@@ -167,7 +156,7 @@ def ItemRepr(item: dict) -> str:
                 fileNumber = item.get("fileNumber",None)
             else:
                 kind = "annotation"
-                x = SearchForOwningExcerpt(item)
+                x = FindOwningExcerpt(item)
                 if x:
                     event = x["event"]
                     session = x["sessionNumber"]
@@ -235,6 +224,31 @@ def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
             return session
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
+
+def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|None:
+    "Return the excerpt that matches these parameters. Otherwise return None."
+
+    if not gDatabase:
+        return None
+    if not event or fileNumber is None:
+        return None
+    if session is None:
+        session = 0
+    for x in gDatabase["excerpts"]:
+        if x["event"] == event and x["sessionNumber"] == session and x["fileNumber"] == fileNumber:
+            return x
+    return None
+
+def FindOwningExcerpt(annotation: dict) -> dict:
+    """Search the global database of excerpts to find which one owns this annotation.
+    This is a slow function and should be called infrequently."""
+    if not gDatabase:
+        return None
+    for x in gDatabase["excerpts"]:
+        for a in x["annotations"]:
+            if annotation is a:
+                return x
+    return None
 
 def RemoveDiacritics(string: str) -> str:
     "Remove diacritics from string."

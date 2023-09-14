@@ -339,7 +339,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image"}))
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","player"}))
     linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
@@ -381,6 +381,19 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 linkTo = f"events/{event}.html{bookmark}"
             else:
                 Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
+        elif pageType == "player":
+            event,session,fileNumber = Utils.ParseItemCode(link)
+            if fileNumber is not None:
+                x = Utils.FindExcerpt(event,session,fileNumber)
+                if x:
+                    linkTo = Prototype.Mp3ExcerptLink(x)
+                else:
+                    Alert.warning.Show("Cannot find excerpt corresponding to code",link)
+                    return text
+
+            if not linkTo:
+                linkTo = Prototype.AudioIcon(link,title=text)
+            return f"<!--HTML{linkTo}-->"
         elif pageType == "about":
             aboutPage = Utils.AboutPageLookup(link)
             if aboutPage:
@@ -427,7 +440,9 @@ def LinkReferences() -> None:
         tag - Link to the named tag page - Link to tag subpage and enclose the entire reference in brackets if pageName is ommited
         drilldown - Link to the primary tag given by pageName
         event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
-            pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
+            pageName is of the form Event20XX_SYY_FZZ produced by Utils.ItemCode()
+        player - Insert an audio player; pageName is either an item code as above or a hyperlink to an audio file.
+            In the latter case, subpage specifies the title of the audio.
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
         about - Link to about page pageName
         image - Link to images in prototypeDir/images"""

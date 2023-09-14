@@ -439,14 +439,14 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
-        
-    return AudioIcon(Utils.Mp3Link(excerpt),dataDuration = excerpt["duration"],**kwArgs)
+    
+    return AudioIcon(Utils.Mp3Link(excerpt),title=PlayerTitle(excerpt),dataDuration = excerpt["duration"],**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(session),dataDuration = session["duration"],**kwArgs)
+    return AudioIcon(Utils.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -627,7 +627,7 @@ class Formatter:
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
             if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session,title = PlayerTitle(session))
+                audioLink = Mp3SessionLink(session)
                 if gOptions.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
                 else:
@@ -644,7 +644,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session,title = PlayerTitle(session)))
+            a(Mp3SessionLink(session))
             if horizontalRule:
                 a.hr()
         
@@ -717,7 +717,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {}
         if x["body"]:
             with a.p(id = Utils.ItemCode(x)):
-                a(localFormatter.FormatExcerpt(x,title=PlayerTitle(x),**options))
+                a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
