@@ -17,7 +17,7 @@ async function changeURL(pUrl) {
 
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
-				if (el.getAttribute("href").includes("://")) return;
+				if (href.includes("://") || href.startsWith("mailto:")) return;
 
 				let url = join(
 					dirname(pUrl),
