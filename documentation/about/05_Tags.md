@@ -13,28 +13,28 @@ __A. Mental qualities__
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/tag-268.html#268)
-5. [Devotional practice](../../pages/drilldown/tag-275.html#275)
-6. [Precepts](../../pages/drilldown/tag-293.html#293)
-7. [Meditation](../../pages/drilldown/tag-320.html#320)
+4. [Three Refuges](../../pages/drilldown/tag-269.html#269)
+5. [Devotional practice](../../pages/drilldown/tag-276.html#276)
+6. [Precepts](../../pages/drilldown/tag-294.html#294)
+7. [Meditation](../../pages/drilldown/tag-321.html#321)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-392.html#392)
-9. [Teachers](../../pages/drilldown/tag-429.html#429)
-10. [Monasteries](../../pages/drilldown/tag-495.html#495)
+8. [Teaching Dhamma](../../pages/drilldown/tag-393.html#393)
+9. [Teachers](../../pages/drilldown/tag-430.html#430)
+10. [Monasteries](../../pages/drilldown/tag-496.html#496)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-518.html#518)
-12. [History](../../pages/drilldown/tag-538.html#538)
-13. [Cultural context](../../pages/drilldown/tag-548.html#548)
-14. [Spiritual traditions](../../pages/drilldown/tag-567.html#567)
+11. [Nature of the cosmos](../../pages/drilldown/tag-519.html#519)
+12. [History](../../pages/drilldown/tag-540.html#540)
+13. [Cultural context](../../pages/drilldown/tag-550.html#550)
+14. [Spiritual traditions](../../pages/drilldown/tag-569.html#569)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-579.html#579)
-16. [Everyday life](../../pages/drilldown/tag-647.html#647)
+15. [Renunciant practice](../../pages/drilldown/tag-581.html#581)
+16. [Everyday life](../../pages/drilldown/tag-649.html#649)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -54,7 +54,7 @@ Other somewhat arbitrary choices regarding specific tags include the following:
  - The tag scheme distinguishes [[Suffering](../../pages/tags/suffering.html)] and [[Pain](../../pages/tags/pain.html)] as two distinct meanings of the Pāli word dukkha, but pleasure and happiness (two meanings of sukha) are both tagged [[Happiness](../../pages/tags/happiness.html)].
  - Sensual pleasure and sensual desire are both tagged [[Sensual desire](../../pages/tags/sensual-desire.html)].
  - Several Thai words are frequently translated as “the one who knows.” These are tagged [[Knowing itself](../../pages/tags/knowing-itself.html)]
- - Moods of the mind refers specifically to the Thai phrase arom kong jit, and is distinct from the English tag [[Emotion](../../pages/tags/emotion.html)]
+ - [[Moods of the mind](../../pages/tags/moods-of-the-mind.html)] refers specifically to the Thai phrase arom kong jit, and is distinct from the English tag [[Emotion](../../pages/tags/emotion.html)]
  - Defilement is tagged [[Unwholesome Roots](../../pages/tags/unwholesome-roots.html)]
  - Attachment is tagged [[Clinging](../../pages/tags/clinging.html)]
 
