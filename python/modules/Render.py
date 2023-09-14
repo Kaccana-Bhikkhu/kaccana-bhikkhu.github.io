@@ -388,12 +388,27 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if x:
                     linkTo = Prototype.Mp3ExcerptLink(x)
                 else:
-                    Alert.warning.Show("Cannot find excerpt corresponding to code",link)
+                    Alert.warning.Show("Cannot find excerpt corresponding to code",link,"in link",matchObject[0])
                     return text
 
             if not linkTo:
                 linkTo = Prototype.AudioIcon(link,title=text)
             return f"<!--HTML{linkTo}-->"
+        elif pageType == "teacher":
+            if link:
+                teacher = link
+            else:
+                teacher = text
+            
+            teacherCode = Utils.TeacherLookup(teacher)
+            if teacherCode:
+                htmlPage = gDatabase['teacher'][teacherCode]['htmlFile']
+                if htmlPage:
+                    linkTo = f"teachers/{htmlPage}"
+                else:
+                    Alert.caution.Show("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
+            else:
+                Alert.warning.Show("Cannot link to teacher",teacher,"in link",matchObject[0])
         elif pageType == "about":
             aboutPage = Utils.AboutPageLookup(link)
             if aboutPage:

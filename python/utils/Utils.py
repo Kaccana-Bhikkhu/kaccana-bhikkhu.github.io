@@ -105,6 +105,16 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     
     return tagDictCache.get(tagRef,None)
 
+def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
+    "Search for a tag based on any of its various names. Return the base tag name."
+
+    if not teacherDictCache: # modify the value of a default argument to create a cache of potential teacher references
+        teacherDB = gDatabase["teacher"]
+        teacherDictCache.update((t,t) for t in teacherDB)
+        teacherDictCache.update((teacherDB[t]["fullName"],t) for t in teacherDB)
+    
+    return teacherDictCache.get(teacherRef,None)
+
 def AboutPageLookup(pageName:str,aboutPageCache:dict = {}) -> str|None:
     "Search for an about page based on its name. Return the path to the page relative to prototypeDir."
 
