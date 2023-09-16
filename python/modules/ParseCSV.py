@@ -9,6 +9,17 @@ import Utils
 from typing import List, Iterator, Tuple, Callable, Any
 from datetime import timedelta
 import Prototype, Alert
+from enum import Enum
+
+class StrEnum(str,Enum):
+    pass
+
+class ExcerptFlag(StrEnum):
+    INDENT = "-"
+    ATTRIBUTE = "a"
+    OVERLAP = "o"
+    PLURAL = "s"
+    UNQUOTE = "u"
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -642,7 +653,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     for key in keysToRemove:
         annotation.pop(key,None)    # Remove keys that aren't relevant for annotations
     
-    annotation["indentLevel"] = len(annotation["flags"].split("-"))
+    annotation["indentLevel"] = len(annotation["flags"].split(ExcerptFlag.INDENT))
     
     excerpt["annotations"].append(annotation)
 
@@ -834,7 +845,7 @@ def LoadEventFile(database,eventName,directory):
         if startTime < prevEndTime: # Does this overlap with the previous excerpt?
             startTime = prevEndTime
             x["startTime"] = Utils.TimeDeltaToStr(startTime)
-            if "o" not in x["flags"]:
+            if ExcerptFlag.OVERLAP not in x["flags"]:
                 Alert.warning.Show(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)

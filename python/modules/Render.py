@@ -131,16 +131,16 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     else:
         bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(item["text"])
     
-    if "u" in item["flags"]: # This flag indicates no quotes
+    if ParseCSV.ExcerptFlag.UNQUOTE in item["flags"]: # This flag indicates no quotes
         bodyTemplateStr = re.sub('[“”]','',bodyTemplateStr) # Templates should use only double smart quotes
 
     bodyTemplate = CompileTemplate(bodyTemplateStr)
     attributionTemplate = CompileTemplate(attributionTemplateStr)
 
-    plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
+    plural = "s" if (ParseCSV.ExcerptFlag.PLURAL in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"] and not gOptions.attributeAll:
+    if container and set(container["teachers"]) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
         teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
