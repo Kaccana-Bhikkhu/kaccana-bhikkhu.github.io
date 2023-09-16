@@ -14,6 +14,16 @@ from enum import Enum
 class StrEnum(str,Enum):
     pass
 
+class TagFlag(StrEnum):
+    VIRTUAL = "."               # A virtual tag can't be applied to excerpts but can have subtags
+    PRIMARY = "*"               # The primary instance of this tag in the hierarchical tag list
+    PROPER_NOUN = "p"           # Alphabetize as a proper noun
+    PROPER_NOUN_SUBTAGS = "P"   # Alphabetize all subtags as proper nouns
+    SORT_SUBTAGS = "S"          # Sort this tag's subtags using the "sortBy" 
+    DISPLAY_GLOSS = "g"         # Display the first gloss in the tag name; e.g. Saṅgha (Monastic community)
+    ENGLISH_ALSO = "E"          # Show in English tags as well as Pali or proper nouns
+    CAPITALIZE = "C"            # Capitalize the Pali entry; e.g. Nibbāna
+
 class ExcerptFlag(StrEnum):
     INDENT = "-"
     ATTRIBUTE = "a"
@@ -248,17 +258,12 @@ def LoadTagsFile(database,tagFileName):
     ListifyKey(rawTagList,"related")
     ConvertToInteger(rawTagList,"level")
     
-    # Convert the flag codes to boolean values
-    flags = {'.':"virtual", '*':"primary"}
-    for item in rawTagList:
-        for flag in flags:
-            item[flags[flag]] = flag in item["flags"]
-        
+    for item in rawTagList:     
         digitFlag = re.search("[0-9]",item["flags"])
         if digitFlag:
             item["itemCount"] = int(digitFlag[0])
         else:
-            item["itemCount"] = 0 if item["virtual"] else 1
+            item["itemCount"] = 0 if TagFlag.VIRTUAL in item["flags"] else 1
 
     # Next build the main tag dictionary
     tags = {}
@@ -294,7 +299,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["pali"] = tagPaliName
         tagDesc["fullTag"] = FirstValidValue(rawTag,fullNamePreference)
         tagDesc["fullPali"] = rawTag["pali"]
-        for key in ["number","alternateTranslations","related","virtual"]:
+        for key in ["number","alternateTranslations","related","flags"]:
             tagDesc[key] = rawTag[key]
                 
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
@@ -327,7 +332,7 @@ def LoadTagsFile(database,tagFileName):
             tagDesc["supertags"] = []
 
         lastTagLevel = curTagLevel
-        lastTag = TagStackItem(tagName,rawTag["primary"],bool(rawTag["number"])) # Count subtags if this tag is numerical
+        lastTag = TagStackItem(tagName,TagFlag.PRIMARY in rawTag["flags"],bool(rawTag["number"])) # Count subtags if this tag is numerical
         
         # Subsumed tags don't have a tag entry
         if rawTag["subsumedUnder"]:
@@ -336,9 +341,9 @@ def LoadTagsFile(database,tagFileName):
         
         # If this is a duplicate tag, insert only if the primary flag is true
         tagDesc["copies"] = 1
-        tagDesc["primaries"] = 1 if rawTag["primary"] else 0
+        tagDesc["primaries"] = 1 if TagFlag.PRIMARY in rawTag["flags"] else 0
         if tagName in tags:
-            if rawTag["primary"]:
+            if TagFlag.PRIMARY in rawTag["flags"]:
                 tagDesc["copies"] += tags[tagName]["copies"]
                 tagDesc["primaries"] += tags[tagName]["primaries"]
                 AppendUnique(tagDesc["supertags"],tags[tagName]["supertags"])
@@ -438,7 +443,7 @@ def IndexTags(database: dict) -> None:
         tagName = tag["tag"]
         if tag["subsumedUnder"]:
             continue
-        if tagName in tagsSoFar and not tag["primary"]:
+        if tagName in tagsSoFar and TagFlag.PRIMARY not in tag["flags"]:
             continue
 
         tagsSoFar.add(tagName)
@@ -456,17 +461,15 @@ def CreateTagDisplayList(database):
     
     tagList = []
     for rawTag in database["tagRaw"]:
-        listItem = {"level" : rawTag["level"],"indexNumber" : rawTag["indexNumber"]}
+        listItem = {}
+        for key in ["level","indexNumber","flags"]:
+            listItem[key] = rawTag[key]
         
         itemCount = rawTag["itemCount"]
         if itemCount > 1:
             indexNumber = int(rawTag["indexNumber"])
             separator = '-' if itemCount > 1 else ','
             listItem["indexNumber"] = separator.join((str(indexNumber),str(indexNumber + itemCount - 1)))
-            """if rawTag["itemCount"] > 2:
-                listItem["indexNumber"] = ','
-            else:
-                listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))"""
         
         name = FirstValidValue(rawTag,["fullTag","pali"])
         tag = rawTag["tag"]
@@ -495,7 +498,7 @@ def CreateTagDisplayList(database):
         listItem["subsumed"] = subsumed
         listItem["text"] = text
             
-        if rawTag["virtual"]:
+        if TagFlag.VIRTUAL in rawTag["flags"]:
             listItem["tag"] = "" # Virtual tags don't have a display page
         else:
             listItem["tag"] = tag
@@ -506,7 +509,7 @@ def CreateTagDisplayList(database):
     
     # Cross-check tag indexes
     for tag in database["tag"]:
-        if not database["tag"][tag]["virtual"]:
+        if TagFlag.VIRTUAL not in database["tag"][tag]["flags"]:
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
@@ -952,7 +955,7 @@ def CountAndVerify(database):
         tagDesc = database["tag"][tag]
         if tagDesc["primaries"] > 1:
             Alert.caution.Show(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
-        if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and not tagDesc["virtual"]:
+        if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and TagFlag.VIRTUAL not in tagDesc["flags"]:
             Alert.notice.Show(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
 
 def VerifyListCounts(database):
