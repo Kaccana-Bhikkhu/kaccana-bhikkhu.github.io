@@ -13,6 +13,7 @@ from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
+from collections import defaultdict
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -333,56 +334,78 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             return pali
 
-    def PaliEntry(tag: dict,pali: str,fullTag:bool = False) -> Alphabetize:
-        pali = AlphabetizeNames(RemoveItalics(pali))
+    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> Alphabetize:
+        """pali = AlphabetizeNames(RemoveItalics(pali))
         if not pali:
-            return None
-        sortBy = Utils.RemoveDiacritics(pali).lower()
-        html = f"{pali} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
+            return None"""
+        sortBy = Utils.RemoveDiacritics(text).lower()
+        html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
         return Alphabetize(sortBy,html)
 
-    englishList = []
-    paliList = []
+
+    entries = defaultdict(list)
     for tag in gDatabase["tag"].values():
         if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
             continue
-        
-        if tag["tag"] == tag["pali"]: # If this is a Pali-only tag, add it to the pali list and go on to the next tag
-            entry = EnglishEntry(tag,tag["tag"])
-            paliList.append(entry._replace(html=entry.html.lower()))
-            continue
 
-        englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-        if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
-            englishList.append(EnglishEntry(tag,tag["tag"]))
-            # File the abbreviated tag separately if it's not a simple truncation
+        nonEnglish = tag["tag"] == tag["pali"]
+        properNoun = ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])
+        hasPali = tag["pali"] and not tag["fullPali"].endswith("</em>")
+            # Non-Pāli language full tags end in <em>LANGUAGE</em>
+
+        if nonEnglish: # If this tag has no English entry, add it to the appropriate language list and go on to the next tag
+            entry = EnglishEntry(tag,tag["fullPali"],fullTag=False)
+            if hasPali:
+                entries["pali"].append(entry._replace(html=entry.html.lower())) # Pali words are in lowercase
+            else:
+                entries["other"].append(entry)
+            continue
+        
+        if properNoun:
+            entries["proper"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+        else:
+            entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+            if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
+                entries["english"].append(EnglishEntry(tag,tag["tag"]))
+                # File the abbreviated tag separately if it's not a simple truncation
                 
-        if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
-            entry = PaliEntry(tag,tag["pali"])
-            if entry:
-                paliList.append(entry)
-        if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the Pali tag name
-            entry = PaliEntry(tag,tag["fullPali"],fullTag=True)
-            if entry:
-                paliList.append(entry)
+        if tag["pali"]: # Add an entry for foriegn language items
+            entry = NonEnglishEntry(tag,tag["pali"])
+            if hasPali:
+                entries["pali"].append(entry)
+            else:
+                entries["other"].append(entry)
+        if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the full Pāli tag
+            entry = NonEnglishEntry(tag,tag["fullPali"],fullTag=True)
+            if hasPali:
+                entries["pali"].append(entry)
+            else:
+                entries["other"].append(entry)
         
         for translation in tag["alternateTranslations"]:
-            html = f"{translation} – alternative translation of {PaliEntry(tag,tag['fullPali'],fullTag=True).html}"
-            englishList.append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
-    
-    englishList.sort()
-    paliList.sort()
-    allList = sorted(itertools.chain(englishList,paliList))
+            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
+            entries["english"].append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
+        
+    for e in entries.values():
+        e.sort()
+    allList = sorted(itertools.chain.from_iterable(entries.values()))
 
     def TagItem(line:Alphabetize) -> str:
         return line.sortBy[0].upper(),"".join(("<p>",line.html,"</p>"))
 
+    def LenStr(items: list) -> str:
+        return f" ({len(items)})"
+    
     subMenu = [
-        [pageInfo._replace(title = "All tags"),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
-        [pageInfo._replace(title = "English only",file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
-            str(Html.ListWithHeadings(englishList,TagItem,addMenu=True,countItems=False))],
-        [pageInfo._replace(title = "Pāli only",file=Utils.PosixJoin(pageDir,"PaliTags.html")),
-            str(Html.ListWithHeadings(paliList,TagItem,addMenu=True,countItems=False))]
+        [pageInfo._replace(title = "All tags"+LenStr(allList)),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "English"+LenStr(entries["english"]),file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
+            str(Html.ListWithHeadings(entries["english"],TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "Pāli"+LenStr(entries["pali"]),file=Utils.PosixJoin(pageDir,"PaliTags.html")),
+            str(Html.ListWithHeadings(entries["pali"],TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "Other languages"+LenStr(entries["other"]),file=Utils.PosixJoin(pageDir,"OtherTags.html")),
+            str(Html.ListWithHeadings(entries["other"],TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "People/places/traditions"+LenStr(entries["proper"]),file=Utils.PosixJoin(pageDir,"ProperTags.html")),
+            str(Html.ListWithHeadings(entries["proper"],TagItem,addMenu=True,countItems=False))]
     ]
 
     basePage = Html.PageDesc()
