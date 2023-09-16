@@ -420,7 +420,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
             # text-decoration: none ensures the icon isn't underlined
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
-            with a.a(href = hyperlink):
+            with a.a(href = hyperlink,download=""):
                 a(f"Download audio")
             a(f" ({dataDuration})")
         a.br()
@@ -429,7 +429,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         if dataDuration:
             durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
         with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
-            with a.a(href = hyperlink):
+            with a.a(href = hyperlink,download=""):
                 a(f"Download audio")
             a(f" ({dataDuration})")
         a.br()
