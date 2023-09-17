@@ -46755,7 +46755,7 @@
         "Unbinding"
       ],
       "related": [],
-      "flags": "0",
+      "flags": "0C",
       "subtags": [],
       "supertags": [
         "Stages of awakening"
@@ -48177,9 +48177,9 @@
     },
     "Moods of the mind": {
       "tag": "Moods of the mind",
-      "pali": "arom kon git",
+      "pali": "arom kong git <em>Thai</em>",
       "fullTag": "Moods of the mind",
-      "fullPali": "arom kon git",
+      "fullPali": "arom kong git <em>Thai</em>",
       "number": "",
       "alternateTranslations": [],
       "related": [],
@@ -48379,7 +48379,7 @@
       "number": "",
       "alternateTranslations": [],
       "related": [],
-      "flags": "",
+      "flags": "CEp",
       "subtags": [
         "Buddha/Biography",
         "Buddha images",
@@ -48464,7 +48464,7 @@
       "number": "",
       "alternateTranslations": [],
       "related": [],
-      "flags": "",
+      "flags": "C",
       "subtags": [],
       "supertags": [
         "Three Refuges"
@@ -48478,13 +48478,13 @@
     },
     "Saṅgha": {
       "tag": "Saṅgha",
-      "pali": "monastic community",
+      "pali": "Saṅgha",
       "fullTag": "Saṅgha",
-      "fullPali": "monastic community",
+      "fullPali": "Saṅgha",
       "number": "",
       "alternateTranslations": [],
       "related": [],
-      "flags": "*",
+      "flags": "*C",
       "subtags": [
         "Fourfold Assembly",
         "Communal harmony",
@@ -51993,7 +51993,7 @@
       "number": "",
       "alternateTranslations": [],
       "related": [],
-      "flags": "",
+      "flags": "Cp",
       "subtags": [],
       "supertags": [
         "Other beings"
@@ -52130,7 +52130,9 @@
       "fullPali": "asaṅkhata",
       "number": "",
       "alternateTranslations": [],
-      "related": [],
+      "related": [
+        "Nibbāna"
+      ],
       "flags": "",
       "subtags": [],
       "supertags": [
@@ -56875,7 +56877,7 @@
     {
       "level": 3,
       "indexNumber": "",
-      "flags": "0",
+      "flags": "0C",
       "name": "Nibbāna",
       "pali": "Nibbāna",
       "excerptCount": 16,
@@ -57988,10 +57990,10 @@
       "indexNumber": "",
       "flags": "*",
       "name": "Moods of the mind",
-      "pali": "arom kon git",
+      "pali": "arom kong git <em>Thai</em>",
       "excerptCount": 1,
       "subsumed": false,
-      "text": "Moods of the mind (1) [arom kon git]",
+      "text": "Moods of the mind (1) [arom kong git <em>Thai</em>]",
       "tag": "Moods of the mind"
     },
     {
@@ -58096,7 +58098,7 @@
     {
       "level": 2,
       "indexNumber": "1",
-      "flags": "",
+      "flags": "CEp",
       "name": "Buddha",
       "pali": "Buddha",
       "excerptCount": 24,
@@ -58140,7 +58142,7 @@
     {
       "level": 2,
       "indexNumber": "2",
-      "flags": "",
+      "flags": "C",
       "name": "Dhamma",
       "pali": "Dhamma",
       "excerptCount": 30,
@@ -58151,7 +58153,7 @@
     {
       "level": 2,
       "indexNumber": "3",
-      "flags": "",
+      "flags": "C",
       "name": "Saṅgha",
       "pali": "Saṅgha",
       "excerptCount": 37,
@@ -60967,7 +60969,7 @@
     {
       "level": 3,
       "indexNumber": "",
-      "flags": "",
+      "flags": "Cp",
       "name": "Māra",
       "pali": "Māra",
       "excerptCount": 6,
@@ -61013,10 +61015,10 @@
       "indexNumber": "",
       "flags": "",
       "name": "Moods of the mind",
-      "pali": "arom kon git",
+      "pali": "arom kong git <em>Thai</em>",
       "excerptCount": 1,
       "subsumed": false,
-      "text": "Moods of the mind (1) [arom kon git]",
+      "text": "Moods of the mind (1) [arom kong git <em>Thai</em>]",
       "tag": "Moods of the mind"
     },
     {
@@ -62001,12 +62003,12 @@
     {
       "level": 3,
       "indexNumber": "",
-      "flags": "*",
+      "flags": "*C",
       "name": "Saṅgha",
-      "pali": "monastic community",
+      "pali": "Saṅgha",
       "excerptCount": 37,
       "subsumed": false,
-      "text": "Saṅgha (37) [monastic community]",
+      "text": "Saṅgha (37)",
       "tag": "Saṅgha"
     },
     {

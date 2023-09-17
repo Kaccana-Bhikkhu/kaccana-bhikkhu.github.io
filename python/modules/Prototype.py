@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import List, Iterator, Tuple, Callable
+from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
 import Utils, Html, Alert, Filter, ParseCSV, Document
 from datetime import timedelta
@@ -350,19 +350,29 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
         nonEnglish = tag["tag"] == tag["pali"]
         properNoun = ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])
+        englishAlso = ParseCSV.TagFlag.ENGLISH_ALSO in tag["flags"]
         hasPali = tag["pali"] and not tag["fullPali"].endswith("</em>")
             # Non-Pāli language full tags end in <em>LANGUAGE</em>
 
         if nonEnglish: # If this tag has no English entry, add it to the appropriate language list and go on to the next tag
             entry = EnglishEntry(tag,tag["fullPali"],fullTag=False)
             if hasPali:
-                entries["pali"].append(entry._replace(html=entry.html.lower())) # Pali words are in lowercase
+                if ParseCSV.TagFlag.CAPITALIZE not in tag["flags"]:
+                    entry = entry._replace(html=entry.html.lower())
+                    # Pali words are in lowercase unless specifically capitalized
+                entries["pali"].append(entry)
             else:
                 entries["other"].append(entry)
+            if properNoun:
+                entries["proper"].append(entry) # Non-English proper nouns are listed here as well
+            if englishAlso:
+                entries["english"].append(entry)
             continue
         
         if properNoun:
             entries["proper"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+            if englishAlso:
+                entries["english"].append(entry)
         else:
             entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
             if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
@@ -375,6 +385,8 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["pali"].append(entry)
             else:
                 entries["other"].append(entry)
+            if englishAlso:
+                entries["english"].append(entry)
         if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the full Pāli tag
             entry = NonEnglishEntry(tag,tag["fullPali"],fullTag=True)
             if hasPali:
@@ -385,10 +397,19 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         for translation in tag["alternateTranslations"]:
             html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
             entries["english"].append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
-        
+    
+    def Deduplicate(iterable: Iterable) -> Iterator:
+        iterable = iter(iterable)
+        prevItem = next(iterable)
+        yield prevItem
+        for item in iterable:
+            if item != prevItem:
+                yield item
+                prevItem = item
+
     for e in entries.values():
         e.sort()
-    allList = sorted(itertools.chain.from_iterable(entries.values()))
+    allList = list(Deduplicate(sorted(itertools.chain.from_iterable(entries.values()))))
 
     def TagItem(line:Alphabetize) -> str:
         return line.sortBy[0].upper(),"".join(("<p>",line.html,"</p>"))
