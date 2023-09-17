@@ -927,7 +927,7 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
         [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
         [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
-        [Html.PageInfo("About event series","../about/04_Series.html")],
+        [Html.PageInfo("About event series","about/04_Series.html")],
         EventPages("events")
     ]
 
@@ -1243,7 +1243,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         MostCommonTagList(indexDir),
-        [Html.PageInfo("About tags","../about/05_Tags.html")],
+        [Html.PageInfo("About tags","about/05_Tags.html")],
         TagPages("tags")
     ]
 
