@@ -345,8 +345,8 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     entries = defaultdict(list)
     for tag in gDatabase["tag"].values():
-        if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
-            continue
+        #if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
+        #    continue
 
         nonEnglish = tag["tag"] == tag["pali"]
         properNoun = ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])

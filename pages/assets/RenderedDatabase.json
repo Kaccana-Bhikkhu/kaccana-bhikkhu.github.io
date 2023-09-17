@@ -44292,6 +44292,7 @@
         "Trust",
         "Courage",
         "Humility",
+        "Dignity",
         "Non-contention",
         "Self-reliance"
       ],
@@ -44386,7 +44387,9 @@
       "related": [],
       "flags": "",
       "subtags": [
-        "Renunciation"
+        "Renunciation",
+        "Non-ill-will",
+        "Non-cruelty"
       ],
       "supertags": [
         "Eightfold Path"
@@ -44615,7 +44618,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "blame-and-praise.html",
-      "listIndex": 666,
+      "listIndex": 731,
       "excerptCount": 2
     },
     "Right Action": {
@@ -44830,7 +44833,11 @@
       ],
       "flags": "*",
       "subtags": [
-        "Effort for the"
+        "Effort for the",
+        "Non-arising of unarisen evil, unskillful qualities",
+        "Abandoning of arisen evil, unskillful qualities",
+        "Arising of unarisen skillful qualities",
+        "Fulfillment of arisen skillful qualities"
       ],
       "supertags": [
         "Eightfold Path",
@@ -44941,7 +44948,7 @@
       "copies": 4,
       "primaries": 1,
       "htmlFile": "mindfulness-of-breathing.html",
-      "listIndex": 348,
+      "listIndex": 355,
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 79
@@ -44970,7 +44977,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "postures.html",
-      "listIndex": 377,
+      "listIndex": 386,
       "excerptCount": 3
     },
     "Clear comprehension": {
@@ -45015,7 +45022,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "unattractiveness.html",
-      "listIndex": 350,
+      "listIndex": 357,
       "excerptCount": 2
     },
     "Elements": {
@@ -45038,7 +45045,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "elements.html",
-      "listIndex": 351,
+      "listIndex": 358,
       "excerptCount": 5
     },
     "Recollection/Death": {
@@ -45059,7 +45066,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "recollectiondeath.html",
-      "listIndex": 374,
+      "listIndex": 383,
       "excerptCount": 13
     },
     "Mindfulness of feeling": {
@@ -45157,7 +45164,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "hindrances.html",
-      "listIndex": 182,
+      "listIndex": 183,
       "sessionCount": 1,
       "excerptCount": 17
     },
@@ -45185,7 +45192,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "aggregates.html",
-      "listIndex": 221,
+      "listIndex": 224,
       "excerptCount": 17
     },
     "Sense bases": {
@@ -45206,7 +45213,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "sense-bases.html",
-      "listIndex": 233,
+      "listIndex": 236,
       "excerptCount": 13
     },
     "Factors of Awakening": {
@@ -45252,7 +45259,8 @@
       "subtags": [
         "Noble Truth of Suffering",
         "Cause of Suffering",
-        "Cessation of Suffering"
+        "Cessation of Suffering",
+        "Path to the Cessation of Suffering"
       ],
       "supertags": [
         "Skillful qualities",
@@ -45535,7 +45543,8 @@
         "Death",
         "Suffering",
         "Pain",
-        "Grief"
+        "Grief",
+        "Five aggregates affected by clinging"
       ],
       "supertags": [
         "Four Noble Truths"
@@ -45648,7 +45657,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "suffering.html",
-      "listIndex": 253,
+      "listIndex": 256,
       "excerptCount": 73
     },
     "Pain": {
@@ -45705,6 +45714,8 @@
       ],
       "flags": "*",
       "subtags": [
+        "Craving for sensuality",
+        "Craving to become",
         "Craving not to become"
       ],
       "supertags": [
@@ -45891,8 +45902,11 @@
       "related": [],
       "flags": "*",
       "subtags": [
+        "Foundations of Mindfulness",
+        "Four Right Efforts",
         "Bases of Success",
         "Faculties",
+        "Powers",
         "Factors of Awakening",
         "Eightfold Path"
       ],
@@ -45918,7 +45932,8 @@
         "Concentration based on exertion and",
         "Desire",
         "Energy",
-        "Heart/mind"
+        "Heart/mind",
+        "Investigation"
       ],
       "supertags": [
         "Skillful qualities",
@@ -47087,6 +47102,25 @@
       "listIndex": 169,
       "excerptCount": 3
     },
+    "Dignity": {
+      "tag": "Dignity",
+      "pali": "",
+      "fullTag": "Dignity",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Skillful qualities"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "dignity.html",
+      "listIndex": 170
+    },
     "Non-contention": {
       "tag": "Non-contention",
       "pali": "",
@@ -47104,7 +47138,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "non-contention.html",
-      "listIndex": 170,
+      "listIndex": 171,
       "excerptCount": 3
     },
     "Self-reliance": {
@@ -47124,7 +47158,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "self-reliance.html",
-      "listIndex": 171,
+      "listIndex": 172,
       "excerptCount": 4
     },
     "Unskillful qualities": {
@@ -47143,18 +47177,20 @@
         "Hindrances",
         "Fetters",
         "Heedlessness",
+        "Defilement",
         "Proliferation",
         "Conceit-related",
         "Depression",
         "Abuse/violence",
         "Addiction",
+        "Dogmatism",
         "Spiritual bypass"
       ],
       "supertags": [],
       "copies": 1,
       "primaries": 0,
       "htmlFile": "unskillful-qualities.html",
-      "listIndex": 172,
+      "listIndex": 173,
       "excerptCount": 19
     },
     "Unwholesome Roots": {
@@ -47178,7 +47214,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "unwholesome-roots.html",
-      "listIndex": 173,
+      "listIndex": 174,
       "excerptCount": 19
     },
     "Greed": {
@@ -47200,7 +47236,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "greed.html",
-      "listIndex": 174,
+      "listIndex": 175,
       "excerptCount": 8
     },
     "Aversion": {
@@ -47222,7 +47258,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "aversion.html",
-      "listIndex": 175,
+      "listIndex": 176,
       "excerptCount": 36
     },
     "Delusion": {
@@ -47242,7 +47278,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "delusion.html",
-      "listIndex": 176,
+      "listIndex": 177,
       "excerptCount": 27
     },
     "Outflows": {
@@ -47256,6 +47292,7 @@
       "related": [],
       "flags": "",
       "subtags": [
+        "Sensuality",
         "Becoming",
         "Ignorance",
         "Views"
@@ -47266,7 +47303,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "outflows.html",
-      "listIndex": 177,
+      "listIndex": 178,
       "excerptCount": 3
     },
     "Becoming": {
@@ -47287,7 +47324,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "becoming.html",
-      "listIndex": 179,
+      "listIndex": 180,
       "excerptCount": 19
     },
     "Ignorance": {
@@ -47309,7 +47346,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "ignorance.html",
-      "listIndex": 180,
+      "listIndex": 181,
       "excerptCount": 2
     },
     "Views": {
@@ -47329,7 +47366,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "views.html",
-      "listIndex": 181,
+      "listIndex": 182,
       "excerptCount": 17
     },
     "Sensual desire": {
@@ -47352,7 +47389,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "sensual-desire.html",
-      "listIndex": 183,
+      "listIndex": 184,
       "excerptCount": 15
     },
     "Ill-will": {
@@ -47375,7 +47412,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "ill-will.html",
-      "listIndex": 184,
+      "listIndex": 185,
       "excerptCount": 10
     },
     "Sloth and torpor": {
@@ -47397,7 +47434,7 @@
       "copies": 1,
       "primaries": 1,
       "htmlFile": "sloth-and-torpor.html",
-      "listIndex": 185,
+      "listIndex": 186,
       "excerptCount": 14
     },
     "Restlessness and worry": {
@@ -47419,7 +47456,7 @@
       "copies": 1,
       "primaries": 1,
       "htmlFile": "restlessness-and-worry.html",
-      "listIndex": 186,
+      "listIndex": 187,
       "excerptCount": 24
     },
     "Doubt": {
@@ -47442,7 +47479,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "doubt.html",
-      "listIndex": 187,
+      "listIndex": 188,
       "excerptCount": 19
     },
     "Fetters": {
@@ -47464,6 +47501,7 @@
         "Craving for material existence",
         "Craving for immaterial existence",
         "Conceit",
+        "Restlessness",
         "Ignorance"
       ],
       "supertags": [
@@ -47472,7 +47510,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "fetters.html",
-      "listIndex": 188,
+      "listIndex": 189,
       "excerptCount": 3
     },
     "Self-identity view": {
@@ -47493,7 +47531,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "self-identity-view.html",
-      "listIndex": 189,
+      "listIndex": 190,
       "excerptCount": 69
     },
     "Attachment to rites and rituals": {
@@ -47513,7 +47551,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "attachment-to-rites-and-rituals.html",
-      "listIndex": 191,
+      "listIndex": 192,
       "excerptCount": 5
     },
     "Craving for material existence": {
@@ -47535,7 +47573,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "craving-for-material-existence.html",
-      "listIndex": 194,
+      "listIndex": 195,
       "excerptCount": 1
     },
     "Craving for immaterial existence": {
@@ -47557,7 +47595,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "craving-for-immaterial-existence.html",
-      "listIndex": 195
+      "listIndex": 196
     },
     "Conceit": {
       "tag": "Conceit",
@@ -47577,7 +47615,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "conceit.html",
-      "listIndex": 196,
+      "listIndex": 197,
       "excerptCount": 9
     },
     "Heedlessness": {
@@ -47597,7 +47635,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "heedlessness.html",
-      "listIndex": 199,
+      "listIndex": 200,
       "excerptCount": 4
     },
     "Proliferation": {
@@ -47617,7 +47655,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "proliferation.html",
-      "listIndex": 201,
+      "listIndex": 202,
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 56
@@ -47640,7 +47678,8 @@
         "Jealousy",
         "Competitiveness",
         "Selfishness",
-        "Guilt/shame/inadequacy"
+        "Guilt/shame/inadequacy",
+        "Self-pity"
       ],
       "supertags": [
         "Unskillful qualities"
@@ -47648,7 +47687,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "conceit-related.html",
-      "listIndex": 202
+      "listIndex": 203
     },
     "Judgementalism": {
       "tag": "Judgementalism",
@@ -47667,7 +47706,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "judgementalism.html",
-      "listIndex": 205,
+      "listIndex": 206,
       "excerptCount": 14
     },
     "Perfectionism": {
@@ -47687,7 +47726,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "perfectionism.html",
-      "listIndex": 206,
+      "listIndex": 207,
       "excerptCount": 8
     },
     "Jealousy": {
@@ -47707,7 +47746,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "jealousy.html",
-      "listIndex": 207,
+      "listIndex": 208,
       "excerptCount": 1
     },
     "Competitiveness": {
@@ -47727,7 +47766,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "competitiveness.html",
-      "listIndex": 208,
+      "listIndex": 209,
       "excerptCount": 1
     },
     "Selfishness": {
@@ -47747,7 +47786,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "selfishness.html",
-      "listIndex": 209,
+      "listIndex": 210,
       "excerptCount": 4
     },
     "Guilt/shame/inadequacy": {
@@ -47770,8 +47809,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "guiltshameinadequacy.html",
-      "listIndex": 210,
+      "listIndex": 211,
       "excerptCount": 12
+    },
+    "Self-pity": {
+      "tag": "Self-pity",
+      "pali": "",
+      "fullTag": "Self-pity",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Conceit-related"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "self-pity.html",
+      "listIndex": 212
     },
     "Depression": {
       "tag": "Depression",
@@ -47790,7 +47848,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "depression.html",
-      "listIndex": 211,
+      "listIndex": 213,
       "excerptCount": 10
     },
     "Abuse/violence": {
@@ -47812,7 +47870,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "abuseviolence.html",
-      "listIndex": 212,
+      "listIndex": 214,
       "excerptCount": 2
     },
     "Addiction": {
@@ -47832,8 +47890,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "addiction.html",
-      "listIndex": 213,
+      "listIndex": 215,
       "excerptCount": 1
+    },
+    "Dogmatism": {
+      "tag": "Dogmatism",
+      "pali": "",
+      "fullTag": "Dogmatism",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Unskillful qualities"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "dogmatism.html",
+      "listIndex": 216
     },
     "Spiritual bypass": {
       "tag": "Spiritual bypass",
@@ -47852,7 +47929,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "spiritual-bypass.html",
-      "listIndex": 214,
+      "listIndex": 217,
       "excerptCount": 4
     },
     "Indeterminate qualities": {
@@ -47873,6 +47950,7 @@
         "Characteristics of existence",
         "Moods of the mind",
         "Emotion",
+        "Attitude",
         "Personality",
         "Fear",
         "Idealism",
@@ -47883,7 +47961,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "indeterminate-qualities.html",
-      "listIndex": 215
+      "listIndex": 218
     },
     "Nutriment": {
       "tag": "Nutriment",
@@ -47907,7 +47985,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "nutriment.html",
-      "listIndex": 216,
+      "listIndex": 219,
       "excerptCount": 4
     },
     "Food": {
@@ -47927,7 +48005,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "food.html",
-      "listIndex": 217,
+      "listIndex": 220,
       "excerptCount": 22
     },
     "Contact": {
@@ -47948,7 +48026,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "contact.html",
-      "listIndex": 234,
+      "listIndex": 237,
       "excerptCount": 4
     },
     "Volition": {
@@ -47968,7 +48046,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "volition.html",
-      "listIndex": 219,
+      "listIndex": 222,
       "excerptCount": 24
     },
     "Consciousness": {
@@ -47990,7 +48068,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "consciousness.html",
-      "listIndex": 226,
+      "listIndex": 229,
       "excerptCount": 17
     },
     "Form": {
@@ -48012,7 +48090,7 @@
       "copies": 1,
       "primaries": 1,
       "htmlFile": "form.html",
-      "listIndex": 222,
+      "listIndex": 225,
       "excerptCount": 2
     },
     "Feeling": {
@@ -48026,6 +48104,8 @@
       "related": [],
       "flags": "*",
       "subtags": [
+        "Pleasant feeling",
+        "Unpleasant feeling",
         "Neutral feeling"
       ],
       "supertags": [
@@ -48035,7 +48115,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "feeling.html",
-      "listIndex": 223,
+      "listIndex": 226,
       "excerptCount": 19
     },
     "Perception": {
@@ -48055,7 +48135,7 @@
       "copies": 1,
       "primaries": 1,
       "htmlFile": "perception.html",
-      "listIndex": 224,
+      "listIndex": 227,
       "excerptCount": 14
     },
     "Volitional formations": {
@@ -48076,7 +48156,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "volitional-formations.html",
-      "listIndex": 225,
+      "listIndex": 228,
       "excerptCount": 27
     },
     "Conditionality": {
@@ -48097,7 +48177,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "conditionality.html",
-      "listIndex": 227,
+      "listIndex": 230,
       "excerptCount": 35
     },
     "Dependent origination": {
@@ -48114,6 +48194,7 @@
         "Ignorance",
         "Volitional formations",
         "Consciousness",
+        "Name and form",
         "Sense bases",
         "Contact",
         "Feeling",
@@ -48129,7 +48210,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dependent-origination.html",
-      "listIndex": 228,
+      "listIndex": 231,
       "excerptCount": 8
     },
     "Neutral feeling": {
@@ -48149,7 +48230,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "neutral-feeling.html",
-      "listIndex": 238,
+      "listIndex": 241,
       "excerptCount": 1
     },
     "Craving": {
@@ -48163,6 +48244,8 @@
       "related": [],
       "flags": "",
       "subtags": [
+        "Craving for sensuality",
+        "Craving to become",
         "Craving not to become"
       ],
       "supertags": [
@@ -48171,7 +48254,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "craving.html",
-      "listIndex": 239,
+      "listIndex": 242,
       "eventCount": 1,
       "excerptCount": 29
     },
@@ -48186,6 +48269,9 @@
       "related": [],
       "flags": "",
       "subtags": [
+        "Sensuality-clinging",
+        "View-clinging",
+        "Rites-and-rituals clinging",
         "Doctrine-of-self clinging"
       ],
       "supertags": [
@@ -48194,7 +48280,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "clinging.html",
-      "listIndex": 243,
+      "listIndex": 246,
       "excerptCount": 40
     },
     "Doctrine-of-self clinging": {
@@ -48214,7 +48300,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "doctrine-of-self-clinging.html",
-      "listIndex": 247,
+      "listIndex": 250,
       "excerptCount": 2
     },
     "Characteristics of existence": {
@@ -48235,7 +48321,8 @@
         "Lawfulness",
         "Conditionality",
         "Emptiness",
-        "Suchness"
+        "Suchness",
+        "Not-made-of-that"
       ],
       "supertags": [
         "Indeterminate qualities"
@@ -48243,7 +48330,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "characteristics-of-existence.html",
-      "listIndex": 251,
+      "listIndex": 254,
       "excerptCount": 12
     },
     "Impermanence": {
@@ -48263,7 +48350,7 @@
       "copies": 1,
       "primaries": 1,
       "htmlFile": "impermanence.html",
-      "listIndex": 252,
+      "listIndex": 255,
       "excerptCount": 40
     },
     "Not-self": {
@@ -48283,7 +48370,7 @@
       "copies": 1,
       "primaries": 1,
       "htmlFile": "not-self.html",
-      "listIndex": 254,
+      "listIndex": 257,
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 54
@@ -48305,7 +48392,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "naturalness.html",
-      "listIndex": 255,
+      "listIndex": 258,
       "excerptCount": 7
     },
     "Lawfulness": {
@@ -48325,7 +48412,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "lawfulness.html",
-      "listIndex": 256,
+      "listIndex": 259,
       "excerptCount": 1
     },
     "Emptiness": {
@@ -48345,7 +48432,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "emptiness.html",
-      "listIndex": 258,
+      "listIndex": 261,
       "excerptCount": 5
     },
     "Suchness": {
@@ -48365,8 +48452,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "suchness.html",
-      "listIndex": 259,
+      "listIndex": 262,
       "excerptCount": 1
+    },
+    "Not-made-of-that": {
+      "tag": "Not-made-of-that",
+      "pali": "atammayatā",
+      "fullTag": "Not-made-of-that",
+      "fullPali": "atammayatā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "0",
+      "subtags": [],
+      "supertags": [
+        "Characteristics of existence"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "not-made-of-that.html",
+      "listIndex": 263
     },
     "Moods of the mind": {
       "tag": "Moods of the mind",
@@ -48386,7 +48492,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "moods-of-the-mind.html",
-      "listIndex": 260,
+      "listIndex": 264,
       "excerptCount": 1
     },
     "Emotion": {
@@ -48406,8 +48512,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "emotion.html",
-      "listIndex": 261,
+      "listIndex": 265,
       "excerptCount": 9
+    },
+    "Attitude": {
+      "tag": "Attitude",
+      "pali": "",
+      "fullTag": "Attitude",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Indeterminate qualities"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "attitude.html",
+      "listIndex": 266
     },
     "Personality": {
       "tag": "Personality",
@@ -48429,7 +48554,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "personality.html",
-      "listIndex": 262,
+      "listIndex": 267,
       "excerptCount": 10
     },
     "Habits": {
@@ -48449,7 +48574,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "habits.html",
-      "listIndex": 263,
+      "listIndex": 268,
       "excerptCount": 11
     },
     "Humor": {
@@ -48469,7 +48594,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "humor.html",
-      "listIndex": 264,
+      "listIndex": 269,
       "excerptCount": 5
     },
     "Fear": {
@@ -48489,7 +48614,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "fear.html",
-      "listIndex": 265,
+      "listIndex": 270,
       "excerptCount": 36
     },
     "Idealism": {
@@ -48509,7 +48634,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "idealism.html",
-      "listIndex": 266,
+      "listIndex": 271,
       "excerptCount": 21
     },
     "Intuition": {
@@ -48529,7 +48654,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "intuition.html",
-      "listIndex": 267,
+      "listIndex": 272,
       "excerptCount": 2
     },
     "Beauty": {
@@ -48549,7 +48674,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "beauty.html",
-      "listIndex": 268,
+      "listIndex": 273,
       "excerptCount": 2
     },
     "Three Refuges": {
@@ -48571,7 +48696,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "three-refuges.html",
-      "listIndex": 269,
+      "listIndex": 274,
       "excerptCount": 16
     },
     "Buddha": {
@@ -48595,7 +48720,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "buddha.html",
-      "listIndex": 270,
+      "listIndex": 275,
       "excerptCount": 24
     },
     "Buddha/Biography": {
@@ -48616,7 +48741,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "buddhabiography.html",
-      "listIndex": 541,
+      "listIndex": 592,
       "eventCount": 1,
       "sessionCount": 1,
       "excerptCount": 25
@@ -48639,7 +48764,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "buddha-images.html",
-      "listIndex": 290,
+      "listIndex": 296,
       "excerptCount": 3
     },
     "Buddho mantra": {
@@ -48660,7 +48785,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "buddho-mantra.html",
-      "listIndex": 362,
+      "listIndex": 370,
       "excerptCount": 3
     },
     "Dhamma": {
@@ -48680,7 +48805,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dhamma.html",
-      "listIndex": 274,
+      "listIndex": 279,
       "sessionCount": 1,
       "excerptCount": 30
     },
@@ -48710,7 +48835,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "sangha.html",
-      "listIndex": 625,
+      "listIndex": 684,
       "sessionCount": 2,
       "excerptCount": 37
     },
@@ -48740,7 +48865,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "devotional-practice.html",
-      "listIndex": 276,
+      "listIndex": 281,
       "excerptCount": 19
     },
     "Ceremony/ritual": {
@@ -48764,7 +48889,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ceremonyritual.html",
-      "listIndex": 277,
+      "listIndex": 282,
       "excerptCount": 7
     },
     "Pūjā": {
@@ -48784,7 +48909,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "puja.html",
-      "listIndex": 278,
+      "listIndex": 283,
       "excerptCount": 2
     },
     "Chanting": {
@@ -48806,7 +48931,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "chanting.html",
-      "listIndex": 279,
+      "listIndex": 284,
       "eventCount": 1,
       "sessionCount": 3,
       "excerptCount": 64
@@ -48828,7 +48953,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "protective-chants.html",
-      "listIndex": 280,
+      "listIndex": 285,
       "sessionCount": 1,
       "excerptCount": 6
     },
@@ -48850,7 +48975,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "bowing.html",
-      "listIndex": 382,
+      "listIndex": 391,
       "excerptCount": 8
     },
     "Festival days": {
@@ -48874,7 +48999,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "festival-days.html",
-      "listIndex": 282,
+      "listIndex": 287,
       "excerptCount": 2
     },
     "Lunar observance days": {
@@ -48895,7 +49020,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "lunar-observance-days.html",
-      "listIndex": 283,
+      "listIndex": 288,
       "excerptCount": 8
     },
     "Kaṭhina": {
@@ -48915,7 +49040,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "kathina.html",
-      "listIndex": 284,
+      "listIndex": 289,
       "eventCount": 1,
       "excerptCount": 1
     },
@@ -48936,7 +49061,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-chah-remembrance-day.html",
-      "listIndex": 285,
+      "listIndex": 290,
       "excerptCount": 1
     },
     "Visiting holy sites": {
@@ -48956,7 +49081,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "visiting-holy-sites.html",
-      "listIndex": 286,
+      "listIndex": 291,
       "excerptCount": 3
     },
     "Objects of veneration": {
@@ -48972,7 +49097,9 @@
       "subtags": [
         "Relics",
         "Stupas/monuments",
+        "Bodhi Tree",
         "Buddha images",
+        "Malas",
         "Amulets"
       ],
       "supertags": [
@@ -48981,7 +49108,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "objects-of-veneration.html",
-      "listIndex": 287
+      "listIndex": 292
     },
     "Relics": {
       "tag": "Relics",
@@ -49000,7 +49127,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "relics.html",
-      "listIndex": 288,
+      "listIndex": 293,
       "excerptCount": 4
     },
     "Stupas/monuments": {
@@ -49022,8 +49149,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "stupasmonuments.html",
-      "listIndex": 289,
+      "listIndex": 294,
       "excerptCount": 1
+    },
+    "Bodhi Tree": {
+      "tag": "Bodhi Tree",
+      "pali": "",
+      "fullTag": "Bodhi Tree",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Objects of veneration"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "bodhi-tree.html",
+      "listIndex": 295
+    },
+    "Malas": {
+      "tag": "Malas",
+      "pali": "",
+      "fullTag": "Malas",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Objects of veneration"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "malas.html",
+      "listIndex": 297
     },
     "Amulets": {
       "tag": "Amulets",
@@ -49042,7 +49207,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "amulets.html",
-      "listIndex": 291,
+      "listIndex": 298,
       "excerptCount": 1
     },
     "Funerals": {
@@ -49062,7 +49227,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "funerals.html",
-      "listIndex": 292,
+      "listIndex": 299,
       "excerptCount": 5
     },
     "Superstition": {
@@ -49082,7 +49247,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "superstition.html",
-      "listIndex": 293,
+      "listIndex": 300,
       "excerptCount": 1
     },
     "Precepts": {
@@ -49099,13 +49264,14 @@
       "flags": "",
       "subtags": [
         "Five Precepts",
-        "Eight Precepts"
+        "Eight Precepts",
+        "Monastic precepts"
       ],
       "supertags": [],
       "copies": 1,
       "primaries": 0,
       "htmlFile": "precepts.html",
-      "listIndex": 294,
+      "listIndex": 301,
       "excerptCount": 22
     },
     "Five Precepts": {
@@ -49133,7 +49299,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "five-precepts.html",
-      "listIndex": 295,
+      "listIndex": 302,
       "excerptCount": 7
     },
     "Intoxicants": {
@@ -49154,7 +49320,7 @@
       "copies": 4,
       "primaries": 1,
       "htmlFile": "intoxicants.html",
-      "listIndex": 305,
+      "listIndex": 312,
       "excerptCount": 19
     },
     "Eight Precepts": {
@@ -49173,6 +49339,7 @@
         "Abstaining from:",
         "Killing",
         "Stealing",
+        "Sexual activity",
         "False speech",
         "Intoxicants",
         "Eating after noon",
@@ -49186,7 +49353,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "eight-precepts.html",
-      "listIndex": 306,
+      "listIndex": 313,
       "excerptCount": 4
     },
     "Eating after noon": {
@@ -49208,7 +49375,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "eating-after-noon.html",
-      "listIndex": 317,
+      "listIndex": 324,
       "excerptCount": 2
     },
     "Entertainment and adornment": {
@@ -49230,7 +49397,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "entertainment-and-adornment.html",
-      "listIndex": 318,
+      "listIndex": 325,
       "excerptCount": 6
     },
     "High and luxurious beds": {
@@ -49253,7 +49420,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "high-and-luxurious-beds.html",
-      "listIndex": 319,
+      "listIndex": 326,
       "excerptCount": 1
     },
     "Meditation": {
@@ -49269,6 +49436,7 @@
       "subtags": [
         "Meditation/General advice",
         "Right Effort",
+        "Foundations of Mindfulness",
         "Right Concentration",
         "Meditation/Techniques",
         "Calming meditation",
@@ -49284,7 +49452,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditation.html",
-      "listIndex": 321,
+      "listIndex": 328,
       "excerptCount": 41
     },
     "Meditation/General advice": {
@@ -49304,7 +49472,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditationgeneral-advice.html",
-      "listIndex": 322,
+      "listIndex": 329,
       "excerptCount": 15
     },
     "Meditation/Techniques": {
@@ -49321,12 +49489,14 @@
         "Mindfulness of breathing",
         "Unattractiveness",
         "Elements",
+        "Perception of light",
         "Kasiṇa",
         "Divine Abidings",
         "Visualization",
         "Body scanning",
         "Noting",
         "Mantra",
+        "Movement meditation",
         "Hua tou"
       ],
       "supertags": [
@@ -49335,7 +49505,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditationtechniques.html",
-      "listIndex": 347,
+      "listIndex": 354,
       "excerptCount": 8
     },
     "Gladdening the mind": {
@@ -49355,9 +49525,28 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "gladdening-the-mind.html",
-      "listIndex": 349,
+      "listIndex": 356,
       "eventCount": 1,
       "excerptCount": 24
+    },
+    "Perception of light": {
+      "tag": "Perception of light",
+      "pali": "ālokasañña",
+      "fullTag": "Perception of light",
+      "fullPali": "ālokasañña",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Meditation/Techniques"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "perception-of-light.html",
+      "listIndex": 359
     },
     "Kasiṇa": {
       "tag": "Kasiṇa",
@@ -49376,7 +49565,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "kasina.html",
-      "listIndex": 352,
+      "listIndex": 360,
       "excerptCount": 2
     },
     "Visualization": {
@@ -49396,7 +49585,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "visualization.html",
-      "listIndex": 358,
+      "listIndex": 366,
       "excerptCount": 2
     },
     "Body scanning": {
@@ -49416,7 +49605,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "body-scanning.html",
-      "listIndex": 359,
+      "listIndex": 367,
       "excerptCount": 3
     },
     "Noting": {
@@ -49436,7 +49625,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "noting.html",
-      "listIndex": 360,
+      "listIndex": 368,
       "excerptCount": 4
     },
     "Mantra": {
@@ -49458,8 +49647,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mantra.html",
-      "listIndex": 361,
+      "listIndex": 369,
       "excerptCount": 2
+    },
+    "Movement meditation": {
+      "tag": "Movement meditation",
+      "pali": "",
+      "fullTag": "Movement meditation",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Meditation/Techniques"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "movement-meditation.html",
+      "listIndex": 371
     },
     "Hua tou": {
       "tag": "Hua tou",
@@ -49478,7 +49686,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "hua-tou.html",
-      "listIndex": 363,
+      "listIndex": 372,
       "excerptCount": 1
     },
     "Calming meditation": {
@@ -49500,7 +49708,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "calming-meditation.html",
-      "listIndex": 364,
+      "listIndex": 373,
       "excerptCount": 20
     },
     "Insight meditation": {
@@ -49522,7 +49730,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "insight-meditation.html",
-      "listIndex": 365,
+      "listIndex": 374,
       "excerptCount": 16
     },
     "Recollection": {
@@ -49553,7 +49761,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollection.html",
-      "listIndex": 366,
+      "listIndex": 375,
       "excerptCount": 17
     },
     "Recollection/Buddha": {
@@ -49575,7 +49783,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectionbuddha.html",
-      "listIndex": 367,
+      "listIndex": 376,
       "excerptCount": 11
     },
     "Recollection/Dhamma": {
@@ -49597,7 +49805,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectiondhamma.html",
-      "listIndex": 368,
+      "listIndex": 377,
       "excerptCount": 10
     },
     "Recollection/Saṅgha": {
@@ -49619,7 +49827,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectionsangha.html",
-      "listIndex": 369,
+      "listIndex": 378,
       "excerptCount": 3
     },
     "Recollection/Virtue": {
@@ -49641,7 +49849,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectionvirtue.html",
-      "listIndex": 370,
+      "listIndex": 379,
       "excerptCount": 6
     },
     "Recollection/Generosity": {
@@ -49663,7 +49871,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectiongenerosity.html",
-      "listIndex": 371,
+      "listIndex": 380,
       "excerptCount": 4
     },
     "Recollection/Devas": {
@@ -49685,7 +49893,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectiondevas.html",
-      "listIndex": 372,
+      "listIndex": 381,
       "sessionCount": 1,
       "excerptCount": 9
     },
@@ -49706,7 +49914,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectionpeace.html",
-      "listIndex": 376,
+      "listIndex": 385,
       "excerptCount": 2
     },
     "Posture/Sitting": {
@@ -49726,7 +49934,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "posturesitting.html",
-      "listIndex": 378,
+      "listIndex": 387,
       "excerptCount": 9
     },
     "Posture/Walking": {
@@ -49746,7 +49954,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "posturewalking.html",
-      "listIndex": 379,
+      "listIndex": 388,
       "excerptCount": 17
     },
     "Posture/Lying down": {
@@ -49766,7 +49974,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "posturelying-down.html",
-      "listIndex": 380,
+      "listIndex": 389,
       "excerptCount": 3
     },
     "Posture/Standing": {
@@ -49786,7 +49994,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "posturestanding.html",
-      "listIndex": 381,
+      "listIndex": 390,
       "excerptCount": 4
     },
     "Meditation retreats": {
@@ -49806,7 +50014,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditation-retreats.html",
-      "listIndex": 383,
+      "listIndex": 392,
       "excerptCount": 10
     },
     "Meditation/Results": {
@@ -49820,6 +50028,7 @@
       "related": [],
       "flags": "",
       "subtags": [
+        "Wrong concentration",
         "Nimmita",
         "Continuity of mindfulness",
         "Present moment awareness",
@@ -49833,8 +50042,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditationresults.html",
-      "listIndex": 384,
+      "listIndex": 393,
       "excerptCount": 1
+    },
+    "Wrong concentration": {
+      "tag": "Wrong concentration",
+      "pali": "micchā-samādhi",
+      "fullTag": "Wrong concentration",
+      "fullPali": "micchā-samādhi",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Meditation/Results"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "wrong-concentration.html",
+      "listIndex": 394
     },
     "Nimmita": {
       "tag": "Nimmita",
@@ -49853,7 +50081,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "nimmita.html",
-      "listIndex": 385,
+      "listIndex": 395,
       "excerptCount": 5
     },
     "Continuity of mindfulness": {
@@ -49873,7 +50101,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "continuity-of-mindfulness.html",
-      "listIndex": 386,
+      "listIndex": 396,
       "excerptCount": 16
     },
     "Present moment awareness": {
@@ -49893,7 +50121,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "present-moment-awareness.html",
-      "listIndex": 387,
+      "listIndex": 397,
       "excerptCount": 16
     },
     "Spaciousness": {
@@ -49913,7 +50141,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "spaciousness.html",
-      "listIndex": 388,
+      "listIndex": 398,
       "excerptCount": 9
     },
     "Direct experience": {
@@ -49933,7 +50161,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "direct-experience.html",
-      "listIndex": 389,
+      "listIndex": 399,
       "excerptCount": 17
     },
     "Knowing itself": {
@@ -49953,7 +50181,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "knowing-itself.html",
-      "listIndex": 390,
+      "listIndex": 400,
       "excerptCount": 28
     },
     "Meditation/Unusual experiences": {
@@ -49973,7 +50201,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditationunusual-experiences.html",
-      "listIndex": 391,
+      "listIndex": 401,
       "excerptCount": 14
     },
     "Long-term practice": {
@@ -49993,7 +50221,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "long-term-practice.html",
-      "listIndex": 392,
+      "listIndex": 402,
       "excerptCount": 23
     },
     "Teaching Dhamma": {
@@ -50016,6 +50244,7 @@
         "Fierce/direct teaching",
         "Stories",
         "Similes",
+        "Symbolism",
         "Dhamma books",
         "Dhamma online"
       ],
@@ -50023,7 +50252,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "teaching-dhamma.html",
-      "listIndex": 393,
+      "listIndex": 403,
       "excerptCount": 64
     },
     "Gradual Teaching": {
@@ -50039,6 +50268,8 @@
       "subtags": [
         "Generosity",
         "Virtue",
+        "Heaven",
+        "Danger of sensual pleasure",
         "Renunciation",
         "Four Noble Truths"
       ],
@@ -50048,7 +50279,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "gradual-teaching.html",
-      "listIndex": 394,
+      "listIndex": 404,
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 16
@@ -50070,7 +50301,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "questions.html",
-      "listIndex": 420,
+      "listIndex": 430,
       "excerptCount": 12
     },
     "Dhamma discussion": {
@@ -50090,7 +50321,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dhamma-discussion.html",
-      "listIndex": 421,
+      "listIndex": 431,
       "excerptCount": 2
     },
     "Mentoring": {
@@ -50111,7 +50342,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "mentoring.html",
-      "listIndex": 616,
+      "listIndex": 674,
       "excerptCount": 7
     },
     "Personal presence": {
@@ -50131,7 +50362,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "personal-presence.html",
-      "listIndex": 423,
+      "listIndex": 433,
       "excerptCount": 6
     },
     "Fierce/direct teaching": {
@@ -50151,7 +50382,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "fiercedirect-teaching.html",
-      "listIndex": 425,
+      "listIndex": 435,
       "excerptCount": 10
     },
     "Stories": {
@@ -50171,7 +50402,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "stories.html",
-      "listIndex": 426,
+      "listIndex": 436,
       "excerptCount": 1
     },
     "Similes": {
@@ -50191,13 +50422,13 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "similes.html",
-      "listIndex": 427,
+      "listIndex": 437,
       "excerptCount": 35
     },
-    "Dhamma books": {
-      "tag": "Dhamma books",
+    "Symbolism": {
+      "tag": "Symbolism",
       "pali": "",
-      "fullTag": "Dhamma books",
+      "fullTag": "Symbolism",
       "fullPali": "",
       "number": "",
       "alternateTranslations": [],
@@ -50210,9 +50441,49 @@
       ],
       "copies": 1,
       "primaries": 0,
+      "htmlFile": "symbolism.html",
+      "listIndex": 438
+    },
+    "Dhamma books": {
+      "tag": "Dhamma books",
+      "pali": "",
+      "fullTag": "Dhamma books",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [
+        "Free distribution"
+      ],
+      "supertags": [
+        "Teaching Dhamma"
+      ],
+      "copies": 1,
+      "primaries": 0,
       "htmlFile": "dhamma-books.html",
-      "listIndex": 428,
+      "listIndex": 439,
       "excerptCount": 11
+    },
+    "Free distribution": {
+      "tag": "Free distribution",
+      "pali": "",
+      "fullTag": "Free distribution",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Dhamma books"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "free-distribution.html",
+      "listIndex": 440
     },
     "Dhamma online": {
       "tag": "Dhamma online",
@@ -50231,7 +50502,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dhamma-online.html",
-      "listIndex": 429,
+      "listIndex": 441,
       "excerptCount": 3
     },
     "Teachers": {
@@ -50252,7 +50523,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "teachers.html",
-      "listIndex": 430,
+      "listIndex": 442,
       "excerptCount": 9
     },
     "Monastic teachers": {
@@ -50277,7 +50548,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastic-teachers.html",
-      "listIndex": 431,
+      "listIndex": 443,
       "excerptCount": 2
     },
     "Thai Forest Tradition": {
@@ -50302,7 +50573,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "thai-forest-tradition.html",
-      "listIndex": 432,
+      "listIndex": 444,
       "eventCount": 2,
       "sessionCount": 3,
       "excerptCount": 56
@@ -50324,7 +50595,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-mun.html",
-      "listIndex": 433,
+      "listIndex": 445,
       "excerptCount": 35
     },
     "Ajahn Chah": {
@@ -50344,7 +50615,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-chah.html",
-      "listIndex": 434,
+      "listIndex": 446,
       "eventCount": 1,
       "sessionCount": 9,
       "excerptCount": 166
@@ -50361,6 +50632,7 @@
       "flags": "P",
       "subtags": [
         "Ajahn Jun",
+        "Ajahn Sinuan",
         "Ajahn Liem",
         "Ajahn Chu",
         "Ajahn Mahā Amon",
@@ -50370,15 +50642,23 @@
         "Ajahn Pasanno",
         "Ajahn Viradhammo",
         "Ajahn Tiradhammo",
+        "Ajahn Dtun",
         "Ajahn Anan",
+        "Ajahn Munindo",
+        "Ajahn Siripañño",
+        "Ajahn Kevali",
         "Ajahn Pavaro",
         "Ajahn Sucitto",
+        "Ajahn Jundee",
+        "Ajahn Ñāṇadhammo",
         "Ajahn Soṇa",
         "Ajahn Gavesako",
         "Ajahn Amaro",
         "Ajahn Jayasaro",
         "Ajahn Jotipālo",
-        "Ajahn Ñāṇiko"
+        "Ajahn Ñāṇiko",
+        "Ajahn Sundara",
+        "Mae Chee Kumfah"
       ],
       "supertags": [
         "Thai Forest Tradition"
@@ -50386,7 +50666,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-chah-lineage.html",
-      "listIndex": 435,
+      "listIndex": 447,
       "excerptCount": 3
     },
     "Ajahn Jun": {
@@ -50406,8 +50686,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-jun.html",
-      "listIndex": 436,
+      "listIndex": 448,
       "excerptCount": 1
+    },
+    "Ajahn Sinuan": {
+      "tag": "Ajahn Sinuan",
+      "pali": "",
+      "fullTag": "Ajahn Sinuan",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-sinuan.html",
+      "listIndex": 449
     },
     "Ajahn Liem": {
       "tag": "Ajahn Liem",
@@ -50426,7 +50725,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-liem.html",
-      "listIndex": 437,
+      "listIndex": 450,
       "excerptCount": 8
     },
     "Ajahn Chu": {
@@ -50446,7 +50745,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-chu.html",
-      "listIndex": 438,
+      "listIndex": 451,
       "excerptCount": 1
     },
     "Ajahn Mahā Amon": {
@@ -50466,7 +50765,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-maha-amon.html",
-      "listIndex": 439,
+      "listIndex": 452,
       "excerptCount": 1
     },
     "Ajahn Sumedho": {
@@ -50486,7 +50785,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-sumedho.html",
-      "listIndex": 440,
+      "listIndex": 453,
       "excerptCount": 11
     },
     "Ajahn Anek": {
@@ -50506,7 +50805,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-anek.html",
-      "listIndex": 441,
+      "listIndex": 454,
       "excerptCount": 1
     },
     "Ajahn Toon": {
@@ -50526,7 +50825,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-toon.html",
-      "listIndex": 442,
+      "listIndex": 455,
       "excerptCount": 1
     },
     "Ajahn Pasanno": {
@@ -50546,7 +50845,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-pasanno.html",
-      "listIndex": 443,
+      "listIndex": 456,
       "excerptCount": 128
     },
     "Ajahn Viradhammo": {
@@ -50566,7 +50865,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-viradhammo.html",
-      "listIndex": 444,
+      "listIndex": 457,
       "excerptCount": 2
     },
     "Ajahn Tiradhammo": {
@@ -50586,8 +50885,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-tiradhammo.html",
-      "listIndex": 445,
+      "listIndex": 458,
       "excerptCount": 1
+    },
+    "Ajahn Dtun": {
+      "tag": "Ajahn Dtun",
+      "pali": "",
+      "fullTag": "Ajahn Dtun",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-dtun.html",
+      "listIndex": 459
     },
     "Ajahn Anan": {
       "tag": "Ajahn Anan",
@@ -50606,8 +50924,65 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-anan.html",
-      "listIndex": 446,
+      "listIndex": 460,
       "excerptCount": 1
+    },
+    "Ajahn Munindo": {
+      "tag": "Ajahn Munindo",
+      "pali": "",
+      "fullTag": "Ajahn Munindo",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-munindo.html",
+      "listIndex": 461
+    },
+    "Ajahn Siripañño": {
+      "tag": "Ajahn Siripañño",
+      "pali": "",
+      "fullTag": "Ajahn Siripañño",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-siripanno.html",
+      "listIndex": 462
+    },
+    "Ajahn Kevali": {
+      "tag": "Ajahn Kevali",
+      "pali": "",
+      "fullTag": "Ajahn Kevali",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-kevali.html",
+      "listIndex": 463
     },
     "Ajahn Pavaro": {
       "tag": "Ajahn Pavaro",
@@ -50626,7 +51001,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-pavaro.html",
-      "listIndex": 447,
+      "listIndex": 464,
       "excerptCount": 1
     },
     "Ajahn Sucitto": {
@@ -50646,8 +51021,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-sucitto.html",
-      "listIndex": 448,
+      "listIndex": 465,
       "excerptCount": 1
+    },
+    "Ajahn Jundee": {
+      "tag": "Ajahn Jundee",
+      "pali": "",
+      "fullTag": "Ajahn Jundee",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-jundee.html",
+      "listIndex": 466
+    },
+    "Ajahn Ñāṇadhammo": {
+      "tag": "Ajahn Ñāṇadhammo",
+      "pali": "",
+      "fullTag": "Ajahn Ñāṇadhammo",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-nanadhammo.html",
+      "listIndex": 467
     },
     "Ajahn Soṇa": {
       "tag": "Ajahn Soṇa",
@@ -50666,7 +51079,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-sona.html",
-      "listIndex": 449,
+      "listIndex": 468,
       "excerptCount": 3
     },
     "Ajahn Gavesako": {
@@ -50686,7 +51099,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-gavesako.html",
-      "listIndex": 450,
+      "listIndex": 469,
       "excerptCount": 1
     },
     "Ajahn Amaro": {
@@ -50706,7 +51119,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-amaro.html",
-      "listIndex": 451,
+      "listIndex": 470,
       "excerptCount": 6
     },
     "Ajahn Jayasaro": {
@@ -50726,7 +51139,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-jayasaro.html",
-      "listIndex": 452,
+      "listIndex": 471,
       "excerptCount": 3
     },
     "Ajahn Jotipālo": {
@@ -50746,7 +51159,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-jotipalo.html",
-      "listIndex": 453,
+      "listIndex": 472,
       "excerptCount": 2
     },
     "Ajahn Ñāṇiko": {
@@ -50766,8 +51179,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-naniko.html",
-      "listIndex": 454,
+      "listIndex": 473,
       "excerptCount": 8
+    },
+    "Ajahn Sundara": {
+      "tag": "Ajahn Sundara",
+      "pali": "",
+      "fullTag": "Ajahn Sundara",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-sundara.html",
+      "listIndex": 474
+    },
+    "Mae Chee Kumfah": {
+      "tag": "Mae Chee Kumfah",
+      "pali": "",
+      "fullTag": "Mae Chee Kumfah",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ajahn Chah lineage"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "mae-chee-kumfah.html",
+      "listIndex": 475
     },
     "Other Thai Forest teachers": {
       "tag": "Other Thai Forest teachers",
@@ -50782,17 +51233,26 @@
       "subtags": [
         "Ajahn Sao",
         "Ajahn Lee Dhammadharo",
+        "Ajahn Dee",
+        "Ajahn Phut",
         "Ajahn Tongrat",
         "Ajahn Kinaree",
+        "Ajahn Fun",
+        "Ajahn Dune",
+        "Ajahn Utane",
         "Ajahn Supah",
         "Ajahn Mahā Boowa",
         "Ajahn Baen",
+        "Ajahn Jumnien",
         "Ajahn Plien",
         "Ajahn Tate",
         "Ajahn Kaew",
         "Ajahn Mahā Chatchai",
         "Ajahn Buddhadāsa",
         "Ajahn Paññānanda",
+        "Ajahn Samwong",
+        "Ajahn Suwat",
+        "Ajahn Khantipālo",
         "Ajahn Wanchai",
         "Ajahn Piyadhammo",
         "Ajahn Fuang",
@@ -50805,7 +51265,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "other-thai-forest-teachers.html",
-      "listIndex": 455
+      "listIndex": 476
     },
     "Ajahn Sao": {
       "tag": "Ajahn Sao",
@@ -50824,7 +51284,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-sao.html",
-      "listIndex": 456,
+      "listIndex": 477,
       "excerptCount": 3
     },
     "Ajahn Lee Dhammadharo": {
@@ -50844,8 +51304,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-lee-dhammadharo.html",
-      "listIndex": 457,
+      "listIndex": 478,
       "excerptCount": 4
+    },
+    "Ajahn Dee": {
+      "tag": "Ajahn Dee",
+      "pali": "",
+      "fullTag": "Ajahn Dee",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-dee.html",
+      "listIndex": 479
+    },
+    "Ajahn Phut": {
+      "tag": "Ajahn Phut",
+      "pali": "",
+      "fullTag": "Ajahn Phut",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-phut.html",
+      "listIndex": 480
     },
     "Ajahn Tongrat": {
       "tag": "Ajahn Tongrat",
@@ -50864,7 +51362,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-tongrat.html",
-      "listIndex": 458,
+      "listIndex": 481,
       "excerptCount": 6
     },
     "Ajahn Kinaree": {
@@ -50884,8 +51382,65 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-kinaree.html",
-      "listIndex": 459,
+      "listIndex": 482,
       "excerptCount": 5
+    },
+    "Ajahn Fun": {
+      "tag": "Ajahn Fun",
+      "pali": "",
+      "fullTag": "Ajahn Fun",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-fun.html",
+      "listIndex": 483
+    },
+    "Ajahn Dune": {
+      "tag": "Ajahn Dune",
+      "pali": "",
+      "fullTag": "Ajahn Dune",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-dune.html",
+      "listIndex": 484
+    },
+    "Ajahn Utane": {
+      "tag": "Ajahn Utane",
+      "pali": "",
+      "fullTag": "Ajahn Utane",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-utane.html",
+      "listIndex": 485
     },
     "Ajahn Supah": {
       "tag": "Ajahn Supah",
@@ -50904,7 +51459,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-supah.html",
-      "listIndex": 460,
+      "listIndex": 486,
       "excerptCount": 1
     },
     "Ajahn Mahā Boowa": {
@@ -50924,7 +51479,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-maha-boowa.html",
-      "listIndex": 461,
+      "listIndex": 487,
       "excerptCount": 19
     },
     "Ajahn Baen": {
@@ -50944,8 +51499,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-baen.html",
-      "listIndex": 462,
+      "listIndex": 488,
       "excerptCount": 3
+    },
+    "Ajahn Jumnien": {
+      "tag": "Ajahn Jumnien",
+      "pali": "",
+      "fullTag": "Ajahn Jumnien",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-jumnien.html",
+      "listIndex": 489
     },
     "Ajahn Plien": {
       "tag": "Ajahn Plien",
@@ -50964,7 +51538,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-plien.html",
-      "listIndex": 463,
+      "listIndex": 490,
       "excerptCount": 1
     },
     "Ajahn Tate": {
@@ -50984,7 +51558,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-tate.html",
-      "listIndex": 464,
+      "listIndex": 491,
       "excerptCount": 1
     },
     "Ajahn Kaew": {
@@ -51004,7 +51578,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-kaew.html",
-      "listIndex": 465,
+      "listIndex": 492,
       "excerptCount": 1
     },
     "Ajahn Mahā Chatchai": {
@@ -51024,7 +51598,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-maha-chatchai.html",
-      "listIndex": 466,
+      "listIndex": 493,
       "excerptCount": 1
     },
     "Ajahn Buddhadāsa": {
@@ -51044,7 +51618,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-buddhadasa.html",
-      "listIndex": 467,
+      "listIndex": 494,
       "excerptCount": 5
     },
     "Ajahn Paññānanda": {
@@ -51064,8 +51638,65 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-pannananda.html",
-      "listIndex": 468,
+      "listIndex": 495,
       "excerptCount": 3
+    },
+    "Ajahn Samwong": {
+      "tag": "Ajahn Samwong",
+      "pali": "",
+      "fullTag": "Ajahn Samwong",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-samwong.html",
+      "listIndex": 496
+    },
+    "Ajahn Suwat": {
+      "tag": "Ajahn Suwat",
+      "pali": "",
+      "fullTag": "Ajahn Suwat",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-suwat.html",
+      "listIndex": 497
+    },
+    "Ajahn Khantipālo": {
+      "tag": "Ajahn Khantipālo",
+      "pali": "",
+      "fullTag": "Ajahn Khantipālo",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai Forest teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ajahn-khantipalo.html",
+      "listIndex": 498
     },
     "Ajahn Wanchai": {
       "tag": "Ajahn Wanchai",
@@ -51084,7 +51715,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-wanchai.html",
-      "listIndex": 469,
+      "listIndex": 499,
       "excerptCount": 1
     },
     "Ajahn Piyadhammo": {
@@ -51104,7 +51735,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-piyadhammo.html",
-      "listIndex": 470,
+      "listIndex": 500,
       "excerptCount": 1
     },
     "Ajahn Fuang": {
@@ -51124,7 +51755,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-fuang.html",
-      "listIndex": 471,
+      "listIndex": 501,
       "excerptCount": 1
     },
     "Ajahn Ṭhānissaro": {
@@ -51144,7 +51775,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ajahn-thanissaro.html",
-      "listIndex": 472,
+      "listIndex": 502,
       "excerptCount": 1
     },
     "Mae Chee Kaew": {
@@ -51164,7 +51795,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mae-chee-kaew.html",
-      "listIndex": 473,
+      "listIndex": 503,
       "excerptCount": 3
     },
     "Other Thai monastics": {
@@ -51179,6 +51810,7 @@
       "flags": "P",
       "subtags": [
         "Chao Khun Upali",
+        "Chao Khun Noi",
         "P. A. Payutto"
       ],
       "supertags": [
@@ -51187,7 +51819,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "other-thai-monastics.html",
-      "listIndex": 474,
+      "listIndex": 504,
       "excerptCount": 1
     },
     "Chao Khun Upali": {
@@ -51207,8 +51839,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "chao-khun-upali.html",
-      "listIndex": 475,
+      "listIndex": 505,
       "excerptCount": 1
+    },
+    "Chao Khun Noi": {
+      "tag": "Chao Khun Noi",
+      "pali": "",
+      "fullTag": "Chao Khun Noi",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Thai monastics"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "chao-khun-noi.html",
+      "listIndex": 506
     },
     "P. A. Payutto": {
       "tag": "P. A. Payutto",
@@ -51227,7 +51878,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "p-a-payutto.html",
-      "listIndex": 476,
+      "listIndex": 507,
       "excerptCount": 3
     },
     "Other Theravāda monastics": {
@@ -51242,6 +51893,8 @@
       "flags": "P",
       "subtags": [
         "Mahasi Sayadaw",
+        "Ven. Ñāṇamoli",
+        "Pa Auk Sayadaw",
         "Preah Mahāghosānanda",
         "Bhante Gunaratana",
         "Bhikkhu Bodhi",
@@ -51254,7 +51907,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "other-theravada-monastics.html",
-      "listIndex": 477
+      "listIndex": 508
     },
     "Mahasi Sayadaw": {
       "tag": "Mahasi Sayadaw",
@@ -51273,8 +51926,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mahasi-sayadaw.html",
-      "listIndex": 478,
+      "listIndex": 509,
       "excerptCount": 1
+    },
+    "Ven. Ñāṇamoli": {
+      "tag": "Ven. Ñāṇamoli",
+      "pali": "",
+      "fullTag": "Ven. Ñāṇamoli",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Theravāda monastics"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ven-nanamoli.html",
+      "listIndex": 510
+    },
+    "Pa Auk Sayadaw": {
+      "tag": "Pa Auk Sayadaw",
+      "pali": "",
+      "fullTag": "Pa Auk Sayadaw",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Other Theravāda monastics"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "pa-auk-sayadaw.html",
+      "listIndex": 511
     },
     "Preah Mahāghosānanda": {
       "tag": "Preah Mahāghosānanda",
@@ -51293,7 +51984,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "preah-mahaghosananda.html",
-      "listIndex": 479,
+      "listIndex": 512,
       "excerptCount": 1
     },
     "Bhante Gunaratana": {
@@ -51313,7 +52004,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "bhante-gunaratana.html",
-      "listIndex": 480,
+      "listIndex": 513,
       "excerptCount": 1
     },
     "Bhikkhu Bodhi": {
@@ -51333,7 +52024,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "bhikkhu-bodhi.html",
-      "listIndex": 481,
+      "listIndex": 514,
       "excerptCount": 1
     },
     "Ven. Analayo": {
@@ -51353,7 +52044,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ven-analayo.html",
-      "listIndex": 482,
+      "listIndex": 515,
       "excerptCount": 1
     },
     "Ayya Tāthalokā": {
@@ -51373,7 +52064,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ayya-tathaloka.html",
-      "listIndex": 483,
+      "listIndex": 516,
       "excerptCount": 1
     },
     "Mahāyāna monastics": {
@@ -51388,6 +52079,7 @@
       "flags": "P",
       "subtags": [
         "Dōgen",
+        "Master Hsu Yun",
         "Master Hsuan Hua",
         "Dalai Lama",
         "Rev. Heng Sure",
@@ -51399,7 +52091,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mahayana-monastics.html",
-      "listIndex": 484
+      "listIndex": 517
     },
     "Dōgen": {
       "tag": "Dōgen",
@@ -51418,8 +52110,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dogen.html",
-      "listIndex": 485,
+      "listIndex": 518,
       "excerptCount": 1
+    },
+    "Master Hsu Yun": {
+      "tag": "Master Hsu Yun",
+      "pali": "",
+      "fullTag": "Master Hsu Yun",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Mahāyāna monastics"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "master-hsu-yun.html",
+      "listIndex": 519
     },
     "Master Hsuan Hua": {
       "tag": "Master Hsuan Hua",
@@ -51438,7 +52149,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "master-hsuan-hua.html",
-      "listIndex": 486,
+      "listIndex": 520,
       "excerptCount": 4
     },
     "Dalai Lama": {
@@ -51458,7 +52169,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dalai-lama.html",
-      "listIndex": 487,
+      "listIndex": 521,
       "excerptCount": 5
     },
     "Rev. Heng Sure": {
@@ -51478,7 +52189,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "rev-heng-sure.html",
-      "listIndex": 488,
+      "listIndex": 522,
       "excerptCount": 1
     },
     "Trulshik Rinpoche": {
@@ -51498,7 +52209,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "trulshik-rinpoche.html",
-      "listIndex": 489,
+      "listIndex": 523,
       "excerptCount": 1
     },
     "Lay teachers": {
@@ -51512,11 +52223,18 @@
       "related": [],
       "flags": "P",
       "subtags": [
+        "Mahatma Gandhi",
         "Upasikā Kee Nanayon",
         "S. N. Goenka",
+        "Maurice Walsh",
+        "Dipa Ma",
+        "Ruth Denison",
         "Ram Dass",
+        "Paul Brieter",
         "Joseph Kappel",
-        "George Sharp"
+        "George Sharp",
+        "Kittisaro",
+        "Ṭhanissarā"
       ],
       "supertags": [
         "Teachers"
@@ -51524,8 +52242,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "lay-teachers.html",
-      "listIndex": 490,
+      "listIndex": 524,
       "excerptCount": 5
+    },
+    "Mahatma Gandhi": {
+      "tag": "Mahatma Gandhi",
+      "pali": "",
+      "fullTag": "Mahatma Gandhi",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "mahatma-gandhi.html",
+      "listIndex": 525
     },
     "Upasikā Kee Nanayon": {
       "tag": "Upasikā Kee Nanayon",
@@ -51544,7 +52281,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "upasika-kee-nanayon.html",
-      "listIndex": 491,
+      "listIndex": 526,
       "excerptCount": 4
     },
     "S. N. Goenka": {
@@ -51564,8 +52301,65 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "s-n-goenka.html",
-      "listIndex": 492,
+      "listIndex": 527,
       "excerptCount": 1
+    },
+    "Maurice Walsh": {
+      "tag": "Maurice Walsh",
+      "pali": "",
+      "fullTag": "Maurice Walsh",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "maurice-walsh.html",
+      "listIndex": 528
+    },
+    "Dipa Ma": {
+      "tag": "Dipa Ma",
+      "pali": "",
+      "fullTag": "Dipa Ma",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "dipa-ma.html",
+      "listIndex": 529
+    },
+    "Ruth Denison": {
+      "tag": "Ruth Denison",
+      "pali": "",
+      "fullTag": "Ruth Denison",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "ruth-denison.html",
+      "listIndex": 530
     },
     "Ram Dass": {
       "tag": "Ram Dass",
@@ -51584,8 +52378,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ram-dass.html",
-      "listIndex": 493,
+      "listIndex": 531,
       "excerptCount": 3
+    },
+    "Paul Brieter": {
+      "tag": "Paul Brieter",
+      "pali": "",
+      "fullTag": "Paul Brieter",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "paul-brieter.html",
+      "listIndex": 532
     },
     "Joseph Kappel": {
       "tag": "Joseph Kappel",
@@ -51604,7 +52417,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "joseph-kappel.html",
-      "listIndex": 494,
+      "listIndex": 533,
       "excerptCount": 1
     },
     "George Sharp": {
@@ -51624,8 +52437,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "george-sharp.html",
-      "listIndex": 495,
+      "listIndex": 534,
       "excerptCount": 1
+    },
+    "Kittisaro": {
+      "tag": "Kittisaro",
+      "pali": "",
+      "fullTag": "Kittisaro",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "kittisaro.html",
+      "listIndex": 535
+    },
+    "Ṭhanissarā": {
+      "tag": "Ṭhanissarā",
+      "pali": "",
+      "fullTag": "Ṭhanissarā",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Lay teachers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "thanissara.html",
+      "listIndex": 536
     },
     "Monasteries": {
       "tag": "Monasteries",
@@ -51640,6 +52491,7 @@
       "subtags": [
         "Thai monasteries",
         "Western Ajahn Chah monasteries",
+        "Thai Forest monasteries in the West",
         "Monasteries in other traditions",
         "Non-monastic centers"
       ],
@@ -51647,7 +52499,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monasteries.html",
-      "listIndex": 496,
+      "listIndex": 537,
       "excerptCount": 4
     },
     "Thai monasteries": {
@@ -51670,7 +52522,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "thai-monasteries.html",
-      "listIndex": 497
+      "listIndex": 538
     },
     "Thai Ajahn Chah monasteries": {
       "tag": "Thai Ajahn Chah monasteries",
@@ -51685,6 +52537,7 @@
       "subtags": [
         "Wat Pah Pong",
         "Wat Tam Saeng Pet",
+        "Wat Keun",
         "Wat Pah Nanachat",
         "Dtao Dum",
         "Poo Jum Gom",
@@ -51696,7 +52549,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "thai-ajahn-chah-monasteries.html",
-      "listIndex": 498,
+      "listIndex": 539,
       "excerptCount": 3
     },
     "Wat Pah Pong": {
@@ -51716,7 +52569,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "wat-pah-pong.html",
-      "listIndex": 499,
+      "listIndex": 540,
       "excerptCount": 21
     },
     "Wat Tam Saeng Pet": {
@@ -51736,8 +52589,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "wat-tam-saeng-pet.html",
-      "listIndex": 500,
+      "listIndex": 541,
       "excerptCount": 2
+    },
+    "Wat Keun": {
+      "tag": "Wat Keun",
+      "pali": "",
+      "fullTag": "Wat Keun",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Thai Ajahn Chah monasteries"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "wat-keun.html",
+      "listIndex": 542
     },
     "Wat Pah Nanachat": {
       "tag": "Wat Pah Nanachat",
@@ -51756,7 +52628,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "wat-pah-nanachat.html",
-      "listIndex": 501,
+      "listIndex": 543,
       "excerptCount": 19
     },
     "Dtao Dum": {
@@ -51776,7 +52648,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dtao-dum.html",
-      "listIndex": 502,
+      "listIndex": 544,
       "excerptCount": 8
     },
     "Poo Jum Gom": {
@@ -51796,7 +52668,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "poo-jum-gom.html",
-      "listIndex": 503,
+      "listIndex": 545,
       "excerptCount": 1
     },
     "Anandagiri": {
@@ -51816,7 +52688,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "anandagiri.html",
-      "listIndex": 504,
+      "listIndex": 546,
       "excerptCount": 1
     },
     "Thai forest monasteries": {
@@ -51831,6 +52703,7 @@
       "flags": "P",
       "subtags": [
         "Wat Khao Wongkot",
+        "Wat Asokaram",
         "Wat Pah Ban Tat"
       ],
       "supertags": [
@@ -51839,7 +52712,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "thai-forest-monasteries.html",
-      "listIndex": 505,
+      "listIndex": 547,
       "excerptCount": 1
     },
     "Wat Khao Wongkot": {
@@ -51859,8 +52732,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "wat-khao-wongkot.html",
-      "listIndex": 506,
+      "listIndex": 548,
       "excerptCount": 1
+    },
+    "Wat Asokaram": {
+      "tag": "Wat Asokaram",
+      "pali": "",
+      "fullTag": "Wat Asokaram",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Thai forest monasteries"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "wat-asokaram.html",
+      "listIndex": 549
     },
     "Wat Pah Ban Tat": {
       "tag": "Wat Pah Ban Tat",
@@ -51879,7 +52771,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "wat-pah-ban-tat.html",
-      "listIndex": 507,
+      "listIndex": 550,
       "excerptCount": 1
     },
     "Western Ajahn Chah monasteries": {
@@ -51895,6 +52787,7 @@
       "subtags": [
         "Cittavivieka",
         "Amaravati",
+        "Aruna Ratanagiri",
         "Tisarana",
         "Abhayagiri",
         "Pacific Hermitage"
@@ -51905,7 +52798,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "western-ajahn-chah-monasteries.html",
-      "listIndex": 508,
+      "listIndex": 551,
       "excerptCount": 1
     },
     "Cittavivieka": {
@@ -51925,7 +52818,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "cittavivieka.html",
-      "listIndex": 509,
+      "listIndex": 552,
       "excerptCount": 1
     },
     "Amaravati": {
@@ -51945,8 +52838,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "amaravati.html",
-      "listIndex": 510,
+      "listIndex": 553,
       "excerptCount": 1
+    },
+    "Aruna Ratanagiri": {
+      "tag": "Aruna Ratanagiri",
+      "pali": "",
+      "fullTag": "Aruna Ratanagiri Monastery",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Western Ajahn Chah monasteries"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "aruna-ratanagiri.html",
+      "listIndex": 554
     },
     "Tisarana": {
       "tag": "Tisarana",
@@ -51965,7 +52877,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "tisarana.html",
-      "listIndex": 511,
+      "listIndex": 555,
       "excerptCount": 1
     },
     "Abhayagiri": {
@@ -51985,7 +52897,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "abhayagiri.html",
-      "listIndex": 512,
+      "listIndex": 556,
       "excerptCount": 66
     },
     "Pacific Hermitage": {
@@ -52005,8 +52917,68 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "pacific-hermitage.html",
-      "listIndex": 513,
+      "listIndex": 557,
       "excerptCount": 3
+    },
+    "Thai Forest monasteries in the West": {
+      "tag": "Thai Forest monasteries in the West",
+      "pali": "",
+      "fullTag": "Thai Forest monasteries in the West",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "P",
+      "subtags": [
+        "Wat Buridat",
+        "Wat Metta"
+      ],
+      "supertags": [
+        "Monasteries"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "thai-forest-monasteries-in-the-west.html",
+      "listIndex": 558
+    },
+    "Wat Buridat": {
+      "tag": "Wat Buridat",
+      "pali": "",
+      "fullTag": "Wat Buridat",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Thai Forest monasteries in the West"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "wat-buridat.html",
+      "listIndex": 559
+    },
+    "Wat Metta": {
+      "tag": "Wat Metta",
+      "pali": "",
+      "fullTag": "Wat Metta",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Thai Forest monasteries in the West"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "wat-metta.html",
+      "listIndex": 560
     },
     "Monasteries in other traditions": {
       "tag": "Monasteries in other traditions",
@@ -52019,7 +52991,9 @@
       "related": [],
       "flags": "P",
       "subtags": [
-        "City of Ten Thousand Buddhas"
+        "City of Ten Thousand Buddhas",
+        "Dhammadharini Monastery",
+        "Karuna Buddhist Vihara"
       ],
       "supertags": [
         "Monasteries"
@@ -52027,7 +53001,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monasteries-in-other-traditions.html",
-      "listIndex": 514
+      "listIndex": 561
     },
     "City of Ten Thousand Buddhas": {
       "tag": "City of Ten Thousand Buddhas",
@@ -52046,8 +53020,46 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "city-of-ten-thousand-buddhas.html",
-      "listIndex": 515,
+      "listIndex": 562,
       "excerptCount": 2
+    },
+    "Dhammadharini Monastery": {
+      "tag": "Dhammadharini Monastery",
+      "pali": "",
+      "fullTag": "Dhammadharini Monastery",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Monasteries in other traditions"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "dhammadharini-monastery.html",
+      "listIndex": 563
+    },
+    "Karuna Buddhist Vihara": {
+      "tag": "Karuna Buddhist Vihara",
+      "pali": "",
+      "fullTag": "Karuna Buddhist Vihara",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Monasteries in other traditions"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "karuna-buddhist-vihara.html",
+      "listIndex": 564
     },
     "Non-monastic centers": {
       "tag": "Non-monastic centers",
@@ -52061,6 +53073,7 @@
       "flags": "P.",
       "subtags": [
         "Insight Meditation Society",
+        "Spirit Rock",
         "Panyaprateep School"
       ],
       "supertags": [
@@ -52069,7 +53082,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "non-monastic-centers.html",
-      "listIndex": 516
+      "listIndex": 565
     },
     "Insight Meditation Society": {
       "tag": "Insight Meditation Society",
@@ -52088,8 +53101,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "insight-meditation-society.html",
-      "listIndex": 517,
+      "listIndex": 566,
       "excerptCount": 1
+    },
+    "Spirit Rock": {
+      "tag": "Spirit Rock",
+      "pali": "",
+      "fullTag": "Spirit Rock Meditation Center",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Non-monastic centers"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "spirit-rock.html",
+      "listIndex": 567
     },
     "Panyaprateep School": {
       "tag": "Panyaprateep School",
@@ -52108,7 +53140,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "panyaprateep-school.html",
-      "listIndex": 518,
+      "listIndex": 568,
       "excerptCount": 1
     },
     "Nature of the cosmos": {
@@ -52129,13 +53161,14 @@
         "Other beings",
         "Nature of mind",
         "Supernatural",
+        "Deathless",
         "Unconditioned"
       ],
       "supertags": [],
       "copies": 1,
       "primaries": 0,
       "htmlFile": "nature-of-the-cosmos.html",
-      "listIndex": 519,
+      "listIndex": 569,
       "excerptCount": 8
     },
     "Kamma": {
@@ -52155,7 +53188,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "kamma.html",
-      "listIndex": 520,
+      "listIndex": 570,
       "excerptCount": 51
     },
     "Rebirth": {
@@ -52175,7 +53208,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "rebirth.html",
-      "listIndex": 521,
+      "listIndex": 571,
       "excerptCount": 27
     },
     "Saṃsāra": {
@@ -52195,7 +53228,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "samsara.html",
-      "listIndex": 522,
+      "listIndex": 572,
       "excerptCount": 3
     },
     "Realms of existence": {
@@ -52221,7 +53254,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "realms-of-existence.html",
-      "listIndex": 523,
+      "listIndex": 573,
       "excerptCount": 8
     },
     "Deva": {
@@ -52241,7 +53274,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "deva.html",
-      "listIndex": 524,
+      "listIndex": 574,
       "sessionCount": 1,
       "excerptCount": 22
     },
@@ -52262,7 +53295,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "human.html",
-      "listIndex": 525,
+      "listIndex": 575,
       "eventCount": 1,
       "sessionCount": 1,
       "excerptCount": 31
@@ -52284,7 +53317,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ghost.html",
-      "listIndex": 526,
+      "listIndex": 576,
       "excerptCount": 4
     },
     "Animal": {
@@ -52304,7 +53337,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "animal.html",
-      "listIndex": 527,
+      "listIndex": 577,
       "excerptCount": 13
     },
     "Hell": {
@@ -52324,7 +53357,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "hell.html",
-      "listIndex": 528,
+      "listIndex": 578,
       "excerptCount": 2
     },
     "Other beings": {
@@ -52348,7 +53381,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "other-beings.html",
-      "listIndex": 529
+      "listIndex": 579
     },
     "God": {
       "tag": "God",
@@ -52367,7 +53400,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "god.html",
-      "listIndex": 530,
+      "listIndex": 580,
       "excerptCount": 1
     },
     "Māra": {
@@ -52387,7 +53420,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mara.html",
-      "listIndex": 531,
+      "listIndex": 581,
       "excerptCount": 6
     },
     "Non-human beings": {
@@ -52407,7 +53440,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "non-human-beings.html",
-      "listIndex": 532,
+      "listIndex": 582,
       "excerptCount": 1
     },
     "Nature of mind": {
@@ -52432,7 +53465,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "nature-of-mind.html",
-      "listIndex": 533,
+      "listIndex": 583,
       "excerptCount": 30
     },
     "Memory": {
@@ -52452,7 +53485,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "memory.html",
-      "listIndex": 534,
+      "listIndex": 584,
       "excerptCount": 3
     },
     "Dreams": {
@@ -52472,7 +53505,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dreams.html",
-      "listIndex": 536,
+      "listIndex": 586,
       "excerptCount": 2
     },
     "Psychic powers": {
@@ -52492,7 +53525,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "psychic-powers.html",
-      "listIndex": 537,
+      "listIndex": 587,
       "excerptCount": 13
     },
     "Supernatural": {
@@ -52512,8 +53545,29 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "supernatural.html",
-      "listIndex": 538,
+      "listIndex": 588,
       "excerptCount": 1
+    },
+    "Deathless": {
+      "tag": "Deathless",
+      "pali": "amata",
+      "fullTag": "The Deathless",
+      "fullPali": "amata",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [
+        "Nibbāna"
+      ],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Nature of the cosmos"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "deathless.html",
+      "listIndex": 589
     },
     "Unconditioned": {
       "tag": "Unconditioned",
@@ -52536,7 +53590,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "unconditioned.html",
-      "listIndex": 539,
+      "listIndex": 590,
       "excerptCount": 6
     },
     "History": {
@@ -52553,17 +53607,19 @@
         "Buddha/Biography",
         "Great disciples",
         "History/Early Buddhism",
+        "History/Indian Buddhism",
         "History/Sri Lankan Buddhism",
         "History/Thai Buddhism",
         "History/Other Theravāda traditions",
         "History/Mahāyāna Buddhism",
-        "History/Western Buddhism"
+        "History/Western Buddhism",
+        "Geography/Thailand"
       ],
       "supertags": [],
       "copies": 1,
       "primaries": 0,
       "htmlFile": "history.html",
-      "listIndex": 540,
+      "listIndex": 591,
       "excerptCount": 2
     },
     "Great disciples": {
@@ -52583,7 +53639,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "great-disciples.html",
-      "listIndex": 542,
+      "listIndex": 593,
       "excerptCount": 16
     },
     "History/Early Buddhism": {
@@ -52603,8 +53659,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historyearly-buddhism.html",
-      "listIndex": 543,
+      "listIndex": 594,
       "excerptCount": 14
+    },
+    "History/Indian Buddhism": {
+      "tag": "History/Indian Buddhism",
+      "pali": "",
+      "fullTag": "History/Indian Buddhism",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "History"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "historyindian-buddhism.html",
+      "listIndex": 595
     },
     "History/Sri Lankan Buddhism": {
       "tag": "History/Sri Lankan Buddhism",
@@ -52623,7 +53698,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historysri-lankan-buddhism.html",
-      "listIndex": 544,
+      "listIndex": 596,
       "excerptCount": 7
     },
     "History/Thai Buddhism": {
@@ -52643,7 +53718,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historythai-buddhism.html",
-      "listIndex": 545,
+      "listIndex": 597,
       "excerptCount": 26
     },
     "History/Other Theravāda traditions": {
@@ -52663,7 +53738,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historyother-theravada-traditions.html",
-      "listIndex": 546,
+      "listIndex": 598,
       "excerptCount": 3
     },
     "History/Mahāyāna Buddhism": {
@@ -52683,7 +53758,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historymahayana-buddhism.html",
-      "listIndex": 547,
+      "listIndex": 599,
       "excerptCount": 2
     },
     "History/Western Buddhism": {
@@ -52705,7 +53780,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historywestern-buddhism.html",
-      "listIndex": 548,
+      "listIndex": 600,
       "excerptCount": 4
     },
     "History/Western Buddhist monasticism": {
@@ -52725,8 +53800,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "historywestern-buddhist-monasticism.html",
-      "listIndex": 549,
+      "listIndex": 601,
       "excerptCount": 13
+    },
+    "Geography/Thailand": {
+      "tag": "Geography/Thailand",
+      "pali": "",
+      "fullTag": "Geography/Thailand",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "History"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "geographythailand.html",
+      "listIndex": 602
     },
     "Cultural context": {
       "tag": "Cultural context",
@@ -52742,7 +53836,9 @@
         "Culture/Natural environment",
         "Culture/Asia",
         "Culture/India",
+        "Culture/Sri Lanka",
         "Culture/Thailand",
+        "Culture/Native American",
         "Culture/West",
         "Women in Buddhism",
         "Language",
@@ -52753,7 +53849,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "cultural-context.html",
-      "listIndex": 550,
+      "listIndex": 603,
       "excerptCount": 11
     },
     "Culture/Natural environment": {
@@ -52773,7 +53869,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "culturenatural-environment.html",
-      "listIndex": 551,
+      "listIndex": 604,
       "excerptCount": 17
     },
     "Culture/Asia": {
@@ -52793,7 +53889,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "cultureasia.html",
-      "listIndex": 552,
+      "listIndex": 605,
       "excerptCount": 1
     },
     "Culture/India": {
@@ -52813,8 +53909,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "cultureindia.html",
-      "listIndex": 553,
+      "listIndex": 606,
       "excerptCount": 10
+    },
+    "Culture/Sri Lanka": {
+      "tag": "Culture/Sri Lanka",
+      "pali": "",
+      "fullTag": "Culture/Sri Lanka",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "p",
+      "subtags": [],
+      "supertags": [
+        "Cultural context"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "culturesri-lanka.html",
+      "listIndex": 607
     },
     "Culture/Thailand": {
       "tag": "Culture/Thailand",
@@ -52833,8 +53948,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "culturethailand.html",
-      "listIndex": 554,
+      "listIndex": 608,
       "excerptCount": 75
+    },
+    "Culture/Native American": {
+      "tag": "Culture/Native American",
+      "pali": "",
+      "fullTag": "Culture/Native American",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "p",
+      "subtags": [],
+      "supertags": [
+        "Cultural context"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "culturenative-american.html",
+      "listIndex": 609
     },
     "Culture/West": {
       "tag": "Culture/West",
@@ -52853,7 +53987,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "culturewest.html",
-      "listIndex": 555,
+      "listIndex": 610,
       "excerptCount": 65
     },
     "Women in Buddhism": {
@@ -52875,7 +54009,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "women-in-buddhism.html",
-      "listIndex": 556,
+      "listIndex": 611,
       "excerptCount": 6
     },
     "Women's monastic forms": {
@@ -52890,7 +54024,8 @@
       "flags": "*",
       "subtags": [
         "Bhikkhunī",
-        "Sīladharā"
+        "Sīladharā",
+        "Mae Chee"
       ],
       "supertags": [
         "Monastic life",
@@ -52899,7 +54034,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "womens-monastic-forms.html",
-      "listIndex": 645,
+      "listIndex": 709,
       "excerptCount": 5
     },
     "Bhikkhunī": {
@@ -52919,7 +54054,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "bhikkhuni.html",
-      "listIndex": 646,
+      "listIndex": 710,
       "excerptCount": 1
     },
     "Sīladharā": {
@@ -52939,8 +54074,27 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "siladhara.html",
-      "listIndex": 647,
+      "listIndex": 711,
       "excerptCount": 3
+    },
+    "Mae Chee": {
+      "tag": "Mae Chee",
+      "pali": "Mae Chee",
+      "fullTag": "Mae Chee<em>Thai</em>",
+      "fullPali": "Mae Chee<em>Thai</em>",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "*",
+      "subtags": [],
+      "supertags": [
+        "Women's monastic forms"
+      ],
+      "copies": 2,
+      "primaries": 1,
+      "htmlFile": "mae-chee.html",
+      "listIndex": 712
     },
     "Language": {
       "tag": "Language",
@@ -52964,7 +54118,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "language.html",
-      "listIndex": 560,
+      "listIndex": 616,
       "excerptCount": 17
     },
     "Pāli": {
@@ -52984,7 +54138,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "pali.html",
-      "listIndex": 561,
+      "listIndex": 617,
       "sessionCount": 1,
       "excerptCount": 41
     },
@@ -52999,7 +54153,8 @@
       "related": [],
       "flags": "",
       "subtags": [
-        "Question in Thai"
+        "Question in Thai",
+        "Thai audio"
       ],
       "supertags": [
         "Language"
@@ -53007,7 +54162,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "thai.html",
-      "listIndex": 562,
+      "listIndex": 618,
       "excerptCount": 12
     },
     "Question in Thai": {
@@ -53027,8 +54182,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "question-in-thai.html",
-      "listIndex": 563,
+      "listIndex": 619,
       "excerptCount": 2
+    },
+    "Thai audio": {
+      "tag": "Thai audio",
+      "pali": "",
+      "fullTag": "Thai audio",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Thai"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "thai-audio.html",
+      "listIndex": 620
     },
     "Translation": {
       "tag": "Translation",
@@ -53047,7 +54221,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "translation.html",
-      "listIndex": 564,
+      "listIndex": 621,
       "excerptCount": 19
     },
     "Etymology": {
@@ -53067,7 +54241,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "etymology.html",
-      "listIndex": 565,
+      "listIndex": 622,
       "excerptCount": 7
     },
     "Buddhist identity": {
@@ -53087,7 +54261,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "buddhist-identity.html",
-      "listIndex": 566,
+      "listIndex": 623,
       "eventCount": 1,
       "sessionCount": 1,
       "excerptCount": 22
@@ -53111,7 +54285,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "popular-culture.html",
-      "listIndex": 567
+      "listIndex": 624
     },
     "Winnie-the-Pooh": {
       "tag": "Winnie-the-Pooh",
@@ -53130,7 +54304,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "winnie-the-pooh.html",
-      "listIndex": 568,
+      "listIndex": 625,
       "excerptCount": 1
     },
     "Spiritual traditions": {
@@ -53153,13 +54327,14 @@
         "Christianity",
         "Islam",
         "Philosophy",
-        "Western psychology"
+        "Western psychology",
+        "Cults"
       ],
       "supertags": [],
       "copies": 1,
       "primaries": 0,
       "htmlFile": "spiritual-traditions.html",
-      "listIndex": 569,
+      "listIndex": 626,
       "excerptCount": 3
     },
     "Theravāda": {
@@ -53179,7 +54354,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "theravada.html",
-      "listIndex": 570,
+      "listIndex": 627,
       "excerptCount": 12
     },
     "Mahāyāna": {
@@ -53201,7 +54376,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mahayana.html",
-      "listIndex": 571,
+      "listIndex": 628,
       "excerptCount": 5
     },
     "Zen": {
@@ -53221,7 +54396,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "zen.html",
-      "listIndex": 572,
+      "listIndex": 629,
       "excerptCount": 4
     },
     "Vajrayāna": {
@@ -53241,7 +54416,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "vajrayana.html",
-      "listIndex": 573,
+      "listIndex": 630,
       "excerptCount": 5
     },
     "Secular Buddhism": {
@@ -53261,7 +54436,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "secular-buddhism.html",
-      "listIndex": 574,
+      "listIndex": 631,
       "excerptCount": 3
     },
     "Hinduism": {
@@ -53281,7 +54456,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "hinduism.html",
-      "listIndex": 575,
+      "listIndex": 632,
       "excerptCount": 1
     },
     "Judaism": {
@@ -53301,7 +54476,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "judaism.html",
-      "listIndex": 576,
+      "listIndex": 633,
       "excerptCount": 1
     },
     "Christianity": {
@@ -53321,7 +54496,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "christianity.html",
-      "listIndex": 577,
+      "listIndex": 634,
       "excerptCount": 19
     },
     "Islam": {
@@ -53341,7 +54516,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "islam.html",
-      "listIndex": 578,
+      "listIndex": 635,
       "excerptCount": 1
     },
     "Philosophy": {
@@ -53361,7 +54536,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "philosophy.html",
-      "listIndex": 579,
+      "listIndex": 636,
       "excerptCount": 1
     },
     "Western psychology": {
@@ -53381,8 +54556,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "western-psychology.html",
-      "listIndex": 580,
+      "listIndex": 637,
       "excerptCount": 7
+    },
+    "Cults": {
+      "tag": "Cults",
+      "pali": "",
+      "fullTag": "Cults",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Spiritual traditions"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "cults.html",
+      "listIndex": 638
     },
     "Renunciant practice": {
       "tag": "Renunciant practice",
@@ -53407,7 +54601,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "renunciant-practice.html",
-      "listIndex": 581,
+      "listIndex": 639,
       "excerptCount": 1
     },
     "Celibacy": {
@@ -53427,7 +54621,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "celibacy.html",
-      "listIndex": 596,
+      "listIndex": 654,
       "excerptCount": 2
     },
     "Simplicity": {
@@ -53447,7 +54641,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "simplicity.html",
-      "listIndex": 597,
+      "listIndex": 655,
       "excerptCount": 20
     },
     "Requisites": {
@@ -53472,7 +54666,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "requisites.html",
-      "listIndex": 599,
+      "listIndex": 657,
       "excerptCount": 7
     },
     "Robes": {
@@ -53492,7 +54686,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "robes.html",
-      "listIndex": 600,
+      "listIndex": 658,
       "excerptCount": 9
     },
     "Almsfood": {
@@ -53515,7 +54709,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "almsfood.html",
-      "listIndex": 601,
+      "listIndex": 659,
       "excerptCount": 16
     },
     "Almsbowl": {
@@ -53535,7 +54729,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "almsbowl.html",
-      "listIndex": 602,
+      "listIndex": 660,
       "excerptCount": 5
     },
     "Almsround": {
@@ -53555,7 +54749,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "almsround.html",
-      "listIndex": 603,
+      "listIndex": 661,
       "excerptCount": 16
     },
     "Shelter": {
@@ -53577,7 +54771,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "shelter.html",
-      "listIndex": 604,
+      "listIndex": 662,
       "excerptCount": 5
     },
     "Building projects": {
@@ -53597,7 +54791,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "building-projects.html",
-      "listIndex": 605,
+      "listIndex": 663,
       "excerptCount": 3
     },
     "Medicinal requisites": {
@@ -53617,7 +54811,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "medicinal-requisites.html",
-      "listIndex": 606,
+      "listIndex": 664,
       "excerptCount": 6
     },
     "Qualities for non-decline": {
@@ -53631,6 +54825,7 @@
       "related": [],
       "flags": "",
       "subtags": [
+        "Accomplishment in virtue",
         "Sense restraint",
         "Moderation in eating",
         "Devotion to wakefulness"
@@ -53641,7 +54836,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "qualities-for-non-decline.html",
-      "listIndex": 607
+      "listIndex": 665
     },
     "Sense restraint": {
       "tag": "Sense restraint",
@@ -53660,7 +54855,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "sense-restraint.html",
-      "listIndex": 609,
+      "listIndex": 667,
       "excerptCount": 8
     },
     "Moderation in eating": {
@@ -53682,7 +54877,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "moderation-in-eating.html",
-      "listIndex": 610,
+      "listIndex": 668,
       "excerptCount": 1
     },
     "Devotion to wakefulness": {
@@ -53704,7 +54899,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "devotion-to-wakefulness.html",
-      "listIndex": 611,
+      "listIndex": 669,
       "excerptCount": 8
     },
     "Monastic life": {
@@ -53738,7 +54933,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastic-life.html",
-      "listIndex": 612,
+      "listIndex": 670,
       "eventCount": 1,
       "sessionCount": 9,
       "excerptCount": 117
@@ -53760,7 +54955,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastic-lifemotivation.html",
-      "listIndex": 613,
+      "listIndex": 671,
       "excerptCount": 22
     },
     "Ordination": {
@@ -53782,7 +54977,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ordination.html",
-      "listIndex": 614,
+      "listIndex": 672,
       "excerptCount": 9
     },
     "Temporary ordination": {
@@ -53803,7 +54998,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "temporary-ordination.html",
-      "listIndex": 642,
+      "listIndex": 705,
       "excerptCount": 2
     },
     "Vinaya": {
@@ -53819,6 +55014,7 @@
       "subtags": [
         "Pāṭimokkha",
         "Confession",
+        "Dependence",
         "Sequence of training",
         "Protocols",
         "Not handling money",
@@ -53830,7 +55026,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "vinaya.html",
-      "listIndex": 617,
+      "listIndex": 675,
       "eventCount": 1,
       "sessionCount": 1,
       "excerptCount": 38
@@ -53852,7 +55048,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "patimokkha.html",
-      "listIndex": 618,
+      "listIndex": 676,
       "excerptCount": 6
     },
     "Confession": {
@@ -53872,8 +55068,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "confession.html",
-      "listIndex": 619,
+      "listIndex": 677,
       "excerptCount": 2
+    },
+    "Dependence": {
+      "tag": "Dependence",
+      "pali": "nissaya",
+      "fullTag": "Dependence",
+      "fullPali": "nissaya",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Vinaya"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "dependence.html",
+      "listIndex": 678
     },
     "Sequence of training": {
       "tag": "Sequence of training",
@@ -53892,7 +55107,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "sequence-of-training.html",
-      "listIndex": 620,
+      "listIndex": 679,
       "excerptCount": 15
     },
     "Protocols": {
@@ -53912,7 +55127,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "protocols.html",
-      "listIndex": 621,
+      "listIndex": 680,
       "excerptCount": 3
     },
     "Not handling money": {
@@ -53932,7 +55147,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "not-handling-money.html",
-      "listIndex": 622,
+      "listIndex": 681,
       "excerptCount": 7
     },
     "Rains retreat": {
@@ -53952,7 +55167,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "rains-retreat.html",
-      "listIndex": 623,
+      "listIndex": 682,
       "excerptCount": 6
     },
     "Mutual lay/Saṅgha support": {
@@ -53972,7 +55187,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mutual-laysangha-support.html",
-      "listIndex": 624,
+      "listIndex": 683,
       "excerptCount": 13
     },
     "Fourfold Assembly": {
@@ -53993,7 +55208,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "fourfold-assembly.html",
-      "listIndex": 626,
+      "listIndex": 685,
       "excerptCount": 1
     },
     "Communal harmony": {
@@ -54013,7 +55228,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "communal-harmony.html",
-      "listIndex": 627,
+      "listIndex": 686,
       "excerptCount": 10
     },
     "Monastery organizational structure": {
@@ -54033,7 +55248,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastery-organizational-structure.html",
-      "listIndex": 628,
+      "listIndex": 687,
       "excerptCount": 1
     },
     "Saṅgha decision making": {
@@ -54053,7 +55268,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "sangha-decision-making.html",
-      "listIndex": 629,
+      "listIndex": 688,
       "excerptCount": 9
     },
     "Abbot": {
@@ -54073,7 +55288,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "abbot.html",
-      "listIndex": 630,
+      "listIndex": 689,
       "excerptCount": 6
     },
     "Perception of a samaṇa": {
@@ -54093,7 +55308,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "perception-of-a-samana.html",
-      "listIndex": 631,
+      "listIndex": 690,
       "excerptCount": 5
     },
     "Respect": {
@@ -54109,7 +55324,8 @@
       "subtags": [
         "Monastic titles",
         "Respect for elders",
-        "Upatakh"
+        "Upatakh",
+        "Hospitality"
       ],
       "supertags": [
         "Monastic life"
@@ -54117,7 +55333,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "respect.html",
-      "listIndex": 632,
+      "listIndex": 691,
       "excerptCount": 11
     },
     "Monastic titles": {
@@ -54137,7 +55353,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastic-titles.html",
-      "listIndex": 633,
+      "listIndex": 692,
       "excerptCount": 5
     },
     "Respect for elders": {
@@ -54157,7 +55373,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "respect-for-elders.html",
-      "listIndex": 634,
+      "listIndex": 693,
       "excerptCount": 11
     },
     "Upatakh": {
@@ -54179,8 +55395,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "upatakh.html",
-      "listIndex": 635,
+      "listIndex": 694,
       "excerptCount": 11
+    },
+    "Hospitality": {
+      "tag": "Hospitality",
+      "pali": "",
+      "fullTag": "Hospitality",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Respect"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "hospitality.html",
+      "listIndex": 695
     },
     "Ascetic practices": {
       "tag": "Ascetic practices",
@@ -54193,7 +55428,9 @@
       "related": [],
       "flags": "",
       "subtags": [
-        "Tudong"
+        "Tudong",
+        "Fasting",
+        "Sitter's practice"
       ],
       "supertags": [
         "Monastic life"
@@ -54201,7 +55438,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "ascetic-practices.html",
-      "listIndex": 636,
+      "listIndex": 696,
       "sessionCount": 1,
       "excerptCount": 15
     },
@@ -54224,10 +55461,48 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "tudong.html",
-      "listIndex": 637,
+      "listIndex": 697,
       "eventCount": 1,
       "sessionCount": 3,
       "excerptCount": 43
+    },
+    "Fasting": {
+      "tag": "Fasting",
+      "pali": "",
+      "fullTag": "Fasting",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ascetic practices"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "fasting.html",
+      "listIndex": 698
+    },
+    "Sitter's practice": {
+      "tag": "Sitter's practice",
+      "pali": "",
+      "fullTag": "Sitter's practice",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Ascetic practices"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "sitters-practice.html",
+      "listIndex": 699
     },
     "Monastic crafts": {
       "tag": "Monastic crafts",
@@ -54246,7 +55521,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastic-crafts.html",
-      "listIndex": 638,
+      "listIndex": 700,
       "excerptCount": 1
     },
     "Types of monks": {
@@ -54262,9 +55537,11 @@
       "subtags": [
         "Forest versus city monks",
         "Study monks",
+        "Older monks",
         "Temporary ordination",
         "Thai sects",
-        "Novices"
+        "Novices",
+        "Postulants"
       ],
       "supertags": [
         "Monastic life"
@@ -54272,7 +55549,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "types-of-monks.html",
-      "listIndex": 639,
+      "listIndex": 701,
       "excerptCount": 2
     },
     "Forest versus city monks": {
@@ -54292,7 +55569,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "forest-versus-city-monks.html",
-      "listIndex": 640,
+      "listIndex": 702,
       "excerptCount": 2
     },
     "Study monks": {
@@ -54312,8 +55589,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "study-monks.html",
-      "listIndex": 641,
+      "listIndex": 703,
       "excerptCount": 1
+    },
+    "Older monks": {
+      "tag": "Older monks",
+      "pali": "",
+      "fullTag": "Older monks",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Types of monks"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "older-monks.html",
+      "listIndex": 704
     },
     "Thai sects": {
       "tag": "Thai sects",
@@ -54332,7 +55628,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "thai-sects.html",
-      "listIndex": 643,
+      "listIndex": 706,
       "excerptCount": 6
     },
     "Novices": {
@@ -54352,8 +55648,29 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "novices.html",
-      "listIndex": 644,
+      "listIndex": 707,
       "excerptCount": 1
+    },
+    "Postulants": {
+      "tag": "Postulants",
+      "pali": "Anagārika",
+      "fullTag": "Postulants",
+      "fullPali": "Anagārika",
+      "number": "",
+      "alternateTranslations": [
+        "Pakow <em>Thai</em>"
+      ],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Types of monks"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "postulants.html",
+      "listIndex": 708
     },
     "Disrobing": {
       "tag": "Disrobing",
@@ -54372,7 +55689,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "disrobing.html",
-      "listIndex": 648,
+      "listIndex": 713,
       "excerptCount": 7
     },
     "Everyday life": {
@@ -54397,7 +55714,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "everyday-life.html",
-      "listIndex": 649,
+      "listIndex": 714,
       "excerptCount": 15
     },
     "Lay life": {
@@ -54417,7 +55734,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "lay-life.html",
-      "listIndex": 661,
+      "listIndex": 726,
       "excerptCount": 23
     },
     "Conventions": {
@@ -54437,7 +55754,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "conventions.html",
-      "listIndex": 662,
+      "listIndex": 727,
       "excerptCount": 5
     },
     "Worldly Conditions": {
@@ -54454,6 +55771,7 @@
         "Gain and loss",
         "Fame and disrepute",
         "Blame and praise",
+        "Pleasure",
         "Pain"
       ],
       "supertags": [
@@ -54462,7 +55780,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "worldly-conditions.html",
-      "listIndex": 663,
+      "listIndex": 728,
       "excerptCount": 2
     },
     "Gain and loss": {
@@ -54482,7 +55800,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "gain-and-loss.html",
-      "listIndex": 664
+      "listIndex": 729
     },
     "Fame and disrepute": {
       "tag": "Fame and disrepute",
@@ -54501,7 +55819,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "fame-and-disrepute.html",
-      "listIndex": 665
+      "listIndex": 730
     },
     "Personal": {
       "tag": "Personal",
@@ -54515,6 +55833,7 @@
       "flags": ".",
       "subtags": [
         "Health",
+        "Purpose/meaning",
         "Cleanliness",
         "Work",
         "Relationships",
@@ -54530,7 +55849,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "personal.html",
-      "listIndex": 669
+      "listIndex": 734
     },
     "Health": {
       "tag": "Health",
@@ -54552,7 +55871,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "health.html",
-      "listIndex": 670,
+      "listIndex": 735,
       "excerptCount": 17
     },
     "Excercise": {
@@ -54572,7 +55891,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "excercise.html",
-      "listIndex": 671,
+      "listIndex": 736,
       "excerptCount": 2
     },
     "Mental illness": {
@@ -54592,8 +55911,29 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mental-illness.html",
-      "listIndex": 672,
+      "listIndex": 737,
       "excerptCount": 3
+    },
+    "Purpose/meaning": {
+      "tag": "Purpose/meaning",
+      "pali": "",
+      "fullTag": "Purpose/meaning",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [
+        "Meaning"
+      ],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Personal"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "purposemeaning.html",
+      "listIndex": 738
     },
     "Cleanliness": {
       "tag": "Cleanliness",
@@ -54612,7 +55952,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "cleanliness.html",
-      "listIndex": 673,
+      "listIndex": 739,
       "excerptCount": 5
     },
     "Work": {
@@ -54634,7 +55974,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "work.html",
-      "listIndex": 674,
+      "listIndex": 740,
       "excerptCount": 24
     },
     "Relationships": {
@@ -54654,7 +55994,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "relationships.html",
-      "listIndex": 675,
+      "listIndex": 741,
       "excerptCount": 21
     },
     "Family": {
@@ -54676,7 +56016,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "family.html",
-      "listIndex": 676,
+      "listIndex": 742,
       "excerptCount": 44
     },
     "Children": {
@@ -54696,7 +56036,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "children.html",
-      "listIndex": 677,
+      "listIndex": 743,
       "excerptCount": 3
     },
     "Artistic expression": {
@@ -54716,7 +56056,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "artistic-expression.html",
-      "listIndex": 678,
+      "listIndex": 744,
       "excerptCount": 5
     },
     "Recreation/leisure/sport": {
@@ -54739,7 +56079,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recreationleisuresport.html",
-      "listIndex": 679,
+      "listIndex": 745,
       "excerptCount": 3
     },
     "Travel": {
@@ -54759,7 +56099,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "travel.html",
-      "listIndex": 680,
+      "listIndex": 746,
       "excerptCount": 1
     },
     "Pace of life": {
@@ -54779,7 +56119,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "pace-of-life.html",
-      "listIndex": 681,
+      "listIndex": 747,
       "excerptCount": 3
     },
     "Community": {
@@ -54799,6 +56139,7 @@
         "Politics and society",
         "Commerce/economics",
         "Health care",
+        "Disasters",
         "Science",
         "Technology",
         "Media"
@@ -54809,7 +56150,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "community.html",
-      "listIndex": 682,
+      "listIndex": 748,
       "excerptCount": 28
     },
     "Environment": {
@@ -54829,7 +56170,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "environment.html",
-      "listIndex": 683,
+      "listIndex": 749,
       "excerptCount": 17
     },
     "Meditation groups": {
@@ -54849,7 +56190,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "meditation-groups.html",
-      "listIndex": 685,
+      "listIndex": 751,
       "excerptCount": 1
     },
     "Politics and society": {
@@ -54865,9 +56206,12 @@
       "subtags": [
         "Leadership",
         "Royalty",
+        "Service",
         "Activism",
+        "Non-profit organizations",
         "Corruption",
         "Crime",
+        "Discrimination",
         "Conflict",
         "Military"
       ],
@@ -54877,7 +56221,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "politics-and-society.html",
-      "listIndex": 686,
+      "listIndex": 752,
       "eventCount": 1,
       "excerptCount": 29
     },
@@ -54898,7 +56242,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "leadership.html",
-      "listIndex": 687,
+      "listIndex": 753,
       "excerptCount": 3
     },
     "Royalty": {
@@ -54918,8 +56262,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "royalty.html",
-      "listIndex": 688,
+      "listIndex": 754,
       "excerptCount": 1
+    },
+    "Service": {
+      "tag": "Service",
+      "pali": "",
+      "fullTag": "Service",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Politics and society"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "service.html",
+      "listIndex": 755
     },
     "Activism": {
       "tag": "Activism",
@@ -54938,8 +56301,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "activism.html",
-      "listIndex": 689,
+      "listIndex": 756,
       "excerptCount": 3
+    },
+    "Non-profit organizations": {
+      "tag": "Non-profit organizations",
+      "pali": "",
+      "fullTag": "Non-profit organizations",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Politics and society"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "non-profit-organizations.html",
+      "listIndex": 757
     },
     "Corruption": {
       "tag": "Corruption",
@@ -54958,7 +56340,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "corruption.html",
-      "listIndex": 690,
+      "listIndex": 758,
       "excerptCount": 2
     },
     "Crime": {
@@ -54978,8 +56360,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "crime.html",
-      "listIndex": 691,
+      "listIndex": 759,
       "excerptCount": 4
+    },
+    "Discrimination": {
+      "tag": "Discrimination",
+      "pali": "",
+      "fullTag": "Discrimination",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Politics and society"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "discrimination.html",
+      "listIndex": 760
     },
     "Conflict": {
       "tag": "Conflict",
@@ -54998,7 +56399,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "conflict.html",
-      "listIndex": 692,
+      "listIndex": 761,
       "excerptCount": 9
     },
     "Military": {
@@ -55018,7 +56419,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "military.html",
-      "listIndex": 693,
+      "listIndex": 762,
       "excerptCount": 7
     },
     "Commerce/economics": {
@@ -55042,7 +56443,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "commerceeconomics.html",
-      "listIndex": 694,
+      "listIndex": 763,
       "excerptCount": 24
     },
     "Poverty": {
@@ -55062,7 +56463,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "poverty.html",
-      "listIndex": 695,
+      "listIndex": 764,
       "excerptCount": 6
     },
     "Health care": {
@@ -55084,7 +56485,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "health-care.html",
-      "listIndex": 696,
+      "listIndex": 765,
       "excerptCount": 22
     },
     "Pandemic": {
@@ -55104,8 +56505,27 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "pandemic.html",
-      "listIndex": 697,
+      "listIndex": 766,
       "excerptCount": 5
+    },
+    "Disasters": {
+      "tag": "Disasters",
+      "pali": "",
+      "fullTag": "Disasters",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Community"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "disasters.html",
+      "listIndex": 767
     },
     "Science": {
       "tag": "Science",
@@ -55124,7 +56544,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "science.html",
-      "listIndex": 698,
+      "listIndex": 768,
       "excerptCount": 6
     },
     "Technology": {
@@ -55147,7 +56567,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "technology.html",
-      "listIndex": 699,
+      "listIndex": 769,
       "excerptCount": 4
     },
     "Industry": {
@@ -55167,7 +56587,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "industry.html",
-      "listIndex": 700,
+      "listIndex": 770,
       "excerptCount": 1
     },
     "Online community": {
@@ -55187,7 +56607,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "online-community.html",
-      "listIndex": 701,
+      "listIndex": 771,
       "excerptCount": 6
     },
     "Media": {
@@ -55212,7 +56632,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "media.html",
-      "listIndex": 702,
+      "listIndex": 772,
       "excerptCount": 4
     },
     "News": {
@@ -55232,7 +56652,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "news.html",
-      "listIndex": 703,
+      "listIndex": 773,
       "excerptCount": 1
     },
     "Advertizing": {
@@ -55252,7 +56672,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "advertizing.html",
-      "listIndex": 704,
+      "listIndex": 774,
       "excerptCount": 1
     },
     "Internet": {
@@ -55272,7 +56692,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "internet.html",
-      "listIndex": 705,
+      "listIndex": 775,
       "excerptCount": 2
     },
     "Social media": {
@@ -55292,7 +56712,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "social-media.html",
-      "listIndex": 706,
+      "listIndex": 776,
       "excerptCount": 4
     },
     "New unsorted tags": {
@@ -55312,7 +56732,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "new-unsorted-tags.html",
-      "listIndex": 707
+      "listIndex": 777
     },
     "Sound of silence": {
       "tag": "Sound of silence",
@@ -55331,7 +56751,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "sound-of-silence.html",
-      "listIndex": 708,
+      "listIndex": 778,
       "excerptCount": 2
     }
   },
@@ -57534,6 +58954,17 @@
       "level": 2,
       "indexNumber": "",
       "flags": "",
+      "name": "Dignity",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Dignity",
+      "tag": "Dignity"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
       "name": "Non-contention",
       "pali": "",
       "excerptCount": 3,
@@ -57982,6 +59413,17 @@
       "tag": "Guilt/shame/inadequacy"
     },
     {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Self-pity",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Self-pity",
+      "tag": "Self-pity"
+    },
+    {
       "level": 2,
       "indexNumber": "",
       "flags": "",
@@ -58013,6 +59455,17 @@
       "subsumed": false,
       "text": "Addiction (1)",
       "tag": "Addiction"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Dogmatism",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Dogmatism",
+      "tag": "Dogmatism"
     },
     {
       "level": 2,
@@ -58521,6 +59974,17 @@
       "tag": "Suchness"
     },
     {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "0",
+      "name": "Not-made-of-that",
+      "pali": "atammayatā",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Not-made-of-that [atammayatā]",
+      "tag": "Not-made-of-that"
+    },
+    {
       "level": 2,
       "indexNumber": "",
       "flags": "*",
@@ -58541,6 +60005,17 @@
       "subsumed": false,
       "text": "Emotion (9)",
       "tag": "Emotion"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Attitude",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Attitude",
+      "tag": "Attitude"
     },
     {
       "level": 2,
@@ -58853,6 +60328,17 @@
     {
       "level": 3,
       "indexNumber": "",
+      "flags": "",
+      "name": "Bodhi Tree",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Bodhi Tree",
+      "tag": "Bodhi Tree"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
       "flags": "*",
       "name": "Buddha images",
       "pali": "",
@@ -58860,6 +60346,17 @@
       "subsumed": false,
       "text": "Buddha images (3)",
       "tag": "Buddha images"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Malas",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Malas",
+      "tag": "Malas"
     },
     {
       "level": 3,
@@ -59536,6 +61033,17 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
+      "name": "Perception of light",
+      "pali": "ālokasañña",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Perception of light [ālokasañña]",
+      "tag": "Perception of light"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
       "name": "Kasiṇa",
       "pali": "Kasiṇa",
       "excerptCount": 2,
@@ -59652,6 +61160,17 @@
       "subsumed": false,
       "text": "Buddho mantra (3)",
       "tag": "Buddho mantra"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Movement meditation",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Movement meditation",
+      "tag": "Movement meditation"
     },
     {
       "level": 3,
@@ -59894,6 +61413,17 @@
       "subsumed": false,
       "text": "Meditation/Results (1)",
       "tag": "Meditation/Results"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Wrong concentration",
+      "pali": "micchā-samādhi",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Wrong concentration [micchā-samādhi]",
+      "tag": "Wrong concentration"
     },
     {
       "level": 3,
@@ -60372,12 +61902,34 @@
       "level": 2,
       "indexNumber": "",
       "flags": "",
+      "name": "Symbolism",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Symbolism",
+      "tag": "Symbolism"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
       "name": "Dhamma books",
       "pali": "",
       "excerptCount": 11,
       "subsumed": false,
       "text": "Dhamma books (11)",
       "tag": "Dhamma books"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Free distribution",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Free distribution",
+      "tag": "Free distribution"
     },
     {
       "level": 2,
@@ -60466,6 +62018,17 @@
       "subsumed": false,
       "text": "Ajahn Jun (1)",
       "tag": "Ajahn Jun"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Sinuan",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Sinuan",
+      "tag": "Ajahn Sinuan"
     },
     {
       "level": 5,
@@ -60570,12 +62133,56 @@
       "level": 5,
       "indexNumber": "",
       "flags": "",
+      "name": "Ajahn Dtun",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Dtun",
+      "tag": "Ajahn Dtun"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
       "name": "Ajahn Anan",
       "pali": "",
       "excerptCount": 1,
       "subsumed": false,
       "text": "Ajahn Anan (1)",
       "tag": "Ajahn Anan"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Munindo",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Munindo",
+      "tag": "Ajahn Munindo"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Siripañño",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Siripañño",
+      "tag": "Ajahn Siripañño"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Kevali",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Kevali",
+      "tag": "Ajahn Kevali"
     },
     {
       "level": 5,
@@ -60598,6 +62205,28 @@
       "subsumed": false,
       "text": "Ajahn Sucitto (1)",
       "tag": "Ajahn Sucitto"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Jundee",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Jundee",
+      "tag": "Ajahn Jundee"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Ñāṇadhammo",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Ñāṇadhammo",
+      "tag": "Ajahn Ñāṇadhammo"
     },
     {
       "level": 5,
@@ -60666,6 +62295,28 @@
       "tag": "Ajahn Ñāṇiko"
     },
     {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Sundara",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Sundara",
+      "tag": "Ajahn Sundara"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Mae Chee Kumfah",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Mae Chee Kumfah",
+      "tag": "Mae Chee Kumfah"
+    },
+    {
       "level": 4,
       "indexNumber": "",
       "flags": "P",
@@ -60702,6 +62353,28 @@
       "level": 5,
       "indexNumber": "",
       "flags": "",
+      "name": "Ajahn Dee",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Dee",
+      "tag": "Ajahn Dee"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Phut",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Phut",
+      "tag": "Ajahn Phut"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
       "name": "Ajahn Tongrat",
       "pali": "",
       "excerptCount": 6,
@@ -60719,6 +62392,39 @@
       "subsumed": false,
       "text": "Ajahn Kinaree (5)",
       "tag": "Ajahn Kinaree"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Fun",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Fun",
+      "tag": "Ajahn Fun"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Dune",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Dune",
+      "tag": "Ajahn Dune"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Utane",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Utane",
+      "tag": "Ajahn Utane"
     },
     {
       "level": 5,
@@ -60752,6 +62458,17 @@
       "subsumed": false,
       "text": "Ajahn Baen (3)",
       "tag": "Ajahn Baen"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Jumnien",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Jumnien",
+      "tag": "Ajahn Jumnien"
     },
     {
       "level": 5,
@@ -60818,6 +62535,39 @@
       "subsumed": false,
       "text": "Ajahn Paññānanda (3)",
       "tag": "Ajahn Paññānanda"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Samwong",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Samwong",
+      "tag": "Ajahn Samwong"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Suwat",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Suwat",
+      "tag": "Ajahn Suwat"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Khantipālo",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ajahn Khantipālo",
+      "tag": "Ajahn Khantipālo"
     },
     {
       "level": 5,
@@ -60900,6 +62650,17 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Chao Khun Noi",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Chao Khun Noi",
+      "tag": "Chao Khun Noi"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "P. A. Payutto",
       "pali": "",
       "excerptCount": 3,
@@ -60928,6 +62689,28 @@
       "subsumed": false,
       "text": "Mahasi Sayadaw (1)",
       "tag": "Mahasi Sayadaw"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ven. Ñāṇamoli",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ven. Ñāṇamoli",
+      "tag": "Ven. Ñāṇamoli"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Pa Auk Sayadaw",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Pa Auk Sayadaw",
+      "tag": "Pa Auk Sayadaw"
     },
     {
       "level": 4,
@@ -61010,6 +62793,17 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Master Hsu Yun",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Master Hsu Yun",
+      "tag": "Master Hsu Yun"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "Master Hsuan Hua",
       "pali": "",
       "excerptCount": 4,
@@ -61065,6 +62859,17 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
+      "name": "Mahatma Gandhi",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Mahatma Gandhi",
+      "tag": "Mahatma Gandhi"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
       "name": "Upasikā Kee Nanayon",
       "pali": "",
       "excerptCount": 4,
@@ -61087,12 +62892,56 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
+      "name": "Maurice Walsh",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Maurice Walsh",
+      "tag": "Maurice Walsh"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Dipa Ma",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Dipa Ma",
+      "tag": "Dipa Ma"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ruth Denison",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ruth Denison",
+      "tag": "Ruth Denison"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
       "name": "Ram Dass",
       "pali": "",
       "excerptCount": 3,
       "subsumed": false,
       "text": "Ram Dass (3)",
       "tag": "Ram Dass"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Paul Brieter",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Paul Brieter",
+      "tag": "Paul Brieter"
     },
     {
       "level": 3,
@@ -61115,6 +62964,28 @@
       "subsumed": false,
       "text": "George Sharp (1)",
       "tag": "George Sharp"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Kittisaro",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Kittisaro",
+      "tag": "Kittisaro"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ṭhanissarā",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Ṭhanissarā",
+      "tag": "Ṭhanissarā"
     },
     {
       "level": 1,
@@ -61170,6 +63041,17 @@
       "subsumed": false,
       "text": "Wat Tam Saeng Pet (2)",
       "tag": "Wat Tam Saeng Pet"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Wat Keun",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Wat Keun",
+      "tag": "Wat Keun"
     },
     {
       "level": 4,
@@ -61241,6 +63123,17 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Wat Asokaram",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Wat Asokaram",
+      "tag": "Wat Asokaram"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "Wat Pah Ban Tat",
       "pali": "",
       "excerptCount": 1,
@@ -61285,6 +63178,17 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
+      "name": "Aruna Ratanagiri Monastery",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Aruna Ratanagiri Monastery",
+      "tag": "Aruna Ratanagiri"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
       "name": "Tisarana Monastery",
       "pali": "",
       "excerptCount": 1,
@@ -61318,6 +63222,39 @@
       "level": 2,
       "indexNumber": "",
       "flags": "P",
+      "name": "Thai Forest monasteries in the West",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Thai Forest monasteries in the West",
+      "tag": "Thai Forest monasteries in the West"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Wat Buridat",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Wat Buridat",
+      "tag": "Wat Buridat"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Wat Metta",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Wat Metta",
+      "tag": "Wat Metta"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "P",
       "name": "Monasteries in other traditions",
       "pali": "",
       "excerptCount": 0,
@@ -61335,6 +63272,28 @@
       "subsumed": false,
       "text": "City of Ten Thousand Buddhas (2)",
       "tag": "City of Ten Thousand Buddhas"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Dhammadharini Monastery",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Dhammadharini Monastery",
+      "tag": "Dhammadharini Monastery"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Karuna Buddhist Vihara",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Karuna Buddhist Vihara",
+      "tag": "Karuna Buddhist Vihara"
     },
     {
       "level": 2,
@@ -61357,6 +63316,17 @@
       "subsumed": false,
       "text": "Insight Meditation Society (1)",
       "tag": "Insight Meditation Society"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Spirit Rock Meditation Center",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Spirit Rock Meditation Center",
+      "tag": "Spirit Rock"
     },
     {
       "level": 3,
@@ -61593,6 +63563,17 @@
       "level": 2,
       "indexNumber": "",
       "flags": "",
+      "name": "The Deathless",
+      "pali": "amata",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "The Deathless [amata]",
+      "tag": "Deathless"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
       "name": "The Unconditioned/Ultimate Truth",
       "pali": "asaṅkhata",
       "excerptCount": 6,
@@ -61643,6 +63624,17 @@
       "subsumed": false,
       "text": "History/Early Buddhism (14)",
       "tag": "History/Early Buddhism"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "History/Indian Buddhism",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "History/Indian Buddhism",
+      "tag": "History/Indian Buddhism"
     },
     {
       "level": 2,
@@ -61711,6 +63703,17 @@
       "tag": "History/Western Buddhist monasticism"
     },
     {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Geography/Thailand",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Geography/Thailand",
+      "tag": "Geography/Thailand"
+    },
+    {
       "level": 1,
       "indexNumber": "",
       "flags": "",
@@ -61758,12 +63761,34 @@
       "level": 2,
       "indexNumber": "",
       "flags": "p",
+      "name": "Culture/Sri Lanka",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Culture/Sri Lanka",
+      "tag": "Culture/Sri Lanka"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "p",
       "name": "Culture/Thailand",
       "pali": "",
       "excerptCount": 75,
       "subsumed": false,
       "text": "Culture/Thailand (75)",
       "tag": "Culture/Thailand"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "p",
+      "name": "Culture/Native American",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Culture/Native American",
+      "tag": "Culture/Native American"
     },
     {
       "level": 2,
@@ -61821,6 +63846,17 @@
       "tag": "Sīladharā"
     },
     {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Mae Chee<em>Thai</em>",
+      "pali": "Mae Chee<em>Thai</em>",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Mae Chee<em>Thai</em>",
+      "tag": "Mae Chee"
+    },
+    {
       "level": 2,
       "indexNumber": "",
       "flags": "",
@@ -61863,6 +63899,17 @@
       "subsumed": false,
       "text": "Question in Thai (2)",
       "tag": "Question in Thai"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Thai audio",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Thai audio",
+      "tag": "Thai audio"
     },
     {
       "level": 3,
@@ -62050,6 +64097,17 @@
       "subsumed": false,
       "text": "Western psychology (7)",
       "tag": "Western psychology"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Cults",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Cults",
+      "tag": "Cults"
     },
     {
       "level": 1,
@@ -62484,6 +64542,17 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Dependence",
+      "pali": "nissaya",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Dependence [nissaya]",
+      "tag": "Dependence"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "Sequence of training",
       "pali": "",
       "excerptCount": 15,
@@ -62657,6 +64726,17 @@
       "tag": "Upatakh"
     },
     {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Hospitality",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Hospitality",
+      "tag": "Hospitality"
+    },
+    {
       "level": 3,
       "indexNumber": "",
       "flags": "",
@@ -62677,6 +64757,28 @@
       "subsumed": false,
       "text": "Tudong <em>Thai</em> (43)",
       "tag": "Tudong"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Fasting",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Fasting",
+      "tag": "Fasting"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Sitter's practice",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Sitter's practice",
+      "tag": "Sitter's practice"
     },
     {
       "level": 3,
@@ -62725,6 +64827,17 @@
     {
       "level": 4,
       "indexNumber": "",
+      "flags": "",
+      "name": "Older monks",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Older monks",
+      "tag": "Older monks"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
       "flags": "*",
       "name": "Temporary ordination",
       "pali": "",
@@ -62754,6 +64867,17 @@
       "subsumed": false,
       "text": "Novices (1)",
       "tag": "Novices"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Postulants",
+      "pali": "Anagārika",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Postulants [Anagārika]",
+      "tag": "Postulants"
     },
     {
       "level": 3,
@@ -62787,6 +64911,17 @@
       "subsumed": false,
       "text": "Sīladharā (3)",
       "tag": "Sīladharā"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "*",
+      "name": "Mae Chee<em>Thai</em>",
+      "pali": "Mae Chee<em>Thai</em>",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Mae Chee<em>Thai</em>",
+      "tag": "Mae Chee"
     },
     {
       "level": 3,
@@ -63067,6 +65202,17 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
+      "name": "Purpose/meaning",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Purpose/meaning",
+      "tag": "Purpose/meaning"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
       "name": "Cleanliness",
       "pali": "",
       "excerptCount": 5,
@@ -63243,12 +65389,34 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Service",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Service",
+      "tag": "Service"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "Activism",
       "pali": "",
       "excerptCount": 3,
       "subsumed": false,
       "text": "Activism (3)",
       "tag": "Activism"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Non-profit organizations",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Non-profit organizations",
+      "tag": "Non-profit organizations"
     },
     {
       "level": 4,
@@ -63271,6 +65439,17 @@
       "subsumed": false,
       "text": "Crime (4)",
       "tag": "Crime"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Discrimination",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Discrimination",
+      "tag": "Discrimination"
     },
     {
       "level": 4,
@@ -63337,6 +65516,17 @@
       "subsumed": false,
       "text": "Pandemic (5)",
       "tag": "Pandemic"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Disasters",
+      "pali": "",
+      "excerptCount": 0,
+      "subsumed": false,
+      "text": "Disasters",
+      "tag": "Disasters"
     },
     {
       "level": 3,
