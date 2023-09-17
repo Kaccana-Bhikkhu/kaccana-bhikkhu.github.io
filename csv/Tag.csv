@@ -1,4 +1,4 @@
-Count,179,753,50,396,56,37,11,,37,59,4,784,366,733,733
+Count,179,753,50,397,56,37,13,,37,59,4,784,367,733,733
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -14,7 +14,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Malicious speech,,pisuṇāya vācāya,,,,,,,,         Malicious speech,pisuṇāya vācāya,Malicious speech,Malicious speech [pisuṇāya vācāya]
 4,,Harsh speech,,pharusāya vācāya,,,,,,,,         Harsh speech,pharusāya vācāya,Harsh speech,Harsh speech [pharusāya vācāya]
 4,,Idle chatter,,samphappalāpā,,,,,,,,         Idle chatter,samphappalāpā,Idle chatter,Idle chatter [samphappalāpā]
-4,0*,Admonishment/feedback,,,,,,,,,,         Admonishment/feedback,,Admonishment/feedback,Admonishment/feedback
+4,0*,Admonishment/feedback,,,,,,Feedback,,,,         Admonishment/feedback,,Admonishment/feedback,Admonishment/feedback
 4,0,Listening,,,,,,,,,,         Listening,,Listening,Listening
 4,0,Blame and praise,,nindā ca pasaṃsā ca,,,,,,,,         Blame and praise,nindā ca pasaṃsā ca,Blame and praise,Blame and praise [nindā ca pasaṃsā ca]
 3,,Right Action,3,samma kammanto,,,,,,Precepts,,      Right Action,samma kammanto,Right Action,Right Action [samma kammanto]
@@ -95,7 +95,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,.,Concentration based on exertion and,,sa­mā­dhi­­p­padhāna­saṅkhā­rasa­ma­n­nāga­taṁ,,,,,,,,      Concentration based on exertion and,sa­mā­dhi­­p­padhāna­saṅkhā­rasa­ma­n­nāga­taṁ,,
 3,,Desire,,chanda,,,,,,,,      Desire,chanda,Desire,Desire [chanda]
 3,,Energy,,viriya,,,,,,,,      Energy,viriya,Energy,Energy [viriya]
-3,,Heart/mind,,citta,,,,,,,,      Heart/mind,citta,Heart/mind,Heart/mind [citta]
+3,,Heart/mind,,citta,,,,Mind,,,,      Heart/mind,citta,Heart/mind,Heart/mind [citta]
 3,,Investigation,,vīmaṃsā,,,,,Discernment,,,      Investigation,vīmaṃsā,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -223,10 +223,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Jealousy,,,,,,,,,,      Jealousy,,Jealousy,Jealousy
 3,,Competitiveness,,,,,,,,,,      Competitiveness,,Competitiveness,Competitiveness
 3,,Selfishness,,,,,,,,,,      Selfishness,,Selfishness,Selfishness
-3,,Guilt/shame/inadequacy,,,,,,,,,,      Guilt/shame/inadequacy,,Guilt/shame/inadequacy,Guilt/shame/inadequacy
+3,,Guilt/shame/inadequacy,,,,,,Shame;Inadequacy,,,,      Guilt/shame/inadequacy,,Guilt/shame/inadequacy,Guilt/shame/inadequacy
 3,,Self-pity,,,,,,,,,,      Self-pity,,Self-pity,Self-pity
 2,,Depression,,,,,,,,,,   Depression,,Depression,Depression
-2,,Abuse/violence,,,,,,,,,,   Abuse/violence,,Abuse/violence,Abuse/violence
+2,,Abuse/violence,,,,,,Violence,,,,   Abuse/violence,,Abuse/violence,Abuse/violence
 2,,Addiction,,,,,,,,,,   Addiction,,Addiction,Addiction
 2,,Dogmatism,,,,,,,,,,   Dogmatism,,Dogmatism,Dogmatism
 2,,Spiritual bypass,,,,,,,,,,   Spiritual bypass,,Spiritual bypass,Spiritual bypass
@@ -238,7 +238,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Mental volition,,manosañcetanā,Volition,cetanā,,,,,,      Mental volition,cetanā,Volition,Volition [cetanā]
 3,,Consciousness,,viññāṇa,,,,,,,,      Consciousness,viññāṇa,Consciousness,Consciousness [viññāṇa]
 2,*,Five Aggregates,5,pañcakkhandhā,Aggregates,khandhā,,,,,,   Five Aggregates,khandhā,Aggregates,Aggregates [khandhā]
-3,*,Body/form,,rūpa,,,,,,,,      Body/form,rūpa,Body/form,Body/form [rūpa]
+3,*,Form,,rūpa,,,Body,,,,,      Form,rūpa,Form,Form [rūpa]
 3,*,Feeling,,vedanā,,,,,,,,      Feeling,vedanā,Feeling,Feeling [vedanā]
 3,*,Perception,,sañña,,,,,,,,      Perception,sañña,Perception,Perception [sañña]
 3,*,Volitional formations,,saṅkhāra,,,,,,,,      Volitional formations,saṅkhāra,Volitional formations,Volitional formations [saṅkhāra]
@@ -302,7 +302,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 1,,Devotional practice,,,,,,,,Faith,,Devotional practice,,Devotional practice,Devotional practice
-2,,Ceremony/ritual,,,,,,,,,,   Ceremony/ritual,,Ceremony/ritual,Ceremony/ritual
+2,,Ceremony/ritual,,,,,,Ritual,,,,   Ceremony/ritual,,Ceremony/ritual,Ceremony/ritual
 3,,,,Pūjā,,,,,,,,      Pūjā,,Pūjā,Pūjā
 2,,Chanting,,,,,,,,,,   Chanting,,Chanting,Chanting
 3,,Protective chants,,paritta,,,,,,,,      Protective chants,paritta,Protective chants,Protective chants [paritta]
@@ -314,7 +314,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Visiting holy sites,,,,,,,,,,   Visiting holy sites,,Visiting holy sites,Visiting holy sites
 2,,Objects of veneration,,,,,,,,,,   Objects of veneration,,Objects of veneration,Objects of veneration
 3,,Relics,,,,,,,,,,      Relics,,Relics,Relics
-3,,Stupas/monuments,,,,,,,,,,      Stupas/monuments,,Stupas/monuments,Stupas/monuments
+3,,Stupas/monuments,,,,,,Monuments,,,,      Stupas/monuments,,Stupas/monuments,Stupas/monuments
 3,,Bodhi Tree,,,,,,,,,,      Bodhi Tree,,Bodhi Tree,Bodhi Tree
 3,*,Buddha images,,,,,,,,,,      Buddha images,,Buddha images,Buddha images
 3,,Malas,,,,,,,,,,      Malas,,Malas,Malas
@@ -468,7 +468,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Dhamma discussion,,,,,,,,,,   Dhamma discussion,,Dhamma discussion,Dhamma discussion
 2,,Mentoring,,,,,,,,,,   Mentoring,,Mentoring,Mentoring
 2,,Personal presence,,,,,,,,,,   Personal presence,,Personal presence,Personal presence
-2,,Admonishment/feedback,,,,,,,,,,   Admonishment/feedback,,Admonishment/feedback,Admonishment/feedback
+2,,Admonishment/feedback,,,,,,Feedback,,,,   Admonishment/feedback,,Admonishment/feedback,Admonishment/feedback
 2,,Fierce/direct teaching,,,,,,,,,,   Fierce/direct teaching,,Fierce/direct teaching,Fierce/direct teaching
 2,,Stories,,,,,,,,,,   Stories,,Stories,Stories
 2,,Similes,,,,,,,,,,   Similes,,Similes,Similes
@@ -670,7 +670,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Supernatural,,,,,,,,,,   Supernatural,,Supernatural,Supernatural
 ,,,,,,,,,,,,,,,
 2,,The Deathless,,amata,Deathless,,,,,Nibbāna,,   The Deathless,amata,Deathless,Deathless [amata]
-2,,The Unconditioned/Ultimate Truth,,asaṅkhata,Unconditioned,,,,,Nibbāna,,   The Unconditioned/Ultimate Truth,asaṅkhata,Unconditioned,Unconditioned [asaṅkhata]
+2,,The Unconditioned/Ultimate Truth,,asaṅkhata,Unconditioned,,,Ultimate Truth,,Nibbāna,,   The Unconditioned/Ultimate Truth,asaṅkhata,Unconditioned,Unconditioned [asaṅkhata]
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -808,7 +808,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,*,Temporary ordination,,,,,,,,,,         Temporary ordination,,Temporary ordination,Temporary ordination
 4,,Thai sects,,,,,,,,,,         Thai sects,,Thai sects,Thai sects
 4,,Novices,,,,,,,,,,         Novices,,Novices,Novices
-4,,Anagārikas/pakows,,,,,,,,,,         Anagārikas/pakows,,Anagārikas/pakows,Anagārikas/pakows
+4,,Postulants,,Anagārika,,,Pakow <em>Thai</em>,,,,,         Postulants,Anagārika,Postulants,Postulants [Anagārika]
 3,*,Women's monastic forms,,,,,,,,,,      Women's monastic forms,,Women's monastic forms,Women's monastic forms
 4,*,,,Bhikkhunī,,,,,,,,         Bhikkhunī,,Bhikkhunī,Bhikkhunī
 4,*,,,Sīladharā,,,,,,,,         Sīladharā,,Sīladharā,Sīladharā
@@ -841,14 +841,14 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Health,,,,,,,,,,      Health,,Health,Health
 4,,Excercise,,,,,,,,,,         Excercise,,Excercise,Excercise
 4,,Mental illness,,,,,,,,,,         Mental illness,,Mental illness,Mental illness
-3,,Purpose/meaning,,,,,,,,,,      Purpose/meaning,,Purpose/meaning,Purpose/meaning
+3,,Purpose/meaning,,,,,,Meaning,,,,      Purpose/meaning,,Purpose/meaning,Purpose/meaning
 3,,Cleanliness,,,,,,,,,,      Cleanliness,,Cleanliness,Cleanliness
 3,,Work,,,,,,,,Right livelihood,,      Work,,Work,Work
 3,,Relationships,,,,,,,,,,      Relationships,,Relationships,Relationships
 3,,Family,,,,,,,,,,      Family,,Family,Family
 4,,Children,,,,,,,,,,         Children,,Children,Children
 3,,Artistic expression,,,,,,,,,,      Artistic expression,,Artistic expression,Artistic expression
-3,,Recreation/leisure/sport,,,,,,,,,,      Recreation/leisure/sport,,Recreation/leisure/sport,Recreation/leisure/sport
+3,,Recreation/leisure/sport,,,,,,Leisure;Sport,,,,      Recreation/leisure/sport,,Recreation/leisure/sport,Recreation/leisure/sport
 3,,Travel,,,,,,,,,,      Travel,,Travel,Travel
 3,,Pace of life,,,,,,,,,,      Pace of life,,Pace of life,Pace of life
 2,,Community,,,,,,,,,,   Community,,Community,Community
@@ -868,7 +868,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 4,,Military,,,,,,,,,,         Military,,Military,Military
-3,,Commerce/economics,,,,,,,,,,      Commerce/economics,,Commerce/economics,Commerce/economics
+3,,Commerce/economics,,,,,,Economics,,,,      Commerce/economics,,Commerce/economics,Commerce/economics
 4,,Poverty,,,,,,,,,,         Poverty,,Poverty,Poverty
 ,,,,,,,,,,,,,,,
 3,,Health care,,,,,,,,,,      Health care,,Health care,Health care

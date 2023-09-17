@@ -294,10 +294,12 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     
     yield str(a)
 
-class Alphabetize(NamedTuple):
+class _Alphabetize(NamedTuple):
     "Helper tuple to alphabetize a list."
     sortBy: str
     html: str
+def Alphabetize(sortBy: str,html: str) -> _Alphabetize:
+    return _Alphabetize(Utils.RemoveDiacritics(sortBy).lower(),html)
 
 def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
@@ -318,12 +320,11 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             return string
 
-    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> Alphabetize:
+    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
         tagName = AlphabetizeNames(tagName)
-        sortBy = Utils.RemoveDiacritics(tagName).lower()
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
-        return Alphabetize(sortBy,html)
+        return Alphabetize(tagName,html)
 
     def RemoveItalics(pali: str) -> str:
         """Remove the italic text that indicates the language a tag is given in.
@@ -334,13 +335,12 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             return pali
 
-    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> Alphabetize:
+    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> _Alphabetize:
         """pali = AlphabetizeNames(RemoveItalics(pali))
         if not pali:
             return None"""
-        sortBy = Utils.RemoveDiacritics(text).lower()
         html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
-        return Alphabetize(sortBy,html)
+        return Alphabetize(text,html)
 
 
     entries = defaultdict(list)
@@ -396,7 +396,11 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         
         for translation in tag["alternateTranslations"]:
             html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
-            entries["english"].append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
+            entries["english"].append(Alphabetize(translation,html))
+        
+        for gloss in tag["glosses"]:
+            html = f"{gloss} see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+            entries["english"].append(Alphabetize(gloss,html))
     
     def Deduplicate(iterable: Iterable) -> Iterator:
         iterable = iter(iterable)

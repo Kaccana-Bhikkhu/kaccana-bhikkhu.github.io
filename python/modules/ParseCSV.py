@@ -255,6 +255,7 @@ def LoadTagsFile(database,tagFileName):
     rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["indentedTags","paliTerm","tagMenu","Tag count","paliTagMenu"])
         
     ListifyKey(rawTagList,"alternateTranslations")
+    ListifyKey(rawTagList,"glosses")
     ListifyKey(rawTagList,"related")
     ConvertToInteger(rawTagList,"level")
     
@@ -299,7 +300,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["pali"] = tagPaliName
         tagDesc["fullTag"] = FirstValidValue(rawTag,fullNamePreference)
         tagDesc["fullPali"] = rawTag["pali"]
-        for key in ["number","alternateTranslations","related","flags"]:
+        for key in ["number","alternateTranslations","glosses","related","flags"]:
             tagDesc[key] = rawTag[key]
                 
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
