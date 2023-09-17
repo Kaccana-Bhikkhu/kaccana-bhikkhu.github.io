@@ -89,7 +89,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     return title + titleEnd + listStr + endStr
 
-def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "") -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str:
     """Turn a tag name into a hyperlink to that tag.
     Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
@@ -104,7 +104,7 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "") -> str:
     
     if not text:
         text = tag
-    if "tags" in gOptions.buildOnly:
+    if "tags" in gOptions.buildOnly and link:
         return f'<a href = "../tags/{ref}">{text}</a>'
     else:
         return text
@@ -257,26 +257,32 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             
             yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
 
-def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "") -> str:
+def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True) -> str:
     "Return html code describing this tag."
     
     xCount = ExcerptCount(tag["tag"])
     countStr = f' ({xCount})' if xCount > 0 else ''
     
-    tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs)
-    
+    tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
+
+    paliStr = ''
     if tag['pali'] and tag['pali'] != tag['tag']:
         if fullTag:
             paliStr = '(' + tag['fullPali'] + ')'
         else:
             paliStr = '(' + tag['pali'] + ')'
-    else:
-        paliStr = ''
+    elif ParseCSV.TagFlag.DISPLAY_GLOSS in tag["flags"]:
+        if tag['glosses']:
+            paliStr = '(' + tag['glosses'][0] + ')'
+        else:
+            Alert.caution(tag,"has flag g: DISPLAY_GLOSS but has no glosses.")
     
     if style == "tagFirst":
         return ' '.join([tagStr,paliStr,countStr])
     elif style == "numberFirst":
         return ' '.join([countStr,tagStr,paliStr])
+    elif style == "noNumber":
+        return ' '.join([tagStr,paliStr])
     elif style == "noPali":
         return ' '.join([tagStr,countStr])
 
@@ -345,8 +351,8 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     entries = defaultdict(list)
     for tag in gDatabase["tag"].values():
-        #if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
-        #    continue
+        if not tag["htmlFile"]:
+            continue
 
         nonEnglish = tag["tag"] == tag["pali"]
         properNoun = ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])
@@ -396,11 +402,17 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         
         for translation in tag["alternateTranslations"]:
             html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
-            entries["english"].append(Alphabetize(translation,html))
+            if translation.endswith("</em>"):
+                entries["other"].append(Alphabetize(translation,html))
+            else:
+                entries["english"].append(Alphabetize(translation,html))
         
         for gloss in tag["glosses"]:
             html = f"{gloss} see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
-            entries["english"].append(Alphabetize(gloss,html))
+            if gloss.endswith("</em>"):
+                entries["other"].append(Alphabetize(gloss,html))
+            else:
+                entries["english"].append(Alphabetize(gloss,html))
     
     def Deduplicate(iterable: Iterable) -> Iterator:
         iterable = iter(iterable)
@@ -983,7 +995,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-            
+            a(TitledList("Synonyms",tagInfo['glosses'],plural = ""))
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
@@ -996,10 +1008,11 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
         
-        if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
+        """if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
             tagPlusPali = f"{tagInfo['fullTag']} ({tagInfo['fullPali']})"
         else:
-            tagPlusPali = tag
+            tagPlusPali = tag"""
+        tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
 
         pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
         basePage = Html.PageDesc(pageInfo)
