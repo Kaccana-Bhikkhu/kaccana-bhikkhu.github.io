@@ -282,14 +282,14 @@ def LoadTagsFile(database,tagFileName):
     rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTags]
 
     subsumedTags = {} # A dictionary of subsumed tags for future reference
-    
+    virtualHeadings = set() # Tags used only as list headers
+
     tagStack = [] # Supertag ancestry stack
     
     lastTagLevel = 1
     lastTag = TagStackItem("")
-    rawTagIndex = -1
-    for rawTag in rawTagList:
-        rawTagIndex += 1
+    for rawTagIndex,rawTag in enumerate(rawTagList):
+        
         tagName = FirstValidValue(rawTag,namePreference)
         tagPaliName = FirstValidValue(rawTag,paliPreference,"")
 
@@ -354,11 +354,19 @@ def LoadTagsFile(database,tagFileName):
                 AppendUnique(tags[tagName]["supertags"],tagDesc["supertags"])
                 continue
         
-        tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
+        if TagFlag.VIRTUAL in rawTag["flags"] and (rawTagIndex + 1 >= len(rawTagList) or rawTagList[rawTagIndex + 1]["level"] <= rawTag["level"]):
+            virtualHeadings.add(tagName)
+            tagDesc["htmlFile"] = "" # Virtual tags with no subtags don't have a page
+        else:
+            tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
         
         tagDesc["listIndex"] = rawTagIndex
         tags[tagName] = tagDesc
     
+    for tag in tags.values():
+        tag["subtags"] = [t for t in tag["subtags"] if t not in virtualHeadings]
+            # Remove virtual headings from subtag lists
+
     database["tag"] = tags
     database["tagRaw"] = rawTagList
     database["tagSubsumed"] = subsumedTags
@@ -528,6 +536,9 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[
             assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
             tagStack.append([])
         
+        if TagFlag.VIRTUAL in tag["flags"] and (n + 1 >= len(tagDisplayList) or tagDisplayList[n + 1]["level"] <= tag["level"]):
+            continue # Skip virtual tags with no subtags
+
         if returnIndices:
             tagStack[-1].append(n)
         else:
