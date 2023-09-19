@@ -213,6 +213,9 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
             
             if item['pali'] and item['pali'] != item['name']:
                 paliStr = '(' + item['pali'] + ')'
+            elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
+                paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
+                # If specified, use paliStr to display the tag's first gloss
             else:
                 paliStr = ''
             
