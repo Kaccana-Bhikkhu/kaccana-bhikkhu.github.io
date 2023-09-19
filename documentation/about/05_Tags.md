@@ -8,33 +8,33 @@ The superstructure of the tagging scheme can be understood by examining this gro
 __A. Mental qualities__
 
 1. [Skillful qualities](../../pages/drilldown/tag-000.html#0)
-2. [Unskillful qualities](../../pages/drilldown/tag-172.html#172)
-3. [Indeterminate qualities](../../pages/drilldown/tag-215.html#215)
+2. [Unskillful qualities](../../pages/drilldown/tag-173.html#173)
+3. [Indeterminate qualities](../../pages/drilldown/tag-218.html#218)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/tag-269.html#269)
-5. [Devotional practice](../../pages/drilldown/tag-276.html#276)
-6. [Precepts](../../pages/drilldown/tag-294.html#294)
-7. [Meditation](../../pages/drilldown/tag-321.html#321)
+4. [Three Refuges](../../pages/drilldown/tag-274.html#274)
+5. [Devotional practice](../../pages/drilldown/tag-281.html#281)
+6. [Precepts](../../pages/drilldown/tag-301.html#301)
+7. [Meditation](../../pages/drilldown/tag-328.html#328)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-393.html#393)
-9. [Teachers](../../pages/drilldown/tag-430.html#430)
-10. [Monasteries](../../pages/drilldown/tag-496.html#496)
+8. [Teaching Dhamma](../../pages/drilldown/tag-403.html#403)
+9. [Teachers](../../pages/drilldown/tag-442.html#442)
+10. [Monasteries](../../pages/drilldown/tag-537.html#537)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-519.html#519)
-12. [History](../../pages/drilldown/tag-540.html#540)
-13. [Cultural context](../../pages/drilldown/tag-550.html#550)
-14. [Spiritual traditions](../../pages/drilldown/tag-569.html#569)
+11. [Nature of the cosmos](../../pages/drilldown/tag-569.html#569)
+12. [History](../../pages/drilldown/tag-591.html#591)
+13. [Cultural context](../../pages/drilldown/tag-603.html#603)
+14. [Spiritual traditions](../../pages/drilldown/tag-626.html#626)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-581.html#581)
-16. [Everyday life](../../pages/drilldown/tag-649.html#649)
+15. [Renunciant practice](../../pages/drilldown/tag-639.html#639)
+16. [Everyday life](../../pages/drilldown/tag-714.html#714)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 

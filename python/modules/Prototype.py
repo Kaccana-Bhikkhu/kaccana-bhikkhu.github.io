@@ -413,12 +413,17 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["english"].append(Alphabetize(translation,html))
         
         for gloss in tag["glosses"]:
-            html = f"{gloss} see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
             if gloss.endswith("</em>"):
                 entries["other"].append(Alphabetize(gloss,html))
             else:
                 entries["english"].append(Alphabetize(gloss,html))
     
+    for subsumedTag,subsumedUnder in gDatabase["tagSubsumed"].items():
+        tag = gDatabase["tag"][subsumedUnder]
+        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+        entries["english"].append(Alphabetize(subsumedTag,html))
+
     def Deduplicate(iterable: Iterable) -> Iterator:
         iterable = iter(iterable)
         prevItem = next(iterable)
