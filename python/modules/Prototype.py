@@ -105,7 +105,12 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str
     if not text:
         text = tag
     if "tags" in gOptions.buildOnly and link:
-        return f'<a href = "../tags/{ref}">{text}</a>'
+        splitItalics = text.split("<em>")
+        if len(splitItalics) > 1:
+            textOutsideLink = " <em>" + splitItalics[1]
+        else:
+            textOutsideLink = ""
+        return f'<a href = "../tags/{ref}">{splitItalics[0].strip()}</a>{textOutsideLink}'
     else:
         return text
 
