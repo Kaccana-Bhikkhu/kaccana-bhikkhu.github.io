@@ -48793,7 +48793,7 @@
       "alternateTranslations": [],
       "glosses": [],
       "related": [],
-      "flags": "C",
+      "flags": "CE",
       "subtags": [],
       "supertags": [
         "Three Refuges"
@@ -49769,7 +49769,7 @@
       "related": [
         "Buddha"
       ],
-      "flags": "",
+      "flags": "p",
       "subtags": [],
       "supertags": [
         "Recollection"
@@ -55647,9 +55647,9 @@
     },
     "Postulants": {
       "tag": "Postulants",
-      "pali": "Anagārika",
+      "pali": "anagārika",
       "fullTag": "Postulants",
-      "fullPali": "Anagārika",
+      "fullPali": "anagārika",
       "number": "",
       "alternateTranslations": [
         "Pakow <em>Thai</em>"
@@ -60146,7 +60146,7 @@
     {
       "level": 2,
       "indexNumber": "2",
-      "flags": "C",
+      "flags": "CE",
       "name": "Dhamma",
       "pali": "Dhamma",
       "excerptCount": 30,
@@ -60157,7 +60157,7 @@
     {
       "level": 2,
       "indexNumber": "3",
-      "flags": "C",
+      "flags": "CE",
       "name": "Saṅgha",
       "pali": "Saṅgha",
       "excerptCount": 37,
@@ -61213,7 +61213,7 @@
     {
       "level": 3,
       "indexNumber": "1",
-      "flags": "",
+      "flags": "p",
       "name": "Recollection/Buddha",
       "pali": "buddhānussati",
       "excerptCount": 11,
@@ -64867,10 +64867,10 @@
       "indexNumber": "",
       "flags": "",
       "name": "Postulants",
-      "pali": "Anagārika",
+      "pali": "anagārika",
       "excerptCount": 0,
       "subsumed": false,
-      "text": "Postulants [Anagārika]",
+      "text": "Postulants [anagārika]",
       "tag": "Postulants"
     },
     {
@@ -67345,6 +67345,21 @@
     },
     "Wat Pah": {
       "prefix": "Wat Pah"
+    },
+    "Recollection/": {
+      "prefix": "Recollection/"
+    },
+    "Posture/": {
+      "prefix": "Posture/"
+    },
+    "History/": {
+      "prefix": "History/"
+    },
+    "Geography/": {
+      "prefix": "Geography/"
+    },
+    "Culture/": {
+      "prefix": "Culture/"
     }
   },
   "tagSubsumed": {

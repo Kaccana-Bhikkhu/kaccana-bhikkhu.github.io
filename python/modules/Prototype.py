@@ -320,14 +320,17 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     prefixes = sorted(list(gDatabase["prefix"]),key=len,reverse=True)
         # Sort prefixes so the longest prefix matches first
-    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r" (.+)"
+    prefixes = [p if p.endswith("/") else p + " " for p in prefixes]
+        # Add a space to each prefix that doesn't end with "/"
+    slashPrefixes = Utils.RegexMatchAny(p for p in prefixes if p.endswith("/"))
+    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r"(.+)"
     noAlphabetize = {"alphabetize":""}
     def AlphabetizeNames(string: str) -> str:
         if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
             return gDatabase["name"][string]["alphabetize"]
         match = re.match(prefixRegex,string)
         if match:
-            return match[2] + ", " + match[1]
+            return match[2] + ", " + match[1].strip(" /")
         else:
             return string
 
@@ -337,20 +340,10 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
         return Alphabetize(tagName,html)
 
-    def RemoveItalics(pali: str) -> str:
-        """Remove the italic text that indicates the language a tag is given in.
-        For example: '<em>Thai</em> ascetic wandering' -> 'Ascetic wandering' """
-        noItalics,substituted = re.subn(r"<em>.*</em>","",pali,flags=re.IGNORECASE)
-        if substituted:
-            return noItalics.strip().capitalize()
-        else:
-            return pali
-
     def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> _Alphabetize:
-        """pali = AlphabetizeNames(RemoveItalics(pali))
-        if not pali:
-            return None"""
-        html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
+        count = tag.get('excerptCount',0)
+        countStr = f" ({count})" if count else ""
+        html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}]{countStr}"
         return Alphabetize(text,html)
 
 
@@ -389,7 +382,11 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
                 entries["english"].append(EnglishEntry(tag,tag["tag"]))
                 # File the abbreviated tag separately if it's not a simple truncation
-                
+        
+        if re.match(slashPrefixes,tag["fullTag"]):
+            entries["english"].append(Alphabetize(tag["fullTag"],TagDescription(tag,fullTag=True)))
+            # Alphabetize tags like History/Thailand under History/Thailand as well as Thailand, History
+
         if tag["pali"]: # Add an entry for foriegn language items
             entry = NonEnglishEntry(tag,tag["pali"])
             if hasPali:
@@ -1005,7 +1002,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-            a(TitledList("Synonyms",tagInfo['glosses'],plural = ""))
+            a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
