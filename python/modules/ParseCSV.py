@@ -464,6 +464,36 @@ def IndexTags(database: dict) -> None:
         if tag["listIndex"] != tag["newListIndex"]:
             print(f"Mismatched numbers: {tag['tag']}: {tag['listIndex']=}, {tag['newListIndex']=}")"""
 
+def SortTags(database: dict) -> None:
+    """Sort subtags of tags with flag 'S' according to sort by dates in Name sheet."""
+
+    for parentIndex,childIndexes in WalkTags(database["tagDisplayList"],returnIndices=True):
+        if not parentIndex:
+            continue
+        parent = database["tagDisplayList"][parentIndex]
+        if TagFlag.SORT_SUBTAGS not in parent["flags"]:
+            continue
+
+        if len(childIndexes) < childIndexes[-1] - childIndexes[0] + 1:
+            Alert.caution.Show("Cannot sort",repr(parent["name"]),"because it contains multiple levels of tags.")
+            continue
+
+        children = [database["tagDisplayList"][i] for i in childIndexes]
+
+        def SortByDate(tagInfo:dict) -> float:
+            sortBy = database["name"].get(tagInfo["tag"],{"sortBy":""})["sortBy"]
+            if sortBy:
+                try:
+                    return float(sortBy)
+                except ValueError:
+                    pass
+            Alert.caution.Show("Cannot find a date for",repr(tagInfo["tag"]),"in the Name sheet. This tag will go last.")
+            return 9999.0
+
+        children.sort(key=SortByDate)
+        for index,child in zip(childIndexes,children):
+            database["tagDisplayList"][index] = child
+
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
     Format: level, text of display line, tag to open when clicked""" 
@@ -1073,6 +1103,7 @@ def main():
     PrepareTeachers(gDatabase["teacher"])
 
     CreateTagDisplayList(gDatabase)
+    SortTags(gDatabase)
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
 
