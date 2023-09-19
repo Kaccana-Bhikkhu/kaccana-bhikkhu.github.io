@@ -941,12 +941,18 @@ def CountAndVerify(database):
     
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
+        tagsToRemove = []
         for tag in tagSet:
             try:
                 tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.error.Show(f"CountAndVerify: Tag {tag} is not defined.")
+                Alert.warning.Show(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
+                tagsToRemove.append(tag)
+        
+        if tagsToRemove:
+            for item in Filter.AllItems(x):
+                item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
     
     Alert.info.Show(tagCount,"total tags applied.")
     
