@@ -111,7 +111,7 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
             break
         elif not BlankDict(row):
             if not firstDictValue:
-                Alert.warning.Show("WARNING: blank first field in",row)
+                Alert.warning.Show("blank first field in",row)
         
             # Increase robustness by stripping values and keys
             for key in list(row):
@@ -850,7 +850,7 @@ def LoadEventFile(database,eventName,directory):
         prevExcerpt = x
 
     if blankExcerpts:
-        Alert.notice.Show(blankExcerpts," blank excerpts in",eventDesc)
+        Alert.notice.Show(blankExcerpts,"blank excerpts in",eventDesc)
 
     prevSession = None
     for xIndex, x in enumerate(excerpts):
@@ -879,9 +879,17 @@ def LoadEventFile(database,eventName,directory):
         if not endTime:
             endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
         
-        startTime = Utils.StrToTimeDelta(startTime)
-        endTime = Utils.StrToTimeDelta(endTime)
-
+        try:
+            startTime = Utils.StrToTimeDelta(startTime)
+            endTime = Utils.StrToTimeDelta(endTime)
+        except ValueError:
+            if type(startTime) == str:
+                failed = startTime
+            else:
+                failed = endTime
+            Alert.error.Show("FATAL: Cannot convert",repr(failed),"to a time when processing",x)
+            quit()
+        
         session = (x["event"],x["sessionNumber"])
         if session != prevSession: # A new session starts at time zero
             prevEndTime = timedelta(seconds = 0)
