@@ -853,6 +853,7 @@ def LoadEventFile(database,eventName,directory):
         Alert.notice.Show(blankExcerpts,"blank excerpts in",eventDesc)
 
     prevSession = None
+    deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
     for xIndex, x in enumerate(excerpts):
         # Combine all tags into a single list, but keep track of how many qTags there are
         x["tags"] = x["qTag"] + x["aTag"]
@@ -887,8 +888,9 @@ def LoadEventFile(database,eventName,directory):
                 failed = startTime
             else:
                 failed = endTime
-            Alert.error.Show("FATAL: Cannot convert",repr(failed),"to a time when processing",x)
-            quit()
+            Alert.error.Show("Cannot convert",repr(failed),"to a time when processing",x,"; will delete this excerpt.")
+            deletedExcerptIDs.add(id(x))
+            continue
         
         session = (x["event"],x["sessionNumber"])
         if session != prevSession: # A new session starts at time zero
@@ -905,11 +907,8 @@ def LoadEventFile(database,eventName,directory):
         prevEndTime = endTime
     
     removedExcerpts = [x for x in excerpts if x["exclude"]]
-    excerpts = [x for x in excerpts if not x["exclude"]]
-        # Remove excluded excerpts and those we didn't get consent for
-    """for n, x in enumerate(removedExcerpts):
-        print("Removed excert",n,x)
-        print()"""
+    excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
+        # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
 
     xNumber = 1
     lastSession = -1
