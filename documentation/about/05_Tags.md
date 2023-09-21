@@ -8,33 +8,33 @@ The superstructure of the tagging scheme can be understood by examining this gro
 __A. Mental qualities__
 
 1. [Skillful qualities](../../pages/drilldown/tag-000.html#0)
-2. [Unskillful qualities](../../pages/drilldown/tag-172.html#172)
-3. [Indeterminate qualities](../../pages/drilldown/tag-215.html#215)
+2. [Unskillful qualities](../../pages/drilldown/tag-168.html#168)
+3. [Indeterminate qualities](../../pages/drilldown/tag-211.html#211)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/tag-269.html#269)
-5. [Devotional practice](../../pages/drilldown/tag-276.html#276)
-6. [Precepts](../../pages/drilldown/tag-294.html#294)
-7. [Meditation](../../pages/drilldown/tag-321.html#321)
+4. [Three Refuges](../../pages/drilldown/tag-265.html#265)
+5. [Devotional practice](../../pages/drilldown/tag-272.html#272)
+6. [Precepts](../../pages/drilldown/tag-290.html#290)
+7. [Meditation](../../pages/drilldown/tag-315.html#315)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-393.html#393)
-9. [Teachers](../../pages/drilldown/tag-430.html#430)
-10. [Monasteries](../../pages/drilldown/tag-496.html#496)
+8. [Teaching Dhamma](../../pages/drilldown/tag-388.html#388)
+9. [Teachers](../../pages/drilldown/tag-425.html#425)
+10. [Monasteries](../../pages/drilldown/tag-491.html#491)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-519.html#519)
-12. [History](../../pages/drilldown/tag-540.html#540)
-13. [Cultural context](../../pages/drilldown/tag-550.html#550)
-14. [Spiritual traditions](../../pages/drilldown/tag-569.html#569)
+11. [Nature of the cosmos](../../pages/drilldown/tag-514.html#514)
+12. [History](../../pages/drilldown/tag-535.html#535)
+13. [Cultural context](../../pages/drilldown/tag-546.html#546)
+14. [Spiritual traditions](../../pages/drilldown/tag-565.html#565)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-581.html#581)
-16. [Everyday life](../../pages/drilldown/tag-649.html#649)
+15. [Renunciant practice](../../pages/drilldown/tag-577.html#577)
+16. [Everyday life](../../pages/drilldown/tag-644.html#644)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -42,7 +42,7 @@ Tags are organized chronologically and conceptually; earlier and more fundamenta
 
 ## Tag Choices
 
-Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, I had to make many somewhat arbitrary decisions, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [[Discernment](../../pages/tags/discernment.html)] (pañña; see “[Why is discernment a better word for wisdom?](../../pages/events/SRD2013.html#SRD2013_S01_F03)”). When tagging English discourse, when to use [[Discernment](../../pages/tags/discernment.html)] and when to use related terms? I chose the following [[Investigation of states](../../pages/tags/investigation-of-states.html)] (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [[Appropriate attention](../../pages/tags/appropriate-attention.html)] (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](../../pages/drilldown/tag-090.html#90) describes reviewing the results of past actions with a view to further improve in the future, but I chose to lump this with the general tag [[Discernment](../../pages/tags/discernment.html)].
+Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, I had to make many somewhat arbitrary decisions, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [[Discernment](../../pages/tags/discernment.html)] (pañña; see “[Why is discernment a better word for wisdom?](../../pages/events/SRD2013.html#SRD2013_S01_F03)”). When tagging English discourse, when to use [[Discernment](../../pages/tags/discernment.html)] and when to use related terms? I chose the following [[Investigation of states](../../pages/tags/investigation-of-states.html)] (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [[Appropriate attention](../../pages/tags/appropriate-attention.html)] (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](../../pages/drilldown/tag-087.html#87) describes reviewing the results of past actions with a view to further improve in the future, but I chose to lump this with the general tag [[Discernment](../../pages/tags/discernment.html)].
 
 Other somewhat arbitrary choices regarding specific tags include the following:
 
