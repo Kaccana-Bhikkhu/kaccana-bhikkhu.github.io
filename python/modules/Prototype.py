@@ -121,25 +121,28 @@ def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
     linkedTags = [HtmlTagLink(tag) for tag in tags]
     return TitledList(title,linkedTags,*args,**kwargs)
 
-gTeacherRegex = ""
-gReverseTeacherLookup = {}
-def LinkTeachersInText(text: str) -> str:
+gAllTeacherRegex = ""
+def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
     """Search text for the names of teachers with teacher pages and add hyperlinks accordingly."""
 
-    global gTeacherRegex,gReverseTeacherLookup
-    if not gTeacherRegex:
-        gTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
-        gReverseTeacherLookup = {gDatabase["teacher"][abbr]["fullName"]:abbr for abbr in gDatabase["teacher"]}
+    global gAllTeacherRegex
+    if not gAllTeacherRegex:
+        gAllTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
     
+    if specificTeachers:
+        teacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
+    else:
+        teacherRegex = gAllTeacherRegex
+
     def HtmlTeacherLink(matchObject: re.Match) -> str:
-        teacher = gReverseTeacherLookup[matchObject[1]]
+        teacher = Utils.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
         if "teachers" in gOptions.buildOnly:
             return f'<a href = {htmlFile}>{matchObject[1]}</a>'
         else:
             return matchObject[1]
 
-    return re.sub(gTeacherRegex,HtmlTeacherLink,text)
+    return re.sub(teacherRegex,HtmlTeacherLink,text)
 
 
 def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:

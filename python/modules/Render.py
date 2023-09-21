@@ -180,6 +180,15 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         item["body"] = item["body"].replace("{attribution}",attributionStr)
     else:
         item["attribution"] = attributionStr
+    
+    # If the first tag of an indirect quote specifies a teacher, link the last occurence of the teacher in the body
+    if item["kind"] == "Indirect quote" and item["tags"]:
+        quotedTeacher = Utils.TeacherLookup(item["tags"][0])
+        if quotedTeacher:
+            parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["fullName"]]),item["body"])
+            if len(parts) > 1:
+                parts[-2] = Prototype.LinkTeachersInText(parts[-2])
+                item["body"] = "".join(parts)
 
 def RenderExcerpts() -> None:
     """Use the templates in gDatabase["kind"] to add "body" and "attribution" keys to each except and its annotations"""
