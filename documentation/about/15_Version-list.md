@@ -35,3 +35,5 @@
 - 3.2.1 Add About pages: Overview, Ways to Help, and Licence. Thanksgiving Retreat 2016. Retag Thanksgiving Retreat 2015.
 
 - 3.2.2 Add About pages: What's new? and Contact. Render links to teachers, about pages, images, and the media player. Complex workaround needed to link to non-page items (e.g. images) in Document.RenderDocumenationFiles. Loading images properly in both the static html pages and frame.js will require modifications to frame.js.
+
+- 3.3 Add Glosses column in Tag sheet. Improve alphabetical tag list. Enable tag sorting by date. Events listed in tag pages. Indirect quotes link to teacher. Added Upasika Day 2018: The New Ajahn Chah Biography.

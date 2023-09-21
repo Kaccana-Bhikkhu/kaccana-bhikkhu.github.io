@@ -1,4 +1,4 @@
-Count,180,753,50,397,56,37,13,,37,59,4,784,367,733,733
+Count,180,753,50,397,56,37,14,,37,61,4,784,367,733,733
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -56,7 +56,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,*,Right Concentration,,sammā samādhi,,,,,,Concentration,,      Right Concentration,sammā samādhi,Right Concentration,Right Concentration [sammā samādhi]
 4,*,,,Jhāna,,,,,,,,         Jhāna,,Jhāna,Jhāna
 4,,Seclusion,,viveka,,,,,,,,         Seclusion,viveka,Seclusion,Seclusion [viveka]
-4,*,Directed thought and evaluation,,vitakka-vicāra,,,Applied and sustained thought,,,,,         Directed thought and evaluation,vitakka-vicāra,Directed thought and evaluation,Directed thought and evaluation [vitakka-vicāra]
+4,*,Directed thought and evaluation,,vitakka-vicāra,,,Applied and sustained thought,Thinking (skillful),,Proliferation,,         Directed thought and evaluation,vitakka-vicāra,Directed thought and evaluation,Directed thought and evaluation [vitakka-vicāra]
 4,,Rapture,,pīti,,,,,,,,         Rapture,pīti,Rapture,Rapture [pīti]
 4,*,Happiness,,sukha,,,Pleasure,,,,,         Happiness,sukha,Happiness,Happiness [sukha]
 4,,Equanimity,,upekkhā,,,,,,,,         Equanimity,upekkhā,Equanimity,Equanimity [upekkhā]
@@ -152,7 +152,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Disenchantment,,nibbidā,,,,,,,,      Disenchantment,nibbidā,Disenchantment,Disenchantment [nibbidā]
 3,*,Dispassion,,virāga,,,,,,,,      Dispassion,virāga,Dispassion,Dispassion [virāga]
 3,*,Cessation,,nirodha,,,,,,,,      Cessation,nirodha,Cessation,Cessation [nirodha]
-3,*,Relinquishment,,paṭinissagga,,,,,,Release,,      Relinquishment,paṭinissagga,Relinquishment,Relinquishment [paṭinissagga]
+3,*,Relinquishment,,paṭinissagga,,,,Letting go,,Release,,      Relinquishment,paṭinissagga,Relinquishment,Relinquishment [paṭinissagga]
 3,*,Release,,vossagga,,,,,,Relinquishment,,      Release,vossagga,Release,Release [vossagga]
 3,*,Liberation,,vimutti,,,Freedom,,,,,      Liberation,vimutti,Liberation,Liberation [vimutti]
 ,,,,,,,,,,,,,,,
@@ -185,7 +185,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 1,,Unskillful qualities,,akusalā dhammā,,,,,,,,Unskillful qualities,akusalā dhammā,Unskillful qualities,Unskillful qualities [akusalā dhammā]
-2,,Three Unwholesome Roots,3,akusala-mulā,Unwholesome Roots,,,,,,,   Three Unwholesome Roots,akusala-mulā,Unwholesome Roots,Unwholesome Roots [akusala-mulā]
+2,,Three Unwholesome Roots,3,akusala-mulā,Unwholesome Roots,,,Defilements,,,,   Three Unwholesome Roots,akusala-mulā,Unwholesome Roots,Unwholesome Roots [akusala-mulā]
 3,,Greed,,lobha,,,,,,Generosity,,      Greed,lobha,Greed,Greed [lobha]
 3,,Aversion,,dosa,,,,,,Ill-will,,      Aversion,dosa,Aversion,Aversion [dosa]
 3,,Delusion,,moha,,,,,,,,      Delusion,moha,Delusion,Delusion [moha]
@@ -196,7 +196,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,*,Ignorance,,avijjāsava,,,,,,,,      Ignorance,avijjāsava,Ignorance,Ignorance [avijjāsava]
 3,,Views,,diṭṭhāsava,,,,,,,,      Views,diṭṭhāsava,Views,Views [diṭṭhāsava]
 2,*,Five Hindrances,5,pañca nīvaraṇāni,Hindrances,nīvaraṇāni,,,,,,   Five Hindrances,nīvaraṇāni,Hindrances,Hindrances [nīvaraṇāni]
-3,*,Sensual desire,,kāmacchanda,,,,,,Renunciation,,      Sensual desire,kāmacchanda,Sensual desire,Sensual desire [kāmacchanda]
+3,*,Sensual desire,,kāmacchanda,,,,Sensual pleasure,,Renunciation,,      Sensual desire,kāmacchanda,Sensual desire,Sensual desire [kāmacchanda]
 3,*,Ill-will,,byāpāda,,,,,,Goodwill,,      Ill-will,byāpāda,Ill-will,Ill-will [byāpāda]
 3,*,Sloth and torpor,,thīna-middha,,,,,,Energy,,      Sloth and torpor,thīna-middha,Sloth and torpor,Sloth and torpor [thīna-middha]
 3,*,Restlessness and worry,,uddhacca-kukkucca,,,,,,Tranquility,,      Restlessness and worry,uddhacca-kukkucca,Restlessness and worry,Restlessness and worry [uddhacca-kukkucca]
@@ -214,7 +214,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Ignorance,,avijjā,,,,,,,,      Ignorance,avijjā,Ignorance,Ignorance [avijjā]
 2,,Heedlessness,,pamāda,,,,,,,,   Heedlessness,pamāda,Heedlessness,Heedlessness [pamāda]
 2,,Defilement,,kilesa,,,,,Unwholesome Roots,,,   Defilement,kilesa,,
-2,,Proliferation,,papañca,,,,,,,,   Proliferation,papañca,Proliferation,Proliferation [papañca]
+2,,Proliferation,,papañca,,,Objectification,Thinking (unskillful),,Directed thought and evaluation,,   Proliferation,papañca,Proliferation,Proliferation [papañca]
 2,.,Conceit-related,,,,,,,,,,   Conceit-related,,,
 3,,Self-identity view,,sakkāya-diṭṭhi,,,,,,,,      Self-identity view,sakkāya-diṭṭhi,Self-identity view,Self-identity view [sakkāya-diṭṭhi]
 3,,Conceit,,māna,,,,,,,,      Conceit,māna,Conceit,Conceit [māna]
@@ -259,7 +259,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Craving for sensuality,,kāma-taṇhā,,,,,Sensual desire,,,         Craving for sensuality,kāma-taṇhā,,
 4,,Craving to become,,bhava-taṇhā,,,,,Becoming,,,         Craving to become,bhava-taṇhā,,
 4,,Craving not to become,,vibhava-taṇhā,,,,,,,,         Craving not to become,vibhava-taṇhā,Craving not to become,Craving not to become [vibhava-taṇhā]
-3,,Clinging,,upādāna,,,,,,,,      Clinging,upādāna,Clinging,Clinging [upādāna]
+3,,Clinging,,upādāna,,,,Attachment,,,,      Clinging,upādāna,Clinging,Clinging [upādāna]
 4,,Sensuality-clinging,,kāmupādāna,,,,,Sensual desire,,,         Sensuality-clinging,kāmupādāna,,
 4,,View-clinging,,diṭṭhupādāna,,,,,Views,,,         View-clinging,diṭṭhupādāna,,
 4,,Rites-and-rituals clinging,,sīlabbatupādāna,,,,,Attachment to rites and rituals,,,         Rites-and-rituals clinging,sīlabbatupādāna,,
@@ -268,7 +268,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Birth,,jāti,,,,,,,,      Birth,jāti,Birth,Birth [jāti]
 3,,Suffering,,dukkha,,,,,,,,      Suffering,dukkha,Suffering,Suffering [dukkha]
 2,,Characteristics of existence,3,,,,,,,,,   Characteristics of existence,,Characteristics of existence,Characteristics of existence
-3,*,Impermanence,,anicca,,,,,,,,      Impermanence,anicca,Impermanence,Impermanence [anicca]
+3,*,Impermanence,,anicca,,,,Arising and ceasing,,,,      Impermanence,anicca,Impermanence,Impermanence [anicca]
 3,*,Suffering,,dukkha,,,,,,,,      Suffering,dukkha,Suffering,Suffering [dukkha]
 3,*,Not-self,,anatta,,,,,,,,      Not-self,anatta,Not-self,Not-self [anatta]
 3,0,Naturalness,,dhammaṭṭhitatā,,,,,,,,      Naturalness,dhammaṭṭhitatā,Naturalness,Naturalness [dhammaṭṭhitatā]
