@@ -65,7 +65,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
             return newDB,opSet
     
     requireSpreadsheetDB = {'SplitMp3','Render'}
-    requireRenderedDB = {'Document','Prototype'}
+    requireRenderedDB = {'Document','Prototype','TagMp3'}
 
     if opSet.intersection(requireRenderedDB):
         if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB):
@@ -88,7 +88,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Document','Prototype']
+moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Document','Prototype','TagMp3']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 
@@ -99,8 +99,10 @@ parser.add_argument('ops',type=str,help="""A comma-separated list of operations 
 DownloadCSV - download csv files from the Google Sheet.
 ParseCSV - convert the csv files downloaded from the Google Sheet to SpreadsheetDatabase.json.
 SplitMp3 - split mp3 files into individual excerpts based on the times in SpreadsheetDatabase.json.
-Prototype - create html files to illustrate how SpreadsheetDatabase.json should be interpreted.
-OptimizeDatabase - convert SpreadsheetDatabase.json to (optimized) Database.json
+Render - use pryatemp and markdown to convert excerpts into html and saves to RenderedDatabase.json.
+Document - create the .md files in documentation/about from documentation/aboutSources.
+Prototype - create html files for all menus and excerpts.
+TagMp3 - update the ID3 tags on excerpt mp3 files.
 All - run all the above modules in sequence.
 """)
 
