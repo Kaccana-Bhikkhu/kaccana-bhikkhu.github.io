@@ -317,5 +317,5 @@ def SummarizeDict(d: dict,printer: Alert.AlertClass) -> None:
             desc += f"[{len(value)}]"
         except TypeError:
             pass
-        printer.Show(desc)
+        printer(desc)
     

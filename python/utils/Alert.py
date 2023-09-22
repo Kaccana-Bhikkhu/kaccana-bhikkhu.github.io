@@ -1,5 +1,6 @@
 """A module to print and log errors and notifications taking into account verbosity and debug status."""
 from __future__ import annotations
+from typing import Any
 
 verbosity = 0
 ObjectPrinter = repr # Call this function to convert items to print into strings
@@ -47,6 +48,8 @@ class AlertClass:
                 for _ in range(self.lineSpacing):
                     print()
     
+    __call__ = Show
+
     def CountString(self) -> str:
         "Return a string describing how many alerts have occured."
 

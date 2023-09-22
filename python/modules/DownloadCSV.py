@@ -24,9 +24,9 @@ def DownloadFile(url:str,filename:str,retries:int = 2):
                     shutil.copyfileobj(remoteFile, localFile)
         except urllib.error.HTTPError:
             if attempt < retries:
-                Alert.caution.Show(f"HTTP error when attempting to download {filename}. Retrying.")
+                Alert.caution(f"HTTP error when attempting to download {filename}. Retrying.")
             else:
-                Alert.error.Show(f"HTTP error when attempting to download {filename}. Giving up after {retries + 1} attempts.")
+                Alert.error(f"HTTP error when attempting to download {filename}. Giving up after {retries + 1} attempts.")
         
 
 def DownloadSheetCSV(docId: str, sheetId: str, filePath: str) -> None:
@@ -75,8 +75,8 @@ def main():
     Read the beginning and end points from Database.json."""
     
     if not gOptions.spreadsheet:
-        Alert.error.Show("A spreadsheet must be specified using --spreadsheet")
-        Alert.error.Show("DownloadCSV aborting.")
+        Alert.error("A spreadsheet must be specified using --spreadsheet")
+        Alert.error("DownloadCSV aborting.")
         return
 
     gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
@@ -111,10 +111,10 @@ def main():
     if downloadSummary:
         DownloadSummarySheet()
         sheetIds = ReadSheetIds()
-        Alert.info.Show("Downloaded Summary.csv")
+        Alert.info("Downloaded Summary.csv")
     else:
         sheetIds = oldSheetIds
-        Alert.info.Show("Didn't download Summary.csv")
+        Alert.info("Didn't download Summary.csv")
         
     
     sheetIds.pop('Summary',None) # No need to download summary again
@@ -124,7 +124,7 @@ def main():
     if gOptions.sheets != 'All':
         for sheetName in gOptions.sheets:
             if sheetName not in sheetIds:
-                Alert.warning.Show('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
+                Alert.warning('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
         
         sheetIds = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
     
@@ -132,4 +132,4 @@ def main():
     downloadedSheets = list(sheetIds.keys())
     if downloadSummary:
         downloadedSheets = ['Summary'] + downloadedSheets
-    Alert.info.Show(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
+    Alert.info(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')

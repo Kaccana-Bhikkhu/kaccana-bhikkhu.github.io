@@ -18,9 +18,9 @@ Alert.ObjectPrinter = Utils.ItemRepr
 
 def PrintModuleSeparator(moduleName:str) -> None:
     if moduleName:
-        Alert.structure.Show(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
+        Alert.structure(f"{'-'*10} {moduleName} {'-'*(25 - len(moduleName))}")
     else:
-        Alert.structure.Show('-'*37)
+        Alert.structure('-'*37)
 
 def ReadJobOptions(jobName: str) -> list[str]:
     "Read a list of job options from the .vscode/launch.json"
@@ -124,7 +124,7 @@ parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbo
 if sys.argv[1] == "Job" or sys.argv[1] == "Jobs": # If ops == "Job", 
     jobOptionsList = ReadJobOptions(sys.argv[2] if len(sys.argv) >= 3 else None)
     argList = jobOptionsList + sys.argv[3:]
-    Alert.essential.Show('python',sys.argv[0]," ".join(argList))
+    Alert.essential('python',sys.argv[0]," ".join(argList))
 else:
     argList = sys.argv[1:]
 PrintModuleSeparator("")
@@ -137,7 +137,7 @@ os.chdir(baseOptions.homeDir)
 
 Alert.verbosity = baseOptions.verbose - baseOptions.quiet
 if baseOptions.homeDir != '.':
-    Alert.info.Show("Home directory:",baseOptions.homeDir)
+    Alert.info("Home directory:",baseOptions.homeDir)
 
 ## STEP 2: Configure parser with default options read from the .args files
 parsedFiles = []
@@ -149,9 +149,9 @@ for argsFile in baseOptions.defaults.split(","):
     except OSError:
         errorFiles.append(argsFile)
 if parsedFiles:
-    Alert.structure.Show("Read default values from:",", ".join(parsedFiles))
+    Alert.structure("Read default values from:",", ".join(parsedFiles))
 if errorFiles:
-    Alert.structure.Show("Could not read:",", ".join(parsedFiles))
+    Alert.structure("Could not read:",", ".join(parsedFiles))
 
 ## STEP 3: Parse the command line again to override arguments specified by the .args files
 clOptions = parser.parse_args(argList)
@@ -174,11 +174,11 @@ else:
 # Check for unsuppported ops
 for verb in opSet:
     if verb not in moduleList:
-        Alert.warning.Show("Unsupported operation",verb)
+        Alert.warning("Unsupported operation",verb)
 
 database, newOpSet = LoadDatabaseAndAddMissingOps(opSet)
 if newOpSet != opSet:
-    Alert.info.Show(f"Will run additional module(s): {newOpSet.difference(opSet)}.")
+    Alert.info(f"Will run additional module(s): {newOpSet.difference(opSet)}.")
     opSet = newOpSet
 
 # Set up the global namespace for each module - this allows the modules to call each other out of order
@@ -195,9 +195,9 @@ for moduleName in moduleList:
 PrintModuleSeparator("")
 
 if clOptions.ignoreTeacherConsent:
-    Alert.warning.Show("Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
+    Alert.warning("Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
 if clOptions.ignoreExcludes:
-    Alert.warning.Show("Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
+    Alert.warning("Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
 
 errorCountList = []
 for error in [Alert.error, Alert.warning, Alert.caution, Alert.notice]:
@@ -206,8 +206,8 @@ for error in [Alert.error, Alert.warning, Alert.caution, Alert.notice]:
         errorCountList.append(countString)
 
 if errorCountList:
-    Alert.essential.Show("  ***** " + ", ".join(errorCountList) + " *****")
+    Alert.essential("  ***** " + ", ".join(errorCountList) + " *****")
 else:
-    Alert.status.Show("No errors reported.")
+    Alert.status("No errors reported.")
 
-Alert.structure.Show("QSarchive.py finished.")
+Alert.structure("QSarchive.py finished.")

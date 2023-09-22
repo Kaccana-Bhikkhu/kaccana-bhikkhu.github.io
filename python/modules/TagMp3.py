@@ -103,7 +103,7 @@ register_comment()
 
 def main() -> None:
     if gOptions.excerptMp3 == 'remote':
-        Alert.info.Show("All excerpt mp3 links go to remote servers. No mp3 files will be tagged.")
+        Alert.info("All excerpt mp3 links go to remote servers. No mp3 files will be tagged.")
         return # No need to run TagMp3 if all excerpt files are remote
     
     changeCount = sameCount = 0
@@ -121,7 +121,7 @@ def main() -> None:
         except mutagen.id3.ID3NoHeaderError:
             fileTags = mutagen.File(path,easy=True)
             fileTags.add_tags()
-            Alert.extra.Show("Added tags to",path)
+            Alert.extra("Added tags to",path)
 
         if tags != dict(fileTags) or gOptions.forceMp3Tag:
             fileTags.delete()
@@ -129,10 +129,10 @@ def main() -> None:
                 fileTags[t] = tags[t]
             fileTags.save(v1=2,v2_version=3)
             changeCount += 1
-            Alert.extra.Show("Updated tags in",path)
+            Alert.extra("Updated tags in",path)
         else:
             sameCount += 1
         lastFileTags = fileTags
     
-    Alert.info.Show("Updated tags in",changeCount,"mp3 files;",sameCount,"files unchaged.")
+    Alert.info("Updated tags in",changeCount,"mp3 files;",sameCount,"files unchaged.")
 

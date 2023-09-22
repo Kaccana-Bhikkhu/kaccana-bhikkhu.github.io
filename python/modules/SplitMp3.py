@@ -34,7 +34,7 @@ def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     if gOptions.sessionMp3 == 'remote' and gOptions.excerptMp3 == 'remote':
-        Alert.info.Show("All mp3 links go to remote servers. No mp3 files will be processed.")
+        Alert.info("All mp3 links go to remote servers. No mp3 files will be processed.")
         return # No need to run SplitMp3 if all files are remote
     
     sessionCount = 0
@@ -70,7 +70,7 @@ def main():
         eventDir = os.path.join(gOptions.eventMp3Dir,event)
         sessionFilePath = os.path.join(eventDir,session["filename"])
         if not os.path.exists(sessionFilePath):
-            Alert.warning.Show("Cannot locate",sessionFilePath)
+            Alert.warning("Cannot locate",sessionFilePath)
             errorCount += 1
             continue
         
@@ -98,17 +98,17 @@ def main():
         try:
             Mp3DirectCut.Split(sessionFilePath,excerptList)
         except Mp3DirectCut.ExecutableNotFound as err:
-            Alert.error.Show(err)
-            Alert.status.Show("Continuing to next module.")
+            Alert.error(err)
+            Alert.status("Continuing to next module.")
             return
         except Mp3DirectCut.Mp3CutError as err:
-            Alert.error.Show(err)
-            Alert.status.Show("Continuing to next mp3 file.")
+            Alert.error(err)
+            Alert.status("Continuing to next mp3 file.")
             continue
         except (ValueError,OSError) as err:
-            Alert.error.Show(f"Error: {err} occured when processing session {session}")
+            Alert.error(f"Error: {err} occured when processing session {session}")
             errorCount += 1
-            Alert.status.Show("Continuing to next mp3 file.")
+            Alert.status("Continuing to next mp3 file.")
             continue
         
         # Now move the files to their destination
@@ -121,6 +121,6 @@ def main():
             os.rename(scratchFilePath,outputFilePath)
         
         mp3SplitCount += 1
-        Alert.info.Show(f"Split {session['filename']} into {len(excerptList)} files.")
+        Alert.info(f"Split {session['filename']} into {len(excerptList)} files.")
     
-    Alert.status.Show(f"   {mp3SplitCount} sessions split; {errorCount} sessions had errors; all files already present for {alreadySplit} sessions.")
+    Alert.status(f"   {mp3SplitCount} sessions split; {errorCount} sessions had errors; all files already present for {alreadySplit} sessions.")
