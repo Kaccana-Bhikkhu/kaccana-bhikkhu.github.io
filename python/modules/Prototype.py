@@ -3,16 +3,17 @@
 from __future__ import annotations
 
 import os
-from typing import List, Iterator, Tuple, Callable
+from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
-import Utils, Html, Alert, Filter, ParseCSV
+import Utils, Html, Alert, Filter, ParseCSV, Document
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
-import markdown.extensions
+from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
+from collections import defaultdict
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -88,7 +89,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     return title + titleEnd + listStr + endStr
 
-def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "") -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str:
     """Turn a tag name into a hyperlink to that tag.
     Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
@@ -103,8 +104,13 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "") -> str:
     
     if not text:
         text = tag
-    if "tags" in gOptions.buildOnly:
-        return f'<a href = "../tags/{ref}">{text}</a>'
+    if "tags" in gOptions.buildOnly and link:
+        splitItalics = text.split("<em>")
+        if len(splitItalics) > 1:
+            textOutsideLink = " <em>" + splitItalics[1]
+        else:
+            textOutsideLink = ""
+        return f'<a href = "../tags/{ref}">{splitItalics[0].strip()}</a>{textOutsideLink}'
     else:
         return text
 
@@ -115,25 +121,28 @@ def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
     linkedTags = [HtmlTagLink(tag) for tag in tags]
     return TitledList(title,linkedTags,*args,**kwargs)
 
-gTeacherRegex = ""
-gReverseTeacherLookup = {}
-def LinkTeachersInText(text: str) -> str:
+gAllTeacherRegex = ""
+def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
     """Search text for the names of teachers with teacher pages and add hyperlinks accordingly."""
 
-    global gTeacherRegex,gReverseTeacherLookup
-    if not gTeacherRegex:
-        gTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
-        gReverseTeacherLookup = {gDatabase["teacher"][abbr]["fullName"]:abbr for abbr in gDatabase["teacher"]}
+    global gAllTeacherRegex
+    if not gAllTeacherRegex:
+        gAllTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
     
+    if specificTeachers:
+        teacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
+    else:
+        teacherRegex = gAllTeacherRegex
+
     def HtmlTeacherLink(matchObject: re.Match) -> str:
-        teacher = gReverseTeacherLookup[matchObject[1]]
+        teacher = Utils.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
         if "teachers" in gOptions.buildOnly:
             return f'<a href = {htmlFile}>{matchObject[1]}</a>'
         else:
             return matchObject[1]
 
-    return re.sub(gTeacherRegex,HtmlTeacherLink,text)
+    return re.sub(teacherRegex,HtmlTeacherLink,text)
 
 
 def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
@@ -207,6 +216,9 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
             
             if item['pali'] and item['pali'] != item['name']:
                 paliStr = '(' + item['pali'] + ')'
+            elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
+                paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
+                # If specified, use paliStr to display the tag's first gloss
             else:
                 paliStr = ''
             
@@ -256,26 +268,32 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             
             yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
 
-def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "") -> str:
+def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True) -> str:
     "Return html code describing this tag."
     
     xCount = ExcerptCount(tag["tag"])
     countStr = f' ({xCount})' if xCount > 0 else ''
     
-    tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs)
-    
+    tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
+
+    paliStr = ''
     if tag['pali'] and tag['pali'] != tag['tag']:
         if fullTag:
             paliStr = '(' + tag['fullPali'] + ')'
         else:
             paliStr = '(' + tag['pali'] + ')'
-    else:
-        paliStr = ''
+    elif ParseCSV.TagFlag.DISPLAY_GLOSS in tag["flags"]:
+        if tag['glosses']:
+            paliStr = '(' + tag['glosses'][0] + ')'
+        else:
+            Alert.caution(tag,"has flag g: DISPLAY_GLOSS but has no glosses.")
     
     if style == "tagFirst":
         return ' '.join([tagStr,paliStr,countStr])
     elif style == "numberFirst":
         return ' '.join([countStr,tagStr,paliStr])
+    elif style == "noNumber":
+        return ' '.join([tagStr,paliStr])
     elif style == "noPali":
         return ' '.join([tagStr,countStr])
 
@@ -293,10 +311,12 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     
     yield str(a)
 
-class Alphabetize(NamedTuple):
+class _Alphabetize(NamedTuple):
     "Helper tuple to alphabetize a list."
     sortBy: str
     html: str
+def Alphabetize(sortBy: str,html: str) -> _Alphabetize:
+    return _Alphabetize(Utils.RemoveDiacritics(sortBy).lower(),html)
 
 def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
@@ -304,85 +324,138 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     pageInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
     yield pageInfo
 
-    honorifics = sorted(list(gDatabase["honorific"]),key=len,reverse=True)
-        # Sort honorifics so the longest honorifics match first
-    honorificRegex = Utils.RegexMatchAny(honorifics,capturingGroup=True) + r" (.+)"
+    prefixes = sorted(list(gDatabase["prefix"]),key=len,reverse=True)
+        # Sort prefixes so the longest prefix matches first
+    prefixes = [p if p.endswith("/") else p + " " for p in prefixes]
+        # Add a space to each prefix that doesn't end with "/"
+    slashPrefixes = Utils.RegexMatchAny(p for p in prefixes if p.endswith("/"))
+    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r"(.+)"
     noAlphabetize = {"alphabetize":""}
     def AlphabetizeNames(string: str) -> str:
-        if gDatabase["people"].get(string,noAlphabetize)["alphabetize"]:
-            return gDatabase["people"][string]["alphabetize"]
-        match = re.match(honorificRegex,string)
+        if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
+            return gDatabase["name"][string]["alphabetize"]
+        match = re.match(prefixRegex,string)
         if match:
-            return match[2] + ", " + match[1]
+            return match[2] + ", " + match[1].strip(" /")
         else:
             return string
 
-    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> Alphabetize:
+    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
         tagName = AlphabetizeNames(tagName)
-        sortBy = Utils.RemoveDiacritics(tagName).lower()
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
-        return Alphabetize(sortBy,html)
+        return Alphabetize(tagName,html)
 
-    def RemoveItalics(pali: str) -> str:
-        """Remove the italic text that indicates the language a tag is given in.
-        For example: '<em>Thai</em> ascetic wandering' -> 'Ascetic wandering' """
-        noItalics,substituted = re.subn(r"<em>.*</em>","",pali,flags=re.IGNORECASE)
-        if substituted:
-            return noItalics.strip().capitalize()
-        else:
-            return pali
+    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> _Alphabetize:
+        count = tag.get('excerptCount',0)
+        countStr = f" ({count})" if count else ""
+        html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}]{countStr}"
+        return Alphabetize(text,html)
 
-    def PaliEntry(tag: dict,pali: str,fullTag:bool = False) -> Alphabetize:
-        pali = AlphabetizeNames(RemoveItalics(pali))
-        if not pali:
-            return None
-        sortBy = Utils.RemoveDiacritics(pali).lower()
-        html = f"{pali} [{HtmlTagLink(tag['tag'],fullTag)}] ({tag.get('excerptCount',0)})"
-        return Alphabetize(sortBy,html)
 
-    englishList = []
-    paliList = []
+    entries = defaultdict(list)
     for tag in gDatabase["tag"].values():
-        if not ExcerptCount(tag["tag"]) and not gOptions.keepUnusedTags:
+        if not tag["htmlFile"]:
+            continue
+
+        nonEnglish = tag["tag"] == tag["pali"]
+        properNoun = ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])
+        englishAlso = ParseCSV.TagFlag.ENGLISH_ALSO in tag["flags"]
+        hasPali = tag["pali"] and not tag["fullPali"].endswith("</em>")
+            # Non-Pāli language full tags end in <em>LANGUAGE</em>
+
+        if nonEnglish: # If this tag has no English entry, add it to the appropriate language list and go on to the next tag
+            entry = EnglishEntry(tag,tag["fullPali"],fullTag=False)
+            if hasPali:
+                if ParseCSV.TagFlag.CAPITALIZE not in tag["flags"]:
+                    entry = entry._replace(html=entry.html.lower())
+                    # Pali words are in lowercase unless specifically capitalized
+                entries["pali"].append(entry)
+            else:
+                entries["other"].append(entry)
+            if properNoun:
+                entries["proper"].append(entry) # Non-English proper nouns are listed here as well
+            if englishAlso:
+                entries["english"].append(entry)
             continue
         
-        if tag["tag"] == tag["pali"]: # If this is a Pali-only tag, add it to the pali list and go on to the next tag
-            entry = EnglishEntry(tag,tag["tag"])
-            paliList.append(entry._replace(html=entry.html.lower()))
-            continue
+        if properNoun:
+            entries["proper"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+            if englishAlso:
+                entries["english"].append(entry)
+        else:
+            entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+            if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
+                entries["english"].append(EnglishEntry(tag,tag["tag"]))
+                # File the abbreviated tag separately if it's not a simple truncation
+        
+        if re.match(slashPrefixes,tag["fullTag"]):
+            entries["english"].append(Alphabetize(tag["fullTag"],TagDescription(tag,fullTag=True)))
+            # Alphabetize tags like History/Thailand under History/Thailand as well as Thailand, History
 
-        englishList.append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-        if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
-            englishList.append(EnglishEntry(tag,tag["tag"]))
-            # File the abbreviated tag separately if it's not a simple truncation
-                
-        if tag["pali"] and tag["pali"] != tag["tag"]: # Add an entry for the Pali tag name
-            entry = PaliEntry(tag,tag["pali"])
-            if entry:
-                paliList.append(entry)
-        if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the Pali tag name
-            entry = PaliEntry(tag,tag["fullPali"],fullTag=True)
-            if entry:
-                paliList.append(entry)
+        if tag["pali"]: # Add an entry for foriegn language items
+            entry = NonEnglishEntry(tag,tag["pali"])
+            if hasPali:
+                entries["pali"].append(entry)
+            else:
+                entries["other"].append(entry)
+            if englishAlso:
+                entries["english"].append(entry)
+        if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the full Pāli tag
+            entry = NonEnglishEntry(tag,tag["fullPali"],fullTag=True)
+            if hasPali:
+                entries["pali"].append(entry)
+            else:
+                entries["other"].append(entry)
         
         for translation in tag["alternateTranslations"]:
-            html = f"{translation} – alternative translation of {PaliEntry(tag,tag['fullPali'],fullTag=True).html}"
-            englishList.append(Alphabetize(Utils.RemoveDiacritics(translation).lower(),html))
+            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
+            if translation.endswith("</em>"):
+                entries["other"].append(Alphabetize(translation,html))
+            else:
+                entries["english"].append(Alphabetize(translation,html))
+        
+        for gloss in tag["glosses"]:
+            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+            if gloss.endswith("</em>"):
+                entries["other"].append(Alphabetize(gloss,html))
+            else:
+                entries["english"].append(Alphabetize(gloss,html))
     
-    englishList.sort()
-    paliList.sort()
-    allList = sorted(itertools.chain(englishList,paliList))
+    for subsumedTag,subsumedUnder in gDatabase["tagSubsumed"].items():
+        tag = gDatabase["tag"][subsumedUnder]
+        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+        entries["english"].append(Alphabetize(subsumedTag,html))
+
+    def Deduplicate(iterable: Iterable) -> Iterator:
+        iterable = iter(iterable)
+        prevItem = next(iterable)
+        yield prevItem
+        for item in iterable:
+            if item != prevItem:
+                yield item
+                prevItem = item
+
+    for e in entries.values():
+        e.sort()
+    allList = list(Deduplicate(sorted(itertools.chain.from_iterable(entries.values()))))
 
     def TagItem(line:Alphabetize) -> str:
         return line.sortBy[0].upper(),"".join(("<p>",line.html,"</p>"))
 
+    def LenStr(items: list) -> str:
+        return f" ({len(items)})"
+    
     subMenu = [
-        [pageInfo._replace(title = "All tags"),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
-        [pageInfo._replace(title = "English only",file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
-            str(Html.ListWithHeadings(englishList,TagItem,addMenu=True,countItems=False))],
-        [pageInfo._replace(title = "Pāli only",file=Utils.PosixJoin(pageDir,"PaliTags.html")),
-            str(Html.ListWithHeadings(paliList,TagItem,addMenu=True,countItems=False))]
+        [pageInfo._replace(title = "All tags"+LenStr(allList)),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "English"+LenStr(entries["english"]),file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
+            str(Html.ListWithHeadings(entries["english"],TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "Pāli"+LenStr(entries["pali"]),file=Utils.PosixJoin(pageDir,"PaliTags.html")),
+            str(Html.ListWithHeadings(entries["pali"],TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "Other languages"+LenStr(entries["other"]),file=Utils.PosixJoin(pageDir,"OtherTags.html")),
+            str(Html.ListWithHeadings(entries["other"],TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "People/places/traditions"+LenStr(entries["proper"]),file=Utils.PosixJoin(pageDir,"ProperTags.html")),
+            str(Html.ListWithHeadings(entries["proper"],TagItem,addMenu=True,countItems=False))]
     ]
 
     basePage = Html.PageDesc()
@@ -439,14 +512,14 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
 def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
-        
-    return AudioIcon(Utils.Mp3Link(excerpt),dataDuration = excerpt["duration"],**kwArgs)
+    
+    return AudioIcon(Utils.Mp3Link(excerpt),title=PlayerTitle(excerpt),dataDuration = excerpt["duration"],**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(session),dataDuration = session["duration"],**kwArgs)
+    return AudioIcon(Utils.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -530,7 +603,7 @@ class Formatter:
             if attrKey not in excerpt:
                 break
 
-            if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher) or "a" in excerpt["flags"]: # Compare items irrespective of order
+            if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher) or ParseCSV.ExcerptFlag.ATTRIBUTE in excerpt["flags"]: # Compare items irrespective of order
                 teacherList = [gDatabase["teacher"][t]["fullName"] for t in excerpt[teacherKey]]
             else:
                 teacherList = []
@@ -627,7 +700,7 @@ class Formatter:
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
             if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session,title = PlayerTitle(session))
+                audioLink = Mp3SessionLink(session)
                 if gOptions.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
                 else:
@@ -644,7 +717,7 @@ class Formatter:
                 a(' '.join(tagStrings))
             
         if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session,title = PlayerTitle(session)))
+            a(Mp3SessionLink(session))
             if horizontalRule:
                 a.hr()
         
@@ -658,7 +731,8 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     
     events = set(x["event"] for x in excerpts)
     sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
-    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts),start = timedelta())
+    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts if x["fileNumber"]),start = timedelta())
+        # Don't sum session excerpts (fileNumber = 0)
     
     strItems = []
     
@@ -716,7 +790,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {}
         if x["body"]:
             with a.p(id = Utils.ItemCode(x)):
-                a(localFormatter.FormatExcerpt(x,title=PlayerTitle(x),**options))
+                a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
@@ -775,9 +849,9 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         clone.AppendContent(menuItems[0][1][1])
         yield clone
 
-def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Formatter, mainPageInfo:Html.PageInfo, menuTitle:str, fileExt:str = "") -> Html.PageDescriptorMenuItem:
+def FilteredExcerptsMenuItem(excerpts:Iterable[dict], filter:Filter.Filter, formatter:Formatter, mainPageInfo:Html.PageInfo, menuTitle:str, fileExt:str = "") -> Html.PageDescriptorMenuItem:
     """Describes a menu item generated by applying a filter to a list of excerpts.
-    excerpts: the list of excerpts.
+    excerpts: an iterable of the excerpts.
     filter: the filter to apply.
     formatter: the formatter object to pass to HtmlExcerptList.
     mainPageInfo: description of the main page
@@ -797,6 +871,28 @@ def FilteredExcerptsMenuItem(excerpts:list[dict], filter:Filter, formatter:Forma
 
     blankPage = Html.PageDesc(pageInfo)
     return itertools.chain([menuItem],MultiPageExcerptList(blankPage,filteredExcerpts,formatter))
+
+def FilteredEventsMenuItem(events:Iterable[dict], filter:Filter.Filter, mainPageInfo:Html.PageInfo, menuTitle:str,fileExt: str = "") -> Html.PageDescriptorMenuItem:
+    """Describes a menu item generated by applying a filter to a list of events.
+    events: an iterable of the events.
+    filter: the filter to apply.
+    mainPageInfo: description of the main page.
+    menutitle: the title in the menu.
+    fileExt: the extension to add to the main page file for the filtered page."""
+
+    filteredEvents = list(Filter.Apply(events,filter))
+
+    if not filteredEvents:
+        return []
+
+    if fileExt:
+        pageInfo = mainPageInfo._replace(file = Utils.AppendToFilename(mainPageInfo.file,"-" + fileExt))
+    else:
+        pageInfo = mainPageInfo
+
+    menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredEvents)})")
+
+    return menuItem,"<hr>\n" + ListDetailedEvents(filteredEvents)
 
 def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
@@ -836,7 +932,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
     yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>"))
 
-def ListDetailedEvents(events: list[dict]) -> str:
+def ListDetailedEvents(events: Iterable[dict]) -> str:
     """Generate html containing a detailed list of all events."""
     
     a = Airium()
@@ -903,7 +999,7 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
         [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
         [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
-        [Html.PageInfo("About event series","../about/04_Series.html")],
+        [Html.PageInfo("About event series","about/04_Series.html")],
         EventPages("events")
     ]
 
@@ -934,7 +1030,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-            
+            a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
@@ -947,10 +1043,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
         
-        if tagInfo['fullPali'] and tagInfo['pali'] != tagInfo['fullTag']:
-            tagPlusPali = f"{tagInfo['fullTag']} ({tagInfo['fullPali']})"
-        else:
-            tagPlusPali = tag
+        tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
 
         pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
         basePage = Html.PageDesc(pageInfo)
@@ -961,6 +1054,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             qTags,aTags = Filter.Partition(questions,Filter.QTag(tag))
 
             filterMenu = [
+                FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tag),pageInfo,"Events","events"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
                 FilteredExcerptsMenuItem(qTags,Filter.PassAll,formatter,pageInfo,"Questions about","qtag"),
                 FilteredExcerptsMenuItem(aTags,Filter.PassAll,formatter,pageInfo,"Answers involving","atag"),
@@ -1122,7 +1216,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a(eventInfo["description"])
         
         if eventInfo["website"]:
-            with a.a(href = eventInfo["website"]):
+            with a.a(href = eventInfo["website"],target="_blank"):
                 a("External website")
             a.br()
         
@@ -1176,37 +1270,11 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
     yield homepageFile
 
     aboutMenu = []
-    documentationDir = "documentation/about"
-
-    firstFile = True
-    for fileName in sorted(os.listdir(documentationDir)):
-        fullPath = Utils.PosixJoin(documentationDir,fileName)
-        if not os.path.isfile(fullPath) or not fileName.endswith(".md"):
-            continue
+    for page in Document.RenderDocumentationFiles("about","about",pathToPrototype="../",pathToBaseForNonPages="../",html = True):
+        if not aboutMenu:
+            page.info = homepageFile
+        aboutMenu.append([page.info,page])
         
-        with open(fullPath,encoding='utf8') as file:
-            html = markdown.markdown(file.read(),extensions = ["sane_lists"])
-        
-        html = "<hr>\n" + html # Add a horizontal line at the top of each file
-        html = re.sub(r"<!--HTML(.*?)-->",r"\1",html)
-        # Markdown converts html comment '<!--' to '&lt;!--', so we search for that.
-
-        if firstFile:
-            fileInfo = homepageFile
-            firstFile = False
-        else:
-            m = re.match(r"[0-9]*_([^.]*)",fileName)
-            fileInfo = Html.PageInfo(m[1].replace("-"," "),Utils.PosixJoin(aboutDir,m[0] + ".html"),titleInPage)
-            firstFile = False
-        
-        """titleMatch = re.search(r"&lt;--!TITLE:(.*?)--&gt;",html)
-        if titleMatch:
-            fileInfo = fileInfo._replace(titleIB = titleMatch[1]) - Unused code to read title from the page body """
-        
-        html = re.sub(r"&lt;--!(.*?)--&gt;","",html) # Remove any remaining html comments
-
-        aboutMenu.append([fileInfo,html])
-    
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
 
@@ -1245,7 +1313,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         MostCommonTagList(indexDir),
-        [Html.PageInfo("About tags","../about/05_Tags.html")],
+        [Html.PageInfo("About tags","about/05_Tags.html")],
         TagPages("tags")
     ]
 

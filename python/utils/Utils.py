@@ -27,6 +27,7 @@ def AppendUnique(dest: list, source: list) -> list:
     for item in source:
         if item not in destSet:
             dest.append(item)
+    return dest
 
 def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
     "Return a code for this item. "
@@ -63,6 +64,11 @@ def PosixJoin(*paths):
     "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
     return str(pathlib.PurePosixPath(*paths))
 
+def ReplaceExtension(filename:str, newExt: str) -> str:
+    "Replace the extension of filename before the file extension"
+    name,_ = os.path.splitext(filename)
+    return name + newExt
+
 def AppendToFilename(filename:str, appendStr: str) -> str:
     "Append to fileName before the file extension"
     name,ext = os.path.splitext(filename)
@@ -87,17 +93,6 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     else:
         return session["remoteMp3Url"]
 
-def SearchForOwningExcerpt(annotation: dict) -> dict:
-    """Search the global database of excerpts to find which one owns this annotation.
-    This is a slow function and should be called infrequently."""
-    if not gDatabase:
-        return None
-    for x in gDatabase["excerpts"]:
-        for a in x["annotations"]:
-            if annotation is a:
-                return x
-    return None
-
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
 
@@ -109,6 +104,30 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
         tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
     
     return tagDictCache.get(tagRef,None)
+
+def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
+    "Search for a tag based on any of its various names. Return the base tag name."
+
+    if not teacherDictCache: # modify the value of a default argument to create a cache of potential teacher references
+        teacherDB = gDatabase["teacher"]
+        teacherDictCache.update((t,t) for t in teacherDB)
+        teacherDictCache.update((teacherDB[t]["fullName"],t) for t in teacherDB)
+    
+    return teacherDictCache.get(teacherRef,None)
+
+def AboutPageLookup(pageName:str,aboutPageCache:dict = {}) -> str|None:
+    "Search for an about page based on its name. Return the path to the page relative to prototypeDir."
+
+    if not aboutPageCache: # modify the value of a default argument to create a cache of potential tag references
+        dirs = ["about"]
+        for dir in dirs:
+            fileList = os.listdir(PosixJoin(gOptions.prototypeDir,dir))
+            for file in fileList:
+                m = re.match(r"[0-9]*_?(.*)\.html",file)
+                if m:
+                    aboutPageCache[m[1].lower()] = PosixJoin(dir,m[0])
+
+    return aboutPageCache.get(pageName.lower().replace(" ","-"),None)
 
 def EllideText(s: str,maxLength = 50) -> str:
     "Truncate a string to keep the number of characters under maxLength."
@@ -147,7 +166,7 @@ def ItemRepr(item: dict) -> str:
                 fileNumber = item.get("fileNumber",None)
             else:
                 kind = "annotation"
-                x = SearchForOwningExcerpt(item)
+                x = FindOwningExcerpt(item)
                 if x:
                     event = x["event"]
                     session = x["sessionNumber"]
@@ -215,6 +234,31 @@ def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
             return session
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
+
+def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|None:
+    "Return the excerpt that matches these parameters. Otherwise return None."
+
+    if not gDatabase:
+        return None
+    if not event or fileNumber is None:
+        return None
+    if session is None:
+        session = 0
+    for x in gDatabase["excerpts"]:
+        if x["event"] == event and x["sessionNumber"] == session and x["fileNumber"] == fileNumber:
+            return x
+    return None
+
+def FindOwningExcerpt(annotation: dict) -> dict:
+    """Search the global database of excerpts to find which one owns this annotation.
+    This is a slow function and should be called infrequently."""
+    if not gDatabase:
+        return None
+    for x in gDatabase["excerpts"]:
+        for a in x["annotations"]:
+            if annotation is a:
+                return x
+    return None
 
 def RemoveDiacritics(string: str) -> str:
     "Remove diacritics from string."

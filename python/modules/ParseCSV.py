@@ -9,6 +9,27 @@ import Utils
 from typing import List, Iterator, Tuple, Callable, Any
 from datetime import timedelta
 import Prototype, Alert
+from enum import Enum
+
+class StrEnum(str,Enum):
+    pass
+
+class TagFlag(StrEnum):
+    VIRTUAL = "."               # A virtual tag can't be applied to excerpts but can have subtags
+    PRIMARY = "*"               # The primary instance of this tag in the hierarchical tag list
+    PROPER_NOUN = "p"           # Alphabetize as a proper noun
+    PROPER_NOUN_SUBTAGS = "P"   # Alphabetize all subtags as proper nouns
+    SORT_SUBTAGS = "S"          # Sort this tag's subtags using the "sortBy" 
+    DISPLAY_GLOSS = "g"         # Display the first gloss in the tag name; e.g. Saṅgha (Monastic community)
+    ENGLISH_ALSO = "E"          # Show in English tags as well as Pali or proper nouns
+    CAPITALIZE = "C"            # Capitalize the Pali entry; e.g. Nibbāna
+
+class ExcerptFlag(StrEnum):
+    INDENT = "-"
+    ATTRIBUTE = "a"
+    OVERLAP = "o"
+    PLURAL = "s"
+    UNQUOTE = "u"
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -90,7 +111,7 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
             break
         elif not BlankDict(row):
             if not firstDictValue:
-                Alert.warning.Show("WARNING: blank first field in",row)
+                Alert.warning.Show("blank first field in",row)
         
             # Increase robustness by stripping values and keys
             for key in list(row):
@@ -234,20 +255,16 @@ def LoadTagsFile(database,tagFileName):
     rawTagList = CSVFileToDictList(tagFileName,skipLines = 1,removeKeys = ["indentedTags","paliTerm","tagMenu","Tag count","paliTagMenu"])
         
     ListifyKey(rawTagList,"alternateTranslations")
+    ListifyKey(rawTagList,"glosses")
     ListifyKey(rawTagList,"related")
     ConvertToInteger(rawTagList,"level")
     
-    # Convert the flag codes to boolean values
-    flags = {'.':"virtual", '*':"primary"}
-    for item in rawTagList:
-        for flag in flags:
-            item[flags[flag]] = flag in item["flags"]
-        
+    for item in rawTagList:     
         digitFlag = re.search("[0-9]",item["flags"])
         if digitFlag:
             item["itemCount"] = int(digitFlag[0])
         else:
-            item["itemCount"] = 0 if item["virtual"] else 1
+            item["itemCount"] = 0 if TagFlag.VIRTUAL in item["flags"] else 1
 
     # Next build the main tag dictionary
     tags = {}
@@ -265,14 +282,14 @@ def LoadTagsFile(database,tagFileName):
     rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTags]
 
     subsumedTags = {} # A dictionary of subsumed tags for future reference
-    
+    virtualHeadings = set() # Tags used only as list headers
+
     tagStack = [] # Supertag ancestry stack
     
     lastTagLevel = 1
     lastTag = TagStackItem("")
-    rawTagIndex = -1
-    for rawTag in rawTagList:
-        rawTagIndex += 1
+    for rawTagIndex,rawTag in enumerate(rawTagList):
+        
         tagName = FirstValidValue(rawTag,namePreference)
         tagPaliName = FirstValidValue(rawTag,paliPreference,"")
 
@@ -283,7 +300,7 @@ def LoadTagsFile(database,tagFileName):
         tagDesc["pali"] = tagPaliName
         tagDesc["fullTag"] = FirstValidValue(rawTag,fullNamePreference)
         tagDesc["fullPali"] = rawTag["pali"]
-        for key in ["number","alternateTranslations","related","virtual"]:
+        for key in ["number","alternateTranslations","glosses","related","flags"]:
             tagDesc[key] = rawTag[key]
                 
         # Assign subtags and supertags based on the tag level. Interpret tag level like indented code sections.
@@ -316,7 +333,7 @@ def LoadTagsFile(database,tagFileName):
             tagDesc["supertags"] = []
 
         lastTagLevel = curTagLevel
-        lastTag = TagStackItem(tagName,rawTag["primary"],bool(rawTag["number"])) # Count subtags if this tag is numerical
+        lastTag = TagStackItem(tagName,TagFlag.PRIMARY in rawTag["flags"],bool(rawTag["number"])) # Count subtags if this tag is numerical
         
         # Subsumed tags don't have a tag entry
         if rawTag["subsumedUnder"]:
@@ -325,9 +342,9 @@ def LoadTagsFile(database,tagFileName):
         
         # If this is a duplicate tag, insert only if the primary flag is true
         tagDesc["copies"] = 1
-        tagDesc["primaries"] = 1 if rawTag["primary"] else 0
+        tagDesc["primaries"] = 1 if TagFlag.PRIMARY in rawTag["flags"] else 0
         if tagName in tags:
-            if rawTag["primary"]:
+            if TagFlag.PRIMARY in rawTag["flags"]:
                 tagDesc["copies"] += tags[tagName]["copies"]
                 tagDesc["primaries"] += tags[tagName]["primaries"]
                 AppendUnique(tagDesc["supertags"],tags[tagName]["supertags"])
@@ -337,11 +354,19 @@ def LoadTagsFile(database,tagFileName):
                 AppendUnique(tags[tagName]["supertags"],tagDesc["supertags"])
                 continue
         
-        tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
+        if TagFlag.VIRTUAL in rawTag["flags"] and (rawTagIndex + 1 >= len(rawTagList) or rawTagList[rawTagIndex + 1]["level"] <= rawTag["level"]):
+            virtualHeadings.add(tagName)
+            tagDesc["htmlFile"] = "" # Virtual tags with no subtags don't have a page
+        else:
+            tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
         
         tagDesc["listIndex"] = rawTagIndex
         tags[tagName] = tagDesc
     
+    for tag in tags.values():
+        tag["subtags"] = [t for t in tag["subtags"] if t not in virtualHeadings]
+            # Remove virtual headings from subtag lists
+
     database["tag"] = tags
     database["tagRaw"] = rawTagList
     database["tagSubsumed"] = subsumedTags
@@ -427,7 +452,7 @@ def IndexTags(database: dict) -> None:
         tagName = tag["tag"]
         if tag["subsumedUnder"]:
             continue
-        if tagName in tagsSoFar and not tag["primary"]:
+        if tagName in tagsSoFar and TagFlag.PRIMARY not in tag["flags"]:
             continue
 
         tagsSoFar.add(tagName)
@@ -439,23 +464,51 @@ def IndexTags(database: dict) -> None:
         if tag["listIndex"] != tag["newListIndex"]:
             print(f"Mismatched numbers: {tag['tag']}: {tag['listIndex']=}, {tag['newListIndex']=}")"""
 
+def SortTags(database: dict) -> None:
+    """Sort subtags of tags with flag 'S' according to sort by dates in Name sheet."""
+
+    for parentIndex,childIndexes in WalkTags(database["tagDisplayList"],returnIndices=True):
+        if not parentIndex:
+            continue
+        parent = database["tagDisplayList"][parentIndex]
+        if TagFlag.SORT_SUBTAGS not in parent["flags"]:
+            continue
+
+        if len(childIndexes) < childIndexes[-1] - childIndexes[0] + 1:
+            Alert.caution.Show("Cannot sort",repr(parent["name"]),"because it contains multiple levels of tags.")
+            continue
+
+        children = [database["tagDisplayList"][i] for i in childIndexes]
+
+        def SortByDate(tagInfo:dict) -> float:
+            sortBy = database["name"].get(tagInfo["tag"],{"sortBy":""})["sortBy"]
+            if sortBy:
+                try:
+                    return float(sortBy)
+                except ValueError:
+                    pass
+            Alert.caution.Show("Cannot find a date for",repr(tagInfo["tag"]),"in the Name sheet. This tag will go last.")
+            return 9999.0
+
+        children.sort(key=SortByDate)
+        for index,child in zip(childIndexes,children):
+            database["tagDisplayList"][index] = child
+
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
     Format: level, text of display line, tag to open when clicked""" 
     
     tagList = []
     for rawTag in database["tagRaw"]:
-        listItem = {"level" : rawTag["level"],"indexNumber" : rawTag["indexNumber"]}
+        listItem = {}
+        for key in ["level","indexNumber","flags"]:
+            listItem[key] = rawTag[key]
         
         itemCount = rawTag["itemCount"]
         if itemCount > 1:
             indexNumber = int(rawTag["indexNumber"])
             separator = '-' if itemCount > 1 else ','
             listItem["indexNumber"] = separator.join((str(indexNumber),str(indexNumber + itemCount - 1)))
-            """if rawTag["itemCount"] > 2:
-                listItem["indexNumber"] = ','
-            else:
-                listItem["indexNumber"] = ','.join(str(n + int(rawTag["indexNumber"])) for n in range(rawTag["itemCount"]))"""
         
         name = FirstValidValue(rawTag,["fullTag","pali"])
         tag = rawTag["tag"]
@@ -484,7 +537,7 @@ def CreateTagDisplayList(database):
         listItem["subsumed"] = subsumed
         listItem["text"] = text
             
-        if rawTag["virtual"]:
+        if TagFlag.VIRTUAL in rawTag["flags"]:
             listItem["tag"] = "" # Virtual tags don't have a display page
         else:
             listItem["tag"] = tag
@@ -495,7 +548,7 @@ def CreateTagDisplayList(database):
     
     # Cross-check tag indexes
     for tag in database["tag"]:
-        if not database["tag"][tag]["virtual"]:
+        if TagFlag.VIRTUAL not in database["tag"][tag]["flags"]:
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
@@ -513,6 +566,9 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[
             assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
             tagStack.append([])
         
+        if TagFlag.VIRTUAL in tag["flags"] and (n + 1 >= len(tagDisplayList) or tagDisplayList[n + 1]["level"] <= tag["level"]):
+            continue # Skip virtual tags with no subtags
+
         if returnIndices:
             tagStack[-1].append(n)
         else:
@@ -642,7 +698,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     for key in keysToRemove:
         annotation.pop(key,None)    # Remove keys that aren't relevant for annotations
     
-    annotation["indentLevel"] = len(annotation["flags"].split("-"))
+    annotation["indentLevel"] = len(annotation["flags"].split(ExcerptFlag.INDENT))
     
     excerpt["annotations"].append(annotation)
 
@@ -752,7 +808,7 @@ def LoadEventFile(database,eventName,directory):
         ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
-            x["qTag"] = ourSession["tags"] + x["qTag"]
+            Utils.AppendUnique(x["qTag"],ourSession["tags"])
 
         if not x["teachers"]:
             defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
@@ -794,9 +850,10 @@ def LoadEventFile(database,eventName,directory):
         prevExcerpt = x
 
     if blankExcerpts:
-        Alert.notice.Show(blankExcerpts," blank excerpts in",eventDesc)
+        Alert.notice.Show(blankExcerpts,"blank excerpts in",eventDesc)
 
     prevSession = None
+    deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
     for xIndex, x in enumerate(excerpts):
         # Combine all tags into a single list, but keep track of how many qTags there are
         x["tags"] = x["qTag"] + x["aTag"]
@@ -823,9 +880,18 @@ def LoadEventFile(database,eventName,directory):
         if not endTime:
             endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
         
-        startTime = Utils.StrToTimeDelta(startTime)
-        endTime = Utils.StrToTimeDelta(endTime)
-
+        try:
+            startTime = Utils.StrToTimeDelta(startTime)
+            endTime = Utils.StrToTimeDelta(endTime)
+        except ValueError:
+            if type(startTime) == str:
+                failed = startTime
+            else:
+                failed = endTime
+            Alert.error.Show("Cannot convert",repr(failed),"to a time when processing",x,"; will delete this excerpt.")
+            deletedExcerptIDs.add(id(x))
+            continue
+        
         session = (x["event"],x["sessionNumber"])
         if session != prevSession: # A new session starts at time zero
             prevEndTime = timedelta(seconds = 0)
@@ -834,18 +900,15 @@ def LoadEventFile(database,eventName,directory):
         if startTime < prevEndTime: # Does this overlap with the previous excerpt?
             startTime = prevEndTime
             x["startTime"] = Utils.TimeDeltaToStr(startTime)
-            if "o" not in x["flags"]:
+            if ExcerptFlag.OVERLAP not in x["flags"]:
                 Alert.warning.Show(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
         prevEndTime = endTime
     
     removedExcerpts = [x for x in excerpts if x["exclude"]]
-    excerpts = [x for x in excerpts if not x["exclude"]]
-        # Remove excluded excerpts and those we didn't get consent for
-    """for n, x in enumerate(removedExcerpts):
-        print("Removed excert",n,x)
-        print()"""
+    excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
+        # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
 
     xNumber = 1
     lastSession = -1
@@ -915,12 +978,18 @@ def CountAndVerify(database):
     
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
+        tagsToRemove = []
         for tag in tagSet:
             try:
                 tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.error.Show(f"CountAndVerify: Tag {tag} is not defined.")
+                Alert.warning.Show(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
+                tagsToRemove.append(tag)
+        
+        if tagsToRemove:
+            for item in Filter.AllItems(x):
+                item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
     
     Alert.info.Show(tagCount,"total tags applied.")
     
@@ -941,7 +1010,7 @@ def CountAndVerify(database):
         tagDesc = database["tag"][tag]
         if tagDesc["primaries"] > 1:
             Alert.caution.Show(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
-        if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and not tagDesc["virtual"]:
+        if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and TagFlag.VIRTUAL not in tagDesc["flags"]:
             Alert.notice.Show(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
 
 def VerifyListCounts(database):
@@ -1041,6 +1110,7 @@ def main():
     PrepareTeachers(gDatabase["teacher"])
 
     CreateTagDisplayList(gDatabase)
+    SortTags(gDatabase)
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
 

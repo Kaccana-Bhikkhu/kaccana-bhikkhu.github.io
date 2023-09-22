@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import json, re
 import markdown
-from markdown_newtab import NewTabExtension
+from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
@@ -131,16 +131,16 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     else:
         bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(item["text"])
     
-    if "u" in item["flags"]: # This flag indicates no quotes
+    if ParseCSV.ExcerptFlag.UNQUOTE in item["flags"]: # This flag indicates no quotes
         bodyTemplateStr = re.sub('[“”]','',bodyTemplateStr) # Templates should use only double smart quotes
 
     bodyTemplate = CompileTemplate(bodyTemplateStr)
     attributionTemplate = CompileTemplate(attributionTemplateStr)
 
-    plural = "s" if ("s" in item["flags"]) else "" # Is the excerpt heading plural?
+    plural = "s" if (ParseCSV.ExcerptFlag.PLURAL in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and "a" not in item["flags"] and not gOptions.attributeAll:
+    if container and set(container["teachers"]) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
         teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
@@ -180,6 +180,15 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         item["body"] = item["body"].replace("{attribution}",attributionStr)
     else:
         item["attribution"] = attributionStr
+    
+    # If the first tag of an indirect quote specifies a teacher, link the last occurence of the teacher in the body
+    if item["kind"] == "Indirect quote" and item["tags"]:
+        quotedTeacher = Utils.TeacherLookup(item["tags"][0])
+        if quotedTeacher:
+            parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["fullName"]]),item["body"])
+            if len(parts) > 1:
+                parts[-2] = Prototype.LinkTeachersInText(parts[-2])
+                item["body"] = "".join(parts)
 
 def RenderExcerpts() -> None:
     """Use the templates in gDatabase["kind"] to add "body" and "attribution" keys to each except and its annotations"""
@@ -331,19 +340,23 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra.Show(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
-    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences()."""
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../../") -> None:
+    """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
+    pathToPrototype is the path from the directory where the files are written to the prototype directory.
+    pathToBaseForNonPages is the path to root directory from this file for links that don't go to html pages.
+    It is necessary to distinguish between the two since frame.js modifies paths to local html files"""
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher"}))
-    linkRegex = r"\[([^][]+)\]\(" + pageTypes + r":([^()]*)\)"
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","player"}))
+    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
         text,pageType,link = matchObject.groups()
         pageType = pageType.lower()
 
         linkTo = ""
+        linkToPage = True
         wrapper = Html.Wrapper()
         if pageType in tagTypes:
             if link:
@@ -354,17 +367,17 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             realTag = Utils.TagLookup(tag)            
             if pageType == "tag":
                 if realTag:
-                    linkTo = f"../tags/{gDatabase['tag'][realTag]['htmlFile']}"
+                    linkTo = f"tags/{gDatabase['tag'][realTag]['htmlFile']}"
                 else:
                     Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
                 if not link:
                     wrapper = Html.Wrapper("[","]")
             else:
                 if tag.lower() == "root":
-                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(-1)}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(-1)}"
                 elif realTag:
                     tagNumber = gDatabase["tag"][realTag]["listIndex"]
-                    linkTo = f"../drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
                 else:
                     Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:
@@ -374,12 +387,50 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                     bookmark = "#" + Utils.ItemCode(event=event,session=session,fileNumber=fileNumber)
                 else:
                     bookmark = ""
-                linkTo = f"../events/{event}.html{bookmark}"
+                linkTo = f"events/{event}.html{bookmark}"
             else:
                 Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
+        elif pageType == "player":
+            event,session,fileNumber = Utils.ParseItemCode(link)
+            if fileNumber is not None:
+                x = Utils.FindExcerpt(event,session,fileNumber)
+                if x:
+                    linkTo = Prototype.Mp3ExcerptLink(x)
+                else:
+                    Alert.warning.Show("Cannot find excerpt corresponding to code",link,"in link",matchObject[0])
+                    return text
+
+            if not linkTo:
+                linkTo = Prototype.AudioIcon(link,title=text)
+            return f"<!--HTML{linkTo}-->"
+        elif pageType == "teacher":
+            if link:
+                teacher = link
+            else:
+                teacher = text
+            
+            teacherCode = Utils.TeacherLookup(teacher)
+            if teacherCode:
+                htmlPage = gDatabase['teacher'][teacherCode]['htmlFile']
+                if htmlPage:
+                    linkTo = f"teachers/{htmlPage}"
+                else:
+                    Alert.caution.Show("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
+            else:
+                Alert.warning.Show("Cannot link to teacher",teacher,"in link",matchObject[0])
+        elif pageType == "about":
+            aboutPage = Utils.AboutPageLookup(link)
+            if aboutPage:
+                linkTo = f"{aboutPage}"
+            else:
+                Alert.warning.Show("Cannot link about page",link,"in link",matchObject[0])
+        elif pageType == "image":
+            linkToPage = False
+            linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
 
         if linkTo:
-            return wrapper("[" + text +"](" + linkTo + ")")
+            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToBaseForNonPages,linkTo)
+            return wrapper(f"[{text}]({path})")
         else:
             return text
         
@@ -393,7 +444,7 @@ def MarkdownFormat(text: str) -> Tuple[str,int]:
     """Format a single-line string using markdown, and eliminate the <p> tags.
     The second item of the tuple is 1 if the item has changed and zero otherwise"""
 
-    md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabExtension()]), flags=re.IGNORECASE)
+    md = re.sub("(^<P>|</P>$)", "", markdown.markdown(text,extensions = [NewTabRemoteExtension()]), flags=re.IGNORECASE)
     if md != text:
         return md, 1
     else:
@@ -413,8 +464,12 @@ def LinkReferences() -> None:
         tag - Link to the named tag page - Link to tag subpage and enclose the entire reference in brackets if pageName is ommited
         drilldown - Link to the primary tag given by pageName
         event,session,excerpt - Link to an event page, optionally to a specific session or excerpt. 
-            pageName is of the form Event20XX_SYY_F_ZZ produced by Utils.ItemCode()
-        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP"""
+            pageName is of the form Event20XX_SYY_FZZ produced by Utils.ItemCode()
+        player - Insert an audio player; pageName is either an item code as above or a hyperlink to an audio file.
+            In the latter case, subpage specifies the title of the audio.
+        teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
+        about - Link to about page pageName
+        image - Link to images in prototypeDir/images"""
 
     LinkSubpages()
     LinkKnownReferences()

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import NamedTuple, TypeVar
+from typing import NamedTuple, TypeVar, Union
 import pyratemp
 import itertools
 from pathlib import Path
@@ -103,14 +103,15 @@ class Menu(Renderable):
 class PageDesc: # Define a dummy PageDesc class for the type definitions below
     pass
 
-PageAugmentorType = [str | tuple[PageInfo,str] | PageDesc]
+# Use Union[] to maintain compatibility with Python 3.9
+PageAugmentorType = Union[str,tuple[PageInfo,str],PageDesc]
 """The acceptable types that can be passed to PageDesc.Augment."""
 
-PageGeneratorMenuItem = Callable[[PageDesc],Iterable[PageInfo|PageDesc]]
+PageGeneratorMenuItem = Callable[[PageDesc],Iterable[Union[PageInfo,PageDesc]]]
 """Type defintion for a generator function that returns an iterator of pages associated with a menu item.
 See PagesFromMenuGenerators for a full description."""
 
-PageDescriptorMenuItem = Iterable[PageInfo | str | tuple[PageInfo,str] | PageDesc]
+PageDescriptorMenuItem = Iterable[Union[PageInfo,str,tuple[PageInfo,str],PageDesc]]
 """An iterable that describes a menu item and pages associate with it.
 It first (optionally) yields a PageInfo object containing the menu title and link. If the first item isn't a PageInfo object, no menu item is generated, but pages are produced as below.
 For each page associated with the menu it then yields one of the following:
@@ -263,8 +264,8 @@ class PageDesc(Renderable):
         menuItems = [next(m,None) for m in menuGenerators] # The menu items are the first item in each iterator
 
         # Generators that yield None aren't associated with a menu item and will be proccessed last.
-        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems,strict=True) if not item]
-        menuGenerators = [m for m,item in zip(menuGenerators,menuItems,strict=True) if item]
+        generatorsWithNoAssociatedMenuItem = [m for m,item in zip(menuGenerators,menuItems) if not item]
+        menuGenerators = [m for m,item in zip(menuGenerators,menuItems) if item]
         menuItems = [item for item in menuItems if item]
 
         menuSection = self.AppendContent(Menu(menuItems,**menuStyle),section=menuSection)
