@@ -97,9 +97,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Document",
-                "--buildOnly",
-                "none"
+                "TagMp3",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "TG2013"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
