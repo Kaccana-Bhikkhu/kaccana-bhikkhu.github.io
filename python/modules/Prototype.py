@@ -1270,7 +1270,7 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
     yield homepageFile
 
     aboutMenu = []
-    for page in Document.RenderDocumentationFiles("about","about",pathToPrototype="../",pathToBaseForNonPages="../",html = True):
+    for page in Document.RenderDocumentationFiles("about","about",html = True):
         if not aboutMenu:
             page.info = homepageFile
         aboutMenu.append([page.info,page])

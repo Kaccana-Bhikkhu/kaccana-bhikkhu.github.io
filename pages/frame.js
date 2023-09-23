@@ -3,8 +3,6 @@ const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
 
-let path = "";
-
 async function changeURL(pUrl) {
 	await fetch("./" + pUrl)
 		.then((r) => r.text())
@@ -15,15 +13,25 @@ async function changeURL(pUrl) {
 			titleEl.innerHTML = innerTitle.innerHTML;
 			innerTitle.remove();
 
+			let pathPrefix = '../'.repeat(pUrl.split('/').length - 1);
+			frame.querySelectorAll("[src]").forEach((el) => {
+				let src = el.getAttribute("src");
+				if (src.startsWith(pathPrefix)) {
+					el.src = src.slice(pathPrefix.length,src.length)
+				};
+			});
+			frame.querySelectorAll("[href]").forEach((el) => {
+				let href = el.getAttribute("href")
+				if (href.startsWith(pathPrefix)) {
+					el.href = href.slice(pathPrefix.length,href.length)
+				};
+			});
+
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
 				if (href.includes("://") || href.startsWith("mailto:")) return;
 
-				let url = join(
-					dirname(pUrl),
-					href.replaceAll("index.html", "homepage.html")
-				);
-
+				let url = href.replaceAll("index.html", "homepage.html")
 				if (href.startsWith("#")) {
 					let noBookmark = location.href.split("#").slice(0,2).join("#")
 					el.href = noBookmark+href;
