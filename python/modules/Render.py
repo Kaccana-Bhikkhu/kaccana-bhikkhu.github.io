@@ -121,7 +121,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         if formNumber >= 0:
             if formNumber >= len(kind["body"]) or kind["body"][formNumber] == "unimplemented":
                 formNumber = kind["defaultForm"] - 1
-                Alert.warning.Show(f"   {kind['kind']} does not implement form {formNumberStr[0]}. Reverting to default form number {formNumber + 1}.")
+                Alert.warning(f"   {kind['kind']} does not implement form {formNumberStr[0]}. Reverting to default form number {formNumber + 1}.")
     else:
         formNumber = kind["defaultForm"] - 1
 
@@ -154,7 +154,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         else:
             prefix, text, suffix = parts[0:3]
             if len(parts) > 3:
-                Alert.warning.Show("'|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
+                Alert.warning("'|' occurs more than two times in '",item["text"],"'. Latter sections will be truncated.")
 
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
@@ -248,7 +248,7 @@ def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
     suttasMatched = ApplyToFunction(LinkItem)
         # Then match all remaining sutta links
 
-    Alert.extra.Show(f"{suttasMatched + markdownLinksMatched} links generated to suttas, {markdownLinksMatched} within markdown links")
+    Alert.extra(f"{suttasMatched + markdownLinksMatched} links generated to suttas, {markdownLinksMatched} within markdown links")
 
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
@@ -281,7 +281,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
-            Alert.warning.Show(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
         url = reference['remoteUrl']
@@ -299,7 +299,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
-            Alert.warning.Show(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
         url = reference['remoteUrl']
@@ -318,7 +318,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
         except KeyError:
-            Alert.warning.Show(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
+            Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
         url = reference['remoteUrl']
@@ -338,7 +338,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     referenceCount += ApplyToFunction(ReferenceForm3)
     referenceCount += ApplyToFunction(ReferenceForm4)
     
-    Alert.extra.Show(f"{referenceCount} links generated to references")
+    Alert.extra(f"{referenceCount} links generated to references")
 
 def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../../") -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
@@ -369,7 +369,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if realTag:
                     linkTo = f"tags/{gDatabase['tag'][realTag]['htmlFile']}"
                 else:
-                    Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+                    Alert.warning("Cannot link to tag",tag,"in link",matchObject[0])
                 if not link:
                     wrapper = Html.Wrapper("[","]")
             else:
@@ -379,7 +379,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                     tagNumber = gDatabase["tag"][realTag]["listIndex"]
                     linkTo = f"drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
                 else:
-                    Alert.warning.Show("Cannot link to tag",tag,"in link",matchObject[0])
+                    Alert.warning("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:
             event,session,fileNumber = Utils.ParseItemCode(link)
             if event in gDatabase["event"]:
@@ -389,7 +389,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                     bookmark = ""
                 linkTo = f"events/{event}.html{bookmark}"
             else:
-                Alert.warning.Show("Cannot link to event",event,"in link",matchObject[0])
+                Alert.warning("Cannot link to event",event,"in link",matchObject[0])
         elif pageType == "player":
             event,session,fileNumber = Utils.ParseItemCode(link)
             if fileNumber is not None:
@@ -397,7 +397,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if x:
                     linkTo = Prototype.Mp3ExcerptLink(x)
                 else:
-                    Alert.warning.Show("Cannot find excerpt corresponding to code",link,"in link",matchObject[0])
+                    Alert.warning("Cannot find excerpt corresponding to code",link,"in link",matchObject[0])
                     return text
 
             if not linkTo:
@@ -415,15 +415,15 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if htmlPage:
                     linkTo = f"teachers/{htmlPage}"
                 else:
-                    Alert.caution.Show("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
+                    Alert.caution("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
             else:
-                Alert.warning.Show("Cannot link to teacher",teacher,"in link",matchObject[0])
+                Alert.warning("Cannot link to teacher",teacher,"in link",matchObject[0])
         elif pageType == "about":
             aboutPage = Utils.AboutPageLookup(link)
             if aboutPage:
                 linkTo = f"{aboutPage}"
             else:
-                Alert.warning.Show("Cannot link about page",link,"in link",matchObject[0])
+                Alert.warning("Cannot link about page",link,"in link",matchObject[0])
         elif pageType == "image":
             linkToPage = False
             linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
@@ -438,7 +438,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
         return re.subn(linkRegex,SubpageSubstitution,bodyStr,flags = re.IGNORECASE)
     
     linkCount = ApplyToFunction(ReplaceSubpageLinks)
-    Alert.extra.Show(f"{linkCount} links generated to subpages")
+    Alert.extra(f"{linkCount} links generated to subpages")
 
 def MarkdownFormat(text: str) -> Tuple[str,int]:
     """Format a single-line string using markdown, and eliminate the <p> tags.
@@ -476,7 +476,7 @@ def LinkReferences() -> None:
     LinkSuttas()
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
-    Alert.extra.Show(f"{markdownChanges} items changed by markdown")
+    Alert.extra(f"{markdownChanges} items changed by markdown")
     
 
 def AddArguments(parser) -> None:
@@ -501,7 +501,7 @@ def main() -> None:
     for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary"]:
         del gDatabase[key]
 
-    #Alert.extra.Show("Rendered database contents:",indent = 0)
+    #Alert.extra("Rendered database contents:",indent = 0)
     #Utils.SummarizeDict(gDatabase,Alert.extra)
 
     with open(gOptions.renderedDatabase, 'w', encoding='utf-8') as file:

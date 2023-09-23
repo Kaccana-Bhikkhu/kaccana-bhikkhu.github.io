@@ -47,7 +47,7 @@ def WritePage(page: Html) -> None:
         template = Utils.AppendToFilename(template,"_print")
     page.WriteFile(template,gOptions.prototypeDir)
     gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
-    Alert.debug.Show(f"Write file: {page.info.file}")
+    Alert.debug(f"Write file: {page.info.file}")
 
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
@@ -1270,7 +1270,7 @@ def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
     yield homepageFile
 
     aboutMenu = []
-    for page in Document.RenderDocumentationFiles("about","about",pathToPrototype="../",pathToBaseForNonPages="../",html = True):
+    for page in Document.RenderDocumentationFiles("about","about",html = True):
         if not aboutMenu:
             page.info = homepageFile
         aboutMenu.append([page.info,page])
@@ -1350,14 +1350,14 @@ def ParseBuildSections():
             gOptions.buildOnly.add("tags")
         unknownSections = gOptions.buildOnly.difference(allSections)
         if unknownSections:
-            Alert.warning.Show(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
+            Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
             gOptions.buildOnly = gOptions.buildOnly.difference(unknownSections)
     
     if gOptions.buildOnly != allSections:
         if gOptions.buildOnly:
-            Alert.warning.Show(f"Building only section(s) {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
+            Alert.warning(f"Building only section(s) {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
         else:
-            Alert.warning.Show(f"No sections built. This should be used only for testing and debugging purposes.")
+            Alert.warning(f"No sections built. This should be used only for testing and debugging purposes.")
 
 def main():
     if not os.path.exists(gOptions.prototypeDir):
