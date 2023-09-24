@@ -61,10 +61,18 @@ def PrintID3(tags: ID3) -> None:
     print()
 
 removeFromBody = "|".join([r"\{attribution[^}]*}",r"<[^>]*>"])
-def ExcerptComment(excerpt:dict) -> str:
-    "Remove extraneous bit from the body text in order to make a nice comment tag."
+def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
+    "Write the comment for a given except"
 
-    return re.sub(removeFromBody,"",excerpt["body"])
+    body = re.sub(removeFromBody,"",excerpt["body"]).strip()
+    if not re.search(Utils.RegexMatchAny([".","?",'"',"'","”"],capturingGroup=False,literal=True) + "$",body):
+        body += "."
+    
+    date = Utils.ReformatDate(session["date"],fullMonth=True) + ","
+    venue = event["venue"] + ","
+    location = gDatabase["venue"][event["venue"]]["location"] + "."
+
+    return " ".join([body,date,venue,location])
 
 def ExcerptTags(excerpt: dict) -> dict:
     """Given an excerpt, return a dictionary of the id3 tags it should have."""
@@ -79,7 +87,7 @@ def ExcerptTags(excerpt: dict) -> dict:
         "album": event["title"], # + sessionStr,
         "tracknumber": str(excerpt["excerptNumber"]),
         "date": str(Utils.ParseDate(session["date"]).year),
-        "comment": ExcerptComment(excerpt),
+        "comment": ExcerptComment(excerpt,session,event),
         "genre": gDatabase["kind"][excerpt["kind"]]["category"],
         "copyright": "© 2023 Abhayagiri Monastery; not for distribution outside the APQS Archive",
         "organization": "The Ajahn Pasanno Question and Story Achive",
@@ -173,5 +181,5 @@ def main() -> None:
             sameCount += 1
     
     updateMessage = "Would update" if gOptions.writeMp3Tags == "never" else "Updated"
-    Alert.info(updateMessage,"tags in",changeCount,"mp3 files;",sameCount,"files unchaged.")
+    Alert.info(updateMessage,"tags in",changeCount,"mp3 files;",sameCount,"files unchanged.")
 

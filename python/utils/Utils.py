@@ -219,12 +219,12 @@ def ParseDate(dateStr:str) -> datetime.date:
     
     return datetime.strptime(dateStr,"%d/%m/%Y").date()
 
-def ReformatDate(dateStr:str) -> str:
+def ReformatDate(dateStr:str,fullMonth:bool = False) -> str:
     "Take a date formated as DD/MM/YYYY and reformat it as mmm d YYYY."
     
     date = ParseDate(dateStr)
     
-    return f'{date.strftime("%b. ")} {int(date.day)}, {int(date.year)}'
+    return f'{date.strftime("%B" if fullMonth else "%b.")} {int(date.day)}, {int(date.year)}'
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
@@ -280,10 +280,12 @@ def slugify(value, allow_unicode=False):
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
 
-def RegexMatchAny(strings: Iterable[str],capturingGroup = True):
+def RegexMatchAny(strings: Iterable[str],capturingGroup = True,literal = False):
     """Return a regular expression that matches any item in strings.
     Optionally make it a capturing group."""
 
+    if literal:
+        strings = [re.escape(s) for s in strings]
     if strings:
         if capturingGroup:
             return r"(" + r"|".join(strings) + r")"
