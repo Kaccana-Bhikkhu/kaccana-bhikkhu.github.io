@@ -498,7 +498,7 @@ def main() -> None:
 
     LinkReferences()
 
-    for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary"]:
+    for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary","keyCaseTranslation"]:
         del gDatabase[key]
 
     #Alert.extra("Rendered database contents:",indent = 0)
