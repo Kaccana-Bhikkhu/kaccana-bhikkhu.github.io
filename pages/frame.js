@@ -2,6 +2,7 @@ import posix from "./path.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
+const absoluteURLRegex = "^(//|[a-z+]+:)"
 
 async function changeURL(pUrl) {
 	await fetch("./" + pUrl)
@@ -13,23 +14,18 @@ async function changeURL(pUrl) {
 			titleEl.innerHTML = innerTitle.innerHTML;
 			innerTitle.remove();
 
-			let pathPrefix = '../'.repeat(pUrl.split('/').length - 1);
-			frame.querySelectorAll("[src]").forEach((el) => {
-				let src = el.getAttribute("src");
-				if (src.startsWith(pathPrefix)) {
-					el.src = src.slice(pathPrefix.length,src.length)
-				};
-			});
-			frame.querySelectorAll("[href]").forEach((el) => {
-				let href = el.getAttribute("href")
-				if (href.startsWith(pathPrefix)) {
-					el.href = href.slice(pathPrefix.length,href.length)
-				};
+			["href","src"].forEach((attribute) => {
+				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
+					let attributePath = el.getAttribute(attribute);
+					if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
+						el.setAttribute(attribute,join(dirname(pUrl),attributePath));
+					};
+				});
 			});
 
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
-				if (href.includes("://") || href.startsWith("mailto:")) return;
+				if (href.match(absoluteURLRegex)) return;
 
 				let url = href.replaceAll("index.html", "homepage.html")
 				if (href.startsWith("#")) {
