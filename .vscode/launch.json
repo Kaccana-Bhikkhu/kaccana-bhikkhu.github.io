@@ -101,10 +101,12 @@
                 "--excerptMp3",
                 "local",
                 "--events",
-                "TG2013"
+                "WR2018-2",
+                "--writeMp3Tags",
+                "changed"
             ],
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": false
         }
     ]
 }
