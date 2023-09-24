@@ -20,21 +20,21 @@ __A. Mental qualities__
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-388.html#388)
-9. [Teachers](../../pages/drilldown/tag-425.html#425)
-10. [Monasteries](../../pages/drilldown/tag-491.html#491)
+8. [Teaching Dhamma](../../pages/drilldown/tag-389.html#389)
+9. [Teachers](../../pages/drilldown/tag-426.html#426)
+10. [Monasteries](../../pages/drilldown/tag-492.html#492)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-514.html#514)
-12. [History](../../pages/drilldown/tag-535.html#535)
-13. [Cultural context](../../pages/drilldown/tag-546.html#546)
-14. [Spiritual traditions](../../pages/drilldown/tag-565.html#565)
+11. [Nature of the cosmos](../../pages/drilldown/tag-515.html#515)
+12. [History](../../pages/drilldown/tag-536.html#536)
+13. [Cultural context](../../pages/drilldown/tag-547.html#547)
+14. [Spiritual traditions](../../pages/drilldown/tag-566.html#566)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-577.html#577)
-16. [Everyday life](../../pages/drilldown/tag-644.html#644)
+15. [Renunciant practice](../../pages/drilldown/tag-578.html#578)
+16. [Everyday life](../../pages/drilldown/tag-645.html#645)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
