@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Callable
 from typing import Tuple
+import Utils
 
 gDatabase = None # This will be overwritten by the main program
 
@@ -159,6 +160,15 @@ def AllTags(item: dict) -> set:
 
     for annotation in item.get("annotations",()):
         allTags.update(annotation.get("tags",()))
+
+    return allTags
+
+def AllTagsOrdered(item: dict) -> list:
+    """Return the set of all tags in item, which is either an excerpt or an annotation."""
+    allTags = item["tags"]
+
+    for annotation in item.get("annotations",()):
+        Utils.ExtendUnique(allTags,annotation.get("tags",()))
 
     return allTags
 

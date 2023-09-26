@@ -4,7 +4,7 @@ We leave the session file tags untouched."""
 from __future__ import annotations
 
 import json, re, os
-import Utils, Alert, Filter
+import Utils, Alert, Filter, Prototype
 from typing import Tuple, Type, Callable
 
 import mutagen
@@ -71,8 +71,17 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
     date = Utils.ReformatDate(session["date"],fullMonth=True) + ","
     venue = event["venue"] + ","
     location = gDatabase["venue"][event["venue"]]["location"] + "."
-
-    return " ".join([body,date,venue,location])
+    
+    parts = [body,date,venue,location]
+    allTags = Filter.AllTagsOrdered(excerpt)
+    if allTags:
+        parts.append("Tag:" if len(allTags) == 1 else "Tags:")
+        tagStrs = [f"[{t}]" for t in allTags]
+        qTagCount = excerpt["qTagCount"]
+        if 0 < qTagCount < len(tagStrs):
+            tagStrs.insert(excerpt["qTagCount"],"//")
+        parts += tagStrs
+    return " ".join(parts)
 
 def ExcerptTags(excerpt: dict) -> dict:
     """Given an excerpt, return a dictionary of the id3 tags it should have."""

@@ -20,8 +20,8 @@ def Contents(container:list|dict) -> list:
     except AttributeError:
         return container
 
-def AppendUnique(dest: list, source: list) -> list:
-    "Append the items in source to dest, preserving order but eliminating duplicates."
+def ExtendUnique(dest: list, source: list) -> list:
+    "Append all the items in source to dest, preserving order but eliminating duplicates."
 
     destSet = set(dest)
     for item in source:
