@@ -491,6 +491,10 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     if linkKind == "img":
         a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
+    elif linkKind == "linkToPlayerPage":
+        with a.a(href = hyperlink,title = title):
+            a("⬅ Playable")
+        a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
             with a.a(href = hyperlink,download=""):
@@ -561,6 +565,8 @@ class Formatter:
     """A class that formats lists of events, sessions, and excerpts into html"""
     
     def __init__(self):
+        self.audioLinks = gOptions.audioLinks
+        
         self.excerptDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
         self.excerptOmitTags = set() # Don't display these tags in excerpt description
         self.excerptBoldTags = set() # Display these tags in boldface
@@ -581,7 +587,7 @@ class Formatter:
         
         a = Airium(source_minify=True)
         
-        a(Mp3ExcerptLink(excerpt,**kwArgs))
+        a(Mp3ExcerptLink(excerpt,linkKind = self.audioLinks,**kwArgs))
         if excerpt['excerptNumber']:
             a(' ')
             with a.b(style="text-decoration: underline;"):
@@ -590,7 +596,7 @@ class Formatter:
         a(" ")
         if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
             a(f'[{excerpt["startTime"]}] ')
-        elif gOptions.audioLinks != "chip":
+        elif self.audioLinks != "chip":
             a(f'({excerpt["duration"]}) ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
@@ -699,9 +705,9 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session)
-                if gOptions.audioLinks == "img":
+            if linkSessionAudio and (self.audioLinks == "img" or self.audioLinks =="chip"):
+                audioLink = Mp3SessionLink(session,linkKind = self.audioLinks)
+                if self.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
                 else:
                     durStr = ''
@@ -716,8 +722,8 @@ class Formatter:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
             
-        if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session))
+        if linkSessionAudio and self.audioLinks == "audio":
+            a(Mp3SessionLink(session,linkKind = self.audioLinks))
             if horizontalRule:
                 a.hr()
         
@@ -799,33 +805,37 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
                     a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
-        if (gOptions.audioLinks == "audio" or gOptions.audioLinks == "chip") and x is not lastExcerpt:
+        if (localFormatter.audioLinks != "img") and x is not lastExcerpt:
             a.hr()
         
     return str(a)
 
-def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0) -> Iterator[Html.PageAugmentorType]:
+def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0,allItemsPage = True) -> Iterator[Html.PageAugmentorType]:
     """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
         basePage: Content of the page above the menu and excerpt list. Later pages add "-N" to the file name.
         excerpts, formatter: As in HtmlExcerptList
-        itemLimit: Limit lists to roughly this many items, but break pages only at session boundaries."""
+        itemLimit: Limit lists to roughly this many items, but break pages only at session boundaries.
+        allItemsPage: Create a page with all items but without audio players that links back to the separate pages."""
 
     pageNumber = 1
     menuItems = []
     excerptsInThisPage = []
     prevSession = None
-    baseName,ext = os.path.splitext(basePage.info.file)
     if itemLimit == 0:
         itemLimit = gOptions.excerptsPerPage
+    excerptPage:dict[str:str] = {}
+        # Keys are the mp3 file name of each excerpt; values are the html file the excerpt is listed in
 
     def PageHtml() -> Html.PageAugmentorType:
         if pageNumber > 1:
-            fileName = f"{baseName}-{pageNumber}{ext}"
+            fileName = Utils.AppendToFilename(basePage.info.file,f"-{pageNumber}")
         else:
             fileName = basePage.info.file
         menuItem = Html.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
-        
         pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
+
+        excerptPage.update((Utils.ItemCode(x),fileName) for x in excerptsInThisPage)
+
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
     for x in excerpts:
@@ -842,7 +852,23 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
     if excerptsInThisPage or not menuItems:
         menuItems.append(PageHtml())
     
+    def LinkToPage(mp3Link:re.Match) -> str:
+        htmlPage = excerptPage.get(mp3Link[1],None)
+        if htmlPage:
+            return f'href="../{htmlPage}#{mp3Link[1]}"'
+        else:
+            return mp3Link[0]
+
     if len(menuItems) > 1:
+        if allItemsPage:
+            noPlayer = copy.deepcopy(formatter)
+            noPlayer.audioLinks = "linkToPlayerPage"
+            menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
+            pageHtml = HtmlExcerptList(excerpts,noPlayer)
+            pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3"',LinkToPage,pageHtml)
+
+            menuItems.append([menuItem,pageHtml])
+
         yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
     else:
         clone = basePage.Clone()
@@ -892,7 +918,7 @@ def FilteredEventsMenuItem(events:Iterable[dict], filter:Filter.Filter, mainPage
 
     menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredEvents)})")
 
-    return menuItem,"<hr>\n" + ListDetailedEvents(filteredEvents)
+    return menuItem,ListDetailedEvents(filteredEvents)
 
 def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
@@ -930,7 +956,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     ]
 
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>"))
+    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p><hr>\n"))
 
 def ListDetailedEvents(events: Iterable[dict]) -> str:
     """Generate html containing a detailed list of all events."""
@@ -1066,7 +1092,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>")))
+                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p><hr>\n")))
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
@@ -1270,9 +1296,6 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
     aboutMenu = []
     for page in Document.RenderDocumentationFiles(directory,"about",html = True):
         if makeMenu:
-            newPage = Html.PageDesc()
-            newPage.AppendContent("<hr>\n") # Add a horizonal rule below the menu
-            page = newPage.Merge(page)
             if not aboutMenu:
                 if specialFirstItem:
                     page.info = specialFirstItem
@@ -1282,7 +1305,7 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
         
     if makeMenu:
         baseTagPage = Html.PageDesc()
-        yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
+        yield from baseTagPage.AddMenuAndYieldPages(aboutMenu,wrapper=Html.Wrapper("","<hr>\n"))
     else:
         yield from aboutMenu
 
