@@ -122,7 +122,7 @@ def ATag(tag:str) -> Filter:
 
     return lambda excerpt,tag=tag: _Tag(excerpt,tag,All,All) and not _QTag(excerpt,tag)
 
-def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str)) -> bool:
+def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str),quotesOthers:bool,quotedBy:bool) -> bool:
     "Helper function for Teacher."
 
     fullNames = set(gDatabase["teacher"][t]["fullName"] for t in teacher)
@@ -132,27 +132,30 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str)) -> boo
             if t in teacher:
                 if "kind" in i:
                     if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
-                        return True
+                        if i["kind"] == "Indirect quote" and not quotesOthers:
+                            return False
+                        else:
+                            return True
                 else:
                     return True
 
-        if i.get("kind") == "Indirect quote":
+        if i.get("kind") == "Indirect quote" and quotedBy:
             if i.get("tags",(None))[0] in fullNames:
                 if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
                     return True
     
     return False
 
-def Teacher(teacher: str|set(str),kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
+def Teacher(teacher: str|set(str),kind:str|set(str) = All,category:str|set(str) = All,quotesOthers = True,quotedBy = True) -> Filter:
     """Returns a Filter that passes any item with a given teacher.
-    Also pass indirect quotes by that teacher (the first tag is that teacher)
+    In the case of indirect quotes, pass items in which the teacher quotes others or is quoted by others depending on the flags
     If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
 
     teacher = StrToSet(teacher)
     kind = StrToSet(kind)
     category = StrToSet(category)
 
-    return lambda item,teacher=teacher,kind=kind,category=category: _Teacher(item,teacher,kind,category)
+    return lambda item,teacher=teacher,kind=kind,category=category: _Teacher(item,teacher,kind,category,quotesOthers,quotedBy)
 
 def AllTags(item: dict) -> set:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""
