@@ -1262,21 +1262,29 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
-def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
-    """Read markdown pages from documentation/about, convert them to html, and create a menu out of them. """
-
-    titleInPage = "The Ajahn Pasanno Question and Story Archive"
-    homepageFile = Html.PageInfo("About","homepage.html",titleInPage)
-    yield homepageFile
+def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageInfo|None = None) -> Html.PageDescriptorMenuItem:
+    """Read markdown pages from documentation/directory, convert them to html, 
+    write them in prototype/about, and create a menu out of them.
+    specialFirstItem optionally designates the PageInfo for the first item"""
 
     aboutMenu = []
-    for page in Document.RenderDocumentationFiles("about","about",html = True):
-        if not aboutMenu:
-            page.info = homepageFile
+    for page in Document.RenderDocumentationFiles(directory,"about",html = True):
+        if makeMenu:
+            newPage = Html.PageDesc()
+            newPage.AppendContent("<hr>\n") # Add a horizonal rule below the menu
+            page = newPage.Merge(page)
+            if not aboutMenu:
+                if specialFirstItem:
+                    page.info = specialFirstItem
+                yield page.info
+
         aboutMenu.append([page.info,page])
         
-    baseTagPage = Html.PageDesc()
-    yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
+    if makeMenu:
+        baseTagPage = Html.PageDesc()
+        yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
+    else:
+        yield from aboutMenu
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
@@ -1370,7 +1378,8 @@ def main():
 
     indexDir ="indexes"
     mainMenu = []
-    mainMenu.append(AboutMenu("about"))
+    mainMenu.append(DocumentationMenu("about",specialFirstItem=Html.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive")))
+    mainMenu.append(DocumentationMenu("misc",makeMenu=False))
     if "tags" in gOptions.buildOnly:
         mainMenu.append(TagMenu(indexDir))
     if "events" in gOptions.buildOnly:

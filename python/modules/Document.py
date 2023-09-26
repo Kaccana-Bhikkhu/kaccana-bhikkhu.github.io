@@ -8,13 +8,12 @@ from typing import Tuple, Type, Callable
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
 
-def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str = "../",pathToBaseForNonPages = "../../",html:bool = True) -> list[Html.PageDesc]:
+def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str = "../",pathToBase = "../../",html:bool = True) -> list[Html.PageDesc]:
     """Read and render the documentation files. Return a list of PageDesc objects.
     aboutDir: the name of the directory to read from; files are read from aboutDir + "Sources".
     destDir: the destination directory; set to aboutDir if not given.
     pathToPrototype: path from the where the documentation will be written to the prototype directory.
-    pathToBaseForNonPages: the path to the base directory for links not going to html pages
-        We must distinguish between pages and nonpages since frame.js modifes links to pages but not other links
+    pathToBase: the path to the base directory
     html: Render the file into html? - Leave in .md format if false.
     """
 
@@ -41,16 +40,15 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
         
         return changeCount
             
-    Render.LinkSubpages(ApplyToText,pathToPrototype,pathToBaseForNonPages)
+    Render.LinkSubpages(ApplyToText,pathToPrototype,pathToBase)
     Render.LinkKnownReferences(ApplyToText)
     Render.LinkSuttas(ApplyToText)
 
     if html:
         htmlFiles = {}
         for fileName in fileContents:
-            html = markdown.markdown(fileContents[fileName],extensions = ["sane_lists",NewTabRemoteExtension()])
+            html = markdown.markdown(fileContents[fileName],extensions = ["sane_lists","footnotes",NewTabRemoteExtension()])
         
-            html = "<hr>\n" + html # Add a horizontal line at the top of each file
             html = re.sub(r"<!--HTML(.*?)-->",r"\1",html) # Remove comments around HTML code
             htmlFiles[Utils.ReplaceExtension(fileName,".html")] = html
         fileContents = htmlFiles
@@ -62,7 +60,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
         if titleMatch:
             title = titleMatch[1]
         else:
-            m = re.match(r"[0-9]*_([^.]*)",fileName)
+            m = re.match(r"[0-9]*_?([^.]*)",fileName)
             title = m[1].replace("-"," ")
 
         page = Html.PageDesc(Html.PageInfo(title,Utils.PosixJoin(destDir,fileName),titleInPage))
@@ -78,10 +76,11 @@ def AddArguments(parser) -> None:
     
 
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main() -> None:
-    for directory in ['about']:
-        for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBaseForNonPages="../../",html=False):
+    for directory in ['about','misc']:
+        os.makedirs(Utils.PosixJoin(gOptions.documentationDir,directory),exist_ok=True)
+        for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
             with open(page.info.file,'w',encoding='utf-8') as file:
                 print(str(page),file=file)
