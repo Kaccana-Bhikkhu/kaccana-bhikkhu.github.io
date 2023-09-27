@@ -148,6 +148,10 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
     Remove any other keys found."""
     
     for d in Utils.Contents(dictList):
+        if key not in d:
+            d[key] = []
+            continue
+
         keyList = [key]
         if key[-1] == '1': # Does the key name end in 1?
             baseKey = key[:-1].strip()
@@ -654,7 +658,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"] or database["kind"][annotation["kind"]]["exclude"]:
+    if annotation["exclude"] or database["kind"][annotation["kind"]].get("exclude",False):
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -839,7 +843,7 @@ def LoadEventFile(database,eventName,directory):
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
-        elif database["kind"][x["kind"]]["exclude"]:
+        elif database["kind"][x["kind"]].get("exclude",False):
             excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
@@ -918,7 +922,7 @@ def LoadEventFile(database,eventName,directory):
     for unusedSession in includedSessions - sessionsWithExcerpts:
         del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
         # Remove sessions with no excerpts
-        
+
     xNumber = 1
     lastSession = -1
     for x in excerpts:

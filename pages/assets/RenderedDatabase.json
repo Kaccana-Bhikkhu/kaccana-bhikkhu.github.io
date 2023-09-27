@@ -9805,9 +9805,14 @@
       ],
       "annotations": [
         {
-          "kind": "Reference",
-          "flags": "0",
-          "text": "++Reading++ from an unnamed recent Ajahn Chah book.",
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "from an unnamed recent Ajahn Chah book.",
+          "teachers": [
+            "AChah"
+          ],
           "tags": [
             "Ajahn Chah",
             "Relinquishment",
@@ -9816,6 +9821,16 @@
           ],
           "indentLevel": 1,
           "body": "<b>Reading</b> from an unnamed recent Ajahn Chah book."
+        },
+        {
+          "kind": "Read by",
+          "flags": "-",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "indentLevel": 2,
+          "body": ""
         },
         {
           "kind": "Simile",
@@ -17408,14 +17423,29 @@
       ],
       "annotations": [
         {
-          "kind": "Reference",
+          "kind": "Reading",
           "flags": "",
+          "startTime": "",
+          "endTime": "",
           "text": "Questions and answers regarding the primal mind from Collected Teachings p. 478.",
+          "teachers": [
+            "AChah"
+          ],
           "tags": [
             "Nature of mind"
           ],
           "indentLevel": 1,
-          "body": "<b>Reference</b>: Questions and answers regarding the primal mind from <em>Collected Teachings of Ajahn Chah</em>  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=516\" target=\"_blank\">p. 478</a>."
+          "body": "<b>Reading:</b> Questions and answers regarding the primal mind from <em>Collected Teachings of Ajahn Chah</em>  <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=516\" target=\"_blank\">p. 478</a>."
+        },
+        {
+          "kind": "Read by",
+          "flags": "-",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "indentLevel": 2,
+          "body": ""
         }
       ],
       "tags": [
@@ -22284,7 +22314,7 @@
       "flags": "",
       "startTime": "Session",
       "endTime": "",
-      "text": "Readings from [Body Contemplation]():",
+      "text": "Readings from [Body Contemplation]()",
       "teachers": [
         "AThan"
       ],
@@ -22318,18 +22348,18 @@
         {
           "kind": "Sutta",
           "flags": "s",
-          "text": "AN 1.225, AN 1.227, AN 1.230, “Mindfulness immersed in the body”",
+          "text": "AN 1.575 and onward, “Mindfulness immersed in the body” (SuttaCentral numbering)",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Suttas</b>: <a href=\"https://sutta.readingfaithfully.org/?q=AN-1.225\" target=\"_blank\">AN 1.225</a>, <a href=\"https://sutta.readingfaithfully.org/?q=AN-1.227\" target=\"_blank\">AN 1.227</a>, <a href=\"https://sutta.readingfaithfully.org/?q=AN-1.230\" target=\"_blank\">AN 1.230</a>, “Mindfulness immersed in the body”"
+          "body": "<b>Suttas</b>: <a href=\"https://sutta.readingfaithfully.org/?q=AN-1.575\" target=\"_blank\">AN 1.575</a> and onward, “Mindfulness immersed in the body” (SuttaCentral numbering)"
         },
         {
           "kind": "Sutta",
           "flags": "s",
-          "text": "AN 1.235, 1.239, 1.245, “Deathless”",
+          "text": "AN 1.616 and onward, “Deathless” (SuttaCentral numbering)",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Suttas</b>: <a href=\"https://sutta.readingfaithfully.org/?q=AN-1.235\" target=\"_blank\">AN 1.235</a>, 1.239, 1.245, “Deathless”"
+          "body": "<b>Suttas</b>: <a href=\"https://sutta.readingfaithfully.org/?q=AN-1.616\" target=\"_blank\">AN 1.616</a> and onward, “Deathless” (SuttaCentral numbering)"
         }
       ],
       "tags": [
@@ -22337,7 +22367,7 @@
       ],
       "qTagCount": 1,
       "duration": "42:15",
-      "body": "<b>Reading:</b> Readings from <a href=\"https://www.accesstoinsight.org/lib/study/bodymind.html\" target=\"_blank\"><em>Body Contemplation: A Study Guide</em></a> by <a href = ../teachers/ajahn-thanissaro.html>Ajahn Ṭhānissaro</a>: {attribution2}",
+      "body": "<b>Reading:</b> Readings from <a href=\"https://www.accesstoinsight.org/lib/study/bodymind.html\" target=\"_blank\"><em>Body Contemplation: A Study Guide</em></a> by <a href = ../teachers/ajahn-thanissaro.html>Ajahn Ṭhānissaro</a> {attribution2}",
       "attribution": "",
       "attribution2": "Read by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>.",
       "teachers2": [
@@ -45370,7 +45400,7 @@
       "category": "Readings",
       "defaultForm": 1,
       "canBeExcerpt": true,
-      "canBeAnnotation": false,
+      "canBeAnnotation": true,
       "takesTimes": true,
       "takesTeachers": true,
       "takesTags": true,
@@ -45823,7 +45853,7 @@
       "lineage": "Root teachers",
       "sortBy": "1939.106",
       "webLink": "",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "htmlFile": "ajahn-chah.html"
     },
     "ALee": {

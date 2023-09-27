@@ -199,7 +199,11 @@ def RenderExcerpts() -> None:
         for a in x["annotations"]:
             RenderItem(a,x)
             if kinds[a["kind"]]["appendToExcerpt"]:
-                AppendAnnotationToExcerpt(a,x)
+                if a["indentLevel"] == 1: # Only append level 1 annotations to the excerpt
+                    AppendAnnotationToExcerpt(a,x)
+                else: # Don't render level 2 and higher annotations; hand-code them in to the annotation if needed.
+                    a["body"] = ""
+                    del a["attribution"]
 
 
 def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):

@@ -129,6 +129,8 @@ def main():
         sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
         sheetsToDownload.update((sheetName,sheetId) for sheetName,sheetId in sheetIds.items() if sheetName.rstrip('x') in gOptions.sheets)
             # Download sheet WR2015x if WR2015 appears in gOptions.sheets
+    else:
+        sheetsToDownload = sheetIds
     
     DownloadSheets(sheetsToDownload)
     downloadedSheets = list(sheetsToDownload.keys())
