@@ -14,6 +14,7 @@ from functools import lru_cache
 import contextlib
 from typing import NamedTuple
 from collections import defaultdict
+import itertools
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -729,7 +730,7 @@ class Formatter:
         
         return str(a)
 
-def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True) -> str:
+def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,sessionExcerptDuration = True) -> str:
     "Return a string describing the duration of the excerpts we were passed."
     
     if not excerpts:
@@ -737,8 +738,13 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     
     events = set(x["event"] for x in excerpts)
     sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
-    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts if x["fileNumber"]),start = timedelta())
-        # Don't sum session excerpts (fileNumber = 0)
+
+    duration = timedelta()
+    for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
+        sessionExcerpts = list(sessionExcerpts)
+        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+            # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
+            # This prevents confusing results due to double counting times
     
     strItems = []
     
@@ -929,7 +935,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     a = Airium()
     
     with a.p():
-        a(ExcerptDurationStr(gDatabase["excerpts"]))
+        a(ExcerptDurationStr(gDatabase["excerpts"],sessionExcerptDuration=False))
         a.br()
         a("Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.")
 
@@ -1252,7 +1258,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
             squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
             squish("Sessions:")
             for s in sessions:
-                squish(4*"&nbsp")
+                squish(" " + 3*"&nbsp")
                 with squish.a(href = f"#{Utils.ItemCode(s)}"):
                     squish(str(s['sessionNumber']))
             

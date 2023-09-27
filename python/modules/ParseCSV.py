@@ -732,7 +732,11 @@ def LoadEventFile(database,eventName,directory):
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
-        rawExcerpts = CSVToDictList(file)
+        try: # First look for a separate excerpt sheet ending in x.csv
+            with open(os.path.join(directory,eventName + 'x.csv'),encoding='utf8') as excerptFile:
+                rawExcerpts = CSVToDictList(excerptFile,endOfSection = '<---->')
+        except FileNotFoundError:
+            rawExcerpts = CSVToDictList(file,endOfSection = '<---->')
 
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
     
@@ -910,6 +914,11 @@ def LoadEventFile(database,eventName,directory):
     excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
 
+    sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
+    for unusedSession in includedSessions - sessionsWithExcerpts:
+        del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
+        # Remove sessions with no excerpts
+        
     xNumber = 1
     lastSession = -1
     for x in excerpts:

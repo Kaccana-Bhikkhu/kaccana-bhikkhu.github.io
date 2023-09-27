@@ -126,10 +126,12 @@ def main():
             if sheetName not in sheetIds:
                 Alert.warning('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
         
-        sheetIds = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
+        sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
+        sheetsToDownload.update((sheetName,sheetId) for sheetName,sheetId in sheetIds.items() if sheetName.rstrip('x') in gOptions.sheets)
+            # Download sheet WR2015x if WR2015 appears in gOptions.sheets
     
-    DownloadSheets(sheetIds)
-    downloadedSheets = list(sheetIds.keys())
+    DownloadSheets(sheetsToDownload)
+    downloadedSheets = list(sheetsToDownload.keys())
     if downloadSummary:
         downloadedSheets = ['Summary'] + downloadedSheets
     Alert.info(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')

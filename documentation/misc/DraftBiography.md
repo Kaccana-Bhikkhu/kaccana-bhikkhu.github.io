@@ -12,7 +12,7 @@ At the request of the Wat Pah Pong Elders, Ajahn Jayasaro began writing the Thai
 > anniversary of Luang Por Chah’s death in 2017, and the 100th anniversary
 > of his birth in 2018 – that I was forced to accept that, at my present rate of
 > progress, the book would never be completed. I adopted a regular writing
-> schedule and, slowly, the book you hold in your hands at last took shape. – Preface to [_Stillness Flowing_](https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf) by Ajahn Jayasaro.
+> schedule and, slowly, the book you hold in your hands at last took shape. – Preface to [_Stillness Flowing_](https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf) by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>.
 
 _[Stillness Flowing](https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf)_ was finally [published in early 2018](../../pages/events/UD2018-1.html). Thus during most of the time period covered by this Archive, by far the best English-language text[^1] for information and stories about Ajahn Chah's life was an evolving but unpublished manuscript. Concerned that the manuscript might contain errors or other flaws, Ajahn Jayasaro did not permit its distribution. However, he sent a series of drafts to Ajahn Pasanno and Ajahn Amaro at Abhayagiri Monastery, who in turn read from them at several recorded events beginning with the Ajahh Chah Conference in in 2001. 
 

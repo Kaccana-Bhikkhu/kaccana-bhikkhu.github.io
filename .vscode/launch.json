@@ -99,11 +99,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "TagMp3",
+                "DownloadCSV",
                 "--excerptMp3",
                 "local",
                 "--events",
-                "BIA2013",
+                "WR2015",
                 "--writeMp3Tags",
                 "changed"
             ],

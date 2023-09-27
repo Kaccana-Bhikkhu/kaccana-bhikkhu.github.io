@@ -34,7 +34,7 @@ __A. Mental qualities__
  __E. Domains of teaching and practice__
 
 15. [Renunciant practice](../../pages/drilldown/tag-578.html#578)
-16. [Everyday life](../../pages/drilldown/tag-645.html#645)
+16. [Everyday life](../../pages/drilldown/tag-646.html#646)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 

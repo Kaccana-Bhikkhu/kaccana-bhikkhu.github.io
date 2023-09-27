@@ -235,6 +235,15 @@ def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     
     raise ValueError(f"Can't locate session {sessionNum} of event {event}")
 
+def SessionIndex(sessions:list, event:str ,sessionNum: int) -> int:
+    "Return the session specified by event and sessionNum."
+    
+    for n,session in enumerate(sessions):
+        if session["event"] == event and session["sessionNumber"] == sessionNum:
+            return n
+    
+    raise ValueError(f"Can't locate session {sessionNum} of event {event}")
+
 def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|None:
     "Return the excerpt that matches these parameters. Otherwise return None."
 
