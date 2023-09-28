@@ -14,17 +14,32 @@ class Wrapper(NamedTuple):
     "A prefix and suffix to wrap an html object in."
     prefix: str = ""
     suffix: str = ""
-    def Wrap(self,contents: str, joinStr: str = "") -> str:
-        items = []
-        if self.prefix:
-            items.append(self.prefix)
-        items.append(contents)
-        if self.suffix:
-            items.append(self.suffix)
-        return joinStr.join(items)
+    def Wrap(self,contents: str|Wrapper, joinStr: str = "") -> str:
+        if type(contents) == Wrapper:
+            return Wrapper(self.prefix + joinStr + contents.prefix,contents.suffix + joinStr + self.suffix)
+        else:
+            items = []
+            if self.prefix:
+                items.append(self.prefix)
+            items.append(contents)
+            if self.suffix:
+                items.append(self.suffix)
+            return joinStr.join(items)
     
     __call__ = Wrap
-    
+
+def Tag(*tagData: str|dict) -> Wrapper:
+    "Return a wrapper corresponding to a series of html tags."
+    if not tagData:
+        return Wrapper()
+    tag = tagData[0]
+    if len(tagData) == 1 or type(tagData[1]) == str:
+        return Wrapper(f"<{tag}>",f"</{tag}>")(Tag(*tagData[1:]))
+    else:
+        attributes = " ".join(f'{attr}="{value}"' for attr,value in tagData[1].items())
+        return Wrapper(f"<{tag} {attributes}>",f"</{tag}>")(Tag(*tagData[2:]))
+
+
 class PageInfo(NamedTuple):
     "The most basic information about a webpage. titleIB means titleInBody"
     title: str|None = None
