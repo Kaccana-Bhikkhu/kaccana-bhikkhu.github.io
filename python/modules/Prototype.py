@@ -495,6 +495,9 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     elif linkKind == "linkToPlayerPage":
         with a.a(href = hyperlink,title = title):
             a("⬅ Playable")
+        a(" "+2*"&nbsp")
+        with a.a(href = hyperlink,download = "",title = title):
+            a("⇓ Download")
         a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
@@ -589,11 +592,13 @@ class Formatter:
         a = Airium(source_minify=True)
         
         a(Mp3ExcerptLink(excerpt,linkKind = self.audioLinks,**kwArgs))
+        a(' ')
         if excerpt['excerptNumber']:
-            a(' ')
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
-        
+        else:
+            a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
+
         a(" ")
         if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
             a(f'[{excerpt["startTime"]}] ')
@@ -870,8 +875,12 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             noPlayer = copy.deepcopy(formatter)
             noPlayer.audioLinks = "linkToPlayerPage"
             menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
-            pageHtml = HtmlExcerptList(excerpts,noPlayer)
-            pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3"',LinkToPage,pageHtml)
+            
+            pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
+                                     Then choose ⬅ Playable or ⇓ Download to play the excerpt.""")
+            pageHtml += HtmlExcerptList(excerpts,noPlayer)
+            pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
+                # Match only the non-download link
 
             menuItems.append([menuItem,pageHtml])
 
@@ -936,8 +945,6 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     
     with a.p():
         a(ExcerptDurationStr(gDatabase["excerpts"],sessionExcerptDuration=False))
-        a.br()
-        a("Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.")
 
     a.hr()
 
