@@ -141,8 +141,14 @@ def AddArguments(parser) -> None:
     parser.add_argument("--writeMp3Tags",type=str,default="Changed",choices=["never","changed","always"],help="Write mp3 tags under these conditions; Default: Changed.")
     parser.add_argument("--ID3version",type=int,default=3,choices=[3,4],help="Write mp3 tags as ID3 v2.X; Default: 3")
 
+def ParseArguments(options) -> None:
+    pass
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 register_comment()
 
 def main() -> None:

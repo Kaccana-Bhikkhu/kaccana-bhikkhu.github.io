@@ -115,8 +115,8 @@ parser.add_argument('--sessionMp3',type=str,default='remote',help='Session audio
 parser.add_argument('--excerptMp3',type=str,default='remote',help='Excerpt audio file link location; default: remote - use remoteExcerptMp3URL')
 parser.add_argument('--remoteExcerptMp3URL',type=str, help='remote URL for excerpts')
 
-for mod in modules:
-    modules[mod].AddArguments(parser)
+for mod in modules.values():
+    mod.AddArguments(parser)
 
 parser.add_argument('--verbose','-v',default=0,action='count',help='increase verbosity')
 parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbosity')
@@ -158,9 +158,15 @@ clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
 
-for mod in modules:
-    modules[mod].gOptions = clOptions
-    Utils.gOptions = clOptions
+for mod in modules.values():
+    mod.ParseArguments(clOptions)
+        # Tell each module to parse its own arguments
+    mod.gOptions = clOptions
+        # And let each module access all arguments
+Utils.gOptions = clOptions
+if Alert.error.count:
+    print("Aborting due to argument parsing errors.")
+    quit()
 
 if clOptions.events != 'All':
     clOptions.events = clOptions.events.split(',')
@@ -182,13 +188,19 @@ if newOpSet != opSet:
     opSet = newOpSet
 
 # Set up the global namespace for each module - this allows the modules to call each other out of order
-for mod in modules:
-    modules[mod].gDatabase = database
-    Utils.gDatabase = database
-    Filter.gDatabase = database
+for mod in modules.values():
+    mod.gDatabase = database
+Utils.gDatabase = database
+Filter.gDatabase = database
 
 # Then run the specified operations in sequential order
+initialized = False
 for moduleName in moduleList:
+    if database and not initialized:
+        for mod in modules.values():
+            mod.Initialize() # Run each module's initialize function when the database fills up
+        initialized = True
+
     if moduleName in opSet:
         PrintModuleSeparator(moduleName)
         modules[moduleName].main()

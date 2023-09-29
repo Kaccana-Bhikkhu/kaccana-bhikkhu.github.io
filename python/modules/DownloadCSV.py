@@ -67,20 +67,28 @@ def AddArguments(parser):
     parser.add_argument('--summarySheetID',type=int,default = 0,help='GID of the "Summary" sheet in spreadsheet')
     parser.add_argument('--sheets',type=str,default='Default',help='Download this list of named sheets; Default: Tags and the sheets specified by --events')
     parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
+
+def ParseArguments(options) -> None:
+    if not options.spreadsheet:
+        Alert.error("A spreadsheet must be specified using --spreadsheet")
+        return
+
+    spreadsheetMatch = re.search(r'/d/([^/]*)/',options.spreadsheet)
+    if not spreadsheetMatch:
+        Alert.error("Cannot find a spreadsheet ID in --spreadsheet",repr(options.spreadsheet))
+        return
     
+    options.spreadsheetId = spreadsheetMatch.groups()[0]
+    options.summaryFilePath = os.path.join(options.csvDir,'Summary.csv')
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
 
 def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
-    
-    if not gOptions.spreadsheet:
-        Alert.error("A spreadsheet must be specified using --spreadsheet")
-        Alert.error("DownloadCSV aborting.")
-        return
-
-    gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
-    gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
     
     downloadSummary = False
     if gOptions.sheets != 'All' and gOptions.sheets != 'Default':

@@ -1403,38 +1403,38 @@ def AddArguments(parser):
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
-gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
-
-def ParseBuildSections():
-    if type(gOptions.buildOnly) == set:
-        return
-    allSections = {"tags","drilldown","events","teachers","allexcerpts"}
-    if gOptions.buildOnly == "":
-        gOptions.buildOnly = allSections
-    elif gOptions.buildOnly.lower() == "none":
-        gOptions.buildOnly = set()
+gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
+def ParseArguments(options):
+    if options.buildOnly == "":
+        options.buildOnly = gAllSections
+    elif options.buildOnly.lower() == "none":
+        options.buildOnly = set()
     else:
-        gOptions.buildOnly = set(section.strip().lower() for section in gOptions.buildOnly.split(','))
-        if "drilldown" in gOptions.buildOnly:
-            gOptions.buildOnly.add("tags")
-        unknownSections = gOptions.buildOnly.difference(allSections)
+        options.buildOnly = set(section.strip().lower() for section in options.buildOnly.split(','))
+        if "drilldown" in options.buildOnly:
+            options.buildOnly.add("tags")
+        unknownSections = options.buildOnly.difference(gAllSections)
         if unknownSections:
             Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
-            gOptions.buildOnly = gOptions.buildOnly.difference(unknownSections)
-    
-    if gOptions.buildOnly != allSections:
-        if gOptions.buildOnly:
-            Alert.warning(f"Building only section(s) {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
-        else:
-            Alert.warning(f"No sections built. This should be used only for testing and debugging purposes.")
+            options.buildOnly = options.buildOnly.difference(unknownSections)
+
+def Initialize() -> None:
+    pass
+
+gOptions = None
+gDatabase:dict[str] = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
     # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
-    ParseBuildSections()
+
+    if gOptions.buildOnly != gAllSections:
+        if gOptions.buildOnly:
+            Alert.warning(f"Building only section(s) --buildOnly {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
+        else:
+            Alert.warning(f"No sections built due to --buildOnly none. This should be used only for testing and debugging purposes.")
 
     basePage = Html.PageDesc()
 

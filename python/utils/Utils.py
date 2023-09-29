@@ -12,7 +12,7 @@ import pathlib
 from collections.abc import Iterable
 
 gOptions = None
-gDatabase = None # These will be set later by QSarchive.py
+gDatabase:dict[str] = None # These will be set later by QSarchive.py
 
 def Contents(container:list|dict) -> list:
     try:
