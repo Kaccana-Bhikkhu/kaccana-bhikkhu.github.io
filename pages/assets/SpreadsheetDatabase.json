@@ -20189,39 +20189,51 @@
       "excerptNumber": 0,
       "fileNumber": 0,
       "kind": "Reading",
-      "flags": "",
+      "flags": "s",
       "startTime": "Session",
       "endTime": "",
-      "text": "Readings from [Body Contemplation]()",
+      "text": "from [Body Contemplation]()",
       "teachers": [
         "AThan"
       ],
       "annotations": [
         {
-          "kind": "Sutta",
-          "flags": "s",
+          "kind": "Reading",
+          "flags": "0",
+          "startTime": "",
+          "endTime": "",
           "text": "AN 4.184, “Janussonī;” AN 10.60, “Girimananda;” SN 35.247, “Six Animals;” AN 4.45, “Rohitassa;” Thag 1.104, “Khitaka”",
+          "teachers": [],
           "tags": [],
           "indentLevel": 1
         },
         {
-          "kind": "Sutta",
-          "flags": "s",
+          "kind": "Reading",
+          "flags": "0",
+          "startTime": "",
+          "endTime": "",
           "text": "Dhp 259, Dhp 299, Dhp 46; Ud 3.5",
+          "teachers": [],
           "tags": [],
           "indentLevel": 1
         },
         {
-          "kind": "Sutta",
-          "flags": "s",
+          "kind": "Reading",
+          "flags": "0",
+          "startTime": "",
+          "endTime": "",
           "text": "AN 1.575 and onward, “Mindfulness immersed in the body” (SuttaCentral numbering)",
+          "teachers": [],
           "tags": [],
           "indentLevel": 1
         },
         {
-          "kind": "Sutta",
-          "flags": "s",
+          "kind": "Reading",
+          "flags": "0",
+          "startTime": "",
+          "endTime": "",
           "text": "AN 1.616 and onward, “Deathless” (SuttaCentral numbering)",
+          "teachers": [],
           "tags": [],
           "indentLevel": 1
         }
@@ -20301,7 +20313,7 @@
       "kind": "Question",
       "flags": "",
       "startTime": "30:18",
-      "endTime": "36:49",
+      "endTime": "",
       "text": "Is mindfulness of the body fabricating a wholesome mental image of the body as opposed to an unwholesome image? But how can we know the body in any way other than vedanā?",
       "teachers": [
         "AKd"
@@ -20342,17 +20354,61 @@
     },
     {
       "event": "WR2015",
+      "sessionNumber": 5,
+      "excerptNumber": 4,
+      "fileNumber": 4,
+      "kind": "Discussion",
+      "flags": "",
+      "startTime": "36:49",
+      "endTime": "",
+      "text": "of which excercises described as mindfulness of the body (MN 10) are reflective techniques and which are based on vedanā.",
+      "teachers": [
+        "AP",
+        "AKd"
+      ],
+      "annotations": [
+        {
+          "kind": "Comment",
+          "flags": "2",
+          "startTime": "",
+          "endTime": "",
+          "text": "about S.N. Goenka's use of the term vedanā.",
+          "teachers": [
+            "AKd"
+          ],
+          "tags": [
+            "S. N. Goenka",
+            "Feeling",
+            "Contact",
+            "Sense bases",
+            "Aggregates"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Mindfulness of body",
+        "Recollection",
+        "Feeling",
+        "Elements",
+        "Unattractiveness",
+        "Insight meditation",
+        "Liberation"
+      ],
+      "qTagCount": 3,
+      "duration": "5:26"
+    },
+    {
+      "event": "WR2015",
       "sessionNumber": 6,
       "excerptNumber": 0,
       "fileNumber": 0,
-      "kind": "Question",
+      "kind": "Reading",
       "flags": "",
       "startTime": "Session",
       "endTime": "",
-      "text": "This sutta describes the development of mindfulness of the body through mindfulness of breathing, the four postures, full awareness, bodily parts, elements, corpse contemplation, and the four jhānas.",
-      "teachers": [
-        "AKd"
-      ],
+      "text": "MN 119: This sutta describes the development of mindfulness of the body through mindfulness of breathing, the four postures, full awareness, bodily parts, elements, corpse contemplation, and the four jhānas.",
+      "teachers": [],
       "annotations": [],
       "tags": [
         "Mindfulness of body",
@@ -20374,7 +20430,15 @@
       "teachers": [
         "AKd"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Reference",
+          "flags": "",
+          "text": "Abhayagiri Chanting Book p. 37",
+          "tags": [],
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Unattractiveness"
       ],
@@ -20394,9 +20458,20 @@
       "teachers": [
         "AKd"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Reference",
+          "flags": "",
+          "text": "Abhayagiri Chanting Book p. 37",
+          "tags": [],
+          "indentLevel": 1
+        }
+      ],
       "tags": [
-        "Unattractiveness"
+        "Unattractiveness",
+        "Commentaries",
+        "Sensual desire",
+        "Self-identity view"
       ],
       "qTagCount": 1,
       "duration": "3:06"
@@ -20406,19 +20481,22 @@
       "sessionNumber": 6,
       "excerptNumber": 3,
       "fileNumber": 3,
-      "kind": "Question",
+      "kind": "Comment",
       "flags": "",
       "startTime": "32:32",
       "endTime": "",
       "text": "This reminds me of Ajahn Anan's practice.",
-      "teachers": [
-        "AKd"
-      ],
+      "teachers": [],
       "annotations": [],
       "tags": [
-        "Unattractiveness"
+        "Ajahn Anan",
+        "Nimmita",
+        "Unattractiveness",
+        "Thai Forest Tradition",
+        "Concentration",
+        "Sutta"
       ],
-      "qTagCount": 1,
+      "qTagCount": 3,
       "duration": "1:34"
     },
     {
@@ -20434,20 +20512,72 @@
       "teachers": [
         "AKd"
       ],
+      "annotations": [
+        {
+          "kind": "Simile",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "MN 119.7: Sack of grains",
+          "teachers": [
+            "AKd"
+          ],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Comment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Words themselves like \"impure\" are culturally loaded.",
+          "teachers": [],
+          "tags": [
+            "Language",
+            "Cultural context",
+            "Culture/India"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Pāli",
+        "Translation",
+        "Aversion",
+        "Unattractiveness",
+        "Etymology",
+        "Sensual desire"
+      ],
+      "qTagCount": 4,
+      "duration": "4:54"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 6,
+      "excerptNumber": 5,
+      "fileNumber": 5,
+      "kind": "Comment",
+      "flags": "",
+      "startTime": "39:00",
+      "endTime": "39:49",
+      "text": "I find it helpful to think about all the different cells of the body. How could any of them be me?",
+      "teachers": [],
       "annotations": [],
       "tags": [
+        "Form",
+        "Not-self",
         "Unattractiveness"
       ],
-      "qTagCount": 1,
-      "duration": "6:14"
+      "qTagCount": 3,
+      "duration": "0:49"
     },
     {
       "event": "WR2015",
       "sessionNumber": 7,
       "excerptNumber": 0,
       "fileNumber": 0,
-      "kind": "Question",
-      "flags": "",
+      "kind": "Teaching",
+      "flags": "0",
       "startTime": "Session",
       "endTime": "",
       "text": "The contemplation of the parts of the body can be used to reduce sexual craving, to still the mind, and to induce insight into the nature of the body. In the first slideshow, Ajahn Karuṇadhammo gives a brief description of the structure and function of each of the thirty-two parts. The Abhayagiri Chanting Book p. 37 lists the thirty-two parts in Pali and English. Many of the slide show images come from [32parts.com](https://32parts.com), an internet resource for body contemplation.",
@@ -20458,15 +20588,18 @@
         {
           "kind": "Reference",
           "flags": "",
-          "text": "[Video](https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_14_2015_Thirty-two_Parts_Slideshow_1.mp4) of the thirty-two parts slideshow.",
+          "text": "[Video](https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_14_2015_Thirty-two_Parts_Slideshow_1.mp4) of the slideshow.",
           "tags": [],
           "indentLevel": 1
         }
       ],
       "tags": [
+        "Sensual desire",
+        "Calming meditation",
+        "Insight meditation",
         "Unattractiveness"
       ],
-      "qTagCount": 1,
+      "qTagCount": 4,
       "duration": "44:46"
     },
     {
@@ -20497,17 +20630,18 @@
       "kind": "Question",
       "flags": "",
       "startTime": "29:24",
-      "endTime": "",
+      "endTime": "30:00",
       "text": "How long does it take food to make its way through the digestive tract?",
       "teachers": [
         "AKd"
       ],
       "annotations": [],
       "tags": [
+        "Food",
         "Unattractiveness"
       ],
-      "qTagCount": 1,
-      "duration": "6:34"
+      "qTagCount": 2,
+      "duration": "0:36"
     },
     {
       "event": "WR2015",
@@ -20517,7 +20651,7 @@
       "kind": "Question",
       "flags": "",
       "startTime": "35:58",
-      "endTime": "",
+      "endTime": "36:26",
       "text": "Is blood only red when it's outside the body?",
       "teachers": [
         "AKd"
@@ -20527,7 +20661,7 @@
         "Unattractiveness"
       ],
       "qTagCount": 1,
-      "duration": "2:32"
+      "duration": "0:28"
     },
     {
       "event": "WR2015",
@@ -20537,17 +20671,18 @@
       "kind": "Question",
       "flags": "",
       "startTime": "38:30",
-      "endTime": "",
+      "endTime": "39:24",
       "text": "Is there a biological function for tears?",
       "teachers": [
         "AKd"
       ],
       "annotations": [],
       "tags": [
-        "Unattractiveness"
+        "Unattractiveness",
+        "Emotion"
       ],
       "qTagCount": 1,
-      "duration": "1:47"
+      "duration": "0:54"
     },
     {
       "event": "WR2015",
@@ -20557,7 +20692,7 @@
       "kind": "Question",
       "flags": "",
       "startTime": "40:17",
-      "endTime": "",
+      "endTime": "40:32",
       "text": "How does phlegm relate to mucus?",
       "teachers": [
         "AKd"
@@ -20567,18 +20702,85 @@
         "Unattractiveness"
       ],
       "qTagCount": 1,
-      "duration": "2:24"
+      "duration": "0:15"
     },
     {
       "event": "WR2015",
       "sessionNumber": 7,
       "excerptNumber": 6,
       "fileNumber": 6,
-      "kind": "Question",
+      "kind": "Comment",
       "flags": "",
       "startTime": "42:41",
+      "endTime": "44:27",
+      "text": "When I go though the list [of the 32 parts], I separate the object from my body and evision my body with it absent.",
+      "teachers": [],
+      "annotations": [
+        {
+          "kind": "Response",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AKd"
+          ],
+          "tags": [
+            "Ajahn Chah",
+            "Unattractiveness",
+            "Not-self",
+            "Sensual desire",
+            "Calming meditation",
+            "Sloth and torpor"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Visualization",
+        "Unattractiveness"
+      ],
+      "qTagCount": 2,
+      "duration": "1:46"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Teaching",
+      "flags": "",
+      "startTime": "Session",
       "endTime": "",
-      "text": "Can you contemplate removing the parts one by one?",
+      "text": "Ajahn Karuṇadhammo reviews the slideshow again with an emphasis on internal contemplation and insight.",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [
+        {
+          "kind": "Reference",
+          "flags": "",
+          "text": "[Video](https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_15_2015_Thirty-two_Parts_Slideshow_2.mp4) of the slideshow.",
+          "tags": [],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Recollection",
+        "Insight meditation",
+        "Unattractiveness"
+      ],
+      "qTagCount": 3,
+      "duration": "32:43"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 1,
+      "fileNumber": 1,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "9:28",
+      "endTime": "",
+      "text": "Why is there no liquid blood in the photographs of flesh and sinews?",
       "teachers": [
         "AKd"
       ],
@@ -20587,7 +20789,463 @@
         "Unattractiveness"
       ],
       "qTagCount": 1,
-      "duration": "2:05"
+      "duration": "5:52"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 2,
+      "fileNumber": 2,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "15:20",
+      "endTime": "",
+      "text": "Where does a stomach ache originate from?",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [],
+      "tags": [
+        "Unattractiveness"
+      ],
+      "qTagCount": 1,
+      "duration": "0:32"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 3,
+      "fileNumber": 3,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "15:52",
+      "endTime": "",
+      "text": "Is there a particular orientation for the intestines?",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [],
+      "tags": [
+        "Unattractiveness"
+      ],
+      "qTagCount": 1,
+      "duration": "1:55"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 4,
+      "fileNumber": 4,
+      "kind": "Comment",
+      "flags": "",
+      "startTime": "17:47",
+      "endTime": "",
+      "text": "Perhaps the thirty-one parts were part of the medical culture at the time of the Buddha.",
+      "teachers": [],
+      "annotations": [],
+      "tags": [
+        "Unattractiveness"
+      ],
+      "qTagCount": 1,
+      "duration": "12:08"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 5,
+      "fileNumber": 5,
+      "kind": "Comment",
+      "flags": "",
+      "startTime": "29:55",
+      "endTime": "",
+      "text": "I cultivate saṁvega by contemplating the heart.",
+      "teachers": [],
+      "annotations": [],
+      "tags": [
+        "Unattractiveness"
+      ],
+      "qTagCount": 1,
+      "duration": "0:30"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "excerptNumber": 6,
+      "fileNumber": 6,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "30:25",
+      "endTime": "",
+      "text": "Why are the first five parts chosen for special contemplation?",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [],
+      "tags": [
+        "Unattractiveness"
+      ],
+      "qTagCount": 1,
+      "duration": "2:18"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 9,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Teaching",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "On the twenty-second anniversary of Ajahn Chah's passing, Ajahn Passano reads of the founding of Wat Pah Pong and a Westerner's contemporary reflection on Ajahn Chah.",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [
+        {
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "from the draft biography of Ajahn Chah by Ajahn Jayasaro",
+          "teachers": [
+            "AJaya"
+          ],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Introduction to Listening to the _Heart by Kittisaro_ and Thanissara",
+          "teachers": [
+            "Kittisaro",
+            "Thanissara"
+          ],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AP"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Ajahn Chah Remembrance Day",
+        "Wat Pah Pong",
+        "Ajahn Chah"
+      ],
+      "qTagCount": 3,
+      "duration": "1:00:25"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 10,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Reading",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "[Nine point death meditation from the Lam Rim](https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Nine_Point_Lam_Rim_Death_Mediatation.png)",
+      "teachers": [],
+      "annotations": [
+        {
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "AN 6.19, “Mindfulness of Death (1)”",
+          "teachers": [],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "AN 6.20, “Mindfulness of Death (2)”",
+          "teachers": [],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "MN 10, Satipaṭṭhāna Sutta, The Foundations of Mindfulness, Charnel ground contemplations",
+          "teachers": [],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Reading",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "“Only the Practice of Dharma Can Help Us at the Time of Death,” Larry Rosenberg, Tricycle, Summer 2000",
+          "teachers": [],
+          "tags": [],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Recollection/Death"
+      ],
+      "qTagCount": 1,
+      "duration": "32:26"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 10,
+      "excerptNumber": 1,
+      "fileNumber": 1,
+      "kind": "Comment",
+      "flags": "s",
+      "startTime": "29:03",
+      "endTime": "",
+      "text": "about the Lam Rim teachings",
+      "teachers": [],
+      "annotations": [],
+      "tags": [
+        "Recollection/Death"
+      ],
+      "qTagCount": 1,
+      "duration": "1:10"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 10,
+      "excerptNumber": 2,
+      "fileNumber": 2,
+      "kind": "Recollection",
+      "flags": "s",
+      "startTime": "30:13",
+      "endTime": "",
+      "text": "of visiting the morgue in Thailand",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [],
+      "tags": [
+        "Recollection/Death"
+      ],
+      "qTagCount": 1,
+      "duration": "2:13"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 11,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "MN 10, Satipaṭṭhāna Sutta, The Foundations of Mindfulness, Elements",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [
+        {
+          "kind": "Question",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "MN 62, Mahārāhulaovāda Sutta, The Greater Discourse of Advice to Rāhula",
+          "teachers": [
+            "AKd"
+          ],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Question",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "“Wholehearted training,” p. 635 in The Collected Teachings of Ajahn Chah (excerpt)",
+          "teachers": [
+            "AKd"
+          ],
+          "tags": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Question",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "“Why Are We Here?,” p. 131 in The Collected Teachings of Ajahn Chah (excerpt)",
+          "teachers": [
+            "AKd"
+          ],
+          "tags": [],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "33:29"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 11,
+      "excerptNumber": 1,
+      "fileNumber": 1,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "29:26",
+      "endTime": "",
+      "text": "Has there been discussion of getting a skeleton for Abhayagiri?",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "1:02"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 11,
+      "excerptNumber": 2,
+      "fileNumber": 2,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "30:28",
+      "endTime": "",
+      "text": "Is it common for body contemplation to veer towards aversion?",
+      "teachers": [
+        "AKd"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "3:01"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 12,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "Elements chapter, p. 128-138 in Meditation: A Way of Awakening by Ajahn Sucitto",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "28:54"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 13,
+      "excerptNumber": 0,
+      "fileNumber": 0,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "Session",
+      "endTime": "",
+      "text": "“How you develop four-elements meditation,” p. 116-120 in Knowing and Seeing, 4th Ed. by Pa Auk Sayadaw",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "27:05"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 13,
+      "excerptNumber": 1,
+      "fileNumber": 1,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "21:33",
+      "endTime": "",
+      "text": "Does the imbalance mentioned come from focusing in too much on a single element?",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "0:39"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 13,
+      "excerptNumber": 2,
+      "fileNumber": 2,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "22:12",
+      "endTime": "",
+      "text": "Two monks express appreciation for this meditation technique.",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "2:42"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 13,
+      "excerptNumber": 3,
+      "fileNumber": 3,
+      "kind": "Question",
+      "flags": "",
+      "startTime": "24:54",
+      "endTime": "",
+      "text": "What did Winnie-the-Pooh say about intellect versus understanding?",
+      "teachers": [
+        "AP"
+      ],
+      "annotations": [],
+      "tags": [
+        "Elements"
+      ],
+      "qTagCount": 1,
+      "duration": "2:11"
     },
     {
       "event": "UD2015-2",
@@ -39181,8 +39839,8 @@
       "website": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Index.html",
       "description": "Ajahn Pasanno, Ajahn Karuṇadhammo, and Ajahn Ñāṇiko took turns read suttas and teachings regarding the Four Foundations of Mindfulness and answer questions on the subject. The slideshow illustrating the 32 parts of the body is particularly noteworthy.",
       "sessions": 53,
-      "excerpts": 163,
-      "tagsApplied": 43,
+      "excerpts": 165,
+      "tagsApplied": 90,
       "invalidTags": 0,
       "duration": "29:09:47"
     },
@@ -40583,7 +41241,7 @@
       ],
       "sessionTitle": "Advantages of Mindfulness, Disadvantages of Attachment",
       "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/05_AKd_01_10_2015_Advantages_of_Mindfulness_Disadvantages_of_Attachment.mp3",
-      "excerpts": 4,
+      "excerpts": 5,
       "tags": []
     },
     {
@@ -40597,7 +41255,7 @@
       ],
       "sessionTitle": "The Kāyagatāsati Sutta",
       "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/06_AKd_01_11_2015_The_Kayagatasati_Sutta.mp3",
-      "excerpts": 5,
+      "excerpts": 6,
       "tags": [
         "Unattractiveness"
       ]
@@ -40616,6 +41274,100 @@
       "excerpts": 7,
       "tags": [
         "Unattractiveness"
+      ]
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 8,
+      "date": "15/01/2015",
+      "filename": "08_AKd_01_15_2015_Thirty-Two_Parts_Slideshow_2.mp3",
+      "duration": "32:43",
+      "teachers": [
+        "AKd"
+      ],
+      "sessionTitle": "Thirty-Two Parts Slideshow 2",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/08_AKd_01_15_2015_Thirty-Two_Parts_Slideshow_2.mp3",
+      "excerpts": 7,
+      "tags": [
+        "Unattractiveness"
+      ]
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 9,
+      "date": "16/01/2015",
+      "filename": "09_AP_01_16_2015_Ajahn_Chah_Remembrance_Day.mp3",
+      "duration": "1:00:25",
+      "teachers": [
+        "AP"
+      ],
+      "sessionTitle": "Ajahn Chah Remembrance Day",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/09_AP_01_16_2015_Ajahn_Chah_Remembrance_Day.mp3",
+      "excerpts": 1,
+      "tags": []
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 10,
+      "date": "17/01/2015",
+      "filename": "10_AKd_01_17_2015_Contemplation_of_Death.mp3",
+      "duration": "32:26",
+      "teachers": [
+        "AKd"
+      ],
+      "sessionTitle": "Contemplation of Death",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/10_AKd_01_17_2015_Contemplation_of_Death.mp3",
+      "excerpts": 3,
+      "tags": [
+        "Recollection/Death"
+      ]
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 11,
+      "date": "18/01/2015",
+      "filename": "11_AKd_01_18_2015_Elements_1.mp3",
+      "duration": "33:29",
+      "teachers": [
+        "AKd"
+      ],
+      "sessionTitle": "Elements 1",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/11_AKd_01_18_2015_Elements_1.mp3",
+      "excerpts": 3,
+      "tags": [
+        "Elements"
+      ]
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 12,
+      "date": "21/01/2015",
+      "filename": "12_AP_01_21_2015_Elements_2.mp3",
+      "duration": "28:54",
+      "teachers": [
+        "AP"
+      ],
+      "sessionTitle": "Elements 2",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/12_AP_01_21_2015_Elements_2.mp3",
+      "excerpts": 1,
+      "tags": [
+        "Elements"
+      ]
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 13,
+      "date": "22/01/2015",
+      "filename": "13_AP_01_22_2015_Elements_3.mp3",
+      "duration": "27:05",
+      "teachers": [
+        "AP"
+      ],
+      "sessionTitle": "Elements 3",
+      "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/13_AP_01_22_2015_Elements_3.mp3",
+      "excerpts": 4,
+      "tags": [
+        "Elements"
       ]
     },
     {
@@ -41776,6 +42528,24 @@
       "exclude": false,
       "usageNotes": ""
     },
+    "Discussion": {
+      "kind": "Discussion",
+      "category": "Other",
+      "defaultForm": "2",
+      "canBeExcerpt": true,
+      "canBeAnnotation": true,
+      "takesTimes": true,
+      "takesTeachers": true,
+      "takesTags": true,
+      "ignoreConsent": false,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "Anon",
+      "form1": "++Discussion{s}++|| led by {teachers}||{colon} {text}",
+      "form2": "++Discussion{s}{colon}++ {text}|| led by {teachers}.",
+      "form3": "{text}|| ++Discussion{s}++ led by {teachers}.",
+      "exclude": false,
+      "usageNotes": ""
+    },
     "Note": {
       "kind": "Note",
       "category": "Other",
@@ -42166,8 +42936,8 @@
       "sortBy": "",
       "webLink": "www.abhayagiri.org/community",
       "eventCount": 35,
-      "sessionCount": 113,
-      "excerptCount": 1198,
+      "sessionCount": 116,
+      "excerptCount": 1205,
       "htmlFile": "ajahn-pasanno.html"
     },
     "AThan": {
@@ -42214,7 +42984,7 @@
       "lineage": "Western disciples of Ajahn Chah",
       "sortBy": "",
       "webLink": "",
-      "excerptCount": 23,
+      "excerptCount": 24,
       "htmlFile": "ajahn-jayasaro.html"
     },
     "ASd": {
@@ -42263,8 +43033,8 @@
       "sortBy": "",
       "webLink": "",
       "eventCount": 11,
-      "sessionCount": 7,
-      "excerptCount": 52,
+      "sessionCount": 10,
+      "excerptCount": 60,
       "htmlFile": "ajahn-karunadhammo.html"
     },
     "AJoti": {
@@ -42526,6 +43296,36 @@
       "sortBy": "",
       "webLink": "",
       "excerptCount": 0,
+      "htmlFile": ""
+    },
+    "Kittisaro": {
+      "teacher": "Kittisaro",
+      "fullName": "Kittisaro",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": true,
+      "allowTag": false,
+      "group": "Lay teachers",
+      "lineage": "",
+      "sortBy": "",
+      "webLink": "",
+      "excerptCount": 1,
+      "htmlFile": ""
+    },
+    "Thanissara": {
+      "teacher": "Thanissara",
+      "fullName": "Thanissara",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": false,
+      "attribute": true,
+      "allowTag": false,
+      "group": "Lay teachers",
+      "lineage": "",
+      "sortBy": "",
+      "webLink": "",
+      "excerptCount": 1,
       "htmlFile": ""
     },
     "Anon": {
@@ -43160,7 +43960,7 @@
       "primaries": 1,
       "htmlFile": "mindfulness-of-body.html",
       "listIndex": 31,
-      "excerptCount": 39
+      "excerptCount": 40
     },
     "Mindfulness of breathing": {
       "tag": "Mindfulness of breathing",
@@ -43261,8 +44061,8 @@
       "primaries": 1,
       "htmlFile": "unattractiveness.html",
       "listIndex": 344,
-      "sessionCount": 2,
-      "excerptCount": 14
+      "sessionCount": 3,
+      "excerptCount": 23
     },
     "Elements": {
       "tag": "Elements",
@@ -43285,7 +44085,8 @@
       "primaries": 1,
       "htmlFile": "elements.html",
       "listIndex": 345,
-      "excerptCount": 5
+      "sessionCount": 3,
+      "excerptCount": 14
     },
     "Recollection/Death": {
       "tag": "Recollection/Death",
@@ -43306,7 +44107,8 @@
       "primaries": 1,
       "htmlFile": "recollectiondeath.html",
       "listIndex": 369,
-      "excerptCount": 13
+      "sessionCount": 1,
+      "excerptCount": 16
     },
     "Mindfulness of feeling": {
       "tag": "Mindfulness of feeling",
@@ -43432,7 +44234,7 @@
       "primaries": 1,
       "htmlFile": "aggregates.html",
       "listIndex": 217,
-      "excerptCount": 17
+      "excerptCount": 18
     },
     "Sense bases": {
       "tag": "Sense bases",
@@ -43453,7 +44255,7 @@
       "primaries": 1,
       "htmlFile": "sense-bases.html",
       "listIndex": 229,
-      "excerptCount": 14
+      "excerptCount": 15
     },
     "Factors of Awakening": {
       "tag": "Factors of Awakening",
@@ -44127,7 +44929,7 @@
       "primaries": 1,
       "htmlFile": "liberation.html",
       "listIndex": 142,
-      "excerptCount": 32
+      "excerptCount": 33
     },
     "Aids to Awakening": {
       "tag": "Aids to Awakening",
@@ -44315,7 +45117,7 @@
       "primaries": 1,
       "htmlFile": "concentration.html",
       "listIndex": 96,
-      "excerptCount": 37
+      "excerptCount": 38
     },
     "Discernment": {
       "tag": "Discernment",
@@ -44589,7 +45391,7 @@
       "listIndex": 116,
       "eventCount": 2,
       "sessionCount": 2,
-      "excerptCount": 39
+      "excerptCount": 40
     },
     "Āgama": {
       "tag": "Āgama",
@@ -44649,7 +45451,7 @@
       "primaries": 0,
       "htmlFile": "commentaries.html",
       "listIndex": 119,
-      "excerptCount": 7
+      "excerptCount": 8
     },
     "Generosity": {
       "tag": "Generosity",
@@ -45459,7 +46261,7 @@
       "primaries": 0,
       "htmlFile": "aversion.html",
       "listIndex": 171,
-      "excerptCount": 43
+      "excerptCount": 44
     },
     "Delusion": {
       "tag": "Delusion",
@@ -45591,7 +46393,7 @@
       "primaries": 1,
       "htmlFile": "sensual-desire.html",
       "listIndex": 179,
-      "excerptCount": 17
+      "excerptCount": 21
     },
     "Ill-will": {
       "tag": "Ill-will",
@@ -45636,7 +46438,7 @@
       "primaries": 1,
       "htmlFile": "sloth-and-torpor.html",
       "listIndex": 181,
-      "excerptCount": 14
+      "excerptCount": 15
     },
     "Restlessness and worry": {
       "tag": "Restlessness and worry",
@@ -45732,7 +46534,7 @@
       "primaries": 1,
       "htmlFile": "self-identity-view.html",
       "listIndex": 185,
-      "excerptCount": 71
+      "excerptCount": 72
     },
     "Attachment to rites and rituals": {
       "tag": "Attachment to rites and rituals",
@@ -46172,7 +46974,7 @@
       "primaries": 0,
       "htmlFile": "food.html",
       "listIndex": 213,
-      "excerptCount": 23
+      "excerptCount": 24
     },
     "Contact": {
       "tag": "Contact",
@@ -46193,7 +46995,7 @@
       "primaries": 1,
       "htmlFile": "contact.html",
       "listIndex": 230,
-      "excerptCount": 5
+      "excerptCount": 6
     },
     "Volition": {
       "tag": "Volition",
@@ -46257,7 +47059,7 @@
       "primaries": 1,
       "htmlFile": "form.html",
       "listIndex": 218,
-      "excerptCount": 3
+      "excerptCount": 4
     },
     "Feeling": {
       "tag": "Feeling",
@@ -46280,7 +47082,7 @@
       "primaries": 1,
       "htmlFile": "feeling.html",
       "listIndex": 219,
-      "excerptCount": 19
+      "excerptCount": 20
     },
     "Perception": {
       "tag": "Perception",
@@ -46534,7 +47336,7 @@
       "listIndex": 250,
       "eventCount": 1,
       "sessionCount": 2,
-      "excerptCount": 55
+      "excerptCount": 57
     },
     "Naturalness": {
       "tag": "Naturalness",
@@ -46655,7 +47457,7 @@
       "primaries": 0,
       "htmlFile": "emotion.html",
       "listIndex": 257,
-      "excerptCount": 9
+      "excerptCount": 10
     },
     "Personality": {
       "tag": "Personality",
@@ -47185,7 +47987,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-chah-remembrance-day.html",
       "listIndex": 281,
-      "excerptCount": 1
+      "excerptCount": 2
     },
     "Visiting holy sites": {
       "tag": "Visiting holy sites",
@@ -47644,7 +48446,7 @@
       "primaries": 0,
       "htmlFile": "visualization.html",
       "listIndex": 352,
-      "excerptCount": 3
+      "excerptCount": 4
     },
     "Body scanning": {
       "tag": "Body scanning",
@@ -47768,7 +48570,7 @@
       "primaries": 0,
       "htmlFile": "calming-meditation.html",
       "listIndex": 359,
-      "excerptCount": 21
+      "excerptCount": 23
     },
     "Insight meditation": {
       "tag": "Insight meditation",
@@ -47790,7 +48592,7 @@
       "primaries": 0,
       "htmlFile": "insight-meditation.html",
       "listIndex": 360,
-      "excerptCount": 17
+      "excerptCount": 20
     },
     "Recollection": {
       "tag": "Recollection",
@@ -47821,7 +48623,7 @@
       "primaries": 0,
       "htmlFile": "recollection.html",
       "listIndex": 361,
-      "excerptCount": 20
+      "excerptCount": 22
     },
     "Recollection/Buddha": {
       "tag": "Recollection/Buddha",
@@ -48142,7 +48944,7 @@
       "primaries": 0,
       "htmlFile": "nimmita.html",
       "listIndex": 381,
-      "excerptCount": 5
+      "excerptCount": 6
     },
     "Continuity of mindfulness": {
       "tag": "Continuity of mindfulness",
@@ -48593,7 +49395,7 @@
       "listIndex": 428,
       "eventCount": 2,
       "sessionCount": 3,
-      "excerptCount": 59
+      "excerptCount": 60
     },
     "Ajahn Mun": {
       "tag": "Ajahn Mun",
@@ -48635,7 +49437,7 @@
       "listIndex": 430,
       "eventCount": 2,
       "sessionCount": 10,
-      "excerptCount": 190
+      "excerptCount": 192
     },
     "Ajahn Chah lineage": {
       "tag": "Ajahn Chah lineage",
@@ -48895,7 +49697,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-anan.html",
       "listIndex": 442,
-      "excerptCount": 1
+      "excerptCount": 2
     },
     "Ajahn Pavaro": {
       "tag": "Ajahn Pavaro",
@@ -49853,7 +50655,7 @@
       "primaries": 0,
       "htmlFile": "s-n-goenka.html",
       "listIndex": 488,
-      "excerptCount": 2
+      "excerptCount": 3
     },
     "Ram Dass": {
       "tag": "Ram Dass",
@@ -50005,7 +50807,7 @@
       "primaries": 0,
       "htmlFile": "wat-pah-pong.html",
       "listIndex": 495,
-      "excerptCount": 25
+      "excerptCount": 26
     },
     "Wat Tam Saeng Pet": {
       "tag": "Wat Tam Saeng Pet",
@@ -51063,7 +51865,7 @@
       "primaries": 0,
       "htmlFile": "cultural-context.html",
       "listIndex": 547,
-      "excerptCount": 11
+      "excerptCount": 12
     },
     "Culture/Natural environment": {
       "tag": "Culture/Natural environment",
@@ -51123,7 +51925,7 @@
       "primaries": 0,
       "htmlFile": "cultureindia.html",
       "listIndex": 550,
-      "excerptCount": 10
+      "excerptCount": 11
     },
     "Culture/Thailand": {
       "tag": "Culture/Thailand",
@@ -51274,7 +52076,7 @@
       "primaries": 0,
       "htmlFile": "language.html",
       "listIndex": 557,
-      "excerptCount": 19
+      "excerptCount": 20
     },
     "Pāli": {
       "tag": "Pāli",
@@ -51295,7 +52097,7 @@
       "htmlFile": "pali.html",
       "listIndex": 558,
       "sessionCount": 1,
-      "excerptCount": 43
+      "excerptCount": 44
     },
     "Thai": {
       "tag": "Thai",
@@ -51357,7 +52159,7 @@
       "primaries": 0,
       "htmlFile": "translation.html",
       "listIndex": 561,
-      "excerptCount": 19
+      "excerptCount": 20
     },
     "Etymology": {
       "tag": "Etymology",
@@ -51377,7 +52179,7 @@
       "primaries": 0,
       "htmlFile": "etymology.html",
       "listIndex": 562,
-      "excerptCount": 8
+      "excerptCount": 9
     },
     "Buddhist identity": {
       "tag": "Buddhist identity",
@@ -53957,7 +54759,9 @@
       "pdfPageOffset": null,
       "filename": "",
       "remoteUrl": "../about/DraftBiography.html",
-      "author": []
+      "author": [
+        "AJaya"
+      ]
     },
     "body contemplation": {
       "abbreviation": "Body Contemplation",
@@ -53968,6 +54772,17 @@
       "remoteUrl": "https://www.accesstoinsight.org/lib/study/bodymind.html",
       "author": [
         "AThan"
+      ]
+    },
+    "abhayagiri chanting book": {
+      "abbreviation": "Abhayagiri Chanting Book",
+      "title": "_Abhayagiri Chanting Book_",
+      "attribution": "",
+      "pdfPageOffset": 0,
+      "filename": "abhayagiri_monastic_foundation_chanting_book_revision_2010.pdf",
+      "remoteUrl": "https://www.abhayagiri.org/media/books/abhayagiri_monastic_foundation_chanting_book_revision_2010.pdf",
+      "author": [
+        "AbhSangha"
       ]
     }
   },
@@ -54319,9 +55134,9 @@
       "flags": "*",
       "name": "Mindfulness of body",
       "pali": "kāyagatā-sati",
-      "excerptCount": 39,
+      "excerptCount": 40,
       "subsumed": false,
-      "text": "Mindfulness of body (39) [kāyagatā-sati]",
+      "text": "Mindfulness of body (40) [kāyagatā-sati]",
       "tag": "Mindfulness of body"
     },
     {
@@ -54363,9 +55178,9 @@
       "flags": "",
       "name": "Unattractiveness/32 parts",
       "pali": "asubha/dvattiṁsākāra",
-      "excerptCount": 14,
+      "excerptCount": 23,
       "subsumed": false,
-      "text": "Unattractiveness/32 parts (14) [asubha/dvattiṁsākāra]",
+      "text": "Unattractiveness/32 parts (23) [asubha/dvattiṁsākāra]",
       "tag": "Unattractiveness"
     },
     {
@@ -54374,9 +55189,9 @@
       "flags": "",
       "name": "Elements",
       "pali": "dhatu",
-      "excerptCount": 5,
+      "excerptCount": 14,
       "subsumed": false,
-      "text": "Elements (5) [dhatu]",
+      "text": "Elements (14) [dhatu]",
       "tag": "Elements"
     },
     {
@@ -54385,9 +55200,9 @@
       "flags": "",
       "name": "Recollection/Death",
       "pali": "maraṇassati",
-      "excerptCount": 13,
+      "excerptCount": 16,
       "subsumed": false,
-      "text": "Recollection/Death (13) [maraṇassati]",
+      "text": "Recollection/Death (16) [maraṇassati]",
       "tag": "Recollection/Death"
     },
     {
@@ -54440,9 +55255,9 @@
       "flags": "",
       "name": "Five Aggregates",
       "pali": "pañcakkhandhā",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": false,
-      "text": "Five Aggregates (17) [pañcakkhandhā]",
+      "text": "Five Aggregates (18) [pañcakkhandhā]",
       "tag": "Aggregates"
     },
     {
@@ -54451,9 +55266,9 @@
       "flags": "",
       "name": "Six Sense Bases",
       "pali": "saḷ-āyatana",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Six Sense Bases (14) [saḷ-āyatana]",
+      "text": "Six Sense Bases (15) [saḷ-āyatana]",
       "tag": "Sense bases"
     },
     {
@@ -54715,9 +55530,9 @@
       "flags": "",
       "name": "Five aggregates affected by clinging",
       "pali": "pañcupādānakkhandhā",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": true,
-      "text": "Five aggregates affected by clinging [pañcupādānakkhandhā] see Aggregates (17)",
+      "text": "Five aggregates affected by clinging [pañcupādānakkhandhā] see Aggregates (18)",
       "tag": "Aggregates"
     },
     {
@@ -54737,9 +55552,9 @@
       "flags": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": true,
-      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (17)",
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (21)",
       "tag": "Sensual desire"
     },
     {
@@ -54825,9 +55640,9 @@
       "flags": "",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 32,
+      "excerptCount": 33,
       "subsumed": false,
-      "text": "Liberation (32) [vimutti]",
+      "text": "Liberation (33) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -55034,9 +55849,9 @@
       "flags": "*",
       "name": "Concentration",
       "pali": "samādhi",
-      "excerptCount": 37,
+      "excerptCount": 38,
       "subsumed": false,
-      "text": "Concentration (37) [samādhi]",
+      "text": "Concentration (38) [samādhi]",
       "tag": "Concentration"
     },
     {
@@ -55122,9 +55937,9 @@
       "flags": "",
       "name": "Concentration",
       "pali": "samādhi",
-      "excerptCount": 37,
+      "excerptCount": 38,
       "subsumed": false,
-      "text": "Concentration (37) [samādhi]",
+      "text": "Concentration (38) [samādhi]",
       "tag": "Concentration"
     },
     {
@@ -55254,9 +56069,9 @@
       "flags": "",
       "name": "Sutta",
       "pali": "Sutta",
-      "excerptCount": 39,
+      "excerptCount": 40,
       "subsumed": false,
-      "text": "Sutta (39)",
+      "text": "Sutta (40)",
       "tag": "Sutta"
     },
     {
@@ -55287,9 +56102,9 @@
       "flags": "",
       "name": "Commentaries",
       "pali": "",
-      "excerptCount": 7,
+      "excerptCount": 8,
       "subsumed": false,
-      "text": "Commentaries (7)",
+      "text": "Commentaries (8)",
       "tag": "Commentaries"
     },
     {
@@ -55463,9 +56278,9 @@
       "flags": "",
       "name": "Concentration",
       "pali": "samādhi",
-      "excerptCount": 37,
+      "excerptCount": 38,
       "subsumed": false,
-      "text": "Concentration (37) [samādhi]",
+      "text": "Concentration (38) [samādhi]",
       "tag": "Concentration"
     },
     {
@@ -55540,9 +56355,9 @@
       "flags": "*",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 32,
+      "excerptCount": 33,
       "subsumed": false,
-      "text": "Liberation (32) [vimutti]",
+      "text": "Liberation (33) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -55859,9 +56674,9 @@
       "flags": "",
       "name": "Aversion",
       "pali": "dosa",
-      "excerptCount": 43,
+      "excerptCount": 44,
       "subsumed": false,
-      "text": "Aversion (43) [dosa]",
+      "text": "Aversion (44) [dosa]",
       "tag": "Aversion"
     },
     {
@@ -55892,9 +56707,9 @@
       "flags": "",
       "name": "Sensuality",
       "pali": "kāmāsava",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": true,
-      "text": "Sensuality [kāmāsava] see Sensual desire (17)",
+      "text": "Sensuality [kāmāsava] see Sensual desire (21)",
       "tag": "Sensual desire"
     },
     {
@@ -55947,9 +56762,9 @@
       "flags": "*",
       "name": "Sensual desire",
       "pali": "kāmacchanda",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": false,
-      "text": "Sensual desire (17) [kāmacchanda]",
+      "text": "Sensual desire (21) [kāmacchanda]",
       "tag": "Sensual desire"
     },
     {
@@ -55969,9 +56784,9 @@
       "flags": "*",
       "name": "Sloth and torpor",
       "pali": "thīna-middha",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Sloth and torpor (14) [thīna-middha]",
+      "text": "Sloth and torpor (15) [thīna-middha]",
       "tag": "Sloth and torpor"
     },
     {
@@ -56013,9 +56828,9 @@
       "flags": "*",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 71,
+      "excerptCount": 72,
       "subsumed": false,
-      "text": "Self-identity view (71) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (72) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -56046,9 +56861,9 @@
       "flags": "",
       "name": "Sensual desire",
       "pali": "kāmacchanda",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": false,
-      "text": "Sensual desire (17) [kāmacchanda]",
+      "text": "Sensual desire (21) [kāmacchanda]",
       "tag": "Sensual desire"
     },
     {
@@ -56167,9 +56982,9 @@
       "flags": "",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 71,
+      "excerptCount": 72,
       "subsumed": false,
-      "text": "Self-identity view (71) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (72) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -56321,9 +57136,9 @@
       "flags": "",
       "name": "Physical food",
       "pali": "kabaḷīkāro āhāra",
-      "excerptCount": 23,
+      "excerptCount": 24,
       "subsumed": false,
-      "text": "Physical food (23) [kabaḷīkāro āhāra]",
+      "text": "Physical food (24) [kabaḷīkāro āhāra]",
       "tag": "Food"
     },
     {
@@ -56332,9 +57147,9 @@
       "flags": "",
       "name": "Contact",
       "pali": "phassa",
-      "excerptCount": 5,
+      "excerptCount": 6,
       "subsumed": false,
-      "text": "Contact (5) [phassa]",
+      "text": "Contact (6) [phassa]",
       "tag": "Contact"
     },
     {
@@ -56365,9 +57180,9 @@
       "flags": "*",
       "name": "Five Aggregates",
       "pali": "pañcakkhandhā",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": false,
-      "text": "Five Aggregates (17) [pañcakkhandhā]",
+      "text": "Five Aggregates (18) [pañcakkhandhā]",
       "tag": "Aggregates"
     },
     {
@@ -56376,9 +57191,9 @@
       "flags": "*",
       "name": "Form",
       "pali": "rūpa",
-      "excerptCount": 3,
+      "excerptCount": 4,
       "subsumed": false,
-      "text": "Form (3) [rūpa]",
+      "text": "Form (4) [rūpa]",
       "tag": "Form"
     },
     {
@@ -56387,9 +57202,9 @@
       "flags": "*",
       "name": "Feeling",
       "pali": "vedanā",
-      "excerptCount": 19,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Feeling (19) [vedanā]",
+      "text": "Feeling (20) [vedanā]",
       "tag": "Feeling"
     },
     {
@@ -56486,9 +57301,9 @@
       "flags": "",
       "name": "Name and form",
       "pali": "nāma-rūpa",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": true,
-      "text": "Name and form [nāma-rūpa] see Aggregates (17)",
+      "text": "Name and form [nāma-rūpa] see Aggregates (18)",
       "tag": "Aggregates"
     },
     {
@@ -56497,9 +57312,9 @@
       "flags": "*",
       "name": "Six Sense Bases",
       "pali": "saḷ-āyatana",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Six Sense Bases (14) [saḷ-āyatana]",
+      "text": "Six Sense Bases (15) [saḷ-āyatana]",
       "tag": "Sense bases"
     },
     {
@@ -56508,9 +57323,9 @@
       "flags": "*",
       "name": "Contact",
       "pali": "phassa",
-      "excerptCount": 5,
+      "excerptCount": 6,
       "subsumed": false,
-      "text": "Contact (5) [phassa]",
+      "text": "Contact (6) [phassa]",
       "tag": "Contact"
     },
     {
@@ -56519,9 +57334,9 @@
       "flags": "",
       "name": "Feeling",
       "pali": "vedanā",
-      "excerptCount": 19,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Feeling (19) [vedanā]",
+      "text": "Feeling (20) [vedanā]",
       "tag": "Feeling"
     },
     {
@@ -56574,9 +57389,9 @@
       "flags": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": true,
-      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (17)",
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (21)",
       "tag": "Sensual desire"
     },
     {
@@ -56618,9 +57433,9 @@
       "flags": "",
       "name": "Sensuality-clinging",
       "pali": "kāmupādāna",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": true,
-      "text": "Sensuality-clinging [kāmupādāna] see Sensual desire (17)",
+      "text": "Sensuality-clinging [kāmupādāna] see Sensual desire (21)",
       "tag": "Sensual desire"
     },
     {
@@ -56728,9 +57543,9 @@
       "flags": "*",
       "name": "Not-self",
       "pali": "anatta",
-      "excerptCount": 55,
+      "excerptCount": 57,
       "subsumed": false,
-      "text": "Not-self (55) [anatta]",
+      "text": "Not-self (57) [anatta]",
       "tag": "Not-self"
     },
     {
@@ -56805,9 +57620,9 @@
       "flags": "",
       "name": "Emotion",
       "pali": "",
-      "excerptCount": 9,
+      "excerptCount": 10,
       "subsumed": false,
-      "text": "Emotion (9)",
+      "text": "Emotion (10)",
       "tag": "Emotion"
     },
     {
@@ -57069,9 +57884,9 @@
       "flags": "",
       "name": "Ajahn Chah Remembrance Day",
       "pali": "",
-      "excerptCount": 1,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Ajahn Chah Remembrance Day (1)",
+      "text": "Ajahn Chah Remembrance Day (2)",
       "tag": "Ajahn Chah Remembrance Day"
     },
     {
@@ -57487,9 +58302,9 @@
       "flags": "",
       "name": "Mindfulness of body",
       "pali": "kāyagatā-sati",
-      "excerptCount": 39,
+      "excerptCount": 40,
       "subsumed": false,
-      "text": "Mindfulness of body (39) [kāyagatā-sati]",
+      "text": "Mindfulness of body (40) [kāyagatā-sati]",
       "tag": "Mindfulness of body"
     },
     {
@@ -57531,9 +58346,9 @@
       "flags": "",
       "name": "Unattractiveness/32 parts",
       "pali": "asubha/dvattiṁsākāra",
-      "excerptCount": 14,
+      "excerptCount": 23,
       "subsumed": false,
-      "text": "Unattractiveness/32 parts (14) [asubha/dvattiṁsākāra]",
+      "text": "Unattractiveness/32 parts (23) [asubha/dvattiṁsākāra]",
       "tag": "Unattractiveness"
     },
     {
@@ -57542,9 +58357,9 @@
       "flags": "",
       "name": "Elements",
       "pali": "dhatu",
-      "excerptCount": 5,
+      "excerptCount": 14,
       "subsumed": false,
-      "text": "Elements (5) [dhatu]",
+      "text": "Elements (14) [dhatu]",
       "tag": "Elements"
     },
     {
@@ -57553,9 +58368,9 @@
       "flags": "",
       "name": "Recollection/Death",
       "pali": "maraṇassati",
-      "excerptCount": 13,
+      "excerptCount": 16,
       "subsumed": false,
-      "text": "Recollection/Death (13) [maraṇassati]",
+      "text": "Recollection/Death (16) [maraṇassati]",
       "tag": "Recollection/Death"
     },
     {
@@ -57762,9 +58577,9 @@
       "flags": "*",
       "name": "Unattractiveness/32 parts",
       "pali": "asubha/dvattiṁsākāra",
-      "excerptCount": 14,
+      "excerptCount": 23,
       "subsumed": false,
-      "text": "Unattractiveness/32 parts (14) [asubha/dvattiṁsākāra]",
+      "text": "Unattractiveness/32 parts (23) [asubha/dvattiṁsākāra]",
       "tag": "Unattractiveness"
     },
     {
@@ -57773,9 +58588,9 @@
       "flags": "*",
       "name": "Elements",
       "pali": "dhatu",
-      "excerptCount": 5,
+      "excerptCount": 14,
       "subsumed": false,
-      "text": "Elements (5) [dhatu]",
+      "text": "Elements (14) [dhatu]",
       "tag": "Elements"
     },
     {
@@ -57850,9 +58665,9 @@
       "flags": "",
       "name": "Visualization",
       "pali": "",
-      "excerptCount": 3,
+      "excerptCount": 4,
       "subsumed": false,
-      "text": "Visualization (3)",
+      "text": "Visualization (4)",
       "tag": "Visualization"
     },
     {
@@ -57927,9 +58742,9 @@
       "flags": "",
       "name": "Calming meditation",
       "pali": "samatha",
-      "excerptCount": 21,
+      "excerptCount": 23,
       "subsumed": false,
-      "text": "Calming meditation (21) [samatha]",
+      "text": "Calming meditation (23) [samatha]",
       "tag": "Calming meditation"
     },
     {
@@ -57938,9 +58753,9 @@
       "flags": "",
       "name": "Insight meditation",
       "pali": "vipassanā",
-      "excerptCount": 17,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Insight meditation (17) [vipassanā]",
+      "text": "Insight meditation (20) [vipassanā]",
       "tag": "Insight meditation"
     },
     {
@@ -57949,9 +58764,9 @@
       "flags": "",
       "name": "Recollection",
       "pali": "anusati",
-      "excerptCount": 20,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Recollection (20) [anusati]",
+      "text": "Recollection (22) [anusati]",
       "tag": "Recollection"
     },
     {
@@ -58037,9 +58852,9 @@
       "flags": "*",
       "name": "Recollection/Death",
       "pali": "maraṇassati",
-      "excerptCount": 13,
+      "excerptCount": 16,
       "subsumed": false,
-      "text": "Recollection/Death (13) [maraṇassati]",
+      "text": "Recollection/Death (16) [maraṇassati]",
       "tag": "Recollection/Death"
     },
     {
@@ -58048,9 +58863,9 @@
       "flags": "",
       "name": "Mindfulness of body",
       "pali": "kāyagatā-sati",
-      "excerptCount": 39,
+      "excerptCount": 40,
       "subsumed": false,
-      "text": "Mindfulness of body (39) [kāyagatā-sati]",
+      "text": "Mindfulness of body (40) [kāyagatā-sati]",
       "tag": "Mindfulness of body"
     },
     {
@@ -58169,9 +58984,9 @@
       "flags": "",
       "name": "Nimmita",
       "pali": "Nimmita",
-      "excerptCount": 5,
+      "excerptCount": 6,
       "subsumed": false,
-      "text": "Nimmita (5)",
+      "text": "Nimmita (6)",
       "tag": "Nimmita"
     },
     {
@@ -58312,9 +59127,9 @@
       "flags": "",
       "name": "Danger of sensual pleasure",
       "pali": "kāmānaṃ ādīnava",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": true,
-      "text": "Danger of sensual pleasure [kāmānaṃ ādīnava] see Sensual desire (17)",
+      "text": "Danger of sensual pleasure [kāmānaṃ ādīnava] see Sensual desire (21)",
       "tag": "Sensual desire"
     },
     {
@@ -58422,9 +59237,9 @@
       "flags": "",
       "name": "Five aggregates affected by clinging",
       "pali": "pañcupādānakkhandhā",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": true,
-      "text": "Five aggregates affected by clinging [pañcupādānakkhandhā] see Aggregates (17)",
+      "text": "Five aggregates affected by clinging [pañcupādānakkhandhā] see Aggregates (18)",
       "tag": "Aggregates"
     },
     {
@@ -58444,9 +59259,9 @@
       "flags": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 17,
+      "excerptCount": 21,
       "subsumed": true,
-      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (17)",
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (21)",
       "tag": "Sensual desire"
     },
     {
@@ -58532,9 +59347,9 @@
       "flags": "",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 32,
+      "excerptCount": 33,
       "subsumed": false,
-      "text": "Liberation (32) [vimutti]",
+      "text": "Liberation (33) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -58686,9 +59501,9 @@
       "flags": "P",
       "name": "Thai Forest Tradition",
       "pali": "",
-      "excerptCount": 59,
+      "excerptCount": 60,
       "subsumed": false,
-      "text": "Thai Forest Tradition (59)",
+      "text": "Thai Forest Tradition (60)",
       "tag": "Thai Forest Tradition"
     },
     {
@@ -58708,9 +59523,9 @@
       "flags": "",
       "name": "Ajahn Chah",
       "pali": "",
-      "excerptCount": 190,
+      "excerptCount": 192,
       "subsumed": false,
-      "text": "Ajahn Chah (190)",
+      "text": "Ajahn Chah (192)",
       "tag": "Ajahn Chah"
     },
     {
@@ -58840,9 +59655,9 @@
       "flags": "",
       "name": "Ajahn Anan",
       "pali": "",
-      "excerptCount": 1,
+      "excerptCount": 2,
       "subsumed": false,
-      "text": "Ajahn Anan (1)",
+      "text": "Ajahn Anan (2)",
       "tag": "Ajahn Anan"
     },
     {
@@ -59346,9 +60161,9 @@
       "flags": "",
       "name": "S. N. Goenka",
       "pali": "",
-      "excerptCount": 2,
+      "excerptCount": 3,
       "subsumed": false,
-      "text": "S. N. Goenka (2)",
+      "text": "S. N. Goenka (3)",
       "tag": "S. N. Goenka"
     },
     {
@@ -59423,9 +60238,9 @@
       "flags": "",
       "name": "Wat Nong Pah Pong",
       "pali": "",
-      "excerptCount": 25,
+      "excerptCount": 26,
       "subsumed": false,
-      "text": "Wat Nong Pah Pong (25)",
+      "text": "Wat Nong Pah Pong (26)",
       "tag": "Wat Pah Pong"
     },
     {
@@ -59995,9 +60810,9 @@
       "flags": "",
       "name": "Cultural context",
       "pali": "",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "subsumed": false,
-      "text": "Cultural context (11)",
+      "text": "Cultural context (12)",
       "tag": "Cultural context"
     },
     {
@@ -60028,9 +60843,9 @@
       "flags": "p",
       "name": "Culture/India",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Culture/India (10)",
+      "text": "Culture/India (11)",
       "tag": "Culture/India"
     },
     {
@@ -60105,9 +60920,9 @@
       "flags": "",
       "name": "Language",
       "pali": "",
-      "excerptCount": 19,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Language (19)",
+      "text": "Language (20)",
       "tag": "Language"
     },
     {
@@ -60116,9 +60931,9 @@
       "flags": "",
       "name": "Pāli",
       "pali": "",
-      "excerptCount": 43,
+      "excerptCount": 44,
       "subsumed": false,
-      "text": "Pāli (43)",
+      "text": "Pāli (44)",
       "tag": "Pāli"
     },
     {
@@ -60149,9 +60964,9 @@
       "flags": "",
       "name": "Translation",
       "pali": "",
-      "excerptCount": 19,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Translation (19)",
+      "text": "Translation (20)",
       "tag": "Translation"
     },
     {
@@ -60160,9 +60975,9 @@
       "flags": "",
       "name": "Etymology",
       "pali": "",
-      "excerptCount": 8,
+      "excerptCount": 9,
       "subsumed": false,
-      "text": "Etymology (8)",
+      "text": "Etymology (9)",
       "tag": "Etymology"
     },
     {
@@ -63846,6 +64661,7 @@
     "Ajahn Sudanto",
     "Ajahn Karuṇadhammo",
     "Jack Kornfield",
+    "Kittisaro",
     "Debbie Stamp"
   ],
   "excerptsRedacted": [
@@ -63969,7 +64785,6 @@
     "Dipa Ma",
     "Ruth Denison",
     "Paul Brieter",
-    "Kittisaro",
     "Ṭhanissarā",
     "Wat Keun",
     "Wat Asokaram",
