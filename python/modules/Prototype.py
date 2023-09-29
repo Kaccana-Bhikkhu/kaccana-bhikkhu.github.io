@@ -332,7 +332,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     slashPrefixes = Utils.RegexMatchAny(p for p in prefixes if p.endswith("/"))
     prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r"(.+)"
     noAlphabetize = {"alphabetize":""}
-    def AlphabetizeNames(string: str) -> str:
+    def AlphabetizeName(string: str) -> str:
         if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
             return gDatabase["name"][string]["alphabetize"]
         match = re.match(prefixRegex,string)
@@ -343,7 +343,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
-        tagName = AlphabetizeNames(tagName)
+        tagName = AlphabetizeName(tagName)
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
         return Alphabetize(tagName,html)
 
@@ -386,7 +386,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["english"].append(entry)
         else:
             entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-            if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
+            if not AlphabetizeName(tag["fullTag"]).startswith(AlphabetizeName(tag["tag"])):
                 entries["english"].append(EnglishEntry(tag,tag["tag"]))
                 # File the abbreviated tag separately if it's not a simple truncation
         
@@ -1174,12 +1174,34 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
-def TeacherDescription(teacher: dict) -> str:
+def TeacherDescription(teacher: dict,nameStr: str = "") -> str:
     if "teachers" in gOptions.buildOnly:
-        href = Html.Wrapper(f"<a href = {TeacherLink(teacher['teacher'])}>","</a>")
+        href = Html.Tag("a",{"href":TeacherLink(teacher['teacher'])})
     else:
         href = Html.Wrapper()
-    return f"<p> {href.Wrap(teacher['fullName'])} ({teacher['excerptCount']}) </p>"
+    if not nameStr:
+        nameStr = teacher['fullName']
+    return f"<p> {href.Wrap(nameStr)} ({teacher['excerptCount']}) </p>"
+
+def ListTeachersAlphabetical(teachers: list[dict]) -> str:
+    """Return html code listing teachers alphabetically."""
+    
+    prefixes = sorted(list(p for p in gDatabase["prefix"] if not p.endswith("/")),key=len,reverse=True)
+        # Sort prefixes so the longest prefix matches first, and eliminate prefixes ending in / which don't apply to names
+    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r" (.+)"
+    
+    noAlphabetize = {"alphabetize":""}
+    def AlphabetizeName(string: str) -> str:
+        if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
+            return gDatabase["name"][string]["alphabetize"]
+        match = re.match(prefixRegex,string)
+        if match:
+            return match[2] + ", " + match[1]
+        else:
+            return string
+
+    alphabetized = sorted((AlphabetizeName(t["fullName"]),t) for t in teachers)
+    return "\n".join(TeacherDescription(t,name) for name,t in alphabetized)
 
 def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
@@ -1202,7 +1224,7 @@ def ListTeachersLineage(teachers: list[dict]) -> str:
     return str(Html.ListWithHeadings(hasLineage,lambda t: (t["lineage"],TeacherDescription(t)) ))
 
 def ListTeachersByExcerpts(teachers: list[dict]) -> str:
-    """Return html code listing teachers by lineage."""
+    """Return html code listing teachers by number of excerpts."""
     
     sortedByExcerpts = sorted(teachers,key=lambda t: t["excerptCount"],reverse=True)
     return "\n".join(TeacherDescription(t) for t in sortedByExcerpts)
@@ -1210,6 +1232,7 @@ def ListTeachersByExcerpts(teachers: list[dict]) -> str:
 def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Teacher menu item and its associated submenus."""
 
+    alphabeticalInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(indexDir,"TeachersAlphabetical.html"),"Teachers – Alphabetical")
     chronologicalInfo = Html.PageInfo("Chronological",Utils.PosixJoin(indexDir,"TeachersChronological.html"),"Teachers – Chronological")
     lineageInfo = Html.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
     excerptInfo = Html.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
@@ -1219,6 +1242,7 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 
     teacherMenu = [
+        [alphabeticalInfo,ListTeachersAlphabetical(teachersInUse)],
         [chronologicalInfo,ListTeachersChronological(teachersInUse)],
         [lineageInfo,ListTeachersLineage(teachersInUse)],
         [excerptInfo,ListTeachersByExcerpts(teachersInUse)],
