@@ -14,6 +14,7 @@ from functools import lru_cache
 import contextlib
 from typing import NamedTuple
 from collections import defaultdict
+import itertools
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -331,7 +332,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     slashPrefixes = Utils.RegexMatchAny(p for p in prefixes if p.endswith("/"))
     prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r"(.+)"
     noAlphabetize = {"alphabetize":""}
-    def AlphabetizeNames(string: str) -> str:
+    def AlphabetizeName(string: str) -> str:
         if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
             return gDatabase["name"][string]["alphabetize"]
         match = re.match(prefixRegex,string)
@@ -342,7 +343,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
-        tagName = AlphabetizeNames(tagName)
+        tagName = AlphabetizeName(tagName)
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
         return Alphabetize(tagName,html)
 
@@ -385,7 +386,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["english"].append(entry)
         else:
             entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-            if not AlphabetizeNames(tag["fullTag"]).startswith(AlphabetizeNames(tag["tag"])):
+            if not AlphabetizeName(tag["fullTag"]).startswith(AlphabetizeName(tag["tag"])):
                 entries["english"].append(EnglishEntry(tag,tag["tag"]))
                 # File the abbreviated tag separately if it's not a simple truncation
         
@@ -491,6 +492,13 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     if linkKind == "img":
         a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
+    elif linkKind == "linkToPlayerPage":
+        with a.a(href = hyperlink,title = title):
+            a("⬅ Playable")
+        a(" "+2*"&nbsp")
+        with a.a(href = hyperlink,download = "",title = title):
+            a("⇓ Download")
+        a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
             with a.a(href = hyperlink,download=""):
@@ -561,6 +569,8 @@ class Formatter:
     """A class that formats lists of events, sessions, and excerpts into html"""
     
     def __init__(self):
+        self.audioLinks = gOptions.audioLinks
+        
         self.excerptDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
         self.excerptOmitTags = set() # Don't display these tags in excerpt description
         self.excerptBoldTags = set() # Display these tags in boldface
@@ -581,16 +591,18 @@ class Formatter:
         
         a = Airium(source_minify=True)
         
-        a(Mp3ExcerptLink(excerpt,**kwArgs))
+        a(Mp3ExcerptLink(excerpt,linkKind = self.audioLinks,**kwArgs))
+        a(' ')
         if excerpt['excerptNumber']:
-            a(' ')
             with a.b(style="text-decoration: underline;"):
                 a(f"{excerpt['excerptNumber']}.")
-        
+        else:
+            a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
+
         a(" ")
         if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
             a(f'[{excerpt["startTime"]}] ')
-        elif gOptions.audioLinks != "chip":
+        elif self.audioLinks != "chip":
             a(f'({excerpt["duration"]}) ')
 
         def ListAttributionKeys() -> Tuple[str,str]:
@@ -699,9 +711,9 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and (gOptions.audioLinks == "img" or gOptions.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session)
-                if gOptions.audioLinks == "img":
+            if linkSessionAudio and (self.audioLinks == "img" or self.audioLinks =="chip"):
+                audioLink = Mp3SessionLink(session,linkKind = self.audioLinks)
+                if self.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
                 else:
                     durStr = ''
@@ -716,14 +728,14 @@ class Formatter:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
             
-        if linkSessionAudio and gOptions.audioLinks == "audio":
-            a(Mp3SessionLink(session))
+        if linkSessionAudio and self.audioLinks == "audio":
+            a(Mp3SessionLink(session,linkKind = self.audioLinks))
             if horizontalRule:
                 a.hr()
         
         return str(a)
 
-def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True) -> str:
+def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,sessionExcerptDuration = True) -> str:
     "Return a string describing the duration of the excerpts we were passed."
     
     if not excerpts:
@@ -731,8 +743,13 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     
     events = set(x["event"] for x in excerpts)
     sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
-    duration = sum((Utils.StrToTimeDelta(x["duration"]) for x in excerpts if x["fileNumber"]),start = timedelta())
-        # Don't sum session excerpts (fileNumber = 0)
+
+    duration = timedelta()
+    for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
+        sessionExcerpts = list(sessionExcerpts)
+        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+            # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
+            # This prevents confusing results due to double counting times
     
     strItems = []
     
@@ -799,33 +816,37 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
                     a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
-        if (gOptions.audioLinks == "audio" or gOptions.audioLinks == "chip") and x is not lastExcerpt:
+        if (localFormatter.audioLinks != "img") and x is not lastExcerpt:
             a.hr()
         
     return str(a)
 
-def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0) -> Iterator[Html.PageAugmentorType]:
+def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0,allItemsPage = True) -> Iterator[Html.PageAugmentorType]:
     """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
         basePage: Content of the page above the menu and excerpt list. Later pages add "-N" to the file name.
         excerpts, formatter: As in HtmlExcerptList
-        itemLimit: Limit lists to roughly this many items, but break pages only at session boundaries."""
+        itemLimit: Limit lists to roughly this many items, but break pages only at session boundaries.
+        allItemsPage: Create a page with all items but without audio players that links back to the separate pages."""
 
     pageNumber = 1
     menuItems = []
     excerptsInThisPage = []
     prevSession = None
-    baseName,ext = os.path.splitext(basePage.info.file)
     if itemLimit == 0:
         itemLimit = gOptions.excerptsPerPage
+    excerptPage:dict[str:str] = {}
+        # Keys are the mp3 file name of each excerpt; values are the html file the excerpt is listed in
 
     def PageHtml() -> Html.PageAugmentorType:
         if pageNumber > 1:
-            fileName = f"{baseName}-{pageNumber}{ext}"
+            fileName = Utils.AppendToFilename(basePage.info.file,f"-{pageNumber}")
         else:
             fileName = basePage.info.file
         menuItem = Html.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
-        
         pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
+
+        excerptPage.update((Utils.ItemCode(x),fileName) for x in excerptsInThisPage)
+
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
     for x in excerpts:
@@ -842,7 +863,27 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
     if excerptsInThisPage or not menuItems:
         menuItems.append(PageHtml())
     
+    def LinkToPage(mp3Link:re.Match) -> str:
+        htmlPage = excerptPage.get(mp3Link[1],None)
+        if htmlPage:
+            return f'href="../{htmlPage}#{mp3Link[1]}"'
+        else:
+            return mp3Link[0]
+
     if len(menuItems) > 1:
+        if allItemsPage:
+            noPlayer = copy.deepcopy(formatter)
+            noPlayer.audioLinks = "linkToPlayerPage"
+            menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
+            
+            pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
+                                     Then choose ⬅ Playable or ⇓ Download to play the excerpt.""")
+            pageHtml += HtmlExcerptList(excerpts,noPlayer)
+            pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
+                # Match only the non-download link
+
+            menuItems.append([menuItem,pageHtml])
+
         yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
     else:
         clone = basePage.Clone()
@@ -892,7 +933,7 @@ def FilteredEventsMenuItem(events:Iterable[dict], filter:Filter.Filter, mainPage
 
     menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredEvents)})")
 
-    return menuItem,"<hr>\n" + ListDetailedEvents(filteredEvents)
+    return menuItem,ListDetailedEvents(filteredEvents)
 
 def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
@@ -903,9 +944,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     a = Airium()
     
     with a.p():
-        a(ExcerptDurationStr(gDatabase["excerpts"]))
-        a.br()
-        a("Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.")
+        a(ExcerptDurationStr(gDatabase["excerpts"],sessionExcerptDuration=False))
 
     a.hr()
 
@@ -930,7 +969,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     ]
 
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>"))
+    yield from basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p><hr>\n"))
 
 def ListDetailedEvents(events: Iterable[dict]) -> str:
     """Generate html containing a detailed list of all events."""
@@ -1066,7 +1105,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>")))
+                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p><hr>\n")))
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
@@ -1121,7 +1160,9 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Questions"),formatter,pageInfo,"Questions","question"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Stories"),formatter,pageInfo,"Stories","story"),
-                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Quotes"),formatter,pageInfo,"Quotes","quote"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Quote"),formatter,pageInfo,"Direct quotes","d-quote"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Indirect quote",quotedBy=False),formatter,pageInfo,"Quotes others","i-quote"),
+                FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Indirect quote",quotesOthers=False),formatter,pageInfo,"Quoted by others","quoted-by"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Meditations"),formatter,pageInfo,"Meditations","meditation"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Teachings"),formatter,pageInfo,"Teachings","teaching"),
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.Teacher(t,category="Readings"),formatter,pageInfo,"Readings from","read-from"),
@@ -1133,12 +1174,34 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
-def TeacherDescription(teacher: dict) -> str:
+def TeacherDescription(teacher: dict,nameStr: str = "") -> str:
     if "teachers" in gOptions.buildOnly:
-        href = Html.Wrapper(f"<a href = {TeacherLink(teacher['teacher'])}>","</a>")
+        href = Html.Tag("a",{"href":TeacherLink(teacher['teacher'])})
     else:
         href = Html.Wrapper()
-    return f"<p> {href.Wrap(teacher['fullName'])} ({teacher['excerptCount']}) </p>"
+    if not nameStr:
+        nameStr = teacher['fullName']
+    return f"<p> {href.Wrap(nameStr)} ({teacher['excerptCount']}) </p>"
+
+def ListTeachersAlphabetical(teachers: list[dict]) -> str:
+    """Return html code listing teachers alphabetically."""
+    
+    prefixes = sorted(list(p for p in gDatabase["prefix"] if not p.endswith("/")),key=len,reverse=True)
+        # Sort prefixes so the longest prefix matches first, and eliminate prefixes ending in / which don't apply to names
+    prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r" (.+)"
+    
+    noAlphabetize = {"alphabetize":""}
+    def AlphabetizeName(string: str) -> str:
+        if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
+            return gDatabase["name"][string]["alphabetize"]
+        match = re.match(prefixRegex,string)
+        if match:
+            return match[2] + ", " + match[1]
+        else:
+            return string
+
+    alphabetized = sorted((AlphabetizeName(t["fullName"]),t) for t in teachers)
+    return "\n".join(TeacherDescription(t,name) for name,t in alphabetized)
 
 def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
@@ -1161,7 +1224,7 @@ def ListTeachersLineage(teachers: list[dict]) -> str:
     return str(Html.ListWithHeadings(hasLineage,lambda t: (t["lineage"],TeacherDescription(t)) ))
 
 def ListTeachersByExcerpts(teachers: list[dict]) -> str:
-    """Return html code listing teachers by lineage."""
+    """Return html code listing teachers by number of excerpts."""
     
     sortedByExcerpts = sorted(teachers,key=lambda t: t["excerptCount"],reverse=True)
     return "\n".join(TeacherDescription(t) for t in sortedByExcerpts)
@@ -1169,6 +1232,7 @@ def ListTeachersByExcerpts(teachers: list[dict]) -> str:
 def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Teacher menu item and its associated submenus."""
 
+    alphabeticalInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(indexDir,"TeachersAlphabetical.html"),"Teachers – Alphabetical")
     chronologicalInfo = Html.PageInfo("Chronological",Utils.PosixJoin(indexDir,"TeachersChronological.html"),"Teachers – Chronological")
     lineageInfo = Html.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
     excerptInfo = Html.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
@@ -1178,6 +1242,7 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 
     teacherMenu = [
+        [alphabeticalInfo,ListTeachersAlphabetical(teachersInUse)],
         [chronologicalInfo,ListTeachersChronological(teachersInUse)],
         [lineageInfo,ListTeachersLineage(teachersInUse)],
         [excerptInfo,ListTeachersByExcerpts(teachersInUse)],
@@ -1224,7 +1289,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
             squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
             squish("Sessions:")
             for s in sessions:
-                squish(4*"&nbsp")
+                squish(" " + 3*"&nbsp")
                 with squish.a(href = f"#{Utils.ItemCode(s)}"):
                     squish(str(s['sessionNumber']))
             
@@ -1262,21 +1327,26 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
-def AboutMenu(aboutDir: str) -> Html.PageDescriptorMenuItem:
-    """Read markdown pages from documentation/about, convert them to html, and create a menu out of them. """
-
-    titleInPage = "The Ajahn Pasanno Question and Story Archive"
-    homepageFile = Html.PageInfo("About","homepage.html",titleInPage)
-    yield homepageFile
+def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageInfo|None = None) -> Html.PageDescriptorMenuItem:
+    """Read markdown pages from documentation/directory, convert them to html, 
+    write them in prototype/about, and create a menu out of them.
+    specialFirstItem optionally designates the PageInfo for the first item"""
 
     aboutMenu = []
-    for page in Document.RenderDocumentationFiles("about","about",html = True):
-        if not aboutMenu:
-            page.info = homepageFile
+    for page in Document.RenderDocumentationFiles(directory,"about",html = True):
+        if makeMenu:
+            if not aboutMenu:
+                if specialFirstItem:
+                    page.info = specialFirstItem
+                yield page.info
+
         aboutMenu.append([page.info,page])
         
-    baseTagPage = Html.PageDesc()
-    yield from baseTagPage.AddMenuAndYieldPages(aboutMenu)
+    if makeMenu:
+        baseTagPage = Html.PageDesc()
+        yield from baseTagPage.AddMenuAndYieldPages(aboutMenu,wrapper=Html.Wrapper("","<hr>\n"))
+    else:
+        yield from aboutMenu
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
@@ -1370,7 +1440,8 @@ def main():
 
     indexDir ="indexes"
     mainMenu = []
-    mainMenu.append(AboutMenu("about"))
+    mainMenu.append(DocumentationMenu("about",specialFirstItem=Html.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive")))
+    mainMenu.append(DocumentationMenu("misc",makeMenu=False))
     if "tags" in gOptions.buildOnly:
         mainMenu.append(TagMenu(indexDir))
     if "events" in gOptions.buildOnly:

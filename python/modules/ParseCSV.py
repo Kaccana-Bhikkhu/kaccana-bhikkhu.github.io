@@ -148,6 +148,10 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
     Remove any other keys found."""
     
     for d in Utils.Contents(dictList):
+        if key not in d:
+            d[key] = []
+            continue
+
         keyList = [key]
         if key[-1] == '1': # Does the key name end in 1?
             baseKey = key[:-1].strip()
@@ -654,7 +658,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"] or database["kind"][annotation["kind"]]["exclude"]:
+    if annotation["exclude"] or database["kind"][annotation["kind"]].get("exclude",False):
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -732,7 +736,11 @@ def LoadEventFile(database,eventName,directory):
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
-        rawExcerpts = CSVToDictList(file)
+        try: # First look for a separate excerpt sheet ending in x.csv
+            with open(os.path.join(directory,eventName + 'x.csv'),encoding='utf8') as excerptFile:
+                rawExcerpts = CSVToDictList(excerptFile,endOfSection = '<---->')
+        except FileNotFoundError:
+            rawExcerpts = CSVToDictList(file,endOfSection = '<---->')
 
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
     
@@ -808,7 +816,7 @@ def LoadEventFile(database,eventName,directory):
         ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
-            Utils.AppendUnique(x["qTag"],ourSession["tags"])
+            Utils.ExtendUnique(x["qTag"],ourSession["tags"])
 
         if not x["teachers"]:
             defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
@@ -835,7 +843,7 @@ def LoadEventFile(database,eventName,directory):
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
-        elif database["kind"][x["kind"]]["exclude"]:
+        elif database["kind"][x["kind"]].get("exclude",False):
             excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
@@ -909,6 +917,11 @@ def LoadEventFile(database,eventName,directory):
     removedExcerpts = [x for x in excerpts if x["exclude"]]
     excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
+
+    sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
+    for unusedSession in includedSessions - sessionsWithExcerpts:
+        del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
+        # Remove sessions with no excerpts
 
     xNumber = 1
     lastSession = -1

@@ -199,7 +199,11 @@ def RenderExcerpts() -> None:
         for a in x["annotations"]:
             RenderItem(a,x)
             if kinds[a["kind"]]["appendToExcerpt"]:
-                AppendAnnotationToExcerpt(a,x)
+                if a["indentLevel"] == 1: # Only append level 1 annotations to the excerpt
+                    AppendAnnotationToExcerpt(a,x)
+                else: # Don't render level 2 and higher annotations; hand-code them in to the annotation if needed.
+                    a["body"] = ""
+                    del a["attribution"]
 
 
 def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
@@ -289,7 +293,10 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         if page:
            url +=  f"#page={page + reference['pdfPageOffset']}"
 
-        return f"[{reference['title']}]({url}) {Prototype.LinkTeachersInText(reference['attribution'])}"
+        returnValue = f"[{reference['title']}]({url})"
+        if reference['attribution']:
+            returnValue += " " + Prototype.LinkTeachersInText(reference['attribution'])
+        return returnValue
 
     def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: [title]() or [title](page N)"""
@@ -498,7 +505,7 @@ def main() -> None:
 
     LinkReferences()
 
-    for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary"]:
+    for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary","keyCaseTranslation"]:
         del gDatabase[key]
 
     #Alert.extra("Rendered database contents:",indent = 0)
