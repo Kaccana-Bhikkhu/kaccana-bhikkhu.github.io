@@ -393,6 +393,8 @@ def RemoveUnusedTags(database: dict) -> None:
             return False
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
+    usedTags.update(t for t in gDatabase["tagSubsumed"].values())
+
     Alert.extra(len(usedTags),"unique tags applied.")
     
     prevTagCount = 0
@@ -1109,6 +1111,11 @@ def main():
     if gOptions.explainExcludes:
         excludeAlert.printAtVerbosity = -999
 
+    if gOptions.events != "All":
+        unknownEvents = set(gOptions.events) - set(gDatabase["summary"])
+        if unknownEvents:
+            Alert.warning("Events",unknownEvents,"are not listed in the Summary sheet and will not be parsed.")
+
     gDatabase["event"] = {}
     gDatabase["sessions"] = []
     gDatabase["excerpts"] = []
@@ -1120,6 +1127,10 @@ def main():
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     
+    if not len(gDatabase["event"]):
+        Alert.error("No excerpts have been parsed. Aborting.")
+        quit()
+
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)
