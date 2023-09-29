@@ -269,6 +269,28 @@ def FindOwningExcerpt(annotation: dict) -> dict:
                 return x
     return None
 
+def SubAnnotations(excerpt: dict,annotation: dict) -> dict:
+    """Return the annotations that follow this annotation one indent level higher."""
+
+    if annotation is excerpt:
+        scanLevel = 1
+        scanning = True
+    else:
+        scanLevel = annotation["indentLevel"] + 1
+        scanning = False
+    
+    subs = []
+    for a in excerpt["annotations"]:
+        if scanning:
+            if a["indentLevel"] == scanLevel:
+                subs.append(a)
+            elif a["indentLevel"] < scanLevel:
+                scanning = False
+        elif a is annotation:
+            scanning = True
+
+    return subs
+
 def RemoveDiacritics(string: str) -> str:
     "Remove diacritics from string."
     return unicodedata.normalize('NFKD', string).encode('ascii', 'ignore').decode('ascii')

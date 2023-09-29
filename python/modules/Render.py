@@ -76,7 +76,7 @@ def PrepareTemplates():
             kind["attribution"].append(attribution)
 
 def AddImplicitAttributions() -> None:
-    "If an excerpt of kind Reading doesn't have a Read by annotation, attribute it to the session teachers"
+    "If an excerpt or annotation of kind Reading doesn't have a Read by annotation, attribute it to the session or excerpt teachers"
     for x in gDatabase["excerpts"]:
         if x["kind"] == "Reading":
             readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
@@ -84,7 +84,13 @@ def AddImplicitAttributions() -> None:
                 sessionTeachers = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])["teachers"]
                 newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": sessionTeachers,"indentLevel": 1}
                 x["annotations"].insert(0,newAnnotation)
-                
+        for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
+            if a["kind"] == "Reading":
+                readBy = [subA for subA in Utils.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                if not readBy:
+                    excerptTeachers = x["teachers"]
+                    newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": excerptTeachers,"indentLevel": a["indentLevel"] + 1}
+                    x["annotations"].insert(n + 1,newAnnotation)
 
 @lru_cache(maxsize = None)
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:

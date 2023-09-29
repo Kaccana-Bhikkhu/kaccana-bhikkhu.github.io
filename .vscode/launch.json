@@ -97,10 +97,12 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV,Prototype",
+                "DownloadCSV,Prototype",
                 "--events",
-                "Sudhana2023",
-                "--parseOnlySpecifiedEvents"
+                "WR2015",
+                "--parseOnlySpecifiedEvents",
+                "--buildOnly",
+                "events"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
