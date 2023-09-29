@@ -99,21 +99,36 @@ def CompileTemplate(template: str) -> Type[pyratemp.Template]:
 def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
     "Append annotation a to the end of excerpt x."
 
-    if "{attribution}" in a["body"]:
-        attrNum = 2
-        attrKey = "attribution" + str(attrNum)
-        while attrKey in x: # Find the first available key of this form
-            attrNum += 1
+    if a["indentLevel"] == 1: # Append the annotation to the end of the excerpt.
+        if "{attribution}" in a["body"]:
+            attrNum = 2
             attrKey = "attribution" + str(attrNum)
-        
-        a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
-        x[attrKey] = a["attribution"]
-        x["teachers" + str(attrNum)] = a["teachers"]
+            while attrKey in x: # Find the first available key of this form
+                attrNum += 1
+                attrKey = "attribution" + str(attrNum)
+            
+            a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
+            x[attrKey] = a["attribution"]
+            x["teachers" + str(attrNum)] = a["teachers"]
 
-    x["body"] += " " + a["body"]
+        x["body"] += " " + a["body"]
+    else: # Append the annotation to its enclosing excerpt
+        body = a["body"].replace("{attribution}",a["attribution"])
+        searchForLevel = 0
+        found = False
+        for searchAnnotation in reversed(x["annotations"]):
+            if searchAnnotation["indentLevel"] == searchForLevel:
+                searchAnnotation["body"] += " " + body
+                found = True
+                break
+            if searchAnnotation is a:
+                searchForLevel = a["indentLevel"] - 1
+        if not found:
+            Alert.error("Annotation",a,"doesn't have a proper parent.")
 
     a["body"] = ""
     del a["attribution"]
+        
 
 def RenderItem(item: dict,container: dict|None = None) -> None:
     """Render an excerpt or annotation by adding "body" and "attribution" keys.
@@ -205,11 +220,7 @@ def RenderExcerpts() -> None:
         for a in x["annotations"]:
             RenderItem(a,x)
             if kinds[a["kind"]]["appendToExcerpt"]:
-                if a["indentLevel"] == 1: # Only append level 1 annotations to the excerpt
-                    AppendAnnotationToExcerpt(a,x)
-                else: # Don't render level 2 and higher annotations; hand-code them in to the annotation if needed.
-                    a["body"] = ""
-                    del a["attribution"]
+                AppendAnnotationToExcerpt(a,x)
 
 
 def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):

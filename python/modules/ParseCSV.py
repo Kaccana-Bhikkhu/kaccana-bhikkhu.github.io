@@ -688,9 +688,10 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
-        #if set(teacherList) == set(excerpt["teachers"]):
-        #    teacherList = []
-        
+
+        if annotation["kind"] == "Reading":
+            AppendUnique(teacherList,ReferenceAuthors(annotation["text"]))
+
         annotation["teachers"] = teacherList
     else:
         keysToRemove.append("teachers")
@@ -708,13 +709,16 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     
     excerpt["annotations"].append(annotation)
 
-def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
-    regexList = Render.ReferenceMatchRegExs(referenceDB)
+gAuthorRegexList = None
+def ReferenceAuthors(textToScan: str) -> list[str]:
+    global gAuthorRegexList
+    if not gAuthorRegexList:
+        gAuthorRegexList = Render.ReferenceMatchRegExs(gDatabase["reference"])
     authors = []
-    for regex in regexList:
+    for regex in gAuthorRegexList:
         matches = re.findall(regex,textToScan,flags = re.IGNORECASE)
         for match in matches:
-            AppendUnique(authors,referenceDB[match[0].lower()]["author"])
+            AppendUnique(authors,gDatabase["reference"][match[0].lower()]["author"])
 
     return authors
 
@@ -828,7 +832,7 @@ def LoadEventFile(database,eventName,directory):
                 x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
         
         if x["kind"] == "Reading":
-            AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
+            AppendUnique(x["teachers"],ReferenceAuthors(x["text"]))
         
         if x["sessionNumber"] != lastSession:
             lastSession = x["sessionNumber"]
