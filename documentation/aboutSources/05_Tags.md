@@ -40,23 +40,24 @@ As in the teachings themselves, the tag structure gives first priority to unders
 
 Tags are organized chronologically and conceptually; earlier and more fundamental tags come first. For example, the subtags of [Skillful qualities](drilldown:) begin by following the order of explanation in the [Buddha’s first teaching](Chanting Book p. 101): [Middle Path](tag:), [Noble Eightfold Path](tag:), [Four Noble Truths](tag:). This is followed by the [Aids to Awakening](tag:), the Buddha’s own summary of his teachings comprising seven sets of skillful qualities, totalling 37 qualities in all. Next come the sets contained with the Aids to Enlightenment that are not contained within the Eightfold Path itself: [Four Bases of Success](tag:), [Five Faculties](tag:), [Seven Factors of Awakening](tag:). Following this are two canonical and one early post-canonical list: [Divine Abidings](tag:), [Seven Treasures](tag:), and [Ten Perfections](tag:). 
 
+
+## Alternative Translations, Glosses and Subsumed Tags
+Over the years, many Pāli terms have been translated into English in a multitude of ways. The primary English translation chosen for each tag corresponds to my understanding of how Ajahn Pasanno generally uses the term. The Archive also includes alternative translations which either shed light on nuances of the Pāli term or have been widely used. There are also English words and phrases which roughly approximate Pāli terms and thus receive the corresponding Pāli tag. For example, “letting go” is glossed as [Relinquishment](tag:) (paṭinissagga), and “Arising and ceasing” is [Impermanence](tag:) (anicca). In a more complicated example, skillful thought is glossed as [Directed thought and evaluation](tag:) (vitakka-vicāra), for which applied and sustained thought is an alternative translation.
+
+Sometimes separate Pāli terms appearing in the various lists are sufficiently close in meaning it does not make sense to distinguish them as separate tags. For example, Non ill-will is subsumed under [Goodwill](tag:) (metta), and Rewards of heaven (part of the [Gradual Teaching](tag:)) is subsumed under [Deva](tag:).
 ## Tag Choices
 
-Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, I had to make many somewhat arbitrary decisions, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [Discernment](tag:) (pañña; see “[Why is discernment a better word for wisdom?](excerpt:SRD2013_S1_F3)”). When tagging English discourse, when to use [Discernment](tag:) and when to use related terms? I chose the following [Investigation of states](tag:) (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [Appropriate attention](tag:) (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](drilldown:) describes reviewing the results of past actions with a view to further improve in the future, but I chose to lump this with the general tag [Discernment](tag:).
+Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, I had to make many somewhat arbitrary decisions, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [Discernment](tag:) (pañña; see “[Why is discernment a better word for wisdom?](excerpt:SRD2013_S1_F3)”). When tagging English discourse, when to use [Discernment](tag:) and when to use related terms? I chose the following [Investigation of states](tag:) (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [Appropriate attention](tag:) (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](drilldown:) describes reviewing the results of past actions with a view to further improve in the future, but I chose to subsume this under the tag [Discernment](tag:).
 
 Other somewhat arbitrary choices regarding specific tags include the following:
 
- - “Arising and ceasing” is [Impermanence](tag:).
- - “Letting go” is [Relinquishment](tag:).
  - Thinking is [Directed thought and evaluation](tag:) or [Proliferation](tag:) depending on its skillfulness.
  - [Proliferation](tag:) encompasses both unskillful obsessive thinking and objectification, two translations of papañca.
  - [Suffering](tag:) refers to the common experience; [Noble Truth of Suffering](tag:) applies only to reflective understanding of dukkha as part of the Path.
  - The tag scheme distinguishes [Suffering](tag:) and [Pain](tag:) as two distinct meanings of the Pāli word dukkha, but pleasure and happiness (two meanings of sukha) are both tagged [Happiness](tag:).
  - Sensual pleasure and sensual desire are both tagged [Sensual desire](tag:).
  - Several Thai words are frequently translated as “the one who knows.” These are tagged [Knowing itself](tag:)
- - [Moods of the mind](tag:) refers specifically to the Thai phrase arom kong jit, and is distinct from the English tag [Emotion](tag:)
- - Defilement is tagged [Unwholesome Roots](tag:)
- - Attachment is tagged [Clinging](tag:)
+ - [Moods of the mind](tag:) refers specifically to the Thai phrase _arom kong jit_, and is distinct from the English tag [Emotion](tag:)
 
 ## History and Culture Tags
 

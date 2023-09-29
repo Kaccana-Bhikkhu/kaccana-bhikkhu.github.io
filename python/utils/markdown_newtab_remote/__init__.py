@@ -1,10 +1,12 @@
 """
-New Tab Extension for Python-Markdown
+New Tab Remote Extension for Python-Markdown
 =====================================
 
 Modify the behavior of Links in Python-Markdown to open a in a new
 window. This changes the HTML output to add target="_blank" to all
-generated links.
+generated links to remote resources.
+
+A slightly modified version of the New Tab Extension
 """
 
 from markdown import Extension

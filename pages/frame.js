@@ -2,8 +2,7 @@ import posix from "./path.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
-
-let path = "";
+const absoluteURLRegex = "^(//|[a-z+]+:)"
 
 async function changeURL(pUrl) {
 	await fetch("./" + pUrl)
@@ -15,15 +14,20 @@ async function changeURL(pUrl) {
 			titleEl.innerHTML = innerTitle.innerHTML;
 			innerTitle.remove();
 
+			["href","src"].forEach((attribute) => {
+				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
+					let attributePath = el.getAttribute(attribute);
+					if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
+						el.setAttribute(attribute,join(dirname(pUrl),attributePath));
+					};
+				});
+			});
+
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
-				if (href.includes("://") || href.startsWith("mailto:")) return;
+				if (href.match(absoluteURLRegex)) return;
 
-				let url = join(
-					dirname(pUrl),
-					href.replaceAll("index.html", "homepage.html")
-				);
-
+				let url = href.replaceAll("index.html", "homepage.html")
 				if (href.startsWith("#")) {
 					let noBookmark = location.href.split("#").slice(0,2).join("#")
 					el.href = noBookmark+href;

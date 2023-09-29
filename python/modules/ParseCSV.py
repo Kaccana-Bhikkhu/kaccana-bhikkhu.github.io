@@ -111,7 +111,7 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
             break
         elif not BlankDict(row):
             if not firstDictValue:
-                Alert.warning.Show("blank first field in",row)
+                Alert.warning("blank first field in",row)
         
             # Increase robustness by stripping values and keys
             for key in list(row):
@@ -148,6 +148,10 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
     Remove any other keys found."""
     
     for d in Utils.Contents(dictList):
+        if key not in d:
+            d[key] = []
+            continue
+
         keyList = [key]
         if key[-1] == '1': # Does the key name end in 1?
             baseKey = key[:-1].strip()
@@ -389,7 +393,7 @@ def RemoveUnusedTags(database: dict) -> None:
             return False
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
-    Alert.extra.Show(len(usedTags),"unique tags applied.")
+    Alert.extra(len(usedTags),"unique tags applied.")
     
     prevTagCount = 0
     round = 0
@@ -475,7 +479,7 @@ def SortTags(database: dict) -> None:
             continue
 
         if len(childIndexes) < childIndexes[-1] - childIndexes[0] + 1:
-            Alert.caution.Show("Cannot sort",repr(parent["name"]),"because it contains multiple levels of tags.")
+            Alert.caution("Cannot sort",repr(parent["name"]),"because it contains multiple levels of tags.")
             continue
 
         children = [database["tagDisplayList"][i] for i in childIndexes]
@@ -487,7 +491,7 @@ def SortTags(database: dict) -> None:
                     return float(sortBy)
                 except ValueError:
                     pass
-            Alert.caution.Show("Cannot find a date for",repr(tagInfo["tag"]),"in the Name sheet. This tag will go last.")
+            Alert.caution("Cannot find a date for",repr(tagInfo["tag"]),"in the Name sheet. This tag will go last.")
             return 9999.0
 
         children.sort(key=SortByDate)
@@ -629,15 +633,15 @@ def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
         # excerpts specify a start time
     
     if not isExcerpt and not kind["canBeAnnotation"]:
-        Alert.warning.Show(item,"to",prevExcerpt,f": Kind {repr(item['kind'])} is not allowed for annotations.")
+        Alert.warning(item,"to",prevExcerpt,f": Kind {repr(item['kind'])} is not allowed for annotations.")
     
     for key,permission in itemAllowedFields.items():
         if item[key] and not kind[permission]:
             message = f"has ['{key}'] = {repr(item[key])}, but kind {repr(item['kind'])} does not allow this."
             if isExcerpt or not prevExcerpt:
-                Alert.caution.Show(item,message)
+                Alert.caution(item,message)
             else:
-                Alert.caution.Show(item,"to",prevExcerpt,message)
+                Alert.caution(item,"to",prevExcerpt,message)
 
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
@@ -654,7 +658,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"] or database["kind"][annotation["kind"]]["exclude"]:
+    if annotation["exclude"] or database["kind"][annotation["kind"]].get("exclude",False):
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -678,7 +682,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 pass # Unless the annotation has the same teachers as the excerpt and the excerpt kind ignores consent; e.g. "Reading"
             else:
                 excerpt["exclude"] = True
-                excludeAlert.Show(excerpt,"due to teachers",annotation["teachers"],"of",annotation)
+                excludeAlert(excerpt,"due to teachers",annotation["teachers"],"of",annotation)
                 return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
@@ -724,7 +728,7 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
             excludedItems.append(i)
 
     for i in excludedItems:
-        printer.Show(i,message)
+        printer(i,message)
     return filteredItems
 
 def LoadEventFile(database,eventName,directory):
@@ -732,7 +736,11 @@ def LoadEventFile(database,eventName,directory):
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
-        rawExcerpts = CSVToDictList(file)
+        try: # First look for a separate excerpt sheet ending in x.csv
+            with open(os.path.join(directory,eventName + 'x.csv'),encoding='utf8') as excerptFile:
+                rawExcerpts = CSVToDictList(excerptFile,endOfSection = '<---->')
+        except FileNotFoundError:
+            rawExcerpts = CSVToDictList(file,endOfSection = '<---->')
 
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
     
@@ -799,7 +807,7 @@ def LoadEventFile(database,eventName,directory):
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
-                Alert.error.Show(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
+                Alert.error(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
             continue
 
         x["annotations"] = []    
@@ -808,7 +816,7 @@ def LoadEventFile(database,eventName,directory):
         ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
-            Utils.AppendUnique(x["qTag"],ourSession["tags"])
+            Utils.ExtendUnique(x["qTag"],ourSession["tags"])
 
         if not x["teachers"]:
             defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
@@ -835,14 +843,14 @@ def LoadEventFile(database,eventName,directory):
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
-        elif database["kind"][x["kind"]]["exclude"]:
+        elif database["kind"][x["kind"]].get("exclude",False):
             excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
             excludeReason = [x,"due to excerpt teachers",x["teachers"]]
         
         if excludeReason:
-            excludeAlert.Show(*excludeReason)
+            excludeAlert(*excludeReason)
 
         x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
         
@@ -850,7 +858,7 @@ def LoadEventFile(database,eventName,directory):
         prevExcerpt = x
 
     if blankExcerpts:
-        Alert.notice.Show(blankExcerpts,"blank excerpts in",eventDesc)
+        Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
     prevSession = None
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
@@ -888,7 +896,7 @@ def LoadEventFile(database,eventName,directory):
                 failed = startTime
             else:
                 failed = endTime
-            Alert.error.Show("Cannot convert",repr(failed),"to a time when processing",x,"; will delete this excerpt.")
+            Alert.error("Cannot convert",repr(failed),"to a time when processing",x,"; will delete this excerpt.")
             deletedExcerptIDs.add(id(x))
             continue
         
@@ -901,7 +909,7 @@ def LoadEventFile(database,eventName,directory):
             startTime = prevEndTime
             x["startTime"] = Utils.TimeDeltaToStr(startTime)
             if ExcerptFlag.OVERLAP not in x["flags"]:
-                Alert.warning.Show(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+                Alert.warning(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
         prevEndTime = endTime
@@ -910,12 +918,17 @@ def LoadEventFile(database,eventName,directory):
     excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
 
+    sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
+    for unusedSession in includedSessions - sessionsWithExcerpts:
+        del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
+        # Remove sessions with no excerpts
+
     xNumber = 1
     lastSession = -1
     for x in excerpts:
         if x["sessionNumber"] != lastSession:
             if lastSession > x["sessionNumber"]:
-                Alert.warning.Show(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
+                Alert.warning(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
             if x["startTime"] == "Session":
                 xNumber = 0
             else:
@@ -966,7 +979,7 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
                 countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
                 totalCount += 1
             except KeyError:
-                Alert.warning.Show(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+                Alert.warning(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
     
     return totalCount
 
@@ -984,14 +997,14 @@ def CountAndVerify(database):
                 tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.warning.Show(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
+                Alert.warning(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
                 tagsToRemove.append(tag)
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
     
-    Alert.info.Show(tagCount,"total tags applied.")
+    Alert.info(tagCount,"total tags applied.")
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
@@ -1009,9 +1022,9 @@ def CountAndVerify(database):
     for tag in database["tag"]:
         tagDesc = database["tag"][tag]
         if tagDesc["primaries"] > 1:
-            Alert.caution.Show(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
+            Alert.caution(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
         if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and TagFlag.VIRTUAL not in tagDesc["flags"]:
-            Alert.notice.Show(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
+            Alert.notice(f"Notice: None of {tagDesc['copies']} instances of tag {tagDesc['tag']} are designated as primary.")
 
 def VerifyListCounts(database):
     # Check that the number of items in each numbered tag list matches the supertag item count
@@ -1033,12 +1046,12 @@ def VerifyListCounts(database):
                 finalIndex = re.split(r"[-,]",finalIndexStr)[-1]
 
         if tagSubitemCount != finalIndex: # Note that this compares two strings
-            Alert.warning.Show(f'Notice: Mismatched list count in line {tagIndex} of tag list. {tag} indicates {tagSubitemCount} items, but we count {finalIndex}')
+            Alert.warning(f'Notice: Mismatched list count in line {tagIndex} of tag list. {tag} indicates {tagSubitemCount} items, but we count {finalIndex}')
 
     # Check for duplicate excerpt tags
     for x in database["excerpts"]:
         if len(set(x["tags"])) != len(x["tags"]):
-            Alert.caution.Show(f"Duplicate tags in {x['event']} S{x['sessionNumber']} Q{x['excerptNumber']} {x['tags']}")
+            Alert.caution(f"Duplicate tags in {x['event']} S{x['sessionNumber']} Q{x['excerptNumber']} {x['tags']}")
     
 
 def AddArguments(parser):
@@ -1097,7 +1110,7 @@ def main():
     for event in gDatabase["summary"]:
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             LoadEventFile(gDatabase,event,gOptions.csvDir)
-    excludeAlert.Show(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
+    excludeAlert(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     
@@ -1120,10 +1133,10 @@ def main():
 
     Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
-    Alert.extra.Show("Spreadsheet database contents:",indent = 0)
+    Alert.extra("Spreadsheet database contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)
     
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
-    Alert.info.Show(Prototype.ExcerptDurationStr(gDatabase["excerpts"]),indent = 0)
+    Alert.info(Prototype.ExcerptDurationStr(gDatabase["excerpts"]),indent = 0)

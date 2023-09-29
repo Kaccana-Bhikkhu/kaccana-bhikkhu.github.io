@@ -1,4 +1,4 @@
-<!--TITLE:Want to help? -->
+<!--TITLE:Want to help?-->
 ## Want to Help?
 If you would like to contribute to the Ajahn Pasanno Question and Story Archive, here are some possibilities.
 
