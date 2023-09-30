@@ -507,14 +507,14 @@ def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--renderedDatabase',type=str,default='prototype/RenderedDatabase.json',help='Database after rendering each excerpt; Default: prototype/RenderedDatabase.json')
 
-def ParseArguments(options) -> None:
+def ParseArguments() -> None:
     pass
 
 def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main() -> None:
 

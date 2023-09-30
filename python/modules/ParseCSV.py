@@ -1071,14 +1071,14 @@ def AddArguments(parser):
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
     parser.add_argument('--explainExcludes',action='store_true',help="Print a message for each excluded/redacted excerpt")
 
-def ParseArguments(options) -> None:
+def ParseArguments() -> None:
     pass
 
 def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 # AlertClass for explanations of excluded excerpts. Don't show by default.
 excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)

@@ -6,7 +6,7 @@ from collections.abc import Iterable, Callable
 from typing import Tuple
 import Utils
 
-gDatabase:dict[str] = None # This will be overwritten by the main program
+gDatabase:dict[str] = {} # This will be overwritten by the main program
 
 Filter = Callable[[dict],bool]
 "Returns whether the dict matches our filter function."

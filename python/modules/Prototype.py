@@ -1404,25 +1404,25 @@ def AddArguments(parser):
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
-def ParseArguments(options):
-    if options.buildOnly == "":
-        options.buildOnly = gAllSections
-    elif options.buildOnly.lower() == "none":
-        options.buildOnly = set()
+def ParseArguments():
+    if gOptions.buildOnly == "":
+        gOptions.buildOnly = gAllSections
+    elif gOptions.buildOnly.lower() == "none":
+        gOptions.buildOnly = set()
     else:
-        options.buildOnly = set(section.strip().lower() for section in options.buildOnly.split(','))
-        if "drilldown" in options.buildOnly:
-            options.buildOnly.add("tags")
-        unknownSections = options.buildOnly.difference(gAllSections)
+        gOptions.buildOnly = set(section.strip().lower() for section in gOptions.buildOnly.split(','))
+        if "drilldown" in gOptions.buildOnly:
+            gOptions.buildOnly.add("tags")
+        unknownSections = gOptions.buildOnly.difference(gAllSections)
         if unknownSections:
             Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
-            options.buildOnly = options.buildOnly.difference(unknownSections)
+            gOptions.buildOnly = gOptions.buildOnly.difference(unknownSections)
 
 def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main():
     if not os.path.exists(gOptions.prototypeDir):

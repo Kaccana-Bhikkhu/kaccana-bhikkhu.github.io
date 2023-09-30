@@ -75,14 +75,15 @@ def AddArguments(parser) -> None:
     parser.add_argument('--documentationDir',type=str,default='documentation',help='Read and write documentation files here; Default: ./documenation')
     
 
-def ParseArguments(options) -> None:
+def ParseArguments() -> None:
     pass
 
 def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+
 
 def main() -> None:
     for directory in ['about','misc']:

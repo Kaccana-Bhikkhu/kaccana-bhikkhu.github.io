@@ -159,11 +159,14 @@ clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
 
 for mod in modules.values():
-    mod.ParseArguments(clOptions)
-        # Tell each module to parse its own arguments
     mod.gOptions = clOptions
-        # And let each module access all arguments
+        # Let each module access all arguments
 Utils.gOptions = clOptions
+
+for mod in modules.values():
+    mod.ParseArguments()
+        # Tell each module to parse its own arguments
+
 if Alert.error.count:
     print("Aborting due to argument parsing errors.")
     quit()
