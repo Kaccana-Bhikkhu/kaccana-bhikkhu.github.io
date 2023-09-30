@@ -57,11 +57,6 @@ class AudioChip extends HTMLElement {
 
 	connectedCallback() {
 		let src = this.getAttribute("src");
-		if (!src.includes("://")) {
-			src = "../" + src.replaceAll("../", "");
-		} // Hack: Relative to index.html, audio files are stored at ../audio/excerpts/..., but local references in a page depend on its directory depth.
-		// Thus we change src to have exactly one "../" in its path.
-
 		this.audio = new Audio(src);
 		let loadAudio = this.dataset.duration == null;
 		// let loadAudio = true;
@@ -83,10 +78,15 @@ class AudioChip extends HTMLElement {
 				playAudio(this.title, this.audio);
 			} else {
 				console.log("waiting for audio loading");
-				this.audio.addEventListener("canplaythrough", () => {
-					console.log("starting");
-					playAudio(this.title, this.audio);
-				});
+				let cb;
+				this.audio.addEventListener(
+					"canplaythrough",
+					(cb = () => {
+						console.log("starting");
+						playAudio(this.title, this.audio);
+						this.audio.removeEventListener("canplaythrough", cb);
+					})
+				);
 			}
 		});
 

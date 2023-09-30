@@ -9,6 +9,7 @@ Recollection,Stories,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Recolle
 Teaching,Teachings,3,Yes,No,Yes,Yes,Yes,No,No,Excerpt,++Teaching{s}++|| by {teachers}||{colon} {text},++Teaching{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| ++Teaching{s}++ by {teachers}.,,
 Reflection,Teachings,1,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,++Reflection{s}++|| by {teachers}||{colon} {text},++Reflection{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| ++Reflection{s}++ by {teachers}.,,
 Simile,Teachings,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Simile{s}{colon}++ {text}|| — {teachers}.,unimplemented,,
+Dhamma talk,Teachings,2,Yes,No,Yes,Yes,Yes,No,No,Excerpt,++Dhamma talk{s}++|| offered by {teachers}||{colon} {text},++Dhamma talk{s}{colon}++ {text}|| offered by {teachers}.,{text}|| ++Dhamma talk{s}++ offered by {teachers}.,,
 ,,,,,,,,,,,,,,,
 Quote,Quotes,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}” {suffix}|| — {teachers},unimplemented,,A quote from the teacher him/herself.
 Indirect quote,Quotes,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teachers}.,unimplemented,,"The teacher quoting someone else. If the person quoted is a teacher, they should get the first tag."
@@ -17,7 +18,7 @@ Meditation instruction,Meditations,2,Yes,No,Yes,Yes,Yes,No,No,Excerpt,unimplemen
 Guided meditation,Meditations,2,Yes,No,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Guided meditation{s}{colon}++ {text}|| offered by {teachers}.,unimplemented,,
 Chanting,Meditations,2,Yes,No,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Chanting{s}{colon}++ {text}|| offered by {teachers}.,unimplemented,,
 ,,,,,,,,,,,,,,,
-Reading,Readings,1,Yes,No,Yes,Yes,Yes,Yes,No,None,++Reading{s}{colon}++ {text},++Reading{s}{colon}++ {text},unimplemented,,"{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and "" by {teachers}"" inserted automatically. If not, plug both in manually along with the hyperlink if relevant."
+Reading,Readings,1,Yes,Yes,Yes,Yes,Yes,Yes,No,None,++Reading{s}{colon}++ {text},++Reading{s}{colon}++ {text},unimplemented,,"{teachers} should be the author(s) of the book. Use a Read by annotation to indicate who does the reading. If the book appears in the list of references, {teachers} will be set and "" by {teachers}"" inserted automatically. If not, plug both in manually along with the hyperlink if relevant."
 ,,,,,,,,,,,,,,,
 Reference,References,1,No,Yes,No,No,Yes,,No,,++Reference{s}++: {text},unimplemented,unimplemented,,
 Sutta,References,1,No,Yes,No,No,Yes,,No,,++Sutta{s}++: {text},unimplemented,unimplemented,,

@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": false
         },
         {
             "name": "AllSheets",
@@ -97,9 +97,13 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Document",
-                "--buildOnly",
-                "none"
+                "DownloadCSV",
+                "--excerptMp3",
+                "local",
+                "--events",
+                "WR2015",
+                "--writeMp3Tags",
+                "changed"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
