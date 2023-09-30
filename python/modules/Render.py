@@ -77,19 +77,22 @@ def PrepareTemplates():
 
 def AddImplicitAttributions() -> None:
     "If an excerpt or annotation of kind Reading doesn't have a Read by annotation, attribute it to the session or excerpt teachers"
-    for x in gDatabase["excerpts"]:
+    for session,x in Utils.PairWithSession(gDatabase["excerpts"]):
         if x["kind"] == "Reading":
             readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
             if not readBy:
-                sessionTeachers = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])["teachers"]
+                sessionTeachers = session["teachers"]
                 newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": sessionTeachers,"indentLevel": 1}
                 x["annotations"].insert(0,newAnnotation)
         for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
             if a["kind"] == "Reading":
                 readBy = [subA for subA in Utils.SubAnnotations(x,a) if subA["kind"] == "Read by"]
                 if not readBy:
-                    excerptTeachers = x["teachers"]
-                    newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": excerptTeachers,"indentLevel": a["indentLevel"] + 1}
+                    if x["kind"] == "Reading":
+                        readers = session["teachers"]
+                    else:
+                        readers = x["teachers"]
+                    newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": readers,"indentLevel": a["indentLevel"] + 1}
                     x["annotations"].insert(n + 1,newAnnotation)
 
 @lru_cache(maxsize = None)
@@ -114,17 +117,7 @@ def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
         x["body"] += " " + a["body"]
     else: # Append the annotation to its enclosing excerpt
         body = a["body"].replace("{attribution}",a["attribution"])
-        searchForLevel = 0
-        found = False
-        for searchAnnotation in reversed(x["annotations"]):
-            if searchAnnotation["indentLevel"] == searchForLevel:
-                searchAnnotation["body"] += " " + body
-                found = True
-                break
-            if searchAnnotation is a:
-                searchForLevel = a["indentLevel"] - 1
-        if not found:
-            Alert.error("Annotation",a,"doesn't have a proper parent.")
+        Utils.ParentAnnotation(x,a)["body"] += " " + body
 
     a["body"] = ""
     del a["attribution"]
@@ -161,8 +154,21 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     plural = "s" if (ParseCSV.ExcerptFlag.PLURAL in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
-        teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
+    if container:
+        if item["kind"] == "Read by":
+            parent = Utils.ParentAnnotation(container,item)
+            while (parent and parent["kind"] == "Reading"):
+                parent = Utils.ParentAnnotation(container,parent)
+                    # The teacher of a reading is the author of the book. Therefore a subannotation can't be read by him/her,
+                    # so keep looking up the chain for the real reader.
+            if parent:
+                defaultTeachers = parent["teachers"]
+            else:
+                defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
+        else:
+            defaultTeachers = container["teachers"]
+        if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
+            teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
     text = item["text"]

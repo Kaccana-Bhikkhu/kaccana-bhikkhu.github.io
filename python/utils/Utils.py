@@ -269,8 +269,8 @@ def FindOwningExcerpt(annotation: dict) -> dict:
                 return x
     return None
 
-def SubAnnotations(excerpt: dict,annotation: dict) -> dict:
-    """Return the annotations that follow this annotation one indent level higher."""
+def SubAnnotations(excerpt: dict,annotation: dict) -> list[dict]:
+    """Return the annotations that are under this annotation or excerpt."""
 
     if annotation is excerpt:
         scanLevel = 1
@@ -290,6 +290,66 @@ def SubAnnotations(excerpt: dict,annotation: dict) -> dict:
             scanning = True
 
     return subs
+
+def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
+    """Return this annotation's parent."""
+    if not annotation or annotation is excerpt:
+        return None
+    if annotation["indentLevel"] == 1:
+        return excerpt
+    searchForLevel = 0
+    found = False
+    for searchAnnotation in reversed(excerpt["annotations"]):
+        if searchAnnotation["indentLevel"] == searchForLevel:
+            return searchAnnotation
+        if searchAnnotation is annotation:
+            searchForLevel = annotation["indentLevel"] - 1
+    if not found:
+        Alert.error("Annotation",annotation,"doesn't have a proper parent.")
+        return None
+
+def GroupBySession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
+    """Yield excerpts grouped by their session."""
+    if not sessions:
+        sessions = gDatabase["sessions"]
+    sessionIterator = iter(sessions)
+    curSession = next(sessionIterator)
+    yieldList = []
+    for excerpt in excerpts:
+        while excerpt["event"] != curSession["event"] or excerpt["sessionNumber"] != curSession["sessionNumber"]:
+            if yieldList:
+                yield curSession,yieldList
+                yieldList = []
+            curSession = next(sessionIterator)
+        yieldList.append(excerpt)
+    
+    if yieldList:
+        yield curSession,yieldList
+
+def GroupByEvent(excerpts: list[dict],events: dict[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
+    """Yield excerpts grouped by their event. NOT YET TESTED"""
+    if not events:
+        events = gDatabase["event"]
+    yieldList = []
+    curEvent = ""
+    for excerpt in excerpts:
+        while excerpt["event"] != curEvent:
+            if yieldList:
+                yield events[curEvent],yieldList
+                yieldList = []
+            curEvent = excerpt["event"]
+        yieldList.append(excerpt)
+    
+    if yieldList:
+        yield events[curEvent],yieldList
+
+def PairWithSession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,dict]]:
+    """Yield tuples (session,excerpt) for all excerpts."""
+    if not sessions:
+        sessions = gDatabase["sessions"]
+    
+    for session,excerptList in GroupBySession(excerpts,sessions):
+        yield from ((session,x) for x in excerptList)
 
 def RemoveDiacritics(string: str) -> str:
     "Remove diacritics from string."
