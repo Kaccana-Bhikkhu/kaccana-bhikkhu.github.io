@@ -4,8 +4,8 @@ const css = `
 		width: max-content;
 
 		display: grid;
-		grid-template-columns: 40px 1fr;
-		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 40px 100px 40px;
+		grid-template-rows: 1fr;
 		grid-column-gap: 5px;
 		grid-row-gap: 0px; 
 		align-items: center;
@@ -13,7 +13,7 @@ const css = `
 
 	button.play {
 		grid-area: 1 / 1 / 3 / 2;
-
+		
 		height: 40px;
 		width: 40px;
 		border-radius: 0.4rem;
@@ -31,6 +31,11 @@ const css = `
 		color: #0088cc !important;
 		transition: opacity 200ms ease-out;
 		font-size: 0.9em;
+
+		background: url(assets/download.svg) center no-repeat;
+		background-size: 40%;
+		width: 40px;
+		height: 40px;
 	}
 
 	a:hover {
@@ -94,7 +99,7 @@ class AudioChip extends HTMLElement {
 		});
 
 		const download = document.createElement("a");
-		download.innerHTML = "Download audio";
+		download.title = "Download";
 		download.href = src;
 		download.download = this.title + ".mp3";
 		// download.target = "_blank";
