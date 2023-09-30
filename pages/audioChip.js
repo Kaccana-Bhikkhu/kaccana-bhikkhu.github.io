@@ -4,7 +4,7 @@ const css = `
 		width: max-content;
 
 		display: grid;
-		grid-template-columns: 40px 100px 40px;
+		grid-template-columns: 40px 50px 40px;
 		grid-template-rows: 1fr;
 		grid-column-gap: 5px;
 		grid-row-gap: 0px; 
