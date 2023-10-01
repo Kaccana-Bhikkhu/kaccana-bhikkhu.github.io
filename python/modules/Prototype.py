@@ -787,7 +787,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
-            linkSessionAudio = formatter.headingAudio and not (x["startTime"] == "Session" and x["body"])
+            linkSessionAudio = formatter.headingAudio and not x["startTime"] == "Session"
                 # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
             hr = x["startTime"] != "Session" or x["body"]
                 # Omit the horzional rule if the first excerpt is a session excerpt with no body
@@ -805,14 +805,23 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {"preload": "none"}
         else:
             options = {}
-        if x["body"]:
+        hasMultipleAnnotations = sum(len(a["body"]) > 0 for a in x["annotations"]) > 1
+        if x["body"] or (not x["fileNumber"] and hasMultipleAnnotations):
+            """ Render blank session excerpts which have more than one annotation as [Session].
+                If a blank session excerpt has only one annotation, [Session] will be added below."""
             with a.p(id = Utils.ItemCode(x)):
                 a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
             if annotation["body"]:
-                with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
+                indentLevel = annotation['indentLevel']
+                if not x["fileNumber"] and not x["body"] and not hasMultipleAnnotations:
+                    # If a single annotation follows a blank session excerpt, don't indent and add [Session] in front of it
+                    indentLevel = 0
+                with a.p(style = f"margin-left: {tabLength * indentLevel}{tabMeasurement};"):
+                    if not indentLevel:
+                        a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
                     a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
@@ -1237,7 +1246,7 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     lineageInfo = Html.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
     excerptInfo = Html.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
 
-    yield chronologicalInfo._replace(title="Teachers")
+    yield alphabeticalInfo._replace(title="Teachers")
 
     teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 

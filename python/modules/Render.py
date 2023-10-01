@@ -156,13 +156,11 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     teachers = item.get("teachers",())
     if container:
         if item["kind"] == "Read by":
-            parent = Utils.ParentAnnotation(container,item)
-            while (parent and parent["kind"] == "Reading"):
-                parent = Utils.ParentAnnotation(container,parent)
-                    # The teacher of a reading is the author of the book. Therefore a subannotation can't be read by him/her,
-                    # so keep looking up the chain for the real reader.
-            if parent:
-                defaultTeachers = parent["teachers"]
+            grandparent = Utils.ParentAnnotation(container,Utils.ParentAnnotation(container,item))
+                # The parent of this Read by annotation is a reading, which has the authors as teachers
+                # Thus the grandparent indicates the default reader(s)
+            if grandparent:
+                defaultTeachers = grandparent["teachers"]
             else:
                 defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
         else:

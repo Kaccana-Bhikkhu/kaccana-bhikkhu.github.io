@@ -28,12 +28,13 @@ Vinaya,References,1,No,Yes,No,No,Yes,,No,,++Vinaya:++ {text},unimplemented,unimp
 Comment,Other,1,Yes,Yes,Yes,Yes,Yes,No,No,Anon,++Comment{s}++|| by {teachers}||{colon} {text},++Comment{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| ++Comment{s}++ by {teachers}.,,
 Discussion,Other,2,Yes,Yes,Yes,Yes,Yes,No,No,Anon,++Discussion{s}++|| led by {teachers}||{colon} {text},++Discussion{s}{colon}++ {text}|| led by {teachers}.,{text}|| ++Discussion{s}++ led by {teachers}.,,
 Note,Other,1,No,Yes,No,No,No,,No,,++Note{s}++: {text},unimplemented,unimplemented,,
+Summary,Other,1,Yes,No,Yes,Yes,Yes,No,No,Session,{text},unimplemented,unimplemented,,"Used for session excerpts; can be blank. If the session excerpt has a list of items (e. g. readings), the items should be annotations to a summary excerpt."
 Other,Other,0,Yes,Yes,Yes,Yes,Yes,No,No,None,unimplemented,unimplemented,unimplemented,,
 ,,,,,,,,,,,,,,,
 Commentary,References,1,No,Yes,No,No,Yes,,No,,++Commentary:++ {text},unimplemented,unimplemented,,
 ,,,,,,,,,,,,,,,
 Read by,Attribution,1,No,Yes,No,Yes,No,Yes,Yes,Session,{'Read by ' if text else ''}{text}{'.' if text else ''}||Read by {teachers}.,unimplemented,unimplemented,,"If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
-Translated by,Attribution,1,No,Yes,No,Yes,No,No,Yes,Session,{'Translated by ' if text else ''}{text}{'.' if text else ''}||Translated by {teachers}.,unimplemented,unimplemented,,
+Translated by,Attribution,1,No,Yes,No,Yes,No,Yes,Yes,Session,{'Translated by ' if text else ''}{text}{'.' if text else ''}||Translated by {teachers}.,unimplemented,unimplemented,,
 Asked by,Attribution,1,No,Yes,No,Yes,No,No,Yes,Session,{'Asked by ' if text else ''}{text}{'.' if text else ''}||Asked by {teachers}.,unimplemented,unimplemented,Yes,
 ,,,,,,,,,,,,,,,
 Extra tags,Other,0,No,Yes,No,No,Yes,,No,,unimplemented,unimplemented,unimplemented,,
