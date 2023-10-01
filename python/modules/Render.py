@@ -302,6 +302,13 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         else:
             return None
 
+    def PdfPageOffset(reference: dict) -> int:
+        pageOffset = reference['pdfPageOffset']
+        if pageOffset is None:
+            pageOffset = 0
+            Alert.warning(reference,"does not specify pdfPageOffset.")
+        return pageOffset
+
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -312,7 +319,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         url = reference['remoteUrl']
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"
+           url +=  f"#page={page + PdfPageOffset(reference)}"
 
         returnValue = f"[{reference['title']}]({url})"
         if reference['attribution']:
@@ -334,7 +341,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"""
+           url +=  f"#page={page + PdfPageOffset(reference)}"""
 
         return f"]({url})"
 
@@ -352,7 +359,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         url = reference['remoteUrl']
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"
+           url +=  f"#page={page + PdfPageOffset(reference)}"
 
         return f"{reference['title']} {Prototype.LinkTeachersInText(reference['attribution'])} [{matchObject[2]}]({url})"
 

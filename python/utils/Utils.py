@@ -171,7 +171,10 @@ def ItemRepr(item: dict) -> str:
                     event = x["event"]
                     session = x["sessionNumber"]
             args = [item['kind'],EllideText(item['text'])]
-        else:   
+        elif "pdfPageOffset" in item:
+            kind = "reference"
+            args.append(item["abbreviation"])
+        else:
             return(repr(item))
         
         if event:

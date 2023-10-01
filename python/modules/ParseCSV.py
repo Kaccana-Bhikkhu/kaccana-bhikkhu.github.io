@@ -181,17 +181,16 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
         for index in range(delStart,len(keyList)):
             del d[keyList[index]]
 
-def ConvertToInteger(dictList,key):
+def ConvertToInteger(dictList,key,defaultValue = None,reportError:Alert.AlertClass|None = None):
     "Convert the values in key to ints"
     
     for d in Utils.Contents(dictList):
         try:
             d[key] = int(d[key])
         except ValueError as err:
-            if not d[key]:
-                d[key] = None
-            else:
-                raise err
+            if reportError and d[key]:
+                reportError("Cannot convert",repr(d[key]),"to an integer in",d)
+            d[key] = defaultValue
 
 def ListToDict(inList,key = None):
     """Convert a list of dicts to a dict of dicts using key. If key is None, use the first key
@@ -261,7 +260,7 @@ def LoadTagsFile(database,tagFileName):
     ListifyKey(rawTagList,"alternateTranslations")
     ListifyKey(rawTagList,"glosses")
     ListifyKey(rawTagList,"related")
-    ConvertToInteger(rawTagList,"level")
+    ConvertToInteger(rawTagList,"level",reportError=Alert.error)
     
     for item in rawTagList:     
         digitFlag = re.search("[0-9]",item["flags"])
@@ -748,6 +747,16 @@ def LoadEventFile(database,eventName,directory):
         except FileNotFoundError:
             rawExcerpts = CSVToDictList(file,endOfSection = '<---->')
 
+    def RemoveUnknownTeachers(teacherList: list[str],item: dict) -> None:
+        """Remove teachers that aren't present in the teacher database.
+        Report an error mentioning item if this is the case."""
+
+        unknownTeachers = [t for t in teacherList if t not in database["teacher"]]
+        if unknownTeachers:
+            Alert.warning("Teacher(s)",repr(unknownTeachers),"in",item,"do not appear in the Teacher sheet.")
+            for t in unknownTeachers:
+                teacherList.remove(t)
+
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
     
     for key in ["teachers","tags"]:
@@ -755,6 +764,7 @@ def LoadEventFile(database,eventName,directory):
     for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
         if key in eventDesc:
             eventDesc[key] = int(eventDesc[key])
+    RemoveUnknownTeachers(eventDesc["teachers"],eventDesc)
     
     database["event"][eventName] = eventDesc
     
@@ -767,6 +777,7 @@ def LoadEventFile(database,eventName,directory):
     for s in sessions:
         s["event"] = eventName
         Utils.ReorderKeys(s,["event","sessionNumber"])
+        RemoveUnknownTeachers(s["teachers"],s)
 
     if not gOptions.ignoreExcludes:
         sessions = FilterAndExplain(sessions,lambda s: not s["exclude"],excludeAlert,"- exclude flag Yes.")
@@ -823,6 +834,8 @@ def LoadEventFile(database,eventName,directory):
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
             Utils.ExtendUnique(x["qTag"],ourSession["tags"])
+
+        RemoveUnknownTeachers(x["teachers"],x)
 
         if not x["teachers"]:
             defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
