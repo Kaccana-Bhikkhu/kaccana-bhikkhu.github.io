@@ -6,7 +6,7 @@ import os, re, csv, json, unicodedata
 import Filter
 import Render
 import Utils
-from typing import List, Iterator, Tuple, Callable, Any
+from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
@@ -99,10 +99,10 @@ def AppendUnique(ioList,inToAppend):
         if not item in ioList:
             ioList.append(item)
 
-def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True,camelCase = True):
-    for n in range(skipLines):
+def CSVToDictList(file: TextIO,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True,camelCase = True):
+    for _ in range(skipLines):
         file.readline()
-                
+    
     reader = csv.DictReader(file)
     output = []
     for row in reader:
@@ -134,11 +134,18 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
             row.pop(key,None)
     
     return output
+
+def SkipModificationLine(file: TextIO) -> None:
+    """Skip the first line of the file if it is of the form "Modified:DATE"""
+    if file.tell() == 0:
+        if not file.readline().startswith("Modified:"):
+            file.seek(0)
     
 def CSVFileToDictList(fileName,*args,**kwArgs):
     """Read a CSV file and convert it to a list of dictionaries"""
     
     with open(fileName,encoding='utf8') as file:
+        SkipModificationLine(file)
         return CSVToDictList(file,*args,**kwArgs)
 
 def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
@@ -739,10 +746,12 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
+        SkipModificationLine(file)
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
         try: # First look for a separate excerpt sheet ending in x.csv
             with open(os.path.join(directory,eventName + 'x.csv'),encoding='utf8') as excerptFile:
+                SkipModificationLine(excerptFile)
                 rawExcerpts = CSVToDictList(excerptFile,endOfSection = '<---->')
         except FileNotFoundError:
             rawExcerpts = CSVToDictList(file,endOfSection = '<---->')

@@ -27805,7 +27805,7 @@
       "flags": "s",
       "startTime": "Session",
       "endTime": "",
-      "text": "AN 7.6: Treasures",
+      "text": "AN 7.6: Treasures.",
       "teachers": [],
       "annotations": [
         {
@@ -62826,14 +62826,14 @@
   "summary": {
     "Metta2008": {
       "eventCode": "Metta2008",
-      "startDate": "08/09/2008",
-      "teachers": "AP",
-      "sessions": 5,
-      "excerpts": 68,
-      "answersListenedTo": 68,
-      "tagsApplied": 631,
-      "invalidTags": 0,
-      "duration": "5:45:11"
+      "startDate": "#REF!",
+      "teachers": "#REF!",
+      "sessions": null,
+      "excerpts": null,
+      "answersListenedTo": null,
+      "tagsApplied": null,
+      "invalidTags": null,
+      "duration": "#REF!"
     },
     "SRD2010": {
       "eventCode": "SRD2010",
@@ -62897,7 +62897,7 @@
       "sessions": 3,
       "excerpts": 20,
       "answersListenedTo": 20,
-      "tagsApplied": 147,
+      "tagsApplied": 146,
       "invalidTags": 0,
       "duration": "1:01:14"
     },
@@ -63005,9 +63005,9 @@
       "startDate": "6/1/2015",
       "teachers": "AP;AKd;ANy",
       "sessions": 53,
-      "excerpts": 163,
-      "answersListenedTo": 163,
-      "tagsApplied": 42,
+      "excerpts": 166,
+      "answersListenedTo": 166,
+      "tagsApplied": 123,
       "invalidTags": 0,
       "duration": "29:09:47"
     },
@@ -65111,6 +65111,7 @@
     "Category": "category",
     "Description": "description",
     "Format": "format",
+    "": "",
     "Medium": "medium",
     "Venue": "venue",
     "Location": "location",
@@ -65180,7 +65181,6 @@
     "Pali tag menu": "paliTagMenu",
     "Key": "key",
     "Value": "value",
-    "": "",
     "Session #": "sessionNumber",
     "Date": "date",
     "Session title": "sessionTitle",

@@ -97,12 +97,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV,Prototype",
-                "--events",
-                "WR2015",
-                "--parseOnlySpecifiedEvents",
-                "--buildOnly",
-                "events"
+                "DownloadCSV"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

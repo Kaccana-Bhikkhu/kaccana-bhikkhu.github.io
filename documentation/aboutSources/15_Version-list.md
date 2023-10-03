@@ -39,3 +39,5 @@
 - 3.3 Add Glosses column in Tag sheet. Improve alphabetical tag list. Enable tag sorting by date. Events listed in tag pages. Indirect quotes link to teacher. Added Upasika Day 2018: The New Ajahn Chah Biography.
 
 - 3.3.1 Apply ID3 tags to excerpt mp3 files.
+
+- 3.3.2 Download icon. Readings can now be annotations. Minor changes to session excerpts. Winter Retreat 2015 partially complete (through Session 13).
