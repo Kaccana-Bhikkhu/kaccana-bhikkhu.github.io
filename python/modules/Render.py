@@ -302,11 +302,14 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         else:
             return None
 
-    def PdfPageOffset(reference: dict) -> int:
+    def PdfPageOffset(reference: dict,giveWarning = True) -> int:
+        if not reference["filename"].lower().endswith(".pdf"):
+            Alert.warning(reference,"links to",reference["filename"],"not a pdf file.")
         pageOffset = reference['pdfPageOffset']
         if pageOffset is None:
             pageOffset = 0
-            Alert.warning(reference,"does not specify pdfPageOffset.")
+            if giveWarning:
+                Alert.warning(reference,"does not specify pdfPageOffset.")
         return pageOffset
 
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
@@ -319,7 +322,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         url = reference['remoteUrl']
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + PdfPageOffset(reference)}"
+           url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
 
         returnValue = f"[{reference['title']}]({url})"
         if reference['attribution']:
@@ -341,7 +344,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + PdfPageOffset(reference)}"""
+           url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"""
 
         return f"]({url})"
 
