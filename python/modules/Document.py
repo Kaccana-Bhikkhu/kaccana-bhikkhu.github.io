@@ -12,10 +12,11 @@ from markdown_newtab_remote import NewTabRemoteExtension
 def WordCount(text: str) -> int:
     "Return the approximate number of words in text"
     words = re.split(r"\s+",text)
-    if words[0]:
-        return len(words)
+    if len(words) > 1:
+        return len(words) - (not words[0]) - (not words[-1])
+            # Check if the first and last word are empty. Note: bool True = 1
     else:
-        return 0
+        return len(words) - (not words[0])
 
 def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str = "../",pathToBase = "../../",html:bool = True) -> list[Html.PageDesc]:
     """Read and render the documentation files. Return a list of PageDesc objects.

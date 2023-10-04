@@ -49,13 +49,6 @@ There are many ways a skilled and generous programmer could help with the Archiv
 __Add search features:__ The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let me know your ideas or just go ahead and build something.
 
 
-
-__Track changes in the main spreadsheet:__ The [main spreadsheet](https://docs.google.com/spreadsheets/d/1PR197U5m4dtSi-q2ibMwc2xA7TSczA_Df7YP8JGJ3No/edit#gid=2007732801) contains 50 sheets and continues to grow. There is currently no way to know which sheets have changed, so one must either remember which sheets have changed or download them all.
-
-Modifying the Summary sheet to track the modification time of each sheet would solve this problem. The script needs to handle adding, deleting, renaming, and reordering sheets without breaking.
-
-
-
 __Write a cross-platform mp3 splitter:__ The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. It appears that [no cross-platform equivalent exists](https://stackoverflow.com/questions/310765/python-library-to-modify-mp3-audio-without-transcoding). One could write a lossy mp3 splitter using pyaudio or similar module that could be used when mp3DirectCut wasn’t available. This would also enable splitting formats other than mp3.
 
 Alternatively, one could write a python module equivalent to mp3DirectCut. This would need to work on VBR mp3 files and be tested extensively before it would be ready to use.
