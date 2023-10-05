@@ -493,11 +493,10 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
     elif linkKind == "linkToPlayerPage":
-        with a.a(href = hyperlink,title = title):
+        with a.a(href = hyperlink,title = "Back to player"):
             a("⬅ Playable")
-        a(" "+2*"&nbsp")
-        with a.a(href = hyperlink,download = "",title = title):
-            a("⇓ Download")
+        a(" "+4*"&nbsp")
+        a.a(href = hyperlink,download = "",title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
         a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
