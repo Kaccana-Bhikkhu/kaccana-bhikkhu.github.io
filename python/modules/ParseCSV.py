@@ -1002,12 +1002,18 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
         if type(valuesToCount) != list:
             valuesToCount = [valuesToCount]
         
+        removeItems = []
         for item in valuesToCount:
             try:
                 countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
                 totalCount += 1
             except KeyError:
-                Alert.warning(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+                Alert.warning(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}. Will remove {item}.")
+                removeItems.append(item)
+
+        if type(d[sourceKey]) == list:
+            for item in removeItems:
+                valuesToCount.remove(item)
     
     return totalCount
 
