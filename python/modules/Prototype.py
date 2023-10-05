@@ -885,7 +885,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
             
             pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
-                                     Then choose ⬅ Playable or ⇓ Download to play the excerpt.""")
+                                     Then click ⬅ Playable to return to a page where you can play the excerpt.""")
             pageHtml += HtmlExcerptList(excerpts,noPlayer)
             pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
                 # Match only the non-download link
