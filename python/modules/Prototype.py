@@ -233,7 +233,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     return str(a)
 
-def DrilldownPageFile(tagNumber: int) -> str:
+def DrilldownPageFile(tagNumber: int,jumpToEntry:bool = False) -> str:
     "Return the name of the page that has this numbered tag expanded."
     if tagNumber == -1:
         tagNumber = 999
@@ -244,12 +244,15 @@ def DrilldownPageFile(tagNumber: int) -> str:
             # If this tag doesn't have subtags, find its parent tag
             while tagList[tagNumber]["level"] >= ourLevel:
                 tagNumber -= 1
-        
-        tag = gDatabase["tagDisplayList"][tagNumber]["tag"]
-
 
     fileName = f"tag-{tagNumber:03d}.html"
+    if jumpToEntry:
+        fileName += f"#{tagNumber}"
     return fileName
+
+def DrilldownIconLink(tag: str,iconWidth = 20):
+    drillDownPage = "../drilldown/" + DrilldownPageFile(gDatabase["tag"][tag]["listIndex"],jumpToEntry=True)
+    return Html.Tag("a",dict(href=drillDownPage))(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=iconWidth)).prefix)
 
 def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
     """Write a series of html files to create a hierarchial drill-down list of tags."""
@@ -269,7 +272,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             
             yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
 
-def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True) -> str:
+def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
     "Return html code describing this tag."
     
     xCount = ExcerptCount(tag["tag"])
@@ -289,6 +292,9 @@ def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs
         else:
             Alert.caution(tag,"has flag g: DISPLAY_GLOSS but has no glosses.")
     
+    if drilldownLink:
+        tagStr = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + tagStr
+
     if style == "tagFirst":
         return ' '.join([tagStr,paliStr,countStr])
     elif style == "numberFirst":
@@ -308,7 +314,7 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
         with a.p():
-            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst"))
+            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
     
     yield str(a)
 
@@ -341,16 +347,20 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             return string
 
-    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> _Alphabetize:
+    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False,drilldownLink = True) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
         tagName = AlphabetizeName(tagName)
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
+        if drilldownLink:
+            html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
         return Alphabetize(tagName,html)
 
-    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> _Alphabetize:
+    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False,drilldownLink = True) -> _Alphabetize:
         count = tag.get('excerptCount',0)
         countStr = f" ({count})" if count else ""
         html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}]{countStr}"
+        if drilldownLink:
+            html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
         return Alphabetize(text,html)
 
 
@@ -410,14 +420,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["other"].append(entry)
         
         for translation in tag["alternateTranslations"]:
-            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
+            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True,drilldownLink=False).html}"
             if translation.endswith("</em>"):
                 entries["other"].append(Alphabetize(translation,html))
             else:
                 entries["english"].append(Alphabetize(translation,html))
         
         for gloss in tag["glosses"]:
-            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
             if gloss.endswith("</em>"):
                 entries["other"].append(Alphabetize(gloss,html))
             else:
@@ -425,7 +435,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     
     for subsumedTag,subsumedUnder in gDatabase["tagSubsumed"].items():
         tag = gDatabase["tag"][subsumedUnder]
-        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
         entries["english"].append(Alphabetize(subsumedTag,html))
 
     def Deduplicate(iterable: Iterable) -> Iterator:
@@ -1091,8 +1101,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.excerptOmitSessionTags = False
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
-
-        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
+        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
         basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
 
