@@ -1035,8 +1035,12 @@ def ListEventsBySeries(events: list[dict]) -> str:
         "Return the index of the series of this event for sorting purposes"
         return list(gDatabase["series"]).index(event["series"])
     
+    def LinkToAboutSeries(event: dict) -> tuple(str,str,str):
+        htmlHeading = Html.Tag("a",dict(href="../about/04_Series.html#" + Utils.slugify(event["series"])))(event["series"])
+        return htmlHeading,EventDescription(event,showMonth=True),event["series"]
+
     eventsSorted = sorted(events,key=SeriesIndex)
-    return str(Html.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e,showMonth=True)) ))
+    return str(Html.ListWithHeadings(eventsSorted,LinkToAboutSeries))
 
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
