@@ -7,7 +7,7 @@ import Utils, Alert
 import Mp3DirectCut
 from typing import List
 
-Mp3DirectCut.SetExecutable(os.path.join('tools','Mp3DirectCut'))
+Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3DirectCut')))
 
 def IncludeRedactedExcerpts() -> List[dict]:
     "Merge the redacted excerpts back into the main list in order to split mp3 files"
@@ -23,8 +23,8 @@ def IncludeRedactedExcerpts() -> List[dict]:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--eventMp3Dir',type=str,default=os.path.join('audio','sessions'),help='Read session mp3 files from this directory; Default: ./audio/sessions')
-    parser.add_argument('--excerptMp3Dir',type=str,default=os.path.join('audio','excerpts'),help='Write excerpt mp3 files from this directory; Default: ./audio/excerpts')
+    parser.add_argument('--sessionMp3Dir',type=str,default=Utils.PosixJoin('audio','sessions'),help='Read session mp3 files from this directory; Default: ./audio/sessions')
+    parser.add_argument('--excerptMp3Dir',type=str,default=Utils.PosixJoin('audio','excerpts'),help='Write excerpt mp3 files from this directory; Default: ./audio/excerpts')
     parser.add_argument('--overwriteMp3',action='store_true',help="Overwrite existing mp3 files; otherwise leave existing files untouched")
 
 def ParseArguments() -> None:
@@ -73,20 +73,20 @@ def main():
                 
             fileNumber += 1
         
-        eventDir = os.path.join(gOptions.eventMp3Dir,event)
-        sessionFilePath = os.path.join(eventDir,session["filename"])
+        eventDir = Utils.PosixJoin(gOptions.sessionMp3Dir,event)
+        sessionFilePath = Utils.PosixJoin(eventDir,session["filename"])
         if not os.path.exists(sessionFilePath):
             Alert.warning("Cannot locate",sessionFilePath)
             errorCount += 1
             continue
         
-        outputDir = os.path.join(gOptions.excerptMp3Dir,event)
+        outputDir = Utils.PosixJoin(gOptions.excerptMp3Dir,event)
         if not os.path.exists(outputDir):
             os.makedirs(outputDir)
         
         allOutputFilesExist = True
         for x in excerptList:
-            if not os.path.exists(os.path.join(outputDir,x[0]+'.mp3')):
+            if not os.path.exists(Utils.PosixJoin(outputDir,x[0]+'.mp3')):
                 allOutputFilesExist = False
         
         if allOutputFilesExist and not gOptions.overwriteMp3:
@@ -96,13 +96,13 @@ def main():
         # We use eventDir as scratch space for newly generated mp3 files.
         # So first clean up any files left over from previous runs.
         for x in excerptList:
-            scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
+            scratchFilePath = Utils.PosixToWindows(Utils.PosixJoin(eventDir,x[0]+'.mp3'))
             if os.path.exists(scratchFilePath):
                 os.remove(scratchFilePath)
         
         # Next invoke Mp3DirectCut:
         try:
-            Mp3DirectCut.Split(sessionFilePath,excerptList)
+            Mp3DirectCut.Split(Utils.PosixToWindows(sessionFilePath),excerptList)
         except Mp3DirectCut.ExecutableNotFound as err:
             Alert.error(err)
             Alert.status("Continuing to next module.")
@@ -119,8 +119,8 @@ def main():
         
         # Now move the files to their destination
         for x in excerptList:
-            scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
-            outputFilePath = os.path.join(outputDir,x[0]+'.mp3')
+            scratchFilePath = Utils.PosixJoin(eventDir,x[0]+'.mp3')
+            outputFilePath = Utils.PosixJoin(outputDir,x[0]+'.mp3')
             if os.path.exists(outputFilePath):
                 os.remove(outputFilePath)
             
