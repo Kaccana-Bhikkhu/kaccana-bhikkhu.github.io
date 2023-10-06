@@ -26,6 +26,14 @@ class Wrapper(NamedTuple):
                 items.append(self.suffix)
             return joinStr.join(items)
     
+    def __add__(self, other:str) -> Wrapper:
+        "Add a string to the end of suffix"
+        return Wrapper(self.prefix,self.suffix + other)
+    
+    def __radd__(self, other:str) -> Wrapper:
+        "Add a string to the beginning of prefix"
+        return Wrapper(other + self.prefix,self.suffix)
+
     __call__ = Wrap
 
 def Tag(*tagData: str|dict) -> Wrapper:
@@ -329,10 +337,10 @@ class PageDesc(Renderable):
 
 
 T = TypeVar("T")
-def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],headingWrapper:Wrapper = Wrapper('<h3 id="HEADING_ID">','</h3>'),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str,str|None)],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
-    itemRenderer: Takes an item and returns the tuple heading,htmlBody.
+    itemRenderer: Takes an item and returns the tuple heading,htmlBody[,headingID].
     headingWrapper: Wrap the heading in the body with this html code.
     addMenu: Generate a horizontal menu linking to each section at the top?
     """
@@ -343,7 +351,14 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],h
     itemCount = 0
     prevHeading = None
     for item in items:
-        heading,htmlBody = itemRenderer(item)
+        rendered = itemRenderer(item)
+        if len(rendered) == 3:
+            heading,htmlBody,headingID = rendered
+        else:
+            heading,htmlBody = rendered
+            headingID = heading
+        headingID = Utils.slugify(headingID)
+
         if heading != prevHeading:
             if prevHeading is not None and betweenSections:
                 bodyParts.append(betweenSections)
@@ -351,7 +366,6 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str)],h
             if countItems and menuItems: # Append the number of items to the previous menu item
                 menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
 
-            headingID = Utils.slugify(heading)
             menuItems.append(PageInfo(heading,f"#{headingID}"))
             idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
             bodyParts.append(idWrapper.Wrap(heading))

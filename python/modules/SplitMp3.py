@@ -23,12 +23,18 @@ def IncludeRedactedExcerpts() -> List[dict]:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--eventMp3Dir',type=str,default=os.path.join('audio','events'),help='Read session mp3 files from this directory; Default: ./audio/events')
+    parser.add_argument('--eventMp3Dir',type=str,default=os.path.join('audio','sessions'),help='Read session mp3 files from this directory; Default: ./audio/sessions')
     parser.add_argument('--excerptMp3Dir',type=str,default=os.path.join('audio','excerpts'),help='Write excerpt mp3 files from this directory; Default: ./audio/excerpts')
     parser.add_argument('--overwriteMp3',action='store_true',help="Overwrite existing mp3 files; otherwise leave existing files untouched")
 
+def ParseArguments() -> None:
+    pass
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main():
     """ Split the Q&A session mp3 files into individual excerpts.

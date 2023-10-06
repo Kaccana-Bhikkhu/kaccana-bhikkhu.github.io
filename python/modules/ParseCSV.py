@@ -6,7 +6,7 @@ import os, re, csv, json, unicodedata
 import Filter
 import Render
 import Utils
-from typing import List, Iterator, Tuple, Callable, Any
+from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
@@ -99,10 +99,10 @@ def AppendUnique(ioList,inToAppend):
         if not item in ioList:
             ioList.append(item)
 
-def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True,camelCase = True):
-    for n in range(skipLines):
+def CSVToDictList(file: TextIO,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True,camelCase = True):
+    for _ in range(skipLines):
         file.readline()
-                
+    
     reader = csv.DictReader(file)
     output = []
     for row in reader:
@@ -134,11 +134,18 @@ def CSVToDictList(file,skipLines = 0,removeKeys = [],endOfSection = None,convert
             row.pop(key,None)
     
     return output
+
+def SkipModificationLine(file: TextIO) -> None:
+    """Skip the first line of the file if it is of the form "Modified:DATE"""
+    if file.tell() == 0:
+        if not file.readline().startswith("Modified:"):
+            file.seek(0)
     
 def CSVFileToDictList(fileName,*args,**kwArgs):
     """Read a CSV file and convert it to a list of dictionaries"""
     
     with open(fileName,encoding='utf8') as file:
+        SkipModificationLine(file)
         return CSVToDictList(file,*args,**kwArgs)
 
 def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
@@ -181,17 +188,16 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
         for index in range(delStart,len(keyList)):
             del d[keyList[index]]
 
-def ConvertToInteger(dictList,key):
+def ConvertToInteger(dictList,key,defaultValue = None,reportError:Alert.AlertClass|None = None):
     "Convert the values in key to ints"
     
     for d in Utils.Contents(dictList):
         try:
             d[key] = int(d[key])
         except ValueError as err:
-            if not d[key]:
-                d[key] = None
-            else:
-                raise err
+            if reportError and d[key]:
+                reportError("Cannot convert",repr(d[key]),"to an integer in",d)
+            d[key] = defaultValue
 
 def ListToDict(inList,key = None):
     """Convert a list of dicts to a dict of dicts using key. If key is None, use the first key
@@ -261,7 +267,7 @@ def LoadTagsFile(database,tagFileName):
     ListifyKey(rawTagList,"alternateTranslations")
     ListifyKey(rawTagList,"glosses")
     ListifyKey(rawTagList,"related")
-    ConvertToInteger(rawTagList,"level")
+    ConvertToInteger(rawTagList,"level",reportError=Alert.error)
     
     for item in rawTagList:     
         digitFlag = re.search("[0-9]",item["flags"])
@@ -393,6 +399,8 @@ def RemoveUnusedTags(database: dict) -> None:
             return False
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
+    usedTags.update(t for t in gDatabase["tagSubsumed"].values())
+
     Alert.extra(len(usedTags),"unique tags applied.")
     
     prevTagCount = 0
@@ -686,9 +694,10 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
-        #if set(teacherList) == set(excerpt["teachers"]):
-        #    teacherList = []
-        
+
+        if annotation["kind"] == "Reading":
+            AppendUnique(teacherList,ReferenceAuthors(annotation["text"]))
+
         annotation["teachers"] = teacherList
     else:
         keysToRemove.append("teachers")
@@ -706,13 +715,16 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     
     excerpt["annotations"].append(annotation)
 
-def ReferenceAuthors(referenceDB: dict[dict],textToScan: str) -> list[str]:
-    regexList = Render.ReferenceMatchRegExs(referenceDB)
+gAuthorRegexList = None
+def ReferenceAuthors(textToScan: str) -> list[str]:
+    global gAuthorRegexList
+    if not gAuthorRegexList:
+        gAuthorRegexList = Render.ReferenceMatchRegExs(gDatabase["reference"])
     authors = []
-    for regex in regexList:
+    for regex in gAuthorRegexList:
         matches = re.findall(regex,textToScan,flags = re.IGNORECASE)
         for match in matches:
-            AppendUnique(authors,referenceDB[match[0].lower()]["author"])
+            AppendUnique(authors,gDatabase["reference"][match[0].lower()]["author"])
 
     return authors
 
@@ -734,13 +746,25 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
+        SkipModificationLine(file)
         rawEventDesc = CSVToDictList(file,endOfSection = '<---->')
         sessions = CSVToDictList(file,removeKeys = ["seconds"],endOfSection = '<---->')
         try: # First look for a separate excerpt sheet ending in x.csv
             with open(os.path.join(directory,eventName + 'x.csv'),encoding='utf8') as excerptFile:
+                SkipModificationLine(excerptFile)
                 rawExcerpts = CSVToDictList(excerptFile,endOfSection = '<---->')
         except FileNotFoundError:
             rawExcerpts = CSVToDictList(file,endOfSection = '<---->')
+
+    def RemoveUnknownTeachers(teacherList: list[str],item: dict) -> None:
+        """Remove teachers that aren't present in the teacher database.
+        Report an error mentioning item if this is the case."""
+
+        unknownTeachers = [t for t in teacherList if t not in database["teacher"]]
+        if unknownTeachers:
+            Alert.warning("Teacher(s)",repr(unknownTeachers),"in",item,"do not appear in the Teacher sheet.")
+            for t in unknownTeachers:
+                teacherList.remove(t)
 
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
     
@@ -749,6 +773,7 @@ def LoadEventFile(database,eventName,directory):
     for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
         if key in eventDesc:
             eventDesc[key] = int(eventDesc[key])
+    RemoveUnknownTeachers(eventDesc["teachers"],eventDesc)
     
     database["event"][eventName] = eventDesc
     
@@ -761,6 +786,7 @@ def LoadEventFile(database,eventName,directory):
     for s in sessions:
         s["event"] = eventName
         Utils.ReorderKeys(s,["event","sessionNumber"])
+        RemoveUnknownTeachers(s["teachers"],s)
 
     if not gOptions.ignoreExcludes:
         sessions = FilterAndExplain(sessions,lambda s: not s["exclude"],excludeAlert,"- exclude flag Yes.")
@@ -818,6 +844,8 @@ def LoadEventFile(database,eventName,directory):
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
             Utils.ExtendUnique(x["qTag"],ourSession["tags"])
 
+        RemoveUnknownTeachers(x["teachers"],x)
+
         if not x["teachers"]:
             defaultTeacher = database["kind"][x["kind"]]["inheritTeachersFrom"]
             if defaultTeacher == "Anon": # Check if the default teacher is anonymous
@@ -826,7 +854,7 @@ def LoadEventFile(database,eventName,directory):
                 x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
         
         if x["kind"] == "Reading":
-            AppendUnique(x["teachers"],ReferenceAuthors(database["reference"],x["text"]))
+            AppendUnique(x["teachers"],ReferenceAuthors(x["text"]))
         
         if x["sessionNumber"] != lastSession:
             lastSession = x["sessionNumber"]
@@ -974,12 +1002,18 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
         if type(valuesToCount) != list:
             valuesToCount = [valuesToCount]
         
+        removeItems = []
         for item in valuesToCount:
             try:
                 countDicts[item][countKey] = countDicts[item].get(countKey,0) + 1
                 totalCount += 1
             except KeyError:
-                Alert.warning(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}")
+                Alert.warning(f"CountInstances: Can't match key {item} from {d} in list of {sourceKey}. Will remove {item}.")
+                removeItems.append(item)
+
+        if type(d[sourceKey]) == list:
+            for item in removeItems:
+                valuesToCount.remove(item)
     
     return totalCount
 
@@ -1065,8 +1099,14 @@ def AddArguments(parser):
     parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
     parser.add_argument('--explainExcludes',action='store_true',help="Print a message for each excluded/redacted excerpt")
 
+def ParseArguments() -> None:
+    pass
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 # AlertClass for explanations of excluded excerpts. Don't show by default.
 excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)
@@ -1103,6 +1143,11 @@ def main():
     if gOptions.explainExcludes:
         excludeAlert.printAtVerbosity = -999
 
+    if gOptions.events != "All":
+        unknownEvents = set(gOptions.events) - set(gDatabase["summary"])
+        if unknownEvents:
+            Alert.warning("Events",unknownEvents,"are not listed in the Summary sheet and will not be parsed.")
+
     gDatabase["event"] = {}
     gDatabase["sessions"] = []
     gDatabase["excerpts"] = []
@@ -1114,6 +1159,10 @@ def main():
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     
+    if not len(gDatabase["event"]):
+        Alert.error("No excerpts have been parsed. Aborting.")
+        quit()
+
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)

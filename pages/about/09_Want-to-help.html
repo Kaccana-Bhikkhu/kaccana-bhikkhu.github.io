@@ -11,11 +11,12 @@
     
 </head>
 <body>
-
+  <p style="text-align:right;"><a href="https://abhayagiri.org">🠄 Back to abhayagiri.org</a></p>
+  
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
     <br>
-    <h4><b><a href = "../homepage.html">About</a></b> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../drilldown/tag-999.html">Tags</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../indexes/EventsBySeries.html">Events</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../teachers/TeachersChronological.html">Teachers</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../indexes/AllExcerpts.html">All excerpts</a></h4>
+    <h4><b><a href = "../homepage.html">About</a></b> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../drilldown/tag-999.html">Tags</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../indexes/EventsBySeries.html">Events</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../teachers/TeachersAlphabetical.html">Teachers</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href = "../indexes/AllExcerpts.html">All excerpts</a></h4>
   </div>
 <br>
 
@@ -58,8 +59,6 @@
 <p><strong>Time commitment:</strong> Variable, but programming projects always take longer than you think.</p>
 <p>There are many ways a skilled and generous programmer could help with the Archive (<a href="https://github.com/Kaccana-Bhikkhu/qs-archive" target="_blank">github</a>). Here are my ideas, ranked roughly in order of usefulness with the really big project last.</p>
 <p><strong>Add search features:</strong> The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let me know your ideas or just go ahead and build something.</p>
-<p><strong>Track changes in the main spreadsheet:</strong> The <a href="https://docs.google.com/spreadsheets/d/1PR197U5m4dtSi-q2ibMwc2xA7TSczA_Df7YP8JGJ3No/edit#gid=2007732801" target="_blank">main spreadsheet</a> contains 50 sheets and continues to grow. There is currently no way to know which sheets have changed, so one must either remember which sheets have changed or download them all.</p>
-<p>Modifying the Summary sheet to track the modification time of each sheet would solve this problem. The script needs to handle adding, deleting, renaming, and reordering sheets without breaking.</p>
 <p><strong>Write a cross-platform mp3 splitter:</strong> The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. It appears that <a href="https://stackoverflow.com/questions/310765/python-library-to-modify-mp3-audio-without-transcoding" target="_blank">no cross-platform equivalent exists</a>. One could write a lossy mp3 splitter using pyaudio or similar module that could be used when mp3DirectCut wasn’t available. This would also enable splitting formats other than mp3.</p>
 <p>Alternatively, one could write a python module equivalent to mp3DirectCut. This would need to work on VBR mp3 files and be tested extensively before it would be ready to use.</p>
 <p><strong>Note:</strong> I plan to rewrite the audio splitting functions in the next few months. If you’re interested in the first approach to this project, you may want to wait until I’ve done so.</p>

@@ -43,16 +43,22 @@ def DownloadSummarySheet() -> None:
         
     DownloadSheetCSV(gOptions.spreadsheetId,gOptions.summarySheetID,gOptions.summaryFilePath)
 
-def ReadSheetIds() -> dict:
-    "Read Summary.csv and return a dict {sheetName : sheetId}"
+def ReadSummarySheet() -> tuple[dict[str,str],dict[str,str]]:
+    "Read Summary.csv and return two dicts {sheetName : sheetId} and {sheetName : modifiedDate (str)}"
     
     with open(os.path.join(gOptions.csvDir,'Summary.csv'),encoding='utf8') as file:
         CSVToDictList(file,skipLines = 1,endOfSection = '<---->',camelCase = False)
             # Skip the first half of the summary file
         
-        sheetIds = CSVToDictList(file,camelCase = False,skipLines = 2)
+        summarySheet = CSVToDictList(file,camelCase = False,skipLines = 2)
     
-    return DictFromPairs(sheetIds,'Sheet','gid',camelCase=False)
+    sheetIds = DictFromPairs(summarySheet,'Sheet','gid',camelCase=False)
+    if 'Modified' in summarySheet[0]:
+        modDates = DictFromPairs(summarySheet,'Sheet','Modified',camelCase=False)
+    else:
+        modDates = {sheetName:"" for sheetName in sheetIds}
+
+    return sheetIds,modDates
 
 def DownloadSheets(sheetIds: dict) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"
@@ -65,32 +71,43 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     parser.add_argument('--spreadsheet',type=str, help='URL of the QS Archive main Google Sheet')
     parser.add_argument('--summarySheetID',type=int,default = 0,help='GID of the "Summary" sheet in spreadsheet')
-    parser.add_argument('--sheets',type=str,default='Default',help='Download this list of named sheets; Default: Tags and the sheets specified by --events')
+    parser.add_argument('--sheets',type=str,default='Changed',help='Download this list of named sheets; Default: Changed')
     parser.add_argument('--csvDir',type=str,default='csv',help="Read/write csv files in this directory; Default: ./csv")
+
+def ParseArguments() -> None:
+    if not gOptions.spreadsheet:
+        Alert.error("A spreadsheet must be specified using --spreadsheet")
+        return
+
+    spreadsheetMatch = re.search(r'/d/([^/]*)/',gOptions.spreadsheet)
+    if not spreadsheetMatch:
+        Alert.error("Cannot find a spreadsheet ID in --spreadsheet",repr(gOptions.spreadsheet))
+        return
     
+    gOptions.spreadsheetId = spreadsheetMatch.groups()[0]
+    gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
 
 def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     
-    if not gOptions.spreadsheet:
-        Alert.error("A spreadsheet must be specified using --spreadsheet")
-        Alert.error("DownloadCSV aborting.")
-        return
-
-    gOptions.spreadsheetId = re.search(r'/d/([^/]*)/',gOptions.spreadsheet).groups()[0]
-    gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
-    
     downloadSummary = False
-    if gOptions.sheets != 'All' and gOptions.sheets != 'Default':
+    if gOptions.sheets not in {'All','Default','Changed'}:
         gOptions.sheets = gOptions.sheets.split(',')
         if 'Summary' in gOptions.sheets:
             downloadSummary = True
             gOptions.sheets.remove('Summary')
-        
-    if os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All' and not downloadSummary:
-        oldSheetIds = ReadSheetIds()
+    
+    if gOptions.sheets == 'Changed':
+        downloadSummary = True
+        oldSheetIds,oldSheetModDates = ReadSummarySheet()
+    elif os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All' and not downloadSummary:
+        oldSheetIds,_ = ReadSummarySheet()
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
         
@@ -110,27 +127,33 @@ def main():
         
     if downloadSummary:
         DownloadSummarySheet()
-        sheetIds = ReadSheetIds()
+        sheetIds,sheetModDates = ReadSummarySheet()
         Alert.info("Downloaded Summary.csv")
     else:
         sheetIds = oldSheetIds
         Alert.info("Didn't download Summary.csv")
-        
     
     sheetIds.pop('Summary',None) # No need to download summary again
     sheetIds = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName[0] != '_'}
         # Don't download special sheets begining with _
-        
-    if gOptions.sheets != 'All':
-        for sheetName in gOptions.sheets:
-            if sheetName not in sheetIds:
-                Alert.warning('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
-        
-        sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
-        sheetsToDownload.update((sheetName,sheetId) for sheetName,sheetId in sheetIds.items() if sheetName.rstrip('x') in gOptions.sheets)
-            # Download sheet WR2015x if WR2015 appears in gOptions.sheets
+
+    if gOptions.sheets == 'Changed':
+        blankModDates = [sheetName for sheetName in sheetIds if not sheetModDates[sheetName].strip()]
+        if blankModDates:
+            Alert.caution(len(blankModDates),"sheets do not have a modification date and will not be downloaded:",blankModDates)
+            Alert.notice("For AP QS Archive version 3.3 and earlier, use --sheets All or specify which sheets to download.")
+        sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetModDates[sheetName] != oldSheetModDates.get(sheetName,None)}
     else:
-        sheetsToDownload = sheetIds
+        if gOptions.sheets != 'All':
+            for sheetName in gOptions.sheets:
+                if sheetName not in sheetIds:
+                    Alert.warning('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
+            
+            sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
+            sheetsToDownload.update((sheetName,sheetId) for sheetName,sheetId in sheetIds.items() if sheetName.rstrip('x') in gOptions.sheets)
+                # Download sheet WR2015x (for example) if WR2015 appears in gOptions.sheets
+        else:
+            sheetsToDownload = sheetIds
     
     DownloadSheets(sheetsToDownload)
     downloadedSheets = list(sheetsToDownload.keys())

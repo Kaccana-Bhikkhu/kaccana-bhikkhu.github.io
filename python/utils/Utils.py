@@ -12,7 +12,7 @@ import pathlib
 from collections.abc import Iterable
 
 gOptions = None
-gDatabase = None # These will be set later by QSarchive.py
+gDatabase:dict[str] = {} # These will be set later by QSarchive.py
 
 def Contents(container:list|dict) -> list:
     try:
@@ -171,7 +171,10 @@ def ItemRepr(item: dict) -> str:
                     event = x["event"]
                     session = x["sessionNumber"]
             args = [item['kind'],EllideText(item['text'])]
-        else:   
+        elif "pdfPageOffset" in item:
+            kind = "reference"
+            args.append(item["abbreviation"])
+        else:
             return(repr(item))
         
         if event:
@@ -268,6 +271,88 @@ def FindOwningExcerpt(annotation: dict) -> dict:
             if annotation is a:
                 return x
     return None
+
+def SubAnnotations(excerpt: dict,annotation: dict) -> list[dict]:
+    """Return the annotations that are under this annotation or excerpt."""
+
+    if annotation is excerpt:
+        scanLevel = 1
+        scanning = True
+    else:
+        scanLevel = annotation["indentLevel"] + 1
+        scanning = False
+    
+    subs = []
+    for a in excerpt["annotations"]:
+        if scanning:
+            if a["indentLevel"] == scanLevel:
+                subs.append(a)
+            elif a["indentLevel"] < scanLevel:
+                scanning = False
+        elif a is annotation:
+            scanning = True
+
+    return subs
+
+def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
+    """Return this annotation's parent."""
+    if not annotation or annotation is excerpt:
+        return None
+    if annotation["indentLevel"] == 1:
+        return excerpt
+    searchForLevel = 0
+    found = False
+    for searchAnnotation in reversed(excerpt["annotations"]):
+        if searchAnnotation["indentLevel"] == searchForLevel:
+            return searchAnnotation
+        if searchAnnotation is annotation:
+            searchForLevel = annotation["indentLevel"] - 1
+    if not found:
+        Alert.error("Annotation",annotation,"doesn't have a proper parent.")
+        return None
+
+def GroupBySession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
+    """Yield excerpts grouped by their session."""
+    if not sessions:
+        sessions = gDatabase["sessions"]
+    sessionIterator = iter(sessions)
+    curSession = next(sessionIterator)
+    yieldList = []
+    for excerpt in excerpts:
+        while excerpt["event"] != curSession["event"] or excerpt["sessionNumber"] != curSession["sessionNumber"]:
+            if yieldList:
+                yield curSession,yieldList
+                yieldList = []
+            curSession = next(sessionIterator)
+        yieldList.append(excerpt)
+    
+    if yieldList:
+        yield curSession,yieldList
+
+def GroupByEvent(excerpts: list[dict],events: dict[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
+    """Yield excerpts grouped by their event. NOT YET TESTED"""
+    if not events:
+        events = gDatabase["event"]
+    yieldList = []
+    curEvent = ""
+    for excerpt in excerpts:
+        while excerpt["event"] != curEvent:
+            if yieldList:
+                yield events[curEvent],yieldList
+                yieldList = []
+            curEvent = excerpt["event"]
+        yieldList.append(excerpt)
+    
+    if yieldList:
+        yield events[curEvent],yieldList
+
+def PairWithSession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,dict]]:
+    """Yield tuples (session,excerpt) for all excerpts."""
+    if not sessions:
+        sessions = gDatabase["sessions"]
+    
+    for session,excerptList in GroupBySession(excerpts,sessions):
+        yield from ((session,x) for x in excerptList)
 
 def RemoveDiacritics(string: str) -> str:
     "Remove diacritics from string."

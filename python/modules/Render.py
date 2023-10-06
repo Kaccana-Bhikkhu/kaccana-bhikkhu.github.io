@@ -76,15 +76,24 @@ def PrepareTemplates():
             kind["attribution"].append(attribution)
 
 def AddImplicitAttributions() -> None:
-    "If an excerpt of kind Reading doesn't have a Read by annotation, attribute it to the session teachers"
-    for x in gDatabase["excerpts"]:
+    "If an excerpt or annotation of kind Reading doesn't have a Read by annotation, attribute it to the session or excerpt teachers"
+    for session,x in Utils.PairWithSession(gDatabase["excerpts"]):
         if x["kind"] == "Reading":
             readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
             if not readBy:
-                sessionTeachers = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])["teachers"]
+                sessionTeachers = session["teachers"]
                 newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": sessionTeachers,"indentLevel": 1}
                 x["annotations"].insert(0,newAnnotation)
-                
+        for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
+            if a["kind"] == "Reading":
+                readBy = [subA for subA in Utils.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                if not readBy:
+                    if x["kind"] == "Reading":
+                        readers = session["teachers"]
+                    else:
+                        readers = x["teachers"]
+                    newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": readers,"indentLevel": a["indentLevel"] + 1}
+                    x["annotations"].insert(n + 1,newAnnotation)
 
 @lru_cache(maxsize = None)
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
@@ -93,21 +102,26 @@ def CompileTemplate(template: str) -> Type[pyratemp.Template]:
 def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
     "Append annotation a to the end of excerpt x."
 
-    if "{attribution}" in a["body"]:
-        attrNum = 2
-        attrKey = "attribution" + str(attrNum)
-        while attrKey in x: # Find the first available key of this form
-            attrNum += 1
+    if a["indentLevel"] == 1: # Append the annotation to the end of the excerpt.
+        if "{attribution}" in a["body"]:
+            attrNum = 2
             attrKey = "attribution" + str(attrNum)
-        
-        a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
-        x[attrKey] = a["attribution"]
-        x["teachers" + str(attrNum)] = a["teachers"]
+            while attrKey in x: # Find the first available key of this form
+                attrNum += 1
+                attrKey = "attribution" + str(attrNum)
+            
+            a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
+            x[attrKey] = a["attribution"]
+            x["teachers" + str(attrNum)] = a["teachers"]
 
-    x["body"] += " " + a["body"]
+        x["body"] += " " + a["body"]
+    else: # Append the annotation to its enclosing excerpt
+        body = a["body"].replace("{attribution}",a["attribution"])
+        Utils.ParentAnnotation(x,a)["body"] += " " + body
 
     a["body"] = ""
     del a["attribution"]
+        
 
 def RenderItem(item: dict,container: dict|None = None) -> None:
     """Render an excerpt or annotation by adding "body" and "attribution" keys.
@@ -140,8 +154,19 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     plural = "s" if (ParseCSV.ExcerptFlag.PLURAL in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
-        teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
+    if container:
+        if item["kind"] == "Read by":
+            grandparent = Utils.ParentAnnotation(container,Utils.ParentAnnotation(container,item))
+                # The parent of this Read by annotation is a reading, which has the authors as teachers
+                # Thus the grandparent indicates the default reader(s)
+            if grandparent:
+                defaultTeachers = grandparent["teachers"]
+            else:
+                defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
+        else:
+            defaultTeachers = container["teachers"]
+        if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
+            teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
     text = item["text"]
@@ -199,11 +224,7 @@ def RenderExcerpts() -> None:
         for a in x["annotations"]:
             RenderItem(a,x)
             if kinds[a["kind"]]["appendToExcerpt"]:
-                if a["indentLevel"] == 1: # Only append level 1 annotations to the excerpt
-                    AppendAnnotationToExcerpt(a,x)
-                else: # Don't render level 2 and higher annotations; hand-code them in to the annotation if needed.
-                    a["body"] = ""
-                    del a["attribution"]
+                AppendAnnotationToExcerpt(a,x)
 
 
 def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
@@ -281,6 +302,16 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         else:
             return None
 
+    def PdfPageOffset(reference: dict,giveWarning = True) -> int:
+        if not reference["filename"].lower().endswith(".pdf"):
+            Alert.warning(reference,"links to",reference["filename"],"not a pdf file.")
+        pageOffset = reference['pdfPageOffset']
+        if pageOffset is None:
+            pageOffset = 0
+            if giveWarning:
+                Alert.warning(reference,"does not specify pdfPageOffset.")
+        return pageOffset
+
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -291,7 +322,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         url = reference['remoteUrl']
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"
+           url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
 
         returnValue = f"[{reference['title']}]({url})"
         if reference['attribution']:
@@ -313,7 +344,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"""
+           url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"""
 
         return f"]({url})"
 
@@ -331,7 +362,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         url = reference['remoteUrl']
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"
+           url +=  f"#page={page + PdfPageOffset(reference)}"
 
         return f"{reference['title']} {Prototype.LinkTeachersInText(reference['attribution'])} [{matchObject[2]}]({url})"
 
@@ -490,12 +521,16 @@ def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--renderedDatabase',type=str,default='prototype/RenderedDatabase.json',help='Database after rendering each excerpt; Default: prototype/RenderedDatabase.json')
 
+def ParseArguments() -> None:
+    pass
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main() -> None:
-
-    Prototype.ParseBuildSections()
 
     PrepareTemplates()
 

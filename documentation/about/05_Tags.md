@@ -13,28 +13,28 @@ __A. Mental qualities__
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/tag-265.html#265)
-5. [Devotional practice](../../pages/drilldown/tag-272.html#272)
-6. [Precepts](../../pages/drilldown/tag-290.html#290)
-7. [Meditation](../../pages/drilldown/tag-315.html#315)
+4. [Three Refuges](../../pages/drilldown/tag-266.html#266)
+5. [Devotional practice](../../pages/drilldown/tag-273.html#273)
+6. [Precepts](../../pages/drilldown/tag-291.html#291)
+7. [Meditation](../../pages/drilldown/tag-316.html#316)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-389.html#389)
-9. [Teachers](../../pages/drilldown/tag-426.html#426)
-10. [Monasteries](../../pages/drilldown/tag-492.html#492)
+8. [Teaching Dhamma](../../pages/drilldown/tag-390.html#390)
+9. [Teachers](../../pages/drilldown/tag-427.html#427)
+10. [Monasteries](../../pages/drilldown/tag-493.html#493)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-515.html#515)
-12. [History](../../pages/drilldown/tag-536.html#536)
-13. [Cultural context](../../pages/drilldown/tag-547.html#547)
-14. [Spiritual traditions](../../pages/drilldown/tag-566.html#566)
+11. [Nature of the cosmos](../../pages/drilldown/tag-516.html#516)
+12. [History](../../pages/drilldown/tag-537.html#537)
+13. [Cultural context](../../pages/drilldown/tag-549.html#549)
+14. [Spiritual traditions](../../pages/drilldown/tag-569.html#569)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-578.html#578)
-16. [Everyday life](../../pages/drilldown/tag-646.html#646)
+15. [Renunciant practice](../../pages/drilldown/tag-581.html#581)
+16. [Everyday life](../../pages/drilldown/tag-649.html#649)
 
 As in the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful stages of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
