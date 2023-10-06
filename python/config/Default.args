@@ -13,10 +13,13 @@
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
 // Main program options:
+--mirror abhayagiri:https://abhayagiri.org/media/discs/questions/
+--mirror preview:https://storage.googleapis.com/apqs_archive/
+--mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
 --sessionMp3 remote
---excerptMp3 remote
-// --remoteExcerptMp3URL "http://storage.googleapis.com/apqs_archive/audio/excerpts/"
---remoteExcerptMp3URL "https://www.abhayagiri.org/media/discs/questions/audio/excerpts/"
+--excerptMp3 abhayagiri
+//--remoteExcerptMp3URL "https://storage.googleapis.com/apqs_archive/audio/excerpts/"
+//--remoteExcerptMp3URL "https://www.abhayagiri.org/media/discs/questions/audio/excerpts/"
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:

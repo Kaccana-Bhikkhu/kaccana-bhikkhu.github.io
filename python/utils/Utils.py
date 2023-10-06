@@ -6,6 +6,7 @@ from datetime import timedelta, datetime
 import copy
 import unicodedata
 import re, os
+from urllib.parse import urlparse
 from typing import List
 import Alert
 import pathlib
@@ -20,7 +21,7 @@ def Contents(container:list|dict) -> list:
     except AttributeError:
         return container
 
-def ExtendUnique(dest: list, source: list) -> list:
+def ExtendUnique(dest: list, source: Iterable) -> list:
     "Append all the items in source to dest, preserving order but eliminating duplicates."
 
     destSet = set(dest)
@@ -59,10 +60,23 @@ def ParseItemCode(itemCode:str) -> tuple(str,int|None,int|None):
     else:
         return "",None,None
 
+def PosixToWindows(path:str) -> str:
+    return str(pathlib.PureWindowsPath(pathlib.PurePosixPath(path)))
 
 def PosixJoin(*paths):
     "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
     return str(pathlib.PurePosixPath(*paths))
+
+def DirectoryURL(url:str) -> str:
+    "Ensure that this url specifies a directory path."
+    if url.endswith("/"):
+        return url
+    else:
+        return url + "/"
+
+def RemoteURL(url:str) -> bool:
+    "Does this point to a remote file server?"
+    return bool(urlparse(url).netloc)
 
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"

@@ -56,7 +56,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     "Scan the list of specified ops to see if we can load a database to save time. Add any ops needed to support those specified."
 
     newDB = {}
-    opSet = set(opSet) # Clone opSet
+    opSet:set = set(opSet) # Clone opSet
 
     if 'DownloadCSV' in opSet:
         if len(opSet) > 1: # If we do anything other than DownloadCSV, we need to parse the newly-downloaded files
@@ -64,9 +64,11 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
         else:
             return newDB,opSet
     
-    requireSpreadsheetDB = {'SplitMp3','Render'}
+    requireSpreadsheetDB = {'SplitMp3','Link','Render'}
     requireRenderedDB = {'Document','Prototype','TagMp3'}
 
+    if 'Render' in opSet: # Render requires link in all cases
+        opSet.add('Link')
     if opSet.intersection(requireRenderedDB):
         if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB):
             try:
@@ -75,7 +77,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
                     return newDB,opSet
             except OSError:
                 pass
-        opSet.add('Render')
+        opSet.update(['Link','Render'])
     
     if 'ParseCSV' not in opSet and opSet.intersection(requireSpreadsheetDB):
         try:
@@ -88,9 +90,11 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Render','Document','Prototype','TagMp3']
+moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Link','Render','Document','Prototype','TagMp3']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
+priorityInitialization = ['Link']
+Utils.ExtendUnique(priorityInitialization,modules.keys())
 
 parser = argparse.ArgumentParser(description="""Create the Ajahn Pasanno Question and Story Archive website from mp3 files and the 
 AP QA archive main Google Sheet.""")
@@ -111,9 +115,6 @@ parser.add_argument('--defaults',type=str,default='python/config/Default.args,py
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
-parser.add_argument('--sessionMp3',type=str,default='remote',help='Session audio file link location; default: remote - use external Mp3 URL from session database')
-parser.add_argument('--excerptMp3',type=str,default='remote',help='Excerpt audio file link location; default: remote - use remoteExcerptMp3URL')
-parser.add_argument('--remoteExcerptMp3URL',type=str, help='remote URL for excerpts')
 
 for mod in modules.values():
     mod.AddArguments(parser)
@@ -163,8 +164,8 @@ for mod in modules.values():
         # Let each module access all arguments
 Utils.gOptions = clOptions
 
-for mod in modules.values():
-    mod.ParseArguments()
+for modName in priorityInitialization:
+    modules[modName].ParseArguments()
         # Tell each module to parse its own arguments
 
 if Alert.error.count:
@@ -200,8 +201,8 @@ Filter.gDatabase = database
 initialized = False
 for moduleName in moduleList:
     if database and not initialized:
-        for mod in modules.values():
-            mod.Initialize() # Run each module's initialize function when the database fills up
+        for modName in priorityInitialization:
+            modules[modName].Initialize() # Run each module's initialize function when the database fills up
         initialized = True
 
     if moduleName in opSet:
