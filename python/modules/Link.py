@@ -18,6 +18,16 @@ class ItemType(StrEnum): # The kinds of items we will link to
     EXCERPT = "excerptMp3"
     REFRENCE = "reference"
 
+def AutoType(item:dict) -> ItemType:
+    if "fileNumber" in item:
+        return ItemType.EXCERPT
+    elif "sessionTitle" in item:
+        return ItemType.SESSION
+    elif "pdfPageOffset" in item:
+        return ItemType.REFRENCE
+    
+    Alert.error("Autotype: unknown type",item)
+
 class LinkValidator:
     """For a given item and URL, determine whether the link is valid.
     The base class checks to see if local files exist but assumes remote URLs are always valid.
@@ -47,6 +57,19 @@ class Linker:
         self.itemType = itemType
         self.validator = validator
     
+    def _UncheckedMirrors(self,item: dict) -> list[str]:
+        """Return a list of the mirrors that we haven't yet checked for item."""
+        currentMirror = item.get("mirror","")
+        midSearch = currentMirror.endswith("*")
+        if currentMirror and not midSearch:
+            return [] # If the item specifies a mirror, no need to search further
+
+        mirrorList = getattr(gOptions,self.itemType)
+        if midSearch:
+            return mirrorList[mirrorList.index(currentMirror.rstrip("*")):]
+        else:
+            return mirrorList
+
     def Filename(self,item: dict) -> str:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
@@ -77,16 +100,40 @@ class Linker:
         If there is no valid mirror, set it to "".
         Returns the name of the mirror or ""."""
 
-        mirrorList = getattr(gOptions,self.itemType)
+        currentMirror = item.get("mirror","")
+        if currentMirror and not currentMirror.endswith("*"):
+            return item["mirror"]
 
-        for mirror in mirrorList:
+        for mirror in self._UncheckedMirrors(item):
             if self.validator.ValidLink(self.URL(item,mirror),item):
                 item["mirror"] = mirror
                 return mirror
         
         item["mirror"] = ""
         return ""
+    
+    def LocalItemNeeded(self,item: dict) -> bool:
+        """Check through the available mirrors until we either reach a valid item or the local mirror.
+        If the latter, report true and stop the search so that a local item can be acquired."""
+        
+        for mirror in self._UncheckedMirrors(item):
+            if self.validator.ValidLink(self.URL(item,mirror),item):
+                item["mirror"] = mirror
+                return False
+            elif mirror == "local":
+                item["mirror"] = "local*"
+                return True
+        
+        return False
 
+
+def URL(item:dict,mirror:str = "") -> str:
+    "Auto-detect the type of this item and return its URL"
+    return gLinker[AutoType(item)].URL(item,mirror)
+
+def LocalItemNeeded(item:dict) -> bool:
+    "Auto-detect the type of this item and return whether a local copy is needed"
+    return gLinker[AutoType(item)].LocalItemNeeded(item)
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
@@ -137,15 +184,14 @@ def ParseArguments() -> None:
     if "remote" in gOptions.excerptMp3:
         Alert.error("remote cannot be specified as a mirror for excerpts.")
 
-    print(gOptions)
 
-linker:dict[ItemType,Linker] = {}
+gLinker:dict[ItemType,Linker] = {}
 
 def Initialize() -> None:
     """Configure the linker object."""
-    global linker
+    global gLinker
 
-    linker = {itemType:Linker(itemType,LinkValidator()) for itemType in ItemType}
+    gLinker = {itemType:Linker(itemType,LinkValidator()) for itemType in ItemType}
         # For now, use the simplest possible Linker object
 
 gOptions = None
@@ -153,11 +199,14 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 
 def main() -> None:
     itemLists = {
-        #ItemType.EXCERPT: gDatabase["excerpts"],
-        #ItemType.SESSION: gDatabase["sessions"],
+        ItemType.EXCERPT: gDatabase["excerpts"],
+        ItemType.SESSION: gDatabase["sessions"],
         ItemType.REFRENCE: gDatabase["reference"]
     }
     for itemType,items in itemLists.items():
         for item in Utils.Contents(items):
-            if not linker[itemType].LinkItem(item):
+            if item.get("fileNumber",1) == 0:
+                continue # Don't link session excerpts
+
+            if not gLinker[itemType].LinkItem(item):
                 Alert.warning("Unable to link item",item)

@@ -864,6 +864,9 @@ def LoadEventFile(database,eventName,directory):
                 fileNumber = 1
         else:
             fileNumber += 1 # File number counts all excerpts listed for the event
+            if x["startTime"] == "Session":
+                Alert.warning("Session excerpt",x,"must occur as the first excerpt in the session. Excluding this excerpt.")
+                x["exclude"] = True
         x["fileNumber"] = fileNumber
 
         CheckItemContents(x,None,database["kind"][x["kind"]])

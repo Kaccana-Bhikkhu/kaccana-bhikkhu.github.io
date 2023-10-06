@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os, json
-import Utils, Alert
+import Utils, Alert, Link
 import Mp3DirectCut
 from typing import List
 
@@ -37,9 +37,6 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
-    if gOptions.sessionMp3 == 'remote' and gOptions.excerptMp3 == 'remote':
-        Alert.info("All mp3 links go to remote servers. No mp3 files will be processed.")
-        return # No need to run SplitMp3 if all files are remote
     
     sessionCount = 0
     mp3SplitCount = 0
@@ -59,6 +56,9 @@ def main():
         
         baseFileName = f"{event}_S{sessionNumber:02d}_"
         sessionExcerpts = [x for x in excerpts if x["event"] == event and x["sessionNumber"] == sessionNumber]
+        if not any(Link.LocalItemNeeded(x) for x in sessionExcerpts):
+            continue # If no local excerpts are needed in this session, then no need to split mp3 files
+
         for x in sessionExcerpts:
             fileName = baseFileName + f"F{fileNumber:02d}"
             startTime = Utils.StrToTimeDelta(x["startTime"])

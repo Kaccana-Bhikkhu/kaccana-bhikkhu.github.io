@@ -8,7 +8,7 @@ import unicodedata
 import re, os
 from urllib.parse import urlparse
 from typing import List
-import Alert
+import Alert, Link
 import pathlib
 from collections.abc import Iterable
 
@@ -93,19 +93,19 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     item: a dict representing an excerpt or session.
     directoryDepth: depth of the html file we are writing relative to the home directory"""
 
-    if "fileNumber" in item and item["fileNumber"]: # Is this is a non-session excerpt?
-        if gOptions.excerptMp3 == 'local':
-            baseURL = ("../" * directoryDepth) + "audio/excerpts/"
-        else:
-            baseURL = gOptions.remoteExcerptMp3URL
-
-        return f"{baseURL}{item['event']}/{ItemCode(item)}.mp3"
+    if "fileNumber" in item and item["fileNumber"]: # Is this is a regular (non-session) excerpt?
+        url = Link.URL(item)
+        
+        if item["mirror"] == "local":
+            url = ("../" * directoryDepth) + url
+        return url
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
-    if gOptions.sessionMp3 == "local":
-        return ("../" * directoryDepth) + "audio/events/" + "/" + session["event"] + "/" + session["filename"]
+    url = Link.URL(session)
+    if session["mirror"] == "local":
+        return ("../" * directoryDepth) + url
     else:
-        return session["remoteMp3Url"]
+        return url
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
