@@ -98,8 +98,8 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "Link",
-                "--reference",
-                "local"
+                "--sessionMp3",
+                "remote,local"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

@@ -4,11 +4,14 @@
 
 from __future__ import annotations
 
-import re, os, itertools
-import Utils, Render, Alert, Html, Filter
-from urllib.parse import urlparse,urljoin
+import os
+import Utils, Alert
+from urllib.parse import urljoin
+import urllib.request, urllib.error
 from typing import Tuple, Type, Callable, Iterable
 from enum import Enum
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 
 class StrEnum(str,Enum):
     pass
@@ -40,6 +43,20 @@ class LinkValidator:
             return True
         else:
             return os.path.isfile(url)
+
+class RemoteURLChecker (LinkValidator):
+    """Check to see if the remote URL exists before reporting it to be valid."""
+    
+    def ValidLink(self,url:str,item:dict) -> bool:
+        if Utils.RemoteURL(url):
+            try:
+                with urllib.request.urlopen(url) as request:
+                    return True
+            except urllib.error.HTTPError as error:
+                Alert.notice("Unable to open",url,"for",item)
+                return False
+        else:
+            return super().ValidLink(url,item)
 
 remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
     ItemType.SESSION: "remoteMp3Url",
@@ -74,6 +91,8 @@ class Linker:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
             return Utils.PosixJoin(item["event"],Utils.ItemCode(item) + ".mp3")
+        elif self.itemType == ItemType.SESSION:
+            return Utils.PosixJoin(item["event"],item["filename"])
         else:
             return item["filename"]
 
@@ -130,7 +149,7 @@ class Linker:
 def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
     """Auto-detect the type of this item and return its URL.
     directoryDepth: depth of the html file we are writing relative to the home directory."""
-    
+
     baseUrl = gLinker[AutoType(item)].URL(item,mirror)
 
     if not Utils.RemoteURL(baseUrl):
@@ -199,6 +218,7 @@ def Initialize() -> None:
 
     gLinker = {itemType:Linker(itemType,LinkValidator()) for itemType in ItemType}
         # For now, use the simplest possible Linker object
+    gLinker[ItemType.SESSION].validator = RemoteURLChecker()
 
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
@@ -209,10 +229,29 @@ def main() -> None:
         ItemType.SESSION: gDatabase["sessions"],
         ItemType.REFRENCE: gDatabase["reference"]
     }
+
+    with ThreadPoolExecutor() as pool:
+        for itemType,items in itemLists.items():
+            for item in Utils.Contents(items):
+                if item.get("fileNumber",1) == 0:
+                    continue # Don't link session excerpts
+
+                pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item) 
+    
     for itemType,items in itemLists.items():
+        unlinked = []
+        mirrorCount = Counter()
         for item in Utils.Contents(items):
             if item.get("fileNumber",1) == 0:
-                continue # Don't link session excerpts
-
-            if not gLinker[itemType].LinkItem(item):
-                Alert.warning("Unable to link item",item)
+                continue # Don't count session excerpts
+            if item.get("mirror",""):
+                mirrorCount[item["mirror"]] += 1
+            else:
+                unlinked.append(item)
+        
+        if unlinked:
+            Alert.warning(itemType + ":",len(unlinked),"unlinked items:",*unlinked)
+            #for item in unlinked:
+            #    Alert.essential(item,indent=6)
+                          
+        Alert.info(itemType + " mirror links:",dict(mirrorCount))

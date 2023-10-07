@@ -16,10 +16,10 @@
 --mirror abhayagiri:https://www.abhayagiri.org/media/discs/questions/
 --mirror preview:https://storage.googleapis.com/apqs_archive/
 --mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
---sessionMp3 remote
+--sessionMp3 remote,local
 --excerptMp3 abhayagiri
-//--remoteExcerptMp3URL "https://storage.googleapis.com/apqs_archive/audio/excerpts/"
-//--remoteExcerptMp3URL "https://www.abhayagiri.org/media/discs/questions/audio/excerpts/"
+--reference remote,local
+
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:
