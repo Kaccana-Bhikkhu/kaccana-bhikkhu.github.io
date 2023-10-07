@@ -1,17 +1,22 @@
 """Add a "mirror" field to each session, excerpt and reference indicating which hyperlink the item should use.
-
+LinkValidator and its subclasses determine whether a given hyperlink is valid.
 """
 
 from __future__ import annotations
 
 import os
+from functools import reduce
+from datetime import timedelta
+from io import BytesIO
 import Utils, Alert
-from urllib.parse import urljoin
+from urllib.parse import urljoin,urlparse
 import urllib.request, urllib.error
-from typing import Tuple, Type, Callable, Iterable
+from mutagen.mp3 import MP3
+from typing import Tuple, Type, Callable, Iterable, BinaryIO
 from enum import Enum
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
+import math
 
 class StrEnum(str,Enum):
     pass
@@ -45,18 +50,102 @@ class LinkValidator:
             return os.path.isfile(url)
 
 class RemoteURLChecker (LinkValidator):
-    """Check to see if the remote URL exists before reporting it to be valid."""
+    """Check to see if the remote URL exists before reporting it to be valid.
+    Subclasses can """
+    
+    openLocalFiles: bool # Do we open local files as well as remote ones?
+
+    def __init__(self,openLocalFiles = False):
+        self.openLocalFiles = openLocalFiles
     
     def ValidLink(self,url:str,item:dict) -> bool:
         if Utils.RemoteURL(url):
             try:
                 with urllib.request.urlopen(url) as request:
-                    return True
+                    return self.ValidateContents(url,item,request)
             except urllib.error.HTTPError as error:
                 Alert.notice("Unable to open",url,"for",item)
                 return False
         else:
-            return super().ValidLink(url,item)
+            if not os.path.isfile(url):
+                return False
+            if self.openLocalFiles:
+                try:
+                    with open(url,"rb") as file:
+                        return self.ValidateContents(url,item,file)
+                except IOError as error:
+                    Alert.warning(error,"when opening",url,"when processing",item)
+                    return False
+            else:
+                return super().ValidLink(url,item)
+    
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
+        "This method should be overriden by subclasses that validate file contents."
+        return True
+
+def RemoteMp3Tags(url:str) -> dict:
+    """Read the """
+    def get_n_bytes(url, size):
+        req = urllib.request.Request(url)
+        req.headers['Range'] = 'bytes=%s-%s' % (0, size-1)
+        response = urllib.request.urlopen(req)
+        return response.read()
+
+    data = get_n_bytes(url, 10)
+    if data[0:3] != 'ID3':
+        raise Exception('ID3 not in front of mp3 file')
+
+    size_encoded = bytearray(data[-4:])
+    size = reduce(lambda a,b: a*128+b, size_encoded, 0)
+
+    header = BytesIO()
+    # mutagen needs one full frame in order to function. Add max frame size
+    data = get_n_bytes(url, size+2881) 
+    header.write(data)
+    header.seek(0)
+    f = MP3(header)
+
+    if f.tags and 'APIC:' in f.tags.keys():
+        artwork = f.tags['APIC:'].data
+        with open('image.jpg', 'wb') as img:
+            img.write(artwork)
+
+class Mp3LengthChecker (RemoteURLChecker):
+    """Verify that the length of mp3 files is what we expect it to be."""
+    
+    warningDelta: float # Print a notice if the mp3 file length difference exceeds this
+    invalidateDelta: float # Report an invalid link if the mp3 file length difference exceeds this
+    def __init__(self,warningDelta: float = 1.0,invalidateDelta = 5.0):
+        super().__init__(True)
+        self.warningDelta = warningDelta
+        self.invalidateDelta = invalidateDelta
+
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
+        parsed = urlparse(url)
+        if not parsed.path.lower().endswith(".mp3"):
+            return True
+        
+        try:
+            contents.seek(0)
+            data = contents
+        except IOError:
+            data = BytesIO()
+            data.write(contents.read())
+            data.seek(0)
+
+        audio = MP3(data)
+        length = audio.info.length
+        expectedLengthStr = item.get("duration","0")
+        expectedLength = Utils.StrToTimeDelta(expectedLengthStr).total_seconds()
+        diff = abs(length - expectedLength)
+        lengthStr = Utils.TimeDeltaToStr(timedelta(seconds=length))
+        # Alert.extra(url,"actual",lengthStr,"expected",expectedLengthStr)
+        if diff >= self.invalidateDelta:
+            Alert.warning(item,"indicates a duration of",expectedLengthStr,"but its mp3 file has duration",lengthStr,"This invalidates",url)
+            return False
+        elif diff >= self.warningDelta:
+            Alert.caution(item,"indicates a duration of",expectedLengthStr,"but its mp3 file at",url,"has duration",lengthStr)
+        return True
 
 remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
     ItemType.SESSION: "remoteMp3Url",
@@ -160,6 +249,41 @@ def LocalItemNeeded(item:dict) -> bool:
     "Auto-detect the type of this item and return whether a local copy is needed"
     return gLinker[AutoType(item)].LocalItemNeeded(item)
 
+
+def LinkItems() -> None:
+    """Find a valid mirror for all items that haven't already been linked to."""
+
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        for itemType,items in gItemLists.items():
+            for item in Utils.Contents(items):
+                if item.get("fileNumber",1) == 0:
+                    continue # Don't link session excerpts
+
+                pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
+    
+    """for itemType,items in gItemLists.items():
+        for item in Utils.Contents(items):
+            if item.get("fileNumber",1) == 0:
+                continue # Don't link session excerpts
+
+            gLinker[itemType].LinkItem(item)"""
+
+    for itemType,items in gItemLists.items():
+        unlinked = []
+        mirrorCount = Counter()
+        for item in Utils.Contents(items):
+            if item.get("fileNumber",1) == 0:
+                continue # Don't count session excerpts
+            if item.get("mirror",""):
+                mirrorCount[item["mirror"]] += 1
+            else:
+                unlinked.append(item)
+        
+        if unlinked:
+            Alert.warning(itemType + ":",len(unlinked),"unlinked items:",*unlinked)
+                          
+        Alert.info(itemType + " mirror links:",dict(mirrorCount))
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument("--mirror",type=str,action="append",default=[],help="Specify the URL of a mirror. Format mirror:URL")
@@ -218,40 +342,18 @@ def Initialize() -> None:
 
     gLinker = {itemType:Linker(itemType,LinkValidator()) for itemType in ItemType}
         # For now, use the simplest possible Linker object
-    gLinker[ItemType.SESSION].validator = RemoteURLChecker()
+    #gLinker[ItemType.REFRENCE].validator = Mp3LengthChecker()
 
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gItemLists:dict[ItemType:dict|list] = {}
 
 def main() -> None:
-    itemLists = {
+    global gItemLists
+    gItemLists = {
         ItemType.EXCERPT: gDatabase["excerpts"],
         ItemType.SESSION: gDatabase["sessions"],
         ItemType.REFRENCE: gDatabase["reference"]
     }
-
-    with ThreadPoolExecutor() as pool:
-        for itemType,items in itemLists.items():
-            for item in Utils.Contents(items):
-                if item.get("fileNumber",1) == 0:
-                    continue # Don't link session excerpts
-
-                pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item) 
     
-    for itemType,items in itemLists.items():
-        unlinked = []
-        mirrorCount = Counter()
-        for item in Utils.Contents(items):
-            if item.get("fileNumber",1) == 0:
-                continue # Don't count session excerpts
-            if item.get("mirror",""):
-                mirrorCount[item["mirror"]] += 1
-            else:
-                unlinked.append(item)
-        
-        if unlinked:
-            Alert.warning(itemType + ":",len(unlinked),"unlinked items:",*unlinked)
-            #for item in unlinked:
-            #    Alert.essential(item,indent=6)
-                          
-        Alert.info(itemType + " mirror links:",dict(mirrorCount))
+    LinkItems()
