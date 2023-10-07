@@ -364,7 +364,10 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         if page:
            url +=  f"#page={page + PdfPageOffset(reference)}"
 
-        return f"{reference['title']} {Prototype.LinkTeachersInText(reference['attribution'])} [{matchObject[2]}]({url})"
+        items = [reference['title'],f", [{matchObject[2]}]({url})"]
+        if reference["attribution"]:
+            items.insert(1," " + Prototype.LinkTeachersInText(reference['attribution']))
+        return "".join(items)
 
     def ReferenceForm4(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: title page N"""
