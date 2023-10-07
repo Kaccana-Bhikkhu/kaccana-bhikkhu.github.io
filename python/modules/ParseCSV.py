@@ -1181,7 +1181,7 @@ def main():
 
     if not gOptions.jsonNoClean:
         del gDatabase["tagRaw"]    
-    gDatabase["keyCaseTranslation"] = gCamelCaseTranslation
+    gDatabase["keyCaseTranslation"] = {key:gCamelCaseTranslation[key] for key in sorted(gCamelCaseTranslation)}
 
     Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
