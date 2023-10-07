@@ -127,9 +127,15 @@ class Linker:
         return False
 
 
-def URL(item:dict,mirror:str = "") -> str:
-    "Auto-detect the type of this item and return its URL"
-    return gLinker[AutoType(item)].URL(item,mirror)
+def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
+    """Auto-detect the type of this item and return its URL.
+    directoryDepth: depth of the html file we are writing relative to the home directory."""
+    
+    baseUrl = gLinker[AutoType(item)].URL(item,mirror)
+
+    if not Utils.RemoteURL(baseUrl):
+        return ("../" * directoryDepth) + baseUrl
+    return baseUrl
 
 def LocalItemNeeded(item:dict) -> bool:
     "Auto-detect the type of this item and return whether a local copy is needed"
@@ -143,7 +149,7 @@ def AddArguments(parser) -> None:
     parser.add_argument("--reference",type=str,default="remote,local",help="Reference file priority mirror list; default: remote,local")
     parser.add_argument("--sessionMp3Dir",type=str,default="audio/sessions",help="Read session mp3 files from this directory; Default: audio/sessions")
     parser.add_argument("--excerptMp3Dir",type=str,default="audio/excerpts",help="Write excerpt mp3 files from this directory; Default: audio/excerpts")
-    parser.add_argument("--referenceDir",type=str,default="reference",help="Read session mp3 files from this directory; Default: references")
+    parser.add_argument("--referenceDir",type=str,default="references",help="Read session mp3 files from this directory; Default: references")
 
 def ParseArguments() -> None:
     """Set up gOptions.mirror[itemType][mirrorName] as the URL to find items in a named mirror."""

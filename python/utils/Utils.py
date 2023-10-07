@@ -94,18 +94,10 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     directoryDepth: depth of the html file we are writing relative to the home directory"""
 
     if "fileNumber" in item and item["fileNumber"]: # Is this is a regular (non-session) excerpt?
-        url = Link.URL(item)
-        
-        if item["mirror"] == "local":
-            url = ("../" * directoryDepth) + url
-        return url
+        return Link.URL(item,directoryDepth=directoryDepth)
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
-    url = Link.URL(session)
-    if session["mirror"] == "local":
-        return ("../" * directoryDepth) + url
-    else:
-        return url
+    return Link.URL(session,directoryDepth=directoryDepth)
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."

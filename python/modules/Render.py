@@ -9,7 +9,7 @@ from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
-import ParseCSV, Prototype, Utils, Alert, Html
+import ParseCSV, Prototype, Utils, Alert, Html, Link
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -319,7 +319,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        url = reference['remoteUrl']
+        url = Link.URL(reference,directoryDepth=2)
         page = ParsePageNumber(matchObject[2])
         if page:
            url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
@@ -340,7 +340,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        url = reference['remoteUrl']
+        url = Link.URL(reference,directoryDepth=2)
         
         page = ParsePageNumber(matchObject[2])
         if page:
@@ -359,7 +359,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        url = reference['remoteUrl']
+        url = Link.URL(reference,directoryDepth=2)
         page = ParsePageNumber(matchObject[2])
         if page:
            url +=  f"#page={page + PdfPageOffset(reference)}"
