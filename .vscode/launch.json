@@ -97,7 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Document"
+                "Link",
+                "--sessionMp3",
+                "remote,local"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

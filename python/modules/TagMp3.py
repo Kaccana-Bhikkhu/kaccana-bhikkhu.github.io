@@ -4,7 +4,7 @@ We leave the session file tags untouched."""
 from __future__ import annotations
 
 import json, re, os
-import Utils, Alert, Filter, Prototype
+import Utils, Alert, Filter, Link
 from typing import Tuple, Type, Callable
 
 import mutagen
@@ -152,20 +152,16 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 register_comment()
 
 def main() -> None:
-    if gOptions.excerptMp3 == "remote":
-        Alert.info("All excerpt mp3 links go to remote servers. No mp3 files will be tagged.")
-        return # No need to run TagMp3 if all excerpt files are remote
-    
     changeCount = sameCount = 0
     for x in gDatabase["excerpts"]:
         if gOptions.events != "All" and x["event"] not in gOptions.events:
             continue # Only tag mp3 files for the specifed events
-        if not x["fileNumber"]:
-            continue # Ignore session excerpts
+        if not x["fileNumber"] or x["mirror"] != "local":
+            continue # Ignore session excerpts and remote excerpts
         
         tags = ExcerptTags(x)
 
-        path = Utils.Mp3Link(x,directoryDepth=0)
+        path = Link.URL(x,mirror="local")
         try:
             fileTags = EasyID3(path)
         except mutagen.id3.ID3NoHeaderError:
