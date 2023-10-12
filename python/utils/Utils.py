@@ -235,6 +235,19 @@ def ReformatDate(dateStr:str,fullMonth:bool = False) -> str:
     
     return f'{date.strftime("%B" if fullMonth else "%b.")} {int(date.day)}, {int(date.year)}'
 
+def ModificationDate(file:str) -> datetime:
+    info = os.stat(file)
+    return datetime.fromtimestamp(info.st_mtime)
+
+def DependenciesModified(file:str,dependencies:list[str]) -> bool:
+    """Returns true if any of the file paths specified in dependencies has a later modification date than file."""
+
+    fileDate = ModificationDate(file)
+    for d in dependencies:
+        if ModificationDate(d) >= fileDate:
+            return True
+    return False
+
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
     

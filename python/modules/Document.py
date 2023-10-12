@@ -34,12 +34,14 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
     sourceDir = aboutDir + "Sources"
     
     fileContents = {}
+    fileModified = {}
     for fileName in sorted(os.listdir(sourceDir)):
         sourcePath = Utils.PosixJoin(sourceDir,fileName)
 
         if not os.path.isfile(sourcePath) or not fileName.endswith(".md"):
             continue
 
+        fileModified[fileName] = Utils.ModificationDate(sourcePath)
         with open(sourcePath,encoding='utf8') as file:
             fileContents[fileName] = file.read()
             gDocumentationWordCount += WordCount(fileContents[fileName])
@@ -77,6 +79,8 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
 
         page = Html.PageDesc(Html.PageInfo(title,Utils.PosixJoin(destDir,fileName),titleInPage))
         page.AppendContent(fileText)
+        if not html:
+            page.sourceModificationDate = fileModified[fileName]
         renderedPages.append(page)
 
     return renderedPages
@@ -117,11 +121,15 @@ gDocumentationWordCount = 0
 def main() -> None:
     global gDocumentationWordCount
     gDocumentationWordCount = 0
+    modifiedFiles = []
     for directory in ['about','misc']:
         os.makedirs(Utils.PosixJoin(gOptions.documentationDir,directory),exist_ok=True)
         for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
-            with open(page.info.file,'w',encoding='utf-8') as file:
-                print(str(page),file=file)
+            if not os.path.isfile(page.info.file) or page.sourceModificationDate > Utils.ModificationDate(page.info.file):
+                with open(page.info.file,'w',encoding='utf-8') as file:
+                    print(str(page),file=file)
+                modifiedFiles.append(page.info.file)
     
     if Alert.verbosity >= 2:
         PrintWordCount()
+    Alert.info("Wrote",len(modifiedFiles),".md files:",modifiedFiles)
