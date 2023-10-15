@@ -12,7 +12,13 @@
 
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
-// Main program options:
+--spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
+
+// DownloadCSV options:
+--spreadsheet "https://docs.google.com/spreadsheets/d/1p3HThXzWb8h3nyh258kANyxQxc0bM_DQqLvcG3oo3Ac/edit"
+--summarySheetID 2007732801
+
+// Link options:
 --mirror abhayagiri:https://abhayagiri.org/media/discs/questions/
 --mirror preview:https://storage.googleapis.com/apqs_archive/
 --mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
@@ -20,14 +26,11 @@
 --excerptMp3 abhayagiri
 --reference remote,local
 
---spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
-
-// DownloadCSV options:
---spreadsheet "https://docs.google.com/spreadsheets/d/1p3HThXzWb8h3nyh258kANyxQxc0bM_DQqLvcG3oo3Ac/edit"
---summarySheetID 2007732801
-
 // Render options:
 --renderedDatabase pages/assets/RenderedDatabase.json
+
+// Document options:
+--info "releaseName:November 2023 initial release"
 
 // Prototype options:
 --prototypeDir pages

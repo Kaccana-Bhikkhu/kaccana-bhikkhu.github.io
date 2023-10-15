@@ -43,7 +43,8 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
         with open(sourcePath,encoding='utf8') as file:
-            fileContents[fileName] = file.read()
+            template = pyratemp.Template(file.read())
+            fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase)
             gDocumentationWordCount += WordCount(fileContents[fileName])
             
     def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:
@@ -79,8 +80,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
 
         page = Html.PageDesc(Html.PageInfo(title,Utils.PosixJoin(destDir,fileName),titleInPage))
         page.AppendContent(fileText)
-        if not html:
-            page.sourceModificationDate = fileModified[fileName]
+        page.sourceFile = Utils.PosixJoin(sourceDir,Utils.ReplaceExtension(fileName,".md"))
         renderedPages.append(page)
 
     return renderedPages
@@ -106,10 +106,22 @@ def PrintWordCount() -> None:
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--documentationDir',type=str,default='documentation',help='Read and write documentation files here; Default: ./documenation')
+    parser.add_argument('--info',type=str,action="append",default=[],help="Specify infomation about this build. Format key:value")
     
 
 def ParseArguments() -> None:
-    pass
+    class NameSpace:
+        pass
+    infoObject = NameSpace()
+    for item in gOptions.info:
+        split = item.split(":")
+        if len(split) > 1:
+            value = split[1]
+        else:
+            value = True
+        setattr(infoObject,split[0],value)
+    gOptions.info = infoObject
+    
 
 def Initialize() -> None:
     pass
@@ -125,7 +137,7 @@ def main() -> None:
     for directory in ['about','misc']:
         os.makedirs(Utils.PosixJoin(gOptions.documentationDir,directory),exist_ok=True)
         for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
-            if not os.path.isfile(page.info.file) or page.sourceModificationDate > Utils.ModificationDate(page.info.file):
+            if not os.path.isfile(page.info.file) or Utils.DependenciesModified(page.info.file,[page.sourceFile]):
                 with open(page.info.file,'w',encoding='utf-8') as file:
                     print(str(page),file=file)
                 modifiedFiles.append(page.info.file)
