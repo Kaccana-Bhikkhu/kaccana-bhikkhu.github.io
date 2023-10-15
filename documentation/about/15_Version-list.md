@@ -41,3 +41,9 @@
 - 3.3.1 Apply ID3 tags to excerpt mp3 files.
 
 - 3.3.2 Download icon. Readings can now be annotations. Minor changes to session excerpts. Winter Retreat 2015 partially complete (through Session 13).
+
+- 3.3.3 Download only changed sheets. Word count. Upload to abhayagiri.org. Audio icon on All/searchable pages. Links between about and series pages.
+
+- 3.3.4 Add --mirror option to specify possible sources of audio and reference files. Winter Retreat 2015 through Session 24.
+
+- 3.3.5 Suggested citation footer (needs polishing). Documentation updates.
