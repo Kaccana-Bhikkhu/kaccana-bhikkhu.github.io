@@ -25,7 +25,7 @@ async function changeURL(pUrl) {
 
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
-				if (href.match(absoluteURLRegex)) return;
+				if (!href || href.match(absoluteURLRegex)) return;
 
 				let url = href.replaceAll("index.html", "homepage.html")
 				if (href.startsWith("#")) {

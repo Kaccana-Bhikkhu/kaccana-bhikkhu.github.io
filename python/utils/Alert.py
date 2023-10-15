@@ -24,7 +24,7 @@ class AlertClass:
         self.lineSpacing = lineSpacing # print this many blank lines after the alert
 
     def Show(self,*items,indent:int|None = None) -> None:
-        """Generate aan alert from a list of items to print.
+        """Generate an alert from a list of items to print.
         Print it if verbosity is high enough.
         Log it if we are logging."""
         if items:

@@ -57,7 +57,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV",
+                "ParseCSV,Render",
                 "-vvv"
             ],
             "console": "integratedTerminal",
@@ -97,13 +97,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV",
-                "--excerptMp3",
-                "local",
-                "--events",
-                "WR2015",
-                "--writeMp3Tags",
-                "changed"
+                "Document"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

@@ -41,7 +41,7 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WritePage(page: Html) -> None:
+def WritePage(page: Html.PageDesc) -> None:
     """Write an html file for page using the global template"""
     template = Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate)
     if page.info.file.endswith("_print.html"):
@@ -233,7 +233,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     return str(a)
 
-def DrilldownPageFile(tagNumber: int) -> str:
+def DrilldownPageFile(tagNumber: int,jumpToEntry:bool = False) -> str:
     "Return the name of the page that has this numbered tag expanded."
     if tagNumber == -1:
         tagNumber = 999
@@ -244,12 +244,15 @@ def DrilldownPageFile(tagNumber: int) -> str:
             # If this tag doesn't have subtags, find its parent tag
             while tagList[tagNumber]["level"] >= ourLevel:
                 tagNumber -= 1
-        
-        tag = gDatabase["tagDisplayList"][tagNumber]["tag"]
-
 
     fileName = f"tag-{tagNumber:03d}.html"
+    if jumpToEntry:
+        fileName += f"#{tagNumber}"
     return fileName
+
+def DrilldownIconLink(tag: str,iconWidth = 20):
+    drillDownPage = "../drilldown/" + DrilldownPageFile(gDatabase["tag"][tag]["listIndex"],jumpToEntry=True)
+    return Html.Tag("a",dict(href=drillDownPage))(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=iconWidth)).prefix)
 
 def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
     """Write a series of html files to create a hierarchial drill-down list of tags."""
@@ -269,7 +272,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             
             yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
 
-def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True) -> str:
+def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
     "Return html code describing this tag."
     
     xCount = ExcerptCount(tag["tag"])
@@ -289,6 +292,9 @@ def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs
         else:
             Alert.caution(tag,"has flag g: DISPLAY_GLOSS but has no glosses.")
     
+    if drilldownLink:
+        tagStr = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + tagStr
+
     if style == "tagFirst":
         return ' '.join([tagStr,paliStr,countStr])
     elif style == "numberFirst":
@@ -308,7 +314,7 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
     for tag in tagsSortedByQCount:
         with a.p():
-            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst"))
+            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
     
     yield str(a)
 
@@ -341,16 +347,20 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         else:
             return string
 
-    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False) -> _Alphabetize:
+    def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False,drilldownLink = True) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
         tagName = AlphabetizeName(tagName)
         html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
+        if drilldownLink:
+            html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
         return Alphabetize(tagName,html)
 
-    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False) -> _Alphabetize:
+    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False,drilldownLink = True) -> _Alphabetize:
         count = tag.get('excerptCount',0)
         countStr = f" ({count})" if count else ""
         html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}]{countStr}"
+        if drilldownLink:
+            html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
         return Alphabetize(text,html)
 
 
@@ -410,14 +420,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["other"].append(entry)
         
         for translation in tag["alternateTranslations"]:
-            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True).html}"
+            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True,drilldownLink=False).html}"
             if translation.endswith("</em>"):
                 entries["other"].append(Alphabetize(translation,html))
             else:
                 entries["english"].append(Alphabetize(translation,html))
         
         for gloss in tag["glosses"]:
-            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
             if gloss.endswith("</em>"):
                 entries["other"].append(Alphabetize(gloss,html))
             else:
@@ -425,7 +435,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     
     for subsumedTag,subsumedUnder in gDatabase["tagSubsumed"].items():
         tag = gDatabase["tag"][subsumedUnder]
-        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True).html}"
+        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
         entries["english"].append(Alphabetize(subsumedTag,html))
 
     def Deduplicate(iterable: Iterable) -> Iterator:
@@ -493,11 +503,10 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
             # text-decoration: none ensures the icon isn't underlined
     elif linkKind == "linkToPlayerPage":
-        with a.a(href = hyperlink,title = title):
+        with a.a(href = hyperlink,title = "Back to player"):
             a("⬅ Playable")
-        a(" "+2*"&nbsp")
-        with a.a(href = hyperlink,download = "",title = title):
-            a("⇓ Download")
+        a(" "+4*"&nbsp")
+        a.a(href = hyperlink,download = "",title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
         a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
@@ -787,7 +796,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
-            linkSessionAudio = formatter.headingAudio and not (x["startTime"] == "Session" and x["body"])
+            linkSessionAudio = formatter.headingAudio and not x["startTime"] == "Session"
                 # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
             hr = x["startTime"] != "Session" or x["body"]
                 # Omit the horzional rule if the first excerpt is a session excerpt with no body
@@ -805,14 +814,23 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             options = {"preload": "none"}
         else:
             options = {}
-        if x["body"]:
+        hasMultipleAnnotations = sum(len(a["body"]) > 0 for a in x["annotations"]) > 1
+        if x["body"] or (not x["fileNumber"] and hasMultipleAnnotations):
+            """ Render blank session excerpts which have more than one annotation as [Session].
+                If a blank session excerpt has only one annotation, [Session] will be added below."""
             with a.p(id = Utils.ItemCode(x)):
                 a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
             if annotation["body"]:
-                with a.p(style = f"margin-left: {tabLength * (annotation['indentLevel'])}{tabMeasurement};"):
+                indentLevel = annotation['indentLevel']
+                if not x["fileNumber"] and not x["body"] and not hasMultipleAnnotations:
+                    # If a single annotation follows a blank session excerpt, don't indent and add [Session] in front of it
+                    indentLevel = 0
+                with a.p(style = f"margin-left: {tabLength * indentLevel}{tabMeasurement};"):
+                    if not indentLevel:
+                        a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
                     a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
@@ -877,7 +895,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
             
             pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
-                                     Then choose ⬅ Playable or ⇓ Download to play the excerpt.""")
+                                     Then click ⬅ Playable to return to a page where you can play the excerpt.""")
             pageHtml += HtmlExcerptList(excerpts,noPlayer)
             pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
                 # Match only the non-download link
@@ -1017,8 +1035,12 @@ def ListEventsBySeries(events: list[dict]) -> str:
         "Return the index of the series of this event for sorting purposes"
         return list(gDatabase["series"]).index(event["series"])
     
+    def LinkToAboutSeries(event: dict) -> tuple(str,str,str):
+        htmlHeading = Html.Tag("a",dict(href="../about/04_Series.html#" + Utils.slugify(event["series"])))(event["series"])
+        return htmlHeading,EventDescription(event,showMonth=True),event["series"]
+
     eventsSorted = sorted(events,key=SeriesIndex)
-    return str(Html.ListWithHeadings(eventsSorted,lambda e: (e["series"],EventDescription(e,showMonth=True)) ))
+    return str(Html.ListWithHeadings(eventsSorted,LinkToAboutSeries))
 
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
@@ -1083,8 +1105,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.excerptOmitSessionTags = False
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
-
-        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),tagPlusPali)
+        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
         basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
 
@@ -1237,7 +1258,7 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     lineageInfo = Html.PageInfo("Lineage",Utils.PosixJoin(indexDir,"TeachersLineage.html"),"Teachers – Monastics by lineage")
     excerptInfo = Html.PageInfo("Number of teachings",Utils.PosixJoin(indexDir,"TeachersByExcerpts.html"),"Teachers – By number of teachings")
 
-    yield chronologicalInfo._replace(title="Teachers")
+    yield alphabeticalInfo._replace(title="Teachers")
 
     teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 
@@ -1403,38 +1424,38 @@ def AddArguments(parser):
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them")
 
-gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
-
-def ParseBuildSections():
-    if type(gOptions.buildOnly) == set:
-        return
-    allSections = {"tags","drilldown","events","teachers","allexcerpts"}
+gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
+def ParseArguments():
     if gOptions.buildOnly == "":
-        gOptions.buildOnly = allSections
+        gOptions.buildOnly = gAllSections
     elif gOptions.buildOnly.lower() == "none":
         gOptions.buildOnly = set()
     else:
         gOptions.buildOnly = set(section.strip().lower() for section in gOptions.buildOnly.split(','))
         if "drilldown" in gOptions.buildOnly:
             gOptions.buildOnly.add("tags")
-        unknownSections = gOptions.buildOnly.difference(allSections)
+        unknownSections = gOptions.buildOnly.difference(gAllSections)
         if unknownSections:
             Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
             gOptions.buildOnly = gOptions.buildOnly.difference(unknownSections)
-    
-    if gOptions.buildOnly != allSections:
-        if gOptions.buildOnly:
-            Alert.warning(f"Building only section(s) {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
-        else:
-            Alert.warning(f"No sections built. This should be used only for testing and debugging purposes.")
+
+def Initialize() -> None:
+    pass
+
+gOptions = None
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
     # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
-    ParseBuildSections()
+
+    if gOptions.buildOnly != gAllSections:
+        if gOptions.buildOnly:
+            Alert.warning(f"Building only section(s) --buildOnly {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
+        else:
+            Alert.warning(f"No sections built due to --buildOnly none. This should be used only for testing and debugging purposes.")
 
     basePage = Html.PageDesc()
 
