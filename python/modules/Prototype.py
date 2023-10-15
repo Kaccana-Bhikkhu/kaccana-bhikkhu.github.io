@@ -41,7 +41,7 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WritePage(page: Html) -> None:
+def WritePage(page: Html.PageDesc) -> None:
     """Write an html file for page using the global template"""
     template = Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate)
     if page.info.file.endswith("_print.html"):

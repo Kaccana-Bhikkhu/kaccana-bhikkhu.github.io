@@ -12,19 +12,25 @@
 
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
-// Main program options:
---sessionMp3 remote
---excerptMp3 remote
-// --remoteExcerptMp3URL "http://storage.googleapis.com/apqs_archive/audio/excerpts/"
---remoteExcerptMp3URL "https://www.abhayagiri.org/media/discs/questions/audio/excerpts/"
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:
 --spreadsheet "https://docs.google.com/spreadsheets/d/1p3HThXzWb8h3nyh258kANyxQxc0bM_DQqLvcG3oo3Ac/edit"
 --summarySheetID 2007732801
 
+// Link options:
+--mirror abhayagiri:https://abhayagiri.org/media/discs/questions/
+--mirror preview:https://storage.googleapis.com/apqs_archive/
+--mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
+--sessionMp3 remote,local
+--excerptMp3 abhayagiri
+--reference remote,local
+
 // Render options:
 --renderedDatabase pages/assets/RenderedDatabase.json
+
+// Document options:
+--info "releaseName:November 2023 initial release"
 
 // Prototype options:
 --prototypeDir pages

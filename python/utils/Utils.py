@@ -6,8 +6,9 @@ from datetime import timedelta, datetime
 import copy
 import unicodedata
 import re, os
+from urllib.parse import urlparse
 from typing import List
-import Alert
+import Alert, Link
 import pathlib
 from collections.abc import Iterable
 
@@ -20,7 +21,7 @@ def Contents(container:list|dict) -> list:
     except AttributeError:
         return container
 
-def ExtendUnique(dest: list, source: list) -> list:
+def ExtendUnique(dest: list, source: Iterable) -> list:
     "Append all the items in source to dest, preserving order but eliminating duplicates."
 
     destSet = set(dest)
@@ -59,10 +60,23 @@ def ParseItemCode(itemCode:str) -> tuple(str,int|None,int|None):
     else:
         return "",None,None
 
+def PosixToWindows(path:str) -> str:
+    return str(pathlib.PureWindowsPath(pathlib.PurePosixPath(path)))
 
 def PosixJoin(*paths):
     "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
     return str(pathlib.PurePosixPath(*paths))
+
+def DirectoryURL(url:str) -> str:
+    "Ensure that this url specifies a directory path."
+    if url.endswith("/"):
+        return url
+    else:
+        return url + "/"
+
+def RemoteURL(url:str) -> bool:
+    "Does this point to a remote file server?"
+    return bool(urlparse(url).netloc)
 
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"
@@ -79,19 +93,11 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     item: a dict representing an excerpt or session.
     directoryDepth: depth of the html file we are writing relative to the home directory"""
 
-    if "fileNumber" in item and item["fileNumber"]: # Is this is a non-session excerpt?
-        if gOptions.excerptMp3 == 'local':
-            baseURL = ("../" * directoryDepth) + "audio/excerpts/"
-        else:
-            baseURL = gOptions.remoteExcerptMp3URL
-
-        return f"{baseURL}{item['event']}/{ItemCode(item)}.mp3"
+    if "fileNumber" in item and item["fileNumber"]: # Is this is a regular (non-session) excerpt?
+        return Link.URL(item,directoryDepth=directoryDepth)
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
-    if gOptions.sessionMp3 == "local":
-        return ("../" * directoryDepth) + "audio/events/" + "/" + session["event"] + "/" + session["filename"]
-    else:
-        return session["remoteMp3Url"]
+    return Link.URL(session,directoryDepth=directoryDepth)
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
@@ -228,6 +234,19 @@ def ReformatDate(dateStr:str,fullMonth:bool = False) -> str:
     date = ParseDate(dateStr)
     
     return f'{date.strftime("%B" if fullMonth else "%b.")} {int(date.day)}, {int(date.year)}'
+
+def ModificationDate(file:str) -> datetime:
+    info = os.stat(file)
+    return datetime.fromtimestamp(info.st_mtime)
+
+def DependenciesModified(file:str,dependencies:list[str]) -> bool:
+    """Returns true if any of the file paths specified in dependencies has a later modification date than file."""
+
+    fileDate = ModificationDate(file)
+    for d in dependencies:
+        if ModificationDate(d) >= fileDate:
+            return True
+    return False
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
