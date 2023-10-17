@@ -9,7 +9,7 @@ import re, os
 from urllib.parse import urlparse
 from typing import List
 import Alert, Link
-import pathlib
+import pathlib, posixpath
 from collections.abc import Iterable
 
 gOptions = None
@@ -63,9 +63,8 @@ def ParseItemCode(itemCode:str) -> tuple(str,int|None,int|None):
 def PosixToWindows(path:str) -> str:
     return str(pathlib.PureWindowsPath(pathlib.PurePosixPath(path)))
 
-def PosixJoin(*paths):
-    "Join directories using / to make nicer html code. Python handles / in pathnames graciously even on Windows."
-    return str(pathlib.PurePosixPath(*paths))
+PosixJoin = posixpath.join
+PosixSplit = posixpath.split
 
 def DirectoryURL(url:str) -> str:
     "Ensure that this url specifies a directory path."

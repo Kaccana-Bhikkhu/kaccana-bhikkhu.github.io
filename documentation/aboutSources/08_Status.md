@@ -22,5 +22,6 @@ I have finished a handwritten transcription of the 2001 Ajahn Chah Conference. M
 
  - Pressing the back button sometimes returns to a seemingly random scroll position on the previous page ([Github issue #52](https://github.com/Kaccana-Bhikkhu/qs-archive/issues/52)).
  - References do not link to specific pages within the pdf on mobile browsers.
+ - Download buttons switch to a new page with an audio player. To work around this, right click on the download button and choose "Save link as..." (Chrome) or the equivalent for your browser.
 
 Information about the latest monthly update will go here.
