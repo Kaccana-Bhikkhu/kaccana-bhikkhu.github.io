@@ -221,15 +221,19 @@ class Linker:
         return ""
     
     def LocalItemNeeded(self,item: dict) -> bool:
-        """Check through the available mirrors until we either reach a valid item or the local mirror.
-        If the latter, report true and stop the search so that a local item can be acquired."""
+        """Check through the available mirrors until we either reach a valid item, the local mirror, or the upload mirror.
+        In the latter two cases, report true and stop the search so that a local item can be acquired."""
         
         for mirror in self._UncheckedMirrors(item):
-            if self.validator.ValidLink(self.URL(item,mirror),item):
+            mirrorToCheck = mirror
+            if mirror == gOptions.uploadMirror:
+                mirrorToCheck = "local"
+            
+            if self.validator.ValidLink(self.URL(item,mirrorToCheck),item):
                 item["mirror"] = mirror
                 return False
-            elif mirror == "local":
-                item["mirror"] = "local*"
+            elif mirrorToCheck == "local":
+                item["mirror"] = mirror + "*"
                 return True
         
         return False
@@ -284,12 +288,42 @@ def LinkItems() -> None:
                           
         Alert.info(itemType + " mirror links:",dict(mirrorCount))
 
+def CheckMirrorName(itemType:str,mirrorName: str) -> str:
+    "Check if mirrorName is a valid mirror reference and turn numbers into names."
+    try:
+        mirrorName = list(gOptions.mirror[itemType])[int(mirrorName)]
+    except ValueError:
+        pass
+    except IndexError:
+        Alert.error(mirrorName,"is beyond the number of available mirrors:",list(gOptions.mirror[itemType]))
+
+    if mirrorName not in gOptions.mirror[itemType] and mirrorName != "remote":
+        Alert.error(repr(mirrorName),"is not a valid mirror name.")
+    return mirrorName
+
+def RemoveAllExceptFirst(ioList: list,itemsToRemove: list) -> None:
+    "Remove all items in itemsToRemove from ioList except the first occurence."
+
+    index = 0
+    firstItem = True
+    while index < len(ioList):
+        if ioList[index] in itemsToRemove:
+            if firstItem:
+                index += 1
+                firstItem = False
+            else:
+                del ioList[index]
+        else:
+            index += 1
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument("--mirror",type=str,action="append",default=[],help="Specify the URL of a mirror. Format mirror:URL")
     parser.add_argument("--sessionMp3",type=str,default="remote,local",help="Session audio file priority mirror list; default: remote,local")
     parser.add_argument("--excerptMp3",type=str,default="1",help="Excerpt audio file priority mirror list; default: 1 - first mirror specifed")
     parser.add_argument("--reference",type=str,default="remote,local",help="Reference file priority mirror list; default: remote,local")
+    parser.add_argument("--uploadMirror",type=str,default="local",help="Files will be uploaded to this mirror; default: local")
+
     parser.add_argument("--sessionMp3Dir",type=str,default="audio/sessions",help="Read session mp3 files from this directory; Default: audio/sessions")
     parser.add_argument("--excerptMp3Dir",type=str,default="audio/excerpts",help="Write excerpt mp3 files from this directory; Default: audio/excerpts")
     parser.add_argument("--referenceDir",type=str,default="references",help="Read session mp3 files from this directory; Default: references")
@@ -314,25 +348,17 @@ def ParseArguments() -> None:
             mirrorName:Utils.DirectoryURL(urljoin(Utils.DirectoryURL(url),itemDir)) for mirrorName,url in mirrorDict.items()
         }
 
-    def CheckMirrorName(itemType:str,mirrorName: str) -> str:
-        "Check if mirrorName is a valid mirror reference and turn numbers into names."
-        try:
-            mirrorName = list(gOptions.mirror[itemType])[int(mirrorName)]
-        except ValueError:
-            pass
-
-        if mirrorName not in gOptions.mirror[itemType] and mirrorName != "remote":
-            Alert.error(repr(mirrorName),"is not a valid mirror name.")
-        return mirrorName
+    gOptions.uploadMirror = CheckMirrorName(ItemType.EXCERPT,gOptions.uploadMirror)
 
     for itemType in ItemType:
         mirrorList = getattr(gOptions,itemType).split(",")
         mirrorList = [CheckMirrorName(itemType,m) for m in mirrorList]
+        RemoveAllExceptFirst(mirrorList,["local",gOptions.uploadMirror])
         setattr(gOptions,itemType,mirrorList)
 
     if "remote" in gOptions.excerptMp3:
         Alert.error("remote cannot be specified as a mirror for excerpts.")
-
+            
 
 gLinker:dict[ItemType,Linker] = {}
 
