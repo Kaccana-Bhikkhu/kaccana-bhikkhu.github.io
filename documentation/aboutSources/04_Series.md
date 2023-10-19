@@ -1,6 +1,7 @@
 # Event Series
 Although one-off teaching events are not uncommon, the bulk of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is useful to contextualize the teachings by describing these recurring events in detail.
 
+[Thanksgiving Retreat at the Angela Center](photo:AngelaCenterTGRetreat.jpg)
 ## <a id="thanksgiving-retreats" href="../indexes/EventsBySeries.html#thanksgiving-retreats">Thanksgiving (Monastic) Retreats</a>
 Ajahn Sumedho and later Ajahn Amaro began leading residential retreats in Northern California years before Abhayagiri Monastery was founded in 1996. Although the duration and venue of early retreats varied, by the early 1990s the event had crystallized into an annual 10-day retreat at the Angela Center in Santa Rosa spanning the weekends on either side of the November Thanksgiving holiday. The name “Thanksgiving Retreat” thus originated from the dates of the retreat, although themes of gratitude commonly arose in the teachings.
 
@@ -17,6 +18,8 @@ Reasoning that most retreatant’s questions aren’t unique and we can all lear
 The Angela Center suffered catastrophic damage in the California fires of October 2017, which ended the classical Thanksgiving Retreat format. Later retreats were held at different venues at different dates. During the pandemic, Thanksgiving Retreat teachings and Q&A sessions were broadcast live from Abhayagiri. After Ajahn Pasanno stepped down as abbot in 2018, he participated as an invited senior teacher rather than leader of Thanksgiving Retreats and so hosted many fewer Q&A sessions.
 
 Thanksgiving Retreat participants are usually long-term practitioners familiar with monastic teachings and customs. The container of a 10-day retreat gives the Q&A sessions a spacious, contemplative quality. Common topics include working with hindrances, unusual experiences in meditation, curiosity about monastic life, and how to apply the teachings beyond the retreat container.
+
+[Snow covering Abhayagiri Monastery](photo:AbhayagiriWinter.jpg)
 ## <a id="abhayagiri-winter-retreats" href="../indexes/EventsBySeries.html#abhayagiri-winter-retreats">Winter Retreats</a>
 The tradition of Western Ajahn Chah monasteries halting work projects during the winter to engage in intensive meditation practice began in the early years of Chithurst and Amaravati. Abhayagiri’s Winter Retreat occurs during the months of January, February, and March. There are typically roughly five teaching sessions each week. Until recently, all residents attended all sessions (Support team members cooking the day's meal listened via speakers in the kitchen).
 
@@ -40,5 +43,6 @@ Upāsikā Day participants are typically core Abhayagiri lay supporters, many of
 ## <a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">Question and Answer Sessions</a>
 These are assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
 
+[Ajahn Chah Conference 2001](photo:15 Full Stage.jpg)
 ## <a id="other" href="../indexes/EventsBySeries.html#other">Other</a>
 These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. The wonderful and significant 2001 Ajahn Chah Conference in Portola Valley, California, will go here because it fits nowhere else.
