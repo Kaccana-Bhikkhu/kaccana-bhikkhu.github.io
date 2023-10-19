@@ -1,7 +1,7 @@
 # Event Series
 Although one-off teaching events are not uncommon, the bulk of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is useful to contextualize the teachings by describing these recurring events in detail.
 
-[Thanksgiving Retreat at the Angela Center](photo:AngelaCenterTGRetreat.jpg)
+[Thanksgiving Retreat at the Angela Center](photo:AngelaCenterTGRetreat.jpg#small)
 ## <a id="thanksgiving-retreats" href="../indexes/EventsBySeries.html#thanksgiving-retreats">Thanksgiving (Monastic) Retreats</a>
 Ajahn Sumedho and later Ajahn Amaro began leading residential retreats in Northern California years before Abhayagiri Monastery was founded in 1996. Although the duration and venue of early retreats varied, by the early 1990s the event had crystallized into an annual 10-day retreat at the Angela Center in Santa Rosa spanning the weekends on either side of the November Thanksgiving holiday. The name “Thanksgiving Retreat” thus originated from the dates of the retreat, although themes of gratitude commonly arose in the teachings.
 
@@ -26,6 +26,7 @@ The tradition of Western Ajahn Chah monasteries halting work projects during the
 The most common format for Winter Retreat teaching sessions is a reading often followed by questions and discussion. The sessions became more interactive as the years went by; Ajahn Pasanno’s 2004 readings on viriya (energy) are followed by many fewer questions than similar sutta readings a decade later. Even when junior monastics selected and read the texts, Ajahn Pasanno usually answered most of the questions when he was abbot.
 
 The majority of the participants in Winter Retreat are committed monastics living by Vinaya discipline, and the length of the retreat allows for in-depth study. The questions and discussion are often detailed, nuanced, and heartfelt, as participants realize the rarity of such excellent opportunities for Dhamma practice.
+
 ## <a id="spirit-rock-daylongs" href="../indexes/EventsBySeries.html#spirit-rock-daylongs">Spirit Rock Daylong Events</a>
 Ajahn Sumedho was invited to teach at Spirit Rock Meditation Center even before Abhayagiri Monastery was founded. The frequency and format of such teachings have evolved over the years. By 2010, there were typically two daylong teaching events at Spirit Rock each year, one led by Ajahn Pasanno and the other by another Abhayagiri ajahn.
 
@@ -40,6 +41,7 @@ The coronavirus pandemic disrupted this orderly scheme of Upāsikā Days, and th
 
 Upāsikā Day participants are typically core Abhayagiri lay supporters, many of whom have made a formal commitment to the Upāsikā Program. One hears the same voices weave through multiple recordings over the years. Some participants are lay Dhamma teachers themselves. Questions and comments often reflect years of committed practice and explore lay practice in more depth than any other series. This is also a good place to hear Ajahn Pasanno’s perspective on various social issues.
 
+[Abhayagiri New Years 2017](photo:LPP Abhayagiri New Years 2017.jpg)
 ## <a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">Question and Answer Sessions</a>
 These are assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
 

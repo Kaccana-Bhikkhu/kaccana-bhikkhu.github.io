@@ -1,4 +1,5 @@
 <!--TITLE:Want to help?-->
+<!--HTML <img src="../../pages/images/photos/Abhayagiri 20th Anniversary.jpg" alt="Preparing for Abhayagiri's 20th Anniversary Celebration" id="cover" align="bottom" width="200" border="0"/> -->
 ## Want to Help?
 If you would like to contribute to the Ajahn Pasanno Question and Story Archive, here are some possibilities.
 

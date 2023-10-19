@@ -4,4 +4,4 @@ We will finalize copyright and licensing details in the first official release o
 © 2023 Abhayagiri Buddhist Monastery. All rights reserved.
 
 -----
-
+[Abhayagiri Reception Hall Buddha Image](photo:Abhayagiri Buddha Rupa.jpg)

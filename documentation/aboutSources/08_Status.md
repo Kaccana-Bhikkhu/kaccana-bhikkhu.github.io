@@ -1,3 +1,5 @@
+[Ajahn Pasanno's 2019 Chao Khun Ceremony](photo:LPP Chao Khun Ceremony.jpg)
+
 # Status – $!gOptions.info.releaseName.title()!$
 
 ## Content

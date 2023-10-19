@@ -390,10 +390,10 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
     pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player"}))
-    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
+    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()#]*)#?([^()#]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
-        text,pageType,link = matchObject.groups()
+        text,pageType,link,hashTag = matchObject.groups()
         pageType = pageType.lower()
 
         linkTo = ""
@@ -471,11 +471,13 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
         elif pageType == "photo":
             linkToPage = False
             imagePath = Utils.PosixJoin(pathToPrototype,"images/photos",link)
-            text = f'<!--HTML <img src="{imagePath}" alt="{text}" id="cover" align="bottom" width="200" border="0"/> -->'
+            if not hashTag:
+                hashTag = "cover"
+            text = f'<!--HTML <img src="{imagePath}" alt="{text}" id="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
 
         if linkTo:
             path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)
-            return wrapper(f"[{text}]({path})")
+            return wrapper(f"[{text}]({path}{'#' + hashTag if hashTag else ''})")
         else:
             return text
         

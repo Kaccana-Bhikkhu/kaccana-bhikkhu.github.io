@@ -1,5 +1,5 @@
 <!--TITLE:The Ajahn Pasanno Question and Story Archive-->
-[Ajahn Pasanno](photo:AjahnPasanno.jpg)
+[](photo:AjahnPasanno.jpg)
 
 ## Introduction
 

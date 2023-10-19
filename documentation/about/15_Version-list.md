@@ -47,3 +47,7 @@
 - 3.3.4 Add --mirror option to specify possible sources of audio and reference files. Winter Retreat 2015 through Session 24.
 
 - 3.3.5 Suggested citation footer (needs polishing). Documentation updates.
+
+-----
+
+<!--HTML <img src="../../pages/images/photos/LPP with novices Thailand Dec 2015.jpg" alt="Ajahn Pasanno in Thailand, December 2015" id="cover" align="bottom" width="200" border="0"/> -->
