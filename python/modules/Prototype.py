@@ -200,9 +200,9 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                             if tagList[reverseIndex]["level"] < item["level"]:
                                 tagAtPrevLevel = reverseIndex
                                 break
-                        drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll">⊟</a>'
+                        drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
                     else:
-                        drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll">⊞</a>'
+                        drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
                 else:
                     drilldownLink = "&nbsp"
 
@@ -504,7 +504,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
             # text-decoration: none ensures the icon isn't underlined
     elif linkKind == "linkToPlayerPage":
         with a.a(href = hyperlink,title = "Back to player"):
-            a("⬅ Playable")
+            a('<i class="fa fa-long-arrow-left"></i> Playable')
         a(" "+4*"&nbsp")
         a.a(href = hyperlink,download = "",title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
         a.br()
@@ -895,7 +895,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
             
             pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
-                                     Then click ⬅ Playable to return to a page where you can play the excerpt.""")
+                                     Then click <i class="fa fa-long-arrow-left"></i> Playable to return to a page where you can play the excerpt.""")
             pageHtml += HtmlExcerptList(excerpts,noPlayer)
             pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
                 # Match only the non-download link
