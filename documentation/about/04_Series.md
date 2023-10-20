@@ -1,7 +1,9 @@
+<!--HTML <img src="../../pages/images/photos/LPP Sathien Dhammasathan 2016.jpg" alt="Ajahn Pasanno teaching in Thailand, 2016" id="cover" title="Ajahn Pasanno teaching in Thailand, 2016" align="bottom" width="200" border="0"/> -->
+
 # Event Series
 Although one-off teaching events are not uncommon, the bulk of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is useful to contextualize the teachings by describing these recurring events in detail.
 
-<!--HTML <img src="../../pages/images/photos/AngelaCenterTGRetreat.jpg" alt="Thanksgiving Retreat at the Angela Center" id="small" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AngelaCenterTGRetreat.jpg" alt="Thanksgiving Retreat at the Angela Center" id="small" title="Thanksgiving Retreat at the Angela Center" align="bottom" width="200" border="0"/> -->
 ## <a id="thanksgiving-retreats" href="../indexes/EventsBySeries.html#thanksgiving-retreats">Thanksgiving (Monastic) Retreats</a>
 Ajahn Sumedho and later Ajahn Amaro began leading residential retreats in Northern California years before Abhayagiri Monastery was founded in 1996. Although the duration and venue of early retreats varied, by the early 1990s the event had crystallized into an annual 10-day retreat at the Angela Center in Santa Rosa spanning the weekends on either side of the November Thanksgiving holiday. The name “Thanksgiving Retreat” thus originated from the dates of the retreat, although themes of gratitude commonly arose in the teachings.
 
@@ -19,7 +21,7 @@ The Angela Center suffered catastrophic damage in the California fires of Octobe
 
 Thanksgiving Retreat participants are usually long-term practitioners familiar with monastic teachings and customs. The container of a 10-day retreat gives the Q&A sessions a spacious, contemplative quality. Common topics include working with hindrances, unusual experiences in meditation, curiosity about monastic life, and how to apply the teachings beyond the retreat container.
 
-<!--HTML <img src="../../pages/images/photos/AbhayagiriWinter.jpg" alt="Snow covering Abhayagiri Monastery" id="cover" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AbhayagiriWinter.jpg" alt="Snow covering Abhayagiri Monastery" id="cover" title="Snow covering Abhayagiri Monastery" align="bottom" width="200" border="0"/> -->
 ## <a id="abhayagiri-winter-retreats" href="../indexes/EventsBySeries.html#abhayagiri-winter-retreats">Winter Retreats</a>
 The tradition of Western Ajahn Chah monasteries halting work projects during the winter to engage in intensive meditation practice began in the early years of Chithurst and Amaravati. Abhayagiri’s Winter Retreat occurs during the months of January, February, and March. There are typically roughly five teaching sessions each week. Until recently, all residents attended all sessions (Support team members cooking the day's meal listened via speakers in the kitchen).
 
@@ -41,11 +43,11 @@ The coronavirus pandemic disrupted this orderly scheme of Upāsikā Days, and th
 
 Upāsikā Day participants are typically core Abhayagiri lay supporters, many of whom have made a formal commitment to the Upāsikā Program. One hears the same voices weave through multiple recordings over the years. Some participants are lay Dhamma teachers themselves. Questions and comments often reflect years of committed practice and explore lay practice in more depth than any other series. This is also a good place to hear Ajahn Pasanno’s perspective on various social issues.
 
-<!--HTML <img src="../../pages/images/photos/LPP Abhayagiri New Years 2017.jpg" alt="Abhayagiri New Years 2017" id="cover" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/LPP Abhayagiri New Years 2017.jpg" alt="Abhayagiri New Years 2017" id="cover" title="Abhayagiri New Years 2017" align="bottom" width="200" border="0"/> -->
 ## <a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">Question and Answer Sessions</a>
 These are assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
 
-<!--HTML <img src="../../pages/images/photos/15 Full Stage.jpg" alt="Ajahn Chah Conference 2001" id="cover" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/15 Full Stage.jpg" alt="Ajahn Chah Conference 2001" id="cover" title="Ajahn Chah Conference 2001" align="bottom" width="200" border="0"/> -->
 ## <a id="other" href="../indexes/EventsBySeries.html#other">Other</a>
 These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. The wonderful and significant 2001 Ajahn Chah Conference in Portola Valley, California, will go here because it fits nowhere else.
 

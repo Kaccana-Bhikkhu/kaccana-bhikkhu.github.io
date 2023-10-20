@@ -1,3 +1,5 @@
+[Ajahn Pasanno teaching in Thailand, 2016](photo:LPP Sathien Dhammasathan 2016.jpg)
+
 # Event Series
 Although one-off teaching events are not uncommon, the bulk of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is useful to contextualize the teachings by describing these recurring events in detail.
 

@@ -1398,11 +1398,11 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     Also write a page for each tag."""
 
     drilldownDir = "drilldown"
-    yield next(iter(TagHierarchyMenu(indexDir,drilldownDir)))._replace(title="Tags")
+    yield next(iter(AlphabeticalTagList(indexDir)))._replace(title="Tags")
 
     tagMenu = [
-        TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
+        TagHierarchyMenu(indexDir,drilldownDir),
         MostCommonTagList(indexDir),
         [Html.PageInfo("About tags","about/05_Tags.html")],
         TagPages("tags")
