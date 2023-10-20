@@ -153,10 +153,11 @@ register_comment()
 
 def main() -> None:
     changeCount = sameCount = 0
+    localMirrors = {"local",gOptions.uploadMirror}
     for x in gDatabase["excerpts"]:
         if gOptions.events != "All" and x["event"] not in gOptions.events:
             continue # Only tag mp3 files for the specifed events
-        if not x["fileNumber"] or x["mirror"] != "local":
+        if not x["fileNumber"] or x["mirror"] not in localMirrors:
             continue # Ignore session excerpts and remote excerpts
         
         tags = ExcerptTags(x)

@@ -22,4 +22,4 @@ The Archive relies upon many common open-source and freeware tools. In addition 
 
 -----
 
-<!--HTML <img src="../../pages/images/photos/AjahnPasanno1997byJonnyBreeze.jpg" alt="Ajahn Pasanno 1997 - photo by Jonny Breeze" id="cover" title="Ajahn Pasanno 1997 - photo by Jonny Breeze" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AjahnPasanno1997byJonnyBreeze.jpg" alt="Ajahn Pasanno 1997 - photo by Jonny Breeze" id="small" title="Ajahn Pasanno 1997 - photo by Jonny Breeze" align="bottom" width="200" border="0"/> -->
