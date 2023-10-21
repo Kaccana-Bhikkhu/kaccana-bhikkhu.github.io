@@ -16,13 +16,15 @@ from typing import NamedTuple
 from collections import defaultdict
 import itertools
 
-STYLE_VERSION = 2
-if STYLE_VERSION == 1:
+NEW_STYLE = True
+if NEW_STYLE:
+    BASE_MENU_STYLE = dict(separator="\n"+6*" ",highlight={"class":"active"})
+    MAIN_MENU_STYLE = BASE_MENU_STYLE | dict(menuSection="mainMenu")
+    SUBMENU_STYLE = BASE_MENU_STYLE | dict(menuSection="subMenu")
+    EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink"}) + "\n<hr>\n")
+else:
     MAIN_MENU_STYLE = dict(menuSection="mainMenu")
     SUBMENU_STYLE = dict(menuSection="subMenu")
-else:
-    MAIN_MENU_STYLE = dict(menuSection="mainMenu",separator="\n"+6*" ",highlight={"class":"active"})
-    SUBMENU_STYLE = dict(menuSection="subMenu",separator="\n"+6*" ",highlight={"class":"active"})
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -478,7 +480,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     ]
 
     basePage = Html.PageDesc()
-    yield from basePage.AddMenuAndYieldPages(subMenu,wrapper=Html.Wrapper("<p>","</p><hr>"))
+    yield from basePage.AddMenuAndYieldPages(subMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>"))))
 
 def PlayerTitle(item:dict) -> str:
     """Generate a title string for the audio player for an excerpt or session.
@@ -1146,7 +1148,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p><hr>\n")))
+                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>\n")))))
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
@@ -1211,7 +1213,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,wrapper=Html.Wrapper("<p>","</p>")))
+            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p>")))))
         else:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
@@ -1385,7 +1387,7 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
         
     if makeMenu:
         baseTagPage = Html.PageDesc()
-        yield from baseTagPage.AddMenuAndYieldPages(aboutMenu,wrapper=Html.Wrapper("","<hr>\n"))
+        yield from baseTagPage.AddMenuAndYieldPages(aboutMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("","<hr>\n"))))
     else:
         yield from aboutMenu
 
@@ -1411,7 +1413,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
         drilldownMenu.append(DrilldownTags(drilldownItem))
 
     basePage = Html.PageDesc()
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,wrapper=Html.Wrapper("<p>","</p><hr>"))
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>"))))
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
