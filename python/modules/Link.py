@@ -233,7 +233,7 @@ class Linker:
                     item["mirror"] = mirror
                     return mirror
             except Exception as error:
-                Alert.notice(error,"when trying to access",url,"for item",item)
+                Alert.warning(error,"when trying to access",url,"for item",item)
         
         item["mirror"] = ""
         return ""
@@ -278,7 +278,7 @@ def LinkItems() -> None:
     multiThread = True
 
     if multiThread:
-        with ThreadPoolExecutor(max_workers=1) as pool:
+        with ThreadPoolExecutor() as pool:
             for itemType,items in gItemLists.items():
                 for item in Utils.Contents(items):
                     if item.get("fileNumber",1) == 0:
