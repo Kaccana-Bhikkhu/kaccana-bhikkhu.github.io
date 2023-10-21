@@ -71,13 +71,91 @@ header a:hover {
 	font-family: "Roboto", sans-serif;
 }
 
+/* Style the back link */
+.back-link {
+	text-align: right; 
+	font-size: 16px; 
+	margin: 0; 
+  }
+  
+  .back-link a {
+	text-decoration: none; 
+	color: #333; 
+	transition: color 0.2s ease-in-out; 
+  }
+  
+  .back-link a:hover {
+	color: #0088cc; 
+  }
+  
+
+#topnav a {
+	text-decoration: none; 
+	color: rgb(30, 29, 29);
+	text-align: center;
+	padding: 0.4em;
+	font-size: 1.1em;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	transition: border-bottom 0.2s ease-in-out; /* Add a smooth transition for the underline effect */
+	margin-right: 10px;
+  }
+  
+  #topnav a:hover {
+	color: #986020; 
+	text-decoration: none;
+  }
+
+  #topnav a.active {
+	color: #986020; 
+	border-bottom: 2px solid #a28a4e;
+  }
+
+hr {
+	border: none; 
+	border-top: 2px solid #909294; 
+	margin: 20px 0; 
+  }
+  
+  /* Style the links in the sublink */
+  .sublink a {
+	text-decoration: none;
+	color: rgb(30, 29, 29);
+	text-align: center;
+	padding: 0.4em;
+	font-size: 1em;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	transition: border-bottom 0.2s ease-in-out; /* Add a smooth transition for the underline effect */
+	margin-right: 10px;
+  }
+  
+  /* Style the hover effect for links */
+  .sublink a:hover {
+	color: #a28a4e; 
+	text-decoration: none;
+	
+  }
+  
+  /* Style the active link */
+  .sublink a.active {
+	color: #a28a4e;
+	border-bottom: 2px solid #a28a4e;
+
+  }
+  
+  /* Style the bold links (inside <b> tags) */
+  .sublink b a {
+	font-weight: 600; /* Apply a slightly thicker font weight for bold links */
+  }
+  
 /* Text */
 p {
 	margin: 0 0 0 0;
 	max-width: 1200px;
 	padding: 10px;
 	font-size: 16px;
-	color: #656462;
+	color: #2f2e2d;
 	line-height: 1.5;
 	font-family: "Arial", sans-serif;
 }
@@ -182,13 +260,14 @@ h5 {
 }
 /* Style links */
 a {
-	color: #035dcb;
+	color: #007bff;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #0088cc;
-	text-decoration: underline;
+	color: #0056b3;
+	text-decoration: none;
+	
 }
 
 hr {
