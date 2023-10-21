@@ -86,16 +86,16 @@ class Menu(Renderable):
     menu_wrapper:Wrapper
     menu_highlightTags:Wrapper
 
-    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlightTags:Wrapper = Wrapper("<b>","</b>"),wrapper:Wrapper = Wrapper()) -> None:
+    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlight:dict=dict(style="font-weight: bold;"),wrapper:Wrapper = Wrapper()) -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
         separator: html code between each menu item; defaults to 6 spaces.
-        highlightTags: the tags to apply to the highlighted menu item."""
+        highlight: a dictionary of attributes to apply to the highlighted menu item."""
         self.items = items
         self.menu_highlightedItem = highlightedItem
         self.menu_separator = separator
         self.menu_wrapper = wrapper
-        self.menu_highlightTags = highlightTags
+        self.menu_highlight = highlight
     
     def __str__(self) -> str:
         """Return an html string corresponding to the rendered menu."""
@@ -103,12 +103,15 @@ class Menu(Renderable):
         def RelativeLink(link: str) -> bool:
             return not ("://" in link or link.startswith("#"))
 
-        # Render relative links as if the file is at directory depth 1. PageDesc.RenderWithTemplate will later produce the correct
-        menuLinks = [f'<a href = "{"../" + i.file if RelativeLink(i.file) else i.file}">{i.title}</a>' for i in self.items]
-
-        if self.menu_highlightedItem is not None:
-            menuLinks[self.menu_highlightedItem] = self.menu_highlightTags.Wrap(menuLinks[self.menu_highlightedItem])
-
+        menuLinks = []
+        for n,item in enumerate(self.items):
+            link = dict(href="../" + item.file if RelativeLink(item.file) else item.file)
+                # Render relative links as if the file is at directory depth 1.
+                # PageDesc.RenderWithTemplate will later account for the true directory depth.
+            if n == self.menu_highlightedItem:
+                link.update(self.menu_highlight)
+            menuLinks.append(Tag("a",link)(item.title))
+        
         separator = self.menu_separator
         if type(separator) == int:
             separator = " " + (separator - 1) * "&nbsp"
