@@ -47,3 +47,5 @@
 - 3.3.4 Add --mirror option to specify possible sources of audio and reference files. Winter Retreat 2015 through Session 24.
 
 - 3.3.5 Suggested citation footer (needs polishing). Documentation updates.
+
+- 3.4 Add photos to documentation. Much improved citation footer title. Html meta tag keywords. Remove meta robots search engine block. Several layout changes in preparation for Chris Claudius's new style sheet. --linkCheckLevel option.
