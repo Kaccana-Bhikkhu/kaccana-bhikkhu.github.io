@@ -145,17 +145,19 @@ For each page associated with the menu it then yields one of the following:
 """
 
 class PageDesc(Renderable):
-    """A PageDesc object is used gradually build a complete description of the content of a page.
+    """A PageDesc object is used to gradually build a complete description of the content of a page.
     When complete, the object will be passed to a pyratemp template to generate a page and write it to disk."""
     info: PageInfo
     numberedSections:int
     section:dict[int|str,str|Renderable]
+    keywords:[str]
 
     def __init__(self,info: PageInfo = PageInfo()) -> None:
         self.info = info # Basic information about the page
         self.numberedSections = 1
         self.section = {0:""} # A dict describing the content of the page. Sequential sections are given by integer keys, non-sequential sections by string keys.
-    
+        self.keywords = []
+
     def Clone(self) -> PageDesc:
         """Clone this page so we can add more material to the new page without affecting the original."""
         return copy.deepcopy(self)
@@ -212,6 +214,8 @@ class PageDesc(Renderable):
             if type(key) != int:
                 self.AppendContent(content,key)
         
+        self.keywords += pageToAppend.keywords
+
         return self
 
     def Augment(self,newData: PageAugmentorType) -> PageDesc:
@@ -226,7 +230,7 @@ class PageDesc(Renderable):
         else:
             pageInfo,pageBody = newData
             self.info = pageInfo
-            self.AppendContent(pageBody)
+            self.Augment(pageBody)
         
         return self
 
