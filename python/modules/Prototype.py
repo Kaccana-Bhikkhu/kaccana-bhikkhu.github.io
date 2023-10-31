@@ -1059,13 +1059,24 @@ def EventDescription(event: dict,showMonth = False) -> str:
 def ListEventsBySeries(events: list[dict]) -> str:
     """Return html code listing these events by series."""
 
+    prevSeries = None
+
     def SeriesIndex(event: dict) -> int:
         "Return the index of the series of this event for sorting purposes"
         return list(gDatabase["series"]).index(event["series"])
     
     def LinkToAboutSeries(event: dict) -> tuple(str,str,str):
-        htmlHeading = Html.Tag("a",dict(href="../about/04_Series.html#" + Utils.slugify(event["series"])))(event["series"])
-        return htmlHeading,EventDescription(event,showMonth=True),event["series"]
+        htmlHeading = event["series"] + " (" + Html.Tag("a",dict(href="../about/02_Event-series.html#" + Utils.slugify(event["series"])))("More information") + ")"
+        
+        nonlocal prevSeries
+        description = ""
+        if event["series"] != prevSeries:
+            description = gDatabase["series"][event["series"]]["description"]
+            if description:
+                description = Html.Tag("p")(description)
+            prevSeries = event["series"]
+            
+        return htmlHeading,description + EventDescription(event,showMonth=True),event["series"]
 
     eventsSorted = sorted(events,key=SeriesIndex)
     return str(Html.ListWithHeadings(eventsSorted,LinkToAboutSeries))
@@ -1088,7 +1099,7 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
         [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
         [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
-        [Html.PageInfo("About event series","about/04_Series.html")],
+        [Html.PageInfo("About event series","about/02_Event-series.html")],
         EventPages("events")
     ]
 
