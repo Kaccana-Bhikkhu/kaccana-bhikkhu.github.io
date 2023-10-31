@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import re, os, itertools
-import Utils, Render, Alert, Html, Filter
+import Utils, Render, Alert, Filter
+import Html2 as Html
 from typing import Tuple, Type, Callable, Iterable
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
