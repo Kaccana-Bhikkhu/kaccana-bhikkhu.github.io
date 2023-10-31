@@ -134,6 +134,13 @@ def AboutPageLookup(pageName:str,aboutPageCache:dict = {}) -> str|None:
 
     return aboutPageCache.get(pageName.lower().replace(" ","-"),None)
 
+def Singular(noun: str) -> str:
+    "Use simple rules to guess the singular form or a noun."
+    if noun.endswith("ies"):
+        return noun[:-3] + "y"
+    else:
+        return noun.rstrip("s")
+
 def EllideText(s: str,maxLength = 50) -> str:
     "Truncate a string to keep the number of characters under maxLength."
     if len(s) <= maxLength:

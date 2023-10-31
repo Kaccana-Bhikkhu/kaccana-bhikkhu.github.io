@@ -70,7 +70,9 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "Prototype",
-                "-vvv"
+                "-vvv",
+                "--buildOnly",
+                "AllExcerpts"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
