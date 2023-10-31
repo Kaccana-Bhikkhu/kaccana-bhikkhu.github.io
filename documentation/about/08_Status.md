@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/LPP Chao Khun Ceremony.jpg" alt="Ajahn Pasanno's 2019 Chao Khun Ceremony" id="cover" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/LPP Chao Khun Ceremony.jpg" alt="Ajahn Pasanno's 2019 Chao Khun Ceremony" id="cover" title="Ajahn Pasanno's 2019 Chao Khun Ceremony" align="bottom" width="200" border="0"/> -->
 
 # Status – November 2023 Initial Release
 
