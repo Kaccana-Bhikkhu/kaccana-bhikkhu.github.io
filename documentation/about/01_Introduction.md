@@ -26,9 +26,6 @@ If you would like to browse and listen to stories, visit the [all stories page](
 
 If you are interested in the conceptual framework underlying these teachings, look through the [tag hierarchy page](../drilldown/tag-999.html).
 
-## Website
-This website is a series of static pages generated from the archive database. It currently contains over 1,000 excerpts from more than two dozen events. I originally conceived of it as a prototype stepping stone to a modern search-driven website created by someone with more web skills. However, with a css makeover by Chris Claudius and a floating media player created by my nephew Owen, the prototype began to look and work well enough to publish. It would benefit greatly from a text search feature if anyone has the skill and time to contribute one.
-
 ## Dedication
 This project is dedicated to Luang Por Pasanno (Tan Chao Khun Phra Rajabodhividesa), my preceptor, teacher, and mentor. He has given his life to continuing Luang Pu Chah’s efforts to establish Westerners in the Saṅgha and the Saṅgha in the West. He founded and/or was a long-term abbot of all the monasteries where I trained before my tenth rains. He sets an impeccable example of the Holy Life well-lived, and I’ve watched him handle many challenging situations with confidence and ease. The epithet of the Saṅgha, “They give occasion for incomparable goodness to arise in the world,” certainly applies to Luang Por.
 
