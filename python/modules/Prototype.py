@@ -1033,7 +1033,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
             for tag in tags:
                 tagCount[tag] += 1
         
-        commonTags = sorted(((count,tag) for tag,count in tagCount.items()),key=lambda item:-item[0])
+        commonTags = sorted(((count,tag) for tag,count in tagCount.items()),key=lambda item:(-item[0],item[1]))
         
         a = Airium()
         with a.p():
@@ -1121,13 +1121,14 @@ def ListEventsBySeries(events: list[dict]) -> str:
         return list(gDatabase["series"]).index(event["series"])
     
     def LinkToAboutSeries(event: dict) -> tuple(str,str,str):
-        htmlHeading = event["series"] + " (" + Html.Tag("a",dict(href="../about/02_Event-series.html#" + Utils.slugify(event["series"])))("More information") + ")"
+        htmlHeading = event["series"]
         
         nonlocal prevSeries
         description = ""
         if event["series"] != prevSeries:
             description = gDatabase["series"][event["series"]]["description"]
             if description:
+                description += " " + Html.Tag("a",dict(href="../about/02_Event-series.html#" + Utils.slugify(event["series"])))("More...")
                 description = Html.Tag("p")(description)
             prevSeries = event["series"]
             
