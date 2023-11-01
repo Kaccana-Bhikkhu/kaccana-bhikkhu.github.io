@@ -1344,12 +1344,19 @@ def ListTeachersAlphabetical(teachers: list[dict]) -> str:
     alphabetized = sorted((AlphabetizeName(t["fullName"]),t) for t in teachers)
     return "\n".join(TeacherDescription(t,name) for name,t in alphabetized)
 
+def TeacherDate(teacher:dict) -> float:
+    "Return a teacher's date for sorting purposes."
+    try:
+        return float(gDatabase["name"][teacher["fullName"]]["sortBy"])
+    except (KeyError,ValueError):
+        return 9999
+
 def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
     
     groups = list(gDatabase["group"])
     groups.append("") # Prevent an error if group is blank
-    chronological = sorted(teachers,key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
+    chronological = sorted(teachers,key=TeacherDate)
     chronological.sort(key=lambda t: groups.index(t["group"]))
     return str(Html.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
 
@@ -1358,8 +1365,8 @@ def ListTeachersLineage(teachers: list[dict]) -> str:
     
     lineages = list(gDatabase["lineage"])
     lineages.append("") # Prevent an error if group is blank
-    hasLineage = [t for t in teachers if t["lineage"]]
-    hasLineage.sort(key=lambda t: float(t["sortBy"]) if t["sortBy"] else 9999)
+    hasLineage = [t for t in teachers if t["lineage"] and t["group"] == "Monastics"]
+    hasLineage.sort(key=TeacherDate)
         # NOTE: We will sort by teacher date once this information gets into the spreadsheet
     hasLineage.sort(key=lambda t: lineages.index(t["lineage"]))
     return str(Html.ListWithHeadings(hasLineage,lambda t: (t["lineage"],TeacherDescription(t)) ))
