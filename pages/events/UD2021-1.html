@@ -9,7 +9,8 @@
     <title>Honoring the Buddha: The Mahāparinibbāna Sutta</title>
 
   <script>
-    location.replace("../index.html#events/UD2021-1.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/UD2021-1.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

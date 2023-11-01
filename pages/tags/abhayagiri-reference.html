@@ -9,7 +9,8 @@
     <title>Abhayagiri</title>
 
   <script>
-    location.replace("../index.html#tags/abhayagiri-reference.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/abhayagiri-reference.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

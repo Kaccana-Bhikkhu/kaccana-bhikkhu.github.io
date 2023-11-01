@@ -9,7 +9,8 @@
     <title>Body scanning</title>
 
   <script>
-    location.replace("../index.html#tags/body-scanning.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/body-scanning.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

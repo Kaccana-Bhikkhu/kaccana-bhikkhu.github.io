@@ -9,7 +9,8 @@
     <title>Buddhist identity</title>
 
   <script>
-    location.replace("../index.html#tags/buddhist-identity-story.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/buddhist-identity-story.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

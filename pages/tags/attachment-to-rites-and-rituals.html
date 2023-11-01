@@ -9,7 +9,8 @@
     <title>Attachment to rites and rituals</title>
 
   <script>
-    location.replace("../index.html#tags/attachment-to-rites-and-rituals.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/attachment-to-rites-and-rituals.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

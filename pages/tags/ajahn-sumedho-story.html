@@ -9,7 +9,8 @@
     <title>Ajahn Sumedho</title>
 
   <script>
-    location.replace("../index.html#tags/ajahn-sumedho-story.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/ajahn-sumedho-story.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

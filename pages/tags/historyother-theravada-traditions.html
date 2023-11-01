@@ -9,7 +9,8 @@
     <title>History/Other Theravāda traditions</title>
 
   <script>
-    location.replace("../index.html#tags/historyother-theravada-traditions.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/historyother-theravada-traditions.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

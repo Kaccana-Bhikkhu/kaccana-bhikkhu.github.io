@@ -9,7 +9,8 @@
     <title>Rains retreat</title>
 
   <script>
-    location.replace("../index.html#tags/rains-retreat.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/rains-retreat.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

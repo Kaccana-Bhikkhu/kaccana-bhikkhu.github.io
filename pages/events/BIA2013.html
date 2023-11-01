@@ -9,7 +9,8 @@
     <title>New Year, New Life</title>
 
   <script>
-    location.replace("../index.html#events/BIA2013.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/BIA2013.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

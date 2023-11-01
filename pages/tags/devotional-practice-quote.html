@@ -9,7 +9,8 @@
     <title>Devotional practice</title>
 
   <script>
-    location.replace("../index.html#tags/devotional-practice-quote.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/devotional-practice-quote.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

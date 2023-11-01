@@ -9,7 +9,8 @@
     <title>Ajahn Jayasaro</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-jayasaro-i-quote.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-jayasaro-i-quote.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

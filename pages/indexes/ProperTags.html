@@ -9,7 +9,8 @@
     <title>People/places/traditions (119)</title>
 
   <script>
-    location.replace("../index.html#indexes/ProperTags.html");
+    url = new URL(location.href)
+    location.replace("../index.html#indexes/ProperTags.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

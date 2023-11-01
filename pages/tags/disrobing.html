@@ -9,7 +9,8 @@
     <title>Disrobing</title>
 
   <script>
-    location.replace("../index.html#tags/disrobing.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/disrobing.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

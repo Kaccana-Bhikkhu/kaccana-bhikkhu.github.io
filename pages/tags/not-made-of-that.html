@@ -9,7 +9,8 @@
     <title>Not-made-of-that</title>
 
   <script>
-    location.replace("../index.html#tags/not-made-of-that.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/not-made-of-that.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

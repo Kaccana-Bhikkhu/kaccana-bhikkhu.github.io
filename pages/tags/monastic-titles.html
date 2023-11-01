@@ -9,7 +9,8 @@
     <title>Monastic titles</title>
 
   <script>
-    location.replace("../index.html#tags/monastic-titles.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/monastic-titles.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

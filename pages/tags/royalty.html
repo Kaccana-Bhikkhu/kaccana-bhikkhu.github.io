@@ -9,7 +9,8 @@
     <title>Royalty</title>
 
   <script>
-    location.replace("../index.html#tags/royalty.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/royalty.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

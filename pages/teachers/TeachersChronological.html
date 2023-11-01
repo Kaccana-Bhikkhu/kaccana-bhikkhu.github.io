@@ -9,7 +9,8 @@
     <title>Chronological</title>
 
   <script>
-    location.replace("../index.html#teachers/TeachersChronological.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/TeachersChronological.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

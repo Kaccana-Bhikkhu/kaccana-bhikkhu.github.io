@@ -9,7 +9,8 @@
     <title>Fierce/direct teaching</title>
 
   <script>
-    location.replace("../index.html#tags/fiercedirect-teaching-qtag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/fiercedirect-teaching-qtag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Harsh speech</title>
 
   <script>
-    location.replace("../index.html#tags/harsh-speech.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/harsh-speech.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

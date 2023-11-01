@@ -9,7 +9,8 @@
     <title>Formless attainments</title>
 
   <script>
-    location.replace("../index.html#tags/formless-attainments.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/formless-attainments.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

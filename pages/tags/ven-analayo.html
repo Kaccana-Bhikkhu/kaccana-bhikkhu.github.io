@@ -9,7 +9,8 @@
     <title>Ven. Analayo</title>
 
   <script>
-    location.replace("../index.html#tags/ven-analayo.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/ven-analayo.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

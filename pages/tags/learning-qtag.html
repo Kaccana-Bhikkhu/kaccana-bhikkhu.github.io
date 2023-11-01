@@ -9,7 +9,8 @@
     <title>Learning</title>
 
   <script>
-    location.replace("../index.html#tags/learning-qtag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/learning-qtag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

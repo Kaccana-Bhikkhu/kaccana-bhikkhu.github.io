@@ -9,7 +9,8 @@
     <title>Philosophy</title>
 
   <script>
-    location.replace("../index.html#tags/philosophy.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/philosophy.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

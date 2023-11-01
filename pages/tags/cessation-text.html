@@ -9,7 +9,8 @@
     <title>Cessation</title>
 
   <script>
-    location.replace("../index.html#tags/cessation-text.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/cessation-text.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Trulshik Rinpoche</title>
 
   <script>
-    location.replace("../index.html#tags/trulshik-rinpoche.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/trulshik-rinpoche.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

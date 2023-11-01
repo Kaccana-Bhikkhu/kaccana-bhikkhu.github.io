@@ -9,7 +9,8 @@
     <title>Not handling money</title>
 
   <script>
-    location.replace("../index.html#tags/not-handling-money.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/not-handling-money.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

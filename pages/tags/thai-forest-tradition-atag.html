@@ -9,7 +9,8 @@
     <title>Thai Forest Tradition</title>
 
   <script>
-    location.replace("../index.html#tags/thai-forest-tradition-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/thai-forest-tradition-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

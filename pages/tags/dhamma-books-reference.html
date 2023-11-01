@@ -9,7 +9,8 @@
     <title>Dhamma books</title>
 
   <script>
-    location.replace("../index.html#tags/dhamma-books-reference.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/dhamma-books-reference.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Simplicity</title>
 
   <script>
-    location.replace("../index.html#tags/simplicity-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/simplicity-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

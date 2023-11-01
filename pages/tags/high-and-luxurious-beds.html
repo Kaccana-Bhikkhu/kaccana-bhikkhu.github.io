@@ -9,7 +9,8 @@
     <title>High and luxurious beds</title>
 
   <script>
-    location.replace("../index.html#tags/high-and-luxurious-beds.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/high-and-luxurious-beds.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

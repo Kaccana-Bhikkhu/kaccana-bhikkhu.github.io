@@ -9,7 +9,8 @@
     <title>Q&ampA at Sudhana Center</title>
 
   <script>
-    location.replace("../index.html#events/Sudhana2023.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/Sudhana2023.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Industry</title>
 
   <script>
-    location.replace("../index.html#tags/industry.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/industry.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

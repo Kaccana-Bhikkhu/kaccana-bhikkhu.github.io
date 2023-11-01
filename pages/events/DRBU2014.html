@@ -9,7 +9,8 @@
     <title>Questions and Answers with Dharma Realm Buddhist University</title>
 
   <script>
-    location.replace("../index.html#events/DRBU2014.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/DRBU2014.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

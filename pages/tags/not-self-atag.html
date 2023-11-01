@@ -9,7 +9,8 @@
     <title>Not-self</title>
 
   <script>
-    location.replace("../index.html#tags/not-self-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/not-self-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

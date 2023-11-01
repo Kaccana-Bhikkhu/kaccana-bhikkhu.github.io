@@ -9,7 +9,8 @@
     <title>Four Noble Truths</title>
 
   <script>
-    location.replace("../index.html#tags/four-noble-truths-text.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/four-noble-truths-text.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Qualities for non-decline</title>
 
   <script>
-    location.replace("../index.html#tags/qualities-for-non-decline.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/qualities-for-non-decline.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Saṅgha decision making</title>
 
   <script>
-    location.replace("../index.html#tags/sangha-decision-making-story.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/sangha-decision-making-story.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

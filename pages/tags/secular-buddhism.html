@@ -9,7 +9,8 @@
     <title>Secular Buddhism</title>
 
   <script>
-    location.replace("../index.html#tags/secular-buddhism.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/secular-buddhism.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

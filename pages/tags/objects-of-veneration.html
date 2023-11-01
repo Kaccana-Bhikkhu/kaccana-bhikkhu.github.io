@@ -9,7 +9,8 @@
     <title>Objects of veneration</title>
 
   <script>
-    location.replace("../index.html#tags/objects-of-veneration.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/objects-of-veneration.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

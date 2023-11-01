@@ -9,7 +9,8 @@
     <title>Direct experience</title>
 
   <script>
-    location.replace("../index.html#tags/direct-experience.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/direct-experience.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

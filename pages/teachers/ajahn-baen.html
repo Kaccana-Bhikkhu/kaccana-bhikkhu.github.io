@@ -9,7 +9,8 @@
     <title>Ajahn Baen</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-baen.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-baen.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -12,7 +12,8 @@
 <!--(end)-->
 
   <script>
-    location.replace("../index.html#$!page.info.file!$");
+    url = new URL(location.href)
+    location.replace("../index.html#$!page.info.file!$" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

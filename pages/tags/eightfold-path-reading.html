@@ -9,7 +9,8 @@
     <title>Eightfold Path</title>
 
   <script>
-    location.replace("../index.html#tags/eightfold-path-reading.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/eightfold-path-reading.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

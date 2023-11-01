@@ -9,7 +9,8 @@
     <title>Ajahn Sucitto</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-sucitto.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-sucitto.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

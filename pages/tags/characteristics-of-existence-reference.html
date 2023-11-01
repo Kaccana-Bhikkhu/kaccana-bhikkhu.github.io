@@ -9,7 +9,8 @@
     <title>Characteristics of existence</title>
 
   <script>
-    location.replace("../index.html#tags/characteristics-of-existence-reference.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/characteristics-of-existence-reference.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Appropriate attention</title>
 
   <script>
-    location.replace("../index.html#tags/appropriate-attention.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/appropriate-attention.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

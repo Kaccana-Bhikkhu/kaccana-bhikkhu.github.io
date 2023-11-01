@@ -9,7 +9,8 @@
     <title>Visiting holy sites</title>
 
   <script>
-    location.replace("../index.html#tags/visiting-holy-sites.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/visiting-holy-sites.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

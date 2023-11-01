@@ -9,7 +9,8 @@
     <title>Health care</title>
 
   <script>
-    location.replace("../index.html#tags/health-care-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/health-care-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

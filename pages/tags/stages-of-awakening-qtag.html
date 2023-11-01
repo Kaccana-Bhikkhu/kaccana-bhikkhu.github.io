@@ -9,7 +9,8 @@
     <title>Stages of awakening</title>
 
   <script>
-    location.replace("../index.html#tags/stages-of-awakening-qtag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/stages-of-awakening-qtag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

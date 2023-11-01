@@ -9,7 +9,8 @@
     <title>Ajahn Karuṇadhammo</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-karunadhammo-d-quote.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-karunadhammo-d-quote.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Self-reliance</title>
 
   <script>
-    location.replace("../index.html#tags/self-reliance.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/self-reliance.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

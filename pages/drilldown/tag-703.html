@@ -9,7 +9,8 @@
     <title>Hierarchy</title>
 
   <script>
-    location.replace("../index.html#drilldown/tag-703.html");
+    url = new URL(location.href)
+    location.replace("../index.html#drilldown/tag-703.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

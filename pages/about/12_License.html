@@ -9,7 +9,8 @@
     <title>License</title>
 
   <script>
-    location.replace("../index.html#about/12_License.html");
+    url = new URL(location.href)
+    location.replace("../index.html#about/12_License.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Ajahn Ñāniko</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-naniko.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-naniko.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Tan Chao Khun Upālī Guṇūpamājahn</title>
 
   <script>
-    location.replace("../index.html#teachers/tan-chao-khun-upali-gunupamajahn.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/tan-chao-khun-upali-gunupamajahn.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

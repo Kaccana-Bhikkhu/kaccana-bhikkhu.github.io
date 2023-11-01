@@ -9,7 +9,8 @@
     <title>Spiritual search</title>
 
   <script>
-    location.replace("../index.html#tags/spiritual-search-reading.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/spiritual-search-reading.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

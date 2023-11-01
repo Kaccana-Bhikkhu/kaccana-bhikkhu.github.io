@@ -9,7 +9,8 @@
     <title>S. N. Goenka</title>
 
   <script>
-    location.replace("../index.html#tags/s-n-goenka.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/s-n-goenka.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

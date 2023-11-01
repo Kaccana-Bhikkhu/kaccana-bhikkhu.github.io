@@ -9,7 +9,8 @@
     <title>Pūjā</title>
 
   <script>
-    location.replace("../index.html#tags/puja.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/puja.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

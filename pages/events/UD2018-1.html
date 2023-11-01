@@ -9,7 +9,8 @@
     <title>The New Ajahn Chah Biography</title>
 
   <script>
-    location.replace("../index.html#events/UD2018-1.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/UD2018-1.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

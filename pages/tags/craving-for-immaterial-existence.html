@@ -9,7 +9,8 @@
     <title>Craving for immaterial existence</title>
 
   <script>
-    location.replace("../index.html#tags/craving-for-immaterial-existence.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/craving-for-immaterial-existence.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

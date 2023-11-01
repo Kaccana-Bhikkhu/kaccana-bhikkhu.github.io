@@ -9,7 +9,8 @@
     <title>Wat Tam Saeng Pet</title>
 
   <script>
-    location.replace("../index.html#tags/wat-tam-saeng-pet.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/wat-tam-saeng-pet.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Status</title>
 
   <script>
-    location.replace("../index.html#about/08_Status.html");
+    url = new URL(location.href)
+    location.replace("../index.html#about/08_Status.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

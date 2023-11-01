@@ -9,7 +9,8 @@
     <title>Work</title>
 
   <script>
-    location.replace("../index.html#tags/work-reading.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/work-reading.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

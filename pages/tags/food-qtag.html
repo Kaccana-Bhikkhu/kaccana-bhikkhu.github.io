@@ -9,7 +9,8 @@
     <title>Food</title>
 
   <script>
-    location.replace("../index.html#tags/food-qtag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/food-qtag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

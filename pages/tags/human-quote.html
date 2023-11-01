@@ -9,7 +9,8 @@
     <title>Human</title>
 
   <script>
-    location.replace("../index.html#tags/human-quote.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/human-quote.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Bases of Success</title>
 
   <script>
-    location.replace("../index.html#tags/bases-of-success.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/bases-of-success.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

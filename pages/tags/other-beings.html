@@ -9,7 +9,8 @@
     <title>Other beings</title>
 
   <script>
-    location.replace("../index.html#tags/other-beings.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/other-beings.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

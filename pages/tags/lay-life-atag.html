@@ -9,7 +9,8 @@
     <title>Lay life</title>
 
   <script>
-    location.replace("../index.html#tags/lay-life-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/lay-life-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

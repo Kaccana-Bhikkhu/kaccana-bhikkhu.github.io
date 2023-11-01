@@ -9,7 +9,8 @@
     <title>The Whole of the Path: The Fruits of Spiritual Friendship</title>
 
   <script>
-    location.replace("../index.html#events/SRD2013.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/SRD2013.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

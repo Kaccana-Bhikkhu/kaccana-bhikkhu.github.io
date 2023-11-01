@@ -9,7 +9,8 @@
     <title>Ajahn Liem</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-liem.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-liem.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

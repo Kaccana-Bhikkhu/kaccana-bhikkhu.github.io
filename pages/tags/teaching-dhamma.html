@@ -9,7 +9,8 @@
     <title>Teaching Dhamma</title>
 
   <script>
-    location.replace("../index.html#tags/teaching-dhamma.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/teaching-dhamma.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

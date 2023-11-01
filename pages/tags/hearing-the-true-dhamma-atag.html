@@ -9,7 +9,8 @@
     <title>Hearing the true Dhamma</title>
 
   <script>
-    location.replace("../index.html#tags/hearing-the-true-dhamma-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/hearing-the-true-dhamma-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

@@ -9,7 +9,8 @@
     <title>Living in a Changing Society</title>
 
   <script>
-    location.replace("../index.html#events/UD2020.html");
+    url = new URL(location.href)
+    location.replace("../index.html#events/UD2020.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

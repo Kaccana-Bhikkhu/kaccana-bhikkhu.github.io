@@ -9,7 +9,8 @@
     <title>Patience</title>
 
   <script>
-    location.replace("../index.html#tags/patience-quote.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/patience-quote.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

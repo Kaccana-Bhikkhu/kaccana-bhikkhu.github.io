@@ -9,7 +9,8 @@
     <title>Crime</title>
 
   <script>
-    location.replace("../index.html#tags/crime.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/crime.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

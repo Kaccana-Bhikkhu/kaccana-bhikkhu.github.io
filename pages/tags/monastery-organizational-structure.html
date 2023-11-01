@@ -9,7 +9,8 @@
     <title>Monastery organizational structure</title>
 
   <script>
-    location.replace("../index.html#tags/monastery-organizational-structure.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/monastery-organizational-structure.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

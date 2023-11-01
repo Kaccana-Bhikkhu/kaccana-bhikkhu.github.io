@@ -9,7 +9,8 @@
     <title>Association with people of integrity</title>
 
   <script>
-    location.replace("../index.html#tags/association-with-people-of-integrity.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/association-with-people-of-integrity.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

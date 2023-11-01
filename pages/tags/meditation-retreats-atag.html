@@ -9,7 +9,8 @@
     <title>Meditation retreats</title>
 
   <script>
-    location.replace("../index.html#tags/meditation-retreats-atag.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/meditation-retreats-atag.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

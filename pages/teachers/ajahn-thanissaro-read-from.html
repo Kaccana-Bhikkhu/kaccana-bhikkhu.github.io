@@ -9,7 +9,8 @@
     <title>Ajahn Ṭhānissaro</title>
 
   <script>
-    location.replace("../index.html#teachers/ajahn-thanissaro-read-from.html");
+    url = new URL(location.href)
+    location.replace("../index.html#teachers/ajahn-thanissaro-read-from.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

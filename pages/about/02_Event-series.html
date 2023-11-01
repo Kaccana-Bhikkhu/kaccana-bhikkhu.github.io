@@ -9,7 +9,8 @@
     <title>Event series</title>
 
   <script>
-    location.replace("../index.html#about/02_Event-series.html");
+    url = new URL(location.href)
+    location.replace("../index.html#about/02_Event-series.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

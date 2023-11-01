@@ -9,7 +9,8 @@
     <title>Ajahn Mahā Amon</title>
 
   <script>
-    location.replace("../index.html#tags/ajahn-maha-amon.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/ajahn-maha-amon.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

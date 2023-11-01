@@ -9,7 +9,8 @@
     <title>All/Searchable</title>
 
   <script>
-    location.replace("../index.html#tags/ajahn-chah-all.html");
+    url = new URL(location.href)
+    location.replace("../index.html#tags/ajahn-chah-all.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">

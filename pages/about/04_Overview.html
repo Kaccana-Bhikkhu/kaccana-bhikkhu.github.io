@@ -9,7 +9,8 @@
     <title>Overview</title>
 
   <script>
-    location.replace("../index.html#about/04_Overview.html");
+    url = new URL(location.href)
+    location.replace("../index.html#about/04_Overview.html" + url.hash);
   </script>
 
 <link rel="stylesheet" href="../style.css">
