@@ -1354,9 +1354,14 @@ def TeacherDate(teacher:dict) -> float:
 def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
     
+    teachersWithoutDate = [t["fullName"] for t in teachers if TeacherDate(t) > 3000]
+    if teachersWithoutDate:
+        Alert.caution(len(teachersWithoutDate),"teacher(s) do not have dates and will be sorted last.")
+        Alert.extra("Teachers without dates:",teachersWithoutDate)
+    chronological = sorted(teachers,key=TeacherDate)
+
     groups = list(gDatabase["group"])
     groups.append("") # Prevent an error if group is blank
-    chronological = sorted(teachers,key=TeacherDate)
     chronological.sort(key=lambda t: groups.index(t["group"]))
     return str(Html.ListWithHeadings(chronological,lambda t: (t["group"],TeacherDescription(t)) ))
 

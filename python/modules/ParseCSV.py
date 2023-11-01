@@ -508,7 +508,7 @@ def SortTags(database: dict) -> None:
         for index,child in zip(childIndexes,children):
             database["tagDisplayList"][index] = child
     if datelessTags:
-        Alert.caution("Cannot find a date for",len(datelessTags),"tags in the Name sheet. These tags will go last.")
+        Alert.caution("Cannot find a date for",len(datelessTags),"tag(s) in the Name sheet. These tags will go last.")
         Alert.extra("Dateless tags:",datelessTags)
 
 def CreateTagDisplayList(database):
