@@ -479,6 +479,7 @@ def IndexTags(database: dict) -> None:
 def SortTags(database: dict) -> None:
     """Sort subtags of tags with flag 'S' according to sort by dates in Name sheet."""
 
+    datelessTags = []
     for parentIndex,childIndexes in WalkTags(database["tagDisplayList"],returnIndices=True):
         if not parentIndex:
             continue
@@ -493,18 +494,22 @@ def SortTags(database: dict) -> None:
         children = [database["tagDisplayList"][i] for i in childIndexes]
 
         def SortByDate(tagInfo:dict) -> float:
-            sortBy = database["name"].get(tagInfo["tag"],{"sortBy":""})["sortBy"]
+            fullTag = database["tag"][tagInfo["tag"]]["fullTag"]
+            sortBy = database["name"].get(fullTag,{"sortBy":""})["sortBy"]
             if sortBy:
                 try:
                     return float(sortBy)
                 except ValueError:
                     pass
-            Alert.caution("Cannot find a date for",repr(tagInfo["tag"]),"in the Name sheet. This tag will go last.")
+            datelessTags.append(fullTag)
             return 9999.0
 
         children.sort(key=SortByDate)
         for index,child in zip(childIndexes,children):
             database["tagDisplayList"][index] = child
+    if datelessTags:
+        Alert.caution("Cannot find a date for",len(datelessTags),"tags in the Name sheet. These tags will go last.")
+        Alert.extra("Dateless tags:",datelessTags)
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
