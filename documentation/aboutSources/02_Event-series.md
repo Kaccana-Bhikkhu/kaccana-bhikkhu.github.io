@@ -1,7 +1,7 @@
 [Ajahn Pasanno teaching in Thailand, 2016](photo:LPP Sathien Dhammasathan 2016.jpg)
 
 # Event Series
-Most of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is useful to contextualize the teachings by describing these recurring events in detail.
+Most of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is helpful to understand these recurring events in detail.
 
 [Thanksgiving Retreat 2010 at the Angela Center](photo:Thanksgiving Retreat 2010.jpg)
 ## Thanksgiving Retreats (<a id="thanksgiving-retreats" href="../indexes/EventsBySeries.html#thanksgiving-retreats">List</a>)

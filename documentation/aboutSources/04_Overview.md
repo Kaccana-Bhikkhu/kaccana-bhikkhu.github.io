@@ -7,7 +7,7 @@ In addition, transcription inevitably flattens the nuance and emotional warmth o
 The archive tags and partially transcribes questions and discussions such that visitors can find what they are looking for while the bulk of the content remains in audio form. As of November 2023, I have been the only contributor to the transcribed content of the archive, but [many others](about:Acknowledgements) have helped with web design, organizing the tags, and writing documentation. Creating the archive has significantly enhanced my understanding and appreciation of Ajahn Pasanno’s teachings.
 
 ## Website
-This website is a series of static pages generated from the archive database. It currently contains over 1,000 excerpts from more than two dozen events. I originally conceived of it as a prototype stepping stone to a modern search-driven website created by someone with more web skills. However, with a css makeover by Chris Claudius and a floating media player created by my nephew Owen, the prototype began to look and work well enough to publish. It would benefit greatly from a text search feature if anyone has the skill and time to contribute one.
+This website is a series of static pages generated from the archive database. I originally conceived of it as a prototype stepping stone to a modern search-driven website created by someone with more web skills. However, with a css makeover by Chris Claudius and a floating media player created by my nephew Owen, the prototype began to look and work well enough to publish. It would benefit greatly from a text search feature if anyone has the skill and time to contribute one.
 
 ## Structure
 ### Events and Sessions
@@ -33,7 +33,7 @@ The website menus link to a series of static pages which allow the user to brows
 
 The website does not yet enable the user to easily search the body text of excerpts. Two workarounds for this significant limitation exist:
 
-1. Use the browser’s built-in search feature (usually Ctrl+F or Cmd+F). Because too many audio players on one page bog down the web browser, pages listing more than 100 excerpts are split into subpages which must be searched separately. Alternatively one can select “All/searchable” to search all excerpts and then follow the “playable” links to listen to the excerpt.
+1. Use the browser’s built-in search feature (usually Ctrl+F or Cmd+F). Because too many audio players on one page bog down the web browser, pages listing more than 100 excerpts are split into subpages which must be searched separately. To work around this, go to the [All excerpts searchable page](../AllExcerpts-all.html), search the list of excerpts, and follow the “<i class="fa fa-long-arrow-left"></i> Playable” links to listen to the excerpts.
 
 2. Use Google or other external engines to search the archive by asking them to restrict searches to the events directory. I haven’t yet tested this.
 
