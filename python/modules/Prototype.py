@@ -1539,6 +1539,7 @@ def AddArguments(parser):
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--blockRobots',action='store_true',help="Use <meta name robots> to prevent crawling staging sites.")
+    parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them.")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
@@ -1589,9 +1590,11 @@ def main():
     if "allexcerpts" in gOptions.buildOnly:
         mainMenu.append(AllExcerpts(indexDir))
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
-
-    for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
-        WritePage(newPage)
+        
+    with open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile: 
+        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
+            WritePage(newPage)
+            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
 
     if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()

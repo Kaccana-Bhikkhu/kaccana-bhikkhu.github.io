@@ -115,7 +115,7 @@ def ParseArguments() -> None:
         pass
     infoObject = NameSpace()
     for item in gOptions.info:
-        split = item.split(":")
+        split = item.split(":",maxsplit=1)
         if len(split) > 1:
             value = split[1]
         else:
