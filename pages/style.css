@@ -56,7 +56,7 @@ header a {
 }
 
 header a:hover {
-	color: #0088cc;
+	color: #c7a630;
 }
 
 /* Main Header */
@@ -85,7 +85,7 @@ header a:hover {
   }
   
   .back-link a:hover {
-	color: #0088cc; 
+	color: #c7a630; 
   }
   
 
@@ -102,47 +102,61 @@ header a:hover {
   }
   
   #topnav a:hover {
-	color: #986020; 
+	color: #7c7367; 
 	text-decoration: none;
   }
 
   #topnav a.active {
-	color: #986020; 
-	border-bottom: 2px solid #a28a4e;
-  }
+		color: #7c7367;
+		border-bottom: 1px dotted #a28a4e; /* Adjust the width (1px) as needed */
+	  }
+  
 
 hr {
 	border: none; 
 	border-top: 2px solid #909294; 
 	margin: 20px 0; 
   }
+
+.sublink {
+	display: flex;
+	justify-content: center;
+  }
   
-  /* Style the links in the sublink */
   .sublink a {
 	text-decoration: none;
-	color: rgb(30, 29, 29);
+	color: rgb(74, 75, 76);
 	text-align: center;
 	padding: 0.4em;
 	font-size: 1em;
 	font-weight: 400;
 	font-family: "Roboto", sans-serif;
-	transition: border-bottom 0.2s ease-in-out; /* Add a smooth transition for the underline effect */
+	transition: border-bottom 0.2s ease-in-out;
 	margin-right: 10px;
   }
   
-  /* Style the hover effect for links */
   .sublink a:hover {
-	color: #a28a4e; 
+	color: #a28a4e;
 	text-decoration: none;
-	
   }
   
-  /* Style the active link */
   .sublink a.active {
 	color: #a28a4e;
-	border-bottom: 2px solid #a28a4e;
-
+	border-bottom: 0.75px dotted #a28a4e;
   }
+  
+  /* Media query for mobile screens */
+  @media screen and (max-width: 767px) {
+	.sublink {
+	  flex-direction: column; 
+	  align-items: center; 
+	}
+  
+	.sublink a {
+	  margin-right: 0; /* Remove right margin on smaller screens for better spacing */
+	}
+  }
+  
   
   /* Style the bold links (inside <b> tags) */
   .sublink b a {
@@ -151,14 +165,14 @@ hr {
   
 /* Text */
 p {
-	margin: 0 0 0 0;
+	margin: 0 auto;
 	max-width: 1200px;
-	padding: 10px;
-	font-size: 16px;
-	color: #2f2e2d;
-	line-height: 1.5;
-	font-family: "Arial", sans-serif;
-}
+	padding: 20px;
+	font-size: 18px;
+	color: #333;
+	line-height: 1.6;
+	font-family: "Georgia", serif;
+  }
 
 .title {
 	font-size: 1.3em;
@@ -260,12 +274,12 @@ h5 {
 }
 /* Style links */
 a {
-	color: #007bff;
+	color: #9b7030;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #0056b3;
+	color: #c7a630;
 	text-decoration: none;
 	
 }
