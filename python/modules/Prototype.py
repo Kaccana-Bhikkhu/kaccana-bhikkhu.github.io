@@ -191,55 +191,56 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                         expandSpecificTags.add(parent) # Then expand the parent tag
                     
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
-    for index, item in enumerate(tagList):
-        if item["level"] > skipSubtagLevel:
-            continue
+    with a.div(Class="listing"):
+        for index, item in enumerate(tagList):
+            if item["level"] > skipSubtagLevel:
+                continue
 
-        if index in expandSpecificTags:
-            skipSubtagLevel = 999 # don't skip anything
-        else:
-            skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
-        
-        with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
-            drilldownLink = ''
-            if expandTagLink:
-                if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
-                    if index in expandSpecificTags: # Is it already expanded?
-                        tagAtPrevLevel = -1
-                        for reverseIndex in range(index - 1,-1,-1):
-                            if tagList[reverseIndex]["level"] < item["level"]:
-                                tagAtPrevLevel = reverseIndex
-                                break
-                        drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
+            if index in expandSpecificTags:
+                skipSubtagLevel = 999 # don't skip anything
+            else:
+                skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
+            
+            with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+                drilldownLink = ''
+                if expandTagLink:
+                    if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
+                        if index in expandSpecificTags: # Is it already expanded?
+                            tagAtPrevLevel = -1
+                            for reverseIndex in range(index - 1,-1,-1):
+                                if tagList[reverseIndex]["level"] < item["level"]:
+                                    tagAtPrevLevel = reverseIndex
+                                    break
+                            drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
+                        else:
+                            drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
                     else:
-                        drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
-                else:
-                    drilldownLink = "&nbsp"
+                        drilldownLink = "&nbsp"
 
-            indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
-            
-            countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
-            
-            if item['tag'] and not item['subsumed']:
-                nameStr = HtmlTagLink(item['tag'],True) + countStr
-            else:
-                nameStr = item['name']
-            
-            if item['pali'] and item['pali'] != item['name']:
-                paliStr = '(' + item['pali'] + ')'
-            elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
-                paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
-                # If specified, use paliStr to display the tag's first gloss
-            else:
-                paliStr = ''
-            
-            if item['subsumed']:
-                seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
-            else:
-                seeAlsoStr = ''
-            
-            joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
-            a(' '.join(joinBits))
+                indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
+                
+                countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
+                
+                if item['tag'] and not item['subsumed']:
+                    nameStr = HtmlTagLink(item['tag'],True) + countStr
+                else:
+                    nameStr = item['name']
+                
+                if item['pali'] and item['pali'] != item['name']:
+                    paliStr = '(' + item['pali'] + ')'
+                elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
+                    paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
+                    # If specified, use paliStr to display the tag's first gloss
+                else:
+                    paliStr = ''
+                
+                if item['subsumed']:
+                    seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
+                else:
+                    seeAlsoStr = ''
+                
+                joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
+                a(' '.join(joinBits))
     
     return str(a)
 
@@ -322,9 +323,10 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     a = Airium()
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
-    for tag in tagsSortedByQCount:
-        with a.p():
-            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
+    with a.div(Class="listing"):
+        for tag in tagsSortedByQCount:
+            with a.p():
+                a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
     
     yield str(a)
 
@@ -467,16 +469,18 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     def LenStr(items: list) -> str:
         return f" ({len(items)})"
     
+
+    args = dict(addMenu=True,countItems=False,bodyWrapper=Html.Tag("div",{"class":"listing"}))
     subMenu = [
-        [pageInfo._replace(title = "All tags"+LenStr(allList)),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "All tags"+LenStr(allList)),str(Html.ListWithHeadings(allList,TagItem,**args))],
         [pageInfo._replace(title = "English"+LenStr(entries["english"]),file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
-            str(Html.ListWithHeadings(entries["english"],TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(entries["english"],TagItem,**args))],
         [pageInfo._replace(title = "Pāli"+LenStr(entries["pali"]),file=Utils.PosixJoin(pageDir,"PaliTags.html")),
-            str(Html.ListWithHeadings(entries["pali"],TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(entries["pali"],TagItem,**args))],
         [pageInfo._replace(title = "Other languages"+LenStr(entries["other"]),file=Utils.PosixJoin(pageDir,"OtherTags.html")),
-            str(Html.ListWithHeadings(entries["other"],TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(entries["other"],TagItem,**args))],
         [pageInfo._replace(title = "People/places/traditions"+LenStr(entries["proper"]),file=Utils.PosixJoin(pageDir,"ProperTags.html")),
-            str(Html.ListWithHeadings(entries["proper"],TagItem,addMenu=True,countItems=False))]
+            str(Html.ListWithHeadings(entries["proper"],TagItem,**args))]
     ]
 
     basePage = Html.PageDesc()
@@ -1078,10 +1082,11 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
     yield seriesInfo._replace(title="Events")
 
+    listing = Html.Tag("div",{"class":"listing"})
     eventMenu = [
-        [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
-        [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
-        [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
+        [seriesInfo,listing(ListEventsBySeries(gDatabase["event"].values()))],
+        [chronologicalInfo,listing(ListEventsByYear(gDatabase["event"].values()))],
+        [detailInfo,listing(ListDetailedEvents(gDatabase["event"].values()))],
         [Html.PageInfo("About event series","about/04_Series.html")],
         EventPages("events")
     ]
@@ -1284,11 +1289,12 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
     teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 
+    listing = Html.Tag("div",{"class":"listing"})
     teacherMenu = [
-        [alphabeticalInfo,ListTeachersAlphabetical(teachersInUse)],
-        [chronologicalInfo,ListTeachersChronological(teachersInUse)],
-        [lineageInfo,ListTeachersLineage(teachersInUse)],
-        [excerptInfo,ListTeachersByExcerpts(teachersInUse)],
+        [alphabeticalInfo,listing(ListTeachersAlphabetical(teachersInUse))],
+        [chronologicalInfo,listing(ListTeachersChronological(teachersInUse))],
+        [lineageInfo,listing(ListTeachersLineage(teachersInUse))],
+        [excerptInfo,listing(ListTeachersByExcerpts(teachersInUse))],
         TeacherPages("teachers")
     ]
 
