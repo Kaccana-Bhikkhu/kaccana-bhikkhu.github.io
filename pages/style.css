@@ -142,7 +142,7 @@ hr {
   
   .sublink a.active {
 	color: #a28a4e;
-	border-bottom: 0.75px dotted #a28a4e;
+	border-bottom: 1px dotted #a28a4e;
   }
   
   /* Media query for mobile screens */
@@ -239,6 +239,20 @@ p {
 	margin-bottom: 10px;
 }
 
+p.page-list {
+	font-size: 1em;
+	font-family: "Roboto", sans-serif;
+	font-weight: 600;
+	padding: 15px;
+	/*margin-bottom: 1em;
+	color: #a68b55;
+	padding: 1rem 1rem;
+	border-radius: 0.4rem;
+	box-shadow: 0px 0px 0px #b5a26c; */
+	overflow: auto;
+	margin-right: 20px;
+}
+
 /* Headings */
 h1,
 h2,
@@ -282,6 +296,11 @@ a:hover {
 	color: #c7a630;
 	text-decoration: none;
 	
+}
+
+.active {
+	/*font-weight:bold;*/
+	border-bottom: 1px dotted #a28a4e;
 }
 
 hr {

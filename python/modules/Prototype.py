@@ -912,7 +912,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
 
             menuItems.append([menuItem,pageHtml])
 
-        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
+        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>"),highlight={"class":"active"})
     else:
         clone = basePage.Clone()
         clone.AppendContent(menuItems[0][1][1])

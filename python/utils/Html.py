@@ -86,7 +86,7 @@ class Menu(Renderable):
     menu_wrapper:Wrapper
     menu_highlightTags:Wrapper
 
-    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlight:dict=dict(style="font-weight: bold;"),wrapper:Wrapper = Wrapper()) -> None:
+    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlight:dict=dict(style="font-weight:bold;text-decoration: underline;",),wrapper:Wrapper = Wrapper()) -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
         separator: html code between each menu item; defaults to 6 spaces.
