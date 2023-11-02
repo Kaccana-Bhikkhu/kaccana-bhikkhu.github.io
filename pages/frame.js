@@ -32,6 +32,7 @@ async function changeURL(pUrl) {
 					let noBookmark = location.href.split("#").slice(0,2).join("#")
 					el.href = noBookmark+href;
 					el.addEventListener("click", () => {
+						history.pushState({}, "", el.href);
 						document.getElementById(href.slice(1)).scrollIntoView();
 					});
 				} else {
