@@ -1,5 +1,6 @@
 <!--TITLE:Want to help?-->
-## Want to Help?
+<!--HTML <img src="../../pages/images/photos/Abhayagiri 20th Anniversary.jpg" alt="Preparing for Abhayagiri's 20th Anniversary Celebration" id="cover" title="Preparing for Abhayagiri's 20th Anniversary Celebration" align="bottom" width="200" border="0"/> -->
+# Want to Help?
 If you would like to contribute to the Ajahn Pasanno Question and Story Archive, here are some possibilities.
 
 -----
@@ -45,6 +46,7 @@ __Time commitment:__ Variable, but programming projects always take longer than 
 
 There are many ways a skilled and generous programmer could help with the Archive ([github](https://github.com/Kaccana-Bhikkhu/qs-archive)). Here are my ideas, ranked roughly in order of usefulness with the really big project last.
 
+__Fix bugs:__ For the current list, see [About: status](../../pages/about/08_Status.html) and [Github issues](https://github.com/Kaccana-Bhikkhu/qs-archive/issues).
 
 __Add search features:__ The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let me know your ideas or just go ahead and build something.
 

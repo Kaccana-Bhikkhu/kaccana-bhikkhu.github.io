@@ -1,4 +1,4 @@
-<!--TITLE:Version list-->
+[Ajahn Pasanno in Thailand, December 2015](photo:LPP with novices Thailand Dec 2015.jpg)
 # Version list
 - 1.0: First publicly available prototype; contains all questions from Thanksgiving Retreats 2013-2015 from pre-existing transcriptions; subject tags are based on transcription text rather than audio content.
 
@@ -47,3 +47,7 @@
 - 3.3.4 Add --mirror option to specify possible sources of audio and reference files. Winter Retreat 2015 through Session 24.
 
 - 3.3.5 Suggested citation footer (needs polishing). Documentation updates.
+
+- 3.4 Add photos to documentation. Much improved citation footer title. Html meta tag keywords. Remove meta robots search engine block. Several layout changes in preparation for Chris Claudius's new style sheet. --linkCheckLevel option.
+
+- 3.4.1 Redirect plain pages to index.html#path. Add links to subsearches in All Excerpts pages. Add subsearch keywords and page descriptions. --urlList option for search engine submissions.

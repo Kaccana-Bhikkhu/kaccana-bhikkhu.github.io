@@ -1,3 +1,4 @@
+<!--TITLE:Draft License-->
 This draft is problematic because CC BY-NC-ND allows distribution "[in whole or in part](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en#s2a)." It is useful because it illustrates the principles we're considering.
 
 #### Draft license for review by collaborators – Not yet in effect

@@ -1,3 +1,5 @@
+<!--HTML <img src="../../pages/images/photos/Preparation for novice going forth 2016.jpg" alt="Preparation for novice going forth 2016" id="cover" title="Preparation for novice going forth 2016" align="bottom" width="200" border="0"/> -->
+
 # Tags
 The Archive uses over 500 tags to organize its contents.
 The tags themselves are organized in a hierarchical scheme based on the Pāli teachings when possible, but I have needed to invent new categories for modern subjects. Mirroring the structure of the teachings, individual tags often appear multiple times in the hierarchy. For example, [[Equanimity](../../pages/tags/equanimity.html)] (upekkha) appears as a factor of [[Right Concentration](../../pages/tags/right-concentration.html)] and in the lists of [[Factors of Awakening](../../pages/tags/factors-of-awakening.html)], [[Divine Abidings](../../pages/tags/divine-abidings.html)], and [[Perfections](../../pages/tags/perfections.html)]. One can explore the tag hierarchy by starting with the [root tags](../../pages/drilldown/tag-999.html) and successively expanding them to reveal the subtags they contain.

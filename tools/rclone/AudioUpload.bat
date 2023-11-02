@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 call :getPassword RCLONE_CONFIG_PASS "Password: "
 
-rclone -v -P copy --s3-acl=public-read audio/excerpts abhayagiri:abhayagiri/media/discs/questions/audio/excerpts
+rclone -v -P sync --s3-acl=public-read audio/excerpts abhayagiri:abhayagiri/media/discs/questions/audio/excerpts
 
 exit /b
 

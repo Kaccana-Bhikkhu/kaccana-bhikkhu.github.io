@@ -9,14 +9,14 @@ from functools import reduce
 from datetime import timedelta
 from io import BytesIO
 import Utils, Alert
-from urllib.parse import urljoin,urlparse
+from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
 from mutagen.mp3 import MP3
 from typing import Tuple, Type, Callable, Iterable, BinaryIO
 from enum import Enum
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
-import math
+import copy
 
 class StrEnum(str,Enum):
     pass
@@ -24,7 +24,7 @@ class StrEnum(str,Enum):
 class ItemType(StrEnum): # The kinds of items we will link to
     SESSION = "sessionMp3"
     EXCERPT = "excerptMp3"
-    REFRENCE = "reference"
+    REFERENCE = "reference"
 
 def AutoType(item:dict) -> ItemType:
     if "fileNumber" in item:
@@ -32,7 +32,7 @@ def AutoType(item:dict) -> ItemType:
     elif "sessionTitle" in item:
         return ItemType.SESSION
     elif "pdfPageOffset" in item:
-        return ItemType.REFRENCE
+        return ItemType.REFERENCE
     
     Alert.error("Autotype: unknown type",item)
 
@@ -49,9 +49,14 @@ class LinkValidator:
         else:
             return os.path.isfile(url)
 
+class NoValidation (LinkValidator):
+    "Perform no link validation whatsoever."
+    def ValidLink(self,url:str,item:dict) -> bool:
+        return True
+
 class RemoteURLChecker (LinkValidator):
     """Check to see if the remote URL exists before reporting it to be valid.
-    Subclasses can """
+    Subclasses can override ValidateContents to implement additional checks."""
     
     openLocalFiles: bool # Do we open local files as well as remote ones?
 
@@ -59,13 +64,18 @@ class RemoteURLChecker (LinkValidator):
         self.openLocalFiles = openLocalFiles
     
     def ValidLink(self,url:str,item:dict) -> bool:
+        if not url.strip():
+            return False
         if Utils.RemoteURL(url):
+            parsed = urlparse(url)
+            url = urlunparse(parsed._replace(path=quote(parsed.path)))
             try:
                 with urllib.request.urlopen(url) as request:
                     return self.ValidateContents(url,item,request)
             except urllib.error.HTTPError as error:
                 Alert.notice("Unable to open",url,"for",item)
                 return False
+
         else:
             if not os.path.isfile(url):
                 return False
@@ -150,18 +160,18 @@ class Mp3LengthChecker (RemoteURLChecker):
 remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
     ItemType.SESSION: "remoteMp3Url",
     ItemType.EXCERPT: "",
-    ItemType.REFRENCE: "remoteUrl"
+    ItemType.REFERENCE: "remoteUrl"
 }
 
 class Linker:
     """For a given type of item (session,excerpt,reference), determine which mirror it should link to.
     """
     itemType: ItemType # The type of item we are linking to
-    validator: LinkValidator
+    mirrorValidator: dict[str,LinkValidator] # The list of mirrors and the validator for each mirror
 
-    def __init__(self,itemType: ItemType,validator: LinkValidator):
+    def __init__(self,itemType: ItemType,mirrorValidator: dict[str,LinkValidator]):
         self.itemType = itemType
-        self.validator = validator
+        self.mirrorValidator = mirrorValidator
     
     def _UncheckedMirrors(self,item: dict) -> list[str]:
         """Return a list of the mirrors that we haven't yet checked for item."""
@@ -200,8 +210,12 @@ class Linker:
                 return Utils.PosixJoin(gOptions.prototypeDir,"indexes",url)
                 # If the remote link specifies a local file, the path will be relative to prototypeDir/indexes.
                 # This occurs only with references.
-
-        return urljoin(gOptions.mirror[self.itemType][mirror],self.Filename(item))
+        
+        fileName = self.Filename(item)
+        if fileName:
+            return urljoin(gOptions.mirror[self.itemType][mirror],self.Filename(item))
+        else:
+            return ""
 
     def LinkItem(self,item: dict) -> str:
         """Search the available mirrors and set item["mirror"] to the name of the first valid mirror.
@@ -213,23 +227,31 @@ class Linker:
             return item["mirror"]
 
         for mirror in self._UncheckedMirrors(item):
-            if self.validator.ValidLink(self.URL(item,mirror),item):
-                item["mirror"] = mirror
-                return mirror
+            url = self.URL(item,mirror)
+            try:
+                if self.mirrorValidator[mirror].ValidLink(url,item):
+                    item["mirror"] = mirror
+                    return mirror
+            except Exception as error:
+                Alert.warning(error,"when trying to access",url,"for item",item)
         
         item["mirror"] = ""
         return ""
     
     def LocalItemNeeded(self,item: dict) -> bool:
-        """Check through the available mirrors until we either reach a valid item or the local mirror.
-        If the latter, report true and stop the search so that a local item can be acquired."""
+        """Check through the available mirrors until we either reach a valid item, the local mirror, or the upload mirror.
+        In the latter two cases, report true and stop the search so that a local item can be acquired."""
         
         for mirror in self._UncheckedMirrors(item):
-            if self.validator.ValidLink(self.URL(item,mirror),item):
+            mirrorToCheck = mirror
+            if mirror == gOptions.uploadMirror:
+                mirrorToCheck = "local"
+            
+            if self.mirrorValidator[mirrorToCheck].ValidLink(self.URL(item,mirrorToCheck),item):
                 item["mirror"] = mirror
                 return False
-            elif mirror == "local":
-                item["mirror"] = "local*"
+            elif mirrorToCheck == "local":
+                item["mirror"] = mirror + "*"
                 return True
         
         return False
@@ -253,20 +275,23 @@ def LocalItemNeeded(item:dict) -> bool:
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
 
-    with ThreadPoolExecutor(max_workers=1) as pool:
+    multiThread = True
+
+    if multiThread:
+        with ThreadPoolExecutor() as pool:
+            for itemType,items in gItemLists.items():
+                for item in Utils.Contents(items):
+                    if item.get("fileNumber",1) == 0:
+                        continue # Don't link session excerpts
+
+                    pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
+    else:
         for itemType,items in gItemLists.items():
             for item in Utils.Contents(items):
                 if item.get("fileNumber",1) == 0:
                     continue # Don't link session excerpts
 
-                pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
-    
-    """for itemType,items in gItemLists.items():
-        for item in Utils.Contents(items):
-            if item.get("fileNumber",1) == 0:
-                continue # Don't link session excerpts
-
-            gLinker[itemType].LinkItem(item)"""
+                gLinker[itemType].LinkItem(item)
 
     for itemType,items in gItemLists.items():
         unlinked = []
@@ -284,15 +309,56 @@ def LinkItems() -> None:
                           
         Alert.info(itemType + " mirror links:",dict(mirrorCount))
 
+def CheckMirrorName(itemType:str,mirrorName: str) -> str:
+    "Check if mirrorName is a valid mirror reference and turn numbers into names."
+    try:
+        mirrorName = list(gOptions.mirror[itemType])[int(mirrorName)]
+    except ValueError:
+        pass
+    except IndexError:
+        Alert.error(mirrorName,"is beyond the number of available mirrors:",list(gOptions.mirror[itemType]))
+
+    if mirrorName not in gOptions.mirror[itemType] and mirrorName != "remote":
+        Alert.error(repr(mirrorName),"is not a valid mirror name.")
+    return mirrorName
+
+def RemoveAllExceptFirst(ioList: list,itemsToRemove: list) -> None:
+    "Remove all items in itemsToRemove from ioList except the first occurence."
+
+    index = 0
+    firstItem = True
+    while index < len(ioList):
+        if ioList[index] in itemsToRemove:
+            if firstItem:
+                index += 1
+                firstItem = False
+            else:
+                del ioList[index]
+        else:
+            index += 1
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument("--mirror",type=str,action="append",default=[],help="Specify the URL of a mirror. Format mirror:URL")
     parser.add_argument("--sessionMp3",type=str,default="remote,local",help="Session audio file priority mirror list; default: remote,local")
     parser.add_argument("--excerptMp3",type=str,default="1",help="Excerpt audio file priority mirror list; default: 1 - first mirror specifed")
     parser.add_argument("--reference",type=str,default="remote,local",help="Reference file priority mirror list; default: remote,local")
+    parser.add_argument("--uploadMirror",type=str,default="local",help="Files will be uploaded to this mirror; default: local")
+
     parser.add_argument("--sessionMp3Dir",type=str,default="audio/sessions",help="Read session mp3 files from this directory; Default: audio/sessions")
     parser.add_argument("--excerptMp3Dir",type=str,default="audio/excerpts",help="Write excerpt mp3 files from this directory; Default: audio/excerpts")
     parser.add_argument("--referenceDir",type=str,default="references",help="Read session mp3 files from this directory; Default: references")
+
+    parser.add_argument("--linkCheckLevel",type=str,action="append",default=["1"],help="Integer link check level. [ItemType]:[mirror]:LEVEL")
+
+    """Link check levels are interpreted as follows:
+        0: No link checking whatsoever (NoValidation)
+        1: Check that local files exist and that remote URLs aren't blank (LinkValidator base class)
+        2: Perform checks that require reading file metadata and headers
+        3: Perform checks that require reading the entire file (Mp3LengthChecker)
+
+        Round down if a given level is not implemented for a given file type.
+    """
 
 def ParseArguments() -> None:
     """Set up gOptions.mirror[itemType][mirrorName] as the URL to find items in a named mirror."""
@@ -300,7 +366,7 @@ def ParseArguments() -> None:
     itemDirs = { # Specifies the directory for each item type
         ItemType.SESSION: gOptions.sessionMp3Dir,
         ItemType.EXCERPT: gOptions.excerptMp3Dir,
-        ItemType.REFRENCE: gOptions.referenceDir
+        ItemType.REFERENCE: gOptions.referenceDir
     }
     
     mirrorDict = {"local":"./"}
@@ -314,35 +380,67 @@ def ParseArguments() -> None:
             mirrorName:Utils.DirectoryURL(urljoin(Utils.DirectoryURL(url),itemDir)) for mirrorName,url in mirrorDict.items()
         }
 
-    def CheckMirrorName(itemType:str,mirrorName: str) -> str:
-        "Check if mirrorName is a valid mirror reference and turn numbers into names."
-        try:
-            mirrorName = list(gOptions.mirror[itemType])[int(mirrorName)]
-        except ValueError:
-            pass
-
-        if mirrorName not in gOptions.mirror[itemType] and mirrorName != "remote":
-            Alert.error(repr(mirrorName),"is not a valid mirror name.")
-        return mirrorName
+    gOptions.uploadMirror = CheckMirrorName(ItemType.EXCERPT,gOptions.uploadMirror)
 
     for itemType in ItemType:
         mirrorList = getattr(gOptions,itemType).split(",")
         mirrorList = [CheckMirrorName(itemType,m) for m in mirrorList]
+        RemoveAllExceptFirst(mirrorList,["local",gOptions.uploadMirror])
         setattr(gOptions,itemType,mirrorList)
 
     if "remote" in gOptions.excerptMp3:
         Alert.error("remote cannot be specified as a mirror for excerpts.")
 
+    # Parse --linkCheckLevel entries to form a dict
+    linkCheckLevels = copy.deepcopy(gOptions.mirror) # Copy the structure of the mirrors
+    linkCheckLevels[ItemType.REFERENCE]["remote"] = 1
+    linkCheckLevels[ItemType.SESSION]["remote"] = 1
+    mirrorNames = set(mirrorDict)
+    mirrorNames.add("remote")
+    for levelCode in gOptions.linkCheckLevel:
+        parts = levelCode.split(":")
+        try:
+            level = int(parts[-1])
+        except ValueError:
+            Alert.error(parts[-1],"must be an integer in --linkCheckLevel",levelCode)
+        mirrors = set()
+        itemTypes = set()
+        for mirrorOrItemTypes in parts[0:-1]:
+            for mirrorOrItemType in mirrorOrItemTypes.split(","):
+                if mirrorOrItemType in mirrorNames:
+                    mirrors.add(mirrorOrItemType)
+                elif mirrorOrItemType in linkCheckLevels:
+                    itemTypes.add(mirrorOrItemType)
+                else:
+                    Alert.error("Unknown mirror or item type",mirrorOrItemType,"in --linkCheckLevel",levelCode)
+        for it in linkCheckLevels:
+            for m in linkCheckLevels[it]:
+                if (not mirrors or m in mirrors) and (not itemTypes or it in itemTypes):
+                    linkCheckLevels[it][m] = level
+    gOptions.linkCheckLevel = linkCheckLevels            
 
-gLinker:dict[ItemType,Linker] = {}
+gLinker:dict[ItemType,dict[str,Linker]] = {}
 
 def Initialize() -> None:
     """Configure the linker object."""
     global gLinker
 
-    gLinker = {itemType:Linker(itemType,LinkValidator()) for itemType in ItemType}
-        # For now, use the simplest possible Linker object
-    #gLinker[ItemType.REFRENCE].validator = Mp3LengthChecker()
+    def ChooseLinkChecker(itemType:ItemType, level:int) -> LinkValidator:
+        "Choose a Linker object for a given item type and link checking level."
+        if level == 0:
+            return NoValidation()
+        if level == 1:
+            return LinkValidator()
+        elif level == 2 or (level > 2 and itemType == ItemType.REFERENCE):
+            return RemoteURLChecker()
+        else:
+            return Mp3LengthChecker()
+
+        
+    def MirrorValidatorDict(itemType:ItemType, mirrors:list[str]) -> dict[str,LinkValidator]:
+        return {m:ChooseLinkChecker(itemType,gOptions.linkCheckLevel[itemType][m]) for m in mirrors}
+
+    gLinker = {it:Linker(it,MirrorValidatorDict(it,mirrors)) for it,mirrors in gOptions.linkCheckLevel.items()}
 
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
@@ -353,7 +451,7 @@ def main() -> None:
     gItemLists = {
         ItemType.EXCERPT: gDatabase["excerpts"],
         ItemType.SESSION: gDatabase["sessions"],
-        ItemType.REFRENCE: gDatabase["reference"]
+        ItemType.REFERENCE: gDatabase["reference"]
     }
     
     LinkItems()

@@ -70,7 +70,9 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "Prototype",
-                "-vvv"
+                "-vvv",
+                "--buildOnly",
+                "Teachers"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -97,7 +99,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Document"
+                "Link",
+                "--linkCheckLevel",
+                "sessionMp3:2"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
