@@ -17,14 +17,14 @@ from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
 
-NEW_STYLE = False
+NEW_STYLE = True
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
 if NEW_STYLE:
     BASE_MENU_STYLE = dict(separator="\n"+6*" ",highlight={"class":"active"})
     MAIN_MENU_STYLE |= BASE_MENU_STYLE
     SUBMENU_STYLE |= BASE_MENU_STYLE
-    EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink"}) + "\n<hr>\n")
+    EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink2"}) + "\n<hr>\n")
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:

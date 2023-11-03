@@ -8,7 +8,7 @@
 
 - 1.92: Added Teen Weekend 2017. Added teacher pages.
 
-- 1.93: Added Tea Time Q&A and Abhayagiri Kaṭhina 2021. Embed audio players in the page for each excerpt. This allows one to read transcriptions while listening to the talk, but clutters the visual interface. The Abhayagiri 20th Anniversary page demonstrates a good solution, but it’s well beyond my web skills.
+- 1.93: Added Tea Time Q&A and Abhayagiri Kaṭhina 2021. Embed audio players in the page for each excerpt. This allows one to read transcriptions while listening to the talk, but clutters the visual interface.
 
 - 2.0 (May 15, 2023): All pages look much better thanks to css code contributed by Chris Claudius.
 
@@ -51,3 +51,7 @@
 - 3.4 Add photos to documentation. Much improved citation footer title. Html meta tag keywords. Remove meta robots search engine block. Several layout changes in preparation for Chris Claudius's new style sheet. --linkCheckLevel option.
 
 - 3.4.1 Redirect plain pages to index.html#path. Add links to subsearches in All Excerpts pages. Add subsearch keywords and page descriptions. --urlList option for search engine submissions.
+
+- 3.4.2 Fix back button after following bookmark links. Add many teacher dates. Documentation changes suggested by Ajahn Suhajjo.
+
+- 3.5 Style update by Chris Claudius.

@@ -53,3 +53,5 @@
 - 3.4.1 Redirect plain pages to index.html#path. Add links to subsearches in All Excerpts pages. Add subsearch keywords and page descriptions. --urlList option for search engine submissions.
 
 - 3.4.2 Fix back button after following bookmark links. Add many teacher dates. Documentation changes suggested by Ajahn Suhajjo.
+
+- 3.5 Style update by Chris Claudius.

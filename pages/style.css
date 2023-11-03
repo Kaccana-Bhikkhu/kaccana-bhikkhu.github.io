@@ -118,9 +118,11 @@ hr {
 	margin: 20px 0; 
   }
 
+/* menu between header and title bar*/
 .sublink {
 	display: flex;
 	justify-content: center;
+	margin-left: 20px;
   }
   
   .sublink a {
@@ -144,6 +146,34 @@ hr {
 	color: #a28a4e;
 	border-bottom: 1px dotted #a28a4e;
   }
+
+  /* sublink2 for menus below title bar */
+  .sublink2 {
+	display: flex;
+	justify-content: left;
+  }
+  
+  .sublink2 a {
+	text-decoration: none;
+	color: rgb(74, 75, 76);
+	text-align: center;
+	padding: 0.4em;
+	font-size: 1em;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	transition: border-bottom 0.2s ease-in-out;
+	margin-right: 10px;
+  }
+  
+  .sublink2 a:hover {
+	color: #a28a4e;
+	text-decoration: none;
+  }
+  
+  .sublink2 a.active {
+	color: #a28a4e;
+	border-bottom: 1px dotted #a28a4e;
+  }
   
   /* Media query for mobile screens */
   @media screen and (max-width: 767px) {
@@ -155,6 +185,15 @@ hr {
 	.sublink a {
 	  margin-right: 0; /* Remove right margin on smaller screens for better spacing */
 	}
+
+	.sublink2 {
+		flex-direction: column; 
+		align-items: center; 
+	  }
+	
+	  .sublink2 a {
+		margin-right: 0; /* Remove right margin on smaller screens for better spacing */
+	  }
   }
   
   
