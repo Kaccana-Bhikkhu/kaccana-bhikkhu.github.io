@@ -5,8 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
-import Utils, Alert, Filter, ParseCSV, Document
-import Html2 as Html
+import Utils, Html, Alert, Filter, ParseCSV, Document
 from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown

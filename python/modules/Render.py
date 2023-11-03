@@ -9,8 +9,7 @@ from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
-import ParseCSV, Prototype, Utils, Alert, Link
-import Html2 as Html
+import ParseCSV, Prototype, Utils, Alert, Html, Link
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
