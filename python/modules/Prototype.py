@@ -7,7 +7,7 @@ from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
 import Utils, Alert, Filter, ParseCSV, Document
 import Html2 as Html
-from datetime import timedelta
+from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
@@ -1574,6 +1574,43 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,**SUBMENU_STYLE)
 
+SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching",
+                    }
+def WriteSitemapURL(page:Html.PageDesc,xml:Airium) -> None:
+    "Write the URL of this page into an xml sitemap."
+    
+    priority = 0.7
+    pathParts = page.info.file.split("/")
+    
+    directory = pathParts[0]
+    if len(pathParts) < 2 or directory == "about":
+        priority = 1.0
+    elif directory in {"events","indexes"}:
+        priority = 0.9
+    elif directory == "drilldown":
+        if pathParts[1] == "tag-999.html":
+            priority = 0.9
+        else:
+            return
+    else:
+        afterDash = re.search(r"-([^.-]+)\.html$",pathParts[-1])
+        if afterDash:
+            afterDash = afterDash[1]
+            if afterDash in SUBPAGE_SUFFIXES:
+                priority = 0.3
+            if re.match(r"[0-9]+",afterDash):
+                priority = 0.3
+
+    with xml.url():
+        with xml.loc():
+            xml(f"{gOptions.info.cannonicalURL}{page.info.file}")
+        with xml.lastmod():
+            xml(Utils.ModificationDate(Utils.PosixJoin(gOptions.prototypeDir,page.info.file)).strftime("%Y-%m-%d"))
+        with xml.changefreq():
+            xml("daily")
+        with xml.priority():
+            xml(priority)
+
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
@@ -1587,6 +1624,7 @@ def AddArguments(parser):
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--blockRobots',action='store_true',help="Use <meta name robots> to prevent crawling staging sites.")
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
+    parser.add_argument('--sitemap',action='store_true',help='Write an XML sitemap.')
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them.")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
@@ -1641,11 +1679,19 @@ def main():
     if "allexcerpts" in gOptions.buildOnly:
         mainMenu.append(AllExcerpts(indexDir))
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
-        
+    
+    xml = Airium()
     with open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile: 
-        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
-            WritePage(newPage)
-            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+        with xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"):
+            for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
+                WritePage(newPage)
+                print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+                if gOptions.sitemap:
+                    WriteSitemapURL(newPage,xml)
+    
+    if gOptions.sitemap:
+        with open(Utils.PosixJoin(gOptions.prototypeDir,"sitemap.xml"),"w") as sitemapFile:
+            print(str(xml),file=sitemapFile)
 
     if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()
