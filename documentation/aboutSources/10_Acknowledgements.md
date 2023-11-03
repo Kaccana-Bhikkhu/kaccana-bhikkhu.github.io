@@ -4,7 +4,7 @@
 This project would not have been possible without the assistance of many people. It would have been prohibitively expensive and time-consuming if not built upon not previous open-source software projects.
 
 ## People
-Chris Claudius created the overall web design. Owen (MageOwl) made the floating media player. His father Michael contributed to early architecture decisions.
+Chris Claudius created the overall web design. Owen L. (@MageOwl) made the floating media player. His father Michael contributed to early architecture decisions.
 
 Ajahn Ṭhitapañño helped liase with Abhayagiri Monastery and Kirschbaum Development to host the Archive on abhayagiri.org. Ajahn Suhajjo helped with the Pāli tag scheme, teacher chronology, documentation, and license details. Debbie Stamp contributed her memories to the history of Abhayagiri Thanksgiving Retreats.
 
