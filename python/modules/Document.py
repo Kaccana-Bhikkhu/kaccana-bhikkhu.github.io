@@ -39,7 +39,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
     for fileName in sorted(os.listdir(sourceDir)):
         sourcePath = Utils.PosixJoin(sourceDir,fileName)
 
-        if not os.path.isfile(sourcePath) or not fileName.endswith(".md"):
+        if not os.path.isfile(sourcePath) or fileName.startswith("_") or not fileName.endswith(".md"):
             continue
 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
@@ -135,7 +135,7 @@ def main() -> None:
     global gDocumentationWordCount
     gDocumentationWordCount = 0
     modifiedFiles = []
-    for directory in ['about','misc']:
+    for directory in ['about','misc','technical']:
         os.makedirs(Utils.PosixJoin(gOptions.documentationDir,directory),exist_ok=True)
         for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
             if not os.path.isfile(page.info.file) or Utils.DependenciesModified(page.info.file,[page.sourceFile]):
