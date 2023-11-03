@@ -1,6 +1,6 @@
 body {
 	background-color: #fefeff;
-	font-family: Arial, sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
 	margin: 0;
@@ -56,7 +56,7 @@ header a {
 }
 
 header a:hover {
-	color: #0088cc;
+	color: #c7a630;
 }
 
 /* Main Header */
@@ -71,15 +71,119 @@ header a:hover {
 	font-family: "Roboto", sans-serif;
 }
 
+/* Style the back link */
+.back-link {
+	text-align: right; 
+	font-size: 16px; 
+	margin: 0; 
+  }
+  
+  .back-link a {
+	text-decoration: none; 
+	color: #333; 
+	transition: color 0.2s ease-in-out; 
+  }
+  
+  .back-link a:hover {
+	color: #c7a630; 
+  }
+  
+
+#topnav a {
+	text-decoration: none; 
+	color: rgb(30, 29, 29);
+	text-align: center;
+	padding: 0.4em;
+	font-size: 1.1em;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	transition: border-bottom 0.2s ease-in-out; /* Add a smooth transition for the underline effect */
+	margin-right: 10px;
+  }
+  
+  #topnav a:hover {
+	color: #7c7367; 
+	text-decoration: none;
+  }
+
+  #topnav a.active {
+		color: #7c7367;
+		border-bottom: 1px dotted #a28a4e; /* Adjust the width (1px) as needed */
+	  }
+  
+
+hr {
+	border: none; 
+	border-top: 2px solid #909294; 
+	margin: 20px 0; 
+  }
+
+.sublink {
+	display: flex;
+	justify-content: center;
+  }
+  
+  .sublink a {
+	text-decoration: none;
+	color: rgb(74, 75, 76);
+	text-align: center;
+	padding: 0.4em;
+	font-size: 1em;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	transition: border-bottom 0.2s ease-in-out;
+	margin-right: 10px;
+  }
+  
+  .sublink a:hover {
+	color: #a28a4e;
+	text-decoration: none;
+  }
+  
+  .sublink a.active {
+	color: #a28a4e;
+	border-bottom: 1px dotted #a28a4e;
+  }
+  
+  /* Media query for mobile screens */
+  @media screen and (max-width: 767px) {
+	.sublink {
+	  flex-direction: column; 
+	  align-items: center; 
+	}
+  
+	.sublink a {
+	  margin-right: 0; /* Remove right margin on smaller screens for better spacing */
+	}
+  }
+  
+  
+  /* Style the bold links (inside <b> tags) */
+  .sublink b a {
+	font-weight: 600; /* Apply a slightly thicker font weight for bold links */
+  }
+  
 /* Text */
 p {
-	margin: 0 0 0 0;
+	margin: 0 auto;
 	max-width: 1200px;
-	padding: 10px;
-	font-size: 16px;
-	color: #656462;
-	line-height: 1.5;
-	font-family: "Arial", sans-serif;
+	padding: 15px;
+	font-size: 18px;
+	color: #333;
+	line-height: 1.6;
+	font-family: "Georgia", serif;
+  }
+
+ul,ol {
+	font-size: 18px;
+	color: #333;
+	line-height: 1.6;
+	font-family: "Georgia", serif;
+}
+
+/* Reduce line spacing within long lists */
+div.listing p {
+	padding: 8px;
 }
 
 .title {
@@ -147,6 +251,20 @@ p {
 	margin-bottom: 10px;
 }
 
+/* List of page numbers for long pages */
+p.page-list {
+	font-size: 1em;
+	font-family: "Roboto", sans-serif;
+	padding: 15px;
+	overflow: auto;
+	margin-right: 20px;
+}
+
+p.page-list a.active {
+	font-weight:bold;
+	border-bottom: 1px dotted #a28a4e;
+}
+
 /* Headings */
 h1,
 h2,
@@ -182,13 +300,14 @@ h5 {
 }
 /* Style links */
 a {
-	color: #035dcb;
+	color: #9b7030;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #0088cc;
-	text-decoration: underline;
+	color: #c7a630;
+	text-decoration: none;
+	
 }
 
 hr {
