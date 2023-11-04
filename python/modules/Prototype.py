@@ -65,8 +65,14 @@ def WritePage(page: Html.PageDesc) -> None:
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
-    dirs = ["events","tags","indexes","teachers","drilldown","about"]
+    # Delete files only in directories we have built
+    dirs = gOptions.buildOnly & {"events","tags","teachers","drilldown"}
+    dirs.add("about")
+    if gOptions.buildOnly == gAllSections:
+        dirs.add("indexes")
+
     dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
+    Alert.extra("","Deleting files in",dirs)
 
     for dir in dirs:
         fileList = next(os.walk(dir), (None, None, []))[2]
@@ -117,7 +123,7 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str
     
     if not text:
         text = tag
-    if "tags" in gOptions.buildOnly and link:
+    if link:
         splitItalics = text.split("<em>")
         if len(splitItalics) > 1:
             textOutsideLink = " <em>" + splitItalics[1]
@@ -150,10 +156,7 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
     def HtmlTeacherLink(matchObject: re.Match) -> str:
         teacher = Utils.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
-        if "teachers" in gOptions.buildOnly:
-            return f'<a href = {htmlFile}>{matchObject[1]}</a>'
-        else:
-            return matchObject[1]
+        return f'<a href = {htmlFile}>{matchObject[1]}</a>'
 
     return re.sub(teacherRegex,HtmlTeacherLink,text)
 
@@ -717,7 +720,7 @@ class Formatter:
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
-                    with (a.a(href = EventLink(session["event"]))) if "events" in gOptions.buildOnly else contextlib.nullcontext():
+                    with (a.a(href = EventLink(session["event"]))):
                         a(event["title"])
                 else:
                     a(event["title"])
@@ -732,7 +735,7 @@ class Formatter:
                 sessionTitle = ""
             
             if self.headingLinks:
-                with a.a(href = EventLink(session["event"],session["sessionNumber"])) if "events" in gOptions.buildOnly else contextlib.nullcontext():
+                with a.a(href = EventLink(session["event"],session["sessionNumber"])):
                     a(sessionTitle)
             else:
                 a(sessionTitle)
@@ -1088,7 +1091,7 @@ def ListDetailedEvents(events: Iterable[dict]) -> str:
             a.hr()
         firstEvent = False
         with a.h3(style = "line-height: 1.3;"):
-            with a.a(href = EventLink(eventCode) if "events" in gOptions.buildOnly else contextlib.nullcontext()):
+            with a.a(href = EventLink(eventCode)):
                 a(e["title"])            
         
         a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
@@ -1104,10 +1107,7 @@ def EventSeries(event: dict) -> str:
     return event["series"]
 
 def EventDescription(event: dict,showMonth = False) -> str:
-    if "events" in gOptions.buildOnly:
-        href = Html.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
-    else:
-        href = Html.Wrapper()
+    href = Html.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
     if showMonth:
         date = Utils.ParseDate(event["startDate"])
         monthStr = f' – {date.strftime("%B")} {int(date.year)}'
@@ -1323,10 +1323,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
 def TeacherDescription(teacher: dict,nameStr: str = "") -> str:
-    if "teachers" in gOptions.buildOnly:
-        href = Html.Tag("a",{"href":TeacherLink(teacher['teacher'])})
-    else:
-        href = Html.Wrapper()
+    href = Html.Tag("a",{"href":TeacherLink(teacher['teacher'])})
     if not nameStr:
         nameStr = teacher['fullName']
     return f"<p> {href.Wrap(nameStr)} ({teacher['excerptCount']}) </p>"
@@ -1538,14 +1535,13 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
-    if "drilldown" in gOptions.buildOnly:
-        yield contractAllItem
-    else:
-        yield expandAllItem
+    yield contractAllItem
 
     drilldownMenu = []
+    contractAll = [contractAllItem._replace(title="Contract all")]
     if "drilldown" in gOptions.buildOnly:
-        drilldownMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
+        contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
+    drilldownMenu.append(contractAll)
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
     drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
     if "drilldown" in gOptions.buildOnly:
@@ -1648,6 +1644,13 @@ def Initialize() -> None:
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
+def YieldAllIf(iterator:Iterator,yieldAll:bool) -> Iterator:
+    "Yield all of iterator if yieldAll, otherwise yield only the first element."
+    if yieldAll:
+        yield from iterator
+    else:
+        yield next(iter(iterator))
+
 def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
@@ -1670,14 +1673,12 @@ def main():
                                       specialFirstItem=Html.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),
                                       extraItems=[technicalMenu]))
     mainMenu.append(DocumentationMenu("misc",makeMenu=False))
-    if "tags" in gOptions.buildOnly:
-        mainMenu.append(TagMenu(indexDir))
-    if "events" in gOptions.buildOnly:
-        mainMenu.append(EventsMenu(indexDir))
-    if "teachers" in gOptions.buildOnly:
-        mainMenu.append(TeacherMenu("teachers"))
-    if "allexcerpts" in gOptions.buildOnly:
-        mainMenu.append(AllExcerpts(indexDir))
+
+    mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
+
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
     
     xml = Airium()
