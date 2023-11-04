@@ -1,7 +1,7 @@
 [Thai New Year 2023](photo:Thai New Year 2023.jpg)
 # Acknowledgements
 
-This project would not have been possible without the assistance of many people. It would have been prohibitively expensive and time-consuming if not built upon not previous open-source software projects.
+This project would not have been possible without the assistance of many people. It would have been prohibitively expensive and time-consuming if not built upon previous open-source software projects.
 
 ## People
 Chris Claudius created the overall web design. Owen L. (@MageOwl) made the floating media player. His father Michael contributed to early architecture decisions.
