@@ -38,6 +38,11 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
 
     for e in gDatabase["event"].values():
         e["description"],count = twoVariableTransform(e["description"],e)
+        changeCount += count
+
+    for s in gDatabase["series"].values():
+        s["description"],count = twoVariableTransform(s["description"],s)
+        changeCount += count
 
     return changeCount
     

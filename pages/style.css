@@ -213,6 +213,11 @@ p {
 	font-family: "Georgia", serif;
   }
 
+p.smaller {
+	font-family: "Roboto", sans-serif;
+	font-size: 1em;
+}
+
 ul,ol {
 	font-size: 18px;
 	color: #333;

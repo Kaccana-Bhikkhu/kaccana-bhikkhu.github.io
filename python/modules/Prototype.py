@@ -72,7 +72,6 @@ def DeleteUnwrittenHtmlFiles() -> None:
         dirs.add("indexes")
 
     dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
-    Alert.extra("","Deleting files in",dirs)
 
     for dir in dirs:
         fileList = next(os.walk(dir), (None, None, []))[2]
@@ -1090,16 +1089,16 @@ def ListDetailedEvents(events: Iterable[dict]) -> str:
         if not firstEvent:
             a.hr()
         firstEvent = False
-        with a.h3(style = "line-height: 1.3;"):
+        with a.h3():
             with a.a(href = EventLink(eventCode)):
                 a(e["title"])            
-        
-        a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
-        a.br()
-        a(EventSeriesAndDateStr(e))
-        a.br()
-        eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
-        a(ExcerptDurationStr(eventExcerpts))
+        with a.p():
+            a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
+            a.br()
+            a(EventSeriesAndDateStr(e))
+            a.br()
+            eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+            a(ExcerptDurationStr(eventExcerpts))
                 
     return str(a)
 
@@ -1132,8 +1131,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
         if event["series"] != prevSeries:
             description = gDatabase["series"][event["series"]]["description"]
             if description:
-                description += " " + Html.Tag("a",dict(href="../about/02_Event-series.html#" + Utils.slugify(event["series"])))("More...")
-                description = Html.Tag("p")(description)
+                description = Html.Tag("p",{"class":"smaller"})(description)
             prevSeries = event["series"]
             
         return htmlHeading,description + EventDescription(event,showMonth=True),event["series"]
@@ -1157,9 +1155,9 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
     listing = Html.Tag("div",{"class":"listing"})
     eventMenu = [
-        [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
-        [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
-        [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
+        [seriesInfo,listing(ListEventsBySeries(gDatabase["event"].values()))],
+        [chronologicalInfo,listing(ListEventsByYear(gDatabase["event"].values()))],
+        [detailInfo,listing(ListDetailedEvents(gDatabase["event"].values()))],
         [Html.PageInfo("About event series","about/02_Event-series.html")],
         EventPages("events")
     ]
@@ -1242,7 +1240,6 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>\n")))))
                 yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>\n")))))
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
@@ -1440,7 +1437,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a.br()
         
         if eventInfo["description"]:
-            with a.p():
+            with a.p(Class="smaller"):
                 a(eventInfo["description"])
         
         if eventInfo["website"]:
