@@ -1,7 +1,7 @@
 <!--HTML <img src="../../pages/images/photos/Thai New Year 2023.jpg" alt="Thai New Year 2023" id="cover" title="Thai New Year 2023" align="bottom" width="200" border="0"/> -->
 # Acknowledgements
 
-This project would not have been possible without the assistance of many people. It would have been prohibitively expensive and time-consuming if not built upon not previous open-source software projects.
+This project would not have been possible without the assistance of many people. It would have been prohibitively expensive and time-consuming if not built upon previous open-source software projects.
 
 ## People
 Chris Claudius created the overall web design. Owen L. (@MageOwl) made the floating media player. His father Michael contributed to early architecture decisions.
@@ -25,3 +25,4 @@ The Archive relies upon many common open-source and freeware tools. In addition 
 -----
 
 <!--HTML <img src="../../pages/images/photos/AjahnPasanno1997byJonnyBreeze.jpg" alt="Ajahn Pasanno 1997 - photo by Jonny Breeze" id="small" title="Ajahn Pasanno 1997 - photo by Jonny Breeze" align="bottom" width="200" border="0"/> -->
+
