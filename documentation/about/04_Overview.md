@@ -33,7 +33,7 @@ The website menus link to a series of static pages which allow the user to brows
 
 The website does not yet enable the user to easily search the body text of excerpts. Two workarounds for this significant limitation exist:
 
-1. Use the browser’s built-in search feature (usually Ctrl+F or Cmd+F). Because too many audio players on one page bog down the web browser, pages listing more than 100 excerpts are split into subpages which must be searched separately. To work around this, go to the [All excerpts searchable page](../AllExcerpts-all.html), search the list of excerpts, and follow the “<i class="fa fa-long-arrow-left"></i> Playable” links to listen to the excerpts.
+1. Use the browser’s built-in search feature (usually Ctrl+F or Cmd+F). Because too many audio players on one page bog down the web browser, pages listing more than 100 excerpts are split into subpages which must be searched separately. To work around this, go to the [All excerpts searchable page](../indexes/AllExcerpts-all.html), search the list of excerpts, and follow the “<i class="fa fa-long-arrow-left"></i> Playable” links to listen to the excerpts.
 
 2. Use Google or other external engines to search the archive by asking them to restrict searches to the events directory. This isn't tested yet.
 

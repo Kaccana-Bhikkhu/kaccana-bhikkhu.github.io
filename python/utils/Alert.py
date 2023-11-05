@@ -62,6 +62,7 @@ class AlertClass:
 
     @contextmanager
     def Supress(self):
+        """Temporarily suppress output from this AlertClass."""
         saveVerbosity = self.printAtVerbosity
         self.printAtVerbosity = 1000
         yield None
