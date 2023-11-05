@@ -1496,8 +1496,12 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
     write them in prototype/about, and create a menu out of them.
     specialFirstItem optionally designates the PageInfo for the first item"""
 
+    @Alert.extra.Supress()
+    def QuietRender() -> Iterator[Html.PageDesc]:
+        return Document.RenderDocumentationFiles(directory,"about",html = True)
+
     aboutMenu = []
-    for page in Document.RenderDocumentationFiles(directory,"about",html = True):
+    for page in QuietRender():
         if makeMenu:
             if not aboutMenu:
                 if specialFirstItem:
