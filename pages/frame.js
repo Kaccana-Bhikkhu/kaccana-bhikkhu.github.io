@@ -14,6 +14,8 @@ async function changeURL(pUrl) {
 			titleEl.innerHTML = innerTitle.innerHTML;
 			innerTitle.remove();
 
+			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
+
 			["href","src"].forEach((attribute) => {
 				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
 					let attributePath = el.getAttribute(attribute);
@@ -26,12 +28,17 @@ async function changeURL(pUrl) {
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
 				if (!href || href.match(absoluteURLRegex)) return;
+				if (href == "homepage.html#noscript") { // Code to escape javascript
+					e1.href = "homepage.html";
+					return;
+				}
 
 				let url = href.replaceAll("index.html", "homepage.html")
 				if (href.startsWith("#")) {
 					let noBookmark = location.href.split("#").slice(0,2).join("#")
 					el.href = noBookmark+href;
 					el.addEventListener("click", () => {
+						history.pushState({}, "", el.href);
 						document.getElementById(href.slice(1)).scrollIntoView();
 					});
 				} else {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>$!page.info.title!$</title>
+  <!--(if page.gOptions.blockRobots)-->
+    <meta name="robots" content="noindex, nofollow" />
+  <!--(end)-->
+<style>
+  p {font-size: 100%;}
+</style>
+    
+</head>
+<body>
+
+<h1>The Ajahn Pasanno Question and Story Archive</h1>
+
+<h4>$!page.section["mainMenu"].Render()!$</h4>
+
+<!--(if page.HasSection("subMenu"))-->
+<h4>$!page.section["subMenu"].Render()!$</h4>
+<!--(end)-->
+
+$!page.RenderNumberedSections()!$
+
+<p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+<p id="cite-as"><b>How to cite this page</b> (suggested style): “$!page.info.title!$,” The Ajahn Pasanno Question and Story Archive, November 8, 2023,
+  $!f'<a href="{page.gOptions.info.citationURL}{page.info.file}">{page.gOptions.info.citationURL}{page.info.file}</a>'!$.</p>
+
+</body>
+</html>

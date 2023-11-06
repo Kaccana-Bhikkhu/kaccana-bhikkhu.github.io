@@ -9,7 +9,8 @@ from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
-import ParseCSV, Prototype, Utils, Alert, Html, Link
+import ParseCSV, Prototype, Utils, Alert, Link
+import Html2 as Html
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -37,6 +38,11 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
 
     for e in gDatabase["event"].values():
         e["description"],count = twoVariableTransform(e["description"],e)
+        changeCount += count
+
+    for s in gDatabase["series"].values():
+        s["description"],count = twoVariableTransform(s["description"],s)
+        changeCount += count
 
     return changeCount
     
@@ -381,7 +387,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../../") -> None:
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToHome:str = "../../") -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
     pathToPrototype is the path from the directory where the files are written to the prototype directory.
     pathToBaseForNonPages is the path to root directory from this file for links that don't go to html pages.
@@ -389,11 +395,11 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","player"}))
-    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player"}))
+    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()#]*)#?([^()#]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
-        text,pageType,link = matchObject.groups()
+        text,pageType,link,hashTag = matchObject.groups()
         pageType = pageType.lower()
 
         linkTo = ""
@@ -466,12 +472,18 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             else:
                 Alert.warning("Cannot link about page",link,"in link",matchObject[0])
         elif pageType == "image":
+            linkToPage = True
+            linkTo = f"images/{link}"
+        elif pageType == "photo":
             linkToPage = False
-            linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
+            imagePath = Utils.PosixJoin(pathToPrototype,"images/photos",link)
+            if not hashTag:
+                hashTag = "cover"
+            text = f'<!--HTML <img src="{imagePath}" alt="{text}" id="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
 
         if linkTo:
-            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToBaseForNonPages,linkTo)
-            return wrapper(f"[{text}]({path})")
+            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)
+            return wrapper(f"[{text}]({path}{'#' + hashTag if hashTag else ''})")
         else:
             return text
         
@@ -510,7 +522,8 @@ def LinkReferences() -> None:
             In the latter case, subpage specifies the title of the audio.
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
         about - Link to about page pageName
-        image - Link to images in prototypeDir/images"""
+        image - Link to images in prototypeDir/images
+        photo - Link to photos in prototypeDir/images/photos"""
 
     LinkSubpages()
     LinkKnownReferences()

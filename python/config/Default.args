@@ -19,21 +19,26 @@
 --summarySheetID 2007732801
 
 // Link options:
---mirror abhayagiri:https://abhayagiri.org/media/discs/questions/
+--mirror abhayagiri:https://www.abhayagiri.org/media/discs/questions/
 --mirror preview:https://storage.googleapis.com/apqs_archive/
 --mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
---sessionMp3 remote,local
+--sessionMp3 remote,abhayagiri
 --excerptMp3 abhayagiri
---reference remote,local
+--reference remote,abhayagiri
+--uploadMirror abhayagiri
 
 // Render options:
 --renderedDatabase pages/assets/RenderedDatabase.json
 
 // Document options:
 --info "releaseName:November 2023 initial release"
+--info "releaseDate:November 8, 2023"
+--info "citationURL:https://abhayagiri.org/questions/"
+--info "cannonicalURL:https://www.abhayagiri.org/questions/"
 
 // Prototype options:
 --prototypeDir pages
+--globalTemplate templates/GlobalStyle2.html
 
 // Increase verbosity to maximum
 -vvv

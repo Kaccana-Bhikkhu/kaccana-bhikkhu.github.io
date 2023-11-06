@@ -1,7 +1,9 @@
+<!--HTML <img src="../../pages/images/photos/LPP Chao Khun Ceremony.jpg" alt="Ajahn Pasanno's 2019 Chao Khun Ceremony" id="cover" title="Ajahn Pasanno's 2019 Chao Khun Ceremony" align="bottom" width="200" border="0"/> -->
+
 # Status – November 2023 Initial Release
 
 ## Content
-This release contains 1408 excerpts from 35 events, comprising over 80 hours of audio. I typically transcribe audio by hand and later type these transcriptions into the computer. As of the initial release there are 288 transcribed pages, of which 154 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 1419 excerpts from 35 events, comprising over 80 hours of audio. I typically transcribe audio by hand and later type these transcriptions into the computer. As of the initial release there are 288 transcribed pages, of which 154 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 Existing transcriptions of the questions from the 2013-2016 TG retreats have been incorporated into the Archive. I have tagged these questions based on the transcriptions but haven't listened to the recordings themselves. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.
@@ -22,5 +24,6 @@ I have finished a handwritten transcription of the 2001 Ajahn Chah Conference. M
 
  - Pressing the back button sometimes returns to a seemingly random scroll position on the previous page ([Github issue #52](https://github.com/Kaccana-Bhikkhu/qs-archive/issues/52)).
  - References do not link to specific pages within the pdf on mobile browsers.
+ - Download buttons switch to a new page with an audio player. To work around this, right click on the download button and choose "Save link as..." (Chrome) or the equivalent for your browser.
 
 Information about the latest monthly update will go here.

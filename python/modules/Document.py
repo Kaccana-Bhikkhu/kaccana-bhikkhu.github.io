@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import re, os, itertools
-import Utils, Render, Alert, Html, Filter
+import Utils, Render, Alert, Filter
+import Html2 as Html
 from typing import Tuple, Type, Callable, Iterable
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
@@ -38,7 +39,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
     for fileName in sorted(os.listdir(sourceDir)):
         sourcePath = Utils.PosixJoin(sourceDir,fileName)
 
-        if not os.path.isfile(sourcePath) or not fileName.endswith(".md"):
+        if not os.path.isfile(sourcePath) or fileName.startswith("_") or not fileName.endswith(".md"):
             continue
 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
@@ -114,7 +115,7 @@ def ParseArguments() -> None:
         pass
     infoObject = NameSpace()
     for item in gOptions.info:
-        split = item.split(":")
+        split = item.split(":",maxsplit=1)
         if len(split) > 1:
             value = split[1]
         else:
@@ -134,7 +135,7 @@ def main() -> None:
     global gDocumentationWordCount
     gDocumentationWordCount = 0
     modifiedFiles = []
-    for directory in ['about','misc']:
+    for directory in ['about','misc','technical']:
         os.makedirs(Utils.PosixJoin(gOptions.documentationDir,directory),exist_ok=True)
         for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
             if not os.path.isfile(page.info.file) or Utils.DependenciesModified(page.info.file,[page.sourceFile]):
