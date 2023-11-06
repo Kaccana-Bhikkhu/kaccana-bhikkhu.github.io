@@ -8,27 +8,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grief</title>
 
-  <script>
-    url = new URL(location.href)
-    location.replace("../index.html#tags/grief-qtag.html" + url.hash);
-  </script>
-
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     
 </head>
-<body>  
+<body>
+    <span id="javascript-link">
+      <a href="../index.html#tags/grief-qtag.html">Enable floating audio player (Javascript)</a>
+      <br>
+    </span>
   <div id="header">
-    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
+    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
-    <h4><a href="../homepage.html">About</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AlphabeticalTags.html" style="font-weight: bold;">Tags</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/EventsBySeries.html">Events</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/TeachersAlphabetical.html">Teachers</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts.html">All excerpts</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a></h4>
+    <nav id="topnav">
+      <a href="../homepage.html">About</a>
+      <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
+      <a href="../indexes/EventsBySeries.html">Events</a>
+      <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../indexes/AllExcerpts.html">All excerpts</a>
+      <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
+    </nav>
   </div>
 <br>
 
-  <div class="intro">
-    <a href="../indexes/AlphabeticalTags.html">Alphabetical</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../drilldown/tag-999.html">Hierarchy</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/SortedTags.html">Most common</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../about/05_Tags.html">About tags</a>
+  <div class="sublink">
+    <a href="../indexes/AlphabeticalTags.html">Alphabetical</a>
+      <a href="../drilldown/tag-999.html">Hierarchy</a>
+      <a href="../indexes/SortedTags.html">Most common</a>
+      <a href="../about/05_Tags.html">About tags</a>
   </div>
+  <br>
 
   <div class="title"><a href="../drilldown/tag-059.html#59"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGrief (domanassa)
   </div>
@@ -42,7 +52,12 @@
   
   21 excerpts, 2:14:15 total duration
 </strong>
-<hr /> <p> <a href="../tags/grief.html">All excerpts (21)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/grief-qtag.html" style="font-weight: bold;">Questions about (14)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/grief-atag.html">Answers involving (2)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/grief-story.html">Stories (3)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/grief-reading.html">Readings (1)</a> </p><hr>
+<hr /> <div class="sublink2"> <a href="../tags/grief.html">All excerpts (21)</a>
+      <a href="../tags/grief-qtag.html" class="active">Questions about (14)</a>
+      <a href="../tags/grief-atag.html">Answers involving (2)</a>
+      <a href="../tags/grief-story.html">Stories (3)</a>
+      <a href="../tags/grief-reading.html">Readings (1)</a> </div>
+<hr>
  <div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S03_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F06.mp3" title="The Whole of the Path... S3 E6" data-duration="73"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F06.mp3" download="">Download audio</a> (1:13)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b>: I find that the experience of uncertainty and loss can give rise to compassion. [<a href = "../tags/impermanence.html">Impermanence</a>] <b>[<a href = "../tags/grief.html">Grief</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>]
@@ -147,8 +162,8 @@
 </div>
 
 <footer>
-    <p>&copy; 2023 Abhayagiri Buddhist Monastery. All rights reserved.</p>
-    <p style="font-size:100%;"><b>How to cite this page</b> (suggested style): “Tag: Grief (Questions about),” The Ajahn Pasanno Question and Story Archive, November 2023 initial release,
+    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Grief,” The Ajahn Pasanno Question and Story Archive, November 8, 2023,
       <a href="https://abhayagiri.org/questions/tags/grief-qtag.html">https://abhayagiri.org/questions/tags/grief-qtag.html</a>.</p>
 </footer>
 

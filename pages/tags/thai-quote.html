@@ -8,27 +8,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thai</title>
 
-  <script>
-    url = new URL(location.href)
-    location.replace("../index.html#tags/thai-quote.html" + url.hash);
-  </script>
-
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     
 </head>
-<body>  
+<body>
+    <span id="javascript-link">
+      <a href="../index.html#tags/thai-quote.html">Enable floating audio player (Javascript)</a>
+      <br>
+    </span>
   <div id="header">
-    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
+    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
-    <h4><a href="../homepage.html">About</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AlphabeticalTags.html" style="font-weight: bold;">Tags</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/EventsBySeries.html">Events</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/TeachersAlphabetical.html">Teachers</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts.html">All excerpts</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a></h4>
+    <nav id="topnav">
+      <a href="../homepage.html">About</a>
+      <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
+      <a href="../indexes/EventsBySeries.html">Events</a>
+      <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../indexes/AllExcerpts.html">All excerpts</a>
+      <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
+    </nav>
   </div>
 <br>
 
-  <div class="intro">
-    <a href="../indexes/AlphabeticalTags.html">Alphabetical</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../drilldown/tag-999.html">Hierarchy</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/SortedTags.html">Most common</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../about/05_Tags.html">About tags</a>
+  <div class="sublink">
+    <a href="../indexes/AlphabeticalTags.html">Alphabetical</a>
+      <a href="../drilldown/tag-999.html">Hierarchy</a>
+      <a href="../indexes/SortedTags.html">Most common</a>
+      <a href="../about/05_Tags.html">About tags</a>
   </div>
+  <br>
 
   <div class="title"><a href="../drilldown/tag-565.html#565"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThai 
   </div>
@@ -42,7 +52,12 @@
   
   15 excerpts, 58:15 total duration
 </strong>
-<hr /> <p> <a href="../tags/thai.html">All excerpts (15)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/thai-qtag.html">Questions about (2)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/thai-atag.html">Answers involving (11)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/thai-story.html">Stories (2)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/thai-quote.html" style="font-weight: bold;">Quotes (3)</a> </p><hr>
+<hr /> <div class="sublink2"> <a href="../tags/thai.html">All excerpts (15)</a>
+      <a href="../tags/thai-qtag.html">Questions about (2)</a>
+      <a href="../tags/thai-atag.html">Answers involving (11)</a>
+      <a href="../tags/thai-story.html">Stories (2)</a>
+      <a href="../tags/thai-quote.html" class="active">Quotes (3)</a> </div>
+<hr>
  <div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S03_F10">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F10.mp3" title="Tudong Stories at Sp... S3 E10" data-duration="327"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F10.mp3" download="">Download audio</a> (5:27)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Quote:</b>  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.”  [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/faculties.html">Faculties</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/concentration.html">Concentration</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/perfections.html">Perfections</a>]
@@ -72,8 +87,8 @@
 </div>
 
 <footer>
-    <p>&copy; 2023 Abhayagiri Buddhist Monastery. All rights reserved.</p>
-    <p style="font-size:100%;"><b>How to cite this page</b> (suggested style): “Tag: Thai (Quotes),” The Ajahn Pasanno Question and Story Archive, November 2023 initial release,
+    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Thai,” The Ajahn Pasanno Question and Story Archive, November 8, 2023,
       <a href="https://abhayagiri.org/questions/tags/thai-quote.html">https://abhayagiri.org/questions/tags/thai-quote.html</a>.</p>
 </footer>
 

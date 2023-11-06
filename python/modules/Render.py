@@ -38,6 +38,11 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
 
     for e in gDatabase["event"].values():
         e["description"],count = twoVariableTransform(e["description"],e)
+        changeCount += count
+
+    for s in gDatabase["series"].values():
+        s["description"],count = twoVariableTransform(s["description"],s)
+        changeCount += count
 
     return changeCount
     
@@ -467,8 +472,8 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             else:
                 Alert.warning("Cannot link about page",link,"in link",matchObject[0])
         elif pageType == "image":
-            linkToPage = False
-            linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
+            linkToPage = True
+            linkTo = f"images/{link}"
         elif pageType == "photo":
             linkToPage = False
             imagePath = Utils.PosixJoin(pathToPrototype,"images/photos",link)

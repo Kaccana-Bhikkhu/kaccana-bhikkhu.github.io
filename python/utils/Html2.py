@@ -86,7 +86,7 @@ class Menu(Renderable):
     menu_wrapper:Wrapper
     menu_highlightTags:Wrapper
 
-    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlight:dict=dict(style="font-weight: bold;"),wrapper:Wrapper = Wrapper()) -> None:
+    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlight:dict=dict(style="font-weight:bold;text-decoration: underline;",),wrapper:Wrapper = Wrapper()) -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
         separator: html code between each menu item; defaults to 6 spaces.
@@ -341,7 +341,7 @@ class PageDesc(Renderable):
 
 
 T = TypeVar("T")
-def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str,str|None)],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str,str|None)],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
     itemRenderer: Takes an item and returns the tuple heading,htmlBody[,headingID].
@@ -387,6 +387,6 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str,str
         page.AppendContent(menu,section = addMenu if type(addMenu) == str else None)
     
     page.AppendContent("<hr>")
-    page.AppendContent("\n".join(bodyParts))
+    page.AppendContent(bodyWrapper("\n".join(bodyParts)))
 
     return page

@@ -32,9 +32,9 @@ def register_comment(desc='') -> None:
 
     def setter(id3, _key, value):
         id3.add(mutagen.id3.COMM(
-            encoding=0, lang='\x00\x00\x00', desc=desc, text=[Utils.RemoveDiacritics(t) for t in value]))
-        id3.add(mutagen.id3.COMM(
             encoding=1, lang='XXX', desc=desc, text=value))
+        id3.add(mutagen.id3.COMM(
+            encoding=0, lang='\x00\x00\x00', desc=desc, text=[Utils.RemoveDiacritics(t) for t in value]))
 
     def deleter(id3, _key):
         if frameid in id3:
@@ -81,6 +81,10 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
         if 0 < qTagCount < len(tagStrs):
             tagStrs.insert(excerpt["qTagCount"],"//")
         parts += tagStrs
+    
+    source = f'Source: {excerpt["startTime"]} in file "{session["filename"]}"'
+    parts.append(source)
+
     return " ".join(parts)
 
 def ExcerptTags(excerpt: dict) -> dict:
@@ -100,7 +104,7 @@ def ExcerptTags(excerpt: dict) -> dict:
         "genre": gDatabase["kind"][excerpt["kind"]]["category"],
         "copyright": "© 2023 Abhayagiri Monastery; not for distribution outside the APQS Archive",
         "organization": "The Ajahn Pasanno Question and Story Achive",
-        "website": "https://abhayagiri.org/questions/",
+        "website": f"https://abhayagiri.org/questions/events/{excerpt['event']}.html#{Utils.ItemCode(excerpt)}",
     }
 
     if not returnValue["artist"]:

@@ -8,27 +8,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everyday life</title>
 
-  <script>
-    url = new URL(location.href)
-    location.replace("../index.html#tags/everyday-life-qtag.html" + url.hash);
-  </script>
-
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     
 </head>
-<body>  
+<body>
+    <span id="javascript-link">
+      <a href="../index.html#tags/everyday-life-qtag.html">Enable floating audio player (Javascript)</a>
+      <br>
+    </span>
   <div id="header">
-    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong> </h1>
+    <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
-    <h4><a href="../homepage.html">About</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AlphabeticalTags.html" style="font-weight: bold;">Tags</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/EventsBySeries.html">Events</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/TeachersAlphabetical.html">Teachers</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts.html">All excerpts</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a></h4>
+    <nav id="topnav">
+      <a href="../homepage.html">About</a>
+      <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
+      <a href="../indexes/EventsBySeries.html">Events</a>
+      <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../indexes/AllExcerpts.html">All excerpts</a>
+      <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
+    </nav>
   </div>
 <br>
 
-  <div class="intro">
-    <a href="../indexes/AlphabeticalTags.html">Alphabetical</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../drilldown/tag-999.html">Hierarchy</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/SortedTags.html">Most common</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../about/05_Tags.html">About tags</a>
+  <div class="sublink">
+    <a href="../indexes/AlphabeticalTags.html">Alphabetical</a>
+      <a href="../drilldown/tag-999.html">Hierarchy</a>
+      <a href="../indexes/SortedTags.html">Most common</a>
+      <a href="../about/05_Tags.html">About tags</a>
   </div>
+  <br>
 
   <div class="title"><a href="../drilldown/tag-652.html#652"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspEveryday life practice 
   </div>
@@ -42,7 +52,12 @@
   
   20 excerpts, 1:45:33 total duration
 </strong>
-<hr /> <p> <a href="../tags/everyday-life.html">All excerpts (20)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/everyday-life-qtag.html" style="font-weight: bold;">Questions about (16)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/everyday-life-atag.html">Answers involving (2)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/everyday-life-quote.html">Quotes (2)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../tags/everyday-life-reading.html">Readings (2)</a> </p><hr>
+<hr /> <div class="sublink2"> <a href="../tags/everyday-life.html">All excerpts (20)</a>
+      <a href="../tags/everyday-life-qtag.html" class="active">Questions about (16)</a>
+      <a href="../tags/everyday-life-atag.html">Answers involving (2)</a>
+      <a href="../tags/everyday-life-quote.html">Quotes (2)</a>
+      <a href="../tags/everyday-life-reading.html">Readings (2)</a> </div>
+<hr>
  <div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F06.mp3" title="Metta Retreat, S4 E6" data-duration="330"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F06.mp3" download="">Download audio</a> (5:30)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “For most of the time on this retreat, I've tried to work with a persistent problem from a variety of angles, but as I work with it it seems to get worse; it seems obsessional. Any suggestions?”  [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] <b>[<a href = "../tags/everyday-life.html">Everyday life</a>]</b> [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/patience.html">Patience</a>]
@@ -172,8 +187,8 @@
 </div>
 
 <footer>
-    <p>&copy; 2023 Abhayagiri Buddhist Monastery. All rights reserved.</p>
-    <p style="font-size:100%;"><b>How to cite this page</b> (suggested style): “Tag: Everyday life practice (Questions about),” The Ajahn Pasanno Question and Story Archive, November 2023 initial release,
+    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Everyday life,” The Ajahn Pasanno Question and Story Archive, November 8, 2023,
       <a href="https://abhayagiri.org/questions/tags/everyday-life-qtag.html">https://abhayagiri.org/questions/tags/everyday-life-qtag.html</a>.</p>
 </footer>
 

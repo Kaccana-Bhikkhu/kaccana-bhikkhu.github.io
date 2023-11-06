@@ -7,7 +7,7 @@ from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
 import Utils, Alert, Filter, ParseCSV, Document
 import Html2 as Html
-from datetime import timedelta
+from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
@@ -17,14 +17,14 @@ from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
 
-NEW_STYLE = False
+NEW_STYLE = True
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
 if NEW_STYLE:
     BASE_MENU_STYLE = dict(separator="\n"+6*" ",highlight={"class":"active"})
     MAIN_MENU_STYLE |= BASE_MENU_STYLE
     SUBMENU_STYLE |= BASE_MENU_STYLE
-    EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink"}) + "\n<hr>\n")
+    EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink2"}) + "\n<hr>\n")
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -65,7 +65,12 @@ def WritePage(page: Html.PageDesc) -> None:
 def DeleteUnwrittenHtmlFiles() -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
-    dirs = ["events","tags","indexes","teachers","drilldown","about"]
+    # Delete files only in directories we have built
+    dirs = gOptions.buildOnly & {"events","tags","teachers","drilldown"}
+    dirs.add("about")
+    if gOptions.buildOnly == gAllSections:
+        dirs.add("indexes")
+
     dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
 
     for dir in dirs:
@@ -117,7 +122,7 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str
     
     if not text:
         text = tag
-    if "tags" in gOptions.buildOnly and link:
+    if link:
         splitItalics = text.split("<em>")
         if len(splitItalics) > 1:
             textOutsideLink = " <em>" + splitItalics[1]
@@ -150,10 +155,7 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
     def HtmlTeacherLink(matchObject: re.Match) -> str:
         teacher = Utils.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
-        if "teachers" in gOptions.buildOnly:
-            return f'<a href = {htmlFile}>{matchObject[1]}</a>'
-        else:
-            return matchObject[1]
+        return f'<a href = {htmlFile}>{matchObject[1]}</a>'
 
     return re.sub(teacherRegex,HtmlTeacherLink,text)
 
@@ -193,55 +195,56 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                         expandSpecificTags.add(parent) # Then expand the parent tag
                     
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
-    for index, item in enumerate(tagList):
-        if item["level"] > skipSubtagLevel:
-            continue
+    with a.div(Class="listing"):
+        for index, item in enumerate(tagList):
+            if item["level"] > skipSubtagLevel:
+                continue
 
-        if index in expandSpecificTags:
-            skipSubtagLevel = 999 # don't skip anything
-        else:
-            skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
-        
-        with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
-            drilldownLink = ''
-            if expandTagLink:
-                if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
-                    if index in expandSpecificTags: # Is it already expanded?
-                        tagAtPrevLevel = -1
-                        for reverseIndex in range(index - 1,-1,-1):
-                            if tagList[reverseIndex]["level"] < item["level"]:
-                                tagAtPrevLevel = reverseIndex
-                                break
-                        drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
+            if index in expandSpecificTags:
+                skipSubtagLevel = 999 # don't skip anything
+            else:
+                skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
+            
+            with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+                drilldownLink = ''
+                if expandTagLink:
+                    if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
+                        if index in expandSpecificTags: # Is it already expanded?
+                            tagAtPrevLevel = -1
+                            for reverseIndex in range(index - 1,-1,-1):
+                                if tagList[reverseIndex]["level"] < item["level"]:
+                                    tagAtPrevLevel = reverseIndex
+                                    break
+                            drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
+                        else:
+                            drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
                     else:
-                        drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
-                else:
-                    drilldownLink = "&nbsp"
+                        drilldownLink = "&nbsp"
 
-            indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
-            
-            countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
-            
-            if item['tag'] and not item['subsumed']:
-                nameStr = HtmlTagLink(item['tag'],True) + countStr
-            else:
-                nameStr = item['name']
-            
-            if item['pali'] and item['pali'] != item['name']:
-                paliStr = '(' + item['pali'] + ')'
-            elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
-                paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
-                # If specified, use paliStr to display the tag's first gloss
-            else:
-                paliStr = ''
-            
-            if item['subsumed']:
-                seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
-            else:
-                seeAlsoStr = ''
-            
-            joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
-            a(' '.join(joinBits))
+                indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
+                
+                countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
+                
+                if item['tag'] and not item['subsumed']:
+                    nameStr = HtmlTagLink(item['tag'],True) + countStr
+                else:
+                    nameStr = item['name']
+                
+                if item['pali'] and item['pali'] != item['name']:
+                    paliStr = '(' + item['pali'] + ')'
+                elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
+                    paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
+                    # If specified, use paliStr to display the tag's first gloss
+                else:
+                    paliStr = ''
+                
+                if item['subsumed']:
+                    seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
+                else:
+                    seeAlsoStr = ''
+                
+                joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
+                a(' '.join(joinBits))
     
     return str(a)
 
@@ -325,9 +328,10 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     a = Airium()
     # Sort descending by number of excerpts and in alphabetical order
     tagsSortedByQCount = sorted((tag for tag in gDatabase["tag"] if ExcerptCount(tag)),key = lambda tag: (-ExcerptCount(tag),tag))
-    for tag in tagsSortedByQCount:
-        with a.p():
-            a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
+    with a.div(Class="listing"):
+        for tag in tagsSortedByQCount:
+            with a.p():
+                a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
     
     page = Html.PageDesc(info)
     page.AppendContent(str(a))
@@ -474,16 +478,18 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     def LenStr(items: list) -> str:
         return f" ({len(items)})"
     
+
+    args = dict(addMenu=True,countItems=False,bodyWrapper=Html.Tag("div",{"class":"listing"}))
     subMenu = [
-        [pageInfo._replace(title = "All tags"+LenStr(allList)),str(Html.ListWithHeadings(allList,TagItem,addMenu=True,countItems=False))],
+        [pageInfo._replace(title = "All tags"+LenStr(allList)),str(Html.ListWithHeadings(allList,TagItem,**args))],
         [pageInfo._replace(title = "English"+LenStr(entries["english"]),file=Utils.PosixJoin(pageDir,"EnglishTags.html")),
-            str(Html.ListWithHeadings(entries["english"],TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(entries["english"],TagItem,**args))],
         [pageInfo._replace(title = "Pāli"+LenStr(entries["pali"]),file=Utils.PosixJoin(pageDir,"PaliTags.html")),
-            str(Html.ListWithHeadings(entries["pali"],TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(entries["pali"],TagItem,**args))],
         [pageInfo._replace(title = "Other languages"+LenStr(entries["other"]),file=Utils.PosixJoin(pageDir,"OtherTags.html")),
-            str(Html.ListWithHeadings(entries["other"],TagItem,addMenu=True,countItems=False))],
+            str(Html.ListWithHeadings(entries["other"],TagItem,**args))],
         [pageInfo._replace(title = "People/places/traditions"+LenStr(entries["proper"]),file=Utils.PosixJoin(pageDir,"ProperTags.html")),
-            str(Html.ListWithHeadings(entries["proper"],TagItem,addMenu=True,countItems=False))]
+            str(Html.ListWithHeadings(entries["proper"],TagItem,**args))]
     ]
 
     basePage = Html.PageDesc()
@@ -713,7 +719,7 @@ class Formatter:
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
-                    with (a.a(href = EventLink(session["event"]))) if "events" in gOptions.buildOnly else contextlib.nullcontext():
+                    with (a.a(href = EventLink(session["event"]))):
                         a(event["title"])
                 else:
                     a(event["title"])
@@ -728,7 +734,7 @@ class Formatter:
                 sessionTitle = ""
             
             if self.headingLinks:
-                with a.a(href = EventLink(session["event"],session["sessionNumber"])) if "events" in gOptions.buildOnly else contextlib.nullcontext():
+                with a.a(href = EventLink(session["event"],session["sessionNumber"])):
                     a(sessionTitle)
             else:
                 a(sessionTitle)
@@ -926,7 +932,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
 
             menuItems.append([menuItem,pageHtml])
 
-        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper("<p>Page: " + 2*"&nbsp","</p>"))
+        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>"),highlight={"class":"active"})
     else:
         clone = basePage.Clone()
         clone.AppendContent(menuItems[0][1][1])
@@ -1083,16 +1089,16 @@ def ListDetailedEvents(events: Iterable[dict]) -> str:
         if not firstEvent:
             a.hr()
         firstEvent = False
-        with a.h3(style = "line-height: 1.3;"):
-            with a.a(href = EventLink(eventCode) if "events" in gOptions.buildOnly else contextlib.nullcontext()):
+        with a.h3():
+            with a.a(href = EventLink(eventCode)):
                 a(e["title"])            
-        
-        a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
-        a.br()
-        a(EventSeriesAndDateStr(e))
-        a.br()
-        eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
-        a(ExcerptDurationStr(eventExcerpts))
+        with a.p():
+            a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
+            a.br()
+            a(EventSeriesAndDateStr(e))
+            a.br()
+            eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+            a(ExcerptDurationStr(eventExcerpts))
                 
     return str(a)
 
@@ -1100,10 +1106,7 @@ def EventSeries(event: dict) -> str:
     return event["series"]
 
 def EventDescription(event: dict,showMonth = False) -> str:
-    if "events" in gOptions.buildOnly:
-        href = Html.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
-    else:
-        href = Html.Wrapper()
+    href = Html.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
     if showMonth:
         date = Utils.ParseDate(event["startDate"])
         monthStr = f' – {date.strftime("%B")} {int(date.year)}'
@@ -1128,8 +1131,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
         if event["series"] != prevSeries:
             description = gDatabase["series"][event["series"]]["description"]
             if description:
-                description += " " + Html.Tag("a",dict(href="../about/02_Event-series.html#" + Utils.slugify(event["series"])))("More...")
-                description = Html.Tag("p")(description)
+                description = Html.Tag("p",{"class":"smaller"})(description)
             prevSeries = event["series"]
             
         return htmlHeading,description + EventDescription(event,showMonth=True),event["series"]
@@ -1151,10 +1153,11 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
     yield seriesInfo._replace(title="Events")
 
+    listing = Html.Tag("div",{"class":"listing"})
     eventMenu = [
-        [seriesInfo,ListEventsBySeries(gDatabase["event"].values())],
-        [chronologicalInfo,ListEventsByYear(gDatabase["event"].values())],
-        [detailInfo,ListDetailedEvents(gDatabase["event"].values())],
+        [seriesInfo,listing(ListEventsBySeries(gDatabase["event"].values()))],
+        [chronologicalInfo,listing(ListEventsByYear(gDatabase["event"].values()))],
+        [detailInfo,listing(ListDetailedEvents(gDatabase["event"].values()))],
         [Html.PageInfo("About event series","about/02_Event-series.html")],
         EventPages("events")
     ]
@@ -1312,14 +1315,12 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p>")))))
+            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p>")))))
         else:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
 def TeacherDescription(teacher: dict,nameStr: str = "") -> str:
-    if "teachers" in gOptions.buildOnly:
-        href = Html.Tag("a",{"href":TeacherLink(teacher['teacher'])})
-    else:
-        href = Html.Wrapper()
+    href = Html.Tag("a",{"href":TeacherLink(teacher['teacher'])})
     if not nameStr:
         nameStr = teacher['fullName']
     return f"<p> {href.Wrap(nameStr)} ({teacher['excerptCount']}) </p>"
@@ -1394,11 +1395,12 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
     teachersInUse = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
 
+    listing = Html.Tag("div",{"class":"listing"})
     teacherMenu = [
-        [alphabeticalInfo,ListTeachersAlphabetical(teachersInUse)],
-        [chronologicalInfo,ListTeachersChronological(teachersInUse)],
-        [lineageInfo,ListTeachersLineage(teachersInUse)],
-        [excerptInfo,ListTeachersByExcerpts(teachersInUse)],
+        [alphabeticalInfo,listing(ListTeachersAlphabetical(teachersInUse))],
+        [chronologicalInfo,listing(ListTeachersChronological(teachersInUse))],
+        [lineageInfo,listing(ListTeachersLineage(teachersInUse))],
+        [excerptInfo,listing(ListTeachersByExcerpts(teachersInUse))],
         TeacherPages("teachers")
     ]
 
@@ -1435,7 +1437,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a.br()
         
         if eventInfo["description"]:
-            with a.p():
+            with a.p(Class="smaller"):
                 a(eventInfo["description"])
         
         if eventInfo["website"]:
@@ -1489,16 +1491,22 @@ def ExtractHtmlBody(fileName: str) -> str:
     
     return htmlPage[bodyStart.span()[1]:bodyEnd.span()[0]]
 
-def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageInfo|None = None) -> Html.PageDescriptorMenuItem:
+def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageInfo|None = None,extraItems:Iterator[Iterator[Html.PageDescriptorMenuItem]] = []) -> Html.PageDescriptorMenuItem:
     """Read markdown pages from documentation/directory, convert them to html, 
     write them in prototype/about, and create a menu out of them.
     specialFirstItem optionally designates the PageInfo for the first item"""
 
+    @Alert.extra.Supress()
+    def QuietRender() -> Iterator[Html.PageDesc]:
+        return Document.RenderDocumentationFiles(directory,"about",html = True)
+
     aboutMenu = []
-    for page in Document.RenderDocumentationFiles(directory,"about",html = True):
+    for page in QuietRender():
         if makeMenu:
             if not aboutMenu:
                 if specialFirstItem:
+                    if not specialFirstItem.file:
+                        specialFirstItem = specialFirstItem._replace(file=page.info.file)
                     page.info = specialFirstItem
                 yield page.info
         page.keywords = ["About","Ajahn Pasanno","Question","Story","Archive"]
@@ -1511,6 +1519,9 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
 
         aboutMenu.append([page.info,page])
         
+    for item in extraItems:
+        aboutMenu.append(item)
+
     if makeMenu:
         basePage = Html.PageDesc()
         yield from basePage.AddMenuAndYieldPages(aboutMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("","<hr>\n"))))
@@ -1525,14 +1536,13 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
-    if "drilldown" in gOptions.buildOnly:
-        yield contractAllItem
-    else:
-        yield expandAllItem
+    yield contractAllItem
 
     drilldownMenu = []
+    contractAll = [contractAllItem._replace(title="Contract all")]
     if "drilldown" in gOptions.buildOnly:
-        drilldownMenu.append([contractAllItem._replace(title="Contract all"),(contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile))])
+        contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
+    drilldownMenu.append(contractAll)
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
     drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
     if "drilldown" in gOptions.buildOnly:
@@ -1561,6 +1571,43 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,**SUBMENU_STYLE)
 
+SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching",
+                    }
+def WriteSitemapURL(page:Html.PageDesc,xml:Airium) -> None:
+    "Write the URL of this page into an xml sitemap."
+    
+    priority = 0.7
+    pathParts = page.info.file.split("/")
+    
+    directory = pathParts[0]
+    if len(pathParts) < 2 or directory == "about":
+        priority = 1.0
+    elif directory in {"events","indexes"}:
+        priority = 0.9
+    elif directory == "drilldown":
+        if pathParts[1] == "tag-999.html":
+            priority = 0.9
+        else:
+            return
+    else:
+        afterDash = re.search(r"-([^.-]+)\.html$",pathParts[-1])
+        if afterDash:
+            afterDash = afterDash[1]
+            if afterDash in SUBPAGE_SUFFIXES:
+                priority = 0.3
+            if re.match(r"[0-9]+",afterDash):
+                priority = 0.3
+
+    with xml.url():
+        with xml.loc():
+            xml(f"{gOptions.info.cannonicalURL}{page.info.file}")
+        with xml.lastmod():
+            xml(Utils.ModificationDate(Utils.PosixJoin(gOptions.prototypeDir,page.info.file)).strftime("%Y-%m-%d"))
+        with xml.changefreq():
+            xml("daily")
+        with xml.priority():
+            xml(priority)
+
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
@@ -1573,7 +1620,9 @@ def AddArguments(parser):
     parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--blockRobots',action='store_true',help="Use <meta name robots> to prevent crawling staging sites.")
+    parser.add_argument('--redirectToJavascript',action='store_true',help="Redirect page to index.html/#page if Javascript is available.")
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
+    parser.add_argument('--sitemap',action='store_true',help='Write an XML sitemap.')
     parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them.")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
@@ -1597,6 +1646,13 @@ def Initialize() -> None:
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
+def YieldAllIf(iterator:Iterator,yieldAll:bool) -> Iterator:
+    "Yield all of iterator if yieldAll, otherwise yield only the first element."
+    if yieldAll:
+        yield from iterator
+    else:
+        yield next(iter(iterator))
+
 def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
@@ -1613,22 +1669,32 @@ def main():
 
     indexDir ="indexes"
     mainMenu = []
-    mainMenu.append(DocumentationMenu("about",specialFirstItem=Html.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive")))
+    technicalMenu = list(DocumentationMenu("technical"))
+    technicalMenu[0] = technicalMenu[0]._replace(title="Technical")
+    mainMenu.append(DocumentationMenu("about",
+                                      specialFirstItem=Html.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),
+                                      extraItems=[technicalMenu]))
     mainMenu.append(DocumentationMenu("misc",makeMenu=False))
-    if "tags" in gOptions.buildOnly:
-        mainMenu.append(TagMenu(indexDir))
-    if "events" in gOptions.buildOnly:
-        mainMenu.append(EventsMenu(indexDir))
-    if "teachers" in gOptions.buildOnly:
-        mainMenu.append(TeacherMenu("teachers"))
-    if "allexcerpts" in gOptions.buildOnly:
-        mainMenu.append(AllExcerpts(indexDir))
+
+    mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
+
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
-        
+    
+    xml = Airium()
     with open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile: 
-        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
-            WritePage(newPage)
-            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+        with xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"):
+            for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
+                WritePage(newPage)
+                print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+                if gOptions.sitemap:
+                    WriteSitemapURL(newPage,xml)
+    
+    if gOptions.sitemap:
+        with open(Utils.PosixJoin(gOptions.prototypeDir,"sitemap.xml"),"w") as sitemapFile:
+            print(str(xml),file=sitemapFile)
 
     if not gOptions.keepOldHtmlFiles:
         DeleteUnwrittenHtmlFiles()
