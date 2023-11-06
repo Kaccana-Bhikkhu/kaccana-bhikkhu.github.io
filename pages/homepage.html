@@ -8,17 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
 
-  <script>
-    url = new URL(location.href)
-    location.replace("index.html#homepage.html" + url.hash);
-  </script>
-
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
     
 </head>
-<body>  
+<body>
+    <span id="javascript-link">
+      <a href="index.html#homepage.html">Enable floating audio player (Javascript)</a>
+      <br>
+    </span>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
@@ -54,6 +53,8 @@
 <h1 id="introduction">Introduction</h1>
 <p>Ajahn Pasanno, one of founding abbots of Abhayagiri Monastery and now its Guiding Elder, excels at answering Dhamma questions. I estimate there are perhaps 100 hours of his question and answer sessions posted online. If you have a Dhamma question, it’s likely that Ajahn Pasanno has spoken to it in the past. But how will you find his answer amidst the hours of available recordings?</p>
 <p>This archive is an attempt to make the oral teachings of Ajahn Pasanno more accessible. It contains transcriptions/summaries of questions asked and audio recordings of Ajahn Pasanno’s answers. The questions are organized by event and tagged by subject. The stories Ajahn Pasanno tells in the course of answering Dhamma questions are often as valuable as the questions themselves. Thus I expanded the archive to include stories, quotes, readings, sutta references, and other content in addition to questions and answers. Ajahn Pasanno readily shares the teaching seat with other Abhayagiri residents and invited guests, and the archive includes material from those who teach alongside him.</p>
+<h3 id="data-usage-caution">Data usage caution</h3>
+<p>This website currently downloads all audio files on a page whether or not you play them, so it is unfortunately not suitable for use on slow or metered data connections. Hopefully we can fix this in the next release. You can browse the Archive with low data usage using the <a href="homepage.html#noscript">no script version</a> without the floating audio player.</p>
 <h2 id="where-to-begin">Where to Begin</h2>
 <p>The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:</p>
 <p>If you have a question about a specific topic, try looking for it in the <a href="indexes/AlphabeticalTags.html">alphabetical tag list</a>. If you can't find it there, try using your browser's search feature in the <a href="indexes/AllExcerpts-all.html">searchable list of all excerpts</a>.</p>
