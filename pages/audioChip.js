@@ -58,7 +58,8 @@ class AudioChip extends HTMLElement {
 	connectedCallback() {
 		let src = this.getAttribute("src");
 		this.audio = new Audio(src);
-		let loadAudio = this.dataset.duration == null;
+		this.audio.preload = "none";
+		let loadAudio = false // this.dataset.duration == null;
 		// let loadAudio = true;
 		if (loadAudio) this.audio.load();
 
@@ -77,6 +78,7 @@ class AudioChip extends HTMLElement {
 				console.log("audio loaded");
 				playAudio(this.title, this.audio);
 			} else {
+				this.audio.load();
 				console.log("waiting for audio loading");
 				let cb;
 				this.audio.addEventListener(
