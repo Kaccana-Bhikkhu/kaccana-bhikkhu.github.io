@@ -59,8 +59,10 @@ class AudioChip extends HTMLElement {
 		let src = this.getAttribute("src");
 		this.audio = new Audio(src);
 		let loadAudio = this.dataset.duration == null;
-		// let loadAudio = true;
-		if (loadAudio) this.audio.load();
+		if (loadAudio)
+			this.audio.load()
+		else
+			this.audio.preload = "none";
 
 		const wrapper = document.createElement("div");
 		wrapper.classList.add("wrapper");
@@ -77,6 +79,7 @@ class AudioChip extends HTMLElement {
 				console.log("audio loaded");
 				playAudio(this.title, this.audio);
 			} else {
+				this.audio.load();
 				console.log("waiting for audio loading");
 				let cb;
 				this.audio.addEventListener(

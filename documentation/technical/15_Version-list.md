@@ -59,3 +59,5 @@
 - 3.5.1 Updated license page, teacher ordination dates, and ID3 tags. Version list and License moved to Technical submenu. Remove mistaken robots exclusion tag introduced in Version 3.5.
 
 - 3.5.2 Make no script website (homepage.html) more accessible.
+
+- 3.5.3 (November 2023 Release) Don't preload audio to reduce data usage.
