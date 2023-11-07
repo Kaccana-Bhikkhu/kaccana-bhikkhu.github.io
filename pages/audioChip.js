@@ -58,10 +58,11 @@ class AudioChip extends HTMLElement {
 	connectedCallback() {
 		let src = this.getAttribute("src");
 		this.audio = new Audio(src);
-		this.audio.preload = "none";
-		let loadAudio = false // this.dataset.duration == null;
-		// let loadAudio = true;
-		if (loadAudio) this.audio.load();
+		let loadAudio = this.dataset.duration == null;
+		if (loadAudio)
+			this.audio.load()
+		else
+			this.audio.preload = "none";
 
 		const wrapper = document.createElement("div");
 		wrapper.classList.add("wrapper");
