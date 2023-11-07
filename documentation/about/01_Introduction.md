@@ -7,9 +7,9 @@ Ajahn Pasanno, one of founding abbots of Abhayagiri Monastery and now its Guidin
 
 This archive is an attempt to make the oral teachings of Ajahn Pasanno more accessible. It contains transcriptions/summaries of questions asked and audio recordings of Ajahn Pasanno’s answers. The questions are organized by event and tagged by subject. The stories Ajahn Pasanno tells in the course of answering Dhamma questions are often as valuable as the questions themselves. Thus I expanded the archive to include stories, quotes, readings, sutta references, and other content in addition to questions and answers. Ajahn Pasanno readily shares the teaching seat with other Abhayagiri residents and invited guests, and the archive includes material from those who teach alongside him.
 
-### Data usage caution
+### Possible glitches 
 
-This website currently downloads all audio files on a page whether or not you play them, so it is unfortunately not suitable for use on slow or metered data connections. Hopefully we can fix this in the next release. You can browse the Archive with low data usage using the [no script version](homepage.html#noscript) without the floating audio player.
+If the audio player doesn't work, try the [no script version](homepage.html#noscript) of the website.
 
 ## Where to Begin
 The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:

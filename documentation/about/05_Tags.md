@@ -2,7 +2,7 @@
 
 # Tags
 The Archive uses over 500 tags to organize its contents.
-The tags themselves are organized in a hierarchical scheme based on the Pāli teachings when possible, but I have needed to invent new categories for modern subjects. Mirroring the structure of the teachings, individual tags often appear multiple times in the hierarchy. For example, [[Equanimity](../../pages/tags/equanimity.html)] (upekkha) appears as a factor of [[Right Concentration](../../pages/tags/right-concentration.html)] and in the lists of [[Factors of Awakening](../../pages/tags/factors-of-awakening.html)], [[Divine Abidings](../../pages/tags/divine-abidings.html)], and [[Perfections](../../pages/tags/perfections.html)]. One can explore the tag hierarchy by starting with the [root tags](../../pages/drilldown/tag-999.html) and successively expanding them to reveal the subtags they contain.
+The tags themselves are organized in a hierarchical scheme based on the Pāli teachings when possible. New categories have been created for modern subjects. Mirroring the structure of the teachings, individual tags often appear multiple times in the hierarchy. For example, [[Equanimity](../../pages/tags/equanimity.html)] (upekkha) appears as a factor of [[Right Concentration](../../pages/tags/right-concentration.html)] and in the lists of [[Factors of Awakening](../../pages/tags/factors-of-awakening.html)], [[Divine Abidings](../../pages/tags/divine-abidings.html)], and [[Perfections](../../pages/tags/perfections.html)]. One can explore the tag hierarchy by starting with the [root tags](../../pages/drilldown/tag-999.html) and successively expanding them to reveal the subtags they contain.
 
 ## Tag Structure
 
@@ -23,21 +23,21 @@ __A. Mental qualities__
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-390.html#390)
-9. [Teachers](../../pages/drilldown/tag-427.html#427)
-10. [Monasteries](../../pages/drilldown/tag-494.html#494)
+8. [Teaching Dhamma](../../pages/drilldown/tag-391.html#391)
+9. [Teachers](../../pages/drilldown/tag-428.html#428)
+10. [Monasteries](../../pages/drilldown/tag-495.html#495)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-517.html#517)
-12. [History](../../pages/drilldown/tag-539.html#539)
-13. [Cultural context](../../pages/drilldown/tag-551.html#551)
-14. [Spiritual traditions](../../pages/drilldown/tag-571.html#571)
+11. [Nature of the cosmos](../../pages/drilldown/tag-518.html#518)
+12. [History](../../pages/drilldown/tag-540.html#540)
+13. [Cultural context](../../pages/drilldown/tag-552.html#552)
+14. [Spiritual traditions](../../pages/drilldown/tag-572.html#572)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-583.html#583)
-16. [Everyday life](../../pages/drilldown/tag-651.html#651)
+15. [Renunciant practice](../../pages/drilldown/tag-584.html#584)
+16. [Everyday life](../../pages/drilldown/tag-652.html#652)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -45,12 +45,12 @@ Tags are organized chronologically and conceptually; earlier and more fundamenta
 
 
 ## Alternative Translations, Glosses and Subsumed Tags
-Over the years, many Pāli terms have been translated into English in a multitude of ways. The primary English translation chosen for each tag corresponds to my understanding of how Ajahn Pasanno generally uses the term. The Archive also includes alternative translations which either shed light on nuances of the Pāli term or have been widely used. English words and phrases which roughly approximate Pāli terms receive the corresponding Pāli tag. For example, “letting go” is glossed as [[Relinquishment](../../pages/tags/relinquishment.html)] (paṭinissagga), and “Arising and ceasing” is [[Impermanence](../../pages/tags/impermanence.html)] (anicca). In a more complicated example, skillful thinking is glossed as [[Directed thought and evaluation](../../pages/tags/directed-thought-and-evaluation.html)] (vitakka-vicāra), for which applied and sustained thought is an alternative translation.
+Over the years, many Pāli terms have been translated into English in a multitude of ways. The primary English translation chosen for each tag corresponds to how Ajahn Pasanno generally uses the term. The Archive also includes alternative translations which either shed light on nuances of the Pāli term or have been widely used. English words and phrases which roughly approximate Pāli terms receive the corresponding Pāli tag. For example, “letting go” is glossed as [[Relinquishment](../../pages/tags/relinquishment.html)] (paṭinissagga), and “Arising and ceasing” is [[Impermanence](../../pages/tags/impermanence.html)] (anicca). In a more complicated example, skillful thinking is glossed as [[Directed thought and evaluation](../../pages/tags/directed-thought-and-evaluation.html)] (vitakka-vicāra), for which applied and sustained thought is an alternative translation.
 
 Sometimes separate Pāli terms appearing in the various lists are sufficiently close in meaning it does not make sense to distinguish them as separate tags. For example, Non ill-will (abyāpāda) is subsumed under [[Goodwill](../../pages/tags/goodwill.html)] (metta), and Rewards of heaven (sagga, part of the [[Gradual Teaching](../../pages/tags/gradual-teaching.html)]) is subsumed under [[Deva](../../pages/tags/deva.html)].
 ## Tag Choices
 
-Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, I had to make many somewhat arbitrary decisions, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [[Discernment](../../pages/tags/discernment.html)] (pañña; see “[Why is discernment a better word for wisdom?](../../pages/events/SRD2013.html#SRD2013_S01_F03)”). When tagging English discourse, when to use [[Discernment](../../pages/tags/discernment.html)] and when to use related terms? I chose the following [[Investigation of states](../../pages/tags/investigation-of-states.html)] (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [[Appropriate attention](../../pages/tags/appropriate-attention.html)] (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](../../pages/drilldown/tag-087.html#87) describes reviewing the results of past actions with a view to further improve in the future, but I chose to subsume this under the tag [[Discernment](../../pages/tags/discernment.html)].
+Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, many somewhat arbitrary decisions must be made, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [[Discernment](../../pages/tags/discernment.html)] (pañña; see “[Why is discernment a better word for wisdom?](../../pages/events/SRD2013.html#SRD2013_S01_F03)”). When tagging English discourse, when to use [[Discernment](../../pages/tags/discernment.html)] and when to use related terms? The Archive uses the following scheme: [[Investigation of states](../../pages/tags/investigation-of-states.html)] (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [[Appropriate attention](../../pages/tags/appropriate-attention.html)] (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](../../pages/drilldown/tag-087.html#87) describes reviewing the results of past actions with a view to further improve in the future, but the Archive subsumes this under the tag [[Discernment](../../pages/tags/discernment.html)].
 
 Other somewhat arbitrary choices regarding specific tags include the following:
 
