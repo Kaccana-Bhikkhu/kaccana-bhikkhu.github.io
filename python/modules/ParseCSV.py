@@ -426,6 +426,7 @@ def RemoveUnusedTags(database: dict) -> None:
                 for childTag in children:
                     if childTag["indexNumber"] or not seenNumberedTagYet: # Tags before the numbered list are essential headings
                         usedTags.add(childTag["tag"])
+                    if childTag["indexNumber"]:
                         seenNumberedTagYet = True
 
     """remainingTags = set(usedTags)
@@ -603,9 +604,6 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False,yieldRootTags = Fal
             assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
             tagStack.append([])
         
-        if TagFlag.VIRTUAL in tag["flags"] and (n + 1 >= len(tagDisplayList) or tagDisplayList[n + 1]["level"] <= tag["level"]):
-            continue # Skip virtual tags with no subtags
-
         if returnIndices:
             tagStack[-1].append(n)
         else:

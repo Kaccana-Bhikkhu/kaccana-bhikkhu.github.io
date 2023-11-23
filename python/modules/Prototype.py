@@ -234,7 +234,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                     else:
                         countStr = f' ({item["excerptCount"]})'
                 else:
-                    countStr = "(x)"
+                    countStr = ""
                 
                 if item['tag'] and not item['subsumed']:
                     nameStr = HtmlTagLink(item['tag'],True) + countStr
