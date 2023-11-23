@@ -239,7 +239,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                 if item['tag'] and not item['subsumed']:
                     nameStr = HtmlTagLink(item['tag'],True) + countStr
                 else:
-                    nameStr = item['name'] + countStr
+                    nameStr = item['name'] + ("" if item["subsumed"] else countStr)
                 
                 if item['pali'] and item['pali'] != item['name']:
                     paliStr = '(' + item['pali'] + ')'
