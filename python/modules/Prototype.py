@@ -248,21 +248,35 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     return str(a)
 
-def DrilldownPageFile(tagNumber: int,jumpToEntry:bool = False) -> str:
-    "Return the name of the page that has this numbered tag expanded."
-    if tagNumber == -1:
-        tagNumber = 999
+def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
+    """Return the name of the page that has this tag expanded.
+    The tag can be specified by number in the hierarchy or by name."""
+
+    if type(tagNumberOrName) == str:
+        tagNumber = gDatabase["tag"][tagNumberOrName]["listIndex"]
     else:
+        tagNumber = tagNumberOrName
+
+    indexStr = ""
+    if tagNumber >= 0:
         tagList = gDatabase["tagDisplayList"]
         ourLevel = tagList[tagNumber]["level"]
         if tagNumber + 1 >= len(tagList) or tagList[tagNumber + 1]["level"] <= ourLevel:
             # If this tag doesn't have subtags, find its parent tag
             while tagList[tagNumber]["level"] >= ourLevel:
                 tagNumber -= 1
+        
+        tagName = tagList[tagNumber]["tag"]
+        fileName = Utils.slugify(tagName) + ".html"
+        if tagName and gDatabase["tag"][tagName]["listIndex"] != tagNumber:
+            # If this is not a primary tag, append an index number to it
+            indexStr = "-" + str(sum(1 for n in range(tagNumber) if tagList[n]["tag"] == tagName))
+            fileName = Utils.AppendToFilename(fileName,indexStr)
+    else:
+        fileName = "root.html"
 
-    fileName = f"tag-{tagNumber:03d}.html"
     if jumpToEntry:
-        fileName += f"#{tagNumber}"
+        fileName += f"#{fileName.replace('.html','')}"
     return fileName
 
 def DrilldownIconLink(tag: str,iconWidth = 20):
@@ -1585,7 +1599,7 @@ def WriteSitemapURL(page:Html.PageDesc,xml:Airium) -> None:
     elif directory in {"events","indexes"}:
         priority = 0.9
     elif directory == "drilldown":
-        if pathParts[1] == "tag-999.html":
+        if pathParts[1] == "root.html":
             priority = 0.9
         else:
             return

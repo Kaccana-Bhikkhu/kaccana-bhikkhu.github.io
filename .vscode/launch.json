@@ -97,9 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Link",
-                "--linkCheckLevel",
-                "sessionMp3:2"
+                "Prototype",
+                "--buildOnly",
+                "drilldown"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
