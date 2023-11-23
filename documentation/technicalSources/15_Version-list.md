@@ -61,3 +61,5 @@
 - 3.5.2 Make no script website (homepage.html) more accessible.
 
 - 3.5.3 (November 2023 Release) Don't preload audio to reduce data usage.
+
+- 3.6 Added Upasika Days: On Pilgrimage and Tudong and Developing Skill in Reflective Meditation. Drilldown html files named by tag. Count excerpts referred to by subtags in hierarchical lists. Fix bug that removed "Refraining from:" and other list headings. Fix bug where bookmarks scroll to the wrong place in pages with slow-loading images.

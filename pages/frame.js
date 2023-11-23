@@ -51,7 +51,7 @@ async function changeURL(pUrl) {
 						if (!url.endsWith("#_keep_scroll")) {
 							window.scrollTo(0, 0);
 							if (url.includes("#"))
-								document.getElementById(url.split("#")[1])?.scrollIntoView();
+								delayedScroll(url.split("#")[1])
 						}
 					});
 				}
@@ -59,11 +59,17 @@ async function changeURL(pUrl) {
 		});
 }
 
+function delayedScroll(bookmark) {
+	document.getElementById(bookmark)?.scrollIntoView();
+	setTimeout(function(){
+		console.log("1 second delay after jumping to",bookmark)
+		document.getElementById(bookmark)?.scrollIntoView();
+	}, 1000);
+}
+
 changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
 	if (location.hash.slice(1).includes("#")) {
-		document
-			.getElementById(location.hash.slice(1).split("#")[1])
-			?.scrollIntoView();
+		delayedScroll(location.hash.slice(1).split("#")[1]);
 	}
 });
 

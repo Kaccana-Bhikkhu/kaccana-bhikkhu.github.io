@@ -2,7 +2,7 @@
 
 # Tags
 The Archive uses over 500 tags to organize its contents.
-The tags themselves are organized in a hierarchical scheme based on the Pāli teachings when possible. New categories have been created for modern subjects. Mirroring the structure of the teachings, individual tags often appear multiple times in the hierarchy. For example, [[Equanimity](../../pages/tags/equanimity.html)] (upekkha) appears as a factor of [[Right Concentration](../../pages/tags/right-concentration.html)] and in the lists of [[Factors of Awakening](../../pages/tags/factors-of-awakening.html)], [[Divine Abidings](../../pages/tags/divine-abidings.html)], and [[Perfections](../../pages/tags/perfections.html)]. One can explore the tag hierarchy by starting with the [root tags](../../pages/drilldown/tag-999.html) and successively expanding them to reveal the subtags they contain.
+The tags themselves are organized in a hierarchical scheme based on the Pāli teachings when possible. New categories have been created for modern subjects. Mirroring the structure of the teachings, individual tags often appear multiple times in the hierarchy. For example, [[Equanimity](../../pages/tags/equanimity.html)] (upekkha) appears as a factor of [[Right Concentration](../../pages/tags/right-concentration.html)] and in the lists of [[Factors of Awakening](../../pages/tags/factors-of-awakening.html)], [[Divine Abidings](../../pages/tags/divine-abidings.html)], and [[Perfections](../../pages/tags/perfections.html)]. One can explore the tag hierarchy by starting with the [root tags](../../pages/drilldown/root.html) and successively expanding them to reveal the subtags they contain.
 
 ## Tag Structure
 
@@ -10,38 +10,38 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/tag-000.html#0)
-2. [Unskillful qualities](../../pages/drilldown/tag-168.html#168)
-3. [Indeterminate qualities](../../pages/drilldown/tag-211.html#211)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/tag-266.html#266)
-5. [Devotional practice](../../pages/drilldown/tag-273.html#273)
-6. [Precepts](../../pages/drilldown/tag-291.html#291)
-7. [Meditation](../../pages/drilldown/tag-316.html#316)
+4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges)
+5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice)
+6. [Precepts](../../pages/drilldown/precepts.html#precepts)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/tag-391.html#391)
-9. [Teachers](../../pages/drilldown/tag-428.html#428)
-10. [Monasteries](../../pages/drilldown/tag-495.html#495)
+8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers)
+10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/tag-518.html#518)
-12. [History](../../pages/drilldown/tag-540.html#540)
-13. [Cultural context](../../pages/drilldown/tag-552.html#552)
-14. [Spiritual traditions](../../pages/drilldown/tag-572.html#572)
+11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos)
+12. [History](../../pages/drilldown/history.html#history)
+13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context)
+14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/tag-584.html#584)
-16. [Everyday life](../../pages/drilldown/tag-652.html#652)
+15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice)
+16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
-Tags are organized chronologically and conceptually; earlier and more fundamental tags come first. For example, the subtags of [Skillful qualities](../../pages/drilldown/tag-000.html#0) begin by following the order of explanation in the [Buddha’s first teaching](https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=110): [[Middle Path](../../pages/tags/middle-path.html)], [[Noble Eightfold Path](../../pages/tags/eightfold-path.html)], [[Four Noble Truths](../../pages/tags/four-noble-truths.html)]. This is followed by the [[Aids to Awakening](../../pages/tags/aids-to-awakening.html)], the Buddha’s own summary of his teachings comprising seven sets of skillful qualities, totalling 37 in all. Next come the sets contained with the Aids to Awakening that are not contained within the Eightfold Path itself: [[Four Bases of Success](../../pages/tags/bases-of-success.html)], [[Five Faculties](../../pages/tags/faculties.html)], [[Seven Factors of Awakening](../../pages/tags/factors-of-awakening.html)]. Following this are two canonical and one early post-canonical list: [[Divine Abidings](../../pages/tags/divine-abidings.html)], [[Seven Treasures](../../pages/tags/treasures.html)], and [[Ten Perfections](../../pages/tags/perfections.html)]. Next comes [[Progress of insight](../../pages/tags/progress-of-insight.html)], a list of Pāli mind-states on the path to awakening which usually appear in this order but are not mentioned as a comprehensive group in the suttas. [[Stages of awakening](../../pages/tags/stages-of-awakening.html)], the last major subtag, is followed by a series of skillful qualites mentioned in the recordings that don't fit neatly into any of the categories above.
+Tags are organized chronologically and conceptually; earlier and more fundamental tags come first. For example, the subtags of [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) begin by following the order of explanation in the [Buddha’s first teaching](https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=110): [[Middle Path](../../pages/tags/middle-path.html)], [[Noble Eightfold Path](../../pages/tags/eightfold-path.html)], [[Four Noble Truths](../../pages/tags/four-noble-truths.html)]. This is followed by the [[Aids to Awakening](../../pages/tags/aids-to-awakening.html)], the Buddha’s own summary of his teachings comprising seven sets of skillful qualities, totalling 37 in all. Next come the sets contained with the Aids to Awakening that are not contained within the Eightfold Path itself: [[Four Bases of Success](../../pages/tags/bases-of-success.html)], [[Five Faculties](../../pages/tags/faculties.html)], [[Seven Factors of Awakening](../../pages/tags/factors-of-awakening.html)]. Following this are two canonical and one early post-canonical list: [[Divine Abidings](../../pages/tags/divine-abidings.html)], [[Seven Treasures](../../pages/tags/treasures.html)], and [[Ten Perfections](../../pages/tags/perfections.html)]. Next comes [[Progress of insight](../../pages/tags/progress-of-insight.html)], a list of Pāli mind-states on the path to awakening which usually appear in this order but are not mentioned as a comprehensive group in the suttas. [[Stages of awakening](../../pages/tags/stages-of-awakening.html)], the last major subtag, is followed by a series of skillful qualites mentioned in the recordings that don't fit neatly into any of the categories above.
 
 
 ## Alternative Translations, Glosses and Subsumed Tags
@@ -50,7 +50,7 @@ Over the years, many Pāli terms have been translated into English in a multitud
 Sometimes separate Pāli terms appearing in the various lists are sufficiently close in meaning it does not make sense to distinguish them as separate tags. For example, Non ill-will (abyāpāda) is subsumed under [[Goodwill](../../pages/tags/goodwill.html)] (metta), and Rewards of heaven (sagga, part of the [[Gradual Teaching](../../pages/tags/gradual-teaching.html)]) is subsumed under [[Deva](../../pages/tags/deva.html)].
 ## Tag Choices
 
-Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, many somewhat arbitrary decisions must be made, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [[Discernment](../../pages/tags/discernment.html)] (pañña; see “[Why is discernment a better word for wisdom?](../../pages/events/SRD2013.html#SRD2013_S01_F03)”). When tagging English discourse, when to use [[Discernment](../../pages/tags/discernment.html)] and when to use related terms? The Archive uses the following scheme: [[Investigation of states](../../pages/tags/investigation-of-states.html)] (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [[Appropriate attention](../../pages/tags/appropriate-attention.html)] (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](../../pages/drilldown/tag-087.html#87) describes reviewing the results of past actions with a view to further improve in the future, but the Archive subsumes this under the tag [[Discernment](../../pages/tags/discernment.html)].
+Although the basic structure began with the Buddha’s lists, it evolved organically to fit the audio content. In the course of this process, many somewhat arbitrary decisions must be made, particularly regarding how to mesh Pāli and English concepts. For example, multiple Pāli terms are clearly related to [[Discernment](../../pages/tags/discernment.html)] (pañña; see “[Why is discernment a better word for wisdom?](../../pages/events/SRD2013.html#SRD2013_S01_F03)”). When tagging English discourse, when to use [[Discernment](../../pages/tags/discernment.html)] and when to use related terms? The Archive uses the following scheme: [[Investigation of states](../../pages/tags/investigation-of-states.html)] (dhamma-vicaya) for identifying skillful and unskillful states of mind in the early stages of meditation and [[Appropriate attention](../../pages/tags/appropriate-attention.html)] (yoniso manasikāra) for acts of discernment related to the field of attention. Vīmaṃsā, one of the four [Bases of Success](../../pages/drilldown/bases-of-success.html#bases-of-success) describes reviewing the results of past actions with a view to further improve in the future, but the Archive subsumes this under the tag [[Discernment](../../pages/tags/discernment.html)].
 
 Other somewhat arbitrary choices regarding specific tags include the following:
 
