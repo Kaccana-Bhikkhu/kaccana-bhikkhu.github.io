@@ -336,6 +336,12 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
         Alert.error("Annotation",annotation,"doesn't have a proper parent.")
         return None
 
+def SubtagExcerptCount(tag: str) -> int:
+    "Return the number of excerpts referred to by this tag and its subtags."
+    primary = gDatabase["tag"][tag]["listIndex"]
+    return gDatabase["tagDisplayList"][primary]["subtagExcerptCount"]
+
+
 def GroupBySession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
     """Yield excerpts grouped by their session."""
     if not sessions:

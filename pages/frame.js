@@ -62,7 +62,6 @@ async function changeURL(pUrl) {
 function delayedScroll(bookmark) {
 	document.getElementById(bookmark)?.scrollIntoView();
 	setTimeout(function(){
-		console.log("1 second delay after jumping to",bookmark)
 		document.getElementById(bookmark)?.scrollIntoView();
 	}, 1000);
 }
