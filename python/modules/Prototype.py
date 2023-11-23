@@ -197,6 +197,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     with a.div(Class="listing"):
         for index, item in enumerate(tagList):
+            #print(index,item["name"])
             if item["level"] > skipSubtagLevel:
                 continue
 
@@ -224,12 +225,21 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
 
                 indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
                 
-                countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
+                if item["excerptCount"] or item.get("subtagExcerptCount",0):
+                    if item.get("subtagExcerptCount",0):
+                        itemCount = item["excerptCount"]
+                        if not item['tag']:
+                            itemCount = "-"
+                        countStr = f' ({itemCount}/{item["subtagExcerptCount"]})'
+                    else:
+                        countStr = f' ({item["excerptCount"]})'
+                else:
+                    countStr = "(x)"
                 
                 if item['tag'] and not item['subsumed']:
                     nameStr = HtmlTagLink(item['tag'],True) + countStr
                 else:
-                    nameStr = item['name']
+                    nameStr = item['name'] + countStr
                 
                 if item['pali'] and item['pali'] != item['name']:
                     paliStr = '(' + item['pali'] + ')'
