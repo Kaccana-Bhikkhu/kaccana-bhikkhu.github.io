@@ -205,7 +205,8 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
             else:
                 skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
             
-            with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+            bookmark = Utils.slugify(item["tag"] or item["name"])
+            with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
                 drilldownLink = ''
                 if expandTagLink:
                     if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
@@ -267,7 +268,8 @@ def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
                 tagNumber -= 1
         
         tagName = tagList[tagNumber]["tag"]
-        fileName = Utils.slugify(tagName) + ".html"
+        displayName = tagName or tagList[tagNumber]["name"]
+        fileName = Utils.slugify(displayName) + ".html"
         if tagName and gDatabase["tag"][tagName]["listIndex"] != tagNumber:
             # If this is not a primary tag, append an index number to it
             indexStr = "-" + str(sum(1 for n in range(tagNumber) if tagList[n]["tag"] == tagName))
@@ -299,7 +301,11 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
                     nextLevelToExpand = tagList[reverseIndex]["level"] - 1
                 reverseIndex -= 1
             
-            yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
+            page.keywords.append(tag["name"])
+            page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page.AppendContent(f'Tag Hierarchy: {tag["name"]}',section="citeAs")
+            yield page
 
 def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
     "Return html code describing this tag."
