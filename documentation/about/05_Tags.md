@@ -11,34 +11,34 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (1072)
-2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (383)
-3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (517)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (1119)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (407)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (548)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (150)
-5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (138)
-6. [Precepts](../../pages/drilldown/precepts.html#precepts) (128)
-7. [Meditation](../../pages/drilldown/meditation.html#meditation) (732)
+4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (154)
+5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (139)
+6. [Precepts](../../pages/drilldown/precepts.html#precepts) (129)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation) (775)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (566)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (433)
-10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (128)
+8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (589)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (445)
+10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (131)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (194)
-12. [History](../../pages/drilldown/history.html#history) (112)
-13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (266)
+11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (201)
+12. [History](../../pages/drilldown/history.html#history) (116)
+13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (276)
 14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (58)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (398)
-16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (396)
+15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (403)
+16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (415)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -66,6 +66,8 @@ Other somewhat arbitrary choices regarding specific tags include the following:
 ## History and Culture Tags
 
 The root tags [[History](../../pages/tags/history.html)] and [[Cultural context](../../pages/tags/cultural-context.html)] contain many similar subtags. History tags apply to verifiable statements about people, dates, etc., while culture tags apply to generalized statements about culture in particular times and places. The latter are invariably subjective. The frequency of [[Culture/Thailand](../../pages/tags/culturethailand.html)] and [[Culture/West](../../pages/tags/culturewest.html)] reflects an ongoing dialogue about how to skillfully adapt (or not adapt) the practices and attitudes of the Thai Forest Tradition to the modern Western context.
+
+[[Culture/Natural environment](../../pages/tags/culturenatural-environment.html)] refers to the effect of the environment on humans, while [[Environment](../../pages/tags/environment.html)] refers to the effect of humans on the environment.
 
 ## Other Details
  - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.

@@ -3,12 +3,12 @@
 # Status – November 2023 Initial Release
 
 ## Content
-This release contains 1474 excerpts from 37 events, comprising over 80 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of the initial release there are 288 transcribed pages, of which 154 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 1529 excerpts from 39 events, comprising over 80 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of the initial release there are 288 transcribed pages, of which 154 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.
 
-### Winter Retreats
+### Winter Retreatsls
 Three sessions from the [2014 Winter Retreat](../../pages/events/WR2014.html) and half of the [2015 Winter Retreat](../../pages/events/WR2015.html) are presently included in the Archive. The remaining sessions have been transcribed by hand and await data entry. A series of interviews and discussion with Ajahn Pasanno at the end of the 2018 Winter Retreat is included as [The Teaching and the Training](../../pages/events/WR2018-2.html). Abhayagiri residents created retreat compilation discs of the 2013 and 2016 Winter Retreats, and audio recordings are available of several more Winter Retreats.
 
 ### Spirit Rock Daylongs
