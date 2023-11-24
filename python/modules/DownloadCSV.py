@@ -5,7 +5,6 @@ from __future__ import annotations
 import os, re
 import urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
-import shutil
 from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
 import Alert
@@ -15,13 +14,20 @@ def BuildSheetUrl(docId: str, sheetId: str):
     
     return f'https://docs.google.com/spreadsheets/d/{docId}/export?format=csv&gid={sheetId}'
 
-def DownloadFile(url:str,filename:str,retries:int = 2):
-    
+def DownloadSmallFile(url:str,filename:str,retries:int = 2):
+    "Load the remote and on-disk copies of filename, compare, and write to disk only when needed."
     for attempt in range(retries + 1):
         try:
             with urllib.request.urlopen(url) as remoteFile:
+                remoteData = remoteFile.read()
+                if os.path.isfile(filename):
+                    with open(filename,'rb') as localFile:
+                        localData = localFile.read()
+                    if remoteData == localData:
+                        return # If the local file already matches the remote file, don't touch it to keep the modification date.
                 with open(filename,'wb') as localFile:
-                    shutil.copyfileobj(remoteFile, localFile)
+                    localFile.write(remoteData)
+            return
         except urllib.error.HTTPError:
             if attempt < retries:
                 Alert.caution(f"HTTP error when attempting to download {filename}. Retrying.")
@@ -33,7 +39,7 @@ def DownloadSheetCSV(docId: str, sheetId: str, filePath: str) -> None:
     "Download a Google Sheet with the given docId and sheetId to filePath"
     
     url = BuildSheetUrl(docId,sheetId)
-    DownloadFile(url,filePath)
+    DownloadSmallFile(url,filePath)
 
 def DownloadSummarySheet() -> None:
     "Download the Summary sheet to the csv directory"

@@ -23,7 +23,7 @@ class Status(Enum):
 
 Record = TypedDict("Record",{"_status": Status,"_modified": datetime})
 """Stores the information about a file. The elements requred by FileRegister are:
-_status: 
+_status: the file status as described above
 _modified: the date/time the file was last modified or registered
 """
 
