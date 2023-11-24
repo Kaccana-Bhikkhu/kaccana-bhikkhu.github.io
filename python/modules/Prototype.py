@@ -784,9 +784,10 @@ class Formatter:
                 audioLink = Mp3SessionLink(session,linkKind = self.audioLinks)
                 if self.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
+                    itemsToJoin.append(audioLink + durStr + ' ')
                 else:
-                    durStr = ''
-                itemsToJoin.append(audioLink + durStr + ' ')
+                    itemsToJoin[-1] += ' ' + audioLink
+                        # The audio chip goes on a new line, so don't separate with a dash
             
             a(' – '.join(itemsToJoin))
 
