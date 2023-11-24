@@ -97,9 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Document",
+                "Prototype",
                 "--buildOnly",
-                "events"
+                "None"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

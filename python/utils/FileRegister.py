@@ -222,10 +222,14 @@ class ChecksumWriter(FileRegister):
         status = self.Register(fileName,newRecord)
         if writeCondition == Write.DESTINATION_CHANGED and updatedOnDisk:
             status = Status.UPDATED
-        if status != Status.UNCHANGED or writeCondition == Write.ALWAYS:
+        if writeCondition == Write.ALWAYS:
+            status = Status.UPDATED
+        
+        if status != Status.UNCHANGED:
             with open(fullPath, 'wb') as file:
                 file.write(utf8Encoded)
             self.UpdateModifiedDate(fileName)
+            self.record[fileName]["_status"] = status
         
         return status
     

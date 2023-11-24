@@ -16,6 +16,8 @@ import contextlib
 from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
+from FileRegister import ChecksumWriter
+import FileRegister
 
 NEW_STYLE = True
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
@@ -51,18 +53,17 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WritePage(page: Html.PageDesc) -> None:
+def WritePage(page: Html.PageDesc,writer: ChecksumWriter) -> None:
     """Write an html file for page using the global template"""
     page.gOptions = gOptions
 
     template = Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate)
     if page.info.file.endswith("_print.html"):
         template = Utils.AppendToFilename(template,"_print")
-    page.WriteFile(template,gOptions.prototypeDir)
-    gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
-    Alert.debug(f"Write file: {page.info.file}")
+    pageHtml = page.RenderWithTemplate(template)
+    writer.WriteFile(page.info.file,pageHtml)
 
-def DeleteUnwrittenHtmlFiles() -> None:
+def DeleteUnwrittenHtmlFiles(writer: ChecksumWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     # Delete files only in directories we have built
@@ -71,14 +72,11 @@ def DeleteUnwrittenHtmlFiles() -> None:
     if gOptions.buildOnly == gAllSections:
         dirs.add("indexes")
 
-    dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
-
+    deletedFiles = 0
     for dir in dirs:
-        fileList = next(os.walk(dir), (None, None, []))[2]
-        for fileName in fileList:
-            fullPath = Utils.PosixJoin(dir,fileName)
-            if fullPath not in gWrittenHtmlFiles:
-                os.remove(fullPath)
+        deletedFiles += writer.DeleteUnregisteredFiles(dir,filterRegex=r".*\.html$")
+    if deletedFiles:
+        Alert.extra(deletedFiles,"html file(s) deleted.")
 
 def ItemList(items:List[str], joinStr:str = ", ", lastJoinStr:str = None):
     """Format a list of items"""
@@ -1715,18 +1713,20 @@ def main():
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
     
     xml = Airium()
-    with open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile: 
-        with xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"):
-            for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
-                WritePage(newPage)
-                print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
-                if gOptions.sitemap:
-                    WriteSitemapURL(newPage,xml)
+    with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
+            ChecksumWriter(gOptions.prototypeDir,"assets/ChecksumCache.json") as writer,
+            xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")):
+        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
+            WritePage(newPage,writer)
+            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+            if gOptions.sitemap:
+                WriteSitemapURL(newPage,xml)
+        
+        Alert.extra("html files:",writer.StatusSummary())
+        if not gOptions.keepOldHtmlFiles:
+            DeleteUnwrittenHtmlFiles(writer)
     
     if gOptions.sitemap:
         with open(Utils.PosixJoin(gOptions.prototypeDir,"sitemap.xml"),"w") as sitemapFile:
             print(str(xml),file=sitemapFile)
-
-    if not gOptions.keepOldHtmlFiles:
-        DeleteUnwrittenHtmlFiles()
     
