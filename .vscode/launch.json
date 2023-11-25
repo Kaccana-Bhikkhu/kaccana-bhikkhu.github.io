@@ -98,8 +98,8 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "DownloadCSV",
-                "--buildOnly",
-                "None"
+                "--sheets",
+                "All"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

@@ -12,6 +12,7 @@ from datetime import datetime
 import json, contextlib, copy, os, re
 import posixpath
 import hashlib
+import urllib.request, urllib.error
 import Alert, Utils
 
 class Status(Enum):
@@ -111,11 +112,10 @@ class FileRegister():
 
     def UpdateModifiedDate(self,fileName) -> None:
         """Update key "_modified" for record fileName."""
+        self.record[fileName]["_modified"] = datetime.now()
         if self.exactDates:
             with contextlib.suppress(FileNotFoundError):
-                self.record[fileName]["_modified"] = Utils.ModificationDate(fileName)
-        else:
-            self.record[fileName]["_modified"] = datetime.now()
+                self.record[fileName]["_modified"] = Utils.ModificationDate(posixpath.join(self.basePath,fileName))
 
     def __enter__(self) -> FileRegister:
         return self
@@ -148,8 +148,8 @@ class FileRegister():
     def StatusSummary(self,unregisteredStr = "unregistered.") -> str:
         "Summarize the status of our records."
 
-        return f"{self.Count(Status.NEW)} new, {self.Count(Status.UPDATED)} updated, {self.Count(Status.UNCHANGED)} unchanged, {self.Count(Status.STALE)} {unregisteredStr}"
-
+        return ", ".join(f"{s.name.lower()}: {self.Count(s)}" for s in Status)
+    
     def ReadRecordFromDisk(self,fileName) -> Record:
         """Reconstruct a record from the information on disk.
         Raise FileNotFoundError if the file does not exist.
@@ -263,6 +263,24 @@ class HashWriter(FileRegister):
         utf8Encoded = fileContents.encode("utf-8")
         return self.WriteBinaryFile(fileName,utf8Encoded,mode)
     
+    def DownloadFile(self,fileName: str,url: str,mode:Write|None = None,retries: int = 2) -> Status:
+        """Download file contents from url; update the file on disk only if the md5 checksum differs.
+        The current algorithm is memory-inefficient."""
+
+        for attempt in range(retries + 1):
+            try:
+                with urllib.request.urlopen(url) as remoteFile:
+                    remoteData = remoteFile.read()
+                break
+            except urllib.error.HTTPError:
+                if attempt < retries:
+                    Alert.caution(f"HTTP error when attempting to download {fileName}. Retrying.")
+                else:
+                    Alert.error(f"HTTP error when attempting to download {fileName}. Giving up after {retries + 1} attempts.")
+                    return Status.BLOCKED
+
+        return self.WriteBinaryFile(fileName,remoteData,mode)
+
     def ReadRecordFromDisk(self, fileName) -> Record:
         fullPath = posixpath.join(self.basePath,fileName)
         with open(fullPath, 'rb') as file:
