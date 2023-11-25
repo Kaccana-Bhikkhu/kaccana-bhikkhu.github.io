@@ -135,7 +135,7 @@ def main() -> None:
     global gDocumentationWordCount
     gDocumentationWordCount = 0
 
-    with FileRegister.ChecksumWriter("./",Utils.PosixJoin(gOptions.documentationDir,"misc/Checksum.json"),exactDates=True) as writer:
+    with FileRegister.HashWriter("./",Utils.PosixJoin(gOptions.documentationDir,"misc/HashCache.json"),exactDates=True) as writer:
         for directory in ['about','misc','technical']:
             for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
                 status = writer.WriteFile(page.info.file,str(page),writeCondition=FileRegister.Write.DESTINATION_UNCHANGED)

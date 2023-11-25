@@ -16,7 +16,7 @@ import contextlib
 from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
-from FileRegister import ChecksumWriter
+from FileRegister import HashWriter
 import FileRegister
 
 NEW_STYLE = True
@@ -53,7 +53,7 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WritePage(page: Html.PageDesc,writer: ChecksumWriter) -> None:
+def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
     """Write an html file for page using the global template"""
     page.gOptions = gOptions
 
@@ -63,7 +63,7 @@ def WritePage(page: Html.PageDesc,writer: ChecksumWriter) -> None:
     pageHtml = page.RenderWithTemplate(template)
     writer.WriteFile(page.info.file,pageHtml)
 
-def DeleteUnwrittenHtmlFiles(writer: ChecksumWriter) -> None:
+def DeleteUnwrittenHtmlFiles(writer: HashWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     # Delete files only in directories we have built
@@ -1714,7 +1714,7 @@ def main():
     
     xml = Airium()
     with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
-            ChecksumWriter(gOptions.prototypeDir,"assets/ChecksumCache.json") as writer,
+            HashWriter(gOptions.prototypeDir,"assets/HashCache.json") as writer,
             xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")):
         for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
             WritePage(newPage,writer)

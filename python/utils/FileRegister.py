@@ -1,8 +1,8 @@
 """The FileRegister base class maintains a cache of information about a group of semi-persistent files that
 are typically updated every time the program runs.
 Subclasses specify what information to store and how to use it.
-The ChecksumWriter subclass stores checksums of utf-8 files. When requested to write a file, it touches the
-disk only if the checksum has changed."""
+The HashWriter subclass stores md5 hashes of utf-8 files. When requested to write a file, it touches the
+disk only if the hash has changed."""
 
 from __future__ import annotations
 
@@ -180,32 +180,32 @@ class FileRegister():
 # Write the file to disk if...
 class Write(Enum):
     ALWAYS = auto()                 # always.
-    CHECKSUM_CHANGED = auto()       # the new checksum differs from the cached checksum.
-    DESTINATION_UNCHANGED = auto()  # the checksum differs and the destination is unchanged.
+    CHECKSUM_CHANGED = auto()       # the new hash differs from the cached hash.
+    DESTINATION_UNCHANGED = auto()  # the hash differs and the destination is unchanged.
                                     # This protects changes to the destination file we might want to save.
                                     # (Status.BLOCKED in this case.)
-    DESTINATION_CHANGED = auto()    # the checksum differs or the destination has changed (default).
+    DESTINATION_CHANGED = auto()    # the hash differs or the destination has changed (default).
                                     # (UpdatedOnDisk returns True)
 
-class ChecksumWriter(FileRegister):
-    """Stores checksums of utf-8 files. When requested to write a file, it touches the
-    disk only if the checksum has changed."""
+class HashWriter(FileRegister):
+    """Stores md5 hashes of utf-8 files. When requested to write a file, it touches the
+    disk only if the md5 hash has changed."""
 
-    def __init__(self,basePath: str,cacheFile: str = "ChecksumCache.json",exactDates = False):
+    def __init__(self,basePath: str,cacheFile: str = "HashCache.json",exactDates = False):
         super().__init__(basePath,cacheFile,exactDates)
     
-    def __enter__(self) -> ChecksumWriter:
+    def __enter__(self) -> HashWriter:
         return self
 
     def WriteFile(self,fileName: str,fileContents: str,writeCondition:Write = Write.DESTINATION_CHANGED) -> Status:
-        """Write fileContents to fileName if the stored checksum differs from fileContents."""
+        """Write fileContents to fileName if the stored hash differs from fileContents."""
 
         fullPath = posixpath.join(self.basePath,fileName)
         os.makedirs(posixpath.split(fullPath)[0],exist_ok=True)
 
         fileContents += "\n" # Append a newline to mimic printing the string.
         utf8Encoded = fileContents.encode("utf-8")
-        checksum = hashlib.md5(utf8Encoded,usedforsecurity=False).hexdigest()
+        hash = hashlib.md5(utf8Encoded,usedforsecurity=False).hexdigest()
 
         if writeCondition in {Write.DESTINATION_CHANGED,Write.DESTINATION_UNCHANGED}:
             updatedOnDisk = self.UpdatedOnDisk(fileName,checkDetailedContents=False)
@@ -218,7 +218,7 @@ class ChecksumWriter(FileRegister):
                     self.record[fileName]["_status"] = Status.BLOCKED
                     return Status.BLOCKED
 
-        newRecord = {"checksum":checksum}
+        newRecord = {"md5":hash}
         status = self.Register(fileName,newRecord)
         if writeCondition == Write.DESTINATION_CHANGED and updatedOnDisk:
             status = Status.UPDATED
@@ -226,9 +226,14 @@ class ChecksumWriter(FileRegister):
             status = Status.UPDATED
         
         if status != Status.UNCHANGED:
-            with open(fullPath, 'wb') as file:
-                file.write(utf8Encoded)
-            self.UpdateModifiedDate(fileName)
+            try:
+                with open(fullPath, 'wb') as file:
+                    file.write(utf8Encoded)
+                self.UpdateModifiedDate(fileName)
+            except OSError as error:
+                self.record[fileName]["_status"] = Status.BLOCKED
+                    # Something stopped us from writing the file, so set status BLOCKED
+                raise error
             self.record[fileName]["_status"] = status
         
         return status
@@ -238,8 +243,8 @@ class ChecksumWriter(FileRegister):
         with open(fullPath, 'rb') as file:
             contents = file.read()
         
-        checksum = hashlib.md5(contents,usedforsecurity=False).hexdigest()
-        return {"checksum":checksum}
+        hash = hashlib.md5(contents,usedforsecurity=False).hexdigest()
+        return {"md5":hash}
 
     def DeleteStaleFiles(self,filterRegex = ".*") -> int:
         """Delete stale files appearing in the register if their full path matches filterRegex."""
