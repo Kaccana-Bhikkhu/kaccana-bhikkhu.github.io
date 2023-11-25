@@ -138,14 +138,14 @@ def main() -> None:
     with FileRegister.HashWriter("./",Utils.PosixJoin(gOptions.documentationDir,"misc/HashCache.json"),exactDates=True) as writer:
         for directory in ['about','misc','technical']:
             for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
-                status = writer.WriteFile(page.info.file,str(page),writeCondition=FileRegister.Write.DESTINATION_UNCHANGED)
+                status = writer.WriteTextFile(page.info.file,str(page),mode=FileRegister.Write.DESTINATION_UNCHANGED)
 
                 if status == FileRegister.Status.BLOCKED:
                         # If the destination file has been modified, check to see if the source file is newer.
                         # If so, overwrite. Otherwise generate a warning.
                     sourcePath = Utils.PosixJoin(gOptions.documentationDir,directory + "Sources",Utils.PosixSplit(page.info.file)[1])
                     if Utils.DependenciesModified(page.info.file,[sourcePath]):
-                        writer.WriteFile(page.info.file,str(page))
+                        writer.WriteTextFile(page.info.file,str(page))
                     else:
                         Alert.warning("Did not overwrite",page.info.file,"because this file has a later modification date than its source,",sourcePath)
 

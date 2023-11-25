@@ -61,7 +61,7 @@ def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
     if page.info.file.endswith("_print.html"):
         template = Utils.AppendToFilename(template,"_print")
     pageHtml = page.RenderWithTemplate(template)
-    writer.WriteFile(page.info.file,pageHtml)
+    writer.WriteTextFile(page.info.file,pageHtml)
 
 def DeleteUnwrittenHtmlFiles(writer: HashWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""

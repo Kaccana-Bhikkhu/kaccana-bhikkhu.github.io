@@ -6,7 +6,7 @@ disk only if the hash has changed."""
 
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import TypedDict, Callable
 from enum import Enum, auto
 from datetime import datetime
 import json, contextlib, copy, os, re
@@ -102,9 +102,11 @@ class FileRegister():
         Returns the record status."""
 
         returnValue = self.CheckStatus(fileName,recordData)
-        recordData["_status"] = returnValue
-        self.record[fileName] = recordData
-        self.UpdateModifiedDate(fileName)
+        if returnValue != Status.UNCHANGED:
+            self.record[fileName] = recordData
+            self.UpdateModifiedDate(fileName)
+        
+        self.record[fileName]["_status"] = returnValue
         return returnValue
 
     def UpdateModifiedDate(self,fileName) -> None:
@@ -184,51 +186,54 @@ class Write(Enum):
     DESTINATION_UNCHANGED = auto()  # the hash differs and the destination is unchanged.
                                     # This protects changes to the destination file we might want to save.
                                     # (Status.BLOCKED in this case.)
-    DESTINATION_CHANGED = auto()    # the hash differs or the destination has changed (default).
+    DESTINATION_CHANGED = auto()    # the hash differs or the destination file has changed (default).
                                     # (UpdatedOnDisk returns True)
 
 class HashWriter(FileRegister):
     """Stores md5 hashes of utf-8 files. When requested to write a file, it touches the
     disk only if the md5 hash has changed."""
+    defaultMode: Write              # Default writing mode
 
-    def __init__(self,basePath: str,cacheFile: str = "HashCache.json",exactDates = False):
+    def __init__(self,basePath: str,cacheFile: str = "HashCache.json",exactDates = False,defaultMode = Write.DESTINATION_CHANGED):
         super().__init__(basePath,cacheFile,exactDates)
+        self.defaultMode = defaultMode
     
     def __enter__(self) -> HashWriter:
         return self
 
-    def WriteFile(self,fileName: str,fileContents: str,writeCondition:Write = Write.DESTINATION_CHANGED) -> Status:
-        """Write fileContents to fileName if the stored hash differs from fileContents."""
+    def _UpdateFile(self,fileName: str,newHash: str,writeFunction: Callable[[],None],mode:Write|None = None) -> Status:
+        """Abstract function which implements the file update logic.
+        Determine whether fileName needs to be updated, given newHash and mode.
+        If so, call writeFunction to update the file on disk.
+        fileName:       the file in question
+        newHash:        md5 hash of the new data that might be written
+        writeFunction:  callback function to call if the file needs updated
+        mode:           write mode (see above)"""
 
-        fullPath = posixpath.join(self.basePath,fileName)
-        os.makedirs(posixpath.split(fullPath)[0],exist_ok=True)
+        if mode is None:
+            mode = self.defaultMode
 
-        fileContents += "\n" # Append a newline to mimic printing the string.
-        utf8Encoded = fileContents.encode("utf-8")
-        hash = hashlib.md5(utf8Encoded,usedforsecurity=False).hexdigest()
-
-        if writeCondition in {Write.DESTINATION_CHANGED,Write.DESTINATION_UNCHANGED}:
+        if mode in {Write.DESTINATION_CHANGED,Write.DESTINATION_UNCHANGED}:
             updatedOnDisk = self.UpdatedOnDisk(fileName,checkDetailedContents=False)
         else:
             updatedOnDisk = False
         
-        if writeCondition == Write.DESTINATION_UNCHANGED:
+        if mode == Write.DESTINATION_UNCHANGED:
             if updatedOnDisk:
                 if fileName in self.record:
                     self.record[fileName]["_status"] = Status.BLOCKED
                     return Status.BLOCKED
 
-        newRecord = {"md5":hash}
+        newRecord = {"md5":newHash}
         status = self.Register(fileName,newRecord)
-        if writeCondition == Write.DESTINATION_CHANGED and updatedOnDisk:
+        if mode == Write.DESTINATION_CHANGED and updatedOnDisk:
             status = Status.UPDATED
-        if writeCondition == Write.ALWAYS:
+        if mode == Write.ALWAYS:
             status = Status.UPDATED
         
         if status != Status.UNCHANGED:
             try:
-                with open(fullPath, 'wb') as file:
-                    file.write(utf8Encoded)
+                writeFunction()
                 self.UpdateModifiedDate(fileName)
             except OSError as error:
                 self.record[fileName]["_status"] = Status.BLOCKED
@@ -237,6 +242,26 @@ class HashWriter(FileRegister):
             self.record[fileName]["_status"] = status
         
         return status
+
+    def WriteBinaryFile(self,fileName: str,fileContents: bytes,mode:Write|None = None) -> Status:
+        """Write binary data to fileName if the stored hash differs from fileContents."""
+        
+        fullPath = posixpath.join(self.basePath,fileName)
+        os.makedirs(posixpath.split(fullPath)[0],exist_ok=True)
+
+        def WriteBinary() -> None:
+            with open(fullPath, 'wb') as file:
+                file.write(fileContents)
+
+        newHash = hashlib.md5(fileContents,usedforsecurity=False).hexdigest()
+        return self._UpdateFile(fileName,newHash,WriteBinary,mode)
+
+    def WriteTextFile(self,fileName: str,fileContents: str,mode:Write|None = None) -> Status:
+        """Write text fileContents to fileName in utf-8 encoding if the stored hash differs."""
+
+        fileContents += "\n" # Append a newline to mimic printing the string.
+        utf8Encoded = fileContents.encode("utf-8")
+        return self.WriteBinaryFile(fileName,utf8Encoded,mode)
     
     def ReadRecordFromDisk(self, fileName) -> Record:
         fullPath = posixpath.join(self.basePath,fileName)
