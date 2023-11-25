@@ -391,6 +391,8 @@ def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
         content = content.replace('style="margin-left: 0em;">','style="margin-left: 0em; font-weight:bold;">')
             # Apply boldface to the top line only
+        content = re.sub(r"(\s+)</p>",r":\1</p>",content,count = 1)
+            # Add a colon at the end of the first paragraph only.
         if tag["tag"] in spaceAfter:
             content += "\n<br>"
         return numberName,content,numberName.lower()
