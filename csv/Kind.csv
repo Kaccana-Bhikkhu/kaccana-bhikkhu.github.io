@@ -7,10 +7,10 @@ Follow-up,Questions,2,No,Yes,No,Yes,Yes,No,No,Excerpt,unimplemented,++Follow-up{
 Story,Stories,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Stor{'ies' if s else 'y'}{colon}++ {text}|| told by {teachers}.,{text}|| ++Stor{'ies' if s else 'y'}{colon}++ told by {teachers}.,,
 Recollection,Stories,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Recollection{s}{colon}++ {text}|| recounted by {teachers}.,{text}|| ++Recollection{s}++ by {teachers}.,,
 ,,,,,,,,,,,,,,,
-Teaching,Teachings,3,Yes,No,Yes,Yes,Yes,No,No,Excerpt,"++Teaching{s}++|| by {teachers}||{colon}{""."" if not text else "" "" + text}",++Teaching{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| ++Teaching{s}++ by {teachers}.,,
+Teaching,Teachings,3,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,"++Teaching{s}++|| by {teachers}||{colon}{""."" if not text else "" "" + text}",++Teaching{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| ++Teaching{s}++ by {teachers}.,,
 Reflection,Teachings,1,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,"++Reflection{s}++|| by {teachers}||{colon}{""."" if not text else "" "" + text}",++Reflection{s}{colon}++ {text}|| contributed by {teachers}.,{text}|| ++Reflection{s}++ by {teachers}.,,
 Simile,Teachings,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Simile{s}{colon}++ {text}|| — {teachers}.,unimplemented,,
-Dhamma talk,Teachings,2,Yes,No,Yes,Yes,Yes,No,No,Excerpt,"++Dhamma talk{s}++|| offered by {teachers}||{colon}{""."" if not text else "" "" + text}",++Dhamma talk{s}{colon}++ {text}|| offered by {teachers}.,{text}|| ++Dhamma talk{s}++ offered by {teachers}.,,
+Dhamma talk,Teachings,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,"++Dhamma talk{s}++|| offered by {teachers}||{colon}{""."" if not text else "" "" + text}",++Dhamma talk{s}{colon}++ {text}|| offered by {teachers}.,{text}|| ++Dhamma talk{s}++ offered by {teachers}.,,
 ,,,,,,,,,,,,,,,
 Quote,Quotes,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}” {suffix}|| — {teachers},unimplemented,,A quote from the teacher him/herself.
 Indirect quote,Quotes,2,Yes,Yes,Yes,Yes,Yes,No,No,Excerpt,unimplemented,++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teachers}.,unimplemented,,"The teacher quoting someone else. If the person quoted is a teacher, they should get the first tag."

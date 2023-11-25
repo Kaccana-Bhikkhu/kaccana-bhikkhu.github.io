@@ -10,7 +10,6 @@ import Html2 as Html
 from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
-from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
@@ -346,6 +345,21 @@ def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs
         return ' '.join([tagStr,paliStr])
     elif style == "noPali":
         return ' '.join([tagStr,countStr])
+
+def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
+    """Write a list of numerical tags sorted by number:
+    i.e. Three Refuges, Four Noble Truths, Five Faculties."""
+
+    info = Html.PageInfo("Numerical",Utils.PosixJoin(pageDir,"NumericalTags.html"),"Tags – Numerical")
+    yield info
+    
+    numericalTags = [tag for tag in gDatabase["tag"].values() if tag["number"]]
+
+    page = Html.PageDesc(info)
+    page.AppendContent(", ".join(t["tag"] for t in numericalTags))
+    page.AppendContent("Numerical tags",section="citationTitle")
+    page.keywords = ["Tags","Numerical tags"]
+    yield page 
 
 def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
@@ -1592,6 +1606,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     tagMenu = [
         AlphabeticalTagList(indexDir),
         TagHierarchyMenu(indexDir,drilldownDir),
+        NumericalTagList(indexDir),
         MostCommonTagList(indexDir),
         [Html.PageInfo("About tags","about/05_Tags.html")],
         TagPages("tags")

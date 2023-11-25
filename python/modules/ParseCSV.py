@@ -963,7 +963,7 @@ def LoadEventFile(database,eventName,directory):
             startTime = prevEndTime
             x["startTime"] = Utils.TimeDeltaToStr(startTime)
             if ExcerptFlag.OVERLAP not in x["flags"]:
-                Alert.warning(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+                Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
         prevEndTime = endTime

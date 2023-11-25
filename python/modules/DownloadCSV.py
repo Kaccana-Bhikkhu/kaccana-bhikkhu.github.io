@@ -168,4 +168,4 @@ def main():
     if downloadSummary:
         downloadedSheets = ['Summary'] + downloadedSheets
     Alert.info(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
-    Alert.extra(f'Sheets:',writerReport)
+    Alert.extra(f'csv files:',writerReport)
