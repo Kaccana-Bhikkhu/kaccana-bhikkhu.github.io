@@ -5,23 +5,30 @@ from __future__ import annotations
 import os, re
 import urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
-import shutil
 from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
-import Alert
+import Alert, Utils
+from FileRegister import HashWriter
 
 def BuildSheetUrl(docId: str, sheetId: str):
     "From https://stackoverflow.com/excerpts/12842341/download-google-docs-public-spreadsheet-to-csv-with-python"
     
     return f'https://docs.google.com/spreadsheets/d/{docId}/export?format=csv&gid={sheetId}'
 
-def DownloadFile(url:str,filename:str,retries:int = 2):
-    
+def DownloadSmallFile(url:str,filename:str,retries:int = 2):
+    "Load the remote and on-disk copies of filename, compare, and write to disk only when needed."
     for attempt in range(retries + 1):
         try:
             with urllib.request.urlopen(url) as remoteFile:
+                remoteData = remoteFile.read()
+                if os.path.isfile(filename):
+                    with open(filename,'rb') as localFile:
+                        localData = localFile.read()
+                    if remoteData == localData:
+                        return # If the local file already matches the remote file, don't touch it to keep the modification date.
                 with open(filename,'wb') as localFile:
-                    shutil.copyfileobj(remoteFile, localFile)
+                    localFile.write(remoteData)
+            return
         except urllib.error.HTTPError:
             if attempt < retries:
                 Alert.caution(f"HTTP error when attempting to download {filename}. Retrying.")
@@ -29,19 +36,17 @@ def DownloadFile(url:str,filename:str,retries:int = 2):
                 Alert.error(f"HTTP error when attempting to download {filename}. Giving up after {retries + 1} attempts.")
         
 
-def DownloadSheetCSV(docId: str, sheetId: str, filePath: str) -> None:
-    "Download a Google Sheet with the given docId and sheetId to filePath"
+def DownloadSheetCSV(docId: str, sheetId: str, fileName: str, writer: HashWriter) -> None:
+    "Download a Google Sheet with the given docId and sheetId to fileName"
     
     url = BuildSheetUrl(docId,sheetId)
-    DownloadFile(url,filePath)
+    writer.DownloadFile(fileName,url,retries = 2)
+    # DownloadSmallFile(url,fileName)
 
-def DownloadSummarySheet() -> None:
+def DownloadSummarySheet(writer: HashWriter) -> None:
     "Download the Summary sheet to the csv directory"
         
-    if not os.path.exists(gOptions.csvDir):
-        os.makedirs(gOptions.csvDir)
-        
-    DownloadSheetCSV(gOptions.spreadsheetId,gOptions.summarySheetID,gOptions.summaryFilePath)
+    DownloadSheetCSV(gOptions.spreadsheetId,gOptions.summarySheetID,gOptions.summaryFile,writer)
 
 def ReadSummarySheet() -> tuple[dict[str,str],dict[str,str]]:
     "Read Summary.csv and return two dicts {sheetName : sheetId} and {sheetName : modifiedDate (str)}"
@@ -60,12 +65,12 @@ def ReadSummarySheet() -> tuple[dict[str,str],dict[str,str]]:
 
     return sheetIds,modDates
 
-def DownloadSheets(sheetIds: dict) -> None:
+def DownloadSheets(sheetIds: dict,writer: HashWriter) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"
     
     with ThreadPoolExecutor() as pool:
         for sheetName,sheetId in sheetIds.items():
-            pool.submit(DownloadSheetCSV,gOptions.spreadsheetId,sheetId,os.path.join(gOptions.csvDir,sheetName + '.csv'))
+            pool.submit(DownloadSheetCSV,gOptions.spreadsheetId,sheetId,sheetName + '.csv',writer)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -85,7 +90,7 @@ def ParseArguments() -> None:
         return
     
     gOptions.spreadsheetId = spreadsheetMatch.groups()[0]
-    gOptions.summaryFilePath = os.path.join(gOptions.csvDir,'Summary.csv')
+    gOptions.summaryFile = 'Summary.csv'
 
 def Initialize() -> None:
     pass
@@ -106,7 +111,7 @@ def main():
     if gOptions.sheets == 'Changed':
         downloadSummary = True
         oldSheetIds,oldSheetModDates = ReadSummarySheet()
-    elif os.path.isfile(gOptions.summaryFilePath) and gOptions.sheets != 'All' and not downloadSummary:
+    elif os.path.isfile(Utils.PosixJoin(gOptions.csvDir,gOptions.summaryFile)) and gOptions.sheets != 'All' and not downloadSummary:
         oldSheetIds,_ = ReadSummarySheet()
         
         allEvents = [event for event in oldSheetIds if re.match(".*[0-9]{4}",event)]
@@ -124,39 +129,43 @@ def main():
                 downloadSummary = True
     else:
         downloadSummary = True
-        
-    if downloadSummary:
-        DownloadSummarySheet()
-        sheetIds,sheetModDates = ReadSummarySheet()
-        Alert.info("Downloaded Summary.csv")
-    else:
-        sheetIds = oldSheetIds
-        Alert.info("Didn't download Summary.csv")
-    
-    sheetIds.pop('Summary',None) # No need to download summary again
-    sheetIds = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName[0] != '_'}
-        # Don't download special sheets begining with _
 
-    if gOptions.sheets == 'Changed':
-        blankModDates = [sheetName for sheetName in sheetIds if not sheetModDates[sheetName].strip()]
-        if blankModDates:
-            Alert.caution(len(blankModDates),"sheets do not have a modification date and will not be downloaded:",blankModDates)
-            Alert.notice("For AP QS Archive version 3.3 and earlier, use --sheets All or specify which sheets to download.")
-        sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetModDates[sheetName] != oldSheetModDates.get(sheetName,None)}
-    else:
-        if gOptions.sheets != 'All':
-            for sheetName in gOptions.sheets:
-                if sheetName not in sheetIds:
-                    Alert.warning('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
-            
-            sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
-            sheetsToDownload.update((sheetName,sheetId) for sheetName,sheetId in sheetIds.items() if sheetName.rstrip('x') in gOptions.sheets)
-                # Download sheet WR2015x (for example) if WR2015 appears in gOptions.sheets
+    with HashWriter(gOptions.csvDir,exactDates=True) as writer:
+        if downloadSummary:
+            DownloadSummarySheet(writer)
+            sheetIds,sheetModDates = ReadSummarySheet()
+            Alert.info("Downloaded Summary.csv")
         else:
-            sheetsToDownload = sheetIds
+            sheetIds = oldSheetIds
+            Alert.info("Didn't download Summary.csv")
+        
+        sheetIds.pop('Summary',None) # No need to download summary again
+        sheetIds = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName[0] != '_'}
+            # Don't download special sheets begining with _
+
+        if gOptions.sheets == 'Changed':
+            blankModDates = [sheetName for sheetName in sheetIds if not sheetModDates[sheetName].strip()]
+            if blankModDates:
+                Alert.caution(len(blankModDates),"sheets do not have a modification date and will not be downloaded:",blankModDates)
+                Alert.notice("For AP QS Archive version 3.3 and earlier, use --sheets All or specify which sheets to download.")
+            sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetModDates[sheetName] != oldSheetModDates.get(sheetName,None)}
+        else:
+            if gOptions.sheets != 'All':
+                for sheetName in gOptions.sheets:
+                    if sheetName not in sheetIds:
+                        Alert.warning('Warning: Sheet name',repr(sheetName),'does not appear in the Summary sheet and will not be downloaded.')
+                
+                sheetsToDownload = {sheetName:sheetId for sheetName,sheetId in sheetIds.items() if sheetName in gOptions.sheets}
+                sheetsToDownload.update((sheetName,sheetId) for sheetName,sheetId in sheetIds.items() if sheetName.rstrip('x') in gOptions.sheets)
+                    # Download sheet WR2015x (for example) if WR2015 appears in gOptions.sheets
+            else:
+                sheetsToDownload = sheetIds
+        
+        DownloadSheets(sheetsToDownload,writer)
+        writerReport = writer.StatusSummary()
     
-    DownloadSheets(sheetsToDownload)
     downloadedSheets = list(sheetsToDownload.keys())
     if downloadSummary:
         downloadedSheets = ['Summary'] + downloadedSheets
     Alert.info(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
+    Alert.extra(f'csv files:',writerReport)

@@ -57,7 +57,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV,Render",
+                "ParseCSV",
                 "-vvv"
             ],
             "console": "integratedTerminal",
@@ -97,9 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Link",
-                "--linkCheckLevel",
-                "sessionMp3:2"
+                "DownloadCSV",
+                "--sheets",
+                "All"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

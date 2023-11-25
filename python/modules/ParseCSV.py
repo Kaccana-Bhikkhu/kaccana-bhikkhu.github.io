@@ -410,9 +410,6 @@ def RemoveUnusedTags(database: dict) -> None:
         prevTagCount = len(usedTags)
 
         for parent,children in WalkTags(database["tagRaw"]):
-            if not parent:
-                continue
-            
             anyTagUsed = numberedTagUsed = False
             for childTag in children:
                 if childTag["tag"] in usedTags:
@@ -429,6 +426,7 @@ def RemoveUnusedTags(database: dict) -> None:
                 for childTag in children:
                     if childTag["indexNumber"] or not seenNumberedTagYet: # Tags before the numbered list are essential headings
                         usedTags.add(childTag["tag"])
+                    if childTag["indexNumber"]:
                         seenNumberedTagYet = True
 
     """remainingTags = set(usedTags)
@@ -481,8 +479,6 @@ def SortTags(database: dict) -> None:
 
     datelessTags = []
     for parentIndex,childIndexes in WalkTags(database["tagDisplayList"],returnIndices=True):
-        if not parentIndex:
-            continue
         parent = database["tagDisplayList"][parentIndex]
         if TagFlag.SORT_SUBTAGS not in parent["flags"]:
             continue
@@ -510,6 +506,31 @@ def SortTags(database: dict) -> None:
     if datelessTags:
         Alert.caution("Cannot find a date for",len(datelessTags),"tag(s) in the Name sheet. These tags will go last.")
         Alert.extra("Dateless tags:",datelessTags)
+
+def CountSubtagExcerpts(database):
+    """Add the subtagExcerptCount field to each item in tagDisplayList which counts the number
+    of excerpts which are tagged by this tag or any of its subtags."""
+
+    tagList = database["tagDisplayList"]
+    excerpts = database["excerpts"]
+    savedSearches = [None] * len(tagList)
+    for parentIndex,childIndexes in WalkTags(tagList,returnIndices=True):
+        thisSearch = set()
+        for index in childIndexes + [parentIndex]:
+            if savedSearches[index] is None:
+                tag = tagList[index]["tag"]
+                if tag:
+                    savedSearches[index] = set(id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag)))
+                    #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
+                else:
+                    savedSearches[index] = set()
+            
+            thisSearch.update(savedSearches[index])
+        
+        savedSearches[parentIndex] = thisSearch
+        #print(f"{parentIndex} {tagList[parentIndex]["tag"]}: {len(savedSearches[index])} excerpts singly")
+        tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
+
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -569,7 +590,7 @@ def CreateTagDisplayList(database):
             index = database["tag"][tag]["listIndex"]
             assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
 
-def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[dict,List[dict]]]:
+def WalkTags(tagDisplayList: list,returnIndices:bool = False,yieldRootTags = False) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
     tagStack = []
     for n,tag in enumerate(tagDisplayList):
@@ -583,9 +604,6 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[
             assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
             tagStack.append([])
         
-        if TagFlag.VIRTUAL in tag["flags"] and (n + 1 >= len(tagDisplayList) or tagDisplayList[n + 1]["level"] <= tag["level"]):
-            continue # Skip virtual tags with no subtags
-
         if returnIndices:
             tagStack[-1].append(n)
         else:
@@ -596,7 +614,7 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False) -> Iterator[Tuple[
         parent = tagStack[-1][-1] # The last item of the next-highest level is the parent tag
         yield parent,children
     
-    if tagStack:
+    if tagStack and yieldRootTags:
         yield None,tagStack[0]
         
 
@@ -945,7 +963,7 @@ def LoadEventFile(database,eventName,directory):
             startTime = prevEndTime
             x["startTime"] = Utils.TimeDeltaToStr(startTime)
             if ExcerptFlag.OVERLAP not in x["flags"]:
-                Alert.warning(f"Warning: excerpt {x} unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+                Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
         prevEndTime = endTime
@@ -1072,8 +1090,6 @@ def VerifyListCounts(database):
     # Check that the number of items in each numbered tag list matches the supertag item count
     tagList = database["tagDisplayList"]
     for tagIndex,subtagIndices in WalkTags(tagList,returnIndices=True):
-        if not tagIndex:
-            continue
         tag = tagList[tagIndex]["tag"]
         if not tag:
             continue
@@ -1183,6 +1199,7 @@ def main():
     SortTags(gDatabase)
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
+    CountSubtagExcerpts(gDatabase)
 
     if not gOptions.jsonNoClean:
         del gDatabase["tagRaw"]    

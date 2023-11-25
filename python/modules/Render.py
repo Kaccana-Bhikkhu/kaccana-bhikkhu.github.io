@@ -423,8 +423,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if tag.lower() == "root":
                     linkTo = f"drilldown/{Prototype.DrilldownPageFile(-1)}"
                 elif realTag:
-                    tagNumber = gDatabase["tag"][realTag]["listIndex"]
-                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(realTag,jumpToEntry=True)}"
                 else:
                     Alert.warning("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:

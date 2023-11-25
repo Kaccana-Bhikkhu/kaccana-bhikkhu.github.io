@@ -10,12 +10,12 @@ import Html2 as Html
 from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
-from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 import contextlib
 from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
+from FileRegister import HashWriter
 
 NEW_STYLE = True
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
@@ -51,18 +51,17 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     temp = temp.replace('"../','"' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
-def WritePage(page: Html.PageDesc) -> None:
+def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
     """Write an html file for page using the global template"""
     page.gOptions = gOptions
 
     template = Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate)
     if page.info.file.endswith("_print.html"):
         template = Utils.AppendToFilename(template,"_print")
-    page.WriteFile(template,gOptions.prototypeDir)
-    gWrittenHtmlFiles.add(Utils.PosixJoin(gOptions.prototypeDir,page.info.file))
-    Alert.debug(f"Write file: {page.info.file}")
+    pageHtml = page.RenderWithTemplate(template)
+    writer.WriteTextFile(page.info.file,pageHtml)
 
-def DeleteUnwrittenHtmlFiles() -> None:
+def DeleteUnwrittenHtmlFiles(writer: HashWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     # Delete files only in directories we have built
@@ -71,14 +70,11 @@ def DeleteUnwrittenHtmlFiles() -> None:
     if gOptions.buildOnly == gAllSections:
         dirs.add("indexes")
 
-    dirs = [Utils.PosixJoin(gOptions.prototypeDir,dir) for dir in dirs]
-
+    deletedFiles = 0
     for dir in dirs:
-        fileList = next(os.walk(dir), (None, None, []))[2]
-        for fileName in fileList:
-            fullPath = Utils.PosixJoin(dir,fileName)
-            if fullPath not in gWrittenHtmlFiles:
-                os.remove(fullPath)
+        deletedFiles += writer.DeleteUnregisteredFiles(dir,filterRegex=r".*\.html$")
+    if deletedFiles:
+        Alert.extra(deletedFiles,"html file(s) deleted.")
 
 def ItemList(items:List[str], joinStr:str = ", ", lastJoinStr:str = None):
     """Format a list of items"""
@@ -171,8 +167,9 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
 def ExcerptCount(tag:str) -> int:
     return gDatabase["tag"][tag].get("excerptCount",0)
 
-def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None) -> str:
+def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None,showSubtagCount = True) -> str:
     """Generate html for an indented list of tags.
+    tagList is the list of tags to print; use the global list if not provided
     If expandSpecificTags is specified, then expand only tags with index numbers in this set.
     If not, then expand all tags if expandDuplicateSubtags; otherwise expand only tags with primary subtags.
     If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
@@ -182,7 +179,8 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     a = Airium()
     
-    tagList = gDatabase["tagDisplayList"]
+    if not tagList:
+        tagList = gDatabase["tagDisplayList"]
     if expandSpecificTags is None:
         if expandDuplicateSubtags:
             expandSpecificTags = range(len(tagList))
@@ -193,10 +191,12 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                     tag = tagList[n]["tag"]
                     if n in expandSpecificTags or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
                         expandSpecificTags.add(parent) # Then expand the parent tag
-                    
+    
+    baseIndent = tagList[0]["level"]
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     with a.div(Class="listing"):
         for index, item in enumerate(tagList):
+            #print(index,item["name"])
             if item["level"] > skipSubtagLevel:
                 continue
 
@@ -205,7 +205,8 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
             else:
                 skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
             
-            with a.p(id = index,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+            bookmark = Utils.slugify(item["tag"] or item["name"])
+            with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-baseIndent)}{tabMeasurement};"):
                 drilldownLink = ''
                 if expandTagLink:
                     if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
@@ -223,12 +224,22 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
 
                 indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
                 
-                countStr = f' ({item["excerptCount"]})' if item["excerptCount"] > 0 else ''
+                subtagExcerptCount = showSubtagCount and item.get("subtagExcerptCount",0)
+                if item["excerptCount"] or subtagExcerptCount:
+                    if subtagExcerptCount:
+                        itemCount = item["excerptCount"]
+                        if not item['tag']:
+                            itemCount = "-"
+                        countStr = f' ({itemCount}/{subtagExcerptCount})'
+                    else:
+                        countStr = f' ({item["excerptCount"]})'
+                else:
+                    countStr = ""
                 
                 if item['tag'] and not item['subsumed']:
                     nameStr = HtmlTagLink(item['tag'],True) + countStr
                 else:
-                    nameStr = item['name']
+                    nameStr = item['name'] + ("" if item["subsumed"] else countStr)
                 
                 if item['pali'] and item['pali'] != item['name']:
                     paliStr = '(' + item['pali'] + ')'
@@ -248,21 +259,36 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     return str(a)
 
-def DrilldownPageFile(tagNumber: int,jumpToEntry:bool = False) -> str:
-    "Return the name of the page that has this numbered tag expanded."
-    if tagNumber == -1:
-        tagNumber = 999
+def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
+    """Return the name of the page that has this tag expanded.
+    The tag can be specified by number in the hierarchy or by name."""
+
+    if type(tagNumberOrName) == str:
+        tagNumber = gDatabase["tag"][tagNumberOrName]["listIndex"]
     else:
+        tagNumber = tagNumberOrName
+
+    indexStr = ""
+    if tagNumber >= 0:
         tagList = gDatabase["tagDisplayList"]
         ourLevel = tagList[tagNumber]["level"]
         if tagNumber + 1 >= len(tagList) or tagList[tagNumber + 1]["level"] <= ourLevel:
             # If this tag doesn't have subtags, find its parent tag
             while tagList[tagNumber]["level"] >= ourLevel:
                 tagNumber -= 1
+        
+        tagName = tagList[tagNumber]["tag"]
+        displayName = tagName or tagList[tagNumber]["name"]
+        fileName = Utils.slugify(displayName) + ".html"
+        if tagName and gDatabase["tag"][tagName]["listIndex"] != tagNumber:
+            # If this is not a primary tag, append an index number to it
+            indexStr = "-" + str(sum(1 for n in range(tagNumber) if tagList[n]["tag"] == tagName))
+            fileName = Utils.AppendToFilename(fileName,indexStr)
+    else:
+        fileName = "root.html"
 
-    fileName = f"tag-{tagNumber:03d}.html"
     if jumpToEntry:
-        fileName += f"#{tagNumber}"
+        fileName += f"#{fileName.replace('.html','')}"
     return fileName
 
 def DrilldownIconLink(tag: str,iconWidth = 20):
@@ -285,7 +311,11 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
                     nextLevelToExpand = tagList[reverseIndex]["level"] - 1
                 reverseIndex -= 1
             
-            yield (pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))),IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
+            page.keywords.append(tag["name"])
+            page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page.AppendContent(f'Tag Hierarchy: {tag["name"]}',section="citeAs")
+            yield page
 
 def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
     "Return html code describing this tag."
@@ -318,6 +348,62 @@ def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs
         return ' '.join([tagStr,paliStr])
     elif style == "noPali":
         return ' '.join([tagStr,countStr])
+
+def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
+    """Write a list of numerical tags sorted by number:
+    i.e. Three Refuges, Four Noble Truths, Five Faculties."""
+
+    info = Html.PageInfo("Numerical",Utils.PosixJoin(pageDir,"NumericalTags.html"),"Tags – Numerical")
+    yield info
+    
+    numericalTags = [tag for tag in gDatabase["tag"].values() if tag["number"]]
+    numericalTags.sort(key=lambda t: int(t["number"]))
+
+    spaceAfter = {tag1["tag"] for tag1,tag2 in itertools.pairwise(numericalTags) if tag1["number"] == tag2["number"]}
+        # Tags which are followed by a tag having the same number should have a space after them
+
+    numberNames = {3:"Threes", 4:"Fours", 5:"Fives", 6:"Sixes", 7:"Sevens", 8:"Eights",
+                   9:"Nines", 10:"Tens", 12: "Twelves", 37:"Thiry-sevens"}
+    def SubtagList(tag: dict) -> tuple(str,str,str):
+        number = int(tag["number"])
+        numberName = numberNames[number]
+
+        fullList = gDatabase["tagDisplayList"]
+        baseIndex = tag["listIndex"]
+        tagList = [fullList[baseIndex]]
+        baseLevel = tagList[0]["level"]
+
+        index = baseIndex + 1
+        addedNumberedTag = False
+        while index < len(fullList) and fullList[index]["level"] > baseLevel:
+            curTag = fullList[index]
+            if curTag["level"] == baseLevel + 1:
+                if curTag["indexNumber"] or not addedNumberedTag:
+                    tagList.append(curTag)
+                    if curTag["indexNumber"]:
+                        addedNumberedTag = True
+            index += 1
+
+        storedNumber = tagList[0]["indexNumber"]
+        tagList[0]["indexNumber"] = ""    # Temporarily remove any digit before the first entry.
+        content = IndentedHtmlTagList(tagList,showSubtagCount=False)
+        tagList[0]["indexNumber"] = storedNumber
+
+        content = content.replace('style="margin-left: 0em;">','style="margin-left: 0em; font-weight:bold;">')
+            # Apply boldface to the top line only
+        content = re.sub(r"(\s+)</p>",r":\1</p>",content,count = 1)
+            # Add a colon at the end of the first paragraph only.
+        if tag["tag"] in spaceAfter:
+            content += "\n<br>"
+        return numberName,content,numberName.lower()
+
+    pageContent = Html.ListWithHeadings(numericalTags,SubtagList,headingWrapper = Html.Tag("h2",dict(id="HEADING_ID")))
+
+    page = Html.PageDesc(info)
+    page.AppendContent(pageContent)
+    page.AppendContent("Numerical tags",section="citationTitle")
+    page.keywords = ["Tags","Numerical tags"]
+    yield page 
 
 def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted by number of excerpts."""
@@ -754,9 +840,10 @@ class Formatter:
                 audioLink = Mp3SessionLink(session,linkKind = self.audioLinks)
                 if self.audioLinks == "img":
                     durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
+                    itemsToJoin.append(audioLink + durStr + ' ')
                 else:
-                    durStr = ''
-                itemsToJoin.append(audioLink + durStr + ' ')
+                    itemsToJoin[-1] += ' ' + audioLink
+                        # The audio chip goes on a new line, so don't separate with a dash
             
             a(' – '.join(itemsToJoin))
 
@@ -1563,6 +1650,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     tagMenu = [
         AlphabeticalTagList(indexDir),
         TagHierarchyMenu(indexDir,drilldownDir),
+        NumericalTagList(indexDir),
         MostCommonTagList(indexDir),
         [Html.PageInfo("About tags","about/05_Tags.html")],
         TagPages("tags")
@@ -1585,7 +1673,7 @@ def WriteSitemapURL(page:Html.PageDesc,xml:Airium) -> None:
     elif directory in {"events","indexes"}:
         priority = 0.9
     elif directory == "drilldown":
-        if pathParts[1] == "tag-999.html":
+        if pathParts[1] == "root.html":
             priority = 0.9
         else:
             return
@@ -1684,18 +1772,20 @@ def main():
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
     
     xml = Airium()
-    with open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile: 
-        with xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"):
-            for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
-                WritePage(newPage)
-                print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
-                if gOptions.sitemap:
-                    WriteSitemapURL(newPage,xml)
+    with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
+            HashWriter(gOptions.prototypeDir,"assets/HashCache.json") as writer,
+            xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")):
+        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
+            WritePage(newPage,writer)
+            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+            if gOptions.sitemap:
+                WriteSitemapURL(newPage,xml)
+        
+        Alert.extra("html files:",writer.StatusSummary())
+        if not gOptions.keepOldHtmlFiles:
+            DeleteUnwrittenHtmlFiles(writer)
     
     if gOptions.sitemap:
         with open(Utils.PosixJoin(gOptions.prototypeDir,"sitemap.xml"),"w") as sitemapFile:
             print(str(xml),file=sitemapFile)
-
-    if not gOptions.keepOldHtmlFiles:
-        DeleteUnwrittenHtmlFiles()
     

@@ -12,23 +12,23 @@
 
 - 2.0 (May 15, 2023): All pages look much better thanks to css code contributed by Chris Claudius.
 
-- 2.1 Added three Upasika Days: Thai Forest Tradition, Mindfulness of Breathing, and Jhāna: A Practical Approach
+- 2.1 Added three Upāsikā Days: Thai Forest Tradition, Mindfulness of Breathing, and Jhāna: A Practical Approach
 
-- 2.1.1 Added three Upasika Days: Honoring the Buddha, The Middle Way of Not-self, and Death and Dying. Added the Spirit Rock Daylong about Friendship.
+- 2.1.1 Added three Upāsikā Days: Honoring the Buddha, The Middle Way of Not-self, and Death and Dying. Added the Spirit Rock Daylong about Friendship.
 
 - 2.1.2 Added the 2008 Metta Retreat and the Spirit Rock Daylong Desire or Aspiration. Assigned copyright to Abhayagiri Buddhist Monastery.
 
-- 2.1.3 Added Upasika Day: Right Livelihood.
+- 2.1.3 Added Upāsikā Day: Right Livelihood.
 
-- 2.2 Implemented session excerpts. Added Stanford Communtiy Dhamma Discussion and Upasika Day: Buddhist Identity. Added three sessions from Winter Retreat 2014 for testing purposes.
+- 2.2 Implemented session excerpts. Added Stanford Communtiy Dhamma Discussion and Upāsikā Day: Buddhist Identity. Added three sessions from Winter Retreat 2014 for testing purposes.
 
-- 2.3 Added Chanting Upasika Day and Path of Practice weekend.
+- 2.3 Added Chanting Upāsikā Day and Path of Practice weekend.
 
-- 2.3.1 Added three more Upasika Days and BIA New Year, New Life.
+- 2.3.1 Added three more Upāsikā Days and BIA New Year, New Life.
 
 - 3.0 Floating media player (Thanks Owen!). Drill-down tag hierarchy. Category subsearch on All Excerpts and tag pages. About pages are rendered from markdown files in documentation/about.
 
-- 3.1 Alphabetical tag listings. List events by series and year. List teachers chronologically and by lineage. Category search on teacher pages. Links between teacher and tag pages. Calming the Busy Mind Upasika Day.
+- 3.1 Alphabetical tag listings. List events by series and year. List teachers chronologically and by lineage. Category search on teacher pages. Links between teacher and tag pages. Calming the Busy Mind Upāsikā Day.
 
 - 3.2 Move website to pages directory. Reogranize python and assets files. Reorganize tag hierarchy. Document event series and tags. Render links to tags and events. Fix links to bookmarks from external pages.
 
@@ -36,7 +36,7 @@
 
 - 3.2.2 Add About pages: What's new? and Contact. Render links to teachers, about pages, images, and the media player. Complex workaround needed to link to non-page items (e.g. images) in Document.RenderDocumenationFiles. Loading images properly in both the static html pages and frame.js will require modifications to frame.js.
 
-- 3.3 Add Glosses column in Tag sheet. Improve alphabetical tag list. Enable tag sorting by date. Events listed in tag pages. Indirect quotes link to teacher. Added Upasika Day 2018: The New Ajahn Chah Biography.
+- 3.3 Add Glosses column in Tag sheet. Improve alphabetical tag list. Enable tag sorting by date. Events listed in tag pages. Indirect quotes link to teacher. Added Upāsikā Day 2018: The New Ajahn Chah Biography.
 
 - 3.3.1 Apply ID3 tags to excerpt mp3 files.
 
@@ -61,3 +61,7 @@
 - 3.5.2 Make no script website (homepage.html) more accessible.
 
 - 3.5.3 (November 2023 Release) Don't preload audio to reduce data usage.
+
+- 3.6 Added Upāsikā Days: On Pilgrimage and Tudong and Developing Skill in Reflective Meditation. Drilldown html files named by tag. Count excerpts referred to by subtags in hierarchical lists. Fix bug that removed "Refraining from:" and other list headings. Fix bug where bookmarks scroll to the wrong place in pages with slow-loading images.
+
+- 3.6.1 Added three Upāsikā Days: Two Kinds of Thought, Practice in a Global Context, and Love, Attachement, and Friendship. Numerical tag page shows canonical numbered lists. Cache checksums of many files and overwrite them only when needed. Fix bug where csv files were downloaded multiple times.

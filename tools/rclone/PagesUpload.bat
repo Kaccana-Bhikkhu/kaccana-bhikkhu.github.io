@@ -3,8 +3,8 @@ setlocal enabledelayedexpansion
 
 call :getPassword RCLONE_CONFIG_PASS "Password: "
 
-rclone -v -P copyto --s3-acl=public-read index.html abhayagiri:abhayagiri/media/discs/questions/index.html
-rclone -v -P sync --s3-acl=public-read pages abhayagiri:abhayagiri/media/discs/questions/pages
+rclone -v -P copyto --s3-acl=public-read --no-update-modtime index.html abhayagiri:abhayagiri/media/discs/questions/index.html
+rclone -v -P sync --s3-acl=public-read --no-update-modtime pages abhayagiri:abhayagiri/media/discs/questions/pages
 
 exit /b
 

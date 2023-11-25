@@ -8,7 +8,7 @@ import Html2 as Html
 from typing import Tuple, Type, Callable, Iterable
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
-
+import FileRegister
 
 def WordCount(text: str) -> int:
     "Return the approximate number of words in text"
@@ -45,7 +45,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
         with open(sourcePath,encoding='utf8') as file:
             template = pyratemp.Template(file.read())
-            fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase)
+            fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Utils = Utils)
             gDocumentationWordCount += WordCount(fileContents[fileName])
             
     def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:
@@ -108,7 +108,7 @@ def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--documentationDir',type=str,default='documentation',help='Read and write documentation files here; Default: ./documenation')
     parser.add_argument('--info',type=str,action="append",default=[],help="Specify infomation about this build. Format key:value")
-    
+    parser.add_argument('--overwriteDocumentation',action='store_true',help='Write documentation files without checking modification dates.')
 
 def ParseArguments() -> None:
     class NameSpace:
@@ -134,15 +134,27 @@ gDocumentationWordCount = 0
 def main() -> None:
     global gDocumentationWordCount
     gDocumentationWordCount = 0
-    modifiedFiles = []
-    for directory in ['about','misc','technical']:
-        os.makedirs(Utils.PosixJoin(gOptions.documentationDir,directory),exist_ok=True)
-        for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
-            if not os.path.isfile(page.info.file) or Utils.DependenciesModified(page.info.file,[page.sourceFile]):
-                with open(page.info.file,'w',encoding='utf-8') as file:
-                    print(str(page),file=file)
-                modifiedFiles.append(page.info.file)
-    
+
+    with FileRegister.HashWriter("./",Utils.PosixJoin(gOptions.documentationDir,"misc/HashCache.json"),exactDates=True) as writer:
+        for directory in ['about','misc','technical']:
+            for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
+                status = writer.WriteTextFile(page.info.file,str(page),mode=FileRegister.Write.DESTINATION_UNCHANGED)
+
+                if status == FileRegister.Status.BLOCKED:
+                        # If the destination file has been modified, check to see if the source file is newer.
+                        # If so, overwrite. Otherwise generate a warning.
+                    sourcePath = Utils.PosixJoin(gOptions.documentationDir,directory + "Sources",Utils.PosixSplit(page.info.file)[1])
+                    if Utils.DependenciesModified(page.info.file,[sourcePath]):
+                        writer.WriteTextFile(page.info.file,str(page))
+                    else:
+                        Alert.warning("Did not overwrite",page.info.file,"because this file has a later modification date than its source,",sourcePath)
+
+
+        Alert.extra()
+        Alert.extra("Documentation files:",writer.StatusSummary())
+        deleteCount = writer.DeleteUnregisteredFiles("documentation/about",r".*\.md")
+        if deleteCount:
+            Alert.info(deleteCount,"documentation file(s) deleted.")
+
     if Alert.verbosity >= 2:
         PrintWordCount()
-    Alert.info("Wrote",len(modifiedFiles),".md files:",modifiedFiles)

@@ -7,37 +7,38 @@ The tags themselves are organized in a hierarchical scheme based on the Pāli te
 ## Tag Structure
 
 The superstructure of the tagging scheme can be understood by examining this grouping of the 16 root tags:
+<br>(The number of excerpts tagged by each appears in parentheses)
 
 __A. Mental qualities__
 
-1. [Skillful qualities](drilldown:)
-2. [Unskillful qualities](drilldown:)
-3. [Indeterminate qualities](drilldown:)
+1. [Skillful qualities](drilldown:) ($!Utils.SubtagExcerptCount("Skillful qualities")!$)
+2. [Unskillful qualities](drilldown:) ($!Utils.SubtagExcerptCount("Unskillful qualities")!$)
+3. [Indeterminate qualities](drilldown:) ($!Utils.SubtagExcerptCount("Indeterminate qualities")!$)
 
  __B. Modes of practice__
 
-4. [Three Refuges](drilldown:)
-5. [Devotional practice](drilldown:)
-6. [Precepts](drilldown:)
-7. [Meditation](drilldown:)
+4. [Three Refuges](drilldown:) ($!Utils.SubtagExcerptCount("Three Refuges")!$)
+5. [Devotional practice](drilldown:) ($!Utils.SubtagExcerptCount("Devotional practice")!$)
+6. [Precepts](drilldown:) ($!Utils.SubtagExcerptCount("Precepts")!$)
+7. [Meditation](drilldown:) ($!Utils.SubtagExcerptCount("Meditation")!$)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](drilldown:)
-9. [Teachers](drilldown:)
-10. [Monasteries](drilldown:)
+8. [Teaching Dhamma](drilldown:) ($!Utils.SubtagExcerptCount("Teaching Dhamma")!$)
+9. [Teachers](drilldown:) ($!Utils.SubtagExcerptCount("Teachers")!$)
+10. [Monasteries](drilldown:) ($!Utils.SubtagExcerptCount("Monasteries")!$)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](drilldown:)
-12. [History](drilldown:)
-13. [Cultural context](drilldown:)
-14. [Spiritual traditions](drilldown:)
+11. [Nature of the cosmos](drilldown:) ($!Utils.SubtagExcerptCount("Nature of the cosmos")!$)
+12. [History](drilldown:) ($!Utils.SubtagExcerptCount("History")!$)
+13. [Cultural context](drilldown:) ($!Utils.SubtagExcerptCount("Cultural context")!$)
+14. [Spiritual traditions](drilldown:) ($!Utils.SubtagExcerptCount("Spiritual traditions")!$)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](drilldown:)
-16. [Everyday life](drilldown:)
+15. [Renunciant practice](drilldown:) ($!Utils.SubtagExcerptCount("Renunciant practice")!$)
+16. [Everyday life](drilldown:) ($!Utils.SubtagExcerptCount("Everyday life")!$)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -65,6 +66,8 @@ Other somewhat arbitrary choices regarding specific tags include the following:
 ## History and Culture Tags
 
 The root tags [History](tag:) and [Cultural context](tag:) contain many similar subtags. History tags apply to verifiable statements about people, dates, etc., while culture tags apply to generalized statements about culture in particular times and places. The latter are invariably subjective. The frequency of [Culture/Thailand](tag:) and [Culture/West](tag:) reflects an ongoing dialogue about how to skillfully adapt (or not adapt) the practices and attitudes of the Thai Forest Tradition to the modern Western context.
+
+[Culture/Natural environment](tag:) refers to the effect of the environment on humans, while [Environment](tag:) refers to the effect of humans on the environment.
 
 ## Other Details
  - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.

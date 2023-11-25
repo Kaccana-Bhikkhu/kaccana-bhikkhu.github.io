@@ -245,14 +245,17 @@ def ModificationDate(file:str) -> datetime:
     info = os.stat(file)
     return datetime.fromtimestamp(info.st_mtime)
 
-def DependenciesModified(file:str,dependencies:list[str]) -> bool:
+def DependenciesModified(file:str,dependencies:Iterable[str]) -> bool:
     """Returns true if any of the file paths specified in dependencies has a later modification date than file."""
 
-    fileDate = ModificationDate(file)
-    for d in dependencies:
-        if ModificationDate(d) >= fileDate:
-            return True
-    return False
+    try:
+        fileDate = ModificationDate(file)
+        for d in dependencies:
+            if ModificationDate(d) >= fileDate:
+                return True
+        return False
+    except FileNotFoundError:
+        return True
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
@@ -335,6 +338,12 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
     if not found:
         Alert.error("Annotation",annotation,"doesn't have a proper parent.")
         return None
+
+def SubtagExcerptCount(tag: str) -> int:
+    "Return the number of excerpts referred to by this tag and its subtags."
+    primary = gDatabase["tag"][tag]["listIndex"]
+    return gDatabase["tagDisplayList"][primary]["subtagExcerptCount"]
+
 
 def GroupBySession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
     """Yield excerpts grouped by their session."""
