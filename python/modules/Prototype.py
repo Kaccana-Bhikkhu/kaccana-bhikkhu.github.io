@@ -16,7 +16,6 @@ from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
 from FileRegister import HashWriter
-import FileRegister
 
 NEW_STYLE = True
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
@@ -168,8 +167,9 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
 def ExcerptCount(tag:str) -> int:
     return gDatabase["tag"][tag].get("excerptCount",0)
 
-def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None) -> str:
+def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None,showSubtagCount = True) -> str:
     """Generate html for an indented list of tags.
+    tagList is the list of tags to print; use the global list if not provided
     If expandSpecificTags is specified, then expand only tags with index numbers in this set.
     If not, then expand all tags if expandDuplicateSubtags; otherwise expand only tags with primary subtags.
     If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
@@ -179,7 +179,8 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
     
     a = Airium()
     
-    tagList = gDatabase["tagDisplayList"]
+    if not tagList:
+        tagList = gDatabase["tagDisplayList"]
     if expandSpecificTags is None:
         if expandDuplicateSubtags:
             expandSpecificTags = range(len(tagList))
@@ -190,7 +191,8 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                     tag = tagList[n]["tag"]
                     if n in expandSpecificTags or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
                         expandSpecificTags.add(parent) # Then expand the parent tag
-                    
+    
+    baseIndent = tagList[0]["level"]
     skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     with a.div(Class="listing"):
         for index, item in enumerate(tagList):
@@ -204,7 +206,7 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
                 skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
             
             bookmark = Utils.slugify(item["tag"] or item["name"])
-            with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+            with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-baseIndent)}{tabMeasurement};"):
                 drilldownLink = ''
                 if expandTagLink:
                     if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
@@ -222,12 +224,13 @@ def IndentedHtmlTagList(expandSpecificTags:set[int]|None = None,expandDuplicateS
 
                 indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
                 
-                if item["excerptCount"] or item.get("subtagExcerptCount",0):
-                    if item.get("subtagExcerptCount",0):
+                subtagExcerptCount = showSubtagCount and item.get("subtagExcerptCount",0)
+                if item["excerptCount"] or subtagExcerptCount:
+                    if subtagExcerptCount:
                         itemCount = item["excerptCount"]
                         if not item['tag']:
                             itemCount = "-"
-                        countStr = f' ({itemCount}/{item["subtagExcerptCount"]})'
+                        countStr = f' ({itemCount}/{subtagExcerptCount})'
                     else:
                         countStr = f' ({item["excerptCount"]})'
                 else:
@@ -354,9 +357,46 @@ def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     yield info
     
     numericalTags = [tag for tag in gDatabase["tag"].values() if tag["number"]]
+    numericalTags.sort(key=lambda t: int(t["number"]))
+
+    spaceAfter = {tag1["tag"] for tag1,tag2 in itertools.pairwise(numericalTags) if tag1["number"] == tag2["number"]}
+        # Tags which are followed by a tag having the same number should have a space after them
+
+    numberNames = {3:"Threes", 4:"Fours", 5:"Fives", 6:"Sixes", 7:"Sevens", 8:"Eights",
+                   9:"Nines", 10:"Tens", 12: "Twelves", 37:"Thiry-sevens"}
+    def SubtagList(tag: dict) -> tuple(str,str,str):
+        number = int(tag["number"])
+        numberName = numberNames[number]
+
+        fullList = gDatabase["tagDisplayList"]
+        baseIndex = tag["listIndex"]
+        tagList = [fullList[baseIndex]]
+        baseLevel = tagList[0]["level"]
+
+        index = baseIndex + 1
+        addedNumberedTag = False
+        while index < len(fullList) and fullList[index]["level"] > baseLevel:
+            curTag = fullList[index]
+            if curTag["level"] == baseLevel + 1:
+                if curTag["indexNumber"] or not addedNumberedTag:
+                    tagList.append(curTag)
+                    if curTag["indexNumber"]:
+                        addedNumberedTag = True
+            index += 1
+
+        storedNumber = tagList[0]["indexNumber"]
+        tagList[0]["indexNumber"] = ""    # Temporarily remove any digit before the first entry.
+        content = IndentedHtmlTagList(tagList,showSubtagCount=False)
+        tagList[0]["indexNumber"] = storedNumber
+
+        if tag["tag"] in spaceAfter:
+            content += "\n<br>"
+        return numberName,content,numberName.lower()
+
+    pageContent = Html.ListWithHeadings(numericalTags,SubtagList,headingWrapper = Html.Tag("h2",dict(id="HEADING_ID")))
 
     page = Html.PageDesc(info)
-    page.AppendContent(", ".join(t["tag"] for t in numericalTags))
+    page.AppendContent(pageContent)
     page.AppendContent("Numerical tags",section="citationTitle")
     page.keywords = ["Tags","Numerical tags"]
     yield page 
