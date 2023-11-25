@@ -389,6 +389,8 @@ def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         content = IndentedHtmlTagList(tagList,showSubtagCount=False)
         tagList[0]["indexNumber"] = storedNumber
 
+        content = content.replace('style="margin-left: 0em;">','style="margin-left: 0em; font-weight:bold;">')
+            # Apply boldface to the top line only
         if tag["tag"] in spaceAfter:
             content += "\n<br>"
         return numberName,content,numberName.lower()
