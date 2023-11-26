@@ -201,7 +201,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         attributionStr = attributionTemplate(**renderDict)
 
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
-        if fullStop and "{fullStop}" not in attributionTemplateStr:
+        if fullStop and "fullStop" not in attributionTemplateStr:
             attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
     else:
         item["body"] = item["body"].replace("{attribution}","")
