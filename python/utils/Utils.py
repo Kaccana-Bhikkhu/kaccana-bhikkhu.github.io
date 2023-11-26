@@ -6,11 +6,12 @@ from datetime import timedelta, datetime
 import copy
 import re, os
 from urllib.parse import urlparse
-from typing import List
+from typing import BinaryIO
 import Alert, Link
 import pathlib, posixpath
 from collections.abc import Iterable
-from DjangoTextUtils import slugify,RemoveDiacritics
+from urllib.parse import urljoin,urlparse,quote,urlunparse
+import urllib.request, urllib.error
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -76,6 +77,16 @@ def DirectoryURL(url:str) -> str:
 def RemoteURL(url:str) -> bool:
     "Does this point to a remote file server?"
     return bool(urlparse(url).netloc)
+
+def OpenUrlOrFile(url:str) -> BinaryIO:
+    """Determine whether url represents a remote URL or local file, open it for reading, and return a handle."""
+    
+    if RemoteURL(url):
+        parsed = urlparse(url)
+        url = urlunparse(parsed._replace(path=quote(parsed.path)))
+        return urllib.request.urlopen(url)
+    else:
+        return open(url,"rb")
 
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"

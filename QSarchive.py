@@ -64,7 +64,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
         else:
             return newDB,opSet
     
-    requireSpreadsheetDB = {'SplitMp3','Link','Render'}
+    requireSpreadsheetDB = {'DownloadFiles','SplitMp3','Link','Render'}
     requireRenderedDB = {'Document','Prototype','TagMp3'}
 
     if 'Render' in opSet: # Render requires link in all cases
@@ -90,7 +90,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Link','Render','Document','Prototype','TagMp3']
+moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','TagMp3']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']

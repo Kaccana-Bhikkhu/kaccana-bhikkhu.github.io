@@ -11,6 +11,7 @@ from io import BytesIO
 import Utils, Alert
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
+import shutil
 from mutagen.mp3 import MP3
 from typing import Tuple, Type, Callable, Iterable, BinaryIO
 from enum import Enum
@@ -48,6 +49,22 @@ class LinkValidator:
             return True
         else:
             return os.path.isfile(url)
+    
+    def DownloadValidLink(self,url:str,item:dict,downloadLocation:str) -> bool:
+        """If the link is valid, download the file to downloadLoaction.
+        Return True if the link is valid and the file has been sucessfully downloaded."""
+
+        if self.ValidLink(url,item):
+            try:
+                with (Utils.OpenUrlOrFile(url) as remoteFile, open(downloadLocation,"wb") as localFile):
+                    shutil.copyfileobj(remoteFile, localFile)
+                return True
+            except (OSError,urllib.error.HTTPError) as error:
+                Alert.warning("Error",error,"when trying to download",item,"from",url)
+                return False
+        else:
+            return False
+
 
 class NoValidation (LinkValidator):
     "Perform no link validation whatsoever."
@@ -71,7 +88,8 @@ class RemoteURLChecker (LinkValidator):
             url = urlunparse(parsed._replace(path=quote(parsed.path)))
             try:
                 with urllib.request.urlopen(url) as request:
-                    return self.ValidateContents(url,item,request)
+                    result,_ = self.ValidateContents(url,item,request)
+                    return result
             except urllib.error.HTTPError as error:
                 Alert.notice("Unable to open",url,"for",item)
                 return False
@@ -83,18 +101,22 @@ class RemoteURLChecker (LinkValidator):
                 try:
                     with open(url,"rb") as file:
                         return self.ValidateContents(url,item,file)
-                except IOError as error:
+                except OSError as error:
                     Alert.warning(error,"when opening",url,"when processing",item)
                     return False
             else:
                 return super().ValidLink(url,item)
     
-    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
-        "This method should be overriden by subclasses that validate file contents."
-        return True
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> (bool,BinaryIO):
+        """This method should be overriden by subclasses that validate file contents.
+        It returns a tuple (valid,contents).
+        valid is True if we have determined the file contents to be valid.
+        contents is a file-like object representing a potentially local copy of the file.
+        This prevents us from having to download a remote file twice."""
+        return True,contents
 
 def RemoteMp3Tags(url:str) -> dict:
-    """Read the """
+    """Read the id3 tags from a remote mp3 file"""
     def get_n_bytes(url, size):
         req = urllib.request.Request(url)
         req.headers['Range'] = 'bytes=%s-%s' % (0, size-1)
@@ -126,14 +148,14 @@ class Mp3LengthChecker (RemoteURLChecker):
     warningDelta: float # Print a notice if the mp3 file length difference exceeds this
     invalidateDelta: float # Report an invalid link if the mp3 file length difference exceeds this
     def __init__(self,warningDelta: float = 1.0,invalidateDelta = 5.0):
-        super().__init__(True)
+        super().__init__(openLocalFiles=True)
         self.warningDelta = warningDelta
         self.invalidateDelta = invalidateDelta
 
     def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
         parsed = urlparse(url)
         if not parsed.path.lower().endswith(".mp3"):
-            return True
+            return True,contents
         
         try:
             contents.seek(0)
@@ -152,10 +174,10 @@ class Mp3LengthChecker (RemoteURLChecker):
         # Alert.extra(url,"actual",lengthStr,"expected",expectedLengthStr)
         if diff >= self.invalidateDelta:
             Alert.warning(item,"indicates a duration of",expectedLengthStr,"but its mp3 file has duration",lengthStr,"This invalidates",url)
-            return False
+            return False,data
         elif diff >= self.warningDelta:
             Alert.caution(item,"indicates a duration of",expectedLengthStr,"but its mp3 file at",url,"has duration",lengthStr)
-        return True
+        return True,data
 
 remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
     ItemType.SESSION: "remoteMp3Url",
@@ -186,7 +208,7 @@ class Linker:
         else:
             return mirrorList
 
-    def Filename(self,item: dict) -> str:
+    def FileName(self,item: dict) -> str:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
             return Utils.PosixJoin(item["event"],Utils.ItemCode(item) + ".mp3")
@@ -211,9 +233,9 @@ class Linker:
                 # If the remote link specifies a local file, the path will be relative to prototypeDir/indexes.
                 # This occurs only with references.
         
-        fileName = self.Filename(item)
+        fileName = self.FileName(item)
         if fileName:
-            return urljoin(gOptions.mirror[self.itemType][mirror],self.Filename(item))
+            return urljoin(gOptions.mirror[self.itemType][mirror],self.FileName(item))
         else:
             return ""
 
@@ -256,6 +278,22 @@ class Linker:
         
         return False
 
+    def DownloadItem(self,item: dict) -> None:
+        """If needed, attempt to download this item from any available mirrors."""
+        if self.LocalItemNeeded(item):
+            fileName = self.URL(item,"local")
+            tempDownloadLocation = fileName + ".download"
+
+            remainingMirrors = self._UncheckedMirrors(item)[1:]
+            localMirrors = ("local",gOptions.uploadMirror)
+            for mirror in remainingMirrors:
+                if mirror not in localMirrors:
+                    url = self.URL(item,mirror)
+                    Alert.extra("Will try to download",item,"from",url,"to",tempDownloadLocation)
+                    """if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
+                        Alert.extra("Downloaded",item,"from",url,"to",tempDownloadLocation)
+                    else:
+                        Alert.extra("Downloading",item,"from",url,"to",tempDownloadLocation,"failed silently.")"""
 
 def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
     """Auto-detect the type of this item and return its URL.
@@ -271,6 +309,9 @@ def LocalItemNeeded(item:dict) -> bool:
     "Auto-detect the type of this item and return whether a local copy is needed"
     return gLinker[AutoType(item)].LocalItemNeeded(item)
 
+def DownloadItem(item:dict) -> None:
+    "Auto-detect the type of this item. If a local copy is needed, try to download one."
+    gLinker[AutoType(item)].DownloadItem(item)
 
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
@@ -354,8 +395,9 @@ def AddArguments(parser) -> None:
     """Link check levels are interpreted as follows:
         0: No link checking whatsoever (NoValidation)
         1: Check that local files exist and that remote URLs aren't blank (LinkValidator base class)
-        2: Perform checks that require reading file metadata and headers
-        3: Perform checks that require reading the entire file (Mp3LengthChecker)
+        2: Perform checks that require reading local cache files
+        3: Perform checks that require reading file metadata and headers
+        4: Perform checks that require reading the entire file (Mp3LengthChecker)
 
         Round down if a given level is not implemented for a given file type.
     """
@@ -419,7 +461,7 @@ def ParseArguments() -> None:
                     linkCheckLevels[it][m] = level
     gOptions.linkCheckLevel = linkCheckLevels            
 
-gLinker:dict[ItemType,dict[str,Linker]] = {}
+gLinker:dict[ItemType,Linker] = {}
 
 def Initialize() -> None:
     """Configure the linker object."""
@@ -429,9 +471,9 @@ def Initialize() -> None:
         "Choose a Linker object for a given item type and link checking level."
         if level == 0:
             return NoValidation()
-        if level == 1:
+        if level <= 2:
             return LinkValidator()
-        elif level == 2 or (level > 2 and itemType == ItemType.REFERENCE):
+        elif level == 3 or (level > 3 and itemType == ItemType.REFERENCE):
             return RemoteURLChecker()
         else:
             return Mp3LengthChecker()
