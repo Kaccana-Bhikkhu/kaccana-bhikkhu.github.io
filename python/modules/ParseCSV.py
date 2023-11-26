@@ -735,6 +735,12 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         annotation.pop(key,None)    # Remove keys that aren't relevant for annotations
     
     annotation["indentLevel"] = len(annotation["flags"].split(ExcerptFlag.INDENT))
+    if len(excerpt["annotations"]):
+        prevAnnotationLevel = excerpt["annotations"][-1]["indentLevel"]
+    else:
+        prevAnnotationLevel = 0
+    if annotation["indentLevel"] - 1 > prevAnnotationLevel:
+        Alert.warning("Annotation",annotation,"to",excerpt,": Cannot increase indentation level by more than one.")
     
     excerpt["annotations"].append(annotation)
 

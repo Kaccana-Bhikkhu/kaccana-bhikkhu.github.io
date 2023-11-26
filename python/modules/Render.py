@@ -170,7 +170,8 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
             else:
                 defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
         else:
-            defaultTeachers = container["teachers"]
+            parent = Utils.ParentAnnotation(container,item)
+            defaultTeachers = parent.get("teachers",())
         if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
             teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')

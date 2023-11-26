@@ -8049,7 +8049,7 @@
       "annotations": [
         {
           "kind": "Story",
-          "flags": "-",
+          "flags": "",
           "startTime": "",
           "endTime": "",
           "text": "The ultra-competent assistant who wants to ordain.",
@@ -8060,11 +8060,11 @@
             "Work",
             "Monastic life/Motivation"
           ],
-          "indentLevel": 2
+          "indentLevel": 1
         },
         {
           "kind": "Story",
-          "flags": "-",
+          "flags": "",
           "startTime": "",
           "endTime": "",
           "text": "The king's assistant who dives into the water to get 20 pounds of gold (DN 17).",
@@ -8072,7 +8072,7 @@
             "AY"
           ],
           "tags": [],
-          "indentLevel": 2
+          "indentLevel": 1
         }
       ],
       "tags": [
@@ -21841,22 +21841,27 @@
       "teachers": [
         "AThan"
       ],
+      "annotations": [],
+      "tags": [
+        "Right Mindfulness"
+      ],
+      "qTagCount": 1,
+      "duration": "36:51"
+    },
+    {
+      "event": "WR2015",
+      "sessionNumber": 16,
+      "excerptNumber": 1,
+      "fileNumber": 1,
+      "kind": "Comment",
+      "flags": "2",
+      "startTime": "23:22",
+      "endTime": "",
+      "text": "The phrase \"ancestral territory\" [mentioned in SN 47.6] doesn't carry oomph for (non-Native) Americans.",
+      "teachers": [
+        "AKc"
+      ],
       "annotations": [
-        {
-          "kind": "Comment",
-          "flags": "2",
-          "startTime": "",
-          "endTime": "",
-          "text": "The phrase \"ancestral territory\" [mentioned in SN 47.6] doesn't carry oomph for (non-Native) Americans.",
-          "teachers": [
-            "AKc"
-          ],
-          "tags": [
-            "Culture/West",
-            "Culture/Native American"
-          ],
-          "indentLevel": 1
-        },
         {
           "kind": "Response",
           "flags": "",
@@ -21873,16 +21878,18 @@
         }
       ],
       "tags": [
+        "Culture/West",
+        "Culture/Native American",
         "Right Mindfulness"
       ],
-      "qTagCount": 1,
-      "duration": "36:51"
+      "qTagCount": 3,
+      "duration": "3:04"
     },
     {
       "event": "WR2015",
       "sessionNumber": 16,
-      "excerptNumber": 1,
-      "fileNumber": 1,
+      "excerptNumber": 2,
+      "fileNumber": 2,
       "kind": "Question",
       "flags": "",
       "startTime": "26:26",
@@ -21931,8 +21938,8 @@
     {
       "event": "WR2015",
       "sessionNumber": 16,
-      "excerptNumber": 2,
-      "fileNumber": 2,
+      "excerptNumber": 3,
+      "fileNumber": 3,
       "kind": "Question",
       "flags": "",
       "startTime": "32:42",
@@ -21954,8 +21961,8 @@
     {
       "event": "WR2015",
       "sessionNumber": 16,
-      "excerptNumber": 3,
-      "fileNumber": 3,
+      "excerptNumber": 4,
+      "fileNumber": 4,
       "kind": "Question",
       "flags": "",
       "startTime": "34:45",
@@ -24320,12 +24327,12 @@
       ],
       "annotations": [
         {
-          "kind": "Follow-up",
+          "kind": "Comment",
           "flags": "",
+          "startTime": "",
+          "endTime": "",
           "text": "If you happen to exist in a body, it seems you need to learn how to live in a body.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "tags": [
             "Form"
           ],
@@ -47393,7 +47400,7 @@
       "website": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Index.html",
       "description": "Ajahn Pasanno, Ajahn Karuṇadhammo, and Ajahn Ñāṇiko took turns read suttas and teachings regarding the Four Foundations of Mindfulness and answer questions on the subject. The slideshow illustrating the 32 parts of the body is particularly noteworthy.",
       "sessions": 53,
-      "excerpts": 178,
+      "excerpts": 179,
       "tagsApplied": 528,
       "invalidTags": 0,
       "duration": "29:09:47"
@@ -49094,7 +49101,7 @@
       ],
       "sessionTitle": "Mindfulness the Gatekeeper 3",
       "remoteMp3Url": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/16_AP_01_25_2015_Mindfulness_the_Gatekeeper_3.mp3",
-      "excerpts": 4,
+      "excerpts": 5,
       "tags": [
         "Right Mindfulness"
       ]
@@ -52222,7 +52229,7 @@
       "listIndex": 33,
       "eventCount": 1,
       "sessionCount": 4,
-      "excerptCount": 52
+      "excerptCount": 53
     },
     "Mindfulness of body": {
       "tag": "Mindfulness of body",
@@ -63595,7 +63602,7 @@
       "subsumed": false,
       "text": "Skillful qualities (47) [kusalā dhammā]",
       "tag": "Skillful qualities",
-      "subtagExcerptCount": 1149
+      "subtagExcerptCount": 1150
     },
     {
       "level": 2,
@@ -63618,7 +63625,7 @@
       "subsumed": false,
       "text": "Noble Eightfold Path (31) [ariya aṭṭaṅgika magga]",
       "tag": "Eightfold Path",
-      "subtagExcerptCount": 748
+      "subtagExcerptCount": 749
     },
     {
       "level": 3,
@@ -63961,11 +63968,11 @@
       "flags": "*",
       "name": "Right Mindfulness",
       "pali": "sammā-sati",
-      "excerptCount": 52,
+      "excerptCount": 53,
       "subsumed": false,
-      "text": "Right Mindfulness (52) [sammā-sati]",
+      "text": "Right Mindfulness (53) [sammā-sati]",
       "tag": "Right Mindfulness",
-      "subtagExcerptCount": 403
+      "subtagExcerptCount": 404
     },
     {
       "level": 4,
@@ -64512,7 +64519,7 @@
       "subsumed": false,
       "text": "Aids to Awakening (1) [bodhipakkhiyādhammā]",
       "tag": "Aids to Awakening",
-      "subtagExcerptCount": 142
+      "subtagExcerptCount": 143
     },
     {
       "level": 3,
@@ -64520,9 +64527,9 @@
       "flags": "4",
       "name": "Four Foundations of Mindfulness",
       "pali": "cattāro satipaṭṭhānā",
-      "excerptCount": 52,
+      "excerptCount": 53,
       "subsumed": true,
-      "text": "Four Foundations of Mindfulness [cattāro satipaṭṭhānā] see Right Mindfulness (52)",
+      "text": "Four Foundations of Mindfulness [cattāro satipaṭṭhānā] see Right Mindfulness (53)",
       "tag": "Right Mindfulness"
     },
     {
@@ -67204,7 +67211,7 @@
       "subsumed": false,
       "text": "Meditation (52) [bhāvanā]",
       "tag": "Meditation",
-      "subtagExcerptCount": 803
+      "subtagExcerptCount": 804
     },
     {
       "level": 2,
@@ -67234,11 +67241,11 @@
       "flags": "",
       "name": "Four Foundations of Mindfulness",
       "pali": "cattāro satipaṭṭhānā",
-      "excerptCount": 52,
+      "excerptCount": 53,
       "subsumed": true,
-      "text": "Four Foundations of Mindfulness [cattāro satipaṭṭhānā] see Right Mindfulness (52)",
+      "text": "Four Foundations of Mindfulness [cattāro satipaṭṭhānā] see Right Mindfulness (53)",
       "tag": "Right Mindfulness",
-      "subtagExcerptCount": 339
+      "subtagExcerptCount": 340
     },
     {
       "level": 3,
@@ -71896,8 +71903,8 @@
       "startDate": "6/1/2015",
       "teachers": "AP;AKd;ANy",
       "sessions": 53,
-      "excerpts": 178,
-      "answersListenedTo": 178,
+      "excerpts": 179,
+      "answersListenedTo": 179,
       "tagsApplied": 528,
       "invalidTags": 0,
       "duration": "29:09:47"
