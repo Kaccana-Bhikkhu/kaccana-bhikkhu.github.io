@@ -11,34 +11,34 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (1137)
-2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (413)
-3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (561)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (1162)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (421)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (571)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (156)
-5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (139)
+4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (160)
+5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (141)
 6. [Precepts](../../pages/drilldown/precepts.html#precepts) (132)
-7. [Meditation](../../pages/drilldown/meditation.html#meditation) (792)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation) (813)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (602)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (452)
+8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (612)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (465)
 10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (133)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (204)
-12. [History](../../pages/drilldown/history.html#history) (117)
-13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (281)
-14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (59)
+11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (208)
+12. [History](../../pages/drilldown/history.html#history) (119)
+13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (289)
+14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (61)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (408)
-16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (421)
+15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (410)
+16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (423)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
