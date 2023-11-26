@@ -12,6 +12,7 @@ import pathlib, posixpath
 from collections.abc import Iterable
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
+from DjangoTextUtils import slugify,RemoveDiacritics
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -78,12 +79,21 @@ def RemoteURL(url:str) -> bool:
     "Does this point to a remote file server?"
     return bool(urlparse(url).netloc)
 
+def QuotePath(url:str) -> str:
+    """If the path section of url contains any % characters, assume it's already been quoted.
+    Otherwise quote it."""
+
+    parsed = urlparse(url)
+    if "%" in parsed.path:
+        return url
+    else:
+        return urlunparse(parsed._replace(path=quote(parsed.path)))
+
 def OpenUrlOrFile(url:str) -> BinaryIO:
     """Determine whether url represents a remote URL or local file, open it for reading, and return a handle."""
     
     if RemoteURL(url):
-        parsed = urlparse(url)
-        url = urlunparse(parsed._replace(path=quote(parsed.path)))
+        url = QuotePath(url)
         return urllib.request.urlopen(url)
     else:
         return open(url,"rb")

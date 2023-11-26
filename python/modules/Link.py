@@ -18,7 +18,7 @@ from enum import Enum
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 import copy
-
+import contextlib
 class StrEnum(str,Enum):
     pass
 
@@ -84,8 +84,7 @@ class RemoteURLChecker (LinkValidator):
         if not url.strip():
             return False
         if Utils.RemoteURL(url):
-            parsed = urlparse(url)
-            url = urlunparse(parsed._replace(path=quote(parsed.path)))
+            url = Utils.QuotePath(url)
             try:
                 with urllib.request.urlopen(url) as request:
                     result,_ = self.ValidateContents(url,item,request)
@@ -280,8 +279,13 @@ class Linker:
 
     def DownloadItem(self,item: dict) -> None:
         """If needed, attempt to download this item from any available mirrors."""
+        fileName = self.URL(item,"local")
+        if not fileName:
+            return 
+        if self.itemType == ItemType.REFERENCE and not fileName.lower().endswith(".pdf"):
+            return # Download only html files
+        
         if self.LocalItemNeeded(item):
-            fileName = self.URL(item,"local")
             tempDownloadLocation = fileName + ".download"
 
             remainingMirrors = self._UncheckedMirrors(item)[1:]
@@ -289,11 +293,13 @@ class Linker:
             for mirror in remainingMirrors:
                 if mirror not in localMirrors:
                     url = self.URL(item,mirror)
-                    Alert.extra("Will try to download",item,"from",url,"to",tempDownloadLocation)
-                    """if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
-                        Alert.extra("Downloaded",item,"from",url,"to",tempDownloadLocation)
-                    else:
-                        Alert.extra("Downloading",item,"from",url,"to",tempDownloadLocation,"failed silently.")"""
+                    #if self.mirrorValidator[mirror].ValidLink(url,item):
+                    #    Alert.extra("Will try to download",item,"from",url,"to",tempDownloadLocation)
+                    if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
+                        Alert.extra("Downloaded",item,"to",tempDownloadLocation)
+                        with contextlib.suppress(FileNotFoundError):
+                            os.remove(fileName)
+                        os.rename(tempDownloadLocation,fileName)
 
 def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
     """Auto-detect the type of this item and return its URL.

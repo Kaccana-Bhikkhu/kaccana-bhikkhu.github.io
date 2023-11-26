@@ -98,8 +98,8 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "DownloadFiles",
-                "--sheets",
-                "All"
+                "--reference",
+                "abhayagiri,remote"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
