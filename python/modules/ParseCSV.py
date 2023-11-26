@@ -508,27 +508,34 @@ def SortTags(database: dict) -> None:
         Alert.extra("Dateless tags:",datelessTags)
 
 def CountSubtagExcerpts(database):
-    """Add the subtagExcerptCount field to each item in tagDisplayList which counts the number
+    """Add the subtagCount and subtagExcerptCount fields to each item in tagDisplayList which counts the number
     of excerpts which are tagged by this tag or any of its subtags."""
 
     tagList = database["tagDisplayList"]
     excerpts = database["excerpts"]
+    subtags = [None] * len(tagList)
     savedSearches = [None] * len(tagList)
     for parentIndex,childIndexes in WalkTags(tagList,returnIndices=True):
+        theseTags = set()
         thisSearch = set()
         for index in childIndexes + [parentIndex]:
-            if savedSearches[index] is None:
+            if subtags[index] is None:
                 tag = tagList[index]["tag"]
                 if tag:
-                    savedSearches[index] = set(id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag)))
+                    subtags[index] = {tag}
+                    savedSearches[index] = {id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag))}
                     #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
                 else:
+                    subtags[index] = set()
                     savedSearches[index] = set()
             
+            theseTags.update(subtags[index])
             thisSearch.update(savedSearches[index])
         
+        subtags[parentIndex] = theseTags
         savedSearches[parentIndex] = thisSearch
         #print(f"{parentIndex} {tagList[parentIndex]["tag"]}: {len(savedSearches[index])} excerpts singly")
+        tagList[parentIndex]["subtagCount"] = len(theseTags) - 1
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
 

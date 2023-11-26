@@ -339,10 +339,11 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
         Alert.error("Annotation",annotation,"doesn't have a proper parent.")
         return None
 
-def SubtagExcerptCount(tag: str) -> int:
-    "Return the number of excerpts referred to by this tag and its subtags."
+def SubtagDescription(tag: str) -> str:
+    "Return a string describing this tags subtags."
     primary = gDatabase["tag"][tag]["listIndex"]
-    return gDatabase["tagDisplayList"][primary]["subtagExcerptCount"]
+    listEntry = gDatabase["tagDisplayList"][primary]
+    return f'{listEntry["subtagCount"]} subtags, {listEntry["subtagExcerptCount"]} excerpts'
 
 
 def GroupBySession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:

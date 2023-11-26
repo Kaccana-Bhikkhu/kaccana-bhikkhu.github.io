@@ -97,7 +97,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Render,Prototype",
+                "Prototype",
                 "--sheets",
                 "All"
             ],
