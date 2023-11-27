@@ -98,8 +98,10 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "DownloadFiles",
-                "--reference",
-                "abhayagiri,remote"
+                "--excerptMp3",
+                "local,abhayagiri",
+                "--uploadMirror",
+                "local"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

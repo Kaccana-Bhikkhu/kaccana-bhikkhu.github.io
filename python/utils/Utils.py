@@ -452,4 +452,32 @@ def SummarizeDict(d: dict,printer: Alert.AlertClass) -> None:
         except TypeError:
             pass
         printer(desc)
-    
+
+class MockFuture():
+    def __init__(self, result) -> None:
+        self.result = result
+    def result(self, timeout=None):
+        return self.result
+    def cancel(self):
+        pass
+
+class MockThreadPoolExecutor():
+    """Don't execute any threads for testing purposes.
+    https://stackoverflow.com/questions/10434593/dummyexecutor-for-pythons-futures"""
+    def __init__(self, **kwargs):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        pass
+
+    def submit(self, fn, *args, **kwargs):
+        # execute functions in series without creating threads
+        # for easier unit testing
+        result = fn(*args, **kwargs)
+        return MockFuture(result)
+
+    def shutdown(self, wait=True):
+        pass

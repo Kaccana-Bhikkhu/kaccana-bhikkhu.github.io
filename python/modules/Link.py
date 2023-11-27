@@ -56,6 +56,7 @@ class LinkValidator:
 
         if self.ValidLink(url,item):
             try:
+                os.makedirs(Utils.PosixSplit(downloadLocation)[0],exist_ok=True)
                 with (Utils.OpenUrlOrFile(url) as remoteFile, open(downloadLocation,"wb") as localFile):
                     shutil.copyfileobj(remoteFile, localFile)
                 return True
@@ -329,23 +330,14 @@ def DownloadItem(item:dict) -> bool:
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
 
-    multiThread = True
-
-    if multiThread:
-        with ThreadPoolExecutor() as pool:
-            for itemType,items in gItemLists.items():
-                for item in Utils.Contents(items):
-                    if item.get("fileNumber",1) == 0:
-                        continue # Don't link session excerpts
-
-                    pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
-    else:
+    multithread = True
+    with ThreadPoolExecutor() if multithread else Utils.MockThreadPoolExecutor() as pool:
         for itemType,items in gItemLists.items():
             for item in Utils.Contents(items):
                 if item.get("fileNumber",1) == 0:
                     continue # Don't link session excerpts
 
-                gLinker[itemType].LinkItem(item)
+                pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
 
     for itemType,items in gItemLists.items():
         unlinked = []
@@ -359,7 +351,7 @@ def LinkItems() -> None:
                 unlinked.append(item)
         
         if unlinked:
-            Alert.warning(itemType + ":",len(unlinked),"unlinked items:",*unlinked)
+            Alert.warning(len(unlinked),f"unlinked {itemType} items. The first 10 are:",*unlinked[:10])
                           
         Alert.info(itemType + " mirror links:",dict(mirrorCount))
 
@@ -440,7 +432,11 @@ def ParseArguments() -> None:
     for itemType in ItemType:
         mirrorList = getattr(gOptions,itemType).split(",")
         mirrorList = [CheckMirrorName(itemType,m) for m in mirrorList]
+        
+        mirrorCount = len(mirrorList)
         RemoveAllExceptFirst(mirrorList,["local",gOptions.uploadMirror])
+        if len(mirrorList) != mirrorCount and gOptions.uploadMirror != "local":
+            Alert.caution(f"The list of {itemType} mirrors contained both the local mirror and the upload mirror ({gOptions.uploadMirror}). The item later in the list has been removed.")
         setattr(gOptions,itemType,mirrorList)
 
     if "remote" in gOptions.excerptMp3:
