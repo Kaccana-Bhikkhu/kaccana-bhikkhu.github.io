@@ -5,9 +5,65 @@ from __future__ import annotations
 import os, json
 import Utils, Alert, Link
 import Mp3DirectCut
-from typing import List
+from typing import List, Union, NamedTuple
+from datetime import timedelta
+import copy
 
 Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3DirectCut')))
+
+TimeSpec = Union[timedelta,float,str]
+"A union of types that can indicate a time index to an audio file."
+
+def ToTimeDelta(time: TimeSpec) -> timedelta|None:
+    "Convert various types to a timedetla object."
+
+    if type(time) == timedelta:
+        return copy(time)
+    
+    try:
+        floatVal = float(time)
+        return timedelta(seconds =floatVal)
+    except ValueError:
+        pass
+
+    if not time:
+        return None
+
+    try:
+        numbers = str.split(time,":")
+        if len(numbers) == 2:
+            return timedelta(minutes = int(numbers[0]),seconds = float(numbers[1]))
+        elif len(numbers) == 3:
+            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = float(numbers[2]))
+    except (ValueError,TypeError):
+        pass
+    
+    raise ValueError(f"{repr(time)} cannot be converted to a time.")
+    
+class Clip(NamedTuple):
+    """A Clip represents a section of a given audio file."""
+    file: str               # Filename of the audio file
+    start: TimeSpec         # Clip start time
+    end: TimeSpec|None      # Clip end time; None indicates the end of the file
+
+class ClipTD(NamedTuple):
+    """Same as above, except the types must be timedelta."""
+    file: str               # Filename of the audio file
+    start: timedelta        # Clip start time
+    end: timedelta|None     # Clip end time; None indicates the end of the file
+
+    def FromClip(clip: Clip) -> ClipTD:
+        """Convert a Clip to a ClipTD."""
+        return ClipTD(clip.file,ToTimeDelta(clip.start),ToTimeDelta(clip.end))
+    
+    def Duration(self,fileDurarion: timedelta) -> timedelta:
+        """Calculate the duration of this clip.
+        Use fileDuration if self.end is None."""
+
+        if self.end:
+            return self.end - self.start
+        else:
+            return fileDurarion - self.start
 
 def IncludeRedactedExcerpts() -> List[dict]:
     "Merge the redacted excerpts back into the main list in order to split mp3 files"

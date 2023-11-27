@@ -5,6 +5,7 @@ from __future__ import annotations
 import os, re, csv, json, unicodedata
 import Filter
 import Render
+import SplitMp3
 import Utils
 from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
@@ -779,6 +780,65 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
         printer(i,message)
     return filteredItems
 
+def CreateClips(excerpts: list[dict], sessions: list[dict]) -> None:
+    """For excerpts in a given event, convert startTime and endTime keys into the clips key.
+    Eventually this function will scan for Alt. Audio and Append Audio annotations for extended functionality."""
+
+    # First eliminate excerpts with fatal parsing errors.
+    deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
+    for x in excerpts:
+        try:
+            if x["startTime"] != "Session":
+                startTime = SplitMp3.ToTimeDelta(x["startTime"])
+                if startTime is None:
+                    deletedExcerptIDs.add(id(x))
+            endTime = SplitMp3.ToTimeDelta(x["endTime"])
+        except ValueError:
+            deletedExcerptIDs.add(id(x))
+
+    for index in reversed(range(len(excerpts))):
+        if id(excerpts[index]) in deletedExcerptIDs:
+            Alert.error("Misformed time string in",excerpts[index],". Will delete this excerpt.")
+            del excerpts[index]            
+
+    # Then scan through the excerpts and add key "clips"
+    for session,sessionExcerpts in Utils.GroupBySession(excerpts,sessions):
+        prevExcerpt = None
+        sessionDuration = SplitMp3.ToTimeDelta(session["duration"])
+        for x in sessionExcerpts:
+            # Calculate the duration of each excerpt and handle overlapping excerpts
+            startTime = x["startTime"]
+            endTime = x["endTime"]
+            if startTime == "Session":
+                    # The session excerpt has the length of the session and has no clips key
+                session = Utils.FindSession(sessions,x["event"],x["sessionNumber"])
+                x["duration"] = session["duration"]
+                if not x["duration"]:
+                    Alert.error("Deleting session excerpt",x,"since the session has no duration.")
+                    deletedExcerptIDs.add(id(x))
+                continue
+            
+            if prevExcerpt and "clips" in prevExcerpt:
+                if not prevExcerpt["clips"][0].end:
+                        # If the previous excerpt didn't specify an end time, use the start time of this excerpt
+                    prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
+            
+                prevClip = SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0])
+                duration = prevClip.Duration(sessionDuration)
+                prevExcerpt["duration"] = Utils.TimeDeltaToStr(duration)
+                
+                if prevClip.end > SplitMp3.ToTimeDelta(startTime):
+                    startTime = prevExcerpt["clips"][0].end
+                    x["startTime"] = prevExcerpt["endTime"]
+                    if ExcerptFlag.OVERLAP not in x["flags"]:
+                        Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+            x["clips"] = [SplitMp3.Clip("$",startTime,endTime)]
+            prevExcerpt = x
+        
+        if prevExcerpt:
+            prevExcerpt["duration"] = Utils.TimeDeltaToStr(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]).Duration(sessionDuration))
+
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
@@ -927,8 +987,6 @@ def LoadEventFile(database,eventName,directory):
     if blankExcerpts:
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
-    prevSession = None
-    deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
     for xIndex, x in enumerate(excerpts):
         # Combine all tags into a single list, but keep track of how many qTags there are
         x["tags"] = x["qTag"] + x["aTag"]
@@ -938,51 +996,10 @@ def LoadEventFile(database,eventName,directory):
             del x["aTag"]
             x.pop("aListen",None)
 
-        # Calculate the duration of each excerpt and handle overlapping excerpts
-        startTime = x["startTime"]
-        endTime = x["endTime"]
-        if startTime == "Session": # The session excerpt has the length of the session
-            x["duration"] = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-            continue
-
-        if not endTime:
-            try:
-                if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
-                    endTime = excerpts[xIndex + 1]["startTime"]
-            except IndexError:
-                pass
-        
-        if not endTime:
-            endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-        
-        try:
-            startTime = Utils.StrToTimeDelta(startTime)
-            endTime = Utils.StrToTimeDelta(endTime)
-        except ValueError:
-            if type(startTime) == str:
-                failed = startTime
-            else:
-                failed = endTime
-            Alert.error("Cannot convert",repr(failed),"to a time when processing",x,"; will delete this excerpt.")
-            deletedExcerptIDs.add(id(x))
-            continue
-        
-        session = (x["event"],x["sessionNumber"])
-        if session != prevSession: # A new session starts at time zero
-            prevEndTime = timedelta(seconds = 0)
-            prevSession = session
-
-        if startTime < prevEndTime: # Does this overlap with the previous excerpt?
-            startTime = prevEndTime
-            x["startTime"] = Utils.TimeDeltaToStr(startTime)
-            if ExcerptFlag.OVERLAP not in x["flags"]:
-                Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
-
-        x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
-        prevEndTime = endTime
+    CreateClips(excerpts,sessions)
     
     removedExcerpts = [x for x in excerpts if x["exclude"]]
-    excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
+    excerpts = [x for x in excerpts if not x["exclude"]]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
 
     sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
