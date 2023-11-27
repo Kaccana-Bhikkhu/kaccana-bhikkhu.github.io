@@ -286,8 +286,6 @@ class Linker:
         fileName = self.URL(item,"local")
         if not fileName:
             return False
-        if self.itemType == ItemType.REFERENCE and not fileName.lower().endswith(".pdf"):
-            return False # Download only html files
         
         if self.LocalItemNeeded(item):
             tempDownloadLocation = fileName + ".download"
@@ -314,7 +312,7 @@ def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
 
     baseUrl = gLinker[AutoType(item)].URL(item,mirror)
 
-    if not Utils.RemoteURL(baseUrl):
+    if baseUrl and not Utils.RemoteURL(baseUrl):
         return ("../" * directoryDepth) + baseUrl
     return baseUrl
 
@@ -327,6 +325,15 @@ def DownloadItem(item:dict) -> bool:
     Returns True if an item was sucessfully downloaded."""
     return gLinker[AutoType(item)].DownloadItem(item)
 
+def LinkableItem(item: dict) -> bool:
+    """Returns True if this item requires linking to a file in a mirror."""
+    if item.get("fileNumber",1) == 0:
+        return False # Session excerpts don't need linking
+    if "author" in item and not item["filename"] and not Utils.RemoteURL(item["remoteUrl"]):
+        return False # Only link references that specify a filename or have a valid remote URL
+    
+    return True
+
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
 
@@ -334,8 +341,8 @@ def LinkItems() -> None:
     with ThreadPoolExecutor() if multithread else Utils.MockThreadPoolExecutor() as pool:
         for itemType,items in gItemLists.items():
             for item in Utils.Contents(items):
-                if item.get("fileNumber",1) == 0:
-                    continue # Don't link session excerpts
+                if not LinkableItem(item):
+                    continue
 
                 pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
 
@@ -343,8 +350,8 @@ def LinkItems() -> None:
         unlinked = []
         mirrorCount = Counter()
         for item in Utils.Contents(items):
-            if item.get("fileNumber",1) == 0:
-                continue # Don't count session excerpts
+            if not LinkableItem(item):
+                continue
             if item.get("mirror",""):
                 mirrorCount[item["mirror"]] += 1
             else:

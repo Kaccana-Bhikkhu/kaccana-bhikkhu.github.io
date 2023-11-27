@@ -327,13 +327,22 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             return matchObject[1]
         
         url = Link.URL(reference,directoryDepth=2)
-        page = ParsePageNumber(matchObject[2])
-        if page:
-           url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
+        if url:
+            page = ParsePageNumber(matchObject[2])
+            if page:
+                url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
 
-        returnValue = f"[{reference['title']}]({url})"
+            returnValue = f"[{reference['title']}]({url})"
+        else:
+            returnValue = f"{reference['title']}"
+
         if reference['attribution']:
             returnValue += " " + Prototype.LinkTeachersInText(reference['attribution'])
+        
+        if not url and reference["remoteUrl"]:
+            returnValue += " " + reference["remoteUrl"]
+                # If there's no link, "remoteUrl" key indicates a suffix, typically "(commercial)"
+
         return returnValue
 
     def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
