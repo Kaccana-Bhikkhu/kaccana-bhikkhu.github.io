@@ -70,7 +70,8 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     if 'Render' in opSet: # Render requires link in all cases
         opSet.add('Link')
     if opSet.intersection(requireRenderedDB):
-        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB):
+        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB) and \
+                      not Utils.DependenciesModified(clOptions.renderedDatabase,[clOptions.spreadsheetDatabase]):
             try:
                 with open(clOptions.renderedDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
                     newDB = json.load(file)
