@@ -82,7 +82,7 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
             tagStrs.insert(excerpt["qTagCount"],"//")
         parts += tagStrs
     
-    source = f'Source: {excerpt["startTime"]} in file "{session["filename"]}"'
+    source = f'Source: {excerpt["clips"][0].start} in file "{session["filename"]}"'
     parts.append(source)
 
     return " ".join(parts)

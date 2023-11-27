@@ -69,7 +69,7 @@ def IncludeRedactedExcerpts() -> List[dict]:
     "Merge the redacted excerpts back into the main list in order to split mp3 files"
     
     allExcerpts = gDatabase["excerpts"] + gDatabase["excerptsRedacted"]
-    allExcerpts = [x for x in allExcerpts if x["startTime"] != "Session"] # Session excerpts don't need split mp3 files
+    allExcerpts = [x for x in allExcerpts if x["fileNumber"]] # Session excerpts don't need split mp3 files
     orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort excerpts by event order in gDatabase
     
     allExcerpts.sort(key = lambda x: (orderedEvents.index(x["event"]),x["sessionNumber"],x["fileNumber"]))
@@ -117,9 +117,9 @@ def main():
 
         for x in sessionExcerpts:
             fileName = baseFileName + f"F{fileNumber:02d}"
-            startTime = Utils.StrToTimeDelta(x["startTime"])
+            startTime = Utils.StrToTimeDelta(x["clips"][0].start)
             
-            endTimeStr = x["endTime"].strip()
+            endTimeStr = x["clips"][0].end.strip()
             if endTimeStr:
                 excerptList.append((fileName,startTime,Utils.StrToTimeDelta(endTimeStr)))
             else:

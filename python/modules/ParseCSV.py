@@ -736,7 +736,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     if kind["takesTags"]:
         annotation["tags"] = annotation["qTag"] + annotation["aTag"] # Annotations don't distiguish between q and a tags
     
-    if not kind["takesTimes"]:
+    if kind["canBeExcerpt"] or not kind["takesTimes"]:
         keysToRemove += ["startTime","endTime"]
     
     for key in keysToRemove:
@@ -838,6 +838,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict]) -> None:
         
         if prevExcerpt:
             prevExcerpt["duration"] = Utils.TimeDeltaToStr(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]).Duration(sessionDuration))
+
 
 def LoadEventFile(database,eventName,directory):
     
@@ -987,7 +988,7 @@ def LoadEventFile(database,eventName,directory):
     if blankExcerpts:
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
-    for xIndex, x in enumerate(excerpts):
+    for x in excerpts:
         # Combine all tags into a single list, but keep track of how many qTags there are
         x["tags"] = x["qTag"] + x["aTag"]
         x["qTagCount"] = len(x["qTag"])
@@ -1013,10 +1014,10 @@ def LoadEventFile(database,eventName,directory):
         if x["sessionNumber"] != lastSession:
             if lastSession > x["sessionNumber"]:
                 Alert.warning(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
-            if x["startTime"] == "Session":
-                xNumber = 0
-            else:
+            if "clips" in x: # Does the session begin with a regular (non-session) excerpt?
                 xNumber = 1
+            else:
+                xNumber = 0
             lastSession = x["sessionNumber"]
         else:
             xNumber += 1
@@ -1029,6 +1030,8 @@ def LoadEventFile(database,eventName,directory):
     if not gOptions.jsonNoClean:
         for x in excerpts:
             del x["exclude"]
+            del x["startTime"]
+            del x["endTime"]
     
     for x in removedExcerpts: # Redact information about these excerpts
         for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
