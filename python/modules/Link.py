@@ -263,6 +263,8 @@ class Linker:
         """Check through the available mirrors until we either reach a valid item, the local mirror, or the upload mirror.
         In the latter two cases, report true and stop the search so that a local item can be acquired."""
         
+        if item.get("mirror","").endswith("*"):
+            return True # Have we tried to find a local item before?
         for mirror in self._UncheckedMirrors(item):
             mirrorToCheck = mirror
             if mirror == gOptions.uploadMirror:
@@ -277,13 +279,14 @@ class Linker:
         
         return False
 
-    def DownloadItem(self,item: dict) -> None:
-        """If needed, attempt to download this item from any available mirrors."""
+    def DownloadItem(self,item: dict) -> bool:
+        """If needed, attempt to download this item from any available mirrors.
+        Return True if the item was needed and has been downloaded; False otherwise."""
         fileName = self.URL(item,"local")
         if not fileName:
-            return 
+            return False
         if self.itemType == ItemType.REFERENCE and not fileName.lower().endswith(".pdf"):
-            return # Download only html files
+            return False # Download only html files
         
         if self.LocalItemNeeded(item):
             tempDownloadLocation = fileName + ".download"
@@ -296,10 +299,13 @@ class Linker:
                     #if self.mirrorValidator[mirror].ValidLink(url,item):
                     #    Alert.extra("Will try to download",item,"from",url,"to",tempDownloadLocation)
                     if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
-                        Alert.extra("Downloaded",item,"to",tempDownloadLocation)
                         with contextlib.suppress(FileNotFoundError):
                             os.remove(fileName)
                         os.rename(tempDownloadLocation,fileName)
+                        item["mirror"] = item["mirror"].rstrip("*")
+                        Alert.extra("Downloaded",item,"to",fileName)
+                        return True
+        return False
 
 def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
     """Auto-detect the type of this item and return its URL.
@@ -315,9 +321,10 @@ def LocalItemNeeded(item:dict) -> bool:
     "Auto-detect the type of this item and return whether a local copy is needed"
     return gLinker[AutoType(item)].LocalItemNeeded(item)
 
-def DownloadItem(item:dict) -> None:
-    "Auto-detect the type of this item. If a local copy is needed, try to download one."
-    gLinker[AutoType(item)].DownloadItem(item)
+def DownloadItem(item:dict) -> bool:
+    """Auto-detect the type of this item. If a local copy is needed, try to download one.
+    Returns True if an item was sucessfully downloaded."""
+    return gLinker[AutoType(item)].DownloadItem(item)
 
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
