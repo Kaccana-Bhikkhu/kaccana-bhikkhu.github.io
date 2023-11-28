@@ -1,4 +1,4 @@
-"""Add a "mirror" field to each session, excerpt and reference indicating which hyperlink the item should use.
+"""Add a "mirror" field to each audioSource, excerpt and reference indicating which hyperlink the item should use.
 LinkValidator and its subclasses determine whether a given hyperlink is valid.
 """
 
@@ -11,28 +11,30 @@ from io import BytesIO
 import Utils, Alert
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
+import shutil
 from mutagen.mp3 import MP3
 from typing import Tuple, Type, Callable, Iterable, BinaryIO
 from enum import Enum
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 import copy
+import contextlib
 
 class StrEnum(str,Enum):
     pass
 
 class ItemType(StrEnum): # The kinds of items we will link to
-    SESSION = "sessionMp3"
+    AUDIO_SOURCE = "sessionMp3"
     EXCERPT = "excerptMp3"
     REFERENCE = "reference"
 
 def AutoType(item:dict) -> ItemType:
     if "fileNumber" in item:
         return ItemType.EXCERPT
-    elif "sessionTitle" in item:
-        return ItemType.SESSION
     elif "pdfPageOffset" in item:
         return ItemType.REFERENCE
+    elif "url" in item:
+        return ItemType.AUDIO_SOURCE
     
     Alert.error("Autotype: unknown type",item)
 
@@ -48,6 +50,23 @@ class LinkValidator:
             return True
         else:
             return os.path.isfile(url)
+    
+    def DownloadValidLink(self,url:str,item:dict,downloadLocation:str) -> bool:
+        """If the link is valid, download the file to downloadLoaction.
+        Return True if the link is valid and the file has been sucessfully downloaded."""
+
+        if self.ValidLink(url,item):
+            try:
+                os.makedirs(Utils.PosixSplit(downloadLocation)[0],exist_ok=True)
+                with (Utils.OpenUrlOrFile(url) as remoteFile, open(downloadLocation,"wb") as localFile):
+                    shutil.copyfileobj(remoteFile, localFile)
+                return True
+            except (OSError,urllib.error.HTTPError) as error:
+                Alert.warning("Error",error,"when trying to download",item,"from",url)
+                return False
+        else:
+            return False
+
 
 class NoValidation (LinkValidator):
     "Perform no link validation whatsoever."
@@ -67,11 +86,11 @@ class RemoteURLChecker (LinkValidator):
         if not url.strip():
             return False
         if Utils.RemoteURL(url):
-            parsed = urlparse(url)
-            url = urlunparse(parsed._replace(path=quote(parsed.path)))
+            url = Utils.QuotePath(url)
             try:
                 with urllib.request.urlopen(url) as request:
-                    return self.ValidateContents(url,item,request)
+                    result,_ = self.ValidateContents(url,item,request)
+                    return result
             except urllib.error.HTTPError as error:
                 Alert.notice("Unable to open",url,"for",item)
                 return False
@@ -83,18 +102,22 @@ class RemoteURLChecker (LinkValidator):
                 try:
                     with open(url,"rb") as file:
                         return self.ValidateContents(url,item,file)
-                except IOError as error:
+                except OSError as error:
                     Alert.warning(error,"when opening",url,"when processing",item)
                     return False
             else:
                 return super().ValidLink(url,item)
     
-    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
-        "This method should be overriden by subclasses that validate file contents."
-        return True
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> (bool,BinaryIO):
+        """This method should be overriden by subclasses that validate file contents.
+        It returns a tuple (valid,contents).
+        valid is True if we have determined the file contents to be valid.
+        contents is a file-like object representing a potentially local copy of the file.
+        This prevents us from having to download a remote file twice."""
+        return True,contents
 
 def RemoteMp3Tags(url:str) -> dict:
-    """Read the """
+    """Read the id3 tags from a remote mp3 file"""
     def get_n_bytes(url, size):
         req = urllib.request.Request(url)
         req.headers['Range'] = 'bytes=%s-%s' % (0, size-1)
@@ -126,14 +149,14 @@ class Mp3LengthChecker (RemoteURLChecker):
     warningDelta: float # Print a notice if the mp3 file length difference exceeds this
     invalidateDelta: float # Report an invalid link if the mp3 file length difference exceeds this
     def __init__(self,warningDelta: float = 1.0,invalidateDelta = 5.0):
-        super().__init__(True)
+        super().__init__(openLocalFiles=True)
         self.warningDelta = warningDelta
         self.invalidateDelta = invalidateDelta
 
     def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
         parsed = urlparse(url)
         if not parsed.path.lower().endswith(".mp3"):
-            return True
+            return True,contents
         
         try:
             contents.seek(0)
@@ -152,19 +175,19 @@ class Mp3LengthChecker (RemoteURLChecker):
         # Alert.extra(url,"actual",lengthStr,"expected",expectedLengthStr)
         if diff >= self.invalidateDelta:
             Alert.warning(item,"indicates a duration of",expectedLengthStr,"but its mp3 file has duration",lengthStr,"This invalidates",url)
-            return False
+            return False,data
         elif diff >= self.warningDelta:
             Alert.caution(item,"indicates a duration of",expectedLengthStr,"but its mp3 file at",url,"has duration",lengthStr)
-        return True
+        return True,data
 
 remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
-    ItemType.SESSION: "remoteMp3Url",
+    ItemType.AUDIO_SOURCE: "url",
     ItemType.EXCERPT: "",
     ItemType.REFERENCE: "remoteUrl"
 }
 
 class Linker:
-    """For a given type of item (session,excerpt,reference), determine which mirror it should link to.
+    """For a given type of item (audioSource,excerpt,reference), determine which mirror it should link to.
     """
     itemType: ItemType # The type of item we are linking to
     mirrorValidator: dict[str,LinkValidator] # The list of mirrors and the validator for each mirror
@@ -186,11 +209,11 @@ class Linker:
         else:
             return mirrorList
 
-    def Filename(self,item: dict) -> str:
+    def FileName(self,item: dict) -> str:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
             return Utils.PosixJoin(item["event"],Utils.ItemCode(item) + ".mp3")
-        elif self.itemType == ItemType.SESSION:
+        elif self.itemType == ItemType.AUDIO_SOURCE:
             return Utils.PosixJoin(item["event"],item["filename"])
         else:
             return item["filename"]
@@ -211,9 +234,9 @@ class Linker:
                 # If the remote link specifies a local file, the path will be relative to prototypeDir/indexes.
                 # This occurs only with references.
         
-        fileName = self.Filename(item)
+        fileName = self.FileName(item)
         if fileName:
-            return urljoin(gOptions.mirror[self.itemType][mirror],self.Filename(item))
+            return urljoin(gOptions.mirror[self.itemType][mirror],self.FileName(item))
         else:
             return ""
 
@@ -242,6 +265,8 @@ class Linker:
         """Check through the available mirrors until we either reach a valid item, the local mirror, or the upload mirror.
         In the latter two cases, report true and stop the search so that a local item can be acquired."""
         
+        if item.get("mirror","").endswith("*"):
+            return True # Have we tried to find a local item before?
         for mirror in self._UncheckedMirrors(item):
             mirrorToCheck = mirror
             if mirror == gOptions.uploadMirror:
@@ -256,6 +281,31 @@ class Linker:
         
         return False
 
+    def DownloadItem(self,item: dict) -> bool:
+        """If needed, attempt to download this item from any available mirrors.
+        Return True if the item was needed and has been downloaded; False otherwise."""
+        fileName = self.URL(item,"local")
+        if not fileName:
+            return False
+        
+        if self.LocalItemNeeded(item):
+            tempDownloadLocation = fileName + ".download"
+
+            remainingMirrors = self._UncheckedMirrors(item)[1:]
+            localMirrors = ("local",gOptions.uploadMirror)
+            for mirror in remainingMirrors:
+                if mirror not in localMirrors:
+                    url = self.URL(item,mirror)
+                    #if self.mirrorValidator[mirror].ValidLink(url,item):
+                    #    Alert.extra("Will try to download",item,"from",url,"to",tempDownloadLocation)
+                    if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
+                        with contextlib.suppress(FileNotFoundError):
+                            os.remove(fileName)
+                        os.rename(tempDownloadLocation,fileName)
+                        item["mirror"] = item["mirror"].rstrip("*")
+                        Alert.extra("Downloaded",item,"to",fileName)
+                        return True
+        return False
 
 def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
     """Auto-detect the type of this item and return its URL.
@@ -263,7 +313,7 @@ def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
 
     baseUrl = gLinker[AutoType(item)].URL(item,mirror)
 
-    if not Utils.RemoteURL(baseUrl):
+    if baseUrl and not Utils.RemoteURL(baseUrl):
         return ("../" * directoryDepth) + baseUrl
     return baseUrl
 
@@ -271,41 +321,45 @@ def LocalItemNeeded(item:dict) -> bool:
     "Auto-detect the type of this item and return whether a local copy is needed"
     return gLinker[AutoType(item)].LocalItemNeeded(item)
 
+def DownloadItem(item:dict) -> bool:
+    """Auto-detect the type of this item. If a local copy is needed, try to download one.
+    Returns True if an item was sucessfully downloaded."""
+    return gLinker[AutoType(item)].DownloadItem(item)
+
+def LinkableItem(item: dict) -> bool:
+    """Returns True if this item requires linking to a file in a mirror."""
+    if item.get("fileNumber",1) == 0:
+        return False # Session excerpts don't need linking
+    if "author" in item and not item["filename"] and not Utils.RemoteURL(item["remoteUrl"]):
+        return False # Only link references that specify a filename or have a valid remote URL
+    
+    return True
 
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
 
-    multiThread = True
-
-    if multiThread:
-        with ThreadPoolExecutor() as pool:
-            for itemType,items in gItemLists.items():
-                for item in Utils.Contents(items):
-                    if item.get("fileNumber",1) == 0:
-                        continue # Don't link session excerpts
-
-                    pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
-    else:
+    multithread = True
+    with ThreadPoolExecutor() if multithread else Utils.MockThreadPoolExecutor() as pool:
         for itemType,items in gItemLists.items():
             for item in Utils.Contents(items):
-                if item.get("fileNumber",1) == 0:
-                    continue # Don't link session excerpts
+                if not LinkableItem(item):
+                    continue
 
-                gLinker[itemType].LinkItem(item)
+                pool.submit(lambda itemType,item: gLinker[itemType].LinkItem(item),itemType,item)
 
     for itemType,items in gItemLists.items():
         unlinked = []
         mirrorCount = Counter()
         for item in Utils.Contents(items):
-            if item.get("fileNumber",1) == 0:
-                continue # Don't count session excerpts
+            if not LinkableItem(item):
+                continue
             if item.get("mirror",""):
                 mirrorCount[item["mirror"]] += 1
             else:
                 unlinked.append(item)
         
         if unlinked:
-            Alert.warning(itemType + ":",len(unlinked),"unlinked items:",*unlinked)
+            Alert.warning(len(unlinked),f"unlinked {itemType} items. The first 10 are:",*unlinked[:10])
                           
         Alert.info(itemType + " mirror links:",dict(mirrorCount))
 
@@ -347,15 +401,16 @@ def AddArguments(parser) -> None:
 
     parser.add_argument("--sessionMp3Dir",type=str,default="audio/sessions",help="Read session mp3 files from this directory; Default: audio/sessions")
     parser.add_argument("--excerptMp3Dir",type=str,default="audio/excerpts",help="Write excerpt mp3 files from this directory; Default: audio/excerpts")
-    parser.add_argument("--referenceDir",type=str,default="references",help="Read session mp3 files from this directory; Default: references")
+    parser.add_argument("--referenceDir",type=str,default="references",help="Directory for reference pdfs; Default: references")
 
     parser.add_argument("--linkCheckLevel",type=str,action="append",default=["1"],help="Integer link check level. [ItemType]:[mirror]:LEVEL")
 
     """Link check levels are interpreted as follows:
         0: No link checking whatsoever (NoValidation)
         1: Check that local files exist and that remote URLs aren't blank (LinkValidator base class)
-        2: Perform checks that require reading file metadata and headers
-        3: Perform checks that require reading the entire file (Mp3LengthChecker)
+        2: Perform checks that require reading local cache files
+        3: Perform checks that require reading file metadata and headers
+        4: Perform checks that require reading the entire file (Mp3LengthChecker)
 
         Round down if a given level is not implemented for a given file type.
     """
@@ -364,7 +419,7 @@ def ParseArguments() -> None:
     """Set up gOptions.mirror[itemType][mirrorName] as the URL to find items in a named mirror."""
 
     itemDirs = { # Specifies the directory for each item type
-        ItemType.SESSION: gOptions.sessionMp3Dir,
+        ItemType.AUDIO_SOURCE: gOptions.sessionMp3Dir,
         ItemType.EXCERPT: gOptions.excerptMp3Dir,
         ItemType.REFERENCE: gOptions.referenceDir
     }
@@ -385,7 +440,11 @@ def ParseArguments() -> None:
     for itemType in ItemType:
         mirrorList = getattr(gOptions,itemType).split(",")
         mirrorList = [CheckMirrorName(itemType,m) for m in mirrorList]
+        
+        mirrorCount = len(mirrorList)
         RemoveAllExceptFirst(mirrorList,["local",gOptions.uploadMirror])
+        if len(mirrorList) != mirrorCount and gOptions.uploadMirror != "local":
+            Alert.caution(f"The list of {itemType} mirrors contained both the local mirror and the upload mirror ({gOptions.uploadMirror}). The item later in the list has been removed.")
         setattr(gOptions,itemType,mirrorList)
 
     if "remote" in gOptions.excerptMp3:
@@ -394,7 +453,7 @@ def ParseArguments() -> None:
     # Parse --linkCheckLevel entries to form a dict
     linkCheckLevels = copy.deepcopy(gOptions.mirror) # Copy the structure of the mirrors
     linkCheckLevels[ItemType.REFERENCE]["remote"] = 1
-    linkCheckLevels[ItemType.SESSION]["remote"] = 1
+    linkCheckLevels[ItemType.AUDIO_SOURCE]["remote"] = 1
     mirrorNames = set(mirrorDict)
     mirrorNames.add("remote")
     for levelCode in gOptions.linkCheckLevel:
@@ -419,7 +478,7 @@ def ParseArguments() -> None:
                     linkCheckLevels[it][m] = level
     gOptions.linkCheckLevel = linkCheckLevels            
 
-gLinker:dict[ItemType,dict[str,Linker]] = {}
+gLinker:dict[ItemType,Linker] = {}
 
 def Initialize() -> None:
     """Configure the linker object."""
@@ -429,9 +488,9 @@ def Initialize() -> None:
         "Choose a Linker object for a given item type and link checking level."
         if level == 0:
             return NoValidation()
-        if level == 1:
+        if level <= 2:
             return LinkValidator()
-        elif level == 2 or (level > 2 and itemType == ItemType.REFERENCE):
+        elif level == 3 or (level > 3 and itemType == ItemType.REFERENCE):
             return RemoteURLChecker()
         else:
             return Mp3LengthChecker()
@@ -450,7 +509,7 @@ def main() -> None:
     global gItemLists
     gItemLists = {
         ItemType.EXCERPT: gDatabase["excerpts"],
-        ItemType.SESSION: gDatabase["sessions"],
+        ItemType.AUDIO_SOURCE: gDatabase["audioSource"],
         ItemType.REFERENCE: gDatabase["reference"]
     }
     

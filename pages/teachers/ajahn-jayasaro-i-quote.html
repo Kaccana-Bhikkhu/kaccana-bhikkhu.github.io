@@ -14,10 +14,10 @@
     
 </head>
 <body>
-    <span id="javascript-link">
-      <a href="../index.html#teachers/ajahn-jayasaro-i-quote.html">Enable floating audio player (Javascript)</a>
-      <br>
-    </span>
+    <script>
+      url = new URL(location.href)
+      location.replace("../index.html#teachers/ajahn-jayasaro-i-quote.html" + url.hash);
+    </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
@@ -45,7 +45,7 @@
   </div>
 
 <div class="intro">
-25 excerpts, 4:16:08 total duration
+25 excerpts, 3:59:06 total duration
 <hr /> <div class="sublink2"> <a href="../teachers/ajahn-jayasaro.html">All excerpts (25)</a>
       <a href="../teachers/ajahn-jayasaro-story.html">Stories (4)</a>
       <a href="../teachers/ajahn-jayasaro-i-quote.html" class="active">Quotes others (5)</a>

@@ -5,6 +5,7 @@ from __future__ import annotations
 import os, re, csv, json, unicodedata
 import Filter
 import Render
+import SplitMp3
 import Utils
 from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
@@ -508,27 +509,34 @@ def SortTags(database: dict) -> None:
         Alert.extra("Dateless tags:",datelessTags)
 
 def CountSubtagExcerpts(database):
-    """Add the subtagExcerptCount field to each item in tagDisplayList which counts the number
+    """Add the subtagCount and subtagExcerptCount fields to each item in tagDisplayList which counts the number
     of excerpts which are tagged by this tag or any of its subtags."""
 
     tagList = database["tagDisplayList"]
     excerpts = database["excerpts"]
+    subtags = [None] * len(tagList)
     savedSearches = [None] * len(tagList)
     for parentIndex,childIndexes in WalkTags(tagList,returnIndices=True):
+        theseTags = set()
         thisSearch = set()
         for index in childIndexes + [parentIndex]:
-            if savedSearches[index] is None:
+            if subtags[index] is None:
                 tag = tagList[index]["tag"]
                 if tag:
-                    savedSearches[index] = set(id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag)))
+                    subtags[index] = {tag}
+                    savedSearches[index] = {id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag))}
                     #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
                 else:
+                    subtags[index] = set()
                     savedSearches[index] = set()
             
+            theseTags.update(subtags[index])
             thisSearch.update(savedSearches[index])
         
+        subtags[parentIndex] = theseTags
         savedSearches[parentIndex] = thisSearch
         #print(f"{parentIndex} {tagList[parentIndex]["tag"]}: {len(savedSearches[index])} excerpts singly")
+        tagList[parentIndex]["subtagCount"] = len(theseTags) - 1
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
 
@@ -728,7 +736,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     if kind["takesTags"]:
         annotation["tags"] = annotation["qTag"] + annotation["aTag"] # Annotations don't distiguish between q and a tags
     
-    if not kind["takesTimes"]:
+    if kind["canBeExcerpt"] or not kind["takesTimes"]:
         keysToRemove += ["startTime","endTime"]
     
     for key in keysToRemove:
@@ -771,6 +779,101 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
     for i in excludedItems:
         printer(i,message)
     return filteredItems
+
+def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
+    """For excerpts in a given event, convert startTime and endTime keys into the clips key.
+    Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
+    Eventually this function will scan for Alt. Audio and Append Audio annotations for extended functionality."""
+
+    # First eliminate excerpts with fatal parsing errors.
+    deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
+    for x in excerpts:
+        try:
+            if x["startTime"] != "Session":
+                startTime = SplitMp3.ToTimeDelta(x["startTime"])
+                if startTime is None:
+                    deletedExcerptIDs.add(id(x))
+            endTime = SplitMp3.ToTimeDelta(x["endTime"])
+        except ValueError:
+            deletedExcerptIDs.add(id(x))
+
+    for index in reversed(range(len(excerpts))):
+        if id(excerpts[index]) in deletedExcerptIDs:
+            Alert.error("Misformed time string in",excerpts[index],". Will delete this excerpt.")
+            del excerpts[index]
+    
+    def AddAudioSource(filename:str, duration:str, event: str, url: str) -> None:
+        """Add an audio source to database["audioSource"]."""
+        noDiacritics = Utils.RemoveDiacritics(filename)
+        if filename != noDiacritics:
+            Alert.error("Audio filename",repr(filename),"contains diacritics, which are not allowed.")
+            filename = noDiacritics
+
+        if filename in database["audioSource"]:
+            existingSource = database["audioSource"][filename]
+            if existingSource["duration"] != duration or existingSource["url"] != url:
+                Alert.error(f"Audio file {filename} in event {event}: Duration ({duration}) or url ({url}) do not match parameters given previously.")
+        else:
+            source = {"filename": filename, "duration":duration, "event":event, "url":url}
+            database["audioSource"][filename] = source
+
+    def ClipDuration(clip: SplitMp3.ClipTD,sessionDuration:timedelta) -> str:
+        "Return the duration of clip as a string."
+        try:
+            duration = clip.Duration(sessionDuration)
+        except TypeError: # Generated if sessionDuration is None and needs to be used
+            Alert.error(x,"must specify an end time since it appears in a session with no end time.")
+            return "0:00"
+        return Utils.TimeDeltaToStr(duration)
+
+
+    # Then scan through the excerpts and add key "clips"
+    for session,sessionExcerpts in Utils.GroupBySession(excerpts,sessions):
+        prevExcerpt = None
+        if session["filename"]:
+            AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
+            try:
+                sessionDuration = SplitMp3.ToTimeDelta(session["duration"])
+            except ValueError:
+                Alert.error(session,"has invalid duration:",repr(session["duration"]))
+                sessionDuration = None
+        else:
+            sessionDuration = None
+        del session["remoteMp3Url"]
+
+        for x in sessionExcerpts:
+            # Calculate the duration of each excerpt and handle overlapping excerpts
+            startTime = x["startTime"]
+            endTime = x["endTime"]
+            if startTime == "Session":
+                    # The session excerpt has the length of the session and has no clips key
+                session = Utils.FindSession(sessions,x["event"],x["sessionNumber"])
+                x["duration"] = session["duration"]
+                if not x["duration"]:
+                    Alert.error("Deleting session excerpt",x,"since the session has no duration.")
+                    deletedExcerptIDs.add(id(x))
+                continue
+            
+            if prevExcerpt and "clips" in prevExcerpt:
+                if not prevExcerpt["clips"][0].end:
+                        # If the previous excerpt didn't specify an end time, use the start time of this excerpt
+                    prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
+            
+                prevClip = SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0])
+                prevExcerpt["duration"] = ClipDuration(prevClip,sessionDuration)
+                
+                if prevClip.end > SplitMp3.ToTimeDelta(startTime):
+                    startTime = prevExcerpt["clips"][0].end
+                    x["startTime"] = prevExcerpt["endTime"]
+                    if ExcerptFlag.OVERLAP not in x["flags"]:
+                        Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+            x["clips"] = [SplitMp3.Clip("$",startTime,endTime)]
+            prevExcerpt = x
+        
+        if prevExcerpt:
+            prevExcerpt["duration"] = ClipDuration(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]),sessionDuration)
+
 
 def LoadEventFile(database,eventName,directory):
     
@@ -920,9 +1023,7 @@ def LoadEventFile(database,eventName,directory):
     if blankExcerpts:
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
-    prevSession = None
-    deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
-    for xIndex, x in enumerate(excerpts):
+    for x in excerpts:
         # Combine all tags into a single list, but keep track of how many qTags there are
         x["tags"] = x["qTag"] + x["aTag"]
         x["qTagCount"] = len(x["qTag"])
@@ -931,51 +1032,10 @@ def LoadEventFile(database,eventName,directory):
             del x["aTag"]
             x.pop("aListen",None)
 
-        # Calculate the duration of each excerpt and handle overlapping excerpts
-        startTime = x["startTime"]
-        endTime = x["endTime"]
-        if startTime == "Session": # The session excerpt has the length of the session
-            x["duration"] = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-            continue
-
-        if not endTime:
-            try:
-                if excerpts[xIndex + 1]["sessionNumber"] == x["sessionNumber"]:
-                    endTime = excerpts[xIndex + 1]["startTime"]
-            except IndexError:
-                pass
-        
-        if not endTime:
-            endTime = Utils.FindSession(sessions,eventName,x["sessionNumber"])["duration"]
-        
-        try:
-            startTime = Utils.StrToTimeDelta(startTime)
-            endTime = Utils.StrToTimeDelta(endTime)
-        except ValueError:
-            if type(startTime) == str:
-                failed = startTime
-            else:
-                failed = endTime
-            Alert.error("Cannot convert",repr(failed),"to a time when processing",x,"; will delete this excerpt.")
-            deletedExcerptIDs.add(id(x))
-            continue
-        
-        session = (x["event"],x["sessionNumber"])
-        if session != prevSession: # A new session starts at time zero
-            prevEndTime = timedelta(seconds = 0)
-            prevSession = session
-
-        if startTime < prevEndTime: # Does this overlap with the previous excerpt?
-            startTime = prevEndTime
-            x["startTime"] = Utils.TimeDeltaToStr(startTime)
-            if ExcerptFlag.OVERLAP not in x["flags"]:
-                Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
-
-        x["duration"] = Utils.TimeDeltaToStr(endTime - startTime)
-        prevEndTime = endTime
+    CreateClips(excerpts,sessions,database)
     
     removedExcerpts = [x for x in excerpts if x["exclude"]]
-    excerpts = [x for x in excerpts if not x["exclude"] and id(x) not in deletedExcerptIDs]
+    excerpts = [x for x in excerpts if not x["exclude"]]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
 
     sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
@@ -989,10 +1049,10 @@ def LoadEventFile(database,eventName,directory):
         if x["sessionNumber"] != lastSession:
             if lastSession > x["sessionNumber"]:
                 Alert.warning(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
-            if x["startTime"] == "Session":
-                xNumber = 0
-            else:
+            if "clips" in x: # Does the session begin with a regular (non-session) excerpt?
                 xNumber = 1
+            else:
+                xNumber = 0
             lastSession = x["sessionNumber"]
         else:
             xNumber += 1
@@ -1005,6 +1065,8 @@ def LoadEventFile(database,eventName,directory):
     if not gOptions.jsonNoClean:
         for x in excerpts:
             del x["exclude"]
+            del x["startTime"]
+            del x["endTime"]
     
     for x in removedExcerpts: # Redact information about these excerpts
         for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
@@ -1180,6 +1242,7 @@ def main():
 
     gDatabase["event"] = {}
     gDatabase["sessions"] = []
+    gDatabase["audioSource"] = {}
     gDatabase["excerpts"] = []
     gDatabase["excerptsRedacted"] = []
     for event in gDatabase["summary"]:
@@ -1211,7 +1274,7 @@ def main():
         del gDatabase["tagRaw"]    
     gDatabase["keyCaseTranslation"] = {key:gCamelCaseTranslation[key] for key in sorted(gCamelCaseTranslation)}
 
-    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
+    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","audioSource","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
     Alert.extra("Spreadsheet database contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)

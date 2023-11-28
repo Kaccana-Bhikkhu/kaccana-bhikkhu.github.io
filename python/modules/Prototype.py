@@ -722,8 +722,8 @@ class Formatter:
             a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
 
         a(" ")
-        if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
-            a(f'[{excerpt["startTime"]}] ')
+        if self.excerptPreferStartTime and excerpt['excerptNumber']:
+            a(f'[{excerpt["clips"][0].start}] ')
         elif self.audioLinks != "chip":
             a(f'({excerpt["duration"]}) ')
 
@@ -910,9 +910,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
-            linkSessionAudio = formatter.headingAudio and not x["startTime"] == "Session"
+            linkSessionAudio = formatter.headingAudio and x["fileNumber"]
                 # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
-            hr = x["startTime"] != "Session" or x["body"]
+            hr = x["fileNumber"] or x["body"]
                 # Omit the horzional rule if the first excerpt is a session excerpt with no body
                 
             a(localFormatter.FormatSessionHeading(session,linkSessionAudio,hr))

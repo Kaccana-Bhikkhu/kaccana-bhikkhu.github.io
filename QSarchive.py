@@ -13,7 +13,7 @@ scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python/modules')) # Look for modules in these subdirectories of the directory containing QAarchive.py
 sys.path.append(os.path.join(scriptDir,'python/utils'))
 
-import Utils, Alert, Filter
+import Utils, Alert, Filter, Database
 Alert.ObjectPrinter = Utils.ItemRepr
 
 def PrintModuleSeparator(moduleName:str) -> None:
@@ -64,33 +64,32 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
         else:
             return newDB,opSet
     
-    requireSpreadsheetDB = {'SplitMp3','Link','Render'}
+    requireSpreadsheetDB = {'DownloadFiles','SplitMp3','Link','Render'}
     requireRenderedDB = {'Document','Prototype','TagMp3'}
 
     if 'Render' in opSet: # Render requires link in all cases
         opSet.add('Link')
     if opSet.intersection(requireRenderedDB):
-        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB):
+        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB) and \
+                      not Utils.DependenciesModified(clOptions.renderedDatabase,[clOptions.spreadsheetDatabase]):
             try:
-                with open(clOptions.renderedDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
-                    newDB = json.load(file)
-                    return newDB,opSet
+                newDB = Database.LoadDatabase(clOptions.renderedDatabase)
+                return newDB,opSet
             except OSError:
                 pass
         opSet.update(['Link','Render'])
     
     if 'ParseCSV' not in opSet and opSet.intersection(requireSpreadsheetDB):
         try:
-            with open(clOptions.spreadsheetDatabase, 'r', encoding='utf-8') as file: # Otherwise read the database from disk
-                newDB = json.load(file)
-                return newDB,opSet
+            newDB = Database.LoadDatabase(clOptions.spreadsheetDatabase)
+            return newDB,opSet
         except OSError:
             opSet.add('ParseCSV')
     
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','SplitMp3','Link','Render','Document','Prototype','TagMp3']
+moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','TagMp3']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']

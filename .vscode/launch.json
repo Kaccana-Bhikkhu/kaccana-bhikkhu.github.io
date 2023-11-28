@@ -97,9 +97,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Render,Prototype",
-                "--sheets",
-                "All"
+                "Link"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

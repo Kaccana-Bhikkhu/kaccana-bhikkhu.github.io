@@ -14,10 +14,10 @@
     
 </head>
 <body>
-    <span id="javascript-link">
-      <a href="../index.html#teachers/ajahn-chah.html">Enable floating audio player (Javascript)</a>
-      <br>
-    </span>
+    <script>
+      url = new URL(location.href)
+      location.replace("../index.html#teachers/ajahn-chah.html" + url.hash);
+    </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
@@ -45,10 +45,10 @@
   </div>
 
 <div class="intro">
-61 excerpts, 5:41:30 total duration
-<hr /> <div class="sublink2"> <a href="../teachers/ajahn-chah.html" class="active">All excerpts (61)</a>
+62 excerpts, 5:45:45 total duration
+<hr /> <div class="sublink2"> <a href="../teachers/ajahn-chah.html" class="active">All excerpts (62)</a>
       <a href="../teachers/ajahn-chah-d-quote.html">Direct quotes (2)</a>
-      <a href="../teachers/ajahn-chah-quoted-by.html">Quoted by others (45)</a>
+      <a href="../teachers/ajahn-chah-quoted-by.html">Quoted by others (46)</a>
       <a href="../teachers/ajahn-chah-meditation.html">Meditations (3)</a>
       <a href="../teachers/ajahn-chah-teaching.html">Teachings (6)</a>
       <a href="../teachers/ajahn-chah-read-from.html">Readings from (10)</a> </div>
@@ -334,7 +334,7 @@
   <b>Quote:</b>  “First you study the Dhamma, then you know the Dhamma, then you see the Dhamma, they you be the Dhamma.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Commentary:</b> <em>Path of Purification</em> translated by Bhikkhu Ñāṇamoli, <a href="https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=689" target="_blank">p. 631</a>: The highest level of understanding is giving up. 
+  <b>Commentary:</b> <em>Path of Purification</em> by Bhikkhu Ñāṇamoli, <a href="https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=689" target="_blank">p. 631</a>: The highest level of understanding is giving up. 
 </p>
 <hr />
 <div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – Oct. 20, 2012</div>
@@ -448,7 +448,7 @@
   <b>Quote:</b>  “The teaching of the Buddha isn't about language....The teaching of the Buddha is the language of experience.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S11"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat (partial)</a>, <a href="../events/WR2015.html#WR2015_S11">Session 11</a> – Jan. 18, 2015</div>
+<div class="title" id="WR2015_S11"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S11">Session 11</a> – Jan. 18, 2015</div>
 <p id="WR2015_S11_F00">
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/11_AKd_01_18_2015_Elements_1.mp3" title="Abhayagiri 2015 Winter ... S11" data-duration="2009"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/11_AKd_01_18_2015_Elements_1.mp3" download="">Download audio</a> (33:29)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/elements.html">Elements</a>]
 </p>
@@ -465,7 +465,7 @@
   <b>Reading:</b> “Why Are We Here?” in <em>Collected Teachings of Ajahn Chah</em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=169" target="_blank">p. 131</a> (excerpt).  
 </p>
 <hr />
-<div class="title" id="WR2015_S20"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat (partial)</a>, <a href="../events/WR2015.html#WR2015_S20">Session 20</a> – Jan. 31, 2015</div>
+<div class="title" id="WR2015_S20"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S20">Session 20</a> – Jan. 31, 2015</div>
 <p id="WR2015_S20_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F01.mp3" title="Abhayagiri 2015 Wint... S20 E1" data-duration="165"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F01.mp3" download="">Download audio</a> (2:45)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What is your experience of directed thought and evaluation?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
 </p>
@@ -473,12 +473,12 @@
   <b>Quote:</b>  “Directed thought [vitakka] is like lifting up the object in the mind. Evaluation is then looking at it from different angles.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S27"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat (partial)</a>, <a href="../events/WR2015.html#WR2015_S27">Session 27</a> – Feb. 10, 2015</div>
+<div class="title" id="WR2015_S27"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S27">Session 27</a> – Feb. 10, 2015</div>
 <p id="WR2015_S27_F00">
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/27_AN_02_10_2015_A_Gift_of_Dhamma.mp3" title="Abhayagiri 2015 Winter ... S27" data-duration="1096"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/27_AN_02_10_2015_A_Gift_of_Dhamma.mp3" download="">Download audio</a> (18:16)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <em>Collected Teachings of Ajahn Chah</em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=263" target="_blank">pp. 225-231</a>: "A Gift of Dhamma."  
 </p>
 <hr />
-<div class="title" id="WR2015_S33"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat (partial)</a>, <a href="../events/WR2015.html#WR2015_S33">Session 33</a> – Feb. 22, 2015</div>
+<div class="title" id="WR2015_S33"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S33">Session 33</a> – Feb. 22, 2015</div>
 <p id="WR2015_S33_F08">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S33_F08.mp3" title="Abhayagiri 2015 Wint... S33 E8" data-duration="186"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S33_F08.mp3" download="">Download audio</a> (3:06)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you have to emerge from jhāna to contemplate the characteristics of the aggregates?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>]
 </p>
@@ -489,9 +489,17 @@
   <b>Quote:</b>  “Contemplation gets really good when you stop thinking.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-1_S05"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S05">Session 5</a> – Apr. 25, 2015</div>
-<p id="UD2015-1_S05_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S05_F07.mp3" title="On Pilgrimage and Tud... S5 E7" data-duration="176"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S05_F07.mp3" download="">Download audio</a> (2:56)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Recollection:</b> Ajahn Chah laments that the forests in Thailand are being destroyed so quickly that there's not much place for monks to wander any more. Recounted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>]
+<div class="title" id="WR2015_S45"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S45">Session 45</a> – Mar. 15, 2015</div>
+<p id="WR2015_S45_F09">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S45_F09.mp3" title="Abhayagiri 2015 Wint... S45 E9" data-duration="255"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S45_F09.mp3" download="">Download audio</a> (4:15)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Is the goal (Nibbāna) a thought-less state of mind?”  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/formless-attainments.html">Formless attainments</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/impermanence.html">Impermanence</a>]
+</p>
+<p style="margin-left: 2em;">
+  "Who is the only person who doesn't think? An arahant? A Buddha?" "No. The only person who doesn't think is a dead person." – <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/death.html">Death</a>]
+</p>
+<hr />
+<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – Apr. 25, 2015</div>
+<p id="UD2015-1_S04_F07">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F07.mp3" title="On Pilgrimage and Tud... S4 E7" data-duration="176"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F07.mp3" download="">Download audio</a> (2:56)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Recollection:</b> Ajahn Chah laments that the forests in Thailand are being destroyed so quickly that there's not much place for monks to wander any more. Recounted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Nowadays it's hard to tudong because you <em>taludong</em> (go through the forest).” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/thai.html">Thai</a>]
@@ -508,7 +516,7 @@
   <b>Quote:</b>  “Don't think you're a ten-wheeled dump truck when all you are is a wheelbarrow.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Commentary:</b> <em>Path of Purification</em> translated by Bhikkhu Ñāṇamoli, <a href="https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=349" target="_blank">p. 291</a>: Classical cultivation of goodwill and compassion, first to yourself. [<a href = "../tags/goodwill.html">Goodwill</a>]
+  <b>Commentary:</b> <em>Path of Purification</em> by Bhikkhu Ñāṇamoli, <a href="https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=349" target="_blank">p. 291</a>: Classical cultivation of goodwill and compassion, first to yourself. [<a href = "../tags/goodwill.html">Goodwill</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Our ability to be with others and to help and to give is dependent on our being kind and compassionate to ourselves.”  [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/self-reliance.html">Self-reliance</a>]

@@ -6,10 +6,12 @@ from datetime import timedelta, datetime
 import copy
 import re, os
 from urllib.parse import urlparse
-from typing import List
+from typing import BinaryIO
 import Alert, Link
 import pathlib, posixpath
 from collections.abc import Iterable
+from urllib.parse import urljoin,urlparse,quote,urlunparse
+import urllib.request, urllib.error
 from DjangoTextUtils import slugify,RemoveDiacritics
 
 gOptions = None
@@ -77,6 +79,25 @@ def RemoteURL(url:str) -> bool:
     "Does this point to a remote file server?"
     return bool(urlparse(url).netloc)
 
+def QuotePath(url:str) -> str:
+    """If the path section of url contains any % characters, assume it's already been quoted.
+    Otherwise quote it."""
+
+    parsed = urlparse(url)
+    if "%" in parsed.path:
+        return url
+    else:
+        return urlunparse(parsed._replace(path=quote(parsed.path)))
+
+def OpenUrlOrFile(url:str) -> BinaryIO:
+    """Determine whether url represents a remote URL or local file, open it for reading, and return a handle."""
+    
+    if RemoteURL(url):
+        url = QuotePath(url)
+        return urllib.request.urlopen(url)
+    else:
+        return open(url,"rb")
+
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"
     name,_ = os.path.splitext(filename)
@@ -96,7 +117,8 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
         return Link.URL(item,directoryDepth=directoryDepth)
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
-    return Link.URL(session,directoryDepth=directoryDepth)
+    audioSource = gDatabase["audioSource"][session["filename"]]
+    return Link.URL(audioSource,directoryDepth=directoryDepth)
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
@@ -339,10 +361,11 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
         Alert.error("Annotation",annotation,"doesn't have a proper parent.")
         return None
 
-def SubtagExcerptCount(tag: str) -> int:
-    "Return the number of excerpts referred to by this tag and its subtags."
+def SubtagDescription(tag: str) -> str:
+    "Return a string describing this tags subtags."
     primary = gDatabase["tag"][tag]["listIndex"]
-    return gDatabase["tagDisplayList"][primary]["subtagExcerptCount"]
+    listEntry = gDatabase["tagDisplayList"][primary]
+    return f'{listEntry["subtagCount"]} subtags, {listEntry["subtagExcerptCount"]} excerpts'
 
 
 def GroupBySession(excerpts: list[dict],sessions: list[dict]|None = None) -> Iterable[tuple[dict,list[dict]]]:
@@ -430,4 +453,32 @@ def SummarizeDict(d: dict,printer: Alert.AlertClass) -> None:
         except TypeError:
             pass
         printer(desc)
-    
+
+class MockFuture():
+    def __init__(self, result) -> None:
+        self.result = result
+    def result(self, timeout=None):
+        return self.result
+    def cancel(self):
+        pass
+
+class MockThreadPoolExecutor():
+    """Don't execute any threads for testing purposes.
+    https://stackoverflow.com/questions/10434593/dummyexecutor-for-pythons-futures"""
+    def __init__(self, **kwargs):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        pass
+
+    def submit(self, fn, *args, **kwargs):
+        # execute functions in series without creating threads
+        # for easier unit testing
+        result = fn(*args, **kwargs)
+        return MockFuture(result)
+
+    def shutdown(self, wait=True):
+        pass
