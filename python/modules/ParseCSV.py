@@ -780,8 +780,9 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
         printer(i,message)
     return filteredItems
 
-def CreateClips(excerpts: list[dict], sessions: list[dict]) -> None:
+def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
+    Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
     Eventually this function will scan for Alt. Audio and Append Audio annotations for extended functionality."""
 
     # First eliminate excerpts with fatal parsing errors.
@@ -799,12 +800,45 @@ def CreateClips(excerpts: list[dict], sessions: list[dict]) -> None:
     for index in reversed(range(len(excerpts))):
         if id(excerpts[index]) in deletedExcerptIDs:
             Alert.error("Misformed time string in",excerpts[index],". Will delete this excerpt.")
-            del excerpts[index]            
+            del excerpts[index]
+    
+    def AddAudioSource(filename:str, duration:str, event: str, url: str) -> None:
+        """Add an audio source to database["audioSource"]."""
+        noDiacritics = Utils.RemoveDiacritics(filename)
+        if filename != noDiacritics:
+            Alert.warning("Audio filename",repr(filename),"contains diacritics, which have been removed.")
+            filename = noDiacritics
+
+        if filename in database["audioSource"]:
+            existingSource = database["audioSource"][filename]
+            if existingSource["duration"] != duration or existingSource["url"] != url:
+                Alert.error(f"Audio file {filename} in event {event}: Duration ({duration}) or url ({url}) do not match parameters given previously.")
+        else:
+            source = {"filename": filename, "duration":duration, "event":event, "url":url}
+            database["audioSource"][filename] = source
+
+    def ClipDuration(clip: SplitMp3.ClipTD,sessionDuration:timedelta) -> str:
+        "Return the duration of clip as a string."
+        try:
+            duration = clip.Duration(sessionDuration)
+        except TypeError: # Generated if sessionDuration is None and needs to be used
+            Alert.error(x,"must specify an end time since it appears in a session with no end time.")
+            return "0:00"
+        return Utils.TimeDeltaToStr(duration)
+
 
     # Then scan through the excerpts and add key "clips"
     for session,sessionExcerpts in Utils.GroupBySession(excerpts,sessions):
         prevExcerpt = None
-        sessionDuration = SplitMp3.ToTimeDelta(session["duration"])
+        if session["filename"]:
+            AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
+            try:
+                sessionDuration = SplitMp3.ToTimeDelta(session["duration"])
+            except ValueError:
+                Alert.error(session,"has invalid duration:",repr(session["duration"]))
+                sessionDuration = None
+        else:
+            sessionDuration = None
         for x in sessionExcerpts:
             # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
@@ -824,8 +858,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict]) -> None:
                     prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
             
                 prevClip = SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0])
-                duration = prevClip.Duration(sessionDuration)
-                prevExcerpt["duration"] = Utils.TimeDeltaToStr(duration)
+                prevExcerpt["duration"] = ClipDuration(prevClip,sessionDuration)
                 
                 if prevClip.end > SplitMp3.ToTimeDelta(startTime):
                     startTime = prevExcerpt["clips"][0].end
@@ -837,7 +870,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict]) -> None:
             prevExcerpt = x
         
         if prevExcerpt:
-            prevExcerpt["duration"] = Utils.TimeDeltaToStr(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]).Duration(sessionDuration))
+            prevExcerpt["duration"] = ClipDuration(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]),sessionDuration)
 
 
 def LoadEventFile(database,eventName,directory):
@@ -997,7 +1030,7 @@ def LoadEventFile(database,eventName,directory):
             del x["aTag"]
             x.pop("aListen",None)
 
-    CreateClips(excerpts,sessions)
+    CreateClips(excerpts,sessions,database)
     
     removedExcerpts = [x for x in excerpts if x["exclude"]]
     excerpts = [x for x in excerpts if not x["exclude"]]
@@ -1207,6 +1240,7 @@ def main():
 
     gDatabase["event"] = {}
     gDatabase["sessions"] = []
+    gDatabase["audioSource"] = {}
     gDatabase["excerpts"] = []
     gDatabase["excerptsRedacted"] = []
     for event in gDatabase["summary"]:
@@ -1238,7 +1272,7 @@ def main():
         del gDatabase["tagRaw"]    
     gDatabase["keyCaseTranslation"] = {key:gCamelCaseTranslation[key] for key in sorted(gCamelCaseTranslation)}
 
-    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
+    Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","audioSource","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
     Alert.extra("Spreadsheet database contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)
