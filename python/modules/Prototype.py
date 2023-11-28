@@ -11,20 +11,17 @@ from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
 from functools import lru_cache
-import contextlib
 from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
 from FileRegister import HashWriter
 
-NEW_STYLE = True
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
-if NEW_STYLE:
-    BASE_MENU_STYLE = dict(separator="\n"+6*" ",highlight={"class":"active"})
-    MAIN_MENU_STYLE |= BASE_MENU_STYLE
-    SUBMENU_STYLE |= BASE_MENU_STYLE
-    EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink2"}) + "\n<hr>\n")
+BASE_MENU_STYLE = dict(separator="\n"+6*" ",highlight={"class":"active"})
+MAIN_MENU_STYLE |= BASE_MENU_STYLE
+SUBMENU_STYLE |= BASE_MENU_STYLE
+EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink2"}) + "\n<hr>\n")
 
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
@@ -580,7 +577,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     basePage = Html.PageDesc()
     basePage.keywords = ["Tags","Alphabetical"]
-    for page in basePage.AddMenuAndYieldPages(subMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>")))):
+    for page in basePage.AddMenuAndYieldPages(subMenu,**EXTRA_MENU_STYLE):
         titleWithoutLength = " ".join(page.info.title.split(" ")[:-1])
         page.keywords.append(titleWithoutLength)
         citation = f"Alphabetical tags: {titleWithoutLength}"
@@ -1327,7 +1324,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
             if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>\n")))))
+                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**EXTRA_MENU_STYLE))
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
@@ -1401,8 +1398,8 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p>")))))
-            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p>")))))
+            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**EXTRA_MENU_STYLE))
+            yield from map(LinkToTagPage,basePage.AddMenuAndYieldPages(filterMenu,**EXTRA_MENU_STYLE))
         else:
             yield from map(LinkToTagPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
 
@@ -1611,7 +1608,7 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
 
     if makeMenu:
         basePage = Html.PageDesc()
-        yield from basePage.AddMenuAndYieldPages(aboutMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("","<hr>\n"))))
+        yield from basePage.AddMenuAndYieldPages(aboutMenu,**EXTRA_MENU_STYLE)
     else:
         yield from aboutMenu
 
@@ -1638,7 +1635,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**(EXTRA_MENU_STYLE if NEW_STYLE else dict(wrapper=Html.Wrapper("<p>","</p><hr>"))))
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**EXTRA_MENU_STYLE)
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.

@@ -29,7 +29,7 @@ async function changeURL(pUrl) {
 				let href = el.getAttribute("href");
 				if (!href || href.match(absoluteURLRegex)) return;
 				if (href == "homepage.html#noscript") { // Code to escape javascript
-					e1.href = "homepage.html";
+					el.href = "homepage.html";
 					return;
 				}
 

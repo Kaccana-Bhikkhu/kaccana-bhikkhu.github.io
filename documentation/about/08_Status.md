@@ -3,7 +3,7 @@
 # Status – November 2023 Initial Release
 
 ## Content
-This release contains 1549 excerpts from 40 events, comprising over 80 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of the initial release there are 288 transcribed pages, of which 154 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 1580 excerpts from 40 events, comprising over 80 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of the initial release there are 288 transcribed pages, of which 154 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.

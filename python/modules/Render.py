@@ -170,7 +170,8 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
             else:
                 defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
         else:
-            defaultTeachers = container["teachers"]
+            parent = Utils.ParentAnnotation(container,item)
+            defaultTeachers = parent.get("teachers",())
         if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
             teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
@@ -201,7 +202,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         attributionStr = attributionTemplate(**renderDict)
 
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
-        if fullStop and "{fullStop}" not in attributionTemplateStr:
+        if fullStop and "fullStop" not in attributionTemplateStr:
             attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
     else:
         item["body"] = item["body"].replace("{attribution}","")
