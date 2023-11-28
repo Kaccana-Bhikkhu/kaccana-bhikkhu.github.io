@@ -1,4 +1,4 @@
-"""Add a "mirror" field to each session, excerpt and reference indicating which hyperlink the item should use.
+"""Add a "mirror" field to each audioSource, excerpt and reference indicating which hyperlink the item should use.
 LinkValidator and its subclasses determine whether a given hyperlink is valid.
 """
 
@@ -19,21 +19,22 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 import copy
 import contextlib
+
 class StrEnum(str,Enum):
     pass
 
 class ItemType(StrEnum): # The kinds of items we will link to
-    SESSION = "sessionMp3"
+    AUDIO_SOURCE = "sessionMp3"
     EXCERPT = "excerptMp3"
     REFERENCE = "reference"
 
 def AutoType(item:dict) -> ItemType:
     if "fileNumber" in item:
         return ItemType.EXCERPT
-    elif "sessionTitle" in item:
-        return ItemType.SESSION
     elif "pdfPageOffset" in item:
         return ItemType.REFERENCE
+    elif "url" in item:
+        return ItemType.AUDIO_SOURCE
     
     Alert.error("Autotype: unknown type",item)
 
@@ -180,13 +181,13 @@ class Mp3LengthChecker (RemoteURLChecker):
         return True,data
 
 remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
-    ItemType.SESSION: "remoteMp3Url",
+    ItemType.AUDIO_SOURCE: "url",
     ItemType.EXCERPT: "",
     ItemType.REFERENCE: "remoteUrl"
 }
 
 class Linker:
-    """For a given type of item (session,excerpt,reference), determine which mirror it should link to.
+    """For a given type of item (audioSource,excerpt,reference), determine which mirror it should link to.
     """
     itemType: ItemType # The type of item we are linking to
     mirrorValidator: dict[str,LinkValidator] # The list of mirrors and the validator for each mirror
@@ -212,7 +213,7 @@ class Linker:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
             return Utils.PosixJoin(item["event"],Utils.ItemCode(item) + ".mp3")
-        elif self.itemType == ItemType.SESSION:
+        elif self.itemType == ItemType.AUDIO_SOURCE:
             return Utils.PosixJoin(item["event"],item["filename"])
         else:
             return item["filename"]
@@ -400,7 +401,7 @@ def AddArguments(parser) -> None:
 
     parser.add_argument("--sessionMp3Dir",type=str,default="audio/sessions",help="Read session mp3 files from this directory; Default: audio/sessions")
     parser.add_argument("--excerptMp3Dir",type=str,default="audio/excerpts",help="Write excerpt mp3 files from this directory; Default: audio/excerpts")
-    parser.add_argument("--referenceDir",type=str,default="references",help="Read session mp3 files from this directory; Default: references")
+    parser.add_argument("--referenceDir",type=str,default="references",help="Directory for reference pdfs; Default: references")
 
     parser.add_argument("--linkCheckLevel",type=str,action="append",default=["1"],help="Integer link check level. [ItemType]:[mirror]:LEVEL")
 
@@ -418,7 +419,7 @@ def ParseArguments() -> None:
     """Set up gOptions.mirror[itemType][mirrorName] as the URL to find items in a named mirror."""
 
     itemDirs = { # Specifies the directory for each item type
-        ItemType.SESSION: gOptions.sessionMp3Dir,
+        ItemType.AUDIO_SOURCE: gOptions.sessionMp3Dir,
         ItemType.EXCERPT: gOptions.excerptMp3Dir,
         ItemType.REFERENCE: gOptions.referenceDir
     }
@@ -452,7 +453,7 @@ def ParseArguments() -> None:
     # Parse --linkCheckLevel entries to form a dict
     linkCheckLevels = copy.deepcopy(gOptions.mirror) # Copy the structure of the mirrors
     linkCheckLevels[ItemType.REFERENCE]["remote"] = 1
-    linkCheckLevels[ItemType.SESSION]["remote"] = 1
+    linkCheckLevels[ItemType.AUDIO_SOURCE]["remote"] = 1
     mirrorNames = set(mirrorDict)
     mirrorNames.add("remote")
     for levelCode in gOptions.linkCheckLevel:
@@ -508,7 +509,7 @@ def main() -> None:
     global gItemLists
     gItemLists = {
         ItemType.EXCERPT: gDatabase["excerpts"],
-        ItemType.SESSION: gDatabase["sessions"],
+        ItemType.AUDIO_SOURCE: gDatabase["audioSource"],
         ItemType.REFERENCE: gDatabase["reference"]
     }
     

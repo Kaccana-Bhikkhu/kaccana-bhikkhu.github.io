@@ -39,6 +39,9 @@ gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main() -> None:
+    downloadCount = DownloadItems(gDatabase["audioSource"])
+    Alert.info("Downloaded",downloadCount,"audio source (session) mp3(s)")
+
     downloadCount = DownloadItems(gDatabase["excerpts"])
     Alert.info("Downloaded",downloadCount,"excerpt mp3(s)")
 

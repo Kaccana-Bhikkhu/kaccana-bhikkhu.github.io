@@ -806,7 +806,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         """Add an audio source to database["audioSource"]."""
         noDiacritics = Utils.RemoveDiacritics(filename)
         if filename != noDiacritics:
-            Alert.warning("Audio filename",repr(filename),"contains diacritics, which have been removed.")
+            Alert.error("Audio filename",repr(filename),"contains diacritics, which are not allowed.")
             filename = noDiacritics
 
         if filename in database["audioSource"]:
@@ -839,6 +839,8 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 sessionDuration = None
         else:
             sessionDuration = None
+        del session["remoteMp3Url"]
+
         for x in sessionExcerpts:
             # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]

@@ -117,7 +117,8 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
         return Link.URL(item,directoryDepth=directoryDepth)
     
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
-    return Link.URL(session,directoryDepth=directoryDepth)
+    audioSource = gDatabase["audioSource"][session["filename"]]
+    return Link.URL(audioSource,directoryDepth=directoryDepth)
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
