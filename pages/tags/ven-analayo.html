@@ -14,10 +14,10 @@
     
 </head>
 <body>
-    <span id="javascript-link">
-      <a href="../index.html#tags/ven-analayo.html">Enable floating audio player (Javascript)</a>
-      <br>
-    </span>
+    <script>
+      url = new URL(location.href)
+      location.replace("../index.html#tags/ven-analayo.html" + url.hash);
+    </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
