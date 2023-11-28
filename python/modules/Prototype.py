@@ -5,11 +5,12 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
-import Utils, Alert, Filter, ParseCSV, Document
+import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
 from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
+from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 from typing import NamedTuple
 from collections import defaultdict, Counter
@@ -1497,6 +1498,52 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         yield page
 
 
+def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
+    """Add a table of contents to the event which is being built."""
+    tocPath = Utils.PosixJoin(gOptions.documentationDir,"tableOfContents",sessions[0]["event"] + ".md")
+    if os.path.isfile(tocPath):
+        with open(tocPath,encoding='utf8') as file:
+            template = pyratemp.Template(file.read())
+        
+        markdownText = template(gOptions = gOptions,gDatabase = gDatabase,Utils = Utils)
+
+        def ApplyToMarkdownFile(transform: Callable[[str],Tuple[str,int]]) -> int:
+            nonlocal markdownText
+            markdownText,changeCount = transform(markdownText)
+            return changeCount
+        
+        with Alert.extra.Supress():
+            Render.LinkSubpages(ApplyToMarkdownFile)
+            Render.LinkKnownReferences(ApplyToMarkdownFile)
+            Render.LinkSuttas(ApplyToMarkdownFile)
+        
+        html = markdown.markdown(markdownText,extensions = ["sane_lists",NewTabRemoteExtension()])
+        a.hr()
+        with a.div(Class="listing"):
+            a(html)
+        return
+
+    if len(sessions) > 1:
+        if all(s["sessionTitle"] for s in sessions):
+            # If all sessions have a title, list sessions by title
+            a.hr()
+            with a.div(Class="listing"):
+                for s in sessions:
+                    with a.p():
+                        a(f"Session {s['sessionNumber']}:")
+                        with a.a(href = f"#{Utils.ItemCode(s)}"):
+                            a(str(s['sessionTitle']))
+        else:
+            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
+            squish("Sessions:")
+            for s in sessions:
+                squish(" " + 3*"&nbsp")
+                with squish.a(href = f"#{Utils.ItemCode(s)}"):
+                    squish(str(s['sessionNumber']))
+            
+            a(str(squish))
+
+
 def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Generate html for each event in the database"""
             
@@ -1529,15 +1576,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a("External website")
             a.br()
         
-        if len(sessions) > 1:
-            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
-            squish("Sessions:")
-            for s in sessions:
-                squish(" " + 3*"&nbsp")
-                with squish.a(href = f"#{Utils.ItemCode(s)}"):
-                    squish(str(s['sessionNumber']))
-            
-            a(str(squish))
+        AddTableOfContents(sessions,a)
         
         a.hr()
         
