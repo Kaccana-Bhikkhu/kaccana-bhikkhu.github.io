@@ -180,7 +180,7 @@ class Mp3LengthChecker (RemoteURLChecker):
             Alert.caution(item,"indicates a duration of",expectedLengthStr,"but its mp3 file at",url,"has duration",lengthStr)
         return True,data
 
-remoteKey = { # Specify the dictionary key indicating the remote URL for each item type
+REMOTE_KEY = { # Specify the dictionary key indicating the remote URL for each item type
     ItemType.AUDIO_SOURCE: "url",
     ItemType.EXCERPT: "",
     ItemType.REFERENCE: "remoteUrl"
@@ -226,7 +226,7 @@ class Linker:
             return ""
         
         if mirror == "remote":
-            url = item.get(remoteKey[self.itemType],"")
+            url = item.get(REMOTE_KEY[self.itemType],"")
             if Utils.RemoteURL(url):
                 return url
             else: 
@@ -292,12 +292,11 @@ class Linker:
             tempDownloadLocation = fileName + ".download"
 
             remainingMirrors = self._UncheckedMirrors(item)[1:]
+            if REMOTE_KEY[self.itemType]:
+                Utils.ExtendUnique(remainingMirrors,["remote"])
             localMirrors = ("local",gOptions.uploadMirror)
             for mirror in remainingMirrors:
                 if mirror not in localMirrors:
-                    url = self.URL(item,mirror)
-                    #if self.mirrorValidator[mirror].ValidLink(url,item):
-                    #    Alert.extra("Will try to download",item,"from",url,"to",tempDownloadLocation)
                     if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
                         with contextlib.suppress(FileNotFoundError):
                             os.remove(fileName)
