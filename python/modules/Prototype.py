@@ -859,7 +859,7 @@ class Formatter:
         
         return str(a)
 
-def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,sessionExcerptDuration = True) -> str:
+def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,countSessionExcerpts = False,sessionExcerptDuration = True) -> str:
     "Return a string describing the duration of the excerpts we were passed."
     
     if not excerpts:
@@ -883,10 +883,11 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     if len(sessions) > 1 and countSessions:
         strItems.append(f"{len(sessions)} sessions,")
     
-    if len(excerpts) > 1:
-        strItems.append(f"{len(excerpts)} excerpts,")
+    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
+    if excerptCount > 1:
+        strItems.append(f"{excerptCount} excerpts,")
     else:
-        strItems.append(f"{len(excerpts)} excerpt,")
+        strItems.append(f"{excerptCount} excerpt,")
     
     strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
     
@@ -1024,7 +1025,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         yield clone
 
 def ShowDuration(page: Html.PageDesc,filteredExcerpts: list[dict]) -> None:
-    durationStr = ExcerptDurationStr(filteredExcerpts,sessionExcerptDuration=False)
+    durationStr = ExcerptDurationStr(filteredExcerpts,countSessionExcerpts=True,sessionExcerptDuration=False)
     page.AppendContent(Html.Tag("p")(durationStr))
 
 def AddSearchCategory(category: str) -> Callable[[Html.PageDesc,list[dict]],None]:
@@ -1283,7 +1284,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
-            a(ExcerptDurationStr(relevantExcerpts,False,False))
+            a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))
         
         a.hr()
 
@@ -1359,7 +1360,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
     
         a = Airium()
         
-        excerptInfo = ExcerptDurationStr(relevantExcerpts,False,False)
+        excerptInfo = ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False)
         teacherPageData[t] = excerptInfo
         a(excerptInfo)
         a.hr()

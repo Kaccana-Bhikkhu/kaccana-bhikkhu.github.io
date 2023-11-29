@@ -902,9 +902,9 @@ def LoadEventFile(database,eventName,directory):
     
     for key in ["teachers","tags"]:
         eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
-    for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags"]:
-        if key in eventDesc:
-            eventDesc[key] = int(eventDesc[key])
+    for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags","duration"]:
+        eventDesc.pop(key,None) # The spreadsheet often miscounts these items, so remove them.
+
     RemoveUnknownTeachers(eventDesc["teachers"],eventDesc)
     
     database["event"][eventName] = eventDesc
@@ -1074,7 +1074,9 @@ def LoadEventFile(database,eventName,directory):
 
     database["excerpts"] += excerpts
     database["excerptsRedacted"] += removedExcerpts
-    
+
+    eventDesc["sessions"] = len(sessions)
+    eventDesc["excerpts"] = sum(1 for x in excerpts if x["fileNumber"]) # Count only non-session excerpts   
 
 def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False) -> int:
     """Loop through items in a collection of dicts and count the number of appearances a given str.
@@ -1282,4 +1284,4 @@ def main():
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
-    Alert.info(Prototype.ExcerptDurationStr(gDatabase["excerpts"]),indent = 0)
+    Alert.info(Prototype.ExcerptDurationStr(gDatabase["excerpts"],countSessionExcerpts=True,sessionExcerptDuration=False),indent = 0)
