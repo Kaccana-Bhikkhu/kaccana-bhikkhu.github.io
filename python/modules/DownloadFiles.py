@@ -7,8 +7,9 @@ from __future__ import annotations
 import os
 import Utils, Alert, Link
 from concurrent.futures import ThreadPoolExecutor
+from typing import Iterable
 
-def DownloadItems(itemList: list[dict]) -> int:
+def DownloadItems(items: Iterable[dict]) -> int:
     """Ascertain whether any items require a local file. If so, try to download them from available mirrors."""
     downloadCount = 0
 
@@ -19,7 +20,7 @@ def DownloadItems(itemList: list[dict]) -> int:
 
     multithreading = True
     with ThreadPoolExecutor() if multithreading else Utils.MockThreadPoolExecutor() as pool:
-        for item in Utils.Contents(itemList):
+        for item in items:
             pool.submit(DownloadItem,item)
     
     return downloadCount
@@ -39,11 +40,11 @@ gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 
 def main() -> None:
-    downloadCount = DownloadItems(gDatabase["audioSource"])
+    downloadCount = DownloadItems(gDatabase["audioSource"].values())
     Alert.info("Downloaded",downloadCount,"audio source (session) mp3(s)")
 
     downloadCount = DownloadItems(gDatabase["excerpts"])
     Alert.info("Downloaded",downloadCount,"excerpt mp3(s)")
 
-    downloadCount = DownloadItems(gDatabase["reference"])
+    downloadCount = DownloadItems(gDatabase["reference"].values())
     Alert.info("Downloaded",downloadCount,"reference(s)")

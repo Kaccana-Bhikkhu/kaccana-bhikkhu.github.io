@@ -209,7 +209,7 @@ class Linker:
         else:
             return mirrorList
 
-    def FileName(self,item: dict) -> str:
+    def Filename(self,item: dict) -> str:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
             return Utils.PosixJoin(item["event"],Utils.ItemCode(item) + ".mp3")
@@ -234,12 +234,38 @@ class Linker:
                 # If the remote link specifies a local file, the path will be relative to prototypeDir/indexes.
                 # This occurs only with references.
         
-        fileName = self.FileName(item)
-        if fileName:
-            return urljoin(gOptions.mirror[self.itemType][mirror],self.FileName(item))
+        filename = self.Filename(item)
+        if filename:
+            return urljoin(gOptions.mirror[self.itemType][mirror],self.Filename(item))
         else:
             return ""
 
+    def NoUploadPath(self,item: dict) -> str:
+        """Return the path of item in the corresponding xxxNoUpload directory."""
+
+        filename = self.Filename(item)
+        if not filename or filename.startswith(".."):
+            return "" # Files outside the main directory don't get moved
+        noUploadDir = gOptions.mirror[self.itemType]["local"].strip("/") + "NoUpload/"
+        return Utils.PosixJoin(noUploadDir,filename)
+
+    def CheckUploadMirror(self,mirror: str,item: dict) -> str:
+        """Returns "local" if mirror is the upload mirror; else return mirror.
+        Move any item in the xxxNoUpload directory back to its usual location to allow link checking."""
+        mirrorToCheck = mirror
+        if mirror == gOptions.uploadMirror:
+            mirrorToCheck = "local"
+        if mirrorToCheck == "local":
+            noUploadPath = self.NoUploadPath(item)
+            if os.path.isfile(noUploadPath):
+                regularPath = self.URL(item,"local")
+                if not os.path.isfile(regularPath):
+                    os.rename(noUploadPath,regularPath)
+                else:
+                    raise FileExistsError(f"Cannot move {noUploadPath} to overwrite {regularPath}.")
+        
+        return mirrorToCheck
+    
     def LinkItem(self,item: dict) -> str:
         """Search the available mirrors and set item["mirror"] to the name of the first valid mirror.
         If there is no valid mirror, set it to "".
@@ -250,9 +276,10 @@ class Linker:
             return item["mirror"]
 
         for mirror in self._UncheckedMirrors(item):
-            url = self.URL(item,mirror)
+            mirrorToCheck = self.CheckUploadMirror(mirror,item)
+            url = self.URL(item,mirrorToCheck)
             try:
-                if self.mirrorValidator[mirror].ValidLink(url,item):
+                if self.mirrorValidator[mirrorToCheck].ValidLink(url,item):
                     item["mirror"] = mirror
                     return mirror
             except Exception as error:
@@ -268,9 +295,7 @@ class Linker:
         if item.get("mirror","").endswith("*"):
             return True # Have we tried to find a local item before?
         for mirror in self._UncheckedMirrors(item):
-            mirrorToCheck = mirror
-            if mirror == gOptions.uploadMirror:
-                mirrorToCheck = "local"
+            mirrorToCheck = self.CheckUploadMirror(mirror,item)
             
             if self.mirrorValidator[mirrorToCheck].ValidLink(self.URL(item,mirrorToCheck),item):
                 item["mirror"] = mirror
@@ -284,12 +309,12 @@ class Linker:
     def DownloadItem(self,item: dict) -> bool:
         """If needed, attempt to download this item from any available mirrors.
         Return True if the item was needed and has been downloaded; False otherwise."""
-        fileName = self.URL(item,"local")
-        if not fileName:
+        filename = self.URL(item,"local")
+        if not filename:
             return False
         
         if self.LocalItemNeeded(item):
-            tempDownloadLocation = fileName + ".download"
+            tempDownloadLocation = filename + ".download"
 
             remainingMirrors = self._UncheckedMirrors(item)[1:]
             if REMOTE_KEY[self.itemType]:
@@ -299,14 +324,14 @@ class Linker:
                 if mirror not in localMirrors:
                     if self.mirrorValidator[mirror].DownloadValidLink(self.URL(item,mirror),item,tempDownloadLocation):
                         with contextlib.suppress(FileNotFoundError):
-                            os.remove(fileName)
-                        os.rename(tempDownloadLocation,fileName)
+                            os.remove(filename)
+                        os.rename(tempDownloadLocation,filename)
                         item["mirror"] = item["mirror"].rstrip("*")
-                        Alert.extra("Downloaded",item,"to",fileName)
+                        Alert.extra("Downloaded",item,"to",filename)
                         return True
         return False
 
-def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
+def URL(item:dict,mirror:str = "",directoryDepth:int = 0) -> str:
     """Auto-detect the type of this item and return its URL.
     directoryDepth: depth of the html file we are writing relative to the home directory."""
 
@@ -319,6 +344,10 @@ def URL(item:dict,directoryDepth:int = 0,mirror:str = "") -> str:
 def LocalItemNeeded(item:dict) -> bool:
     "Auto-detect the type of this item and return whether a local copy is needed"
     return gLinker[AutoType(item)].LocalItemNeeded(item)
+
+def NoUploadPath(item:dict) -> str:
+    """Auto-detect the type of this item and return its NoUpload path."""
+    return gLinker[AutoType(item)].NoUploadPath(item)
 
 def DownloadItem(item:dict) -> bool:
     """Auto-detect the type of this item. If a local copy is needed, try to download one.
@@ -358,7 +387,7 @@ def LinkItems() -> None:
                 unlinked.append(item)
         
         if unlinked:
-            Alert.warning(len(unlinked),f"unlinked {itemType} items. The first 10 are:",*unlinked[:10])
+            Alert.warning(len(unlinked),f"unlinked {itemType} items{'' if len(unlinked) <= 10 else '. The first 10 are'}:",*unlinked[:10])
                           
         Alert.info(itemType + " mirror links:",dict(mirrorCount))
 

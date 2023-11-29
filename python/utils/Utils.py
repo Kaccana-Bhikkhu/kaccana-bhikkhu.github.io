@@ -208,6 +208,9 @@ def ItemRepr(item: dict) -> str:
         elif "pdfPageOffset" in item:
             kind = "reference"
             args.append(item["abbreviation"])
+        elif "url" in item:
+            kind = "audioSource"
+            args = [item["event"],item["filename"]]
         else:
             return(repr(item))
         
