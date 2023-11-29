@@ -16,6 +16,7 @@ from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
 from FileRegister import HashWriter
+import urllib.parse
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
@@ -612,6 +613,8 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     if not linkKind:
         linkKind = gOptions.audioLinks
 
+    filename = Utils.PosixSplit(urllib.parse.urlparse(hyperlink).path)[1]
+
     a = Airium(source_minify=True)
     if linkKind == "img":
         a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
@@ -620,11 +623,11 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         with a.a(href = hyperlink,title = "Back to player"):
             a('<i class="fa fa-long-arrow-left"></i> Playable')
         a(" "+4*"&nbsp")
-        a.a(href = hyperlink,download = "",title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
+        a.a(href = hyperlink,download = filename,title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
         a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
-            with a.a(href = hyperlink,download=""):
+            with a.a(href = hyperlink,download=filename):
                 a(f"Download audio")
             a(f" ({dataDuration})")
         a.br()
@@ -633,7 +636,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         if dataDuration:
             durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
         with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
-            with a.a(href = hyperlink,download=""):
+            with a.a(href = hyperlink,download=filename):
                 a(f"Download audio")
             a(f" ({dataDuration})")
         a.br()
@@ -1810,7 +1813,7 @@ def main():
     
     xml = Airium()
     with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
-            HashWriter(gOptions.prototypeDir,"assets/HashCache.json") as writer,
+            HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer,
             xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")):
         for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
             WritePage(newPage,writer)
