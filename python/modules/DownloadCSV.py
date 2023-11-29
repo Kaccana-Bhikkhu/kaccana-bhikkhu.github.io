@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os, re
+import os, re, csv
 import urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
 from typing import List
@@ -48,14 +48,23 @@ def DownloadSummarySheet(writer: HashWriter) -> None:
         
     DownloadSheetCSV(gOptions.spreadsheetId,gOptions.summarySheetID,gOptions.summaryFile,writer)
 
-def ReadSummarySheet() -> tuple[dict[str,str],dict[str,str]]:
+def ReadSummarySheet(printSheetName: bool = False) -> tuple[dict[str,str],dict[str,str]]:
     "Read Summary.csv and return two dicts {sheetName : sheetId} and {sheetName : modifiedDate (str)}"
     
     with open(os.path.join(gOptions.csvDir,'Summary.csv'),encoding='utf8') as file:
         CSVToDictList(file,skipLines = 1,endOfSection = '<---->',camelCase = False)
             # Skip the first half of the summary file
         
-        summarySheet = CSVToDictList(file,camelCase = False,skipLines = 2)
+        reader = csv.reader(file)
+        next(reader)
+        sheetInfo = next(reader)
+        try:
+            if printSheetName:
+                Alert.info("Reading from spreadsheet",repr(sheetInfo[sheetInfo.index("Spreadsheet:") + 1]))
+        except (ValueError,IndexError):
+            pass
+
+        summarySheet = CSVToDictList(file,camelCase = False,skipLines = 0)
     
     sheetIds = DictFromPairs(summarySheet,'Sheet','gid',camelCase=False)
     if 'Modified' in summarySheet[0]:
@@ -133,7 +142,7 @@ def main():
     with HashWriter(gOptions.csvDir,exactDates=True) as writer:
         if downloadSummary:
             DownloadSummarySheet(writer)
-            sheetIds,sheetModDates = ReadSummarySheet()
+            sheetIds,sheetModDates = ReadSummarySheet(printSheetName=True)
             Alert.info("Downloaded Summary.csv")
         else:
             sheetIds = oldSheetIds
