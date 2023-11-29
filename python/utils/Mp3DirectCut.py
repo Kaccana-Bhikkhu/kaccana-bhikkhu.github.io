@@ -2,19 +2,18 @@
 
 from __future__ import annotations
 
-import os, shutil
+import os, shutil, platform
 from datetime import time,timedelta
 from typing import List
 
 Executable = 'mp3DirectCut.exe'
-ExecutableDir = 'mp3DirectCut'
-
-class ExecutableNotFound(Exception):
-    "Called when mp3DirectCut can't be found"
-    pass
-    
+ExecutableDir = 'mp3DirectCut'    
 class Mp3CutError(Exception):
-    "Called if mp3DirectCut returns with an error code"
+    "Raised if mp3DirectCut returns with an error code"
+    pass
+
+class ExecutableNotFound(Mp3CutError):
+    "Raised when mp3DirectCut can't be found"
     pass
 
 def SetExecutable(directory,program='mp3DirectCut.exe'):
@@ -51,6 +50,9 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
     
+    if platform.system() != "Windows":
+        raise ExecutableNotFound(f"mp3DirectCut.exe only runs on Windows; cannot split mp3 files.")
+
     mp3DirectCutProgram = os.path.join(ExecutableDir,Executable)
     if not os.path.exists(mp3DirectCutProgram):
         raise ExecutableNotFound(f"mp3DirectCut.exe not found at {mp3DirectCutProgram}; cannot split mp3 files.")

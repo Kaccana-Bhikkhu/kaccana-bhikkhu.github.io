@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os, json
+import os, json, platform
 import Utils, Alert, Link
 import Mp3DirectCut
 from typing import List, Union, NamedTuple
@@ -94,6 +94,10 @@ def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     
+    if platform.system() != "Windows":
+        Alert.error(f"SplitMp3 requires Windows to run mp3DirectCut.exe. mp3 files cannot be split on {platform.system()}.")
+        return
+
     sessionCount = 0
     mp3SplitCount = 0
     errorCount = 0
