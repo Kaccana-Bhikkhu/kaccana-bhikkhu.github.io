@@ -1,21 +1,22 @@
 <!--TITLE:Draft License-->
-This draft is problematic because CC BY-NC-ND allows distribution "[in whole or in part](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.en#s2a)." It is useful because it illustrates the principles we're considering.
-
 #### Draft license for review by collaborators – Not yet in effect
 This license applies to all new material created as part of the Ajahn Pasanno Question and Story Archive. This includes all versions of the website itself, the json database files, the material on github, and all versions of the main Google sheet used to generate the database and website. It neither grants nor removes permissions regarding material used in the Archive obtained from other sources.
 
 This is a complex project, and different portions of the APQS Archive are released under separate licenses.
 
-Monastic Dhamma teachings are usually distributed under the CC BY-NC-ND license to prevent modification and commercial use. Most of the recordings underlying the Archive are available outside the Archive for free distribution, but splitting the recordings into excerpts removes much of the context of the teachings. It’s important to reassure teachers that their recordings and transcripts won’t be reused in harmful or undesired ways. Therefore we apply the CC BY-NC-ND license to the Archive teachings as a unified whole and disallow distribution of subsections of the Archive teachings.
+Monastic Dhamma teachings are usually distributed under the CC BY-NC-ND license to prevent modification and commercial use. Most of the recordings underlying the Archive are available outside the Archive for free distribution, but splitting the recordings into excerpts removes much of the context of the teachings. It’s important to reassure teachers that their recordings and transcripts won’t be reused in harmful or undesired ways. Therefore we permit non-commercial distribution of the teachings within the Archive as a unified whole but prohibit distribution of subsections of the Archive.
 
 However, we would like to allow others to reuse portions of this project apart from the recordings and transcripts and so apply less restrictive licenses to the source code and tag hierarchy.
-For this reason, portions of the Archive may be distributed under three different licenses:
 
-__The audio and transcribed teachings__ as a unified whole are © 2023 Abhayagiri Buddhist Monastery and licensed under [_CC BY-NC-ND_](https://creativecommons.org/licenses/by-nc-nd/4.0/). To distribute under this license, you must at a minimum include all files needed to display the complete website and play each audio clip. Along with these files, you may additionally include any new material created as part of the Archive (including items #2 and #3 below) and any parts of the Archive drawn from other sources (e.g. session audio recordings and pdf files of the references) as long as the license of that source permits.
+For these reasons, portions of the Archive may be distributed under three different licenses:
 
-__The hierarchical tagging scheme__ is © 2023 Kaccāna Bhikkhu and licensed under [_CC BY-NC_](https://creativecommons.org/licenses/by-nc/4.0/). This consists of the Tags sheet in the APQS Archive main spreadsheet.
+__1. The audio and transcribed teachings__ as a unified whole are © 2023 Abhayagiri Buddhist Monastery. This material may be distributed non-commercially and without modification. Any distribution of this material must at a minimum include this license and all files needed to display the complete website and play each audio clip. Along with these files, you may additionally include any new material created as part of the Archive (including items #2 and #3 below) and any parts of the Archive drawn from other sources (e.g. session audio recordings and pdf files of the references) as long as the license of that source permits.
 
-__The database format and website generation engine__ are licensed under the [MIT No Attribution License](#mit-no-attribution-license). This includes all source code, all documentation files, and all sheets in the APQS Archive main spreadsheet except the Tags sheet and sheets containing transcribed audio recordings. It explicitly excludes all audio files and any file or spreadsheet sheet which contains transcribed audio recordings.
+Please contact Abhayagiri Monastery for permission to reformat or distribute partial copies of the teachings within the Archive.
+
+__2. The hierarchical tagging scheme and documentation__ are © 2023 Abhayagiri Monastery and licensed under [_CC BY-NC_](https://creativecommons.org/licenses/by-nc/4.0/). This consists of the Tags sheet in the APQS Archive main spreadsheet and the markdown files in the documentation directory.
+
+__3. The database format and website generation engine__ are dedicated to the public domain under [_CC 0_](https://creativecommons.org/publicdomain/zero/1.0/). This includes all source code, and all sheets in the APQS Archive main spreadsheet except the Tags sheet and sheets containing transcribed audio recordings. It explicitly excludes all audio files and any file or spreadsheet sheet which contains transcribed audio recordings.
 
 This license applies to all versions of the Archive that have been posted on abhayagiri.org. However, we encourage anyone distributing or mirroring the Archive to keep your distribution up to date.
 
