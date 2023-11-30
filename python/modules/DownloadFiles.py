@@ -19,7 +19,7 @@ def DownloadItems(items: Iterable[dict]) -> int:
                 downloadCount += 1
 
     multithreading = True
-    with ThreadPoolExecutor() if multithreading else Utils.MockThreadPoolExecutor() as pool:
+    with ThreadPoolExecutor() if gOptions.multithread else Utils.MockThreadPoolExecutor() as pool:
         for item in items:
             pool.submit(DownloadItem,item)
     

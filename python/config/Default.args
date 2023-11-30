@@ -12,6 +12,7 @@
 
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
+--multithread
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:

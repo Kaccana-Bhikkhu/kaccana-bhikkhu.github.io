@@ -97,7 +97,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SplitMp3"
+                "SplitMp3,Link",
+                "--linkCheckLevel",
+                "excerptMp3:4"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

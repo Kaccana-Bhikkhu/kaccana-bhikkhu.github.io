@@ -12,7 +12,8 @@ import Utils, Alert
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
 import shutil
-from mutagen.mp3 import MP3
+import mutagen, mutagen.id3, mutagen.easyid3, mutagen.mp3
+import json
 from typing import Tuple, Type, Callable, Iterable, BinaryIO
 from enum import Enum
 from collections import Counter
@@ -101,7 +102,8 @@ class RemoteURLChecker (LinkValidator):
             if self.openLocalFiles:
                 try:
                     with open(url,"rb") as file:
-                        return self.ValidateContents(url,item,file)
+                        result,_ = self.ValidateContents(url,item,file)
+                        return result
                 except OSError as error:
                     Alert.warning(error,"when opening",url,"when processing",item)
                     return False
@@ -113,11 +115,13 @@ class RemoteURLChecker (LinkValidator):
         It returns a tuple (valid,contents).
         valid is True if we have determined the file contents to be valid.
         contents is a file-like object representing a potentially local copy of the file.
+        Its file pointer should be at the beginning of the file, i.e. seek(0).
         This prevents us from having to download a remote file twice."""
         return True,contents
 
 def RemoteMp3Tags(url:str) -> dict:
-    """Read the id3 tags from a remote mp3 file"""
+    """Read the id3 tags from a remote mp3 file.
+    From https://stackoverflow.com/questions/26889317/extract-id3-tags-of-a-mp3-url-with-partial-download-using-python"""
     def get_n_bytes(url, size):
         req = urllib.request.Request(url)
         req.headers['Range'] = 'bytes=%s-%s' % (0, size-1)
@@ -126,7 +130,7 @@ def RemoteMp3Tags(url:str) -> dict:
 
     data = get_n_bytes(url, 10)
     if data[0:3] != 'ID3':
-        raise Exception('ID3 not in front of mp3 file')
+        return {} # raise Exception('ID3 not in front of mp3 file')
 
     size_encoded = bytearray(data[-4:])
     size = reduce(lambda a,b: a*128+b, size_encoded, 0)
@@ -136,14 +140,48 @@ def RemoteMp3Tags(url:str) -> dict:
     data = get_n_bytes(url, size+2881) 
     header.write(data)
     header.seek(0)
-    f = MP3(header)
+    mp3 = mutagen.mp3.EasyMP3(header)
+    return mp3.tags
 
     if f.tags and 'APIC:' in f.tags.keys():
         artwork = f.tags['APIC:'].data
         with open('image.jpg', 'wb') as img:
             img.write(artwork)
 
-class Mp3LengthChecker (RemoteURLChecker):
+class Mp3ClipChecker(LinkValidator):
+    """Read the ID3 CLIP tag created by SplitMp3 and verify that it matches the excerpt clips field."""
+    trustCache: bool    # If true, use cached ID3 tags rather than reading the file
+
+    def __init__(self,trustCache = False):
+        self.trustCache = trustCache
+
+    def ValidLink(self,url:str,item:dict) -> bool:
+        if not url.strip():
+            return False
+        
+        if Utils.RemoteURL(url):
+            url = Utils.QuotePath(url)
+            try:
+                tags = RemoteMp3Tags(url)
+            except urllib.error.HTTPError as error:
+                Alert.notice("Unable to open",url,"for",item,". Error:",error)
+                return False
+        else:
+            if not os.path.isfile(url):
+                return False
+            try:
+                tags = mutagen.easyid3.EasyID3(url)
+            except (OSError, mutagen.MutagenError) as error:
+                Alert.notice("Unable to open",url,"for",item,". Error:",error)
+                return False
+        
+        if "clips" not in tags:
+            return False
+        
+        excerptClipsStr = json.dumps(item["clips"])
+        return tags.get("clips",[None])[0] == excerptClipsStr
+
+class Mp3LengthChecker(RemoteURLChecker):
     """Verify that the length of mp3 files is what we expect it to be."""
     
     warningDelta: float # Print a notice if the mp3 file length difference exceeds this
@@ -153,7 +191,7 @@ class Mp3LengthChecker (RemoteURLChecker):
         self.warningDelta = warningDelta
         self.invalidateDelta = invalidateDelta
 
-    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> (bool,BinaryIO):
         parsed = urlparse(url)
         if not parsed.path.lower().endswith(".mp3"):
             return True,contents
@@ -166,13 +204,14 @@ class Mp3LengthChecker (RemoteURLChecker):
             data.write(contents.read())
             data.seek(0)
 
-        audio = MP3(data)
+        audio = mutagen.mp3.MP3(data)
         length = audio.info.length
         expectedLengthStr = item.get("duration","0")
         expectedLength = Utils.StrToTimeDelta(expectedLengthStr).total_seconds()
         diff = abs(length - expectedLength)
         lengthStr = Utils.TimeDeltaToStr(timedelta(seconds=length))
-        # Alert.extra(url,"actual",lengthStr,"expected",expectedLengthStr)
+        
+        data.seek(0)
         if diff >= self.invalidateDelta:
             Alert.warning(item,"indicates a duration of",expectedLengthStr,"but its mp3 file has duration",lengthStr,"This invalidates",url)
             return False,data
@@ -366,8 +405,7 @@ def LinkableItem(item: dict) -> bool:
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
 
-    multithread = True
-    with ThreadPoolExecutor() if multithread else Utils.MockThreadPoolExecutor() as pool:
+    with ThreadPoolExecutor() if gOptions.multithread else Utils.MockThreadPoolExecutor() as pool:
         for itemType,items in gItemLists.items():
             for item in Utils.Contents(items):
                 if not LinkableItem(item):
@@ -516,13 +554,14 @@ def Initialize() -> None:
         "Choose a Linker object for a given item type and link checking level."
         if level == 0:
             return NoValidation()
-        if level <= 2:
+        if level == 1:
             return LinkValidator()
-        elif level == 3 or (level > 3 and itemType == ItemType.REFERENCE):
-            return RemoteURLChecker()
-        else:
-            return Mp3LengthChecker()
-
+        if itemType == ItemType.AUDIO_SOURCE:
+            return Mp3LengthChecker() if level >= 4 else RemoteURLChecker()
+        if itemType == ItemType.EXCERPT:
+            return Mp3ClipChecker(trustCache=False) if level >=3 else Mp3ClipChecker(trustCache=True)
+        if itemType == ItemType.REFERENCE:
+            return RemoteURLChecker() if level >= 3 else LinkValidator()
         
     def MirrorValidatorDict(itemType:ItemType, mirrors:list[str]) -> dict[str,LinkValidator]:
         return {m:ChooseLinkChecker(itemType,gOptions.linkCheckLevel[itemType][m]) for m in mirrors}

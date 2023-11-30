@@ -64,6 +64,7 @@ def main():
         baseFileName = f"{event}_S{sessionNumber:02d}_"
         sessionExcerpts = [x for x in excerpts if x["event"] == event and x["sessionNumber"] == sessionNumber]
         if not any(Link.LocalItemNeeded(x) for x in sessionExcerpts) and not gOptions.overwriteMp3:
+            alreadySplit += 1
             continue # If no local excerpts are needed in this session, then no need to split mp3 files
 
         for excerptFile in sessionExcerpts:
@@ -86,17 +87,7 @@ def main():
             continue
         
         outputDir = Utils.PosixJoin(gOptions.excerptMp3Dir,event)
-        if not os.path.exists(outputDir):
-            os.makedirs(outputDir)
-        
-        allOutputFilesExist = True
-        for excerptFile in excerptList:
-            if not os.path.exists(Utils.PosixJoin(outputDir,excerptFile[0]+'.mp3')):
-                allOutputFilesExist = False
-        
-        if allOutputFilesExist and not gOptions.overwriteMp3:
-            alreadySplit += 1
-            continue
+        os.makedirs(outputDir,exist_ok=True)
         
         # We use eventDir as scratch space for newly generated mp3 files.
         # So first clean up any files left over from previous runs.

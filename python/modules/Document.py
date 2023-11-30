@@ -138,7 +138,8 @@ def main() -> None:
     with FileRegister.HashWriter("./",Utils.PosixJoin(gOptions.documentationDir,"misc/HashCache.json"),exactDates=True) as writer:
         for directory in ['about','misc','technical']:
             for page in RenderDocumentationFiles(directory,pathToPrototype=Utils.PosixJoin("../../",gOptions.prototypeDir),pathToBase="../../",html=False):
-                status = writer.WriteTextFile(page.info.file,str(page),mode=FileRegister.Write.DESTINATION_UNCHANGED)
+                status = writer.WriteTextFile(page.info.file,str(page),
+                        mode=FileRegister.Write.ALWAYS if gOptions.overwriteDocumentation else FileRegister.Write.DESTINATION_UNCHANGED)
 
                 if status == FileRegister.Status.BLOCKED:
                         # If the destination file has been modified, check to see if the source file is newer.

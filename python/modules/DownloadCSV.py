@@ -77,7 +77,7 @@ def ReadSummarySheet(printSheetName: bool = False) -> tuple[dict[str,str],dict[s
 def DownloadSheets(sheetIds: dict,writer: HashWriter) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"
     
-    with ThreadPoolExecutor() as pool:
+    with ThreadPoolExecutor() if gOptions.multithread else Utils.MockThreadPoolExecutor() as pool:
         for sheetName,sheetId in sheetIds.items():
             pool.submit(DownloadSheetCSV,gOptions.spreadsheetId,sheetId,sheetName + '.csv',writer)
 
