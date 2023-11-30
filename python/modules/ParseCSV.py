@@ -5,7 +5,7 @@ from __future__ import annotations
 import os, re, csv, json, unicodedata
 import Filter
 import Render
-import SplitMp3
+import SplitMp3,Mp3DirectCut
 import Utils
 from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
@@ -790,10 +790,10 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
     for x in excerpts:
         try:
             if x["startTime"] != "Session":
-                startTime = SplitMp3.ToTimeDelta(x["startTime"])
+                startTime = Mp3DirectCut.ToTimeDelta(x["startTime"])
                 if startTime is None:
                     deletedExcerptIDs.add(id(x))
-            endTime = SplitMp3.ToTimeDelta(x["endTime"])
+            endTime = Mp3DirectCut.ToTimeDelta(x["endTime"])
         except ValueError:
             deletedExcerptIDs.add(id(x))
 
@@ -833,7 +833,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         if session["filename"]:
             AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
             try:
-                sessionDuration = SplitMp3.ToTimeDelta(session["duration"])
+                sessionDuration = Mp3DirectCut.ToTimeDelta(session["duration"])
             except ValueError:
                 Alert.error(session,"has invalid duration:",repr(session["duration"]))
                 sessionDuration = None
@@ -862,7 +862,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 prevClip = SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0])
                 prevExcerpt["duration"] = ClipDuration(prevClip,sessionDuration)
                 
-                if prevClip.end > SplitMp3.ToTimeDelta(startTime):
+                if prevClip.end > Mp3DirectCut.ToTimeDelta(startTime):
                     startTime = prevExcerpt["clips"][0].end
                     x["startTime"] = prevExcerpt["endTime"]
                     if ExcerptFlag.OVERLAP not in x["flags"]:

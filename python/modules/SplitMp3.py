@@ -3,67 +3,14 @@
 from __future__ import annotations
 
 import os, json, platform
-import Utils, Alert, Link
+import Utils, Alert, Link, TagMp3
 import Mp3DirectCut
+from Mp3DirectCut import Clip, ClipTD
 from typing import List, Union, NamedTuple
 from datetime import timedelta
-import copy
 
 Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3DirectCut')))
 
-TimeSpec = Union[timedelta,float,str]
-"A union of types that can indicate a time index to an audio file."
-
-def ToTimeDelta(time: TimeSpec) -> timedelta|None:
-    "Convert various types to a timedetla object."
-
-    if type(time) == timedelta:
-        return copy(time)
-    
-    try:
-        floatVal = float(time)
-        return timedelta(seconds =floatVal)
-    except ValueError:
-        pass
-
-    if not time:
-        return None
-
-    try:
-        numbers = str.split(time,":")
-        if len(numbers) == 2:
-            return timedelta(minutes = int(numbers[0]),seconds = float(numbers[1]))
-        elif len(numbers) == 3:
-            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = float(numbers[2]))
-    except (ValueError,TypeError):
-        pass
-    
-    raise ValueError(f"{repr(time)} cannot be converted to a time.")
-    
-class Clip(NamedTuple):
-    """A Clip represents a section of a given audio file."""
-    file: str               # Filename of the audio file
-    start: TimeSpec         # Clip start time
-    end: TimeSpec|None      # Clip end time; None indicates the end of the file
-
-class ClipTD(NamedTuple):
-    """Same as above, except the types must be timedelta."""
-    file: str               # Filename of the audio file
-    start: timedelta        # Clip start time
-    end: timedelta|None     # Clip end time; None indicates the end of the file
-
-    def FromClip(clip: Clip) -> ClipTD:
-        """Convert a Clip to a ClipTD."""
-        return ClipTD(clip.file,ToTimeDelta(clip.start),ToTimeDelta(clip.end))
-    
-    def Duration(self,fileDurarion: timedelta) -> timedelta:
-        """Calculate the duration of this clip.
-        Use fileDuration if self.end is None."""
-
-        if self.end:
-            return self.end - self.start
-        else:
-            return fileDurarion - self.start
 
 def IncludeRedactedExcerpts() -> List[dict]:
     "Merge the redacted excerpts back into the main list in order to split mp3 files"
@@ -116,14 +63,14 @@ def main():
         
         baseFileName = f"{event}_S{sessionNumber:02d}_"
         sessionExcerpts = [x for x in excerpts if x["event"] == event and x["sessionNumber"] == sessionNumber]
-        if not any(Link.LocalItemNeeded(x) for x in sessionExcerpts):
+        if not any(Link.LocalItemNeeded(x) for x in sessionExcerpts) and not gOptions.overwriteMp3:
             continue # If no local excerpts are needed in this session, then no need to split mp3 files
 
-        for x in sessionExcerpts:
+        for excerptFile in sessionExcerpts:
             fileName = baseFileName + f"F{fileNumber:02d}"
-            startTime = Utils.StrToTimeDelta(x["clips"][0].start)
+            startTime = Utils.StrToTimeDelta(excerptFile["clips"][0].start)
             
-            endTimeStr = x["clips"][0].end.strip()
+            endTimeStr = excerptFile["clips"][0].end.strip()
             if endTimeStr:
                 excerptList.append((fileName,startTime,Utils.StrToTimeDelta(endTimeStr)))
             else:
@@ -143,8 +90,8 @@ def main():
             os.makedirs(outputDir)
         
         allOutputFilesExist = True
-        for x in excerptList:
-            if not os.path.exists(Utils.PosixJoin(outputDir,x[0]+'.mp3')):
+        for excerptFile in excerptList:
+            if not os.path.exists(Utils.PosixJoin(outputDir,excerptFile[0]+'.mp3')):
                 allOutputFilesExist = False
         
         if allOutputFilesExist and not gOptions.overwriteMp3:
@@ -153,8 +100,8 @@ def main():
         
         # We use eventDir as scratch space for newly generated mp3 files.
         # So first clean up any files left over from previous runs.
-        for x in excerptList:
-            scratchFilePath = Utils.PosixToWindows(Utils.PosixJoin(eventDir,x[0]+'.mp3'))
+        for excerptFile in excerptList:
+            scratchFilePath = Utils.PosixToWindows(Utils.PosixJoin(eventDir,excerptFile[0]+'.mp3'))
             if os.path.exists(scratchFilePath):
                 os.remove(scratchFilePath)
         
@@ -176,13 +123,14 @@ def main():
             continue
         
         # Now move the files to their destination
-        for x in excerptList:
-            scratchFilePath = Utils.PosixJoin(eventDir,x[0]+'.mp3')
-            outputFilePath = Utils.PosixJoin(outputDir,x[0]+'.mp3')
+        for excerptFile,excerpt in zip(excerptList,sessionExcerpts):
+            scratchFilePath = Utils.PosixJoin(eventDir,excerptFile[0]+'.mp3')
+            outputFilePath = Utils.PosixJoin(outputDir,excerptFile[0]+'.mp3')
             if os.path.exists(outputFilePath):
                 os.remove(outputFilePath)
             
             os.rename(scratchFilePath,outputFilePath)
+            TagMp3.TagMp3WithClips(outputFilePath,excerpt["clips"])
         
         mp3SplitCount += 1
         Alert.info(f"Split {session['filename']} into {len(excerptList)} files.")

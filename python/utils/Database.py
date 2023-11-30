@@ -13,4 +13,8 @@ def LoadDatabase(filename: str) -> dict:
         if "clips" in x:
             x["clips"] = [SplitMp3.Clip(*c) for c in x["clips"]]
     
+    for x in newDB.get("excerptsRedacted",()):
+        if "clips" in x:
+            x["clips"] = [SplitMp3.Clip(*c) for c in x["clips"]]
+    
     return newDB
