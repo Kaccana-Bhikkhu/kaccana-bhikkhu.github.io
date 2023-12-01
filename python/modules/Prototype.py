@@ -613,7 +613,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     if not linkKind:
         linkKind = gOptions.audioLinks
 
-    filename = Utils.PosixSplit(urllib.parse.urlparse(hyperlink).path)[1]
+    filename = title + ".mp3"
 
     a = Airium(source_minify=True)
     if linkKind == "img":
