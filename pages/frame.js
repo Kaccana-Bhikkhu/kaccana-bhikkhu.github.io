@@ -3,11 +3,24 @@ const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
 const absoluteURLRegex = "^(//|[a-z+]+:)"
+const errorPage = "./about/Page-Not-Found.html"
+
+function pageText(r,url) {
+	if (r.ok) {
+		return r.text().then((text) => Promise.resolve([text,url]))
+	} else {
+		console.log("Page not found. Fetching",errorPage)
+		return fetch(errorPage)
+			.then((r) => r.text())
+			.then((text) => Promise.resolve([text.replace("$PAGE$",url),errorPage]))
+	}
+}
 
 async function changeURL(pUrl) {
 	await fetch("./" + pUrl)
-		.then((r) => r.text())
-		.then((text) => {
+		.then((r) => pageText(r,pUrl))
+		.then((result) => {
+			let [text, resultUrl] = result
 			frame.innerHTML = text;
 
 			let innerTitle = frame.querySelector("title");
@@ -20,7 +33,7 @@ async function changeURL(pUrl) {
 				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
 					let attributePath = el.getAttribute(attribute);
 					if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
-						el.setAttribute(attribute,join(dirname(pUrl),attributePath));
+						el.setAttribute(attribute,join(dirname(resultUrl),attributePath));
 					};
 				});
 			});
