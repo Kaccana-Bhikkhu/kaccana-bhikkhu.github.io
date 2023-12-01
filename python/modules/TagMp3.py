@@ -6,7 +6,7 @@ from __future__ import annotations
 import json, re, os
 import Utils, Alert, Filter, Link
 from typing import Tuple, Type, Callable
-
+from Mp3DirectCut import Clip
 import mutagen
 import mutagen.id3
 from mutagen.easyid3 import EasyID3
@@ -82,7 +82,7 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
             tagStrs.insert(excerpt["qTagCount"],"//")
         parts += tagStrs
     
-    source = f'Source: {excerpt["startTime"]} in file "{session["filename"]}"'
+    source = f'Source: {excerpt["clips"][0].start} in file "{session["filename"]}"'
     parts.append(source)
 
     return " ".join(parts)
@@ -139,7 +139,18 @@ def CompareTags(tagsToWrite:dict, existingTags:EasyID3) -> bool:
             tagsToWriteCompare[key] = sorted(tagsToWriteCompare[key]) 
 
     return tagsToWriteCompare != existingTags
-    
+
+def TagMp3WithClips(mp3File: str,clips: list[Clip]):
+    """Add an ID3 clips tag containing the contents of clips to mp3File."""
+    try:
+        fileTags = EasyID3(mp3File)
+    except mutagen.id3.ID3NoHeaderError:
+        fileTags = mutagen.File(mp3File,easy=True)
+        fileTags.add_tags()
+
+    fileTags["clips"] = json.dumps(clips)
+    fileTags.save(v1=2,v2_version=gOptions.ID3version)
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument("--writeMp3Tags",type=str,default="Changed",choices=["never","changed","always"],help="Write mp3 tags under these conditions; Default: Changed.")
@@ -154,6 +165,12 @@ def Initialize() -> None:
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
 register_comment()
+
+class CLIP(mutagen.id3.TextFrame):
+    "List of clips"
+
+mutagen.id3.Frames["CLIP"] = CLIP
+EasyID3.RegisterTextKey("clips","CLIP")
 
 def main() -> None:
     changeCount = sameCount = 0
@@ -174,6 +191,9 @@ def main() -> None:
             fileTags.add_tags()
             Alert.extra("Added tags to",path)
 
+        if "clips" in fileTags: 
+            tags["clips"] = fileTags["clips"]
+            # The clips tag describes the audio source and is created by TagMp3.py; just let it pass through
         writeTags = CompareTags(tags,fileTags)
 
         if gOptions.writeMp3Tags == "never":

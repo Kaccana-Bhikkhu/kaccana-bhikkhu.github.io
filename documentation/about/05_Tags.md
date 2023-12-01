@@ -7,38 +7,37 @@ The tags themselves are organized in a hierarchical scheme based on the Pāli te
 ## Tag Structure
 
 The superstructure of the tagging scheme can be understood by examining this grouping of the 16 root tags:
-<br>(The number of excerpts tagged by each appears in parentheses)
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (1162)
-2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (421)
-3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (571)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (124 subtags, 1200 excerpts)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 439 excerpts)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (42 subtags, 601 excerpts)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (160)
-5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (141)
-6. [Precepts](../../pages/drilldown/precepts.html#precepts) (132)
-7. [Meditation](../../pages/drilldown/meditation.html#meditation) (813)
+4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (6 subtags, 162 excerpts)
+5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (18 subtags, 141 excerpts)
+6. [Precepts](../../pages/drilldown/precepts.html#precepts) (16 subtags, 134 excerpts)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation) (65 subtags, 842 excerpts)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (612)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (465)
-10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (133)
+8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (36 subtags, 630 excerpts)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (74 subtags, 477 excerpts)
+10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (21 subtags, 137 excerpts)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (208)
-12. [History](../../pages/drilldown/history.html#history) (119)
-13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (289)
-14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (61)
+11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (20 subtags, 213 excerpts)
+12. [History](../../pages/drilldown/history.html#history) (12 subtags, 124 excerpts)
+13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (20 subtags, 297 excerpts)
+14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (11 subtags, 63 excerpts)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (410)
-16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (423)
+15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (67 subtags, 418 excerpts)
+16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (58 subtags, 431 excerpts)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
@@ -72,7 +71,7 @@ The root tags [[History](../../pages/tags/history.html)] and [[Cultural context]
 ## Other Details
  - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.
  - Monastic teacher tags are sorted by date of ordination regardless of gender. Lay teacher tags are sorted by date of birth.
- - The traditional three [[Characteristics of existence](../../pages/tags/characteristics-of-existence.html)] are supplemented with the inclusion of an [additional six](https://www.abhayagiri.org/media/books/The-Island-Web-2020%20ed..pdf#page=115) by Ajahn Buddhadāsa.
+ - The traditional three [[Characteristics of existence](../../pages/tags/characteristics-of-existence.html)] are supplemented with the inclusion of an [additional six](https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=116) by Ajahn Buddhadāsa.
 
 
 

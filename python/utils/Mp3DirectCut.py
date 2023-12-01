@@ -2,19 +2,19 @@
 
 from __future__ import annotations
 
-import os, shutil
+import os, shutil, platform
+import copy
 from datetime import time,timedelta
-from typing import List
+from typing import List, Union, NamedTuple
 
 Executable = 'mp3DirectCut.exe'
-ExecutableDir = 'mp3DirectCut'
-
-class ExecutableNotFound(Exception):
-    "Called when mp3DirectCut can't be found"
-    pass
-    
+ExecutableDir = 'mp3DirectCut'    
 class Mp3CutError(Exception):
-    "Called if mp3DirectCut returns with an error code"
+    "Raised if mp3DirectCut returns with an error code"
+    pass
+
+class ExecutableNotFound(Mp3CutError):
+    "Raised when mp3DirectCut can't be found"
     pass
 
 def SetExecutable(directory,program='mp3DirectCut.exe'):
@@ -23,7 +23,61 @@ def SetExecutable(directory,program='mp3DirectCut.exe'):
     Executable = program
     ExecutableDir = directory
 
-def TimeToStr(time):
+TimeSpec = Union[timedelta,float,str]
+"A union of types that can indicate a time index to an audio file."
+
+def ToTimeDelta(time: TimeSpec) -> timedelta|None:
+    "Convert various types to a timedetla object."
+
+    if type(time) == timedelta:
+        return copy.copy(time)
+    
+    try:
+        floatVal = float(time)
+        return timedelta(seconds =floatVal)
+    except ValueError:
+        pass
+
+    if not time:
+        return None
+
+    try:
+        numbers = str.split(time,":")
+        if len(numbers) == 2:
+            return timedelta(minutes = int(numbers[0]),seconds = float(numbers[1]))
+        elif len(numbers) == 3:
+            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = float(numbers[2]))
+    except (ValueError,TypeError):
+        pass
+    
+    raise ValueError(f"{repr(time)} cannot be converted to a time.")
+    
+class Clip(NamedTuple):
+    """A Clip represents a section of a given audio file."""
+    file: str               # Filename of the audio file
+    start: TimeSpec         # Clip start time
+    end: TimeSpec|None      # Clip end time; None indicates the end of the file
+
+class ClipTD(NamedTuple):
+    """Same as above, except the types must be timedelta."""
+    file: str               # Filename of the audio file
+    start: timedelta        # Clip start time
+    end: timedelta|None     # Clip end time; None indicates the end of the file
+
+    def FromClip(clip: Clip) -> ClipTD:
+        """Convert a Clip to a ClipTD."""
+        return ClipTD(clip.file,ToTimeDelta(clip.start),ToTimeDelta(clip.end))
+    
+    def Duration(self,fileDurarion: timedelta) -> timedelta:
+        """Calculate the duration of this clip.
+        Use fileDuration if self.end is None."""
+
+        if self.end:
+            return self.end - self.start
+        else:
+            return fileDurarion - self.start
+
+def TimeToCueStr(time):
     "Convert a timedelta object to the form MM:SS:hh, where hh is in hundreths of seconds"
     
     minutes = time.seconds // 60
@@ -37,7 +91,7 @@ def WriteCue(cueTime,cueNum,cueFile):
     
     print(f'  TRACK {cueNum:02d} AUDIO',file=cueFile)
     print(f'    TITLE "(Track {cueNum:02d})"',file=cueFile)
-    print(f'    INDEX 01 {TimeToStr(cueTime)}',file=cueFile)
+    print(f'    INDEX 01 {TimeToCueStr(cueTime)}',file=cueFile)
 
 def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:str = True):
     """Split an mp3 file into tracks.
@@ -51,6 +105,9 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
     
+    if platform.system() != "Windows":
+        raise ExecutableNotFound(f"mp3DirectCut.exe only runs on Windows; cannot split mp3 files.")
+
     mp3DirectCutProgram = os.path.join(ExecutableDir,Executable)
     if not os.path.exists(mp3DirectCutProgram):
         raise ExecutableNotFound(f"mp3DirectCut.exe not found at {mp3DirectCutProgram}; cannot split mp3 files.")

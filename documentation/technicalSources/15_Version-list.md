@@ -65,3 +65,7 @@
 - 3.6 Added Upāsikā Days: On Pilgrimage and Tudong and Developing Skill in Reflective Meditation. Drilldown html files named by tag. Count excerpts referred to by subtags in hierarchical lists. Fix bug that removed "Refraining from:" and other list headings. Fix bug where bookmarks scroll to the wrong place in pages with slow-loading images.
 
 - 3.6.1 Added three Upāsikā Days: Two Kinds of Thought, Practice in a Global Context, and Love, Attachement, and Friendship. Numerical tag page shows canonical numbered lists. Cache checksums of many files and overwrite them only when needed. Fix bug where csv files were downloaded multiple times.
+
+- 3.6.2 Finished Winter Retreat 2015. DownloadFiles.py downloads needed mp3 and pdf files from remote URLs. System of clips and audioSources will allow more flexible audio processing. Fix bug displaying incorrect number of excerpts in event lists. Fix frame.js bug with #noscript links.
+
+- 3.6.3 Added Page Not Found page. Add custom CLIP ID3 tag to excerpt mp3s to describe the audio source. Check if the mp3 CLIP tag matches the excerpt clip. If not, SplitMp3 recreates the mp3 file. Move unneded files to NoUpload directories.

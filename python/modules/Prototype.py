@@ -5,16 +5,18 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
-import Utils, Alert, Filter, ParseCSV, Document
+import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
 from datetime import datetime,timedelta
 import re, copy, itertools
 import pyratemp, markdown
+from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
 from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
 from FileRegister import HashWriter
+import urllib.parse
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
@@ -611,6 +613,8 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
     if not linkKind:
         linkKind = gOptions.audioLinks
 
+    filename = title + ".mp3"
+
     a = Airium(source_minify=True)
     if linkKind == "img":
         a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
@@ -619,11 +623,11 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         with a.a(href = hyperlink,title = "Back to player"):
             a('<i class="fa fa-long-arrow-left"></i> Playable')
         a(" "+4*"&nbsp")
-        a.a(href = hyperlink,download = "",title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
+        a.a(href = hyperlink,download = filename,title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
         a.br()
     elif linkKind == "audio":
         with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
-            with a.a(href = hyperlink,download=""):
+            with a.a(href = hyperlink,download=filename):
                 a(f"Download audio")
             a(f" ({dataDuration})")
         a.br()
@@ -632,7 +636,7 @@ def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,pr
         if dataDuration:
             durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
         with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
-            with a.a(href = hyperlink,download=""):
+            with a.a(href = hyperlink,download=filename):
                 a(f"Download audio")
             a(f" ({dataDuration})")
         a.br()
@@ -722,8 +726,8 @@ class Formatter:
             a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
 
         a(" ")
-        if self.excerptPreferStartTime and excerpt.get("startTime","") and excerpt['excerptNumber']:
-            a(f'[{excerpt["startTime"]}] ')
+        if self.excerptPreferStartTime and excerpt['excerptNumber']:
+            a(f'[{excerpt["clips"][0].start}] ')
         elif self.audioLinks != "chip":
             a(f'({excerpt["duration"]}) ')
 
@@ -858,7 +862,7 @@ class Formatter:
         
         return str(a)
 
-def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,sessionExcerptDuration = True) -> str:
+def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,countSessionExcerpts = False,sessionExcerptDuration = True) -> str:
     "Return a string describing the duration of the excerpts we were passed."
     
     if not excerpts:
@@ -882,10 +886,11 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     if len(sessions) > 1 and countSessions:
         strItems.append(f"{len(sessions)} sessions,")
     
-    if len(excerpts) > 1:
-        strItems.append(f"{len(excerpts)} excerpts,")
+    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
+    if excerptCount > 1:
+        strItems.append(f"{excerptCount} excerpts,")
     else:
-        strItems.append(f"{len(excerpts)} excerpt,")
+        strItems.append(f"{excerptCount} excerpt,")
     
     strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
     
@@ -910,9 +915,9 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
-            linkSessionAudio = formatter.headingAudio and not x["startTime"] == "Session"
+            linkSessionAudio = formatter.headingAudio and x["fileNumber"]
                 # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
-            hr = x["startTime"] != "Session" or x["body"]
+            hr = x["fileNumber"] or x["body"]
                 # Omit the horzional rule if the first excerpt is a session excerpt with no body
                 
             a(localFormatter.FormatSessionHeading(session,linkSessionAudio,hr))
@@ -1023,7 +1028,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         yield clone
 
 def ShowDuration(page: Html.PageDesc,filteredExcerpts: list[dict]) -> None:
-    durationStr = ExcerptDurationStr(filteredExcerpts,sessionExcerptDuration=False)
+    durationStr = ExcerptDurationStr(filteredExcerpts,countSessionExcerpts=True,sessionExcerptDuration=False)
     page.AppendContent(Html.Tag("p")(durationStr))
 
 def AddSearchCategory(category: str) -> Callable[[Html.PageDesc,list[dict]],None]:
@@ -1282,7 +1287,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
-            a(ExcerptDurationStr(relevantExcerpts,False,False))
+            a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))
         
         a.hr()
 
@@ -1358,7 +1363,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
     
         a = Airium()
         
-        excerptInfo = ExcerptDurationStr(relevantExcerpts,False,False)
+        excerptInfo = ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False)
         teacherPageData[t] = excerptInfo
         a(excerptInfo)
         a.hr()
@@ -1497,6 +1502,52 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         yield page
 
 
+def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
+    """Add a table of contents to the event which is being built."""
+    tocPath = Utils.PosixJoin(gOptions.documentationDir,"tableOfContents",sessions[0]["event"] + ".md")
+    if os.path.isfile(tocPath):
+        with open(tocPath,encoding='utf8') as file:
+            template = pyratemp.Template(file.read())
+        
+        markdownText = template(gOptions = gOptions,gDatabase = gDatabase,Utils = Utils)
+
+        def ApplyToMarkdownFile(transform: Callable[[str],Tuple[str,int]]) -> int:
+            nonlocal markdownText
+            markdownText,changeCount = transform(markdownText)
+            return changeCount
+        
+        with Alert.extra.Supress():
+            Render.LinkSubpages(ApplyToMarkdownFile)
+            Render.LinkKnownReferences(ApplyToMarkdownFile)
+            Render.LinkSuttas(ApplyToMarkdownFile)
+        
+        html = markdown.markdown(markdownText,extensions = ["sane_lists",NewTabRemoteExtension()])
+        a.hr()
+        with a.div(Class="listing"):
+            a(html)
+        return
+
+    if len(sessions) > 1:
+        if all(s["sessionTitle"] for s in sessions):
+            # If all sessions have a title, list sessions by title
+            a.hr()
+            with a.div(Class="listing"):
+                for s in sessions:
+                    with a.p():
+                        a(f"Session {s['sessionNumber']}:")
+                        with a.a(href = f"#{Utils.ItemCode(s)}"):
+                            a(str(s['sessionTitle']))
+        else:
+            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
+            squish("Sessions:")
+            for s in sessions:
+                squish(" " + 3*"&nbsp")
+                with squish.a(href = f"#{Utils.ItemCode(s)}"):
+                    squish(str(s['sessionNumber']))
+            
+            a(str(squish))
+
+
 def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Generate html for each event in the database"""
             
@@ -1529,15 +1580,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a("External website")
             a.br()
         
-        if len(sessions) > 1:
-            squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
-            squish("Sessions:")
-            for s in sessions:
-                squish(" " + 3*"&nbsp")
-                with squish.a(href = f"#{Utils.ItemCode(s)}"):
-                    squish(str(s['sessionNumber']))
-            
-            a(str(squish))
+        AddTableOfContents(sessions,a)
         
         a.hr()
         
@@ -1702,13 +1745,13 @@ def AddArguments(parser):
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')
-    parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
+    parser.add_argument('--attributeAll',**Utils.STORE_TRUE,help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
-    parser.add_argument('--blockRobots',action='store_true',help="Use <meta name robots> to prevent crawling staging sites.")
-    parser.add_argument('--redirectToJavascript',action='store_true',help="Redirect page to index.html/#page if Javascript is available.")
+    parser.add_argument('--blockRobots',**Utils.STORE_TRUE,help="Use <meta name robots> to prevent crawling staging sites.")
+    parser.add_argument('--redirectToJavascript',**Utils.STORE_TRUE,help="Redirect page to index.html/#page if Javascript is available.")
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
-    parser.add_argument('--sitemap',action='store_true',help='Write an XML sitemap.')
-    parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them.")
+    parser.add_argument('--sitemap',**Utils.STORE_TRUE,help='Write an XML sitemap.')
+    parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
 def ParseArguments():
@@ -1770,7 +1813,7 @@ def main():
     
     xml = Airium()
     with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
-            HashWriter(gOptions.prototypeDir,"assets/HashCache.json") as writer,
+            HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer,
             xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")):
         for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
             WritePage(newPage,writer)

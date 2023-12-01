@@ -14,10 +14,10 @@
     
 </head>
 <body>
-    <span id="javascript-link">
-      <a href="../index.html#about/09_Want-to-help.html">Enable floating audio player (Javascript)</a>
-      <br>
-    </span>
+    <script>
+      url = new URL(location.href)
+      location.replace("../index.html#about/09_Want-to-help.html" + url.hash);
+    </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
@@ -63,7 +63,7 @@
 <li>A suggested title for the story.</li>
 </ol>
 <p>For example: “Master Hsu Yun and the Bandits,” 13:49 in the talk “Developing in Virtue” given by Ajahn Pasanno on May 19, 2012.</p>
-<audio-chip src="https://storage.googleapis.com/apqs_archive/audio/events/Talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" title="Master Hsu Yun and the Bandits"><a href="https://storage.googleapis.com/apqs_archive/audio/events/Talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" download="">Download audio</a> ()</audio-chip><br />
+<audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" title="Master Hsu Yun and the Bandits"><a href="https://www.abhayagiri.org/media/discs/questions/audio/talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" download="Master Hsu Yun and the Bandits.mp3">Download audio</a> ()</audio-chip><br />
 
 <hr />
 <h3 id="point-out-typos-or-tagging-errors">Point out typos or tagging errors</h3>

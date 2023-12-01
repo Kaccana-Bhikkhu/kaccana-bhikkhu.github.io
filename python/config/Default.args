@@ -12,10 +12,11 @@
 
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
+--multithread
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:
---spreadsheet "https://docs.google.com/spreadsheets/d/1iKCxrqHQuuh42SLC0L0Ox0JB_7-HrV_p97h1-zfQP6s/edit"
+--spreadsheet "https://docs.google.com/spreadsheets/d/1WfFCZo-fGkt4C16SJdWf6nFrsdMGOW1-cjazPCU7ohE/"
 --summarySheetID 2007732801
 
 // Link options:
@@ -39,6 +40,7 @@
 // Prototype options:
 --prototypeDir pages
 --globalTemplate templates/Global.html
+--redirectToJavascript
 
 // Increase verbosity to maximum
 -vvv
