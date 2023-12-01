@@ -278,6 +278,20 @@ class Linker:
         noUploadDir = gOptions.mirror[self.itemType]["local"].strip("/") + "NoUpload/"
         return Utils.PosixJoin(noUploadDir,filename)
 
+    def LocalFile(self,item: dict) -> str:
+        """Return the path of the local file corresponding to item.
+        Search the usual location and the NoUpload directory.
+        No validity checking is performed.
+        Returns "" if no local file exists."""
+
+        usualLocation = self.URL(item,mirror="local")
+        if os.path.isfile(usualLocation):
+            return usualLocation
+        noUploadLocation = self.NoUploadPath(item)
+        if os.path.isfile(noUploadLocation):
+            return noUploadLocation
+        return ""
+
     def CheckUploadMirror(self,mirror: str,item: dict) -> str:
         """Returns "local" if mirror is the upload mirror; else return mirror.
         Move any item in the xxxNoUpload directory back to its usual location to allow link checking."""
@@ -377,6 +391,10 @@ def LocalItemNeeded(item:dict) -> bool:
 def NoUploadPath(item:dict) -> str:
     """Auto-detect the type of this item and return its NoUpload path."""
     return gLinker[AutoType(item)].NoUploadPath(item)
+
+def LocalFile(item:dict) -> str:
+    """Auto-detect the type of this item and return its NoUpload path."""
+    return gLinker[AutoType(item)].LocalFile(item)
 
 def DownloadItem(item:dict) -> bool:
     """Auto-detect the type of this item. If a local copy is needed, try to download one.
