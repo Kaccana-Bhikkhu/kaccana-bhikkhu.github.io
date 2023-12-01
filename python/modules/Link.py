@@ -69,12 +69,12 @@ class LinkValidator:
             return False
 
 
-class NoValidation (LinkValidator):
+class NoValidation(LinkValidator):
     "Perform no link validation whatsoever."
     def ValidLink(self,url:str,item:dict) -> bool:
         return True
 
-class RemoteURLChecker (LinkValidator):
+class RemoteURLChecker(LinkValidator):
     """Check to see if the remote URL exists before reporting it to be valid.
     Subclasses can override ValidateContents to implement additional checks."""
     
@@ -90,10 +90,9 @@ class RemoteURLChecker (LinkValidator):
             url = Utils.QuotePath(url)
             try:
                 with urllib.request.urlopen(url) as request:
-                    result,_ = self.ValidateContents(url,item,request)
-                    return result
+                    return self.ValidateContents(url,item,request)
             except urllib.error.HTTPError as error:
-                Alert.notice("Unable to open",url,"for",item)
+                Alert.warning(error,"when opening",url,"when processing",item)
                 return False
 
         else:
@@ -102,22 +101,16 @@ class RemoteURLChecker (LinkValidator):
             if self.openLocalFiles:
                 try:
                     with open(url,"rb") as file:
-                        result,_ = self.ValidateContents(url,item,file)
-                        return result
+                        return self.ValidateContents(url,item,file)
                 except OSError as error:
                     Alert.warning(error,"when opening",url,"when processing",item)
                     return False
             else:
                 return super().ValidLink(url,item)
     
-    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> (bool,BinaryIO):
-        """This method should be overriden by subclasses that validate file contents.
-        It returns a tuple (valid,contents).
-        valid is True if we have determined the file contents to be valid.
-        contents is a file-like object representing a potentially local copy of the file.
-        Its file pointer should be at the beginning of the file, i.e. seek(0).
-        This prevents us from having to download a remote file twice."""
-        return True,contents
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
+        """This method should be overriden by subclasses that validate file contents."""
+        return True
 
 def RemoteMp3Tags(url:str) -> dict:
     """Read the id3 tags from a remote mp3 file.
@@ -148,33 +141,30 @@ def RemoteMp3Tags(url:str) -> dict:
         with open('image.jpg', 'wb') as img:
             img.write(artwork)
 
-class Mp3ClipChecker(LinkValidator):
+class Mp3ClipChecker(RemoteURLChecker):
     """Read the ID3 CLIP tag created by SplitMp3 and verify that it matches the excerpt clips field."""
     trustCache: bool    # If true, use cached ID3 tags rather than reading the file
 
     def __init__(self,trustCache = False):
+        super().__init__(openLocalFiles=True)
         self.trustCache = trustCache
 
-    def ValidLink(self,url:str,item:dict) -> bool:
-        if not url.strip():
+    def ValidateContents(self, url: str, item: dict, contents: BinaryIO) -> bool:
+
+        header = contents
+        try:
+            header.seek(0)
+        except OSError: # If contents is an http request, it doesn't support seek, so read the ID3 header.
+            header = BytesIO()
+            header.write(contents.read(64000)) # The first 64K should contain the entire header. (Our mp3s don't have album art.)
+            header.seek(0)
+
+        try:
+            tags = mutagen.easyid3.EasyID3(header)
+        except (OSError, mutagen.MutagenError) as error:
+            Alert.notice("Unable to open",url,"for",item,". Error:",error)
             return False
-        
-        if Utils.RemoteURL(url):
-            url = Utils.QuotePath(url)
-            try:
-                tags = RemoteMp3Tags(url)
-            except urllib.error.HTTPError as error:
-                Alert.notice("Unable to open",url,"for",item,". Error:",error)
-                return False
-        else:
-            if not os.path.isfile(url):
-                return False
-            try:
-                tags = mutagen.easyid3.EasyID3(url)
-            except (OSError, mutagen.MutagenError) as error:
-                Alert.notice("Unable to open",url,"for",item,". Error:",error)
-                return False
-        
+
         if "clips" not in tags:
             return False
         
@@ -191,7 +181,7 @@ class Mp3LengthChecker(RemoteURLChecker):
         self.warningDelta = warningDelta
         self.invalidateDelta = invalidateDelta
 
-    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> (bool,BinaryIO):
+    def ValidateContents(self,url:str,item:dict,contents:BinaryIO) -> bool:
         parsed = urlparse(url)
         if not parsed.path.lower().endswith(".mp3"):
             return True,contents
@@ -214,10 +204,10 @@ class Mp3LengthChecker(RemoteURLChecker):
         data.seek(0)
         if diff >= self.invalidateDelta:
             Alert.warning(item,"indicates a duration of",expectedLengthStr,"but its mp3 file has duration",lengthStr,"This invalidates",url)
-            return False,data
+            return False
         elif diff >= self.warningDelta:
             Alert.caution(item,"indicates a duration of",expectedLengthStr,"but its mp3 file at",url,"has duration",lengthStr)
-        return True,data
+        return True
 
 REMOTE_KEY = { # Specify the dictionary key indicating the remote URL for each item type
     ItemType.AUDIO_SOURCE: "url",
@@ -321,7 +311,7 @@ class Linker:
                 if self.mirrorValidator[mirrorToCheck].ValidLink(url,item):
                     item["mirror"] = mirror
                     return mirror
-            except Exception as error:
+            except OSError as error:
                 Alert.warning(error,"when trying to access",url,"for item",item)
         
         item["mirror"] = ""
