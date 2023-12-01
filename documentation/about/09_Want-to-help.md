@@ -18,7 +18,7 @@ When you submit stories, please include:
 
 For example: “Master Hsu Yun and the Bandits,” 13:49 in the talk “Developing in Virtue” given by Ajahn Pasanno on May 19, 2012.
 
-<!--HTML<audio-chip src="https://storage.googleapis.com/apqs_archive/audio/events/Talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" title="Master Hsu Yun and the Bandits"><a href="https://storage.googleapis.com/apqs_archive/audio/events/Talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" download="2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3">Download audio</a> ()</audio-chip><br />-->
+<!--HTML<audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" title="Master Hsu Yun and the Bandits"><a href="https://www.abhayagiri.org/media/discs/questions/audio/talks/2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3" download="2012-05-19%20Master%20Hsu%20Yun%20and%20the%20Bandits.mp3">Download audio</a> ()</audio-chip><br />-->
 
 ----
 
