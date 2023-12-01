@@ -1745,13 +1745,13 @@ def AddArguments(parser):
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')
-    parser.add_argument('--attributeAll',action='store_true',help="Attribute all excerpts; mostly for debugging")
+    parser.add_argument('--attributeAll',**Utils.STORE_TRUE,help="Attribute all excerpts; mostly for debugging")
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
-    parser.add_argument('--blockRobots',action='store_true',help="Use <meta name robots> to prevent crawling staging sites.")
-    parser.add_argument('--redirectToJavascript',action='store_true',help="Redirect page to index.html/#page if Javascript is available.")
+    parser.add_argument('--blockRobots',**Utils.STORE_TRUE,help="Use <meta name robots> to prevent crawling staging sites.")
+    parser.add_argument('--redirectToJavascript',**Utils.STORE_TRUE,help="Redirect page to index.html/#page if Javascript is available.")
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
-    parser.add_argument('--sitemap',action='store_true',help='Write an XML sitemap.')
-    parser.add_argument('--keepOldHtmlFiles',action='store_true',help="Keep old html files from previous runs; otherwise delete them.")
+    parser.add_argument('--sitemap',**Utils.STORE_TRUE,help='Write an XML sitemap.')
+    parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
 def ParseArguments():

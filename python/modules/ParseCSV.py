@@ -1185,13 +1185,13 @@ def VerifyListCounts(database):
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
-    parser.add_argument('--ignoreTeacherConsent',action='store_true',help="Ignore teacher consent flags - debugging only")
-    parser.add_argument('--ignoreExcludes',action='store_true',help="Ignore exclude session and excerpt flags - debugging only")
-    parser.add_argument('--parseOnlySpecifiedEvents',action='store_true',help="Load only events specified by --events into the database")
-    parser.add_argument('--detailedCount',action='store_true',help="Count all possible items; otherwise just count tags")
-    parser.add_argument('--keepUnusedTags',action='store_true',help="Don't remove unused tags")
-    parser.add_argument('--jsonNoClean',action='store_true',help="Keep intermediate data in json file for debugging")
-    parser.add_argument('--explainExcludes',action='store_true',help="Print a message for each excluded/redacted excerpt")
+    parser.add_argument('--ignoreTeacherConsent',**Utils.STORE_TRUE,help="Ignore teacher consent flags - debugging only")
+    parser.add_argument('--ignoreExcludes',**Utils.STORE_TRUE,help="Ignore exclude session and excerpt flags - debugging only")
+    parser.add_argument('--parseOnlySpecifiedEvents',**Utils.STORE_TRUE,help="Load only events specified by --events into the database")
+    parser.add_argument('--detailedCount',**Utils.STORE_TRUE,help="Count all possible items; otherwise just count tags")
+    parser.add_argument('--keepUnusedTags',**Utils.STORE_TRUE,help="Don't remove unused tags")
+    parser.add_argument('--jsonNoClean',**Utils.STORE_TRUE,help="Keep intermediate data in json file for debugging")
+    parser.add_argument('--explainExcludes',**Utils.STORE_TRUE,help="Print a message for each excluded/redacted excerpt")
 
 def ParseArguments() -> None:
     pass

@@ -114,7 +114,7 @@ parser.add_argument('--defaults',type=str,default='python/config/Default.args,py
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
-parser.add_argument('--multithread',action='store_true',help="Multithread some operations")
+parser.add_argument('--multithread',**Utils.STORE_TRUE,help="Multithread some operations")
 
 for mod in modules.values():
     mod.AddArguments(parser)

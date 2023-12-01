@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import timedelta, datetime
 import copy
-import re, os
+import re, os,argparse
 from urllib.parse import urlparse
 from typing import BinaryIO
 import Alert, Link
@@ -485,3 +485,8 @@ class MockThreadPoolExecutor():
 
     def shutdown(self, wait=True):
         pass
+
+try:
+    STORE_TRUE = dict(action=argparse.BooleanOptionalAction,default=False)
+except AttributeError:
+    STORE_TRUE = dict(action="store_true")

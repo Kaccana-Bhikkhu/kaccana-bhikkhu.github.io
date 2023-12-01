@@ -108,7 +108,7 @@ def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--documentationDir',type=str,default='documentation',help='Read and write documentation files here; Default: ./documenation')
     parser.add_argument('--info',type=str,action="append",default=[],help="Specify infomation about this build. Format key:value")
-    parser.add_argument('--overwriteDocumentation',action='store_true',help='Write documentation files without checking modification dates.')
+    parser.add_argument('--overwriteDocumentation',**Utils.STORE_TRUE,help='Write documentation files without checking modification dates.')
 
 def ParseArguments() -> None:
     class NameSpace:

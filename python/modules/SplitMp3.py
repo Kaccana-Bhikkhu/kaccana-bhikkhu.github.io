@@ -26,7 +26,7 @@ def IncludeRedactedExcerpts() -> List[dict]:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--overwriteMp3',action='store_true',help="Overwrite existing mp3 files; otherwise leave existing files untouched")
+    parser.add_argument('--overwriteMp3',**Utils.STORE_TRUE,help="Overwrite existing mp3 files; otherwise leave existing files untouched")
 
 def ParseArguments() -> None:
     pass
