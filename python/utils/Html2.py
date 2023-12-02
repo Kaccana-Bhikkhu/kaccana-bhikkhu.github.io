@@ -90,7 +90,9 @@ class Menu(Renderable):
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
         separator: html code between each menu item; defaults to 6 spaces.
-        highlight: a dictionary of attributes to apply to the highlighted menu item."""
+        wrapper: text to insert before and after the menu.
+        highlight: a dictionary of attributes to apply to the highlighted menu item.
+        """
         self.items = items
         self.menu_highlightedItem = highlightedItem
         self.menu_separator = separator

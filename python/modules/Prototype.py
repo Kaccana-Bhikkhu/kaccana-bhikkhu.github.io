@@ -313,7 +313,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
             page.keywords.append(tag["name"])
             page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
-            page.AppendContent(f'Tag Hierarchy: {tag["name"]}',section="citeAs")
+            page.AppendContent(f': {tag["name"]}',section="citationTitle")
             yield page
 
 def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
@@ -1011,7 +1011,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         if allItemsPage:
             noPlayer = copy.deepcopy(formatter)
             noPlayer.audioLinks = "linkToPlayerPage"
-            menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
+            menuItem = Html.PageInfo(basePage.info.title,Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
             
             pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
                                      Then click <i class="fa fa-long-arrow-left"></i> Playable to return to a page where you can play the excerpt.""")
@@ -1678,7 +1678,9 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**EXTRA_MENU_STYLE)
+    menuStyle = dict(EXTRA_MENU_STYLE)
+    menuStyle["wrapper"] += "Numbers in parentheses following tag names: (number of excerpts tagged/number of excerpts tagged with this tag or its subtags).<br><br>"
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
