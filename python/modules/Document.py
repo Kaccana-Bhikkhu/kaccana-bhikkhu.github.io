@@ -128,7 +128,7 @@ def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 gDocumentationWordCount = 0
 
 def main() -> None:

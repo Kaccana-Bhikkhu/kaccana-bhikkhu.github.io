@@ -1774,7 +1774,7 @@ def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def YieldAllIf(iterator:Iterator,yieldAll:bool) -> Iterator:
     "Yield all of iterator if yieldAll, otherwise yield only the first element."

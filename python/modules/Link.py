@@ -502,6 +502,7 @@ def ParseArguments() -> None:
     for mirrorStr in gOptions.mirror:
         mirrorName,url = mirrorStr.split(":",1)
         mirrorDict[mirrorName] = url
+    gOptions.mirrorUrl = mirrorDict
 
     gOptions.mirror = {}
     for itemType,itemDir in itemDirs.items():
@@ -577,7 +578,7 @@ def Initialize() -> None:
     gLinker = {it:Linker(it,MirrorValidatorDict(it,mirrors)) for it,mirrors in gOptions.linkCheckLevel.items()}
 
 gOptions = None
-gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 gItemLists:dict[ItemType:dict|list] = {}
 
 def main() -> None:
