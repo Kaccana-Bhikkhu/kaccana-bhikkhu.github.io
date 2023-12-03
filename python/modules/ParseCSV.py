@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os, re, csv, json, unicodedata
+import os, sys, re, csv, json, unicodedata
 import Filter
 import Render
 import SplitMp3,Mp3DirectCut
@@ -1269,7 +1269,7 @@ def main():
     
     if not len(gDatabase["event"]):
         Alert.error("No excerpts have been parsed. Aborting.")
-        quit()
+        sys.exit(1)
 
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
