@@ -34,8 +34,9 @@ def ScanPageForLinks(url: str) -> list[str]:
         idsInPage = set(item.get("id") for item in soup.find_all(id=True))
 
         linkItems = soup.find_all("a")
-        for linkItem in linkItems:
-            link = linkItem.get("href")
+        srcItems = soup.find_all(src=True)
+        urls = [linkItem.get("href") for linkItem in linkItems] + [srcItem.get("src") for srcItem in srcItems]
+        for link in urls:
             if link.startswith(uploadMirrorUrl):
                 urlsToCheck.add(link.replace(uploadMirrorUrl,gOptions.mirrorUrl["local"]))
                 continue
@@ -43,7 +44,8 @@ def ScanPageForLinks(url: str) -> list[str]:
             parsed = urllib.parse.urlparse(link)
             if parsed.path:
                 if parsed.scheme: # A remote hyperlink
-                    urlsToCheck.add(link)
+                    if parsed.scheme.lower().startswith("http"): # Don't check mailto:, etc.
+                        urlsToCheck.add(link)
                 else: # Local file reference
                     urlsToCheck.add(urllib.parse.urljoin(url,link))
             else: # Link to a bookmark in this page
@@ -105,7 +107,8 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     Alert.info("Checking about pages...")
     aboutUrls = [filename for filename in os.listdir(Utils.PosixJoin(gOptions.prototypeDir,"about")) if filename.lower().endswith(".html")]
-    aboutUrls = [Utils.PosixJoin(gOptions.prototypeDir,"about",filename) for filename in aboutUrls]
+    aboutUrls = [Utils.PosixJoin(gOptions.prototypeDir,"homepage.html")] + \
+        [Utils.PosixJoin(gOptions.prototypeDir,"about",filename) for filename in aboutUrls]
     urlsToCheck = set()
     for url in aboutUrls:
         urlsToCheck.update(ScanPageForLinks(url))
