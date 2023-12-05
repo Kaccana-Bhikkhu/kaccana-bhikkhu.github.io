@@ -183,7 +183,7 @@ def main() -> None:
         
         tags = ExcerptTags(x)
 
-        path = Link.URL(x,mirror="local")
+        path = Link.LocalFile(x)
         try:
             fileTags = EasyID3(path)
         except mutagen.id3.ID3NoHeaderError:

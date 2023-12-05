@@ -247,8 +247,11 @@ class Linker:
         else:
             return item["filename"]
 
-    def URL(self,item: dict,mirror: str = "") -> str:
-        """Return the URL of this item in a given mirror; if mirror is None, use item["mirror"]"""
+    def URL(self,item: dict|None,mirror: str = "") -> str:
+        """Return the URL of this item in a given mirror; if mirror is None, use item["mirror"].
+        If item is None, return the root directory for this item type."""
+        if not item:
+            return gOptions.mirror[self.itemType][mirror]
         if not mirror:
             mirror = item.get("mirror","")
         if not mirror:
@@ -269,14 +272,18 @@ class Linker:
         else:
             return ""
 
-    def NoUploadPath(self,item: dict) -> str:
-        """Return the path of item in the corresponding xxxNoUpload directory."""
+    def NoUploadPath(self,item: dict|None) -> str:
+        """Return the path of item in the corresponding xxxNoUpload directory.
+        If item is None, return the root NoUpload directory for this item type"""
 
-        filename = self.Filename(item)
-        if not filename or filename.startswith(".."):
-            return "" # Files outside the main directory don't get moved
         noUploadDir = gOptions.mirror[self.itemType]["local"].strip("/") + "NoUpload/"
-        return Utils.PosixJoin(noUploadDir,filename)
+        if item:
+            filename = self.Filename(item)
+            if not filename or filename.startswith(".."):
+                return "" # Files outside the main directory don't get moved
+            return Utils.PosixJoin(noUploadDir,filename)
+        else:
+            return noUploadDir
 
     def LocalFile(self,item: dict) -> str:
         """Return the path of the local file corresponding to item.
@@ -374,11 +381,14 @@ class Linker:
                         return True
         return False
 
-def URL(item:dict,mirror:str = "",directoryDepth:int = 0) -> str:
+def URL(item:dict|ItemType,mirror:str = "",directoryDepth:int = 0) -> str:
     """Auto-detect the type of this item and return its URL.
     directoryDepth: depth of the html file we are writing relative to the home directory."""
 
-    baseUrl = gLinker[AutoType(item)].URL(item,mirror)
+    if type(item) == ItemType:
+        baseUrl = gLinker[item].URL(None,mirror)
+    else:
+        baseUrl = gLinker[AutoType(item)].URL(item,mirror)
 
     if baseUrl and not Utils.RemoteURL(baseUrl):
         return ("../" * directoryDepth) + baseUrl
@@ -390,10 +400,15 @@ def LocalItemNeeded(item:dict) -> bool:
 
 def NoUploadPath(item:dict) -> str:
     """Auto-detect the type of this item and return its NoUpload path."""
-    return gLinker[AutoType(item)].NoUploadPath(item)
+    if type(item) == ItemType:
+        return gLinker[item].NoUploadPath(None)
+    else:
+        return gLinker[AutoType(item)].NoUploadPath(item)
 
 def LocalFile(item:dict) -> str:
-    """Auto-detect the type of this item and return its NoUpload path."""
+    """Auto-detect the type of this item and return the path of the local file corresponding to item.
+        Search the usual location and the NoUpload directory.
+        No validity checking is performed."""
     return gLinker[AutoType(item)].LocalFile(item)
 
 def DownloadItem(item:dict) -> bool:

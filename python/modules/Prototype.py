@@ -1823,9 +1823,8 @@ def main():
             WritePage(newPage,writer)
             print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
         
+        writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
         Alert.extra("html files:",writer.StatusSummary())
         if not gOptions.keepOldHtmlFiles:
             DeleteUnwrittenHtmlFiles(writer)
-        
-        writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
     

@@ -98,6 +98,26 @@ def OpenUrlOrFile(url:str) -> BinaryIO:
     else:
         return open(url,"rb")
 
+def SwitchedMoveFile(locationFalse: str,locationTrue: str,switch: bool) -> bool:
+    """Move a file to either locationFalse or locationTrue depending on the value of switch.
+    Raise FileExistsError if both locations are occupied.
+    Return True if the file was moved."""
+    if switch:
+        moveTo,moveFrom = locationTrue,locationFalse
+    else:
+        moveTo,moveFrom = locationFalse,locationTrue
+    
+    if os.path.isfile(moveFrom):
+        if os.path.isfile(moveTo):
+            raise FileExistsError(f"Cannot move {moveFrom} to overwrite {moveTo}.")
+        os.makedirs(PosixSplit(moveTo)[0],exist_ok=True)
+        os.rename(moveFrom,moveTo)
+        return True
+    return False
+
+def MoveFile(fromPath: str,toPath: str) -> None:
+    SwitchedMoveFile(fromPath,toPath,True)
+
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"
     name,_ = os.path.splitext(filename)

@@ -94,9 +94,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "PrepareUpload",
-                "--args",
-                "python/config/BuildAll.args"
+                "PrepareUpload"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
