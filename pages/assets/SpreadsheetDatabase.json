@@ -28901,6 +28901,38 @@
     },
     {
       "event": "WR2015",
+      "sessionNumber": 42,
+      "excerptNumber": 3,
+      "fileNumber": 3,
+      "kind": "Question",
+      "flags": "",
+      "text": "How do you respond to the cynical inner voice when you recollect your own virtue?",
+      "teachers": [
+        "AKd",
+        "AThp"
+      ],
+      "annotations": [],
+      "tags": [
+        "Recollection/Virtue",
+        "Judgementalism",
+        "Ajahn Sucitto",
+        "Habits",
+        "Guilt/shame/inadequacy",
+        "Culture/West",
+        "Humor"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "$",
+          "22:39",
+          "26:18"
+        ]
+      ],
+      "duration": "3:39"
+    },
+    {
+      "event": "WR2015",
       "sessionNumber": 43,
       "excerptNumber": 0,
       "fileNumber": 0,
@@ -56424,7 +56456,7 @@
       "website": "https://www.abhayagiri.org/media/discs/2015WinterRetreat/Index.html",
       "description": "Ajahn Pasanno, Ajahn Karuṇadhammo, and Ajahn Ñāṇiko take turns reading suttas and teachings regarding the Four Foundations of Mindfulness. The structure often follows  _Right Mindfulness_ by Ajahn Ṭhānissaro. There are noteworth [slideshows](#WR2015_S07) illustrating the 32 parts of the body.",
       "sessions": 53,
-      "excerpts": 139
+      "excerpts": 140
     },
     "UD2015-1": {
       "title": "On Pilgrimage and Tudong",
@@ -61363,7 +61395,7 @@
       "lineage": "Western disciples of Ajahn Chah",
       "eventCount": 15,
       "sessionCount": 21,
-      "excerptCount": 125,
+      "excerptCount": 126,
       "htmlFile": "ajahn-karunadhammo.html"
     },
     "AJoti": {
@@ -61436,14 +61468,14 @@
     "AThp": {
       "teacher": "AThp",
       "fullName": "Ajahn Ṭhitapañño",
-      "indexExcerpts": false,
+      "indexExcerpts": true,
       "indexSessions": false,
       "searchable": false,
-      "attribute": false,
+      "attribute": true,
       "allowTag": false,
       "group": "Monastics",
       "lineage": "Western disciples of Ajahn Chah",
-      "excerptCount": 0,
+      "excerptCount": 1,
       "htmlFile": ""
     },
     "AKov": {
@@ -65163,7 +65195,7 @@
       "primaries": 0,
       "htmlFile": "judgementalism.html",
       "listIndex": 205,
-      "excerptCount": 18
+      "excerptCount": 19
     },
     "Perfectionism": {
       "tag": "Perfectionism",
@@ -65266,7 +65298,7 @@
       "primaries": 0,
       "htmlFile": "guiltshameinadequacy.html",
       "listIndex": 210,
-      "excerptCount": 18
+      "excerptCount": 19
     },
     "Self-pity": {
       "tag": "Self-pity",
@@ -65971,7 +66003,7 @@
       "primaries": 0,
       "htmlFile": "habits.html",
       "listIndex": 264,
-      "excerptCount": 14
+      "excerptCount": 15
     },
     "Humor": {
       "tag": "Humor",
@@ -65991,7 +66023,7 @@
       "primaries": 0,
       "htmlFile": "humor.html",
       "listIndex": 265,
-      "excerptCount": 11
+      "excerptCount": 12
     },
     "Fear": {
       "tag": "Fear",
@@ -67229,7 +67261,7 @@
       "primaries": 0,
       "htmlFile": "recollectionvirtue.html",
       "listIndex": 374,
-      "excerptCount": 11
+      "excerptCount": 12
     },
     "Recollection/Generosity": {
       "tag": "Recollection/Generosity",
@@ -68319,7 +68351,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-sucitto.html",
       "listIndex": 456,
-      "excerptCount": 5
+      "excerptCount": 6
     },
     "Ajahn Soṇa": {
       "tag": "Ajahn Soṇa",
@@ -70801,7 +70833,7 @@
       "primaries": 0,
       "htmlFile": "culturewest.html",
       "listIndex": 576,
-      "excerptCount": 77
+      "excerptCount": 78
     },
     "Women in Buddhism": {
       "tag": "Women in Buddhism",
@@ -75865,7 +75897,7 @@
       "text": "Unskillful qualities (28) [akusalā dhammā]",
       "tag": "Unskillful qualities",
       "subtagCount": 33,
-      "subtagExcerptCount": 439
+      "subtagExcerptCount": 440
     },
     {
       "level": 2,
@@ -76205,7 +76237,7 @@
       "text": "Conceit-related",
       "tag": "",
       "subtagCount": 8,
-      "subtagExcerptCount": 132
+      "subtagExcerptCount": 133
     },
     {
       "level": 3,
@@ -76235,9 +76267,9 @@
       "flags": "",
       "name": "Judgementalism",
       "pali": "",
-      "excerptCount": 18,
+      "excerptCount": 19,
       "subsumed": false,
-      "text": "Judgementalism (18)",
+      "text": "Judgementalism (19)",
       "tag": "Judgementalism"
     },
     {
@@ -76290,9 +76322,9 @@
       "flags": "",
       "name": "Guilt/shame/inadequacy",
       "pali": "",
-      "excerptCount": 18,
+      "excerptCount": 19,
       "subsumed": false,
-      "text": "Guilt/shame/inadequacy (18)",
+      "text": "Guilt/shame/inadequacy (19)",
       "tag": "Guilt/shame/inadequacy"
     },
     {
@@ -76361,7 +76393,7 @@
       "text": "Indeterminate qualities [abyākatā dhammā]",
       "tag": "",
       "subtagCount": 42,
-      "subtagExcerptCount": 601
+      "subtagExcerptCount": 602
     },
     {
       "level": 2,
@@ -76894,7 +76926,7 @@
       "text": "Personality (11)",
       "tag": "Personality",
       "subtagCount": 2,
-      "subtagExcerptCount": 35
+      "subtagExcerptCount": 36
     },
     {
       "level": 3,
@@ -76902,9 +76934,9 @@
       "flags": "",
       "name": "Habits",
       "pali": "",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Habits (14)",
+      "text": "Habits (15)",
       "tag": "Habits"
     },
     {
@@ -76913,9 +76945,9 @@
       "flags": "",
       "name": "Humor",
       "pali": "",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "subsumed": false,
-      "text": "Humor (11)",
+      "text": "Humor (12)",
       "tag": "Humor"
     },
     {
@@ -77580,7 +77612,7 @@
       "text": "Meditation (52) [bhāvanā]",
       "tag": "Meditation",
       "subtagCount": 65,
-      "subtagExcerptCount": 842
+      "subtagExcerptCount": 843
     },
     {
       "level": 2,
@@ -78113,7 +78145,7 @@
       "text": "Recollection (41) [anusati]",
       "tag": "Recollection",
       "subtagCount": 10,
-      "subtagExcerptCount": 229
+      "subtagExcerptCount": 230
     },
     {
       "level": 3,
@@ -78154,9 +78186,9 @@
       "flags": "",
       "name": "Recollection/Virtue",
       "pali": "sīlānussati",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "subsumed": false,
-      "text": "Recollection/Virtue (11) [sīlānussati]",
+      "text": "Recollection/Virtue (12) [sīlānussati]",
       "tag": "Recollection/Virtue"
     },
     {
@@ -78857,7 +78889,7 @@
       "text": "Teachers (9)",
       "tag": "Teachers",
       "subtagCount": 74,
-      "subtagExcerptCount": 477
+      "subtagExcerptCount": 478
     },
     {
       "level": 2,
@@ -78870,7 +78902,7 @@
       "text": "Monastic teachers (2)",
       "tag": "Monastic teachers",
       "subtagCount": 65,
-      "subtagExcerptCount": 463
+      "subtagExcerptCount": 464
     },
     {
       "level": 3,
@@ -78883,7 +78915,7 @@
       "text": "Thai Forest Tradition (63)",
       "tag": "Thai Forest Tradition",
       "subtagCount": 45,
-      "subtagExcerptCount": 449
+      "subtagExcerptCount": 450
     },
     {
       "level": 4,
@@ -78918,7 +78950,7 @@
       "text": "Ajahn Chah lineage (4)",
       "tag": "Ajahn Chah lineage",
       "subtagCount": 21,
-      "subtagExcerptCount": 212
+      "subtagExcerptCount": 213
     },
     {
       "level": 5,
@@ -79036,9 +79068,9 @@
       "flags": "",
       "name": "Ajahn Sucitto",
       "pali": "",
-      "excerptCount": 5,
+      "excerptCount": 6,
       "subsumed": false,
-      "text": "Ajahn Sucitto (5)",
+      "text": "Ajahn Sucitto (6)",
       "tag": "Ajahn Sucitto"
     },
     {
@@ -80364,7 +80396,7 @@
       "text": "Cultural context (13)",
       "tag": "Cultural context",
       "subtagCount": 20,
-      "subtagExcerptCount": 297
+      "subtagExcerptCount": 298
     },
     {
       "level": 2,
@@ -80438,9 +80470,9 @@
       "flags": "p",
       "name": "Culture/West",
       "pali": "",
-      "excerptCount": 77,
+      "excerptCount": 78,
       "subsumed": false,
-      "text": "Culture/West (77)",
+      "text": "Culture/West (78)",
       "tag": "Culture/West"
     },
     {
@@ -84505,23 +84537,6 @@
           "$",
           "10:42",
           "12:58"
-        ]
-      ]
-    },
-    {
-      "sessionNumber": 42,
-      "flags": "",
-      "startTime": "22:39",
-      "endTime": "26:18",
-      "annotations": [],
-      "event": "WR2015",
-      "fileNumber": 3,
-      "qTagCount": 2,
-      "clips": [
-        [
-          "$",
-          "22:39",
-          "26:18"
         ]
       ]
     },
