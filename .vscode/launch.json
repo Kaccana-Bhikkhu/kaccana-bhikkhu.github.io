@@ -76,17 +76,14 @@
             "justMyCode": true
         },
         {
-            "name": "BuildGithubV2",
+            "name": "BuildAll",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
-                "-vvv",
-                "--sheets",
-                "All",
-                "--excerptMp3",
-                "remote"
+                "--args",
+                "python/config/BuildAll.args"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -97,9 +94,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SplitMp3,Link",
-                "--linkCheckLevel",
-                "excerptMp3:4"
+                "PrepareUpload"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

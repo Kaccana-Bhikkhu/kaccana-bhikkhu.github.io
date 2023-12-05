@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os, re, csv, json, unicodedata
+import os, sys, re, csv, json, unicodedata
 import Filter
 import Render
 import SplitMp3,Mp3DirectCut
@@ -11,6 +11,7 @@ from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
+from collections import Counter
 
 class StrEnum(str,Enum):
     pass
@@ -725,6 +726,9 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 return
         
         teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        for teacher in set(annotation["teachers"]) - set(teacherList):
+            if not TeacherConsent(database["teacher"],[teacher],"attribute"):
+                gUnattributedTeachers[teacher] += 1
 
         if annotation["kind"] == "Reading":
             AppendUnique(teacherList,ReferenceAuthors(annotation["text"]))
@@ -874,6 +878,8 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         if prevExcerpt:
             prevExcerpt["duration"] = ClipDuration(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]),sessionDuration)
 
+gUnattributedTeachers = Counter()
+"Counts the number of times we hide a teacher's name when their attribute permission is false."
 
 def LoadEventFile(database,eventName,directory):
     
@@ -1015,7 +1021,11 @@ def LoadEventFile(database,eventName,directory):
         if excludeReason:
             excludeAlert(*excludeReason)
 
-        x["teachers"] = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        attributedTeachers = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        for teacher in set(x["teachers"]) - set(attributedTeachers):
+            if not TeacherConsent(database["teacher"],[teacher],"attribute") and not x["exclude"]:
+                gUnattributedTeachers[teacher] += 1
+        x["teachers"] = attributedTeachers
         
         excerpts.append(x)
         prevExcerpt = x
@@ -1200,7 +1210,7 @@ def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 # AlertClass for explanations of excluded excerpts. Don't show by default.
 excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)
@@ -1253,10 +1263,13 @@ def main():
     excludeAlert(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
+    gUnattributedTeachers.pop("Anon",None)
+    if gUnattributedTeachers:
+        excludeAlert(f": Did not attribute excerpts to the following teachers:",dict(gUnattributedTeachers))
     
     if not len(gDatabase["event"]):
         Alert.error("No excerpts have been parsed. Aborting.")
-        quit()
+        sys.exit(1)
 
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:

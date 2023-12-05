@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import argparse, shlex
 import importlib
-import os, sys
+import os, sys, re
 import json
 from typing import Tuple
 
@@ -37,20 +37,37 @@ def ReadJobOptions(jobName: str) -> list[str]:
     if jobName:
         print(f"{repr(jobName)} does not appear in .vscode/launch.json.")
     print(f"Available jobs: {allJobs}")
-    quit()
+    sys.exit(2)
 
-def ApplyDefaults(argsFileName: str,parser: argparse.ArgumentParser) -> None:
+def ApplyDefaults(argsFilename: str,parser: argparse.ArgumentParser) -> None:
     "Read the specified .args file and apply these as default values to parser."
-    with open(argsFileName,"r",encoding="utf-8") as argsFile:
-        argumentStrings = []
-        for line in argsFile:
-            line = line.strip()
-            if line and not line.startswith("//"):
-                argumentStrings.append(line)
+    if argsFilename in gParsedArgsFiles:
+        Alert.error(f"Cannot load the .args file {argsFilename} multiple times.")
+        sys.exit(1)
 
-        commandArgs = ["DummyOp"] + shlex.split(" ".join(argumentStrings))
-        defaultArgs = parser.parse_args(commandArgs)
-        parser.set_defaults(**vars(defaultArgs))
+    try:
+        with open(argsFilename,"r",encoding="utf-8") as argsFile:
+            argumentStrings = []
+            for line in argsFile:
+                removeComments = re.split(r"\s//|^//",line)
+                line = removeComments[0].strip()
+                if line:
+                    argumentStrings.append(line)
+    except OSError:
+        gErrorArgsFiles.append(argsFilename)
+        return
+    
+    commandArgs = ["DummyOp"] + shlex.split(" ".join(argumentStrings))
+    searchForArgs = parser.parse_args(commandArgs)
+
+    for subArgsFile in searchForArgs.args:
+        ApplyDefaults(subArgsFile,parser)
+        
+    defaultArgs = parser.parse_args(commandArgs)
+    del defaultArgs.args
+
+    gParsedArgsFiles.append(argsFilename)
+    parser.set_defaults(**vars(defaultArgs))
 
 def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     "Scan the list of specified ops to see if we can load a database to save time. Add any ops needed to support those specified."
@@ -65,7 +82,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
             return newDB,opSet
     
     requireSpreadsheetDB = {'DownloadFiles','SplitMp3','Link','Render'}
-    requireRenderedDB = {'Document','Prototype','TagMp3','PrepareUpload'}
+    requireRenderedDB = {'Document','Prototype','TagMp3','PrepareUpload','CheckLinks'}
 
     if 'Render' in opSet: # Render requires link in all cases
         opSet.add('Link')
@@ -89,7 +106,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','TagMp3','PrepareUpload']
+moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','TagMp3','PrepareUpload','CheckLinks']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']
@@ -111,6 +128,7 @@ All - run all the above modules in sequence.
 
 parser.add_argument('--homeDir',type=str,default='.',help='All other pathnames are relative to this directory; Default: ./')
 parser.add_argument('--defaults',type=str,default='python/config/Default.args,python/config/LocalDefault.args',help='A comma-separated list of .args default argument files; see python/config/Default.args')
+parser.add_argument("--args",type=str,action="append",default=[],help="Read arguments from an .args file")
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
@@ -141,18 +159,18 @@ if baseOptions.homeDir != '.':
     Alert.info("Home directory:",baseOptions.homeDir)
 
 ## STEP 2: Configure parser with default options read from the .args files
-parsedFiles = []
-errorFiles = []
-for argsFile in baseOptions.defaults.split(","):
+gParsedArgsFiles = [] # ApplyDefaults fills these with the names of parsed files
+gErrorArgsFiles = []
+argsFileList = baseOptions.defaults.split(",") + baseOptions.args
+for argsFile in argsFileList:
     try:
         ApplyDefaults(argsFile,parser)
-        parsedFiles.append(argsFile)
     except OSError:
-        errorFiles.append(argsFile)
-if parsedFiles:
-    Alert.structure("Read default values from:",", ".join(parsedFiles))
-if errorFiles:
-    Alert.structure("Could not read:",", ".join(parsedFiles))
+        pass
+if gParsedArgsFiles:
+    Alert.structure("Read arguments from:",", ".join(gParsedArgsFiles))
+if gErrorArgsFiles:
+    Alert.structure("Could not read:",", ".join(gErrorArgsFiles))
 
 ## STEP 3: Parse the command line again to override arguments specified by the .args files
 clOptions = parser.parse_args(argList)
@@ -170,7 +188,7 @@ for modName in priorityInitialization:
 
 if Alert.error.count:
     print("Aborting due to argument parsing errors.")
-    quit()
+    sys.exit(2)
 
 if clOptions.events != 'All':
     clOptions.events = clOptions.events.split(',')

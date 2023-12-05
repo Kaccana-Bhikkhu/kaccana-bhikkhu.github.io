@@ -313,7 +313,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
             page.keywords.append(tag["name"])
             page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
-            page.AppendContent(f'Tag Hierarchy: {tag["name"]}',section="citeAs")
+            page.AppendContent(f': {tag["name"]}',section="citationTitle")
             yield page
 
 def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
@@ -1011,7 +1011,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         if allItemsPage:
             noPlayer = copy.deepcopy(formatter)
             noPlayer.audioLinks = "linkToPlayerPage"
-            menuItem = Html.PageInfo("All/Searchable",Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
+            menuItem = Html.PageInfo(basePage.info.title,Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
             
             pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
                                      Then click <i class="fa fa-long-arrow-left"></i> Playable to return to a page where you can play the excerpt.""")
@@ -1678,7 +1678,9 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**EXTRA_MENU_STYLE)
+    menuStyle = dict(EXTRA_MENU_STYLE)
+    menuStyle["wrapper"] += "Numbers in parentheses following tag names: (number of excerpts tagged/number of excerpts tagged with this tag or its subtags).<br><br>"
+    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
@@ -1701,40 +1703,45 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
 SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching",
                     }
-def WriteSitemapURL(page:Html.PageDesc,xml:Airium) -> None:
-    "Write the URL of this page into an xml sitemap."
+def WriteSitemapURL(pagePath:str,xml:Airium) -> None:
+    "Write the URL of the page at pagePath into an xml sitemap."
     
-    priority = 0.7
-    pathParts = page.info.file.split("/")
-    
+    if not pagePath.endswith(".html"):
+        return
+
+    priority = 1.0
+    pathParts = pagePath.split("/")
     directory = pathParts[0]
-    if len(pathParts) < 2 or directory == "about":
-        priority = 1.0
-    elif directory in {"events","indexes"}:
-        priority = 0.9
-    elif directory == "drilldown":
-        if pathParts[1] == "root.html":
-            priority = 0.9
-        else:
+    if pagePath == "homepage.html":
+        pagePath = "index.html"
+    elif directory == "about":
+        if not re.match("[0-9]+_",pathParts[-1]):
             return
+    elif directory == "events":
+        priority = 0.9
     else:
-        afterDash = re.search(r"-([^.-]+)\.html$",pathParts[-1])
-        if afterDash:
-            afterDash = afterDash[1]
-            if afterDash in SUBPAGE_SUFFIXES:
-                priority = 0.3
-            if re.match(r"[0-9]+",afterDash):
-                priority = 0.3
+        return
 
     with xml.url():
         with xml.loc():
-            xml(f"{gOptions.info.cannonicalURL}{page.info.file}")
+            xml(f"{gOptions.info.cannonicalURL}{pagePath}")
         with xml.lastmod():
-            xml(Utils.ModificationDate(Utils.PosixJoin(gOptions.prototypeDir,page.info.file)).strftime("%Y-%m-%d"))
+            xml(Utils.ModificationDate(Utils.PosixJoin(gOptions.prototypeDir,pagePath)).strftime("%Y-%m-%d"))
         with xml.changefreq():
-            xml("daily")
+            xml("weekly")
         with xml.priority():
             xml(priority)
+
+def XmlSitemap(siteFiles: HashWriter) -> str:
+    """Look through the html files we've written and create an xml sitemap."""
+    pass
+
+    xml = Airium()
+    with xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"):
+        for pagePath in siteFiles.record:
+            WriteSitemapURL(pagePath,xml)
+    
+    return str(xml)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -1750,7 +1757,6 @@ def AddArguments(parser):
     parser.add_argument('--blockRobots',**Utils.STORE_TRUE,help="Use <meta name robots> to prevent crawling staging sites.")
     parser.add_argument('--redirectToJavascript',**Utils.STORE_TRUE,help="Redirect page to index.html/#page if Javascript is available.")
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
-    parser.add_argument('--sitemap',**Utils.STORE_TRUE,help='Write an XML sitemap.')
     parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
 
 gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
@@ -1772,7 +1778,7 @@ def Initialize() -> None:
     pass
 
 gOptions = None
-gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def YieldAllIf(iterator:Iterator,yieldAll:bool) -> Iterator:
     "Yield all of iterator if yieldAll, otherwise yield only the first element."
@@ -1811,21 +1817,14 @@ def main():
 
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
     
-    xml = Airium()
     with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
-            HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer,
-            xml.urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")):
+            HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer):
         for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
             WritePage(newPage,writer)
             print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
-            if gOptions.sitemap:
-                WriteSitemapURL(newPage,xml)
         
+        writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
         Alert.extra("html files:",writer.StatusSummary())
         if not gOptions.keepOldHtmlFiles:
             DeleteUnwrittenHtmlFiles(writer)
-    
-    if gOptions.sitemap:
-        with open(Utils.PosixJoin(gOptions.prototypeDir,"sitemap.xml"),"w") as sitemapFile:
-            print(str(xml),file=sitemapFile)
     
