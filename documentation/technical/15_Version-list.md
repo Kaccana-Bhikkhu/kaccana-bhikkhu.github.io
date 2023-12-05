@@ -69,3 +69,5 @@
 - 3.6.2 Finished Winter Retreat 2015. DownloadFiles.py downloads needed mp3 and pdf files from remote URLs. System of clips and audioSources will allow more flexible audio processing. Fix bug displaying incorrect number of excerpts in event lists. Fix frame.js bug with #noscript links.
 
 - 3.6.3 Added Page Not Found page. Add custom CLIP ID3 tag to excerpt mp3s to describe the audio source. Check if the mp3 CLIP tag matches the excerpt clip. If not, SplitMp3 recreates the mp3 file. Move unneded files to NoUpload directories.
+
+- 3.6.4 (December 2023 Release) Replaced "Cannot GET" error with Page Not Found page. Add CheckLinks module. Include only about pages and events in sitemap.xml. New command line options: --args Filename.args includes the arguments in Filename.args in the command line; --no-XXX sets boolean option XXX to False; --multithread allows multithreaded http operations.
