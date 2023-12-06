@@ -43,6 +43,7 @@
 --prototypeDir pages
 --globalTemplate templates/Global.html
 --redirectToJavascript
+--maxPlayerTitleLength 1000
 
 // Increase verbosity to maximum
 -vvv
