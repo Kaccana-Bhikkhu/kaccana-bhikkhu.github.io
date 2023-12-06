@@ -1013,15 +1013,14 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             noPlayer.audioLinks = "linkToPlayerPage"
             menuItem = Html.PageInfo(basePage.info.title,Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
             
-            pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br>
-                                     Then click <i class="fa fa-long-arrow-left"></i> Playable to return to a page where you can play the excerpt.""")
+            pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br> Then click <i class="fa fa-long-arrow-left"></i> Playable to return to a page where you can play the excerpt.""") + "\n"
             pageHtml += HtmlExcerptList(excerpts,noPlayer)
             pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
                 # Match only the non-download link
 
-            menuItems.append([menuItem,pageHtml])
+            menuItems.append((menuItem._replace(title="All/Searchable"),(menuItem,pageHtml)))
 
-        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>"),highlight={"class":"active"})
+        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>\n"),highlight={"class":"active"})
     else:
         clone = basePage.Clone()
         clone.AppendContent(menuItems[0][1][1])
