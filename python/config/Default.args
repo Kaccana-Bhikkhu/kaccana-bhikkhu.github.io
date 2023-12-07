@@ -18,7 +18,7 @@
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:
---spreadsheet "https://docs.google.com/spreadsheets/d/1WfFCZo-fGkt4C16SJdWf6nFrsdMGOW1-cjazPCU7ohE/"
+--spreadsheet "https://docs.google.com/spreadsheets/d/1ds3L43IqvFXOjpERoEt6129w5wGTiXC-Dpvx2Og4XZI/"
 --summarySheetID 2007732801
 
 // Link options:
@@ -26,9 +26,10 @@
 --mirror preview:https://storage.googleapis.com/apqs_archive/
 --mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
 --sessionMp3 remote,abhayagiri
---excerptMp3 abhayagiri
+--excerptMp3 local
 --reference remote,abhayagiri
 --uploadMirror abhayagiri
+// --linkCheckLevel excerptMp3:local:3 // Use this to update excerpts with changed timestamps. Somewhat slower.
 
 // Render options:
 --renderedDatabase pages/assets/RenderedDatabase.json

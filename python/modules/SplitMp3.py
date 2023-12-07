@@ -79,8 +79,8 @@ def main():
                 
             fileNumber += 1
         
-        eventDir = Utils.PosixJoin(gOptions.sessionMp3Dir,event)
         sessionFilePath = Link.LocalFile(gDatabase["audioSource"][session["filename"]])
+        eventDir = Utils.PosixSplit(sessionFilePath)[0]
         if not sessionFilePath:
             Alert.warning("Cannot locate",sessionFilePath)
             errorCount += 1
