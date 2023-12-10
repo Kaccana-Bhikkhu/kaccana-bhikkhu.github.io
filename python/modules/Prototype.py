@@ -1362,7 +1362,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
     
         a = Airium()
         
-        excerptInfo = ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False)
+        excerptInfo = ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False,countSessionExcerpts=True)
         teacherPageData[t] = excerptInfo
         a(excerptInfo)
         a.hr()
