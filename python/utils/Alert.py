@@ -1,7 +1,7 @@
 """A module to print and log errors and notifications taking into account verbosity and debug status."""
 from __future__ import annotations
 from typing import Any
-
+from contextlib import contextmanager
 verbosity = 0
 ObjectPrinter = repr # Call this function to convert items to print into strings
 
@@ -24,7 +24,7 @@ class AlertClass:
         self.lineSpacing = lineSpacing # print this many blank lines after the alert
 
     def Show(self,*items,indent:int|None = None) -> None:
-        """Generate aan alert from a list of items to print.
+        """Generate an alert from a list of items to print.
         Print it if verbosity is high enough.
         Log it if we are logging."""
         if items:
@@ -59,6 +59,14 @@ class AlertClass:
             return f"{self.count} {self.name}"
         else:
             return ""
+
+    @contextmanager
+    def Supress(self):
+        """Temporarily suppress output from this AlertClass."""
+        saveVerbosity = self.printAtVerbosity
+        self.printAtVerbosity = 1000
+        yield None
+        self.printAtVerbosity = saveVerbosity
 
 error = AlertClass("Error","ERROR:",printAtVerbosity=-2,logging=True,lineSpacing = 1)
 warning = AlertClass("Warning","WARNING:",printAtVerbosity = -1,logging = True,lineSpacing = 1)

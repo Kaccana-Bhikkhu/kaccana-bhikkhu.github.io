@@ -4,7 +4,7 @@ const css = `
 		width: max-content;
 
 		display: grid;
-		grid-template-columns: 40px 100px 40px;
+		grid-template-columns: 40px 50px 40px;
 		grid-template-rows: 1fr;
 		grid-column-gap: 5px;
 		grid-row-gap: 0px; 
@@ -59,8 +59,10 @@ class AudioChip extends HTMLElement {
 		let src = this.getAttribute("src");
 		this.audio = new Audio(src);
 		let loadAudio = this.dataset.duration == null;
-		// let loadAudio = true;
-		if (loadAudio) this.audio.load();
+		if (loadAudio)
+			this.audio.load()
+		else
+			this.audio.preload = "none";
 
 		const wrapper = document.createElement("div");
 		wrapper.classList.add("wrapper");
@@ -77,6 +79,7 @@ class AudioChip extends HTMLElement {
 				console.log("audio loaded");
 				playAudio(this.title, this.audio);
 			} else {
+				this.audio.load();
 				console.log("waiting for audio loading");
 				let cb;
 				this.audio.addEventListener(

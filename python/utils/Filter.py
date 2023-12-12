@@ -6,7 +6,7 @@ from collections.abc import Iterable, Callable
 from typing import Tuple
 import Utils
 
-gDatabase = None # This will be overwritten by the main program
+gDatabase:dict[str] = {} # This will be overwritten by the main program
 
 Filter = Callable[[dict],bool]
 "Returns whether the dict matches our filter function."
@@ -45,6 +45,18 @@ def AllItems(excerpt: dict) -> Iterable[dict]:
 
     yield excerpt
     yield from excerpt.get("annotations",())
+
+def AllSingularItems(excerpt: dict) -> Iterable[dict]:
+    """Same as AllItems, but yield the excerpt alone without its annotations, followed by the annotations."""
+
+    if "annotations" in excerpt:
+        temp = excerpt["annotations"]
+        excerpt["annotations"] = ()
+        yield excerpt
+        excerpt["annotations"] = temp
+        yield from excerpt["annotations"]
+    else:
+        yield excerpt
 
 def Apply(items:Iterable[dict],filter: Filter) -> Iterable[dict]:
     """Apply filter to items."""
@@ -159,7 +171,7 @@ def Teacher(teacher: str|set(str),kind:str|set(str) = All,category:str|set(str) 
 
 def AllTags(item: dict) -> set:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""
-    allTags = set(item["tags"])
+    allTags = set(item.get("tags",()))
 
     for annotation in item.get("annotations",()):
         allTags.update(annotation.get("tags",()))

@@ -7,4 +7,13 @@ tools/mp3DirectCut/
 .venv/
 .venv3.9/
 python/config/LocalDefault.args
-.vscode/
+
+# Ignore all references except those we can't get a download link working for
+references/
+!references/Book_of_the_Discipline.pdf
+!references/The-Chithurst-Story.pdf
+!references/Piyadassi_Book-of-Protection.pdf
+
+referencesNoUpload/
+audio/sessionsNoUpload/
+audio/excerptsNoUpload/

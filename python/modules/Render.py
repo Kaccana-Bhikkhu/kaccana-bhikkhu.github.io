@@ -9,7 +9,8 @@ from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
 from functools import lru_cache
-import ParseCSV, Prototype, Utils, Alert, Html
+import ParseCSV, Prototype, Utils, Alert, Link
+import Html2 as Html
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -37,6 +38,11 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
 
     for e in gDatabase["event"].values():
         e["description"],count = twoVariableTransform(e["description"],e)
+        changeCount += count
+
+    for s in gDatabase["series"].values():
+        s["description"],count = twoVariableTransform(s["description"],s)
+        changeCount += count
 
     return changeCount
     
@@ -76,15 +82,24 @@ def PrepareTemplates():
             kind["attribution"].append(attribution)
 
 def AddImplicitAttributions() -> None:
-    "If an excerpt of kind Reading doesn't have a Read by annotation, attribute it to the session teachers"
-    for x in gDatabase["excerpts"]:
+    "If an excerpt or annotation of kind Reading doesn't have a Read by annotation, attribute it to the session or excerpt teachers"
+    for session,x in Utils.PairWithSession(gDatabase["excerpts"]):
         if x["kind"] == "Reading":
             readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
             if not readBy:
-                sessionTeachers = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])["teachers"]
+                sessionTeachers = session["teachers"]
                 newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": sessionTeachers,"indentLevel": 1}
                 x["annotations"].insert(0,newAnnotation)
-                
+        for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
+            if a["kind"] == "Reading":
+                readBy = [subA for subA in Utils.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                if not readBy:
+                    if x["kind"] == "Reading":
+                        readers = session["teachers"]
+                    else:
+                        readers = x["teachers"]
+                    newAnnotation = {"kind": "Read by", "flags": "","text": "","teachers": readers,"indentLevel": a["indentLevel"] + 1}
+                    x["annotations"].insert(n + 1,newAnnotation)
 
 @lru_cache(maxsize = None)
 def CompileTemplate(template: str) -> Type[pyratemp.Template]:
@@ -93,21 +108,26 @@ def CompileTemplate(template: str) -> Type[pyratemp.Template]:
 def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
     "Append annotation a to the end of excerpt x."
 
-    if "{attribution}" in a["body"]:
-        attrNum = 2
-        attrKey = "attribution" + str(attrNum)
-        while attrKey in x: # Find the first available key of this form
-            attrNum += 1
+    if a["indentLevel"] == 1: # Append the annotation to the end of the excerpt.
+        if "{attribution}" in a["body"]:
+            attrNum = 2
             attrKey = "attribution" + str(attrNum)
-        
-        a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
-        x[attrKey] = a["attribution"]
-        x["teachers" + str(attrNum)] = a["teachers"]
+            while attrKey in x: # Find the first available key of this form
+                attrNum += 1
+                attrKey = "attribution" + str(attrNum)
+            
+            a["body"] = a["body"].replace("{attribution}","{" + attrKey + "}")
+            x[attrKey] = a["attribution"]
+            x["teachers" + str(attrNum)] = a["teachers"]
 
-    x["body"] += " " + a["body"]
+        x["body"] += " " + a["body"]
+    else: # Append the annotation to its enclosing excerpt
+        body = a["body"].replace("{attribution}",a["attribution"])
+        Utils.ParentAnnotation(x,a)["body"] += " " + body
 
     a["body"] = ""
     del a["attribution"]
+        
 
 def RenderItem(item: dict,container: dict|None = None) -> None:
     """Render an excerpt or annotation by adding "body" and "attribution" keys.
@@ -140,8 +160,20 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     plural = "s" if (ParseCSV.ExcerptFlag.PLURAL in item["flags"]) else "" # Is the excerpt heading plural?
 
     teachers = item.get("teachers",())
-    if container and set(container["teachers"]) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
-        teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
+    if container:
+        if item["kind"] == "Read by":
+            grandparent = Utils.ParentAnnotation(container,Utils.ParentAnnotation(container,item))
+                # The parent of this Read by annotation is a reading, which has the authors as teachers
+                # Thus the grandparent indicates the default reader(s)
+            if grandparent:
+                defaultTeachers = grandparent["teachers"]
+            else:
+                defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
+        else:
+            parent = Utils.ParentAnnotation(container,item)
+            defaultTeachers = parent.get("teachers",())
+        if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
+            teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
 
     text = item["text"]
@@ -170,7 +202,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         attributionStr = attributionTemplate(**renderDict)
 
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
-        if fullStop and "{fullStop}" not in attributionTemplateStr:
+        if fullStop and "fullStop" not in attributionTemplateStr:
             attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
     else:
         item["body"] = item["body"].replace("{attribution}","")
@@ -199,11 +231,7 @@ def RenderExcerpts() -> None:
         for a in x["annotations"]:
             RenderItem(a,x)
             if kinds[a["kind"]]["appendToExcerpt"]:
-                if a["indentLevel"] == 1: # Only append level 1 annotations to the excerpt
-                    AppendAnnotationToExcerpt(a,x)
-                else: # Don't render level 2 and higher annotations; hand-code them in to the annotation if needed.
-                    a["body"] = ""
-                    del a["attribution"]
+                AppendAnnotationToExcerpt(a,x)
 
 
 def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
@@ -281,6 +309,16 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         else:
             return None
 
+    def PdfPageOffset(reference: dict,giveWarning = True) -> int:
+        if not reference["filename"].lower().endswith(".pdf"):
+            Alert.warning(reference,"links to",reference["filename"],"not a pdf file.")
+        pageOffset = reference['pdfPageOffset']
+        if pageOffset is None:
+            pageOffset = 0
+            if giveWarning:
+                Alert.warning(reference,"does not specify pdfPageOffset.")
+        return pageOffset
+
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -288,14 +326,23 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        url = reference['remoteUrl']
-        page = ParsePageNumber(matchObject[2])
-        if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"
+        url = Link.URL(reference,directoryDepth=2)
+        if url:
+            page = ParsePageNumber(matchObject[2])
+            if page:
+                url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
 
-        returnValue = f"[{reference['title']}]({url})"
+            returnValue = f"[{reference['title']}]({url})"
+        else:
+            returnValue = f"{reference['title']}"
+
         if reference['attribution']:
             returnValue += " " + Prototype.LinkTeachersInText(reference['attribution'])
+        
+        if not url and reference["remoteUrl"]:
+            returnValue += " " + reference["remoteUrl"]
+                # If there's no link, "remoteUrl" key indicates a suffix, typically "(commercial)"
+
         return returnValue
 
     def ReferenceForm2(bodyStr: str) -> tuple[str,int]:
@@ -309,11 +356,11 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        url = reference['remoteUrl']
+        url = Link.URL(reference,directoryDepth=2)
         
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"""
+           url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"""
 
         return f"]({url})"
 
@@ -328,12 +375,15 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             Alert.warning(f"Cannot find abbreviated title {matchObject[1]} in the list of references.")
             return matchObject[1]
         
-        url = reference['remoteUrl']
+        url = Link.URL(reference,directoryDepth=2)
         page = ParsePageNumber(matchObject[2])
         if page:
-           url +=  f"#page={page + reference['pdfPageOffset']}"
+           url +=  f"#page={page + PdfPageOffset(reference)}"
 
-        return f"{reference['title']} {Prototype.LinkTeachersInText(reference['attribution'])} [{matchObject[2]}]({url})"
+        items = [reference['title'],f", [{matchObject[2]}]({url})"]
+        if reference["attribution"]:
+            items.insert(1," " + Prototype.LinkTeachersInText(reference['attribution']))
+        return "".join(items)
 
     def ReferenceForm4(bodyStr: str) -> tuple[str,int]:
         """Search for references of the form: title page N"""
@@ -347,7 +397,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     
     Alert.extra(f"{referenceCount} links generated to references")
 
-def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToBaseForNonPages:str = "../../") -> None:
+def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str = "../",pathToHome:str = "../../") -> None:
     """Link references to subpages of the form [subpage](pageType:pageName) as described in LinkReferences().
     pathToPrototype is the path from the directory where the files are written to the prototype directory.
     pathToBaseForNonPages is the path to root directory from this file for links that don't go to html pages.
@@ -355,11 +405,11 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","player"}))
-    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()]*)\)"
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player"}))
+    linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()#]*)#?([^()#]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
-        text,pageType,link = matchObject.groups()
+        text,pageType,link,hashTag = matchObject.groups()
         pageType = pageType.lower()
 
         linkTo = ""
@@ -383,8 +433,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if tag.lower() == "root":
                     linkTo = f"drilldown/{Prototype.DrilldownPageFile(-1)}"
                 elif realTag:
-                    tagNumber = gDatabase["tag"][realTag]["listIndex"]
-                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(tagNumber)}#{tagNumber}"
+                    linkTo = f"drilldown/{Prototype.DrilldownPageFile(realTag,jumpToEntry=True)}"
                 else:
                     Alert.warning("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:
@@ -432,12 +481,18 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             else:
                 Alert.warning("Cannot link about page",link,"in link",matchObject[0])
         elif pageType == "image":
+            linkToPage = True
+            linkTo = f"images/{link}"
+        elif pageType == "photo":
             linkToPage = False
-            linkTo = Utils.PosixJoin(gOptions.prototypeDir,"images",link)
+            imagePath = Utils.PosixJoin(pathToPrototype,"images/photos",link)
+            if not hashTag:
+                hashTag = "cover"
+            text = f'<!--HTML <img src="{imagePath}" alt="{text}" id="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
 
         if linkTo:
-            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToBaseForNonPages,linkTo)
-            return wrapper(f"[{text}]({path})")
+            path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)
+            return wrapper(f"[{text}]({path}{'#' + hashTag if hashTag else ''})")
         else:
             return text
         
@@ -476,7 +531,8 @@ def LinkReferences() -> None:
             In the latter case, subpage specifies the title of the audio.
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
         about - Link to about page pageName
-        image - Link to images in prototypeDir/images"""
+        image - Link to images in prototypeDir/images
+        photo - Link to photos in prototypeDir/images/photos"""
 
     LinkSubpages()
     LinkKnownReferences()
@@ -490,12 +546,16 @@ def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--renderedDatabase',type=str,default='prototype/RenderedDatabase.json',help='Database after rendering each excerpt; Default: prototype/RenderedDatabase.json')
 
+def ParseArguments() -> None:
+    pass
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def main() -> None:
-
-    Prototype.ParseBuildSections()
 
     PrepareTemplates()
 

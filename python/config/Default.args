@@ -1,32 +1,50 @@
 // .args files specify default command line arguments for QSarchive.py.
-// The --defaults option indicates which .args files to parse.
-// By default, it is:
+// --defaults and --args indicate which .args files to parse.
+// The default values are:
 //
 //       --defaults python/config/Default.args,python/config/LocalDefault.args
+//       --args [no files]
 //
 // This indicates to read arguments from Default.args, which become the default options, overriding those specified in QSArchive.py.
 // Then read from LocalDefaul.args, which override the settings from Default.args.
 //    (LocalDefault.args is .gitignored, to allow machine-specific options independent of the repository)
-// Finally, read arguments from the command line itself.
+// Additional arguments are read from any files specified by --args
+// Finally, read arguments from the command line itself, which take precedence over all of these.
 // --homeDir and --defaults are exceptions to the above. They are read only from the command line and cannot be modified by .args files.
 
 // All non-commented lines in a .args file contain strings to be processed as if they were command line arguments.
 
-// Main program options:
---sessionMp3 remote
---excerptMp3 remote
---remoteExcerptMp3URL "http://storage.googleapis.com/apqs_archive/audio/excerpts/"
+--multithread
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:
---spreadsheet "https://docs.google.com/spreadsheets/d/189opV7vSJDBV8ezDX_GCaB8rIpaH9b0KWyIhs6JO09I/"
+--spreadsheet "https://docs.google.com/spreadsheets/d/1ds3L43IqvFXOjpERoEt6129w5wGTiXC-Dpvx2Og4XZI/"
 --summarySheetID 2007732801
+
+// Link options:
+--mirror abhayagiri:https://www.abhayagiri.org/media/discs/questions/
+--mirror preview:https://storage.googleapis.com/apqs_archive/
+--mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
+--sessionMp3 remote,abhayagiri
+--excerptMp3 local
+--reference remote,abhayagiri
+--uploadMirror abhayagiri
+// --linkCheckLevel excerptMp3:local:3 // Use this to update excerpts with changed timestamps. Somewhat slower.
 
 // Render options:
 --renderedDatabase pages/assets/RenderedDatabase.json
 
+// Document options:
+--info "releaseName:December 2023 release"
+--info "releaseDate:December 6, 2023"
+--info "citationURL:https://abhayagiri.org/questions/"
+--info "cannonicalURL:https://www.abhayagiri.org/questions/"
+
 // Prototype options:
 --prototypeDir pages
+--globalTemplate templates/Global.html
+--redirectToJavascript
+--maxPlayerTitleLength 1000
 
 // Increase verbosity to maximum
 -vvv

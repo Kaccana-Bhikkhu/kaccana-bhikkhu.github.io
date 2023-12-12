@@ -2,18 +2,21 @@
 
 from __future__ import annotations
 
-import os, json
-import Utils, Alert
+import os, json, platform
+import Utils, Alert, Link, TagMp3
 import Mp3DirectCut
-from typing import List
+from Mp3DirectCut import Clip, ClipTD
+from typing import List, Union, NamedTuple
+from datetime import timedelta
 
-Mp3DirectCut.SetExecutable(os.path.join('tools','Mp3DirectCut'))
+Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3DirectCut')))
+
 
 def IncludeRedactedExcerpts() -> List[dict]:
     "Merge the redacted excerpts back into the main list in order to split mp3 files"
     
     allExcerpts = gDatabase["excerpts"] + gDatabase["excerptsRedacted"]
-    allExcerpts = [x for x in allExcerpts if x["startTime"] != "Session"] # Session excerpts don't need split mp3 files
+    allExcerpts = [x for x in allExcerpts if x["fileNumber"]] # Session excerpts don't need split mp3 files
     orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort excerpts by event order in gDatabase
     
     allExcerpts.sort(key = lambda x: (orderedEvents.index(x["event"]),x["sessionNumber"],x["fileNumber"]))
@@ -23,20 +26,25 @@ def IncludeRedactedExcerpts() -> List[dict]:
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--eventMp3Dir',type=str,default=os.path.join('audio','events'),help='Read session mp3 files from this directory; Default: ./audio/events')
-    parser.add_argument('--excerptMp3Dir',type=str,default=os.path.join('audio','excerpts'),help='Write excerpt mp3 files from this directory; Default: ./audio/excerpts')
-    parser.add_argument('--overwriteMp3',action='store_true',help="Overwrite existing mp3 files; otherwise leave existing files untouched")
+    parser.add_argument('--overwriteMp3',**Utils.STORE_TRUE,help="Overwrite existing mp3 files; otherwise leave existing files untouched")
+
+def ParseArguments() -> None:
+    pass
+
+def Initialize() -> None:
+    pass
 
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
-    if gOptions.sessionMp3 == 'remote' and gOptions.excerptMp3 == 'remote':
-        Alert.info("All mp3 links go to remote servers. No mp3 files will be processed.")
-        return # No need to run SplitMp3 if all files are remote
     
+    if platform.system() != "Windows":
+        Alert.error(f"SplitMp3 requires Windows to run mp3DirectCut.exe. mp3 files cannot be split on {platform.system()}.")
+        return
+
     sessionCount = 0
     mp3SplitCount = 0
     errorCount = 0
@@ -55,11 +63,15 @@ def main():
         
         baseFileName = f"{event}_S{sessionNumber:02d}_"
         sessionExcerpts = [x for x in excerpts if x["event"] == event and x["sessionNumber"] == sessionNumber]
-        for x in sessionExcerpts:
+        if not any(Link.LocalItemNeeded(x) for x in sessionExcerpts) and not gOptions.overwriteMp3:
+            alreadySplit += 1
+            continue # If no local excerpts are needed in this session, then no need to split mp3 files
+
+        for excerptFile in sessionExcerpts:
             fileName = baseFileName + f"F{fileNumber:02d}"
-            startTime = Utils.StrToTimeDelta(x["startTime"])
+            startTime = Utils.StrToTimeDelta(excerptFile["clips"][0].start)
             
-            endTimeStr = x["endTime"].strip()
+            endTimeStr = excerptFile["clips"][0].end.strip()
             if endTimeStr:
                 excerptList.append((fileName,startTime,Utils.StrToTimeDelta(endTimeStr)))
             else:
@@ -67,36 +79,26 @@ def main():
                 
             fileNumber += 1
         
-        eventDir = os.path.join(gOptions.eventMp3Dir,event)
-        sessionFilePath = os.path.join(eventDir,session["filename"])
-        if not os.path.exists(sessionFilePath):
+        sessionFilePath = Link.LocalFile(gDatabase["audioSource"][session["filename"]])
+        eventDir = Utils.PosixSplit(sessionFilePath)[0]
+        if not sessionFilePath:
             Alert.warning("Cannot locate",sessionFilePath)
             errorCount += 1
             continue
         
-        outputDir = os.path.join(gOptions.excerptMp3Dir,event)
-        if not os.path.exists(outputDir):
-            os.makedirs(outputDir)
-        
-        allOutputFilesExist = True
-        for x in excerptList:
-            if not os.path.exists(os.path.join(outputDir,x[0]+'.mp3')):
-                allOutputFilesExist = False
-        
-        if allOutputFilesExist and not gOptions.overwriteMp3:
-            alreadySplit += 1
-            continue
+        outputDir = Utils.PosixJoin(gOptions.excerptMp3Dir,event)
+        os.makedirs(outputDir,exist_ok=True)
         
         # We use eventDir as scratch space for newly generated mp3 files.
         # So first clean up any files left over from previous runs.
-        for x in excerptList:
-            scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
+        for excerptFile in excerptList:
+            scratchFilePath = Utils.PosixToWindows(Utils.PosixJoin(eventDir,excerptFile[0]+'.mp3'))
             if os.path.exists(scratchFilePath):
                 os.remove(scratchFilePath)
         
         # Next invoke Mp3DirectCut:
         try:
-            Mp3DirectCut.Split(sessionFilePath,excerptList)
+            Mp3DirectCut.Split(Utils.PosixToWindows(sessionFilePath),excerptList)
         except Mp3DirectCut.ExecutableNotFound as err:
             Alert.error(err)
             Alert.status("Continuing to next module.")
@@ -112,13 +114,14 @@ def main():
             continue
         
         # Now move the files to their destination
-        for x in excerptList:
-            scratchFilePath = os.path.join(eventDir,x[0]+'.mp3')
-            outputFilePath = os.path.join(outputDir,x[0]+'.mp3')
+        for excerptFile,excerpt in zip(excerptList,sessionExcerpts):
+            scratchFilePath = Utils.PosixJoin(eventDir,excerptFile[0]+'.mp3')
+            outputFilePath = Utils.PosixJoin(outputDir,excerptFile[0]+'.mp3')
             if os.path.exists(outputFilePath):
                 os.remove(outputFilePath)
             
             os.rename(scratchFilePath,outputFilePath)
+            TagMp3.TagMp3WithClips(outputFilePath,excerpt["clips"])
         
         mp3SplitCount += 1
         Alert.info(f"Split {session['filename']} into {len(excerptList)} files.")

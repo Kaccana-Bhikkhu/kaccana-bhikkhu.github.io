@@ -76,17 +76,14 @@
             "justMyCode": true
         },
         {
-            "name": "BuildGithubV2",
+            "name": "BuildAll",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
-                "-vvv",
-                "--sheets",
-                "All",
-                "--excerptMp3",
-                "remote"
+                "--args",
+                "python/config/BuildAll.args"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -97,13 +94,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV",
-                "--excerptMp3",
-                "local",
-                "--events",
-                "WR2015",
-                "--writeMp3Tags",
-                "changed"
+                "SplitMp3"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

@@ -4,9 +4,9 @@ We leave the session file tags untouched."""
 from __future__ import annotations
 
 import json, re, os
-import Utils, Alert, Filter, Prototype
+import Utils, Alert, Filter, Link
 from typing import Tuple, Type, Callable
-
+from Mp3DirectCut import Clip
 import mutagen
 import mutagen.id3
 from mutagen.easyid3 import EasyID3
@@ -32,9 +32,9 @@ def register_comment(desc='') -> None:
 
     def setter(id3, _key, value):
         id3.add(mutagen.id3.COMM(
-            encoding=0, lang='\x00\x00\x00', desc=desc, text=[Utils.RemoveDiacritics(t) for t in value]))
-        id3.add(mutagen.id3.COMM(
             encoding=1, lang='XXX', desc=desc, text=value))
+        id3.add(mutagen.id3.COMM(
+            encoding=0, lang='\x00\x00\x00', desc=desc, text=[Utils.RemoveDiacritics(t) for t in value]))
 
     def deleter(id3, _key):
         if frameid in id3:
@@ -81,6 +81,10 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
         if 0 < qTagCount < len(tagStrs):
             tagStrs.insert(excerpt["qTagCount"],"//")
         parts += tagStrs
+    
+    source = f'Source: {excerpt["clips"][0].start} in file "{session["filename"]}"'
+    parts.append(source)
+
     return " ".join(parts)
 
 def ExcerptTags(excerpt: dict) -> dict:
@@ -100,7 +104,7 @@ def ExcerptTags(excerpt: dict) -> dict:
         "genre": gDatabase["kind"][excerpt["kind"]]["category"],
         "copyright": "© 2023 Abhayagiri Monastery; not for distribution outside the APQS Archive",
         "organization": "The Ajahn Pasanno Question and Story Achive",
-        "website": "https://abhayagiri.org/questions/",
+        "website": f"https://abhayagiri.org/questions/events/{excerpt['event']}.html#{Utils.ItemCode(excerpt)}",
     }
 
     if not returnValue["artist"]:
@@ -135,31 +139,51 @@ def CompareTags(tagsToWrite:dict, existingTags:EasyID3) -> bool:
             tagsToWriteCompare[key] = sorted(tagsToWriteCompare[key]) 
 
     return tagsToWriteCompare != existingTags
-    
+
+def TagMp3WithClips(mp3File: str,clips: list[Clip]):
+    """Add an ID3 clips tag containing the contents of clips to mp3File."""
+    try:
+        fileTags = EasyID3(mp3File)
+    except mutagen.id3.ID3NoHeaderError:
+        fileTags = mutagen.File(mp3File,easy=True)
+        fileTags.add_tags()
+
+    fileTags["clips"] = json.dumps(clips)
+    fileTags.save(v1=2,v2_version=gOptions.ID3version)
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument("--writeMp3Tags",type=str,default="Changed",choices=["never","changed","always"],help="Write mp3 tags under these conditions; Default: Changed.")
     parser.add_argument("--ID3version",type=int,default=3,choices=[3,4],help="Write mp3 tags as ID3 v2.X; Default: 3")
 
+def ParseArguments() -> None:
+    pass
+
+def Initialize() -> None:
+    pass
+
 gOptions = None
-gDatabase = None # These globals are overwritten by QSArchive.py, but we define them to keep PyLint happy
+gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 register_comment()
 
+class CLIP(mutagen.id3.TextFrame):
+    "List of clips"
+
+mutagen.id3.Frames["CLIP"] = CLIP
+EasyID3.RegisterTextKey("clips","CLIP")
+
 def main() -> None:
-    if gOptions.excerptMp3 == "remote":
-        Alert.info("All excerpt mp3 links go to remote servers. No mp3 files will be tagged.")
-        return # No need to run TagMp3 if all excerpt files are remote
-    
     changeCount = sameCount = 0
+    localMirrors = {"local",gOptions.uploadMirror}
     for x in gDatabase["excerpts"]:
         if gOptions.events != "All" and x["event"] not in gOptions.events:
             continue # Only tag mp3 files for the specifed events
-        if not x["fileNumber"]:
-            continue # Ignore session excerpts
+        if not x["fileNumber"] or x["mirror"] not in localMirrors:
+            continue # Ignore session excerpts and remote excerpts
         
         tags = ExcerptTags(x)
 
-        path = Utils.Mp3Link(x,directoryDepth=0)
+        path = Link.LocalFile(x)
         try:
             fileTags = EasyID3(path)
         except mutagen.id3.ID3NoHeaderError:
@@ -167,6 +191,9 @@ def main() -> None:
             fileTags.add_tags()
             Alert.extra("Added tags to",path)
 
+        if "clips" in fileTags: 
+            tags["clips"] = fileTags["clips"]
+            # The clips tag describes the audio source and is created by TagMp3.py; just let it pass through
         writeTags = CompareTags(tags,fileTags)
 
         if gOptions.writeMp3Tags == "never":
