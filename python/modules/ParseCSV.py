@@ -904,7 +904,8 @@ def LoadEventFile(database,eventName,directory):
                 teacherList.remove(t)
 
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
-    
+    eventDesc["code"] = eventName
+
     for key in ["teachers","tags"]:
         eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
     for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags","duration"]:

@@ -321,6 +321,8 @@ class Linker:
         If there is no valid mirror, set it to "".
         Returns the name of the mirror or ""."""
 
+        if not LinkableItem(item):
+            return ""
         currentMirror = item.get("mirror","")
         if currentMirror and not currentMirror.endswith("*"):
             return item["mirror"]
@@ -342,6 +344,8 @@ class Linker:
         """Check through the available mirrors until we either reach a valid item, the local mirror, or the upload mirror.
         In the latter two cases, report true and stop the search so that a local item can be acquired."""
         
+        if not LinkableItem(item):
+            return False
         if item.get("mirror","").endswith("*"):
             return True # Have we tried to find a local item before?
         for mirror in self._UncheckedMirrors(item):

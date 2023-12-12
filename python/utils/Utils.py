@@ -115,8 +115,8 @@ def SwitchedMoveFile(locationFalse: str,locationTrue: str,switch: bool) -> bool:
         return True
     return False
 
-def MoveFile(fromPath: str,toPath: str) -> None:
-    SwitchedMoveFile(fromPath,toPath,True)
+def MoveFile(fromPath: str,toPath: str) -> bool:
+    return SwitchedMoveFile(fromPath,toPath,True)
 
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"
