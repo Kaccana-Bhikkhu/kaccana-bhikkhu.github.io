@@ -725,10 +725,9 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 excludeAlert(excerpt,"due to teachers",annotation["teachers"],"of",annotation)
                 return
         
-        teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute") or database["kind"][annotation["kind"]]["ignoreConsent"]]
         for teacher in set(annotation["teachers"]) - set(teacherList):
-            if not TeacherConsent(database["teacher"],[teacher],"attribute"):
-                gUnattributedTeachers[teacher] += 1
+            gUnattributedTeachers[teacher] += 1
 
         if annotation["kind"] == "Reading":
             AppendUnique(teacherList,ReferenceAuthors(annotation["text"]))
@@ -1021,9 +1020,9 @@ def LoadEventFile(database,eventName,directory):
         if excludeReason:
             excludeAlert(*excludeReason)
 
-        attributedTeachers = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        attributedTeachers = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute") or database["kind"][x["kind"]]["ignoreConsent"]]
         for teacher in set(x["teachers"]) - set(attributedTeachers):
-            if not TeacherConsent(database["teacher"],[teacher],"attribute") and not x["exclude"]:
+            if not x["exclude"]:
                 gUnattributedTeachers[teacher] += 1
         x["teachers"] = attributedTeachers
         
