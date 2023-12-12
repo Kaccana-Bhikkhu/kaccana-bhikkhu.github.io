@@ -797,7 +797,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 if startTime is None:
                     deletedExcerptIDs.add(id(x))
             endTime = Mp3DirectCut.ToTimeDelta(x["endTime"])
-        except ValueError:
+        except Mp3DirectCut.ParseError:
             deletedExcerptIDs.add(id(x))
 
     for index in reversed(range(len(excerpts))):
@@ -824,7 +824,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         "Return the duration of clip as a string."
         try:
             duration = clip.Duration(sessionDuration)
-        except TypeError: # Generated if sessionDuration is None and needs to be used
+        except Mp3DirectCut.TimeError: # Generated if sessionDuration is None and needs to be used
             Alert.error(x,"must specify an end time since it appears in a session with no end time.")
             return "0:00"
         return Utils.TimeDeltaToStr(duration)
@@ -862,7 +862,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                         # If the previous excerpt didn't specify an end time, use the start time of this excerpt
                     prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
             
-                prevClip = SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0])
+                prevClip = prevExcerpt["clips"][0].ToClipTD()
                 prevExcerpt["duration"] = ClipDuration(prevClip,sessionDuration)
                 
                 if prevClip.end > Mp3DirectCut.ToTimeDelta(startTime):
@@ -875,7 +875,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             prevExcerpt = x
         
         if prevExcerpt:
-            prevExcerpt["duration"] = ClipDuration(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]),sessionDuration)
+            prevExcerpt["duration"] = ClipDuration(prevExcerpt["clips"][0].ToClipTD(),sessionDuration)
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."

@@ -13,6 +13,13 @@ class Mp3CutError(Exception):
     "Raised if mp3DirectCut returns with an error code"
     pass
 
+class ParseError(Mp3CutError):
+    "Raised when a string can't be parsed into a time."
+    pass
+
+class TimeError(Mp3CutError):
+    "Raised when a time value is invalid."
+    pass
 class ExecutableNotFound(Mp3CutError):
     "Raised when mp3DirectCut can't be found"
     pass
@@ -30,11 +37,11 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     "Convert various types to a timedetla object."
 
     if type(time) == timedelta:
-        return copy.copy(time)
+        return time
     
     try:
         floatVal = float(time)
-        return timedelta(seconds =floatVal)
+        return timedelta(seconds=floatVal)
     except ValueError:
         pass
 
@@ -50,7 +57,7 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     except (ValueError,TypeError):
         pass
     
-    raise ValueError(f"{repr(time)} cannot be converted to a time.")
+    raise ParseError(f"{repr(time)} cannot be converted to a time.")
     
 class Clip(NamedTuple):
     """A Clip represents a section of a given audio file."""
@@ -58,24 +65,26 @@ class Clip(NamedTuple):
     start: TimeSpec         # Clip start time
     end: TimeSpec|None      # Clip end time; None indicates the end of the file
 
-class ClipTD(NamedTuple):
-    """Same as above, except the types must be timedelta."""
-    file: str               # Filename of the audio file
-    start: timedelta        # Clip start time
-    end: timedelta|None     # Clip end time; None indicates the end of the file
-
-    def FromClip(clip: Clip) -> ClipTD:
-        """Convert a Clip to a ClipTD."""
-        return ClipTD(clip.file,ToTimeDelta(clip.start),ToTimeDelta(clip.end))
+    def ToClipTD(self) -> ClipTD:
+        return ClipTD(self.file,ToTimeDelta(self.start),ToTimeDelta(self.end))
     
-    def Duration(self,fileDurarion: timedelta) -> timedelta:
+    def Duration(self,fileDuration:TimeSpec|None) -> timedelta:
+        return self.ToClipTD().Duration(ToTimeDelta(fileDuration))
+
+class ClipTD(Clip):
+    """Same as a Clip, except the types must be timedelta."""
+    
+    def Duration(self,fileDuration:timedelta|None) -> timedelta:
         """Calculate the duration of this clip.
         Use fileDuration if self.end is None."""
 
         if self.end:
             return self.end - self.start
         else:
-            return fileDurarion - self.start
+            if fileDuration is None:
+                raise TimeError("The clip end time and the file duration cannot both be blank.")
+            else:
+                return fileDuration - self.start
 
 def TimeToCueStr(time):
     "Convert a timedelta object to the form MM:SS:hh, where hh is in hundreths of seconds"
@@ -129,7 +138,7 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
         for point in splitPoints:
             if prevTrackEnd is not None:
                 if point[1] < prevTrackEnd:
-                    raise ValueError(f"Split point {point}: Tracks to extract must be in sequential order.")
+                    raise TimeError(f"Split point {point}: Tracks to extract must be in sequential order.")
                 elif point[1] > prevTrackEnd:
                     throwawayTracks.add(trackNum)
             
@@ -139,7 +148,7 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
             
             if len(point) > 2:
                 if point[1] >= point[2]:
-                    raise ValueError(f"Split point {point}: Track end must be after track begin.")
+                    raise TimeError(f"Split point {point}: Track end must be after track begin.")
                 trackNum += 1
                 WriteCue(point[2],trackNum,cueFile)
                 prevTrackEnd = point[2]
