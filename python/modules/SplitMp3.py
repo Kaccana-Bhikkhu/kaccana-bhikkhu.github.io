@@ -53,7 +53,8 @@ def main():
         if gOptions.events != "All" and eventName not in gOptions.events:
             continue
 
-        excerptClipsDict:dict[str,list[Mp3DirectCut.Clip]] = {}
+        excerptDict:dict[str,dict] = {} # Dictionary of excerpts by filename
+        excerptClipsDict:dict[str,list[Mp3DirectCut.Clip]] = {} # Dictionary of clips by filename
         sources = set()
 
         if gOptions.overwriteMp3:
@@ -81,6 +82,7 @@ def main():
                 clips[index] = clips[index]._replace(file=source)
                 sources.add(source)
 
+            excerptDict[filename] = excerpt
             excerptClipsDict[filename] = clips
         
         inputDir = Utils.PosixJoin(gOptions.sessionMp3Dir,eventName)
@@ -97,9 +99,14 @@ def main():
             if os.path.exists(scratchFilePath):
                 os.remove(scratchFilePath)
         
+        # Tag each mp3 file after it is created.
+        def AddClipTags(filename:str,clips: list[Clip]) -> None:
+            filePath = Utils.PosixJoin(outputDir,filename)
+            TagMp3.TagMp3WithClips(filePath,excerptDict[filename]["clips"])
+
         # Next invoke Mp3DirectCut:
         try:
-            Mp3DirectCut.MultiFileSplitJoin(excerptClipsDict,Utils.PosixToWindows(inputDir),Utils.PosixToWindows(outputDir))
+            Mp3DirectCut.MultiFileSplitJoin(excerptClipsDict,Utils.PosixToWindows(inputDir),Utils.PosixToWindows(outputDir),postProcess=AddClipTags)
         except Mp3DirectCut.ExecutableNotFound as err:
             Alert.error(err)
             Alert.status("Continuing to next module.")
@@ -114,11 +121,6 @@ def main():
             errorCount += 1
             Alert.status("Continuing to next event.")
             continue
-        
-        for excerpt in excerptsNeedingSplit:
-            filename = f"{Utils.ItemCode(excerpt)}.mp3"
-            filePath = Utils.PosixJoin(outputDir,filename)
-            TagMp3.TagMp3WithClips(filePath,excerpt["clips"])
         
         eventSplitCount += 1
         Alert.info(f"{eventName}: Split {len(sources)} source files into {len(excerptClipsDict)} excerpt mp3 files.")

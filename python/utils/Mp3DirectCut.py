@@ -5,7 +5,7 @@ from __future__ import annotations
 import os, shutil, platform
 import copy
 from datetime import time,timedelta
-from typing import List, Union, NamedTuple, Iterator
+from typing import List, Union, NamedTuple, Callable, Iterator
 
 Executable = 'mp3DirectCut.exe'
 ExecutableDir = 'mp3DirectCut'    
@@ -246,15 +246,17 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
         SinglePassSplit(file,clipsToSplit,outputDir)
         clipsRemaining = clipsNotSplit
 
-def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None) -> None:
+def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None,postProcess:Callable[[str,list[Clip]],None] = lambda s,c: None) -> None:
     """Split and join multiple mp3 files using Mp3DirectCut.
     fileClips: each key is the name of a file to create in outputDir.
         each value is a list of Clips to join. The Clip fields mean:
-            file: the name of an inputDir
+            file: the name of a file in inputDir
             start: the start time of the audio to extract
             end: the end time of the audio to extract; None means end of file.
     inputDir: directory for input files.
-    outputDir: directory for output files. None means same as inputDir."""
+    outputDir: directory for output files. None means same as inputDir.
+    postProcess: a function we run on each item in fileClips after it has been created.
+        This allows the calling function to determine which files have been sucessfully created if there is an error later on."""
 
     print(fileClips)
 
@@ -281,6 +283,9 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
 
         destClipList = [clipList[0]._replace(file=outputFile) for outputFile,clipList in clips.items()]
         Split(sourcePath,destClipList,outputDir)
+
+        for file,clipList in clips.items():
+            postProcess(file,clipList)
 
 def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     """Join mp3 files into a single file using simple file copying operations.
