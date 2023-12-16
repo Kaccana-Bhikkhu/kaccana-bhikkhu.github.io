@@ -169,8 +169,8 @@ class Mp3ClipChecker(RemoteURLChecker):
             return False
         
         excerptClipsStr = json.dumps(item["clips"])
-        oldClips = tags.get("clips",[None])[0]
-        return tags.get("clips",[None])[0] == excerptClipsStr
+        oldClipStr = tags.get("clips",[None])[0]
+        return oldClipStr == excerptClipsStr
 
 class Mp3LengthChecker(RemoteURLChecker):
     """Verify that the length of mp3 files is what we expect it to be."""

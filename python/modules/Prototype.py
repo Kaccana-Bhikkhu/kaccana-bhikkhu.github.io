@@ -47,7 +47,7 @@ def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
     with open(Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate),encoding='utf-8') as file:
         temp = file.read()
 
-    temp = temp.replace('"../','"' + '../' * directoryDepth)
+    temp = temp.replace('="../','="' + '../' * directoryDepth)
     return pyratemp.Template(temp)
 
 def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
