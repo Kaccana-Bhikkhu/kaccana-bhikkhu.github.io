@@ -285,7 +285,7 @@ def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
     titleRegex = Utils.RegexMatchAny(escapedTitles)
-    pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
+    pageReference = r'(?:pages?|pp?\.)\s+-?[0-9]+(?:\-[0-9]+)?' 
 
     refForm2 = r'\[' + titleRegex + r'\]\((' + pageReference + ')?\)'
     refForm3 = r'\]\(' + titleRegex + r'(\s+' + pageReference + ')?\)'
@@ -303,7 +303,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         "Extract the page number from a text string"
         if not text:
             return None
-        pageNumber = re.search(r"[0-9]+",text)
+        pageNumber = re.search(r"-?[0-9]+",text)
         if pageNumber:
             return int(pageNumber[0])
         else:

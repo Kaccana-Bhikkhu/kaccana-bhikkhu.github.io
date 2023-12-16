@@ -1,5 +1,5 @@
 Modified:,2023,,,,,,,,,,,,,,
-Count,181,755,50,397,61,39,66,,37,61,4,786,367,735,735
+Count,181,762,50,397,61,39,66,,37,66,4,793,367,742,742
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,Wholesome qualities,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,Middle Way,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -492,7 +492,13 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 5,,Ajahn Mahā Amorn,,,,,,,,,,            Ajahn Mahā Amorn,,Ajahn Mahā Amorn,Ajahn Mahā Amorn
 5,,Ajahn Sumedho,,,,,,,,,,            Ajahn Sumedho,,Ajahn Sumedho,Ajahn Sumedho
 5,,Ajahn Anek,,,,,,,,,,            Ajahn Anek,,Ajahn Anek,Ajahn Anek
+5,,Ajahn Koon,,,,,,,,,,            Ajahn Koon,,Ajahn Koon,Ajahn Koon
 5,,Ajahn Toon,,,,,,,,,,            Ajahn Toon,,Ajahn Toon,Ajahn Toon
+5,,Ajahn Gunha,,,,,,,,,,            Ajahn Gunha,,Ajahn Gunha,Ajahn Gunha
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
 5,,Ajahn Pasanno,,,,,,,,,,            Ajahn Pasanno,,Ajahn Pasanno,Ajahn Pasanno
 5,,Ajahn Viradhammo,,,,,,,,,,            Ajahn Viradhammo,,Ajahn Viradhammo,Ajahn Viradhammo
 5,,Ajahn Tiradhammo,,,,,,,,,,            Ajahn Tiradhammo,,Ajahn Tiradhammo,Ajahn Tiradhammo
@@ -533,7 +539,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 5,,Ajahn Dee,,,,,,,,,,            Ajahn Dee,,Ajahn Dee,Ajahn Dee
 5,,Ajahn Phut,,,,,,,,,,            Ajahn Phut,,Ajahn Phut,Ajahn Phut
 ,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
+5,,Ajahn Waen,,,,,,,,,,            Ajahn Waen,,Ajahn Waen,Ajahn Waen
 5,,Ajahn Tongrat,,,,,,,,,,            Ajahn Tongrat,,Ajahn Tongrat,Ajahn Tongrat
 5,,Ajahn Kinaree,,,,,,,,,,            Ajahn Kinaree,,Ajahn Kinaree,Ajahn Kinaree
 5,,Ajahn Fun,,,,,,,,,,            Ajahn Fun,,Ajahn Fun,Ajahn Fun
@@ -609,7 +615,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 1,P,Monasteries,,,,,,,,,,Monasteries,,Monasteries,Monasteries
 2,P,Thai monasteries,,,,,,,,,,   Thai monasteries,,Thai monasteries,Thai monasteries
 3,PS,Thai Ajahn Chah monasteries,,,,,,,,,,      Thai Ajahn Chah monasteries,,Thai Ajahn Chah monasteries,Thai Ajahn Chah monasteries
-4,,Wat Nong Pah Pong,,,Wat Pah Pong,,,,,,,         Wat Nong Pah Pong,,Wat Pah Pong,Wat Pah Pong
+4,,Wat Nong Pah Pong,,,Wat Pah Pong,,,,,Ajahn Chah,,         Wat Nong Pah Pong,,Wat Pah Pong,Wat Pah Pong
 4,,Wat Tam Saeng Pet,,,,,,,,,,         Wat Tam Saeng Pet,,Wat Tam Saeng Pet,Wat Tam Saeng Pet
 4,,Wat Keun,,,,,,,,,,         Wat Keun,,Wat Keun,Wat Keun
 4,,Wat Pah Nanachat,,,,,,,,,,         Wat Pah Nanachat,,Wat Pah Nanachat,Wat Pah Nanachat
@@ -618,10 +624,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Anandagiri Monastery,,,Anandagiri,,,,,,,         Anandagiri Monastery,,Anandagiri,Anandagiri
 3,PS,Thai forest monasteries,,,,,,,,,,      Thai forest monasteries,,Thai forest monasteries,Thai forest monasteries
 4,,Wat Khao Wongkot,,,,,,,,,,         Wat Khao Wongkot,,Wat Khao Wongkot,Wat Khao Wongkot
-4,,Wat Asokaram,,,,,,,,,,         Wat Asokaram,,Wat Asokaram,Wat Asokaram
-4,,Wat Pah Ban Tat,,,,,,,,,,         Wat Pah Ban Tat,,Wat Pah Ban Tat,Wat Pah Ban Tat
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
+4,,Wat Asokaram,,,,,,,,Ajahn Lee Dhammadharo,,         Wat Asokaram,,Wat Asokaram,Wat Asokaram
+4,,Wat Pah Ban Tat,,,,,,,,Ajahn Mahā Boowa,,         Wat Pah Ban Tat,,Wat Pah Ban Tat,Wat Pah Ban Tat
+4,,Wat Suan Mokkh,,,,,,,,Ajahn Buddhadāsa,,         Wat Suan Mokkh,,Wat Suan Mokkh,Wat Suan Mokkh
+4,,Wat Burapha,,,,,,,,Ajahn Dune,,         Wat Burapha,,Wat Burapha,Wat Burapha
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 2,PS,Western Ajahn Chah monasteries,,,,,,,,,,   Western Ajahn Chah monasteries,,Western Ajahn Chah monasteries,Western Ajahn Chah monasteries
@@ -726,6 +732,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 1,P,Spiritual traditions,,,,,,,,,,Spiritual traditions,,Spiritual traditions,Spiritual traditions
 2,,Theravāda,,,,,,,,,,   Theravāda,,Theravāda,Theravāda
 2,,Mahāyāna,,,,,,,,,,   Mahāyāna,,Mahāyāna,Mahāyāna
+3,,Pure Land,,,,,,,,,,      Pure Land,,Pure Land,Pure Land
 3,p,Zen,,,,,,,,,,      Zen,,Zen,Zen
 2,,Vajrayāna,,,,,,,,,,   Vajrayāna,,Vajrayāna,Vajrayāna
 ,,,,,,,,,,,,,,,
@@ -845,6 +852,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,.,Personal,,,,,,,,,,   Personal,,,
 3,,Health,,,,,,,,,,      Health,,Health,Health
 4,,Excercise,,,,,,,,,,         Excercise,,Excercise,Excercise
+4,,Smoking,,,,,,,,,,         Smoking,,Smoking,Smoking
 4,,Mental illness,,,,,,,,,,         Mental illness,,Mental illness,Mental illness
 3,,Purpose/meaning,,,,,,Meaning,,,,      Purpose/meaning,,Purpose/meaning,Purpose/meaning
 3,,Cleanliness,,,,,,,,,,      Cleanliness,,Cleanliness,Cleanliness

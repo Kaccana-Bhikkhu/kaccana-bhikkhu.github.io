@@ -10,34 +10,34 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (124 subtags, 1232 excerpts)
-2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 451 excerpts)
-3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (43 subtags, 621 excerpts)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (124 subtags, 1275 excerpts)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 471 excerpts)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (43 subtags, 650 excerpts)
 
  __B. Modes of practice__
 
-4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (6 subtags, 164 excerpts)
-5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (19 subtags, 142 excerpts)
-6. [Precepts](../../pages/drilldown/precepts.html#precepts) (16 subtags, 135 excerpts)
-7. [Meditation](../../pages/drilldown/meditation.html#meditation) (65 subtags, 865 excerpts)
+4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (6 subtags, 168 excerpts)
+5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (19 subtags, 143 excerpts)
+6. [Precepts](../../pages/drilldown/precepts.html#precepts) (16 subtags, 140 excerpts)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation) (65 subtags, 882 excerpts)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (36 subtags, 662 excerpts)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (76 subtags, 534 excerpts)
-10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (22 subtags, 146 excerpts)
+8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (36 subtags, 685 excerpts)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (80 subtags, 576 excerpts)
+10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (24 subtags, 157 excerpts)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (20 subtags, 219 excerpts)
-12. [History](../../pages/drilldown/history.html#history) (12 subtags, 130 excerpts)
-13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (20 subtags, 324 excerpts)
-14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (11 subtags, 63 excerpts)
+11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (20 subtags, 223 excerpts)
+12. [History](../../pages/drilldown/history.html#history) (12 subtags, 132 excerpts)
+13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (20 subtags, 332 excerpts)
+14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (12 subtags, 66 excerpts)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (69 subtags, 442 excerpts)
-16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (58 subtags, 451 excerpts)
+15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (69 subtags, 459 excerpts)
+16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (59 subtags, 467 excerpts)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 

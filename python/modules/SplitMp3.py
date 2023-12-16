@@ -106,6 +106,7 @@ def main():
             return
         except Mp3DirectCut.Mp3CutError as err:
             Alert.error(err)
+            errorCount += 1
             Alert.status("Continuing to next event.")
             continue
         except (ValueError,OSError) as err:
