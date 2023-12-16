@@ -62,7 +62,7 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
 class Clip(NamedTuple):
     """A Clip represents a section of a given audio file."""
     file: str                       # Filename of the audio file
-    start: TimeSpec = "0:00"        # Clip start time
+    start: TimeSpec = timedelta(0)  # Clip start time
     end: TimeSpec|None = None       # Clip end time; None indicates the end of the file
 
     def ToClipTD(self) -> ClipTD:
@@ -78,8 +78,10 @@ class Clip(NamedTuple):
         return hash(self.ToClipTD())
 
 class ClipTD(Clip):
-    """Same as a Clip, except the types must be timedelta."""
-    
+    """Same as a Clip, except the times must be of type timedelta."""
+    start: timedelta
+    end: timedelta
+
     def ToClipTD(self) -> ClipTD:
         return self
 
@@ -87,8 +89,17 @@ class ClipTD(Clip):
         """Calculate the duration of this clip.
         Use fileDuration if self.end is None."""
 
+        if fileDuration is not None:
+            if self.start > fileDuration:
+                raise TimeError(f"Start time {self.start} is later than file duration {fileDuration}.")
+            if self.end and self.end > fileDuration:
+                raise TimeError(f"End time {self.end} is later than file duration {fileDuration}.")
+            
         if self.end:
-            return self.end - self.start
+            duration = self.end - self.start
+            if duration <= timedelta(0):
+                raise TimeError(f"Start time {self.start} is later than end time {self.end}.")
+            return duration
         else:
             if fileDuration is None:
                 raise TimeError("The clip end time and the file duration cannot both be blank.")
@@ -124,16 +135,16 @@ def WriteCue(cueTime,cueNum,cueFile):
     print(f'    TITLE "(Track {cueNum:02d})"',file=cueFile)
     print(f'    INDEX 01 {TimeToCueStr(cueTime)}',file=cueFile)
 
-def _SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueFile:str = True) -> None:
+def SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueFile:str = True) -> None:
     """Run Mp3DirectCut once to split an mp3 file into tracks.
-    This function forms the base for user-accessible functions like Split and MultiFileSplitJoin.
+    This function forms the base for functions like Split and MultiFileSplitJoin.
     file - Name and path of the file to split. Write access is required to this directory.
     clips - a list of clips to split the file into. The fields are:
         file (str): - the name of the output file for this clip.
         start (timedelta): the starting time of the clip.
         end (timedelta): the ending time of the clip.
+            If end == None, the clip extends to the beginning of the next clip or the end of the file.
     The clips must be sorted by start time and cannot overlap.
-    The last clip may have end == None, which indicates it extends to the end of the file.
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
     
@@ -210,8 +221,8 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
     file - Name and path of the file to split. Write access is required to this directory.
     clips - a list of clips to split the file into. The fields are:
         file (str): - the name of the output file for this clip.
-        start (timedelta): the starting time of the clip.
-        end (timedelta): the ending time of the clip; None means until the end of the file.
+        start: the starting time of the clip.
+        end: the ending time of the clip; None or blank means until the end of the file.
     The clips need not be sorted and can overlap.
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
@@ -219,8 +230,21 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
     print()
     print(f"Split: {file=} {clips=} {outputDir=}")
 
-    clipsTD = [clip.ToClipTD() for clip in clips]
-    _SinglePassSplit(file,clipsTD,outputDir)
+    clipsRemaining = [clip.ToClipTD() for clip in clips]
+    clipsRemaining.sort(key = lambda clip:clip.start)
+    while clipsRemaining:
+        lastClipEnd = timedelta(0)
+        clipsToSplit = []
+        clipsNotSplit = []
+        for clip in clipsRemaining:
+            if lastClipEnd is not None and clip.start >= lastClipEnd:
+                clipsToSplit.append(clip)
+                lastClipEnd = clip.end
+            else:
+                clipsNotSplit.append(clip)
+        
+        SinglePassSplit(file,clipsToSplit,outputDir)
+        clipsRemaining = clipsNotSplit
 
 def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None) -> None:
     """Split and join multiple mp3 files using Mp3DirectCut.
@@ -228,7 +252,7 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
         each value is a list of Clips to join. The Clip fields mean:
             file: the name of an inputDir
             start: the start time of the audio to extract
-            end: the end time of the audio to extract; None menas end of file.
+            end: the end time of the audio to extract; None means end of file.
     inputDir: directory for input files.
     outputDir: directory for output files. None means same as inputDir."""
 
@@ -278,7 +302,7 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     
     if heal:
         dir, name = os.path.split(name)
-        _SinglePassSplit(tempFile,[(name,timedelta(0))],dir)
+        SinglePassSplit(tempFile,[(name,timedelta(0))],dir)
         os.remove(tempFile)
     else:
         os.rename(tempFile,outputFile)

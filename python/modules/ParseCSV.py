@@ -820,12 +820,13 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             source = {"filename": filename, "duration":duration, "event":event, "url":url}
             database["audioSource"][filename] = source
 
-    def ClipDuration(clip: SplitMp3.ClipTD,sessionDuration:timedelta) -> str:
-        "Return the duration of clip as a string."
+    def ExcerptDuration(excerpt: dict,sessionDuration:timedelta) -> str:
+        "Return the duration of excerpt as a string."
         try:
+            clip = excerpt["clips"][0].ToClipTD()
             duration = clip.Duration(sessionDuration)
-        except Mp3DirectCut.TimeError: # Generated if sessionDuration is None and needs to be used
-            Alert.error(x,"must specify an end time since it appears in a session with no end time.")
+        except Mp3DirectCut.TimeError as error:
+            Alert.error(excerpt,"generates time error:",error.args[0])
             return "0:00"
         return Utils.TimeDeltaToStr(duration)
 
@@ -862,12 +863,11 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                         # If the previous excerpt didn't specify an end time, use the start time of this excerpt
                     prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
             
-                prevClip = prevExcerpt["clips"][0].ToClipTD()
-                prevExcerpt["duration"] = ClipDuration(prevClip,sessionDuration)
+                prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
                 
-                if prevClip.end > Mp3DirectCut.ToTimeDelta(startTime):
-                    startTime = prevExcerpt["clips"][0].end
-                    x["startTime"] = prevExcerpt["endTime"]
+                if prevExcerpt["clips"][0].ToClipTD().end > Mp3DirectCut.ToTimeDelta(startTime):
+                    # startTime = prevExcerpt["clips"][0].end # This code eliminates clip overlaps
+                    # x["startTime"] = prevExcerpt["endTime"]
                     if ExcerptFlag.OVERLAP not in x["flags"]:
                         Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
@@ -875,7 +875,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             prevExcerpt = x
         
         if prevExcerpt:
-            prevExcerpt["duration"] = ClipDuration(prevExcerpt["clips"][0].ToClipTD(),sessionDuration)
+            prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
