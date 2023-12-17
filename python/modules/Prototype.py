@@ -313,6 +313,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
             page.keywords.append(tag["name"])
             page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page.specialJoinChar["citationTitle"] = ""
             page.AppendContent(f': {tag["name"]}',section="citationTitle")
             yield page
 
@@ -1035,9 +1036,10 @@ def AddSearchCategory(category: str) -> Callable[[Html.PageDesc,list[dict]],None
     def _AddSearchCategory(page: Html.PageDesc,_: list[dict],newCategory = category):
         if newCategory:
             page.keywords.append(newCategory)
+        page.specialJoinChar["citationTitle"] = " "
         page.AppendContent(f"({newCategory})",section="citationTitle")
 
-    
+
     return _AddSearchCategory
 
 def FilteredExcerptsMenuItem(excerpts:Iterable[dict], filter:Filter.Filter, formatter:Formatter, mainPageInfo:Html.PageInfo, menuTitle:str, fileExt:str = "", pageAugmentor:Callable[[Html.PageDesc,list[dict]],None] = lambda page,excerpts:None) -> Html.PageDescriptorMenuItem:
