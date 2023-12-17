@@ -227,9 +227,6 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
 
-    print()
-    print(f"Split: {file=} {clips=} {outputDir=}")
-
     clipsRemaining = [clip.ToClipTD() for clip in clips]
     clipsRemaining.sort(key = lambda clip:clip.start)
     while clipsRemaining:
@@ -285,7 +282,6 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
     inputDir: directory for input files.
     outputDir: directory for output files. None means same as inputDir."""
 
-    print(fileClips)
     if outputDir is None:
         outputDir = inputDir
 

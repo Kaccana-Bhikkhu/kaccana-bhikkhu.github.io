@@ -45,10 +45,12 @@ def main():
         Alert.error(f"SplitMp3 requires Windows to run mp3DirectCut.exe. mp3 files cannot be split on {platform.system()}.")
         return
 
-    eventSplitCount = 0
-    errorCount = 0
-    alreadySplit = 0
+    # Step 1: Determine which excerpt mp3 files need to be created
     eventExcerptClipsDict:dict[str,dict[str,list[Mp3DirectCut.Clip]]] = {}
+        # eventExcerptClipsDict[eventName][filename] is the list of clips to join to create
+        # excerpt file filename
+    excerptsByFilename:dict[str,dict] = {}
+        # Store each excerpt by filename for future reference
     for event,eventExcerpts in Utils.GroupByEvent(gDatabase["excerpts"]):        
         eventName = event["code"]
         if gOptions.events != "All" and eventName not in gOptions.events:
@@ -61,8 +63,7 @@ def main():
         else:
             excerptsNeedingSplit = [x for x in eventExcerpts if Link.LocalItemNeeded(x)]
         if not excerptsNeedingSplit:
-            alreadySplit += 1
-            continue # If no local excerpts are needed in this session, then no need to split mp3 files
+            continue
         
         session = dict(sessionNumber=None)
         for excerpt in excerptsNeedingSplit:
@@ -81,17 +82,19 @@ def main():
                 clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(gDatabase["audioSource"][source],"local")))
 
             excerptClipsDict[filename] = clips
+            excerptsByFilename[filename] = excerpt
     
         eventExcerptClipsDict[eventName] = excerptClipsDict
     
     if not eventExcerptClipsDict:
-        Alert.info("No excerpt files need to be split.")
+        Alert.status("No excerpt files need to be split.")
         return
     
     allSources = [gDatabase["audioSource"][os.path.split(source)[1]] for source in Mp3DirectCut.SourceFiles(eventExcerptClipsDict)]
     totalExcerpts = sum(len(xList) for xList in eventExcerptClipsDict.values())
     Alert.extra(totalExcerpts,"excerpt(s) in",len(eventExcerptClipsDict),"event(s) need to be split from",len(allSources),"source file(s).")
     
+    # Step 2: Download any needed audio sources
     def DownloadItem(item: dict) -> None:
         Link.DownloadItem(item,scanRemoteMirrors=False)
 
@@ -99,34 +102,35 @@ def main():
         for source in allSources:
             pool.submit(DownloadItem,source)
 
+    splitCount = 0
+    errorCount = 0
+    # Step 3: Loop over all events and split mp3 files
     for eventName,excerptClipsDict in eventExcerptClipsDict.items():
         outputDir = Utils.PosixJoin(gOptions.excerptMp3Dir,eventName)
         os.makedirs(outputDir,exist_ok=True)
-        
-        # Next invoke Mp3DirectCut:
-        try:
-            Mp3DirectCut.MultiFileSplitJoin(excerptClipsDict,outputDir=Utils.PosixToWindows(outputDir))
-        except Mp3DirectCut.ExecutableNotFound as err:
-            Alert.error(err)
-            Alert.status("Continuing to next module.")
-            return
-        except Mp3DirectCut.Mp3CutError as err:
-            Alert.error(err)
-            errorCount += 1
-            Alert.status("Continuing to next event.")
-            continue
-        except (ValueError,OSError) as err:
-            Alert.error(f"Error: {err} occured when processing session {session}")
-            errorCount += 1
-            Alert.status("Continuing to next event.")
-            continue
-        
-        for excerpt in excerptsNeedingSplit:
-            filename = f"{Utils.ItemCode(excerpt)}.mp3"
-            filePath = Utils.PosixJoin(outputDir,filename)
-            TagMp3.TagMp3WithClips(filePath,excerpt["clips"])
-        
-        eventSplitCount += 1
-        Alert.info(f"{eventName}: Split {len(allSources)} source files into {len(excerptClipsDict)} excerpt mp3 files.")
+
+        # Group clips by sources and call MultiFileSplitJoin multiple times.
+        # If there is an error, this lets us continue to split the remaining files.
+        for sources,clipsDict in Mp3DirectCut.GroupBySourceFiles(excerptClipsDict):
+            # Invoke Mp3DirectCut on each group of clips:
+            try:
+                Mp3DirectCut.MultiFileSplitJoin(clipsDict,outputDir=Utils.PosixToWindows(outputDir))
+            except Mp3DirectCut.ExecutableNotFound as err:
+                Alert.error(err)
+                Alert.status("Continuing to next module.")
+                return
+            except (Mp3DirectCut.Mp3CutError,ValueError,OSError) as err:
+                Alert.error(f"{eventName}: {err} occured when splitting source files {sources}.")
+                Alert.status("Continuing to next source file(s).")
+                errorCount += 1
+                continue
+            
+            for filename in clipsDict:
+                filePath = Utils.PosixJoin(outputDir,filename)
+                TagMp3.TagMp3WithClips(filePath,excerptsByFilename[filename])
+            
+            splitCount += 1
+            sources = set(os.path.split(source)[1] for source in sources)
+            Alert.info(f"{eventName}: Split {sources} into {len(excerptClipsDict)} files.")
     
-    Alert.status(f"   {eventSplitCount} events split; {errorCount} events had errors; all files already present for {alreadySplit} events.")
+    Alert.status(f"   {splitCount} source file groups split; {errorCount} source file groups had errors.")
