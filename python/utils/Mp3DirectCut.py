@@ -5,10 +5,10 @@ from __future__ import annotations
 import os, shutil, platform
 import copy
 from datetime import time,timedelta
-from typing import List, Union, NamedTuple, Iterator
+from typing import List, Union, NamedTuple, Iterator, Iterable
 
 Executable = 'mp3DirectCut.exe'
-ExecutableDir = 'mp3DirectCut'    
+ExecutableDir = 'mp3DirectCut'
 class Mp3CutError(Exception):
     "Raised if mp3DirectCut returns with an error code"
     pass
@@ -246,6 +246,35 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
         SinglePassSplit(file,clipsToSplit,outputDir)
         clipsRemaining = clipsNotSplit
 
+def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set(str):
+    """Iterate recursively over clips and return the set of all source files used."""
+    if isinstance(clips,Clip):
+        return {clips.file}
+    if hasattr(clips,"values"):
+        return SourceFiles(clips.values())
+    sources = set()
+    if isinstance(clips,Iterable):
+        for item in clips:
+            sources.update(SourceFiles(item))
+    return sources
+
+def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple(set(str),dict[str,list[Clip]])]:
+    """Group the fileClips by source files. Returns an iterator of tuples:
+    (files,fileClips), where files is a set of source files and fileClips is the dict of files that use
+    these source files. For the time being, assume that all clips have only one source file."""
+
+    clipsRemaining = dict(fileClips)
+    while clipsRemaining:
+        sourceFiles = SourceFiles(next(iter(clipsRemaining.values())))
+            # Select the first file of the first item in clipsRemaining
+        clipsWithThisSource = {}
+        newClipsRemaining = {}
+        for filename,clips in clipsRemaining.items():
+            (clipsWithThisSource if clips[0].file in sourceFiles else newClipsRemaining).update({filename:clips})
+        
+        yield sourceFiles,clipsWithThisSource
+        clipsRemaining = newClipsRemaining
+
 def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None) -> None:
     """Split and join multiple mp3 files using Mp3DirectCut.
     fileClips: each key is the name of a file to create in outputDir.
@@ -257,24 +286,9 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
     outputDir: directory for output files. None means same as inputDir."""
 
     print(fileClips)
+    if outputDir is None:
+        outputDir = inputDir
 
-    def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple(set(str),dict[str,list[Clip]])]:
-        """Group the fileClips by source files. Returns an iterator of tuples:
-        (files,fileClips), where files is a set of source files and fileClips is the dict of files that use
-        these source files. For the time being, assume that all clips have only one source file."""
-
-        clipsRemaining = dict(fileClips)
-        while clipsRemaining:
-            sourceFiles = {next(iter(clipsRemaining.values()))[0].file}
-                # Select the first file of the first item in clipsRemaining
-            clipsWithThisSource = {}
-            newClipsRemaining = {}
-            for filename,clips in clipsRemaining.items():
-                (clipsWithThisSource if clips[0].file in sourceFiles else newClipsRemaining).update({filename:clips})
-            
-            yield sourceFiles,clipsWithThisSource
-            clipsRemaining = newClipsRemaining
-    
     for sourceFiles,clips in GroupBySourceFiles(fileClips):
         sourceFile = next(iter(sourceFiles))
         sourcePath = os.path.join(inputDir,sourceFile)

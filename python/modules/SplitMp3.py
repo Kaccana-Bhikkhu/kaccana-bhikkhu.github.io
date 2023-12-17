@@ -78,28 +78,20 @@ def main():
                     source = defaultSource
                 elif index == 0:
                     defaultSource = clips[0].file
-                clips[index] = clips[index]._replace(file=source)
+                clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(gDatabase["audioSource"][source],"local")))
                 sources.add(source)
 
             excerptClipsDict[filename] = clips
         
-        inputDir = Utils.PosixJoin(gOptions.sessionMp3Dir,eventName)
         outputDir = Utils.PosixJoin(gOptions.excerptMp3Dir,eventName)
         os.makedirs(outputDir,exist_ok=True)
         
         for source in sources:
             PrepareUpload.MoveItemToRegularLocation(gDatabase["audioSource"][source])
-
-        # We use inputDir as scratch space for newly generated mp3 files.
-        # So first clean up any files left over from previous runs.
-        for filename in excerptClipsDict:
-            scratchFilePath = Utils.PosixToWindows(Utils.PosixJoin(inputDir,filename))
-            if os.path.exists(scratchFilePath):
-                os.remove(scratchFilePath)
         
         # Next invoke Mp3DirectCut:
         try:
-            Mp3DirectCut.MultiFileSplitJoin(excerptClipsDict,Utils.PosixToWindows(inputDir),Utils.PosixToWindows(outputDir))
+            Mp3DirectCut.MultiFileSplitJoin(excerptClipsDict,outputDir=Utils.PosixToWindows(outputDir))
         except Mp3DirectCut.ExecutableNotFound as err:
             Alert.error(err)
             Alert.status("Continuing to next module.")
