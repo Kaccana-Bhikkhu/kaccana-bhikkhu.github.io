@@ -131,6 +131,6 @@ def main():
             
             splitCount += 1
             sources = set(os.path.split(source)[1] for source in sources)
-            Alert.info(f"{eventName}: Split {sources} into {len(excerptClipsDict)} files.")
+            Alert.info(f"{eventName}: Split {sources} into {len(clipsDict)} files.")
     
     Alert.status(f"   {splitCount} source file groups split; {errorCount} source file groups had errors.")
