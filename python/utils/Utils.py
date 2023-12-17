@@ -13,6 +13,7 @@ from collections.abc import Iterable
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
 from DjangoTextUtils import slugify,RemoveDiacritics
+from concurrent.futures import ThreadPoolExecutor
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -505,6 +506,9 @@ class MockThreadPoolExecutor():
 
     def shutdown(self, wait=True):
         pass
+
+def ConditionalThreader() -> ThreadPoolExecutor|MockThreadPoolExecutor:
+    return ThreadPoolExecutor() if gOptions.multithread else MockThreadPoolExecutor()
 
 try:
     STORE_TRUE = dict(action=argparse.BooleanOptionalAction,default=False)

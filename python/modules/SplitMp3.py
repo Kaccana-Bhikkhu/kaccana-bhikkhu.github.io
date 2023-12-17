@@ -48,13 +48,13 @@ def main():
     eventSplitCount = 0
     errorCount = 0
     alreadySplit = 0
+    eventExcerptClipsDict:dict[str,dict[str,list[Mp3DirectCut.Clip]]] = {}
     for event,eventExcerpts in Utils.GroupByEvent(gDatabase["excerpts"]):        
         eventName = event["code"]
         if gOptions.events != "All" and eventName not in gOptions.events:
             continue
 
         excerptClipsDict:dict[str,list[Mp3DirectCut.Clip]] = {}
-        sources = set()
 
         if gOptions.overwriteMp3:
             excerptsNeedingSplit = eventExcerpts
@@ -79,15 +79,29 @@ def main():
                 elif index == 0:
                     defaultSource = clips[0].file
                 clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(gDatabase["audioSource"][source],"local")))
-                sources.add(source)
 
             excerptClipsDict[filename] = clips
-        
+    
+        eventExcerptClipsDict[eventName] = excerptClipsDict
+    
+    if not eventExcerptClipsDict:
+        Alert.info("No excerpt files need to be split.")
+        return
+    
+    allSources = [gDatabase["audioSource"][os.path.split(source)[1]] for source in Mp3DirectCut.SourceFiles(eventExcerptClipsDict)]
+    totalExcerpts = sum(len(xList) for xList in eventExcerptClipsDict.values())
+    Alert.extra(totalExcerpts,"excerpt(s) in",len(eventExcerptClipsDict),"event(s) need to be split from",len(allSources),"source file(s).")
+    
+    def DownloadItem(item: dict) -> None:
+        Link.DownloadItem(item,scanRemoteMirrors=False)
+
+    with Utils.ConditionalThreader() as pool:
+        for source in allSources:
+            pool.submit(DownloadItem,source)
+
+    for eventName,excerptClipsDict in eventExcerptClipsDict.items():
         outputDir = Utils.PosixJoin(gOptions.excerptMp3Dir,eventName)
         os.makedirs(outputDir,exist_ok=True)
-        
-        for source in sources:
-            PrepareUpload.MoveItemToRegularLocation(gDatabase["audioSource"][source])
         
         # Next invoke Mp3DirectCut:
         try:
@@ -113,6 +127,6 @@ def main():
             TagMp3.TagMp3WithClips(filePath,excerpt["clips"])
         
         eventSplitCount += 1
-        Alert.info(f"{eventName}: Split {len(sources)} source files into {len(excerptClipsDict)} excerpt mp3 files.")
+        Alert.info(f"{eventName}: Split {len(allSources)} source files into {len(excerptClipsDict)} excerpt mp3 files.")
     
     Alert.status(f"   {eventSplitCount} events split; {errorCount} events had errors; all files already present for {alreadySplit} events.")

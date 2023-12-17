@@ -7,12 +7,6 @@ import os
 import Utils, Alert, Link
 from typing import Iterable
 
-def MoveItemToRegularLocation(item:dict) -> bool:
-    """Move this item to its usual place. Returns true if successfully moved."""
-    localPath = Link.URL(item,mirror="local")
-    noUploadPath = Link.NoUploadPath(item)
-    return Utils.MoveFile(noUploadPath,localPath)
-
 def MoveItemsIfNeeded(items: Iterable[dict]) -> (int,int,int):
     """Move items to/from the xxxNoUpload directories as needed. 
     Return a tuple of counts: (moved to regular location,moved to NoUpload directory,other files moved to NoUpload directory)."""

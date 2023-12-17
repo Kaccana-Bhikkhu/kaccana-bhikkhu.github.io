@@ -6,7 +6,6 @@ from __future__ import annotations
 
 import os
 import Utils, Alert, Link
-from concurrent.futures import ThreadPoolExecutor
 from typing import Iterable
 
 def DownloadItems(items: Iterable[dict]) -> int:
@@ -18,7 +17,7 @@ def DownloadItems(items: Iterable[dict]) -> int:
         if Link.DownloadItem(item):
                 downloadCount += 1
 
-    with ThreadPoolExecutor() if gOptions.multithread else Utils.MockThreadPoolExecutor() as pool:
+    with Utils.ConditionalThreader() as pool:
         for item in items:
             pool.submit(DownloadItem,item)
     

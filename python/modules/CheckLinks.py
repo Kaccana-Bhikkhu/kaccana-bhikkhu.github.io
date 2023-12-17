@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import os
 import Utils, Alert, Link
-from concurrent.futures import ThreadPoolExecutor
 from typing import NamedTuple, Iterable
 from bs4 import BeautifulSoup
 import urllib.error, urllib.parse
@@ -86,7 +85,7 @@ def CheckUrl(url:str) -> UrlInfo:
 
 def CheckUrls(urls: Iterable[str]) -> None:
     """Check a list of urls to see if they are valid."""
-    with ThreadPoolExecutor() if gOptions.multithread else Utils.MockThreadPoolExecutor() as pool:
+    with Utils.ConditionalThreader() as pool:
         for url in urls:
             pool.submit(CheckUrl,url)
 

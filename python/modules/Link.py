@@ -17,7 +17,6 @@ import json
 from typing import Tuple, Type, Callable, Iterable, BinaryIO
 from enum import Enum
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor
 import copy
 import contextlib
 
@@ -307,13 +306,7 @@ class Linker:
         if mirror == gOptions.uploadMirror:
             mirrorToCheck = "local"
         if mirrorToCheck == "local":
-            noUploadPath = self.NoUploadPath(item)
-            if os.path.isfile(noUploadPath):
-                regularPath = self.URL(item,"local")
-                if not os.path.isfile(regularPath):
-                    os.rename(noUploadPath,regularPath)
-                else:
-                    raise FileExistsError(f"Cannot move {noUploadPath} to overwrite {regularPath}.")
+            RestoreItemLocation(item)
         
         return mirrorToCheck
     
@@ -361,14 +354,25 @@ class Linker:
         
         return False
 
-    def DownloadItem(self,item: dict) -> bool:
+    def DownloadItem(self,item: dict,scanRemoteMirrors:bool = True) -> bool:
         """If needed, attempt to download this item from any available mirrors.
-        Return True if the item was needed and has been downloaded; False otherwise."""
+        Return True if the item was needed and has been downloaded; False otherwise.
+        If remoteItemOK is False, download the file unless a valid local file already exists."""
+
         filename = self.URL(item,"local")
         if not filename:
             return False
         
-        if self.LocalItemNeeded(item):
+        if scanRemoteMirrors:
+            localItemNeeded = self.LocalItemNeeded(item)
+        else:
+            RestoreItemLocation(item)
+            try:
+                localItemNeeded = not self.mirrorValidator["local"].ValidLink(self.URL(item,"local"),item)
+            except OSError as error:
+                localItemNeeded = True
+
+        if localItemNeeded:
             tempDownloadLocation = filename + ".download"
 
             remainingMirrors = self._UncheckedMirrors(item)[1:]
@@ -381,7 +385,8 @@ class Linker:
                         with contextlib.suppress(FileNotFoundError):
                             os.remove(filename)
                         os.rename(tempDownloadLocation,filename)
-                        item["mirror"] = item["mirror"].rstrip("*")
+                        if scanRemoteMirrors:
+                            item["mirror"] = item["mirror"].rstrip("*")
                         Alert.extra("Downloaded",item,"to",filename)
                         return True
         return False
@@ -410,16 +415,23 @@ def NoUploadPath(item:dict) -> str:
     else:
         return gLinker[AutoType(item)].NoUploadPath(item)
 
+def RestoreItemLocation(item:dict) -> bool:
+    """Move this item to its usual place. Returns true if successfully moved."""
+    localPath = URL(item,mirror="local")
+    noUploadPath = NoUploadPath(item)
+    return Utils.MoveFile(noUploadPath,localPath)
+
 def LocalFile(item:dict) -> str:
     """Auto-detect the type of this item and return the path of the local file corresponding to item.
         Search the usual location and the NoUpload directory.
         No validity checking is performed."""
     return gLinker[AutoType(item)].LocalFile(item)
 
-def DownloadItem(item:dict) -> bool:
+def DownloadItem(item:dict,scanRemoteMirrors:bool = True) -> bool:
     """Auto-detect the type of this item. If a local copy is needed, try to download one.
-    Returns True if an item was sucessfully downloaded."""
-    return gLinker[AutoType(item)].DownloadItem(item)
+    Returns True if an item was sucessfully downloaded.
+    If remoteItemOK is False, download the file unless a valid local file already exists."""
+    return gLinker[AutoType(item)].DownloadItem(item,scanRemoteMirrors)
 
 def LinkableItem(item: dict) -> bool:
     """Returns True if this item requires linking to a file in a mirror."""
@@ -433,7 +445,7 @@ def LinkableItem(item: dict) -> bool:
 def LinkItems() -> None:
     """Find a valid mirror for all items that haven't already been linked to."""
 
-    with ThreadPoolExecutor() if gOptions.multithread else Utils.MockThreadPoolExecutor() as pool:
+    with Utils.ConditionalThreader() as pool:
         for itemType,items in gItemLists.items():
             for item in Utils.Contents(items):
                 if not LinkableItem(item):
