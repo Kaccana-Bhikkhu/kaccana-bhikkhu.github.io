@@ -40,16 +40,6 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
-gWrittenHtmlFiles = set()
-
-@lru_cache(maxsize = None)
-def GlobalTemplate(directoryDepth:int = 1) -> pyratemp.Template:
-    with open(Utils.PosixJoin(gOptions.prototypeDir,gOptions.globalTemplate),encoding='utf-8') as file:
-        temp = file.read()
-
-    temp = temp.replace('="../','="' + '../' * directoryDepth)
-    return pyratemp.Template(temp)
-
 def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
     """Write an html file for page using the global template"""
     page.gOptions = gOptions

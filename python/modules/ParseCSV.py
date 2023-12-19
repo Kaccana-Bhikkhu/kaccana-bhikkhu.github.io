@@ -700,7 +700,14 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"] or database["kind"][annotation["kind"]].get("exclude",False):
+    global gRemovedAnnotations
+    if annotation["exclude"]:
+        excludeAlert(annotation,"to",excerpt,"- exclude flag Yes.")
+        gRemovedAnnotations += 1
+        return
+    if database["kind"][annotation["kind"]].get("exclude",False):
+        excludeAlert(annotation,"to",excerpt,"- kind",repr(annotation["kind"]),"exclude flag Yes.")
+        gRemovedAnnotations += 1
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -1046,10 +1053,11 @@ def LoadEventFile(database,eventName,directory):
 
     CreateClips(excerpts,sessions,database)
     
-    removedExcerpts = [x for x in excerpts if x["exclude"]]
+    originalCount = len(excerpts)
     excerpts = [x for x in excerpts if not x["exclude"]]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
-
+    global gRemovedExcerpts
+    gRemovedExcerpts += originalCount - len(excerpts)
     sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
     for unusedSession in includedSessions - sessionsWithExcerpts:
         del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
@@ -1079,13 +1087,8 @@ def LoadEventFile(database,eventName,directory):
             del x["exclude"]
             del x["startTime"]
             del x["endTime"]
-    
-    for x in removedExcerpts: # Redact information about these excerpts
-        for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
-            x.pop(key,None)
 
     database["excerpts"] += excerpts
-    database["excerptsRedacted"] += removedExcerpts
 
     eventDesc["sessions"] = len(sessions)
     eventDesc["excerpts"] = sum(1 for x in excerpts if x["fileNumber"]) # Count only non-session excerpts   
@@ -1213,6 +1216,8 @@ def Initialize() -> None:
 
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
+gRemovedExcerpts = 0 # Count the total number of removed excerpts
+gRemovedAnnotations = 0
 
 # AlertClass for explanations of excluded excerpts. Don't show by default.
 excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)
@@ -1258,11 +1263,10 @@ def main():
     gDatabase["sessions"] = []
     gDatabase["audioSource"] = {}
     gDatabase["excerpts"] = []
-    gDatabase["excerptsRedacted"] = []
     for event in gDatabase["summary"]:
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             LoadEventFile(gDatabase,event,gOptions.csvDir)
-    excludeAlert(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
+    excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     gUnattributedTeachers.pop("Anon",None)

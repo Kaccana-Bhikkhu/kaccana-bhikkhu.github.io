@@ -11,19 +11,6 @@ from datetime import timedelta
 
 Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3DirectCut')))
 
-
-def IncludeRedactedExcerpts() -> List[dict]:
-    "Merge the redacted excerpts back into the main list in order to split mp3 files"
-    
-    allExcerpts = gDatabase["excerpts"] + gDatabase["excerptsRedacted"]
-    allExcerpts = [x for x in allExcerpts if x["fileNumber"]] # Session excerpts don't need split mp3 files
-    orderedEvents = list(gDatabase["event"].keys()) # Look up the event in this list to sort excerpts by event order in gDatabase
-    
-    allExcerpts.sort(key = lambda x: (orderedEvents.index(x["event"]),x["sessionNumber"],x["fileNumber"]))
-        # Sort by event, then by session, then by file number
-    
-    return allExcerpts
-
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     parser.add_argument('--overwriteMp3',**Utils.STORE_TRUE,help="Overwrite existing mp3 files; otherwise leave existing files untouched")
