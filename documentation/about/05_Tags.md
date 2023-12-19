@@ -10,34 +10,34 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (124 subtags, 1282 excerpts)
-2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 476 excerpts)
-3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (43 subtags, 659 excerpts)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (124 subtags, 1292 excerpts)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 482 excerpts)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (43 subtags, 663 excerpts)
 
  __B. Modes of practice__
 
 4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (6 subtags, 169 excerpts)
 5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (19 subtags, 145 excerpts)
 6. [Precepts](../../pages/drilldown/precepts.html#precepts) (16 subtags, 140 excerpts)
-7. [Meditation](../../pages/drilldown/meditation.html#meditation) (65 subtags, 888 excerpts)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation) (65 subtags, 891 excerpts)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (36 subtags, 689 excerpts)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (80 subtags, 586 excerpts)
-10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (25 subtags, 160 excerpts)
+8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (36 subtags, 697 excerpts)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (80 subtags, 598 excerpts)
+10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (25 subtags, 163 excerpts)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (20 subtags, 223 excerpts)
-12. [History](../../pages/drilldown/history.html#history) (12 subtags, 134 excerpts)
-13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (21 subtags, 335 excerpts)
+11. [Nature of the cosmos](../../pages/drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos) (20 subtags, 225 excerpts)
+12. [History](../../pages/drilldown/history.html#history) (12 subtags, 136 excerpts)
+13. [Cultural context](../../pages/drilldown/cultural-context.html#cultural-context) (21 subtags, 339 excerpts)
 14. [Spiritual traditions](../../pages/drilldown/spiritual-traditions.html#spiritual-traditions) (12 subtags, 66 excerpts)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (70 subtags, 464 excerpts)
-16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (59 subtags, 472 excerpts)
+15. [Renunciant practice](../../pages/drilldown/renunciant-practice.html#renunciant-practice) (70 subtags, 473 excerpts)
+16. [Everyday life](../../pages/drilldown/everyday-life.html#everyday-life) (59 subtags, 474 excerpts)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 
