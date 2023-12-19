@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/p-a-payutto.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/p-a-payutto.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
