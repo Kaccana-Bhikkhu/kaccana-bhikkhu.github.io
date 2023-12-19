@@ -41,8 +41,8 @@ async function changeURL(pUrl) {
 			frame.querySelectorAll("a").forEach((el) => {
 				let href = el.getAttribute("href");
 				if (!href || href.match(absoluteURLRegex)) return;
-				if (href == "homepage.html#noscript") { // Code to escape javascript
-					el.href = "homepage.html";
+				if (href.endsWith("#noscript")) { // Code to escape javascript
+					el.href = el.href.replace("#noscript","");
 					return;
 				}
 

@@ -11,6 +11,7 @@ import pyratemp
 from functools import lru_cache
 import ParseCSV, Prototype, Utils, Alert, Link
 import Html2 as Html
+import urllib.parse
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -319,6 +320,14 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                 Alert.warning(reference,"does not specify pdfPageOffset.")
         return pageOffset
 
+    def NoScriptForLocalReferences(url:str) -> str:
+        """Add #noscript to the end of local references to break out of frame.js."""
+        parsed = urllib.parse.urlparse(url)
+        if parsed.netloc or gOptions.prototypeDir in parsed.path.split("/"):
+            return url
+        else:
+            return url + "#noscript"
+
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -332,6 +341,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             if page:
                 url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
 
+            url = NoScriptForLocalReferences(url)
             returnValue = f"[{reference['title']}]({url})"
         else:
             returnValue = f"{reference['title']}"
@@ -361,7 +371,8 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         page = ParsePageNumber(matchObject[2])
         if page:
            url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"""
-
+        
+        url = NoScriptForLocalReferences(url)
         return f"]({url})"
 
     def ReferenceForm3(bodyStr: str) -> tuple[str,int]:
@@ -379,6 +390,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         page = ParsePageNumber(matchObject[2])
         if page:
            url +=  f"#page={page + PdfPageOffset(reference)}"
+        url = NoScriptForLocalReferences(url)
 
         items = [reference['title'],f", [{matchObject[2]}]({url})"]
         if reference["attribution"]:
