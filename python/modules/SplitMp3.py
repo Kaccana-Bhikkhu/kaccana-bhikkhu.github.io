@@ -127,7 +127,7 @@ def main():
             
             for filename in clipsDict:
                 filePath = Utils.PosixJoin(outputDir,filename)
-                TagMp3.TagMp3WithClips(filePath,excerptsByFilename[filename])
+                TagMp3.TagMp3WithClips(filePath,excerptsByFilename[filename]["clips"])
             
             splitCount += 1
             sources = set(os.path.split(source)[1] for source in sources)
