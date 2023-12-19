@@ -686,6 +686,8 @@ def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
+    if annotation["sessionNumber"] != excerpt["sessionNumber"]:
+        Alert.warning("Annotation",annotation,"to",excerpt,f"has a different session number ({annotation['sessionNumber']}) than its excerpt ({excerpt['sessionNumber']})")
     CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
     if annotation["kind"] == "Extra tags":
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
