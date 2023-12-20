@@ -372,7 +372,6 @@ def LoadTagsFile(database,tagFileName):
         else:
             tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
         
-        tagDesc["listIndex"] = rawTagIndex
         tags[tagName] = tagDesc
     
     for tag in tags.values():
@@ -455,23 +454,29 @@ def RemoveUnusedTags(database: dict) -> None:
         tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
         tag["related"] = [t for t in tag["related"] if t in usedTags]
 
-    IndexTags(database)
-
 def IndexTags(database: dict) -> None:
     """Add listIndex tag to raw tags after we have removed unused tags."""
     tagsSoFar = set()
-    for n,tag in enumerate(database["tagRaw"]):
+    for n,tag in enumerate(database["tagDisplayList"]):
         tagName = tag["tag"]
-        if tag["subsumedUnder"]:
+        if not tagName:
+            tagName = tag["virtualTag"]
+        if tag["subsumed"]:
             continue
         if tagName in tagsSoFar and TagFlag.PRIMARY not in tag["flags"]:
             continue
 
         tagsSoFar.add(tagName)
-        databaseTagNumber = database['tag'][tagName]['listIndex']
         
         database["tag"][tagName]["listIndex"] = n
-    
+
+    tagList = database["tagDisplayList"]
+    # Cross-check tag indexes
+    for tag in database["tag"]:
+        if TagFlag.VIRTUAL not in database["tag"][tag]["flags"]:
+            index = database["tag"][tag]["listIndex"]
+            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
+
     """for tag in database["tag"].values():
         if tag["listIndex"] != tag["newListIndex"]:
             print(f"Mismatched numbers: {tag['tag']}: {tag['listIndex']=}, {tag['newListIndex']=}")"""
@@ -586,6 +591,7 @@ def CreateTagDisplayList(database):
             
         if TagFlag.VIRTUAL in rawTag["flags"]:
             listItem["tag"] = "" # Virtual tags don't have a display page
+            listItem["virtualTag"] = tag
         else:
             listItem["tag"] = tag
         
@@ -593,11 +599,8 @@ def CreateTagDisplayList(database):
     
     database["tagDisplayList"] = tagList
     
-    # Cross-check tag indexes
-    for tag in database["tag"]:
-        if TagFlag.VIRTUAL not in database["tag"][tag]["flags"]:
-            index = database["tag"][tag]["listIndex"]
-            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
+    if not gOptions.jsonNoClean:
+        del gDatabase["tagRaw"]
 
 def WalkTags(tagDisplayList: list,returnIndices:bool = False,yieldRootTags = False) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
@@ -1287,19 +1290,18 @@ def main():
 
     CreateTagDisplayList(gDatabase)
     SortTags(gDatabase)
+    IndexTags(gDatabase)
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
     CountSubtagExcerpts(gDatabase)
-
-    if not gOptions.jsonNoClean:
-        del gDatabase["tagRaw"]    
+   
     gDatabase["keyCaseTranslation"] = {key:gCamelCaseTranslation[key] for key in sorted(gCamelCaseTranslation)}
 
     Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","audioSource","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
     Alert.extra("Spreadsheet database contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)
-    
+
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     

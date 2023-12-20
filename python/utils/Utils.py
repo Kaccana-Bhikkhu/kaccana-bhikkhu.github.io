@@ -386,7 +386,7 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
         return None
 
 def SubtagDescription(tag: str) -> str:
-    "Return a string describing this tags subtags."
+    "Return a string describing this tag's subtags."
     primary = gDatabase["tag"][tag]["listIndex"]
     listEntry = gDatabase["tagDisplayList"][primary]
     return f'{listEntry["subtagCount"]} subtags, {listEntry["subtagExcerptCount"]} excerpts'
