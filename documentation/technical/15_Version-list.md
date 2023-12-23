@@ -73,3 +73,5 @@
 - 3.6.4 Add CheckLinks module. Include only about pages and events in sitemap.xml. New command line options: --args Filename.args includes the arguments in Filename.args in the command line; --no-XXX sets boolean option XXX to False; --multithread allows multithreaded http operations.
 
 - 3.6.5 (December 2023 Release) Don't truncate player titles. Fix glitch in multipage excerpt list page menu.
+
+- 3.7 More versatile audio processing framework. Don't split excluded excerpts. Allow overlapping clips. Fix player close timout (contributed by Owen). Don't redirect file:// URLs to index.html# to allow simple local browsing. WR2014 finished.
