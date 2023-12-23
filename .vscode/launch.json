@@ -69,11 +69,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Render,Prototype",
-                "--reference",
-                "local",
-                "--sessionMp3",
-                "local"
+                "Prototype",
+                "--buildOnly",
+                "search"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

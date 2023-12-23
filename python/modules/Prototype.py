@@ -1493,6 +1493,26 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         yield page
 
 
+def SearchMenu(searchDir: str) -> Html.PageDescriptorMenuItem:
+    """Create the Teacher menu item and its associated submenus."""
+
+    textSearchInfo = Html.PageInfo("Text search",Utils.PosixJoin(searchDir,"Text-search.html"))
+    
+    @Alert.extra.Supress()
+    def QuietRender() -> Iterator[Html.PageDesc]:
+        return Document.RenderDocumentationFiles(Utils.PosixJoin("../",gOptions.prototypeDir,"templates","search"),searchDir,html = True)
+
+    searchMenu = []
+    for page in QuietRender():
+        searchMenu.append([page.info,page])
+
+    searchMenu[0][0] = searchMenu[0][0]._replace(title="Search")
+    searchMenu[0][1].info = searchMenu[0][1].info._replace(titleIB="Search")
+    yield searchMenu[0][0]
+    yield searchMenu[0]
+    """ basePage = Html.PageDesc()
+    # yield from basePage.AddMenuAndYieldPages(searchMenu,**SUBMENU_STYLE)"""
+
 def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
     """Add a table of contents to the event which is being built."""
     tocPath = Utils.PosixJoin(gOptions.documentationDir,"tableOfContents",sessions[0]["event"] + ".md")
@@ -1750,7 +1770,7 @@ def AddArguments(parser):
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
     parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
 
-gAllSections = {"tags","drilldown","events","teachers","allexcerpts"}
+gAllSections = {"tags","drilldown","events","teachers","search","allexcerpts"}
 def ParseArguments():
     if gOptions.buildOnly == "":
         gOptions.buildOnly = gAllSections
@@ -1804,6 +1824,7 @@ def main():
     mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(SearchMenu("search"),"search" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
 
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
