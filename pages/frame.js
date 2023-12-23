@@ -1,4 +1,6 @@
+import "./search.js"
 import posix from "./path.js";
+import { searchExcerpts } from "./search.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
@@ -28,6 +30,10 @@ async function changeURL(pUrl) {
 			innerTitle.remove();
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
+			let searchButton = frame.querySelector("#search-button")
+			if (searchButton) {
+				searchButton.onclick = () => {searchExcerpts(frame.querySelector('#search-text').value);}
+			}
 
 			["href","src"].forEach((attribute) => {
 				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
