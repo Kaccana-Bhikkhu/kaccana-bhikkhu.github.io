@@ -1495,8 +1495,6 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
 def SearchMenu(searchDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Teacher menu item and its associated submenus."""
-
-    textSearchInfo = Html.PageInfo("Text search",Utils.PosixJoin(searchDir,"Text-search.html"))
     
     @Alert.extra.Supress()
     def QuietRender() -> Iterator[Html.PageDesc]:

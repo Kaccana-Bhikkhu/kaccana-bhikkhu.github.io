@@ -14,12 +14,13 @@
     
 </head>
 <body>
-    <script>
+    <!-- <script>
       url = new URL(location.href)
       if (url.protocol != "file:") {
         location.replace("../index.html#search/02_Text-search.html" + url.hash);
       }
-    </script>
+    </script> -->
+    <script src="../search.js" type="module"></script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
     <br>
@@ -40,7 +41,16 @@
   </div>
 
 <div class="intro">
-<h1 id="text-search">Text Search</h1>
+<div>
+
+<input type="text" id="search-text" />
+
+<br><br>
+<button type="button" id="search-button">
+Search</button>
+
+<p id="results"></p>
+</div>
 </div>
 
 <footer>
