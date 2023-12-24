@@ -24,12 +24,16 @@ function renderExcerpts(excerpts) {
 
 function parseQuery(query) {
     // Given a query string, parse it into string search bits.
+    // Return a two-dimensional array representing search groups specified by enclosure within parenthesis.
+    // Each excerpt must match all search groups.
+    // Search keys within a search group must be matched within the same blob.
+    // So (#Read Pasanno}) matches only kind 'Reading' or 'Read by' with teacher ending with Pasanno
 
     const partsSerach = /\s*\S+/g;
     let returnValue = [];
     let match = null;
     for (match of query.matchAll(partsSerach)) {
-        returnValue.push(match[0].trim())
+        returnValue.push([match[0].trim()])
     }
     return returnValue
 }
@@ -47,13 +51,30 @@ export function searchExcerpts(query) {
     let found = [];
     let x = null;
     let blob = null;
+    let group = null;
+    let searchKey = null;
     for (x of database.excerpts) {
-        for (blob of x.blobs) {
-            if (blob.includes(query)) {
-                found.push(x)
-                break
+        let allGroupsMatch = true;
+        for (group of parsed) { 
+            let anyBlobMatches = false;
+            for (blob of x.blobs) {
+                let allKeysMatch = true
+                for (searchKey of group) {
+                    if (!blob.includes(searchKey)) {
+                        allKeysMatch = false;
+                    }
+                }
+                if (allKeysMatch) {
+                    anyBlobMatches = true
+                }
+            }
+            if (!anyBlobMatches) {
+                allGroupsMatch = false;
+                break;
             }
         }
+        if (allGroupsMatch)
+            found.push(x)
     }
 
     let resultParts = [query,

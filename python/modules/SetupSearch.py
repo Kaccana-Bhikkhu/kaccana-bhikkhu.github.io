@@ -38,7 +38,7 @@ def OptimizedExcerpts() -> list[dict]:
     formatter = Prototype.Formatter()
     formatter.excerptOmitSessionTags = False
     formatter.showHeading = False
-    for x in gDatabase["excerpts"][0:100]:
+    for x in gDatabase["excerpts"]:
         xDict = {"session": Utils.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": SearchBlobs(x),
                  "html": Prototype.HtmlExcerptList([x],formatter)}
