@@ -11,7 +11,7 @@ from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
-from collections import Counter
+from collections import Counter, defaultdict
 
 class StrEnum(str,Enum):
     pass
@@ -1198,7 +1198,65 @@ def VerifyListCounts(database):
     for x in database["excerpts"]:
         if len(set(x["tags"])) != len(x["tags"]):
             Alert.caution(f"Duplicate tags in {x['event']} S{x['sessionNumber']} Q{x['excerptNumber']} {x['tags']}")
+
+def AuditNames() -> None:
+    """Write assets/NameAudit.csv summarizing the information in the Tag, Teacher, and Name sheets.
+    This can be used to check consistency and see which teachers still need ordination dates."""
+
+    teacherFields = ["group","lineage","indexExcerpts","indexSessions","searchable","attribute","allowTag"]
+    allFields = ["name","sortBy","nameEntry","dateText","dateKnown","supertag"] + teacherFields
+
+    def NameData() -> dict:
+        "Return a dictionary with keys for the name audit."
+        d = dict.fromkeys(allFields,"")
+        d["sortBy"] = 0.0
+        d["nameEntry"] = False
+        d["dateKnown"] = "unknown"
+        return d
     
+    names = defaultdict(NameData)
+
+    for supertag,subtags in WalkTags(gDatabase["tagDisplayList"]):
+        if TagFlag.SORT_SUBTAGS in supertag["flags"]:
+            for tag in subtags:
+                nameData = names[gDatabase["tag"][tag["tag"]]["fullTag"]]
+                nameData["supertag"] = supertag["tag"]
+
+    for teacher in gDatabase["teacher"].values():
+        for field in teacherFields:
+            names[teacher["fullName"]][field] = teacher[field]
+    
+    dateHierarchy = ["exactDate","knownMonth","knownYear","estimatedYear"]
+    for name in gDatabase["name"].values():
+        nameData = names[name["fullName"]]
+        nameData["nameEntry"] = True
+        if name["sortBy"]:
+            nameData["sortBy"] = float(name["sortBy"])
+        for dateField in dateHierarchy:
+            if name[dateField]:
+                nameData["dateText"] = name[dateField]
+                nameData["dateKnown"] = dateField
+
+    for name,nameData in names.items():
+        nameData["name"] = name
+
+    supertags = set(n["supertag"] for n in names.values())
+    supertagIndices = {}
+    for tag in supertags:
+        for n,tagEntry in enumerate(gDatabase["tagDisplayList"]):
+            if tagEntry["tag"] == tag:
+                supertagIndices[tag] = n
+                break
+    
+    nameList = sorted(names.values(),key=lambda n:(supertagIndices[n["supertag"]],n["sortBy"]))
+
+    with open(Utils.PosixJoin(gOptions.prototypeDir,"assets/NameAudit.csv"), 'w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(allFields)
+        for nameData in nameList:
+            writer.writerow(nameData.values())
+
+    Alert.info("Wrote",len(nameList),"names to assets/NameAudit.csv.")
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -1210,6 +1268,7 @@ def AddArguments(parser):
     parser.add_argument('--keepUnusedTags',**Utils.STORE_TRUE,help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',**Utils.STORE_TRUE,help="Keep intermediate data in json file for debugging")
     parser.add_argument('--explainExcludes',**Utils.STORE_TRUE,help="Print a message for each excluded/redacted excerpt")
+    parser.add_argument('--auditNames',**Utils.STORE_TRUE,help="Write assets/NameAudit.csv file to check name sorting.")
 
 def ParseArguments() -> None:
     pass
@@ -1275,7 +1334,9 @@ def main():
     gUnattributedTeachers.pop("Anon",None)
     if gUnattributedTeachers:
         excludeAlert(f": Did not attribute excerpts to the following teachers:",dict(gUnattributedTeachers))
-    
+    if gDatabase["tagRedacted"]:
+        excludeAlert(f": Redacted these tags due to teacher consent:",gDatabase["tagRedacted"])
+
     if not len(gDatabase["event"]):
         Alert.error("No excerpts have been parsed. Aborting.")
         sys.exit(1)
@@ -1294,7 +1355,10 @@ def main():
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
     CountSubtagExcerpts(gDatabase)
-   
+    
+    if gOptions.auditNames:
+        AuditNames()
+
     gDatabase["keyCaseTranslation"] = {key:gCamelCaseTranslation[key] for key in sorted(gCamelCaseTranslation)}
 
     Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","audioSource","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])

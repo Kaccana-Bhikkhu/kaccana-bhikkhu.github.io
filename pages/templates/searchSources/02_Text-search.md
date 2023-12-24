@@ -1,3 +1,4 @@
+## Search feature under construction
 <div>
 
 <input type="text" id="search-text" />
