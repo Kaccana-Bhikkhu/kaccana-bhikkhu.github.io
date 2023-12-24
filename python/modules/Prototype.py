@@ -694,6 +694,7 @@ class Formatter:
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
         
+        self.showHeading = True # Show headings at all?
         self.headingShowEvent = True # Show the event name in headings?
         self.headingShowSessionTitle = False # Show the session title in headings?
         self.headingLinks = True # Link to the event page in our website?
@@ -903,7 +904,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     
     localFormatter = copy.deepcopy(formatter) # Make a copy in case the formatter object is reused
     for count,x in enumerate(excerpts):
-        if x["event"] != prevEvent or x["sessionNumber"] != prevSession:
+        if localFormatter.showHeading and (x["event"] != prevEvent or x["sessionNumber"] != prevSession):
             session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
             linkSessionAudio = formatter.headingAudio and x["fileNumber"]
