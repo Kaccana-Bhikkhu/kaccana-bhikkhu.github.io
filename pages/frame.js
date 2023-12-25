@@ -19,6 +19,7 @@ function pageText(r,url) {
 }
 
 async function changeURL(pUrl) {
+	pUrl = decodeURIComponent(pUrl)
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
@@ -54,7 +55,7 @@ async function changeURL(pUrl) {
 
 				let url = href.replaceAll("index.html", "homepage.html")
 				if (href.startsWith("#")) {
-					let noBookmark = location.href.split("#").slice(0,2).join("#")
+					let noBookmark = decodeURIComponent(location.href).split("#").slice(0,2).join("#")
 					el.href = noBookmark+href;
 					el.addEventListener("click", () => {
 						history.pushState({}, "", el.href);
@@ -64,7 +65,7 @@ async function changeURL(pUrl) {
 					el.href = "#" + url;
 
 					el.addEventListener("click", async () => {
-						history.pushState({}, "", "#" + url);
+												history.pushState({}, "", "#" + url);
 						await changeURL(url);
 
 						if (!url.endsWith("#_keep_scroll")) {
@@ -86,8 +87,9 @@ function delayedScroll(bookmark) {
 }
 
 changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-	if (location.hash.slice(1).includes("#")) {
-		delayedScroll(location.hash.slice(1).split("#")[1]);
+	let urlHash = decodeURIComponent(location.hash)
+	if (urlHash.slice(1).includes("#")) {
+		delayedScroll(urlHash.slice(1).split("#")[1]);
 	}
 });
 
