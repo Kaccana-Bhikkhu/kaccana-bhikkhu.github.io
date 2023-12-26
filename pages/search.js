@@ -1,12 +1,15 @@
 import {configureLinks} from './frame.js';
 
 const MAX_RESULTS = 100;
+const SPECIAL_SEARCH_CHARS = "][{}()#^@"
 
 let database = null;
 
 function regExpEscape(literal_string) {
     return literal_string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
 }
+
+const ESCAPED_SPECIAL_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS)
 
 export function configureSearch() {
     // Called when a search page is loaded. Load the database, etc.
@@ -69,11 +72,10 @@ function parseQuery(query) {
     query = query.toLowerCase();
     query = query.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 
-    const specialChars = "[]{}()#^@"
     let partsSearch = "\\s*(" + [
         matchEnclosedText('""',''),
-        matchEnclosedText('{}',specialChars),
-        matchEnclosedText('[]',specialChars),
+        matchEnclosedText('{}',SPECIAL_SEARCH_CHARS),
+        matchEnclosedText('[]',SPECIAL_SEARCH_CHARS),
         "[^ ]+"
     ].join("|") + ")";
     console.log(partsSearch);
@@ -87,18 +89,30 @@ function parseQuery(query) {
     return returnValue;
 }
 
-function renderExcerpts(excerpts) {
+function renderExcerpts(excerpts,boldTextItems) {
     // Convert a list of excerpts to html code by concatenating their html attributes
+    // Display strings in boldTextItems in bold.
 
     let x = null;
     let bits = [];
     let lastSession = null;
+
+    console.log("boldTextItems",boldTextItems)
+    let trimLeft = new RegExp(`^[${ESCAPED_SPECIAL_CHARS + "\\\\"}]+`)
+    let trimRight = new RegExp(`[${ESCAPED_SPECIAL_CHARS + "\\\\"}]+$`)
+    let textMatchItems = boldTextItems.map((regex) => {
+        regex = regex.replace(trimLeft,"").replace(trimRight,"")
+        return regex
+    });
+    console.log(trimLeft,trimRight,"textMatchItems:",textMatchItems)
+    let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
+        // Negative lookahead assertion to avoid modifying html tags.
     for (x of excerpts) {
         if (x.session != lastSession) {
             bits.push(database.sessionHeader[x.session]);
             lastSession = x.session;
         }
-        bits.push(x.html);
+        bits.push(x.html.replace(boldTextRegex,"<b>$&</b>"));
         bits.push("<hr>");
     }
     return bits.join("\n");
@@ -144,10 +158,11 @@ export function searchExcerpts(query) {
     }
     
     console.log(parsed);
+    let regexList = parsed.map((x) => {return x[0].source})
     let resultParts = [query,
-        "|" + parsed.map((x) => {return x[0].source}).join("|") + "|",
+        "|" + regexList.join("|") + "|",
         `Found ${found.length} excerpts` + ((found.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":",
-        renderExcerpts(found.slice(0,MAX_RESULTS))];
+        renderExcerpts(found.slice(0,MAX_RESULTS),regexList)];
     
     let resultsFrame = document.getElementById('results');
     resultsFrame.innerHTML = resultParts.join("\n<hr>\n");
