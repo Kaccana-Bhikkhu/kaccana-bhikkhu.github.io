@@ -1,5 +1,5 @@
 import posix from "./path.js";
-import { searchExcerpts } from "./search.js";
+import { configureSearch, searchExcerpts } from "./search.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
@@ -19,7 +19,6 @@ function pageText(r,url) {
 
 export function configureLinks(frame,url) {
 	// Configure links within frame to be relative to url and link to #index.html
-	console.log("configureLinks:",url);
 	["href","src"].forEach((attribute) => {
 		frame.querySelectorAll("["+attribute+"]").forEach((el) => {
 			let attributePath = el.getAttribute(attribute);
@@ -77,9 +76,8 @@ async function changeURL(pUrl) {
 			innerTitle.remove();
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
-			let searchButton = frame.querySelector("#search-button")
-			if (searchButton) {
-				searchButton.onclick = () => {searchExcerpts(frame.querySelector('#search-text').value);}
+			if (frame.querySelector("#search-button")) {
+				configureSearch()
 			}
 
 			configureLinks(frame,resultUrl)
