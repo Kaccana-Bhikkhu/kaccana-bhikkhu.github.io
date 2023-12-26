@@ -177,7 +177,7 @@ if gErrorArgsFiles:
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
-Alert.debug(clOptions.debug)
+Alert.Debugging(clOptions.debug)
 
 for mod in modules.values():
     mod.gOptions = clOptions

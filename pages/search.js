@@ -1,7 +1,12 @@
 import {configureLinks} from './frame.js';
 
 const MAX_RESULTS = 100;
-const SPECIAL_SEARCH_CHARS = "][{}()#^@"
+const SPECIAL_SEARCH_CHARS = "][{}()#^@";
+const PALI_DIACRITICS = {
+    "a":"ā","i":"ī","u":"ū",
+    "d":"ḍ","l":"ḷ","t":"ṭ",
+    "n":"ñṇṅ","m":"ṁṃ"
+};
 
 let database = null;
 
@@ -9,24 +14,23 @@ function regExpEscape(literal_string) {
     return literal_string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
 }
 
-const ESCAPED_SPECIAL_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS)
+const ESCAPED_SPECIAL_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS);
 
 export function configureSearch() {
     // Called when a search page is loaded. Load the database, etc.
 
-    console.log("Running congfigureSearch().");
     if (!database) fetch('./assets/SearchDatabase.json')
         .then((response) => response.json())
-        .then((json) => {database = json; console.log("Loaded search database.")});
+        .then((json) => {database = json; console.log("Loaded search database.")
+    });
     
-    let searchButton = document.getElementById("search-button")
+    let searchButton = document.getElementById("search-button");
     searchButton.onclick = () => {searchExcerpts(frame.querySelector('#search-text').value);}
 
     // Execute a function when the user presses a key on the keyboard
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
     document.getElementById("search-text").addEventListener("keydown", function(event) {
         // If the user presses the "Enter" key on the keyboard
-        console.log("keypress")
         if (event.key === "Enter") {
             // Cancel the default action, if needed
             event.preventDefault();
@@ -34,7 +38,6 @@ export function configureSearch() {
             document.getElementById("search-button").click();
         }
     });
-    console.log(searchButton)
 }
 
 function matchEnclosedText(separators,dontMatchAfterSpace) {
@@ -100,12 +103,20 @@ function renderExcerpts(excerpts,boldTextItems) {
     console.log("boldTextItems",boldTextItems)
     let trimLeft = new RegExp(`^[${ESCAPED_SPECIAL_CHARS + "\\\\"}]+`)
     let trimRight = new RegExp(`[${ESCAPED_SPECIAL_CHARS + "\\\\"}]+$`)
-    let textMatchItems = boldTextItems.map((regex) => {
-        regex = regex.replace(trimLeft,"").replace(trimRight,"")
-        return regex
+    let matchDiacritics = {}
+    Object.keys(PALI_DIACRITICS).forEach((letter) => {
+        matchDiacritics[letter] = `[${letter}${PALI_DIACRITICS[letter]}]`;
     });
-    console.log(trimLeft,trimRight,"textMatchItems:",textMatchItems)
-    let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
+    let textMatchItems = boldTextItems.map((regex) => {
+        regex = regex.replace(trimLeft,"").replace(trimRight,"");
+        let letter = null;
+        for (letter in matchDiacritics) {
+            regex = regex.replaceAll(letter,matchDiacritics[letter]);
+        }
+        return regex;
+    });
+    console.log(trimLeft,trimRight,"textMatchItems:",textMatchItems);
+    let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"giu");
         // Negative lookahead assertion to avoid modifying html tags.
     for (x of excerpts) {
         if (x.session != lastSession) {
