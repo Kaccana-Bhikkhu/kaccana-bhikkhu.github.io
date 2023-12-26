@@ -116,7 +116,7 @@ function renderExcerpts(excerpts,boldTextItems) {
         return regex;
     });
     console.log(trimLeft,trimRight,"textMatchItems:",textMatchItems);
-    let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"giu");
+    let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
         // Negative lookahead assertion to avoid modifying html tags.
     for (x of excerpts) {
         if (x.session != lastSession) {
