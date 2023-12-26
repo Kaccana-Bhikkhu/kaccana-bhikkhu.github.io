@@ -20,6 +20,7 @@ function pageText(r,url) {
 
 async function changeURL(pUrl) {
 	pUrl = decodeURIComponent(pUrl)
+	console.log("changeURL",pUrl)
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
@@ -64,8 +65,9 @@ async function changeURL(pUrl) {
 				} else {
 					el.href = "#" + url;
 
-					el.addEventListener("click", async () => {
-												history.pushState({}, "", "#" + url);
+					el.addEventListener("click", async (event) => {
+						history.pushState({}, "", "#" + url);
+						event.preventDefault(); // Don't follow the href link
 						await changeURL(url);
 
 						if (!url.endsWith("#_keep_scroll")) {
