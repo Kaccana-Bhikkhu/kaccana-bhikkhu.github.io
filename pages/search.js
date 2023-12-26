@@ -1,6 +1,10 @@
-console.log("Loaded search.js")
+import {configureLinks} from './frame.js';
 
-let database = null
+console.log("Loaded search.js");
+
+const MAX_RESULTS = 100;
+
+let database = null;
 fetch('./assets/SearchDatabase.json')
     .then((response) => response.json())
     .then((json) => {database = json;});
@@ -8,16 +12,16 @@ fetch('./assets/SearchDatabase.json')
 function renderExcerpts(excerpts) {
     // Convert a list of excerpts to html code by concatenating their html attributes
 
-    let x = null
-    let bits = []
-    let lastSession = null
+    let x = null;
+    let bits = [];
+    let lastSession = null;
     for (x of excerpts) {
         if (x.session != lastSession) {
-            bits.push(database.sessionHeader[x.session])
-            lastSession = x.session
+            bits.push(database.sessionHeader[x.session]);
+            lastSession = x.session;
         }
-        bits.push(x.html)
-        bits.push("<hr>")
+        bits.push(x.html);
+        bits.push("<hr>");
     }
     return bits.join("\n");
 }
@@ -33,8 +37,8 @@ function parseQuery(query) {
     // Search keys within a search group must be matched within the same blob.
     // So (#Read Pasanno}) matches only kind 'Reading' or 'Read by' with teacher ending with Pasanno
 
-    query = query.toLowerCase()
-    query = query.normalize("NFD").replace(/[\u0300-\u036f]/g, "") // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+    query = query.toLowerCase();
+    query = query.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 
     const partsSerach = /\s*\S+/g;
     let returnValue = [];
@@ -87,7 +91,10 @@ export function searchExcerpts(query) {
     console.log(parsed);
     let resultParts = [query,
         parsed.map((x) => {return x[0].source}).join("|"),
-        `Found ${found.length} excerpts:`,
-        renderExcerpts(found)]
-    document.getElementById('results').innerHTML = resultParts.join("\n<hr>\n");
+        `Found ${found.length} excerpts` + ((found.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":",
+        renderExcerpts(found.slice(0,MAX_RESULTS))];
+    
+    let resultsFrame = document.getElementById('results');
+    resultsFrame.innerHTML = resultParts.join("\n<hr>\n");
+    configureLinks(resultsFrame,location.hash.slice(1))
 }

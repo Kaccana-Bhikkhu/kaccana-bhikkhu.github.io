@@ -1,4 +1,3 @@
-import "./search.js"
 import posix from "./path.js";
 import { searchExcerpts } from "./search.js";
 const { join, dirname } = posix;
@@ -16,6 +15,52 @@ function pageText(r,url) {
 			.then((r) => r.text())
 			.then((text) => Promise.resolve([text.replace("$PAGE$",url),errorPage]))
 	}
+}
+
+export function configureLinks(frame,url) {
+	// Configure links within frame to be relative to url and link to #index.html
+	console.log("configureLinks:",url);
+	["href","src"].forEach((attribute) => {
+		frame.querySelectorAll("["+attribute+"]").forEach((el) => {
+			let attributePath = el.getAttribute(attribute);
+			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
+				el.setAttribute(attribute,join(dirname(url),attributePath));
+			};
+		});
+	});
+
+	frame.querySelectorAll("a").forEach((el) => {
+		let href = el.getAttribute("href");
+		if (!href || href.match(absoluteURLRegex)) return;
+		if (href.endsWith("#noscript")) { // Code to escape javascript
+			el.href = el.href.replace("#noscript","");
+			return;
+		}
+
+		let url = href.replaceAll("index.html", "homepage.html")
+		if (href.startsWith("#")) {
+			let noBookmark = decodeURIComponent(location.href).split("#").slice(0,2).join("#")
+			el.href = noBookmark+href;
+			el.addEventListener("click", () => {
+				history.pushState({}, "", el.href);
+				document.getElementById(href.slice(1)).scrollIntoView();
+			});
+		} else {
+			el.href = "#" + url;
+
+			el.addEventListener("click", async (event) => {
+				history.pushState({}, "", "#" + url);
+				event.preventDefault(); // Don't follow the href link
+				await changeURL(url);
+
+				if (!url.endsWith("#_keep_scroll")) {
+					window.scrollTo(0, 0);
+					if (url.includes("#"))
+						delayedScroll(url.split("#")[1])
+				}
+			});
+		}
+	});
 }
 
 async function changeURL(pUrl) {
@@ -37,47 +82,7 @@ async function changeURL(pUrl) {
 				searchButton.onclick = () => {searchExcerpts(frame.querySelector('#search-text').value);}
 			}
 
-			["href","src"].forEach((attribute) => {
-				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
-					let attributePath = el.getAttribute(attribute);
-					if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
-						el.setAttribute(attribute,join(dirname(resultUrl),attributePath));
-					};
-				});
-			});
-
-			frame.querySelectorAll("a").forEach((el) => {
-				let href = el.getAttribute("href");
-				if (!href || href.match(absoluteURLRegex)) return;
-				if (href.endsWith("#noscript")) { // Code to escape javascript
-					el.href = el.href.replace("#noscript","");
-					return;
-				}
-
-				let url = href.replaceAll("index.html", "homepage.html")
-				if (href.startsWith("#")) {
-					let noBookmark = decodeURIComponent(location.href).split("#").slice(0,2).join("#")
-					el.href = noBookmark+href;
-					el.addEventListener("click", () => {
-						history.pushState({}, "", el.href);
-						document.getElementById(href.slice(1)).scrollIntoView();
-					});
-				} else {
-					el.href = "#" + url;
-
-					el.addEventListener("click", async (event) => {
-						history.pushState({}, "", "#" + url);
-						event.preventDefault(); // Don't follow the href link
-						await changeURL(url);
-
-						if (!url.endsWith("#_keep_scroll")) {
-							window.scrollTo(0, 0);
-							if (url.includes("#"))
-								delayedScroll(url.split("#")[1])
-						}
-					});
-				}
-			});
+			configureLinks(frame,resultUrl)
 		});
 }
 
