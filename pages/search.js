@@ -22,6 +22,10 @@ function renderExcerpts(excerpts) {
     return bits.join("\n");
 }
 
+function regExpEscape(literal_string) {
+    return literal_string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
+}
+
 function parseQuery(query) {
     // Given a query string, parse it into string search bits.
     // Return a two-dimensional array representing search groups specified by enclosure within parenthesis.
@@ -29,13 +33,16 @@ function parseQuery(query) {
     // Search keys within a search group must be matched within the same blob.
     // So (#Read Pasanno}) matches only kind 'Reading' or 'Read by' with teacher ending with Pasanno
 
+    query = query.toLowerCase()
+    query = query.normalize("NFD").replace(/[\u0300-\u036f]/g, "") // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+
     const partsSerach = /\s*\S+/g;
     let returnValue = [];
     let match = null;
     for (match of query.matchAll(partsSerach)) {
-        returnValue.push([match[0].trim()])
+        returnValue.push([new RegExp([match[0].trim()],"g")]);
     }
-    return returnValue
+    return returnValue;
 }
 
 export function searchExcerpts(query) {
@@ -52,20 +59,20 @@ export function searchExcerpts(query) {
     let x = null;
     let blob = null;
     let group = null;
-    let searchKey = null;
+    let searchRegex = null;
     for (x of database.excerpts) {
         let allGroupsMatch = true;
         for (group of parsed) { 
             let anyBlobMatches = false;
             for (blob of x.blobs) {
-                let allKeysMatch = true
-                for (searchKey of group) {
-                    if (!blob.includes(searchKey)) {
+                let allKeysMatch = true;
+                for (searchRegex of group) {
+                    if (blob.search(searchRegex) == -1) {
                         allKeysMatch = false;
                     }
                 }
                 if (allKeysMatch) {
-                    anyBlobMatches = true
+                    anyBlobMatches = true;
                 }
             }
             if (!anyBlobMatches) {
@@ -74,11 +81,12 @@ export function searchExcerpts(query) {
             }
         }
         if (allGroupsMatch)
-            found.push(x)
+            found.push(x);
     }
-
+    
+    console.log(parsed);
     let resultParts = [query,
-        parsed.join("|"),
+        parsed.map((x) => {return x[0].source}).join("|"),
         `Found ${found.length} excerpts:`,
         renderExcerpts(found)]
     document.getElementById('results').innerHTML = resultParts.join("\n<hr>\n");
