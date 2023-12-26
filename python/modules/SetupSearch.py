@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
-import os, json
+import os, json, re
 import Utils, Alert, Link, Prototype, Filter
-from typing import Iterable
+from typing import Iterable,Iterator
 
 def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     """Enclose the strings in items in the specified characters:
@@ -19,16 +19,39 @@ def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     
     return startChar + joinChars.join(items) + endChar
 
+blobDict = {}
+inputChars:set[str] = set()
+outputChars:set[str] = set()
+def Blobify(items: Iterable[str]) -> Iterator[str]:
+    """Convert strings to lowercase, remove diacritics, special characters, 
+    remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace.
+    (Later on) remove non-searchable teacher names."""
+    for item in items:
+        inputChars.update(item)
+        output = item.replace("‘","'").replace("’","'").replace("–","-").replace("—","-")
+        output = Utils.RemoveDiacritics(item.lower())
+        output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
+        output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
+        output = re.sub(r"\+\+[^+]*\+\+","",output) # Remove ++Kind++ tags
+        output = re.sub(r"[|]"," ",output) # convert these characters to a space
+        output = re.sub(r"[][#()@]^","",output) # remove these characters
+        output = re.sub(r"\s+"," ",output.strip()) # normalize whitespace
+
+        outputChars.update(output)
+        if gOptions.debug:
+            blobDict[item] = output
+        yield output
+
 def SearchBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
     for item in Filter.AllItems(excerpt):
         bits = [
-            Enclose([item["kind"]],"#"),
-            Enclose([item["text"]],"|"),
-            Enclose((gDatabase["teacher"][teacher]["fullName"] for teacher in item.get("teachers",[])),"{}"),
-            Enclose(item.get("tags",""),"[]"),
-            Enclose([excerpt["event"]],"@")
+            Enclose(Blobify([item["kind"]]),"#"),
+            Enclose(Blobify([item["text"]]),"^"),
+            Enclose(Blobify(gDatabase["teacher"][teacher]["fullName"] for teacher in item.get("teachers",[])),"{}"),
+            Enclose(Blobify(item.get("tags",[])),"[]"),
+            Enclose(Blobify([excerpt["event"]]),"@")
         ]
         returnValue.append("".join(bits))
     return returnValue
@@ -73,8 +96,12 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     optimizedDB = {
         "excerpts": OptimizedExcerpts(),
-        "sessionHeader": SessionHeader()
+        "sessionHeader": SessionHeader(),
+        "blobDict":list(blobDict.values())
     }
+
+    Alert.debug("Removed these chars:","".join(sorted(inputChars - outputChars)))
+    Alert.debug("Characters remaining in blobs:","".join(sorted(outputChars)))
 
     with open(Utils.PosixJoin(gOptions.prototypeDir,"assets","SearchDatabase.json"), 'w', encoding='utf-8') as file:
         json.dump(optimizedDB, file, ensure_ascii=False, indent=2)

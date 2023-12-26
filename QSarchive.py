@@ -139,6 +139,7 @@ for mod in modules.values():
 
 parser.add_argument('--verbose','-v',default=0,action='count',help='increase verbosity')
 parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbosity')
+parser.add_argument('--debug',**Utils.STORE_TRUE,help="Print debugging logs")
 
 if sys.argv[1] == "Job" or sys.argv[1] == "Jobs": # If ops == "Job", 
     jobOptionsList = ReadJobOptions(sys.argv[2] if len(sys.argv) >= 3 else None)
@@ -176,6 +177,7 @@ if gErrorArgsFiles:
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
+Alert.debug(clOptions.debug)
 
 for mod in modules.values():
     mod.gOptions = clOptions
