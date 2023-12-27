@@ -1,5 +1,5 @@
 import posix from "./path.js";
-import { configureSearch, searchExcerpts } from "./search.js";
+import { loadSearchPage } from "./search.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
@@ -77,7 +77,7 @@ async function changeURL(pUrl) {
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
 			if (frame.querySelector("#search-button")) {
-				configureSearch()
+				loadSearchPage()
 			}
 
 			configureLinks(frame,resultUrl)

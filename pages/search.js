@@ -16,16 +16,14 @@ function regExpEscape(literal_string) {
 
 const ESCAPED_SPECIAL_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS);
 
-export function configureSearch() {
-    // Called when a search page is loaded. Load the database, etc.
+export async function loadSearchPage() {
+    // Called when a search page is loaded. Load the database, configure the search button,
+    // fill the search bar with the URL query string and run a search.
 
-    if (!database) fetch('./assets/SearchDatabase.json')
-        .then((response) => response.json())
-        .then((json) => {database = json; console.log("Loaded search database.")
-    });
-    
     let searchButton = document.getElementById("search-button");
-    searchButton.onclick = () => {searchExcerpts(frame.querySelector('#search-text').value);}
+    if (!searchButton)
+        return; // Exit if it's a non-search page.
+    searchButton.onclick = () => { runSearch(); }
 
     // Execute a function when the user presses a key on the keyboard
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
@@ -38,6 +36,14 @@ export function configureSearch() {
             document.getElementById("search-button").click();
         }
     });
+
+    if (!database) {
+        await fetch('./assets/SearchDatabase.json')
+        .then((response) => response.json())
+        .then((json) => {database = json; console.log("Loaded search database.")});
+    }
+
+    runSearch();
 }
 
 function matchEnclosedText(separators,dontMatchAfterSpace) {
@@ -129,13 +135,17 @@ function renderExcerpts(excerpts,boldTextItems) {
     return bits.join("\n");
 }
 
-export function searchExcerpts(query) {
-    console.log("Called searchExcerpts.");
+export function runSearch() {
+    let query = frame.querySelector('#search-text').value;
+    console.log("Called runSearch. Query:",query);
     if (!database) {
         console.log("Error: database not loaded.");
         return;
     }
 
+    let lastQuery = decodeURIComponent(location.search.slice(1));
+    if (query == lastQuery)
+        return; // no need to search again
     let parsed = parseQuery(query);
     console.log(parsed);
 
@@ -169,7 +179,7 @@ export function searchExcerpts(query) {
     }
     
     console.log(parsed);
-    let regexList = parsed.map((x) => {return x[0].source})
+    let regexList = parsed.map((x) => {return x[0].source});
     let resultParts = [query,
         "|" + regexList.join("|") + "|",
         `Found ${found.length} excerpts` + ((found.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":",
@@ -177,5 +187,9 @@ export function searchExcerpts(query) {
     
     let resultsFrame = document.getElementById('results');
     resultsFrame.innerHTML = resultParts.join("\n<hr>\n");
-    configureLinks(resultsFrame,location.hash.slice(1))
+    configureLinks(resultsFrame,location.hash.slice(1));
+
+    let currentURL = new URL(location.href);
+    currentURL.search = "?" + encodeURIComponent(query)
+    history.pushState({}, "",currentURL.href);
 }
