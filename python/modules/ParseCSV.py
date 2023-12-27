@@ -1204,13 +1204,13 @@ def AuditNames() -> None:
     This can be used to check consistency and see which teachers still need ordination dates."""
 
     teacherFields = ["group","lineage","indexExcerpts","indexSessions","searchable","attribute","allowTag"]
-    allFields = ["name","sortBy","nameEntry","dateText","dateKnown","supertag"] + teacherFields
+    allFields = ["name","sortBy","nameEntry","tag","teacher","dateText","dateKnown","supertag"] + teacherFields
 
     def NameData() -> dict:
         "Return a dictionary with keys for the name audit."
         d = dict.fromkeys(allFields,"")
         d["sortBy"] = 0.0
-        d["nameEntry"] = False
+        d["nameEntry"] = d["tag"] = d["teacher"] = False
         d["dateKnown"] = "unknown"
         return d
     
@@ -1220,10 +1220,12 @@ def AuditNames() -> None:
         if TagFlag.SORT_SUBTAGS in supertag["flags"]:
             for tag in subtags:
                 nameData = names[gDatabase["tag"][tag["tag"]]["fullTag"]]
+                nameData["tag"] = True
                 nameData["supertag"] = supertag["tag"]
 
     for teacher in gDatabase["teacher"].values():
         for field in teacherFields:
+            names[teacher["fullName"]]["teacher"] = True
             names[teacher["fullName"]][field] = teacher[field]
     
     dateHierarchy = ["exactDate","knownMonth","knownYear","estimatedYear"]
