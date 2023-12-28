@@ -19,35 +19,62 @@ def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     
     return startChar + joinChars.join(items) + endChar
 
-blobDict = {}
-inputChars:set[str] = set()
-outputChars:set[str] = set()
+
+def RawBlobify(item: str) -> str:
+    """Convert item to lowercase, remove diacritics, special characters, 
+    remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace."""
+    output = item.replace("‘","'").replace("’","'").replace("–","-").replace("—","-")
+    output = Utils.RemoveDiacritics(item.lower())
+    output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
+    output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
+    output = re.sub(r"\+\+[^+]*\+\+","",output) # Remove ++Kind++ tags
+    output = re.sub(r"[|]"," ",output) # convert these characters to a space
+    output = re.sub(r"[][#()@]^","",output) # remove these characters
+    output = re.sub(r"\s+"," ",output.strip()) # normalize whitespace
+    return output
+
+gBlobDict = {}
+gInputChars:set[str] = set()
+gOutputChars:set[str] = set()
+gNonSearchableTeacherRegex = None
 def Blobify(items: Iterable[str]) -> Iterator[str]:
     """Convert strings to lowercase, remove diacritics, special characters, 
     remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace.
-    (Later on) remove non-searchable teacher names."""
-    for item in items:
-        inputChars.update(item)
-        output = item.replace("‘","'").replace("’","'").replace("–","-").replace("—","-")
-        output = Utils.RemoveDiacritics(item.lower())
-        output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
-        output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
-        output = re.sub(r"\+\+[^+]*\+\+","",output) # Remove ++Kind++ tags
-        output = re.sub(r"[|]"," ",output) # convert these characters to a space
-        output = re.sub(r"[][#()@]^","",output) # remove these characters
-        output = re.sub(r"\s+"," ",output.strip()) # normalize whitespace
+    Also remove teacher names who haven't given search consent."""
 
-        outputChars.update(output)
+    global gNonSearchableTeacherRegex
+    if gNonSearchableTeacherRegex is None:
+        nonSearchableTeachers = set()
+        for teacher in gDatabase["teacher"].values(): # Add teacher names
+            if teacher["searchable"]:
+                continue
+            nonSearchableTeachers.update(RawBlobify(teacher["fullName"]).split(" "))
+
+        for prefix in gDatabase["prefix"]: # But discard generic titles
+            nonSearchableTeachers.discard(RawBlobify(prefix))
+        Alert.debug(len(nonSearchableTeachers),"non-consenting teachers:",nonSearchableTeachers)
+
+        if nonSearchableTeachers:
+            gNonSearchableTeacherRegex = Utils.RegexMatchAny(nonSearchableTeachers,literal=True)
+        else:
+            gNonSearchableTeacherRegex = "xyzxyz" # Matches nothing
+
+
+    for item in items:
+        gInputChars.update(item)
+        blob = re.sub(gNonSearchableTeacherRegex,"",RawBlobify(item)) # Remove nonconsenting teachers
+        blob = re.sub(r"\s+"," ",blob.strip()) # Normalize whitespace again
+        gOutputChars.update(blob)
         if gOptions.debug:
-            blobDict[item] = output
-        yield output
+            gBlobDict[item] = blob
+        yield blob
 
 def SearchBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
     for item in Filter.AllItems(excerpt):
         bits = [
-            Enclose(Blobify([item["kind"]]),"#"),
+            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
             Enclose(Blobify([item["text"]]),"^"),
             Enclose(Blobify(gDatabase["teacher"][teacher]["fullName"] for teacher in item.get("teachers",[])),"{}"),
             Enclose(Blobify(item.get("tags",[])),"[]"),
@@ -97,11 +124,11 @@ def main() -> None:
     optimizedDB = {
         "excerpts": OptimizedExcerpts(),
         "sessionHeader": SessionHeader(),
-        "blobDict":list(blobDict.values())
+        "blobDict":list(gBlobDict.values())
     }
 
-    Alert.debug("Removed these chars:","".join(sorted(inputChars - outputChars)))
-    Alert.debug("Characters remaining in blobs:","".join(sorted(outputChars)))
+    Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))
+    Alert.debug("Characters remaining in blobs:","".join(sorted(gOutputChars)))
 
     with open(Utils.PosixJoin(gOptions.prototypeDir,"assets","SearchDatabase.json"), 'w', encoding='utf-8') as file:
         json.dump(optimizedDB, file, ensure_ascii=False, indent=2)

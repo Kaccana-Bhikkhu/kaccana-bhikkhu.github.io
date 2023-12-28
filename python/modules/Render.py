@@ -483,7 +483,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if htmlPage:
                     linkTo = f"teachers/{htmlPage}"
                 else:
-                    Alert.caution("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
+                    Alert.caution("Teacher",teacherCode,"in link",matchObject[0],"does not have a teacher page.")
             else:
                 Alert.warning("Cannot link to teacher",teacher,"in link",matchObject[0])
         elif pageType == "about":
