@@ -136,7 +136,8 @@ function renderExcerpts(excerpts,boldTextItems) {
 }
 
 function clearSearchResults() {
-    
+    let resultsFrame = document.getElementById('results');
+    resultsFrame.innerHTML = "";
 }
 
 function searchFromURL() {
@@ -146,7 +147,8 @@ function searchFromURL() {
         return;
     }
 
-    let query = decodeURIComponent(location.search.slice(1));
+    let params = new URLSearchParams(decodeURIComponent(location.search.slice(1)));
+    let query = params.has("q") ? params.get("q") : "";
     console.log("Called runFromURLSearch. Query:",query);
     frame.querySelector('#search-text').value = query;
 
@@ -205,7 +207,7 @@ function searchButtonClick() {
     console.log("Called runFromURLSearch. Query:",query);
 
     let newURL = new URL(location.href);
-    newURL.search = "?" + encodeURIComponent(query)
+    newURL.search = "?q=" + encodeURIComponent(query)
     history.pushState({}, "",newURL.href);
 
     searchFromURL();
