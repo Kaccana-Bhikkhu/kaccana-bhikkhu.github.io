@@ -98,6 +98,40 @@ function parseQuery(query) {
     return returnValue;
 }
 
+function searchExcerpts(parsedQuery) {
+    // search the database and return excerpts that match parsedQuery
+
+    let found = [];
+    let x = null;
+    let blob = null;
+    let group = null;
+    let searchRegex = null;
+    for (x of database.excerpts) {
+        let allGroupsMatch = true;
+        for (group of parsedQuery) { 
+            let anyBlobMatches = false;
+            for (blob of x.blobs) {
+                let allKeysMatch = true;
+                for (searchRegex of group) {
+                    if ((searchRegex.source == '(?:)') || (blob.search(searchRegex) == -1)) {
+                        allKeysMatch = false;
+                    }
+                }
+                if (allKeysMatch) {
+                    anyBlobMatches = true;
+                }
+            }
+            if (!anyBlobMatches) {
+                allGroupsMatch = false;
+                break;
+            }
+        }
+        if (allGroupsMatch)
+            found.push(x);
+    }
+    return found;
+}
+
 function renderExcerpts(excerpts,boldTextItems) {
     // Convert a list of excerpts to html code by concatenating their html attributes
     // Display strings in boldTextItems in bold.
@@ -135,9 +169,52 @@ function renderExcerpts(excerpts,boldTextItems) {
     return bits.join("\n");
 }
 
-function clearSearchResults() {
+function showSearchResults(excerpts = [],boldTextItems = [],message = "") {
+    // excerpts are the excerpts to display
+    // boldTextItems is a list of strings to display in bold.
+    // message is an optional message to display.
+    let messageFrame = document.getElementById('message');
+    let instructionsFrame = document.getElementById('instructions');
     let resultsFrame = document.getElementById('results');
+
+    if (excerpts.length > 0) {
+        //let resultParts = [query,
+        //    "|" + regexList.join("|") + "|",
+        //    `Found ${found.length} excerpts` + ((found.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":",
+        //    renderExcerpts(found.slice(0,MAX_RESULTS),regexList)];
+        
+        message += `Found ${excerpts.length} excerpts` + ((excerpts.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":";
+        instructionsFrame.style.display = "none";
+
+        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),boldTextItems);
+        configureLinks(resultsFrame,location.hash.slice(1));
+    } else {
+        message += "No excerpts found."
+        instructionsFrame.style.display = "block";
+        resultsFrame.innerHTML = "";
+    }
+
+    if (message) {
+        messageFrame.innerHTML = message;
+        messageFrame.style.display = "block";
+    } else
+        messageFrame.style.display = "none";
+}
+
+function clearSearchResults(message) {
+    // Called when the search query is blank
+    let messageFrame = document.getElementById('message');
+    let instructionsFrame = document.getElementById('instructions');
+    let resultsFrame = document.getElementById('results');
+
+    instructionsFrame.style.display = "block";
     resultsFrame.innerHTML = "";
+
+    if (message) {
+        messageFrame.innerHTML = message;
+        messageFrame.style.display = "block";
+    } else
+        messageFrame.style.display = "none";
 }
 
 function searchFromURL() {
@@ -160,45 +237,13 @@ function searchFromURL() {
     let parsed = parseQuery(query);
     console.log(parsed);
 
-    let found = [];
-    let x = null;
-    let blob = null;
-    let group = null;
-    let searchRegex = null;
-    for (x of database.excerpts) {
-        let allGroupsMatch = true;
-        for (group of parsed) { 
-            let anyBlobMatches = false;
-            for (blob of x.blobs) {
-                let allKeysMatch = true;
-                for (searchRegex of group) {
-                    if ((searchRegex.source == '(?:)') || (blob.search(searchRegex) == -1)) {
-                        allKeysMatch = false;
-                    }
-                }
-                if (allKeysMatch) {
-                    anyBlobMatches = true;
-                }
-            }
-            if (!anyBlobMatches) {
-                allGroupsMatch = false;
-                break;
-            }
-        }
-        if (allGroupsMatch)
-            found.push(x);
-    }
+    let found = searchExcerpts(parsed)
     
-    console.log(parsed);
     let regexList = parsed.map((x) => {return x[0].source});
     let resultParts = [query,
         "|" + regexList.join("|") + "|",
-        `Found ${found.length} excerpts` + ((found.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":",
-        renderExcerpts(found.slice(0,MAX_RESULTS),regexList)];
-    
-    let resultsFrame = document.getElementById('results');
-    resultsFrame.innerHTML = resultParts.join("\n<hr>\n");
-    configureLinks(resultsFrame,location.hash.slice(1));
+        ""]
+    showSearchResults(found,regexList,resultParts.join("\n<hr>\n"))
 }
 
 function searchButtonClick() {
