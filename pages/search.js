@@ -65,10 +65,43 @@ function matchEnclosedText(separators,dontMatchAfterSpace) {
     ].join("");
 }
 
-function processQueryElement(element) {
-    let processed = element.replace(/^"+/,'').replace(/"+$/,'');
-    console.log("processQueryElement:",element,processed);
-    return processed;
+function makeRegExp(element) {
+    // Take an element found by parseQuery and return a RegExp describing what it should match
+    let unwrapped = element;
+    let beginWordBoundary = false;
+    let endWordBoundary = false;
+    switch (element[0]) {
+        case '"':
+            unwrapped = element.replace(/^"+/,'').replace(/"+$/,'');
+            beginWordBoundary = true;
+            endWordBoundary = true;
+            break;
+    }
+
+    switch (unwrapped[0]) {
+        case "$":
+            beginWordBoundary = true;
+            break;
+        case "*":
+            beginWordBoundary = false;
+    }
+    switch (unwrapped.slice(-1)) {
+        case "$":
+            endWordBoundary = true;
+            break;
+        case "*":
+            endWordBoundary = false;
+    }
+    let escaped = regExpEscape(unwrapped.replace(/^[$*]+/,"").replace(/[$*]+$/,""));
+
+    if (beginWordBoundary)
+        escaped = "\\b" + escaped;
+    if (endWordBoundary)
+        escaped += "\\b"
+
+    console.log("processQueryElement:",element,escaped);
+
+    return new RegExp(escaped,"g");
 }
 
 function parseQuery(query) {
@@ -93,7 +126,7 @@ function parseQuery(query) {
     let returnValue = [];
     let match = null;
     for (match of query.matchAll(partsSearch)) {
-        returnValue.push([new RegExp(processQueryElement(regExpEscape(match[1].trim())),"g")]);
+        returnValue.push([makeRegExp(match[1].trim())]);
     }
     return returnValue;
 }
