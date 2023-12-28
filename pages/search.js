@@ -23,7 +23,7 @@ export async function loadSearchPage() {
     let searchButton = document.getElementById("search-button");
     if (!searchButton)
         return; // Exit if it's a non-search page.
-    searchButton.onclick = () => { runSearch(); }
+    searchButton.onclick = () => { searchButtonClick(); }
 
     // Execute a function when the user presses a key on the keyboard
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
@@ -43,7 +43,7 @@ export async function loadSearchPage() {
         .then((json) => {database = json; console.log("Loaded search database.")});
     }
 
-    runSearch();
+    searchFromURL();
 }
 
 function matchEnclosedText(separators,dontMatchAfterSpace) {
@@ -135,17 +135,26 @@ function renderExcerpts(excerpts,boldTextItems) {
     return bits.join("\n");
 }
 
-export function runSearch() {
-    let query = frame.querySelector('#search-text').value;
-    console.log("Called runSearch. Query:",query);
+function clearSearchResults() {
+    
+}
+
+function searchFromURL() {
+    // Find excerpts matching the search query from the page URL.
     if (!database) {
         console.log("Error: database not loaded.");
         return;
     }
 
-    let lastQuery = decodeURIComponent(location.search.slice(1));
-    if (query == lastQuery)
-        return; // no need to search again
+    let query = decodeURIComponent(location.search.slice(1));
+    console.log("Called runFromURLSearch. Query:",query);
+    frame.querySelector('#search-text').value = query;
+
+    if (!query.trim()) {
+        clearSearchResults();
+        return;
+    }
+
     let parsed = parseQuery(query);
     console.log(parsed);
 
@@ -188,8 +197,16 @@ export function runSearch() {
     let resultsFrame = document.getElementById('results');
     resultsFrame.innerHTML = resultParts.join("\n<hr>\n");
     configureLinks(resultsFrame,location.hash.slice(1));
+}
 
-    let currentURL = new URL(location.href);
-    currentURL.search = "?" + encodeURIComponent(query)
-    history.pushState({}, "",currentURL.href);
+function searchButtonClick() {
+    // Read the search bar text, push the updated URL to history, and run a search.
+    let query = frame.querySelector('#search-text').value;
+    console.log("Called runFromURLSearch. Query:",query);
+
+    let newURL = new URL(location.href);
+    newURL.search = "?" + encodeURIComponent(query)
+    history.pushState({}, "",newURL.href);
+
+    searchFromURL();
 }
