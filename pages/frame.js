@@ -28,6 +28,8 @@ export function configureLinks(frame,url) {
 		});
 	});
 
+	let locationNoQuery = new URL(location.href);
+	locationNoQuery.search = "";
 	frame.querySelectorAll("a").forEach((el) => {
 		let href = el.getAttribute("href");
 		if (!href || href.match(absoluteURLRegex)) return;
@@ -36,19 +38,22 @@ export function configureLinks(frame,url) {
 			return;
 		}
 
-		let url = href.replaceAll("index.html", "homepage.html")
 		if (href.startsWith("#")) {
-			let noBookmark = decodeURIComponent(location.href).split("#").slice(0,2).join("#")
+			let noBookmark = decodeURIComponent(locationNoQuery.href).split("#").slice(0,2).join("#")
 			el.href = noBookmark+href;
 			el.addEventListener("click", () => {
 				history.pushState({}, "", el.href);
 				document.getElementById(href.slice(1)).scrollIntoView();
 			});
 		} else {
-			el.href = "#" + url;
+			let url = href.replaceAll("index.html", "homepage.html")
+			let newLocation = new URL(locationNoQuery);
+			newLocation.hash = "#" + url;
+			let newFullUrl = newLocation.href;
+			el.href = newFullUrl;
 
 			el.addEventListener("click", async (event) => {
-				history.pushState({}, "", "#" + url);
+				history.pushState({}, "", newFullUrl);
 				event.preventDefault(); // Don't follow the href link
 				await changeURL(url);
 
