@@ -66,7 +66,8 @@ function matchEnclosedText(separators,dontMatchAfterSpace) {
 }
 
 function makeRegExp(element) {
-    // Take an element found by parseQuery and return a RegExp describing what it should match
+    // Take an element found by parseQuery and return a RegExp describing what it should match.
+    // Also add regex strings to gBoldTextItems to indicate how to display the match in bold.
     let unwrapped = element;
     let beginWordBoundary = false;
     let endWordBoundary = false;
@@ -103,15 +104,11 @@ function makeRegExp(element) {
 
     console.log("processQueryElement:",element,escaped);
 
+    gBoldTextItems.push(escaped);
     return new RegExp(escaped,"g");
 }
 
-function boldTextItems(regExps) {
-    // Take an array of regex search strings and return an array of strings to display in boldface.
-
-    let boldItems = [];
-    
-}
+let gBoldTextItems = []; // A list of RegExps representing search matches that should be displayed in bold text.
 
 function parseQuery(query) {
     // Given a query string, parse it into string search bits.
@@ -132,6 +129,7 @@ function parseQuery(query) {
     console.log(partsSearch);
     partsSearch = new RegExp(partsSearch,"g");
 
+    gBoldTextItems = [];
     let returnValue = [];
     let match = null;
     for (match of query.matchAll(partsSearch)) {
@@ -268,7 +266,7 @@ function searchFromURL() {
 
     let params = new URLSearchParams(decodeURIComponent(location.search.slice(1)));
     let query = params.has("q") ? params.get("q") : "";
-    console.log("Called runFromURLSearch. Query:",query);
+    console.log("Called searchFromURL. Query:",query);
     frame.querySelector('#search-text').value = query;
 
     if (!query.trim()) {
@@ -285,8 +283,7 @@ function searchFromURL() {
     let resultParts = [query,
         "|" + regexList.join("|") + "|",
         ""]
-    let boldItems = boldTextItems(parsed)
-    showSearchResults(found,boldItems,resultParts.join("\n<hr>\n"))
+    showSearchResults(found,gBoldTextItems,resultParts.join("\n<hr>\n"))
 }
 
 function searchButtonClick() {
