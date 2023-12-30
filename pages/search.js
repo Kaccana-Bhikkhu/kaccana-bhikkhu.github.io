@@ -15,6 +15,7 @@ function regExpEscape(literal_string) {
 }
 
 const ESCAPED_SPECIAL_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS);
+const ESCAPED_HTML_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS + "<>")
 
 export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
@@ -69,39 +70,20 @@ function makeRegExp(element) {
     // Take an element found by parseQuery and return a RegExp describing what it should match.
     // Also add regex strings to gBoldTextItems to indicate how to display the match in bold.
     let unwrapped = element;
-    let beginWordBoundary = false;
-    let endWordBoundary = false;
     switch (element[0]) {
-        case '"':
-            unwrapped = element.replace(/^"+/,'').replace(/"+$/,'');
-            beginWordBoundary = true;
-            endWordBoundary = true;
+        case '"': // Items in quotes must match on word boundaries.
+            unwrapped = "$" + element.replace(/^"+/,'').replace(/"+$/,'') + "$";
             break;
     }
 
-    switch (unwrapped[0]) {
-        case "$":
-            beginWordBoundary = true;
-            break;
-        case "*":
-            beginWordBoundary = false;
-    }
-    switch (unwrapped.slice(-1)) {
-        case "$":
-            endWordBoundary = true;
-            break;
-        case "*":
-            endWordBoundary = false;
-    }
     let escaped = regExpEscape(unwrapped.replace(/^[$*]+/,"").replace(/[$*]+$/,""));
 
-    if (beginWordBoundary)
+    if (unwrapped.match(/^[$*]*/)[0].endsWith("$"))
         escaped = "\\b" + escaped;
-    if (endWordBoundary)
+    if (unwrapped.match(/[$*]*$/)[0].startsWith("$"))
         escaped += "\\b";
 
-    escaped = escaped.replaceAll("\\*",`[^${ESCAPED_SPECIAL_CHARS}]*`).replaceAll("\\$","\\b");
-
+    escaped = escaped.replaceAll("\\*",`[^${ESCAPED_HTML_CHARS}]*?`).replaceAll("\\$","\\b");
     console.log("processQueryElement:",element,escaped);
 
     gBoldTextItems.push(escaped);
