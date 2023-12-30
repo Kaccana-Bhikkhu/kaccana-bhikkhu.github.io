@@ -66,6 +66,23 @@ function matchEnclosedText(separators,dontMatchAfterSpace) {
     ].join("");
 }
 
+function substituteWildcards(regExpString) {
+    // Convert the following wildcards to RegExp strings:
+    // * Match any or no characters
+    // _ Match exactly one character
+    // $ Match word boundaries
+
+    // Strip off leading and trailing * and $. The innermost symbol determines whether to match a word boundary.
+    let bounded = regExpEscape(regExpString.replace(/^[$*]+/,"").replace(/[$*]+$/,""));
+    if (regExpString.match(/^[$*]*/)[0].endsWith("$"))
+        bounded = "\\b" + bounded;
+    if (regExpString.match(/[$*]*$/)[0].startsWith("$"))
+    bounded += "\\b";
+
+    // Replace inner * and _ and $ with appropriate operators.
+    return bounded.replaceAll("\\*",`[^${ESCAPED_HTML_CHARS}]*?`).replaceAll("_",`[^${ESCAPED_HTML_CHARS}]`).replaceAll("\\$","\\b");
+}
+
 function makeRegExp(element) {
     // Take an element found by parseQuery and return a RegExp describing what it should match.
     // Also add regex strings to gBoldTextItems to indicate how to display the match in bold.
@@ -76,17 +93,23 @@ function makeRegExp(element) {
             break;
     }
 
-    let escaped = regExpEscape(unwrapped.replace(/^[$*]+/,"").replace(/[$*]+$/,""));
-
-    if (unwrapped.match(/^[$*]*/)[0].endsWith("$"))
-        escaped = "\\b" + escaped;
-    if (unwrapped.match(/[$*]*$/)[0].startsWith("$"))
-        escaped += "\\b";
-
-    escaped = escaped.replaceAll("\\*",`[^${ESCAPED_HTML_CHARS}]*?`).replaceAll("\\$","\\b");
+    // Replace inner * and $ with appropriate operators.
+    let escaped = substituteWildcards(unwrapped);
     console.log("processQueryElement:",element,escaped);
 
-    gBoldTextItems.push(escaped);
+    // Start processing again to create RegExps for bold text
+    let boldItem = unwrapped;
+    console.log("boldItem before:",boldItem);
+    if (element.match(/^\[|\]$/g)) { // are we matching a tag?
+        boldItem = substituteWildcards(element.replace(/^\[+/,'').replace(/\]+$/,''));
+            // remove enclosing [ ]
+    } else if (element.match(/^\{|\}$/g)) { // are we matching a teacher?
+        boldItem = substituteWildcards(element.replace(/^\{+/,'').replace(/\}+$/,''));
+            // remove enclosing { }
+    }
+    console.log("boldItem after:",boldItem);
+
+    gBoldTextItems.push(boldItem);
     return new RegExp(escaped,"g");
 }
 
@@ -163,21 +186,18 @@ function renderExcerpts(excerpts,boldTextItems) {
     let lastSession = null;
 
     console.log("boldTextItems",boldTextItems)
-    let trimLeft = new RegExp(`^[${ESCAPED_SPECIAL_CHARS + "\\\\"}]+`)
-    let trimRight = new RegExp(`[${ESCAPED_SPECIAL_CHARS + "\\\\"}]+$`)
     let matchDiacritics = {}
     Object.keys(PALI_DIACRITICS).forEach((letter) => {
         matchDiacritics[letter] = `[${letter}${PALI_DIACRITICS[letter]}]`;
     });
     let textMatchItems = boldTextItems.map((regex) => {
-        regex = regex.replace(trimLeft,"").replace(trimRight,"");
         let letter = null;
         for (letter in matchDiacritics) {
             regex = regex.replaceAll(letter,matchDiacritics[letter]);
         }
         return regex;
     });
-    console.log(trimLeft,trimRight,"textMatchItems:",textMatchItems);
+    console.log("textMatchItems:",textMatchItems);
     let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
         // Negative lookahead assertion to avoid modifying html tags.
     for (x of excerpts) {
