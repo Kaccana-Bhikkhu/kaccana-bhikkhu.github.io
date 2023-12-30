@@ -15085,8 +15085,10 @@
       "fileNumber": 1,
       "kind": "Reading",
       "flags": "",
-      "text": "Interview with Ajahn Bprasert Thavaro from _Twigs and Branches of the Bodhinyana_.",
-      "teachers": [],
+      "text": "Interview with Ajahn Bprasert Thavaro from [Twigs and Branches]().",
+      "teachers": [
+        "AJundee"
+      ],
       "annotations": [
         {
           "kind": "Read by",
@@ -18407,9 +18409,10 @@
       "fileNumber": 2,
       "kind": "Reading",
       "flags": "",
-      "text": "Reflections about Wat Pah Pong by [Ajahn Toon](teacher:) from _Twigs and Branches of the Bodhinyana_.",
+      "text": "Reflections about Wat Pah Pong by [Ajahn Toon](teacher:) from [Twigs and Branches]().",
       "teachers": [
-        "AToon"
+        "AToon",
+        "AJundee"
       ],
       "annotations": [
         {
@@ -20688,7 +20691,7 @@
       "fileNumber": 1,
       "kind": "Teaching",
       "flags": "0",
-      "text": "[Ajahn Pasanno](teacher:) introduces Ajahn Koon and _Twigs and Branches of the Bodhinyana_.",
+      "text": "[Ajahn Pasanno](teacher:) introduces Ajahn Koon and [_Twigs and Branches of the Bodhinyana_](Twigs and Branches).",
       "teachers": [
         "AP"
       ],
@@ -20714,9 +20717,10 @@
       "fileNumber": 2,
       "kind": "Reading",
       "flags": "",
-      "text": "Interview with [Ajahn Koon](teacher:) in _Twigs and Branches of the Bodhinyana_.",
+      "text": "Interview with [Ajahn Koon](teacher:) in [Twigs and Branches]().",
       "teachers": [
-        "AKoon"
+        "AKoon",
+        "AJundee"
       ],
       "annotations": [
         {
@@ -22704,9 +22708,10 @@
       "fileNumber": 0,
       "kind": "Reading",
       "flags": "",
-      "text": "Reflections on meeting Ajahn Chah by [Ajahn Boon Choo](teacher:) from _Twigs and Branches of the Bodhinyana_.",
+      "text": "Reflections on meeting Ajahn Chah by [Ajahn Boon Choo](teacher:) from [Twigs and Branches]().",
       "teachers": [
-        "ABoonChoo"
+        "ABoonChoo",
+        "AJundee"
       ],
       "annotations": [
         {
@@ -25301,9 +25306,10 @@
       "fileNumber": 0,
       "kind": "Reading",
       "flags": "",
-      "text": "\"Training under Ajahn Chah\" by Ajahn Tong Jon from _Twigs and Branches of the Bodhinyana_.",
+      "text": "\"Training under Ajahn Chah\" by Ajahn Tong Jon from [Twigs and Branches]().",
       "teachers": [
-        "ATongJan"
+        "ATongJan",
+        "AJundee"
       ],
       "annotations": [
         {
@@ -73807,6 +73813,20 @@
       "excerptCount": 1,
       "htmlFile": "ajahn-viradhammo.html"
     },
+    "AJundee": {
+      "teacher": "AJundee",
+      "fullName": "Ajahn Jundee",
+      "indexExcerpts": false,
+      "indexSessions": false,
+      "searchable": true,
+      "teacherPage": false,
+      "attribute": true,
+      "allowTag": true,
+      "group": "Monastics",
+      "lineage": "Western disciples of Ajahn Chah",
+      "excerptCount": 5,
+      "htmlFile": ""
+    },
     "ASucitto": {
       "teacher": "ASucitto",
       "fullName": "Ajahn Sucitto",
@@ -87714,6 +87734,17 @@
       "remoteUrl": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/Simply%20So%20-%20Ajahn%20Sim.htm",
       "author": [
         "ASim"
+      ]
+    },
+    "twigs and branches": {
+      "abbreviation": "Twigs and Branches",
+      "title": "_Twigs and Branches of the Bodhinyana_",
+      "attribution": "compiled by Ajahn Jundee",
+      "pdfPageOffset": null,
+      "filename": "../pages/about/TwigsAndBranches.html",
+      "remoteUrl": "",
+      "author": [
+        "AJundee"
       ]
     }
   },

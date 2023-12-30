@@ -97,11 +97,20 @@ function makeRegExp(element) {
     if (beginWordBoundary)
         escaped = "\\b" + escaped;
     if (endWordBoundary)
-        escaped += "\\b"
+        escaped += "\\b";
+
+    escaped = escaped.replaceAll("\\*",`[^${ESCAPED_SPECIAL_CHARS}]*`).replaceAll("\\$","\\b");
 
     console.log("processQueryElement:",element,escaped);
 
     return new RegExp(escaped,"g");
+}
+
+function boldTextItems(regExps) {
+    // Take an array of regex search strings and return an array of strings to display in boldface.
+
+    let boldItems = [];
+    
 }
 
 function parseQuery(query) {
@@ -276,7 +285,8 @@ function searchFromURL() {
     let resultParts = [query,
         "|" + regexList.join("|") + "|",
         ""]
-    showSearchResults(found,regexList,resultParts.join("\n<hr>\n"))
+    let boldItems = boldTextItems(parsed)
+    showSearchResults(found,boldItems,resultParts.join("\n<hr>\n"))
 }
 
 function searchButtonClick() {
