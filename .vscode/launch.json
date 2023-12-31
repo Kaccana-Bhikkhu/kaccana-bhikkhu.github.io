@@ -96,7 +96,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch"
+                "DownloadCSV,Render"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

@@ -159,6 +159,7 @@ def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
     if not teacherDictCache: # modify the value of a default argument to create a cache of potential teacher references
         teacherDB = gDatabase["teacher"]
         teacherDictCache.update((t,t) for t in teacherDB)
+        teacherDictCache.update((teacherDB[t]["attributionName"],t) for t in teacherDB)
         teacherDictCache.update((teacherDB[t]["fullName"],t) for t in teacherDB)
     
     return teacherDictCache.get(teacherRef,None)

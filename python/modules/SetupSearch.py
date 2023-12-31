@@ -23,13 +23,14 @@ def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
 def RawBlobify(item: str) -> str:
     """Convert item to lowercase, remove diacritics, special characters, 
     remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace."""
-    output = item.replace("‘","'").replace("’","'").replace("–","-").replace("—","-")
+    output = re.sub(r'[‘’"“”]',"'",item) # Convert all quotes to single quotes
+    output = output.replace("–","-").replace("—","-") # Conert all dashes to hypens
     output = Utils.RemoveDiacritics(item.lower())
     output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
     output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
     output = re.sub(r"\+\+[^+]*\+\+","",output) # Remove ++Kind++ tags
     output = re.sub(r"[|]"," ",output) # convert these characters to a space
-    output = re.sub(r"[][#()@]^","",output) # remove these characters
+    output = re.sub(r"[][#()@_*]^","",output) # remove these characters
     output = re.sub(r"\s+"," ",output.strip()) # normalize whitespace
     return output
 
@@ -72,11 +73,20 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
 def SearchBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
+    teacherDB = gDatabase["teacher"]
+
+    def AllNames(teachers:Iterable[str]) -> Iterator[str]:
+        "Yield the names of teachers; include full and attribution names if they differ"
+        for t in teachers:
+            yield teacherDB[t]["fullName"]
+            if teacherDB[t]["attributionName"] != teacherDB[t]["fullName"]:
+                yield teacherDB[t]["attributionName"]
+
     for item in Filter.AllItems(excerpt):
         bits = [
             Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
             Enclose(Blobify([item["text"]]),"^"),
-            Enclose(Blobify(gDatabase["teacher"][teacher]["fullName"] for teacher in item.get("teachers",[])),"{}"),
+            Enclose(Blobify(AllNames(item.get("teachers",[]))),"{}"),
             Enclose(Blobify(item.get("tags",[])),"[]"),
             Enclose(Blobify([excerpt["event"]]),"@")
         ]

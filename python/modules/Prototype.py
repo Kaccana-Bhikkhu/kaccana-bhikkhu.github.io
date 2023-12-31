@@ -130,10 +130,10 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
 
     global gAllTeacherRegex
     if not gAllTeacherRegex:
-        gAllTeacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
+        gAllTeacherRegex = Utils.RegexMatchAny(t["attributionName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
     
     if specificTeachers:
-        teacherRegex = Utils.RegexMatchAny(t["fullName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
+        teacherRegex = Utils.RegexMatchAny(t["attributionName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
     else:
         teacherRegex = gAllTeacherRegex
 
@@ -734,7 +734,7 @@ class Formatter:
                 break
 
             if set(excerpt[teacherKey]) != set(self.excerptDefaultTeacher) or ParseCSV.ExcerptFlag.ATTRIBUTE in excerpt["flags"]: # Compare items irrespective of order
-                teacherList = [gDatabase["teacher"][t]["fullName"] for t in excerpt[teacherKey]]
+                teacherList = [gDatabase["teacher"][t]["attributionName"] for t in excerpt[teacherKey]]
             else:
                 teacherList = []
 
@@ -1258,7 +1258,7 @@ def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
         if teacher["fullName"] == page.info.title:
             link = TeacherLink(teacher["teacher"])
             if link:
-                page.AppendContent(f'<a href="{link}">Teachings by {teacher["fullName"]}</a>',"smallTitle")
+                page.AppendContent(f'<a href="{link}">Teachings by {teacher["attributionName"]}</a>',"smallTitle")
     
     return page
 
@@ -1347,10 +1347,6 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
         if not tInfo["htmlFile"]:
             continue
 
-        """ For the time being, teacher pages list only excerpts by the teacher, not about the teacher.
-        if tInfo["fullName"] in gDatabase["tag"]:
-            relevantQs = [x for x in xDB if t in Utils.AllTeachers(x) or tInfo["fullName"] in Utils.AllTags(x)]
-        else: """
         relevantExcerpts = list(Filter.Apply(xDB,Filter.Teacher(t)))
     
         a = Airium()
@@ -1436,7 +1432,7 @@ def TeacherDate(teacher:dict) -> float:
 def ListTeachersChronological(teachers: list[dict]) -> str:
     """Return html code listing these teachers by group and chronologically."""
     
-    teachersWithoutDate = [t["fullName"] for t in teachers if TeacherDate(t) > 3000]
+    teachersWithoutDate = [t["attributionName"] for t in teachers if TeacherDate(t) > 3000]
     if teachersWithoutDate:
         Alert.caution(len(teachersWithoutDate),"teacher(s) do not have dates and will be sorted last.")
         Alert.extra("Teachers without dates:",teachersWithoutDate)

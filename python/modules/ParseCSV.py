@@ -662,8 +662,10 @@ def PrepareReferences(reference) -> None:
 def PrepareTeachers(teacherDB) -> None:
     """Prepare database["teacher"] for use."""
     for t in teacherDB.values():
+        if not t.get("attributionName",""):
+            t["attributionName"] = t["fullName"]
         if TeacherConsent(teacherDB,[t["teacher"]],"teacherPage") and t.get("excerptCount",0):
-            t["htmlFile"] = Utils.slugify(t["fullName"]) + ".html"
+            t["htmlFile"] = Utils.slugify(t["attributionName"]) + ".html"
         else:
             t["htmlFile"] = ""
 
@@ -1203,7 +1205,7 @@ def AuditNames() -> None:
     """Write assets/NameAudit.csv summarizing the information in the Tag, Teacher, and Name sheets.
     This can be used to check consistency and see which teachers still need ordination dates."""
 
-    teacherFields = ["group","lineage","indexExcerpts","indexSessions","searchable","teacherPage","attribute","allowTag"]
+    teacherFields = ["attributionName","group","lineage","indexExcerpts","indexSessions","searchable","teacherPage","attribute","allowTag"]
     allFields = ["name","sortBy","nameEntry","tag","teacher","dateText","dateKnown","supertag"] + teacherFields
 
     def NameData() -> dict:
@@ -1224,8 +1226,8 @@ def AuditNames() -> None:
                 nameData["supertag"] = supertag["tag"]
 
     for teacher in gDatabase["teacher"].values():
+        names[teacher["fullName"]]["teacher"] = True
         for field in teacherFields:
-            names[teacher["fullName"]]["teacher"] = True
             names[teacher["fullName"]][field] = teacher[field]
     
     dateHierarchy = ["exactDate","knownMonth","knownYear","estimatedYear"]

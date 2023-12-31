@@ -218,7 +218,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     if item["kind"] == "Indirect quote" and item["tags"]:
         quotedTeacher = Utils.TeacherLookup(item["tags"][0])
         if quotedTeacher:
-            parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["fullName"]]),item["body"])
+            parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["attributionName"]]),item["body"])
             if len(parts) > 1:
                 parts[-2] = Prototype.LinkTeachersInText(parts[-2])
                 item["body"] = "".join(parts)
