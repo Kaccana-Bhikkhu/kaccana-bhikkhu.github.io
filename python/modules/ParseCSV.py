@@ -1262,6 +1262,22 @@ def AuditNames() -> None:
 
     Alert.info("Wrote",len(nameList),"names to assets/NameAudit.csv.")
 
+def DumpCSV(directory:str):
+    "Write a summary of gDatabase to csv files in directory."
+
+    os.makedirs(directory,exist_ok=True)
+
+    columns = ["event","sessionNumber","excerptNumber","indentLevel","kind","flags","teachers","text","tags","duration"]
+    with open(Utils.PosixJoin(directory,"excerpts.csv"), 'w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(columns)
+        for x in gDatabase["excerpts"]:
+            for i in Filter.AllSingularItems(x):
+                duplicate = dict(i)
+                duplicate["teachers"] = ";".join(gDatabase["teacher"][t]["attributionName"] for t in i.get("teachers",[]))
+                duplicate["tags"] = ";".join(i.get("tags",[]))
+                writer.writerow(duplicate.get(field,"") for field in columns)
+
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
@@ -1273,6 +1289,7 @@ def AddArguments(parser):
     parser.add_argument('--jsonNoClean',**Utils.STORE_TRUE,help="Keep intermediate data in json file for debugging")
     parser.add_argument('--explainExcludes',**Utils.STORE_TRUE,help="Print a message for each excluded/redacted excerpt")
     parser.add_argument('--auditNames',**Utils.STORE_TRUE,help="Write assets/NameAudit.csv file to check name sorting.")
+    parser.add_argument('--dumpCSV',type=str,default='',help='Dump csv output files to this directory.')
 
 def ParseArguments() -> None:
     pass
@@ -1373,4 +1390,7 @@ def main():
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
+    if gOptions.dumpCSV:
+        DumpCSV(gOptions.dumpCSV)
+
     Alert.info(Prototype.ExcerptDurationStr(gDatabase["excerpts"],countSessionExcerpts=True,sessionExcerptDuration=False),indent = 0)

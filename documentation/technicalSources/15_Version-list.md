@@ -76,4 +76,6 @@
 
 - 3.7 More versatile audio processing framework. Don't split excluded excerpts. Allow overlapping clips. Fix player close timout (contributed by Owen). Don't redirect file:// URLs to index.html# to allow simple local browsing. WR2014 finished.
 
-- 4.0 Search feature. Minor changes to WR2014.
+- 4.0 Search feature. Minor changes to WR2014. ParseCSV option --auditNames.
+
+- 4.0.1 Updated many Thai Ajahns' names and dates with information from Krooba Kai. Teacher attributionName field. WR2014 table of contents. ParseCSV option --dumpCSV.

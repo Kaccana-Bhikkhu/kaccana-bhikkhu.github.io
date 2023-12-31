@@ -1570,11 +1570,10 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a(EventSeriesAndDateStr(eventInfo))
         a.br()
         
-        with a.strong():
-            a(f"{eventInfo['venue']} in {gDatabase['venue'][eventInfo['venue']]['location']}")
-            a.br()
-            
-            a(ExcerptDurationStr(excerpts))
+        a(f"{eventInfo['venue']} in {gDatabase['venue'][eventInfo['venue']]['location']}")
+        a.br()
+        
+        a(ExcerptDurationStr(excerpts))
         a.br()
         
         if eventInfo["description"]:
