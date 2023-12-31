@@ -24,7 +24,7 @@ __A. Mental qualities__
  __C. Sources of Dhamma teachings__
 
 8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (36 subtags, 729 excerpts)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (102 subtags, 677 excerpts)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (100 subtags, 677 excerpts)
 10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (29 subtags, 198 excerpts)
 
  __D. Context of teaching and and practice__

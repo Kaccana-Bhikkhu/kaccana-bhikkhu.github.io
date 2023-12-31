@@ -15,7 +15,7 @@ from functools import lru_cache
 from typing import NamedTuple
 from collections import defaultdict, Counter
 import itertools
-from FileRegister import HashWriter
+import FileRegister
 import urllib.parse
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
@@ -40,7 +40,7 @@ def WriteIndentedTagDisplayList(fileName):
             
             print(''.join([indent,indexStr,item['text'],reference]),file = file)
 
-def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
+def WritePage(page: Html.PageDesc,writer: FileRegister.HashWriter) -> None:
     """Write an html file for page using the global template"""
     page.gOptions = gOptions
 
@@ -50,11 +50,11 @@ def WritePage(page: Html.PageDesc,writer: HashWriter) -> None:
     pageHtml = page.RenderWithTemplate(template)
     writer.WriteTextFile(page.info.file,pageHtml)
 
-def DeleteUnwrittenHtmlFiles(writer: HashWriter) -> None:
+def DeleteUnwrittenHtmlFiles(writer: FileRegister.HashWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     # Delete files only in directories we have built
-    dirs = gOptions.buildOnly & {"events","tags","teachers","drilldown"}
+    dirs = gOptions.buildOnly & {"events","tags","teachers","drilldown","search"}
     dirs.add("about")
     if gOptions.buildOnly == gAllSections:
         dirs.add("indexes")
@@ -1742,7 +1742,7 @@ def WriteSitemapURL(pagePath:str,xml:Airium) -> None:
         with xml.priority():
             xml(priority)
 
-def XmlSitemap(siteFiles: HashWriter) -> str:
+def XmlSitemap(siteFiles: FileRegister.HashWriter) -> str:
     """Look through the html files we've written and create an xml sitemap."""
     pass
 
@@ -1829,13 +1829,15 @@ def main():
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])
     
     with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
-            HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer):
+            FileRegister.HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer):
         for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
             WritePage(newPage,writer)
             print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
         
         writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
         Alert.extra("html files:",writer.StatusSummary())
+        if gOptions.buildOnly == gAllSections and writer.Count(FileRegister.Status.STALE):
+            Alert.extra("stale files:",writer.FilesWithStatus(FileRegister.Status.STALE))
         if not gOptions.keepOldHtmlFiles:
             DeleteUnwrittenHtmlFiles(writer)
     
