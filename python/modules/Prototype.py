@@ -415,6 +415,11 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     page.keywords = ["Tags","Most common tags"]
     yield page
 
+def ProperNounTag(tag:dict) -> bool:
+    """Return true if this tag is a proper noun.
+    Tag is a tag dict object."""
+    return ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])
+
 class _Alphabetize(NamedTuple):
     "Helper tuple to alphabetize a list."
     sortBy: str
@@ -467,7 +472,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             continue
 
         nonEnglish = tag["tag"] == tag["pali"]
-        properNoun = ParseCSV.TagFlag.PROPER_NOUN in tag["flags"] or (tag["supertags"] and ParseCSV.TagFlag.PROPER_NOUN_SUBTAGS in gDatabase["tag"][tag["supertags"][0]]["flags"])
+        properNoun = ProperNounTag(tag)
         englishAlso = ParseCSV.TagFlag.ENGLISH_ALSO in tag["flags"]
         hasPali = tag["pali"] and not tag["fullPali"].endswith("</em>")
             # Non-Pāli language full tags end in <em>LANGUAGE</em>
@@ -524,11 +529,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["english"].append(Alphabetize(translation,html))
         
         for gloss in tag["glosses"]:
+            gloss = AlphabetizeName(gloss)
             html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
             if gloss.endswith("</em>"):
                 entries["other"].append(Alphabetize(gloss,html))
             else:
                 entries["english"].append(Alphabetize(gloss,html))
+            if properNoun:
+                entries["proper"].append(Alphabetize(gloss,html))
     
     for subsumedTag,subsumedUnder in gDatabase["tagSubsumed"].items():
         tag = gDatabase["tag"][subsumedUnder]
@@ -1275,7 +1283,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-            a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
+            a(TitledList("Other names" if ProperNounTag(tagInfo) else "Glosses",tagInfo['glosses'],plural = ""))
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
@@ -1491,7 +1499,7 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
 
 def SearchMenu(searchDir: str) -> Html.PageDescriptorMenuItem:
-    """Create the Teacher menu item and its associated submenus."""
+    """Create the Search menu item and its associated submenus."""
     
     @Alert.extra.Supress()
     def QuietRender() -> Iterator[Html.PageDesc]:
