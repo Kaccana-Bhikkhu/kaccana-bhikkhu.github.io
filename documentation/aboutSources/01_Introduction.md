@@ -10,7 +10,7 @@ This archive is an attempt to make the oral teachings of Ajahn Pasanno more acce
 ## Where to Begin
 The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:
 
-If you have a question about a specific topic, try looking for it in the [alphabetical tag list](../indexes/AlphabeticalTags.html). If you can't find it there, try using your browser's search feature in the [searchable list of all excerpts](../indexes/AllExcerpts-all.html).
+If you have a question about a specific topic, try looking for it in the [alphabetical tag list](../indexes/AlphabeticalTags.html) or on the [search page](../search/Text-search.html).
 
 If you would like to listen to thematic teachings, look on the [events page](../indexes/EventsBySeries.html). Here are some events I recommend:
 
