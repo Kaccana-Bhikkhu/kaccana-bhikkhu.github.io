@@ -96,7 +96,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV,Render"
+                "ParseCSV",
+                "--auditNames"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
