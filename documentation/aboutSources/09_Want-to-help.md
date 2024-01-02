@@ -46,13 +46,8 @@ __Time commitment:__ Variable, but programming projects always take longer than 
 
 There are many ways a skilled and generous programmer could help with the Archive ([github](https://github.com/Kaccana-Bhikkhu/qs-archive)). Here are some ideas, ranked roughly in order of usefulness with the really big project last.
 
-__Fix bugs:__ For the current list, see [About: status](about:status) and [Github issues](https://github.com/Kaccana-Bhikkhu/qs-archive/issues).
+__Fix bugs:__ For the current list, see [About: status](about:status#known-issues-and-limitations) and [Github issues](https://github.com/Kaccana-Bhikkhu/qs-archive/issues).
 
-__Add search features:__ The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let us know your ideas or just go ahead and build something.
-
-
-__Cross-platform mp3 splitting:__ The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. [mp3splt](https://mp3splt.sourceforge.net/mp3splt_page/about.php) is a cross-platfrom command-line utility with similar functionality. Rewriting Mp3DirectCut.SinglePassSplit to use of this utility would allow the QSArchive software to operate on many platforms.
-
-Alternatively, one could write a python module equivalent to mp3DirectCut. This would need to work on VBR mp3 files and be tested extensively before it would be ready to use.
+__Cross-platform mp3 splitting:__ The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. [mp3splt](https://mp3splt.sourceforge.net/mp3splt_page/about.php) is a cross-platfrom command-line utility with similar functionality. Rewriting `Mp3DirectCut.SinglePassSplit` to use this utility would make the QSArchive software fully functional on many platforms.
 
 __Create a modern search-driven website:__ A modern website designed for mobile devices (and perhaps fully integrated into abhayagiri.org) would make the Archive material substantially more accessible.

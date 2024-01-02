@@ -98,7 +98,7 @@ function makeRegExp(element) {
     console.log("processQueryElement:",element,escaped);
 
     // Start processing again to create RegExps for bold text
-    let boldItem = unwrapped;
+    let boldItem = escaped;
     console.log("boldItem before:",boldItem);
     if (element.match(/^\[|\]$/g)) { // are we matching a tag?
         boldItem = substituteWildcards(element.replace(/^\[+/,'').replace(/\]+$/,''));
