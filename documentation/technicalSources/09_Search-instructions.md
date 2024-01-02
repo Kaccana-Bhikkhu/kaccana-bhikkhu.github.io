@@ -74,3 +74,13 @@ is converted into these five blobs:
 5. `#indirectquote#^i practice dying. the dalai lama^{ajahn pasanno}[dalai lama][recollection/death]@metta2008@`
 
 Search queries are broken into individual strings separated by spaces. If all search strings can be found within the five blobs above, then this excerpt is considered to be found.
+
+The search engine implements the following wildcard characters:
+
+`_` matches any single character except those with special meaning in the blobs: `#^[]{}@`
+
+`*` matches any number of characters except those with special meaning
+
+`$` matches a word boundary
+
+Spaces divide individual search strings except for groups of characters enclosed in double quotes. Characters enclosed in double quotes only match word boundaries, but this can be changed using `*`. For example, `"Thai*"` and `$Thai` are equivalent queries.

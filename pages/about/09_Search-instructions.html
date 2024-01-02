@@ -98,11 +98,16 @@
 <li><code>#indirectquote#^i practice dying. the dalai lama^{ajahn pasanno}[dalai lama][recollection/death]@metta2008@</code></li>
 </ol>
 <p>Search queries are broken into individual strings separated by spaces. If all search strings can be found within the five blobs above, then this excerpt is considered to be found.</p>
+<p>The search engine implements the following wildcard characters:</p>
+<p><code>_</code> matches any single character except those with special meaning in the blobs: <code>#^[]{}@</code></p>
+<p><code>*</code> matches any number of characters except those with special meaning</p>
+<p><code>$</code> matches a word boundary</p>
+<p>Spaces divide individual search strings except for groups of characters enclosed in double quotes. Characters enclosed in double quotes only match word boundaries, but this can be changed using <code>*</code>. For example, <code>"Thai*"</code> and <code>$Thai</code> are equivalent queries.</p>
 </div>
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Search instructions,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Search instructions,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/about/09_Search-instructions.html">https://abhayagiri.org/questions/about/09_Search-instructions.html</a>.</p>
 </footer>
 
