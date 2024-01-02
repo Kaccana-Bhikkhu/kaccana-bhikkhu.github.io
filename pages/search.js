@@ -8,6 +8,8 @@ const PALI_DIACRITICS = {
     "n":"ñṇṅ","m":"ṁṃ"
 };
 
+const DEBUG = false;
+
 let database = null;
 
 function regExpEscape(literal_string) {
@@ -279,13 +281,13 @@ function searchFromURL() {
     let parsed = parseQuery(query);
     console.log(parsed);
 
-    let found = searchExcerpts(parsed)
+    let found = searchExcerpts(parsed);
     
     let regexList = parsed.map((x) => {return x[0].source});
-    let resultParts = [query,
+    let resultParts = DEBUG ? [query,
         "|" + regexList.join("|") + "|",
-        ""]
-    showSearchResults(found,gBoldTextItems,resultParts.join("\n<hr>\n"))
+        ""] : [];
+    showSearchResults(found,gBoldTextItems,resultParts.join("\n<hr>\n"));
 }
 
 function searchButtonClick() {
