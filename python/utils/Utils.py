@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 from typing import BinaryIO
 import Alert, Link
 import pathlib, posixpath
+from collections import Counter
 from collections.abc import Iterable
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
@@ -32,6 +33,11 @@ def ExtendUnique(dest: list, source: Iterable) -> list:
         if item not in destSet:
             dest.append(item)
     return dest
+
+def Duplicates(source: Iterable) -> list:
+    "Return a list of the item which appear more than once in source."
+    itemCount = Counter(source)
+    return [item for item,count in itemCount.items() if count > 1]
 
 def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
     "Return a code for this item. "

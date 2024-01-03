@@ -1218,33 +1218,72 @@ def AuditNames() -> None:
     
     names = defaultdict(NameData)
 
+    # Copy data from tags
     for supertag,subtags in WalkTags(gDatabase["tagDisplayList"]):
-        if TagFlag.SORT_SUBTAGS in supertag["flags"]:
+        if TagFlag.SORT_SUBTAGS in supertag["flags"] or supertag["tag"] == "Thai Forest Tradition":
             for tag in subtags:
-                nameData = names[gDatabase["tag"][tag["tag"]]["fullTag"]]
-                nameData["tagEntry"] = True
-                nameData["tag"] = gDatabase["tag"][tag["tag"]]["tag"]
-                nameData["supertag"] = supertag["tag"]
+                if not tag["tag"] or gDatabase["tag"][tag["tag"]]["subtags"]: # Names don't have subtags
+                    continue
+                n = names[gDatabase["tag"][tag["tag"]]["fullTag"]]
+                n["tagEntry"] = True
+                n["tag"] = gDatabase["tag"][tag["tag"]]["tag"]
+                n["supertag"] = supertag["tag"]
 
+   # Copy data from teachers
     for teacher in gDatabase["teacher"].values():
         names[teacher["fullName"]]["teacherEntry"] = True
         for field in teacherFields:
             names[teacher["fullName"]][field] = teacher[field]
     
-    dateHierarchy = ["estimatedYear","knownYear","knownMonth","exactDate"]
+    # Copy data from names sheet
+    dateHierarchy = ["exactDate","knownMonth","knownYear","estimatedYear"]
     for name in gDatabase["name"].values():
-        nameData = names[name["fullName"]]
-        nameData["nameEntry"] = True
+        n = names[name["fullName"]]
+        n["nameEntry"] = True
         if name["sortBy"]:
-            nameData["sortBy"] = float(name["sortBy"])
+            n["sortBy"] = float(name["sortBy"])
         for dateField in dateHierarchy:
             if name[dateField]:
-                nameData["dateText"] = name[dateField]
-                nameData["dateKnown"] = dateField
+                n["dateText"] = name[dateField]
+                n["dateKnown"] = dateField
+                break
 
-    for name,nameData in names.items():
-        nameData["name"] = name
+    for name,n in names.items():
+        n["name"] = name
 
+    # Check names for potential problems
+    lineageExpectedSupertag = {"Thai disciples of Ajahn Chah":"Ajahn Chah lineage",
+                        "Western disciples of Ajahn Chah":"Ajahn Chah lineage",
+                        "Other Thai Forest":"Other Thai Forest teachers",
+                        "Other Thai":"Other Thai monastics",
+                        "Other Theravāda":"Other Theravāda monastics",
+                        "Vajrayāna":"Mahāyāna monastics"}
+    groupExpectedSupertag = {"Lay teachers":"Lay teachers"}
+    namesByDate = defaultdict(list)
+    for n in names.values():
+        if n["tag"] and n["attributionName"] and n["tag"] != n["attributionName"]:
+            Alert.notice(f"Short names don't match: tag: {repr(n['tag'])}; attributionName: {repr(n['attributionName'])}.")
+        if n["supertag"] and n["lineage"] and lineageExpectedSupertag.get(n["lineage"],n["supertag"]) != n["supertag"]:
+            Alert.caution(f"{n['name']} mismatch: lineage: {n['lineage']}, supertag: {n['supertag']}")
+        if n["supertag"] and n["group"] and groupExpectedSupertag.get(n["group"],n["supertag"]) != n["supertag"]:
+            Alert.caution(f"{n['name']} mismatch: group: {n['group']}, supertag: {n['supertag']}")
+        namesByDate[n["sortBy"]].append(n)
+    
+    for date,namesWithDate in namesByDate.items():
+        if len(namesWithDate) < 2 or not date:
+            continue
+        alertItems = [[n["name"] for n in namesWithDate],f"all have date {date}."]
+        duplicateSupertags = Utils.Duplicates(n["supertag"] for n in namesWithDate if n["supertag"])
+        for s in duplicateSupertags:
+            alertItems.append(f"This will cause arbitrary sort order under supertag {s}.")
+        duplicateGroups = Utils.Duplicates(n["group"] for n in namesWithDate if n["group"])
+        for g in duplicateGroups:
+            alertItems.append(f"This will cause arbitrary sort order in teacher group {g}.")
+
+        if len(alertItems) > 2:
+            Alert.caution(*alertItems)
+
+    # Configure sort order
     supertags = set(n["supertag"] for n in names.values())
     supertagIndices = {}
     for tag in supertags:
@@ -1252,14 +1291,26 @@ def AuditNames() -> None:
             if tagEntry["tag"] == tag:
                 supertagIndices[tag] = n
                 break
-    
-    nameList = sorted(names.values(),key=lambda n:(supertagIndices[n["supertag"]],n["sortBy"]))
+
+    def SortKey(name) -> tuple:
+        supertag = name["supertag"] or lineageExpectedSupertag.get(name["lineage"],None) or groupExpectedSupertag.get(name["group"],None)
+        if supertag:
+            if name["sortBy"]:
+                return supertagIndices[supertag], name["sortBy"]
+            else:
+                return supertagIndices[supertag], 9999.0
+        else:
+            return 9999, name["sortBy"]
+
+    nameList = sorted(names.values(),key=SortKey)
+    for name in nameList:
+        name["sortBy"] = SortKey(name)
 
     with open(Utils.PosixJoin(gOptions.prototypeDir,"assets/NameAudit.csv"), 'w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(allFields)
-        for nameData in nameList:
-            writer.writerow(nameData.values())
+        for n in nameList:
+            writer.writerow(n.values())
 
     Alert.info("Wrote",len(nameList),"names to assets/NameAudit.csv.")
 
