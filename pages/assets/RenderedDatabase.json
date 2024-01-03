@@ -82957,7 +82957,7 @@
       "attribute": true,
       "allowTag": true,
       "group": "Monastics",
-      "lineage": "Other Thai",
+      "lineage": "Other Thai Forest",
       "excerptCount": 3,
       "htmlFile": "ajahn-dune.html"
     },
@@ -82972,7 +82972,7 @@
       "attribute": true,
       "allowTag": true,
       "group": "Monastics",
-      "lineage": "Other Thai",
+      "lineage": "Other Thai Forest",
       "excerptCount": 1,
       "htmlFile": "ajahn-gi.html"
     },
@@ -90764,7 +90764,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-maha-adisak.html",
       "excerptCount": 1,
-      "listIndex": 473
+      "listIndex": 475
     },
     "Ajahn Siripañño": {
       "tag": "Ajahn Siripañño",
@@ -90784,7 +90784,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-siripanno.html",
       "excerptCount": 1,
-      "listIndex": 475
+      "listIndex": 476
     },
     "Ajahn Kevali": {
       "tag": "Ajahn Kevali",
@@ -90804,7 +90804,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-kevali.html",
       "excerptCount": 1,
-      "listIndex": 476
+      "listIndex": 477
     },
     "Ajahn Pavaro": {
       "tag": "Ajahn Pavaro",
@@ -90844,7 +90844,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-preecha.html",
       "excerptCount": 1,
-      "listIndex": 474
+      "listIndex": 473
     },
     "Ajahn Sucitto": {
       "tag": "Ajahn Sucitto",
@@ -90924,7 +90924,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-sona.html",
       "excerptCount": 3,
-      "listIndex": 477
+      "listIndex": 474
     },
     "Ajahn Gavesako": {
       "tag": "Ajahn Gavesako",
@@ -102788,23 +102788,34 @@
       "level": 5,
       "indexNumber": "",
       "flags": "",
-      "name": "Ajahn Mahā Adisak Dhammābhinando",
-      "pali": "",
-      "excerptCount": 1,
-      "subsumed": false,
-      "text": "Ajahn Mahā Adisak Dhammābhinando (1)",
-      "tag": "Ajahn Mahā Adisak"
-    },
-    {
-      "level": 5,
-      "indexNumber": "",
-      "flags": "",
       "name": "Ajahn Preecha Jutindharo",
       "pali": "",
       "excerptCount": 1,
       "subsumed": false,
       "text": "Ajahn Preecha Jutindharo (1)",
       "tag": "Ajahn Preecha"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Soṇa",
+      "pali": "",
+      "excerptCount": 3,
+      "subsumed": false,
+      "text": "Ajahn Soṇa (3)",
+      "tag": "Ajahn Soṇa"
+    },
+    {
+      "level": 5,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Mahā Adisak Dhammābhinando",
+      "pali": "",
+      "excerptCount": 1,
+      "subsumed": false,
+      "text": "Ajahn Mahā Adisak Dhammābhinando (1)",
+      "tag": "Ajahn Mahā Adisak"
     },
     {
       "level": 5,
@@ -102827,17 +102838,6 @@
       "subsumed": false,
       "text": "Ajahn Kevali (1)",
       "tag": "Ajahn Kevali"
-    },
-    {
-      "level": 5,
-      "indexNumber": "",
-      "flags": "",
-      "name": "Ajahn Soṇa",
-      "pali": "",
-      "excerptCount": 3,
-      "subsumed": false,
-      "text": "Ajahn Soṇa (3)",
-      "tag": "Ajahn Soṇa"
     },
     {
       "level": 5,
@@ -106809,8 +106809,8 @@
       "fullName": "Ajahn Siripañño",
       "alphabetize": "",
       "alphabetize2": "",
-      "sortBy": "1988.028",
-      "exactDate": "28 Jan 1988",
+      "sortBy": "1998.028",
+      "exactDate": "28 Jan 1998",
       "knownMonth": "",
       "knownYear": "",
       "estimatedYear": "",
@@ -106821,8 +106821,8 @@
       "fullName": "Ajahn Kevali",
       "alphabetize": "",
       "alphabetize2": "",
-      "sortBy": "1988.186",
-      "exactDate": "4 Jul 1988",
+      "sortBy": "1998.185",
+      "exactDate": "4 Jul 1998",
       "knownMonth": "",
       "knownYear": "",
       "estimatedYear": "1998",
@@ -106845,11 +106845,11 @@
       "fullName": "Ajahn Mahā Adisak Dhammābhinando",
       "alphabetize": "",
       "alphabetize2": "",
-      "sortBy": "1987.18",
+      "sortBy": "1997.18",
       "exactDate": "",
       "knownMonth": "",
       "knownYear": "",
-      "estimatedYear": "1987",
+      "estimatedYear": "1997",
       "tweak": "",
       "duplicate": ""
     },
