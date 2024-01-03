@@ -24230,13 +24230,21 @@
       "teachers": [
         "AP"
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Note",
+          "flags": "",
+          "text": "Ajahn Mudito translated Ajahn Utane's biography of Ajahn Tongrat into Portuguese in 2019. A [machine translation](https://drive.google.com/file/d/1sljCNyotNKznRnHVjh031b-vpEEe1Vpr/view) from Portuguese to English is available on the internet.",
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Ajahn Tongrat",
         "Translation",
-        "Ajahn Utane"
+        "Ajahn Utane",
+        "Dhamma books"
       ],
-      "qTagCount": 3,
+      "qTagCount": 4,
       "clips": [
         [
           "$",
@@ -69804,7 +69812,7 @@
         "AP"
       ],
       "sessionTitle": "The Customs of the Noble Ones",
-      "excerpts": 13,
+      "excerpts": 14,
       "tags": []
     },
     {
@@ -80979,7 +80987,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dhamma-books.html",
-      "excerptCount": 27,
+      "excerptCount": 28,
       "listIndex": 437
     },
     "Dhamma online": {
@@ -92796,7 +92804,7 @@
       "text": "Teaching Dhamma (86)",
       "tag": "Teaching Dhamma",
       "subtagCount": 36,
-      "subtagExcerptCount": 732
+      "subtagExcerptCount": 733
     },
     {
       "level": 2,
@@ -93199,9 +93207,9 @@
       "flags": "",
       "name": "Dhamma books",
       "pali": "",
-      "excerptCount": 27,
+      "excerptCount": 28,
       "subsumed": false,
-      "text": "Dhamma books (27)",
+      "text": "Dhamma books (28)",
       "tag": "Dhamma books"
     },
     {
@@ -97228,9 +97236,9 @@
       "startDate": "06/01/2014",
       "teachers": "AP;AbhSangha",
       "sessions": 56,
-      "excerpts": 615,
-      "answersListenedTo": 615,
-      "tagsApplied": 1702,
+      "excerpts": 616,
+      "answersListenedTo": 616,
+      "tagsApplied": 1703,
       "invalidTags": 0,
       "duration": "36:51:18"
     },
