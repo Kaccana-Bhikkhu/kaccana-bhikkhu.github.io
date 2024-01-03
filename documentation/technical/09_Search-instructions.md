@@ -1,4 +1,4 @@
-
+<!--HTML <img src="../../pages/images/photos/Abhayagiri library.jpg" alt="Abhayagiri library" id="cover" title="Abhayagiri library" align="bottom" width="200" border="0"/> -->
 # Search instructions
 
 The [search page](../search/Text-search.html) allows one to search excerpts for text, tags, and teachers. One can narrow the search to specific kinds of teaching or events. Simple queries are easy, but more complex searches require an understanding of how the search engine works. Read this page only as far as you need to and then start searching.
@@ -17,11 +17,11 @@ Use brackets to search for excerpts tagged with specific tags:
 
 Search for a single tag: `[Happiness]`
 
-Search for all tags beginning with characters: `[History\*]`
+Search for all tags beginning with characters: `[History*]`
 
-Search for all tags ending with characters: `[\*Pasanno]`
+Search for all tags ending with characters: `[*Pasanno]`
 
-Search for all tags containing characters: `[\*Thai\*]`
+Search for all tags containing characters: `[*Thai*]`
 
 ## Searching for teachers
 
@@ -31,7 +31,7 @@ Search for a single teacher: `{Ajahn Dtun}`
 
 Search for all teachers beginning with characters: `{Mae Chee*}`
 
-Search for all teachers ending with characters: `{\*Pasanno}`
+Search for all teachers ending with characters: `{*Pasanno}`
 
 ## Searching by kind
 
@@ -43,7 +43,7 @@ Search for excepts containing an indirect quote and the characters 'Thai': `#Ind
 
 Search for excepts containing both kinds of quotes and the characters 'Thai': `#*Quote Thai`
 
-The available kinds are: Question, Response, FollowUp, Story, Recollection, Teaching, Reflection, Simile, DhammaTalk, Quote, IndirectQuote, MeditationInstruction, GuidedMeditation, Chanting, Reading, Reference, Sutta, Vinaya, Comment, Discussion, Note, Summary, Other, Commentary, ReadBy, and TranslatedBy.
+The available kinds are: `Question`, `Response`, `FollowUp`, `Story`, `Recollection`, `Teaching`, `Reflection`, `Simile`, `DhammaTalk`, `Quote`, `IndirectQuote`, `MeditationInstruction`, `GuidedMeditation`, `Chanting`, `Reading`, `Reference`, `Sutta`, `Vinaya`, `Comment`, `Discussion`, `Note`, `Summary`, `Other`, `Commentary`, `ReadBy`, and `TranslatedBy`.
 
 ## Searching by event
 
@@ -61,7 +61,7 @@ Search for events from the year 2015: `@*2015`
 
 ## Advanced searching
 
-To go beyond the recipies above, it is necessary to understand the search engine in more detail. The search engine converts excerpts and annotations into a series of blobs in which special characters are used to indicate tags, teachers, kinds, and events. For example, this excerpt:
+To go beyond the recipies above, it is necessary to understand the search engine in  detail. The search engine converts excerpts and annotations into a series of blobs in which special characters are used to indicate tags, teachers, kinds, and events. For example, this excerpt:
 
 ![Example Excerpt](../../pages/images/ExampleExcerpt.png)
 
@@ -73,7 +73,9 @@ is converted into these five blobs:
 4. `#story#^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}[ajahn chah][death][teachers][rebirth][fierce/direct teaching]@metta2008@`
 5. `#indirectquote#^i practice dying. the dalai lama^{ajahn pasanno}[dalai lama][recollection/death]@metta2008@`
 
-Search queries are broken into individual strings separated by spaces. If all search strings can be found within the five blobs above, then this excerpt is considered to be found.
+The format of each blob can be informally represented as: `#kind#^text^{teachers}[tags]@eventCode@`.
+
+Search queries are broken into individual strings separated by spaces. If all search strings can be found within an excerpts' blobs, then the excerpt is considered to be found.
 
 The search engine implements the following wildcard characters:
 
@@ -85,3 +87,4 @@ The search engine implements the following wildcard characters:
 
 Spaces divide individual search strings except for groups of characters enclosed in double quotes. Characters enclosed in double quotes only match word boundaries, but this can be changed using `*`. For example, `"Thai*"` and `$Thai` are equivalent queries.
 
+One can search for these 

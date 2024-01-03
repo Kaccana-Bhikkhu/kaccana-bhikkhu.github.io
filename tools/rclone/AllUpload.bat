@@ -8,6 +8,7 @@ rclone -v -P sync --s3-acl=public-read --no-update-modtime audio/sessions abhaya
 rclone -v -P sync --s3-acl=public-read --no-update-modtime references abhayagiri:abhayagiri/media/discs/questions/references
 rclone -v -P copyto --s3-acl=public-read --no-update-modtime index.html abhayagiri:abhayagiri/media/discs/questions/index.html
 rclone -v -P sync --s3-acl=public-read --no-update-modtime pages abhayagiri:abhayagiri/media/discs/questions/pages
+rclone -v -P sync --s3-acl=public-read --no-update-modtime csv abhayagiri:abhayagiri/media/discs/questions/csv
 
 exit /b
 

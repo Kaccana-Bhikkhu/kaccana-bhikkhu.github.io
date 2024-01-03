@@ -26,6 +26,8 @@ If you would like to browse and listen to stories, visit the [all stories page](
 
 If you are interested in the conceptual framework underlying these teachings, look at the [numerical tags page](../indexes/NumericalTags.html) or the [tag hierarchy page](../drilldown/root.html).
 
+One can incorporate this archive into a contemplative practice by selecting a theme such as [Happiness](tag:), [Equanimity](tag:), or [Renunciation](tag:) and listening to a few excerpts each day.
+
 ## Dedication
 This project is dedicated to Luang Por Pasanno (Tan Chao Khun Phra Rajabodhividesa), my preceptor, teacher, and mentor. He has given his life to continuing Luang Pu Chah’s efforts to establish Westerners in the Saṅgha and the Saṅgha in the West. He founded and/or was a long-term abbot of all the monasteries where I trained before my tenth rains. He sets an impeccable example of the Holy Life well-lived, and I’ve watched him handle many challenging situations with confidence and ease. The epithet of the Saṅgha, “They give occasion for incomparable goodness to arise in the world,” certainly applies to Luang Por.
 

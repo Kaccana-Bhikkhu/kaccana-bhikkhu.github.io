@@ -2,9 +2,11 @@
 
 # Status
 
-## New in the January 2024 Release:
+## New in the January 2024 release:
 - Completed [Winter Retreat 2014](../../pages/events/WR2014.html): Our Roots in the Thai Forest Tradition
 - [Text search feature](../search/Text-search.html)
+
+Due to Winter Retreat at Cittaviveka Monastery, the next release will be May 2024 at the earliest.
 
 ## Content
 This release contains 1967 excerpts from 40 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 294 transcribed pages, of which 245 have been entered into the Archive. The detailed status of transcription is as follows:
