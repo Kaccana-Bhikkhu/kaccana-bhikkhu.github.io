@@ -95,8 +95,8 @@ def ExcerptTags(excerpt: dict) -> dict:
     sessionStr = f", Session {excerpt['sessionNumber']}" if excerpt['sessionNumber'] else ""
     returnValue = {
         "title": f"{event['title']}{sessionStr}, Excerpt {excerpt['excerptNumber']}",
-        "albumartist": [gDatabase["teacher"][t]["fullName"] for t in session["teachers"]],
-        "artist": [gDatabase["teacher"][t]["fullName"] for t in Filter.AllTeachers(excerpt)],
+        "albumartist": [gDatabase["teacher"][t]["attributionName"] for t in session["teachers"]],
+        "artist": [gDatabase["teacher"][t]["attributionName"] for t in Filter.AllTeachers(excerpt)],
         "album": event["title"], # + sessionStr,
         "tracknumber": str(excerpt["excerptNumber"]),
         "date": str(Utils.ParseDate(session["date"]).year),

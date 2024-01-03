@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/craving-events.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/craving-events.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,18 +54,20 @@
   Parent topic: <a href = "../tags/dependent-origination.html">Dependent origination</a><br>
   Subtopic: <a href = "../tags/craving-not-to-become.html">Craving not to become</a><br>
   
-  36 excerpts, 2:22:48 total duration
+  38 excerpts, 2:33:48 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/craving-events.html" class="active">Events (1)</a>
-      <a href="../tags/craving.html">All excerpts (36)</a>
-      <a href="../tags/craving-qtag.html">Questions about (18)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/craving-events.html" class="active">Events (1)</a>
+      <a href="../tags/craving.html">All excerpts (38)</a>
+      <a href="../tags/craving-qtag.html">Questions about (20)</a>
       <a href="../tags/craving-atag.html">Answers involving (14)</a>
       <a href="../tags/craving-story.html">Stories (1)</a>
       <a href="../tags/craving-quote.html">Quotes (1)</a>
       <a href="../tags/craving-reading.html">Readings (1)</a>
       <a href="../tags/craving-reference.html">References (1)</a> </div>
 <hr>
- <h3>
+
+<h3>
   <a href="../events/SRD2015.html">
     Desire or Aspiration
   </a>
@@ -78,7 +83,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Craving,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Craving,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/craving-events.html">https://abhayagiri.org/questions/tags/craving-events.html</a>.</p>
 </footer>
 

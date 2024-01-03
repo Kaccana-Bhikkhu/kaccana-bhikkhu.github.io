@@ -58,7 +58,8 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV",
-                "-vvv"
+                "-vvv",
+                "--auditNames"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -70,7 +71,8 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "Prototype",
-                "-vvv"
+                "--buildOnly",
+                "search"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -94,7 +96,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "PrepareUpload"
+                "ParseCSV",
+                "--auditNames"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

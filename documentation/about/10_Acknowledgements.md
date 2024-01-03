@@ -6,7 +6,7 @@ This project would not have been possible without the assistance of many people.
 ## People
 Chris Claudius created the overall web design. Owen L. (@MageOwl) made the floating media player. His father Michael contributed to early architecture decisions.
 
-Ajahn Ṭhitapañño helped liase with Abhayagiri Monastery and Kirschbaum Development to host the Archive on abhayagiri.org. Ajahn Suhajjo helped with the Pāli tag scheme, teacher chronology, documentation, and license details. Debbie Stamp contributed her memories to the history of Abhayagiri Thanksgiving Retreats.
+Ajahn Ṭhitapañño helped liase with Abhayagiri Monastery and Kirschbaum Development to host the Archive on abhayagiri.org. Ajahn Suhajjo helped with the Pāli tag scheme, teacher chronology, documentation, and license details. Debbie Stamp contributed her memories to the history of Abhayagiri Thanksgiving Retreats. Krooba Kai located ordination dates and Pāli names for many Thai Ajahns.
 
 Ajahn Thee Sabbajayanto and Janejira Sutanonpaiboon translated the Archive landing page on abhayagiri.org.
 

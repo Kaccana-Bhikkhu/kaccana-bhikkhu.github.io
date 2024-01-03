@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/tudong-events.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/tudong-events.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,18 +54,20 @@
   Parent topic: <a href = "../tags/ascetic-practices.html">Ascetic practices</a><br>
   
   
-  65 excerpts, 3:33:37 total duration
+  67 excerpts, 3:37:14 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/tudong-events.html" class="active">Events (2)</a>
-      <a href="../tags/tudong.html">All excerpts (65)</a>
-      <a href="../tags/tudong-qtag.html">Questions about (25)</a>
-      <a href="../tags/tudong-atag.html">Answers involving (3)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/tudong-events.html" class="active">Events (2)</a>
+      <a href="../tags/tudong.html">All excerpts (67)</a>
+      <a href="../tags/tudong-qtag.html">Questions about (26)</a>
+      <a href="../tags/tudong-atag.html">Answers involving (4)</a>
       <a href="../tags/tudong-story.html">Stories (30)</a>
       <a href="../tags/tudong-quote.html">Quotes (8)</a>
       <a href="../tags/tudong-reading.html">Readings (3)</a>
       <a href="../tags/tudong-reference.html">References (1)</a> </div>
 <hr>
- <h3>
+
+<h3>
   <a href="../events/SRD2011.html">
     Tudong Stories at Spirit Rock
   </a>
@@ -81,7 +86,7 @@
   </a>
 </h3>
 <p>
-  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāniko</a>
+  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>
   <br />
   Upāsikā Day, Apr. 25, 2015
   <br />
@@ -91,7 +96,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Tudong <em>Thai</em>,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Tudong <em>Thai</em>,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/tudong-events.html">https://abhayagiri.org/questions/tags/tudong-events.html</a>.</p>
 </footer>
 

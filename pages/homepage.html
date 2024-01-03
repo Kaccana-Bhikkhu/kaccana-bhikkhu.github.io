@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("index.html#homepage.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("index.html#homepage.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="indexes/AlphabeticalTags.html">Tags</a>
       <a href="indexes/EventsBySeries.html">Events</a>
       <a href="teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="search/Text-search.html">Search</a>
       <a href="indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -45,9 +48,10 @@
       <a href="about/09_Want-to-help.html">Want to help?</a>
       <a href="about/10_Acknowledgements.html">Acknowledgements</a>
       <a href="about/11_Contact.html">Contact</a>
-      <a href="about/12_License.html">Technical</a> </div>
+      <a href="about/09_Search-instructions.html">Technical</a> </div>
 <hr>
- <!--TITLE:The Ajahn Pasanno Question and Story Archive-->
+
+<!--TITLE:The Ajahn Pasanno Question and Story Archive-->
  <img src="images/photos/AjahnPasanno.jpg" alt="" id="cover" title="" align="bottom" width="200" border="0"/> 
 
 <h1 id="introduction">Introduction</h1>
@@ -55,7 +59,7 @@
 <p>This archive is an attempt to make the oral teachings of Ajahn Pasanno more accessible. It contains transcriptions/summaries of questions asked and audio recordings of Ajahn Pasanno’s answers. The questions are organized by event and tagged by subject. The stories Ajahn Pasanno tells in the course of answering Dhamma questions are often as valuable as the questions themselves. Thus I expanded the archive to include stories, quotes, readings, sutta references, and other content in addition to questions and answers. Ajahn Pasanno readily shares the teaching seat with other Abhayagiri residents and invited guests, and the archive includes material from those who teach alongside him.</p>
 <h2 id="where-to-begin">Where to Begin</h2>
 <p>The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:</p>
-<p>If you have a question about a specific topic, try looking for it in the <a href="indexes/AlphabeticalTags.html">alphabetical tag list</a>. If you can't find it there, try using your browser's search feature in the <a href="indexes/AllExcerpts-all.html">searchable list of all excerpts</a>.</p>
+<p>If you have a question about a specific topic, try looking for it in the <a href="indexes/AlphabeticalTags.html">alphabetical tag list</a> or on the <a href="search/Text-search.html">search page</a>.</p>
 <p>If you would like to listen to thematic teachings, look on the <a href="indexes/EventsBySeries.html">events page</a>. Here are some events I recommend:</p>
 <ul>
 <li><a href="events/SRD2010.html">Recollections of Ajahn Chah</a></li>
@@ -68,6 +72,7 @@
 </ul>
 <p>If you would like to browse and listen to stories, visit the <a href="indexes/AllExcerpts-story.html">all stories page</a>.</p>
 <p>If you are interested in the conceptual framework underlying these teachings, look at the <a href="indexes/NumericalTags.html">numerical tags page</a> or the <a href="drilldown/root.html">tag hierarchy page</a>.</p>
+<p>One can incorporate this archive into a contemplative practice by selecting a theme such as [<a href="tags/happiness.html">Happiness</a>], [<a href="tags/equanimity.html">Equanimity</a>], or [<a href="tags/renunciation.html">Renunciation</a>] and listening to a few excerpts each day.</p>
 <h2 id="dedication">Dedication</h2>
 <p>This project is dedicated to Luang Por Pasanno (Tan Chao Khun Phra Rajabodhividesa), my preceptor, teacher, and mentor. He has given his life to continuing Luang Pu Chah’s efforts to establish Westerners in the Saṅgha and the Saṅgha in the West. He founded and/or was a long-term abbot of all the monasteries where I trained before my tenth rains. He sets an impeccable example of the Holy Life well-lived, and I’ve watched him handle many challenging situations with confidence and ease. The epithet of the Saṅgha, “They give occasion for incomparable goodness to arise in the world,” certainly applies to Luang Por.</p>
 <p>Organising Luang Por’s questions and stories so others can find them barely begins to repay my debt of gratitude to him.</p>
@@ -77,7 +82,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/homepage.html">https://abhayagiri.org/questions/homepage.html</a>.</p>
 </footer>
 

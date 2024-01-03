@@ -10,7 +10,7 @@ This archive is an attempt to make the oral teachings of Ajahn Pasanno more acce
 ## Where to Begin
 The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:
 
-If you have a question about a specific topic, try looking for it in the [alphabetical tag list](../indexes/AlphabeticalTags.html). If you can't find it there, try using your browser's search feature in the [searchable list of all excerpts](../indexes/AllExcerpts-all.html).
+If you have a question about a specific topic, try looking for it in the [alphabetical tag list](../indexes/AlphabeticalTags.html) or on the [search page](../search/Text-search.html).
 
 If you would like to listen to thematic teachings, look on the [events page](../indexes/EventsBySeries.html). Here are some events I recommend:
 
@@ -25,6 +25,8 @@ If you would like to listen to thematic teachings, look on the [events page](../
 If you would like to browse and listen to stories, visit the [all stories page](../indexes/AllExcerpts-story.html).
 
 If you are interested in the conceptual framework underlying these teachings, look at the [numerical tags page](../indexes/NumericalTags.html) or the [tag hierarchy page](../drilldown/root.html).
+
+One can incorporate this archive into a contemplative practice by selecting a theme such as [[Happiness](../../pages/tags/happiness.html)], [[Equanimity](../../pages/tags/equanimity.html)], or [[Renunciation](../../pages/tags/renunciation.html)] and listening to a few excerpts each day.
 
 ## Dedication
 This project is dedicated to Luang Por Pasanno (Tan Chao Khun Phra Rajabodhividesa), my preceptor, teacher, and mentor. He has given his life to continuing Luang Pu Chah’s efforts to establish Westerners in the Saṅgha and the Saṅgha in the West. He founded and/or was a long-term abbot of all the monasteries where I trained before my tenth rains. He sets an impeccable example of the Holy Life well-lived, and I’ve watched him handle many challenging situations with confidence and ease. The epithet of the Saṅgha, “They give occasion for incomparable goodness to arise in the world,” certainly applies to Luang Por.

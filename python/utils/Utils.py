@@ -9,10 +9,12 @@ from urllib.parse import urlparse
 from typing import BinaryIO
 import Alert, Link
 import pathlib, posixpath
+from collections import Counter
 from collections.abc import Iterable
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
 from DjangoTextUtils import slugify,RemoveDiacritics
+from concurrent.futures import ThreadPoolExecutor
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -31,6 +33,11 @@ def ExtendUnique(dest: list, source: Iterable) -> list:
         if item not in destSet:
             dest.append(item)
     return dest
+
+def Duplicates(source: Iterable) -> list:
+    "Return a list of the item which appear more than once in source."
+    itemCount = Counter(source)
+    return [item for item,count in itemCount.items() if count > 1]
 
 def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fileNumber:int|None = None) -> str:
     "Return a code for this item. "
@@ -115,8 +122,8 @@ def SwitchedMoveFile(locationFalse: str,locationTrue: str,switch: bool) -> bool:
         return True
     return False
 
-def MoveFile(fromPath: str,toPath: str) -> None:
-    SwitchedMoveFile(fromPath,toPath,True)
+def MoveFile(fromPath: str,toPath: str) -> bool:
+    return SwitchedMoveFile(fromPath,toPath,True)
 
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"
@@ -158,6 +165,7 @@ def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
     if not teacherDictCache: # modify the value of a default argument to create a cache of potential teacher references
         teacherDB = gDatabase["teacher"]
         teacherDictCache.update((t,t) for t in teacherDB)
+        teacherDictCache.update((teacherDB[t]["attributionName"],t) for t in teacherDB)
         teacherDictCache.update((teacherDB[t]["fullName"],t) for t in teacherDB)
     
     return teacherDictCache.get(teacherRef,None)
@@ -385,7 +393,7 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
         return None
 
 def SubtagDescription(tag: str) -> str:
-    "Return a string describing this tags subtags."
+    "Return a string describing this tag's subtags."
     primary = gDatabase["tag"][tag]["listIndex"]
     listEntry = gDatabase["tagDisplayList"][primary]
     return f'{listEntry["subtagCount"]} subtags, {listEntry["subtagExcerptCount"]} excerpts'
@@ -505,6 +513,9 @@ class MockThreadPoolExecutor():
 
     def shutdown(self, wait=True):
         pass
+
+def ConditionalThreader() -> ThreadPoolExecutor|MockThreadPoolExecutor:
+    return ThreadPoolExecutor() if gOptions.multithread else MockThreadPoolExecutor()
 
 try:
     STORE_TRUE = dict(action=argparse.BooleanOptionalAction,default=False)

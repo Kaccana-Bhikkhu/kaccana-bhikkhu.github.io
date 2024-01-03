@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/gain-and-loss.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/gain-and-loss.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -58,7 +61,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Gain and loss,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Gain and loss,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/gain-and-loss.html">https://abhayagiri.org/questions/tags/gain-and-loss.html</a>.</p>
 </footer>
 

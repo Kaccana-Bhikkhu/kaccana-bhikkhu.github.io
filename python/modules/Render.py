@@ -11,6 +11,7 @@ import pyratemp
 from functools import lru_cache
 import ParseCSV, Prototype, Utils, Alert, Link
 import Html2 as Html
+import urllib.parse
 
 def FStringToPyratemp(fString: str) -> str:
     """Convert a template in our psuedo-f string notation to a pyratemp template"""
@@ -217,7 +218,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     if item["kind"] == "Indirect quote" and item["tags"]:
         quotedTeacher = Utils.TeacherLookup(item["tags"][0])
         if quotedTeacher:
-            parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["fullName"]]),item["body"])
+            parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["attributionName"]]),item["body"])
             if len(parts) > 1:
                 parts[-2] = Prototype.LinkTeachersInText(parts[-2])
                 item["body"] = "".join(parts)
@@ -285,7 +286,7 @@ def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
     titleRegex = Utils.RegexMatchAny(escapedTitles)
-    pageReference = r'(?:pages?|pp?\.)\s+[0-9]+(?:\-[0-9]+)?' 
+    pageReference = r'(?:pages?|pp?\.)\s+-?[0-9]+(?:\-[0-9]+)?' 
 
     refForm2 = r'\[' + titleRegex + r'\]\((' + pageReference + ')?\)'
     refForm3 = r'\]\(' + titleRegex + r'(\s+' + pageReference + ')?\)'
@@ -303,7 +304,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         "Extract the page number from a text string"
         if not text:
             return None
-        pageNumber = re.search(r"[0-9]+",text)
+        pageNumber = re.search(r"-?[0-9]+",text)
         if pageNumber:
             return int(pageNumber[0])
         else:
@@ -319,6 +320,14 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
                 Alert.warning(reference,"does not specify pdfPageOffset.")
         return pageOffset
 
+    def NoScriptForLocalReferences(url:str) -> str:
+        """Add #noscript to the end of local references to break out of frame.js."""
+        parsed = urllib.parse.urlparse(url)
+        if parsed.netloc or gOptions.prototypeDir in parsed.path.split("/"):
+            return url
+        else:
+            return url + "#noscript"
+
     def ReferenceForm2Substitution(matchObject: re.Match) -> str:
         try:
             reference = gDatabase["reference"][matchObject[1].lower()]
@@ -332,6 +341,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             if page:
                 url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"
 
+            url = NoScriptForLocalReferences(url)
             returnValue = f"[{reference['title']}]({url})"
         else:
             returnValue = f"{reference['title']}"
@@ -361,7 +371,8 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         page = ParsePageNumber(matchObject[2])
         if page:
            url +=  f"#page={page + PdfPageOffset(reference,giveWarning=False)}"""
-
+        
+        url = NoScriptForLocalReferences(url)
         return f"]({url})"
 
     def ReferenceForm3(bodyStr: str) -> tuple[str,int]:
@@ -379,6 +390,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
         page = ParsePageNumber(matchObject[2])
         if page:
            url +=  f"#page={page + PdfPageOffset(reference)}"
+        url = NoScriptForLocalReferences(url)
 
         items = [reference['title'],f", [{matchObject[2]}]({url})"]
         if reference["attribution"]:
@@ -471,7 +483,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 if htmlPage:
                     linkTo = f"teachers/{htmlPage}"
                 else:
-                    Alert.caution("Teacher",teacherCode,"in link",matchObject[0],"is not searchable and has no html file.")
+                    Alert.caution("Teacher",teacherCode,"in link",matchObject[0],"does not have a teacher page.")
             else:
                 Alert.warning("Cannot link to teacher",teacher,"in link",matchObject[0])
         elif pageType == "about":
@@ -565,7 +577,7 @@ def main() -> None:
 
     LinkReferences()
 
-    for key in ["tagRedacted","excerptsRedacted","tagRemoved","summary","keyCaseTranslation"]:
+    for key in ["tagRedacted","tagRemoved","summary","keyCaseTranslation"]:
         del gDatabase[key]
 
     #Alert.extra("Rendered database contents:",indent = 0)

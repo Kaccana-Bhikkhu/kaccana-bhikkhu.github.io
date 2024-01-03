@@ -20,7 +20,9 @@
   <!--(if page.gOptions.redirectToJavascript)-->
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#$!page.info.file!$" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#$!page.info.file!$" + url.hash);
+      }
     </script>
   <!--(else)-->
     <span id="javascript-link">

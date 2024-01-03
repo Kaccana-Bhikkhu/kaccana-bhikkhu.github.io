@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#about/10_Acknowledgements.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#about/10_Acknowledgements.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -45,14 +48,15 @@
       <a href="../about/09_Want-to-help.html">Want to help?</a>
       <a href="../about/10_Acknowledgements.html" class="active">Acknowledgements</a>
       <a href="../about/11_Contact.html">Contact</a>
-      <a href="../about/12_License.html">Technical</a> </div>
+      <a href="../about/09_Search-instructions.html">Technical</a> </div>
 <hr>
-  <img src="../images/photos/Thai New Year 2023.jpg" alt="Thai New Year 2023" id="cover" title="Thai New Year 2023" align="bottom" width="200" border="0"/> 
+
+ <img src="../images/photos/Thai New Year 2023.jpg" alt="Thai New Year 2023" id="cover" title="Thai New Year 2023" align="bottom" width="200" border="0"/> 
 <h1 id="acknowledgements">Acknowledgements</h1>
 <p>This project would not have been possible without the assistance of many people. It would have been prohibitively expensive and time-consuming if not built upon previous open-source software projects.</p>
 <h2 id="people">People</h2>
 <p>Chris Claudius created the overall web design. Owen L. (@MageOwl) made the floating media player. His father Michael contributed to early architecture decisions.</p>
-<p>Ajahn Ṭhitapañño helped liase with Abhayagiri Monastery and Kirschbaum Development to host the Archive on abhayagiri.org. Ajahn Suhajjo helped with the Pāli tag scheme, teacher chronology, documentation, and license details. Debbie Stamp contributed her memories to the history of Abhayagiri Thanksgiving Retreats.</p>
+<p>Ajahn Ṭhitapañño helped liase with Abhayagiri Monastery and Kirschbaum Development to host the Archive on abhayagiri.org. Ajahn Suhajjo helped with the Pāli tag scheme, teacher chronology, documentation, and license details. Debbie Stamp contributed her memories to the history of Abhayagiri Thanksgiving Retreats. Krooba Kai located ordination dates and Pāli names for many Thai Ajahns.</p>
 <p>Ajahn Thee Sabbajayanto and Janejira Sutanonpaiboon translated the Archive landing page on abhayagiri.org.</p>
 <h2 id="projects">Projects</h2>
 <p>The Archive relies upon many common open-source and freeware tools. In addition to the python modules listed in <a href="https://github.com/Kaccana-Bhikkhu/qs-archive/blob/main/requirements.txt" target="_blank">requirements.txt</a>, we would like to specifically acknowledge:</p>
@@ -72,7 +76,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Acknowledgements,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Acknowledgements,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/about/10_Acknowledgements.html">https://abhayagiri.org/questions/about/10_Acknowledgements.html</a>.</p>
 </footer>
 

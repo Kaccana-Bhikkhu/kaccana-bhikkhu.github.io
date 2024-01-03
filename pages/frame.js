@@ -1,4 +1,5 @@
 import posix from "./path.js";
+import { loadSearchPage } from "./search.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
@@ -16,7 +17,59 @@ function pageText(r,url) {
 	}
 }
 
+export function configureLinks(frame,url) {
+	// Configure links within frame to be relative to url and link to #index.html
+	["href","src"].forEach((attribute) => {
+		frame.querySelectorAll("["+attribute+"]").forEach((el) => {
+			let attributePath = el.getAttribute(attribute);
+			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
+				el.setAttribute(attribute,join(dirname(url),attributePath));
+			};
+		});
+	});
+
+	let locationNoQuery = new URL(location.href);
+	locationNoQuery.search = "";
+	frame.querySelectorAll("a").forEach((el) => {
+		let href = el.getAttribute("href");
+		if (!href || href.match(absoluteURLRegex)) return;
+		if (href.endsWith("#noscript")) { // Code to escape javascript
+			el.href = el.href.replace("#noscript","");
+			return;
+		}
+
+		if (href.startsWith("#")) {
+			let noBookmark = decodeURIComponent(locationNoQuery.href).split("#").slice(0,2).join("#")
+			el.href = noBookmark+href;
+			el.addEventListener("click", () => {
+				history.pushState({}, "", el.href);
+				document.getElementById(href.slice(1)).scrollIntoView();
+			});
+		} else {
+			let url = href.replaceAll("index.html", "homepage.html")
+			let newLocation = new URL(locationNoQuery);
+			newLocation.hash = "#" + url;
+			let newFullUrl = newLocation.href;
+			el.href = newFullUrl;
+
+			el.addEventListener("click", async (event) => {
+				history.pushState({}, "", newFullUrl);
+				event.preventDefault(); // Don't follow the href link
+				await changeURL(url);
+
+				if (!url.endsWith("#_keep_scroll")) {
+					window.scrollTo(0, 0);
+					if (url.includes("#"))
+						delayedScroll(url.split("#")[1])
+				}
+			});
+		}
+	});
+}
+
 async function changeURL(pUrl) {
+	pUrl = decodeURIComponent(pUrl)
+	console.log("changeURL",pUrl)
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
@@ -28,47 +81,11 @@ async function changeURL(pUrl) {
 			innerTitle.remove();
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
+			if (frame.querySelector("#search-button")) {
+				loadSearchPage()
+			}
 
-			["href","src"].forEach((attribute) => {
-				frame.querySelectorAll("["+attribute+"]").forEach((el) => {
-					let attributePath = el.getAttribute(attribute);
-					if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
-						el.setAttribute(attribute,join(dirname(resultUrl),attributePath));
-					};
-				});
-			});
-
-			frame.querySelectorAll("a").forEach((el) => {
-				let href = el.getAttribute("href");
-				if (!href || href.match(absoluteURLRegex)) return;
-				if (href == "homepage.html#noscript") { // Code to escape javascript
-					el.href = "homepage.html";
-					return;
-				}
-
-				let url = href.replaceAll("index.html", "homepage.html")
-				if (href.startsWith("#")) {
-					let noBookmark = location.href.split("#").slice(0,2).join("#")
-					el.href = noBookmark+href;
-					el.addEventListener("click", () => {
-						history.pushState({}, "", el.href);
-						document.getElementById(href.slice(1)).scrollIntoView();
-					});
-				} else {
-					el.href = "#" + url;
-
-					el.addEventListener("click", async () => {
-						history.pushState({}, "", "#" + url);
-						await changeURL(url);
-
-						if (!url.endsWith("#_keep_scroll")) {
-							window.scrollTo(0, 0);
-							if (url.includes("#"))
-								delayedScroll(url.split("#")[1])
-						}
-					});
-				}
-			});
+			configureLinks(frame,resultUrl)
 		});
 }
 
@@ -80,8 +97,9 @@ function delayedScroll(bookmark) {
 }
 
 changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-	if (location.hash.slice(1).includes("#")) {
-		delayedScroll(location.hash.slice(1).split("#")[1]);
+	let urlHash = decodeURIComponent(location.hash)
+	if (urlHash.slice(1).includes("#")) {
+		delayedScroll(urlHash.slice(1).split("#")[1]);
 	}
 });
 

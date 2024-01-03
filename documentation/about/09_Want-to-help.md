@@ -46,16 +46,9 @@ __Time commitment:__ Variable, but programming projects always take longer than 
 
 There are many ways a skilled and generous programmer could help with the Archive ([github](https://github.com/Kaccana-Bhikkhu/qs-archive)). Here are some ideas, ranked roughly in order of usefulness with the really big project last.
 
-__Fix bugs:__ For the current list, see [About: status](../../pages/about/08_Status.html) and [Github issues](https://github.com/Kaccana-Bhikkhu/qs-archive/issues).
+__Fix bugs:__ For the current list, see [About: status](../../pages/about/08_Status.html#known-issues-and-limitations) and [Github issues](https://github.com/Kaccana-Bhikkhu/qs-archive/issues).
 
-__Add search features:__ The lack of a search page is the most obvious weakness of the current website. There are multiple approaches to this problem. If you’re interested, please let us know your ideas or just go ahead and build something.
-
-
-__Write a cross-platform mp3 splitter:__ The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. It appears that [no cross-platform equivalent exists](https://stackoverflow.com/questions/310765/python-library-to-modify-mp3-audio-without-transcoding). One could write a lossy mp3 splitter using pyaudio or similar module that could be used when mp3DirectCut wasn’t available. This would also enable splitting formats other than mp3.
-
-Alternatively, one could write a python module equivalent to mp3DirectCut. This would need to work on VBR mp3 files and be tested extensively before it would be ready to use.
-
-__Note:__ The the audio splitting functions are slated to be rewritten in the next few months. If you’re interested in the first approach to this project, you may want to wait until this is finished.
+__Cross-platform mp3 splitting:__ The project currently uses Windows-only mp3DirectCut to quickly and losslessly split mp3 files. [mp3splt](https://mp3splt.sourceforge.net/mp3splt_page/about.php) is a cross-platfrom command-line utility with similar functionality. Rewriting `Mp3DirectCut.SinglePassSplit` to use this utility would make the QSArchive software fully functional on many platforms.
 
 __Create a modern search-driven website:__ A modern website designed for mobile devices (and perhaps fully integrated into abhayagiri.org) would make the Archive material substantially more accessible.
 

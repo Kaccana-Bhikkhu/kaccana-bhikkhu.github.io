@@ -7,7 +7,7 @@ In addition, transcription inevitably flattens the nuance and emotional warmth o
 The archive tags and partially transcribes questions and discussions such that visitors can find what they are looking for while the bulk of the content remains in audio form. As of November 2023, Ajahn Kaccāna has been the only contributor to the transcribed content of the archive, but [many others](about:Acknowledgements) have helped with web design, organizing the tags, and writing documentation.
 
 ## Website
-This website is a series of static pages generated from the archive database. It was originally conceived of as a prototype stepping stone to a modern search-driven website created by someone with more web skills. However, with a css makeover by Chris Claudius and a floating media player created by Owen L. (@MageOwl), the prototype began to look and work well enough to publish. It would benefit greatly from a text search feature if anyone has the skill and time to contribute one.
+This website is a series of static pages generated from the archive database. It was originally conceived of as a prototype stepping stone to a modern search-driven website created by someone with more web skills. However, with a css makeover by Chris Claudius and a floating media player created by Owen L. (@MageOwl), the prototype began to look and work well enough to publish.
 
 ## Structure
 ### Events and Sessions
@@ -31,11 +31,7 @@ The figure above shows the website display of excerpt 3 in session 1 of the 2008
 ## Searching the Archive
 The website menus link to a series of static pages which allow the user to browse the tags, events, and teachers contained in the archive in a variety of ways. Links to particular tags, events, and teachers go to static pages which list each relevant excerpt. Event pages simply list each excerpt in each of the event sessions. The tag and teacher pages also group excerpts by event and session, but additionally allow the user to narrow the search by excerpt kind. (Pages containing fewer than 10 excerpts don’t have this feature.) Selecting the “All excerpts” menu item allows one to see all excerpts of a particular kind in the archive.
 
-The website does not yet enable the user to easily search the body text of excerpts. Two workarounds for this significant limitation exist:
-
-1. Use the browser’s built-in search feature (usually Ctrl+F or Cmd+F). Because too many audio players on one page bog down the web browser, pages listing more than 100 excerpts are split into subpages which must be searched separately. To work around this, go to the [all excerpts searchable page](../indexes/AllExcerpts-all.html), search the list of excerpts, and follow the “<i class="fa fa-long-arrow-left"></i> Playable” links to listen to the excerpts.
-
-2. Use Google or other external engines to search the archive by asking them to restrict searches to the events directory. This isn't tested yet.
+The January 2024 release includes a [text search feature](../search/Text-search.html).
 
 ## Scope
 The project currently focuses on Q&A sessions and discussions led by Ajahn Pasanno. Events including particularly valuable stories are annotated in greater detail. If there is energy and interest, we might expand the scope to include events led by other Abhayagiri teachers and teachers visiting Abhayagiri. In this case, it would become the Abhayagiri Question and Story Archive. However this is as far as the project will go. The audio sources will remain only abhayagiri.org, Abhayagiri’s YouTube channel, and Abhayagiri's audio archive (with consultation and permission). Perhaps others might create a website to index Q&A sessions from other teachers (see [License](about:License)). An [index of Ajahn Sona YouTube Q&A sessions](http://birken.ca/qaa/qaa.php) already exists.

@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/gladdening-the-mind-events.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/gladdening-the-mind-events.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,16 +54,18 @@
   Parent topic: <a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a><br>
   
   
-  30 excerpts, 2:10:53 total duration
+  33 excerpts, 2:22:47 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/gladdening-the-mind-events.html" class="active">Events (1)</a>
-      <a href="../tags/gladdening-the-mind.html">All excerpts (30)</a>
-      <a href="../tags/gladdening-the-mind-qtag.html">Questions about (16)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/gladdening-the-mind-events.html" class="active">Events (1)</a>
+      <a href="../tags/gladdening-the-mind.html">All excerpts (33)</a>
+      <a href="../tags/gladdening-the-mind-qtag.html">Questions about (19)</a>
       <a href="../tags/gladdening-the-mind-atag.html">Answers involving (12)</a>
       <a href="../tags/gladdening-the-mind-quote.html">Quotes (1)</a>
       <a href="../tags/gladdening-the-mind-text.html">Texts (1)</a> </div>
 <hr>
- <h3>
+
+<h3>
   <a href="../events/UD2012-3.html">
     Brightening the Mind
   </a>
@@ -76,7 +81,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Gladdening the mind,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Gladdening the mind,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/gladdening-the-mind-events.html">https://abhayagiri.org/questions/tags/gladdening-the-mind-events.html</a>.</p>
 </footer>
 

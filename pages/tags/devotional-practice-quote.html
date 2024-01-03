@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/devotional-practice-quote.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/devotional-practice-quote.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -53,15 +56,17 @@
   See also: <a href = "../tags/faith.html">Faith</a><br>
   22 excerpts, 1:38:31 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/devotional-practice.html">All excerpts (22)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/devotional-practice.html">All excerpts (22)</a>
       <a href="../tags/devotional-practice-qtag.html">Questions about (6)</a>
       <a href="../tags/devotional-practice-atag.html">Answers involving (8)</a>
       <a href="../tags/devotional-practice-story.html">Stories (6)</a>
       <a href="../tags/devotional-practice-quote.html" class="active">Quotes (1)</a> </div>
 <hr>
- <div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
+
+<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
 <p id="UD2015-2_S02_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" title="The Middle Way of Not-Self, S2 E5" data-duration="97"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" download="The Middle Way of Not-Self, S2 E5.mp3">Download audio</a> (1:37)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I wanted to confirm that we're also not putting this self on other objects like the redness belonging to the rose.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+  <audio-chip src="../../audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" title="The Middle Way of Not-Self, S2 E5" data-duration="97"><a href="../../audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" download="The Middle Way of Not-Self, S2 E5.mp3">Download audio</a> (1:37)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I wanted to confirm that we're also not putting this self on other objects like the redness belonging to the rose.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/not-self.html">Not-self</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “It makes me suffer when those roses turn black and they're still on the shrine...which happens all the time!”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/devotional-practice.html">Devotional practice</a>]</b> [<a href = "../tags/impermanence.html">Impermanence</a>]
@@ -70,7 +75,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Devotional practice (Quotes),” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Devotional practice (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/devotional-practice-quote.html">https://abhayagiri.org/questions/tags/devotional-practice-quote.html</a>.</p>
 </footer>
 

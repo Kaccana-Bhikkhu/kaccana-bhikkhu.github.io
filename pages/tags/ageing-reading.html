@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/ageing-reading.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/ageing-reading.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,16 +54,18 @@
   Parent topic: <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a><br>
   
   
-  19 excerpts, 1:12:46 total duration
+  20 excerpts, 1:13:16 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/ageing.html">All excerpts (20)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/ageing.html">All excerpts (21)</a>
       <a href="../tags/ageing-qtag.html">Questions about (9)</a>
-      <a href="../tags/ageing-atag.html">Answers involving (7)</a>
+      <a href="../tags/ageing-atag.html">Answers involving (8)</a>
       <a href="../tags/ageing-story.html">Stories (5)</a>
       <a href="../tags/ageing-reading.html" class="active">Readings (1)</a>
       <a href="../tags/ageing-reference.html">References (1)</a> </div>
 <hr>
- <div class="title" id="WR2015_S29"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S29">Session 29</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāniko</a> – Feb. 15, 2015</div>
+
+<div class="title" id="WR2015_S29"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S29">Session 29</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Feb. 15, 2015</div>
 <p id="WR2015_S29_F00">
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/29_AN_02_15_2015_Liberation_in_the_Palm_of_Your_Hand.mp3" title="Abhayagiri 2015 Winter Retreat, S29" data-duration="1501"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/29_AN_02_15_2015_Liberation_in_the_Palm_of_Your_Hand.mp3" download="Abhayagiri 2015 Winter Retreat, S29.mp3">Download audio</a> (25:01)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  
 </p>
@@ -74,7 +79,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ageing (Readings),” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ageing (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ageing-reading.html">https://abhayagiri.org/questions/tags/ageing-reading.html</a>.</p>
 </footer>
 

@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/vinaya-events.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/vinaya-events.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,17 +54,19 @@
   Parent topic: <a href = "../tags/monastic-life.html">Monastic life</a><br>
   Subtopics: <a href = "../tags/patimokkha.html">Pāṭimokkha</a>, <a href = "../tags/confession.html">Confession</a>, <a href = "../tags/dependence.html">Dependence</a>, <a href = "../tags/sequence-of-training.html">Sequence of training</a>, <a href = "../tags/protocols.html">Protocols</a>, <a href = "../tags/not-handling-money.html">Not handling money</a>, <a href = "../tags/rains-retreat.html">Rains retreat</a><br>
   
-  43 excerpts, 4:18:39 total duration
+  48 excerpts, 4:35:16 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/vinaya-events.html" class="active">Events (1)</a>
-      <a href="../tags/vinaya.html">All excerpts (43)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/vinaya-events.html" class="active">Events (1)</a>
+      <a href="../tags/vinaya.html">All excerpts (48)</a>
       <a href="../tags/vinaya-qtag.html">Questions about (19)</a>
-      <a href="../tags/vinaya-atag.html">Answers involving (20)</a>
+      <a href="../tags/vinaya-atag.html">Answers involving (24)</a>
       <a href="../tags/vinaya-story.html">Stories (5)</a>
-      <a href="../tags/vinaya-quote.html">Quotes (3)</a>
+      <a href="../tags/vinaya-quote.html">Quotes (4)</a>
       <a href="../tags/vinaya-reading.html">Readings (1)</a> </div>
 <hr>
- <h3>
+
+<h3>
   <a href="../events/WR2018-2.html">
     The Teaching and the Training
   </a>
@@ -77,7 +82,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Vinaya,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Vinaya,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/vinaya-events.html">https://abhayagiri.org/questions/tags/vinaya-events.html</a>.</p>
 </footer>
 

@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/spiritual-friendship-events.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/spiritual-friendship-events.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,17 +54,20 @@
   Parent topic: <a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a><br>
   
   
-  24 excerpts, 1:48:41 total duration
+  28 excerpts, 2:07:06 total duration
 </strong>
-<hr /> <div class="sublink2"> <a href="../tags/spiritual-friendship-events.html" class="active">Events (1)</a>
-      <a href="../tags/spiritual-friendship.html">All excerpts (24)</a>
+<hr />
+<div class="sublink2"> <a href="../tags/spiritual-friendship-events.html" class="active">Events (1)</a>
+      <a href="../tags/spiritual-friendship.html">All excerpts (28)</a>
       <a href="../tags/spiritual-friendship-qtag.html">Questions about (10)</a>
-      <a href="../tags/spiritual-friendship-atag.html">Answers involving (11)</a>
+      <a href="../tags/spiritual-friendship-atag.html">Answers involving (14)</a>
+      <a href="../tags/spiritual-friendship-story.html">Stories (1)</a>
       <a href="../tags/spiritual-friendship-quote.html">Quotes (2)</a>
       <a href="../tags/spiritual-friendship-reading.html">Readings (1)</a>
       <a href="../tags/spiritual-friendship-text.html">Texts (1)</a> </div>
 <hr>
- <h3>
+
+<h3>
   <a href="../events/SRD2013.html">
     The Whole of the Path: The Fruits of Spiritual Friendship
   </a>
@@ -77,7 +83,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Spiritual friendship,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Spiritual friendship,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/spiritual-friendship-events.html">https://abhayagiri.org/questions/tags/spiritual-friendship-events.html</a>.</p>
 </footer>
 

@@ -134,10 +134,12 @@ def ATag(tag:str) -> Filter:
 
     return lambda excerpt,tag=tag: _Tag(excerpt,tag,All,All) and not _QTag(excerpt,tag)
 
+gFullNames = set()
 def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str),quotesOthers:bool,quotedBy:bool) -> bool:
     "Helper function for Teacher."
 
-    fullNames = set(gDatabase["teacher"][t]["fullName"] for t in teacher)
+    if not gFullNames:
+        gFullNames.update(gDatabase["teacher"][t]["attributionName"] for t in teacher)
 
     for i in AllItems(item):
         for t in i.get("teachers",()):
@@ -152,7 +154,7 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str),quotesO
                     return True
 
         if i.get("kind") == "Indirect quote" and quotedBy:
-            if i.get("tags",(None))[0] in fullNames:
+            if i.get("tags",(None))[0] in gFullNames:
                 if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
                     return True
     

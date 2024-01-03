@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#teachers/TeachersAlphabetical.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#teachers/TeachersAlphabetical.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,36 +47,51 @@
   </div>
 
 <div class="intro">
-<div class="listing"><p> <a href="../teachers/abhayagiri-sangha.html">Abhayagiri Saṅgha</a> (2) </p>
+<div class="listing"><p> <a href="../teachers/abhayagiri-sangha.html">Abhayagiri Saṅgha</a> (3) </p>
 <p> <a href="../teachers/ajahn-amaro.html">Amaro, Ajahn</a> (4) </p>
 <p> <a href="../teachers/venerable-analayo.html">Analayo, Venerable</a> (3) </p>
-<p> <a href="../teachers/ajahn-baen.html">Baen, Ajahn</a> (3) </p>
-<p> <a href="../teachers/ajahn-chah.html">Chah, Ajahn</a> (62) </p>
+<p> <a href="../teachers/ajahn-anan.html">Anan Akiñcano, Ajahn</a> (3) </p>
+<p> <a href="../teachers/ajahn-baen.html">Baen Dhanākaro, Ajahn</a> (2) </p>
+<p> <a href="../teachers/ajahn-boon-choo.html">Boon Choo Ṭhitaguṇo, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-buddhadasa.html">Buddhadāsa Indapañño, Ajahn</a> (3) </p>
+<p> <a href="../teachers/ajahn-chah.html">Chah Subhaddo, Ajahn</a> (28) </p>
+<p> <a href="../teachers/ajahn-dick-silaratano.html">Dick Sīlaratano, Ajahn</a> (2) </p>
+<p> <a href="../teachers/ajahn-dtun.html">Dtun Thiracitto, Ajahn</a> (2) </p>
+<p> <a href="../teachers/ajahn-dune.html">Dune Atulo, Ajahn</a> (3) </p>
+<p> <a href="../teachers/ajahn-gi.html">Gi Dhammuttamo, Ajahn</a> (1) </p>
 <p> <a href="../teachers/i-b-horner.html">Horner, I. B.</a> (1) </p>
-<p> <a href="../teachers/ajahn-jayasaro.html">Jayasaro, Ajahn</a> (25) </p>
-<p> <a href="../teachers/ajahn-jotipalo.html">Jotipālo, Ajahn</a> (7) </p>
-<p> <a href="../teachers/ajahn-karunadhammo.html">Karuṇadhammo, Ajahn</a> (126) </p>
-<p> <a href="../teachers/upasika-kee-nanayon.html">Kee Nanayon, Upasikā</a> (2) </p>
-<p> <a href="../teachers/ajahn-liem.html">Liem, Ajahn</a> (5) </p>
-<p> <a href="../teachers/ajahn-maha-boowa.html">Mahā Boowa, Ajahn</a> (4) </p>
-<p> <a href="../teachers/ajahn-mun.html">Mun, Ajahn</a> (3) </p>
+<p> <a href="../teachers/ajahn-jayasaro.html">Jayasaro, Ajahn</a> (28) </p>
+<p> <a href="../teachers/ajahn-jotipalo.html">Jotipālo, Ajahn</a> (28) </p>
+<p> <a href="../teachers/ajahn-karunadhammo.html">Karuṇadhammo, Ajahn</a> (129) </p>
+<p> <a href="../teachers/upasika-kee-nanayon.html">Kee Nanayon, Upasikā</a> (4) </p>
+<p> <a href="../teachers/ajahn-koon.html">Koon Aggadhammo, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-lee-dhammadharo.html">Lee Dhammadharo, Ajahn</a> (2) </p>
+<p> <a href="../teachers/ajahn-liem.html">Liem Ṭhitadhammo, Ajahn</a> (10) </p>
+<p> <a href="../teachers/ajahn-maha-boowa.html">Mahā Boowa Ñāṇasampanno, Ajahn</a> (8) </p>
+<p> <a href="../teachers/ajahn-mun.html">Mun Bhūridatto, Ajahn</a> (2) </p>
 <p> <a href="../teachers/pabongka-rinpoche.html">Pabongka Rinpoche</a> (1) </p>
-<p> <a href="../teachers/ajahn-pasanno.html">Pasanno, Ajahn</a> (1420) </p>
-<p> <a href="../teachers/p-a-payutto.html">Payutto, P. A.</a> (2) </p>
-<p> <a href="../teachers/debbie-stamp.html">Stamp, Debbie</a> (10) </p>
-<p> <a href="../teachers/ajahn-sucitto.html">Sucitto, Ajahn</a> (3) </p>
-<p> <a href="../teachers/ajahn-sumedho.html">Sumedho, Ajahn</a> (2) </p>
-<p> <a href="../teachers/ajahn-tong-jan.html">Tong Jan, Ajahn</a> (1) </p>
-<p> <a href="../teachers/tan-chao-khun-upali-gunupamajahn.html">Upālī Guṇūpamājahn, Tan Chao Khun</a> (1) </p>
+<p> <a href="../teachers/ajahn-pasanno.html">Pasanno, Ajahn</a> (1691) </p>
+<p> <a href="../teachers/p-a-payutto.html">Payutto, P. A.</a> (1) </p>
+<p> <a href="../teachers/ajahn-piak.html">Piak Kantasīlo, Ajahn</a> (2) </p>
+<p> <a href="../teachers/ajahn-plien.html">Plien Paññapatipo, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-sim.html">Sim Buddhacaro, Ajahn</a> (2) </p>
+<p> <a href="../teachers/debbie-stamp.html">Stamp, Debbie</a> (14) </p>
+<p> <a href="../teachers/ajahn-sucitto.html">Sucitto, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-sumedho.html">Sumedho, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-suwat.html">Suwat Suvaco, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-tong-jan.html">Tong Jan Buddhañāno, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-toon.html">Toon Cittasallo, Ajahn</a> (1) </p>
+<p> <a href="../teachers/chao-khun-upali.html">Upāli Guṇūpamājahn, Tan Chao Khun</a> (2) </p>
 <p> <a href="../teachers/ajahn-viradhammo.html">Viradhammo, Ajahn</a> (1) </p>
+<p> <a href="../teachers/ajahn-wanchai.html">Wanchai Vicitto, Ajahn</a> (2) </p>
 <p> <a href="../teachers/ajahn-yatiko.html">Yatiko, Ajahn</a> (22) </p>
-<p> <a href="../teachers/ajahn-naniko.html">Ñāniko, Ajahn</a> (45) </p>
-<p> <a href="../teachers/ajahn-thanissaro.html">Ṭhānissaro, Ajahn</a> (26) </p></div>
+<p> <a href="../teachers/ajahn-naniko.html">Ñāṇiko, Ajahn</a> (64) </p>
+<p> <a href="../teachers/ajahn-thanissaro.html">Ṭhānissaro, Ajahn</a> (28) </p></div>
 </div>
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teachers: Alphabetical,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teachers: Alphabetical,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/TeachersAlphabetical.html">https://abhayagiri.org/questions/teachers/TeachersAlphabetical.html</a>.</p>
 </footer>
 

@@ -150,6 +150,10 @@ class FileRegister():
 
         return ", ".join(f"{s.name.lower()}: {self.Count(s)}" for s in Status)
     
+    def FilesWithStatus(self,status: Status) -> list[str]:
+        "Return a list of filenames with the given status."
+        return [filename for filename,record in self.record.items() if record["_status"] == status]
+
     def ReadRecordFromDisk(self,fileName) -> Record:
         """Reconstruct a record from the information on disk.
         Raise FileNotFoundError if the file does not exist.

@@ -5,14 +5,21 @@ from __future__ import annotations
 import os, shutil, platform
 import copy
 from datetime import time,timedelta
-from typing import List, Union, NamedTuple
+from typing import List, Union, NamedTuple, Iterator, Iterable
 
 Executable = 'mp3DirectCut.exe'
-ExecutableDir = 'mp3DirectCut'    
+ExecutableDir = 'mp3DirectCut'
 class Mp3CutError(Exception):
     "Raised if mp3DirectCut returns with an error code"
     pass
 
+class ParseError(Mp3CutError):
+    "Raised when a string can't be parsed into a time."
+    pass
+
+class TimeError(Mp3CutError):
+    "Raised when a time value is invalid."
+    pass
 class ExecutableNotFound(Mp3CutError):
     "Raised when mp3DirectCut can't be found"
     pass
@@ -30,11 +37,11 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     "Convert various types to a timedetla object."
 
     if type(time) == timedelta:
-        return copy.copy(time)
+        return time
     
     try:
         floatVal = float(time)
-        return timedelta(seconds =floatVal)
+        return timedelta(seconds=floatVal)
     except ValueError:
         pass
 
@@ -50,32 +57,54 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     except (ValueError,TypeError):
         pass
     
-    raise ValueError(f"{repr(time)} cannot be converted to a time.")
+    raise ParseError(f"{repr(time)} cannot be converted to a time.")
     
 class Clip(NamedTuple):
     """A Clip represents a section of a given audio file."""
-    file: str               # Filename of the audio file
-    start: TimeSpec         # Clip start time
-    end: TimeSpec|None      # Clip end time; None indicates the end of the file
+    file: str                       # Filename of the audio file
+    start: TimeSpec = timedelta(0)  # Clip start time
+    end: TimeSpec|None = None       # Clip end time; None indicates the end of the file
 
-class ClipTD(NamedTuple):
-    """Same as above, except the types must be timedelta."""
-    file: str               # Filename of the audio file
-    start: timedelta        # Clip start time
-    end: timedelta|None     # Clip end time; None indicates the end of the file
-
-    def FromClip(clip: Clip) -> ClipTD:
-        """Convert a Clip to a ClipTD."""
-        return ClipTD(clip.file,ToTimeDelta(clip.start),ToTimeDelta(clip.end))
+    def ToClipTD(self) -> ClipTD:
+        return ClipTD(self.file,ToTimeDelta(self.start),ToTimeDelta(self.end))
     
-    def Duration(self,fileDurarion: timedelta) -> timedelta:
+    def Duration(self,fileDuration:TimeSpec|None) -> timedelta:
+        return self.ToClipTD().Duration(ToTimeDelta(fileDuration))
+
+    def __eq__(self,other:Clip):
+        return self.ToClipTD() == other.ToClipTD()
+    
+    def __hash__(self):
+        return hash(self.ToClipTD())
+
+class ClipTD(Clip):
+    """Same as a Clip, except the times must be of type timedelta."""
+    start: timedelta
+    end: timedelta
+
+    def ToClipTD(self) -> ClipTD:
+        return self
+
+    def Duration(self,fileDuration:timedelta|None) -> timedelta:
         """Calculate the duration of this clip.
         Use fileDuration if self.end is None."""
 
+        if fileDuration is not None:
+            if self.start > fileDuration:
+                raise TimeError(f"Start time {self.start} is later than file duration {fileDuration}.")
+            if self.end and self.end > fileDuration:
+                raise TimeError(f"End time {self.end} is later than file duration {fileDuration}.")
+            
         if self.end:
-            return self.end - self.start
+            duration = self.end - self.start
+            if duration <= timedelta(0):
+                raise TimeError(f"Start time {self.start} is later than end time {self.end}.")
+            return duration
         else:
-            return fileDurarion - self.start
+            if fileDuration is None:
+                raise TimeError("The clip end time and the file duration cannot both be blank.")
+            else:
+                return fileDuration - self.start
 
 def TimeToCueStr(time):
     "Convert a timedelta object to the form MM:SS:hh, where hh is in hundreths of seconds"
@@ -86,25 +115,10 @@ def TimeToCueStr(time):
     
     return f"{minutes:02d}:{seconds:02d}:{hundreths:02d}"
 
-def WriteCue(cueTime,cueNum,cueFile):
-    "Write a cue to a Mp3DirectCut .cue file"
-    
-    print(f'  TRACK {cueNum:02d} AUDIO',file=cueFile)
-    print(f'    TITLE "(Track {cueNum:02d})"',file=cueFile)
-    print(f'    INDEX 01 {TimeToCueStr(cueTime)}',file=cueFile)
+def ConfigureMp3DirectCut() -> str:
+    """Configure the Mp3DirectCut.exe application and return its path.
+    Throw an exception if we can't find it or it won't run."""
 
-def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:str = True):
-    """Split an mp3 file into tracks.
-    file - Name and path of the file to split. Write access is required to this directory.
-    splitPoints - a list of tuples of the format: (trackFileName,startTime[,endTime])
-        trackFileName: name of the track (without .mp3 suffix)
-            Track files are saved in the same directory as the original file.
-        startTime, endTime: timedelta objects describing the audio to cut
-            Tracks must be cut from the original file in order.
-            If endTime is omitted, there is no gap between the tracks.
-    outputDir - move the splith mp3 files here; defaults to same directory as file
-    deleteCueFile - delete cue file when finished?"""
-    
     if platform.system() != "Windows":
         raise ExecutableNotFound(f"mp3DirectCut.exe only runs on Windows; cannot split mp3 files.")
 
@@ -112,6 +126,30 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
     if not os.path.exists(mp3DirectCutProgram):
         raise ExecutableNotFound(f"mp3DirectCut.exe not found at {mp3DirectCutProgram}; cannot split mp3 files.")
     
+    return mp3DirectCutProgram
+
+
+def WriteCue(cueTime,cueNum,cueFile):
+    "Write a cue to a Mp3DirectCut .cue file"
+    print(f'  TRACK {cueNum:02d} AUDIO',file=cueFile)
+    print(f'    TITLE "(Track {cueNum:02d})"',file=cueFile)
+    print(f'    INDEX 01 {TimeToCueStr(cueTime)}',file=cueFile)
+
+def SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueFile:str = True) -> None:
+    """Run Mp3DirectCut once to split an mp3 file into tracks.
+    This function forms the base for functions like Split and MultiFileSplitJoin.
+    file - Name and path of the file to split. Write access is required to this directory.
+    clips - a list of clips to split the file into. The fields are:
+        file (str): - the name of the output file for this clip.
+        start (timedelta): the starting time of the clip.
+        end (timedelta): the ending time of the clip.
+            If end == None, the clip extends to the beginning of the next clip or the end of the file.
+    The clips must be sorted by start time and cannot overlap.
+    outputDir - move the splith mp3 files here; defaults to same directory as file
+    deleteCueFile - delete cue file when finished?"""
+    
+    mp3DirectCutProgram = ConfigureMp3DirectCut()
+
     directory,originalFileName = os.path.split(file)
     fileNameBase,extension = os.path.splitext(originalFileName)
     cueFileName = fileNameBase + '.cue'
@@ -123,30 +161,30 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
         print(f'FILE "{originalFileName}" MP3',file=cueFile)
         
         trackNum = 1
-        prevTrackEnd = timedelta(seconds = 0)
-        WriteCue(prevTrackEnd,trackNum,cueFile)
+        prevClipEnd = timedelta(seconds = 0)
+        WriteCue(prevClipEnd,trackNum,cueFile)
         throwawayTracks = set()
-        for point in splitPoints:
-            if prevTrackEnd is not None:
-                if point[1] < prevTrackEnd:
-                    raise ValueError(f"Split point {point}: Tracks to extract must be in sequential order.")
-                elif point[1] > prevTrackEnd:
+        for clip in clips:
+            if prevClipEnd is not None:
+                if clip.start < prevClipEnd:
+                    raise TimeError(f"Split point {clip}: Clips to extract must be in sequential order.")
+                elif clip.start > prevClipEnd:
                     throwawayTracks.add(trackNum)
             
-            if point[1] != prevTrackEnd:
+            if clip.start != prevClipEnd:
                 trackNum += 1
-                WriteCue(point[1],trackNum,cueFile)
+                WriteCue(clip.start,trackNum,cueFile)
             
-            if len(point) > 2:
-                if point[1] >= point[2]:
-                    raise ValueError(f"Split point {point}: Track end must be after track begin.")
+            if clip.end:
+                if clip.start >= clip.end:
+                    raise TimeError(f"Split point {clip}: Clip end must be after clip start.")
                 trackNum += 1
-                WriteCue(point[2],trackNum,cueFile)
-                prevTrackEnd = point[2]
+                WriteCue(clip.end,trackNum,cueFile)
+                prevClipEnd = clip.end
             else:
-                prevTrackEnd = None
+                prevClipEnd = None
         
-        if prevTrackEnd is not None: # If the last track has an end time, discard the last mp3 file from the split operation
+        if prevClipEnd is not None: # If the last track has an end time, discard the last mp3 file from the split operation
             throwawayTracks.add(trackNum)
             
     totalTracks = trackNum
@@ -169,7 +207,7 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
         if trackNum in throwawayTracks:
             os.remove(trackFile)
         else:
-            newName = os.path.join(outputDir,f'{splitPoints[splitIndex][0]}.mp3')
+            newName = os.path.join(outputDir,clips[splitIndex].file)
             if os.path.exists(newName):
                 os.remove(newName)
             os.rename(trackFile,newName)
@@ -177,6 +215,82 @@ def Split(file:str, splitPoints:List[tuple] ,outputDir:str = None,deleteCueFile:
     
     if deleteCueFile:
         os.remove(cueFilePath)
+
+def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = True) -> None:
+    """Run Mp3DirectCut (possibly multiple times) to split an mp3 file into tracks.
+    file - Name and path of the file to split. Write access is required to this directory.
+    clips - a list of clips to split the file into. The fields are:
+        file (str): - the name of the output file for this clip.
+        start: the starting time of the clip.
+        end: the ending time of the clip; None or blank means until the end of the file.
+    The clips need not be sorted and can overlap.
+    outputDir - move the splith mp3 files here; defaults to same directory as file
+    deleteCueFile - delete cue file when finished?"""
+
+    clipsRemaining = [clip.ToClipTD() for clip in clips]
+    clipsRemaining.sort(key = lambda clip:clip.start)
+    while clipsRemaining:
+        lastClipEnd = timedelta(0)
+        clipsToSplit = []
+        clipsNotSplit = []
+        for clip in clipsRemaining:
+            if lastClipEnd is not None and clip.start >= lastClipEnd:
+                clipsToSplit.append(clip)
+                lastClipEnd = clip.end
+            else:
+                clipsNotSplit.append(clip)
+        
+        SinglePassSplit(file,clipsToSplit,outputDir)
+        clipsRemaining = clipsNotSplit
+
+def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set(str):
+    """Iterate recursively over clips and return the set of all source files used."""
+    if isinstance(clips,Clip):
+        return {clips.file}
+    if hasattr(clips,"values"):
+        return SourceFiles(clips.values())
+    sources = set()
+    if isinstance(clips,Iterable):
+        for item in clips:
+            sources.update(SourceFiles(item))
+    return sources
+
+def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple(set(str),dict[str,list[Clip]])]:
+    """Group the fileClips by source files. Returns an iterator of tuples:
+    (files,fileClips), where files is a set of source files and fileClips is the dict of files that use
+    these source files. For the time being, assume that all clips have only one source file."""
+
+    clipsRemaining = dict(fileClips)
+    while clipsRemaining:
+        sourceFiles = SourceFiles(next(iter(clipsRemaining.values())))
+            # Select the first file of the first item in clipsRemaining
+        clipsWithThisSource = {}
+        newClipsRemaining = {}
+        for filename,clips in clipsRemaining.items():
+            (clipsWithThisSource if clips[0].file in sourceFiles else newClipsRemaining).update({filename:clips})
+        
+        yield sourceFiles,clipsWithThisSource
+        clipsRemaining = newClipsRemaining
+
+def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None) -> None:
+    """Split and join multiple mp3 files using Mp3DirectCut.
+    fileClips: each key is the name of a file to create in outputDir.
+        each value is a list of Clips to join. The Clip fields mean:
+            file: the name of a file in inputDir
+            start: the start time of the audio to extract
+            end: the end time of the audio to extract; None means end of file.
+    inputDir: directory for input files.
+    outputDir: directory for output files. None means same as inputDir."""
+
+    if outputDir is None:
+        outputDir = inputDir
+
+    for sourceFiles,clips in GroupBySourceFiles(fileClips):
+        sourceFile = next(iter(sourceFiles))
+        sourcePath = os.path.join(inputDir,sourceFile)
+
+        destClipList = [clipList[0]._replace(file=outputFile) for outputFile,clipList in clips.items()]
+        Split(sourcePath,destClipList,outputDir)
 
 def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     """Join mp3 files into a single file using simple file copying operations.
@@ -198,7 +312,7 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     
     if heal:
         dir, name = os.path.split(name)
-        Split(tempFile,[(name,timedelta(0))],dir)
+        SinglePassSplit(tempFile,[(name,timedelta(0))],dir)
         os.remove(tempFile)
     else:
         os.rename(tempFile,outputFile)

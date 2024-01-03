@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#teachers/ajahn-jayasaro-i-quote.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#teachers/ajahn-jayasaro-i-quote.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -45,15 +48,17 @@
   </div>
 
 <div class="intro">
-24 excerpts, 3:59:06 total duration
-<hr /> <div class="sublink2"> <a href="../teachers/ajahn-jayasaro.html">All excerpts (25)</a>
+28 excerpts, 5:53:02 total duration
+<hr />
+<div class="sublink2"> <a href="../teachers/ajahn-jayasaro.html">All excerpts (28)</a>
       <a href="../teachers/ajahn-jayasaro-story.html">Stories (4)</a>
       <a href="../teachers/ajahn-jayasaro-i-quote.html" class="active">Quotes others (5)</a>
-      <a href="../teachers/ajahn-jayasaro-read-from.html">Readings from (25)</a> </div>
+      <a href="../teachers/ajahn-jayasaro-read-from.html">Readings from (27)</a> </div>
 <hr>
- <div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
+
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" title="Recollections of Ajahn Chah, S1 E10" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" download="Recollections of Ajahn Chah, S1 E10.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah accepts his dying father's request to stay as a monk for life.  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>]
+  <audio-chip src="../../audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" title="Recollections of Ajahn Chah, S1 E10" data-duration="362"><a href="../../audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" download="Recollections of Ajahn Chah, S1 E10.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah accepts his dying father's request to stay as a monk for life.  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40</a> 
@@ -70,7 +75,7 @@
 <hr />
 <div class="title" id="SRD2010_S07"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S07">Session 7</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S07_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S07_F06.mp3" title="Recollections of Ajahn Chah, S7 E6" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S07_F06.mp3" download="Recollections of Ajahn Chah, S7 E6.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah leaves his companions and stays alone.  [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
+  <audio-chip src="../../audio/excerpts/SRD2010/SRD2010_S07_F06.mp3" title="Recollections of Ajahn Chah, S7 E6" data-duration="184"><a href="../../audio/excerpts/SRD2010/SRD2010_S07_F06.mp3" download="Recollections of Ajahn Chah, S7 E6.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah leaves his companions and stays alone.  [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=111" target="_blank">p. 89</a> 
@@ -81,7 +86,7 @@
 <hr />
 <div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S11_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F06.mp3" title="Recollections of Ajahn Chah, S11 E6" data-duration="163"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F06.mp3" download="Recollections of Ajahn Chah, S11 E6.mp3">Download audio</a> (2:43)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah in the early years: spare, stern, and vigorous.  [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/similes.html">Similes</a>]
+  <audio-chip src="../../audio/excerpts/SRD2010/SRD2010_S11_F06.mp3" title="Recollections of Ajahn Chah, S11 E6" data-duration="163"><a href="../../audio/excerpts/SRD2010/SRD2010_S11_F06.mp3" download="Recollections of Ajahn Chah, S11 E6.mp3">Download audio</a> (2:43)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah in the early years: spare, stern, and vigorous.  [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=159" target="_blank">p. 137</a> 
@@ -91,7 +96,7 @@
 </p>
 <hr />
 <p id="SRD2010_S11_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F07.mp3" title="Recollections of Ajahn Chah, S11 E7" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F07.mp3" download="Recollections of Ajahn Chah, S11 E7.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Building the road to Tam Sang Pet.  [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-anek.html">Ajahn Anek</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/ardency.html">Ardency</a>]
+  <audio-chip src="../../audio/excerpts/SRD2010/SRD2010_S11_F07.mp3" title="Recollections of Ajahn Chah, S11 E7" data-duration="184"><a href="../../audio/excerpts/SRD2010/SRD2010_S11_F07.mp3" download="Recollections of Ajahn Chah, S11 E7.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Building the road to Tam Sang Pet.  [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-anek.html">Ajahn Anek</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/ardency.html">Ardency</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=450" target="_blank">p. 428</a> 
@@ -102,7 +107,7 @@
 <hr />
 <div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S03_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F07.mp3" title="The New Ajahn Chah Biography, S3 E7" data-duration="422"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F07.mp3" download="The New Ajahn Chah Biography, S3 E7.mp3">Download audio</a> (7:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=669" target="_blank">p. 647-648</a> "Por Am"  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/intoxicants.html">Intoxicants</a>]
+  <audio-chip src="../../audio/excerpts/UD2018-1/UD2018-1_S03_F07.mp3" title="The New Ajahn Chah Biography, S3 E7" data-duration="422"><a href="../../audio/excerpts/UD2018-1/UD2018-1_S03_F07.mp3" download="The New Ajahn Chah Biography, S3 E7.mp3">Download audio</a> (7:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=669" target="_blank">p. 647-648</a> "Por Am"  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/intoxicants.html">Intoxicants</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Chah teaches Por Am herbal medicine so he can avoid killing animals. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>]
@@ -114,7 +119,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Jayasaro (Quotes others),” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Jayasaro (Quotes others),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-jayasaro-i-quote.html">https://abhayagiri.org/questions/teachers/ajahn-jayasaro-i-quote.html</a>.</p>
 </footer>
 

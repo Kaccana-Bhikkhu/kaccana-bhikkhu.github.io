@@ -149,15 +149,20 @@ For each page associated with the menu it then yields one of the following:
 class PageDesc(Renderable):
     """A PageDesc object is used to gradually build a complete description of the content of a page.
     When complete, the object will be passed to a pyratemp template to generate a page and write it to disk."""
-    info: PageInfo
-    numberedSections:int
-    section:dict[int|str,str|Renderable]
-    keywords:[str]
+    info: PageInfo                          # Basic information about the page
+    numberedSections:int                    # How many numbered sections we have
+    section:dict[int|str,str|Renderable]    # A dict describing the content of the page.
+                    # Sequential sections are given by integer keys, non-sequential sections by string keys.
+    defaultJoinChar:str                     # The character to join str sections with
+    specialJoinChar:dict[str,str]           # The character to join named sections with
+    keywords:[str]                          # Keywords for the html header
 
     def __init__(self,info: PageInfo = PageInfo()) -> None:
-        self.info = info # Basic information about the page
+        self.info = info 
         self.numberedSections = 1
-        self.section = {0:""} # A dict describing the content of the page. Sequential sections are given by integer keys, non-sequential sections by string keys.
+        self.section = {0:""}
+        self.defaultJoinChar = "\n"
+        self.specialJoinChar = {}
         self.keywords = []
 
     def Clone(self) -> PageDesc:
@@ -167,7 +172,7 @@ class PageDesc(Renderable):
     def HasSection(self,sectionName: int|str) -> bool:
         return bool(self.section.get(sectionName,False))
 
-    def AppendContent(self,content: str|Renderable,section:int|str|None = None,newSection:bool = False,overwrite:bool = False,joinStr = ' ') -> int|str|None:
+    def AppendContent(self,content: str|Renderable,section:int|str|None = None,newSection:bool = False,overwrite:bool = False,joinChar:str|None = None) -> int|str|None:
         """Append html content to the specified section. Return the name of the section that was added to."""
         if newSection:
             self.BeginNewSection()
@@ -186,7 +191,9 @@ class PageDesc(Renderable):
         
         canMerge = type(existingSection) == str and type(content) == str
         if canMerge:
-            self.section[section] = " ".join([existingSection,content])
+            if joinChar is None:
+                joinChar = self.specialJoinChar.get(section,self.defaultJoinChar)
+            self.section[section] = joinChar.join([existingSection,content])
             return section
         elif type(section) == int:
             self.BeginNewSection() # If we can't merge with a numbered section, create a new section
@@ -206,7 +213,9 @@ class PageDesc(Renderable):
         pageToAppend is modified and becomes unusable after this call."""
     
         self.info = pageToAppend.info # Substitute the information of the second page
-        
+        self.specialJoinChar.update(pageToAppend.specialJoinChar)
+            # Inherit special join chars from the appending page
+
         self.AppendContent(pageToAppend.section[0])
         for sectionNum in range(1,pageToAppend.numberedSections):
             self.BeginNewSection()
@@ -240,13 +249,13 @@ class PageDesc(Renderable):
         textToJoin = []
         for sect in self.section.values():
             textToJoin.append(Render(sect))
-        return " ".join(textToJoin)
+        return self.defaultJoinChar.join(textToJoin)
     
     def Render(self,**attributes) -> str: # Override Renderable.Render
         textToJoin = []
         for sect in self.section.values():
             textToJoin.append(Render(sect,**attributes))
-        return " ".join(textToJoin)
+        return self.defaultJoinChar.join(textToJoin)
     
     def RenderNumberedSections(self,startSection:int = 0,stopSection:int = 9999999,**attributes) -> str:
         """Return a string of the text of the page."""
@@ -254,7 +263,7 @@ class PageDesc(Renderable):
         for sectionNumber in range(startSection,min(self.numberedSections,stopSection)):
             textToJoin.append(Render(self.section[sectionNumber]),**attributes)
 
-        return " ".join(textToJoin)
+        return self.defaultJoinChar.join(textToJoin)
 
     def RenderWithTemplate(self,templateFile: str) -> str:
         """Render the page by passing it to a pyratemp template."""

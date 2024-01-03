@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#teachers/ajahn-sumedho.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#teachers/ajahn-sumedho.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -45,8 +48,9 @@
   </div>
 
 <div class="intro">
-1 excerpt, 27:06 total duration
-<hr /> <div class="title" id="WR2015_S53"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S53">Session 53</a> – Mar. 29, 2015</div>
+1 excerpt, 25:20 total duration
+<hr />
+<div class="title" id="WR2015_S53"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S53">Session 53</a> – Mar. 29, 2015</div>
 <p id="WR2015_S53_F00">
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/53_AN_03_29_2015_Not_by_Looking_for_Protection.mp3" title="Abhayagiri 2015 Winter Retreat, S53" data-duration="1520"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/53_AN_03_29_2015_Not_by_Looking_for_Protection.mp3" download="Abhayagiri 2015 Winter Retreat, S53.mp3">Download audio</a> (25:20)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  
 </p>
@@ -56,16 +60,11 @@
 <p style="margin-left: 2em;">
   <b>Reading:</b> “Towards the Future,” p. 215-220 in <em>The Mind and the Way</em> by <a href = ../teachers/ajahn-sumedho.html>Ajahn Sumedho</a> (commercial).  
 </p>
-<hr />
-<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – Oct. 12, 2019</div>
-<p id="UD2019-4_S03_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" title="Love, Attachment, and Friendship, S3 E1" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" download="Love, Attachment, and Friendship, S3 E1.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Quote:</b>  “The kindest thing you can do for your parents is to not create them.” — <a href = ../teachers/ajahn-sumedho.html>Ajahn Sumedho</a>. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/amaravati.html">Amaravati</a>] [<a href = "../tags/siladhara.html">Sīladharā</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
-</p>
 </div>
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Sumedho,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Sumedho,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-sumedho.html">https://abhayagiri.org/questions/teachers/ajahn-sumedho.html</a>.</p>
 </footer>
 

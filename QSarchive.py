@@ -82,7 +82,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
             return newDB,opSet
     
     requireSpreadsheetDB = {'DownloadFiles','SplitMp3','Link','Render'}
-    requireRenderedDB = {'Document','Prototype','TagMp3','PrepareUpload','CheckLinks'}
+    requireRenderedDB = {'Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks'}
 
     if 'Render' in opSet: # Render requires link in all cases
         opSet.add('Link')
@@ -106,7 +106,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','TagMp3','PrepareUpload','CheckLinks']
+moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']
@@ -139,6 +139,7 @@ for mod in modules.values():
 
 parser.add_argument('--verbose','-v',default=0,action='count',help='increase verbosity')
 parser.add_argument('--quiet','-q',default=0,action='count',help='decrease verbosity')
+parser.add_argument('--debug',**Utils.STORE_TRUE,help="Print debugging logs")
 
 if sys.argv[1] == "Job" or sys.argv[1] == "Jobs": # If ops == "Job", 
     jobOptionsList = ReadJobOptions(sys.argv[2] if len(sys.argv) >= 3 else None)
@@ -176,6 +177,7 @@ if gErrorArgsFiles:
 clOptions = parser.parse_args(argList)
 clOptions.verbose -= clOptions.quiet
 Alert.verbosity = clOptions.verbose
+Alert.Debugging(clOptions.debug)
 
 for mod in modules.values():
     mod.gOptions = clOptions

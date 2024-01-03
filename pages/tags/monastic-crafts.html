@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/monastic-crafts.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/monastic-crafts.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -51,11 +54,12 @@
   Parent topic: <a href = "../tags/monastic-life.html">Monastic life</a><br>
   
   
-  1 excerpt, 5:05 total duration
+  2 excerpts, 12:33 total duration
 </strong>
-<hr /> <div class="title" id="SRD2010_S07"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<hr />
+<div class="title" id="SRD2010_S07"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S07_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S07_F05.mp3" title="Recollections of Ajahn Chah, S7 E5" data-duration="305"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S07_F05.mp3" download="Recollections of Ajahn Chah, S7 E5.mp3">Download audio</a> (5:05)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah's mentors: Ajahn Tongrat and Ajahn Kinaree  [<a href = "../tags/mentoring.html">Mentoring</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/monastic-crafts.html">Monastic crafts</a>]</b> [<a href = "../tags/pace-of-life.html">Pace of life</a>] [<a href = "../tags/craving.html">Craving</a>]
+  <audio-chip src="../../audio/excerpts/SRD2010/SRD2010_S07_F05.mp3" title="Recollections of Ajahn Chah, S7 E5" data-duration="305"><a href="../../audio/excerpts/SRD2010/SRD2010_S07_F05.mp3" download="Recollections of Ajahn Chah, S7 E5.mp3">Download audio</a> (5:05)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah's mentors: Ajahn Tongrat and Ajahn Kinaree  [<a href = "../tags/mentoring.html">Mentoring</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/monastic-crafts.html">Monastic crafts</a>]</b> [<a href = "../tags/pace-of-life.html">Pace of life</a>] [<a href = "../tags/craving.html">Craving</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=95" target="_blank">p. 73</a> 
@@ -66,11 +70,16 @@
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Mun teaches his teacher, Ajahn Sao. [<a href = "../tags/ajahn-sao.html">Ajahn Sao</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
+<hr />
+<div class="title" id="WR2014_S32"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S32">Session 32</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 18, 2014</div>
+<p id="WR2014_S32_F06">
+  <audio-chip src="../../audio/excerpts/WR2014/WR2014_S32_F06.mp3" title="Abhayagiri 2014 Winter Retreat, S32 E6" data-duration="448"><a href="../../audio/excerpts/WR2014/WR2014_S32_F06.mp3" download="Abhayagiri 2014 Winter Retreat, S32 E6.mp3">Download audio</a> (7:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> Ajahn Pasanno tells how he went to Wat Pah Nanachat to make a bowl stand but got sick with scrub typhus. An extended discussion ensues. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] <b>[<a href = "../tags/monastic-crafts.html">Monastic crafts</a>]</b> [<a href = "../tags/sickness.html">Sickness</a>] // [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>]
+</p>
 </div>
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Monastic crafts,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Monastic crafts,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/monastic-crafts.html">https://abhayagiri.org/questions/tags/monastic-crafts.html</a>.</p>
 </footer>
 

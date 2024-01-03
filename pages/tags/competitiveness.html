@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/competitiveness.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/competitiveness.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -53,15 +56,16 @@
   
   1 excerpt, 7:37 total duration
 </strong>
-<hr /> <div class="title" id="TG2015_S06"><a href="../events/TG2015.html">2015 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2015.html#TG2015_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 26, 2015</div>
+<hr />
+<div class="title" id="TG2015_S06"><a href="../events/TG2015.html">2015 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2015.html#TG2015_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 26, 2015</div>
 <p id="TG2015_S06_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S06_F05.mp3" title="2015 Thanksgiving Monastic Retreat, S6 E5" data-duration="457"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S06_F05.mp3" download="2015 Thanksgiving Monastic Retreat, S6 E5.mp3">Download audio</a> (7:37)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Competitiveness feels so pervasive here in America. What are your thoughts for working with it or healing it?”  <b>[<a href = "../tags/competitiveness.html">Competitiveness</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>]
+  <audio-chip src="../../audio/excerpts/TG2015/TG2015_S06_F05.mp3" title="2015 Thanksgiving Monastic Retreat, S6 E5" data-duration="457"><a href="../../audio/excerpts/TG2015/TG2015_S06_F05.mp3" download="2015 Thanksgiving Monastic Retreat, S6 E5.mp3">Download audio</a> (7:37)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Competitiveness feels so pervasive here in America. What are your thoughts for working with it or healing it?”  <b>[<a href = "../tags/competitiveness.html">Competitiveness</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>]
 </p>
 </div>
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Competitiveness,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Competitiveness,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/competitiveness.html">https://abhayagiri.org/questions/tags/competitiveness.html</a>.</p>
 </footer>
 

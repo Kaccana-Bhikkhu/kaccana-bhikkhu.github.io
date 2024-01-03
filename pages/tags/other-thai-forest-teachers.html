@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#tags/other-thai-forest-teachers.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#tags/other-thai-forest-teachers.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -49,7 +52,7 @@
   
   
   Parent topic: <a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a><br>
-  Subtopics: <a href = "../tags/ajahn-sao.html">Ajahn Sao</a>, <a href = "../tags/ajahn-lee-dhammadharo.html">Ajahn Lee Dhammadharo</a>, <a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>, <a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>, <a href = "../tags/ajahn-fun.html">Ajahn Fun</a>, <a href = "../tags/ajahn-dune.html">Ajahn Dune</a>, <a href = "../tags/ajahn-supah.html">Ajahn Supah</a>, <a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>, <a href = "../tags/ajahn-baen.html">Ajahn Baen</a>, <a href = "../tags/ajahn-plien.html">Ajahn Plien</a>, <a href = "../tags/ajahn-tate.html">Ajahn Tate</a>, <a href = "../tags/ajahn-khao.html">Ajahn Khao</a>, <a href = "../tags/ajahn-maha-chatchai.html">Ajahn Mahā Chatchai</a>, <a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>, <a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>, <a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>, <a href = "../tags/ajahn-piyadhammo.html">Ajahn Piyadhammo</a>, <a href = "../tags/ajahn-fuang.html">Ajahn Fuang</a>, <a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>, <a href = "../tags/mae-chee-kaew.html">Mae Chee Kaew</a><br>
+  Subtopics: <a href = "../tags/ajahn-lee-dhammadharo.html">Ajahn Lee Dhammadharo</a>, <a href = "../tags/ajahn-gi.html">Ajahn Gi</a>, <a href = "../tags/ajahn-vajirayan.html">Ajahn Vajirayan</a>, <a href = "../tags/ajahn-jia.html">Ajahn Jia</a>, <a href = "../tags/ajahn-sanong.html">Ajahn Sanong</a>, <a href = "../tags/ajahn-sim.html">Ajahn Sim</a>, <a href = "../tags/ajahn-chorp.html">Ajahn Chorp</a>, <a href = "../tags/ajahn-teean.html">Ajahn Teean</a>, <a href = "../tags/ajahn-waen.html">Ajahn Waen</a>, <a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>, <a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>, <a href = "../tags/ajahn-fun.html">Ajahn Fun</a>, <a href = "../tags/ajahn-dune.html">Ajahn Dune</a>, <a href = "../tags/ajahn-utane.html">Ajahn Utane</a>, <a href = "../tags/ajahn-supah.html">Ajahn Supah</a>, <a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>, <a href = "../tags/ajahn-baen.html">Ajahn Baen</a>, <a href = "../tags/ajahn-plien.html">Ajahn Plien</a>, <a href = "../tags/ajahn-tate.html">Ajahn Tate</a>, <a href = "../tags/ajahn-khao.html">Ajahn Khao</a>, <a href = "../tags/ajahn-maha-chatchai.html">Ajahn Mahā Chatchai</a>, <a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>, <a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>, <a href = "../tags/ajahn-suwat.html">Ajahn Suwat</a>, <a href = "../tags/ajahn-khantipalo.html">Ajahn Khantipālo</a>, <a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>, <a href = "../tags/ajahn-piyadhammo.html">Ajahn Piyadhammo</a>, <a href = "../tags/ajahn-fuang.html">Ajahn Fuang</a>, <a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>, <a href = "../tags/mae-chee-kaew.html">Mae Chee Kaew</a><br>
   
   No excerpts
 </strong>
@@ -58,7 +61,7 @@
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Other Thai Forest teachers,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Other Thai Forest teachers,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/tags/other-thai-forest-teachers.html">https://abhayagiri.org/questions/tags/other-thai-forest-teachers.html</a>.</p>
 </footer>
 

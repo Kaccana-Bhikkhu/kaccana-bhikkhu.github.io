@@ -6,6 +6,7 @@ const playBar = audioPlayer.querySelector("input[type=range]");
 /** @type {HTMLAudioElement} */
 let currentlyPlaying = null;
 let shouldClose = false;
+let playerTimeout;
 
 const time = (sec) =>
 	`${Math.floor(sec / 60)}:${(sec % 60).toString().padStart(2, "0")}`;
@@ -29,6 +30,7 @@ const playAudio = (title, audio) => {
 		currentlyPlaying.currentTime = 0;
 	}
 	currentlyPlaying = audio;
+	if (playerTimeout != null) clearTimeout(playerTimeout)
 	audio.play();
 
 	playBar.max = duration;
@@ -74,8 +76,7 @@ setInterval(() => {
 			durationTitle.innerText = `${time(currentTime)} / ${time(duration)}`;
 
 			shouldClose = true;
-			console.log("set close timer");
-			setTimeout(() => {
+			playerTimeout = setTimeout(() => {
 				if (shouldClose) closePlayer();
 			}, 10_000);
 		}

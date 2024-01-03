@@ -11,7 +11,7 @@ from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
-from collections import Counter
+from collections import Counter, defaultdict
 
 class StrEnum(str,Enum):
     pass
@@ -372,7 +372,6 @@ def LoadTagsFile(database,tagFileName):
         else:
             tagDesc["htmlFile"] = Utils.slugify(tagName) + '.html'
         
-        tagDesc["listIndex"] = rawTagIndex
         tags[tagName] = tagDesc
     
     for tag in tags.values():
@@ -455,23 +454,29 @@ def RemoveUnusedTags(database: dict) -> None:
         tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
         tag["related"] = [t for t in tag["related"] if t in usedTags]
 
-    IndexTags(database)
-
 def IndexTags(database: dict) -> None:
     """Add listIndex tag to raw tags after we have removed unused tags."""
     tagsSoFar = set()
-    for n,tag in enumerate(database["tagRaw"]):
+    for n,tag in enumerate(database["tagDisplayList"]):
         tagName = tag["tag"]
-        if tag["subsumedUnder"]:
+        if not tagName:
+            tagName = tag["virtualTag"]
+        if tag["subsumed"]:
             continue
         if tagName in tagsSoFar and TagFlag.PRIMARY not in tag["flags"]:
             continue
 
         tagsSoFar.add(tagName)
-        databaseTagNumber = database['tag'][tagName]['listIndex']
         
         database["tag"][tagName]["listIndex"] = n
-    
+
+    tagList = database["tagDisplayList"]
+    # Cross-check tag indexes
+    for tag in database["tag"]:
+        if TagFlag.VIRTUAL not in database["tag"][tag]["flags"]:
+            index = database["tag"][tag]["listIndex"]
+            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
+
     """for tag in database["tag"].values():
         if tag["listIndex"] != tag["newListIndex"]:
             print(f"Mismatched numbers: {tag['tag']}: {tag['listIndex']=}, {tag['newListIndex']=}")"""
@@ -586,6 +591,7 @@ def CreateTagDisplayList(database):
             
         if TagFlag.VIRTUAL in rawTag["flags"]:
             listItem["tag"] = "" # Virtual tags don't have a display page
+            listItem["virtualTag"] = tag
         else:
             listItem["tag"] = tag
         
@@ -593,11 +599,8 @@ def CreateTagDisplayList(database):
     
     database["tagDisplayList"] = tagList
     
-    # Cross-check tag indexes
-    for tag in database["tag"]:
-        if TagFlag.VIRTUAL not in database["tag"][tag]["flags"]:
-            index = database["tag"][tag]["listIndex"]
-            assert tag == tagList[index]["tag"],f"Tag {tag} has index {index} but TagList[{index}] = {tagList[index]['tag']}"
+    if not gOptions.jsonNoClean:
+        del gDatabase["tagRaw"]
 
 def WalkTags(tagDisplayList: list,returnIndices:bool = False,yieldRootTags = False) -> Iterator[Tuple[dict,List[dict]]]:
     """Return (tag,subtags) tuples for all tags that have subtags. Walk the list depth-first."""
@@ -659,8 +662,10 @@ def PrepareReferences(reference) -> None:
 def PrepareTeachers(teacherDB) -> None:
     """Prepare database["teacher"] for use."""
     for t in teacherDB.values():
-        if TeacherConsent(teacherDB,[t["teacher"]],"searchable") and t.get("excerptCount",0):
-            t["htmlFile"] = Utils.slugify(t["fullName"]) + ".html"
+        if not t.get("attributionName",""):
+            t["attributionName"] = t["fullName"]
+        if TeacherConsent(teacherDB,[t["teacher"]],"teacherPage") and t.get("excerptCount",0):
+            t["htmlFile"] = Utils.slugify(t["attributionName"]) + ".html"
         else:
             t["htmlFile"] = ""
 
@@ -686,6 +691,8 @@ def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
+    if annotation["sessionNumber"] != excerpt["sessionNumber"]:
+        Alert.warning("Annotation",annotation,"to",excerpt,f"has a different session number ({annotation['sessionNumber']}) than its excerpt ({excerpt['sessionNumber']})")
     CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
     if annotation["kind"] == "Extra tags":
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
@@ -698,7 +705,14 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         excerpt["aTag"] += annotation["aTag"]
         return
     
-    if annotation["exclude"] or database["kind"][annotation["kind"]].get("exclude",False):
+    global gRemovedAnnotations
+    if annotation["exclude"]:
+        excludeAlert(annotation,"to",excerpt,"- exclude flag Yes.")
+        gRemovedAnnotations += 1
+        return
+    if database["kind"][annotation["kind"]].get("exclude",False):
+        excludeAlert(annotation,"to",excerpt,"- kind",repr(annotation["kind"]),"exclude flag Yes.")
+        gRemovedAnnotations += 1
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -725,10 +739,9 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 excludeAlert(excerpt,"due to teachers",annotation["teachers"],"of",annotation)
                 return
         
-        teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        teacherList = [teacher for teacher in annotation["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute") or database["kind"][annotation["kind"]]["ignoreConsent"]]
         for teacher in set(annotation["teachers"]) - set(teacherList):
-            if not TeacherConsent(database["teacher"],[teacher],"attribute"):
-                gUnattributedTeachers[teacher] += 1
+            gUnattributedTeachers[teacher] += 1
 
         if annotation["kind"] == "Reading":
             AppendUnique(teacherList,ReferenceAuthors(annotation["text"]))
@@ -798,7 +811,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 if startTime is None:
                     deletedExcerptIDs.add(id(x))
             endTime = Mp3DirectCut.ToTimeDelta(x["endTime"])
-        except ValueError:
+        except Mp3DirectCut.ParseError:
             deletedExcerptIDs.add(id(x))
 
     for index in reversed(range(len(excerpts))):
@@ -821,12 +834,13 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             source = {"filename": filename, "duration":duration, "event":event, "url":url}
             database["audioSource"][filename] = source
 
-    def ClipDuration(clip: SplitMp3.ClipTD,sessionDuration:timedelta) -> str:
-        "Return the duration of clip as a string."
+    def ExcerptDuration(excerpt: dict,sessionDuration:timedelta) -> str:
+        "Return the duration of excerpt as a string."
         try:
+            clip = excerpt["clips"][0].ToClipTD()
             duration = clip.Duration(sessionDuration)
-        except TypeError: # Generated if sessionDuration is None and needs to be used
-            Alert.error(x,"must specify an end time since it appears in a session with no end time.")
+        except Mp3DirectCut.TimeError as error:
+            Alert.error(excerpt,"generates time error:",error.args[0])
             return "0:00"
         return Utils.TimeDeltaToStr(duration)
 
@@ -863,12 +877,11 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                         # If the previous excerpt didn't specify an end time, use the start time of this excerpt
                     prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
             
-                prevClip = SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0])
-                prevExcerpt["duration"] = ClipDuration(prevClip,sessionDuration)
+                prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
                 
-                if prevClip.end > Mp3DirectCut.ToTimeDelta(startTime):
-                    startTime = prevExcerpt["clips"][0].end
-                    x["startTime"] = prevExcerpt["endTime"]
+                if prevExcerpt["clips"][0].ToClipTD().end > Mp3DirectCut.ToTimeDelta(startTime):
+                    # startTime = prevExcerpt["clips"][0].end # This code eliminates clip overlaps
+                    # x["startTime"] = prevExcerpt["endTime"]
                     if ExcerptFlag.OVERLAP not in x["flags"]:
                         Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
@@ -876,7 +889,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             prevExcerpt = x
         
         if prevExcerpt:
-            prevExcerpt["duration"] = ClipDuration(SplitMp3.ClipTD.FromClip(prevExcerpt["clips"][0]),sessionDuration)
+            prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
@@ -905,7 +918,8 @@ def LoadEventFile(database,eventName,directory):
                 teacherList.remove(t)
 
     eventDesc = DictFromPairs(rawEventDesc,"key","value")
-    
+    eventDesc["code"] = eventName
+
     for key in ["teachers","tags"]:
         eventDesc[key] = [s.strip() for s in eventDesc[key].split(';') if s.strip()]
     for key in ["sessions","excerpts","answersListenedTo","tagsApplied","invalidTags","duration"]:
@@ -1021,9 +1035,9 @@ def LoadEventFile(database,eventName,directory):
         if excludeReason:
             excludeAlert(*excludeReason)
 
-        attributedTeachers = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
+        attributedTeachers = [teacher for teacher in x["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute") or database["kind"][x["kind"]]["ignoreConsent"]]
         for teacher in set(x["teachers"]) - set(attributedTeachers):
-            if not TeacherConsent(database["teacher"],[teacher],"attribute") and not x["exclude"]:
+            if not x["exclude"]:
                 gUnattributedTeachers[teacher] += 1
         x["teachers"] = attributedTeachers
         
@@ -1044,10 +1058,11 @@ def LoadEventFile(database,eventName,directory):
 
     CreateClips(excerpts,sessions,database)
     
-    removedExcerpts = [x for x in excerpts if x["exclude"]]
+    originalCount = len(excerpts)
     excerpts = [x for x in excerpts if not x["exclude"]]
         # Remove excluded excerpts, those we didn't get consent for, and excerpts which are too corrupted to interpret
-
+    global gRemovedExcerpts
+    gRemovedExcerpts += originalCount - len(excerpts)
     sessionsWithExcerpts = set(x["sessionNumber"] for x in excerpts)
     for unusedSession in includedSessions - sessionsWithExcerpts:
         del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
@@ -1077,13 +1092,8 @@ def LoadEventFile(database,eventName,directory):
             del x["exclude"]
             del x["startTime"]
             del x["endTime"]
-    
-    for x in removedExcerpts: # Redact information about these excerpts
-        for key in ["teachers","tags","text","qTag","aTag","aListen","excerptNumber","exclude","kind","duration"]:
-            x.pop(key,None)
 
     database["excerpts"] += excerpts
-    database["excerptsRedacted"] += removedExcerpts
 
     eventDesc["sessions"] = len(sessions)
     eventDesc["excerpts"] = sum(1 for x in excerpts if x["fileNumber"]) # Count only non-session excerpts   
@@ -1190,7 +1200,135 @@ def VerifyListCounts(database):
     for x in database["excerpts"]:
         if len(set(x["tags"])) != len(x["tags"]):
             Alert.caution(f"Duplicate tags in {x['event']} S{x['sessionNumber']} Q{x['excerptNumber']} {x['tags']}")
+
+def AuditNames() -> None:
+    """Write assets/NameAudit.csv summarizing the information in the Tag, Teacher, and Name sheets.
+    This can be used to check consistency and see which teachers still need ordination dates."""
+
+    teacherFields = ["attributionName","group","lineage","indexExcerpts","indexSessions","searchable","teacherPage","attribute","allowTag"]
+    allFields = ["name","sortBy","nameEntry","tagEntry","teacherEntry","dateText","dateKnown","tag","supertag"] + teacherFields
+
+    def NameData() -> dict:
+        "Return a dictionary with keys for the name audit."
+        d = dict.fromkeys(allFields,"")
+        d["sortBy"] = 0.0
+        d["nameEntry"] = d["tagEntry"] = d["teacherEntry"] = False
+        d["dateKnown"] = "unknown"
+        return d
     
+    names = defaultdict(NameData)
+
+    # Copy data from tags
+    for supertag,subtags in WalkTags(gDatabase["tagDisplayList"]):
+        if TagFlag.SORT_SUBTAGS in supertag["flags"] or supertag["tag"] == "Thai Forest Tradition":
+            for tag in subtags:
+                if not tag["tag"] or gDatabase["tag"][tag["tag"]]["subtags"]: # Names don't have subtags
+                    continue
+                n = names[gDatabase["tag"][tag["tag"]]["fullTag"]]
+                n["tagEntry"] = True
+                n["tag"] = gDatabase["tag"][tag["tag"]]["tag"]
+                n["supertag"] = supertag["tag"]
+
+   # Copy data from teachers
+    for teacher in gDatabase["teacher"].values():
+        names[teacher["fullName"]]["teacherEntry"] = True
+        for field in teacherFields:
+            names[teacher["fullName"]][field] = teacher[field]
+    
+    # Copy data from names sheet
+    dateHierarchy = ["exactDate","knownMonth","knownYear","estimatedYear"]
+    for name in gDatabase["name"].values():
+        n = names[name["fullName"]]
+        n["nameEntry"] = True
+        if name["sortBy"]:
+            n["sortBy"] = float(name["sortBy"])
+        for dateField in dateHierarchy:
+            if name[dateField]:
+                n["dateText"] = name[dateField]
+                n["dateKnown"] = dateField
+                break
+
+    for name,n in names.items():
+        n["name"] = name
+
+    # Check names for potential problems
+    lineageExpectedSupertag = {"Thai disciples of Ajahn Chah":"Ajahn Chah lineage",
+                        "Western disciples of Ajahn Chah":"Ajahn Chah lineage",
+                        "Other Thai Forest":"Other Thai Forest teachers",
+                        "Other Thai":"Other Thai monastics",
+                        "Other Theravāda":"Other Theravāda monastics",
+                        "Vajrayāna":"Mahāyāna monastics"}
+    groupExpectedSupertag = {"Lay teachers":"Lay teachers"}
+    namesByDate = defaultdict(list)
+    for n in names.values():
+        if n["tag"] and n["attributionName"] and n["tag"] != n["attributionName"]:
+            Alert.notice(f"Short names don't match: tag: {repr(n['tag'])}; attributionName: {repr(n['attributionName'])}.")
+        if n["supertag"] and n["lineage"] and lineageExpectedSupertag.get(n["lineage"],n["supertag"]) != n["supertag"]:
+            Alert.caution(f"{n['name']} mismatch: lineage: {n['lineage']}, supertag: {n['supertag']}")
+        if n["supertag"] and n["group"] and groupExpectedSupertag.get(n["group"],n["supertag"]) != n["supertag"]:
+            Alert.caution(f"{n['name']} mismatch: group: {n['group']}, supertag: {n['supertag']}")
+        namesByDate[n["sortBy"]].append(n)
+    
+    for date,namesWithDate in namesByDate.items():
+        if len(namesWithDate) < 2 or not date:
+            continue
+        alertItems = [[n["name"] for n in namesWithDate],f"all have date {date}."]
+        duplicateSupertags = Utils.Duplicates(n["supertag"] for n in namesWithDate if n["supertag"])
+        for s in duplicateSupertags:
+            alertItems.append(f"This will cause arbitrary sort order under supertag {s}.")
+        duplicateGroups = Utils.Duplicates(n["group"] for n in namesWithDate if n["group"])
+        for g in duplicateGroups:
+            alertItems.append(f"This will cause arbitrary sort order in teacher group {g}.")
+
+        if len(alertItems) > 2:
+            Alert.caution(*alertItems)
+
+    # Configure sort order
+    supertags = set(n["supertag"] for n in names.values())
+    supertagIndices = {}
+    for tag in supertags:
+        for n,tagEntry in enumerate(gDatabase["tagDisplayList"]):
+            if tagEntry["tag"] == tag:
+                supertagIndices[tag] = n
+                break
+
+    def SortKey(name) -> tuple:
+        supertag = name["supertag"] or lineageExpectedSupertag.get(name["lineage"],None) or groupExpectedSupertag.get(name["group"],None)
+        if supertag:
+            if name["sortBy"]:
+                return supertagIndices[supertag], name["sortBy"]
+            else:
+                return supertagIndices[supertag], 9999.0
+        else:
+            return 9999, name["sortBy"]
+
+    nameList = sorted(names.values(),key=SortKey)
+    for name in nameList:
+        name["sortBy"] = SortKey(name)
+
+    with open(Utils.PosixJoin(gOptions.prototypeDir,"assets/NameAudit.csv"), 'w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(allFields)
+        for n in nameList:
+            writer.writerow(n.values())
+
+    Alert.info("Wrote",len(nameList),"names to assets/NameAudit.csv.")
+
+def DumpCSV(directory:str):
+    "Write a summary of gDatabase to csv files in directory."
+
+    os.makedirs(directory,exist_ok=True)
+
+    columns = ["event","sessionNumber","excerptNumber","indentLevel","kind","flags","teachers","text","tags","duration"]
+    with open(Utils.PosixJoin(directory,"excerpts.csv"), 'w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(columns)
+        for x in gDatabase["excerpts"]:
+            for i in Filter.AllSingularItems(x):
+                duplicate = dict(i)
+                duplicate["teachers"] = ";".join(gDatabase["teacher"][t]["attributionName"] for t in i.get("teachers",[]))
+                duplicate["tags"] = ";".join(i.get("tags",[]))
+                writer.writerow(duplicate.get(field,"") for field in columns)
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -1202,6 +1340,8 @@ def AddArguments(parser):
     parser.add_argument('--keepUnusedTags',**Utils.STORE_TRUE,help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',**Utils.STORE_TRUE,help="Keep intermediate data in json file for debugging")
     parser.add_argument('--explainExcludes',**Utils.STORE_TRUE,help="Print a message for each excluded/redacted excerpt")
+    parser.add_argument('--auditNames',**Utils.STORE_TRUE,help="Write assets/NameAudit.csv file to check name sorting.")
+    parser.add_argument('--dumpCSV',type=str,default='',help='Dump csv output files to this directory.')
 
 def ParseArguments() -> None:
     pass
@@ -1211,6 +1351,8 @@ def Initialize() -> None:
 
 gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
+gRemovedExcerpts = 0 # Count the total number of removed excerpts
+gRemovedAnnotations = 0
 
 # AlertClass for explanations of excluded excerpts. Don't show by default.
 excludeAlert = Alert.AlertClass("Exclude","Exclude",printAtVerbosity=999,logging = False,lineSpacing = 1)
@@ -1256,17 +1398,18 @@ def main():
     gDatabase["sessions"] = []
     gDatabase["audioSource"] = {}
     gDatabase["excerpts"] = []
-    gDatabase["excerptsRedacted"] = []
     for event in gDatabase["summary"]:
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             LoadEventFile(gDatabase,event,gOptions.csvDir)
-    excludeAlert(f"{len(gDatabase['excerptsRedacted'])} excerpts in all.")
+    excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them
     gUnattributedTeachers.pop("Anon",None)
     if gUnattributedTeachers:
         excludeAlert(f": Did not attribute excerpts to the following teachers:",dict(gUnattributedTeachers))
-    
+    if gDatabase["tagRedacted"]:
+        excludeAlert(f": Redacted these tags due to teacher consent:",gDatabase["tagRedacted"])
+
     if not len(gDatabase["event"]):
         Alert.error("No excerpts have been parsed. Aborting.")
         sys.exit(1)
@@ -1281,20 +1424,25 @@ def main():
 
     CreateTagDisplayList(gDatabase)
     SortTags(gDatabase)
+    IndexTags(gDatabase)
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
     CountSubtagExcerpts(gDatabase)
+    
+    if gOptions.auditNames:
+        AuditNames()
 
-    if not gOptions.jsonNoClean:
-        del gDatabase["tagRaw"]    
     gDatabase["keyCaseTranslation"] = {key:gCamelCaseTranslation[key] for key in sorted(gCamelCaseTranslation)}
 
     Utils.ReorderKeys(gDatabase,["excerpts","event","sessions","audioSource","kind","category","teacher","tag","series","venue","format","medium","reference","tagDisplayList"])
 
     Alert.extra("Spreadsheet database contents:",indent = 0)
     Utils.SummarizeDict(gDatabase,Alert.extra)
-    
+
     with open(gOptions.spreadsheetDatabase, 'w', encoding='utf-8') as file:
         json.dump(gDatabase, file, ensure_ascii=False, indent=2)
     
+    if gOptions.dumpCSV:
+        DumpCSV(gOptions.dumpCSV)
+
     Alert.info(Prototype.ExcerptDurationStr(gDatabase["excerpts"],countSessionExcerpts=True,sessionExcerptDuration=False),indent = 0)

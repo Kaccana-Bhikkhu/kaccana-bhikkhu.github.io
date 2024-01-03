@@ -16,7 +16,9 @@
 <body>
     <script>
       url = new URL(location.href)
-      location.replace("../index.html#about/15_Version-list.html" + url.hash);
+      if (url.protocol != "file:") {
+        location.replace("../index.html#about/15_Version-list.html" + url.hash);
+      }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
@@ -26,6 +28,7 @@
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -45,12 +48,15 @@
       <a href="../about/09_Want-to-help.html">Want to help?</a>
       <a href="../about/10_Acknowledgements.html">Acknowledgements</a>
       <a href="../about/11_Contact.html">Contact</a>
-      <a href="../about/12_License.html" class="active">Technical</a> </div>
+      <a href="../about/09_Search-instructions.html" class="active">Technical</a> </div>
 <hr>
- <div class="sublink2"> <a href="../about/12_License.html">License</a>
+
+<div class="sublink2"> <a href="../about/09_Search-instructions.html">Search instructions</a>
+      <a href="../about/12_License.html">License</a>
       <a href="../about/15_Version-list.html" class="active">Version list</a> </div>
 <hr>
-  <img src="../images/photos/LPP with novices Thailand Dec 2015.jpg" alt="Ajahn Pasanno in Thailand, December 2015" id="cover" title="Ajahn Pasanno in Thailand, December 2015" align="bottom" width="200" border="0"/> 
+
+ <img src="../images/photos/LPP with novices Thailand Dec 2015.jpg" alt="Ajahn Pasanno in Thailand, December 2015" id="cover" title="Ajahn Pasanno in Thailand, December 2015" align="bottom" width="200" border="0"/> 
 <h1 id="version-list">Version list</h1>
 <ul>
 <li>
@@ -162,14 +168,26 @@
 <p>3.6.4 Add CheckLinks module. Include only about pages and events in sitemap.xml. New command line options: --args Filename.args includes the arguments in Filename.args in the command line; --no-XXX sets boolean option XXX to False; --multithread allows multithreaded http operations.</p>
 </li>
 <li>
-<p>3.6.5 (December 2023 Release) Don't truncate player titles. Fix glitch in multipage excerpt list page menu.</p>
+<p>3.6.5 (December 2023 release) Don't truncate player titles. Fix glitch in multipage excerpt list page menu.</p>
+</li>
+<li>
+<p>3.7 More versatile audio processing framework. Don't split excluded excerpts. Allow overlapping clips. Fix player close timout (contributed by Owen). Don't redirect file:// URLs to index.html# to allow simple local browsing. WR2014 finished.</p>
+</li>
+<li>
+<p>4.0 Search feature. Minor changes to WR2014. ParseCSV option --auditNames.</p>
+</li>
+<li>
+<p>4.0.1 Updated many Thai Ajahns' names and dates with information from Krooba Kai. Teacher attributionName field. WR2014 table of contents. ParseCSV option --dumpCSV.</p>
+</li>
+<li>
+<p>4.0.2 (January 2024 release) About page with search instructions.</p>
 </li>
 </ul>
 </div>
 
 <footer>
     <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Version list,” The Ajahn Pasanno Question and Story Archive, December 2023 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Version list,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
       <a href="https://abhayagiri.org/questions/about/15_Version-list.html">https://abhayagiri.org/questions/about/15_Version-list.html</a>.</p>
 </footer>
 
