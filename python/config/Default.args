@@ -26,7 +26,7 @@
 --mirror preview:https://storage.googleapis.com/apqs_archive/
 --mirror github:https://kaccana-bhikkhu.github.io/qs-archive/
 --sessionMp3 remote,abhayagiri
---excerptMp3 local
+--excerptMp3 abhayagiri
 --reference remote,abhayagiri
 --uploadMirror abhayagiri
 // --linkCheckLevel excerptMp3:local:3 // Use this to update excerpts with changed timestamps. Somewhat slower.
