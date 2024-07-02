@@ -9,7 +9,7 @@
 Due to Winter Retreat at Cittaviveka Monastery, the next release will be May 2024 at the earliest.
 
 ## Content
-This release contains 1967 excerpts from 40 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 294 transcribed pages, of which 245 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 1978 excerpts from 41 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 294 transcribed pages, of which 245 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.
