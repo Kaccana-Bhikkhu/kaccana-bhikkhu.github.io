@@ -12,7 +12,7 @@ import re, copy, itertools
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
-from typing import NamedTuple
+from typing import NamedTuple, Generator
 from collections import defaultdict, Counter
 import itertools
 import FileRegister
@@ -354,7 +354,7 @@ def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     numberNames = {3:"Threes", 4:"Fours", 5:"Fives", 6:"Sixes", 7:"Sevens", 8:"Eights",
                    9:"Nines", 10:"Tens", 12: "Twelves", 37:"Thiry-sevens"}
-    def SubtagList(tag: dict) -> tuple(str,str,str):
+    def SubtagList(tag: dict) -> tuple[str,str,str]:
         number = int(tag["number"])
         numberName = numberNames[number]
 
@@ -731,7 +731,7 @@ class Formatter:
         elif self.audioLinks != "chip":
             a(f'({excerpt["duration"]}) ')
 
-        def ListAttributionKeys() -> Tuple[str,str]:
+        def ListAttributionKeys() -> Generator[Tuple[str,str]]:
             for num in range(1,10):
                 numStr = str(num) if num > 1 else ""
                 yield ("attribution" + numStr, "teachers" + numStr)
@@ -1212,7 +1212,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
         "Return the index of the series of this event for sorting purposes"
         return list(gDatabase["series"]).index(event["series"])
     
-    def LinkToAboutSeries(event: dict) -> tuple(str,str,str):
+    def LinkToAboutSeries(event: dict) -> tuple[str,str,str]:
         htmlHeading = event["series"]
         
         nonlocal prevSeries
