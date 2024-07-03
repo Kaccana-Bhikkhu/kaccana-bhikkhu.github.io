@@ -69,7 +69,7 @@ def ApplyDefaults(argsFilename: str,parser: argparse.ArgumentParser) -> None:
     gParsedArgsFiles.append(argsFilename)
     parser.set_defaults(**vars(defaultArgs))
 
-def LoadDatabaseAndAddMissingOps(opSet: set(str)) -> Tuple[dict,set(str)]:
+def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
     "Scan the list of specified ops to see if we can load a database to save time. Add any ops needed to support those specified."
 
     newDB = {}
@@ -232,6 +232,8 @@ PrintModuleSeparator("")
 
 if clOptions.ignoreTeacherConsent:
     Alert.warning("Teacher consent has been ignored. This should only be used for testing and debugging purposes.")
+if clOptions.pendingMeansYes:
+    Alert.warning("Pending teacher consent has been treated as yes. This should only be used for testing and debugging purposes.")
 if clOptions.ignoreExcludes:
     Alert.warning("Session/excerpt exclusion flags have been ignored. This should only be used for testing and debugging purposes.")
 

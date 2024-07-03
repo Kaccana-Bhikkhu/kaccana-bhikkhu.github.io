@@ -91,7 +91,7 @@ def FirstValidValue(inDict,keyList,inDefault = None):
 
 def BooleanValue(text: str) -> bool:
     """Returns true if the first three characters of text are 'Yes'.
-    This is the standard way of encoding boolean values in the csv files from AP QA Archive main."""
+    This is the standard way of encoding boolean values in the csv files from AP QS Archive main."""
     
     return text[:3] == 'Yes'
 
@@ -101,7 +101,7 @@ def AppendUnique(ioList,inToAppend):
         if not item in ioList:
             ioList.append(item)
 
-def CSVToDictList(file: TextIO,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = True,camelCase = True):
+def CSVToDictList(file: TextIO,skipLines = 0,removeKeys = [],endOfSection = None,convertBools = BooleanValue,camelCase = True):
     for _ in range(skipLines):
         file.readline()
     
@@ -124,7 +124,7 @@ def CSVToDictList(file: TextIO,skipLines = 0,removeKeys = [],endOfSection = None
             if convertBools:
                 for key in row:
                     if key[-1:] == '?':
-                        row[key] = BooleanValue(row[key])
+                        row[key] = convertBools(row[key])
             
             if camelCase:
                 CamelCaseKeys(row)
@@ -1337,6 +1337,7 @@ def AddArguments(parser):
     "Add command-line arguments used by this module"
     
     parser.add_argument('--ignoreTeacherConsent',**Utils.STORE_TRUE,help="Ignore teacher consent flags - debugging only")
+    parser.add_argument('--pendingMeansYes',**Utils.STORE_TRUE,help="Treat teacher consent pending as yes - debugging only")
     parser.add_argument('--ignoreExcludes',**Utils.STORE_TRUE,help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--parseOnlySpecifiedEvents',**Utils.STORE_TRUE,help="Load only events specified by --events into the database")
     parser.add_argument('--detailedCount',**Utils.STORE_TRUE,help="Count all possible items; otherwise just count tags")
@@ -1384,7 +1385,14 @@ def main():
         if re.match(".*[0-9]{4}",baseName): # Event files contain a four-digit year and are loaded after all other files
             continue
         
-        gDatabase[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath))
+        def PendingBoolean(s:str):
+            return s.startswith("Yes") or s.startswith("Pending")
+
+        extraArgs = {}
+        if baseName == "Teacher" and gOptions.pendingMeansYes:
+            extraArgs["convertBools"] = PendingBoolean
+
+        gDatabase[CamelCase(baseName)] = ListToDict(CSVFileToDictList(fullPath,**extraArgs))
     
     LoadTagsFile(gDatabase,os.path.join(gOptions.csvDir,"Tag.csv"))
     PrepareReferences(gDatabase["reference"])
