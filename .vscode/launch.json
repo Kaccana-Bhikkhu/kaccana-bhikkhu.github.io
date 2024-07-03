@@ -7,7 +7,7 @@
 
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -15,7 +15,7 @@
         },
         {
             "name": "AllSheets",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -29,7 +29,7 @@
         },
         {
             "name": "AllEvents",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -41,7 +41,7 @@
         },
         {
             "name": "ParseCSV",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -53,7 +53,7 @@
         },
         {
             "name": "ParseCSVOnly",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -64,7 +64,7 @@
         },
         {
             "name": "Prototype",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -75,7 +75,7 @@
         },
         {
             "name": "BuildAll",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -88,7 +88,7 @@
         },
         {
             "name": "Testing",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
