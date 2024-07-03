@@ -937,6 +937,7 @@ def LoadEventFile(database,eventName,directory):
         s["event"] = eventName
         Utils.ReorderKeys(s,["event","sessionNumber"])
         RemoveUnknownTeachers(s["teachers"],s)
+        s["teachers"] = [teacher for teacher in s["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
 
     if not gOptions.ignoreExcludes:
         sessions = FilterAndExplain(sessions,lambda s: not s["exclude"],excludeAlert,"- exclude flag Yes.")
