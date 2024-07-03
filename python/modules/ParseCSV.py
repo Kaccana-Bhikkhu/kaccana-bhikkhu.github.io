@@ -927,8 +927,6 @@ def LoadEventFile(database,eventName,directory):
 
     RemoveUnknownTeachers(eventDesc["teachers"],eventDesc)
     
-    database["event"][eventName] = eventDesc
-    
     
     for key in ["tags","teachers"]:
         ListifyKey(sessions,key)
@@ -1067,6 +1065,11 @@ def LoadEventFile(database,eventName,directory):
     for unusedSession in includedSessions - sessionsWithExcerpts:
         del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
         # Remove sessions with no excerpts
+
+    if sessionsWithExcerpts:
+        database["event"][eventName] = eventDesc
+    else:
+        Alert.caution(eventDesc,"has no non-excluded session. Removing this event from the database.")
 
     xNumber = 1
     lastSession = -1
