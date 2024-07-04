@@ -150,7 +150,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         bodyTemplateStr = kind["body"][formNumber]
         attributionTemplateStr = kind["attribution"][formNumber]
     else:
-        bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(item["text"])
+        bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(FStringToPyratemp(item["text"]))
     
     if ParseCSV.ExcerptFlag.UNQUOTE in item["flags"]: # This flag indicates no quotes
         bodyTemplateStr = re.sub('[“”]','',bodyTemplateStr) # Templates should use only double smart quotes
