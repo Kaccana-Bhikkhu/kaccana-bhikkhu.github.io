@@ -140,7 +140,7 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
     def HtmlTeacherLink(matchObject: re.Match) -> str:
         teacher = Utils.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
-        return f'<a href = {htmlFile}>{matchObject[1]}</a>'
+        return f'<a href="{htmlFile}">{matchObject[1]}</a>'
 
     return re.sub(teacherRegex,HtmlTeacherLink,text)
 
