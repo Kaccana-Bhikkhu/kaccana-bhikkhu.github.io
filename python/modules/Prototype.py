@@ -149,7 +149,7 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     """Write a list of hyperlinked teachers.
     teachers is a list of abbreviated teacher names"""
     
-    fullNameList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
+    fullNameList = [gDatabase["teacher"][t]["attributionName"] for t in teachers]
     
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
