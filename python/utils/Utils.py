@@ -54,7 +54,7 @@ def ItemCode(item:dict|None = None, event:str = "", session:int|None = None, fil
         outputStr += f"_F{fileNumber:02d}"
     return outputStr
 
-def ParseItemCode(itemCode:str) -> tuple(str,int|None,int|None):
+def ParseItemCode(itemCode:str) -> tuple[str,int|None,int|None]:
     "Parse an item code into (eventCode,session,fileNumber). If parsing fails, return ("",None,None)."
 
     m = re.match(r"([^_]*)(?:_S([0-9]+))?(?:_F([0-9]+))?",itemCode)
@@ -197,6 +197,27 @@ def EllideText(s: str,maxLength = 50) -> str:
         return s
     else:
         return s[:maxLength - 3] + "..."
+
+def SmartQuotes(s: str):
+    """Takes a string and returns it with dumb quotes, single and double,
+    replaced by smart quotes. Accounts for the possibility of HTML tags
+    within the string.
+    Based on https://gist.github.com/davidtheclark/5521432"""
+
+    # Find dumb double quotes coming directly after letters or punctuation,
+    # and replace them with right double quotes.
+    s = re.sub(r'([a-zA-Z0-9.,?!;:/\'\"])"', r'\1”', s)
+    # Find any remaining dumb double quotes and replace them with
+    # left double quotes.
+    s = s.replace('"', '“')
+    # Reverse: Find any SMART quotes that have been (mistakenly) placed around HTML
+    # attributes (following =) and replace them with dumb quotes.
+    s = re.sub(r'=“(.*?)”', r'="\1"', s)
+    # Follow the same process with dumb/smart single quotes
+    s = re.sub(r"([a-zA-Z0-9.,?!;:/\"\'])'", r'\1’', s)
+    s = s.replace("'", '‘')
+    s = re.sub(r'=‘(.*?)’', r"='\1'", s)
+    return s
 
 def ItemRepr(item: dict) -> str:
     """Generate a repr-style string for various dict types in gDatabase. 
