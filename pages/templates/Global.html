@@ -19,8 +19,18 @@
 <body>
   <!--(if page.gOptions.redirectToJavascript)-->
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#$!page.info.file!$" + url.hash);
       }
     </script>
@@ -57,7 +67,7 @@ $!page.RenderNumberedSections()!$
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
     <p id="cite-as"><b>How to cite this page</b> (suggested style): “$!page.section["citationTitle"] if page.HasSection("citationTitle") else page.info.title!$,” The Ajahn Pasanno Question and Story Archive, $!page.gOptions.info.releaseName!$,
       $!f'<a href="{page.gOptions.info.citationURL}{page.info.file}">{page.gOptions.info.citationURL}{page.info.file}</a>'!$.</p>
 </footer>
