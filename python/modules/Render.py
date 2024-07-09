@@ -68,6 +68,16 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
     parts[1] = "{attribution}"
     return "".join(parts), attribution
 
+def ApplySmartQuotes():
+    for e in gDatabase["event"].values():
+        e["description"] = Utils.SmartQuotes(e["description"])
+
+    for s in gDatabase["series"].values():
+        s["description"] = Utils.SmartQuotes(s["description"])
+
+    for s in gDatabase["sessions"]:
+        s["sessionTitle"] = Utils.SmartQuotes(s["sessionTitle"])
+
 def PrepareTemplates():
     ParseCSV.ListifyKey(gDatabase["kind"],"form1")
     ParseCSV.ConvertToInteger(gDatabase["kind"],"defaultForm")
@@ -569,6 +579,8 @@ gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def main() -> None:
+
+    ApplySmartQuotes()
 
     PrepareTemplates()
 
