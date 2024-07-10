@@ -180,7 +180,7 @@ def AllTags(item: dict) -> set:
 
 def AllTagsOrdered(item: dict) -> list:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""
-    allTags = item["tags"]
+    allTags = list(item["tags"])
 
     for annotation in item.get("annotations",()):
         Utils.ExtendUnique(allTags,annotation.get("tags",()))

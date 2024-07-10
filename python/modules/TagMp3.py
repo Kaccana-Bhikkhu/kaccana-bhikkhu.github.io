@@ -109,6 +109,8 @@ def ExcerptTags(excerpt: dict) -> dict:
 
     if not returnValue["artist"]:
         returnValue["artist"] = ["Anonymous"]
+    if not returnValue["albumartist"]:
+        del returnValue["albumartist"]
     if excerpt["sessionNumber"] and excerpt["sessionNumber"] < 1000:
         returnValue["discnumber"] = str(excerpt["sessionNumber"])
     if session["sessionTitle"]:
