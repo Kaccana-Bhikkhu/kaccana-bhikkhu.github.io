@@ -102,7 +102,7 @@ def ExcerptTags(excerpt: dict) -> dict:
         "date": str(Utils.ParseDate(session["date"]).year),
         "comment": ExcerptComment(excerpt,session,event),
         "genre": gDatabase["kind"][excerpt["kind"]]["category"],
-        "copyright": "© 2023 Abhayagiri Monastery; not for distribution outside the APQS Archive",
+        "copyright": f"© {gOptions.info.releaseYear} Abhayagiri Monastery; not for distribution outside the APQS Archive",
         "organization": "The Ajahn Pasanno Question and Story Achive",
         "website": f"https://abhayagiri.org/questions/events/{excerpt['event']}.html#{Utils.ItemCode(excerpt)}",
     }

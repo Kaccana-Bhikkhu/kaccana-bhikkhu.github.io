@@ -154,6 +154,8 @@ def main() -> None:
         Alert.extra()
         Alert.extra("Documentation files:",writer.StatusSummary())
         deleteCount = writer.DeleteUnregisteredFiles("documentation/about",r".*\.md")
+        deleteCount += writer.DeleteUnregisteredFiles("documentation/technical",r".*\.md")
+        deleteCount += writer.DeleteUnregisteredFiles("documentation/misc",r".*\.md")
         if deleteCount:
             Alert.info(deleteCount,"documentation file(s) deleted.")
 
