@@ -243,7 +243,7 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
         SinglePassSplit(file,clipsToSplit,outputDir)
         clipsRemaining = clipsNotSplit
 
-def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set(str):
+def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set[str]:
     """Iterate recursively over clips and return the set of all source files used."""
     if isinstance(clips,Clip):
         return {clips.file}
@@ -255,7 +255,7 @@ def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set(str):
             sources.update(SourceFiles(item))
     return sources
 
-def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple(set(str),dict[str,list[Clip]])]:
+def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple[set[str],dict[str,list[Clip]]]]:
     """Group the fileClips by source files. Returns an iterator of tuples:
     (files,fileClips), where files is a set of source files and fileClips is the dict of files that use
     these source files. For the time being, assume that all clips have only one source file."""

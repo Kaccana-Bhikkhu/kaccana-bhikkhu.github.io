@@ -7,6 +7,7 @@ import pyratemp
 import itertools
 from pathlib import Path
 from collections.abc import Iterator, Iterable, Callable
+from typing import List
 import copy
 import Utils
 
@@ -155,7 +156,7 @@ class PageDesc(Renderable):
                     # Sequential sections are given by integer keys, non-sequential sections by string keys.
     defaultJoinChar:str                     # The character to join str sections with
     specialJoinChar:dict[str,str]           # The character to join named sections with
-    keywords:[str]                          # Keywords for the html header
+    keywords:List[str]                          # Keywords for the html header
 
     def __init__(self,info: PageInfo = PageInfo()) -> None:
         self.info = info 
@@ -352,7 +353,7 @@ class PageDesc(Renderable):
 
 
 T = TypeVar("T")
-def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple(str,str,str|None)],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
     itemRenderer: Takes an item and returns the tuple heading,htmlBody[,headingID].

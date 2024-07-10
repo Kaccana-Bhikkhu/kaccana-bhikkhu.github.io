@@ -7,7 +7,7 @@ import os
 import Utils, Alert, Link
 from typing import Iterable
 
-def MoveItemsIfNeeded(items: Iterable[dict]) -> (int,int,int):
+def MoveItemsIfNeeded(items: Iterable[dict]) -> tuple[int,int,int]:
     """Move items to/from the xxxNoUpload directories as needed. 
     Return a tuple of counts: (moved to regular location,moved to NoUpload directory,other files moved to NoUpload directory)."""
     movedToDir = movedToNoUpload = otherFilesMoved = 0
