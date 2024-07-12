@@ -1295,6 +1295,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
+        formatter.headingShowTeacher = False
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
         pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
