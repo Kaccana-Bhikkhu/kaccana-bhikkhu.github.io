@@ -97,13 +97,15 @@ function delayedScroll(bookmark) {
 	}, 1000);
 }
 
-changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-	let urlHash = decodeURIComponent(location.hash)
-	if (urlHash.slice(1).includes("#")) {
-		delayedScroll(urlHash.slice(1).split("#")[1]);
-	}
-});
+if (frame) {
+	changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
+		let urlHash = decodeURIComponent(location.hash)
+		if (urlHash.slice(1).includes("#")) {
+			delayedScroll(urlHash.slice(1).split("#")[1]);
+		}
+	});
 
-addEventListener("popstate", () => {
-	changeURL(location.hash.slice(1) || frame.dataset.url);
-});
+	addEventListener("popstate", () => {
+		changeURL(location.hash.slice(1) || frame.dataset.url);
+	});
+}
