@@ -23,7 +23,7 @@ This license applies to all versions of the Archive that have been posted on abh
 
 -----
 
-### Use in AI Dhamma Teachings
+### Use in Generative AI
 
 Given the current trajectory of artificial intelligence, it seems plausible that a computer trained on hours of audio and visual recordings of a person answering questions on a subject could recreate that person's responses to similar questions. One could imagine a video screen of Ajahn Pasanno sitting on the Abhayagiri Dhamma seat and responding to verbal questions in real time. Magical animated paintings of dead people who converse with Harry Potter and his friends fit perfectly in their fictional world. A real life AI simulacrum of Ajahn Pasanno seems distinctly creepy.
 

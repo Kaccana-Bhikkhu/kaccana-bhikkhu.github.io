@@ -2,11 +2,10 @@
 
 # Status
 
-## New in the January 2024 release:
-- Completed [Winter Retreat 2014](../../pages/events/WR2014.html): Our Roots in the Thai Forest Tradition
-- [Text search feature](../search/Text-search.html)
-
-Due to Winter Retreat at Cittaviveka Monastery, the next release will be May 2024 at the earliest.
+## New in the July 2024 release:
+- Added much material from the [2001 Ajahn Chah Weekend](../../pages/events/Chah2001.html). Some sessions have been omitted pending obtaining teacher consent.
+- Finalized the [license details](../../pages/about/12_License.html).
+- Allow search engine indexing (we hope!).
 
 ## Content
 This release contains 2146 excerpts from 41 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 294 transcribed pages, of which 245 have been entered into the Archive. The detailed status of transcription is as follows:
@@ -24,7 +23,7 @@ All four recordings of daylong events led by Ajahn Pasanno at Spirit Rock Medita
 All 20 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive.
 
 ### Other
-A handwritten transcription of the 2001 Ajahn Chah Conference has been completed. Many voices contributed to this memorable event, so it will take a while to obtain permission to include their teachings in the Archive.
+The 2001 Ajahn Chah Conference is nearly finished. Several sessions do not yet appear in the Archive pending obtaining teacher consent.
 
 ## Known issues and limitations
 
@@ -38,3 +37,6 @@ A handwritten transcription of the 2001 Ajahn Chah Conference has been completed
 - [Numerical tags page](../indexes/NumericalTags.html)
 - Tags in the [tag hierarchy](../drilldown/root.html) show the number of excerpts described by any subtag.
 - Various bugs and glitches fixed.
+### January 2024:
+- Completed [Winter Retreat 2014](../../pages/events/WR2014.html): Our Roots in the Thai Forest Tradition
+- [Text search feature](../search/Text-search.html)

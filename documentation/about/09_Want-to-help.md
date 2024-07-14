@@ -31,7 +31,7 @@ There is so much potential material for the Archive that little proofreading has
 ### Tag and transcribe Thanksgiving Retreat Questions
 __Requirements:__ English proficiency, Comfortable using computers (spreadsheet experience a plus), Attended at least one retreat with Ajahn Pasanno
 
-__Time commitment:__ Most likely 20 hours to learn the system and transcribe your first retreat.
+__Time commitment:__ Most likely 15 hours to learn the system and transcribe your first retreat.
 
 The Archive currently contains questions from the 2013-2016 Thanksgiving Retreats transcribed and time-stamped by the monks who produced the CDs issued shortly after these retreats. The questions are taged based on the transcribe questions but not the audio content of Ajahn Pasanno's answers. I’m hoping that volunteers might listen to these questions, add tags based on the answers, and annotate noteworthy stories, references, and quotes.
 

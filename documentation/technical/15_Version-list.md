@@ -81,3 +81,5 @@
 - 4.0.1 Updated many Thai Ajahns' names and dates with information from Krooba Kai. Teacher attributionName field. WR2014 table of contents. ParseCSV option --dumpCSV.
 
 - 4.0.2 (January 2024 release) About page with search instructions.
+
+- 4.1 (July 2024 release) 2001 Ajahn Chah Conference almost finished. Finalized the license. Allow search engines to index pages (fingers crossed). Apply smart quotes to text. ParseCSV option --pendingMeansYes. Unit tests for search feature. Fix several minor bugs.
