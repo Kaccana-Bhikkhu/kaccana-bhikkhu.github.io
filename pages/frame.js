@@ -74,7 +74,7 @@ async function changeURL(pUrl) {
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
 			let [text, resultUrl] = result
-			text = text.replaceAll(/<link[^>]*rel="stylesheet"[^>]*>/gi,"")
+			text = text.replaceAll(/<link[^>]*rel="stylesheet"[^>]*style\.css[^>]*>/gi,"")
 			frame.innerHTML = text;
 
 			let innerTitle = frame.querySelector("title");
