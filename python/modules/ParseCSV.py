@@ -1008,6 +1008,9 @@ def LoadEventFile(database,eventName,directory):
             AppendUnique(x["teachers"],ReferenceAuthors(x["text"]))
         
         if x["sessionNumber"] != lastSession:
+            if lastSession > x["sessionNumber"]:
+                Alert.error(f"Session number out of order after excerpt number {fileNumber} in session {lastSession} of",eventDesc," Will discard this excerpt.")
+                continue
             lastSession = x["sessionNumber"]
             if x["startTime"] == "Session":
                 fileNumber = 0
@@ -1076,8 +1079,6 @@ def LoadEventFile(database,eventName,directory):
     lastSession = -1
     for x in excerpts:
         if x["sessionNumber"] != lastSession:
-            if lastSession > x["sessionNumber"]:
-                Alert.warning(f"Session number out of order after excerpt {xNumber} in session {lastSession} of {x['event']}")
             if "clips" in x: # Does the session begin with a regular (non-session) excerpt?
                 xNumber = 1
             else:
