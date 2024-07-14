@@ -7,4 +7,7 @@
 // Link options:
 --linkCheckLevel excerptMp3:local:3 // Check local excerpt mp3 split times
 --linkCheckLevel 3
---excerptMp3 abhayagiri
+--sessionMp3 remote,abhayagiri
+--excerptMp3 local
+--reference remote,abhayagiri
+--uploadMirror abhayagiri
