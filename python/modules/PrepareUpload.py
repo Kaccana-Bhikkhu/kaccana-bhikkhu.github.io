@@ -42,6 +42,9 @@ def MoveItemsIfNeeded(items: Iterable[dict]) -> tuple[int,int,int]:
                 Utils.MoveFile(path,path.replace(itemDir,noUploadDir))
                 otherFilesMoved += 1
 
+    Utils.RemoveEmptyFolders(itemDir)
+    Utils.RemoveEmptyFolders(noUploadDir)
+
     return movedToDir,movedToNoUpload,otherFilesMoved
 
 def MoveItemsIn(items: list[dict]|dict[dict],name: str) -> None:

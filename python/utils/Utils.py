@@ -125,6 +125,23 @@ def SwitchedMoveFile(locationFalse: str,locationTrue: str,switch: bool) -> bool:
 def MoveFile(fromPath: str,toPath: str) -> bool:
     return SwitchedMoveFile(fromPath,toPath,True)
 
+def RemoveEmptyFolders(root: str) -> set[str]:
+    # From https://stackoverflow.com/questions/47093561/remove-empty-folders-python
+    deleted = set()
+    for current_dir, subdirs, files in os.walk(root, topdown=False):
+
+        still_has_subdirs = False
+        for subdir in subdirs:
+            if os.path.join(current_dir, subdir) not in deleted:
+                still_has_subdirs = True
+                break
+    
+        if not any(files) and not still_has_subdirs:
+            os.rmdir(current_dir)
+            deleted.add(current_dir)
+
+    return deleted
+
 def ReplaceExtension(filename:str, newExt: str) -> str:
     "Replace the extension of filename before the file extension"
     name,_ = os.path.splitext(filename)
