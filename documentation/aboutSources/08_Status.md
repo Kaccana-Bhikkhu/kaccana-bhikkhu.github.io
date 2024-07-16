@@ -8,13 +8,13 @@
 - Allow search engine indexing (we hope!).
 
 ## Content
-This release contains $!len(gDatabase["excerpts"])!$ excerpts from $!len(gDatabase["event"])!$ events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 294 transcribed pages, of which 245 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains $!len(gDatabase["excerpts"])!$ excerpts from $!len(gDatabase["event"])!$ events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 372 transcribed pages, of which 275 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](about:want-to-help) for details.
 
 ### Winter Retreats
-All sessions from the [2014](event:WR2014) and [2015](event:WR2015) Winter Retreats are included in the Archive. A series of interviews and discussions with Ajahn Pasanno at the end of the 2018 Winter Retreat is included as [The Teaching and the Training](event:WR2018-2). Abhayagiri residents created retreat compilation discs of the 2013 and 2016 Winter Retreats, and audio recordings are available of several more Winter Retreats.
+All sessions from the [2014](event:WR2014) and [2015](event:WR2015) Winter Retreats are included in the Archive. The 2013 and 2016 Winter Retreats have been transcribed on paper but not entered into the Archive. A series of interviews and discussions with Ajahn Pasanno at the end of the 2018 Winter Retreat is included as [The Teaching and the Training](event:WR2018-2). Audio recordings are available of many more Winter Retreats on [abhayagiri.org](https://www.abhayagiri.org/talks/collections/1-winter-retreats).
 
 ### Spirit Rock Daylongs
 All four recordings of daylong events led by Ajahn Pasanno at Spirit Rock Meditation Center on abhayagiri.org are included in the Archive.
