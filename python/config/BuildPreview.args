@@ -1,0 +1,16 @@
+// .args file used by the BuildAllPreview job.
+// It includes excerpts from all teachers with pending consent.
+// It can be uploaded for their perusal before consenting.
+
+// DownloadCSV options:
+--sheets All
+
+// ParseCSV options:
+--pendingMeansYes
+
+// Link options:
+--linkCheckLevel excerptMp3:local:3 // Check local excerpt mp3 split times
+--linkCheckLevel 3
+--sessionMp3 remote,local
+--excerptMp3 local
+--reference remote,local

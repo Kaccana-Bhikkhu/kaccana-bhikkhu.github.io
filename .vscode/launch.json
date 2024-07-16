@@ -74,14 +74,53 @@
             "justMyCode": true
         },
         {
-            "name": "BuildAll",
+            "name": "BuildAllAbhaygiri",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "--args",
-                "python/config/BuildAll.args"
+                "python/config/BuildAbhayagiri.args"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildAllPreview",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "All",
+                "--args",
+                "python/config/BuildPreview.args"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildAllGithub",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "All",
+                "--args",
+                "python/config/BuildGithub.args"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildAllArchival",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "All",
+                "--args",
+                "python/config/BuildArchival.args"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -92,7 +131,10 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "TagMp3"
+                "DownloadFiles",
+                "--args",
+                "python/config/BuildPreview.args",
+                "--no-multithread"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

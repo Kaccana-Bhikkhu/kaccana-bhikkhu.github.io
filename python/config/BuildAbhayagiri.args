@@ -1,13 +1,15 @@
-// .args file used by the BuildAll job.
+// .args file used by the BuildAllAbhayagiri job.
+
+// DownloadCSV options:
+--sheets All
 
 // ParseCSV options:
---sheets All
 --no-pendingMeansYes
 
 // Link options:
 --linkCheckLevel excerptMp3:local:3 // Check local excerpt mp3 split times
 --linkCheckLevel 3
 --sessionMp3 remote,abhayagiri
---excerptMp3 local
+--excerptMp3 abhayagiri
 --reference remote,abhayagiri
 --uploadMirror abhayagiri
