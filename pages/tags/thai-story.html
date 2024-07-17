@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/thai-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/thai.html#thai"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThai 
+  <div class="title"><a href="../drilldown/thai.html#thai" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThai 
   </div>
 
 <div class="intro">
@@ -52,7 +62,7 @@
   
   
   Parent topic: <a href = "../tags/language.html">Language</a><br>
-  Subtopic: <a href = "../tags/question-in-thai.html">Question in Thai</a><br>
+  Subtopics: <a href = "../tags/question-in-thai.html">Question in Thai</a>, <a href = "../tags/thai-audio.html">Thai audio</a><br>
   
   34 excerpts, 1:45:43 total duration
 </strong>
@@ -64,23 +74,31 @@
       <a href="../tags/thai-quote.html">Quotes (5)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S13"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S13">Session 13</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 22, 2014</div>
+<div class="title" id="WR2014_S13"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S13">Session 13</a> – Jan. 22, 2014</div>
 <p id="WR2014_S13_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S13 E7" data-duration="102"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S13 E7.mp3">Download audio</a> (1:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Recollection:</b> Ajahn Pasanno describes Ajahn Mun's skillful use of language. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S13 E7" data-duration="102"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S13 E7.mp3">Download audio</a> (1:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Recollection:</b> Ajahn Pasanno describes Ajahn Mun’s skillful use of language. Recounted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <a href="https://www.abhayagiri.org/media/books/maha_boowa_acariya_mun_a_spiritual_biography.pdf" target="_blank"><em>Venerable Ācariya Mun Bhūridatta Thera: A Spiritual Biography</em></a> by <a href = ../teachers/ajahn-maha-boowa.html>Ajahn Mahā Boowa</a> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+  <b>Reference</b>: <a href="https://www.abhayagiri.org/media/books/maha_boowa_acariya_mun_a_spiritual_biography.pdf" target="_blank"><em>Venerable Ācariya Mun Bhūridatta Thera: A Spiritual Biography</em></a> by <a href="../teachers/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: Regarding the photo in Abhayagiri's Dhamma Hall: "This is the most warm and fuzzy picture of Ajahn Mun." <br> <img alt="Photograph of Ajahn Mun" src="../images/AjahnMun.jpg" /> 
+  <b>Reference</b>: Regarding the photo in Abhayagiri’s Dhamma Hall: “This is the most warm and fuzzy picture of Ajahn Mun.” <br> <img alt="Photograph of Ajahn Mun" src="../images/AjahnMun.jpg" /> 
 </p>
 <hr />
-<div class="title" id="WR2014_S14"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S14">Session 14</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 25, 2014</div>
+<div class="title" id="WR2014_S14"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S14">Session 14</a> – Jan. 25, 2014</div>
 <p id="WR2014_S14_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S14 E2" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S14 E2.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Ajahn Pasanno describes the title "Luang Ta." [<a href = "../tags/monastic-titles.html">Monastic titles</a>] [<a href = "../tags/older-monks.html">Older monks</a>] // [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S14 E2" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S14 E2.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Ajahn Pasanno describes the title “Luang Ta.” [<a href = "../tags/monastic-titles.html">Monastic titles</a>] [<a href = "../tags/older-monks.html">Older monks</a>] // [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S23"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S23">Session 23</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 5, 2014</div>
+<div class="title" id="WR2014_S23"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S23">Session 23</a> – Feb. 5, 2014</div>
 <p id="WR2014_S23_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S23_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S23 E2" data-duration="101"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S23_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S23 E2.mp3">Download audio</a> (1:41)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Ajahn Ñaniko speaks about the time Luang Por Liem spent at Suan Mokh. [<a href = "../tags/wat-suan-mokkh.html">Wat Suan Mokkh</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
 </p>
@@ -91,37 +109,49 @@
   <b>Recollection:</b> Ajahn Liem reads and comments on the monthly poem in the Ajahn Buddhadāsa calendar. [<a href = "../tags/artistic-expression.html">Artistic expression</a>]
 </p>
 <hr />
-<div class="title" id="UD2016-2_S01"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S01"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S01">Session 1</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S01_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate guilt into Thai. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/translation.html">Translation</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate guilt into Thai. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/translation.html">Translation</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “That's really suffering. Tell them not to do that.” — Ajahn Paññānanda [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]
+  <b>Quote:</b>  “That’s really suffering. Tell them not to do that.” — Ajahn Paññānanda [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Can't We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health-care.html">Health care</a>]
+  <b>Reference</b>: <em>Can’t We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/health-care.html">Health care</a>]
 </p>
 <hr />
-<div class="title" id="UD2017-2_S03"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S03"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S03">Session 3</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S03_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F08.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E8" data-duration="64"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F08.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E8.mp3">Download audio</a> (1:04)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> When visiting Abhayagiri, Ajahn Liem learns that Ukiah is the nearest town. <em>Khya</em> means "the garbage" in Thai. He later tells the monks, "Don't live in <em>Khya</em>." [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/humor.html">Humor</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F08.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E8" data-duration="64"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F08.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E8.mp3">Download audio</a> (1:04)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> When visiting Abhayagiri, Ajahn Liem learns that Ukiah is the nearest town. <em>Khya</em> means “the garbage” in Thai. He later tells the monks, “Don’t live in <em>Khya</em>.” [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/humor.html">Humor</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" title="The New Ajahn Chah Biography, S2 E16" data-duration="359"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" download="The New Ajahn Chah Biography, S2 E16.mp3">Download audio</a> (5:59)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Can you speak about regret?”  [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] // [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" title="The New Ajahn Chah Biography, S2 E16" data-duration="359"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" download="The New Ajahn Chah Biography, S2 E16.mp3">Download audio</a> (5:59)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Can you speak about regret?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] // [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate guilt into Thai. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate guilt into Thai. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/thai.html">Thai</a>]</b> [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Thai (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Thai (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/thai-story.html">https://abhayagiri.org/questions/tags/thai-story.html</a>.</p>
 </footer>
 

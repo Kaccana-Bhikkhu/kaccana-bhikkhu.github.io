@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-pasanno-question-9.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,15 +58,15 @@
   </div>
 
 <div class="intro">
-1736 excerpts, 104:52:26 total duration
+1749 excerpts, 105:24:26 total duration
 <hr />
-<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html">All excerpts (1736)</a>
-      <a href="../teachers/ajahn-pasanno-question.html" class="active">Questions (1495)</a>
-      <a href="../teachers/ajahn-pasanno-story.html">Stories (200)</a>
-      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (96)</a>
-      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (74)</a>
-      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (5)</a>
-      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (43)</a>
+<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html">All excerpts (1749)</a>
+      <a href="../teachers/ajahn-pasanno-question.html" class="active">Questions (1496)</a>
+      <a href="../teachers/ajahn-pasanno-story.html">Stories (207)</a>
+      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (99)</a>
+      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (77)</a>
+      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (6)</a>
+      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (48)</a>
       <a href="../teachers/ajahn-pasanno-read-from.html">Readings from (1)</a>
       <a href="../teachers/ajahn-pasanno-read-by.html">Readings by (89)</a> </div>
 <hr>
@@ -65,16 +75,28 @@
 
 <div class="title" id="WR2015_S47"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S47">Session 47</a> – Mar. 17, 2015</div>
 <p id="WR2015_S47_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S47 E1" data-duration="76"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S47 E1.mp3">Download audio</a> (1:16)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> Meaning of “will become cool right here?”  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/pali.html">Pāli</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S47 E1" data-duration="76"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S47 E1.mp3">Download audio</a> (1:16)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> Meaning of “will become cool right here?”  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/pali.html">Pāli</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <div class="title" id="WR2015_S49"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S49">Session 49</a> – Mar. 22, 2015</div>
 <p id="WR2015_S49_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S49 E4" data-duration="240"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S49 E4.mp3">Download audio</a> (4:00)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Can one sense-bases that starts the proliferation process lead to different sense-bases?”  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>] // [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>]
 </p>
 <hr />
 <p id="WR2015_S49_F05">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S49 E5" data-duration="415"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S49 E5.mp3">Download audio</a> (6:55)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> Examples of signs and secondary characteristics of sense objects?  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>] // [<a href = "../tags/ven-analayo.html">Ven. Analayo</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S49 E4" data-duration="240"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S49 E4.mp3">Download audio</a> (4:00)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Can one sense-bases that starts the proliferation process lead to different sense-bases?”  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>] // [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>]
+</p>
+<hr />
+<p id="WR2015_S49_F05">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S49 E5" data-duration="415"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S49 E5.mp3">Download audio</a> (6:55)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> Examples of signs and secondary characteristics of sense objects?  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>] // [<a href = "../tags/ven-analayo.html">Ven. Analayo</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=Thig-14.1:" target="_blank">Thig 14.1:</a> Subhā. 
@@ -83,7 +105,7 @@
   <b>Comment</b> about the feedback loop of perceptions looking for reinforcing perceptions. [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The underlying tendency to aversion is like a search engine.” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a>. Quoted by Beth Steff. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “The underlying tendency to aversion is like a search engine.” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a>. Quoted by Beth Steff. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S50"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S50">Session 50</a> – Mar. 23, 2015</div>
@@ -96,15 +118,23 @@
 <hr />
 <div class="title" id="WR2015_S52"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S52">Session 52</a> – Mar. 25, 2015</div>
 <p id="WR2015_S52_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S52_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S52 E1" data-duration="108"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S52_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S52 E1.mp3">Download audio</a> (1:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “When did Luang Por Liem come to Wat Pah Pong?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S52_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S52 E1" data-duration="108"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S52_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S52 E1.mp3">Download audio</a> (1:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “When did Luang Por Liem come to Wat Pah Pong?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <a href="https://www.abhayagiri.org/media/books/liem_no_worries.pdf" target="_blank"><em>No Worries</em></a> by <a href = ../teachers/ajahn-liem.html>Ajahn Liem</a>. [<a href = "../tags/tudong.html">Tudong</a>]
+  <b>Reference</b>: <a href="https://www.abhayagiri.org/media/books/liem_no_worries.pdf" target="_blank"><em>No Worries</em></a> by <a href="../teachers/ajahn-liem.html">Ajahn Liem</a>. [<a href = "../tags/tudong.html">Tudong</a>]
 </p>
 <hr />
 <div class="title" id="UD2015-1_S03"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S03">Session 3</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S03_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" title="On Pilgrimage and Tudong, S3 E1" data-duration="265"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" download="On Pilgrimage and Tudong, S3 E1.mp3">Download audio</a> (4:25)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You showed pictures of the statue at Bodh Gaya. It seems like the Bodhi Tree is more important. Does the statue have no historical importance?”  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>, <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a>. [<a href = "../tags/bodhi-tree.html">Bodhi Tree</a>] [<a href = "../tags/buddha-images.html">Buddha images</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] // [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/historyindian-buddhism.html">History/Indian Buddhism</a>] [<a href = "../tags/symbolism.html">Symbolism</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" title="On Pilgrimage and Tudong, S3 E1" data-duration="265"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" download="On Pilgrimage and Tudong, S3 E1.mp3">Download audio</a> (4:25)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You showed pictures of the statue at Bodh Gaya. It seems like the Bodhi Tree is more important. Does the statue have no historical importance?”  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>, <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a>. [<a href = "../tags/bodhi-tree.html">Bodhi Tree</a>] [<a href = "../tags/buddha-images.html">Buddha images</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] // [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/historyindian-buddhism.html">History/Indian Buddhism</a>] [<a href = "../tags/symbolism.html">Symbolism</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-1_S03_F02">
@@ -121,15 +151,23 @@
   <b>Comment</b>: It seems like the memory would have continued in Sri Lanka. [<a href = "../tags/historysri-lankan-buddhism.html">History/Sri Lankan Buddhism</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. 
 </p>
 <hr />
 <p id="UD2015-1_S03_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F04.mp3" title="On Pilgrimage and Tudong, S3 E4" data-duration="154"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F04.mp3" download="On Pilgrimage and Tudong, S3 E4.mp3">Download audio</a> (2:34)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “What is considered pilgrimage in the modern world? Going by train or bus?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/travel.html">Travel</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] // [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/pace-of-life.html">Pace of life</a>]
 </p>
 <hr />
 <p id="UD2015-1_S03_F05">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F05.mp3" title="On Pilgrimage and Tudong, S3 E5" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F05.mp3" download="On Pilgrimage and Tudong, S3 E5.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I would love to go to Thailand with my dad some time, but I don't know how to do it.”  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F04.mp3" title="On Pilgrimage and Tudong, S3 E4" data-duration="154"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F04.mp3" download="On Pilgrimage and Tudong, S3 E4.mp3">Download audio</a> (2:34)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “What is considered pilgrimage in the modern world? Going by train or bus?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/travel.html">Travel</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] // [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/pace-of-life.html">Pace of life</a>]
+</p>
+<hr />
+<p id="UD2015-1_S03_F05">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F05.mp3" title="On Pilgrimage and Tudong, S3 E5" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F05.mp3" download="On Pilgrimage and Tudong, S3 E5.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I would love to go to Thailand with my dad some time, but I don’t know how to do it.”  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-1_S03_F06">
@@ -144,15 +182,23 @@
 </p>
 <hr />
 <p id="UD2015-1_S03_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" title="On Pilgrimage and Tudong, S3 E9" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" download="On Pilgrimage and Tudong, S3 E9.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Comment</b>: I was inspired by a picture of the Buddha's walking path. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" title="On Pilgrimage and Tudong, S3 E9" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" download="On Pilgrimage and Tudong, S3 E9.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Comment</b>: I was inspired by a picture of the Buddha’s walking path. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S04_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F08.mp3" title="On Pilgrimage and Tudong, S4 E8" data-duration="201"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F08.mp3" download="On Pilgrimage and Tudong, S4 E8.mp3">Download audio</a> (3:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “In one of Ajahn Amaro's first tudongs in England, the laypeople often knew where he was going to be. Is that accepted in Thailand?”  [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F08.mp3" title="On Pilgrimage and Tudong, S4 E8" data-duration="201"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F08.mp3" download="On Pilgrimage and Tudong, S4 E8.mp3">Download audio</a> (3:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “In one of Ajahn Amaro’s first tudongs in England, the laypeople often knew where he was going to be. Is that accepted in Thailand?”  [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-1_S04_F10">
@@ -168,17 +214,25 @@
 </p>
 <hr />
 <p id="UD2015-1_S04_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F13.mp3" title="On Pilgrimage and Tudong, S4 E13" data-duration="254"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F13.mp3" download="On Pilgrimage and Tudong, S4 E13.mp3">Download audio</a> (4:14)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “After the initial impulse and intention to go tudong, once it's going to happen, is there an upwelling of uncertainty?”  [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F13.mp3" title="On Pilgrimage and Tudong, S4 E13" data-duration="254"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F13.mp3" download="On Pilgrimage and Tudong, S4 E13.mp3">Download audio</a> (4:14)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “After the initial impulse and intention to go tudong, once it’s going to happen, is there an upwelling of uncertainty?”  [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Chao Khun Nor stayed in his kuti and ate the same thing every day. [<a href = "../tags/chao-khun-nor.html">Chao Khun Nor</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
 </p>
 <hr />
 <p id="UD2015-1_S04_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F14.mp3" title="On Pilgrimage and Tudong, S4 E14" data-duration="56"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F14.mp3" download="On Pilgrimage and Tudong, S4 E14.mp3">Download audio</a> (0:56)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> <b>Comment</b>: This speaks to a Boddhisattva/Zen approach to karma. It's more your attitude towards your karma. [<a href = "../tags/bodhisattva.html">Bodhisattva</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/harsh-speech.html">Harsh speech</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F14.mp3" title="On Pilgrimage and Tudong, S4 E14" data-duration="56"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F14.mp3" download="On Pilgrimage and Tudong, S4 E14.mp3">Download audio</a> (0:56)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> <b>Comment</b>: This speaks to a Boddhisattva/Zen approach to karma. It’s more your attitude towards your karma. [<a href = "../tags/bodhisattva.html">Bodhisattva</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/harsh-speech.html">Harsh speech</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/impermanence.html">Impermanence</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/impermanence.html">Impermanence</a>]
 </p>
 <hr />
 <p id="UD2015-1_S04_F16">
@@ -193,12 +247,16 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F18.mp3" title="On Pilgrimage and Tudong, S4 E18" data-duration="96"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F18.mp3" download="On Pilgrimage and Tudong, S4 E18.mp3">Download audio</a> (1:36)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “You slept outdoors?”  [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/cultureindia.html">Culture/India</a>] [<a href = "../tags/tudong.html">Tudong</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno and Ajahn Jayasaro stay the night at the Buddha's kuti. [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>]
+  <b>Story:</b> Ajahn Pasanno and Ajahn Jayasaro stay the night at the Buddha’s kuti. [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>]
 </p>
 <hr />
 <div class="title" id="UD2015-2_S01"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S01">Session 1</a> – May. 27, 2015</div>
 <p id="UD2015-2_S01_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F01.mp3" title="The Middle Way of Not-Self, S1 E1" data-duration="228"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F01.mp3" download="The Middle Way of Not-Self, S1 E1.mp3">Download audio</a> (3:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What are the commentaries? How do they know stuff that isn't in the suttas?”  [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] // [<a href = "../tags/historysri-lankan-buddhism.html">History/Sri Lankan Buddhism</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F01.mp3" title="The Middle Way of Not-Self, S1 E1" data-duration="228"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F01.mp3" download="The Middle Way of Not-Self, S1 E1.mp3">Download audio</a> (3:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What are the commentaries? How do they know stuff that isn’t in the suttas?”  [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] // [<a href = "../tags/historysri-lankan-buddhism.html">History/Sri Lankan Buddhism</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-2_S01_F02">
@@ -209,7 +267,11 @@
 </p>
 <hr />
 <p id="UD2015-2_S01_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F03.mp3" title="The Middle Way of Not-Self, S1 E3" data-duration="193"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F03.mp3" download="The Middle Way of Not-Self, S1 E3.mp3">Download audio</a> (3:13)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “The Buddha didn't answer the question, 'Is there a self?' But this question seems more important than other questions he didn't answer. How should we relate to not-self?”  [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/questions.html">Questions</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/views.html">Views</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F03.mp3" title="The Middle Way of Not-Self, S1 E3" data-duration="193"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F03.mp3" download="The Middle Way of Not-Self, S1 E3.mp3">Download audio</a> (3:13)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “The Buddha didn’t answer the question, ‘Is there a self?’ But this question seems more important than other questions he didn’t answer. How should we relate to not-self?”  [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/questions.html">Questions</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/views.html">Views</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-2_S01_F04">
@@ -217,14 +279,22 @@
 </p>
 <hr />
 <p id="UD2015-2_S01_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F05.mp3" title="The Middle Way of Not-Self, S1 E5" data-duration="61"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F05.mp3" download="The Middle Way of Not-Self, S1 E5.mp3">Download audio</a> (1:01)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: The question that occured to me was "If I take this as myself, where does it lead me?" [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F05.mp3" title="The Middle Way of Not-Self, S1 E5" data-duration="61"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F05.mp3" download="The Middle Way of Not-Self, S1 E5.mp3">Download audio</a> (1:01)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: The question that occured to me was “If I take this as myself, where does it lead me?” [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 <hr />
 <p id="UD2015-2_S01_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F06.mp3" title="The Middle Way of Not-Self, S1 E6" data-duration="112"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F06.mp3" download="The Middle Way of Not-Self, S1 E6.mp3">Download audio</a> (1:52)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “I've heard the teaching that if you watch your kilesas in samādhi, they tend to subside. Sometimes you watch your sakkāya-diṭṭhi and it's not going away. What to do?”  [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F06.mp3" title="The Middle Way of Not-Self, S1 E6" data-duration="112"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F06.mp3" download="The Middle Way of Not-Self, S1 E6.mp3">Download audio</a> (1:52)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “I’ve heard the teaching that if you watch your kilesas in samādhi, they tend to subside. Sometimes you watch your sakkāya-diṭṭhi and it’s not going away. What to do?”  [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-2_S01_F07">
@@ -235,35 +305,47 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F09.mp3" title="The Middle Way of Not-Self, S1 E9" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F09.mp3" download="The Middle Way of Not-Self, S1 E9.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Is renting a good metaphor for not-self?”  [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “We only rent this house. We don't own it.” 
+  <b>Quote:</b>  “We only rent this house. We don’t own it.” 
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: "Our Real Home" in <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=183" target="_blank">p. 145</a> 
+  <b>Reference</b>: “Our Real Home” in <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=183" target="_blank">p. 145</a> 
 </p>
 <hr />
 <p id="UD2015-2_S01_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F10.mp3" title="The Middle Way of Not-Self, S1 E10" data-duration="35"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F10.mp3" download="The Middle Way of Not-Self, S1 E10.mp3">Download audio</a> (0:35)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “In regard to self and emotions, you acknowledge and embrace it but don't hold tightly?”  [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/discernment.html">Discernment</a>]
 </p>
 <hr />
 <p id="UD2015-2_S01_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F12.mp3" title="The Middle Way of Not-Self, S1 E12" data-duration="98"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F12.mp3" download="The Middle Way of Not-Self, S1 E12.mp3">Download audio</a> (1:38)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “The Buddha asks us to look at the things we identify with as self and notice they are not who we are. But if there's nothing else but those things, there is no self, right?”  [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F10.mp3" title="The Middle Way of Not-Self, S1 E10" data-duration="35"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F10.mp3" download="The Middle Way of Not-Self, S1 E10.mp3">Download audio</a> (0:35)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “In regard to self and emotions, you acknowledge and embrace it but don’t hold tightly?”  [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/discernment.html">Discernment</a>]
+</p>
+<hr />
+<p id="UD2015-2_S01_F12">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F12.mp3" title="The Middle Way of Not-Self, S1 E12" data-duration="98"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F12.mp3" download="The Middle Way of Not-Self, S1 E12.mp3">Download audio</a> (1:38)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “The Buddha asks us to look at the things we identify with as self and notice they are not who we are. But if there’s nothing else but those things, there is no self, right?”  [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “Isn't there then an implication that there is something else that could be self?” [<a href = "../tags/views.html">Views</a>]
+  <b>Follow-up:</b> “Isn’t there then an implication that there is something else that could be self?” [<a href = "../tags/views.html">Views</a>]
 </p>
 <hr />
 <p id="UD2015-2_S01_F13">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F13.mp3" title="The Middle Way of Not-Self, S1 E13" data-duration="113"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F13.mp3" download="The Middle Way of Not-Self, S1 E13.mp3">Download audio</a> (1:53)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> <b>Comments</b> regarding not-self. [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/not-self.html">Not-self</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
 </p>
 <hr />
 <p id="UD2015-2_S01_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F14.mp3" title="The Middle Way of Not-Self, S1 E14" data-duration="38"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F14.mp3" download="The Middle Way of Not-Self, S1 E14.mp3">Download audio</a> (0:38)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> <b>Comment</b>: I've found it helpful to recognize that for me there aren't any right answers, only right questions. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/questions.html">Questions</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F14.mp3" title="The Middle Way of Not-Self, S1 E14" data-duration="38"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F14.mp3" download="The Middle Way of Not-Self, S1 E14.mp3">Download audio</a> (0:38)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> <b>Comment</b>: I’ve found it helpful to recognize that for me there aren’t any right answers, only right questions. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/questions.html">Questions</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 <hr />
 <p id="UD2015-2_S01_F15">
@@ -271,7 +353,11 @@
 </p>
 <hr />
 <p id="UD2015-2_S01_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F16.mp3" title="The Middle Way of Not-Self, S1 E16" data-duration="190"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F16.mp3" download="The Middle Way of Not-Self, S1 E16.mp3">Download audio</a> (3:10)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “The fear that arises upon the realization that there's nothing there is so strong that it takes away from the awareness being able to stay with it. Any suggestions?”  [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/faith.html">Faith</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F16.mp3" title="The Middle Way of Not-Self, S1 E16" data-duration="190"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F16.mp3" download="The Middle Way of Not-Self, S1 E16.mp3">Download audio</a> (3:10)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “The fear that arises upon the realization that there’s nothing there is so strong that it takes away from the awareness being able to stay with it. Any suggestions?”  [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/faith.html">Faith</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – May. 27, 2015</div>
@@ -279,7 +365,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F01.mp3" title="The Middle Way of Not-Self, S2 E1" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F01.mp3" download="The Middle Way of Not-Self, S2 E1.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: With the analogy of the scent and the flower (<a href="https://sutta.readingfaithfully.org/?q=SN-22.89" target="_blank">SN 22.89</a>), it sounds like it [the sense of self] is relational and there is an effect. But it gets tricky... [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/not-self.html">Not-self</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F02">
@@ -303,17 +389,22 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F04.mp3" title="The Middle Way of Not-Self, S2 E4" data-duration="131"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F04.mp3" download="The Middle Way of Not-Self, S2 E4.mp3">Download audio</a> (2:11)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Comment</b> about working with not-self in direct experience in relation to discomfort and awareness of embodied release. [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/fear.html">Fear</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/proliferation.html">Proliferation</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/proliferation.html">Proliferation</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" title="The Middle Way of Not-Self, S2 E5" data-duration="97"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" download="The Middle Way of Not-Self, S2 E5.mp3">Download audio</a> (1:37)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I wanted to confirm that we're also not putting this self on other objects like the redness belonging to the rose.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" title="The Middle Way of Not-Self, S2 E5" data-duration="97"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F05.mp3" download="The Middle Way of Not-Self, S2 E5.mp3">Download audio</a> (1:37)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I wanted to confirm that we’re also not putting this self on other objects like the redness belonging to the rose.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “It makes me suffer when those roses turn black and they're still on the shrine...which happens all the time!”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/impermanence.html">Impermanence</a>]
+  <b>Quote:</b>  “It makes me suffer when those roses turn black and they’re still on the shrine...which happens all the time!”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/impermanence.html">Impermanence</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F06.mp3" title="The Middle Way of Not-Self, S2 E6" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F06.mp3" download="The Middle Way of Not-Self, S2 E6.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Things change. But can't that be part of its nature that things change?”  [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/not-self.html">Not-self</a>]
 </p>
 <hr />
@@ -323,33 +414,56 @@
 <hr />
 <p id="UD2015-2_S02_F08">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" title="The Middle Way of Not-Self, S2 E8" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" download="The Middle Way of Not-Self, S2 E8.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you think it's enough to just be aware of the suffering that's caused by the clinging to self?”  [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F06.mp3" title="The Middle Way of Not-Self, S2 E6" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F06.mp3" download="The Middle Way of Not-Self, S2 E6.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Things change. But can’t that be part of its nature that things change?”  [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+</p>
+<hr />
+<p id="UD2015-2_S02_F07">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F07.mp3" title="The Middle Way of Not-Self, S2 E7" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F07.mp3" download="The Middle Way of Not-Self, S2 E7.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Could you say that attavādupādāna is that very trying to say ‘Is it self or is to no self?’”  [<a href = "../tags/doctrine-of-self-clinging.html">Doctrine-of-self clinging</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+</p>
+<hr />
+<p id="UD2015-2_S02_F08">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" title="The Middle Way of Not-Self, S2 E8" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" download="The Middle Way of Not-Self, S2 E8.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you think it’s enough to just be aware of the suffering that’s caused by the clinging to self?”  [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The most efficacious investigation comes from a still mind.”  [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F09.mp3" title="The Middle Way of Not-Self, S2 E9" data-duration="90"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F09.mp3" download="The Middle Way of Not-Self, S2 E9.mp3">Download audio</a> (1:30)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Comment</b>: What you said reminds me of 'da resin.' [audio unclear] [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F09.mp3" title="The Middle Way of Not-Self, S2 E9" data-duration="90"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F09.mp3" download="The Middle Way of Not-Self, S2 E9.mp3">Download audio</a> (1:30)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Comment</b>: What you said reminds me of ‘da resin.’ [audio unclear] [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>: "It's that sticky bit that creates the problems." [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/becoming.html">Becoming</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>: “It’s that sticky bit that creates the problems.” [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/becoming.html">Becoming</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F11">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" title="The Middle Way of Not-Self, S2 E11" data-duration="145"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" download="The Middle Way of Not-Self, S2 E11.mp3">Download audio</a> (2:25)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: Before I get to all that [deep reflection on not-self], in the meantime I thing of Luang Por Sumedho's saying, 'Every time I think of myself, I get depressed.' [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" title="The Middle Way of Not-Self, S2 E11" data-duration="145"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" download="The Middle Way of Not-Self, S2 E11.mp3">Download audio</a> (2:25)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: Before I get to all that [deep reflection on not-self], in the meantime I thing of Luang Por Sumedho’s saying, ‘Every time I think of myself, I get depressed.’ [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/five-precepts.html">Five Precepts</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/five-precepts.html">Five Precepts</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “It's difficult but it's not that complicated. The Buddha's teachings go against the grain of our conditioning and habits, but the essence of it is quite simple.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
+  <b>Quote:</b>  “It’s difficult but it’s not that complicated. The Buddha’s teachings go against the grain of our conditioning and habits, but the essence of it is quite simple.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F12">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F12.mp3" title="The Middle Way of Not-Self, S2 E12" data-duration="92"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F12.mp3" download="The Middle Way of Not-Self, S2 E12.mp3">Download audio</a> (1:32)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: I notice how the mind defends suffering because it's so closely related to that idea of self. But if I let go of defending, what am I? [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F12.mp3" title="The Middle Way of Not-Self, S2 E12" data-duration="92"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F12.mp3" download="The Middle Way of Not-Self, S2 E12.mp3">Download audio</a> (1:32)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: I notice how the mind defends suffering because it’s so closely related to that idea of self. But if I let go of defending, what am I? [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
 </p>
 <hr />
 <p id="UD2015-2_S02_F13">
@@ -358,7 +472,11 @@
 <hr />
 <div class="title" id="SRD2015_S01"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S01">Session 1</a> – Jun. 14, 2015</div>
 <p id="SRD2015_S01_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F01.mp3" title="Desire or Aspiration, S1 E1" data-duration="98"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F01.mp3" download="Desire or Aspiration, S1 E1.mp3">Download audio</a> (1:38)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Was the Buddha's life so miserable that he kept thinking about all these ideas? Where did his motivation come from?”  [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/western-psychology.html">Western psychology</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/spiritual-search.html">Spiritual search</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F01.mp3" title="Desire or Aspiration, S1 E1" data-duration="98"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F01.mp3" download="Desire or Aspiration, S1 E1.mp3">Download audio</a> (1:38)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Was the Buddha’s life so miserable that he kept thinking about all these ideas? Where did his motivation come from?”  [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/western-psychology.html">Western psychology</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/spiritual-search.html">Spiritual search</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="SRD2015_S01_F02">
@@ -366,7 +484,11 @@
 </p>
 <hr />
 <p id="SRD2015_S01_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F03.mp3" title="Desire or Aspiration, S1 E3" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F03.mp3" download="Desire or Aspiration, S1 E3.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I've been confused between intention and desire. For me, desire arises from non-conceptual craving.”  [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/language.html">Language</a>] // [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/pali.html">Pāli</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F03.mp3" title="Desire or Aspiration, S1 E3" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F03.mp3" download="Desire or Aspiration, S1 E3.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I’ve been confused between intention and desire. For me, desire arises from non-conceptual craving.”  [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/language.html">Language</a>] // [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/pali.html">Pāli</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="SRD2015_S01_F04">
@@ -374,10 +496,14 @@
 </p>
 <hr />
 <p id="SRD2015_S01_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F05.mp3" title="Desire or Aspiration, S1 E5" data-duration="135"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F05.mp3" download="Desire or Aspiration, S1 E5.mp3">Download audio</a> (2:15)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I'm not sure how to be with close friends or family members who out of a desire to avoid pain and find happiness engage in self-destructive behaivor that also harms those around them.”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/discernment.html">Discernment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F05.mp3" title="Desire or Aspiration, S1 E5" data-duration="135"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F05.mp3" download="Desire or Aspiration, S1 E5.mp3">Download audio</a> (2:15)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I’m not sure how to be with close friends or family members who out of a desire to avoid pain and find happiness engage in self-destructive behaivor that also harms those around them.”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/discernment.html">Discernment</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=55" target="_blank">Maṅgala Sutta</a>: Don't associate with fools. 
+  <b>Sutta</b>: <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=55" target="_blank">Maṅgala Sutta</a>: Don’t associate with fools. 
 </p>
 <hr />
 <p id="SRD2015_S01_F06">
@@ -391,11 +517,15 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F07.mp3" title="Desire or Aspiration, S1 E7" data-duration="258"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F07.mp3" download="Desire or Aspiration, S1 E7.mp3">Download audio</a> (4:18)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Are there different stages of enlightenment?”  [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] // [<a href = "../tags/stream-entry.html">Stream entry</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “And how would one know if you've reached the first stage [of awakening]?” [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
+  <b>Follow-up:</b> “And how would one know if you’ve reached the first stage [of awakening]?” [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
 </p>
 <hr />
 <p id="SRD2015_S01_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F08.mp3" title="Desire or Aspiration, S1 E8" data-duration="173"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F08.mp3" download="Desire or Aspiration, S1 E8.mp3">Download audio</a> (2:53)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “What to do when you have a lot of freedom in your mind, but in your body you're stuck with a bad habit?”  [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>] [<a href = "../tags/form.html">Form</a>] [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/craving.html">Craving</a>] // [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F08.mp3" title="Desire or Aspiration, S1 E8" data-duration="173"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F08.mp3" download="Desire or Aspiration, S1 E8.mp3">Download audio</a> (2:53)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “What to do when you have a lot of freedom in your mind, but in your body you’re stuck with a bad habit?”  [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>] [<a href = "../tags/form.html">Form</a>] [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/craving.html">Craving</a>] // [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="SRD2015_S01_F09">
@@ -403,13 +533,17 @@
 </p>
 <hr />
 <p id="SRD2015_S01_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F10.mp3" title="Desire or Aspiration, S1 E10" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F10.mp3" download="Desire or Aspiration, S1 E10.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Any advice for cures for burnout? I'm in a helping profession and feel depleted and exhausted. I need help getting the balance between giving and receiving.”  [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/selfishness.html">Selfishness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F10.mp3" title="Desire or Aspiration, S1 E10" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F10.mp3" download="Desire or Aspiration, S1 E10.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Any advice for cures for burnout? I’m in a helping profession and feel depleted and exhausted. I need help getting the balance between giving and receiving.”  [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/selfishness.html">Selfishness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Compassion in the English language means 'to suffer with.' If you end up suffering with too much, you end up burnt out.”  [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Quote:</b>  “Compassion in the English language means ‘to suffer with.’ If you end up suffering with too much, you end up burnt out.”  [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Don't think you're a ten-wheeled dump truck when all you are is a wheelbarrow.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+  <b>Quote:</b>  “Don’t think you’re a ten-wheeled dump truck when all you are is a wheelbarrow.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Commentary:</b> <em>Path of Purification</em> by Bhikkhu Ñāṇamoli, <a href="https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=349" target="_blank">p. 291</a>: Classical cultivation of goodwill and compassion, first to yourself. [<a href = "../tags/goodwill.html">Goodwill</a>]
@@ -422,12 +556,16 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F11.mp3" title="Desire or Aspiration, S1 E11" data-duration="140"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S01_F11.mp3" download="Desire or Aspiration, S1 E11.mp3">Download audio</a> (2:20)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Is sexuality and wanting an intimate connection with another considered a negative desire?”  [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] // [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/selfishness.html">Selfishness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/trust.html">Trust</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “It's not so much a matter of thwarting desire, but understanding how desire works so we can build those bonds of trust and care.”  
+  <b>Quote:</b>  “It’s not so much a matter of thwarting desire, but understanding how desire works so we can build those bonds of trust and care.”  
 </p>
 <hr />
 <div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – Jun. 14, 2015</div>
 <p id="SRD2015_S02_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" title="Desire or Aspiration, S2 E1" data-duration="631"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" download="Desire or Aspiration, S2 E1.mp3">Download audio</a> (10:31)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I've been struggling with sleepiness while trying to meditate, having the intention to be present and aware, but finding myself dozing off.”  [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" title="Desire or Aspiration, S2 E1" data-duration="631"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" download="Desire or Aspiration, S2 E1.mp3">Download audio</a> (10:31)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I’ve been struggling with sleepiness while trying to meditate, having the intention to be present and aware, but finding myself dozing off.”  [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Boon Choo meditates through tiredness after staying up for days. [<a href = "../tags/ajahn-boon-choo.html">Ajahn Boon Choo</a>] [<a href = "../tags/kathina.html">Kaṭhina</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/ardency.html">Ardency</a>]
@@ -437,7 +575,11 @@
 </p>
 <hr />
 <p id="SRD2015_S02_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F02.mp3" title="Desire or Aspiration, S2 E2" data-duration="579"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F02.mp3" download="Desire or Aspiration, S2 E2.mp3">Download audio</a> (9:39)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “A film came out recently called <em>Monk with a Camera</em>. How does one balance between pursuing one's artistic interests and sincerely following a path of relinquishment.”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] // [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F02.mp3" title="Desire or Aspiration, S2 E2" data-duration="579"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F02.mp3" download="Desire or Aspiration, S2 E2.mp3">Download audio</a> (9:39)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “A film came out recently called <em>Monk with a Camera</em>. How does one balance between pursuing one’s artistic interests and sincerely following a path of relinquishment.”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] // [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Rev. Heng Sure uses music to teach Dhamma. [<a href = "../tags/rev-heng-sure.html">Rev. Heng Sure</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
@@ -450,11 +592,15 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F03.mp3" title="Desire or Aspiration, S2 E3" data-duration="400"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F03.mp3" download="Desire or Aspiration, S2 E3.mp3">Download audio</a> (6:40)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “A lot of my life has been based on guilt, punishment, achievement, feeling driven, and perfectionism. Recently I experienced the reverse of this. Perfectionism is mixed up with wholesome desire. Could you respond?”  [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/contentment.html">Contentment</a>] // [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/human.html">Human</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate the question 'How do I work with guilt?' into Thai. [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate the question ‘How do I work with guilt?’ into Thai. [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <hr />
 <p id="SRD2015_S02_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F04.mp3" title="Desire or Aspiration, S2 E4" data-duration="236"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F04.mp3" download="Desire or Aspiration, S2 E4.mp3">Download audio</a> (3:56)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “I've heard 'not being in control' as a description of anatta. In relation to desire, do we really have any choice or free will in the context of Buddhist understanding?”  [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] // [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F04.mp3" title="Desire or Aspiration, S2 E4" data-duration="236"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F04.mp3" download="Desire or Aspiration, S2 E4.mp3">Download audio</a> (3:56)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “I’ve heard ‘not being in control’ as a description of anatta. In relation to desire, do we really have any choice or free will in the context of Buddhist understanding?”  [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] // [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="SRD2015_S02_F05">
@@ -466,7 +612,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F01.mp3" title="Buddhist Identity in the Modern World, E1" data-duration="131"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F01.mp3" download="Buddhist Identity in the Modern World, E1.mp3">Download audio</a> (2:11)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: Secular Buddhism is a new Buddhist identity. [<a href = "../tags/secular-buddhism.html">Secular Buddhism</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <hr />
 <p id="UD2015-3_S00_F02">
@@ -498,11 +644,15 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F07.mp3" title="Buddhist Identity in the Modern World, E7" data-duration="144"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F07.mp3" download="Buddhist Identity in the Modern World, E7.mp3">Download audio</a> (2:24)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Comments</b> about the positive reputation of Buddhism in the West. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <p id="UD2015-3_S00_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F08.mp3" title="Buddhist Identity in the Modern World, E8" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F08.mp3" download="Buddhist Identity in the Modern World, E8.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Is one of the benefits of being a monastic having to live up to people's expectations?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F08.mp3" title="Buddhist Identity in the Modern World, E8" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F08.mp3" download="Buddhist Identity in the Modern World, E8.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Is one of the benefits of being a monastic having to live up to people’s expectations?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-3_S00_F09">
@@ -513,21 +663,21 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F10.mp3" title="Buddhist Identity in the Modern World, E10" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F10.mp3" download="Buddhist Identity in the Modern World, E10.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Comment</b> regarding the power of encouraging as opposed to demanding. [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <p id="UD2015-3_S00_F11">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F11.mp3" title="Buddhist Identity in the Modern World, E11" data-duration="105"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F11.mp3" download="Buddhist Identity in the Modern World, E11.mp3">Download audio</a> (1:45)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: People outside will sometimes make fun of our efforts to keep the First Precept. [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <hr />
 <p id="UD2015-3_S00_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F12.mp3" title="Buddhist Identity in the Modern World, E12" data-duration="234"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F12.mp3" download="Buddhist Identity in the Modern World, E12.mp3">Download audio</a> (3:54)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Story</b> about not killing a rattlesnake. [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/animal.html">Animal</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <hr />
 <p id="UD2015-3_S00_F13">
@@ -538,7 +688,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F14.mp3" title="Buddhist Identity in the Modern World, E14" data-duration="23"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F14.mp3" download="Buddhist Identity in the Modern World, E14.mp3">Download audio</a> (0:23)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> <b>Comment</b>: Some Buddhists get upset when they hear someone say that Buddhism is a philosophy. [<a href = "../tags/philosophy.html">Philosophy</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>: "It's a lot more than that." 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>: “It’s a lot more than that.” 
 </p>
 <hr />
 <p id="UD2015-3_S00_F15">
@@ -549,30 +699,46 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F16.mp3" title="Buddhist Identity in the Modern World, E16" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F16.mp3" download="Buddhist Identity in the Modern World, E16.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “If you know of an abusive situation and both the abuser and victim are stuck in it, how do you hold this? How to encourage them to follow this path?”  [<a href = "../tags/abuseviolence.html">Abuse/violence</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “You plant seeds of possibility. You can't make the seeds grow, but you can plant the seeds.”  [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “You plant seeds of possibility. You can’t make the seeds grow, but you can plant the seeds.”  [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
 <p id="UD2015-3_S00_F17">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F17.mp3" title="Buddhist Identity in the Modern World, E17" data-duration="360"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F17.mp3" download="Buddhist Identity in the Modern World, E17.mp3">Download audio</a> (6:00)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “What is the right point to drop or ignore the desire to identify with the Buddhist identity?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/perfectionism.html">Perfectionism</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <hr />
 <p id="UD2015-3_S00_F19">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F19.mp3" title="Buddhist Identity in the Modern World, E19" data-duration="152"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F19.mp3" download="Buddhist Identity in the Modern World, E19.mp3">Download audio</a> (2:32)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Comment</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>: I keep coming back to true principle–what are we doing it all for? [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/right-intention.html">Right Intention</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F17.mp3" title="Buddhist Identity in the Modern World, E17" data-duration="360"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F17.mp3" download="Buddhist Identity in the Modern World, E17.mp3">Download audio</a> (6:00)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “What is the right point to drop or ignore the desire to identify with the Buddhist identity?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/perfectionism.html">Perfectionism</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+</p>
+<hr />
+<p id="UD2015-3_S00_F19">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F19.mp3" title="Buddhist Identity in the Modern World, E19" data-duration="152"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F19.mp3" download="Buddhist Identity in the Modern World, E19.mp3">Download audio</a> (2:32)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Comment</b> by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>: I keep coming back to true principle–what are we doing it all for? [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/right-intention.html">Right Intention</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
 </p>
 <hr />
 <div class="title" id="UD2015-4_S01"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S01">Session 1</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S01_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F01.mp3" title="Jhāna: A Practical Approach, S1 E1" data-duration="265"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F01.mp3" download="Jhāna: A Practical Approach, S1 E1.mp3">Download audio</a> (4:25)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Could you clarify the difference between mindfulness and concentration?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/translation.html">Translation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F01.mp3" title="Jhāna: A Practical Approach, S1 E1" data-duration="265"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F01.mp3" download="Jhāna: A Practical Approach, S1 E1.mp3">Download audio</a> (4:25)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Could you clarify the difference between mindfulness and concentration?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/translation.html">Translation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “You said earlier that mindfulness always comes before concentration, but based on what you just defined, I would think it would be the opposite.” Aswered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Follow-up:</b> “You said earlier that mindfulness always comes before concentration, but based on what you just defined, I would think it would be the opposite.” Aswered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <p id="UD2015-4_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" title="Jhāna: A Practical Approach, S1 E2" data-duration="57"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" download="Jhāna: A Practical Approach, S1 E2.mp3">Download audio</a> (0:57)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I was thinking about Ajahn Chah's advice that all you need to do is know and let go. I'm wondering about knowing, developing, and letting go. Where does development fit in?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" title="Jhāna: A Practical Approach, S1 E2" data-duration="57"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" download="Jhāna: A Practical Approach, S1 E2.mp3">Download audio</a> (0:57)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I was thinking about Ajahn Chah’s advice that all you need to do is know and let go. I’m wondering about knowing, developing, and letting go. Where does development fit in?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – Oct. 10, 2015</div>
@@ -581,11 +747,19 @@
 </p>
 <hr />
 <p id="UD2015-4_S03_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F02.mp3" title="Jhāna: A Practical Approach, S3 E2" data-duration="34"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F02.mp3" download="Jhāna: A Practical Approach, S3 E2.mp3">Download audio</a> (0:34)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I'm thinking that not all samādhi is wholesome, but all jhāna is wholesome.”  [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/right-concentration.html">Right Concentration</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" title="Jhāna: A Practical Approach, S3 E3" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" download="Jhāna: A Practical Approach, S3 E3.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “In the jhāna formula, in what sense is the word 'seclusion' used?”  [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/hindrances.html">Hindrances</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F02.mp3" title="Jhāna: A Practical Approach, S3 E2" data-duration="34"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F02.mp3" download="Jhāna: A Practical Approach, S3 E2.mp3">Download audio</a> (0:34)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I’m thinking that not all samādhi is wholesome, but all jhāna is wholesome.”  [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/right-concentration.html">Right Concentration</a>]
+</p>
+<hr />
+<p id="UD2015-4_S03_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" title="Jhāna: A Practical Approach, S3 E3" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" download="Jhāna: A Practical Approach, S3 E3.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “In the jhāna formula, in what sense is the word ‘seclusion’ used?”  [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/hindrances.html">Hindrances</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-4_S03_F04">
@@ -599,11 +773,15 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F05.mp3" title="Jhāna: A Practical Approach, S3 E5" data-duration="302"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F05.mp3" download="Jhāna: A Practical Approach, S3 E5.mp3">Download audio</a> (5:02)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Is jhāna only in meditation?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/right-concentration.html">Right Concentration</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Only farangs [Westerners] go into meditation rock climbing! Does he contemplate the Four Noble Trurths?” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/recreationleisuresport.html">Recreation/leisure/sport</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Quote:</b>  “Only farangs [Westerners] go into meditation rock climbing! Does he contemplate the Four Noble Trurths?” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/recreationleisuresport.html">Recreation/leisure/sport</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F06.mp3" title="Jhāna: A Practical Approach, S3 E6" data-duration="79"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F06.mp3" download="Jhāna: A Practical Approach, S3 E6.mp3">Download audio</a> (1:19)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “If there isn't an intention, [meditation] isn't useful for the goal?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/kamma.html">Kamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F06.mp3" title="Jhāna: A Practical Approach, S3 E6" data-duration="79"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F06.mp3" download="Jhāna: A Practical Approach, S3 E6.mp3">Download audio</a> (1:19)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “If there isn’t an intention, [meditation] isn’t useful for the goal?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/kamma.html">Kamma</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-4_S03_F07">
@@ -614,14 +792,22 @@
 </p>
 <hr />
 <p id="UD2015-4_S03_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F09.mp3" title="Jhāna: A Practical Approach, S3 E9" data-duration="143"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F09.mp3" download="Jhāna: A Practical Approach, S3 E9.mp3">Download audio</a> (2:23)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Isn't rapture and joy a sensual pleasure?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F09.mp3" title="Jhāna: A Practical Approach, S3 E9" data-duration="143"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F09.mp3" download="Jhāna: A Practical Approach, S3 E9.mp3">Download audio</a> (2:23)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Isn’t rapture and joy a sensual pleasure?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “You can actually give yourself permission to enjoy the meditation.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/meditation.html">Meditation</a>]
+  <b>Quote:</b>  “You can actually give yourself permission to enjoy the meditation.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/meditation.html">Meditation</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F10.mp3" title="Jhāna: A Practical Approach, S3 E10" data-duration="110"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F10.mp3" download="Jhāna: A Practical Approach, S3 E10.mp3">Download audio</a> (1:50)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “I meditate. Pleasure arises, and I enjoy that. Does that mean it's Dhamma practice?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F10.mp3" title="Jhāna: A Practical Approach, S3 E10" data-duration="110"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F10.mp3" download="Jhāna: A Practical Approach, S3 E10.mp3">Download audio</a> (1:50)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “I meditate. Pleasure arises, and I enjoy that. Does that mean it’s Dhamma practice?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-4_S03_F11">
@@ -632,7 +818,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F12.mp3" title="Jhāna: A Practical Approach, S3 E12" data-duration="70"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F12.mp3" download="Jhāna: A Practical Approach, S3 E12.mp3">Download audio</a> (1:10)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: Excercise in the morning can be used to overcome sloth. [<a href = "../tags/excercise.html">Excercise</a>] [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/energy.html">Energy</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F13">
@@ -669,7 +855,11 @@
 </p>
 <hr />
 <p id="UD2015-4_S03_F20">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F20.mp3" title="Jhāna: A Practical Approach, S3 E20" data-duration="37"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F20.mp3" download="Jhāna: A Practical Approach, S3 E20.mp3">Download audio</a> (0:37)</audio-chip><br /> <b style="text-decoration: underline;">20.</b> “What's the difference between directed thought and mindfulness?”  [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F20.mp3" title="Jhāna: A Practical Approach, S3 E20" data-duration="37"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F20.mp3" download="Jhāna: A Practical Approach, S3 E20.mp3">Download audio</a> (0:37)</audio-chip><br /> <b style="text-decoration: underline;">20.</b> “What’s the difference between directed thought and mindfulness?”  [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2015-4_S03_F21">
@@ -685,20 +875,28 @@
 </p>
 <hr />
 <p id="UD2015-4_S03_F24">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F24.mp3" title="Jhāna: A Practical Approach, S3 E24" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F24.mp3" download="Jhāna: A Practical Approach, S3 E24.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">24.</b> “In the jhāna similies (<a href="https://sutta.readingfaithfully.org/?q=MN-39.15" target="_blank">MN 39.15</a>), 'He makes...' seems very active. In dropping away things, is it a conscious dropping or an allowing?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F24.mp3" title="Jhāna: A Practical Approach, S3 E24" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F24.mp3" download="Jhāna: A Practical Approach, S3 E24.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">24.</b> “In the jhāna similies (<a href="https://sutta.readingfaithfully.org/?q=MN-39.15" target="_blank">MN 39.15</a>), ‘He makes...’ seems very active. In dropping away things, is it a conscious dropping or an allowing?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Ajahn Chah emphasizes the doing within a sphere of detachment and letting go.”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F25">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F25.mp3" title="Jhāna: A Practical Approach, S3 E25" data-duration="89"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F25.mp3" download="Jhāna: A Practical Approach, S3 E25.mp3">Download audio</a> (1:29)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “In concentration, you're aware of one object. If in that state you become aware of pleasure, does that mean you've already left jhāna?”  [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/clinging.html">Clinging</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F25.mp3" title="Jhāna: A Practical Approach, S3 E25" data-duration="89"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F25.mp3" download="Jhāna: A Practical Approach, S3 E25.mp3">Download audio</a> (1:29)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “In concentration, you’re aware of one object. If in that state you become aware of pleasure, does that mean you’ve already left jhāna?”  [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/clinging.html">Clinging</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno (Questions),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno (Questions),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-pasanno-question-9.html">https://abhayagiri.org/questions/teachers/ajahn-pasanno-question-9.html</a>.</p>
 </footer>
 

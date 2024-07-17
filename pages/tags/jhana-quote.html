@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/jhana-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/right-concentration.html#right-concentration"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspJhāna 
+  <div class="title"><a href="../drilldown/right-concentration.html#right-concentration" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspJhāna 
   </div>
 
 <div class="intro">
@@ -66,43 +76,59 @@
       <a href="../tags/jhana-reading.html">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Oct. 20, 2012</div>
+<div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – Oct. 20, 2012</div>
 <p id="UD2012-4_S02_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" title="The Gradual Training, S2 E3" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" download="The Gradual Training, S2 E3.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: You spoke about suffusing the body with extreme well-being. But I've been in states like that and my body seems to disappear. <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>] [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" title="The Gradual Training, S2 E3" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" download="The Gradual Training, S2 E3.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: You spoke about suffusing the body with extreme well-being. But I’ve been in states like that and my body seems to disappear. <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>] [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “It isn't so much the experience of extreme well-being that is the goal. It's the ability to gain clarity and stability so that one can see through the experience as something that is uncertain or impermanent, has a changing nature. The mind often wants to disregard that. The tendency to identify self with experience on a refined mental level is tempered by the body experience.”  <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Quote:</b>  “It isn’t so much the experience of extreme well-being that is the goal. It’s the ability to gain clarity and stability so that one can see through the experience as something that is uncertain or impermanent, has a changing nature. The mind often wants to disregard that. The tendency to identify self with experience on a refined mental level is tempered by the body experience.”  <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Are you saying you can become attached to these states?” [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S03_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F05.mp3" title="Jhāna: A Practical Approach, S3 E5" data-duration="302"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F05.mp3" download="Jhāna: A Practical Approach, S3 E5.mp3">Download audio</a> (5:02)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Is jhāna only in meditation?”  [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> // [<a href = "../tags/right-concentration.html">Right Concentration</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F05.mp3" title="Jhāna: A Practical Approach, S3 E5" data-duration="302"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F05.mp3" download="Jhāna: A Practical Approach, S3 E5.mp3">Download audio</a> (5:02)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Is jhāna only in meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> // [<a href = "../tags/right-concentration.html">Right Concentration</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Only farangs [Westerners] go into meditation rock climbing! Does he contemplate the Four Noble Trurths?” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/recreationleisuresport.html">Recreation/leisure/sport</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Quote:</b>  “Only farangs [Westerners] go into meditation rock climbing! Does he contemplate the Four Noble Trurths?” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/recreationleisuresport.html">Recreation/leisure/sport</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F14.mp3" title="Jhāna: A Practical Approach, S3 E14" data-duration="91"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F14.mp3" download="Jhāna: A Practical Approach, S3 E14.mp3">Download audio</a> (1:31)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “That sukha (happiness) is still experienced through the sense object of the mind?”  [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F14.mp3" title="Jhāna: A Practical Approach, S3 E14" data-duration="91"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F14.mp3" download="Jhāna: A Practical Approach, S3 E14.mp3">Download audio</a> (1:31)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “That sukha (happiness) is still experienced through the sense object of the mind?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The way the Buddha describes the jhāna factors, all the images are grounded in the body.” (<a href="https://sutta.readingfaithfully.org/?q=MN-39.15" target="_blank">MN 39.15</a>) <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b> [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
 <p id="UD2015-4_S03_F19">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" title="Jhāna: A Practical Approach, S3 E19" data-duration="25"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" download="Jhāna: A Practical Approach, S3 E19.mp3">Download audio</a> (0:25)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Quote:</b>  “There are a lot of confusing views and opinions about jhāna and meditation. It's helpful to ask, 'What's the Buddha actually say? How does he put it?' I have a lot more faith in him than in a lot of what's out there.”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/buddha.html">Buddha</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" title="Jhāna: A Practical Approach, S3 E19" data-duration="25"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" download="Jhāna: A Practical Approach, S3 E19.mp3">Download audio</a> (0:25)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Quote:</b>  “There are a lot of confusing views and opinions about jhāna and meditation. It’s helpful to ask, ‘What’s the Buddha actually say? How does he put it?’ I have a lot more faith in him than in a lot of what’s out there.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/buddha.html">Buddha</a>] <b>[<a href = "../tags/jhana.html">Jhāna</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Jhāna (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Jhāna (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/jhana-quote.html">https://abhayagiri.org/questions/tags/jhana-quote.html</a>.</p>
 </footer>
 

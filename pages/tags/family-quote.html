@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/family-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/family.html#family"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspFamily 
+  <div class="title"><a href="../drilldown/family.html#family" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspFamily 
   </div>
 
 <div class="intro">
@@ -52,28 +62,37 @@
   
   
   Parent topic: <a href = "../tags/personal.html">Personal</a><br>
-  Subtopic: <a href = "../tags/children.html">Children</a><br>
+  Subtopics: <a href = "../tags/parents.html">Parents</a>, <a href = "../tags/children.html">Children</a><br>
   
-  58 excerpts, 4:37:34 total duration
+  55 excerpts, 4:22:01 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/family.html">All excerpts (59)</a>
-      <a href="../tags/family-qtag.html">Questions about (29)</a>
-      <a href="../tags/family-atag.html">Answers involving (12)</a>
-      <a href="../tags/family-story.html">Stories (13)</a>
-      <a href="../tags/family-quote.html" class="active">Quotes (3)</a>
-      <a href="../tags/family-reading.html">Readings (5)</a>
-      <a href="../tags/family-reference.html">References (1)</a> </div>
+<div class="sublink2"> <a href="../tags/family.html">All excerpts (56)</a>
+      <a href="../tags/family-qtag.html">Questions about (27)</a>
+      <a href="../tags/family-atag.html">Answers involving (11)</a>
+      <a href="../tags/family-story.html">Stories (12)</a>
+      <a href="../tags/family-quote.html" class="active">Quotes (2)</a>
+      <a href="../tags/family-reading.html">Readings (4)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 11, 2008</div>
+<div class="title" id="Chah2001_S33"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S33">Session 33</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S33_F09">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S33_F09.mp3" title="Remembering Ajahn Chah Weekend, S33 E9" data-duration="123"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S33_F09.mp3" download="Remembering Ajahn Chah Weekend, S33 E9.mp3">Download audio</a> (2:03)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Quote:</b>  “You’re strong. Now you need to make your heart as strong as your body.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>. Quoted by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>] // [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/humility.html">Humility</a>] <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
+</p>
+<hr />
+<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – Sep. 11, 2008</div>
 <p id="Metta2008_S03_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F06.mp3" title="Metta Retreat, S3 E6" data-duration="568"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F06.mp3" download="Metta Retreat, S3 E6.mp3">Download audio</a> (9:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Can you speak about working with fear and loss of ego identity, fear, and death?”  [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/perfections.html">Perfections</a>] [<a href = "../tags/recollection.html">Recollection</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F06.mp3" title="Metta Retreat, S3 E6" data-duration="568"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F06.mp3" download="Metta Retreat, S3 E6.mp3">Download audio</a> (9:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Can you speak about working with fear and loss of ego identity, fear, and death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/perfections.html">Perfections</a>] [<a href = "../tags/recollection.html">Recollection</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=20" target="_blank">Description of dukkha</a>. [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
+<<<<<<< HEAD
   <b>Quote:</b>  “We respond to teachings on liberation and Nibbāna with a curious sense of fear and trepidation.” — <a href = ../teachers/ajahn-maha-boowa.html>Ajahn Mahā Boowa</a> speaking about Ajahn Mun [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <hr />
@@ -88,12 +107,15 @@
 <div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S03_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" title="Love, Attachment, and Friendship, S3 E1" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" download="Love, Attachment, and Friendship, S3 E1.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Quote:</b>  “The kindest thing you can do for your parents is to not create them.” — <a href = ../teachers/ajahn-sumedho.html>Ajahn Sumedho</a> [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/amaravati.html">Amaravati</a>] [<a href = "../tags/siladhara.html">Sīladharā</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+=======
+  <b>Quote:</b>  “We respond to teachings on liberation and Nibbāna with a curious sense of fear and trepidation.” — <a href="../teachers/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a> speaking about Ajahn Mun [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Family (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Family (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/family-quote.html">https://abhayagiri.org/questions/tags/family-quote.html</a>.</p>
 </footer>
 

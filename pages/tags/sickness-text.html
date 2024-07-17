@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/sickness-text.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSickness (byādhi)
+  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSickness (byādhi)
   </div>
 
 <div class="intro">
@@ -54,33 +64,41 @@
   Parent topic: <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a><br>
   
   
-  54 excerpts, 5:22:46 total duration
+  65 excerpts, 6:03:49 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/sickness.html">All excerpts (56)</a>
+<div class="sublink2"> <a href="../tags/sickness.html">All excerpts (67)</a>
       <a href="../tags/sickness-qtag.html">Questions about (18)</a>
       <a href="../tags/sickness-atag.html">Answers involving (18)</a>
-      <a href="../tags/sickness-story.html">Stories (15)</a>
-      <a href="../tags/sickness-quote.html">Quotes (2)</a>
-      <a href="../tags/sickness-reading.html">Readings (5)</a>
+      <a href="../tags/sickness-story.html">Stories (21)</a>
+      <a href="../tags/sickness-quote.html">Quotes (5)</a>
+      <a href="../tags/sickness-reading.html">Readings (6)</a>
       <a href="../tags/sickness-text.html" class="active">Texts (2)</a>
       <a href="../tags/sickness-reference.html">References (1)</a> </div>
 <hr>
 
-<div class="title" id="WR2018-2_S06"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 22, 2018</div>
+<div class="title" id="WR2018-2_S06"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S06">Session 6</a> – Mar. 22, 2018</div>
 <p id="WR2018-2_S06_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" title="The Teaching and the Training, S6 E5" data-duration="539"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" download="The Teaching and the Training, S6 E5.mp3">Download audio</a> (8:59)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: It's important for the Saṅgha to look after all members in terms of sickness and ageing. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" title="The Teaching and the Training, S6 E5" data-duration="539"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" download="The Teaching and the Training, S6 E5.mp3">Download audio</a> (8:59)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: It’s important for the Saṅgha to look after all members in terms of sickness and ageing. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Vinaya:</b> <a href="https://suttacentral.net/pli-tv-kd8/en/brahmali?layout=plain&amp;reference=main&amp;notes=asterisk&amp;highlight=false&amp;script=latin#26.1.1" target="_blank">Kd 8.26.1-8</a>: The Monk with Dysentery <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-2_S03"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S03">Session 3</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2018</div>
+<div class="title" id="UD2018-2_S03"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S03">Session 3</a> – Jun. 2, 2018</div>
 <p id="UD2018-2_S03_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F03.mp3" title="Chanting, S3 E3" data-duration="111"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F03.mp3" download="Chanting, S3 E3.mp3">Download audio</a> (1:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I notice that most of the paritta chants don't have English translations. Is there a place we can find these?”  Answered by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/protective-chants.html">Protective chants</a>] // [<a href = "../tags/sutta.html">Sutta</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F03.mp3" title="Chanting, S3 E3" data-duration="111"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F03.mp3" download="Chanting, S3 E3.mp3">Download audio</a> (1:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I notice that most of the paritta chants don’t have English translations. Is there a place we can find these?”  Answered by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/protective-chants.html">Protective chants</a>] // [<a href = "../tags/sutta.html">Sutta</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-32:" target="_blank">DN 32:</a> Āṭānāṭiya Sutta; <a href="https://sutta.readingfaithfully.org/?q=SN-46.14" target="_blank">SN 46.14-16</a>: Sick <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>]
@@ -88,8 +106,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Sickness (Texts),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Sickness (Texts),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/sickness-text.html">https://abhayagiri.org/questions/tags/sickness-text.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/buddhist-identity-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/cultural-context.html#cultural-context"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspBuddhist identity 
+  <div class="title"><a href="../drilldown/cultural-context.html#cultural-context" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspBuddhist identity 
   </div>
 
 <div class="intro">
@@ -65,26 +75,30 @@
       <a href="../tags/buddhist-identity-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="BIA2013_S01"><a href="../events/BIA2013.html">New Year, New Life</a>, <a href="../events/BIA2013.html#BIA2013_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Dec. 16, 2013</div>
+<div class="title" id="BIA2013_S01"><a href="../events/BIA2013.html">New Year, New Life</a>, <a href="../events/BIA2013.html#BIA2013_S01">Session 1</a> – Dec. 16, 2013</div>
 <p id="BIA2013_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F02.mp3" title="New Year, New Life, S1 E2" data-duration="348"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F02.mp3" download="New Year, New Life, S1 E2.mp3">Download audio</a> (5:48)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What do you think about the idea of secular Buddhism? Earlier you spoke about bhāvanā versus meditation, that meditation is not a useful translation [of bhāvanā]. Do you think secular Buddhism is useful or not?”  [<a href = "../tags/secular-buddhism.html">Secular Buddhism</a>] [<a href = "../tags/meditation.html">Meditation</a>] // [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] <b>[<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/learning.html">Learning</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F02.mp3" title="New Year, New Life, S1 E2" data-duration="348"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F02.mp3" download="New Year, New Life, S1 E2.mp3">Download audio</a> (5:48)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What do you think about the idea of secular Buddhism? Earlier you spoke about bhāvanā versus meditation, that meditation is not a useful translation [of bhāvanā]. Do you think secular Buddhism is useful or not?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/secular-buddhism.html">Secular Buddhism</a>] [<a href = "../tags/meditation.html">Meditation</a>] // [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] <b>[<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/learning.html">Learning</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Anything is useful if it's picking up the actual teachings of the Buddha and applying [them] in a skillful way.”  [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+  <b>Quote:</b>  “Anything is useful if it’s picking up the actual teachings of the Buddha and applying [them] in a skillful way.”  [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
 </p>
 <hr />
-<div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S02_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F01.mp3" title="Love, Attachment, and Friendship, S2 E1" data-duration="75"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F01.mp3" download="Love, Attachment, and Friendship, S2 E1.mp3">Download audio</a> (1:15)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b> to Ajahn Ñāṇiko: I really appreciate the honest of your sharing. In terms of self-criticism over the years, what brought about any shift was being authentic, but whilst I wanted not to be critical, it was still there. By watching that process and not identifying with it so much, it gradually shifted until I was able to wish myself well more genuinely. [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] // <b>[<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]</b> [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. 
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Buddhist identity (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Buddhist identity (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/buddhist-identity-atag.html">https://abhayagiri.org/questions/tags/buddhist-identity-atag.html</a>.</p>
 </footer>
 

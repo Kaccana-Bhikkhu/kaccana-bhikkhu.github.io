@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/conflict-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/politics-and-society.html#politics-and-society"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConflict 
+  <div class="title"><a href="../drilldown/politics-and-society.html#politics-and-society" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConflict 
   </div>
 
 <div class="intro">
@@ -54,71 +64,104 @@
   Parent topic: <a href = "../tags/politics-and-society.html">Politics and society</a><br>
   
   
-  14 excerpts, 50:10 total duration
+  18 excerpts, 1:02:58 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/conflict.html">All excerpts (14)</a>
-      <a href="../tags/conflict-qtag.html" class="active">Questions about (8)</a>
-      <a href="../tags/conflict-atag.html">Answers involving (6)</a>
-      <a href="../tags/conflict-story.html">Stories (1)</a>
+<div class="sublink2"> <a href="../tags/conflict.html">All excerpts (18)</a>
+      <a href="../tags/conflict-qtag.html" class="active">Questions about (9)</a>
+      <a href="../tags/conflict-atag.html">Answers involving (7)</a>
+      <a href="../tags/conflict-story.html">Stories (2)</a>
       <a href="../tags/conflict-quote.html">Quotes (2)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="Chah2001_S21"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S21">Session 21</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S21_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S21_F02.mp3" title="Remembering Ajahn Chah Weekend, S21 E2" data-duration="145"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S21_F02.mp3" download="Remembering Ajahn Chah Weekend, S21 E2.mp3">Download audio</a> (2:25)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How are conflicts between [audio unclear] resolved?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>]
+</p>
+<hr />
+<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S11_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F03.mp3" title="Recollections of Ajahn Chah, S11 E3" data-duration="203"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F03.mp3" download="Recollections of Ajahn Chah, S11 E3.mp3">Download audio</a> (3:23)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “As an abbot taking care of a community, how do you handle it when a kerfluffle comes up?”  [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/community.html">Community</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F03.mp3" title="Recollections of Ajahn Chah, S11 E3" data-duration="203"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F03.mp3" download="Recollections of Ajahn Chah, S11 E3.mp3">Download audio</a> (3:23)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “As an abbot taking care of a community, how do you handle it when a kerfluffle comes up?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/community.html">Community</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “What are the antidotes to the next two Noble Truths?” 
 </p>
 <hr />
-<div class="title" id="UD2012-4_S01"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Oct. 20, 2012</div>
+<div class="title" id="UD2012-4_S01"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S01">Session 1</a> – Oct. 20, 2012</div>
 <p id="UD2012-4_S01_F08">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S01_F08.mp3" title="The Gradual Training, S1 E8" data-duration="38"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S01_F08.mp3" download="The Gradual Training, S1 E8.mp3">Download audio</a> (0:38)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Comment</b>: Your statement that faith comes from building confidence and confidence comes from direct experience is so true. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
-<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
+<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S03_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F07.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E7" data-duration="291"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F07.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E7.mp3">Download audio</a> (4:51)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Given the situation in Burma with Buddhist monks fomenting violence against Muslims, how do you determine whether to respond to that vocally or publically?”  [<a href = "../tags/historyother-theravada-traditions.html">History/Other Theravāda traditions</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/islam.html">Islam</a>] [<a href = "../tags/right-speech.html">Right Speech</a>] [<a href = "../tags/media.html">Media</a>] // [<a href = "../tags/military.html">Military</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F07.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E7" data-duration="291"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F07.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E7.mp3">Download audio</a> (4:51)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Given the situation in Burma with Buddhist monks fomenting violence against Muslims, how do you determine whether to respond to that vocally or publically?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/historyother-theravada-traditions.html">History/Other Theravāda traditions</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/islam.html">Islam</a>] [<a href = "../tags/right-speech.html">Right Speech</a>] [<a href = "../tags/media.html">Media</a>] // [<a href = "../tags/military.html">Military</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S05"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 12, 2014</div>
+<div class="title" id="WR2014_S05"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S05">Session 5</a> – Jan. 12, 2014</div>
 <p id="WR2014_S05_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S5 E3" data-duration="92"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S5 E3.mp3">Download audio</a> (1:32)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Why was the Dhammayut/Mahanikai split so strong?”  [<a href = "../tags/thai-sects.html">Thai sects</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <hr />
 <p id="WR2014_S05_F04">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S5 E4" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S5 E4.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Why did conflict between the sects break out on almsround?”  [<a href = "../tags/thai-sects.html">Thai sects</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/almsround.html">Almsround</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S5 E3" data-duration="92"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S5 E3.mp3">Download audio</a> (1:32)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Why was the Dhammayut/Mahanikai split so strong?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/thai-sects.html">Thai sects</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <hr />
-<div class="title" id="TG2014_S04"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 25, 2014</div>
+<p id="WR2014_S05_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S5 E4" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S05_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S5 E4.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Why did conflict between the sects break out on almsround?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/thai-sects.html">Thai sects</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/almsround.html">Almsround</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="TG2014_S04"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S04">Session 4</a> – Nov. 25, 2014</div>
 <p id="TG2014_S04_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F14.mp3" title="2014 Thanksgiving Monastic Retreat, S4 E14" data-duration="151"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F14.mp3" download="2014 Thanksgiving Monastic Retreat, S4 E14.mp3">Download audio</a> (2:31)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “My relationship with my kids can be so contentious and draining—so different than I thought it would be. How can I love and train them even though it seems they were born to resist these things?”  [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F14.mp3" title="2014 Thanksgiving Monastic Retreat, S4 E14" data-duration="151"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F14.mp3" download="2014 Thanksgiving Monastic Retreat, S4 E14.mp3">Download audio</a> (2:31)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “My relationship with my kids can be so contentious and draining—so different than I thought it would be. How can I love and train them even though it seems they were born to resist these things?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2015</div>
+<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S04_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F16.mp3" title="On Pilgrimage and Tudong, S4 E16" data-duration="25"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F16.mp3" download="On Pilgrimage and Tudong, S4 E16.mp3">Download audio</a> (0:25)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Is it difficult for two monks to get along the whole time?”  [<a href = "../tags/communal-harmony.html">Communal harmony</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F16.mp3" title="On Pilgrimage and Tudong, S4 E16" data-duration="25"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F16.mp3" download="On Pilgrimage and Tudong, S4 E16.mp3">Download audio</a> (0:25)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Is it difficult for two monks to get along the whole time?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/communal-harmony.html">Communal harmony</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" title="Tea Time Q&A with Ajahn Pasanno, E7" data-duration="162"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" download="Tea Time Q&A with Ajahn Pasanno, E7.mp3">Download audio</a> (2:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Your advice to leaders in the conflicts of 2021 in terms of the leaders themselves and how they can inspire their teams and communities?”  [<a href = "../tags/leadership.html">Leadership</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/community.html">Community</a>] // [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/listening.html">Listening</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" title="Tea Time Q&A with Ajahn Pasanno, E7" data-duration="162"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" download="Tea Time Q&A with Ajahn Pasanno, E7.mp3">Download audio</a> (2:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Your advice to leaders in the conflicts of 2021 in terms of the leaders themselves and how they can inspire their teams and communities?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/leadership.html">Leadership</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/community.html">Community</a>] // [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/listening.html">Listening</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Leadership always comes by example.”  
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “[Ajahn Chah] never asked us to do something that he himself wasn't doing.”  
+  <b>Quote:</b>  “[Ajahn Chah] never asked us to do something that he himself wasn’t doing.”  
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Conflict (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Conflict (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/conflict-qtag.html">https://abhayagiri.org/questions/tags/conflict-qtag.html</a>.</p>
 </footer>
 

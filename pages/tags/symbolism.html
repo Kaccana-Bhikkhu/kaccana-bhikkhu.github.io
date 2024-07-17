@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/symbolism.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/teaching-dhamma.html#teaching-dhamma"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSymbolism 
+  <div class="title"><a href="../drilldown/teaching-dhamma.html#teaching-dhamma" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSymbolism 
   </div>
 
 <div class="intro">
@@ -57,20 +67,28 @@
   2 excerpts, 5:24 total duration
 </strong>
 <hr />
-<div class="title" id="UD2015-1_S03"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2015</div>
+<div class="title" id="UD2015-1_S03"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S03">Session 3</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S03_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" title="On Pilgrimage and Tudong, S3 E1" data-duration="265"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" download="On Pilgrimage and Tudong, S3 E1.mp3">Download audio</a> (4:25)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You showed pictures of the statue at Bodh Gaya. It seems like the Bodhi Tree is more important. Does the statue have no historical importance?”  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>, <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a>. [<a href = "../tags/bodhi-tree.html">Bodhi Tree</a>] [<a href = "../tags/buddha-images.html">Buddha images</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] // [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/historyindian-buddhism.html">History/Indian Buddhism</a>] <b>[<a href = "../tags/symbolism.html">Symbolism</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" title="On Pilgrimage and Tudong, S3 E1" data-duration="265"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F01.mp3" download="On Pilgrimage and Tudong, S3 E1.mp3">Download audio</a> (4:25)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You showed pictures of the statue at Bodh Gaya. It seems like the Bodhi Tree is more important. Does the statue have no historical importance?”  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>, <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a>. [<a href = "../tags/bodhi-tree.html">Bodhi Tree</a>] [<a href = "../tags/buddha-images.html">Buddha images</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>] // [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/historyindian-buddhism.html">History/Indian Buddhism</a>] <b>[<a href = "../tags/symbolism.html">Symbolism</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2015</div>
+<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S04_F11">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F11.mp3" title="On Pilgrimage and Tudong, S4 E11" data-duration="59"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F11.mp3" download="On Pilgrimage and Tudong, S4 E11.mp3">Download audio</a> (0:59)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Can tudong be understood as a metaphor for practice? When we carry a lot of heavyweight stuff for a long time, we get tired and need to drop something.”  <b>[<a href = "../tags/symbolism.html">Symbolism</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/tudong.html">Tudong</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F11.mp3" title="On Pilgrimage and Tudong, S4 E11" data-duration="59"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F11.mp3" download="On Pilgrimage and Tudong, S4 E11.mp3">Download audio</a> (0:59)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Can tudong be understood as a metaphor for practice? When we carry a lot of heavyweight stuff for a long time, we get tired and need to drop something.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/symbolism.html">Symbolism</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/tudong.html">Tudong</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Symbolism,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Symbolism,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/symbolism.html">https://abhayagiri.org/questions/tags/symbolism.html</a>.</p>
 </footer>
 

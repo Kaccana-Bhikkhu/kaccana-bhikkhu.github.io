@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/hindrances-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/hindrances.html#hindrances"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspFive Hindrances (pañca nīvaraṇāni)
+  <div class="title"><a href="../drilldown/hindrances.html#hindrances" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspFive Hindrances (pañca nīvaraṇāni)
   </div>
 
 <div class="intro">
@@ -64,42 +74,58 @@
       <a href="../tags/hindrances-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
+<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S03_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8" data-duration="508"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8.mp3">Download audio</a> (8:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I appreciate your emphasis on clarity, stability, and spaciousness. How does concentration relate to these?”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8" data-duration="508"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8.mp3">Download audio</a> (8:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I appreciate your emphasis on clarity, stability, and spaciousness. How does concentration relate to these?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.3:" target="_blank">AN 10.3:</a> Virtuous Behaivor; <a href="https://sutta.readingfaithfully.org/?q=AN-6.10" target="_blank">AN 6.10</a> Mahānāma [<a href = "../tags/virtue.html">Virtue</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The way my mind worked before was, 'Boy, when I get my concentration together, I'm going to be happy...'”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <b>Quote:</b>  “The way my mind worked before was, ‘Boy, when I get my concentration together, I’m going to be happy...’”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The happy mind is easily concentrated.”  <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
 </p>
 <hr />
-<div class="title" id="BIA2013_S01"><a href="../events/BIA2013.html">New Year, New Life</a>, <a href="../events/BIA2013.html#BIA2013_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Dec. 16, 2013</div>
+<div class="title" id="BIA2013_S01"><a href="../events/BIA2013.html">New Year, New Life</a>, <a href="../events/BIA2013.html#BIA2013_S01">Session 1</a> – Dec. 16, 2013</div>
 <p id="BIA2013_S01_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" title="New Year, New Life, S1 E6" data-duration="530"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" download="New Year, New Life, S1 E6.mp3">Download audio</a> (8:50)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “I find I do need some pleasures even thought they don't last, things like fine arts and being in nature. I'm curious, how did you manage as a monk in your early years at Ajahn Chah's monastery where there's almost no pleasure....How did you manage to keep going over the years until the present?”  [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/empathetic-joy.html">Empathetic joy</a>] [<a href = "../tags/human.html">Human</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" title="New Year, New Life, S1 E6" data-duration="530"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" download="New Year, New Life, S1 E6.mp3">Download audio</a> (8:50)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “I find I do need some pleasures even thought they don’t last, things like fine arts and being in nature. I’m curious, how did you manage as a monk in your early years at Ajahn Chah’s monastery where there’s almost no pleasure....How did you manage to keep going over the years until the present?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/empathetic-joy.html">Empathetic joy</a>] [<a href = "../tags/human.html">Human</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “One of the extraordinary perks of being a monk is that everyone tries to be good around you.”  
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-36.32:" target="_blank">MN 36.32:</a> "Why am I afraid of that happiness?" [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>]
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-36.32:" target="_blank">MN 36.32:</a> “Why am I afraid of that happiness?” [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As a monk, I can look back on forty years of living in a way where I don't have to feel remorseful or regret anything.”  
+  <b>Quote:</b>  “As a monk, I can look back on forty years of living in a way where I don’t have to feel remorseful or regret anything.”  
 </p>
 <hr />
-<div class="title" id="WR2014_S10"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S10">Session 10</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 19, 2014</div>
+<div class="title" id="WR2014_S10"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S10">Session 10</a> – Jan. 19, 2014</div>
 <p id="WR2014_S10_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S10_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S10 E1" data-duration="123"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S10_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S10 E1.mp3">Download audio</a> (2:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What degree of pīti and sukha is necessary to establish the first jhāna?”  [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S10_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S10 E1" data-duration="123"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S10_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S10 E1.mp3">Download audio</a> (2:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What degree of pīti and sukha is necessary to establish the first jhāna?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S37"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S37">Session 37</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 25, 2014</div>
+<div class="title" id="WR2014_S37"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S37">Session 37</a> – Feb. 25, 2014</div>
 <p id="WR2014_S37_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S37 E4" data-duration="223"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S37 E4.mp3">Download audio</a> (3:43)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Could you say more about the positive causal process that is the opposite of paticcasamuppada?”  [<a href = "../tags/dependent-origination.html">Dependent origination</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S37 E4" data-duration="223"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S37 E4.mp3">Download audio</a> (3:43)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Could you say more about the positive causal process that is the opposite of paticcasamuppada?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/dependent-origination.html">Dependent origination</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-12.23" target="_blank">SN 12.23</a> Upanisa: Dukkha is a cause for faith. [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/faith.html">Faith</a>]
@@ -108,41 +134,61 @@
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.61" target="_blank">AN 10.61</a> Avijjā: The Five Hindrances are a cause for ignorance. <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/ignorance.html">Ignorance</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S42"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S42">Session 42</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 4, 2014</div>
+<div class="title" id="WR2014_S42"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S42">Session 42</a> – Mar. 4, 2014</div>
 <p id="WR2014_S42_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S42 E5" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S42 E5.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How does one work with dullness and drowsiness in sitting meditation?”  [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/posturestanding.html">Posture/Standing</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S42 E5" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S42 E5.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How does one work with dullness and drowsiness in sitting meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/posturestanding.html">Posture/Standing</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-7.58" target="_blank">AN 7.58</a> Capala Sutta: "Are you nodding, Moggallana?" [<a href = "../tags/great-disciples.html">Great disciples</a>]
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-7.58" target="_blank">AN 7.58</a> Capala Sutta: “Are you nodding, Moggallana?” [<a href = "../tags/great-disciples.html">Great disciples</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno walks in the forest without a flashlight to dispel drowsiness. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S03_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" title="Jhāna: A Practical Approach, S3 E3" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" download="Jhāna: A Practical Approach, S3 E3.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “In the jhāna formula, in what sense is the word 'seclusion' used?”  [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" title="Jhāna: A Practical Approach, S3 E3" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F03.mp3" download="Jhāna: A Practical Approach, S3 E3.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “In the jhāna formula, in what sense is the word ‘seclusion’ used?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2017-2_S01"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S01"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S01">Session 1</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S01_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8" data-duration="157"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8.mp3">Download audio</a> (2:37)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I'm curious about the wholesome/unwholesome assessment [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>]. If it's a thought of ill-will, greed, hatred, or delusion, but we're not attached to it, we're just seeing it arise, seeing it pass, recognizing it, being aware that it's in the mind. Does the unwholesomeness come from believing it?”  [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/habits.html">Habits</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8" data-duration="157"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8.mp3">Download audio</a> (2:37)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I’m curious about the wholesome/unwholesome assessment [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>]. If it’s a thought of ill-will, greed, hatred, or delusion, but we’re not attached to it, we’re just seeing it arise, seeing it pass, recognizing it, being aware that it’s in the mind. Does the unwholesomeness come from believing it?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/habits.html">Habits</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2017-2_S03"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S03"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S03">Session 3</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S03_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F06.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E6" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F06.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E6.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b>: I've been reflecting on freedom from as opposed to freedom within. Sometimes there's a secret hope that those thoughts will go away, vibhava-taṇha, as opposed to freedom within, meaning releasing the identification with painful thoughts. [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F06.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E6" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F06.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E6.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b>: I’ve been reflecting on freedom from as opposed to freedom within. Sometimes there’s a secret hope that those thoughts will go away, vibhava-taṇha, as opposed to freedom within, meaning releasing the identification with painful thoughts. [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] // <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Just that much.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/disenchantment.html">Disenchantment</a>]
+  <b>Quote:</b>  “Just that much.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/disenchantment.html">Disenchantment</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" title="The Path of Practice, S1 E4" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" download="The Path of Practice, S1 E4.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is the fourth foundation of mindfulness as simple as, for example, with the third foundation I identify aversion, and then in the fourth foundation I identify aversion as a hindrance?”  [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/agama.html">Āgama</a>] [<a href = "../tags/sutta.html">Sutta</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" title="The Path of Practice, S1 E4" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" download="The Path of Practice, S1 E4.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is the fourth foundation of mindfulness as simple as, for example, with the third foundation I identify aversion, and then in the fourth foundation I identify aversion as a hindrance?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/agama.html">Āgama</a>] [<a href = "../tags/sutta.html">Sutta</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b> [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-10:" target="_blank">MN 10:</a> Satipaṭṭhāna Sutta; <a href="https://sutta.readingfaithfully.org/?q=MN-118:" target="_blank">MN 118:</a> Ānāpānasati Sutta [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
@@ -151,21 +197,25 @@
   <b>Reference</b>: <em>Satipaṭṭhāna Perspectives</em> by Bhante Analayo (commercial) 
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" title="Tea Time Q&A with Ajahn Pasanno, E5" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" download="Tea Time Q&A with Ajahn Pasanno, E5.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How to reach the state of peace and serenity when we're just human beings and we strive to be good people?”  [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/virtue.html">Virtue</a>] // [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" title="Tea Time Q&A with Ajahn Pasanno, E5" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" download="Tea Time Q&A with Ajahn Pasanno, E5.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How to reach the state of peace and serenity when we’re just human beings and we strive to be good people?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/virtue.html">Virtue</a>] // [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] <b>[<a href = "../tags/hindrances.html">Hindrances</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-2:" target="_blank">DN 2:</a> Sāmaññaphala Sutta - Fruits of the Holy Life 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b> When asked about his attainments as a monk, “I'm just really happy about all the things I didn't do.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+  <b>Quote:</b> When asked about his attainments as a monk, “I’m just really happy about all the things I didn’t do.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Five Hindrances (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Five Hindrances (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/hindrances-atag.html">https://abhayagiri.org/questions/tags/hindrances-atag.html</a>.</p>
 </footer>
 

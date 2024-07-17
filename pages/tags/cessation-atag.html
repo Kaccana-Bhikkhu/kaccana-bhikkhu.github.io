@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/cessation-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCessation (nirodha)
+  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCessation (nirodha)
   </div>
 
 <div class="intro">
@@ -54,10 +64,10 @@
   Parent topics: <a href = "../tags/progress-of-insight.html">Progress of insight</a>, <a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a><br>
   
   
-  27 excerpts, 1:31:57 total duration
+  28 excerpts, 1:42:21 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/cessation.html">All excerpts (27)</a>
+<div class="sublink2"> <a href="../tags/cessation.html">All excerpts (28)</a>
       <a href="../tags/cessation-qtag.html">Questions about (9)</a>
       <a href="../tags/cessation-atag.html" class="active">Answers involving (12)</a>
       <a href="../tags/cessation-quote.html">Quotes (3)</a>
@@ -65,9 +75,13 @@
       <a href="../tags/cessation-text.html">Texts (2)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S40"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S40">Session 40</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 2, 2014</div>
+<div class="title" id="WR2014_S40"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S40">Session 40</a> – Mar. 2, 2014</div>
 <p id="WR2014_S40_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S40_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S40 E5" data-duration="472"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S40_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S40 E5.mp3">Download audio</a> (7:52)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “What is the difference between abandoning craving and realizing the abandoning of craving?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a>. [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] // [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/becoming.html">Becoming</a>] [<a href = "../tags/right-view.html">Right View</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S40_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S40 E5" data-duration="472"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S40_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S40 E5.mp3">Download audio</a> (7:52)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “What is the difference between abandoning craving and realizing the abandoning of craving?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a>. [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] // [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/becoming.html">Becoming</a>] [<a href = "../tags/right-view.html">Right View</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-56.11" target="_blank">SN 56.11</a> Dhammacakkappavattana Sutta. [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>]
@@ -76,95 +90,135 @@
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-121" target="_blank">MN 121</a> Cūḷa Suññata Sutta: The Shorter Discourse on Emptiness [<a href = "../tags/emptiness.html">Emptiness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The characteristic of cessation is not just ending something and annihilating [it], but it's being willing and able to stop. The nature of the mind is that it doesn't like to stop. And it's [through] that not stopping that we keep creating that sense of me.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+  <b>Quote:</b>  “The characteristic of cessation is not just ending something and annihilating [it], but it’s being willing and able to stop. The nature of the mind is that it doesn’t like to stop. And it’s [through] that not stopping that we keep creating that sense of me.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S58"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S58">Session 58</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 28, 2014</div>
+<div class="title" id="WR2014_S58"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S58">Session 58</a> – Mar. 28, 2014</div>
 <p id="WR2014_S58_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S58 E5" data-duration="368"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S58 E5.mp3">Download audio</a> (6:08)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “In my desire to get to the “heart of it” I find part of my mind really wants this, but another part of my mind is not going along with the program. How do I keep myself on the Path?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a>. [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/volition.html">Volition</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S58 E5" data-duration="368"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S58 E5.mp3">Download audio</a> (6:08)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “In my desire to get to the “heart of it” I find part of my mind really wants this, but another part of my mind is not going along with the program. How do I keep myself on the Path?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a>. [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/volition.html">Volition</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “The experience of arising and disbanding isn't yet practical for me. I need something more operational.” <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/tranquility.html">Tranquility</a>]
+  <b>Follow-up:</b> “The experience of arising and disbanding isn’t yet practical for me. I need something more operational.” <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/tranquility.html">Tranquility</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Simile:</b> Making a fire flare up or die down (<a href="https://sutta.readingfaithfully.org/?q=SN-46.53" target="_blank">SN 46.53</a>). — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>]
+  <b>Simile:</b> Making a fire flare up or die down (<a href="https://sutta.readingfaithfully.org/?q=SN-46.53" target="_blank">SN 46.53</a>). — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>]
 </p>
 <hr />
-<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 18, 2014</div>
+<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – Nov. 18, 2014</div>
 <p id="DRBU2014_S00_F19">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E19" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E19.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “So being the one who knows, you don't have to react to dislike and like?”  [<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/greed.html">Greed</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E19" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E19.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “So being the one who knows, you don’t have to react to dislike and like?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/greed.html">Greed</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The difference between an awakened mind and an unawakened mind is that the unawakened mind keeps following likes and dislikes. An awakened mind can see that arise, establish itself, and pass away. The mind is the same.”  [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
 </p>
 <hr />
-<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 2, 2015</div>
+<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – Feb. 2, 2015</div>
 <p id="WR2015_S22_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E1" data-duration="63"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E1.mp3">Download audio</a> (1:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Which Pāli word is translated as “fading away?””  [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] // <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E1" data-duration="63"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E1.mp3">Download audio</a> (1:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Which Pāli word is translated as “fading away?””  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] // <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2015-2_S01"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
+<div class="title" id="UD2015-2_S01"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S01">Session 1</a> – May. 27, 2015</div>
 <p id="UD2015-2_S01_F15">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F15.mp3" title="The Middle Way of Not-Self, S1 E15" data-duration="91"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F15.mp3" download="The Middle Way of Not-Self, S1 E15.mp3">Download audio</a> (1:31)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “Is the heir to my thoughts, words, and deeds me or some other guy?”  [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/becoming.html">Becoming</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F15.mp3" title="The Middle Way of Not-Self, S1 E15" data-duration="91"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S01_F15.mp3" download="The Middle Way of Not-Self, S1 E15.mp3">Download audio</a> (1:31)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “Is the heir to my thoughts, words, and deeds me or some other guy?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/becoming.html">Becoming</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
+<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – May. 27, 2015</div>
 <p id="UD2015-2_S02_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" title="The Middle Way of Not-Self, S2 E8" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" download="The Middle Way of Not-Self, S2 E8.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you think it's enough to just be aware of the suffering that's caused by the clinging to self?”  [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" title="The Middle Way of Not-Self, S2 E8" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" download="The Middle Way of Not-Self, S2 E8.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you think it’s enough to just be aware of the suffering that’s caused by the clinging to self?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The most efficacious investigation comes from a still mind.”  [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
 </p>
 <hr />
-<div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 14, 2015</div>
+<div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – Jun. 14, 2015</div>
 <p id="SRD2015_S02_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F05.mp3" title="Desire or Aspiration, S2 E5" data-duration="194"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F05.mp3" download="Desire or Aspiration, S2 E5.mp3">Download audio</a> (3:14)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Do we have any control over the arising of desire?”  [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/desire.html">Desire</a>] // [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/pali.html">Pāli</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F05.mp3" title="Desire or Aspiration, S2 E5" data-duration="194"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F05.mp3" download="Desire or Aspiration, S2 E5.mp3">Download audio</a> (3:14)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Do we have any control over the arising of desire?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/desire.html">Desire</a>] // [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/pali.html">Pāli</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2017-2_S02"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S02"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S02">Session 2</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S02_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F10.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E10" data-duration="122"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F10.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E10.mp3">Download audio</a> (2:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “How can you connect the five methods [of <a href="https://sutta.readingfaithfully.org/?q=MN-20" target="_blank">MN 20</a>] with the development of insight, which people tend to equate with just observing?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/dependent-origination.html">Dependent origination</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F10.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E10" data-duration="122"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F10.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E10.mp3">Download audio</a> (2:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “How can you connect the five methods [of <a href="https://sutta.readingfaithfully.org/?q=MN-20" target="_blank">MN 20</a>] with the development of insight, which people tend to equate with just observing?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/dependent-origination.html">Dependent origination</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2018-2_S11"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 29, 2018</div>
+<div class="title" id="WR2018-2_S11"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S11">Session 11</a> – Mar. 29, 2018</div>
 <p id="WR2018-2_S11_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F04.mp3" title="The Teaching and the Training, S11 E4" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F04.mp3" download="The Teaching and the Training, S11 E4.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “At the beginning of this retreat, Tan Ajahn Anan advised us, "Don't forget Nibbāna." How do we orient ourselves towards Nibbāna?”  [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/ajahn-anan.html">Ajahn Anan</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F04.mp3" title="The Teaching and the Training, S11 E4" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F04.mp3" download="The Teaching and the Training, S11 E4.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “At the beginning of this retreat, Tan Ajahn Anan advised us, “Don’t forget Nibbāna.” How do we orient ourselves towards Nibbāna?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/ajahn-anan.html">Ajahn Anan</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.60:" target="_blank">AN 10.60:</a> Girimānanda Sutta <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-56.11:" target="_blank">SN 56.11:</a> "Whatever is of the nature to arise, that is of the nature to cease." [<a href = "../tags/conditionality.html">Conditionality</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-56.11:" target="_blank">SN 56.11:</a> “Whatever is of the nature to arise, that is of the nature to cease.” [<a href = "../tags/conditionality.html">Conditionality</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “[The goal] is incredibly worthy, and it is not beyound our capability and means to experience.”  [<a href = "../tags/direct-experience.html">Direct experience</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F18">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F18.mp3" title="The Path of Practice, S1 E18" data-duration="188"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F18.mp3" download="The Path of Practice, S1 E18.mp3">Download audio</a> (3:08)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “Before we relinquish the self, there needs to be a recognition of what's going on. I often realize this minutes or hours later. Any suggestions for this initial step of noticing?”  [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/mindfulness-of-feeling.html">Mindfulness of feeling</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/spaciousness.html">Spaciousness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F18.mp3" title="The Path of Practice, S1 E18" data-duration="188"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F18.mp3" download="The Path of Practice, S1 E18.mp3">Download audio</a> (3:08)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “Before we relinquish the self, there needs to be a recognition of what’s going on. I often realize this minutes or hours later. Any suggestions for this initial step of noticing?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/mindfulness-of-feeling.html">Mindfulness of feeling</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/spaciousness.html">Spaciousness</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S02_F05">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F05.mp3" title="Love, Attachment, and Friendship, S2 E5" data-duration="76"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F05.mp3" download="Love, Attachment, and Friendship, S2 E5.mp3">Download audio</a> (1:16)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Simile:</b> Sculpting different materials requires different tools. This practice is more molding than hammering. [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>: Ajahn Amaro used to say, "The beatings won't stop until morale improves." At a certain point, you have to decide to stop. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
+  <b>Response</b> by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>: Ajahn Amaro used to say, “The beatings won’t stop until morale improves.” At a certain point, you have to decide to stop. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b>
 </p>
 <hr />
-<div class="title" id="UD2019-5_S01"><a href="../events/UD2019-5.html">Developing Skill in Reflective Meditation</a>, <a href="../events/UD2019-5.html#UD2019-5_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Dec. 1, 2019</div>
+<div class="title" id="UD2019-5_S01"><a href="../events/UD2019-5.html">Developing Skill in Reflective Meditation</a>, <a href="../events/UD2019-5.html#UD2019-5_S01">Session 1</a> – Dec. 1, 2019</div>
 <p id="UD2019-5_S01_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S01_F04.mp3" title="Developing Skill in Reflective Meditation, S1 E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S01_F04.mp3" download="Developing Skill in Reflective Meditation, S1 E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “You mentioned 'Look for the gap.' Is this related to looking for fading away?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/recollection.html">Recollection</a>] // <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/faith.html">Faith</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S01_F04.mp3" title="Developing Skill in Reflective Meditation, S1 E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S01_F04.mp3" download="Developing Skill in Reflective Meditation, S1 E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “You mentioned ‘Look for the gap.’ Is this related to looking for fading away?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/recollection.html">Recollection</a>] // <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/faith.html">Faith</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “So we're not just looking at the blank...” [<a href = "../tags/wrong-concentration.html">Wrong concentration</a>] [<a href = "../tags/emptiness.html">Emptiness</a>] [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+  <b>Follow-up:</b> “So we’re not just looking at the blank...” [<a href = "../tags/wrong-concentration.html">Wrong concentration</a>] [<a href = "../tags/emptiness.html">Emptiness</a>] [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/not-self.html">Not-self</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Cessation (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Cessation (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/cessation-atag.html">https://abhayagiri.org/questions/tags/cessation-atag.html</a>.</p>
 </footer>
 

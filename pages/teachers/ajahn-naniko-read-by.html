@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-naniko-read-by.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -60,12 +70,16 @@
 
 <div class="title" id="WR2014_S03"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S03">Session 3</a> – Jan. 10, 2014</div>
 <p id="WR2014_S03_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S03_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S3 E2" data-duration="1760"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S03_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S3 E2.mp3">Download audio</a> (29:20)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Reading:</b> “Watch Your Mind and Escape Māra's Snare” from <em>Santi – Peace Beyond Delusion</em> by <a href = ../teachers/ajahn-liem.html>Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=7" target="_blank">pp. 6-23</a>.  
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S03_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S3 E2" data-duration="1760"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S03_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S3 E2.mp3">Download audio</a> (29:20)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Reading:</b> “Watch Your Mind and Escape Māra’s Snare” from <em>Santi – Peace Beyond Delusion</em> by <a href="../teachers/ajahn-liem.html">Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=7" target="_blank">pp. 6-23</a>.  
+>>>>>>> july-2024
 </p>
 <hr />
 <div class="title" id="WR2014_S04"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S04">Session 4</a> – Jan. 11, 2014</div>
 <p id="WR2014_S04_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_01_11_2014_Winter_Retreat_Readings-Watch_Your_Mind_and_Escape_Maras_Snare_Pt2.mp3" title="Abhayagiri 2014 Winter Retreat, S4" data-duration="1545"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_01_11_2014_Winter_Retreat_Readings-Watch_Your_Mind_and_Escape_Maras_Snare_Pt2.mp3" download="Abhayagiri 2014 Winter Retreat, S4.mp3">Download audio</a> (25:45)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Watch Your Mind and Escape Māra's Snare” from <em>Santi – Peace Beyond Delusion</em> by <a href = ../teachers/ajahn-liem.html>Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=24" target="_blank">pp. 23-36</a>.  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_01_11_2014_Winter_Retreat_Readings-Watch_Your_Mind_and_Escape_Maras_Snare_Pt2.mp3" title="Abhayagiri 2014 Winter Retreat, S4" data-duration="1545"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_01_11_2014_Winter_Retreat_Readings-Watch_Your_Mind_and_Escape_Maras_Snare_Pt2.mp3" download="Abhayagiri 2014 Winter Retreat, S4.mp3">Download audio</a> (25:45)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Watch Your Mind and Escape Māra’s Snare” from <em>Santi – Peace Beyond Delusion</em> by <a href="../teachers/ajahn-liem.html">Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=24" target="_blank">pp. 23-36</a>.  
 </p>
 <hr />
 <div class="title" id="WR2014_S23"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S23">Session 23</a> – Feb. 5, 2014</div>
@@ -75,7 +89,7 @@
 <hr />
 <div class="title" id="WR2014_S42"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S42">Session 42</a> – Mar. 4, 2014</div>
 <p id="WR2014_S42_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_03_04_2014_Winter_Retreat_Readings-Dhamma-Truth_of_Samatha-Vipassana_for_the_Nuclear_Age.mp3" title="Abhayagiri 2014 Winter Retreat, S42" data-duration="2714"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_03_04_2014_Winter_Retreat_Readings-Dhamma-Truth_of_Samatha-Vipassana_for_the_Nuclear_Age.mp3" download="Abhayagiri 2014 Winter Retreat, S42.mp3">Download audio</a> (45:14)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “The Dhamma-Truth of Samatha-Vipassana for the Nuclear Age” from <a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/Bhikkhu%20Buddhadasa%20-%20Keys%20to%20Natural%20Truth.htm" target="_blank"><em>Key to Natural Truth</em></a> by <a href = ../teachers/ajahn-buddhadasa.html>Ajahn Buddhadāsa</a> pp. 111-131.  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_03_04_2014_Winter_Retreat_Readings-Dhamma-Truth_of_Samatha-Vipassana_for_the_Nuclear_Age.mp3" title="Abhayagiri 2014 Winter Retreat, S42" data-duration="2714"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_03_04_2014_Winter_Retreat_Readings-Dhamma-Truth_of_Samatha-Vipassana_for_the_Nuclear_Age.mp3" download="Abhayagiri 2014 Winter Retreat, S42.mp3">Download audio</a> (45:14)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “The Dhamma-Truth of Samatha-Vipassana for the Nuclear Age” from <a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/Bhikkhu%20Buddhadasa%20-%20Keys%20to%20Natural%20Truth.htm" target="_blank"><em>Key to Natural Truth</em></a> by <a href="../teachers/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a> pp. 111-131.  
 </p>
 <hr />
 <div class="title" id="WR2015_S23"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S23">Session 23</a> – Feb. 5, 2015</div>
@@ -136,12 +150,12 @@
 <hr />
 <div class="title" id="WR2015_S27"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S27">Session 27</a> – Feb. 10, 2015</div>
 <p id="WR2015_S27_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/27_AN_02_10_2015_A_Gift_of_Dhamma.mp3" title="Abhayagiri 2015 Winter Retreat, S27" data-duration="1096"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/27_AN_02_10_2015_A_Gift_of_Dhamma.mp3" download="Abhayagiri 2015 Winter Retreat, S27.mp3">Download audio</a> (18:16)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=263" target="_blank">pp. 225-231</a>: "A Gift of Dhamma."  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/27_AN_02_10_2015_A_Gift_of_Dhamma.mp3" title="Abhayagiri 2015 Winter Retreat, S27" data-duration="1096"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/27_AN_02_10_2015_A_Gift_of_Dhamma.mp3" download="Abhayagiri 2015 Winter Retreat, S27.mp3">Download audio</a> (18:16)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=263" target="_blank">pp. 225-231</a>: “A Gift of Dhamma.”  
 </p>
 <hr />
 <div class="title" id="WR2015_S28"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S28">Session 28</a> – Feb. 13, 2015</div>
 <p id="WR2015_S28_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/28_AN_02_13_2015_The_Method_of_Developing_Calm.mp3" title="Abhayagiri 2015 Winter Retreat, S28" data-duration="1528"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/28_AN_02_13_2015_The_Method_of_Developing_Calm.mp3" download="Abhayagiri 2015 Winter Retreat, S28.mp3">Download audio</a> (25:28)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> Chapter 2, "The Method of Developing Calm" in <em>The Natural Character of Awakening</em> by <a href = ../teachers/chao-khun-upali.html>Chao Khun Upāli</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Upali_Natural_Character_of_Awakening.pdf#page=38" target="_blank">p. 30-39</a>.  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/28_AN_02_13_2015_The_Method_of_Developing_Calm.mp3" title="Abhayagiri 2015 Winter Retreat, S28" data-duration="1528"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/28_AN_02_13_2015_The_Method_of_Developing_Calm.mp3" download="Abhayagiri 2015 Winter Retreat, S28.mp3">Download audio</a> (25:28)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> Chapter 2, “The Method of Developing Calm” in <em>The Natural Character of Awakening</em> by <a href="../teachers/chao-khun-upali.html">Chao Khun Upāli</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Upali_Natural_Character_of_Awakening.pdf#page=38" target="_blank">p. 30-39</a>.  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S29"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S29">Session 29</a> – Feb. 15, 2015</div>
@@ -152,7 +166,7 @@
   <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-9:" target="_blank">MN 9:</a> Sammādiṭṭhi Sutta, Right View (excerpt).  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> Readings on the suffering of birth and aging from <em>Liberation in the Palm of Your Hand</em> by <a href = ../teachers/pabongka-rinpoche.html>Pabongka Rinpoche</a> (commercial).  [<a href = "../tags/birth.html">Birth</a>] [<a href = "../tags/ageing.html">Ageing</a>]
+  <b>Reading:</b> Readings on the suffering of birth and aging from <em>Liberation in the Palm of Your Hand</em> by <a href="../teachers/pabongka-rinpoche.html">Pabongka Rinpoche</a> (commercial).  [<a href = "../tags/birth.html">Birth</a>] [<a href = "../tags/ageing.html">Ageing</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S50"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S50">Session 50</a> – Mar. 23, 2015</div>
@@ -162,12 +176,12 @@
 <hr />
 <div class="title" id="WR2015_S51"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S51">Session 51</a> – Mar. 24, 2015</div>
 <p id="WR2015_S51_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/51_AN_03_24_2015_Santi_1.mp3" title="Abhayagiri 2015 Winter Retreat, S51" data-duration="1571"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/51_AN_03_24_2015_Santi_1.mp3" download="Abhayagiri 2015 Winter Retreat, S51.mp3">Download audio</a> (26:11)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Santi,” <em>Santi – Peace Beyond Delusion</em> by <a href = ../teachers/ajahn-liem.html>Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=40" target="_blank">p. 39-53</a>.  [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/51_AN_03_24_2015_Santi_1.mp3" title="Abhayagiri 2015 Winter Retreat, S51" data-duration="1571"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/51_AN_03_24_2015_Santi_1.mp3" download="Abhayagiri 2015 Winter Retreat, S51.mp3">Download audio</a> (26:11)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Santi,” <em>Santi – Peace Beyond Delusion</em> by <a href="../teachers/ajahn-liem.html">Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=40" target="_blank">p. 39-53</a>.  [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S52"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S52">Session 52</a> – Mar. 25, 2015</div>
 <p id="WR2015_S52_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/52_AN_03_25_2015_Santi_2.mp3" title="Abhayagiri 2015 Winter Retreat, S52" data-duration="1351"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/52_AN_03_25_2015_Santi_2.mp3" download="Abhayagiri 2015 Winter Retreat, S52.mp3">Download audio</a> (22:31)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Santi,” <em>Santi – Peace Beyond Delusion</em> by <a href = ../teachers/ajahn-liem.html>Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=54" target="_blank">p. 53-63</a>.  [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/52_AN_03_25_2015_Santi_2.mp3" title="Abhayagiri 2015 Winter Retreat, S52" data-duration="1351"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/52_AN_03_25_2015_Santi_2.mp3" download="Abhayagiri 2015 Winter Retreat, S52.mp3">Download audio</a> (22:31)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Santi,” <em>Santi – Peace Beyond Delusion</em> by <a href="../teachers/ajahn-liem.html">Ajahn Liem</a>, <a href="https://www.abhayagiri.org/media/books/Santi%20-%20Luang%20Por%20Liem.pdf#page=54" target="_blank">p. 53-63</a>.  [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S53"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S53">Session 53</a> – Mar. 29, 2015</div>
@@ -175,21 +189,21 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/53_AN_03_29_2015_Not_by_Looking_for_Protection.mp3" title="Abhayagiri 2015 Winter Retreat, S53" data-duration="1520"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/53_AN_03_29_2015_Not_by_Looking_for_Protection.mp3" download="Abhayagiri 2015 Winter Retreat, S53.mp3">Download audio</a> (25:20)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “A Matter of Life and Death,” p. 205-212 in <em>The Mind and the Way</em> by <a href = ../teachers/ajahn-sumedho.html>Ajahn Sumedho</a> (commercial).  
+  <b>Reading:</b> “A Matter of Life and Death,” p. 205-212 in <em>The Mind and the Way</em> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a> (commercial).  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “Towards the Future,” p. 215-220 in <em>The Mind and the Way</em> by <a href = ../teachers/ajahn-sumedho.html>Ajahn Sumedho</a> (commercial).  
+  <b>Reading:</b> “Towards the Future,” p. 215-220 in <em>The Mind and the Way</em> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a> (commercial).  
 </p>
 <hr />
 <div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S02_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" title="Love, Attachment, and Friendship, S2" data-duration="4680"><a href="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" download="Love, Attachment, and Friendship, S2.mp3">Download audio</a> (1:18:00)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading</b> from <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>.  
+  <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" title="Love, Attachment, and Friendship, S2" data-duration="4680"><a href="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" download="Love, Attachment, and Friendship, S2.mp3">Download audio</a> (1:18:00)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading</b> from <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>.  
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Ñāṇiko (Readings by),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Ñāṇiko (Readings by),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-naniko-read-by.html">https://abhayagiri.org/questions/teachers/ajahn-naniko-read-by.html</a>.</p>
 </footer>
 

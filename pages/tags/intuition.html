@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/intuition.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/indeterminate-qualities.html#indeterminate-qualities"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspIntuition 
+  <div class="title"><a href="../drilldown/indeterminate-qualities.html#indeterminate-qualities" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspIntuition 
   </div>
 
 <div class="intro">
@@ -57,19 +67,31 @@
   3 excerpts, 8:42 total duration
 </strong>
 <hr />
-<div class="title" id="TG2014_S03"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 24, 2014</div>
+<div class="title" id="TG2014_S03"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S03">Session 3</a> – Nov. 24, 2014</div>
 <p id="TG2014_S03_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S03_F02.mp3" title="2014 Thanksgiving Monastic Retreat, S3 E2" data-duration="68"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S03_F02.mp3" download="2014 Thanksgiving Monastic Retreat, S3 E2.mp3">Download audio</a> (1:08)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “With all of many excellent frames of reference the Buddha has given us to understand our experience, it can be confusing to know which to use when! Do you recommend training systematically or letting ones intuition be as their guide? Thank you.”  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] <b>[<a href = "../tags/intuition.html">Intuition</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S03_F02.mp3" title="2014 Thanksgiving Monastic Retreat, S3 E2" data-duration="68"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S03_F02.mp3" download="2014 Thanksgiving Monastic Retreat, S3 E2.mp3">Download audio</a> (1:08)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “With all of many excellent frames of reference the Buddha has given us to understand our experience, it can be confusing to know which to use when! Do you recommend training systematically or letting ones intuition be as their guide? Thank you.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] <b>[<a href = "../tags/intuition.html">Intuition</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 12, 2017</div>
+<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – Aug. 12, 2017</div>
 <p id="UD2017-3_S00_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F08.mp3" title="Practice in a Global Context, E8" data-duration="187"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F08.mp3" download="Practice in a Global Context, E8.mp3">Download audio</a> (3:07)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “How to work with suspicion skillfully? Is it a combination of looking at the factsas well as your gut feeling?”  [<a href = "../tags/doubt.html">Doubt</a>] <b>[<a href = "../tags/intuition.html">Intuition</a>]</b> [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F08.mp3" title="Practice in a Global Context, E8" data-duration="187"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F08.mp3" download="Practice in a Global Context, E8.mp3">Download audio</a> (3:07)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “How to work with suspicion skillfully? Is it a combination of looking at the factsas well as your gut feeling?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/doubt.html">Doubt</a>] <b>[<a href = "../tags/intuition.html">Intuition</a>]</b> [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" title="The Path of Practice, S1 E14" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" download="The Path of Practice, S1 E14.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “What are your thoughts about maintaining a practice you're at the bedside of someone actively passing away?”  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/listening.html">Listening</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] <b>[<a href = "../tags/intuition.html">Intuition</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" title="The Path of Practice, S1 E14" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" download="The Path of Practice, S1 E14.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “What are your thoughts about maintaining a practice you’re at the bedside of someone actively passing away?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/listening.html">Listening</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] <b>[<a href = "../tags/intuition.html">Intuition</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ram Dass anxiously tries to guide his stepmother through the dying process. [<a href = "../tags/ram-dass.html">Ram Dass</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>]
@@ -77,8 +99,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Intuition,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Intuition,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/intuition.html">https://abhayagiri.org/questions/tags/intuition.html</a>.</p>
 </footer>
 

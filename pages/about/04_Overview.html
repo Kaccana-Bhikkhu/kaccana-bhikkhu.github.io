@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#about/04_Overview.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html" class="active">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -55,7 +65,7 @@
 <h1 id="overview">Overview</h1>
 <p>The Ajahn Pasanno Question and Story Archive is an attempt to make the recorded oral teachings of Ajahn Pasanno and those who teach alongside him more accessible. There are already many books and booklets of Ajahn Pasanno’s transcribed teachings, but these cover only a fraction of the available audio recordings. In particular, there are hours of recorded question and answer sessions and topical discussions which are very relevant to people with similar concerns and of less interest to everyone else. Transcribing all of these would be a major undertaking.</p>
 <p>In addition, transcription inevitably flattens the nuance and emotional warmth of Ajahn Pasanno’s teachings. Anyone who has participated in Dhamma discussion with him knows the empathetic chuckle that frequently accompanies his responses, which is often as much a teaching as the answer itself.</p>
-<p>The archive tags and partially transcribes questions and discussions such that visitors can find what they are looking for while the bulk of the content remains in audio form. As of November 2023, Ajahn Kaccāna has been the only contributor to the transcribed content of the archive, but <a href="../about/10_Acknowledgements.html">many others</a> have helped with web design, organizing the tags, and writing documentation.</p>
+<p>The archive tags and partially transcribes questions and discussions such that visitors can find what they are looking for while the bulk of the content remains in audio form. As of July 2024, Ajahn Kaccāna has been the only contributor to the transcribed content of the archive, but <a href="../about/10_Acknowledgements.html">many others</a> have helped with web design, organizing the tags, and writing documentation.</p>
 <h2 id="website">Website</h2>
 <p>This website is a series of static pages generated from the archive database. It was originally conceived of as a prototype stepping stone to a modern search-driven website created by someone with more web skills. However, with a css makeover by Chris Claudius and a floating media player created by Owen L. (@MageOwl), the prototype began to look and work well enough to publish.</p>
 <h2 id="structure">Structure</h2>
@@ -72,17 +82,17 @@
 <p>The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [<a href="../tags/death.html">Death</a>] and [<a href="../tags/rebirth.html">Rebirth</a>] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.</p>
 <h2 id="searching-the-archive">Searching the Archive</h2>
 <p>The website menus link to a series of static pages which allow the user to browse the tags, events, and teachers contained in the archive in a variety of ways. Links to particular tags, events, and teachers go to static pages which list each relevant excerpt. Event pages simply list each excerpt in each of the event sessions. The tag and teacher pages also group excerpts by event and session, but additionally allow the user to narrow the search by excerpt kind. (Pages containing fewer than 10 excerpts don’t have this feature.) Selecting the “All excerpts” menu item allows one to see all excerpts of a particular kind in the archive.</p>
-<p>The January 2024 release includes a <a href="../search/Text-search.html">text search feature</a>.</p>
+<p>The January 2024 release added a <a href="../search/Text-search.html">text search feature</a>.</p>
 <h2 id="scope">Scope</h2>
-<p>The project currently focuses on Q&amp;A sessions and discussions led by Ajahn Pasanno. Events including particularly valuable stories are annotated in greater detail. If there is energy and interest, we might expand the scope to include events led by other Abhayagiri teachers and teachers visiting Abhayagiri. In this case, it would become the Abhayagiri Question and Story Archive. However this is as far as the project will go. The audio sources will remain only abhayagiri.org, Abhayagiri’s YouTube channel, and Abhayagiri's audio archive (with consultation and permission). Perhaps others might create a website to index Q&amp;A sessions from other teachers (see <a href="../about/12_License.html">License</a>). An <a href="http://birken.ca/qaa/qaa.php" target="_blank">index of Ajahn Sona YouTube Q&amp;A sessions</a> already exists.</p>
+<p>The project currently focuses on Q&amp;A sessions and discussions led by Ajahn Pasanno. Events including particularly valuable stories are annotated in greater detail. If there is energy and interest, we might expand the scope to include events led by other Abhayagiri teachers and teachers visiting Abhayagiri. In this case, it would become the Abhayagiri Question and Story Archive. However this is as far as the project will go. The audio sources will remain only abhayagiri.org, Abhayagiri’s YouTube channel, and Abhayagiri's audio archive (with consultation and permission). Perhaps others might create a website to index Q&amp;A sessions from other teachers (see <a href="../about/12_License.html">License</a>). An <a href="http://birken.ca/qaa/qaa.php" target="_blank">index of Ajahn Sona YouTube Q&amp;A sessions</a> already exists. <a href="https://dhammakatha.org/" target="_blank">Dhammakatha.org</a> compiles Ajahn Munindo's audio answers to Dhamma questions submitted by students.</p>
 <h2 id="teacher-consent">Teacher consent</h2>
 <p>Not all monks and nuns want their teachings widely distributed. Most monastics in this tradition went forth due to their experience of suffering and faith in the Dhamma rather than a desire or ability to teach. Monastics are generally introverts. A properly-implemented <a href="https://www.accesstoinsight.org/lib/authors/thanissaro/economy.html" target="_blank">economy of gifts</a> ensures that material support for monastics is independent of teaching activity, and the concern is more that people receive skillful answers to their questions than that they listen to our answers. At the same time, a diversity of voices answering a question can help the listener understand multiple perspectives.</p>
 <p>For these reasons, we ask teachers individually about their detailed preferences before including their material in the archive. If teachers prefer, they can review each excerpt individually before deciding whether it should be included in the archive. It’s too much to ask volunteers to keep track of whether or not they should transcribe a question based on all these factors, so the database keeps track of which teachers have given their consent for what. The website generation engine excludes questions accordingly before they become available online.</p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Overview,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Overview,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/about/04_Overview.html">https://abhayagiri.org/questions/about/04_Overview.html</a>.</p>
 </footer>
 

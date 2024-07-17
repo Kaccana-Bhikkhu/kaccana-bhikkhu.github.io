@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/eight-precepts.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/eight-precepts.html#eight-precepts"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspEight Precepts (aṭṭha sikkhāpadāni)
+  <div class="title"><a href="../drilldown/eight-precepts.html#eight-precepts" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspEight Precepts (aṭṭha sikkhāpadāni)
   </div>
 
 <div class="intro">
@@ -54,62 +64,107 @@
   Parent topics: <a href = "../tags/precepts.html">Precepts</a>, <a href = "../tags/renunciant-practice.html">Renunciant practice</a><br>
   Subtopics: <a href = "../tags/killing.html">Killing</a>, <a href = "../tags/stealing.html">Stealing</a>, <a href = "../tags/false-speech.html">False speech</a>, <a href = "../tags/intoxicants.html">Intoxicants</a>, <a href = "../tags/eating-after-noon.html">Eating after noon</a>, <a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>, <a href = "../tags/high-and-luxurious-beds.html">High and luxurious beds</a><br>
   See also: <a href = "../tags/renunciation.html">Renunciation</a><br>
-  5 excerpts, 48:30 total duration
+  6 excerpts, 52:41 total duration
 </strong>
 <hr />
+<<<<<<< HEAD
 <div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S02_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F02.mp3" title="Tudong Stories at Spirit Rock, S2 E2" data-duration="427"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F02.mp3" download="Tudong Stories at Spirit Rock, S2 E2.mp3">Download audio</a> (7:07)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What is the function of a layperson who accompanies a monk on tudong?”  [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+=======
+<div class="title" id="Chah2001_S19"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S19">Session 19</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S19_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S19_F03.mp3" title="Remembering Ajahn Chah Weekend, S19 E3" data-duration="251"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S19_F03.mp3" download="Remembering Ajahn Chah Weekend, S19 E3.mp3">Download audio</a> (4:11)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> Ajahn Sundarā stays with a nun who lived at Wat Pah Pong with Ajahn Chah. Told by <a href="../teachers/ajahn-sundara.html">Ajahn Sundarā</a>. [<a href = "../tags/ajahn-sundara.html">Ajahn Sundarā</a>] [<a href = "../tags/mae-chee.html">Mae Chee</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “People who ordain quickly disrobe quickly.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/disrobing.html">Disrobing</a>]
+  <b>Story:</b> The first nun at Wat Pah Pong. [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b>
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> The Wat Pah Pong nuns go pindapat. [<a href = "../tags/almsround.html">Almsround</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “Does anyone find having nuns around difficult?” – “Yes.” – “Well, you can go then.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/patimokkha.html">Pāṭimokkha</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> A woman brings only enough food for the monks, so Ajahn Chah asks the nuns to chant the blessing. [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+</p>
+<p style="margin-left: 2em;">
+  Ajahn Chah’s inner freedom. [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/courage.html">Courage</a>] [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>]
+</p>
+<p style="margin-left: 2em;">
+  The confidence to be totally yourself. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/self-reliance.html">Self-reliance</a>] [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/aversion.html">Aversion</a>]
+</p>
+<hr />
+<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – Jun. 2, 2011</div>
+<p id="SRD2011_S02_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F02.mp3" title="Tudong Stories at Spirit Rock, S2 E2" data-duration="427"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F02.mp3" download="Tudong Stories at Spirit Rock, S2 E2.mp3">Download audio</a> (7:07)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What is the function of a layperson who accompanies a monk on tudong?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “People who ordain quickly disrobe quickly.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/disrobing.html">Disrobing</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Founding of Pacific Hermitage. [<a href = "../tags/pacific-hermitage.html">Pacific Hermitage</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/almsfood.html">Almsfood</a>]
 </p>
 <hr />
-<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2013</div>
+<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – Apr. 21, 2013</div>
 <p id="UD2013-1_S01_F29">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" title="Right Livelihood, S1 E29" data-duration="242"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" download="Right Livelihood, S1 E29.mp3">Download audio</a> (4:02)</audio-chip><br /> <b style="text-decoration: underline;">29.</b> <b>Story:</b> The head of Lalanka Water invites monks to stay above his office and teach the employees. Told by <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>. [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>] [<a href = "../tags/respect.html">Respect</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" title="Right Livelihood, S1 E29" data-duration="242"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" download="Right Livelihood, S1 E29.mp3">Download audio</a> (4:02)</audio-chip><br /> <b style="text-decoration: underline;">29.</b> <b>Story:</b> The head of Lalanka Water invites monks to stay above his office and teach the employees. Told by <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a>. [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>] [<a href = "../tags/respect.html">Respect</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> The ultra-competent assistant who wants to ordain. [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> The king's assistant who dives into the water to get 20 pounds of gold (<a href="https://sutta.readingfaithfully.org/?q=DN-17" target="_blank">DN 17</a>). 
+  <b>Story:</b> The king’s assistant who dives into the water to get 20 pounds of gold (<a href="https://sutta.readingfaithfully.org/?q=DN-17" target="_blank">DN 17</a>). 
 </p>
 <hr />
-<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 20, 2018</div>
+<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – Mar. 20, 2018</div>
 <p id="WR2018-2_S04_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" title="The Teaching and the Training, S4 E3" data-duration="1655"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" download="The Teaching and the Training, S4 E3.mp3">Download audio</a> (27:35)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”  [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/protocols.html">Protocols</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/city-of-ten-thousand-buddhas.html">City of Ten Thousand Buddhas</a>] [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/cittavivieka.html">Cittavivieka</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" title="The Teaching and the Training, S4 E3" data-duration="1655"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" download="The Teaching and the Training, S4 E3.mp3">Download audio</a> (27:35)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/protocols.html">Protocols</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/city-of-ten-thousand-buddhas.html">City of Ten Thousand Buddhas</a>] [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/chithurst.html">Chithurst</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I'd rather focus my attention here.”  [<a href = "../tags/pace-of-life.html">Pace of life</a>]
+  <b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I’d rather focus my attention here.”  [<a href = "../tags/pace-of-life.html">Pace of life</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no reason to fit into American culture.”  
+  <b>Quote:</b>  “There’s no reason to fit into American culture.”  
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> The monastic jacket is vindicated in England. [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we're trying to set conditions that give us the opportunity for learning.”  [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/learning.html">Learning</a>]
+  <b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we’re trying to set conditions that give us the opportunity for learning.”  [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F06.mp3" title="The New Ajahn Chah Biography, S2 E6" data-duration="459"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F06.mp3" download="The New Ajahn Chah Biography, S2 E6.mp3">Download audio</a> (7:39)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=610" target="_blank">p. 588-591</a>: "Observance Day"  [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F06.mp3" title="The New Ajahn Chah Biography, S2 E6" data-duration="459"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F06.mp3" download="The New Ajahn Chah Biography, S2 E6.mp3">Download audio</a> (7:39)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=610" target="_blank">p. 588-591</a>: “Observance Day”  [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2018-2_S02"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S02">Session 2</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2018</div>
+<div class="title" id="UD2018-2_S02"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S02">Session 2</a> – Jun. 2, 2018</div>
 <p id="UD2018-2_S02_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F04.mp3" title="Chanting, S2 E4" data-duration="127"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F04.mp3" download="Chanting, S2 E4.mp3">Download audio</a> (2:07)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Can you explain the rythym and scanning of the seventh of the Eight Precepts (<em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=144" target="_blank">p. 135</a>)?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/pali.html">Pāli</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F04.mp3" title="Chanting, S2 E4" data-duration="127"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F04.mp3" download="Chanting, S2 E4.mp3">Download audio</a> (2:07)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Can you explain the rythym and scanning of the seventh of the Eight Precepts (<em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=144" target="_blank">p. 135</a>)?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/eight-precepts.html">Eight Precepts</a>]</b> [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/pali.html">Pāli</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Eight Precepts,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Eight Precepts,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/eight-precepts.html">https://abhayagiri.org/questions/tags/eight-precepts.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/monastic-lifemotivation-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/monastic-life.html#monastic-life"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMonastic life/Motivation 
+  <div class="title"><a href="../drilldown/monastic-life.html#monastic-life" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMonastic life/Motivation 
   </div>
 
 <div class="intro">
@@ -54,80 +64,100 @@
   Parent topic: <a href = "../tags/monastic-life.html">Monastic life</a><br>
   
   
-  24 excerpts, 2:13:16 total duration
+  26 excerpts, 2:17:39 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/monastic-lifemotivation.html">All excerpts (24)</a>
+<div class="sublink2"> <a href="../tags/monastic-lifemotivation.html">All excerpts (26)</a>
       <a href="../tags/monastic-lifemotivation-qtag.html">Questions about (12)</a>
       <a href="../tags/monastic-lifemotivation-atag.html" class="active">Answers involving (6)</a>
-      <a href="../tags/monastic-lifemotivation-story.html">Stories (4)</a>
+      <a href="../tags/monastic-lifemotivation-story.html">Stories (5)</a>
       <a href="../tags/monastic-lifemotivation-quote.html">Quotes (1)</a>
-      <a href="../tags/monastic-lifemotivation-reading.html">Readings (3)</a> </div>
+      <a href="../tags/monastic-lifemotivation-reading.html">Readings (4)</a> </div>
 <hr>
 
-<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2013</div>
+<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – Apr. 21, 2013</div>
 <p id="UD2013-1_S01_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F16.mp3" title="Right Livelihood, S1 E16" data-duration="221"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F16.mp3" download="Right Livelihood, S1 E16.mp3">Download audio</a> (3:41)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Some people want to help but find themselves in situations in which profit dictates the priorities. How can they protect their integrity in such situations?”  [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/commerceeconomics.html">Commerce/economics</a>] [<a href = "../tags/right-intention.html">Right Intention</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/requisites.html">Requisites</a>] [<a href = "../tags/happiness.html">Happiness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F16.mp3" title="Right Livelihood, S1 E16" data-duration="221"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F16.mp3" download="Right Livelihood, S1 E16.mp3">Download audio</a> (3:41)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Some people want to help but find themselves in situations in which profit dictates the priorities. How can they protect their integrity in such situations?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/commerceeconomics.html">Commerce/economics</a>] [<a href = "../tags/right-intention.html">Right Intention</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/requisites.html">Requisites</a>] [<a href = "../tags/happiness.html">Happiness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Karuniko studies engineering, then quits a job in the arms industry to become a monk. [<a href = "../tags/military.html">Military</a>] <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b>
 </p>
 <hr />
-<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 2, 2017</div>
+<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – Sep. 2, 2017</div>
 <p id="Teen2017_S00_F15">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F15.mp3" title="Teen Weekend 2017, E15" data-duration="58"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F15.mp3" download="Teen Weekend 2017, E15.mp3">Download audio</a> (0:58)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “What was your greatest desire as a kid?”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/desire.html">Desire</a>] // <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b> [<a href = "../tags/truth.html">Truth</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F15.mp3" title="Teen Weekend 2017, E15" data-duration="58"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F15.mp3" download="Teen Weekend 2017, E15.mp3">Download audio</a> (0:58)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “What was your greatest desire as a kid?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/desire.html">Desire</a>] // <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b> [<a href = "../tags/truth.html">Truth</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2019-4_S01"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S01">Session 1</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S01"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S01">Session 1</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S01_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F03.mp3" title="Love, Attachment, and Friendship, S1 E3" data-duration="518"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F03.mp3" download="Love, Attachment, and Friendship, S1 E3.mp3">Download audio</a> (8:38)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: Coming out af a long-term relationship where someone was killed in an accident after 42 years, the way you presented the disadvantages and advantages of a conventional loving relationship was perhaps a little light on the advantages. [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b> [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/courage.html">Courage</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/treasures.html">Treasures</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/treasures.html">Treasures</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Reference</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.55:" target="_blank">AN 4.55:</a> Nakula's mother and father aspire to see each other in this life and the next. 
+  <b>Reference</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.55:" target="_blank">AN 4.55:</a> Nakula’s mother and father aspire to see each other in this life and the next. 
 </p>
 <hr />
-<div class="title" id="Kathina2021_S02"><a href="../events/Kathina2021.html">Abhayagiri Kaṭhina 2021</a>, <a href="../events/Kathina2021.html#Kathina2021_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 5, 2021</div>
+<div class="title" id="Kathina2021_S02"><a href="../events/Kathina2021.html">Abhayagiri Kaṭhina 2021</a>, <a href="../events/Kathina2021.html#Kathina2021_S02">Session 2</a> – Nov. 5, 2021</div>
 <p id="Kathina2021_S02_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Kathina2021/Kathina2021_S02_F01.mp3" title="Abhayagiri Kaṭhina 2021, S2 E1" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Kathina2021/Kathina2021_S02_F01.mp3" download="Abhayagiri Kaṭhina 2021, S2 E1.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: I listen to the talks and read the books, and everything is so logical and rational, but I'm still stuck in habitual patterns of living. [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/habits.html">Habits</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Kathina2021/Kathina2021_S02_F01.mp3" title="Abhayagiri Kaṭhina 2021, S2 E1" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Kathina2021/Kathina2021_S02_F01.mp3" download="Abhayagiri Kaṭhina 2021, S2 E1.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: I listen to the talks and read the books, and everything is so logical and rational, but I’m still stuck in habitual patterns of living. [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/habits.html">Habits</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/monasteries.html">Monasteries</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/online-community.html">Online community</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b> [<a href = "../tags/generosity.html">Generosity</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/monasteries.html">Monasteries</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/online-community.html">Online community</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b> [<a href = "../tags/generosity.html">Generosity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “When you're living with a group of people, not everybody is depressed and lazy and fed up at the same time.”  [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
+  <b>Quote:</b>  “When you’re living with a group of people, not everybody is depressed and lazy and fed up at the same time.”  [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-55.5" target="_blank">SN 55.5</a> Sāriputta [<a href = "../tags/factors-for-stream-entry.html">Factors for stream entry</a>]
 </p>
 <hr />
-<div class="title" id="Sudhana2023_S00"><a href="../events/Sudhana2023.html">Q&ampA at Sudhana Center</a><a href="../events/Sudhana2023.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jul. 12, 2023</div>
+<div class="title" id="Sudhana2023_S00"><a href="../events/Sudhana2023.html">Q&ampA at Sudhana Center</a><a href="../events/Sudhana2023.html"></a> – Jul. 12, 2023</div>
 <p id="Sudhana2023_S00_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F01.mp3" title="Q&ampA at Sudhana Center, E1" data-duration="481"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F01.mp3" download="Q&ampA at Sudhana Center, E1.mp3">Download audio</a> (8:01)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “In reference to the fragrance of the flower....There are many roses in the courtyard across the street....Why do we cultivate beauty? Where does beauty arise from?”  [<a href = "../tags/beauty.html">Beauty</a>] // [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/master-hsuan-hua.html">Master Hsuan Hua</a>] [<a href = "../tags/empathetic-joy.html">Empathetic joy</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F01.mp3" title="Q&ampA at Sudhana Center, E1" data-duration="481"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F01.mp3" download="Q&ampA at Sudhana Center, E1.mp3">Download audio</a> (8:01)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “In reference to the fragrance of the flower....There are many roses in the courtyard across the street....Why do we cultivate beauty? Where does beauty arise from?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/beauty.html">Beauty</a>] // [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/master-hsuan-hua.html">Master Hsuan Hua</a>] [<a href = "../tags/empathetic-joy.html">Empathetic joy</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-37:" target="_blank">MN 37:</a> Sabbe dhamma nalam abhinivesaya. (Nothing whatsoever should be clung to.) 
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno's mother sends his old letters to Abhayagiri. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+  <b>Story:</b> Ajahn Pasanno’s mother sends his old letters to Abhayagiri. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Recollection:</b> Ajahn Chah was unshakeable in the midst of all the things that were happening around him and responded warmly and compassionately to the people around him. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b>
 </p>
 <hr />
 <p id="Sudhana2023_S00_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F02.mp3" title="Q&ampA at Sudhana Center, E2" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F02.mp3" download="Q&ampA at Sudhana Center, E2.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Did you get a little bit [of Ajahn Chah's equanimity and warmth]? What's it like?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] // <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F02.mp3" title="Q&ampA at Sudhana Center, E2" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F02.mp3" download="Q&ampA at Sudhana Center, E2.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Did you get a little bit [of Ajahn Chah’s equanimity and warmth]? What’s it like?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] // <b>[<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Monastic life/Motivation (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Monastic life/Motivation (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/monastic-lifemotivation-atag.html">https://abhayagiri.org/questions/tags/monastic-lifemotivation-atag.html</a>.</p>
 </footer>
 

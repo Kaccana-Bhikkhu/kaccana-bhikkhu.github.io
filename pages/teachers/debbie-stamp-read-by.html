@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/debbie-stamp-read-by.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -64,18 +74,18 @@
 <hr />
 <div class="title" id="WR2014_S37"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S37">Session 37</a> – Feb. 25, 2014</div>
 <p id="WR2014_S37_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" title="Abhayagiri 2014 Winter Retreat, S37" data-duration="2662"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" download="Abhayagiri 2014 Winter Retreat, S37.mp3">Download audio</a> (44:22)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf" target="_blank"><em>Paticcasamuppāda: Practical Dependent Origination</em></a> by <a href = ../teachers/ajahn-buddhadasa.html>Ajahn Buddhadāsa</a>, selections from <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf#page=37" target="_blank">pp. 22-45</a>.  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" title="Abhayagiri 2014 Winter Retreat, S37" data-duration="2662"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" download="Abhayagiri 2014 Winter Retreat, S37.mp3">Download audio</a> (44:22)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf" target="_blank"><em>Paticcasamuppāda: Practical Dependent Origination</em></a> by <a href="../teachers/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>, selections from <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf#page=37" target="_blank">pp. 22-45</a>.  
 </p>
 <hr />
 <div class="title" id="WR2014_S55"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S55">Session 55</a> – Mar. 25, 2014</div>
 <p id="WR2014_S55_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" title="Abhayagiri 2014 Winter Retreat, S55" data-duration="2461"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" download="Abhayagiri 2014 Winter Retreat, S55.mp3">Download audio</a> (41:01)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> "Training under Ajahn Chah" by Ajahn Tong Jon from <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/TwigsAndBranches.html" target="_blank"><em>Twigs and Branches of the Bodhinyana</em></a>.  Translated by Ajahn Kovilo. 
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" title="Abhayagiri 2014 Winter Retreat, S55" data-duration="2461"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" download="Abhayagiri 2014 Winter Retreat, S55.mp3">Download audio</a> (41:01)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Training under Ajahn Chah” by Ajahn Tong Jon from <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/TwigsAndBranches.html" target="_blank"><em>Twigs and Branches of the Bodhinyana</em></a>.  Translated by Ajahn Kovilo. 
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Debbie Stamp (Readings by),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Debbie Stamp (Readings by),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/debbie-stamp-read-by.html">https://abhayagiri.org/questions/teachers/debbie-stamp-read-by.html</a>.</p>
 </footer>
 

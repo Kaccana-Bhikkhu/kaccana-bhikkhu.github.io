@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/question-in-thai.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/thai.html#thai"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspQuestion in Thai 
+  <div class="title"><a href="../drilldown/thai.html#thai" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspQuestion in Thai 
   </div>
 
 <div class="intro">
@@ -57,31 +67,39 @@
   3 excerpts, 6:05 total duration
 </strong>
 <hr />
-<div class="title" id="TG2014_S04"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 25, 2014</div>
+<div class="title" id="TG2014_S04"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S04">Session 4</a> – Nov. 25, 2014</div>
 <p id="TG2014_S04_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F06.mp3" title="2014 Thanksgiving Monastic Retreat, S4 E6" data-duration="288"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F06.mp3" download="2014 Thanksgiving Monastic Retreat, S4 E6.mp3">Download audio</a> (4:48)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “What is a stream enterer? Can a stream enterer go back? Are there lay people who attain stream entry and remain in lay life?”  [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/lay-life.html">Lay life</a>] // [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F06.mp3" title="2014 Thanksgiving Monastic Retreat, S4 E6" data-duration="288"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S04_F06.mp3" download="2014 Thanksgiving Monastic Retreat, S4 E6.mp3">Download audio</a> (4:48)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “What is a stream enterer? Can a stream enterer go back? Are there lay people who attain stream entry and remain in lay life?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/lay-life.html">Lay life</a>] // [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   Written question in Thai: ขอโอกาสกร้าบพระเดชพระคุณหลวงพ่อ ถาม คําถาม Q: Stream enterer คืออะไร? การมุ่สู่โสดาปัตติผล? หรือการมุ่งสู่นิพพาน? Q: นอกจาก นางวิสาขา มหาอุบาสิตแล้ว มีฆราวาส/lay person คนใดบ้างที่เป็นเพียงคนธรรมดาไม่ได้ออกบวช แต่สามารถบรรลุโสดาปัตติผลได้? Q: ผู้ฏิบัติที่ยังมีสามี/ภรรยา สามารถจะมีวาสนาสั่งสมบุญบารมีเพือให้บรรลุสุ่โสดาปัตติผลได้ไหม? โดยที่ไม่ต้องเลิกร้าง/แยกเตียงกับคู่ครอง ขอแนวทางคิคด้วย <b>[<a href = "../tags/question-in-thai.html">Question in Thai</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf" target="_blank"><em>The Island</em></a> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> 
+  <b>Reference</b>: <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf" target="_blank"><em>The Island</em></a> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a> 
 </p>
 <hr />
-<div class="title" id="TG2014_S07"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 28, 2014</div>
+<div class="title" id="TG2014_S07"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S07">Session 7</a> – Nov. 28, 2014</div>
 <p id="TG2014_S07_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S07_F01.mp3" title="2014 Thanksgiving Monastic Retreat, S7 E1" data-duration="20"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S07_F01.mp3" download="2014 Thanksgiving Monastic Retreat, S7 E1.mp3">Download audio</a> (0:20)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: A very long thank you note in Thai: ขอบคุฌหลวงพ่อที่มอบความดีงามใน้แก่มวลมนุษย์ ขอบคุฌหลวงพ่อที่สอนให้ทําแต่ความดี ละเว้นความชัว และสอนให้เดินตายรอยพระพุทธเจ้า ขอบคุฌความรักจากคณะสงฆ Debbie และ Retreat Mgr. ในแชร์ธรรมะและส่งดีๆ ให้กับพวกเรา การมีพระสงฆ์ที่ดีๆ ในระพุทธศาสนา สร้างคุณค่าดี สร้างความรักและความสงบสุขอันแท้จริงให้กับโลก <b>[<a href = "../tags/question-in-thai.html">Question in Thai</a>]</b> [<a href = "../tags/gratitude.html">Gratitude</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S45"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S45">Session 45</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Mar. 15, 2015</div>
+<div class="title" id="WR2015_S45"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S45">Session 45</a> – Mar. 15, 2015</div>
 <p id="WR2015_S45_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S45_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S45 E5" data-duration="57"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S45_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S45 E5.mp3">Download audio</a> (0:57)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How is nirāmisa expressed in Thai?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/question-in-thai.html">Question in Thai</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/feeling.html">Feeling</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S45_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S45 E5" data-duration="57"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S45_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S45 E5.mp3">Download audio</a> (0:57)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How is nirāmisa expressed in Thai?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/question-in-thai.html">Question in Thai</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/feeling.html">Feeling</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Question in Thai,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Question in Thai,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/question-in-thai.html">https://abhayagiri.org/questions/tags/question-in-thai.html</a>.</p>
 </footer>
 

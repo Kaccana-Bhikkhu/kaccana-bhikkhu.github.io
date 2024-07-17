@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#indexes/OtherTags.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,38 +58,38 @@
   </div>
 
 <div class="intro">
-<div class="sublink2"> <a href="../indexes/AlphabeticalTags.html">All tags (921)</a>
-      <a href="../indexes/EnglishTags.html">English (519)</a>
+<div class="sublink2"> <a href="../indexes/AlphabeticalTags.html">All tags (930)</a>
+      <a href="../indexes/EnglishTags.html">English (523)</a>
       <a href="../indexes/PaliTags.html">Pāli (231)</a>
       <a href="../indexes/OtherTags.html" class="active">Other languages (7)</a>
-      <a href="../indexes/ProperTags.html">People/places/traditions (169)</a> </div>
+      <a href="../indexes/ProperTags.html">People/places/traditions (174)</a> </div>
 <hr>
 
 <a href="#a">A</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#h">H</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#m">M</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#p">P</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#t">T</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#u">U</a>
 <hr>
 <div class="listing"><h3 id="a">A</h3>
-<p><a href="../drilldown/indeterminate-qualities.html#indeterminate-qualities"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> Arom kong git <em>Thai</em> [<a href = "../tags/moods-of-the-mind.html">Moods of the mind</a>] (3)</p>
+<p><a href="../drilldown/indeterminate-qualities.html#indeterminate-qualities" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> Arom kong git <em>Thai</em> [<a href = "../tags/moods-of-the-mind.html">Moods of the mind</a>] (4)</p>
 <hr>
 <h3 id="h">H</h3>
-<p><a href="../drilldown/meditationtechniques.html#meditationtechniques"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/hua-tou.html">Hua tou</a> <em>Chinese</em>   (1)</p>
+<p><a href="../drilldown/meditationtechniques.html#meditationtechniques" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/hua-tou.html">Hua tou</a> <em>Chinese</em>   (1)</p>
 <hr>
 <h3 id="m">M</h3>
-<p><a href="../drilldown/womens-monastic-forms.html#womens-monastic-forms"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/mae-chee.html">Mae Chee</a> <em>Thai</em>   (1)</p>
+<p><a href="../drilldown/womens-monastic-forms.html#womens-monastic-forms" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/mae-chee.html">Mae Chee</a> <em>Thai</em>   (5)</p>
 <hr>
 <h3 id="p">P</h3>
 <p>Pakow <em>Thai</em> – alternative translation of anagārika [<a href = "../tags/postulants.html">Postulants</a>] (7)</p>
-<p><a href="../drilldown/almsfood.html#almsfood"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> Pindapat <em>Thai</em> [<a href = "../tags/almsround.html">Almsround</a>] (26)</p>
+<p><a href="../drilldown/almsfood.html#almsfood" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> Pindapat <em>Thai</em> [<a href = "../tags/almsround.html">Almsround</a>] (33)</p>
 <hr>
 <h3 id="t">T</h3>
-<p><a href="../drilldown/ascetic-practices.html#ascetic-practices"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/tudong.html">Tudong</a> <em>Thai</em> (ascetic wandering)  (67)</p>
+<p><a href="../drilldown/ascetic-practices.html#ascetic-practices" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/tudong.html">Tudong</a> <em>Thai</em> (ascetic wandering)  (70)</p>
 <hr>
 <h3 id="u">U</h3>
-<p><a href="../drilldown/respect.html#respect"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/upatakh.html">Upatakh</a> <em>Thai</em> (attendant to senior monks)  (14)</p></div>
+<p><a href="../drilldown/respect.html#respect" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="12"></a> <a href = "../tags/upatakh.html">Upatakh</a> <em>Thai</em> (attendant to senior monks)  (17)</p></div>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Alphabetical tags: Other languages,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Alphabetical tags: Other languages,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/indexes/OtherTags.html">https://abhayagiri.org/questions/indexes/OtherTags.html</a>.</p>
 </footer>
 

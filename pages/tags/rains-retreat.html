@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/rains-retreat.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/vinaya.html#vinaya"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRains retreat (vassa)
+  <div class="title"><a href="../drilldown/vinaya.html#vinaya" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRains retreat (vassa)
   </div>
 
 <div class="intro">
@@ -54,21 +64,68 @@
   Parent topic: <a href = "../tags/vinaya.html">Vinaya</a><br>
   
   
-  12 excerpts, 53:18 total duration
+  18 excerpts, 1:18:17 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/rains-retreat.html" class="active">All excerpts (12)</a>
-      <a href="../tags/rains-retreat-atag.html">Answers involving (4)</a>
-      <a href="../tags/rains-retreat-story.html">Stories (6)</a>
+<div class="sublink2"> <a href="../tags/rains-retreat.html" class="active">All excerpts (18)</a>
+      <a href="../tags/rains-retreat-atag.html">Answers involving (5)</a>
+      <a href="../tags/rains-retreat-story.html">Stories (11)</a>
       <a href="../tags/rains-retreat-reading.html">Readings (3)</a> </div>
 <hr>
 
+<<<<<<< HEAD
 <div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" title="Recollections of Ajahn Chah, S1 E12" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" download="Recollections of Ajahn Chah, S1 E12.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Mun's character and legacy  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
+=======
+<div class="title" id="Chah2001_S16"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S16">Session 16</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S16_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F02.mp3" title="Remembering Ajahn Chah Weekend, S16 E2" data-duration="212"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F02.mp3" download="Remembering Ajahn Chah Weekend, S16 E2.mp3">Download audio</a> (3:32)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> I was the first Westerner at Wat Pah Pong. <b>Recollection</b> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] // [<a href = "../tags/military.html">Military</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/aversion.html">Aversion</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/types-of-monks.html">Types of monks</a>]
+</p>
+<hr />
+<p id="Chah2001_S16_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F03.mp3" title="Remembering Ajahn Chah Weekend, S16 E3" data-duration="55"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F03.mp3" download="Remembering Ajahn Chah Weekend, S16 E3.mp3">Download audio</a> (0:55)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “When I went to stay with Luang Por Chah, he said, ‘Don’t read anything.’” <b>Recollection</b> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] // [<a href = "../tags/abhidhamma.html">Abhidhamma</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/meditation.html">Meditation</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S30"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S30">Session 30</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S30_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S30_F04.mp3" title="Remembering Ajahn Chah Weekend, S30 E4" data-duration="258"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S30_F04.mp3" download="Remembering Ajahn Chah Weekend, S30 E4.mp3">Download audio</a> (4:18)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> When I first went there, the town monks were very critical of Ajahn Chah. <b>Reflection</b> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/forest-versus-city-monks.html">Forest versus city monks</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/jealousy.html">Jealousy</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S31"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S31">Session 31</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S31_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S31_F02.mp3" title="Remembering Ajahn Chah Weekend, S31 E2" data-duration="195"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S31_F02.mp3" download="Remembering Ajahn Chah Weekend, S31 E2.mp3">Download audio</a> (3:15)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Why did Ajahn Chah found Wat Pah Pong?”  Answered by <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=74" target="_blank">p. 52</a> 
+  <b>Story:</b> The first Rains Retreat with Ajahn Chah. <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S32"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S32">Session 32</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S32_F06">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F06.mp3" title="Remembering Ajahn Chah Weekend, S32 E4" data-duration="150"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F06.mp3" download="Remembering Ajahn Chah Weekend, S32 E4.mp3">Download audio</a> (2:30)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Story:</b> Ajahn Chah vows not to look at a woman for the duration of the Rains Retreat. Told by <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/discernment.html">Discernment</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S34"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S34">Session 34</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S34_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F03.mp3" title="Remembering Ajahn Chah Weekend, S34 E3" data-duration="629"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F03.mp3" download="Remembering Ajahn Chah Weekend, S34 E3.mp3">Download audio</a> (10:29)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> Ajahn Chah’s failing heath and Rains Retreat at Tam Saeng Pet. Told by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/health-care.html">Health care</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> “Pabakkaro, make me a Communist.” [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/contentment.html">Contentment</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Venerable Pabakkaro attends to Ajahn Chah. [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/humility.html">Humility</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Ajahn Chah visits the branch monasteries for the last time. [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+</p>
+<hr />
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
+<p id="SRD2010_S01_F12">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" title="Recollections of Ajahn Chah, S1 E12" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" download="Recollections of Ajahn Chah, S1 E12.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Mun’s character and legacy  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=74" target="_blank">p. 52</a> 
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=Dhp-65" target="_blank">Dhp 65</a>, <a href="https://sutta.readingfaithfully.org/?q=Dhp-92" target="_blank">Dhp 92</a> 
@@ -77,17 +134,25 @@
   <b>Story:</b> Ajahn Mun disappears after being appointed abbot. [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/seclusion.html">Seclusion</a>]
 </p>
 <hr />
-<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S11_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" title="Recollections of Ajahn Chah, S11 E8" data-duration="319"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" download="Recollections of Ajahn Chah, S11 E8.mp3">Download audio</a> (5:19)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah's ability to draw people in and respond with compassion.  [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/upatakh.html">Upatakh</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" title="Recollections of Ajahn Chah, S11 E8" data-duration="319"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" download="Recollections of Ajahn Chah, S11 E8.mp3">Download audio</a> (5:19)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah’s ability to draw people in and respond with compassion.  [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/upatakh.html">Upatakh</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=727" target="_blank">p. 705</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=727" target="_blank">p. 705</a> 
 </p>
 <hr />
-<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S01_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" title="Tudong Stories at Spirit Rock, S1 E5" data-duration="358"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" download="Tudong Stories at Spirit Rock, S1 E5.mp3">Download audio</a> (5:58)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Mun doesn't spend consecutive rains retreats in the same place until his mid-70s. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" title="Tudong Stories at Spirit Rock, S1 E5" data-duration="358"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" download="Tudong Stories at Spirit Rock, S1 E5.mp3">Download audio</a> (5:58)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Mun doesn’t spend consecutive rains retreats in the same place until his mid-70s. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day. [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]
@@ -96,28 +161,36 @@
   <b>Story:</b> One million people attend the funeral of Ajahn Mahā Boowa. [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/funerals.html">Funerals</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S24"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S24">Session 24</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 6, 2014</div>
+<div class="title" id="WR2014_S24"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S24">Session 24</a> – Feb. 6, 2014</div>
 <p id="WR2014_S24_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S24 E7" data-duration="138"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S24 E7.mp3">Download audio</a> (2:18)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading:</b> “Its Easy if You are not Attached,” <em>Gifts He Left Behind</em> by <a href = ../teachers/ajahn-dune.html>Ajahn Dune</a>, <a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/Gifts%20He%20Left%20Behind%20-%20Ajaan%20Dune.pdf#page=91" target="_blank">p. 77</a>. Read by Ajahn Ahiṃsako. [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/wat-burapha.html">Wat Burapha</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S24 E7" data-duration="138"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S24 E7.mp3">Download audio</a> (2:18)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading:</b> “Its Easy if You are not Attached,” <em>Gifts He Left Behind</em> by <a href="../teachers/ajahn-dune.html">Ajahn Dune</a>, <a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/Gifts%20He%20Left%20Behind%20-%20Ajaan%20Dune.pdf#page=91" target="_blank">p. 77</a>. Read by Ajahn Ahiṃsako. [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/wat-burapha.html">Wat Burapha</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “It's the nature of light to be bright; it's the nature of noise to be loud.”  [<a href = "../tags/contact.html">Contact</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+  <b>Quote:</b>  “It’s the nature of light to be bright; it’s the nature of noise to be loud.”  [<a href = "../tags/contact.html">Contact</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/discernment.html">Discernment</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S32"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S32">Session 32</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 18, 2014</div>
+<div class="title" id="WR2014_S32"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S32">Session 32</a> – Feb. 18, 2014</div>
 <p id="WR2014_S32_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S32_F06.mp3" title="Abhayagiri 2014 Winter Retreat, S32 E6" data-duration="448"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S32_F06.mp3" download="Abhayagiri 2014 Winter Retreat, S32 E6.mp3">Download audio</a> (7:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> Ajahn Pasanno tells how he went to Wat Pah Nanachat to make a bowl stand but got sick with scrub typhus. An extended discussion ensues. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/monastic-crafts.html">Monastic crafts</a>] [<a href = "../tags/sickness.html">Sickness</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 17, 2014</div>
+<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – Mar. 17, 2014</div>
 <p id="WR2014_S51_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E4" data-duration="585"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E4.mp3">Download audio</a> (9:45)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Comment</b>: The story you told where a monk was punched, I really didn't see the point of that. [<a href = "../tags/ajahn-jia.html">Ajahn Jia</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E4" data-duration="585"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E4.mp3">Download audio</a> (9:45)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Comment</b>: The story you told where a monk was punched, I really didn’t see the point of that. [<a href = "../tags/ajahn-jia.html">Ajahn Jia</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and Ajahn Cunda: Enlightened people still have personalities. [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/ajahn-tate.html">Ajahn Tate</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/vinaya.html">Vinaya</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and Ajahn Cunda: Enlightened people still have personalities. [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/ajahn-tate.html">Ajahn Tate</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/vinaya.html">Vinaya</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “Gold wrapped in a dirty rag.” — <a href = ../teachers/ajahn-maha-boowa.html>Ajahn Mahā Boowa</a> describing Ajahn Jia. [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “Gold wrapped in a dirty rag.” — <a href="../teachers/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a> describing Ajahn Jia. [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <p style="margin-left: 4em;">
   <b>Recollection:</b> Ajahn Chah was always the center of attention. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>]
@@ -126,42 +199,62 @@
   <b>Story:</b> Some monks go to spend Vassa with Ajahn Jia, but he leaves to take care of his teacher. Told by Ajahn Cunda. <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/ajahn-khao.html">Ajahn Khao</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S52"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S52">Session 52</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 18, 2014</div>
+<div class="title" id="WR2014_S52"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S52">Session 52</a> – Mar. 18, 2014</div>
 <p id="WR2014_S52_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S52_F06.mp3" title="Abhayagiri 2014 Winter Retreat, S52 E6" data-duration="61"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S52_F06.mp3" download="Abhayagiri 2014 Winter Retreat, S52 E6.mp3">Download audio</a> (1:01)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b>: I got the impression from that introduction that the monastery was over-run with novices. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/novices.html">Novices</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b>
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b>
 </p>
 <hr />
-<div class="title" id="WR2014_S53"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S53">Session 53</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 19, 2014</div>
+<div class="title" id="WR2014_S53"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S53">Session 53</a> – Mar. 19, 2014</div>
 <p id="WR2014_S53_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S53 E5" data-duration="79"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S53 E5.mp3">Download audio</a> (1:19)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Recollections:</b> Deciding who went on the different alms routes at Wat Pah Pong. Recounted by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsround.html">Almsround</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S53 E5" data-duration="79"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S53 E5.mp3">Download audio</a> (1:19)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Recollections:</b> Deciding who went on the different alms routes at Wat Pah Pong. Recounted by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsround.html">Almsround</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2015</div>
+<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S04_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F04.mp3" title="On Pilgrimage and Tudong, S4 E4" data-duration="96"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F04.mp3" download="On Pilgrimage and Tudong, S4 E4.mp3">Download audio</a> (1:36)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Story:</b> Ajahn Mun didn't stay consecutive Rains Retreats in the same place until he was close to 70. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/tudong.html">Tudong</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F04.mp3" title="On Pilgrimage and Tudong, S4 E4" data-duration="96"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F04.mp3" download="On Pilgrimage and Tudong, S4 E4.mp3">Download audio</a> (1:36)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Story:</b> Ajahn Mun didn’t stay consecutive Rains Retreats in the same place until he was close to 70. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/tudong.html">Tudong</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 2, 2017</div>
+<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – Sep. 2, 2017</div>
 <p id="Teen2017_S00_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F16.mp3" title="Teen Weekend 2017, E16" data-duration="399"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F16.mp3" download="Teen Weekend 2017, E16.mp3">Download audio</a> (6:39)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Are there monastics who wander around the world without any home base or destination?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/tudong.html">Tudong</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/requisites.html">Requisites</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/generosity.html">Generosity</a>]
 </p>
 <hr />
 <p id="Teen2017_S00_F29">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F29.mp3" title="Teen Weekend 2017, E29" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F29.mp3" download="Teen Weekend 2017, E29.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">29.</b> “Do monastics talk with each other about the precepts they have broken or having wrong thoughts?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/christianity.html">Christianity</a>] // [<a href = "../tags/patimokkha.html">Pāṭimokkha</a>] [<a href = "../tags/confession.html">Confession</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/faith.html">Faith</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F16.mp3" title="Teen Weekend 2017, E16" data-duration="399"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F16.mp3" download="Teen Weekend 2017, E16.mp3">Download audio</a> (6:39)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Are there monastics who wander around the world without any home base or destination?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/tudong.html">Tudong</a>] // <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/requisites.html">Requisites</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/generosity.html">Generosity</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-2_S02"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S02">Session 2</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2018</div>
+<p id="Teen2017_S00_F29">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F29.mp3" title="Teen Weekend 2017, E29" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F29.mp3" download="Teen Weekend 2017, E29.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">29.</b> “Do monastics talk with each other about the precepts they have broken or having wrong thoughts?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/christianity.html">Christianity</a>] // [<a href = "../tags/patimokkha.html">Pāṭimokkha</a>] [<a href = "../tags/confession.html">Confession</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/faith.html">Faith</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="UD2018-2_S02"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S02">Session 2</a> – Jun. 2, 2018</div>
 <p id="UD2018-2_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F06.mp3" title="Chanting, S2 E6" data-duration="69"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F06.mp3" download="Chanting, S2 E6.mp3">Download audio</a> (1:09)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> Ajahn Pasanno spends Vassa on the Burmese border, but can't chant smoothly with two monks of different nationalities. Told by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/pali.html">Pāli</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F06.mp3" title="Chanting, S2 E6" data-duration="69"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S02_F06.mp3" download="Chanting, S2 E6.mp3">Download audio</a> (1:09)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> Ajahn Pasanno spends Vassa on the Burmese border, but can’t chant smoothly with two monks of different nationalities. Told by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/rains-retreat.html">Rains retreat</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/pali.html">Pāli</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Rains retreat,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Rains retreat,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/rains-retreat.html">https://abhayagiri.org/questions/tags/rains-retreat.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/proliferation-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/unskillful-qualities.html#unskillful-qualities"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspProliferation (papañca)
+  <div class="title"><a href="../drilldown/unskillful-qualities.html#unskillful-qualities" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspProliferation (papañca)
   </div>
 
 <div class="intro">
@@ -54,38 +64,46 @@
   Parent topic: <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a><br>
   
   See also: <a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a><br>
-  85 excerpts, 4:53:09 total duration
+  86 excerpts, 5:05:23 total duration
 </strong>
 <hr />
 <div class="sublink2"> <a href="../tags/proliferation-events.html">Events (1)</a>
-      <a href="../tags/proliferation.html">All excerpts (87)</a>
+      <a href="../tags/proliferation.html">All excerpts (89)</a>
       <a href="../tags/proliferation-qtag.html">Questions about (42)</a>
       <a href="../tags/proliferation-atag.html">Answers involving (35)</a>
       <a href="../tags/proliferation-story.html" class="active">Stories (2)</a>
-      <a href="../tags/proliferation-quote.html">Quotes (8)</a>
+      <a href="../tags/proliferation-quote.html">Quotes (9)</a>
       <a href="../tags/proliferation-reference.html">References (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S05"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 13, 2008</div>
+<div class="title" id="Metta2008_S05"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S05">Session 5</a> – Sep. 13, 2008</div>
 <p id="Metta2008_S05_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F06.mp3" title="Metta Retreat, S5 E6" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F06.mp3" download="Metta Retreat, S5 E6.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “What are the characteristics of personality? Are they conditioned by kamma and our family, culture, and nationality? How do I learn not to take mine as truth and real?”  [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/humor.html">Humor</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F06.mp3" title="Metta Retreat, S5 E6" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F06.mp3" download="Metta Retreat, S5 E6.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “What are the characteristics of personality? Are they conditioned by kamma and our family, culture, and nationality? How do I learn not to take mine as truth and real?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/humor.html">Humor</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Recollection:</b> Ajahn Chah tended to translate anicca as uncertain or not sure. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/translation.html">Translation</a>] <b>[<a href = "../tags/proliferation.html">Proliferation</a>]</b> [<a href = "../tags/direct-experience.html">Direct experience</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S17"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S17">Session 17</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 28, 2014</div>
+<div class="title" id="WR2014_S17"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S17">Session 17</a> – Jan. 28, 2014</div>
 <p id="WR2014_S17_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S17_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S17 E1" data-duration="239"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S17_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S17 E1.mp3">Download audio</a> (3:59)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I am curious about ways to know if one is lying to oneself and what to do?”  [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/delusion.html">Delusion</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/bases-of-success.html">Bases of Success</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S17_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S17 E1" data-duration="239"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S17_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S17 E1.mp3">Download audio</a> (3:59)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I am curious about ways to know if one is lying to oneself and what to do?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/delusion.html">Delusion</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/bases-of-success.html">Bases of Success</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Recollection:</b> Ajahn Chah said the fastest way to enlightenment is to look directly at the mind, point your finger, and say "Liar!" [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/liberation.html">Liberation</a>] <b>[<a href = "../tags/proliferation.html">Proliferation</a>]</b>
+  <b>Recollection:</b> Ajahn Chah said the fastest way to enlightenment is to look directly at the mind, point your finger, and say “Liar!” [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/liberation.html">Liberation</a>] <b>[<a href = "../tags/proliferation.html">Proliferation</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Proliferation (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Proliferation (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/proliferation-story.html">https://abhayagiri.org/questions/tags/proliferation-story.html</a>.</p>
 </footer>
 

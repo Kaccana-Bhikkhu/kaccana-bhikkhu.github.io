@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/idle-chatter.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/right-speech.html#right-speech"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspIdle chatter (samphappalāpa)
+  <div class="title"><a href="../drilldown/right-speech.html#right-speech" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspIdle chatter (samphappalāpa)
   </div>
 
 <div class="intro">
@@ -54,27 +64,50 @@
   Parent topic: <a href = "../tags/right-speech.html">Right Speech</a><br>
   
   
-  3 excerpts, 7:51 total duration
+  4 excerpts, 18:15 total duration
 </strong>
 <hr />
-<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 2, 2017</div>
+<div class="title" id="Chah2001_S04"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S04">Session 4</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S04_F08">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S04_F08.mp3" title="Remembering Ajahn Chah Weekend, S4 E8" data-duration="624"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S04_F08.mp3" download="Remembering Ajahn Chah Weekend, S4 E8.mp3">Download audio</a> (10:24)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> Ajahn Chah made me look at myself. <b>Teaching</b> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] // [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/humor.html">Humor</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/contentment.html">Contentment</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “Your practice now is patience.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> 
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Ajahn Chah chats for hours after Pāṭimokkha. <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b> [<a href = "../tags/judgementalism.html">Judgementalism</a>]
+</p>
+<hr />
+<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – Sep. 2, 2017</div>
 <p id="Teen2017_S00_F18">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F18.mp3" title="Teen Weekend 2017, E18" data-duration="50"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F18.mp3" download="Teen Weekend 2017, E18.mp3">Download audio</a> (0:50)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “For the sake of the precepts, what's the definition of gossip?”  [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/malicious-speech.html">Malicious speech</a>] <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b>
 </p>
 <hr />
 <p id="Teen2017_S00_F19">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F19.mp3" title="Teen Weekend 2017, E19" data-duration="96"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F19.mp3" download="Teen Weekend 2017, E19.mp3">Download audio</a> (1:36)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “Does gossip include talking about someone who is not present for entertainment value?”  [<a href = "../tags/malicious-speech.html">Malicious speech</a>] <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b> // [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F18.mp3" title="Teen Weekend 2017, E18" data-duration="50"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F18.mp3" download="Teen Weekend 2017, E18.mp3">Download audio</a> (0:50)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “For the sake of the precepts, what’s the definition of gossip?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/malicious-speech.html">Malicious speech</a>] <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b>
 </p>
 <hr />
-<div class="title" id="Path2019_S02"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 16, 2019</div>
+<p id="Teen2017_S00_F19">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F19.mp3" title="Teen Weekend 2017, E19" data-duration="96"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F19.mp3" download="Teen Weekend 2017, E19.mp3">Download audio</a> (1:36)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “Does gossip include talking about someone who is not present for entertainment value?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/malicious-speech.html">Malicious speech</a>] <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b> // [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="Path2019_S02"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S02">Session 2</a> – Jun. 16, 2019</div>
 <p id="Path2019_S02_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F14.mp3" title="The Path of Practice, S2 E14" data-duration="325"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F14.mp3" download="The Path of Practice, S2 E14.mp3">Download audio</a> (5:25)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “Even reading scripturally-oriented material can be used as an escape; it's easier than meditating. I was wondering about the precept on entertainment, beautification and adornment. Can you give some advice on how to interpret this in practical terms?”  [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] // [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/media.html">Media</a>] [<a href = "../tags/ajahn-sona.html">Ajahn Soṇa</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/dhamma-online.html">Dhamma online</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F14.mp3" title="The Path of Practice, S2 E14" data-duration="325"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F14.mp3" download="The Path of Practice, S2 E14.mp3">Download audio</a> (5:25)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “Even reading scripturally-oriented material can be used as an escape; it’s easier than meditating. I was wondering about the precept on entertainment, beautification and adornment. Can you give some advice on how to interpret this in practical terms?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] // [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/idle-chatter.html">Idle chatter</a>]</b> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/media.html">Media</a>] [<a href = "../tags/ajahn-sona.html">Ajahn Soṇa</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/dhamma-online.html">Dhamma online</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Idle chatter,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Idle chatter,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/idle-chatter.html">https://abhayagiri.org/questions/tags/idle-chatter.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#events/Manijeh2021.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html" class="active">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,7 +58,7 @@
 
 <div class="intro">
 <strong>
-  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>
+  <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>
 </strong>
 <br />
 Q&ampA session, May. 16, 2021
@@ -65,7 +75,7 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 </a>
 <br />
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021 <audio-chip src="https://www.abhayagiri.org/media/audio/LPP-%20Manijeh%27s%20group%20q%26a.mp3" title="Tea Time Q&A with Ajahn Pasanno" data-duration="3544"><a href="https://www.abhayagiri.org/media/audio/LPP-%20Manijeh%27s%20group%20q%26a.mp3" download="Tea Time Q&A with Ajahn Pasanno.mp3">Download audio</a> (59:04)</audio-chip><br /> </div>
+<div class="title" id="Manijeh2021_S00"><a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – May. 16, 2021 <audio-chip src="https://www.abhayagiri.org/media/audio/LPP-%20Manijeh%27s%20group%20q%26a.mp3" title="Tea Time Q&A with Ajahn Pasanno" data-duration="3544"><a href="https://www.abhayagiri.org/media/audio/LPP-%20Manijeh%27s%20group%20q%26a.mp3" download="Tea Time Q&A with Ajahn Pasanno.mp3">Download audio</a> (59:04)</audio-chip><br /> </div>
 <p id="Manijeh2021_S00_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" title="Tea Time Q&A with Ajahn Pasanno, E1" data-duration="1314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" download="Tea Time Q&A with Ajahn Pasanno, E1.mp3">Download audio</a> (21:54)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [0:33] “You have so much community-building experience. Can you talk about what you have found challenging or effective in this? How did Ajahn Chah build community?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/learning.html">Learning</a>]
 </p>
@@ -73,7 +83,7 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-48:" target="_blank">MN 48:</a> Kosambiya Sutta [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/right-view.html">Right View</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno pays respects to Ajahn Chah: "If you want to stay here, you have to stay at least five years." 
+  <b>Story:</b> Ajahn Pasanno pays respects to Ajahn Chah: “If you want to stay here, you have to stay at least five years.” 
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The whole path of the Buddha is a path of learning, of education.”  
@@ -94,17 +104,25 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 </p>
 <hr />
 <p id="Manijeh2021_S00_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" title="Tea Time Q&A with Ajahn Pasanno, E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" download="Tea Time Q&A with Ajahn Pasanno, E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> [37:56] “Our community is mostly virtual. Since we're not together taking care of a shared environment, can you suggest other ways of building community?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/online-community.html">Online community</a>] // [<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>]
 </p>
 <hr />
 <p id="Manijeh2021_S00_F05">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" title="Tea Time Q&A with Ajahn Pasanno, E5" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" download="Tea Time Q&A with Ajahn Pasanno, E5.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> [41:00] “How to reach the state of peace and serenity when we're just human beings and we strive to be good people?”  [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/virtue.html">Virtue</a>] // [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/hindrances.html">Hindrances</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" title="Tea Time Q&A with Ajahn Pasanno, E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" download="Tea Time Q&A with Ajahn Pasanno, E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> [37:56] “Our community is mostly virtual. Since we’re not together taking care of a shared environment, can you suggest other ways of building community?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/online-community.html">Online community</a>] // [<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>]
+</p>
+<hr />
+<p id="Manijeh2021_S00_F05">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" title="Tea Time Q&A with Ajahn Pasanno, E5" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F05.mp3" download="Tea Time Q&A with Ajahn Pasanno, E5.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> [41:00] “How to reach the state of peace and serenity when we’re just human beings and we strive to be good people?”  [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/virtue.html">Virtue</a>] // [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/hindrances.html">Hindrances</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-2:" target="_blank">DN 2:</a> Sāmaññaphala Sutta - Fruits of the Holy Life 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b> When asked about his attainments as a monk, “I'm just really happy about all the things I didn't do.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+  <b>Quote:</b> When asked about his attainments as a monk, “I’m just really happy about all the things I didn’t do.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
 </p>
 <hr />
 <p id="Manijeh2021_S00_F06">
@@ -118,7 +136,7 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
   <b>Quote:</b>  “Leadership always comes by example.”  
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “[Ajahn Chah] never asked us to do something that he himself wasn't doing.”  
+  <b>Quote:</b>  “[Ajahn Chah] never asked us to do something that he himself wasn’t doing.”  
 </p>
 <hr />
 <p id="Manijeh2021_S00_F08">
@@ -131,8 +149,8 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Event: Tea Time Q&A with Ajahn Pasanno,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Event: Tea Time Q&A with Ajahn Pasanno,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/events/Manijeh2021.html">https://abhayagiri.org/questions/events/Manijeh2021.html</a>.</p>
 </footer>
 

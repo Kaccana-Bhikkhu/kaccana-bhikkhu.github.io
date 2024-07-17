@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-utane.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/other-thai-forest-teachers.html#other-thai-forest-teachers"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Utane Kalyāno 
+  <div class="title"><a href="../drilldown/other-thai-forest-teachers.html#other-thai-forest-teachers" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Utane Kalyāno 
   </div>
 
 <div class="intro">
@@ -57,22 +67,30 @@
   2 excerpts, 1:45 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S50"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S50">Session 50</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 14, 2014</div>
+<div class="title" id="WR2014_S50"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S50">Session 50</a> – Mar. 14, 2014</div>
 <p id="WR2014_S50_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F09.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E9" data-duration="20"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F09.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E9.mp3">Download audio</a> (0:20)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Has the Ajahn Utane biography been translated into English?”  [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/translation.html">Translation</a>] <b>[<a href = "../tags/ajahn-utane.html">Ajahn Utane</a>]</b> [<a href = "../tags/dhamma-books.html">Dhamma books</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F09.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E9" data-duration="20"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F09.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E9.mp3">Download audio</a> (0:20)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Has the Ajahn Utane biography been translated into English?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/translation.html">Translation</a>] <b>[<a href = "../tags/ajahn-utane.html">Ajahn Utane</a>]</b> [<a href = "../tags/dhamma-books.html">Dhamma books</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Note</b>: Ajahn Mudito translated Ajahn Utane's biography of Ajahn Tongrat into Portuguese in 2019. A <a href="https://drive.google.com/file/d/1sljCNyotNKznRnHVjh031b-vpEEe1Vpr/view" target="_blank">machine translation</a> from Portuguese to English is available on the internet. 
+  <b>Note</b>: Ajahn Mudito translated Ajahn Utane’s biography of Ajahn Tongrat into Portuguese in 2019. A <a href="https://drive.google.com/file/d/1sljCNyotNKznRnHVjh031b-vpEEe1Vpr/view" target="_blank">machine translation</a> from Portuguese to English is available on the internet. 
 </p>
 <hr />
 <p id="WR2014_S50_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F10.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E10" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F10.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E10.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Is Ajahn Utane's monastery the same as Ajahn Tongrat's?”  [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] <b>[<a href = "../tags/ajahn-utane.html">Ajahn Utane</a>]</b> // [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/stupasmonuments.html">Stupas/monuments</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F10.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E10" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F10.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E10.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Is Ajahn Utane’s monastery the same as Ajahn Tongrat’s?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] <b>[<a href = "../tags/ajahn-utane.html">Ajahn Utane</a>]</b> // [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/stupasmonuments.html">Stupas/monuments</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Utane Kalyāno,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Utane Kalyāno,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-utane.html">https://abhayagiri.org/questions/tags/ajahn-utane.html</a>.</p>
 </footer>
 

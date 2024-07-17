@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/recollectionvirtue-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/recollection.html#recollection"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRecollection/Virtue (sīlānussati)
+  <div class="title"><a href="../drilldown/recollection.html#recollection" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRecollection/Virtue (sīlānussati)
   </div>
 
 <div class="intro">
@@ -63,23 +73,31 @@
       <a href="../tags/recollectionvirtue-story.html" class="active">Stories (3)</a> </div>
 <hr>
 
-<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S01_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F07.mp3" title="Tudong Stories at Spirit Rock, S1 E7" data-duration="626"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F07.mp3" download="Tudong Stories at Spirit Rock, S1 E7.mp3">Download audio</a> (10:26)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> Ajahn Supah chooses tudong over further studies. [<a href = "../tags/ajahn-supah.html">Ajahn Supah</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/study-monks.html">Study monks</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/virtue.html">Virtue</a>] <b>[<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F07.mp3" title="Tudong Stories at Spirit Rock, S1 E7" data-duration="626"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F07.mp3" download="Tudong Stories at Spirit Rock, S1 E7.mp3">Download audio</a> (10:26)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> Ajahn Supah chooses tudong over further studies. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-supah.html">Ajahn Supah</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/study-monks.html">Study monks</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/virtue.html">Virtue</a>] <b>[<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno's mother cries when she meets Ajahn Supah. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/rapture.html">Rapture</a>]
+  <b>Story:</b> Ajahn Pasanno’s mother cries when she meets Ajahn Supah. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/rapture.html">Rapture</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> A python begins to eat Ajahn Supah. [<a href = "../tags/animal.html">Animal</a>] [<a href = "../tags/determination.html">Determination</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F13.mp3" title="Death and Dying, S1 E13" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F13.mp3" download="Death and Dying, S1 E13.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> <b>Comment:</b> We can't know the kamma or state of mind of someone who is dying. Because the dying person's consciousness can be very open, it's useful to remind them of their wholesome actions. Contributed by Jeanne Daskais. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/consciousness.html">Consciousness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] <b>[<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]</b> [<a href = "../tags/death.html">Death</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F13.mp3" title="Death and Dying, S1 E13" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F13.mp3" download="Death and Dying, S1 E13.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> <b>Comment:</b> We can’t know the kamma or state of mind of someone who is dying. Because the dying person’s consciousness can be very open, it’s useful to remind them of their wholesome actions. Contributed by Jeanne Daskais. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/consciousness.html">Consciousness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] <b>[<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]</b> [<a href = "../tags/death.html">Death</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Sri Lankans keep a lifelong record of the good things they have done. Friends and relatives read this to them at the time of death. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] <b>[<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]</b> [<a href = "../tags/historysri-lankan-buddhism.html">History/Sri Lankan Buddhism</a>]
+  <b>Story:</b> Sri Lankans keep a lifelong record of the good things they have done. Friends and relatives read this to them at the time of death. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] <b>[<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>]</b> [<a href = "../tags/historysri-lankan-buddhism.html">History/Sri Lankan Buddhism</a>]
 </p>
 <hr />
 <p id="UD2014-1_S01_F14">
@@ -88,8 +106,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Recollection/Virtue (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Recollection/Virtue (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/recollectionvirtue-story.html">https://abhayagiri.org/questions/tags/recollectionvirtue-story.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/realms-of-existence-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/realms-of-existence.html#realms-of-existence"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRealms of existence 
+  <div class="title"><a href="../drilldown/realms-of-existence.html#realms-of-existence" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRealms of existence 
   </div>
 
 <div class="intro">
@@ -63,24 +73,28 @@
       <a href="../tags/realms-of-existence-quote.html" class="active">Quotes (1)</a> </div>
 <hr>
 
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F25">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F25.mp3" title="Death and Dying, S1 E25" data-duration="306"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F25.mp3" download="Death and Dying, S1 E25.mp3">Download audio</a> (5:06)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> <b>Comment</b>: Merit is faith driven, so there aren't any limitations to where that can take you, and it has real value. [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/faith.html">Faith</a>] <b>[<a href = "../tags/realms-of-existence.html">Realms of existence</a>]</b> [<a href = "../tags/death.html">Death</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F25.mp3" title="Death and Dying, S1 E25" data-duration="306"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F25.mp3" download="Death and Dying, S1 E25.mp3">Download audio</a> (5:06)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> <b>Comment</b>: Merit is faith driven, so there aren’t any limitations to where that can take you, and it has real value. [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/faith.html">Faith</a>] <b>[<a href = "../tags/realms-of-existence.html">Realms of existence</a>]</b> [<a href = "../tags/death.html">Death</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Two Thai doctors take temporary ordination to make merit to rejoin their deceased brother in a future life. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/temporary-ordination.html">Temporary ordination</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/rebirth.html">Rebirth</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> The mother of a woman killed in a bus crash dedicates merit so that the dead woman will be reborn in the family. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/ghost.html">Ghost</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/ceremonyritual.html">Ceremony/ritual</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/volition.html">Volition</a>]
+  <b>Story:</b> The mother of a woman killed in a bus crash dedicates merit so that the dead woman will be reborn in the family. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/ghost.html">Ghost</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/ceremonyritual.html">Ceremony/ritual</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/volition.html">Volition</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “We live in a fairly limited concept of the world; it's very material in the West. There's a lot more happening than what we can see.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/realms-of-existence.html">Realms of existence</a>]</b>
+  <b>Quote:</b>  “We live in a fairly limited concept of the world; it’s very material in the West. There’s a lot more happening than what we can see.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/realms-of-existence.html">Realms of existence</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Realms of existence (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Realms of existence (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/realms-of-existence-quote.html">https://abhayagiri.org/questions/tags/realms-of-existence-quote.html</a>.</p>
 </footer>
 

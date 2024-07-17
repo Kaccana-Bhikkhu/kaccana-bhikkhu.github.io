@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#events/UD2019-4.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html" class="active">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,7 +58,7 @@
 
 <div class="intro">
 <strong>
-  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>
+  <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>, <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>
 </strong>
 <br />
 Upāsikā Day, Oct. 12, 2019
@@ -58,7 +68,7 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 3 sessions, 18 excerpts, 1:03:38 total duration
 <br />
 <p class="smaller">
-  Ajahn Pasanno, Ajahn Karuṇadhammo, and Ajahn Ñāṇiko reflect on love, attachment, and friendship while reading from <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>.
+  Ajahn Pasanno, Ajahn Karuṇadhammo, and Ajahn Ñāṇiko reflect on love, attachment, and friendship while reading from <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>.
 </p>
 <a href="https://www.abhayagiri.org/talks/collections/8/125-love-attachment-friendship-upasika-day-2019" target="_blank">
   External website
@@ -86,7 +96,7 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
   </p>
 </div>
 <hr />
-<div class="title" id="UD2019-4_S01">Session 1: Benefits and Drawbacks of Love – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Oct. 12, 2019 </div>
+<div class="title" id="UD2019-4_S01">Session 1: Benefits and Drawbacks of Love – <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> – Oct. 12, 2019 </div>
 <p id="UD2019-4_S01_F00">
   <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" title="Love, Attachment, and Friendship, S1" data-duration="4680"><a href="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" download="Love, Attachment, and Friendship, S1.mp3">Download audio</a> (1:18:00)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=Ud-8.8:" target="_blank">Ud 8.8:</a> Visākhā Sutta  
 </p>
@@ -96,40 +106,52 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 </p>
 <hr />
 <p id="UD2019-4_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F02.mp3" title="Love, Attachment, and Friendship, S1 E2" data-duration="237"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F02.mp3" download="Love, Attachment, and Friendship, S1 E2.mp3">Download audio</a> (3:57)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [40:52] “Let's say there's someone causing harm and I wish them well-being. But in their mind, the harm they are causing brings them well-being. What kind of well-being am I wishing for them?”  [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/generosity.html">Generosity</a>] // [<a href = "../tags/divine-abidings.html">Divine Abidings</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F02.mp3" title="Love, Attachment, and Friendship, S1 E2" data-duration="237"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F02.mp3" download="Love, Attachment, and Friendship, S1 E2.mp3">Download audio</a> (3:57)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [40:52] “Let’s say there’s someone causing harm and I wish them well-being. But in their mind, the harm they are causing brings them well-being. What kind of well-being am I wishing for them?”  [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/generosity.html">Generosity</a>] // [<a href = "../tags/divine-abidings.html">Divine Abidings</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2019-4_S01_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F03.mp3" title="Love, Attachment, and Friendship, S1 E3" data-duration="518"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S01_F03.mp3" download="Love, Attachment, and Friendship, S1 E3.mp3">Download audio</a> (8:38)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> [44:53] <b>Comment</b>: Coming out af a long-term relationship where someone was killed in an accident after 42 years, the way you presented the disadvantages and advantages of a conventional loving relationship was perhaps a little light on the advantages. [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/courage.html">Courage</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/treasures.html">Treasures</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/treasures.html">Treasures</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Reference</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.55:" target="_blank">AN 4.55:</a> Nakula's mother and father aspire to see each other in this life and the next. 
+  <b>Reference</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.55:" target="_blank">AN 4.55:</a> Nakula’s mother and father aspire to see each other in this life and the next. 
 </p>
 <hr />
-<div class="title" id="UD2019-4_S02">Session 2: Learning to Love Yourself – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Oct. 12, 2019 </div>
+<div class="title" id="UD2019-4_S02">Session 2: Learning to Love Yourself – <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a> – Oct. 12, 2019 </div>
 <p id="UD2019-4_S02_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" title="Love, Attachment, and Friendship, S2" data-duration="4680"><a href="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" download="Love, Attachment, and Friendship, S2.mp3">Download audio</a> (1:18:00)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading</b> from <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>.  
+  <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" title="Love, Attachment, and Friendship, S2" data-duration="4680"><a href="https://www.abhayagiri.org/media/audio/youtube/8j-zxwgoOBQ.mp3" download="Love, Attachment, and Friendship, S2.mp3">Download audio</a> (1:18:00)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading</b> from <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>.  
 </p>
 <hr />
 <p id="UD2019-4_S02_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F01.mp3" title="Love, Attachment, and Friendship, S2 E1" data-duration="75"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F01.mp3" download="Love, Attachment, and Friendship, S2 E1.mp3">Download audio</a> (1:15)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [1:08:20] <b>Comment</b> to Ajahn Ñāṇiko: I really appreciate the honest of your sharing. In terms of self-criticism over the years, what brought about any shift was being authentic, but whilst I wanted not to be critical, it was still there. By watching that process and not identifying with it so much, it gradually shifted until I was able to wish myself well more genuinely. [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] // [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. 
 </p>
 <hr />
 <p id="UD2019-4_S02_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F02.mp3" title="Love, Attachment, and Friendship, S2 E2" data-duration="83"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F02.mp3" download="Love, Attachment, and Friendship, S2 E2.mp3">Download audio</a> (1:23)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [1:09:44] <b>Comment</b>: I appreciate how the reading (<a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>) describes the foundation of love as a commitment to sīla, moral conduct, and shared values. This makes explicit the idea that the marriage vows are like the precepts. This is a moving idea of love and marriage that resonates with my own marriage. [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/precepts.html">Precepts</a>] // [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/service.html">Service</a>]
 </p>
 <hr />
 <p id="UD2019-4_S02_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F03.mp3" title="Love, Attachment, and Friendship, S2 E3" data-duration="76"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F03.mp3" download="Love, Attachment, and Friendship, S2 E3.mp3">Download audio</a> (1:16)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> [1:11:13] <b>Comment</b>: Practicing meditation, keeping precepts, and developing metta for myself help me love others more and more, but it isn't easy. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/precepts.html">Precepts</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F02.mp3" title="Love, Attachment, and Friendship, S2 E2" data-duration="83"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F02.mp3" download="Love, Attachment, and Friendship, S2 E2.mp3">Download audio</a> (1:23)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [1:09:44] <b>Comment</b>: I appreciate how the reading (<a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>) describes the foundation of love as a commitment to sīla, moral conduct, and shared values. This makes explicit the idea that the marriage vows are like the precepts. This is a moving idea of love and marriage that resonates with my own marriage. [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/precepts.html">Precepts</a>] // [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/service.html">Service</a>]
+</p>
+<hr />
+<p id="UD2019-4_S02_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F03.mp3" title="Love, Attachment, and Friendship, S2 E3" data-duration="76"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F03.mp3" download="Love, Attachment, and Friendship, S2 E3.mp3">Download audio</a> (1:16)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> [1:11:13] <b>Comment</b>: Practicing meditation, keeping precepts, and developing metta for myself help me love others more and more, but it isn’t easy. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/precepts.html">Precepts</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2019-4_S02_F04">
@@ -143,15 +165,20 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F05.mp3" title="Love, Attachment, and Friendship, S2 E5" data-duration="76"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F05.mp3" download="Love, Attachment, and Friendship, S2 E5.mp3">Download audio</a> (1:16)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> [1:14:35] <b>Simile:</b> Sculpting different materials requires different tools. This practice is more molding than hammering. [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>: Ajahn Amaro used to say, "The beatings won't stop until morale improves." At a certain point, you have to decide to stop. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/cessation.html">Cessation</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>: Ajahn Amaro used to say, “The beatings won’t stop until morale improves.” At a certain point, you have to decide to stop. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/cessation.html">Cessation</a>]
 </p>
 <hr />
 <p id="UD2019-4_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F06.mp3" title="Love, Attachment, and Friendship, S2 E6" data-duration="100"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F06.mp3" download="Love, Attachment, and Friendship, S2 E6.mp3">Download audio</a> (1:40)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> [1:15:51] <b>Comment</b>: <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a> equates love to non-violence, both inward and outward. [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/tranquility.html">Tranquility</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F06.mp3" title="Love, Attachment, and Friendship, S2 E6" data-duration="100"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F06.mp3" download="Love, Attachment, and Friendship, S2 E6.mp3">Download audio</a> (1:40)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> [1:15:51] <b>Comment</b>: <a href="https://www.abhayagiri.org/media/books/jayasaro_on_love.pdf" target="_blank"><em>On Love</em></a> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a> equates love to non-violence, both inward and outward. [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/tranquility.html">Tranquility</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2019-4_S03">Session 3: The Experience of Love and Attachment – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 12, 2019 <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/gKbqYAFf8w0.mp3" title="Love, Attachment, and Friendship, S3" data-duration="4653"><a href="https://www.abhayagiri.org/media/audio/youtube/gKbqYAFf8w0.mp3" download="Love, Attachment, and Friendship, S3.mp3">Download audio</a> (1:17:33)</audio-chip><br /> </div>
+<div class="title" id="UD2019-4_S03">Session 3: The Experience of Love and Attachment – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Oct. 12, 2019 <audio-chip src="https://www.abhayagiri.org/media/audio/youtube/gKbqYAFf8w0.mp3" title="Love, Attachment, and Friendship, S3" data-duration="4653"><a href="https://www.abhayagiri.org/media/audio/youtube/gKbqYAFf8w0.mp3" download="Love, Attachment, and Friendship, S3.mp3">Download audio</a> (1:17:33)</audio-chip><br /> </div>
 <p id="UD2019-4_S03_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" title="Love, Attachment, and Friendship, S3 E1" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" download="Love, Attachment, and Friendship, S3 E1.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [16:42] <b>Quote:</b>  “The kindest thing you can do for your parents is to not create them.” — <a href = ../teachers/ajahn-sumedho.html>Ajahn Sumedho</a> [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/amaravati.html">Amaravati</a>] [<a href = "../tags/siladhara.html">Sīladharā</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
 </p>
 <hr />
@@ -161,9 +188,20 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 <hr />
 <p id="UD2019-4_S03_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> [33:49] “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I'm working on trying to enjoy life. Do you have any ideas about this?”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" title="Love, Attachment, and Friendship, S3 E1" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F01.mp3" download="Love, Attachment, and Friendship, S3 E1.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [16:42] <b>Quote:</b>  “The kindest thing you can do for your parents is to not create them.” — <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a> [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/amaravati.html">Amaravati</a>] [<a href = "../tags/siladhara.html">Sīladharā</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+</p>
+<hr />
+<p id="UD2019-4_S03_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F02.mp3" title="Love, Attachment, and Friendship, S3 E2" data-duration="101"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F02.mp3" download="Love, Attachment, and Friendship, S3 E2.mp3">Download audio</a> (1:41)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [18:28] <b>Quote:</b>  “Learning how to be comfortable with dukkha...is a willingness to open the heart to the whole realm of experience. That’s an act of love.”  [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] // [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/listening.html">Listening</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>]
+</p>
+<hr />
+<p id="UD2019-4_S03_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> [33:49] “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I’m working on trying to enjoy life. Do you have any ideas about this?”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  The Rule of St. Benedict and Ajahn Sucitto's talk "<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>." [<a href = "../tags/humility.html">Humility</a>]
+  The Rule of St. Benedict and Ajahn Sucitto’s talk “<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>.” [<a href = "../tags/humility.html">Humility</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> A BBC interviewer asks King Rama IX about original sin. [<a href = "../tags/media.html">Media</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
@@ -179,7 +217,11 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 </p>
 <hr />
 <p id="UD2019-4_S03_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F04.mp3" title="Love, Attachment, and Friendship, S3 E4" data-duration="379"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F04.mp3" download="Love, Attachment, and Friendship, S3 E4.mp3">Download audio</a> (6:19)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> [45:42] “There are teachings about different levels of generosity (e.g. <a href="https://sutta.readingfaithfully.org/?q=AN-7.49" target="_blank">AN 7.49</a>). Are there similar teachings about love or attachment?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/clinging.html">Clinging</a>] // [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F04.mp3" title="Love, Attachment, and Friendship, S3 E4" data-duration="379"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F04.mp3" download="Love, Attachment, and Friendship, S3 E4.mp3">Download audio</a> (6:19)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> [45:42] “There are teachings about different levels of generosity (e.g. <a href="https://sutta.readingfaithfully.org/?q=AN-7.49" target="_blank">AN 7.49</a>). Are there similar teachings about love or attachment?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/clinging.html">Clinging</a>] // [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2019-4_S03_F05">
@@ -193,14 +235,18 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F06.mp3" title="Love, Attachment, and Friendship, S3 E6" data-duration="141"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F06.mp3" download="Love, Attachment, and Friendship, S3 E6.mp3">Download audio</a> (2:21)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> [54:18] <b>Comment</b>: There are two knds of desire, chanda (good) and taṇha (bad). [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/pali.html">Pāli</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
 </p>
 <hr />
 <p id="UD2019-4_S03_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F07.mp3" title="Love, Attachment, and Friendship, S3 E7" data-duration="55"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F07.mp3" download="Love, Attachment, and Friendship, S3 E7.mp3">Download audio</a> (0:55)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> [56:39] <b>Comment</b>: Words that I haven't grown up with like skillfulness and wholesomeness have the spectrum to reflect on the different levels of these qualities. [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F07.mp3" title="Love, Attachment, and Friendship, S3 E7" data-duration="55"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F07.mp3" download="Love, Attachment, and Friendship, S3 E7.mp3">Download audio</a> (0:55)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> [56:39] <b>Comment</b>: Words that I haven’t grown up with like skillfulness and wholesomeness have the spectrum to reflect on the different levels of these qualities. [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <p id="UD2019-4_S03_F08">
@@ -219,8 +265,8 @@ Abhayagiri Buddhist Monastery in Redwood Valley, California
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Event: Love, Attachment, and Friendship,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Event: Love, Attachment, and Friendship,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/events/UD2019-4.html">https://abhayagiri.org/questions/events/UD2019-4.html</a>.</p>
 </footer>
 

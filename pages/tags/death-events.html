@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/death-events.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDeath (maraṇa)
+  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDeath (maraṇa)
   </div>
 
 <div class="intro">
@@ -54,15 +64,15 @@
   Parent topic: <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a><br>
   
   
-  94 excerpts, 8:11:18 total duration
+  100 excerpts, 8:21:36 total duration
 </strong>
 <hr />
 <div class="sublink2"> <a href="../tags/death-events.html" class="active">Events (1)</a>
-      <a href="../tags/death.html">All excerpts (96)</a>
+      <a href="../tags/death.html">All excerpts (102)</a>
       <a href="../tags/death-qtag.html">Questions about (50)</a>
       <a href="../tags/death-atag.html">Answers involving (10)</a>
-      <a href="../tags/death-story.html">Stories (19)</a>
-      <a href="../tags/death-quote.html">Quotes (6)</a>
+      <a href="../tags/death-story.html">Stories (22)</a>
+      <a href="../tags/death-quote.html">Quotes (8)</a>
       <a href="../tags/death-reading.html">Readings (8)</a>
       <a href="../tags/death-text.html">Texts (2)</a> </div>
 <hr>
@@ -73,7 +83,7 @@
   </a>
 </h3>
 <p>
-  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>, <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> and Jeanne Daskais
+  <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>, <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a>, <a href="../teachers/debbie-stamp.html">Debbie Stamp</a> and Jeanne Daskais
   <br />
   Upāsikā Day, May. 9, 2014
   <br />
@@ -82,8 +92,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Death,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Death,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/death-events.html">https://abhayagiri.org/questions/tags/death-events.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#indexes/NumericalTags.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -56,13 +66,13 @@
     <a href = "../tags/right-intention.html">Right Intention</a> (19) (sammā-saṅkappa):
   </p>
   <p id="renunciation" style="margin-left: 2em;">
-    1. <a href = "../tags/renunciation.html">Renunciation</a> (13) (nekkhamma)
+    1. <a href = "../tags/renunciation.html">Renunciation</a> (14) (nekkhamma)
   </p>
   <p id="goodwill" style="margin-left: 2em;">
-    2. Non-ill-will (abyāpāda) see <a href = "../tags/goodwill.html">Goodwill</a> (90)
+    2. Non-ill-will (abyāpāda) see <a href = "../tags/goodwill.html">Goodwill</a> (98)
   </p>
   <p id="compassion" style="margin-left: 2em;">
-    3. Non-cruelty (avihiṃsā) see <a href = "../tags/compassion.html">Compassion</a> (71)
+    3. Non-cruelty (avihiṃsā) see <a href = "../tags/compassion.html">Compassion</a> (79)
   </p>
 </div>
 <br>
@@ -74,7 +84,7 @@
     Abstaining from: (veramaṇī)
   </p>
   <p id="killing" style="margin-left: 2em;">
-    1. <a href = "../tags/killing.html">Killing</a> (18) (pāṇātipāta)
+    1. <a href = "../tags/killing.html">Killing</a> (20) (pāṇātipāta)
   </p>
   <p id="stealing" style="margin-left: 2em;">
     2. <a href = "../tags/stealing.html">Stealing</a> (4) (adinnādāna)
@@ -86,10 +96,10 @@
 <br>
 <div class="listing">
   <p id="cause-of-suffering" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/cause-of-suffering.html">Noble Truth of the Cause of Suffering</a> (16) (dukkha-samudaya ariya-sacca):
+    <a href = "../tags/cause-of-suffering.html">Noble Truth of the Cause of Suffering</a> (17) (dukkha-samudaya ariya-sacca):
   </p>
   <p id="sensual-desire" style="margin-left: 2em;">
-    1. Craving for sensuality (kāma-taṇhā) see <a href = "../tags/sensual-desire.html">Sensual desire</a> (33)
+    1. Craving for sensuality (kāma-taṇhā) see <a href = "../tags/sensual-desire.html">Sensual desire</a> (43)
   </p>
   <p id="becoming" style="margin-left: 2em;">
     2. Craving to become (bhava-taṇhā) see <a href = "../tags/becoming.html">Becoming</a> (21)
@@ -101,53 +111,53 @@
 <br>
 <div class="listing">
   <p id="unwholesome-roots" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/unwholesome-roots.html">Three Unwholesome Roots</a> (45) (akusala-mūla):
+    <a href = "../tags/unwholesome-roots.html">Three Unwholesome Roots</a> (48) (akusala-mūla):
   </p>
   <p id="greed" style="margin-left: 2em;">
     1. <a href = "../tags/greed.html">Greed</a> (8) (lobha)
   </p>
   <p id="aversion" style="margin-left: 2em;">
-    2. <a href = "../tags/aversion.html">Aversion</a> (62) (dosa)
+    2. <a href = "../tags/aversion.html">Aversion</a> (70) (dosa)
   </p>
   <p id="delusion" style="margin-left: 2em;">
-    3. <a href = "../tags/delusion.html">Delusion</a> (44) (moha)
+    3. <a href = "../tags/delusion.html">Delusion</a> (46) (moha)
   </p>
 </div>
 <br>
 <div class="listing">
   <p id="characteristics-of-existence" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a> (20):
+    <a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a> (21):
   </p>
   <p id="impermanence" style="margin-left: 2em;">
     1. <a href = "../tags/impermanence.html">Impermanence</a> (60) (anicca)
   </p>
   <p id="suffering" style="margin-left: 2em;">
-    2. <a href = "../tags/suffering.html">Suffering</a> (117) (dukkha)
+    2. <a href = "../tags/suffering.html">Suffering</a> (129) (dukkha)
   </p>
   <p id="not-self" style="margin-left: 2em;">
-    3. <a href = "../tags/not-self.html">Not-self</a> (69) (anattā)
+    3. <a href = "../tags/not-self.html">Not-self</a> (71) (anattā)
   </p>
 </div>
 <br>
 <div class="listing">
   <p id="three-refuges" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/three-refuges.html">Three Refuges</a> (21) (tisaraṇa):
+    <a href = "../tags/three-refuges.html">Three Refuges</a> (29) (tisaraṇa):
   </p>
   <p id="buddha" style="margin-left: 2em;">
-    1. <a href = "../tags/buddha.html">Buddha</a> (36)
+    1. <a href = "../tags/buddha.html">Buddha</a> (38)
   </p>
   <p id="dhamma" style="margin-left: 2em;">
-    2. <a href = "../tags/dhamma.html">Dhamma</a> (41)
+    2. <a href = "../tags/dhamma.html">Dhamma</a> (45)
   </p>
   <p id="sangha" style="margin-left: 2em;">
-    3. <a href = "../tags/sangha.html">Saṅgha</a> (41)
+    3. <a href = "../tags/sangha.html">Saṅgha</a> (54)
   </p>
 </div>
 <hr>
 <h2 id="fours">Fours</h2>
 <div class="listing">
   <p id="right-speech" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/right-speech.html">Right Speech</a> (20) (sammā-vācā):
+    <a href = "../tags/right-speech.html">Right Speech</a> (21) (sammā-vācā):
   </p>
   <p id="abstaining-from" style="margin-left: 2em;">
     Abstaining from: (veramaṇī)
@@ -156,34 +166,34 @@
     1. <a href = "../tags/false-speech.html">False speech</a> (6) (musā-vādā)
   </p>
   <p id="malicious-speech" style="margin-left: 2em;">
-    2. <a href = "../tags/malicious-speech.html">Malicious speech</a> (5) (pisuṇāya vācā)
+    2. <a href = "../tags/malicious-speech.html">Malicious speech</a> (6) (pisuṇāya vācā)
   </p>
   <p id="harsh-speech" style="margin-left: 2em;">
-    3. <a href = "../tags/harsh-speech.html">Harsh speech</a> (1) (pharusāya vācā)
+    3. <a href = "../tags/harsh-speech.html">Harsh speech</a> (3) (pharusāya vācā)
   </p>
   <p id="idle-chatter" style="margin-left: 2em;">
-    4. <a href = "../tags/idle-chatter.html">Idle chatter</a> (3) (samphappalāpa)
+    4. <a href = "../tags/idle-chatter.html">Idle chatter</a> (4) (samphappalāpa)
   </p>
 </div>
 <br>
 <div class="listing">
   <p id="right-effort" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/right-effort.html">Right Effort</a> (70) (sammā-vāyāma):
+    <a href = "../tags/right-effort.html">Right Effort</a> (71) (sammā-vāyāma):
   </p>
   <p id="effort-for-the" style="margin-left: 2em;">
     Effort for the
   </p>
   <p id="right-effort" style="margin-left: 2em;">
-    1. Non-arising of unarisen evil, unskillful qualities (anuppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ anuppādāya) see <a href = "../tags/right-effort.html">Right Effort</a> (70)
+    1. Non-arising of unarisen evil, unskillful qualities (anuppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ anuppādāya) see <a href = "../tags/right-effort.html">Right Effort</a> (71)
   </p>
   <p id="right-effort" style="margin-left: 2em;">
-    2. Abandoning of arisen evil, unskillful qualities (uppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ pahānāya) see <a href = "../tags/right-effort.html">Right Effort</a> (70)
+    2. Abandoning of arisen evil, unskillful qualities (uppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ pahānāya) see <a href = "../tags/right-effort.html">Right Effort</a> (71)
   </p>
   <p id="right-effort" style="margin-left: 2em;">
-    3. Arising of unarisen skillful qualities (anuppannānaṁ kusalānaṁ dhammānaṁ uppādāya) see <a href = "../tags/right-effort.html">Right Effort</a> (70)
+    3. Arising of unarisen skillful qualities (anuppannānaṁ kusalānaṁ dhammānaṁ uppādāya) see <a href = "../tags/right-effort.html">Right Effort</a> (71)
   </p>
   <p id="right-effort" style="margin-left: 2em;">
-    4. Fulfillment of arisen skillful qualities (uppannānaṁ kusalānaṁ dhammānaṁ pāripūriyā) see <a href = "../tags/right-effort.html">Right Effort</a> (70)
+    4. Fulfillment of arisen skillful qualities (uppannānaṁ kusalānaṁ dhammānaṁ pāripūriyā) see <a href = "../tags/right-effort.html">Right Effort</a> (71)
   </p>
 </div>
 <br>
@@ -210,10 +220,10 @@
     <a href = "../tags/postures.html">Four Postures</a> (8):
   </p>
   <p id="posturesitting" style="margin-left: 2em;">
-    1. <a href = "../tags/posturesitting.html">Posture/Sitting</a> (13)
+    1. <a href = "../tags/posturesitting.html">Posture/Sitting</a> (16)
   </p>
   <p id="posturewalking" style="margin-left: 2em;">
-    2. <a href = "../tags/posturewalking.html">Posture/Walking</a> (21) (caṅkama)
+    2. <a href = "../tags/posturewalking.html">Posture/Walking</a> (23) (caṅkama)
   </p>
   <p id="posturelying-down" style="margin-left: 2em;">
     3. <a href = "../tags/posturelying-down.html">Posture/Lying down</a> (3)
@@ -225,16 +235,16 @@
 <br>
 <div class="listing">
   <p id="four-noble-truths" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/four-noble-truths.html">Four Noble Truths</a> (33) (cattāri ariya-saccāni):
+    <a href = "../tags/four-noble-truths.html">Four Noble Truths</a> (34) (cattāri ariya-saccāni):
   </p>
   <p id="noble-truth-of-suffering" style="margin-left: 2em;">
-    1. <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a> (13) (dukkha ariya-sacca)
+    1. <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a> (15) (dukkha ariya-sacca)
   </p>
   <p id="cause-of-suffering" style="margin-left: 2em;">
-    2. <a href = "../tags/cause-of-suffering.html">Noble Truth of the Cause of Suffering</a> (16) (dukkha-samudaya ariya-sacca)
+    2. <a href = "../tags/cause-of-suffering.html">Noble Truth of the Cause of Suffering</a> (17) (dukkha-samudaya ariya-sacca)
   </p>
   <p id="cessation-of-suffering" style="margin-left: 2em;">
-    3. <a href = "../tags/cessation-of-suffering.html">Noble Truth of the Cessation of Suffering</a> (37) (dukkha-nirodha ariya-saccaṃ)
+    3. <a href = "../tags/cessation-of-suffering.html">Noble Truth of the Cessation of Suffering</a> (40) (dukkha-nirodha ariya-saccaṃ)
   </p>
   <p id="eightfold-path" style="margin-left: 2em;">
     4. Noble Truth of the Path to the Cessation of Suffering (dukkha-nirodha-gāminī paṭipadā ariya-sacca) see <a href = "../tags/eightfold-path.html">Eightfold Path</a> (39)
@@ -252,13 +262,13 @@
     1. <a href = "../tags/desire.html">Desire</a> (42) (chanda)
   </p>
   <p id="energy" style="margin-left: 2em;">
-    2. <a href = "../tags/energy.html">Energy</a> (30) (viriya)
+    2. <a href = "../tags/energy.html">Energy</a> (31) (viriya)
   </p>
   <p id="heartmind" style="margin-left: 2em;">
-    3. <a href = "../tags/heartmind.html">Heart/mind</a> (27) (citta)
+    3. <a href = "../tags/heartmind.html">Heart/mind</a> (28) (citta)
   </p>
   <p id="discernment" style="margin-left: 2em;">
-    4. Investigation (vīmaṃsā) see <a href = "../tags/discernment.html">Discernment</a> (92)
+    4. Investigation (vīmaṃsā) see <a href = "../tags/discernment.html">Discernment</a> (98)
   </p>
 </div>
 <br>
@@ -267,16 +277,16 @@
     <a href = "../tags/divine-abidings.html">Divine Abidings</a> (17) (brahmavihārā):
   </p>
   <p id="goodwill" style="margin-left: 2em;">
-    1. <a href = "../tags/goodwill.html">Goodwill</a> (90) (mettā)
+    1. <a href = "../tags/goodwill.html">Goodwill</a> (98) (mettā)
   </p>
   <p id="compassion" style="margin-left: 2em;">
-    2. <a href = "../tags/compassion.html">Compassion</a> (71) (karuṇā)
+    2. <a href = "../tags/compassion.html">Compassion</a> (79) (karuṇā)
   </p>
   <p id="empathetic-joy" style="margin-left: 2em;">
     3. <a href = "../tags/empathetic-joy.html">Empathetic joy</a> (8) (muditā)
   </p>
   <p id="equanimity" style="margin-left: 2em;">
-    4. <a href = "../tags/equanimity.html">Equanimity</a> (28) (upekkhā)
+    4. <a href = "../tags/equanimity.html">Equanimity</a> (30) (upekkhā)
   </p>
 </div>
 <br>
@@ -303,25 +313,25 @@
     <a href = "../tags/factors-for-stream-entry.html">Factors for stream entry</a> (1) (sotāpattiyaṅga):
   </p>
   <p id="association-with-people-of-integrity" style="margin-left: 2em;">
-    1. <a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a> (11) (sappurisasaṁseva)
+    1. <a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a> (12) (sappurisasaṁseva)
   </p>
   <p id="hearing-the-true-dhamma" style="margin-left: 2em;">
-    2. <a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a> (13) (saddhammassavana)
+    2. <a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a> (16) (saddhammassavana)
   </p>
   <p id="appropriate-attention" style="margin-left: 2em;">
     3. <a href = "../tags/appropriate-attention.html">Appropriate attention</a> (15) (yoniso manasikāra)
   </p>
   <p id="practicing-in-accordance-with-dhamma" style="margin-left: 2em;">
-    4. <a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a> (26) (dhammā­nu­dhamma­p­paṭipatti)
+    4. <a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a> (29) (dhammā­nu­dhamma­p­paṭipatti)
   </p>
 </div>
 <br>
 <div class="listing">
   <p id="nutriment" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/nutriment.html">Four Nutriments</a> (5) (cattāro āhārā):
+    <a href = "../tags/nutriment.html">Four Nutriments</a> (6) (cattāro āhārā):
   </p>
   <p id="food" style="margin-left: 2em;">
-    1. <a href = "../tags/food.html">Physical food</a> (37) (kabaliṅkāra āhāra)
+    1. <a href = "../tags/food.html">Physical food</a> (41) (kabaliṅkāra āhāra)
   </p>
   <p id="contact" style="margin-left: 2em;">
     2. <a href = "../tags/contact.html">Contact</a> (12) (phassa)
@@ -339,16 +349,16 @@
     <a href = "../tags/requisites.html">Four Requisites</a> (8):
   </p>
   <p id="robes" style="margin-left: 2em;">
-    1. <a href = "../tags/robes.html">Robes</a> (10) (cīvara)
+    1. <a href = "../tags/robes.html">Robes</a> (11) (cīvara)
   </p>
   <p id="almsfood" style="margin-left: 2em;">
-    2. <a href = "../tags/almsfood.html">Almsfood</a> (23) (piṇḍapāta)
+    2. <a href = "../tags/almsfood.html">Almsfood</a> (27) (piṇḍapāta)
   </p>
   <p id="shelter" style="margin-left: 2em;">
-    3. <a href = "../tags/shelter.html">Shelter</a> (7) (senāsana)
+    3. <a href = "../tags/shelter.html">Shelter</a> (11) (senāsana)
   </p>
   <p id="medicinal-requisites" style="margin-left: 2em;">
-    4. <a href = "../tags/medicinal-requisites.html">Medicinal requisites</a> (10) (gilāna-paccaya-bhesajja-parikkhāraṃ)
+    4. <a href = "../tags/medicinal-requisites.html">Medicinal requisites</a> (14) (gilāna-paccaya-bhesajja-parikkhāraṃ)
   </p>
 </div>
 <br>
@@ -357,16 +367,16 @@
     <a href = "../tags/qualities-for-non-decline.html">Qualities for non-decline</a> (1) (aparihānāya dhammā):
   </p>
   <p id="virtue" style="margin-left: 2em;">
-    1. Accomplishment in virtue (sīlasampanno) see <a href = "../tags/virtue.html">Virtue</a> (49)
+    1. Accomplishment in virtue (sīlasampanno) see <a href = "../tags/virtue.html">Virtue</a> (50)
   </p>
   <p id="sense-restraint" style="margin-left: 2em;">
-    2. <a href = "../tags/sense-restraint.html">Sense restraint</a> (12) (indriyesu guttadvāro)
+    2. <a href = "../tags/sense-restraint.html">Sense restraint</a> (14) (indriyesu guttadvāro)
   </p>
   <p id="moderation-in-eating" style="margin-left: 2em;">
     3. <a href = "../tags/moderation-in-eating.html">Moderation in eating</a> (1) (bhojane mattaññū)
   </p>
   <p id="devotion-to-wakefulness" style="margin-left: 2em;">
-    4. <a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a> (14) (jāgariyaṁ anuyutto)
+    4. <a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a> (16) (jāgariyaṁ anuyutto)
   </p>
 </div>
 <hr>
@@ -376,7 +386,7 @@
     <a href = "../tags/hindrances.html">Five Hindrances</a> (21) (pañca nīvaraṇāni):
   </p>
   <p id="sensual-desire" style="margin-left: 2em;">
-    1. <a href = "../tags/sensual-desire.html">Sensual desire</a> (33) (kāmacchanda)
+    1. <a href = "../tags/sensual-desire.html">Sensual desire</a> (43) (kāmacchanda)
   </p>
   <p id="ill-will" style="margin-left: 2em;">
     2. <a href = "../tags/ill-will.html">Ill-will</a> (12) (byāpāda)
@@ -385,10 +395,10 @@
     3. <a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a> (29) (thīna-middha)
   </p>
   <p id="restlessness-and-worry" style="margin-left: 2em;">
-    4. <a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a> (36) (uddhacca-kukkucca)
+    4. <a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a> (41) (uddhacca-kukkucca)
   </p>
   <p id="doubt" style="margin-left: 2em;">
-    5. <a href = "../tags/doubt.html">Doubt</a> (27) (vicikiccha)
+    5. <a href = "../tags/doubt.html">Doubt</a> (30) (vicikiccha)
   </p>
 </div>
 <br>
@@ -400,7 +410,7 @@
     1. <a href = "../tags/form.html">Form</a> (7) (rūpa)
   </p>
   <p id="feeling" style="margin-left: 2em;">
-    2. <a href = "../tags/feeling.html">Feeling</a> (43) (vedanā)
+    2. <a href = "../tags/feeling.html">Feeling</a> (44) (vedanā)
   </p>
   <p id="perception" style="margin-left: 2em;">
     3. <a href = "../tags/perception.html">Perception</a> (30) (saññā)
@@ -418,31 +428,31 @@
     <a href = "../tags/faculties.html">Five Faculties</a> (5) (pañca indriyā):
   </p>
   <p id="faith" style="margin-left: 2em;">
-    1. <a href = "../tags/faith.html">Faith</a> (71) (saddhā)
+    1. <a href = "../tags/faith.html">Faith</a> (83) (saddhā)
   </p>
   <p id="energy" style="margin-left: 2em;">
-    2. <a href = "../tags/energy.html">Energy</a> (30) (viriya)
+    2. <a href = "../tags/energy.html">Energy</a> (31) (viriya)
   </p>
   <p id="mindfulness" style="margin-left: 2em;">
-    3. <a href = "../tags/mindfulness.html">Mindfulness</a> (81) (sati)
+    3. <a href = "../tags/mindfulness.html">Mindfulness</a> (82) (sati)
   </p>
   <p id="concentration" style="margin-left: 2em;">
-    4. <a href = "../tags/concentration.html">Concentration</a> (70) (samādhi)
+    4. <a href = "../tags/concentration.html">Concentration</a> (71) (samādhi)
   </p>
   <p id="discernment" style="margin-left: 2em;">
-    5. <a href = "../tags/discernment.html">Discernment</a> (92) (paññā)
+    5. <a href = "../tags/discernment.html">Discernment</a> (98) (paññā)
   </p>
 </div>
 <br>
 <div class="listing">
   <p id="five-precepts" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/five-precepts.html">Five Precepts</a> (10) (pañca sikkhāpadāni):
+    <a href = "../tags/five-precepts.html">Five Precepts</a> (13) (pañca sikkhāpadāni):
   </p>
   <p id="abstaining-from" style="margin-left: 2em;">
     Abstaining from: (veramaṇī)
   </p>
   <p id="killing" style="margin-left: 2em;">
-    1. <a href = "../tags/killing.html">Killing</a> (18) (pāṇātipāta)
+    1. <a href = "../tags/killing.html">Killing</a> (20) (pāṇātipāta)
   </p>
   <p id="stealing" style="margin-left: 2em;">
     2. <a href = "../tags/stealing.html">Stealing</a> (4) (adinnādāna)
@@ -466,13 +476,13 @@
     1. <a href = "../tags/deva.html">Deva</a> (26)
   </p>
   <p id="human" style="margin-left: 2em;">
-    2. <a href = "../tags/human.html">Human</a> (36)
+    2. <a href = "../tags/human.html">Human</a> (41)
   </p>
   <p id="ghost" style="margin-left: 2em;">
-    3. <a href = "../tags/ghost.html">Ghost</a> (6)
+    3. <a href = "../tags/ghost.html">Ghost</a> (7)
   </p>
   <p id="animal" style="margin-left: 2em;">
-    4. <a href = "../tags/animal.html">Animal</a> (16)
+    4. <a href = "../tags/animal.html">Animal</a> (18)
   </p>
   <p id="hell" style="margin-left: 2em;">
     5. <a href = "../tags/hell.html">Hell</a> (2)
@@ -485,25 +495,25 @@
     <a href = "../tags/factors-of-awakening.html">Seven Factors of Awakening</a> (7) (satta bojjhaṅgā):
   </p>
   <p id="mindfulness" style="margin-left: 2em;">
-    1. <a href = "../tags/mindfulness.html">Mindfulness</a> (81) (sati)
+    1. <a href = "../tags/mindfulness.html">Mindfulness</a> (82) (sati)
   </p>
   <p id="investigation-of-states" style="margin-left: 2em;">
     2. <a href = "../tags/investigation-of-states.html">Investigation of states</a> (31) (dhamma-vicaya)
   </p>
   <p id="energy" style="margin-left: 2em;">
-    3. <a href = "../tags/energy.html">Energy</a> (30) (viriya)
+    3. <a href = "../tags/energy.html">Energy</a> (31) (viriya)
   </p>
   <p id="rapture" style="margin-left: 2em;">
     4. <a href = "../tags/rapture.html">Rapture</a> (29) (pīti)
   </p>
   <p id="tranquility" style="margin-left: 2em;">
-    5. <a href = "../tags/tranquility.html">Tranquility</a> (60) (passaddhi)
+    5. <a href = "../tags/tranquility.html">Tranquility</a> (62) (passaddhi)
   </p>
   <p id="concentration" style="margin-left: 2em;">
-    6. <a href = "../tags/concentration.html">Concentration</a> (70) (samādhi)
+    6. <a href = "../tags/concentration.html">Concentration</a> (71) (samādhi)
   </p>
   <p id="equanimity" style="margin-left: 2em;">
-    7. <a href = "../tags/equanimity.html">Equanimity</a> (28) (upekkhā)
+    7. <a href = "../tags/equanimity.html">Equanimity</a> (30) (upekkhā)
   </p>
 </div>
 <br>
@@ -512,22 +522,22 @@
     <a href = "../tags/treasures.html">Seven Treasures</a> (7) (satta dhanā):
   </p>
   <p id="faith" style="margin-left: 2em;">
-    1. <a href = "../tags/faith.html">Faith</a> (71) (saddhā)
+    1. <a href = "../tags/faith.html">Faith</a> (83) (saddhā)
   </p>
   <p id="virtue" style="margin-left: 2em;">
-    2. <a href = "../tags/virtue.html">Virtue</a> (49) (sīla)
+    2. <a href = "../tags/virtue.html">Virtue</a> (50) (sīla)
   </p>
   <p id="conscience-and-prudence" style="margin-left: 2em;">
-    3-4. <a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a> (12) (hiri-otappa)
+    3-4. <a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a> (13) (hiri-otappa)
   </p>
   <p id="learning" style="margin-left: 2em;">
-    5. <a href = "../tags/learning.html">Learning</a> (62) (suta)
+    5. <a href = "../tags/learning.html">Learning</a> (66) (suta)
   </p>
   <p id="generosity" style="margin-left: 2em;">
-    6. <a href = "../tags/generosity.html">Generosity</a> (66) (dāna)
+    6. <a href = "../tags/generosity.html">Generosity</a> (72) (dāna)
   </p>
   <p id="discernment" style="margin-left: 2em;">
-    7. <a href = "../tags/discernment.html">Discernment</a> (92) (paññā)
+    7. <a href = "../tags/discernment.html">Discernment</a> (98) (paññā)
   </p>
 </div>
 <hr>
@@ -543,7 +553,7 @@
     2. <a href = "../tags/right-intention.html">Right Intention</a> (19) (sammā-saṅkappa)
   </p>
   <p id="right-speech" style="margin-left: 2em;">
-    3. <a href = "../tags/right-speech.html">Right Speech</a> (20) (sammā-vācā)
+    3. <a href = "../tags/right-speech.html">Right Speech</a> (21) (sammā-vācā)
   </p>
   <p id="right-action" style="margin-left: 2em;">
     4. <a href = "../tags/right-action.html">Right Action</a> (2) (sammā-kammanta)
@@ -552,7 +562,7 @@
     5. <a href = "../tags/right-livelihood.html">Right Livelihood</a> (37) (sammā-ājīva)
   </p>
   <p id="right-effort" style="margin-left: 2em;">
-    6. <a href = "../tags/right-effort.html">Right Effort</a> (70) (sammā-vāyāma)
+    6. <a href = "../tags/right-effort.html">Right Effort</a> (71) (sammā-vāyāma)
   </p>
   <p id="right-mindfulness" style="margin-left: 2em;">
     7. <a href = "../tags/right-mindfulness.html">Right Mindfulness</a> (58) (sammā-sati)
@@ -564,13 +574,13 @@
 <br>
 <div class="listing">
   <p id="eight-precepts" style="margin-left: 0em; font-weight:bold;">
-    <a href = "../tags/eight-precepts.html">Eight Precepts</a> (5) (aṭṭha sikkhāpadāni):
+    <a href = "../tags/eight-precepts.html">Eight Precepts</a> (6) (aṭṭha sikkhāpadāni):
   </p>
   <p id="abstaining-from" style="margin-left: 2em;">
     Abstaining from: (veramaṇī)
   </p>
   <p id="killing" style="margin-left: 2em;">
-    1. <a href = "../tags/killing.html">Killing</a> (18) (pāṇātipāta)
+    1. <a href = "../tags/killing.html">Killing</a> (20) (pāṇātipāta)
   </p>
   <p id="stealing" style="margin-left: 2em;">
     2. <a href = "../tags/stealing.html">Stealing</a> (4) (adinnādāna)
@@ -585,7 +595,7 @@
     5. <a href = "../tags/intoxicants.html">Intoxicants</a> (20) (surāmeraya-majja-pamādaṭṭhāna)
   </p>
   <p id="eating-after-noon" style="margin-left: 2em;">
-    6. <a href = "../tags/eating-after-noon.html">Eating after noon</a> (2) (vikāla-bhojana)
+    6. <a href = "../tags/eating-after-noon.html">Eating after noon</a> (3) (vikāla-bhojana)
   </p>
   <p id="entertainment-and-adornment" style="margin-left: 2em;">
     7. <a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a> (6) (nacca-gīta-vādita)
@@ -609,10 +619,10 @@
     5-6. <a href = "../tags/blame-and-praise.html">Blame and praise</a> (4) (nindā ca pasaṃsā ca)
   </p>
   <p id="happiness" style="margin-left: 2em;">
-    7. Pleasure (sukha) see <a href = "../tags/happiness.html">Happiness</a> (98)
+    7. Pleasure (sukha) see <a href = "../tags/happiness.html">Happiness</a> (102)
   </p>
   <p id="pain" style="margin-left: 2em;">
-    8. <a href = "../tags/pain.html">Pain</a> (26) (dukkha)
+    8. <a href = "../tags/pain.html">Pain</a> (27) (dukkha)
   </p>
 </div>
 <hr>
@@ -622,34 +632,34 @@
     <a href = "../tags/perfections.html">Ten Perfections</a> (8) (dasa pāramiyo):
   </p>
   <p id="generosity" style="margin-left: 2em;">
-    1. <a href = "../tags/generosity.html">Generosity</a> (66) (dāna)
+    1. <a href = "../tags/generosity.html">Generosity</a> (72) (dāna)
   </p>
   <p id="virtue" style="margin-left: 2em;">
-    2. <a href = "../tags/virtue.html">Virtue</a> (49) (sīla)
+    2. <a href = "../tags/virtue.html">Virtue</a> (50) (sīla)
   </p>
   <p id="renunciation" style="margin-left: 2em;">
-    3. <a href = "../tags/renunciation.html">Renunciation</a> (13) (nekkhamma)
+    3. <a href = "../tags/renunciation.html">Renunciation</a> (14) (nekkhamma)
   </p>
   <p id="discernment" style="margin-left: 2em;">
-    4. <a href = "../tags/discernment.html">Discernment</a> (92) (paññā)
+    4. <a href = "../tags/discernment.html">Discernment</a> (98) (paññā)
   </p>
   <p id="energy" style="margin-left: 2em;">
-    5. <a href = "../tags/energy.html">Energy</a> (30) (viriya)
+    5. <a href = "../tags/energy.html">Energy</a> (31) (viriya)
   </p>
   <p id="patience" style="margin-left: 2em;">
-    6. <a href = "../tags/patience.html">Patience</a> (37) (khanti)
+    6. <a href = "../tags/patience.html">Patience</a> (40) (khanti)
   </p>
   <p id="truth" style="margin-left: 2em;">
-    7. <a href = "../tags/truth.html">Truth</a> (18) (sacca)
+    7. <a href = "../tags/truth.html">Truth</a> (24) (sacca)
   </p>
   <p id="determination" style="margin-left: 2em;">
-    8. <a href = "../tags/determination.html">Determination</a> (16) (adhiṭṭhāna)
+    8. <a href = "../tags/determination.html">Determination</a> (22) (adhiṭṭhāna)
   </p>
   <p id="goodwill" style="margin-left: 2em;">
-    9. <a href = "../tags/goodwill.html">Goodwill</a> (90) (mettā)
+    9. <a href = "../tags/goodwill.html">Goodwill</a> (98) (mettā)
   </p>
   <p id="equanimity" style="margin-left: 2em;">
-    10. <a href = "../tags/equanimity.html">Equanimity</a> (28) (upekkhā)
+    10. <a href = "../tags/equanimity.html">Equanimity</a> (30) (upekkhā)
   </p>
 </div>
 <br>
@@ -658,16 +668,16 @@
     <a href = "../tags/fetters.html">Ten Fetters</a> (3) (dasa saṃyojanā):
   </p>
   <p id="self-identity-view" style="margin-left: 2em;">
-    1. <a href = "../tags/self-identity-view.html">Self-identity view</a> (98) (sakkāya-diṭṭhi)
+    1. <a href = "../tags/self-identity-view.html">Self-identity view</a> (101) (sakkāya-diṭṭhi)
   </p>
   <p id="doubt" style="margin-left: 2em;">
-    2. <a href = "../tags/doubt.html">Doubt</a> (27) (vicikicchā)
+    2. <a href = "../tags/doubt.html">Doubt</a> (30) (vicikicchā)
   </p>
   <p id="attachment-to-rites-and-rituals" style="margin-left: 2em;">
-    3. <a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a> (7) (sīlabbata-parāmāsa)
+    3. <a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a> (8) (sīlabbata-parāmāsa)
   </p>
   <p id="sensual-desire" style="margin-left: 2em;">
-    4. <a href = "../tags/sensual-desire.html">Sensual desire</a> (33) (kāmacchanda)
+    4. <a href = "../tags/sensual-desire.html">Sensual desire</a> (43) (kāmacchanda)
   </p>
   <p id="ill-will" style="margin-left: 2em;">
     5. <a href = "../tags/ill-will.html">Ill-will</a> (12) (byāpāda)
@@ -679,10 +689,10 @@
     7. <a href = "../tags/craving-for-immaterial-existence.html">Craving for immaterial existence</a> (arūparāga)
   </p>
   <p id="conceit" style="margin-left: 2em;">
-    8. <a href = "../tags/conceit.html">Conceit</a> (16) (māna)
+    8. <a href = "../tags/conceit.html">Conceit</a> (20) (māna)
   </p>
   <p id="restlessness-and-worry" style="margin-left: 2em;">
-    9. Restlessness (uddhacca) see <a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a> (36)
+    9. Restlessness (uddhacca) see <a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a> (41)
   </p>
   <p id="ignorance" style="margin-left: 2em;">
     10. <a href = "../tags/ignorance.html">Ignorance</a> (6) (avijjā)
@@ -712,10 +722,10 @@
     6. <a href = "../tags/recollectiondevas.html">Recollection/Devas</a> (10) (devatānussati)
   </p>
   <p id="mindfulness-of-breathing" style="margin-left: 2em;">
-    7. <a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a> (101) (ānāpānassati)
+    7. <a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a> (105) (ānāpānassati)
   </p>
   <p id="recollectiondeath" style="margin-left: 2em;">
-    8. <a href = "../tags/recollectiondeath.html">Recollection/Death</a> (25) (maraṇassati)
+    8. <a href = "../tags/recollectiondeath.html">Recollection/Death</a> (26) (maraṇassati)
   </p>
   <p id="mindfulness-of-body" style="margin-left: 2em;">
     9. <a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a> (61) (kāyagatā-sati)
@@ -749,22 +759,22 @@
     6. <a href = "../tags/contact.html">Contact</a> (12) (phassa)
   </p>
   <p id="feeling" style="margin-left: 2em;">
-    7. <a href = "../tags/feeling.html">Feeling</a> (43) (vedanā)
+    7. <a href = "../tags/feeling.html">Feeling</a> (44) (vedanā)
   </p>
   <p id="craving" style="margin-left: 2em;">
-    8. <a href = "../tags/craving.html">Craving</a> (38) (taṇhā)
+    8. <a href = "../tags/craving.html">Craving</a> (40) (taṇhā)
   </p>
   <p id="clinging" style="margin-left: 2em;">
-    9. <a href = "../tags/clinging.html">Clinging</a> (62) (upādāna)
+    9. <a href = "../tags/clinging.html">Clinging</a> (65) (upādāna)
   </p>
   <p id="becoming" style="margin-left: 2em;">
     10. <a href = "../tags/becoming.html">Becoming</a> (21) (bhava)
   </p>
   <p id="birth" style="margin-left: 2em;">
-    11. <a href = "../tags/birth.html">Birth</a> (7) (jāti)
+    11. <a href = "../tags/birth.html">Birth</a> (8) (jāti)
   </p>
   <p id="suffering" style="margin-left: 2em;">
-    12. <a href = "../tags/suffering.html">Suffering</a> (117) (dukkha)
+    12. <a href = "../tags/suffering.html">Suffering</a> (129) (dukkha)
   </p>
 </div>
 <hr>
@@ -777,7 +787,7 @@
     1-4. Four Foundations of Mindfulness (cattāro satipaṭṭhānā) see <a href = "../tags/right-mindfulness.html">Right Mindfulness</a> (58)
   </p>
   <p id="right-effort" style="margin-left: 2em;">
-    5-8. Four Right Efforts (cattāro sammappadhānā) see <a href = "../tags/right-effort.html">Right Effort</a> (70)
+    5-8. Four Right Efforts (cattāro sammappadhānā) see <a href = "../tags/right-effort.html">Right Effort</a> (71)
   </p>
   <p id="bases-of-success" style="margin-left: 2em;">
     9-12. <a href = "../tags/bases-of-success.html">Four Bases of Success</a> (4) (cattāro iddhipādā)
@@ -798,8 +808,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Numerical tags,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Numerical tags,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/indexes/NumericalTags.html">https://abhayagiri.org/questions/indexes/NumericalTags.html</a>.</p>
 </footer>
 

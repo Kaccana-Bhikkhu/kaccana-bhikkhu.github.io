@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/mentoring-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/monastic-life.html#monastic-life"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMentoring 
+  <div class="title"><a href="../drilldown/monastic-life.html#monastic-life" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMentoring 
   </div>
 
 <div class="intro">
@@ -54,55 +64,80 @@
   Parent topics: <a href = "../tags/monastic-life.html">Monastic life</a>, <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a><br>
   
   
-  10 excerpts, 58:20 total duration
+  14 excerpts, 1:13:02 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/mentoring.html">All excerpts (10)</a>
+<div class="sublink2"> <a href="../tags/mentoring.html">All excerpts (14)</a>
       <a href="../tags/mentoring-qtag.html" class="active">Questions about (6)</a>
       <a href="../tags/mentoring-atag.html">Answers involving (3)</a>
-      <a href="../tags/mentoring-quote.html">Quotes (1)</a>
+      <a href="../tags/mentoring-story.html">Stories (1)</a>
+      <a href="../tags/mentoring-quote.html">Quotes (2)</a>
       <a href="../tags/mentoring-reading.html">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S15"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S15">Session 15</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 26, 2014</div>
+<div class="title" id="WR2014_S15"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S15">Session 15</a> – Jan. 26, 2014</div>
 <p id="WR2014_S15_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S15_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S15 E5" data-duration="180"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S15_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S15 E5.mp3">Download audio</a> (3:00)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Was Ajahn Chah involved in training the abbots of those monasteries?”  [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/abbot.html">Abbot</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S15_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S15 E5" data-duration="180"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S15_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S15 E5.mp3">Download audio</a> (3:00)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Was Ajahn Chah involved in training the abbots of those monasteries?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/abbot.html">Abbot</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S29"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S29">Session 29</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 13, 2014</div>
+<div class="title" id="WR2014_S29"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S29">Session 29</a> – Feb. 13, 2014</div>
 <p id="WR2014_S29_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S29_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S29 E3" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S29_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S29 E3.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Was there some consistency around how Ajahn Chah taught monks in a large community and how he taught monks in a small community? It sounds like when there were eleven monks he was very involved.”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> // [<a href = "../tags/ageing.html">Ageing</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S29_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S29 E3" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S29_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S29 E3.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Was there some consistency around how Ajahn Chah taught monks in a large community and how he taught monks in a small community? It sounds like when there were eleven monks he was very involved.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> // [<a href = "../tags/ageing.html">Ageing</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 17, 2014</div>
+<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – Mar. 17, 2014</div>
 <p id="WR2014_S51_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E5" data-duration="406"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E5.mp3">Download audio</a> (6:46)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: In the Thai Forest tradition there are some fierce teachers. In other Buddhist traditions the “don't question the guru” mentality seems to get way out of hand, but in Thailand that doesn't seem to happen so often. [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/ajahn-jia.html">Ajahn Jia</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E5" data-duration="406"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E5.mp3">Download audio</a> (6:46)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: In the Thai Forest tradition there are some fierce teachers. In other Buddhist traditions the “don’t question the guru” mentality seems to get way out of hand, but in Thailand that doesn’t seem to happen so often. [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/ajahn-jia.html">Ajahn Jia</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>: Well, they just leave. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>: Well, they just leave. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comments</b> by Ajahn Pesalo and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> about Ajahn Jia. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/personality.html">Personality</a>]
+  <b>Comments</b> by Ajahn Pesalo and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> about Ajahn Jia. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/personality.html">Personality</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comments</b> by <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> about avoiding both blind faith and badmouthing others. [<a href = "../tags/malicious-speech.html">Malicious speech</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>]
+  <b>Comments</b> by <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> about avoiding both blind faith and badmouthing others. [<a href = "../tags/malicious-speech.html">Malicious speech</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S55"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S55">Session 55</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 25, 2014</div>
+<div class="title" id="WR2014_S55"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S55">Session 55</a> – Mar. 25, 2014</div>
 <p id="WR2014_S55_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S55 E3" data-duration="151"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S55 E3.mp3">Download audio</a> (2:31)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Would Luang Por Chah teach or test monks and students in different ways?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S55 E3" data-duration="151"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S55 E3.mp3">Download audio</a> (2:31)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Would Luang Por Chah teach or test monks and students in different ways?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Recollection:</b> Joseph Kappel shakes with fear when on the receiving end of Ajahn Chah's admonishments. [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/fear.html">Fear</a>]
+  <b>Recollection:</b> Joseph Kappel shakes with fear when on the receiving end of Ajahn Chah’s admonishments. [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/fear.html">Fear</a>]
 </p>
 <hr />
-<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 20, 2018</div>
+<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – Mar. 20, 2018</div>
 <p id="WR2018-2_S04_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F01.mp3" title="The Teaching and the Training, S4 E1" data-duration="417"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F01.mp3" download="The Teaching and the Training, S4 E1.mp3">Download audio</a> (6:57)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What is the role of mentors and teachers in learning to use the monastic form skillfully?”  [<a href = "../tags/teachers.html">Teachers</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <hr />
 <p id="WR2018-2_S04_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F02.mp3" title="The Teaching and the Training, S4 E2" data-duration="394"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F02.mp3" download="The Teaching and the Training, S4 E2.mp3">Download audio</a> (6:34)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Who were imporant mentors for you?”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/teachers.html">Teachers</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-jun.html">Ajahn Jun</a>] [<a href = "../tags/ajahn-maha-amorn.html">Ajahn Mahā Amorn</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-baen.html">Ajahn Baen</a>] [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>] [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F01.mp3" title="The Teaching and the Training, S4 E1" data-duration="417"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F01.mp3" download="The Teaching and the Training, S4 E1.mp3">Download audio</a> (6:57)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What is the role of mentors and teachers in learning to use the monastic form skillfully?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/teachers.html">Teachers</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+</p>
+<hr />
+<p id="WR2018-2_S04_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F02.mp3" title="The Teaching and the Training, S4 E2" data-duration="394"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F02.mp3" download="The Teaching and the Training, S4 E2.mp3">Download audio</a> (6:34)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Who were imporant mentors for you?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/teachers.html">Teachers</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-jun.html">Ajahn Jun</a>] [<a href = "../tags/ajahn-maha-amorn.html">Ajahn Mahā Amorn</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-baen.html">Ajahn Baen</a>] [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>] [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Mahā Amorn goes to study with Ajahn Chah. [<a href = "../tags/learning.html">Learning</a>]
@@ -110,8 +145,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Mentoring (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Mentoring (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/mentoring-qtag.html">https://abhayagiri.org/questions/tags/mentoring-qtag.html</a>.</p>
 </footer>
 

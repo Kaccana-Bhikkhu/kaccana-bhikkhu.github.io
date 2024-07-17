@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/posturewalking.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/postures.html#postures"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPosture/Walking (caṅkama)
+  <div class="title"><a href="../drilldown/postures.html#postures" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPosture/Walking (caṅkama)
   </div>
 
 <div class="intro">
@@ -54,46 +64,68 @@
   Parent topic: <a href = "../tags/postures.html">Postures</a><br>
   
   
-  21 excerpts, 1:39:57 total duration
+  23 excerpts, 1:47:30 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/posturewalking.html" class="active">All excerpts (21)</a>
+<div class="sublink2"> <a href="../tags/posturewalking.html" class="active">All excerpts (23)</a>
       <a href="../tags/posturewalking-qtag.html">Questions about (10)</a>
       <a href="../tags/posturewalking-atag.html">Answers involving (4)</a>
-      <a href="../tags/posturewalking-story.html">Stories (2)</a>
+      <a href="../tags/posturewalking-story.html">Stories (3)</a>
       <a href="../tags/posturewalking-quote.html">Quotes (2)</a>
       <a href="../tags/posturewalking-reference.html">References (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 11, 2008</div>
+<div class="title" id="Chah2001_S25"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S25">Session 25</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S25_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S25_F02.mp3" title="Remembering Ajahn Chah Weekend, S25 E2" data-duration="320"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S25_F02.mp3" download="Remembering Ajahn Chah Weekend, S25 E2.mp3">Download audio</a> (5:20)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Context of the reading: walking into Wat Pah Pong. <b>Reflection</b> by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/shelter.html">Shelter</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S32"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S32">Session 32</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S32_F07">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F07.mp3" title="Remembering Ajahn Chah Weekend, S32 E5" data-duration="133"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F07.mp3" download="Remembering Ajahn Chah Weekend, S32 E5.mp3">Download audio</a> (2:13)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Chah hallucinates female sexual organs for ten days. Told by <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/mental-illness.html">Mental illness</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/rebirth.html">Rebirth</a>]
+</p>
+<hr />
+<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – Sep. 11, 2008</div>
 <p id="Metta2008_S03_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F04.mp3" title="Metta Retreat, S3 E4" data-duration="233"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F04.mp3" download="Metta Retreat, S3 E4.mp3">Download audio</a> (3:53)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “When we have a retreat work period that requires us to leave a sitting after 15 or 30 minutes, should we come to the meditation hall and leave early or just practice elsewhere for that period?”  [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/work.html">Work</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/posturesitting.html">Posture/Sitting</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F04.mp3" title="Metta Retreat, S3 E4" data-duration="233"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F04.mp3" download="Metta Retreat, S3 E4.mp3">Download audio</a> (3:53)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “When we have a retreat work period that requires us to leave a sitting after 15 or 30 minutes, should we come to the meditation hall and leave early or just practice elsewhere for that period?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/work.html">Work</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/posturesitting.html">Posture/Sitting</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> A good doorknob. [<a href = "../tags/building-projects.html">Building projects</a>]
 </p>
 <hr />
-<div class="title" id="SRD2010_S03"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S03"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S03">Session 3</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S03_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S03_F01.mp3" title="Recollections of Ajahn Chah, S3 E1" data-duration="333"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S03_F01.mp3" download="Recollections of Ajahn Chah, S3 E1.mp3">Download audio</a> (5:33)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Teaching</b>: The role of walking meditation. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S03_F01.mp3" title="Recollections of Ajahn Chah, S3 E1" data-duration="333"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S03_F01.mp3" download="Recollections of Ajahn Chah, S3 E1.mp3">Download audio</a> (5:33)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Teaching</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>: The role of walking meditation. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> admonishes the monks: "I've looked at the huts in the forest where you monks live. I see the walking meditation paths, and I don't see human tracks. All I see are dog tracks!" <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+  <b>Quote:</b>  <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> admonishes the monks: “I’ve looked at the huts in the forest where you monks live. I see the walking meditation paths, and I don’t see human tracks. All I see are dog tracks!” <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
 </p>
 <hr />
 <p id="SRD2010_S03_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S03_F02.mp3" title="Recollections of Ajahn Chah, S3 E2" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S03_F02.mp3" download="Recollections of Ajahn Chah, S3 E2.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Walking meditation instructions by Ajahn Chah and Ajahn Pasanno. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=296" target="_blank">p. 258</a> "Just Do It!" 
+  <b>Reference</b>: <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=296" target="_blank">p. 258</a> “Just Do It!” 
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Where we really start to see the Dhamma or taste the Dhamma is in that continuity of awareness.”  [<a href = "../tags/dhamma.html">Dhamma</a>]
 </p>
 <hr />
-<div class="title" id="SRD2010_S08"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S08">Session 8</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S08"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S08">Session 8</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S08_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" title="Recollections of Ajahn Chah, S8 E1" data-duration="932"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" download="Recollections of Ajahn Chah, S8 E1.mp3">Download audio</a> (15:32)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From "<a href="https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm" target="_blank">The Key to Liberation</a>" by Ajahn Chah.  [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" title="Recollections of Ajahn Chah, S8 E1" data-duration="932"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" download="Recollections of Ajahn Chah, S8 E1.mp3">Download audio</a> (15:32)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From “<a href="https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm" target="_blank">The Key to Liberation</a>“ by Ajahn Chah.  [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Sitting and walking meditation are in essence the same, differing only in the posture used.”  [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
@@ -105,14 +137,22 @@
   <b>Simile:</b> Mindfulness, clear comprehension, and wisdom are like three workers lifting heavy planks. 
 </p>
 <hr />
-<div class="title" id="SRD2010_S09"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S09">Session 9</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S09"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S09">Session 9</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S09_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S09_F01.mp3" title="Recollections of Ajahn Chah, S9 E1" data-duration="333"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S09_F01.mp3" download="Recollections of Ajahn Chah, S9 E1.mp3">Download audio</a> (5:33)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> The rythym of the sensation of the body as it is walking. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S09_F01.mp3" title="Recollections of Ajahn Chah, S9 E1" data-duration="333"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S09_F01.mp3" download="Recollections of Ajahn Chah, S9 E1.mp3">Download audio</a> (5:33)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> The rythym of the sensation of the body as it is walking. Offered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F06.mp3" title="Tudong Stories at Spirit Rock, S2 E6" data-duration="522"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F06.mp3" download="Tudong Stories at Spirit Rock, S2 E6.mp3">Download audio</a> (8:42)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Could you tell of your personal experience with a tiger?”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/animal.html">Animal</a>] [<a href = "../tags/tudong.html">Tudong</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F06.mp3" title="Tudong Stories at Spirit Rock, S2 E6" data-duration="522"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F06.mp3" download="Tudong Stories at Spirit Rock, S2 E6.mp3">Download audio</a> (8:42)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Could you tell of your personal experience with a tiger?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/animal.html">Animal</a>] [<a href = "../tags/tudong.html">Tudong</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno hears and smells a tiger while doing walking meditation. [<a href = "../tags/dtao-dum.html">Dtao Dum</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>]
@@ -122,98 +162,158 @@
 </p>
 <hr />
 <p id="SRD2011_S02_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F16.mp3" title="Tudong Stories at Spirit Rock, S2 E16" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F16.mp3" download="Tudong Stories at Spirit Rock, S2 E16.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> <b>Meditation instructions:</b> Walking meditation. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F16.mp3" title="Tudong Stories at Spirit Rock, S2 E16" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F16.mp3" download="Tudong Stories at Spirit Rock, S2 E16.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> <b>Meditation instructions:</b> Walking meditation. Offered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="SRD2013_S01"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
+<div class="title" id="SRD2013_S01"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S01">Session 1</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S01_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F05.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E5" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F05.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E5.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Meditation instruction:</b> Walking meditation instructions. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] // [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F05.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E5" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F05.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E5.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Meditation instruction:</b> Walking meditation instructions. Offered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] // [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="TG2013_S08"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S08">Session 8</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 30, 2013</div>
+<div class="title" id="TG2013_S08"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S08">Session 8</a> – Nov. 30, 2013</div>
 <p id="TG2013_S08_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S08_F09.mp3" title="Abhayagiri Monastic Retreat 2013, S8 E9" data-duration="133"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S08_F09.mp3" download="Abhayagiri Monastic Retreat 2013, S8 E9.mp3">Download audio</a> (2:13)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “How can one work with feeling the element of water in sitting or walking meditation?”  [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S08_F09.mp3" title="Abhayagiri Monastic Retreat 2013, S8 E9" data-duration="133"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S08_F09.mp3" download="Abhayagiri Monastic Retreat 2013, S8 E9.mp3">Download audio</a> (2:13)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “How can one work with feeling the element of water in sitting or walking meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S42"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S42">Session 42</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 4, 2014</div>
+<div class="title" id="WR2014_S42"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S42">Session 42</a> – Mar. 4, 2014</div>
 <p id="WR2014_S42_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S42 E5" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S42 E5.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How does one work with dullness and drowsiness in sitting meditation?”  [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] // [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/posturestanding.html">Posture/Standing</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S42 E5" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S42_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S42 E5.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How does one work with dullness and drowsiness in sitting meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] // [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/posturestanding.html">Posture/Standing</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-7.58" target="_blank">AN 7.58</a> Capala Sutta: "Are you nodding, Moggallana?" [<a href = "../tags/great-disciples.html">Great disciples</a>]
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-7.58" target="_blank">AN 7.58</a> Capala Sutta: “Are you nodding, Moggallana?” [<a href = "../tags/great-disciples.html">Great disciples</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno walks in the forest without a flashlight to dispel drowsiness. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-2_S03"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 14, 2014</div>
+<div class="title" id="UD2014-2_S03"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S03">Session 3</a> – Jun. 14, 2014</div>
 <p id="UD2014-2_S03_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S03_F08.mp3" title="Thai Forest Tradition, S3 E8" data-duration="347"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S03_F08.mp3" download="Thai Forest Tradition, S3 E8.mp3">Download audio</a> (5:47)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> Ajahn Toon tries to disrobe repeatedly, but Ajahn Chah won't let him. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-toon.html">Ajahn Toon</a>] [<a href = "../tags/disrobing.html">Disrobing</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/respect.html">Respect</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S03_F08.mp3" title="Thai Forest Tradition, S3 E8" data-duration="347"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S03_F08.mp3" download="Thai Forest Tradition, S3 E8.mp3">Download audio</a> (5:47)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> Ajahn Toon tries to disrobe repeatedly, but Ajahn Chah won’t let him. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-toon.html">Ajahn Toon</a>] [<a href = "../tags/disrobing.html">Disrobing</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/respect.html">Respect</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="TG2014_S01"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 22, 2014</div>
+<div class="title" id="TG2014_S01"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S01">Session 1</a> – Nov. 22, 2014</div>
 <p id="TG2014_S01_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F03.mp3" title="2014 Thanksgiving Monastic Retreat, S1 E3" data-duration="535"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F03.mp3" download="2014 Thanksgiving Monastic Retreat, S1 E3.mp3">Download audio</a> (8:55)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Is walking meditation as “good” as sitting meditation. Can one achieve the level of undistractedness that one needs to be able to investigate the human experience? Or is it part of the bigger picture of mindfulness / or seven full days to experience stream entry?”  <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>]
 </p>
 <hr />
 <p id="TG2014_S01_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F06.mp3" title="2014 Thanksgiving Monastic Retreat, S1 E6" data-duration="430"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F06.mp3" download="2014 Thanksgiving Monastic Retreat, S1 E6.mp3">Download audio</a> (7:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “It appears that walking is far more comfortable than sitting these days, but I have never found it to be that settling for my mind. Please offer some advice on how to get “the most” out of walking meditation.”  <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F03.mp3" title="2014 Thanksgiving Monastic Retreat, S1 E3" data-duration="535"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F03.mp3" download="2014 Thanksgiving Monastic Retreat, S1 E3.mp3">Download audio</a> (8:55)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Is walking meditation as “good” as sitting meditation. Can one achieve the level of undistractedness that one needs to be able to investigate the human experience? Or is it part of the bigger picture of mindfulness / or seven full days to experience stream entry?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>]
 </p>
 <hr />
-<div class="title" id="TG2014_S05"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 26, 2014</div>
+<p id="TG2014_S01_F06">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F06.mp3" title="2014 Thanksgiving Monastic Retreat, S1 E6" data-duration="430"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S01_F06.mp3" download="2014 Thanksgiving Monastic Retreat, S1 E6.mp3">Download audio</a> (7:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “It appears that walking is far more comfortable than sitting these days, but I have never found it to be that settling for my mind. Please offer some advice on how to get “the most” out of walking meditation.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="TG2014_S05"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S05">Session 5</a> – Nov. 26, 2014</div>
 <p id="TG2014_S05_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F13.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E13" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F13.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E13.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “This is a comment to say thank you to the whole Sangha, really, for your interest in practice. We were doing walking meditation and there was such a contrast between the cars driving through and the walking practice. Usually, I feel more alone in practice. It feels so good not to be the odd one out. You guys almost made me cry with sweeping the walking paths yesterday. Thank you Sangha.”  [<a href = "../tags/gratitude.html">Gratitude</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
 </p>
 <hr />
 <p id="TG2014_S05_F15">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F15.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E15" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F15.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E15.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “My body does not physically handle sitting or stationary positions for long periods of time. I would like to do more walking meditation. Walking has a lot more distractions. Can you give some specifics on where to put my focus? Rise and fall of breath, feet, skeleton moving? Where to look, etc. Is it possible to achieve the same level of calmness, concentration and insights when the body is moving and you cannot close the eyes or keep focus on one spot?”  <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F13.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E13" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F13.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E13.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “This is a comment to say thank you to the whole Sangha, really, for your interest in practice. We were doing walking meditation and there was such a contrast between the cars driving through and the walking practice. Usually, I feel more alone in practice. It feels so good not to be the odd one out. You guys almost made me cry with sweeping the walking paths yesterday. Thank you Sangha.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/gratitude.html">Gratitude</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S19"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S19">Session 19</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 30, 2015</div>
+<p id="TG2014_S05_F15">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F15.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E15" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F15.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E15.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “My body does not physically handle sitting or stationary positions for long periods of time. I would like to do more walking meditation. Walking has a lot more distractions. Can you give some specifics on where to put my focus? Rise and fall of breath, feet, skeleton moving? Where to look, etc. Is it possible to achieve the same level of calmness, concentration and insights when the body is moving and you cannot close the eyes or keep focus on one spot?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="WR2015_S19"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S19">Session 19</a> – Jan. 30, 2015</div>
 <p id="WR2015_S19_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E5" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E5.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can jhana occur in walking meditation?”  [<a href = "../tags/jhana.html">Jhāna</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> // [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/ajahn-viradhammo.html">Ajahn Viradhammo</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E5" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E5.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can jhana occur in walking meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/jhana.html">Jhāna</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> // [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/ajahn-viradhammo.html">Ajahn Viradhammo</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-5.29:" target="_blank">AN 5.29:</a> Walking Meditatation. 
 </p>
 <hr />
-<div class="title" id="UD2015-1_S03"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2015</div>
+<div class="title" id="UD2015-1_S03"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S03">Session 3</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S03_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" title="On Pilgrimage and Tudong, S3 E9" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" download="On Pilgrimage and Tudong, S3 E9.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Comment</b>: I was inspired by a picture of the Buddha's walking path. [<a href = "../tags/buddha.html">Buddha</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" title="On Pilgrimage and Tudong, S3 E9" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S03_F09.mp3" download="On Pilgrimage and Tudong, S3 E9.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Comment</b>: I was inspired by a picture of the Buddha’s walking path. [<a href = "../tags/buddha.html">Buddha</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/visiting-holy-sites.html">Visiting holy sites</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
-<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S03_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F04.mp3" title="Jhāna: A Practical Approach, S3 E4" data-duration="84"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F04.mp3" download="Jhāna: A Practical Approach, S3 E4.mp3">Download audio</a> (1:24)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Does jhāna arise only in seated meditation?”  [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F04.mp3" title="Jhāna: A Practical Approach, S3 E4" data-duration="84"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F04.mp3" download="Jhāna: A Practical Approach, S3 E4.mp3">Download audio</a> (1:24)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Does jhāna arise only in seated meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=370" target="_blank">p. 332</a>: Ajahn Chah talks about developing jhāna factors in walking meditation. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
 </p>
 <hr />
-<div class="title" id="UD2015-4_S04"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<div class="title" id="UD2015-4_S04"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S04">Session 4</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S04_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F08.mp3" title="Jhāna: A Practical Approach, S4 E8" data-duration="126"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F08.mp3" download="Jhāna: A Practical Approach, S4 E8.mp3">Download audio</a> (2:06)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I practice the brahmavihāras, and not just on the cushion. How do these relate to jhāna?”  [<a href = "../tags/divine-abidings.html">Divine Abidings</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F08.mp3" title="Jhāna: A Practical Approach, S4 E8" data-duration="126"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F08.mp3" download="Jhāna: A Practical Approach, S4 E8.mp3">Download audio</a> (2:06)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I practice the brahmavihāras, and not just on the cushion. How do these relate to jhāna?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/divine-abidings.html">Divine Abidings</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “You can sit on your cushion for a long time. Chickens sit for a long time, and they don't get enlightened!” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/animal.html">Animal</a>]
+  <b>Quote:</b>  “You can sit on your cushion for a long time. Chickens sit for a long time, and they don’t get enlightened!” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/animal.html">Animal</a>]
 </p>
 <hr />
-<div class="title" id="TG2016_S07"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 25, 2016</div>
+<div class="title" id="TG2016_S07"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S07">Session 7</a> – Nov. 25, 2016</div>
 <p id="TG2016_S07_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F06.mp3" title="Thanksgiving Retreat 2016, S7 E6" data-duration="338"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F06.mp3" download="Thanksgiving Retreat 2016, S7 E6.mp3">Download audio</a> (5:38)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Can you suggest some ways of approaching walking meditation that you have found fruitful?  Do the themes of anapanasati apply, for example?  Is this an adaptable, useful structure?”  <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
 </p>
 <hr />
 <p id="TG2016_S07_F18">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F18.mp3" title="Thanksgiving Retreat 2016, S7 E18" data-duration="134"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F18.mp3" download="Thanksgiving Retreat 2016, S7 E18.mp3">Download audio</a> (2:14)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “Did the Buddha give instructions for walking meditation?”  <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F06.mp3" title="Thanksgiving Retreat 2016, S7 E6" data-duration="338"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F06.mp3" download="Thanksgiving Retreat 2016, S7 E6.mp3">Download audio</a> (5:38)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Can you suggest some ways of approaching walking meditation that you have found fruitful?  Do the themes of anapanasati apply, for example?  Is this an adaptable, useful structure?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
+</p>
+<hr />
+<p id="TG2016_S07_F18">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F18.mp3" title="Thanksgiving Retreat 2016, S7 E18" data-duration="134"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F18.mp3" download="Thanksgiving Retreat 2016, S7 E18.mp3">Download audio</a> (2:14)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “Did the Buddha give instructions for walking meditation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturewalking.html">Posture/Walking</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Posture/Walking,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Posture/Walking,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/posturewalking.html">https://abhayagiri.org/questions/tags/posturewalking.html</a>.</p>
 </footer>
 

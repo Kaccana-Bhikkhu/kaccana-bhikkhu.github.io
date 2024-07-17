@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/pabongka-rinpoche.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -57,13 +67,13 @@
   <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-9:" target="_blank">MN 9:</a> Sammādiṭṭhi Sutta, Right View (excerpt).  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> Readings on the suffering of birth and aging from <em>Liberation in the Palm of Your Hand</em> by <a href = ../teachers/pabongka-rinpoche.html>Pabongka Rinpoche</a> (commercial).  [<a href = "../tags/birth.html">Birth</a>] [<a href = "../tags/ageing.html">Ageing</a>]
+  <b>Reading:</b> Readings on the suffering of birth and aging from <em>Liberation in the Palm of Your Hand</em> by <a href="../teachers/pabongka-rinpoche.html">Pabongka Rinpoche</a> (commercial).  [<a href = "../tags/birth.html">Birth</a>] [<a href = "../tags/ageing.html">Ageing</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Pabongka Rinpoche,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Pabongka Rinpoche,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/pabongka-rinpoche.html">https://abhayagiri.org/questions/teachers/pabongka-rinpoche.html</a>.</p>
 </footer>
 

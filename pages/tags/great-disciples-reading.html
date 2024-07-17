@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/great-disciples-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/history.html#history"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGreat disciples 
+  <div class="title"><a href="../drilldown/history.html#history" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGreat disciples 
   </div>
 
 <div class="intro">
@@ -66,12 +76,16 @@
       <a href="../tags/great-disciples-text.html">Texts (8)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F12">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" title="Recollections of Ajahn Chah, S1 E12" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" download="Recollections of Ajahn Chah, S1 E12.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Mun's character and legacy  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] <b>[<a href = "../tags/great-disciples.html">Great disciples</a>]</b> [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" title="Recollections of Ajahn Chah, S1 E12" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" download="Recollections of Ajahn Chah, S1 E12.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Mun’s character and legacy  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] <b>[<a href = "../tags/great-disciples.html">Great disciples</a>]</b> [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=74" target="_blank">p. 52</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=74" target="_blank">p. 52</a> 
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=Dhp-65" target="_blank">Dhp 65</a>, <a href="https://sutta.readingfaithfully.org/?q=Dhp-92" target="_blank">Dhp 92</a> 
@@ -80,7 +94,7 @@
   <b>Story:</b> Ajahn Mun disappears after being appointed abbot. [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/seclusion.html">Seclusion</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F04">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F04.mp3" title="Death and Dying, S1 E4" data-duration="355"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F04.mp3" download="Death and Dying, S1 E4.mp3">Download audio</a> (5:55)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=SN-41.10:" target="_blank">SN 41.10:</a> Death of Citta the Householder  <b>[<a href = "../tags/great-disciples.html">Great disciples</a>]</b> [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/generosity.html">Generosity</a>]
 </p>
@@ -91,8 +105,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Great disciples (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Great disciples (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/great-disciples-reading.html">https://abhayagiri.org/questions/tags/great-disciples-reading.html</a>.</p>
 </footer>
 

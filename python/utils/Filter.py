@@ -81,7 +81,7 @@ def Partition(items:Iterable[dict],filter: Filter) -> Tuple[list[dict],list[dict
     
     return trueList,falseList
 
-def _Kind(item: dict,kind:set(str),category:set(str)) -> bool:
+def _Kind(item: dict,kind:set[str],category:set[str]) -> bool:
     "Helper function for Tag."
 
     for i in AllItems(item):
@@ -89,7 +89,7 @@ def _Kind(item: dict,kind:set(str),category:set(str)) -> bool:
             return True
     return False
 
-def Kind(kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
+def Kind(kind:str|set[str] = All,category:str|set[str] = All) -> Filter:
     """Returns a Filter that passes any item with a given tag.
     If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
 
@@ -98,7 +98,7 @@ def Kind(kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
 
     return lambda item,kind=kind,category=category: _Kind(item,kind,category)
 
-def _Tag(item: dict,tag:set(str),kind:set(str),category:set(str)) -> bool:
+def _Tag(item: dict,tag:set[str],kind:set[str],category:set[str]) -> bool:
     "Helper function for Tag."
 
     for i in AllItems(item):
@@ -111,7 +111,7 @@ def _Tag(item: dict,tag:set(str),kind:set(str),category:set(str)) -> bool:
                     return True
     return False
 
-def Tag(tag: str|set(str),kind:str|set(str) = All,category:str|set(str) = All) -> Filter:
+def Tag(tag: str|set[str],kind:str|set[str] = All,category:str|set[str] = All) -> Filter:
     """Returns a Filter that passes any item with a given tag.
     If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
 
@@ -134,12 +134,10 @@ def ATag(tag:str) -> Filter:
 
     return lambda excerpt,tag=tag: _Tag(excerpt,tag,All,All) and not _QTag(excerpt,tag)
 
-gFullNames = set()
-def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str),quotesOthers:bool,quotedBy:bool) -> bool:
+def _Teacher(item: dict,teacher:set[str],kind:set[str],category:set[str],quotesOthers:bool,quotedBy:bool) -> bool:
     "Helper function for Teacher."
 
-    if not gFullNames:
-        gFullNames.update(gDatabase["teacher"][t]["attributionName"] for t in teacher)
+    fullNames = set(gDatabase["teacher"][t]["attributionName"] for t in teacher)
 
     for i in AllItems(item):
         for t in i.get("teachers",()):
@@ -154,13 +152,13 @@ def _Teacher(item: dict,teacher:set(str),kind:set(str),category:set(str),quotesO
                     return True
 
         if i.get("kind") == "Indirect quote" and quotedBy:
-            if i.get("tags",(None))[0] in gFullNames:
+            if i.get("tags",(None))[0] in fullNames:
                 if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
                     return True
     
     return False
 
-def Teacher(teacher: str|set(str),kind:str|set(str) = All,category:str|set(str) = All,quotesOthers = True,quotedBy = True) -> Filter:
+def Teacher(teacher: str|set[str],kind:str|set[str] = All,category:str|set[str] = All,quotesOthers = True,quotedBy = True) -> Filter:
     """Returns a Filter that passes any item with a given teacher.
     In the case of indirect quotes, pass items in which the teacher quotes others or is quoted by others depending on the flags
     If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
@@ -182,7 +180,7 @@ def AllTags(item: dict) -> set:
 
 def AllTagsOrdered(item: dict) -> list:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""
-    allTags = item["tags"]
+    allTags = list(item["tags"])
 
     for annotation in item.get("annotations",()):
         Utils.ExtendUnique(allTags,annotation.get("tags",()))

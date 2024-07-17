@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/progress-of-insight-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspProgress of insight 
+  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspProgress of insight 
   </div>
 
 <div class="intro">
@@ -64,14 +74,22 @@
       <a href="../tags/progress-of-insight-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 11, 2008</div>
+<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – Sep. 11, 2008</div>
 <p id="Metta2008_S03_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F09.mp3" title="Metta Retreat, S3 E9" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F09.mp3" download="Metta Retreat, S3 E9.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “It seems that metta would be much easier without a self to protect. How does one realize anatta?”  [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F09.mp3" title="Metta Retreat, S3 E9" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F09.mp3" download="Metta Retreat, S3 E9.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “It seems that metta would be much easier without a self to protect. How does one realize anatta?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F12">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F12.mp3" title="Metta Retreat, S4 E12" data-duration="272"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F12.mp3" download="Metta Retreat, S4 E12.mp3">Download audio</a> (4:32)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “What is the Pali word for letting go or relinquishment? Is this the opposite of upādāna?”  [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/clinging.html">Clinging</a>] // [<a href = "../tags/release.html">Release</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F12.mp3" title="Metta Retreat, S4 E12" data-duration="272"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F12.mp3" download="Metta Retreat, S4 E12.mp3">Download audio</a> (4:32)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “What is the Pali word for letting go or relinquishment? Is this the opposite of upādāna?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/clinging.html">Clinging</a>] // [<a href = "../tags/release.html">Release</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-37:" target="_blank">MN 37:</a> Sabbe dhammā nālaṁ abhinivesāya–All dhammas are not to be clung to. [<a href = "../tags/conditionality.html">Conditionality</a>]
@@ -84,44 +102,68 @@
 </p>
 <hr />
 <p id="Metta2008_S04_F17">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F17.mp3" title="Metta Retreat, S4 E17" data-duration="375"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F17.mp3" download="Metta Retreat, S4 E17.mp3">Download audio</a> (6:15)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “What is the difference between 'meditating on' versus 'contemplating' or just thinking about something. Can you give some examples how one may skillfully meditate on something versus unskillfully? What does saṅkhāra mean?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/pali.html">Pāli</a>] // [<a href = "../tags/concentration.html">Concentration</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/aggregates.html">Aggregates</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F17.mp3" title="Metta Retreat, S4 E17" data-duration="375"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F17.mp3" download="Metta Retreat, S4 E17.mp3">Download audio</a> (6:15)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “What is the difference between ‘meditating on’ versus ‘contemplating’ or just thinking about something. Can you give some examples how one may skillfully meditate on something versus unskillfully? What does saṅkhāra mean?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/pali.html">Pāli</a>] // [<a href = "../tags/concentration.html">Concentration</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/aggregates.html">Aggregates</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=20" target="_blank">p. 11</a>: A passage to arouse urgency. 
 </p>
 <hr />
-<div class="title" id="UD2012-3_S01"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 19, 2012</div>
+<div class="title" id="UD2012-3_S01"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S01">Session 1</a> – Aug. 19, 2012</div>
 <p id="UD2012-3_S01_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S01_F01.mp3" title="Brightening the Mind, S1 E1" data-duration="183"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S01_F01.mp3" download="Brightening the Mind, S1 E1.mp3">Download audio</a> (3:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Could you expand about the layers of understanding of thought, perception, and dukkha?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>. [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/suffering.html">Suffering</a>] // [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S01_F01.mp3" title="Brightening the Mind, S1 E1" data-duration="183"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S01_F01.mp3" download="Brightening the Mind, S1 E1.mp3">Download audio</a> (3:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Could you expand about the layers of understanding of thought, perception, and dukkha?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a>. [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/suffering.html">Suffering</a>] // [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “First you study the Dhamma, then you know the Dhamma, then you see the Dhamma, they you be the Dhamma.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+  <b>Quote:</b>  “First you study the Dhamma, then you know the Dhamma, then you see the Dhamma, they you be the Dhamma.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>. Quoted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Commentary:</b> <em>Path of Purification</em> by Bhikkhu Ñāṇamoli, <a href="https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=689" target="_blank">p. 631</a>: The highest level of understanding is giving up. 
 </p>
 <hr />
-<div class="title" id="WR2014_S46"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S46">Session 46</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 10, 2014</div>
+<div class="title" id="WR2014_S46"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S46">Session 46</a> – Mar. 10, 2014</div>
 <p id="WR2014_S46_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F13.mp3" title="Abhayagiri 2014 Winter Retreat, S46 E13" data-duration="92"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F13.mp3" download="Abhayagiri 2014 Winter Retreat, S46 E13.mp3">Download audio</a> (1:32)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “How do I keep the mind from proliferating about what happens after death?”  [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F13.mp3" title="Abhayagiri 2014 Winter Retreat, S46 E13" data-duration="92"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F13.mp3" download="Abhayagiri 2014 Winter Retreat, S46 E13.mp3">Download audio</a> (1:32)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “How do I keep the mind from proliferating about what happens after death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 12, 2017</div>
+<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – Aug. 12, 2017</div>
 <p id="UD2017-3_S00_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" title="Practice in a Global Context, E5" data-duration="288"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" download="Practice in a Global Context, E5.mp3">Download audio</a> (4:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can you say more about how disenchantment can be uplifting?”  [<a href = "../tags/disenchantment.html">Disenchantment</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/bhikkhu-bodhi.html">Bhikkhu Bodhi</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" title="Practice in a Global Context, E5" data-duration="288"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" download="Practice in a Global Context, E5.mp3">Download audio</a> (4:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can you say more about how disenchantment can be uplifting?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/disenchantment.html">Disenchantment</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/bhikkhu-bodhi.html">Bhikkhu Bodhi</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no known defense against cheesecake.” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a> [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>]
+  <b>Quote:</b>  “There’s no known defense against cheesecake.” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a> [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>]
 </p>
 <hr />
-<div class="title" id="WR2018-2_S11"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 29, 2018</div>
+<div class="title" id="WR2018-2_S11"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S11">Session 11</a> – Mar. 29, 2018</div>
 <p id="WR2018-2_S11_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F06.mp3" title="The Teaching and the Training, S11 E6" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F06.mp3" download="The Teaching and the Training, S11 E6.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Do the Four Iddhipādas apply to the way we develop sammā sati and sammā samādhi?”  [<a href = "../tags/bases-of-success.html">Bases of Success</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F06.mp3" title="The Teaching and the Training, S11 E6" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S11_F06.mp3" download="The Teaching and the Training, S11 E6.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Do the Four Iddhipādas apply to the way we develop sammā sati and sammā samādhi?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/bases-of-success.html">Bases of Success</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" title="The Path of Practice, S1 E4" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" download="The Path of Practice, S1 E4.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is the fourth foundation of mindfulness as simple as, for example, with the third foundation I identify aversion, and then in the fourth foundation I identify aversion as a hindrance?”  [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/agama.html">Āgama</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" title="The Path of Practice, S1 E4" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F04.mp3" download="The Path of Practice, S1 E4.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is the fourth foundation of mindfulness as simple as, for example, with the third foundation I identify aversion, and then in the fourth foundation I identify aversion as a hindrance?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/agama.html">Āgama</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] <b>[<a href = "../tags/progress-of-insight.html">Progress of insight</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-10:" target="_blank">MN 10:</a> Satipaṭṭhāna Sutta; <a href="https://sutta.readingfaithfully.org/?q=MN-118:" target="_blank">MN 118:</a> Ānāpānasati Sutta [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
@@ -132,8 +174,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Progress of insight (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Progress of insight (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/progress-of-insight-atag.html">https://abhayagiri.org/questions/tags/progress-of-insight-atag.html</a>.</p>
 </footer>
 

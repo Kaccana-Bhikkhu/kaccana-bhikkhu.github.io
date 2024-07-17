@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/hua-tou.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/meditationtechniques.html#meditationtechniques"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHua tou <em>Chinese</em> 
+  <div class="title"><a href="../drilldown/meditationtechniques.html#meditationtechniques" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHua tou <em>Chinese</em> 
   </div>
 
 <div class="intro">
@@ -57,9 +67,13 @@
   1 excerpt, 3:32 total duration
 </strong>
 <hr />
-<div class="title" id="UD2014-3_S02"><a href="../events/UD2014-3.html">Mindfulness of Breathing</a>, <a href="../events/UD2014-3.html#UD2014-3_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 26, 2014</div>
+<div class="title" id="UD2014-3_S02"><a href="../events/UD2014-3.html">Mindfulness of Breathing</a>, <a href="../events/UD2014-3.html#UD2014-3_S02">Session 2</a> – Oct. 26, 2014</div>
 <p id="UD2014-3_S02_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S02_F10.mp3" title="Mindfulness of Breathing, S2 E10" data-duration="212"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S02_F10.mp3" download="Mindfulness of Breathing, S2 E10.mp3">Download audio</a> (3:32)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “When you contemplate, 'Who is thinking? Who is breathing?' how does thid differ from thinking? Why doesn't it generate more thought?”  <b>[<a href = "../tags/hua-tou.html">Hua tou</a>]</b> [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S02_F10.mp3" title="Mindfulness of Breathing, S2 E10" data-duration="212"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S02_F10.mp3" download="Mindfulness of Breathing, S2 E10.mp3">Download audio</a> (3:32)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “When you contemplate, ‘Who is thinking? Who is breathing?’ how does thid differ from thinking? Why doesn’t it generate more thought?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/hua-tou.html">Hua tou</a>]</b> [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The mind can still think and be peaceful. What a concept!”  
@@ -67,8 +81,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Hua tou <em>Chinese</em>,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Hua tou <em>Chinese</em>,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/hua-tou.html">https://abhayagiri.org/questions/tags/hua-tou.html</a>.</p>
 </footer>
 

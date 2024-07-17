@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/dhamma-discussion.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/teaching-dhamma.html#teaching-dhamma"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDhamma discussion 
+  <div class="title"><a href="../drilldown/teaching-dhamma.html#teaching-dhamma" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDhamma discussion 
   </div>
 
 <div class="intro">
@@ -57,26 +67,34 @@
   2 excerpts, 7:04 total duration
 </strong>
 <hr />
-<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2013</div>
+<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – Apr. 21, 2013</div>
 <p id="UD2013-1_S01_F29">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" title="Right Livelihood, S1 E29" data-duration="242"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" download="Right Livelihood, S1 E29.mp3">Download audio</a> (4:02)</audio-chip><br /> <b style="text-decoration: underline;">29.</b> <b>Story:</b> The head of Lalanka Water invites monks to stay above his office and teach the employees. Told by <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>. [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>] [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>]</b> [<a href = "../tags/respect.html">Respect</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" title="Right Livelihood, S1 E29" data-duration="242"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F29.mp3" download="Right Livelihood, S1 E29.mp3">Download audio</a> (4:02)</audio-chip><br /> <b style="text-decoration: underline;">29.</b> <b>Story:</b> The head of Lalanka Water invites monks to stay above his office and teach the employees. Told by <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a>. [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>] [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>]</b> [<a href = "../tags/respect.html">Respect</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> The ultra-competent assistant who wants to ordain. [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> The king's assistant who dives into the water to get 20 pounds of gold (<a href="https://sutta.readingfaithfully.org/?q=DN-17" target="_blank">DN 17</a>). 
+  <b>Story:</b> The king’s assistant who dives into the water to get 20 pounds of gold (<a href="https://sutta.readingfaithfully.org/?q=DN-17" target="_blank">DN 17</a>). 
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" title="Tea Time Q&A with Ajahn Pasanno, E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" download="Tea Time Q&A with Ajahn Pasanno, E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Our community is mostly virtual. Since we're not together taking care of a shared environment, can you suggest other ways of building community?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/online-community.html">Online community</a>] // <b>[<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" title="Tea Time Q&A with Ajahn Pasanno, E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F04.mp3" download="Tea Time Q&A with Ajahn Pasanno, E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Our community is mostly virtual. Since we’re not together taking care of a shared environment, can you suggest other ways of building community?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/online-community.html">Online community</a>] // <b>[<a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Dhamma discussion,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Dhamma discussion,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/dhamma-discussion.html">https://abhayagiri.org/questions/tags/dhamma-discussion.html</a>.</p>
 </footer>
 

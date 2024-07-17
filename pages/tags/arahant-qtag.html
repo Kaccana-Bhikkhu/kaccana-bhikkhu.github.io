@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/arahant-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/stages-of-awakening.html#stages-of-awakening"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspArahant 
+  <div class="title"><a href="../drilldown/stages-of-awakening.html#stages-of-awakening" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspArahant 
   </div>
 
 <div class="intro">
@@ -64,15 +74,19 @@
       <a href="../tags/arahant-quote.html">Quotes (3)</a> </div>
 <hr>
 
-<div class="title" id="TG2013_S01"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 23, 2013</div>
+<div class="title" id="TG2013_S01"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S01">Session 1</a> – Nov. 23, 2013</div>
 <p id="TG2013_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S01_F02.mp3" title="Abhayagiri Monastic Retreat 2013, S1 E2" data-duration="534"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S01_F02.mp3" download="Abhayagiri Monastic Retreat 2013, S1 E2.mp3">Download audio</a> (8:54)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Is it possible for an arahant to have seemingly negative thoughts and speech?”  <b>[<a href = "../tags/arahant.html">Arahant</a>]</b> [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S01_F02.mp3" title="Abhayagiri Monastic Retreat 2013, S1 E2" data-duration="534"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S01_F02.mp3" download="Abhayagiri Monastic Retreat 2013, S1 E2.mp3">Download audio</a> (8:54)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Is it possible for an arahant to have seemingly negative thoughts and speech?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/arahant.html">Arahant</a>]</b> [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Arahant (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Arahant (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/arahant-qtag.html">https://abhayagiri.org/questions/tags/arahant-qtag.html</a>.</p>
 </footer>
 

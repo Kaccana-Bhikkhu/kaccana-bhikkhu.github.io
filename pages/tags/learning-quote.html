@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/learning-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/learning.html#learning"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspLearning (suta)
+  <div class="title"><a href="../drilldown/learning.html#learning" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspLearning (suta)
   </div>
 
 <div class="intro">
@@ -54,63 +64,79 @@
   Parent topic: <a href = "../tags/treasures.html">Treasures</a><br>
   Subtopics: <a href = "../tags/sutta.html">Sutta</a>, <a href = "../tags/agama.html">Āgama</a>, <a href = "../tags/abhidhamma.html">Abhidhamma</a>, <a href = "../tags/commentaries.html">Commentaries</a><br>
   
-  62 excerpts, 5:00:36 total duration
+  66 excerpts, 5:13:49 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/learning.html">All excerpts (62)</a>
+<div class="sublink2"> <a href="../tags/learning.html">All excerpts (66)</a>
       <a href="../tags/learning-qtag.html">Questions about (20)</a>
       <a href="../tags/learning-atag.html">Answers involving (32)</a>
-      <a href="../tags/learning-story.html">Stories (9)</a>
+      <a href="../tags/learning-story.html">Stories (10)</a>
       <a href="../tags/learning-quote.html" class="active">Quotes (4)</a>
-      <a href="../tags/learning-reading.html">Readings (2)</a>
+      <a href="../tags/learning-reading.html">Readings (3)</a>
       <a href="../tags/learning-reference.html">References (1)</a> </div>
 <hr>
 
-<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2015</div>
+<div class="title" id="UD2015-1_S04"><a href="../events/UD2015-1.html">On Pilgrimage and Tudong</a>, <a href="../events/UD2015-1.html#UD2015-1_S04">Session 4</a> – Apr. 25, 2015</div>
 <p id="UD2015-1_S04_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F03.mp3" title="On Pilgrimage and Tudong, S4 E3" data-duration="21"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F03.mp3" download="On Pilgrimage and Tudong, S4 E3.mp3">Download audio</a> (0:21)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Quote:</b>  “Tudong should be something you're learning from.”  <b>[<a href = "../tags/learning.html">Learning</a>]</b> [<a href = "../tags/tudong.html">Tudong</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F03.mp3" title="On Pilgrimage and Tudong, S4 E3" data-duration="21"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-1/UD2015-1_S04_F03.mp3" download="On Pilgrimage and Tudong, S4 E3.mp3">Download audio</a> (0:21)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Quote:</b>  “Tudong should be something you’re learning from.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> <b>[<a href = "../tags/learning.html">Learning</a>]</b> [<a href = "../tags/tudong.html">Tudong</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S02_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" title="Suttas You've Never Heard Of, S2 E9" data-duration="323"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" download="Suttas You've Never Heard Of, S2 E9.mp3">Download audio</a> (5:23)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “I like the translations 'conscience' aand 'concern' for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/divine-abidings.html">Divine Abidings</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" title="Suttas You've Never Heard Of, S2 E9" data-duration="323"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" download="Suttas You've Never Heard Of, S2 E9.mp3">Download audio</a> (5:23)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “I like the translations ‘conscience’ aand ‘concern’ for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/divine-abidings.html">Divine Abidings</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As a human being, I have the opportunity to learn from the past and move on to skillful action in the future. I don't have to be like a dog that barfs stuff up and goes back and eats it again.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/human.html">Human</a>] <b>[<a href = "../tags/learning.html">Learning</a>]</b> [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “As a human being, I have the opportunity to learn from the past and move on to skillful action in the future. I don’t have to be like a dog that barfs stuff up and goes back and eats it again.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/human.html">Human</a>] <b>[<a href = "../tags/learning.html">Learning</a>]</b> [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The not-self refrain, 'This is not me, this is not mine, this is not what or who I am,' is not an abdication of responsibility but an understanding, 'This is the way I can put things down and move on, move past the things that are still creating suffering.'”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Quote:</b>  “The not-self refrain, ‘This is not me, this is not mine, this is not what or who I am,’ is not an abdication of responsibility but an understanding, ‘This is the way I can put things down and move on, move past the things that are still creating suffering.’”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-42.8" target="_blank">SN 42.8</a> The Conch Blower; <a href="https://sutta.readingfaithfully.org/?q=AN-3.100:" target="_blank">AN 3.100:</a> A Lump of Salt. 
 </p>
 <hr />
-<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 20, 2018</div>
+<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – Mar. 20, 2018</div>
 <p id="WR2018-2_S04_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" title="The Teaching and the Training, S4 E3" data-duration="1655"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" download="The Teaching and the Training, S4 E3.mp3">Download audio</a> (27:35)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”  [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/protocols.html">Protocols</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/city-of-ten-thousand-buddhas.html">City of Ten Thousand Buddhas</a>] [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>] [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/cittavivieka.html">Cittavivieka</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" title="The Teaching and the Training, S4 E3" data-duration="1655"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" download="The Teaching and the Training, S4 E3.mp3">Download audio</a> (27:35)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/protocols.html">Protocols</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>] [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/city-of-ten-thousand-buddhas.html">City of Ten Thousand Buddhas</a>] [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>] [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/chithurst.html">Chithurst</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I'd rather focus my attention here.”  [<a href = "../tags/pace-of-life.html">Pace of life</a>]
+  <b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I’d rather focus my attention here.”  [<a href = "../tags/pace-of-life.html">Pace of life</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no reason to fit into American culture.”  
+  <b>Quote:</b>  “There’s no reason to fit into American culture.”  
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> The monastic jacket is vindicated in England. [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we're trying to set conditions that give us the opportunity for learning.”  [<a href = "../tags/lay-life.html">Lay life</a>] <b>[<a href = "../tags/learning.html">Learning</a>]</b>
+  <b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we’re trying to set conditions that give us the opportunity for learning.”  [<a href = "../tags/lay-life.html">Lay life</a>] <b>[<a href = "../tags/learning.html">Learning</a>]</b>
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" title="Tea Time Q&A with Ajahn Pasanno, E1" data-duration="1314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" download="Tea Time Q&A with Ajahn Pasanno, E1.mp3">Download audio</a> (21:54)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You have so much community-building experience. Can you talk about what you have found challenging or effective in this? How did Ajahn Chah build community?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] <b>[<a href = "../tags/learning.html">Learning</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" title="Tea Time Q&A with Ajahn Pasanno, E1" data-duration="1314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" download="Tea Time Q&A with Ajahn Pasanno, E1.mp3">Download audio</a> (21:54)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You have so much community-building experience. Can you talk about what you have found challenging or effective in this? How did Ajahn Chah build community?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] <b>[<a href = "../tags/learning.html">Learning</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-48:" target="_blank">MN 48:</a> Kosambiya Sutta [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/right-view.html">Right View</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno pays respects to Ajahn Chah: "If you want to stay here, you have to stay at least five years." 
+  <b>Story:</b> Ajahn Pasanno pays respects to Ajahn Chah: “If you want to stay here, you have to stay at least five years.” 
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The whole path of the Buddha is a path of learning, of education.”  <b>[<a href = "../tags/learning.html">Learning</a>]</b>
@@ -118,8 +144,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Learning (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Learning (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/learning-quote.html">https://abhayagiri.org/questions/tags/learning-quote.html</a>.</p>
 </footer>
 

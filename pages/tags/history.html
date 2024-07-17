@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/history.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/history.html#history"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHistory 
+  <div class="title"><a href="../drilldown/history.html#history" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHistory 
   </div>
 
 <div class="intro">
@@ -57,18 +67,30 @@
   3 excerpts, 11:17 total duration
 </strong>
 <hr />
-<div class="title" id="UD2014-2_S01"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 14, 2014</div>
+<div class="title" id="UD2014-2_S01"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S01">Session 1</a> – Jun. 14, 2014</div>
 <p id="UD2014-2_S01_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F14.mp3" title="Thai Forest Tradition, S1 E14" data-duration="104"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F14.mp3" download="Thai Forest Tradition, S1 E14.mp3">Download audio</a> (1:44)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “I can't imagine not having meditation as part of this practice. How does Buddhism exist without it?”  [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/history.html">History</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/ceremonyritual.html">Ceremony/ritual</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>]
 </p>
 <hr />
 <p id="UD2014-2_S01_F15">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F15.mp3" title="Thai Forest Tradition, S1 E15" data-duration="197"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F15.mp3" download="Thai Forest Tradition, S1 E15.mp3">Download audio</a> (3:17)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “A list of ten misconceptions about Buddhim in <em>Tricycle</em> magazine included 'All Buddhists meditate.' It said that historically this wasn't true. Is this accurate?”  [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/history.html">History</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F14.mp3" title="Thai Forest Tradition, S1 E14" data-duration="104"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F14.mp3" download="Thai Forest Tradition, S1 E14.mp3">Download audio</a> (1:44)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “I can’t imagine not having meditation as part of this practice. How does Buddhism exist without it?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/history.html">History</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/ceremonyritual.html">Ceremony/ritual</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S16"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S16">Session 16</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 25, 2015</div>
+<p id="UD2014-2_S01_F15">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F15.mp3" title="Thai Forest Tradition, S1 E15" data-duration="197"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F15.mp3" download="Thai Forest Tradition, S1 E15.mp3">Download audio</a> (3:17)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “A list of ten misconceptions about Buddhim in <em>Tricycle</em> magazine included ‘All Buddhists meditate.’ It said that historically this wasn’t true. Is this accurate?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/history.html">History</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="WR2015_S16"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S16">Session 16</a> – Jan. 25, 2015</div>
 <p id="WR2015_S16_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S16 E2" data-duration="376"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S16 E2.mp3">Download audio</a> (6:16)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Why is the intellect not included in the five cords of sensual pleasure?”  [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/history.html">History</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/craving.html">Craving</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S16 E2" data-duration="376"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S16 E2.mp3">Download audio</a> (6:16)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Why is the intellect not included in the five cords of sensual pleasure?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/history.html">History</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/craving.html">Craving</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-47.6" target="_blank">SN 47.6-7</a>. 
@@ -79,8 +101,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: History,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: History,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/history.html">https://abhayagiri.org/questions/tags/history.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/buddhabiography-text.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/history.html#history"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspBuddha/Biography 
+  <div class="title"><a href="../drilldown/history.html#history" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspBuddha/Biography 
   </div>
 
 <div class="intro">
@@ -65,23 +75,31 @@
       <a href="../tags/buddhabiography-text.html" class="active">Texts (5)</a> </div>
 <hr>
 
-<div class="title" id="BIA2013_S01"><a href="../events/BIA2013.html">New Year, New Life</a>, <a href="../events/BIA2013.html#BIA2013_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Dec. 16, 2013</div>
+<div class="title" id="BIA2013_S01"><a href="../events/BIA2013.html">New Year, New Life</a>, <a href="../events/BIA2013.html#BIA2013_S01">Session 1</a> – Dec. 16, 2013</div>
 <p id="BIA2013_S01_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" title="New Year, New Life, S1 E6" data-duration="530"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" download="New Year, New Life, S1 E6.mp3">Download audio</a> (8:50)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “I find I do need some pleasures even thought they don't last, things like fine arts and being in nature. I'm curious, how did you manage as a monk in your early years at Ajahn Chah's monastery where there's almost no pleasure....How did you manage to keep going over the years until the present?”  [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/empathetic-joy.html">Empathetic joy</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" title="New Year, New Life, S1 E6" data-duration="530"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/BIA2013/BIA2013_S01_F06.mp3" download="New Year, New Life, S1 E6.mp3">Download audio</a> (8:50)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “I find I do need some pleasures even thought they don’t last, things like fine arts and being in nature. I’m curious, how did you manage as a monk in your early years at Ajahn Chah’s monastery where there’s almost no pleasure....How did you manage to keep going over the years until the present?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/entertainment-and-adornment.html">Entertainment and adornment</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/empathetic-joy.html">Empathetic joy</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “One of the extraordinary perks of being a monk is that everyone tries to be good around you.”  
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-36.32:" target="_blank">MN 36.32:</a> "Why am I afraid of that happiness?" <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b> [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>]
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-36.32:" target="_blank">MN 36.32:</a> “Why am I afraid of that happiness?” <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b> [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As a monk, I can look back on forty years of living in a way where I don't have to feel remorseful or regret anything.”  
+  <b>Quote:</b>  “As a monk, I can look back on forty years of living in a way where I don’t have to feel remorseful or regret anything.”  
 </p>
 <hr />
-<div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 11, 2014</div>
+<div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – Mar. 11, 2014</div>
 <p id="WR2014_S47_F12">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F12.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E12" data-duration="54"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F12.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E12.mp3">Download audio</a> (0:54)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “If you had moved Wat Pah Nanachat to Wat Keun, would you have left Thailand?”  [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-keun.html">Wat Keun</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F12.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E12" data-duration="54"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F12.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E12.mp3">Download audio</a> (0:54)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “If you had moved Wat Pah Nanachat to Wat Keun, would you have left Thailand?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-keun.html">Wat Keun</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “I had one plan and the devas had a different one.”  [<a href = "../tags/deva.html">Deva</a>]
@@ -90,20 +108,28 @@
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-16.6.15" target="_blank">DN 16.6.15</a>: Mahāparinibbāna Sutta <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b> [<a href = "../tags/great-disciples.html">Great disciples</a>]
 </p>
 <hr />
-<div class="title" id="WR2018-2_S06"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 22, 2018</div>
+<div class="title" id="WR2018-2_S06"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S06">Session 6</a> – Mar. 22, 2018</div>
 <p id="WR2018-2_S06_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" title="The Teaching and the Training, S6 E5" data-duration="539"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" download="The Teaching and the Training, S6 E5.mp3">Download audio</a> (8:59)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: It's important for the Saṅgha to look after all members in terms of sickness and ageing. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" title="The Teaching and the Training, S6 E5" data-duration="539"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F05.mp3" download="The Teaching and the Training, S6 E5.mp3">Download audio</a> (8:59)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: It’s important for the Saṅgha to look after all members in terms of sickness and ageing. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Vinaya:</b> <a href="https://suttacentral.net/pli-tv-kd8/en/brahmali?layout=plain&amp;reference=main&amp;notes=asterisk&amp;highlight=false&amp;script=latin#26.1.1" target="_blank">Kd 8.26.1-8</a>: The Monk with Dysentery <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b>
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" title="The Path of Practice, S1 E13" data-duration="519"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" download="The Path of Practice, S1 E13.mp3">Download audio</a> (8:39)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you say something about the fact that extreme hardship exists in the world?”  [<a href = "../tags/poverty.html">Poverty</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" title="The Path of Practice, S1 E13" data-duration="519"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" download="The Path of Practice, S1 E13.mp3">Download audio</a> (8:39)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you say something about the fact that extreme hardship exists in the world?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/poverty.html">Poverty</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.162:" target="_blank">AN 4.162:</a> Modes of Practice 
@@ -121,9 +147,13 @@
   <b>Recollection:</b> More Westerners came to study with Ajahn Chah than Central or Southern Thais. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <hr />
-<div class="title" id="UD2021-1_S00"><a href="../events/UD2021-1.html">Honoring the Buddha: The Mahāparinibbāna Sutta</a><a href="../events/UD2021-1.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2021</div>
+<div class="title" id="UD2021-1_S00"><a href="../events/UD2021-1.html">Honoring the Buddha: The Mahāparinibbāna Sutta</a><a href="../events/UD2021-1.html"></a> – Apr. 25, 2021</div>
 <p id="UD2021-1_S00_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F03.mp3" title="Honoring the Buddha: The Mahāparinibbāna Sutta, E3" data-duration="581"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F03.mp3" download="Honoring the Buddha: The Mahāparinibbāna Sutta, E3.mp3">Download audio</a> (9:41)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Did vibhavatanha arise in any of the monks at the loss of the Buddha? How do we notice vibhavatanha in practice, and what is a wise and compassionate response?”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/sutta.html">Sutta</a>] <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b> // [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F03.mp3" title="Honoring the Buddha: The Mahāparinibbāna Sutta, E3" data-duration="581"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F03.mp3" download="Honoring the Buddha: The Mahāparinibbāna Sutta, E3.mp3">Download audio</a> (9:41)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Did vibhavatanha arise in any of the monks at the loss of the Buddha? How do we notice vibhavatanha in practice, and what is a wise and compassionate response?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/sutta.html">Sutta</a>] <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b> // [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-16:" target="_blank">DN 16:</a> Mahāparinibbāna Sutta <b>[<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]</b> [<a href = "../tags/nibbana.html">Nibbāna</a>]
@@ -134,8 +164,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Buddha/Biography (Texts),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Buddha/Biography (Texts),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/buddhabiography-text.html">https://abhayagiri.org/questions/tags/buddhabiography-text.html</a>.</p>
 </footer>
 

@@ -49,5 +49,5 @@ These are assorted question and answer sessions that are not part of a larger ev
 
 <!--HTML <img src="../../pages/images/photos/15 Full Stage.jpg" alt="Ajahn Chah Conference 2001" id="cover" title="Ajahn Chah Conference 2001" align="bottom" width="200" border="0"/> -->
 ## Other (<a id="other" href="../indexes/EventsBySeries.html#other">List</a>)
-These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. The wonderful and significant 2001 Ajahn Chah Conference in Portola Valley, California, will go here because it fits nowhere else.
+These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. It also includes the wonderful and significant [2001 Ajahn Chah Conference](../../pages/events/Chah2001.html) in Portola Valley, California.
 

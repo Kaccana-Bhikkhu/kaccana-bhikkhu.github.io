@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/teaching-dhamma-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/teaching-dhamma.html#teaching-dhamma"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTeaching Dhamma 
+  <div class="title"><a href="../drilldown/teaching-dhamma.html#teaching-dhamma" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTeaching Dhamma 
   </div>
 
 <div class="intro">
@@ -54,55 +64,67 @@
   
   Subtopics: <a href = "../tags/gradual-teaching.html">Gradual Teaching</a>, <a href = "../tags/questions.html">Questions</a>, <a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>, <a href = "../tags/mentoring.html">Mentoring</a>, <a href = "../tags/personal-presence.html">Personal presence</a>, <a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>, <a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>, <a href = "../tags/stories.html">Stories</a>, <a href = "../tags/similes.html">Similes</a>, <a href = "../tags/symbolism.html">Symbolism</a>, <a href = "../tags/dhamma-books.html">Dhamma books</a>, <a href = "../tags/dhamma-online.html">Dhamma online</a><br>
   
-  86 excerpts, 5:51:02 total duration
+  103 excerpts, 6:52:25 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/teaching-dhamma.html">All excerpts (86)</a>
+<div class="sublink2"> <a href="../tags/teaching-dhamma.html">All excerpts (103)</a>
       <a href="../tags/teaching-dhamma-qtag.html">Questions about (32)</a>
-      <a href="../tags/teaching-dhamma-atag.html">Answers involving (41)</a>
-      <a href="../tags/teaching-dhamma-story.html">Stories (14)</a>
-      <a href="../tags/teaching-dhamma-quote.html">Quotes (5)</a>
+      <a href="../tags/teaching-dhamma-atag.html">Answers involving (43)</a>
+      <a href="../tags/teaching-dhamma-story.html">Stories (19)</a>
+      <a href="../tags/teaching-dhamma-quote.html">Quotes (9)</a>
       <a href="../tags/teaching-dhamma-reading.html" class="active">Readings (5)</a>
       <a href="../tags/teaching-dhamma-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F13">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F13.mp3" title="Recollections of Ajahn Chah, S1 E13" data-duration="416"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F13.mp3" download="Recollections of Ajahn Chah, S1 E13.mp3">Download audio</a> (6:56)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah visits Ajahn Mun.  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/relics.html">Relics</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=76" target="_blank">p. 54</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=76" target="_blank">p. 54</a> 
 </p>
 <hr />
-<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S11_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" title="Recollections of Ajahn Chah, S11 E8" data-duration="319"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" download="Recollections of Ajahn Chah, S11 E8.mp3">Download audio</a> (5:19)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah's ability to draw people in and respond with compassion.  [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/almsround.html">Almsround</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/upatakh.html">Upatakh</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" title="Recollections of Ajahn Chah, S11 E8" data-duration="319"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F08.mp3" download="Recollections of Ajahn Chah, S11 E8.mp3">Download audio</a> (5:19)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah’s ability to draw people in and respond with compassion.  [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/almsround.html">Almsround</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/upatakh.html">Upatakh</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=727" target="_blank">p. 705</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=727" target="_blank">p. 705</a> 
 </p>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F07">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F07.mp3" title="Death and Dying, S1 E7" data-duration="648"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F07.mp3" download="Death and Dying, S1 E7.mp3">Download audio</a> (10:48)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Readings:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-143" target="_blank">MN 143</a>, <a href="https://sutta.readingfaithfully.org/?q=SN-2.20:" target="_blank">SN 2.20:</a> Death of Anāthapiṇḍika  [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/deva.html">Deva</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" title="The New Ajahn Chah Biography, S2 E4" data-duration="225"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" download="The New Ajahn Chah Biography, S2 E4.mp3">Download audio</a> (3:45)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=604" target="_blank">p. 582</a>: "Out of Compassion"  [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/family.html">Family</a>]
 </p>
 <hr />
 <p id="UD2018-1_S02_F09">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" title="The New Ajahn Chah Biography, S2 E9" data-duration="610"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" download="The New Ajahn Chah Biography, S2 E9.mp3">Download audio</a> (10:10)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=634" target="_blank">p. 612-614</a> "Faith in the Triple Gem"  [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/truth.html">Truth</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" title="The New Ajahn Chah Biography, S2 E4" data-duration="225"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" download="The New Ajahn Chah Biography, S2 E4.mp3">Download audio</a> (3:45)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=604" target="_blank">p. 582</a>: “Out of Compassion”  [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/family.html">Family</a>]
+</p>
+<hr />
+<p id="UD2018-1_S02_F09">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" title="The New Ajahn Chah Biography, S2 E9" data-duration="610"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" download="The New Ajahn Chah Biography, S2 E9.mp3">Download audio</a> (10:10)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=634" target="_blank">p. 612-614</a> “Faith in the Triple Gem”  [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/truth.html">Truth</a>] <b>[<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]</b> [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Simile:</b> Digging a well — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> Subhaddo. [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+  <b>Simile:</b> Digging a well — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>. [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Teaching Dhamma (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Teaching Dhamma (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/teaching-dhamma-reading.html">https://abhayagiri.org/questions/tags/teaching-dhamma-reading.html</a>.</p>
 </footer>
 

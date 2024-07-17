@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/sickness-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSickness (byādhi)
+  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSickness (byādhi)
   </div>
 
 <div class="intro">
@@ -54,45 +64,101 @@
   Parent topic: <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a><br>
   
   
-  54 excerpts, 5:22:46 total duration
+  65 excerpts, 6:03:49 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/sickness.html">All excerpts (56)</a>
+<div class="sublink2"> <a href="../tags/sickness.html">All excerpts (67)</a>
       <a href="../tags/sickness-qtag.html">Questions about (18)</a>
       <a href="../tags/sickness-atag.html">Answers involving (18)</a>
-      <a href="../tags/sickness-story.html" class="active">Stories (15)</a>
-      <a href="../tags/sickness-quote.html">Quotes (2)</a>
-      <a href="../tags/sickness-reading.html">Readings (5)</a>
+      <a href="../tags/sickness-story.html" class="active">Stories (21)</a>
+      <a href="../tags/sickness-quote.html">Quotes (5)</a>
+      <a href="../tags/sickness-reading.html">Readings (6)</a>
       <a href="../tags/sickness-text.html">Texts (2)</a>
       <a href="../tags/sickness-reference.html">References (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S01"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 9, 2008</div>
+<div class="title" id="Chah2001_S16"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S16">Session 16</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S16_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F04.mp3" title="Remembering Ajahn Chah Weekend, S16 E4" data-duration="154"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F04.mp3" download="Remembering Ajahn Chah Weekend, S16 E4.mp3">Download audio</a> (2:34)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “His way of teaching was direct....He would use the essential teaching of the Buddha, the Four Noble Truths.” <b>Recollection</b> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] // [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ageing.html">Ageing</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/spiritual-traditions.html">Spiritual traditions</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “It’s the suffering that awakens you.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S32"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S32">Session 32</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S32_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F04.mp3" title="Remembering Ajahn Chah Weekend, S32 E2" data-duration="181"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F04.mp3" download="Remembering Ajahn Chah Weekend, S32 E2.mp3">Download audio</a> (3:01)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Anando tries to heal Ajahn Chah. Told by <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. [<a href = "../tags/ajahn-anando.html">Ajahn Anando</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S34"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S34">Session 34</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S34_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F03.mp3" title="Remembering Ajahn Chah Weekend, S34 E3" data-duration="629"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F03.mp3" download="Remembering Ajahn Chah Weekend, S34 E3.mp3">Download audio</a> (10:29)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> Ajahn Chah’s failing heath and Rains Retreat at Tam Saeng Pet. Told by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> “Pabakkaro, make me a Communist.” [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/contentment.html">Contentment</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Venerable Pabakkaro attends to Ajahn Chah. [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/humility.html">Humility</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Ajahn Chah visits the branch monasteries for the last time. [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+</p>
+<hr />
+<p id="Chah2001_S34_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F04.mp3" title="Remembering Ajahn Chah Weekend, S34 E4" data-duration="386"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F04.mp3" download="Remembering Ajahn Chah Weekend, S34 E4.mp3">Download audio</a> (6:26)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Story:</b> Ajahn Chah goes to Bangkok for treatment and an operation. Told by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>] [<a href = "../tags/shelter.html">Shelter</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Ajahn Chah’s last word. [<a href = "../tags/language.html">Language</a>]
+</p>
+<hr />
+<p id="Chah2001_S34_F07">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F07.mp3" title="Remembering Ajahn Chah Weekend, S34 E7" data-duration="165"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F07.mp3" download="Remembering Ajahn Chah Weekend, S34 E7.mp3">Download audio</a> (2:45)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> Mute, wheelchair-bound Ajahn Chah meets a mother and her young son. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/children.html">Children</a>] [<a href = "../tags/bowing.html">Bowing</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S35"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S35">Session 35</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S35_F05">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F05.mp3" title="Remembering Ajahn Chah Weekend, S35 E5" data-duration="113"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F05.mp3" download="Remembering Ajahn Chah Weekend, S35 E5.mp3">Download audio</a> (1:53)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Wat Pah Pong monks develop malnutrition when Ajahn Chah goes away for several months. Told by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mae-chee.html">Mae Chee</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+</p>
+<hr />
+<div class="title" id="Metta2008_S01"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S01">Session 1</a> – Sep. 9, 2008</div>
 <p id="Metta2008_S01_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S01_F06.mp3" title="Metta Retreat, S1 E6" data-duration="595"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S01_F06.mp3" download="Metta Retreat, S1 E6.mp3">Download audio</a> (9:55)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “When there is a lot of pain in the body, it is difficult to maintain “right effort,” yet sometimes through patient endurance the pain lessens or dissipates. Could you speak about right effort and the connection between right effort and samadhi?”  [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/naturalness.html">Naturalness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S01_F06.mp3" title="Metta Retreat, S1 E6" data-duration="595"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S01_F06.mp3" download="Metta Retreat, S1 E6.mp3">Download audio</a> (9:55)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “When there is a lot of pain in the body, it is difficult to maintain “right effort,” yet sometimes through patient endurance the pain lessens or dissipates. Could you speak about right effort and the connection between right effort and samadhi?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/naturalness.html">Naturalness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Recollection:</b> Ajahn Pasanno learned from pain and illness in his early monastic life. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/monastic-life.html">Monastic life</a>]
 </p>
 <hr />
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F04.mp3" title="Metta Retreat, S4 E4" data-duration="469"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F04.mp3" download="Metta Retreat, S4 E4.mp3">Download audio</a> (7:49)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Would you way a bit about the benefits of practicing loving-kindness during the dying process, both for the one who is dying as well as for the caregiver?”  [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/health-care.html">Health care</a>] // [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/community.html">Community</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F04.mp3" title="Metta Retreat, S4 E4" data-duration="469"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F04.mp3" download="Metta Retreat, S4 E4.mp3">Download audio</a> (7:49)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Would you say a bit about the benefits of practicing loving-kindness during the dying process, both for the one who is dying as well as for the caregiver?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/health-care.html">Health care</a>] // [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/community.html">Community</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “These bodies are really high maintenance when they don't work.”  <b>[<a href = "../tags/sickness.html">Sickness</a>]</b>
+  <b>Quote:</b>  “These bodies are really high maintenance when they don’t work.”  <b>[<a href = "../tags/sickness.html">Sickness</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Recollection:</b> Ajahn Chah was unable to look after himself for the last nine years of his life. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/gratitude.html">Gratitude</a>]
 </p>
 <hr />
-<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S01_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F03.mp3" title="Tudong Stories at Spirit Rock, S1 E3" data-duration="223"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F03.mp3" download="Tudong Stories at Spirit Rock, S1 E3.mp3">Download audio</a> (3:43)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> Ajahn Jotipālo's tudong north along the Mississippi. [<a href = "../tags/ajahn-jotipalo.html">Ajahn Jotipālo</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/robes.html">Robes</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/almsfood.html">Almsfood</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F03.mp3" title="Tudong Stories at Spirit Rock, S1 E3" data-duration="223"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F03.mp3" download="Tudong Stories at Spirit Rock, S1 E3.mp3">Download audio</a> (3:43)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> Ajahn Jotipālo’s tudong north along the Mississippi. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-jotipalo.html">Ajahn Jotipālo</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/robes.html">Robes</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/almsfood.html">Almsfood</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S03_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F07.mp3" title="Tudong Stories at Spirit Rock, S3 E7" data-duration="147"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F07.mp3" download="Tudong Stories at Spirit Rock, S3 E7.mp3">Download audio</a> (2:27)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> Ajahn Pasanno's tudong practice. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/patience.html">Patience</a>]
 </p>
 <hr />
@@ -102,11 +168,22 @@
 <hr />
 <p id="SRD2011_S03_F09">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F09.mp3" title="Tudong Stories at Spirit Rock, S3 E9" data-duration="164"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F09.mp3" download="Tudong Stories at Spirit Rock, S3 E9.mp3">Download audio</a> (2:44)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Story:</b> Ajahn Pasanno loses his vision on tudong. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F07.mp3" title="Tudong Stories at Spirit Rock, S3 E7" data-duration="147"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F07.mp3" download="Tudong Stories at Spirit Rock, S3 E7.mp3">Download audio</a> (2:27)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> Ajahn Pasanno’s tudong practice. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/patience.html">Patience</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S01"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 6, 2014</div>
+<p id="SRD2011_S03_F08">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F08.mp3" title="Tudong Stories at Spirit Rock, S3 E8" data-duration="232"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F08.mp3" download="Tudong Stories at Spirit Rock, S3 E8.mp3">Download audio</a> (3:52)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> Ajahn Pasanno gets a foot infection on tudong. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+</p>
+<hr />
+<p id="SRD2011_S03_F09">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F09.mp3" title="Tudong Stories at Spirit Rock, S3 E9" data-duration="164"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F09.mp3" download="Tudong Stories at Spirit Rock, S3 E9.mp3">Download audio</a> (2:44)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Story:</b> Ajahn Pasanno loses his vision on tudong. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="WR2014_S01"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S01">Session 1</a> – Jan. 6, 2014</div>
 <p id="WR2014_S01_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AP_01_06_2014_Winter_Retreat_Opening_Talk-No_Bargaining_with_the_King_of_Death.mp3" title="Abhayagiri 2014 Winter Retreat, S1" data-duration="703"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AP_01_06_2014_Winter_Retreat_Opening_Talk-No_Bargaining_with_the_King_of_Death.mp3" download="Abhayagiri 2014 Winter Retreat, S1.mp3">Download audio</a> (11:43)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] Ajahn Pasanno begins the retreat by encouraging us to return to the basics of the Noble Eight-fold Path. He mentions Iris Landsberg, a long-standing lay supporter dying of lung cancer, both to set the tone for the monk's final visit to her and to encourage us to practice while there is still time. Iris passed away February 1, 2014. [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health-care.html">Health care</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AP_01_06_2014_Winter_Retreat_Opening_Talk-No_Bargaining_with_the_King_of_Death.mp3" title="Abhayagiri 2014 Winter Retreat, S1" data-duration="703"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AP_01_06_2014_Winter_Retreat_Opening_Talk-No_Bargaining_with_the_King_of_Death.mp3" download="Abhayagiri 2014 Winter Retreat, S1.mp3">Download audio</a> (11:43)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] Ajahn Pasanno begins the retreat by encouraging us to return to the basics of the Noble Eight-fold Path. He mentions Iris Landsberg, a long-standing lay supporter dying of lung cancer, both to set the tone for the monk’s final visit to her and to encourage us to practice while there is still time. Iris passed away February 1, 2014. [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health-care.html">Health care</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-16.34:" target="_blank">DN 16.34:</a> The world will not be devoid of awakened beings as long as people are practicing the Eightfold Path. [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>]
@@ -118,30 +195,42 @@
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-131:" target="_blank">MN 131:</a> Bhaddekaratta Sutta (<em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=84" target="_blank">p. 75</a>) 
 </p>
 <hr />
-<div class="title" id="WR2014_S20"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S20">Session 20</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 2, 2014</div>
+<div class="title" id="WR2014_S20"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S20">Session 20</a> – Feb. 2, 2014</div>
 <p id="WR2014_S20_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S20_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S20 E3" data-duration="295"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S20_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S20 E3.mp3">Download audio</a> (4:55)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I'm interested in the theme mentioned of the body and mind being separate from each other. The questioner asks 'Don't they have influence on one another?' I'm curious about how to reflect on that.”  [<a href = "../tags/form.html">Form</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/knowing-itself.html">Knowing itself</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S20_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S20 E3" data-duration="295"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S20_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S20 E3.mp3">Download audio</a> (4:55)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I’m interested in the theme mentioned of the body and mind being separate from each other. The questioner asks ‘Don’t they have influence on one another?’ I’m curious about how to reflect on that.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/form.html">Form</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/knowing-itself.html">Knowing itself</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Chah retreats into the peace and stability of the mind to cope with a lung infection. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b>
 </p>
 <hr />
-<div class="title" id="WR2014_S24"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S24">Session 24</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 6, 2014</div>
+<div class="title" id="WR2014_S24"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S24">Session 24</a> – Feb. 6, 2014</div>
 <p id="WR2014_S24_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S24 E3" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S24 E3.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> The Queen invites the best neurosurgeons to help Ajahn Chah in a special suite in Chulalongkorn Hospital. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/royalty.html">Royalty</a>] [<a href = "../tags/health-care.html">Health care</a>] // [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S24 E3" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S24 E3.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> The Queen invites the best neurosurgeons to help Ajahn Chah in a special suite in Chulalongkorn Hospital. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/royalty.html">Royalty</a>] [<a href = "../tags/health-care.html">Health care</a>] // [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Dune occupies the suite after Ajahn Chah. [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S32"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S32">Session 32</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 18, 2014</div>
+<div class="title" id="WR2014_S32"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S32">Session 32</a> – Feb. 18, 2014</div>
 <p id="WR2014_S32_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S32_F06.mp3" title="Abhayagiri 2014 Winter Retreat, S32 E6" data-duration="448"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S32_F06.mp3" download="Abhayagiri 2014 Winter Retreat, S32 E6.mp3">Download audio</a> (7:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> Ajahn Pasanno tells how he went to Wat Pah Nanachat to make a bowl stand but got sick with scrub typhus. An extended discussion ensues. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/monastic-crafts.html">Monastic crafts</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> // [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S43"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S43">Session 43</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 5, 2014</div>
+<div class="title" id="WR2014_S43"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S43">Session 43</a> – Mar. 5, 2014</div>
 <p id="WR2014_S43_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S43 E5" data-duration="483"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S43 E5.mp3">Download audio</a> (8:03)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Did Ajahn Mahā Boowa always praise the dtuaṅga practices?”  [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] // [<a href = "../tags/qualities-for-non-decline.html">Qualities for non-decline</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S43 E5" data-duration="483"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S43 E5.mp3">Download audio</a> (8:03)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Did Ajahn Mahā Boowa always praise the dtuaṅga practices?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] // [<a href = "../tags/qualities-for-non-decline.html">Qualities for non-decline</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Mun tells Ajahn Mahā Boowa to stop sweeping when he is sick with malaria. <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>]
@@ -150,57 +239,69 @@
   <b>Story:</b> Ajahn Mahā Boowa takes on the dtok bhat practice, but Ajahn Mun puts food in his bowl. Told by Ajahn Kaccāna. [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/conceit.html">Conceit</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno meets a monk who didn't need to sleep. [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/concentration.html">Concentration</a>]
+  <b>Story:</b> Ajahn Pasanno meets a monk who didn’t need to sleep. [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/concentration.html">Concentration</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Pa Auk Sayadaw didn't sleep during a Rains Retreat. [<a href = "../tags/pa-auk-sayadaw.html">Pa Auk Sayadaw</a>]
+  <b>Story:</b> Pa Auk Sayadaw didn’t sleep during a Rains Retreat. [<a href = "../tags/pa-auk-sayadaw.html">Pa Auk Sayadaw</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 17, 2014</div>
+<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – Mar. 17, 2014</div>
 <p id="WR2014_S51_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E3" data-duration="209"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E3.mp3">Download audio</a> (3:29)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “If you keep chipping away at a theme of contemplation, you keep doing it, doing it, and nothing is changing in your experience, at some stage you feel this isn't working, do you just have to move on and try something else? Is it the case that you just have to try them all? No-one can tell you which is going to work for you?”  [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/recollection.html">Recollection</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E3" data-duration="209"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E3.mp3">Download audio</a> (3:29)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “If you keep chipping away at a theme of contemplation, you keep doing it, doing it, and nothing is changing in your experience, at some stage you feel this isn’t working, do you just have to move on and try something else? Is it the case that you just have to try them all? No-one can tell you which is going to work for you?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/recollection.html">Recollection</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Wanchai has a spinal injury and is in chronic pain but doesn't refer to himself. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>] [<a href = "../tags/suffering.html">Suffering</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/conceit.html">Conceit</a>]
+  <b>Story:</b> Ajahn Wanchai has a spinal injury and is in chronic pain but doesn’t refer to himself. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>] [<a href = "../tags/suffering.html">Suffering</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/conceit.html">Conceit</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>, Jeanne Daskais and <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – May. 9, 2014</div>
 <p id="UD2014-1_S02_F13">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F13.mp3" title="Death and Dying, S2 E13" data-duration="116"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F13.mp3" download="Death and Dying, S2 E13.mp3">Download audio</a> (1:56)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> <b>Stories</b> about ageing and dying relatives. [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/humor.html">Humor</a>] [<a href = "../tags/ageing.html">Ageing</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/death.html">Death</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S47"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S47">Session 47</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Mar. 17, 2015</div>
+<div class="title" id="WR2015_S47"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S47">Session 47</a> – Mar. 17, 2015</div>
 <p id="WR2015_S47_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S47 E2" data-duration="549"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S47 E2.mp3">Download audio</a> (9:09)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Discussion</b> about kamma and the results of kamma. Led by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>, <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/abuseviolence.html">Abuse/violence</a>] [<a href = "../tags/abhidhamma.html">Abhidhamma</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/cultureindia.html">Culture/India</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/disasters.html">Disasters</a>] [<a href = "../tags/christianity.html">Christianity</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S47 E2" data-duration="549"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S47 E2.mp3">Download audio</a> (9:09)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Discussion</b> about kamma and the results of kamma. Led by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>, <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/abuseviolence.html">Abuse/violence</a>] [<a href = "../tags/abhidhamma.html">Abhidhamma</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/cultureindia.html">Culture/India</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/disasters.html">Disasters</a>] [<a href = "../tags/christianity.html">Christianity</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Too much Dhamma.” — <a href = ../teachers/ajahn-buddhadasa.html>Ajahn Buddhadāsa</a>. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]
+  <b>Quote:</b>  “Too much Dhamma.” — <a href="../teachers/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>. Quoted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.77" target="_blank">AN 4.77</a> Acinteyya: "Vexation or madness." 
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.77" target="_blank">AN 4.77</a> Acinteyya: “Vexation or madness.” 
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Chah to Ajahn Munindo: "If it wasn't supposed to be this way, it wouldn't have been this way." Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-munindo.html">Ajahn Munindo</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/self-pity.html">Self-pity</a>]
+  <b>Story:</b> Ajahn Chah to Ajahn Munindo: “If it wasn’t supposed to be this way, it wouldn’t have been this way.” Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-munindo.html">Ajahn Munindo</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/self-pity.html">Self-pity</a>]
 </p>
 <p style="margin-left: 2em;">
-  Thai saying: "That's as far as their merit takes them." [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/thai.html">Thai</a>]
+  Thai saying: “That’s as far as their merit takes them.” [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/thai.html">Thai</a>]
 </p>
 <hr />
-<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F06.mp3" title="Suttas You've Never Heard Of, S2 E6" data-duration="461"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F06.mp3" download="Suttas You've Never Heard Of, S2 E6.mp3">Download audio</a> (7:41)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> Ajahn Pasanno visits the elderly Cambodian monk Mahāgossānanda who has Alzheimer's disease. [<a href = "../tags/preah-mahaghosananda.html">Preah Mahāghosānanda</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> // [<a href = "../tags/dalai-lama.html">Dalai Lama</a>] [<a href = "../tags/divine-abidings.html">Divine Abidings</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F06.mp3" title="Suttas You've Never Heard Of, S2 E6" data-duration="461"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F06.mp3" download="Suttas You've Never Heard Of, S2 E6.mp3">Download audio</a> (7:41)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> Ajahn Pasanno visits the elderly Cambodian monk Mahāgossānanda who has Alzheimer’s disease. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/preah-mahaghosananda.html">Preah Mahāghosānanda</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> // [<a href = "../tags/dalai-lama.html">Dalai Lama</a>] [<a href = "../tags/divine-abidings.html">Divine Abidings</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/heartmind.html">Heart/mind</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “That thing you learn in meditation—that you don't lose.” — Ajahn Fuang [<a href = "../tags/ajahn-fuang.html">Ajahn Fuang</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/liberation.html">Liberation</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b>
+  <b>Quote:</b>  “That thing you learn in meditation—that you don’t lose.” — Ajahn Fuang [<a href = "../tags/ajahn-fuang.html">Ajahn Fuang</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/liberation.html">Liberation</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> A monk known for psychic powers visits Ajahn Chah's sick room and reports: "You don't have to worry about Ajahn Chah. His heart is so bright." [<a href = "../tags/psychic-powers.html">Psychic powers</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/dependent-origination.html">Dependent origination</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>]
+  <b>Story:</b> A monk known for psychic powers visits Ajahn Chah’s sick room and reports: “You don’t have to worry about Ajahn Chah. His heart is so bright.” [<a href = "../tags/psychic-powers.html">Psychic powers</a>] <b>[<a href = "../tags/sickness.html">Sickness</a>]</b> [<a href = "../tags/dependent-origination.html">Dependent origination</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Sickness (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Sickness (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/sickness-story.html">https://abhayagiri.org/questions/tags/sickness-story.html</a>.</p>
 </footer>
 

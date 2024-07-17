@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/cessation-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCessation (nirodha)
+  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCessation (nirodha)
   </div>
 
 <div class="intro">
@@ -54,10 +64,10 @@
   Parent topics: <a href = "../tags/progress-of-insight.html">Progress of insight</a>, <a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a><br>
   
   
-  27 excerpts, 1:31:57 total duration
+  28 excerpts, 1:42:21 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/cessation.html">All excerpts (27)</a>
+<div class="sublink2"> <a href="../tags/cessation.html">All excerpts (28)</a>
       <a href="../tags/cessation-qtag.html">Questions about (9)</a>
       <a href="../tags/cessation-atag.html">Answers involving (12)</a>
       <a href="../tags/cessation-quote.html">Quotes (3)</a>
@@ -65,15 +75,19 @@
       <a href="../tags/cessation-text.html">Texts (2)</a> </div>
 <hr>
 
-<div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S03_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F05.mp3" title="The New Ajahn Chah Biography, S3 E5" data-duration="408"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F05.mp3" download="The New Ajahn Chah Biography, S3 E5.mp3">Download audio</a> (6:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=555" target="_blank">p. 533-535</a> "A Snake in the House"  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/similes.html">Similes</a>] // [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/samsara.html">Saṃsāra</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F05.mp3" title="The New Ajahn Chah Biography, S3 E5" data-duration="408"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F05.mp3" download="The New Ajahn Chah Biography, S3 E5.mp3">Download audio</a> (6:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=555" target="_blank">p. 533-535</a> “A Snake in the House”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/similes.html">Similes</a>] // [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/cessation.html">Cessation</a>]</b> [<a href = "../tags/samsara.html">Saṃsāra</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Cessation (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Cessation (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/cessation-reading.html">https://abhayagiri.org/questions/tags/cessation-reading.html</a>.</p>
 </footer>
 

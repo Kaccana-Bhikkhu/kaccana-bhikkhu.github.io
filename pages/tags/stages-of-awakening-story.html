@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/stages-of-awakening-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/stages-of-awakening.html#stages-of-awakening"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspStages of awakening 
+  <div class="title"><a href="../drilldown/stages-of-awakening.html#stages-of-awakening" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspStages of awakening 
   </div>
 
 <div class="intro">
@@ -65,9 +75,13 @@
       <a href="../tags/stages-of-awakening-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 11, 2008</div>
+<div class="title" id="Metta2008_S03"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S03">Session 3</a> – Sep. 11, 2008</div>
 <p id="Metta2008_S03_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F01.mp3" title="Metta Retreat, S3 E1" data-duration="328"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F01.mp3" download="Metta Retreat, S3 E1.mp3">Download audio</a> (5:28)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “One of my lay insight mediation teachers said, 'The Western lay practitioner is an experiment in Buddhism.' What do you think? To me it seems our lay teachers are also an experiment.”  [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/lay-teachers.html">Lay teachers</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/siladhara.html">Sīladharā</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F01.mp3" title="Metta Retreat, S3 E1" data-duration="328"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S03_F01.mp3" download="Metta Retreat, S3 E1.mp3">Download audio</a> (5:28)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “One of my lay insight mediation teachers said, ‘The Western lay practitioner is an experiment in Buddhism.’ What do you think? To me it seems our lay teachers are also an experiment.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/lay-teachers.html">Lay teachers</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/siladhara.html">Sīladharā</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Because the monastic presence is so strong in Asia, oftentimes people overlook the strength of the tradition of lay practice and lay teachers.”  [<a href = "../tags/cultural-context.html">Cultural context</a>]
@@ -76,9 +90,13 @@
   <b>Story:</b> The Buddha tells Māra he will found the fourfold assembly (<a href="https://sutta.readingfaithfully.org/?q=UD-6.1" target="_blank">UD 6.1</a>). [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/fourfold-assembly.html">Fourfold Assembly</a>] <b>[<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>]</b> [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <hr />
-<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S01_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" title="Tudong Stories at Spirit Rock, S1 E5" data-duration="358"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" download="Tudong Stories at Spirit Rock, S1 E5.mp3">Download audio</a> (5:58)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Mun doesn't spend consecutive rains retreats in the same place until his mid-70s. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/tudong.html">Tudong</a>] // <b>[<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>]</b> [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" title="Tudong Stories at Spirit Rock, S1 E5" data-duration="358"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" download="Tudong Stories at Spirit Rock, S1 E5.mp3">Download audio</a> (5:58)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Mun doesn’t spend consecutive rains retreats in the same place until his mid-70s. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/tudong.html">Tudong</a>] // <b>[<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>]</b> [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day. [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]
@@ -89,8 +107,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Stages of awakening (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Stages of awakening (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/stages-of-awakening-story.html">https://abhayagiri.org/questions/tags/stages-of-awakening-story.html</a>.</p>
 </footer>
 

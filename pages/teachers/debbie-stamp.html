@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/debbie-stamp.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -72,20 +82,24 @@
 <hr />
 <div class="title" id="WR2014_S37"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S37">Session 37</a> – Feb. 25, 2014</div>
 <p id="WR2014_S37_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" title="Abhayagiri 2014 Winter Retreat, S37" data-duration="2662"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" download="Abhayagiri 2014 Winter Retreat, S37.mp3">Download audio</a> (44:22)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf" target="_blank"><em>Paticcasamuppāda: Practical Dependent Origination</em></a> by <a href = ../teachers/ajahn-buddhadasa.html>Ajahn Buddhadāsa</a>, selections from <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf#page=37" target="_blank">pp. 22-45</a>.  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" title="Abhayagiri 2014 Winter Retreat, S37" data-duration="2662"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_02_25_2014_Winter_Retreat_Readings-Paticca-Samuppada.mp3" download="Abhayagiri 2014 Winter Retreat, S37.mp3">Download audio</a> (44:22)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf" target="_blank"><em>Paticcasamuppāda: Practical Dependent Origination</em></a> by <a href="../teachers/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>, selections from <a href="https://www.suanmokkh.org/system/books/files/000/000/126/original/Buddhadasa-Paticcasamuppada-20200319.pdf#page=37" target="_blank">pp. 22-45</a>.  
 </p>
 <hr />
 <div class="title" id="WR2014_S55"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S55">Session 55</a> – Mar. 25, 2014</div>
 <p id="WR2014_S55_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" title="Abhayagiri 2014 Winter Retreat, S55" data-duration="2461"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" download="Abhayagiri 2014 Winter Retreat, S55.mp3">Download audio</a> (41:01)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> "Training under Ajahn Chah" by Ajahn Tong Jon from <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/TwigsAndBranches.html" target="_blank"><em>Twigs and Branches of the Bodhinyana</em></a>.  Translated by Ajahn Kovilo. 
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" title="Abhayagiri 2014 Winter Retreat, S55" data-duration="2461"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Debbie_03_25_2014_Winter_Retreat_Readings-Twigs_and_Branches_of_Bodhinyana.mp3" download="Abhayagiri 2014 Winter Retreat, S55.mp3">Download audio</a> (41:01)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Training under Ajahn Chah” by Ajahn Tong Jon from <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/TwigsAndBranches.html" target="_blank"><em>Twigs and Branches of the Bodhinyana</em></a>.  Translated by Ajahn Kovilo. 
 </p>
 <hr />
 <div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – May. 9, 2014</div>
 <p id="UD2014-1_S02_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F05.mp3" title="Death and Dying, S2 E5" data-duration="1387"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F05.mp3" download="Death and Dying, S2 E5.mp3">Download audio</a> (23:07)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reflection</b>: Caring for dying and grieving Abhayagiri supporters and family members. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/health-care.html">Health care</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/doubt.html">Doubt</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F05.mp3" title="Death and Dying, S2 E5" data-duration="1387"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F05.mp3" download="Death and Dying, S2 E5.mp3">Download audio</a> (23:07)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reflection</b>: Caring for dying and grieving Abhayagiri supporters and family members. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/health-care.html">Health care</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/doubt.html">Doubt</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: Debbie transcribed Ajahn Pasanno's <a href="../events/Metta2008.html">2008 Metta Retreat</a>, published it as <a href="https://www.abhayagiri.org/books/584-abundant-exalted-immeasurable" target="_blank">Abundant, Exalted, Immeasurable</a>, and dedicated the merit to her mother. [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>]
+  <b>Reference</b>: Debbie transcribed Ajahn Pasanno’s <a href="../events/Metta2008.html">2008 Metta Retreat</a>, published it as <a href="https://www.abhayagiri.org/books/584-abundant-exalted-immeasurable" target="_blank">Abundant, Exalted, Immeasurable</a>, and dedicated the merit to her mother. [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Ñāṇiko hikes to the top of Mount Dana to dedicate merit to deceased relatives. [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>]
@@ -96,11 +110,19 @@
 </p>
 <hr />
 <p id="UD2014-1_S02_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" title="Death and Dying, S2 E9" data-duration="193"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" download="Death and Dying, S2 E9.mp3">Download audio</a> (3:13)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Stories</b> about being with dying relatives. Told by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> and Jeanne Daskais. [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/children.html">Children</a>] [<a href = "../tags/death.html">Death</a>]
 </p>
 <hr />
 <p id="UD2014-1_S02_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F12.mp3" title="Death and Dying, S2 E12" data-duration="243"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F12.mp3" download="Death and Dying, S2 E12.mp3">Download audio</a> (4:03)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: In Western culture, we're not given enough space to be with death. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/death.html">Death</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" title="Death and Dying, S2 E9" data-duration="193"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" download="Death and Dying, S2 E9.mp3">Download audio</a> (3:13)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Stories</b> about being with dying relatives. Told by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a> and Jeanne Daskais. [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/children.html">Children</a>] [<a href = "../tags/death.html">Death</a>]
+</p>
+<hr />
+<p id="UD2014-1_S02_F12">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F12.mp3" title="Death and Dying, S2 E12" data-duration="243"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F12.mp3" download="Death and Dying, S2 E12.mp3">Download audio</a> (4:03)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: In Western culture, we’re not given enough space to be with death. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/death.html">Death</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Hospice workers took the body of my father-in-law away too quickly. [<a href = "../tags/health-care.html">Health care</a>]
@@ -109,7 +131,7 @@
   <b>Story:</b> When my husband died, we kept and washed the body. [<a href = "../tags/ceremonyritual.html">Ceremony/ritual</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a>. 
+  <b>Response</b> by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a>. 
 </p>
 <hr />
 <div class="title" id="WR2015_S10"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S10">Session 10</a> – Jan. 17, 2015</div>
@@ -122,46 +144,58 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S15 E7" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S15 E7.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> Ajahn Sucitto speaks of feeling water washing through you [as a way of releasing tension related to effort]. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Khun Kesari's brother enters concentration by visualizing drinking a glass of water. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/visualization.html">Visualization</a>]
+  <b>Story:</b> Khun Kesari’s brother enters concentration by visualizing drinking a glass of water. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/visualization.html">Visualization</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Kesari's mother walked into Wat Ban Tad before there was a road. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>] [<a href = "../tags/relics.html">Relics</a>]
+  <b>Story:</b> Kesari’s mother walked into Wat Ban Tad before there was a road. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>] [<a href = "../tags/relics.html">Relics</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S17"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S17">Session 17</a> – Jan. 26, 2015</div>
 <p id="WR2015_S17_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E7" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E7.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  "Do you still have anger?" "Yes, but I don't take it." — <a href = ../teachers/ajahn-dune.html>Ajahn Dune</a> [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E7" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E7.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “Do you still have anger?” “Yes, but I don’t take it.” — <a href="../teachers/ajahn-dune.html">Ajahn Dune</a> [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Do we know if the Buddha had anger?” [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/sutta.html">Sutta</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comment:</b> Māra cam to the Buddha many times after the Buddha's enlightenment. Contributed by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
+  <b>Comment:</b> Māra cam to the Buddha many times after the Buddha’s enlightenment. Contributed by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S34"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S34">Session 34</a> – Feb. 23, 2015</div>
 <p id="WR2015_S34_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S34 E3" data-duration="204"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S34 E3.mp3">Download audio</a> (3:24)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “What is the significance of sitting to one side of the Buddha?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a>. [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] // [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/robes.html">Robes</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S34 E3" data-duration="204"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S34 E3.mp3">Download audio</a> (3:24)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “What is the significance of sitting to one side of the Buddha?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/debbie-stamp.html">Debbie Stamp</a>. [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] // [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/robes.html">Robes</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <div class="title" id="WR2015_S35"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S35">Session 35</a> – Feb. 24, 2015</div>
 <p id="WR2015_S35_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S35_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S35 E3" data-duration="418"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S35_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S35 E3.mp3">Download audio</a> (6:58)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Are any of the lists in this sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-95" target="_blank">MN 95</a>) explained in other suttas?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/sutta.html">Sutta</a>] // [<a href = "../tags/bhikkhu-bodhi.html">Bhikkhu Bodhi</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S35_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S35 E3" data-duration="418"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S35_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S35 E3.mp3">Download audio</a> (6:58)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Are any of the lists in this sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-95" target="_blank">MN 95</a>) explained in other suttas?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/sutta.html">Sutta</a>] // [<a href = "../tags/bhikkhu-bodhi.html">Bhikkhu Bodhi</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: P.A. Payutto's <a href="https://archive.org/details/DictionaryOfBuddhismByBhikkhuP.A.Payutto" target="_blank">Dictionary of Numerical Dhammas</a> (in Thai). [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>] [<a href = "../tags/pali.html">Pāli</a>]
+  <b>Reference</b>: P.A. Payutto’s <a href="https://archive.org/details/DictionaryOfBuddhismByBhikkhuP.A.Payutto" target="_blank">Dictionary of Numerical Dhammas</a> (in Thai). [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>] [<a href = "../tags/pali.html">Pāli</a>]
 </p>
 <p style="margin-left: 2em;">
   Explanation of volume and page numbers in the Pāli Tipitika. 
 </p>
 <p style="margin-left: 2em;">
-  <b>Comment</b> by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a>: Similar listings often refer to the gradual training. [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>]
+  <b>Comment</b> by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a>: Similar listings often refer to the gradual training. [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-107:" target="_blank">MN 107:</a> Gaṇakamoggallāna Sutta. 
@@ -172,8 +206,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Debbie Stamp,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Debbie Stamp,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/debbie-stamp.html">https://abhayagiri.org/questions/teachers/debbie-stamp.html</a>.</p>
 </footer>
 

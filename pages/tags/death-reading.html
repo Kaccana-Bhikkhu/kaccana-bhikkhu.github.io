@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/death-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDeath (maraṇa)
+  <div class="title"><a href="../drilldown/noble-truth-of-suffering.html#noble-truth-of-suffering" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDeath (maraṇa)
   </div>
 
 <div class="intro">
@@ -54,39 +64,47 @@
   Parent topic: <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a><br>
   
   
-  94 excerpts, 8:11:18 total duration
+  100 excerpts, 8:21:36 total duration
 </strong>
 <hr />
 <div class="sublink2"> <a href="../tags/death-events.html">Events (1)</a>
-      <a href="../tags/death.html">All excerpts (96)</a>
+      <a href="../tags/death.html">All excerpts (102)</a>
       <a href="../tags/death-qtag.html">Questions about (50)</a>
       <a href="../tags/death-atag.html">Answers involving (10)</a>
-      <a href="../tags/death-story.html">Stories (19)</a>
-      <a href="../tags/death-quote.html">Quotes (6)</a>
+      <a href="../tags/death-story.html">Stories (22)</a>
+      <a href="../tags/death-quote.html">Quotes (8)</a>
       <a href="../tags/death-reading.html" class="active">Readings (8)</a>
       <a href="../tags/death-text.html">Texts (2)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" title="Recollections of Ajahn Chah, S1 E10" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" download="Recollections of Ajahn Chah, S1 E10.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah accepts his dying father's request to stay as a monk for life.  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/sickness.html">Sickness</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" title="Recollections of Ajahn Chah, S1 E10" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" download="Recollections of Ajahn Chah, S1 E10.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah accepts his dying father’s request to stay as a monk for life.  [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/sickness.html">Sickness</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40</a> 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
+  <b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=64" target="_blank">p. 42</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=64" target="_blank">p. 42</a> 
 </p>
 <p style="margin-left: 2em;">
-  The singular quality of Ajahn Chah's resolution. <B>Reflection</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  The singular quality of Ajahn Chah’s resolution. <b>Reflection</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F03.mp3" title="Death and Dying, S1 E3" data-duration="481"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F03.mp3" download="Death and Dying, S1 E3.mp3">Download audio</a> (8:01)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=AN-6.16:" target="_blank">AN 6.16:</a> Nakula's Father  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/relationships.html">Relationships</a>] <b>[<a href = "../tags/death.html">Death</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F03.mp3" title="Death and Dying, S1 E3" data-duration="481"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F03.mp3" download="Death and Dying, S1 E3.mp3">Download audio</a> (8:01)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=AN-6.16:" target="_blank">AN 6.16:</a> Nakula’s Father  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/relationships.html">Relationships</a>] <b>[<a href = "../tags/death.html">Death</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="UD2014-1_S01_F04">
@@ -101,27 +119,39 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F07.mp3" title="Death and Dying, S1 E7" data-duration="648"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F07.mp3" download="Death and Dying, S1 E7.mp3">Download audio</a> (10:48)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Readings:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-143" target="_blank">MN 143</a>, <a href="https://sutta.readingfaithfully.org/?q=SN-2.20:" target="_blank">SN 2.20:</a> Death of Anāthapiṇḍika  [<a href = "../tags/great-disciples.html">Great disciples</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> // [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/deva.html">Deva</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F02.mp3" title="The New Ajahn Chah Biography, S2 E2" data-duration="302"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F02.mp3" download="The New Ajahn Chah Biography, S2 E2.mp3">Download audio</a> (5:02)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40-41</a>: Ajahn Chah's father's dying request  [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/meditation.html">Meditation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F02.mp3" title="The New Ajahn Chah Biography, S2 E2" data-duration="302"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F02.mp3" download="The New Ajahn Chah Biography, S2 E2.mp3">Download audio</a> (5:02)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40-41</a>: Ajahn Chah’s father’s dying request  [<a href = "../tags/parents.html">Parents</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/meditation.html">Meditation</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S03_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F06.mp3" title="The New Ajahn Chah Biography, S3 E6" data-duration="369"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F06.mp3" download="The New Ajahn Chah Biography, S3 E6.mp3">Download audio</a> (6:09)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=668" target="_blank">p. 646-647</a> "Por Buapah"  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F06.mp3" title="The New Ajahn Chah Biography, S3 E6" data-duration="369"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F06.mp3" download="The New Ajahn Chah Biography, S3 E6.mp3">Download audio</a> (6:09)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=668" target="_blank">p. 646-647</a> “Por Buapah”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Por Buapah did the cement work for the original shine at Wat Pah Nanachat and the bell tower at Wat Pah Pong. [<a href = "../tags/stupasmonuments.html">Stupas/monuments</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
 </p>
 <hr />
 <p id="UD2018-1_S03_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F10.mp3" title="The New Ajahn Chah Biography, S3 E10" data-duration="425"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F10.mp3" download="The New Ajahn Chah Biography, S3 E10.mp3">Download audio</a> (7:05)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=684" target="_blank">p. 662-664</a> "Por Puang"  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/temporary-ordination.html">Temporary ordination</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] [<a href = "../tags/sickness.html">Sickness</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F10.mp3" title="The New Ajahn Chah Biography, S3 E10" data-duration="425"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F10.mp3" download="The New Ajahn Chah Biography, S3 E10.mp3">Download audio</a> (7:05)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=684" target="_blank">p. 662-664</a> “Por Puang”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/temporary-ordination.html">Temporary ordination</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] [<a href = "../tags/sickness.html">Sickness</a>] <b>[<a href = "../tags/death.html">Death</a>]</b> [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Death (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Death (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/death-reading.html">https://abhayagiri.org/questions/tags/death-reading.html</a>.</p>
 </footer>
 

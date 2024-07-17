@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/women-in-buddhism.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/women-in-buddhism.html#women-in-buddhism"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspWomen in Buddhism 
+  <div class="title"><a href="../drilldown/women-in-buddhism.html#women-in-buddhism" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspWomen in Buddhism 
   </div>
 
 <div class="intro">
@@ -54,52 +64,99 @@
   Parent topic: <a href = "../tags/cultural-context.html">Cultural context</a><br>
   Subtopic: <a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a><br>
   
-  6 excerpts, 41:53 total duration
+  7 excerpts, 46:04 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S31"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S31">Session 31</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 17, 2014</div>
+<div class="title" id="Chah2001_S19"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S19">Session 19</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S19_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S19_F03.mp3" title="Remembering Ajahn Chah Weekend, S19 E3" data-duration="251"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S19_F03.mp3" download="Remembering Ajahn Chah Weekend, S19 E3.mp3">Download audio</a> (4:11)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> Ajahn Sundarā stays with a nun who lived at Wat Pah Pong with Ajahn Chah. Told by <a href="../teachers/ajahn-sundara.html">Ajahn Sundarā</a>. [<a href = "../tags/ajahn-sundara.html">Ajahn Sundarā</a>] [<a href = "../tags/mae-chee.html">Mae Chee</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> The first nun at Wat Pah Pong. [<a href = "../tags/artistic-expression.html">Artistic expression</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> The Wat Pah Pong nuns go pindapat. [<a href = "../tags/almsround.html">Almsround</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “Does anyone find having nuns around difficult?” – “Yes.” – “Well, you can go then.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/patimokkha.html">Pāṭimokkha</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b>
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> A woman brings only enough food for the monks, so Ajahn Chah asks the nuns to chant the blessing. [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+</p>
+<p style="margin-left: 2em;">
+  Ajahn Chah’s inner freedom. [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/courage.html">Courage</a>] [<a href = "../tags/conventions.html">Conventions</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>]
+</p>
+<p style="margin-left: 2em;">
+  The confidence to be totally yourself. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/self-reliance.html">Self-reliance</a>] [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/aversion.html">Aversion</a>]
+</p>
+<hr />
+<div class="title" id="WR2014_S31"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S31">Session 31</a> – Feb. 17, 2014</div>
 <p id="WR2014_S31_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S31_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S31 E2" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S31_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S31 E2.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Was it a women only center or separated between men and women?”  [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S31_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S31 E2" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S31_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S31 E2.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Was it a women only center or separated between men and women?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b>
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2014-2_S02"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Jun. 14, 2014</div>
+<div class="title" id="UD2014-2_S02"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S02">Session 2</a> – Jun. 14, 2014</div>
 <p id="UD2014-2_S02_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F06.mp3" title="Thai Forest Tradition, S2 E6" data-duration="268"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F06.mp3" download="Thai Forest Tradition, S2 E6.mp3">Download audio</a> (4:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> Ajahn Pasanno describes Upasika Kee Nanayon's life and teachings. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> // [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>] [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/simplicity.html">Simplicity</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F06.mp3" title="Thai Forest Tradition, S2 E6" data-duration="268"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F06.mp3" download="Thai Forest Tradition, S2 E6.mp3">Download audio</a> (4:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> Ajahn Pasanno describes Upasika Kee Nanayon’s life and teachings. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> // [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>] [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/simplicity.html">Simplicity</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “An inward-staying unentangled knowing, all outward-going knowing cast aside.” — <a href = ../teachers/upasika-kee-nanayon.html>Upasikā Kee Nanayon</a> [<a href = "../tags/knowing-itself.html">Knowing itself</a>]
+  <b>Quote:</b>  “An inward-staying unentangled knowing, all outward-going knowing cast aside.” — <a href="../teachers/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a> [<a href = "../tags/knowing-itself.html">Knowing itself</a>]
 </p>
 <hr />
-<div class="title" id="TG2014_S07"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 28, 2014</div>
+<div class="title" id="TG2014_S07"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S07">Session 7</a> – Nov. 28, 2014</div>
 <p id="TG2014_S07_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S07_F04.mp3" title="2014 Thanksgiving Monastic Retreat, S7 E4" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S07_F04.mp3" download="2014 Thanksgiving Monastic Retreat, S7 E4.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Thank you for talking about the nun who got enlightened the other day. Also thanks to Debbie for her talk! As a female myself, I find it inspirational hearing stories about women on the path. Most teachers, well-known disciples, the Buddha himself, were males, so at times I struggled to connect to the teachings. It felt too mind-focused, too “male” (as more women in my view connect through the heart, or at least I do). I see a lot of heart and compassion in the Dhamma now and I am learning more about women in Buddhism. It would be great to hear more stories about them in Dhamma talks and perhaps one day even have a guest nun visit and give a talk. Thank you.”  <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S07_F04.mp3" title="2014 Thanksgiving Monastic Retreat, S7 E4" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S07_F04.mp3" download="2014 Thanksgiving Monastic Retreat, S7 E4.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Thank you for talking about the nun who got enlightened the other day. Also thanks to Debbie for her talk! As a female myself, I find it inspirational hearing stories about women on the path. Most teachers, well-known disciples, the Buddha himself, were males, so at times I struggled to connect to the teachings. It felt too mind-focused, too “male” (as more women in my view connect through the heart, or at least I do). I see a lot of heart and compassion in the Dhamma now and I am learning more about women in Buddhism. It would be great to hear more stories about them in Dhamma talks and perhaps one day even have a guest nun visit and give a talk. Thank you.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="TG2016_S08"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S08">Session 8</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 26, 2016</div>
+<div class="title" id="TG2016_S08"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S08">Session 8</a> – Nov. 26, 2016</div>
 <p id="TG2016_S08_F17">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" title="Thanksgiving Retreat 2016, S8 E17" data-duration="345"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" download="Thanksgiving Retreat 2016, S8 E17.mp3">Download audio</a> (5:45)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “Yesterday when you spoke of women’s ordination in California, I thought of the nuns at Aloka Vihara Forest Monastery who left the Thai Forest Tradition to ordain as nuns.  As a woman who has felt a strong calling to the monastic life, I feel a painful split in my heart between the love I have for the Thai Forest Tradition that has changed my life,  and its seemingly uncompassionate regard for women wishing to live the Holy Life. It leaves me with a profound feeling of hurt and “less-than” mana.  I have to believe that the Buddha, who revolutionarily taught against the caste system, would not want me to feel like second class member of the human race when trying to live a life in his example.  I have tried bringing self compassion to this felt sense of my heart breaking, but the pain seems to get worse with the association of the teachers of the Thai Forest tradition who showed me the dharma and yet follow this “anti-nun" rule.  Would you share some words of healing to help my heart and restore my faith in this tradition that has so profoundly changed my life?”  [<a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/faith.html">Faith</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" title="Thanksgiving Retreat 2016, S8 E17" data-duration="345"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" download="Thanksgiving Retreat 2016, S8 E17.mp3">Download audio</a> (5:45)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “Yesterday when you spoke of women’s ordination in California, I thought of the nuns at Aloka Vihara Forest Monastery who left the Thai Forest Tradition to ordain as nuns.  As a woman who has felt a strong calling to the monastic life, I feel a painful split in my heart between the love I have for the Thai Forest Tradition that has changed my life,  and its seemingly uncompassionate regard for women wishing to live the Holy Life. It leaves me with a profound feeling of hurt and “less-than” mana.  I have to believe that the Buddha, who revolutionarily taught against the caste system, would not want me to feel like second class member of the human race when trying to live a life in his example.  I have tried bringing self compassion to this felt sense of my heart breaking, but the pain seems to get worse with the association of the teachers of the Thai Forest tradition who showed me the dharma and yet follow this “anti-nun” rule.  Would you share some words of healing to help my heart and restore my faith in this tradition that has so profoundly changed my life?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/faith.html">Faith</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 20, 2018</div>
+<div class="title" id="WR2018-2_S04"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S04">Session 4</a> – Mar. 20, 2018</div>
 <p id="WR2018-2_S04_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" title="The Teaching and the Training, S4 E3" data-duration="1655"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" download="The Teaching and the Training, S4 E3.mp3">Download audio</a> (27:35)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”  [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/protocols.html">Protocols</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/city-of-ten-thousand-buddhas.html">City of Ten Thousand Buddhas</a>] [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>] [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/cittavivieka.html">Cittavivieka</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" title="The Teaching and the Training, S4 E3" data-duration="1655"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S04_F03.mp3" download="The Teaching and the Training, S4 E3.mp3">Download audio</a> (27:35)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Two questions: 1) What strengths do you see in other Buddhist traditions and Western culture that our tradition could benefit from? 2) How have you decided which aspects of korwat (protocols) from Thailand to adjust and which to maintain?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/protocols.html">Protocols</a>] // [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/city-of-ten-thousand-buddhas.html">City of Ten Thousand Buddhas</a>] [<a href = "../tags/dogen.html">Dōgen</a>] [<a href = "../tags/zen.html">Zen</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/historywestern-buddhism.html">History/Western Buddhism</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/eight-precepts.html">Eight Precepts</a>] [<a href = "../tags/not-handling-money.html">Not handling money</a>] [<a href = "../tags/chithurst.html">Chithurst</a>] [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I'd rather focus my attention here.”  [<a href = "../tags/pace-of-life.html">Pace of life</a>]
+  <b>Quote:</b>  “There are so many good things to do that you could be running around the country doing good things. I’d rather focus my attention here.”  [<a href = "../tags/pace-of-life.html">Pace of life</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no reason to fit into American culture.”  
+  <b>Quote:</b>  “There’s no reason to fit into American culture.”  
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> The monastic jacket is vindicated in England. [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we're trying to set conditions that give us the opportunity for learning.”  [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/learning.html">Learning</a>]
+  <b>Quote:</b>  “As Buddhist monastics and Buddhist practitioners, we’re trying to set conditions that give us the opportunity for learning.”  [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <hr />
-<div class="title" id="UD2021-1_S00"><a href="../events/UD2021-1.html">Honoring the Buddha: The Mahāparinibbāna Sutta</a><a href="../events/UD2021-1.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2021</div>
+<div class="title" id="UD2021-1_S00"><a href="../events/UD2021-1.html">Honoring the Buddha: The Mahāparinibbāna Sutta</a><a href="../events/UD2021-1.html"></a> – Apr. 25, 2021</div>
 <p id="UD2021-1_S00_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F05.mp3" title="Honoring the Buddha: The Mahāparinibbāna Sutta, E5" data-duration="116"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F05.mp3" download="Honoring the Buddha: The Mahāparinibbāna Sutta, E5.mp3">Download audio</a> (1:56)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “What was the sutta you mentioned in regard to Ananda's question 'What do we do about women?'”  <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F05.mp3" title="Honoring the Buddha: The Mahāparinibbāna Sutta, E5" data-duration="116"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2021-1/UD2021-1_S00_F05.mp3" download="Honoring the Buddha: The Mahāparinibbāna Sutta, E5.mp3">Download audio</a> (1:56)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “What was the sutta you mentioned in regard to Ananda’s question ‘What do we do about women?’”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>]</b> [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-16:" target="_blank">DN 16:</a> Mahāparinibbāna Sutta; <a href="https://sutta.readingfaithfully.org/?q=SN-35.127:" target="_blank">SN 35.127:</a> Bhāradvāja 
@@ -107,8 +164,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Women in Buddhism,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Women in Buddhism,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/women-in-buddhism.html">https://abhayagiri.org/questions/tags/women-in-buddhism.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#events/SRD2013.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html" class="active">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,7 +58,7 @@
 
 <div class="intro">
 <strong>
-  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>
+  <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>
 </strong>
 <br />
 Spirit Rock Daylong, Jun. 22, 2013
@@ -63,7 +73,7 @@ Spirit Rock Meditation Center in Woodacre, California
 <br />
 Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#SRD2013_S02">2</a> &nbsp&nbsp&nbsp<a href="#SRD2013_S03">3</a>
 <hr />
-<div class="title" id="SRD2013_S01">Session 1 – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013 <audio-chip src="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_3_Q_%26_A_1.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1" data-duration="1053"><a href="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_3_Q_%26_A_1.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1.mp3">Download audio</a> (17:33)</audio-chip><br /> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]</div>
+<div class="title" id="SRD2013_S01">Session 1 – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Jun. 22, 2013 <audio-chip src="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_3_Q_%26_A_1.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1" data-duration="1053"><a href="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_3_Q_%26_A_1.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1.mp3">Download audio</a> (17:33)</audio-chip><br /> [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]</div>
 <p id="SRD2013_S01_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F01.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E1" data-duration="174"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F01.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E1.mp3">Download audio</a> (2:54)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [0:06] “Could you tell us how you became a monk?”  [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/meditation.html">Meditation</a>]
 </p>
@@ -72,10 +82,14 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
 </p>
 <hr />
 <p id="SRD2013_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F02.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E2" data-duration="434"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F02.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E2.mp3">Download audio</a> (7:14)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [3:00] <b>Comment</b>: It's not so easy to let go of people who have been in my life forever to cultivate new friendships. [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F02.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E2" data-duration="434"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F02.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E2.mp3">Download audio</a> (7:14)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [3:00] <b>Comment</b>: It’s not so easy to let go of people who have been in my life forever to cultivate new friendships. [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/views.html">Views</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/views.html">Views</a>]
 </p>
 <hr />
 <p id="SRD2013_S01_F03">
@@ -93,9 +107,13 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F05.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E5" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S01_F05.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S1 E5.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> [15:00] <b>Meditation instruction:</b> Walking meditation instructions. [<a href = "../tags/posturewalking.html">Posture/Walking</a>] // [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
 </p>
 <hr />
-<div class="title" id="SRD2013_S02">Session 2 – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013 <audio-chip src="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_7_Q_%26_A_2.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S2" data-duration="316"><a href="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_7_Q_%26_A_2.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S2.mp3">Download audio</a> (5:16)</audio-chip><br /> </div>
+<div class="title" id="SRD2013_S02">Session 2 – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Jun. 22, 2013 <audio-chip src="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_7_Q_%26_A_2.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S2" data-duration="316"><a href="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_7_Q_%26_A_2.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S2.mp3">Download audio</a> (5:16)</audio-chip><br /> </div>
 <p id="SRD2013_S02_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S02_F01.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S2 E1" data-duration="95"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S02_F01.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S2 E1.mp3">Download audio</a> (1:35)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [0:04] “The Buddha said 'One is expected to cultivate the path when you meet noble friends.' How much responsibility do we need to take for this?”  [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/volition.html">Volition</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S02_F01.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S2 E1" data-duration="95"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S02_F01.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S2 E1.mp3">Download audio</a> (1:35)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [0:04] “The Buddha said ‘One is expected to cultivate the path when you meet noble friends.’ How much responsibility do we need to take for this?”  [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>] [<a href = "../tags/volition.html">Volition</a>]
+>>>>>>> july-2024
 </p>
 <hr />
 <p id="SRD2013_S02_F02">
@@ -110,7 +128,7 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S02_F04.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S2 E4" data-duration="24"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S02_F04.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S2 E4.mp3">Download audio</a> (0:24)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> [4:14] <b>Comment</b>: Saṃvega comes in there somewhere. [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/pali.html">Pāli</a>]
 </p>
 <hr />
-<div class="title" id="SRD2013_S03">Session 3 – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013 <audio-chip src="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_9_Q_%26_A_3.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3" data-duration="2305"><a href="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_9_Q_%26_A_3.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3.mp3">Download audio</a> (38:25)</audio-chip><br /> </div>
+<div class="title" id="SRD2013_S03">Session 3 – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Jun. 22, 2013 <audio-chip src="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_9_Q_%26_A_3.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3" data-duration="2305"><a href="https://www.abhayagiri.org/media/audio/AP_06_22_2013_SR_Daylong_Part_9_Q_%26_A_3.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3.mp3">Download audio</a> (38:25)</audio-chip><br /> </div>
 <p id="SRD2013_S03_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F01.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E1" data-duration="162"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F01.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E1.mp3">Download audio</a> (2:42)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> [0:00] “What do we do at the monastery? What happens on a daily basis?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] // [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/questions.html">Questions</a>]
 </p>
@@ -119,7 +137,7 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F02.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E2" data-duration="52"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F02.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E2.mp3">Download audio</a> (0:52)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> [2:42] <b>Comment</b>: The more we become like monks and nuns, the more we will be helping the climate change situation. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/environment.html">Environment</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/contentment.html">Contentment</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/human.html">Human</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/contentment.html">Contentment</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/human.html">Human</a>]
 </p>
 <hr />
 <p id="SRD2013_S03_F03">
@@ -136,7 +154,7 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
   <b>Reading</b> from an unnamed recent Ajahn Chah book.  [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “I don't teach you guys much. Just be patient.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> 
+  <b>Quote:</b>  “I don’t teach you guys much. Just be patient.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> 
 </p>
 <hr />
 <p id="SRD2013_S03_F05">
@@ -147,7 +165,7 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F06.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E6" data-duration="73"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F06.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E6.mp3">Download audio</a> (1:13)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> [19:21] <b>Comment</b>: I find that the experience of uncertainty and loss can give rise to compassion. [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/compassion.html">Compassion</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/right-view.html">Right View</a>] [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/ardency.html">Ardency</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/right-view.html">Right View</a>] [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/ardency.html">Ardency</a>]
 </p>
 <hr />
 <p id="SRD2013_S03_F07">
@@ -161,7 +179,7 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.3:" target="_blank">AN 10.3:</a> Virtuous Behaivor; <a href="https://sutta.readingfaithfully.org/?q=AN-6.10" target="_blank">AN 6.10</a> Mahānāma [<a href = "../tags/virtue.html">Virtue</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The way my mind worked before was, 'Boy, when I get my concentration together, I'm going to be happy...'”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <b>Quote:</b>  “The way my mind worked before was, ‘Boy, when I get my concentration together, I’m going to be happy...’”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The happy mind is easily concentrated.”  [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
@@ -184,8 +202,8 @@ Sessions: &nbsp&nbsp&nbsp<a href="#SRD2013_S01">1</a> &nbsp&nbsp&nbsp<a href="#S
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Event: The Whole of the Path: The Fruits of Spiritual Friendship,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Event: The Whole of the Path: The Fruits of Spiritual Friendship,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/events/SRD2013.html">https://abhayagiri.org/questions/events/SRD2013.html</a>.</p>
 </footer>
 

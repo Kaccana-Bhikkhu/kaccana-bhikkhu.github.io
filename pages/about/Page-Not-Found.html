@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#about/Page-Not-Found.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -43,15 +53,15 @@
  <img src="../images/photos/Flowers.jpg" alt="Flowers" id="cover" title="Flowers" align="bottom" width="200" border="0"/> 
 
 <p>The page <code>https://abhayagiri.org/questions/$PAGE$</code> doesn't exist. It may have changed names after an update.</p>
-<p>If you're looking for a specific topic, try the <a href="../indexes/AlphabeticalTags.html">Tag Pages</a>.</p>
+<p>You're most likely to find a specific topic or name on the <a href="../search/Text-search.html">Search Page</a>.</p>
 <p>If you're looking for a particular event, try the <a href="../indexes/EventsBySeries.html">Event Pages</a>.</p>
 <p>Or just return to the <a href="../homepage.html">Home Page</a> and start again.</p>
 <p>Happy searching!</p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Page Not Found,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Page Not Found,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/about/Page-Not-Found.html">https://abhayagiri.org/questions/about/Page-Not-Found.html</a>.</p>
 </footer>
 

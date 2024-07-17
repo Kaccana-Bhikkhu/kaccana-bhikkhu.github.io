@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ascetic-practices-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/ascetic-practices.html#ascetic-practices"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAscetic practices (dhutaṅga)
+  <div class="title"><a href="../drilldown/ascetic-practices.html#ascetic-practices" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAscetic practices (dhutaṅga)
   </div>
 
 <div class="intro">
@@ -65,9 +75,13 @@
       <a href="../tags/ascetic-practices-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S43"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S43">Session 43</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 5, 2014</div>
+<div class="title" id="WR2014_S43"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S43">Session 43</a> – Mar. 5, 2014</div>
 <p id="WR2014_S43_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S43 E5" data-duration="483"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S43 E5.mp3">Download audio</a> (8:03)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Did Ajahn Mahā Boowa always praise the dtuaṅga practices?”  <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] // [<a href = "../tags/qualities-for-non-decline.html">Qualities for non-decline</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S43 E5" data-duration="483"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S43_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S43 E5.mp3">Download audio</a> (8:03)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Did Ajahn Mahā Boowa always praise the dtuaṅga practices?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] // [<a href = "../tags/qualities-for-non-decline.html">Qualities for non-decline</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Mun tells Ajahn Mahā Boowa to stop sweeping when he is sick with malaria. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>]
@@ -76,28 +90,36 @@
   <b>Story:</b> Ajahn Mahā Boowa takes on the dtok bhat practice, but Ajahn Mun puts food in his bowl. Told by Ajahn Kaccāna. [<a href = "../tags/almsfood.html">Almsfood</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> [<a href = "../tags/conceit.html">Conceit</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno meets a monk who didn't need to sleep. [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/concentration.html">Concentration</a>]
+  <b>Story:</b> Ajahn Pasanno meets a monk who didn’t need to sleep. [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/concentration.html">Concentration</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Pa Auk Sayadaw didn't sleep during a Rains Retreat. [<a href = "../tags/pa-auk-sayadaw.html">Pa Auk Sayadaw</a>]
+  <b>Story:</b> Pa Auk Sayadaw didn’t sleep during a Rains Retreat. [<a href = "../tags/pa-auk-sayadaw.html">Pa Auk Sayadaw</a>]
 </p>
 <hr />
-<div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 27, 2018</div>
+<div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – Mar. 27, 2018</div>
 <p id="WR2018-2_S09_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F02.mp3" title="The Teaching and the Training, S9 E2" data-duration="455"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F02.mp3" download="The Teaching and the Training, S9 E2.mp3">Download audio</a> (7:35)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How do we discern the benefit of dhutaṅga practices and how much is too much?”  [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/master-hsuan-hua.html">Master Hsuan Hua</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F02.mp3" title="The Teaching and the Training, S9 E2" data-duration="455"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F02.mp3" download="The Teaching and the Training, S9 E2.mp3">Download audio</a> (7:35)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How do we discern the benefit of dhutaṅga practices and how much is too much?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/master-hsuan-hua.html">Master Hsuan Hua</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Jayasaro determines sitter's practice until Ajahn Chah dies. [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] [<a href = "../tags/determination.html">Determination</a>]
+  <b>Story:</b> Ajahn Jayasaro determines sitter’s practice until Ajahn Chah dies. [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b> [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] [<a href = "../tags/determination.html">Determination</a>]
 </p>
 <hr />
 <p id="WR2018-2_S09_F05">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F05.mp3" title="The Teaching and the Training, S9 E5" data-duration="46"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F05.mp3" download="The Teaching and the Training, S9 E5.mp3">Download audio</a> (0:46)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Ñāṇiko takes on too many adhiṭṭhānas as an anagārika. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F05.mp3" title="The Teaching and the Training, S9 E5" data-duration="46"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F05.mp3" download="The Teaching and the Training, S9 E5.mp3">Download audio</a> (0:46)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Ñāṇiko takes on too many adhiṭṭhānas as an anagārika. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/ascetic-practices.html">Ascetic practices</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ascetic practices (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ascetic practices (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ascetic-practices-story.html">https://abhayagiri.org/questions/tags/ascetic-practices-story.html</a>.</p>
 </footer>
 

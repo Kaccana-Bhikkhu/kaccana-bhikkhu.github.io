@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/wat-pah-nanachat-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/thai-ajahn-chah-monasteries.html#thai-ajahn-chah-monasteries"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspWat Pah Nanachat 
+  <div class="title"><a href="../drilldown/thai-ajahn-chah-monasteries.html#thai-ajahn-chah-monasteries" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspWat Pah Nanachat 
   </div>
 
 <div class="intro">
@@ -54,47 +64,59 @@
   Parent topic: <a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a><br>
   
   
-  40 excerpts, 3:11:12 total duration
+  47 excerpts, 3:46:19 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/wat-pah-nanachat.html">All excerpts (40)</a>
+<div class="sublink2"> <a href="../tags/wat-pah-nanachat.html">All excerpts (47)</a>
       <a href="../tags/wat-pah-nanachat-qtag.html">Questions about (6)</a>
-      <a href="../tags/wat-pah-nanachat-atag.html">Answers involving (24)</a>
-      <a href="../tags/wat-pah-nanachat-story.html">Stories (18)</a>
+      <a href="../tags/wat-pah-nanachat-atag.html">Answers involving (25)</a>
+      <a href="../tags/wat-pah-nanachat-story.html">Stories (20)</a>
       <a href="../tags/wat-pah-nanachat-quote.html" class="active">Quotes (3)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S35"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S35">Session 35</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 21, 2014</div>
+<div class="title" id="WR2014_S35"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S35">Session 35</a> – Feb. 21, 2014</div>
 <p id="WR2014_S35_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F13.mp3" title="Abhayagiri 2014 Winter Retreat, S35 E13" data-duration="178"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F13.mp3" download="Abhayagiri 2014 Winter Retreat, S35 E13.mp3">Download audio</a> (2:58)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Can you recommend any practices to develop honesty with ourselves?”  [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/delusion.html">Delusion</a>] // [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F13.mp3" title="Abhayagiri 2014 Winter Retreat, S35 E13" data-duration="178"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F13.mp3" download="Abhayagiri 2014 Winter Retreat, S35 E13.mp3">Download audio</a> (2:58)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Can you recommend any practices to develop honesty with ourselves?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/delusion.html">Delusion</a>] // [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “You can't take yourself too seriously. That's really deadly.”  [<a href = "../tags/humor.html">Humor</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+  <b>Quote:</b>  “You can’t take yourself too seriously. That’s really deadly.”  [<a href = "../tags/humor.html">Humor</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  "Do we have to sweep all of this?" "No, just sweep what's in front of your broom." <b>[<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>]
+  <b>Quote:</b>  “Do we have to sweep all of this?” “No, just sweep what’s in front of your broom.” <b>[<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>]
 </p>
 <hr />
-<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 18, 2014</div>
+<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – Nov. 18, 2014</div>
 <p id="DRBU2014_S00_F25">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F25.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E25" data-duration="318"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F25.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E25.mp3">Download audio</a> (5:18)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “So what about the Bodhisattva practice?”  [<a href = "../tags/bodhisattva.html">Bodhisattva</a>] // [<a href = "../tags/theravada.html">Theravāda</a>] [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F25.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E25" data-duration="318"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F25.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E25.mp3">Download audio</a> (5:18)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “So what about the Bodhisattva practice?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/bodhisattva.html">Bodhisattva</a>] // [<a href = "../tags/theravada.html">Theravāda</a>] [<a href = "../tags/mahayana.html">Mahāyāna</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.17" target="_blank">AN 4.17-20</a>: Practice that benefits self, others, both or neither. 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  "What are the mind states of an enlightened being?" "Only compassion." — Ajahn Mahā Boowa [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] <b>[<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]</b>
+  <b>Quote:</b>  “What are the mind states of an enlightened being?” “Only compassion.” — Ajahn Mahā Boowa [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] <b>[<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]</b>
 </p>
 <hr />
-<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S02_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" title="Suttas You've Never Heard Of, S2 E7" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" download="Suttas You've Never Heard Of, S2 E7.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> A diligent early support of Wat Pah Nanachat reflects, "I don't have money, but I'm not poor." [<a href = "../tags/treasures.html">Treasures</a>] <b>[<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]</b> [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/poverty.html">Poverty</a>] // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/thai.html">Thai</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" title="Suttas You've Never Heard Of, S2 E7" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" download="Suttas You've Never Heard Of, S2 E7.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> A diligent early support of Wat Pah Nanachat reflects, “I don’t have money, but I’m not poor.” [<a href = "../tags/treasures.html">Treasures</a>] <b>[<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]</b> [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/poverty.html">Poverty</a>] // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/thai.html">Thai</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Wat Pah Nanachat (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Wat Pah Nanachat (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/wat-pah-nanachat-quote.html">https://abhayagiri.org/questions/tags/wat-pah-nanachat-quote.html</a>.</p>
 </footer>
 

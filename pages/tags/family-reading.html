@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/family-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/family.html#family"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspFamily 
+  <div class="title"><a href="../drilldown/family.html#family" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspFamily 
   </div>
 
 <div class="intro">
@@ -52,32 +62,46 @@
   
   
   Parent topic: <a href = "../tags/personal.html">Personal</a><br>
-  Subtopic: <a href = "../tags/children.html">Children</a><br>
+  Subtopics: <a href = "../tags/parents.html">Parents</a>, <a href = "../tags/children.html">Children</a><br>
   
-  58 excerpts, 4:37:34 total duration
+  55 excerpts, 4:22:01 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/family.html">All excerpts (59)</a>
-      <a href="../tags/family-qtag.html">Questions about (29)</a>
-      <a href="../tags/family-atag.html">Answers involving (12)</a>
-      <a href="../tags/family-story.html">Stories (13)</a>
-      <a href="../tags/family-quote.html">Quotes (3)</a>
-      <a href="../tags/family-reading.html" class="active">Readings (5)</a>
-      <a href="../tags/family-reference.html">References (1)</a> </div>
+<div class="sublink2"> <a href="../tags/family.html">All excerpts (56)</a>
+      <a href="../tags/family-qtag.html">Questions about (27)</a>
+      <a href="../tags/family-atag.html">Answers involving (11)</a>
+      <a href="../tags/family-story.html">Stories (12)</a>
+      <a href="../tags/family-quote.html">Quotes (2)</a>
+      <a href="../tags/family-reading.html" class="active">Readings (4)</a> </div>
 <hr>
 
+<<<<<<< HEAD
 <div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F04">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" title="Recollections of Ajahn Chah, S1 E4" data-duration="269"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" download="Recollections of Ajahn Chah, S1 E4.mp3">Download audio</a> (4:29)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah's birthplace and early life.  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/children.html">Children</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+=======
+<div class="title" id="Chah2001_S09"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S09">Session 9</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S09_F06">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F06.mp3" title="Remembering Ajahn Chah Weekend, S9 E6" data-duration="253"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F06.mp3" download="Remembering Ajahn Chah Weekend, S9 E6.mp3">Download audio</a> (4:13)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Chah falls in love.  [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/commerceeconomics.html">Commerce/economics</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=44" target="_blank">p. 22</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=56" target="_blank">p. 34</a> 
+</p>
+<hr />
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
+<p id="SRD2010_S01_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" title="Recollections of Ajahn Chah, S1 E4" data-duration="269"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" download="Recollections of Ajahn Chah, S1 E4.mp3">Download audio</a> (4:29)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah’s birthplace and early life.  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/children.html">Children</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=44" target="_blank">p. 22</a> 
 </p>
 <hr />
 <p id="SRD2010_S01_F05">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F05.mp3" title="Recollections of Ajahn Chah, S1 E5" data-duration="148"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F05.mp3" download="Recollections of Ajahn Chah, S1 E5.mp3">Download audio</a> (2:28)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: At the age of nine, Ajahn Chah asks to go to the village monastery.  <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/novices.html">Novices</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
+<<<<<<< HEAD
   <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=47" target="_blank">p. 25</a> 
 </p>
 <hr />
@@ -100,16 +124,24 @@
 <div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F02.mp3" title="The New Ajahn Chah Biography, S2 E2" data-duration="302"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F02.mp3" download="The New Ajahn Chah Biography, S2 E2.mp3">Download audio</a> (5:02)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40-41</a>: Ajahn Chah's father's dying request  <b>[<a href = "../tags/family.html">Family</a>]</b> [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/meditation.html">Meditation</a>]
+=======
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=47" target="_blank">p. 25</a> 
+>>>>>>> july-2024
 </p>
 <hr />
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" title="The New Ajahn Chah Biography, S2 E4" data-duration="225"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" download="The New Ajahn Chah Biography, S2 E4.mp3">Download audio</a> (3:45)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=604" target="_blank">p. 582</a>: "Out of Compassion"  [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] <b>[<a href = "../tags/family.html">Family</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" title="The New Ajahn Chah Biography, S2 E4" data-duration="225"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F04.mp3" download="The New Ajahn Chah Biography, S2 E4.mp3">Download audio</a> (3:45)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=604" target="_blank">p. 582</a>: “Out of Compassion”  [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] <b>[<a href = "../tags/family.html">Family</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Family (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Family (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/family-reading.html">https://abhayagiri.org/questions/tags/family-reading.html</a>.</p>
 </footer>
 

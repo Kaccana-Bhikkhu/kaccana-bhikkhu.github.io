@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/knowing-itself-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/meditationresults.html#meditationresults"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspKnowing itself 
+  <div class="title"><a href="../drilldown/meditationresults.html#meditationresults" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspKnowing itself 
   </div>
 
 <div class="intro">
@@ -54,63 +64,91 @@
   Parent topic: <a href = "../tags/meditationresults.html">Meditation/Results</a><br>
   
   
-  35 excerpts, 1:45:22 total duration
+  36 excerpts, 1:55:45 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/knowing-itself.html">All excerpts (35)</a>
+<div class="sublink2"> <a href="../tags/knowing-itself.html">All excerpts (37)</a>
       <a href="../tags/knowing-itself-qtag.html" class="active">Questions about (18)</a>
       <a href="../tags/knowing-itself-atag.html">Answers involving (10)</a>
       <a href="../tags/knowing-itself-quote.html">Quotes (7)</a>
       <a href="../tags/knowing-itself-reading.html">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F09.mp3" title="Metta Retreat, S4 E9" data-duration="215"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F09.mp3" download="Metta Retreat, S4 E9.mp3">Download audio</a> (3:35)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “What is the difference between awareness and consciousness?”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/consciousness.html">Consciousness</a>] // [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F09.mp3" title="Metta Retreat, S4 E9" data-duration="215"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F09.mp3" download="Metta Retreat, S4 E9.mp3">Download audio</a> (3:35)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “What is the difference between awareness and consciousness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/consciousness.html">Consciousness</a>] // [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/volition.html">Volition</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/discernment.html">Discernment</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S02_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F07.mp3" title="Tudong Stories at Spirit Rock, S2 E7" data-duration="282"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F07.mp3" download="Tudong Stories at Spirit Rock, S2 E7.mp3">Download audio</a> (4:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/noting.html">Noting</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/delusion.html">Delusion</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F07.mp3" title="Tudong Stories at Spirit Rock, S2 E7" data-duration="282"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F07.mp3" download="Tudong Stories at Spirit Rock, S2 E7.mp3">Download audio</a> (4:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Is there a distinction between the awareness and the naming? Does naming bring intellect or self into play? Is confusion the nagging sense of self or self-consciousness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/noting.html">Noting</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/delusion.html">Delusion</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2013-3_S02"><a href="../events/UD2013-3.html">Calming the Busy Mind</a>, <a href="../events/UD2013-3.html#UD2013-3_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 11, 2013</div>
+<div class="title" id="UD2013-3_S02"><a href="../events/UD2013-3.html">Calming the Busy Mind</a>, <a href="../events/UD2013-3.html#UD2013-3_S02">Session 2</a> – Aug. 11, 2013</div>
 <p id="UD2013-3_S02_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F01.mp3" title="Calming the Busy Mind, S2 E1" data-duration="113"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F01.mp3" download="Calming the Busy Mind, S2 E1.mp3">Download audio</a> (1:53)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: Even though I've seen the fruit of awareness in and of itself many times, the doubt is still so deeply embedded that there is not that place of letting go. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F01.mp3" title="Calming the Busy Mind, S2 E1" data-duration="113"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F01.mp3" download="Calming the Busy Mind, S2 E1.mp3">Download audio</a> (1:53)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment</b>: Even though I’ve seen the fruit of awareness in and of itself many times, the doubt is still so deeply embedded that there is not that place of letting go. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/faith.html">Faith</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: "<a href="https://www.abhayagiri.org/talks/6035-goal-oriented-and-source-oriented-practice" target="_blank">Goal-Oriented and Source-Oriented Practice</a>," Dhamma Talk by Ajahn Pasanno, August 10, 2013. 
+  <b>Reference</b>: “<a href="https://www.abhayagiri.org/talks/6035-goal-oriented-and-source-oriented-practice" target="_blank">Goal-Oriented and Source-Oriented Practice</a>,” Dhamma Talk by Ajahn Pasanno, August 10, 2013. 
 </p>
 <hr />
 <p id="UD2013-3_S02_F09">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F09.mp3" title="Calming the Busy Mind, S2 E9" data-duration="110"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F09.mp3" download="Calming the Busy Mind, S2 E9.mp3">Download audio</a> (1:50)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “What attitude should we take when observing things so we don't objectify them or make it stressful?”  [<a href = "../tags/perception.html">Perception</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // [<a href = "../tags/direct-experience.html">Direct experience</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F09.mp3" title="Calming the Busy Mind, S2 E9" data-duration="110"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-3/UD2013-3_S02_F09.mp3" download="Calming the Busy Mind, S2 E9.mp3">Download audio</a> (1:50)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “What attitude should we take when observing things so we don’t objectify them or make it stressful?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/perception.html">Perception</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // [<a href = "../tags/direct-experience.html">Direct experience</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="TG2013_S07"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 29, 2013</div>
+<div class="title" id="TG2013_S07"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S07">Session 7</a> – Nov. 29, 2013</div>
 <p id="TG2013_S07_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S07_F04.mp3" title="Abhayagiri Monastic Retreat 2013, S7 E4" data-duration="97"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S07_F04.mp3" download="Abhayagiri Monastic Retreat 2013, S7 E4.mp3">Download audio</a> (1:37)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “How is being 'the one who knows' as it is suggested, related to anatta?”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/not-self.html">Not-self</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S07_F04.mp3" title="Abhayagiri Monastic Retreat 2013, S7 E4" data-duration="97"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S07_F04.mp3" download="Abhayagiri Monastic Retreat 2013, S7 E4.mp3">Download audio</a> (1:37)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “How is being ‘the one who knows’ as it is suggested, related to anatta?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/not-self.html">Not-self</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2014_S48"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S48">Session 48</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 12, 2104</div>
+<div class="title" id="WR2014_S48"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S48">Session 48</a> – Mar. 12, 2104</div>
 <p id="WR2014_S48_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S48 E2" data-duration="384"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S48 E2.mp3">Download audio</a> (6:24)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Would you be willing to talk about the difference between mindfulness, bare knowing, and the one who knows?”  [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S48 E2" data-duration="384"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S48 E2.mp3">Download audio</a> (6:24)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Would you be willing to talk about the difference between mindfulness, bare knowing, and the one who knows?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-10:" target="_blank">MN 10:</a> Satipaṭṭhāna Sutta 
 </p>
 <hr />
-<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 17, 2014</div>
+<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – Mar. 17, 2014</div>
 <p id="WR2014_S51_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E2" data-duration="293"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E2.mp3">Download audio</a> (4:53)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “The citta is sometimes defined as pure awareness, and it being in the fourth khanda, but it sounds like here he's talking about the activity of awareness?”  [<a href = "../tags/heartmind.html">Heart/mind</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/volitional-formations.html">Volitional formations</a>] // [<a href = "../tags/rebirth.html">Rebirth</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E2" data-duration="293"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E2.mp3">Download audio</a> (4:53)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “The citta is sometimes defined as pure awareness, and it being in the fourth khanda, but it sounds like here he’s talking about the activity of awareness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/heartmind.html">Heart/mind</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/volitional-formations.html">Volitional formations</a>] // [<a href = "../tags/rebirth.html">Rebirth</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There is that which is beyond birth and death. And then you start asking, 'Well, what is it and how is it? How should it be?' It's just the same as in the Sabbāsava Sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-2.7" target="_blank">MN 2.7</a>)...As soon as you get into conceiving, you've already started the process of dukkha.”  [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Quote:</b>  “There is that which is beyond birth and death. And then you start asking, ‘Well, what is it and how is it? How should it be?’ It’s just the same as in the Sabbāsava Sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-2.7" target="_blank">MN 2.7</a>)...As soon as you get into conceiving, you’ve already started the process of dukkha.”  [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “So is it better to hear what he said and let it go when I notice awareness that's good, but I don't have to make anything out of it?” 
+  <b>Follow-up:</b> “So is it better to hear what he said and let it go when I notice awareness that’s good, but I don’t have to make anything out of it?” 
 </p>
 <p style="margin-left: 4em;">
   <b>Quote:</b>  “The investigation is not a conceiving. The best investigation is when the mind is exceedingly still and not conceiving, not creating concepts.”  [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/concentration.html">Concentration</a>]
@@ -119,31 +157,51 @@
   <b>Follow-up:</b> “So is it a realizing, not a conceiving?” [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>, Jeanne Daskais and <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – May. 9, 2014</div>
 <p id="UD2014-1_S02_F17">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F17.mp3" title="Death and Dying, S2 E17" data-duration="80"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F17.mp3" download="Death and Dying, S2 E17.mp3">Download audio</a> (1:20)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> <b>Comment</b>: You spoke of death as the dissolution of the body and awareness coming home. The life that we think we're leading is not the life that we know about when we're aware. [<a href = "../tags/form.html">Form</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/death.html">Death</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F17.mp3" title="Death and Dying, S2 E17" data-duration="80"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F17.mp3" download="Death and Dying, S2 E17.mp3">Download audio</a> (1:20)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> <b>Comment</b>: You spoke of death as the dissolution of the body and awareness coming home. The life that we think we’re leading is not the life that we know about when we’re aware. [<a href = "../tags/form.html">Form</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/death.html">Death</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>: When death comes, our life is like something that is built up out of crystal that becomes a pile of rubble in the end. It's so important to recognize that within that there is this possibility of awareness and purity of heart. [<a href = "../tags/similes.html">Similes</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>: When death comes, our life is like something that is built up out of crystal that becomes a pile of rubble in the end. It’s so important to recognize that within that there is this possibility of awareness and purity of heart. [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-2_S02"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Jun. 14, 2014</div>
+<div class="title" id="UD2014-2_S02"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S02">Session 2</a> – Jun. 14, 2014</div>
 <p id="UD2014-2_S02_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" title="Thai Forest Tradition, S2 E10" data-duration="29"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" download="Thai Forest Tradition, S2 E10.mp3">Download audio</a> (0:29)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “In the reading, Upasikā Kee Nanayon says the mind takes the fabrications itself as the object. Is that similar to Ajahn Sumedho's 'It's like this?'”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" title="Thai Forest Tradition, S2 E10" data-duration="29"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" download="Thai Forest Tradition, S2 E10.mp3">Download audio</a> (0:29)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “In the reading, Upasikā Kee Nanayon says the mind takes the fabrications itself as the object. Is that similar to Ajahn Sumedho’s ‘It’s like this?’”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2014-3_S01"><a href="../events/UD2014-3.html">Mindfulness of Breathing</a>, <a href="../events/UD2014-3.html#UD2014-3_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 26, 2014</div>
+<div class="title" id="UD2014-3_S01"><a href="../events/UD2014-3.html">Mindfulness of Breathing</a>, <a href="../events/UD2014-3.html#UD2014-3_S01">Session 1</a> – Oct. 26, 2014</div>
 <p id="UD2014-3_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F02.mp3" title="Mindfulness of Breathing, S1 E2" data-duration="244"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F02.mp3" download="Mindfulness of Breathing, S1 E2.mp3">Download audio</a> (4:04)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I've had the experience on retreat of getting to slow, shallow breathing and panicked because I couldn't find the breath. Could you say more about just going to the knowing?”  [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/fear.html">Fear</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/nimitta.html">Nimitta</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <hr />
 <p id="UD2014-3_S01_F04">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F04.mp3" title="Mindfulness of Breathing, S1 E4" data-duration="327"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F04.mp3" download="Mindfulness of Breathing, S1 E4.mp3">Download audio</a> (5:27)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “At what point in your meditation do you shift to knower or witness?”  [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/desire.html">Desire</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F02.mp3" title="Mindfulness of Breathing, S1 E2" data-duration="244"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F02.mp3" download="Mindfulness of Breathing, S1 E2.mp3">Download audio</a> (4:04)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I’ve had the experience on retreat of getting to slow, shallow breathing and panicked because I couldn’t find the breath. Could you say more about just going to the knowing?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/fear.html">Fear</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/nimitta.html">Nimitta</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <hr />
-<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 18, 2014</div>
+<p id="UD2014-3_S01_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F04.mp3" title="Mindfulness of Breathing, S1 E4" data-duration="327"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F04.mp3" download="Mindfulness of Breathing, S1 E4.mp3">Download audio</a> (5:27)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “At what point in your meditation do you shift to knower or witness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/desire.html">Desire</a>]
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – Nov. 18, 2014</div>
 <p id="DRBU2014_S00_F18">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F18.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E18" data-duration="531"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F18.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E18.mp3">Download audio</a> (8:51)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “How do we take refuge in awareness (Buddho) in daily life?”  [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] // [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F18.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E18" data-duration="531"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F18.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E18.mp3">Download audio</a> (8:51)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “How do we take refuge in awareness (Buddho) in daily life?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] // [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-10:" target="_blank">MN 10:</a> Satipaṭṭhāna Sutta 
@@ -152,51 +210,75 @@
   <b>Note</b>: In the answer to this question, Ajahn Pasanno equates awareness with mindfulness. 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The literal meaning of Buddho is 'the one who knows,' but it's also being the one who knows, where you have the opportunity for us to be that knowing.”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b>
+  <b>Quote:</b>  “The literal meaning of Buddho is ‘the one who knows,’ but it’s also being the one who knows, where you have the opportunity for us to be that knowing.”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b>
 </p>
 <hr />
 <p id="DRBU2014_S00_F19">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E19" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E19.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “So being the one who knows, you don't have to react to dislike and like?”  [<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/greed.html">Greed</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E19" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F19.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E19.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “So being the one who knows, you don’t have to react to dislike and like?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/greed.html">Greed</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The difference between an awakened mind and an unawakened mind is that the unawakened mind keeps following likes and dislikes. An awakened mind can see that arise, establish itself, and pass away. The mind is the same.”  [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/cessation.html">Cessation</a>]
 </p>
 <hr />
 <p id="DRBU2014_S00_F20">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F20.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E20" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F20.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E20.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">20.</b> “So why can awareness be the place where we take refuge?”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness.html">Mindfulness</a>] // [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
 </p>
 <hr />
 <p id="DRBU2014_S00_F21">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F21.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E21" data-duration="139"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F21.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E21.mp3">Download audio</a> (2:19)</audio-chip><br /> <b style="text-decoration: underline;">21.</b> “How do you not objectify this awareness?”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Quote:</b>  “If you objectify awareness, you're going to suffer.”  [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Quote:</b>  “These Four Noble Truths are not an endpoint, they are something that you're internalizing and using in your meditation practice and in your daily life.”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F20.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E20" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F20.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E20.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">20.</b> “So why can awareness be the place where we take refuge?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness.html">Mindfulness</a>] // [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-4_S01"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<p id="DRBU2014_S00_F21">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F21.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E21" data-duration="139"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F21.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E21.mp3">Download audio</a> (2:19)</audio-chip><br /> <b style="text-decoration: underline;">21.</b> “How do you not objectify this awareness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>]
+>>>>>>> july-2024
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “If you objectify awareness, you’re going to suffer.”  [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “These Four Noble Truths are not an endpoint, they are something that you’re internalizing and using in your meditation practice and in your daily life.”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>]
+</p>
+<hr />
+<div class="title" id="UD2015-4_S01"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S01">Session 1</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S01_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" title="Jhāna: A Practical Approach, S1 E2" data-duration="57"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" download="Jhāna: A Practical Approach, S1 E2.mp3">Download audio</a> (0:57)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I was thinking about Ajahn Chah's advice that all you need to do is know and let go. I'm wondering about knowing, developing, and letting go. Where does development fit in?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" title="Jhāna: A Practical Approach, S1 E2" data-duration="57"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S01_F02.mp3" download="Jhāna: A Practical Approach, S1 E2.mp3">Download audio</a> (0:57)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I was thinking about Ajahn Chah’s advice that all you need to do is know and let go. I’m wondering about knowing, developing, and letting go. Where does development fit in?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2015-4_S04"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<div class="title" id="UD2015-4_S04"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S04">Session 4</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S04_F13">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F13.mp3" title="Jhāna: A Practical Approach, S4 E13" data-duration="139"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F13.mp3" download="Jhāna: A Practical Approach, S4 E13.mp3">Download audio</a> (2:19)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Ajahn Chah talks about the one who knows. Is this a purely mental excercise or is it embodied?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F13.mp3" title="Jhāna: A Practical Approach, S4 E13" data-duration="139"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F13.mp3" download="Jhāna: A Practical Approach, S4 E13.mp3">Download audio</a> (2:19)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Ajahn Chah talks about the one who knows. Is this a purely mental excercise or is it embodied?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/jhana.html">Jhāna</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The Thai Krooba Ajahns translate 'Buddho' as 'being the one who knows.'”  [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/translation.html">Translation</a>]
+  <b>Quote:</b>  “The Thai Krooba Ajahns translate ‘Buddho’ as ‘being the one who knows.’”  [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>] <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/translation.html">Translation</a>]
 </p>
 <hr />
 <p id="UD2015-4_S04_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F14.mp3" title="Jhāna: A Practical Approach, S4 E14" data-duration="8"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F14.mp3" download="Jhāna: A Practical Approach, S4 E14.mp3">Download audio</a> (0:08)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “So the one who knows includes the other five sense bases?”  <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F14.mp3" title="Jhāna: A Practical Approach, S4 E14" data-duration="8"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S04_F14.mp3" download="Jhāna: A Practical Approach, S4 E14.mp3">Download audio</a> (0:08)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “So the one who knows includes the other five sense bases?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/knowing-itself.html">Knowing itself</a>]</b> [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Knowing itself (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Knowing itself (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/knowing-itself-qtag.html">https://abhayagiri.org/questions/tags/knowing-itself-qtag.html</a>.</p>
 </footer>
 

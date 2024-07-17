@@ -86,5 +86,3 @@ The search engine implements the following wildcard characters:
 `$` matches a word boundary
 
 Spaces divide individual search strings except for groups of characters enclosed in double quotes. Characters enclosed in double quotes only match word boundaries, but this can be changed using `*`. For example, `"Thai*"` and `$Thai` are equivalent queries.
-
-One can search for these 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/health-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/health.html#health"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHealth 
+  <div class="title"><a href="../drilldown/health.html#health" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHealth 
   </div>
 
 <div class="intro">
@@ -63,34 +73,46 @@
       <a href="../tags/health-story.html">Stories (4)</a> </div>
 <hr>
 
-<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 2, 2017</div>
+<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – Sep. 2, 2017</div>
 <p id="Teen2017_S00_F11">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F11.mp3" title="Teen Weekend 2017, E11" data-duration="735"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F11.mp3" download="Teen Weekend 2017, E11.mp3">Download audio</a> (12:15)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Can you talk about your environmental work in Thailand? What qualities of heart and inner strength help us live without being completely overwhelmed?”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] // [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/greed.html">Greed</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/panyaprateep-school.html">Panyaprateep School</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F11.mp3" title="Teen Weekend 2017, E11" data-duration="735"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F11.mp3" download="Teen Weekend 2017, E11.mp3">Download audio</a> (12:15)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Can you talk about your environmental work in Thailand? What qualities of heart and inner strength help us live without being completely overwhelmed?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] // [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/greed.html">Greed</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/panyaprateep-school.html">Panyaprateep School</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Sri Lankan monastic kidney donors. <b>[<a href = "../tags/health.html">Health</a>]</b> [<a href = "../tags/historysri-lankan-buddhism.html">History/Sri Lankan Buddhism</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F07.mp3" title="The Path of Practice, S1 E7" data-duration="345"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F07.mp3" download="The Path of Practice, S1 E7.mp3">Download audio</a> (5:45)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “How do discoveries about the gut microbiome fit in with the Buddha's teachings?”  [<a href = "../tags/science.html">Science</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] // [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/naturalness.html">Naturalness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F07.mp3" title="The Path of Practice, S1 E7" data-duration="345"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F07.mp3" download="The Path of Practice, S1 E7.mp3">Download audio</a> (5:45)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “How do discoveries about the gut microbiome fit in with the Buddha’s teachings?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/science.html">Science</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] // [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/naturalness.html">Naturalness</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “How does the relate to monks who subsist on almsfood and sometimes don't get enough, considering that the gut is controlling the brain?” [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] <b>[<a href = "../tags/health.html">Health</a>]</b> [<a href = "../tags/ajahn-sona.html">Ajahn Soṇa</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>]
+  <b>Follow-up:</b> “How does the relate to monks who subsist on almsfood and sometimes don’t get enough, considering that the gut is controlling the brain?” [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] <b>[<a href = "../tags/health.html">Health</a>]</b> [<a href = "../tags/ajahn-sona.html">Ajahn Soṇa</a>] [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>]
 </p>
 <p style="margin-left: 4em;">
   <b>Sutta</b>: AN ??.?? - Stay where the practice advances, not where the requisites are. 
 </p>
 <hr />
-<div class="title" id="UD2020_S00"><a href="../events/UD2020.html">Living in a Changing Society</a><a href="../events/UD2020.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Aug. 23, 2020</div>
+<div class="title" id="UD2020_S00"><a href="../events/UD2020.html">Living in a Changing Society</a><a href="../events/UD2020.html"></a> – Aug. 23, 2020</div>
 <p id="UD2020_S00_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2020/UD2020_S00_F08.mp3" title="Living in a Changing Society, E8" data-duration="196"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2020/UD2020_S00_F08.mp3" download="Living in a Changing Society, E8.mp3">Download audio</a> (3:16)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “How is it possible to not eat after noon while remaining active in everyday life?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/eating-after-noon.html">Eating after noon</a>] [<a href = "../tags/renunciant-practice.html">Renunciant practice</a>] // [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/food.html">Food</a>] <b>[<a href = "../tags/health.html">Health</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2020/UD2020_S00_F08.mp3" title="Living in a Changing Society, E8" data-duration="196"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2020/UD2020_S00_F08.mp3" download="Living in a Changing Society, E8.mp3">Download audio</a> (3:16)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “How is it possible to not eat after noon while remaining active in everyday life?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/eating-after-noon.html">Eating after noon</a>] [<a href = "../tags/renunciant-practice.html">Renunciant practice</a>] // [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/food.html">Food</a>] <b>[<a href = "../tags/health.html">Health</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Health (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Health (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/health-atag.html">https://abhayagiri.org/questions/tags/health-atag.html</a>.</p>
 </footer>
 

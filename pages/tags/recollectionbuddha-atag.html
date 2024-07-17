@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/recollectionbuddha-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/recollection.html#recollection"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRecollection/Buddha (buddhānussati)
+  <div class="title"><a href="../drilldown/recollection.html#recollection" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspRecollection/Buddha (buddhānussati)
   </div>
 
 <div class="intro">
@@ -63,21 +73,30 @@
       <a href="../tags/recollectionbuddha-quote.html">Quotes (1)</a> </div>
 <hr>
 
-<div class="title" id="UD2012-3_S02"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Aug. 19, 2012</div>
+<div class="title" id="UD2012-3_S02"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S02">Session 2</a> – Aug. 19, 2012</div>
 <p id="UD2012-3_S02_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F02.mp3" title="Brightening the Mind, S2 E2" data-duration="114"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F02.mp3" download="Brightening the Mind, S2 E2.mp3">Download audio</a> (1:54)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What would be a way to connect with the devas if you were out walking by yourself...[audio unclear]?”  [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/recollectiondevas.html">Recollection/Devas</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/spiritual-search.html">Spiritual search</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F02.mp3" title="Brightening the Mind, S2 E2" data-duration="114"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F02.mp3" download="Brightening the Mind, S2 E2.mp3">Download audio</a> (1:54)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What would be a way to connect with the devas if you were out walking by yourself...[audio unclear]?”  Answered by <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a>. [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/recollectiondevas.html">Recollection/Devas</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/spiritual-search.html">Spiritual search</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2017-2_S02"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S02"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S02">Session 2</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S02_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F04.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E4" data-duration="321"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F04.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E4.mp3">Download audio</a> (5:21)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “When you go into your body to feel the underlying emotion behnd a thought, what happens when the bodily feeling is so uncomfortable taht you really don't want to feel it?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/fear.html">Fear</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>] [<a href = "../tags/faith.html">Faith</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F04.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E4" data-duration="321"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F04.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E4.mp3">Download audio</a> (5:21)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “When you go into your body to feel the underlying emotion behnd a thought, what happens when the bodily feeling is so uncomfortable taht you really don’t want to feel it?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/fear.html">Fear</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>] [<a href = "../tags/faith.html">Faith</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “It seems really difficult to think of Dhamma or the refuges while in such a wrapped-up state. I don't know if I could do that.” [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/visualization.html">Visualization</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>]
+  <b>Follow-up:</b> “It seems really difficult to think of Dhamma or the refuges while in such a wrapped-up state. I don’t know if I could do that.” [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/visualization.html">Visualization</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>]
 </p>
 <hr />
-<div class="title" id="WR2018-2_S01"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 12, 2018</div>
+<div class="title" id="WR2018-2_S01"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S01">Session 1</a> – Mar. 12, 2018</div>
 <p id="WR2018-2_S01_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F01.mp3" title="The Teaching and the Training, S1 E1" data-duration="291"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F01.mp3" download="The Teaching and the Training, S1 E1.mp3">Download audio</a> (4:51)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “The Buddha described his teaching as Dhamma-vinaya. Can you explain why it wasn't just Dhamma? What does this term mean?”  [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b>
 </p>
 <hr />
@@ -87,22 +106,41 @@
 <hr />
 <p id="WR2018-2_S01_F04">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F04.mp3" title="The Teaching and the Training, S1 E4" data-duration="287"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F04.mp3" download="The Teaching and the Training, S1 E4.mp3">Download audio</a> (4:47)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is vinaya about taking responsibility for your actions and mental states and how that affects other people?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] // [<a href = "../tags/dependent-origination.html">Dependent origination</a>] <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F01.mp3" title="The Teaching and the Training, S1 E1" data-duration="291"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F01.mp3" download="The Teaching and the Training, S1 E1.mp3">Download audio</a> (4:51)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “The Buddha described his teaching as Dhamma-vinaya. Can you explain why it wasn’t just Dhamma? What does this term mean?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b>
 </p>
 <hr />
-<div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 27, 2018</div>
+<p id="WR2018-2_S01_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F03.mp3" title="The Teaching and the Training, S1 E3" data-duration="692"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F03.mp3" download="The Teaching and the Training, S1 E3.mp3">Download audio</a> (11:32)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “How do we expand our faith into other aspects of training?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] // [<a href = "../tags/dependent-origination.html">Dependent origination</a>] <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
+</p>
+<hr />
+<p id="WR2018-2_S01_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F04.mp3" title="The Teaching and the Training, S1 E4" data-duration="287"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S01_F04.mp3" download="The Teaching and the Training, S1 E4.mp3">Download audio</a> (4:47)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is vinaya about taking responsibility for your actions and mental states and how that affects other people?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] // [<a href = "../tags/dependent-origination.html">Dependent origination</a>] <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b>
+>>>>>>> july-2024
+</p>
+<hr />
+<div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – Mar. 27, 2018</div>
 <p id="WR2018-2_S09_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F07.mp3" title="The Teaching and the Training, S9 E7" data-duration="454"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F07.mp3" download="The Teaching and the Training, S9 E7.mp3">Download audio</a> (7:34)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “What is the importance of the brahmavihārās in balancing out dhutaṅga practices?”  [<a href = "../tags/divine-abidings.html">Divine Abidings</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/arahant.html">Arahant</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F07.mp3" title="The Teaching and the Training, S9 E7" data-duration="454"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F07.mp3" download="The Teaching and the Training, S9 E7.mp3">Download audio</a> (7:34)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “What is the importance of the brahmavihārās in balancing out dhutaṅga practices?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/divine-abidings.html">Divine Abidings</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] // <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b> [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/attachment-to-rites-and-rituals.html">Attachment to rites and rituals</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/arahant.html">Arahant</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2019-5_S02"><a href="../events/UD2019-5.html">Developing Skill in Reflective Meditation</a>, <a href="../events/UD2019-5.html#UD2019-5_S02">Session 2</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Dec. 1, 2019</div>
+<div class="title" id="UD2019-5_S02"><a href="../events/UD2019-5.html">Developing Skill in Reflective Meditation</a>, <a href="../events/UD2019-5.html#UD2019-5_S02">Session 2</a> – Dec. 1, 2019</div>
 <p id="UD2019-5_S02_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S02_F02.mp3" title="Developing Skill in Reflective Meditation, S2 E2" data-duration="78"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S02_F02.mp3" download="Developing Skill in Reflective Meditation, S2 E2.mp3">Download audio</a> (1:18)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “On a daily basis, coming home, my mind is too distracted to pick up any of these objects of meditation. Would you recommend doing ānāpānassati first and then switching over?”  Answered by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/recollection.html">Recollection</a>] // [<a href = "../tags/mantra.html">Mantra</a>] <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S02_F02.mp3" title="Developing Skill in Reflective Meditation, S2 E2" data-duration="78"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S02_F02.mp3" download="Developing Skill in Reflective Meditation, S2 E2.mp3">Download audio</a> (1:18)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “On a daily basis, coming home, my mind is too distracted to pick up any of these objects of meditation. Would you recommend doing ānāpānassati first and then switching over?”  Answered by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/recollection.html">Recollection</a>] // [<a href = "../tags/mantra.html">Mantra</a>] <b>[<a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Recollection/Buddha (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Recollection/Buddha (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/recollectionbuddha-atag.html">https://abhayagiri.org/questions/tags/recollectionbuddha-atag.html</a>.</p>
 </footer>
 

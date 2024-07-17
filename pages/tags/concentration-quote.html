@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/concentration-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/faculties.html#faculties"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConcentration (samādhi)
+  <div class="title"><a href="../drilldown/faculties.html#faculties" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConcentration (samādhi)
   </div>
 
 <div class="intro">
@@ -54,10 +64,10 @@
   Parent topics: <a href = "../tags/faculties.html">Faculties</a>, <a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>, <a href = "../tags/progress-of-insight.html">Progress of insight</a><br>
   
   
-  67 excerpts, 5:14:11 total duration
+  67 excerpts, 5:23:36 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/concentration.html">All excerpts (70)</a>
+<div class="sublink2"> <a href="../tags/concentration.html">All excerpts (71)</a>
       <a href="../tags/concentration-qtag.html">Questions about (30)</a>
       <a href="../tags/concentration-atag.html">Answers involving (28)</a>
       <a href="../tags/concentration-story.html">Stories (5)</a>
@@ -66,62 +76,82 @@
       <a href="../tags/concentration-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S03_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F10.mp3" title="Tudong Stories at Spirit Rock, S3 E10" data-duration="327"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F10.mp3" download="Tudong Stories at Spirit Rock, S3 E10.mp3">Download audio</a> (5:27)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Quote:</b>  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.”  [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/faculties.html">Faculties</a>] [<a href = "../tags/tudong.html">Tudong</a>] // <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/perfections.html">Perfections</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F10.mp3" title="Tudong Stories at Spirit Rock, S3 E10" data-duration="327"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F10.mp3" download="Tudong Stories at Spirit Rock, S3 E10.mp3">Download audio</a> (5:27)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Quote:</b>  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/faculties.html">Faculties</a>] [<a href = "../tags/tudong.html">Tudong</a>] // <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/perfections.html">Perfections</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The base and foundation is the mindfulness. Being the knowing is always the foundation, and then the mind is able to become still, become settled, become steady.”  [<a href = "../tags/knowing-itself.html">Knowing itself</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Recollection:</b> "It's rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together." [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/pali.html">Pāli</a>]
+  <b>Recollection:</b> “It’s rare that Ajahn Chah would use [the Pāli term] pañña on its own. More often than not, he would use satipañña, which is mindfulness and wisdom together.” [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/pali.html">Pāli</a>]
 </p>
 <hr />
-<div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Oct. 20, 2012</div>
+<div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – Oct. 20, 2012</div>
 <p id="UD2012-4_S02_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" title="The Gradual Training, S2 E3" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" download="The Gradual Training, S2 E3.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: You spoke about suffusing the body with extreme well-being. But I've been in states like that and my body seems to disappear. [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>] [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" title="The Gradual Training, S2 E3" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" download="The Gradual Training, S2 E3.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: You spoke about suffusing the body with extreme well-being. But I’ve been in states like that and my body seems to disappear. [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>] [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “It isn't so much the experience of extreme well-being that is the goal. It's the ability to gain clarity and stability so that one can see through the experience as something that is uncertain or impermanent, has a changing nature. The mind often wants to disregard that. The tendency to identify self with experience on a refined mental level is tempered by the body experience.”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Quote:</b>  “It isn’t so much the experience of extreme well-being that is the goal. It’s the ability to gain clarity and stability so that one can see through the experience as something that is uncertain or impermanent, has a changing nature. The mind often wants to disregard that. The tendency to identify self with experience on a refined mental level is tempered by the body experience.”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Are you saying you can become attached to these states?” [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <hr />
-<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
+<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S03_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8" data-duration="508"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8.mp3">Download audio</a> (8:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I appreciate your emphasis on clarity, stability, and spaciousness. How does concentration relate to these?”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8" data-duration="508"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8.mp3">Download audio</a> (8:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I appreciate your emphasis on clarity, stability, and spaciousness. How does concentration relate to these?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.3:" target="_blank">AN 10.3:</a> Virtuous Behaivor; <a href="https://sutta.readingfaithfully.org/?q=AN-6.10" target="_blank">AN 6.10</a> Mahānāma [<a href = "../tags/virtue.html">Virtue</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The way my mind worked before was, 'Boy, when I get my concentration together, I'm going to be happy...'”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
+  <b>Quote:</b>  “The way my mind worked before was, ‘Boy, when I get my concentration together, I’m going to be happy...’”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The happy mind is easily concentrated.”  <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S46"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S46">Session 46</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 10, 2014</div>
+<div class="title" id="WR2014_S46"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S46">Session 46</a> – Mar. 10, 2014</div>
 <p id="WR2014_S46_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S46 E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S46 E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> The trio of Ajahn Anan, Ajahn Dtun, and Ajahn Piak. [<a href = "../tags/ajahn-anan.html">Ajahn Anan</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>] [<a href = "../tags/ajahn-piak.html">Ajahn Piak</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S46 E4" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S46 E4.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> The trio of Ajahn Anan, Ajahn Dtun, and Ajahn Piak. <b>Recollection</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-anan.html">Ajahn Anan</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>] [<a href = "../tags/ajahn-piak.html">Ajahn Piak</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Ajahn Dtun's path is the path of wisdom...Ajahn Piak is gifted in samādhi. And I have very strong faith.” — <a href = ../teachers/ajahn-anan.html>Ajahn Anan</a> [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/faith.html">Faith</a>]
+  <b>Quote:</b>  “Ajahn Dtun’s path is the path of wisdom...Ajahn Piak is gifted in samādhi. And I have very strong faith.” — <a href="../teachers/ajahn-anan.html">Ajahn Anan</a> [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 17, 2014</div>
+<div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – Mar. 17, 2014</div>
 <p id="WR2014_S51_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E2" data-duration="293"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E2.mp3">Download audio</a> (4:53)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “The citta is sometimes defined as pure awareness, and it being in the fourth khanda, but it sounds like here he's talking about the activity of awareness?”  [<a href = "../tags/heartmind.html">Heart/mind</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] // [<a href = "../tags/rebirth.html">Rebirth</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E2" data-duration="293"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E2.mp3">Download audio</a> (4:53)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “The citta is sometimes defined as pure awareness, and it being in the fourth khanda, but it sounds like here he’s talking about the activity of awareness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/heartmind.html">Heart/mind</a>] [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] // [<a href = "../tags/rebirth.html">Rebirth</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There is that which is beyond birth and death. And then you start asking, 'Well, what is it and how is it? How should it be?' It's just the same as in the Sabbāsava Sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-2.7" target="_blank">MN 2.7</a>)...As soon as you get into conceiving, you've already started the process of dukkha.”  [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Quote:</b>  “There is that which is beyond birth and death. And then you start asking, ‘Well, what is it and how is it? How should it be?’ It’s just the same as in the Sabbāsava Sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-2.7" target="_blank">MN 2.7</a>)...As soon as you get into conceiving, you’ve already started the process of dukkha.”  [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “So is it better to hear what he said and let it go when I notice awareness that's good, but I don't have to make anything out of it?” 
+  <b>Follow-up:</b> “So is it better to hear what he said and let it go when I notice awareness that’s good, but I don’t have to make anything out of it?” 
 </p>
 <p style="margin-left: 4em;">
   <b>Quote:</b>  “The investigation is not a conceiving. The best investigation is when the mind is exceedingly still and not conceiving, not creating concepts.”  [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
@@ -130,31 +160,43 @@
   <b>Follow-up:</b> “So is it a realizing, not a conceiving?” [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
+<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – May. 27, 2015</div>
 <p id="UD2015-2_S02_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" title="The Middle Way of Not-Self, S2 E8" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" download="The Middle Way of Not-Self, S2 E8.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you think it's enough to just be aware of the suffering that's caused by the clinging to self?”  [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" title="The Middle Way of Not-Self, S2 E8" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F08.mp3" download="The Middle Way of Not-Self, S2 E8.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Do you think it’s enough to just be aware of the suffering that’s caused by the clinging to self?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/not-self.html">Not-self</a>] // [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>] [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>] [<a href = "../tags/release.html">Release</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The most efficacious investigation comes from a still mind.”  <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F19">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F19.mp3" title="The Path of Practice, S1 E19" data-duration="357"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F19.mp3" download="The Path of Practice, S1 E19.mp3">Download audio</a> (5:57)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Comment</b>: I have one of these thinking minds, and over the years I'm learning more and more to just watch where my thoughts go. I'm getting more comfortable with that. At the same time, I've heard teachings that as you improve your concentration on the primary object, your mindfulness increases as well. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F19.mp3" title="The Path of Practice, S1 E19" data-duration="357"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F19.mp3" download="The Path of Practice, S1 E19.mp3">Download audio</a> (5:57)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Comment</b>: I have one of these thinking minds, and over the years I’m learning more and more to just watch where my thoughts go. I’m getting more comfortable with that. At the same time, I’ve heard teachings that as you improve your concentration on the primary object, your mindfulness increases as well. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/craving.html">Craving</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/craving.html">Craving</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The same word that is translated as concentration in English, when it's translated in Thai, is 'the firm establishing of the mind.' That has a different feel to it.”  <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/thai.html">Thai</a>]
+  <b>Quote:</b>  “The same word that is translated as concentration in English, when it’s translated in Thai, is ‘the firm establishing of the mind.’ That has a different feel to it.”  <b>[<a href = "../tags/concentration.html">Concentration</a>]</b> [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/thai.html">Thai</a>]
 </p>
 <hr />
-<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S03_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I'm working on trying to enjoy life. Do you have any ideas about this?”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I’m working on trying to enjoy life. Do you have any ideas about this?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  The Rule of St. Benedict and Ajahn Sucitto's talk "<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>." [<a href = "../tags/humility.html">Humility</a>]
+  The Rule of St. Benedict and Ajahn Sucitto’s talk “<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>.” [<a href = "../tags/humility.html">Humility</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> A BBC interviewer asks King Rama IX about original sin. [<a href = "../tags/media.html">Media</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
@@ -169,9 +211,13 @@
   <b>Quote:</b>  “The happy mind is easily concentrated.” <b>[<a href = "../tags/concentration.html">Concentration</a>]</b>
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F02.mp3" title="Tea Time Q&A with Ajahn Pasanno, E2" data-duration="670"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F02.mp3" download="Tea Time Q&A with Ajahn Pasanno, E2.mp3">Download audio</a> (11:10)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How to balance the tension between the warrior energy (taking action), the awareness of the perfection of all that is, and the weariness and humility that leads through this?”  [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/disenchantment.html">Disenchantment</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F02.mp3" title="Tea Time Q&A with Ajahn Pasanno, E2" data-duration="670"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F02.mp3" download="Tea Time Q&A with Ajahn Pasanno, E2.mp3">Download audio</a> (11:10)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How to balance the tension between the warrior energy (taking action), the awareness of the perfection of all that is, and the weariness and humility that leads through this?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/disenchantment.html">Disenchantment</a>] // [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-1.296" target="_blank">AN 1.296-305</a>: The Ten Recollections 
@@ -182,8 +228,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Concentration (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Concentration (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/concentration-quote.html">https://abhayagiri.org/questions/tags/concentration-quote.html</a>.</p>
 </footer>
 

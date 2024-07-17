@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/heedfulness.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/heedfulness.html#heedfulness"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHeedfulness (appamāda)
+  <div class="title"><a href="../drilldown/heedfulness.html#heedfulness" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHeedfulness (appamāda)
   </div>
 
 <div class="intro">
@@ -54,45 +64,98 @@
   Parent topic: <a href = "../tags/skillful-qualities.html">Skillful qualities</a><br>
   Subtopics: <a href = "../tags/sense-of-urgency.html">Sense of urgency</a>, <a href = "../tags/spiritual-search.html">Spiritual search</a><br>
   
-  5 excerpts, 12:22 total duration
+  6 excerpts, 35:11 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S18"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S18">Session 18</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 29, 2014</div>
+<div class="title" id="Chah2001_S02"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S02">Session 2</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S02_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S02_F03.mp3" title="Remembering Ajahn Chah Weekend, S2 E2" data-duration="804"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S02_F03.mp3" download="Remembering Ajahn Chah Weekend, S2 E2.mp3">Download audio</a> (13:24)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Teachings</b> to Marjorie by <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>, Part 1. Thai audio with English translation read by Kittisaro. [<a href = "../tags/thai-audio.html">Thai audio</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/moods-of-the-mind.html">Moods of the mind</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271" target="_blank">p. 233</a>. 
+</p>
+<p style="margin-left: 2em;">
+  Continued in <a href="../events/Chah2001.html#Chah2001_S13_F01">Part 2</a>. 
+</p>
+<hr />
+<div class="title" id="Chah2001_S08"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S08">Session 8</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S08_F00">
+  <audio-chip src="https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2008%20-%20Ajahn%20Chah%20Reading.mp3" title="Remembering Ajahn Chah Weekend, S8" data-duration="565"><a href="https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2008%20-%20Ajahn%20Chah%20Reading.mp3" download="Remembering Ajahn Chah Weekend, S8.mp3">Download audio</a> (9:25)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Meditation” from <em>Living Dhamma</em> by <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>, <a href="https://www.abhayagiri.org/media/books/chah_living_dhamma.pdf#page=53" target="_blank">pp. 50-53</a>. Read by Ajahn Jitindriyā. [<a href = "../tags/meditation.html">Meditation</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Cultivate the tree right from the seed.” [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
+</p>
+<p style="margin-left: 2em;">
+  “To practice in a way that’s peaceful means to place the mind neither too high or too low, but at the point of balance.” [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+</p>
+<p style="margin-left: 2em;">
+  “So many teachers, so many teachings.” [<a href = "../tags/teachers.html">Teachers</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Where there is knowing, there is no need to think.” [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Resolve that right now is the time for training the mind and nothing else.” [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.” [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/feeling.html">Feeling</a>]
+</p>
+<p style="margin-left: 4em;">
+  <b>Simile:</b> Chicken in a coop. 
+</p>
+<hr />
+<div class="title" id="WR2014_S18"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S18">Session 18</a> – Jan. 29, 2014</div>
 <p id="WR2014_S18_F04">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S18_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S18 E4" data-duration="322"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S18_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S18 E4.mp3">Download audio</a> (5:22)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Do you have any advice about how to hold a particularly strong “fighting spirit” teaching, like Ajahn Dtun?”  [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S18_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S18 E4" data-duration="322"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S18_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S18 E4.mp3">Download audio</a> (5:22)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Do you have any advice about how to hold a particularly strong “fighting spirit” teaching, like Ajahn Dtun?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-1.49:" target="_blank">AN 1.49:</a> The mind is radiant. 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “If you invite visitors into your home [the mind] and they just make a mess, then you want to close the door on them before they come in. You can't be too polite.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
+  <b>Quote:</b>  “If you invite visitors into your home [the mind] and they just make a mess, then you want to close the door on them before they come in. You can’t be too polite.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F10">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F10.mp3" title="Death and Dying, S1 E10" data-duration="146"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F10.mp3" download="Death and Dying, S1 E10.mp3">Download audio</a> (2:26)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “The suttas say 'The wise protect their diligence as their greatest treasure.' How does one protect one's diligence?”  <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>]
 </p>
 <hr />
 <p id="UD2014-1_S01_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F12.mp3" title="Death and Dying, S1 E12" data-duration="114"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F12.mp3" download="Death and Dying, S1 E12.mp3">Download audio</a> (1:54)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comments</b> about uncertainty, impermanence, and denial of the reality of one's own death. [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F10.mp3" title="Death and Dying, S1 E10" data-duration="146"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F10.mp3" download="Death and Dying, S1 E10.mp3">Download audio</a> (2:26)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “The suttas say ‘The wise protect their diligence as their greatest treasure.’ How does one protect one’s diligence?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>]
 </p>
 <hr />
-<div class="title" id="UD2017-2_S01"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<p id="UD2014-1_S01_F12">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F12.mp3" title="Death and Dying, S1 E12" data-duration="114"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F12.mp3" download="Death and Dying, S1 E12.mp3">Download audio</a> (1:54)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comments</b> about uncertainty, impermanence, and denial of the reality of one’s own death. [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>]
+>>>>>>> july-2024
+</p>
+<p style="margin-left: 2em;">
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
+</p>
+<hr />
+<div class="title" id="UD2017-2_S01"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S01">Session 1</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S01_F05">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F05.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E5" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F05.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E5.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Comment</b>: Appreciation for the similies of poking the cow and the herd of deer (<a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>). [<a href = "../tags/similes.html">Similes</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b> [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F06">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Sometimes I get very worried and keep thinking about something and get tired and stressed out. Is this what the Buddha meant by 'a day and a night' [in <a href="https://sutta.readingfaithfully.org/?q=MN-19.8" target="_blank">MN 19.8</a>]?”  [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] // [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/similes.html">Similes</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Sometimes I get very worried and keep thinking about something and get tired and stressed out. Is this what the Buddha meant by ‘a day and a night’ [in <a href="https://sutta.readingfaithfully.org/?q=MN-19.8" target="_blank">MN 19.8</a>]?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] // [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/similes.html">Similes</a>] <b>[<a href = "../tags/heedfulness.html">Heedfulness</a>]</b>
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Heedfulness,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Heedfulness,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/heedfulness.html">https://abhayagiri.org/questions/tags/heedfulness.html</a>.</p>
 </footer>
 

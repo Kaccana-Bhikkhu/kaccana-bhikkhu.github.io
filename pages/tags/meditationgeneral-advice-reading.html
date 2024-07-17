@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/meditationgeneral-advice-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/meditation.html#meditation"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMeditation/General advice 
+  <div class="title"><a href="../drilldown/meditation.html#meditation" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMeditation/General advice 
   </div>
 
 <div class="intro">
@@ -63,15 +73,15 @@
       <a href="../tags/meditationgeneral-advice-reading.html" class="active">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S10"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S10">Session 10</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S10"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S10">Session 10</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S10_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S10_F03.mp3" title="Recollections of Ajahn Chah, S10 E3" data-duration="100"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S10_F03.mp3" download="Recollections of Ajahn Chah, S10 E3.mp3">Download audio</a> (1:40)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Reading:</b> Catching a Lizard.  [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // <b>[<a href = "../tags/meditationgeneral-advice.html">Meditation/General advice</a>]</b> [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Meditation/General advice (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Meditation/General advice (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/meditationgeneral-advice-reading.html">https://abhayagiri.org/questions/tags/meditationgeneral-advice-reading.html</a>.</p>
 </footer>
 

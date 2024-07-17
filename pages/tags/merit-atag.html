@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/merit-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/skillful-qualities.html#skillful-qualities"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMerit (puñña)
+  <div class="title"><a href="../drilldown/skillful-qualities.html#skillful-qualities" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMerit (puñña)
   </div>
 
 <div class="intro">
@@ -54,10 +64,10 @@
   Parent topic: <a href = "../tags/skillful-qualities.html">Skillful qualities</a><br>
   
   
-  33 excerpts, 2:27:51 total duration
+  35 excerpts, 2:31:57 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/merit.html">All excerpts (33)</a>
+<div class="sublink2"> <a href="../tags/merit.html">All excerpts (35)</a>
       <a href="../tags/merit-qtag.html">Questions about (13)</a>
       <a href="../tags/merit-atag.html" class="active">Answers involving (12)</a>
       <a href="../tags/merit-story.html">Stories (6)</a>
@@ -66,16 +76,24 @@
       <a href="../tags/merit-reference.html">References (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F08.mp3" title="Metta Retreat, S4 E8" data-duration="214"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F08.mp3" download="Metta Retreat, S4 E8.mp3">Download audio</a> (3:34)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Please explain in English the Pali chant you give as a blessing at the meal and at other occasions.”  [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/pali.html">Pāli</a>] // [<a href = "../tags/translation.html">Translation</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F08.mp3" title="Metta Retreat, S4 E8" data-duration="214"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F08.mp3" download="Metta Retreat, S4 E8.mp3">Download audio</a> (3:34)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Please explain in English the Pali chant you give as a blessing at the meal and at other occasions.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/pali.html">Pāli</a>] // [<a href = "../tags/translation.html">Translation</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=59" target="_blank">p. 50</a> 
 </p>
 <hr />
 <p id="Metta2008_S04_F16">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F16.mp3" title="Metta Retreat, S4 E16" data-duration="478"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F16.mp3" download="Metta Retreat, S4 E16.mp3">Download audio</a> (7:58)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “I had an experience yeserday in which I may have seen a group of beings above us, particularly above you....I don't think I'm crazy, but I'm very interested in what the Dhamma says about otherworldly/non-material beings.”  [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/mental-illness.html">Mental illness</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/realms-of-existence.html">Realms of existence</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F16.mp3" title="Metta Retreat, S4 E16" data-duration="478"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F16.mp3" download="Metta Retreat, S4 E16.mp3">Download audio</a> (7:58)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “I had an experience yeserday in which I may have seen a group of beings above us, particularly above you....I don’t think I’m crazy, but I’m very interested in what the Dhamma says about otherworldly/non-material beings.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/mental-illness.html">Mental illness</a>] // [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/realms-of-existence.html">Realms of existence</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Recollection:</b> Spirits at Wat Pah Nanachat would request Ajahn Pasanno to dedicate merit. [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/funerals.html">Funerals</a>] [<a href = "../tags/ghost.html">Ghost</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b>
@@ -87,79 +105,111 @@
   <b>Story:</b> Ajahn Plien declares Casa Serena free of ghosts. [<a href = "../tags/ajahn-plien.html">Ajahn Plien</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/rebirth.html">Rebirth</a>]
 </p>
 <hr />
-<div class="title" id="UD2012-3_S02"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Aug. 19, 2012</div>
+<div class="title" id="UD2012-3_S02"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S02">Session 2</a> – Aug. 19, 2012</div>
 <p id="UD2012-3_S02_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F03.mp3" title="Brightening the Mind, S2 E3" data-duration="285"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F03.mp3" download="Brightening the Mind, S2 E3.mp3">Download audio</a> (4:45)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I've heard that devas and brahmas aren't able to become enlightened. Is that right?”  Answered by <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/recollectiondevas.html">Recollection/Devas</a>] // [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/heedlessness.html">Heedlessness</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F03.mp3" title="Brightening the Mind, S2 E3" data-duration="285"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F03.mp3" download="Brightening the Mind, S2 E3.mp3">Download audio</a> (4:45)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I’ve heard that devas and brahmas aren’t able to become enlightened. Is that right?”  Answered by <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/recollectiondevas.html">Recollection/Devas</a>] // [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/heedlessness.html">Heedlessness</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-56.11:" target="_blank">SN 56.11:</a> Dhammacakkappavattana Sutta 
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Sudanto's pūjā on Mount Hood. [<a href = "../tags/pacific-hermitage.html">Pacific Hermitage</a>] [<a href = "../tags/puja.html">Pūjā</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/goodwill.html">Goodwill</a>]
+  <b>Story:</b> Ajahn Sudanto’s pūjā on Mount Hood. [<a href = "../tags/pacific-hermitage.html">Pacific Hermitage</a>] [<a href = "../tags/puja.html">Pūjā</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/goodwill.html">Goodwill</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S46"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S46">Session 46</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 10, 2014</div>
+<div class="title" id="WR2014_S46"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S46">Session 46</a> – Mar. 10, 2014</div>
 <p id="WR2014_S46_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F14.mp3" title="Abhayagiri 2014 Winter Retreat, S46 E14" data-duration="285"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F14.mp3" download="Abhayagiri 2014 Winter Retreat, S46 E14.mp3">Download audio</a> (4:45)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “If you don't think you will reach Nibbāna in this life, did Ajahn Chah advise a place to aspire for rebirth in?”  [<a href = "../tags/ajahn-anan.html">Ajahn Anan</a>] [<a href = "../tags/pure-land.html">Pure Land</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F14.mp3" title="Abhayagiri 2014 Winter Retreat, S46 E14" data-duration="285"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S46_F14.mp3" download="Abhayagiri 2014 Winter Retreat, S46 E14.mp3">Download audio</a> (4:45)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “If you don’t think you will reach Nibbāna in this life, did Ajahn Chah advise a place to aspire for rebirth in?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-anan.html">Ajahn Anan</a>] [<a href = "../tags/pure-land.html">Pure Land</a>] [<a href = "../tags/ajahn-dtun.html">Ajahn Dtun</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F26">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F26.mp3" title="Death and Dying, S1 E26" data-duration="163"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F26.mp3" download="Death and Dying, S1 E26.mp3">Download audio</a> (2:43)</audio-chip><br /> <b style="text-decoration: underline;">26.</b> “If a family member who has passed turns into a hungry ghost, how might one help them when they're in that realm?”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/ghost.html">Ghost</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/merit.html">Merit</a>]</b>
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F26.mp3" title="Death and Dying, S1 E26" data-duration="163"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F26.mp3" download="Death and Dying, S1 E26.mp3">Download audio</a> (2:43)</audio-chip><br /> <b style="text-decoration: underline;">26.</b> “If a family member who has passed turns into a hungry ghost, how might one help them when they’re in that realm?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/rebirth.html">Rebirth</a>] [<a href = "../tags/ghost.html">Ghost</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/merit.html">Merit</a>]</b>
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.177:" target="_blank">AN 10.177:</a> Jāṇussoṇī 
 </p>
 <p style="margin-left: 2em;">
-  <b>Follow-up:</b> “Does it work the same way if the person hasn't made much merit?” [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/human.html">Human</a>]
+  <b>Follow-up:</b> “Does it work the same way if the person hasn’t made much merit?” [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/human.html">Human</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>, Jeanne Daskais and <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – May. 9, 2014</div>
 <p id="UD2014-1_S02_F14">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F14.mp3" title="Death and Dying, S2 E14" data-duration="70"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F14.mp3" download="Death and Dying, S2 E14.mp3">Download audio</a> (1:10)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “Ajahn Pasanno, in your Dhamma talk "<a href="https://www.abhayagiri.org/talks/6152-letting-go-of-the-wheel" target="_blank">Letting Go of the Wheel</a>," you described a driver who saw an oncoming car cross into his lane and let go of the wheel. Is this a metaphor?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/death.html">Death</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F14.mp3" title="Death and Dying, S2 E14" data-duration="70"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F14.mp3" download="Death and Dying, S2 E14.mp3">Download audio</a> (1:10)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “Ajahn Pasanno, in your Dhamma talk “<a href="https://www.abhayagiri.org/talks/6152-letting-go-of-the-wheel" target="_blank">Letting Go of the Wheel</a>,” you described a driver who saw an oncoming car cross into his lane and let go of the wheel. Is this a metaphor?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/death.html">Death</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “When there's death in your face, you don't start negotiating. You have to be willing to let go.”  
+  <b>Quote:</b>  “When there’s death in your face, you don’t start negotiating. You have to be willing to let go.”  
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “So do you let your merit carry you?” <b>[<a href = "../tags/merit.html">Merit</a>]</b>
 </p>
 <hr />
-<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 18, 2014</div>
+<div class="title" id="DRBU2014_S00"><a href="../events/DRBU2014.html">Questions and Answers with Dharma Realm Buddhist University</a><a href="../events/DRBU2014.html"></a> – Nov. 18, 2014</div>
 <p id="DRBU2014_S00_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F02.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E2" data-duration="378"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F02.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E2.mp3">Download audio</a> (6:18)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “<a href="https://www.abhayagiri.org/media/books/lee_autobiography_of_phra_ajaan_lee.pdf" target="_blank">Ajahn Lee's biography</a> contrasts the lives of city and forest monks. Is the lifesytle here (Abhayagiri) similar to the dhutaṅga monks?”  [<a href = "../tags/ajahn-lee-dhammadharo.html">Ajahn Lee Dhammadharo</a>] [<a href = "../tags/forest-versus-city-monks.html">Forest versus city monks</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] // [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/learning.html">Learning</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/nibbana.html">Nibbāna</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F02.mp3" title="Questions and Answers with Dharma Realm Buddhist University, E2" data-duration="378"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/DRBU2014/DRBU2014_S00_F02.mp3" download="Questions and Answers with Dharma Realm Buddhist University, E2.mp3">Download audio</a> (6:18)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “<a href="https://www.abhayagiri.org/media/books/lee_autobiography_of_phra_ajaan_lee.pdf" target="_blank">Ajahn Lee’s biography</a> contrasts the lives of city and forest monks. Is the lifesytle here (Abhayagiri) similar to the dhutaṅga monks?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-lee-dhammadharo.html">Ajahn Lee Dhammadharo</a>] [<a href = "../tags/forest-versus-city-monks.html">Forest versus city monks</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] // [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/learning.html">Learning</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/nibbana.html">Nibbāna</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S02_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F12.mp3" title="Suttas You've Never Heard Of, S2 E12" data-duration="118"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F12.mp3" download="Suttas You've Never Heard Of, S2 E12.mp3">Download audio</a> (1:58)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comments</b> about ongoing Dhamma practice and coming back to the heart. [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/ill-will.html">Ill-will</a>] [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/merit.html">Merit</a>]</b>
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/merit.html">Merit</a>]</b>
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “We're making choices all the time anyway; we may as well choose to be happy.”  [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/happiness.html">Happiness</a>]
+  <b>Quote:</b>  “We’re making choices all the time anyway; we may as well choose to be happy.”  [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/happiness.html">Happiness</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-2_S01"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2018</div>
+<div class="title" id="UD2018-2_S01"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S01">Session 1</a> – Jun. 2, 2018</div>
 <p id="UD2018-2_S01_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S01_F08.mp3" title="Chanting, S1 E8" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S01_F08.mp3" download="Chanting, S1 E8.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Can we approach chanting as praying for someone in a difficult situation?”  [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/chanting.html">Chanting</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/right-intention.html">Right Intention</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S01_F08.mp3" title="Chanting, S1 E8" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S01_F08.mp3" download="Chanting, S1 E8.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Can we approach chanting as praying for someone in a difficult situation?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/chanting.html">Chanting</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/right-intention.html">Right Intention</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="UD2018-2_S03"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S03">Session 3</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2018</div>
+<div class="title" id="UD2018-2_S03"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S03">Session 3</a> – Jun. 2, 2018</div>
 <p id="UD2018-2_S03_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F08.mp3" title="Chanting, S3 E8" data-duration="149"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F08.mp3" download="Chanting, S3 E8.mp3">Download audio</a> (2:29)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “The Verses of Sharing and Aspiration translates paccekabuddha as 'The Solitary Buddha is my noble guide.' What's going on here?”  Answered by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/buddha.html">Buddha</a>] // <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F08.mp3" title="Chanting, S3 E8" data-duration="149"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F08.mp3" download="Chanting, S3 E8.mp3">Download audio</a> (2:29)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “The Verses of Sharing and Aspiration translates paccekabuddha as ‘The Solitary Buddha is my noble guide.’ What’s going on here?”  Answered by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/buddha.html">Buddha</a>] // <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
   <b>Reference</b>: <em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=42" target="_blank">p. 33</a> 
 </p>
 <hr />
-<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S03_F03">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I'm working on trying to enjoy life. Do you have any ideas about this?”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I’m working on trying to enjoy life. Do you have any ideas about this?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+>>>>>>> july-2024
 </p>
 <p style="margin-left: 2em;">
-  The Rule of St. Benedict and Ajahn Sucitto's talk "<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>." [<a href = "../tags/humility.html">Humility</a>]
+  The Rule of St. Benedict and Ajahn Sucitto’s talk “<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>.” [<a href = "../tags/humility.html">Humility</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> A BBC interviewer asks King Rama IX about original sin. [<a href = "../tags/media.html">Media</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
@@ -174,15 +224,19 @@
   <b>Quote:</b>  “The happy mind is easily concentrated.” 
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F08">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F08.mp3" title="Tea Time Q&A with Ajahn Pasanno, E8" data-duration="291"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F08.mp3" download="Tea Time Q&A with Ajahn Pasanno, E8.mp3">Download audio</a> (4:51)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Any advice to guide me after retirement? How to get rid of the fear of death?”  [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/happiness.html">Happiness</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F08.mp3" title="Tea Time Q&A with Ajahn Pasanno, E8" data-duration="291"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F08.mp3" download="Tea Time Q&A with Ajahn Pasanno, E8.mp3">Download audio</a> (4:51)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Any advice to guide me after retirement? How to get rid of the fear of death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] // [<a href = "../tags/happiness.html">Happiness</a>] <b>[<a href = "../tags/merit.html">Merit</a>]</b> [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Merit (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Merit (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/merit-atag.html">https://abhayagiri.org/questions/tags/merit-atag.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/non-return.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/stages-of-awakening.html#stages-of-awakening"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspNon-return (anāgamī)
+  <div class="title"><a href="../drilldown/stages-of-awakening.html#stages-of-awakening" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspNon-return (anāgamī)
   </div>
 
 <div class="intro">
@@ -57,20 +67,28 @@
   2 excerpts, 3:35 total duration
 </strong>
 <hr />
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F07">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F07.mp3" title="Metta Retreat, S4 E7" data-duration="54"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F07.mp3" download="Metta Retreat, S4 E7.mp3">Download audio</a> (0:54)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Was Ajahn Chah an anāgamī when Ajahn Chah got angry with that young monk? I thought the root of anger was uprooted at that stage.”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/non-return.html">Non-return</a>]</b> [<a href = "../tags/aversion.html">Aversion</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F07.mp3" title="Metta Retreat, S4 E7" data-duration="54"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F07.mp3" download="Metta Retreat, S4 E7.mp3">Download audio</a> (0:54)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Was Ajahn Chah an anāgamī when Ajahn Chah got angry with that young monk? I thought the root of anger was uprooted at that stage.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/non-return.html">Non-return</a>]</b> [<a href = "../tags/aversion.html">Aversion</a>]
+>>>>>>> july-2024
 </p>
 <hr />
-<div class="title" id="WR2015_S05"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S05">Session 5</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Jan. 10, 2015</div>
+<div class="title" id="WR2015_S05"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S05">Session 5</a> – Jan. 10, 2015</div>
 <p id="WR2015_S05_F01">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S5 E1" data-duration="161"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S5 E1.mp3">Download audio</a> (2:41)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Do you need to be a non-returner to be free from the fear of death?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/non-return.html">Non-return</a>]</b> [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] // [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/faith.html">Faith</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S5 E1" data-duration="161"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S5 E1.mp3">Download audio</a> (2:41)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Do you need to be a non-returner to be free from the fear of death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/non-return.html">Non-return</a>]</b> [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] // [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/faith.html">Faith</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Non-return,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Non-return,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/non-return.html">https://abhayagiri.org/questions/tags/non-return.html</a>.</p>
 </footer>
 

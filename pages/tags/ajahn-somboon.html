@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-somboon.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Somboon Cittapañño 
+  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Somboon Cittapañño 
   </div>
 
 <div class="intro">
@@ -57,15 +67,19 @@
   1 excerpt, 1:17 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 11, 2014</div>
+<div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – Mar. 11, 2014</div>
 <p id="WR2014_S47_F02">
+<<<<<<< HEAD
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E2" data-duration="77"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E2.mp3">Download audio</a> (1:17)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Somboon spends a vassa at Wat Pah Pong. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-somboon.html">Ajahn Somboon</a>]</b> [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/ardency.html">Ardency</a>]
+=======
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E2" data-duration="77"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E2.mp3">Download audio</a> (1:17)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Somboon spends a vassa at Wat Pah Pong. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-somboon.html">Ajahn Somboon</a>]</b> [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/ardency.html">Ardency</a>]
+>>>>>>> july-2024
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Somboon Cittapañño,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Somboon Cittapañño,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-somboon.html">https://abhayagiri.org/questions/tags/ajahn-somboon.html</a>.</p>
 </footer>
 

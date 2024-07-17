@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#drilldown/language.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -55,46 +65,46 @@
 Numbers in parentheses following tag names: (number of excerpts tagged/number of excerpts tagged with this tag or its subtags).<br><br>
 <div class="listing">
   <p id="skillful-qualities" style="margin-left: 0em;">
-    <a href="../drilldown/skillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/skillful-qualities.html">Skillful qualities</a> (55/1344) (kusalā dhammā)
+    <a href="../drilldown/skillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/skillful-qualities.html">Skillful qualities</a> (55/1425) (kusalā dhammā)
   </p>
   <p id="unskillful-qualities" style="margin-left: 0em;">
-    <a href="../drilldown/unskillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a> (31/495) (akusalā dhammā)
+    <a href="../drilldown/unskillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a> (31/529) (akusalā dhammā)
   </p>
   <p id="indeterminate-qualities" style="margin-left: 0em;">
-    <a href="../drilldown/indeterminate-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> Indeterminate qualities (-/687) (abyākatā dhammā)
+    <a href="../drilldown/indeterminate-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> Indeterminate qualities (-/729) (abyākatā dhammā)
   </p>
   <p id="three-refuges" style="margin-left: 0em;">
-    <a href="../drilldown/three-refuges.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/three-refuges.html">Three Refuges</a> (21/174) (tisaraṇa)
+    <a href="../drilldown/three-refuges.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/three-refuges.html">Three Refuges</a> (29/197) (tisaraṇa)
   </p>
   <p id="devotional-practice" style="margin-left: 0em;">
-    <a href="../drilldown/devotional-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/devotional-practice.html">Devotional practice</a> (22/153)
+    <a href="../drilldown/devotional-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/devotional-practice.html">Devotional practice</a> (22/175)
   </p>
   <p id="precepts" style="margin-left: 0em;">
-    <a href="../drilldown/precepts.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/precepts.html">Precepts</a> (28/145) (sikkhāpada)
+    <a href="../drilldown/precepts.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/precepts.html">Precepts</a> (28/163) (sikkhāpada)
   </p>
   <p id="meditation" style="margin-left: 0em;">
-    <a href="../drilldown/meditation.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/meditation.html">Meditation</a> (57/928) (bhāvanā)
+    <a href="../drilldown/meditation.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/meditation.html">Meditation</a> (66/974) (bhāvanā)
   </p>
   <p id="teaching-dhamma" style="margin-left: 0em;">
-    <a href="../drilldown/teaching-dhamma.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a> (86/733)
+    <a href="../drilldown/teaching-dhamma.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a> (103/790)
   </p>
   <p id="teachers" style="margin-left: 0em;">
-    <a href="../drilldown/teachers.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/teachers.html">Teachers</a> (9/683)
+    <a href="../drilldown/teachers.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/teachers.html">Teachers</a> (14/790)
   </p>
   <p id="monasteries" style="margin-left: 0em;">
-    <a href="../drilldown/monasteries.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/monasteries.html">Monasteries</a> (6/203)
+    <a href="../drilldown/monasteries.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/monasteries.html">Monasteries</a> (6/235)
   </p>
   <p id="nature-of-the-cosmos" style="margin-left: 0em;">
-    <a href="../drilldown/nature-of-the-cosmos.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a> (10/237)
+    <a href="../drilldown/nature-of-the-cosmos.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a> (10/252)
   </p>
   <p id="history" style="margin-left: 0em;">
-    <a href="../drilldown/history.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/history.html">History</a> (3/142)
+    <a href="../drilldown/history.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/history.html">History</a> (3/151)
   </p>
   <p id="cultural-context" style="margin-left: 0em;">
-    <a href="../drilldown/root.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/cultural-context.html">Cultural context</a> (13/357)
+    <a href="../drilldown/root.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/cultural-context.html">Cultural context</a> (13/391)
   </p>
   <p id="culturenatural-environment" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a> (23)
+    &nbsp <a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a> (31)
   </p>
   <p id="cultureasia" style="margin-left: 2em;">
     &nbsp <a href = "../tags/cultureasia.html">Culture/Asia</a> (1)
@@ -106,25 +116,25 @@ Numbers in parentheses following tag names: (number of excerpts tagged/number of
     &nbsp <a href = "../tags/culturesri-lanka.html">Culture/Sri Lanka</a> (1)
   </p>
   <p id="culturethailand" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/culturethailand.html">Culture/Thailand</a> (113)
+    &nbsp <a href = "../tags/culturethailand.html">Culture/Thailand</a> (123)
   </p>
   <p id="culturenative-american" style="margin-left: 2em;">
     &nbsp <a href = "../tags/culturenative-american.html">Culture/Native American</a> (1)
   </p>
   <p id="culturewest" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/culturewest.html">Culture/West</a> (91)
+    &nbsp <a href = "../tags/culturewest.html">Culture/West</a> (104)
   </p>
   <p id="women-in-buddhism" style="margin-left: 2em;">
-    <a href="../drilldown/women-in-buddhism.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/women-in-buddhism.html">Women in Buddhism</a> (6/15)
+    <a href="../drilldown/women-in-buddhism.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/women-in-buddhism.html">Women in Buddhism</a> (7/20)
   </p>
   <p id="language" style="margin-left: 2em;">
-    <a href="../drilldown/cultural-context.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/language.html">Language</a> (32/141)
+    <a href="../drilldown/cultural-context.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/language.html">Language</a> (34/145)
   </p>
   <p id="pali" style="margin-left: 4em;">
     &nbsp <a href = "../tags/pali.html">Pāli</a> (65)
   </p>
   <p id="thai" style="margin-left: 4em;">
-    <a href="../drilldown/thai.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/thai.html">Thai</a> (34/36)
+    <a href="../drilldown/thai.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/thai.html">Thai</a> (34/38)
   </p>
   <p id="translation" style="margin-left: 4em;">
     &nbsp <a href = "../tags/translation.html">Translation</a> (51)
@@ -139,20 +149,20 @@ Numbers in parentheses following tag names: (number of excerpts tagged/number of
     <a href="../drilldown/popular-culture.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/popular-culture.html">Popular culture</a> (0/2)
   </p>
   <p id="spiritual-traditions" style="margin-left: 0em;">
-    <a href="../drilldown/spiritual-traditions.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/spiritual-traditions.html">Spiritual traditions</a> (4/68)
+    <a href="../drilldown/spiritual-traditions.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/spiritual-traditions.html">Spiritual traditions</a> (5/73)
   </p>
   <p id="renunciant-practice" style="margin-left: 0em;">
-    <a href="../drilldown/renunciant-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/renunciant-practice.html">Renunciant practice</a> (1/522)
+    <a href="../drilldown/renunciant-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/renunciant-practice.html">Renunciant practice</a> (1/584)
   </p>
   <p id="everyday-life" style="margin-left: 0em;">
-    <a href="../drilldown/everyday-life.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/everyday-life.html">Everyday life practice</a> (25/492)
+    <a href="../drilldown/everyday-life.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/everyday-life.html">Everyday life practice</a> (25/540)
   </p>
 </div>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Hierarchical tags: Language,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Hierarchical tags: Language,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/drilldown/language.html">https://abhayagiri.org/questions/drilldown/language.html</a>.</p>
 </footer>
 

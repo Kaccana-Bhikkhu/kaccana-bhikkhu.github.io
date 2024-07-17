@@ -12,7 +12,7 @@ import re, copy, itertools
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
 from functools import lru_cache
-from typing import NamedTuple
+from typing import NamedTuple, Generator
 from collections import defaultdict, Counter
 import itertools
 import FileRegister
@@ -140,7 +140,7 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
     def HtmlTeacherLink(matchObject: re.Match) -> str:
         teacher = Utils.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
-        return f'<a href = {htmlFile}>{matchObject[1]}</a>'
+        return f'<a href="{htmlFile}">{matchObject[1]}</a>'
 
     return re.sub(teacherRegex,HtmlTeacherLink,text)
 
@@ -149,7 +149,7 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
     """Write a list of hyperlinked teachers.
     teachers is a list of abbreviated teacher names"""
     
-    fullNameList = [gDatabase["teacher"][t]["fullName"] for t in teachers]
+    fullNameList = [gDatabase["teacher"][t]["attributionName"] for t in teachers]
     
     return LinkTeachersInText(ItemList(fullNameList,*args,**kwargs))
 
@@ -282,7 +282,7 @@ def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
 
 def DrilldownIconLink(tag: str,iconWidth = 20):
     drillDownPage = "../drilldown/" + DrilldownPageFile(gDatabase["tag"][tag]["listIndex"],jumpToEntry=True)
-    return Html.Tag("a",dict(href=drillDownPage))(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=iconWidth)).prefix)
+    return Html.Tag("a",dict(href=drillDownPage,title="Show in tag hierarchy"))(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=iconWidth)).prefix)
 
 def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
     """Write a series of html files to create a hierarchial drill-down list of tags."""
@@ -354,7 +354,7 @@ def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     numberNames = {3:"Threes", 4:"Fours", 5:"Fives", 6:"Sixes", 7:"Sevens", 8:"Eights",
                    9:"Nines", 10:"Tens", 12: "Twelves", 37:"Thiry-sevens"}
-    def SubtagList(tag: dict) -> tuple(str,str,str):
+    def SubtagList(tag: dict) -> tuple[str,str,str]:
         number = int(tag["number"])
         numberName = numberNames[number]
 
@@ -731,7 +731,7 @@ class Formatter:
         elif self.audioLinks != "chip":
             a(f'({excerpt["duration"]}) ')
 
-        def ListAttributionKeys() -> Tuple[str,str]:
+        def ListAttributionKeys() -> Generator[Tuple[str,str]]:
             for num in range(1,10):
                 numStr = str(num) if num > 1 else ""
                 yield ("attribution" + numStr, "teachers" + numStr)
@@ -1212,7 +1212,7 @@ def ListEventsBySeries(events: list[dict]) -> str:
         "Return the index of the series of this event for sorting purposes"
         return list(gDatabase["series"]).index(event["series"])
     
-    def LinkToAboutSeries(event: dict) -> tuple(str,str,str):
+    def LinkToAboutSeries(event: dict) -> tuple[str,str,str]:
         htmlHeading = event["series"]
         
         nonlocal prevSeries
@@ -1295,6 +1295,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.excerptBoldTags = set([tag])
         formatter.headingShowTags = False
         formatter.excerptOmitSessionTags = False
+        formatter.headingShowTeacher = False
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
         pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
@@ -1823,10 +1824,10 @@ def main():
                                       extraItems=[technicalMenu]))
     mainMenu.append(DocumentationMenu("misc",makeMenu=False))
 
+    mainMenu.append(YieldAllIf(SearchMenu("search"),"search" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
-    mainMenu.append(YieldAllIf(SearchMenu("search"),"search" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
 
     mainMenu.append([Html.PageInfo("Back to Abhayagiri.org","https://www.abhayagiri.org/questions-and-stories")])

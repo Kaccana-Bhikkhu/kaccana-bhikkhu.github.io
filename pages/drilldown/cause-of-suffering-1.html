@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#drilldown/cause-of-suffering-1.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -55,58 +65,58 @@
 Numbers in parentheses following tag names: (number of excerpts tagged/number of excerpts tagged with this tag or its subtags).<br><br>
 <div class="listing">
   <p id="skillful-qualities" style="margin-left: 0em;">
-    <a href="../drilldown/skillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/skillful-qualities.html">Skillful qualities</a> (55/1344) (kusalā dhammā)
+    <a href="../drilldown/skillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/skillful-qualities.html">Skillful qualities</a> (55/1425) (kusalā dhammā)
   </p>
   <p id="unskillful-qualities" style="margin-left: 0em;">
-    <a href="../drilldown/unskillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a> (31/495) (akusalā dhammā)
+    <a href="../drilldown/unskillful-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a> (31/529) (akusalā dhammā)
   </p>
   <p id="indeterminate-qualities" style="margin-left: 0em;">
-    <a href="../drilldown/indeterminate-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> Indeterminate qualities (-/687) (abyākatā dhammā)
+    <a href="../drilldown/indeterminate-qualities.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> Indeterminate qualities (-/729) (abyākatā dhammā)
   </p>
   <p id="three-refuges" style="margin-left: 0em;">
-    <a href="../drilldown/three-refuges.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/three-refuges.html">Three Refuges</a> (21/174) (tisaraṇa)
+    <a href="../drilldown/three-refuges.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/three-refuges.html">Three Refuges</a> (29/197) (tisaraṇa)
   </p>
   <p id="devotional-practice" style="margin-left: 0em;">
-    <a href="../drilldown/devotional-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/devotional-practice.html">Devotional practice</a> (22/153)
+    <a href="../drilldown/devotional-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/devotional-practice.html">Devotional practice</a> (22/175)
   </p>
   <p id="precepts" style="margin-left: 0em;">
-    <a href="../drilldown/precepts.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/precepts.html">Precepts</a> (28/145) (sikkhāpada)
+    <a href="../drilldown/precepts.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/precepts.html">Precepts</a> (28/163) (sikkhāpada)
   </p>
   <p id="meditation" style="margin-left: 0em;">
-    <a href="../drilldown/meditation.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/meditation.html">Meditation</a> (57/928) (bhāvanā)
+    <a href="../drilldown/meditation.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/meditation.html">Meditation</a> (66/974) (bhāvanā)
   </p>
   <p id="teaching-dhamma" style="margin-left: 0em;">
-    <a href="../drilldown/root.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a> (86/733)
+    <a href="../drilldown/root.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a> (103/790)
   </p>
   <p id="gradual-teaching" style="margin-left: 2em;">
-    <a href="../drilldown/teaching-dhamma.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/gradual-teaching.html">The Gradual Teaching</a> (17/591) (anupubbikathā)
+    <a href="../drilldown/teaching-dhamma.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/gradual-teaching.html">The Gradual Teaching</a> (17/630) (anupubbikathā)
   </p>
   <p id="generosity" style="margin-left: 4em;">
-    &nbsp <a href = "../tags/generosity.html">Generosity</a> (66) (dāna)
+    &nbsp <a href = "../tags/generosity.html">Generosity</a> (72) (dāna)
   </p>
   <p id="virtue" style="margin-left: 4em;">
-    &nbsp <a href = "../tags/virtue.html">Virtue</a> (49) (sīla)
+    &nbsp <a href = "../tags/virtue.html">Virtue</a> (50) (sīla)
   </p>
   <p id="deva" style="margin-left: 4em;">
     &nbsp Rewards of heaven (sagga) see <a href = "../tags/deva.html">Deva</a> (26)
   </p>
   <p id="sensual-desire" style="margin-left: 4em;">
-    &nbsp Danger of sensual pleasure (kāmānaṃ ādīnava) see <a href = "../tags/sensual-desire.html">Sensual desire</a> (33)
+    &nbsp Danger of sensual pleasure (kāmānaṃ ādīnava) see <a href = "../tags/sensual-desire.html">Sensual desire</a> (43)
   </p>
   <p id="renunciation" style="margin-left: 4em;">
-    &nbsp <a href = "../tags/renunciation.html">Renunciation</a> (13) (nekkhama)
+    &nbsp <a href = "../tags/renunciation.html">Renunciation</a> (14) (nekkhama)
   </p>
   <p id="four-noble-truths" style="margin-left: 4em;">
-    <a href="../drilldown/gradual-teaching.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/four-noble-truths.html">Four Noble Truths</a> (33/495) (cattāri ariya-saccāni)
+    <a href="../drilldown/gradual-teaching.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> <a href = "../tags/four-noble-truths.html">Four Noble Truths</a> (34/533) (cattāri ariya-saccāni)
   </p>
   <p id="noble-truth-of-suffering" style="margin-left: 6em;">
-    <a href="../drilldown/noble-truth-of-suffering-1.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> 1. <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a> (13/219) (dukkha ariya-sacca)
+    <a href="../drilldown/noble-truth-of-suffering-1.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> 1. <a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a> (15/236) (dukkha ariya-sacca)
   </p>
   <p id="cause-of-suffering" style="margin-left: 6em;">
-    <a href="../drilldown/four-noble-truths-2.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> 2. <a href = "../tags/cause-of-suffering.html">Noble Truth of the Cause of Suffering</a> (16/81) (dukkha-samudaya ariya-sacca)
+    <a href="../drilldown/four-noble-truths-2.html#_keep_scroll"><i class="fa fa-minus-square"></i></a> 2. <a href = "../tags/cause-of-suffering.html">Noble Truth of the Cause of Suffering</a> (17/92) (dukkha-samudaya ariya-sacca)
   </p>
   <p id="sensual-desire" style="margin-left: 8em;">
-    &nbsp 1. Craving for sensuality (kāma-taṇhā) see <a href = "../tags/sensual-desire.html">Sensual desire</a> (33)
+    &nbsp 1. Craving for sensuality (kāma-taṇhā) see <a href = "../tags/sensual-desire.html">Sensual desire</a> (43)
   </p>
   <p id="becoming" style="margin-left: 8em;">
     &nbsp 2. Craving to become (bhava-taṇhā) see <a href = "../tags/becoming.html">Becoming</a> (21)
@@ -115,74 +125,74 @@ Numbers in parentheses following tag names: (number of excerpts tagged/number of
     &nbsp 3. <a href = "../tags/craving-not-to-become.html">Craving not to become</a> (15) (vibhava-taṇhā)
   </p>
   <p id="cessation-of-suffering" style="margin-left: 6em;">
-    <a href="../drilldown/cessation-of-suffering-1.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> 3. <a href = "../tags/cessation-of-suffering.html">Noble Truth of the Cessation of Suffering</a> (37/213) (dukkha-nirodha ariya-saccaṃ)
+    <a href="../drilldown/cessation-of-suffering-1.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> 3. <a href = "../tags/cessation-of-suffering.html">Noble Truth of the Cessation of Suffering</a> (40/228) (dukkha-nirodha ariya-saccaṃ)
   </p>
   <p id="eightfold-path" style="margin-left: 6em;">
     &nbsp 4. Noble Truth of the Path to the Cessation of Suffering (dukkha-nirodha-gāminī paṭipadā ariya-sacca) see <a href = "../tags/eightfold-path.html">Eightfold Path</a> (39)
   </p>
   <p id="questions" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/questions.html">Questions</a> (15)
+    &nbsp <a href = "../tags/questions.html">Questions</a> (16)
   </p>
   <p id="dhamma-discussion" style="margin-left: 2em;">
     &nbsp <a href = "../tags/dhamma-discussion.html">Dhamma discussion</a> (2)
   </p>
   <p id="mentoring" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/mentoring.html">Mentoring</a> (10)
+    &nbsp <a href = "../tags/mentoring.html">Mentoring</a> (14)
   </p>
   <p id="personal-presence" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/personal-presence.html">Personal presence</a> (11)
+    &nbsp <a href = "../tags/personal-presence.html">Personal presence</a> (16)
   </p>
   <p id="admonishmentfeedback" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a> (18)
+    &nbsp <a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a> (21)
   </p>
   <p id="fiercedirect-teaching" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a> (22)
+    &nbsp <a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a> (31)
   </p>
   <p id="stories" style="margin-left: 2em;">
     &nbsp <a href = "../tags/stories.html">Stories</a> (2)
   </p>
   <p id="similes" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/similes.html">Similes</a> (61)
+    &nbsp <a href = "../tags/similes.html">Similes</a> (64)
   </p>
   <p id="symbolism" style="margin-left: 2em;">
     &nbsp <a href = "../tags/symbolism.html">Symbolism</a> (2)
   </p>
   <p id="dhamma-books" style="margin-left: 2em;">
-    &nbsp <a href = "../tags/dhamma-books.html">Dhamma books</a> (28)
+    <a href="../drilldown/dhamma-books.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/dhamma-books.html">Dhamma books</a> (29/31)
   </p>
   <p id="dhamma-online" style="margin-left: 2em;">
     &nbsp <a href = "../tags/dhamma-online.html">Dhamma online</a> (5)
   </p>
   <p id="teachers" style="margin-left: 0em;">
-    <a href="../drilldown/teachers.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/teachers.html">Teachers</a> (9/683)
+    <a href="../drilldown/teachers.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/teachers.html">Teachers</a> (14/790)
   </p>
   <p id="monasteries" style="margin-left: 0em;">
-    <a href="../drilldown/monasteries.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/monasteries.html">Monasteries</a> (6/203)
+    <a href="../drilldown/monasteries.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/monasteries.html">Monasteries</a> (6/235)
   </p>
   <p id="nature-of-the-cosmos" style="margin-left: 0em;">
-    <a href="../drilldown/nature-of-the-cosmos.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a> (10/237)
+    <a href="../drilldown/nature-of-the-cosmos.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a> (10/252)
   </p>
   <p id="history" style="margin-left: 0em;">
-    <a href="../drilldown/history.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/history.html">History</a> (3/142)
+    <a href="../drilldown/history.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/history.html">History</a> (3/151)
   </p>
   <p id="cultural-context" style="margin-left: 0em;">
-    <a href="../drilldown/cultural-context.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/cultural-context.html">Cultural context</a> (13/357)
+    <a href="../drilldown/cultural-context.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/cultural-context.html">Cultural context</a> (13/391)
   </p>
   <p id="spiritual-traditions" style="margin-left: 0em;">
-    <a href="../drilldown/spiritual-traditions.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/spiritual-traditions.html">Spiritual traditions</a> (4/68)
+    <a href="../drilldown/spiritual-traditions.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/spiritual-traditions.html">Spiritual traditions</a> (5/73)
   </p>
   <p id="renunciant-practice" style="margin-left: 0em;">
-    <a href="../drilldown/renunciant-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/renunciant-practice.html">Renunciant practice</a> (1/522)
+    <a href="../drilldown/renunciant-practice.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/renunciant-practice.html">Renunciant practice</a> (1/584)
   </p>
   <p id="everyday-life" style="margin-left: 0em;">
-    <a href="../drilldown/everyday-life.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/everyday-life.html">Everyday life practice</a> (25/492)
+    <a href="../drilldown/everyday-life.html#_keep_scroll"><i class="fa fa-plus-square"></i></a> <a href = "../tags/everyday-life.html">Everyday life practice</a> (25/540)
   </p>
 </div>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Hierarchical tags: Noble Truth of the Cause of Suffering,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Hierarchical tags: Noble Truth of the Cause of Suffering,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/drilldown/cause-of-suffering-1.html">https://abhayagiri.org/questions/drilldown/cause-of-suffering-1.html</a>.</p>
 </footer>
 
