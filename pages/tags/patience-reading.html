@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/patience-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/perfections.html#perfections"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPatience (khanti)
+  <div class="title"><a href="../drilldown/perfections.html#perfections" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPatience (khanti)
   </div>
 
 <div class="intro">
@@ -54,32 +64,32 @@
   Parent topic: <a href = "../tags/perfections.html">Perfections</a><br>
   
   
-  37 excerpts, 2:52:50 total duration
+  40 excerpts, 3:07:19 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/patience.html">All excerpts (37)</a>
+<div class="sublink2"> <a href="../tags/patience.html">All excerpts (40)</a>
       <a href="../tags/patience-qtag.html">Questions about (7)</a>
       <a href="../tags/patience-atag.html">Answers involving (22)</a>
-      <a href="../tags/patience-story.html">Stories (6)</a>
-      <a href="../tags/patience-quote.html">Quotes (9)</a>
+      <a href="../tags/patience-story.html">Stories (9)</a>
+      <a href="../tags/patience-quote.html">Quotes (10)</a>
       <a href="../tags/patience-reading.html" class="active">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S11"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S11">Session 11</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S11_F07">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F07.mp3" title="Recollections of Ajahn Chah, S11 E7" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S11_F07.mp3" download="Recollections of Ajahn Chah, S11 E7.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Building the road to Tam Sang Pet.  [<a href = "../tags/wat-tam-saeng-pet.html">Wat Tam Saeng Pet</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/ajahn-anek.html">Ajahn Anek</a>] <b>[<a href = "../tags/patience.html">Patience</a>]</b> [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/ardency.html">Ardency</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=450" target="_blank">p. 428</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=450" target="_blank">p. 428</a> 
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Patient endurance is the general of practice.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> <b>[<a href = "../tags/patience.html">Patience</a>]</b>
+  <b>Quote:</b>  “Patient endurance is the general of practice.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> <b>[<a href = "../tags/patience.html">Patience</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Patience (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Patience (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/patience-reading.html">https://abhayagiri.org/questions/tags/patience-reading.html</a>.</p>
 </footer>
 

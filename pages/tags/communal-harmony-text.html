@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/communal-harmony-text.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/sangha.html#sangha"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCommunal harmony 
+  <div class="title"><a href="../drilldown/sangha.html#sangha" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCommunal harmony 
   </div>
 
 <div class="intro">
@@ -54,26 +64,26 @@
   Parent topic: <a href = "../tags/sangha.html">Saṅgha</a><br>
   
   
-  12 excerpts, 1:38:57 total duration
+  16 excerpts, 1:51:41 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/communal-harmony.html">All excerpts (12)</a>
+<div class="sublink2"> <a href="../tags/communal-harmony.html">All excerpts (16)</a>
       <a href="../tags/communal-harmony-qtag.html">Questions about (2)</a>
       <a href="../tags/communal-harmony-atag.html">Answers involving (10)</a>
-      <a href="../tags/communal-harmony-story.html">Stories (1)</a>
-      <a href="../tags/communal-harmony-quote.html">Quotes (1)</a>
+      <a href="../tags/communal-harmony-story.html">Stories (4)</a>
+      <a href="../tags/communal-harmony-quote.html">Quotes (2)</a>
       <a href="../tags/communal-harmony-text.html" class="active">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" title="Tea Time Q&A with Ajahn Pasanno, E1" data-duration="1314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" download="Tea Time Q&A with Ajahn Pasanno, E1.mp3">Download audio</a> (21:54)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You have so much community-building experience. Can you talk about what you have found challenging or effective in this? How did Ajahn Chah build community?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/trust.html">Trust</a>] <b>[<a href = "../tags/communal-harmony.html">Communal harmony</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/learning.html">Learning</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" title="Tea Time Q&A with Ajahn Pasanno, E1" data-duration="1314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F01.mp3" download="Tea Time Q&A with Ajahn Pasanno, E1.mp3">Download audio</a> (21:54)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “You have so much community-building experience. Can you talk about what you have found challenging or effective in this? How did Ajahn Chah build community?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/trust.html">Trust</a>] <b>[<a href = "../tags/communal-harmony.html">Communal harmony</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>] [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-48:" target="_blank">MN 48:</a> Kosambiya Sutta <b>[<a href = "../tags/communal-harmony.html">Communal harmony</a>]</b> [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/right-view.html">Right View</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno pays respects to Ajahn Chah: "If you want to stay here, you have to stay at least five years." 
+  <b>Story:</b> Ajahn Pasanno pays respects to Ajahn Chah: “If you want to stay here, you have to stay at least five years.” 
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The whole path of the Buddha is a path of learning, of education.”  
@@ -81,8 +91,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Communal harmony (Texts),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Communal harmony (Texts),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/communal-harmony-text.html">https://abhayagiri.org/questions/tags/communal-harmony-text.html</a>.</p>
 </footer>
 

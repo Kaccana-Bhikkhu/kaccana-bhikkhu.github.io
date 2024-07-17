@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/truth-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/perfections.html#perfections"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTruth (sacca)
+  <div class="title"><a href="../drilldown/perfections.html#perfections" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTruth (sacca)
   </div>
 
 <div class="intro">
@@ -54,29 +64,34 @@
   Parent topic: <a href = "../tags/perfections.html">Perfections</a><br>
   
   See also: <a href = "../tags/false-speech.html">False speech</a><br>
-  18 excerpts, 1:14:42 total duration
+  24 excerpts, 1:45:21 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/truth.html">All excerpts (18)</a>
+<div class="sublink2"> <a href="../tags/truth.html">All excerpts (24)</a>
       <a href="../tags/truth-qtag.html">Questions about (6)</a>
       <a href="../tags/truth-atag.html">Answers involving (8)</a>
-      <a href="../tags/truth-story.html" class="active">Stories (1)</a>
-      <a href="../tags/truth-quote.html">Quotes (1)</a>
-      <a href="../tags/truth-reading.html">Readings (1)</a> </div>
+      <a href="../tags/truth-story.html" class="active">Stories (2)</a>
+      <a href="../tags/truth-quote.html">Quotes (3)</a>
+      <a href="../tags/truth-reading.html">Readings (2)</a> </div>
 <hr>
 
-<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 2, 2017</div>
+<div class="title" id="Chah2001_S09"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S09">Session 9</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S09_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F02.mp3" title="Remembering Ajahn Chah Weekend, S9 E2" data-duration="159"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F02.mp3" download="Remembering Ajahn Chah Weekend, S9 E2.mp3">Download audio</a> (2:39)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Chah’s early life. Told by <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/truth.html">Truth</a>]</b> [<a href = "../tags/leadership.html">Leadership</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>]
+</p>
+<hr />
+<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – Sep. 2, 2017</div>
 <p id="Teen2017_S00_F17">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F17.mp3" title="Teen Weekend 2017, E17" data-duration="144"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F17.mp3" download="Teen Weekend 2017, E17.mp3">Download audio</a> (2:24)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “Have you broken any precepts where only you know if you broke them?”  [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] // [<a href = "../tags/right-speech.html">Right Speech</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F17.mp3" title="Teen Weekend 2017, E17" data-duration="144"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F17.mp3" download="Teen Weekend 2017, E17.mp3">Download audio</a> (2:24)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “Have you broken any precepts where only you know if you broke them?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] // [<a href = "../tags/right-speech.html">Right Speech</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno's uncle offers him alchohol. [<a href = "../tags/intoxicants.html">Intoxicants</a>] <b>[<a href = "../tags/truth.html">Truth</a>]</b>
+  <b>Story:</b> Ajahn Pasanno’s uncle offers him alchohol. [<a href = "../tags/intoxicants.html">Intoxicants</a>] <b>[<a href = "../tags/truth.html">Truth</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Truth (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Truth (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/truth-story.html">https://abhayagiri.org/questions/tags/truth-story.html</a>.</p>
 </footer>
 

@@ -12,7 +12,7 @@ const DEBUG = false;
 
 let database = null;
 
-function regExpEscape(literal_string) {
+export function regExpEscape(literal_string) {
     return literal_string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
 }
 
@@ -117,7 +117,7 @@ function makeRegExp(element) {
 
 let gBoldTextItems = []; // A list of RegExps representing search matches that should be displayed in bold text.
 
-function parseQuery(query) {
+export function parseQuery(query) {
     // Given a query string, parse it into string search bits.
     // Return a two-dimensional array representing search groups specified by enclosure within parenthesis.
     // Each excerpt must match all search groups.
@@ -145,7 +145,7 @@ function parseQuery(query) {
     return returnValue;
 }
 
-function searchExcerpts(parsedQuery) {
+export function searchExcerpts(excerpts,parsedQuery) {
     // search the database and return excerpts that match parsedQuery
 
     let found = [];
@@ -153,7 +153,7 @@ function searchExcerpts(parsedQuery) {
     let blob = null;
     let group = null;
     let searchRegex = null;
-    for (x of database.excerpts) {
+    for (x of excerpts) {
         let allGroupsMatch = true;
         for (group of parsedQuery) { 
             let anyBlobMatches = false;
@@ -179,7 +179,7 @@ function searchExcerpts(parsedQuery) {
     return found;
 }
 
-function renderExcerpts(excerpts,boldTextItems) {
+export function renderExcerpts(excerpts,boldTextItems,sessionHeaders) {
     // Convert a list of excerpts to html code by concatenating their html attributes
     // Display strings in boldTextItems in bold.
 
@@ -204,7 +204,7 @@ function renderExcerpts(excerpts,boldTextItems) {
         // Negative lookahead assertion to avoid modifying html tags.
     for (x of excerpts) {
         if (x.session != lastSession) {
-            bits.push(database.sessionHeader[x.session]);
+            bits.push(sessionHeaders[x.session]);
             lastSession = x.session;
         }
         bits.push(x.html.replace(boldTextRegex,"<b>$&</b>"));
@@ -230,7 +230,7 @@ function showSearchResults(excerpts = [],boldTextItems = [],message = "") {
         message += `Found ${excerpts.length} excerpts` + ((excerpts.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":";
         instructionsFrame.style.display = "none";
 
-        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),boldTextItems);
+        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),boldTextItems,database.sessionHeader);
         configureLinks(resultsFrame,location.hash.slice(1));
     } else {
         message += "No excerpts found."
@@ -281,7 +281,7 @@ function searchFromURL() {
     let parsed = parseQuery(query);
     console.log(parsed);
 
-    let found = searchExcerpts(parsed);
+    let found = searchExcerpts(database.excerpts,parsed);
     
     let regexList = parsed.map((x) => {return x[0].source});
     let resultParts = DEBUG ? [query,

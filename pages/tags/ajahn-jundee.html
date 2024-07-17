@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-jundee.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Jundee Kantasāro 
+  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Jundee Kantasāro 
   </div>
 
 <div class="intro">
@@ -57,15 +67,15 @@
   1 excerpt, 3:00 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S29"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S29">Session 29</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 13, 2014</div>
+<div class="title" id="WR2014_S29"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S29">Session 29</a> – Feb. 13, 2014</div>
 <p id="WR2014_S29_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S29_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S29 E1" data-duration="180"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S29_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S29 E1.mp3">Download audio</a> (3:00)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> Information about <em>Twigs and Branches of the Bodhinaya</em> and the sections that Ajahn Kovilo reads. [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] // [<a href = "../tags/translation.html">Translation</a>] <b>[<a href = "../tags/ajahn-jundee.html">Ajahn Jundee</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Jundee Kantasāro,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Jundee Kantasāro,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-jundee.html">https://abhayagiri.org/questions/tags/ajahn-jundee.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/wat-pah-ban-tat.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/thai-forest-monasteries.html#thai-forest-monasteries"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspWat Pah Ban Tat 
+  <div class="title"><a href="../drilldown/thai-forest-monasteries.html#thai-forest-monasteries" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspWat Pah Ban Tat 
   </div>
 
 <div class="intro">
@@ -57,12 +67,12 @@
   4 excerpts, 32:21 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S38"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S38">Session 38</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 26, 2014</div>
+<div class="title" id="WR2014_S38"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S38">Session 38</a> – Feb. 26, 2014</div>
 <p id="WR2014_S38_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S38 E7" data-duration="277"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S38 E7.mp3">Download audio</a> (4:37)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Does Ajahn Liem attend morning and evening pūjā?”  [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/puja.html">Pūjā</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S38 E7" data-duration="277"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S38 E7.mp3">Download audio</a> (4:37)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Does Ajahn Liem attend morning and evening pūjā?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/puja.html">Pūjā</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Liem silently walks around and looks at the monks during morning pūjā. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. 
+  <b>Story:</b> Ajahn Liem silently walks around and looks at the monks during morning pūjā. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. 
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Did Ajahn Chah go to morning and evening pūjā?” [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
@@ -71,18 +81,18 @@
   <b>Follow-up:</b> “In the early years of Wat Ban Tad, was it always practice on your own?” <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/thai-sects.html">Thai sects</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/ajahn-baen.html">Ajahn Baen</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Too many monks skip pūjā to massage Ajahn Liem. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/upatakh.html">Upatakh</a>]
+  <b>Story:</b> Too many monks skip pūjā to massage Ajahn Liem. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/upatakh.html">Upatakh</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Recollections:</b> Bhante Gunaratana comes to morning jūjā early. Recounted by <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a> and Beth Steff. [<a href = "../tags/bhante-gunaratana.html">Bhante Gunaratana</a>]
+  <b>Recollections:</b> Bhante Gunaratana comes to morning jūjā early. Recounted by <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a> and Beth Steff. [<a href = "../tags/bhante-gunaratana.html">Bhante Gunaratana</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S53"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S53">Session 53</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 19, 2014</div>
+<div class="title" id="WR2014_S53"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S53">Session 53</a> – Mar. 19, 2014</div>
 <p id="WR2014_S53_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S53 E2" data-duration="605"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S53 E2.mp3">Download audio</a> (10:05)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “There were a number of different alms routes out of Wat Pah Pong. How was it decided who went on each one and how was the food distributed for the meal?”  [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>] // [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S53 E2" data-duration="605"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S53 E2.mp3">Download audio</a> (10:05)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “There were a number of different alms routes out of Wat Pah Pong. How was it decided who went on each one and how was the food distributed for the meal?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>] // [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Discussion</b> of almsfood distribution at different monasteries. Led by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and Ajahn Pesalo. [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b>
+  <b>Discussion</b> of almsfood distribution at different monasteries. Led by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and Ajahn Pesalo. [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno helped pass out food at Wat Pah Pong. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
@@ -91,32 +101,32 @@
   <b>Story:</b> Ajahn Tongrat exposes a monk concealing fish in his ball of sticky rice. [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comments</b> by Ajahn Pesalo and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> about food distribution at Wat Baan Tat. <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>]
+  <b>Comments</b> by Ajahn Pesalo and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> about food distribution at Wat Baan Tat. <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “It's incredibly tiresome how organized we [Westerners] have to be....Organic spontaneity–that's how things work in Thailand.”  [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <b>Quote:</b>  “It’s incredibly tiresome how organized we [Westerners] have to be....Organic spontaneity–that’s how things work in Thailand.”  [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S15"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S15">Session 15</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 24, 2015</div>
+<div class="title" id="WR2015_S15"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S15">Session 15</a> – Jan. 24, 2015</div>
 <p id="WR2015_S15_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S15 E7" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S15 E7.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> Ajahn Sucitto speaks of feeling water washing through you [as a way of releasing tension related to effort]. <B>Comment</b> by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a>. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S15 E7" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S15 E7.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> Ajahn Sucitto speaks of feeling water washing through you [as a way of releasing tension related to effort]. <b>Comment</b> by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a>. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Khun Kesari's brother enters concentration by visualizing drinking a glass of water. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/visualization.html">Visualization</a>]
+  <b>Story:</b> Khun Kesari’s brother enters concentration by visualizing drinking a glass of water. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/visualization.html">Visualization</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Kesari's mother walked into Wat Ban Tad before there was a road. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/relics.html">Relics</a>]
+  <b>Story:</b> Kesari’s mother walked into Wat Ban Tad before there was a road. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/relics.html">Relics</a>]
 </p>
 <hr />
-<div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 27, 2018</div>
+<div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – Mar. 27, 2018</div>
 <p id="WR2018-2_S09_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F01.mp3" title="The Teaching and the Training, S9 E1" data-duration="868"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F01.mp3" download="The Teaching and the Training, S9 E1.mp3">Download audio</a> (14:28)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What is the purpose of dhutaṅga practices?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] // [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F01.mp3" title="The Teaching and the Training, S9 E1" data-duration="868"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S09_F01.mp3" download="The Teaching and the Training, S9 E1.mp3">Download audio</a> (14:28)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What is the purpose of dhutaṅga practices?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] // [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] <b>[<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>]</b> [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Wat Pah Ban Tat,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Wat Pah Ban Tat,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/wat-pah-ban-tat.html">https://abhayagiri.org/questions/tags/wat-pah-ban-tat.html</a>.</p>
 </footer>
 

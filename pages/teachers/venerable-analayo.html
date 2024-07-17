@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/venerable-analayo.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -54,7 +64,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/44_AKd_03_10_2015_Fleshing_Out_the_Four_Tetrads_14.mp3" title="Abhayagiri 2015 Winter Retreat, S44" data-duration="1769"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/44_AKd_03_10_2015_Fleshing_Out_the_Four_Tetrads_14.mp3" download="Abhayagiri 2015 Winter Retreat, S44.mp3">Download audio</a> (29:29)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “Contemplation of Dhammas,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=196" target="_blank">p. 182-183, 185</a>, and “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=236" target="_blank">p. 222-223, 225-226</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href = ../teachers/venerable-analayo.html>Venerable Analayo</a>.  
+  <b>Reading:</b> “Contemplation of Dhammas,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=196" target="_blank">p. 182-183, 185</a>, and “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=236" target="_blank">p. 222-223, 225-226</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href="../teachers/venerable-analayo.html">Venerable Analayo</a>.  
 </p>
 <p style="margin-left: 2em;">
   <b>Reading:</b> <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank">Right Mindfulness</a> p. 142-148.  
@@ -65,7 +75,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/45_AKd_03_15_2015_Vedana_1.mp3" title="Abhayagiri 2015 Winter Retreat, S45" data-duration="2157"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/45_AKd_03_15_2015_Vedana_1.mp3" download="Abhayagiri 2015 Winter Retreat, S45.mp3">Download audio</a> (35:57)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/mindfulness-of-feeling.html">Mindfulness of feeling</a>] [<a href = "../tags/feeling.html">Feeling</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=170" target="_blank">p. 156-159</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href = ../teachers/venerable-analayo.html>Venerable Analayo</a>.  
+  <b>Reading:</b> “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=170" target="_blank">p. 156-159</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href="../teachers/venerable-analayo.html">Venerable Analayo</a>.  
 </p>
 <p style="margin-left: 2em;">
   <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-44:" target="_blank">MN 44:</a> Cūḷavedalla Sutta, The Small Discourse Giving an Elaboration.  
@@ -79,13 +89,13 @@
   <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-18:" target="_blank">MN 18:</a> Madhupiṇḍika Sutta, The Honeyball.  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=236" target="_blank">p. 222-223, 225-226</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href = ../teachers/venerable-analayo.html>Venerable Analayo</a>.  
+  <b>Reading:</b> “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=236" target="_blank">p. 222-223, 225-226</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href="../teachers/venerable-analayo.html">Venerable Analayo</a>.  
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Venerable Analayo,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Venerable Analayo,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/venerable-analayo.html">https://abhayagiri.org/questions/teachers/venerable-analayo.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-sucitto-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Sucitto 
+  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Sucitto 
     &nbsp&nbsp<span style="font-size:65%;"><a href="../teachers/ajahn-sucitto.html">Teachings by Ajahn Sucitto</a></span>
   </div>
 
@@ -55,35 +65,35 @@
   Parent topic: <a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a><br>
   
   
-  10 excerpts, 44:57 total duration
+  11 excerpts, 45:35 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/ajahn-sucitto.html">All excerpts (10)</a>
+<div class="sublink2"> <a href="../tags/ajahn-sucitto.html">All excerpts (11)</a>
       <a href="../tags/ajahn-sucitto-qtag.html">Questions about (1)</a>
       <a href="../tags/ajahn-sucitto-atag.html">Answers involving (7)</a>
       <a href="../tags/ajahn-sucitto-story.html">Stories (1)</a>
       <a href="../tags/ajahn-sucitto-quote.html" class="active">Quotes (4)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S58"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S58">Session 58</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 28, 2014</div>
+<div class="title" id="WR2014_S58"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S58">Session 58</a> – Mar. 28, 2014</div>
 <p id="WR2014_S58_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S58 E7" data-duration="63"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S58 E7.mp3">Download audio</a> (1:03)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “The art of the pause.” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a> <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/pace-of-life.html">Pace of life</a>] // [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S58 E7" data-duration="63"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S58_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S58 E7.mp3">Download audio</a> (1:03)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “The art of the pause.” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a>. Quoted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/pace-of-life.html">Pace of life</a>] // [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 2, 2015</div>
+<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – Feb. 2, 2015</div>
 <p id="WR2015_S22_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E7" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E7.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a>. Quoted by Beth Steff. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/humor.html">Humor</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E7" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E7.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a>. Quoted by Beth Steff. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/humor.html">Humor</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b>
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> "Do I look macho?" Told by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/cittavivieka.html">Cittavivieka</a>]
+  <b>Story:</b> “Do I look macho?” Told by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/chithurst.html">Chithurst</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S49"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S49">Session 49</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Mar. 22, 2015</div>
+<div class="title" id="WR2015_S49"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S49">Session 49</a> – Mar. 22, 2015</div>
 <p id="WR2015_S49_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S49 E5" data-duration="415"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S49 E5.mp3">Download audio</a> (6:55)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> Examples of signs and secondary characteristics of sense objects?  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>] // [<a href = "../tags/ven-analayo.html">Ven. Analayo</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S49 E5" data-duration="415"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S49_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S49 E5.mp3">Download audio</a> (6:55)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> Examples of signs and secondary characteristics of sense objects?  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>] // [<a href = "../tags/ven-analayo.html">Ven. Analayo</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=Thig-14.1:" target="_blank">Thig 14.1:</a> Subhā. 
@@ -92,21 +102,21 @@
   <b>Comment</b> about the feedback loop of perceptions looking for reinforcing perceptions. [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The underlying tendency to aversion is like a search engine.” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a>. Quoted by Beth Steff. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “The underlying tendency to aversion is like a search engine.” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a>. Quoted by Beth Steff. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
-<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 12, 2017</div>
+<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – Aug. 12, 2017</div>
 <p id="UD2017-3_S00_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" title="Practice in a Global Context, E5" data-duration="288"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" download="Practice in a Global Context, E5.mp3">Download audio</a> (4:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can you say more about how disenchantment can be uplifting?”  [<a href = "../tags/disenchantment.html">Disenchantment</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/bhikkhu-bodhi.html">Bhikkhu Bodhi</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" title="Practice in a Global Context, E5" data-duration="288"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F05.mp3" download="Practice in a Global Context, E5.mp3">Download audio</a> (4:48)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can you say more about how disenchantment can be uplifting?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/disenchantment.html">Disenchantment</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/bhikkhu-bodhi.html">Bhikkhu Bodhi</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no known defense against cheesecake.” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a> <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>]
+  <b>Quote:</b>  “There’s no known defense against cheesecake.” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a> <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Sucitto (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Sucitto (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-sucitto-quote.html">https://abhayagiri.org/questions/tags/ajahn-sucitto-quote.html</a>.</p>
 </footer>
 

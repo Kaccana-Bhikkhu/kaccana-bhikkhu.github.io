@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/types-of-monks.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/types-of-monks.html#types-of-monks"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTypes of monks 
+  <div class="title"><a href="../drilldown/types-of-monks.html#types-of-monks" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTypes of monks 
   </div>
 
 <div class="intro">
@@ -54,12 +64,33 @@
   Parent topic: <a href = "../tags/monastic-life.html">Monastic life</a><br>
   Subtopics: <a href = "../tags/forest-versus-city-monks.html">Forest versus city monks</a>, <a href = "../tags/study-monks.html">Study monks</a>, <a href = "../tags/older-monks.html">Older monks</a>, <a href = "../tags/temporary-ordination.html">Temporary ordination</a>, <a href = "../tags/thai-sects.html">Thai sects</a>, <a href = "../tags/novices.html">Novices</a>, <a href = "../tags/postulants.html">Postulants</a><br>
   
-  5 excerpts, 22:13 total duration
+  8 excerpts, 32:53 total duration
 </strong>
 <hr />
-<div class="title" id="WR2014_S14"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S14">Session 14</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 25, 2014</div>
+<div class="title" id="Chah2001_S05"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S05">Session 5</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S05_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S05_F02.mp3" title="Remembering Ajahn Chah Weekend, S5 E2" data-duration="222"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S05_F02.mp3" download="Remembering Ajahn Chah Weekend, S5 E2.mp3">Download audio</a> (3:42)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> How I met Ajahn Chah. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/seclusion.html">Seclusion</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “If you want to stay here, you have to be here for five years.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/sequence-of-training.html">Sequence of training</a>]
+</p>
+<hr />
+<div class="title" id="Chah2001_S09"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S09">Session 9</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S09_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F04.mp3" title="Remembering Ajahn Chah Weekend, S9 E4" data-duration="206"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F04.mp3" download="Remembering Ajahn Chah Weekend, S9 E4.mp3">Download audio</a> (3:26)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Chah decides to enter the village monastery at age nine.  <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/work.html">Work</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=47" target="_blank">p. 25</a> 
+</p>
+<hr />
+<div class="title" id="Chah2001_S16"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S16">Session 16</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S16_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F02.mp3" title="Remembering Ajahn Chah Weekend, S16 E2" data-duration="212"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S16_F02.mp3" download="Remembering Ajahn Chah Weekend, S16 E2.mp3">Download audio</a> (3:32)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> I was the first Westerner at Wat Pah Pong. <b>Recollection</b> by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] // [<a href = "../tags/military.html">Military</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b>
+</p>
+<hr />
+<div class="title" id="WR2014_S14"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S14">Session 14</a> – Jan. 25, 2014</div>
 <p id="WR2014_S14_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S14 E7" data-duration="395"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S14 E7.mp3">Download audio</a> (6:35)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “What do monks do with Pāli study levels?”  [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> // [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S14 E7" data-duration="395"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S14_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S14 E7.mp3">Download audio</a> (6:35)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “What do monks do with Pāli study levels?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> // [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Tan Chao Khun Prayoon Dhammacitto, the head of the Buddhist University in Bangkok, visits Wat Pah Nanachat. [<a href = "../tags/chao-khun-prayoon.html">Chao Khun Prayoon</a>] [<a href = "../tags/thai-sects.html">Thai sects</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>]
@@ -68,35 +99,35 @@
   <b>Story:</b> Ajahn Mahā Adisak, a ninth-degree Pāli scholar, spends a year at Amaravati. [<a href = "../tags/ajahn-maha-adisak.html">Ajahn Mahā Adisak</a>] [<a href = "../tags/amaravati.html">Amaravati</a>] [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Story:</b> He found it difficult to translate Ajahn Amaro's teachings to Westerners into Thai. [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>]
+  <b>Story:</b> He found it difficult to translate Ajahn Amaro’s teachings to Westerners into Thai. [<a href = "../tags/ajahn-amaro.html">Ajahn Amaro</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S16"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S16">Session 16</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 27, 2014</div>
+<div class="title" id="WR2014_S16"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S16">Session 16</a> – Jan. 27, 2014</div>
 <p id="WR2014_S16_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S16_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S16 E1" data-duration="309"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S16_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S16 E1.mp3">Download audio</a> (5:09)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “All the Thai Forest Masters give very clear presentations of how they were attaining/finding peace of mind. Is there much written about how Bangkok was reacting when these Masters were saying “attainment is possible?” How were the Thai Masters answering?”  [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/liberation.html">Liberation</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-lee-dhammadharo.html">Ajahn Lee Dhammadharo</a>] [<a href = "../tags/royalty.html">Royalty</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S16_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S16 E1" data-duration="309"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S16_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S16 E1.mp3">Download audio</a> (5:09)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “All the Thai Forest Masters give very clear presentations of how they were attaining/finding peace of mind. Is there much written about how Bangkok was reacting when these Masters were saying “attainment is possible?” How were the Thai Masters answering?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/progress-of-insight.html">Progress of insight</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/liberation.html">Liberation</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/ajahn-lee-dhammadharo.html">Ajahn Lee Dhammadharo</a>] [<a href = "../tags/royalty.html">Royalty</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-2_S01"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 14, 2014</div>
+<div class="title" id="UD2014-2_S01"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S01">Session 1</a> – Jun. 14, 2014</div>
 <p id="UD2014-2_S01_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F01.mp3" title="Thai Forest Tradition, S1 E1" data-duration="296"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F01.mp3" download="Thai Forest Tradition, S1 E1.mp3">Download audio</a> (4:56)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> Devotional practice and the context and history of the Thai Forest Tradition. [<a href = "../tags/devotional-practice.html">Devotional practice</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/vinaya.html">Vinaya</a>]
 </p>
 <hr />
 <p id="UD2014-2_S01_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F07.mp3" title="Thai Forest Tradition, S1 E7" data-duration="149"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F07.mp3" download="Thai Forest Tradition, S1 E7.mp3">Download audio</a> (2:29)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Could you say a few words about the structure of the Thai Saṅgha and where the Thai Forest Tradition fits in?”  [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F07.mp3" title="Thai Forest Tradition, S1 E7" data-duration="149"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S01_F07.mp3" download="Thai Forest Tradition, S1 E7.mp3">Download audio</a> (2:29)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Could you say a few words about the structure of the Thai Saṅgha and where the Thai Forest Tradition fits in?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] // [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Chah asks Ajahn Mun, "Shall I reordain in the Dhammayut Order to live with you?" He responds, "Mahānikāya needs good monks also." [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/thai-sects.html">Thai sects</a>]
+  <b>Story:</b> Ajahn Chah asks Ajahn Mun, “Shall I reordain in the Dhammayut Order to live with you?” He responds, “Mahānikāya needs good monks also.” [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/thai-sects.html">Thai sects</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S28"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S28">Session 28</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Feb. 13, 2015</div>
+<div class="title" id="WR2015_S28"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S28">Session 28</a> – Feb. 13, 2015</div>
 <p id="WR2015_S28_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S28_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S28 E1" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S28_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S28 E1.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Discussion</b> of the reading and Tan Chao Khun Upāli as a scholar, administrator, and practitioner. Led by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>, Ajahn Kaccāna and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/chao-khun-upali.html">Chao Khun Upāli</a>] [<a href = "../tags/study-monks.html">Study monks</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> // [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/geographythailand.html">Geography/Thailand</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S28_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S28 E1" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S28_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S28 E1.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Discussion</b> of the reading and Tan Chao Khun Upāli as a scholar, administrator, and practitioner. Led by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>, Ajahn Kaccāna and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/chao-khun-upali.html">Chao Khun Upāli</a>] [<a href = "../tags/study-monks.html">Study monks</a>] <b>[<a href = "../tags/types-of-monks.html">Types of monks</a>]</b> // [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/tudong.html">Tudong</a>] [<a href = "../tags/geographythailand.html">Geography/Thailand</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Types of monks,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Types of monks,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/types-of-monks.html">https://abhayagiri.org/questions/tags/types-of-monks.html</a>.</p>
 </footer>
 

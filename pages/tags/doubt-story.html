@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/doubt-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/hindrances.html#hindrances"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDoubt (vicikiccha)
+  <div class="title"><a href="../drilldown/hindrances.html#hindrances" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspDoubt (vicikiccha)
   </div>
 
 <div class="intro">
@@ -54,29 +64,29 @@
   Parent topics: <a href = "../tags/hindrances.html">Hindrances</a>, <a href = "../tags/fetters.html">Fetters</a><br>
   
   See also: <a href = "../tags/faith.html">Faith</a><br>
-  27 excerpts, 2:12:11 total duration
+  29 excerpts, 2:27:49 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/doubt.html">All excerpts (27)</a>
+<div class="sublink2"> <a href="../tags/doubt.html">All excerpts (30)</a>
       <a href="../tags/doubt-qtag.html">Questions about (12)</a>
       <a href="../tags/doubt-atag.html">Answers involving (12)</a>
       <a href="../tags/doubt-story.html" class="active">Stories (1)</a>
-      <a href="../tags/doubt-quote.html">Quotes (2)</a>
+      <a href="../tags/doubt-quote.html">Quotes (3)</a>
       <a href="../tags/doubt-reading.html">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S50"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S50">Session 50</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 14, 2014</div>
+<div class="title" id="WR2014_S50"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S50">Session 50</a> – Mar. 14, 2014</div>
 <p id="WR2014_S50_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E7" data-duration="213"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E7.mp3">Download audio</a> (3:33)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Was there a time in Thailand when no one had any noble attainments?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a> and Ajahn Cunda. [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] // [<a href = "../tags/chao-khun-upali.html">Chao Khun Upāli</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/media.html">Media</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E7" data-duration="213"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E7.mp3">Download audio</a> (3:33)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Was there a time in Thailand when no one had any noble attainments?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>, <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a> and Ajahn Cunda. [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] // [<a href = "../tags/chao-khun-upali.html">Chao Khun Upāli</a>] [<a href = "../tags/ajahn-jayasaro.html">Ajahn Jayasaro</a>] [<a href = "../tags/media.html">Media</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Prince Mongkut ordains seven times. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-vajirayan.html">Ajahn Vajirayan</a>] [<a href = "../tags/ordination.html">Ordination</a>] <b>[<a href = "../tags/doubt.html">Doubt</a>]</b>
+  <b>Story:</b> Prince Mongkut ordains seven times. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-vajirayan.html">Ajahn Vajirayan</a>] [<a href = "../tags/ordination.html">Ordination</a>] <b>[<a href = "../tags/doubt.html">Doubt</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Doubt (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Doubt (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/doubt-story.html">https://abhayagiri.org/questions/tags/doubt-story.html</a>.</p>
 </footer>
 

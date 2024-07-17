@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/energy-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/faculties.html#faculties"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspEnergy (viriya)
+  <div class="title"><a href="../drilldown/faculties.html#faculties" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspEnergy (viriya)
   </div>
 
 <div class="intro">
@@ -54,10 +64,10 @@
   Parent topics: <a href = "../tags/faculties.html">Faculties</a>, <a href = "../tags/bases-of-success.html">Bases of Success</a>, <a href = "../tags/factors-of-awakening.html">Factors of Awakening</a>, <a href = "../tags/perfections.html">Perfections</a><br>
   
   
-  30 excerpts, 2:14:22 total duration
+  31 excerpts, 2:19:15 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/energy.html">All excerpts (30)</a>
+<div class="sublink2"> <a href="../tags/energy.html">All excerpts (31)</a>
       <a href="../tags/energy-qtag.html">Questions about (9)</a>
       <a href="../tags/energy-atag.html">Answers involving (20)</a>
       <a href="../tags/energy-story.html" class="active">Stories (3)</a>
@@ -65,9 +75,9 @@
       <a href="../tags/energy-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 14, 2015</div>
+<div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – Jun. 14, 2015</div>
 <p id="SRD2015_S02_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" title="Desire or Aspiration, S2 E1" data-duration="631"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" download="Desire or Aspiration, S2 E1.mp3">Download audio</a> (10:31)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I've been struggling with sleepiness while trying to meditate, having the intention to be present and aware, but finding myself dozing off.”  [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" title="Desire or Aspiration, S2 E1" data-duration="631"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F01.mp3" download="Desire or Aspiration, S2 E1.mp3">Download audio</a> (10:31)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I’ve been struggling with sleepiness while trying to meditate, having the intention to be present and aware, but finding myself dozing off.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Boon Choo meditates through tiredness after staying up for days. [<a href = "../tags/ajahn-boon-choo.html">Ajahn Boon Choo</a>] [<a href = "../tags/kathina.html">Kaṭhina</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] <b>[<a href = "../tags/energy.html">Energy</a>]</b> [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/ardency.html">Ardency</a>]
@@ -76,13 +86,13 @@
   <b>Quote:</b>  “The boundaries we set for ourselves are oftentime much smaller than what we can actually deal with, work with, or be with.”  [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/patience.html">Patience</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F08">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F08.mp3" title="The Path of Practice, S1 E8" data-duration="324"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F08.mp3" download="The Path of Practice, S1 E8.mp3">Download audio</a> (5:24)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> The cook assigned to look after Ajahn Pasanno doesn't understand what he can and needs to eat. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/food.html">Food</a>] // [<a href = "../tags/industry.html">Industry</a>] [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/energy.html">Energy</a>]</b> [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F08.mp3" title="The Path of Practice, S1 E8" data-duration="324"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F08.mp3" download="The Path of Practice, S1 E8.mp3">Download audio</a> (5:24)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Story:</b> The cook assigned to look after Ajahn Pasanno doesn’t understand what he can and needs to eat. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/dtao-dum.html">Dtao Dum</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/food.html">Food</a>] // [<a href = "../tags/industry.html">Industry</a>] [<a href = "../tags/meditation.html">Meditation</a>] <b>[<a href = "../tags/energy.html">Energy</a>]</b> [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>]
 </p>
 <hr />
 <p id="Path2019_S01_F13">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" title="The Path of Practice, S1 E13" data-duration="519"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" download="The Path of Practice, S1 E13.mp3">Download audio</a> (8:39)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you say something about the fact that extreme hardship exists in the world?”  [<a href = "../tags/poverty.html">Poverty</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" title="The Path of Practice, S1 E13" data-duration="519"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" download="The Path of Practice, S1 E13.mp3">Download audio</a> (8:39)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you say something about the fact that extreme hardship exists in the world?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/poverty.html">Poverty</a>] [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.162:" target="_blank">AN 4.162:</a> Modes of Practice 
@@ -102,8 +112,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Energy (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Energy (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/energy-story.html">https://abhayagiri.org/questions/tags/energy-story.html</a>.</p>
 </footer>
 

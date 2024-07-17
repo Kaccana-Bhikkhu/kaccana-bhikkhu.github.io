@@ -68,6 +68,16 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
     parts[1] = "{attribution}"
     return "".join(parts), attribution
 
+def ApplySmartQuotes():
+    for e in gDatabase["event"].values():
+        e["description"] = Utils.SmartQuotes(e["description"])
+
+    for s in gDatabase["series"].values():
+        s["description"] = Utils.SmartQuotes(s["description"])
+
+    for s in gDatabase["sessions"]:
+        s["sessionTitle"] = Utils.SmartQuotes(s["sessionTitle"])
+
 def PrepareTemplates():
     ParseCSV.ListifyKey(gDatabase["kind"],"form1")
     ParseCSV.ConvertToInteger(gDatabase["kind"],"defaultForm")
@@ -150,7 +160,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         bodyTemplateStr = kind["body"][formNumber]
         attributionTemplateStr = kind["attribution"][formNumber]
     else:
-        bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(item["text"])
+        bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(FStringToPyratemp(item["text"]))
     
     if ParseCSV.ExcerptFlag.UNQUOTE in item["flags"]: # This flag indicates no quotes
         bodyTemplateStr = re.sub('[“”]','',bodyTemplateStr) # Templates should use only double smart quotes
@@ -192,7 +202,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
-    item["body"] = bodyTemplate(**renderDict)
+    item["body"] = Utils.SmartQuotes(bodyTemplate(**renderDict))
 
     if teachers:
 
@@ -200,11 +210,12 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",item["body"]) else ""
         renderDict["fullStop"] = fullStop
         
-        attributionStr = attributionTemplate(**renderDict)
+        attributionStr = Utils.SmartQuotes(attributionTemplate(**renderDict))
 
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
+        # Avoid capitalizing html tags
         if fullStop and "fullStop" not in attributionTemplateStr:
-            attributionStr = re.sub("[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
+            attributionStr = re.sub("^[^<]*?[a-zA-Z]",lambda match: match.group(0).upper(),attributionStr,count = 1)
     else:
         item["body"] = item["body"].replace("{attribution}","")
         attributionStr = ""
@@ -568,6 +579,8 @@ gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def main() -> None:
+
+    ApplySmartQuotes()
 
     PrepareTemplates()
 

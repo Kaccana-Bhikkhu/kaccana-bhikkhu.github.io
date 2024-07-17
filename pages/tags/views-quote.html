@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/views-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/outflows.html#outflows"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspViews (diṭṭhāsava)
+  <div class="title"><a href="../drilldown/outflows.html#outflows" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspViews (diṭṭhāsava)
   </div>
 
 <div class="intro">
@@ -54,31 +64,51 @@
   Parent topic: <a href = "../tags/outflows.html">Outflows</a><br>
   
   
-  26 excerpts, 1:38:54 total duration
+  29 excerpts, 1:56:45 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/views.html">All excerpts (26)</a>
+<div class="sublink2"> <a href="../tags/views.html">All excerpts (29)</a>
       <a href="../tags/views-qtag.html">Questions about (6)</a>
       <a href="../tags/views-atag.html">Answers involving (15)</a>
-      <a href="../tags/views-quote.html" class="active">Quotes (2)</a>
+      <a href="../tags/views-story.html">Stories (1)</a>
+      <a href="../tags/views-quote.html" class="active">Quotes (4)</a>
       <a href="../tags/views-reading.html">Readings (1)</a>
       <a href="../tags/views-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
-<p id="UD2015-2_S02_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F10.mp3" title="The Middle Way of Not-Self, S2 E10" data-duration="72"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F10.mp3" download="The Middle Way of Not-Self, S2 E10.mp3">Download audio</a> (1:12)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Quote:</b>  “One of the things I often attend to is the juxtaposition of stillness and movement. It's not that one is right and the other wrong. We can be still and really dull or the mind can move with clarity and acuity. But stillness and movement, what's generating it, what's pushing it? That bhavadiṭṭhi/vibhavadiṭṭhi is the engine behind it and the force behing the arising of a sense of self, a sense of me.”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+<div class="title" id="Chah2001_S34"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S34">Session 34</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S34_F08">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F08.mp3" title="Remembering Ajahn Chah Weekend, S34 E8" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F08.mp3" download="Remembering Ajahn Chah Weekend, S34 E8.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> Ajahn Chah’s time of illness was a gift to the Saṅgha. <b>Reflection</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/bodhisattva.html">Bodhisattva</a>] [<a href = "../tags/renunciation.html">Renunciation</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+</p>
+<p style="margin-left: 2em;">
+  Ajahn Chah’s emphasis on Saṅgha was unique. [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/teachers.html">Teachers</a>] [<a href = "../tags/conflict.html">Conflict</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “People in the world are attached to status. People in the religion are attached to their views.” — Thai saying [<a href = "../tags/monastic-life.html">Monastic life</a>] <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 10, 2015</div>
+<div class="title" id="Chah2001_S35"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S35">Session 35</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S35_F06">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F06.mp3" title="Remembering Ajahn Chah Weekend, S35 E6" data-duration="180"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F06.mp3" download="Remembering Ajahn Chah Weekend, S35 E6.mp3">Download audio</a> (3:00)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Recollection:</b> The June 2000 Saṅgha Meeting concludes in harmony. Recounted by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/harsh-speech.html">Harsh speech</a>] [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “Luang Por Chah wasn’t giving us views and opinions....[He gave] us all a confidence in the unspoken unity of our humanity.”  <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/human.html">Human</a>]
+</p>
+<hr />
+<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – May. 27, 2015</div>
+<p id="UD2015-2_S02_F10">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F10.mp3" title="The Middle Way of Not-Self, S2 E10" data-duration="72"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F10.mp3" download="The Middle Way of Not-Self, S2 E10.mp3">Download audio</a> (1:12)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Quote:</b>  “One of the things I often attend to is the juxtaposition of stillness and movement. It’s not that one is right and the other wrong. We can be still and really dull or the mind can move with clarity and acuity. But stillness and movement, what’s generating it, what’s pushing it? That bhavadiṭṭhi/vibhavadiṭṭhi is the engine behind it and the force behing the arising of a sense of self, a sense of me.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
+</p>
+<hr />
+<div class="title" id="UD2015-4_S03"><a href="../events/UD2015-4.html">Jhāna: A Practical Approach</a>, <a href="../events/UD2015-4.html#UD2015-4_S03">Session 3</a> – Oct. 10, 2015</div>
 <p id="UD2015-4_S03_F19">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" title="Jhāna: A Practical Approach, S3 E19" data-duration="25"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" download="Jhāna: A Practical Approach, S3 E19.mp3">Download audio</a> (0:25)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Quote:</b>  “There are a lot of confusing views and opinions about jhāna and meditation. It's helpful to ask, 'What's the Buddha actually say? How does he put it?' I have a lot more faith in him than in a lot of what's out there.”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/faith.html">Faith</a>] <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" title="Jhāna: A Practical Approach, S3 E19" data-duration="25"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-4/UD2015-4_S03_F19.mp3" download="Jhāna: A Practical Approach, S3 E19.mp3">Download audio</a> (0:25)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> <b>Quote:</b>  “There are a lot of confusing views and opinions about jhāna and meditation. It’s helpful to ask, ‘What’s the Buddha actually say? How does he put it?’ I have a lot more faith in him than in a lot of what’s out there.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/faith.html">Faith</a>] <b>[<a href = "../tags/views.html">Views</a>]</b> [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Views (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Views (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/views-quote.html">https://abhayagiri.org/questions/tags/views-quote.html</a>.</p>
 </footer>
 

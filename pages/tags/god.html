@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/god.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/other-beings.html#other-beings"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGod 
+  <div class="title"><a href="../drilldown/other-beings.html#other-beings" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGod 
   </div>
 
 <div class="intro">
@@ -57,15 +67,15 @@
   1 excerpt, 1:21 total duration
 </strong>
 <hr />
-<div class="title" id="UD2012-3_S02"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Aug. 19, 2012</div>
+<div class="title" id="UD2012-3_S02"><a href="../events/UD2012-3.html">Brightening the Mind</a>, <a href="../events/UD2012-3.html#UD2012-3_S02">Session 2</a> – Aug. 19, 2012</div>
 <p id="UD2012-3_S02_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F06.mp3" title="Brightening the Mind, S2 E6" data-duration="81"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F06.mp3" download="Brightening the Mind, S2 E6.mp3">Download audio</a> (1:21)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Are angels devas...[audio unclear]?”  [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/recollectiondevas.html">Recollection/Devas</a>] // <b>[<a href = "../tags/god.html">God</a>]</b> [<a href = "../tags/delusion.html">Delusion</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F06.mp3" title="Brightening the Mind, S2 E6" data-duration="81"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-3/UD2012-3_S02_F06.mp3" download="Brightening the Mind, S2 E6.mp3">Download audio</a> (1:21)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Are angels devas...[audio unclear]?”  Answered by <a href="../teachers/ajahn-yatiko.html">Ajahn Yatiko</a>. [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/recollectiondevas.html">Recollection/Devas</a>] // <b>[<a href = "../tags/god.html">God</a>]</b> [<a href = "../tags/delusion.html">Delusion</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: God,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: God,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/god.html">https://abhayagiri.org/questions/tags/god.html</a>.</p>
 </footer>
 

@@ -1,0 +1,15 @@
+// .args file used by the BuildAllArchival job.
+// All items are downloaded locally to create a standalone archive.
+
+// DownloadCSV options:
+--sheets All
+
+// ParseCSV options:
+--ignoreTeacherConsent
+
+// Link options:
+--linkCheckLevel excerptMp3:local:3 // Check local excerpt mp3 split times
+--linkCheckLevel 3
+--sessionMp3 local
+--excerptMp3 local
+--reference local

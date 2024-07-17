@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-chah-teaching.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -47,21 +57,81 @@
   </div>
 
 <div class="intro">
-28 excerpts, 8:56:32 total duration
+96 excerpts, 13:46:36 total duration
 <hr />
-<div class="sublink2"> <a href="../teachers/ajahn-chah.html">All excerpts (28)</a>
-      <a href="../teachers/ajahn-chah-d-quote.html">Direct quotes (2)</a>
+<div class="sublink2"> <a href="../teachers/ajahn-chah.html">All excerpts (96)</a>
+      <a href="../teachers/ajahn-chah-d-quote.html">Direct quotes (3)</a>
+      <a href="../teachers/ajahn-chah-quoted-by.html">Quoted by others (65)</a>
       <a href="../teachers/ajahn-chah-meditation.html">Meditations (3)</a>
-      <a href="../teachers/ajahn-chah-teaching.html" class="active">Teachings (6)</a>
-      <a href="../teachers/ajahn-chah-read-from.html">Readings from (21)</a> </div>
+      <a href="../teachers/ajahn-chah-teaching.html" class="active">Teachings (10)</a>
+      <a href="../teachers/ajahn-chah-read-from.html">Readings from (22)</a> </div>
 <hr>
 
+<div class="title" id="Chah2001_S02"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S02">Session 2</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S02_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S02_F03.mp3" title="Remembering Ajahn Chah Weekend, S2 E2" data-duration="804"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S02_F03.mp3" download="Remembering Ajahn Chah Weekend, S2 E2.mp3">Download audio</a> (13:24)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Teachings</b> to Marjorie by <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>, Part 1. Thai audio with English translation read by Kittisaro. [<a href = "../tags/thai-audio.html">Thai audio</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/moods-of-the-mind.html">Moods of the mind</a>] [<a href = "../tags/heedfulness.html">Heedfulness</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271" target="_blank">p. 233</a>. 
+</p>
+<p style="margin-left: 2em;">
+  Continued in <a href="../events/Chah2001.html#Chah2001_S13_F01">Part 2</a>. 
+</p>
+<hr />
+<div class="title" id="Chah2001_S08"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S08">Session 8</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S08_F00">
+  <audio-chip src="https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2008%20-%20Ajahn%20Chah%20Reading.mp3" title="Remembering Ajahn Chah Weekend, S8" data-duration="565"><a href="https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2008%20-%20Ajahn%20Chah%20Reading.mp3" download="Remembering Ajahn Chah Weekend, S8.mp3">Download audio</a> (9:25)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Meditation” from <em>Living Dhamma</em> by <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>, <a href="https://www.abhayagiri.org/media/books/chah_living_dhamma.pdf#page=53" target="_blank">pp. 50-53</a>. Read by Ajahn Jitindriyā. [<a href = "../tags/meditation.html">Meditation</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Cultivate the tree right from the seed.” [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
+</p>
+<p style="margin-left: 2em;">
+  “To practice in a way that’s peaceful means to place the mind neither too high or too low, but at the point of balance.” [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+</p>
+<p style="margin-left: 2em;">
+  “So many teachers, so many teachings.” [<a href = "../tags/teachers.html">Teachers</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Where there is knowing, there is no need to think.” [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Resolve that right now is the time for training the mind and nothing else.” [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.” [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/heedfulness.html">Heedfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/feeling.html">Feeling</a>]
+</p>
+<p style="margin-left: 4em;">
+  <b>Simile:</b> Chicken in a coop. 
+</p>
+<hr />
+<div class="title" id="Chah2001_S13"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S13">Session 13</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S13_F01">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S13_F01.mp3" title="Remembering Ajahn Chah Weekend, S13 E1" data-duration="660"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S13_F01.mp3" download="Remembering Ajahn Chah Weekend, S13 E1.mp3">Download audio</a> (11:00)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Teachings</b> to Marjorie by <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>, Part 2. Thai audio with English translation read by Kittisaro. [<a href = "../tags/thai-audio.html">Thai audio</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+</p>
+<p style="margin-left: 2em;">
+  Continued from <a href="../events/Chah2001.html#Chah2001_S02_F03">Part 1</a>. 
+</p>
+<p style="margin-left: 2em;">
+  <b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271" target="_blank">p. 233</a>. 
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “If the tears don’t come, we don’t really accept truth.”  [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+</p>
+<p style="margin-left: 4em;">
+  <b>Note</b>: “Living with the Cobra” omits this quote and other more personal aspects of Ajahn Chah’s teaching to Marjorie. 
+</p>
+<hr />
+<div class="title" id="Chah2001_S25"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S25">Session 25</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S25_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S25_F03.mp3" title="Remembering Ajahn Chah Weekend, S25 E3" data-duration="270"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S25_F03.mp3" download="Remembering Ajahn Chah Weekend, S25 E3.mp3">Download audio</a> (4:30)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Learning to Listen.” Translated and read by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>.  [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/questions.html">Questions</a>] [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/unconditioned.html">Unconditioned</a>]
+</p>
+<hr />
 <div class="title" id="SRD2010_S04"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S04">Session 4</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S04_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S04_F02.mp3" title="Recollections of Ajahn Chah, S4 E2" data-duration="398"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S04_F02.mp3" download="Recollections of Ajahn Chah, S4 E2.mp3">Download audio</a> (6:38)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Teaching</b>: Skillful effort in meditation.  [<a href = "../tags/meditationgeneral-advice.html">Meditation/General advice</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=505" target="_blank">p. 467</a> "Unshakeable Peace" 
+  <b>Reference</b>: <em>Collected Teachings of <a href="../teachers/ajahn-chah.html">Ajahn Chah</a></em>, <a href="https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=505" target="_blank">p. 467</a> “Unshakeable Peace” 
 </p>
 <hr />
 <p id="SRD2010_S04_F03">
@@ -74,7 +144,7 @@
 <hr />
 <div class="title" id="SRD2010_S08"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S08">Session 8</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S08_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" title="Recollections of Ajahn Chah, S8 E1" data-duration="932"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" download="Recollections of Ajahn Chah, S8 E1.mp3">Download audio</a> (15:32)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From "<a href="https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm" target="_blank">The Key to Liberation</a>" by Ajahn Chah.  [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" title="Recollections of Ajahn Chah, S8 E1" data-duration="932"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" download="Recollections of Ajahn Chah, S8 E1.mp3">Download audio</a> (15:32)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From “<a href="https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm" target="_blank">The Key to Liberation</a>“ by Ajahn Chah.  [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Sitting and walking meditation are in essence the same, differing only in the posture used.”  [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>]
@@ -96,16 +166,16 @@
 <hr />
 <div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F09">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" title="The New Ajahn Chah Biography, S2 E9" data-duration="610"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" download="The New Ajahn Chah Biography, S2 E9.mp3">Download audio</a> (10:10)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=634" target="_blank">p. 612-614</a> "Faith in the Triple Gem"  [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" title="The New Ajahn Chah Biography, S2 E9" data-duration="610"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F09.mp3" download="The New Ajahn Chah Biography, S2 E9.mp3">Download audio</a> (10:10)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Reading:</b> <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=634" target="_blank">p. 612-614</a> “Faith in the Triple Gem”  [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Simile:</b> Digging a well — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> Subhaddo. [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+  <b>Simile:</b> Digging a well — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>. [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Chah Subhaddo (Teachings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Chah Subhaddo (Teachings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-chah-teaching.html">https://abhayagiri.org/questions/teachers/ajahn-chah-teaching.html</a>.</p>
 </footer>
 

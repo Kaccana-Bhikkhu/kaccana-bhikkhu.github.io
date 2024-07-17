@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/culturesri-lanka.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/cultural-context.html#cultural-context"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCulture/Sri Lanka 
+  <div class="title"><a href="../drilldown/cultural-context.html#cultural-context" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspCulture/Sri Lanka 
   </div>
 
 <div class="intro">
@@ -57,9 +67,9 @@
   1 excerpt, 6:03 total duration
 </strong>
 <hr />
-<div class="title" id="WR2015_S34"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S34">Session 34</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 23, 2015</div>
+<div class="title" id="WR2015_S34"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S34">Session 34</a> – Feb. 23, 2015</div>
 <p id="WR2015_S34_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S34 E1" data-duration="363"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S34 E1.mp3">Download audio</a> (6:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comments</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> contrasting the cannonical and commentarial approaches to breath meditation. [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>] [<a href = "../tags/pa-auk-sayadaw.html">Pa Auk Sayadaw</a>] <b>[<a href = "../tags/culturesri-lanka.html">Culture/Sri Lanka</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S34 E1" data-duration="363"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S34_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S34 E1.mp3">Download audio</a> (6:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comments</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> contrasting the cannonical and commentarial approaches to breath meditation. [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/commentaries.html">Commentaries</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>] [<a href = "../tags/pa-auk-sayadaw.html">Pa Auk Sayadaw</a>] <b>[<a href = "../tags/culturesri-lanka.html">Culture/Sri Lanka</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-44" target="_blank">MN 44</a> identifies in-and-out breathing as the bodily fabrication/conditioner (saṅkhāra). 
@@ -67,8 +77,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Culture/Sri Lanka,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Culture/Sri Lanka,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/culturesri-lanka.html">https://abhayagiri.org/questions/tags/culturesri-lanka.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-pasanno-9.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,21 +58,110 @@
   </div>
 
 <div class="intro">
-1736 excerpts, 104:52:26 total duration
+1749 excerpts, 105:24:26 total duration
 <hr />
-<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html" class="active">All excerpts (1736)</a>
-      <a href="../teachers/ajahn-pasanno-question.html">Questions (1495)</a>
-      <a href="../teachers/ajahn-pasanno-story.html">Stories (200)</a>
-      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (96)</a>
-      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (74)</a>
-      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (5)</a>
-      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (43)</a>
+<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html" class="active">All excerpts (1749)</a>
+      <a href="../teachers/ajahn-pasanno-question.html">Questions (1496)</a>
+      <a href="../teachers/ajahn-pasanno-story.html">Stories (207)</a>
+      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (99)</a>
+      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (77)</a>
+      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (6)</a>
+      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (48)</a>
       <a href="../teachers/ajahn-pasanno-read-from.html">Readings from (1)</a>
       <a href="../teachers/ajahn-pasanno-read-by.html">Readings by (89)</a> </div>
 <hr>
 
 <p class="page-list">Page: &nbsp&nbsp <a href="../teachers/ajahn-pasanno.html">1</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-2.html">2</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-3.html">3</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-4.html">4</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-5.html">5</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-6.html">6</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-7.html">7</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-8.html">8</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-9.html" class="active">9</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-10.html">10</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-11.html">11</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-12.html">12</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-13.html">13</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-14.html">14</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-15.html">15</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-16.html">16</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-17.html">17</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../teachers/ajahn-pasanno-all.html">All/Searchable</a> </p>
 
+<div class="title" id="TG2014_S05"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S05">Session 5</a> – Nov. 26, 2014</div>
+<p id="TG2014_S05_F01">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F01.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E1" data-duration="515"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F01.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E1.mp3">Download audio</a> (8:35)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “How do I use the teaching today about investigating the cause of suffering when working with betrayal? Been married to high school sweetheart for 40 years. Raised children together and best of friends. Lately he has gone off the deep end. Midlife crisis? - who knows, but he started drinking and acting out sexually. The feelings of shock, betrayal, hurt, anger and fear are beyond words. If new relationship I would leave, but he has been in my life since I was a child. Impossible to accept but hard to leave. How do I find the cause of suffering (noble truth) you spoke of today? And how to bring some equanimity and space around this?”  [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/intoxicants.html">Intoxicants</a>] [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/equanimity.html">Equanimity</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F02.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E2" data-duration="122"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F02.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E2.mp3">Download audio</a> (2:02)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How does a “stream enterer” know in their next life that she/he is a stream enterer?”  [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/rebirth.html">Rebirth</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F03.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E3" data-duration="803"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F03.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E3.mp3">Download audio</a> (13:23)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Can you talk about the quality of disgust, and how it is beneficial for practice? For example, awareness of the disgusting nature of eating and the digestive process arises when I’m eating. In all honesty, I try to finish my food as quickly as possible when this happens. Unpleasant. Is there a better / more skillful way to hold this experience?”  [<a href = "../tags/disenchantment.html">Disenchantment</a>] [<a href = "../tags/food.html">Food</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F04.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E4" data-duration="96"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F04.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E4.mp3">Download audio</a> (1:36)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “I just wanted to share my gratitude for Ajahn Karuṇadhammo, Ajahn Ñāniko, and Debbie (you too Luang Por) for giving each day, very needed and timely encouragements—sometimes immediately answering a question I had just posed to myself. It’s like you are all just reading my mind / heart. Questions go deeper and so do your reflections on Dhamma. (Bow, bow, bow, añjali.)”  [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F05">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F05.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E5" data-duration="489"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F05.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E5.mp3">Download audio</a> (8:09)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “There is a borderline between being fierce (in a wholesome way) and being aggressive.  I can’t say anything about Dhamma teachers as I have never experienced Thai Ajahns, but a few yoga teachers I’ve studied with in my opinion were rather just exercising their power over students. How to tell the difference between a teacher who genuinely means well to their students while acting fierce-fully from someone on a power trip?”  [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F06">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F06.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E6" data-duration="333"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F06.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E6.mp3">Download audio</a> (5:33)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “It seems that suffering in the lives of many people, my own included, comes from feeling unworthy or unlovable. Would you have any thoughts on why so many people feel that way and what will help to let go of this feeling? Thank you!”  [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F07">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F07.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E7" data-duration="30"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F07.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E7.mp3">Download audio</a> (0:30)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “It was such a joy to hear Khun Debbie give a Dhamma talk at the retreat along with the monastics. She is a jewel. Actually you all are…(triple gem). Thank you.”  [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F08">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F08.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E8" data-duration="229"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F08.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E8.mp3">Download audio</a> (3:49)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “Perception can be very slippery. I experience it as a veil, view, filter, or lens that colors a situation. The traditional Buddhist teaching of, “tinted glasses” and “bowls of water,” is very helpful. However, identification is strong. Do you have suggestions for how to see through perception? How to know when it is coloring my world view?”  [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/delusion.html">Delusion</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F09">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F09.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E9" data-duration="183"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F09.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E9.mp3">Download audio</a> (3:03)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “What is the difference between directed thought and verbal fabrication? Thank you for showing us patience.”  [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F10">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F10.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E10" data-duration="315"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F10.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E10.mp3">Download audio</a> (5:15)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Thank you so very much for your very compassionate, clear, and useful teachings. Can you please talk a little bit about dependent origination so that we may put an end to the causes of suffering? Thank you again for your compassionate teachings and humor. We appreciate you and the rest of the Sangha!”  [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/dependent-origination.html">Dependent origination</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> Ajahn Pasanno writes a term paper on dependent origination at university. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “When you’re falling down from a tree, you don’t have to count the branches. You just have to know that when you hit the bottom, it’s going to hurt.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F11">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F11.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E11" data-duration="173"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F11.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E11.mp3">Download audio</a> (2:53)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “How can one investigate without getting the mind too active? I find that when I try to investigate or reflect, my mind gets so active that I find myself getting caught up in it. Thank you.”  [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F12">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F12.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E12" data-duration="42"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F12.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E12.mp3">Download audio</a> (0:42)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “Are the teachings being recorded? What happened to the usual football game? Do you know?”  
+</p>
+<hr />
+<p id="TG2014_S05_F13">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F13.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E13" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F13.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E13.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “This is a comment to say thank you to the whole Sangha, really, for your interest in practice. We were doing walking meditation and there was such a contrast between the cars driving through and the walking practice. Usually, I feel more alone in practice. It feels so good not to be the odd one out. You guys almost made me cry with sweeping the walking paths yesterday. Thank you Sangha.”  [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F14">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F14.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E14" data-duration="68"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F14.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E14.mp3">Download audio</a> (1:08)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “I once heard a Tibetan teacher say “the Dharma is one.” Can the Dhamma mean phenomena in general or am I just misunderstanding?”  [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>] [<a href = "../tags/dhamma.html">Dhamma</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F15">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F15.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E15" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F15.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E15.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “My body does not physically handle sitting or stationary positions for long periods of time. I would like to do more walking meditation. Walking has a lot more distractions. Can you give some specifics on where to put my focus? Rise and fall of breath, feet, skeleton moving? Where to look, etc. Is it possible to achieve the same level of calmness, concentration and insights when the body is moving and you cannot close the eyes or keep focus on one spot?”  [<a href = "../tags/posturewalking.html">Posture/Walking</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F16">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F16.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E16" data-duration="463"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F16.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E16.mp3">Download audio</a> (7:43)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Was the fire sermon a “teaching moment” of hyperbole? I love to take photographs, for example, and it helps me engage much more deeply with the world outside my skull. And it fills me with rapture, compassion, and joy! Does the Buddha’s recipe for liberation truly entail cutting off this experience of beauty? Where’s the Theravada equivalent to the Zen “suchness” —the awe of life and its ephemerality? Thank you!”  [<a href = "../tags/dispassion.html">Dispassion</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/suchness.html">Suchness</a>] [<a href = "../tags/recreationleisuresport.html">Recreation/leisure/sport</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/happiness.html">Happiness</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-35.28:" target="_blank">SN 35.28:</a> Ādittapariyāya Sutta 
+</p>
+<hr />
+<p id="TG2014_S05_F17">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F17.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E17" data-duration="164"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F17.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E17.mp3">Download audio</a> (2:44)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “I’ve wondered for some time how to put together (a) birth, aging, death or dukkha and (b) the cause of dukkha as craving. Is it correct to say that the source of dukkha is in the mind (i.e., craving)? If so, what does it mean to say that birth, aging, and death—facts that we don’t control and can’t change—are dukkha? Thank you for your generosity and wisdom.”  [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F18">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F18.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E18" data-duration="342"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F18.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E18.mp3">Download audio</a> (5:42)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “I was very fortunate to receive a Pali name from the Sangha. At first, I was very energized in my practice but then I saw it as just another identity to work with, particularly from a pride and self-view side. I seldom use my Pali name these days but I realize that I am neglecting this gift. How do I use my Pali name skillfully in my practice?”  [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/language.html">Language</a>]
+</p>
+<hr />
+<p id="TG2014_S05_F19">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F19.mp3" title="2014 Thanksgiving Monastic Retreat, S5 E19" data-duration="280"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S05_F19.mp3" download="2014 Thanksgiving Monastic Retreat, S5 E19.mp3">Download audio</a> (4:40)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “Was Pali ever a conversational language? Do you know of a translation of suttas that use more common, everyday words? For example, saying…letting go or releasing instead of relinquishing. I like to use simple words in the day to remind myself.”  [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/historyearly-buddhism.html">History/Early Buddhism</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/language.html">Language</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Note</b>: Bhante Sujato’s translations (available on <a href="https://suttacentral.net/pitaka/sutta" target="_blank">suttacentral.net</a>) use less technical terms. 
+</p>
+<hr />
 <div class="title" id="TG2014_S06"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S06">Session 6</a> – Nov. 27, 2014</div>
 <p id="TG2014_S06_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S06_F01.mp3" title="2014 Thanksgiving Monastic Retreat, S6 E1" data-duration="177"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S06_F01.mp3" download="2014 Thanksgiving Monastic Retreat, S6 E1.mp3">Download audio</a> (2:57)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “A question regarding the 5 precepts. In daily life, I am really good about keeping #1, 2, 3 and 5; but somehow I found that the precept #4 is really hard. I find myself lying everyday such as: “Do I look good?” → Yes, of course. “Do you want to eat some more?” → No, thanks, I’m full (but in fact the food didn’t taste good). Or speaking at a wrong time, speaking too long, toos hort, too harsh or speaking with a wrong tone of voice. This is the hardest one for me. Kindly advise. Thank you.”  [<a href = "../tags/five-precepts.html">Five Precepts</a>] [<a href = "../tags/false-speech.html">False speech</a>] [<a href = "../tags/right-speech.html">Right Speech</a>]
@@ -136,7 +235,7 @@
 </p>
 <hr />
 <p id="TG2014_S06_F19">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S06_F19.mp3" title="2014 Thanksgiving Monastic Retreat, S6 E19" data-duration="131"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S06_F19.mp3" download="2014 Thanksgiving Monastic Retreat, S6 E19.mp3">Download audio</a> (2:11)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “I would like to invite my aging mother to live with my family. Our family observes the precept of no-killing. However, my mother is not vegetarian. My spouse insists that everyone in the house must uphold the precept. I think it’s unfair to impose that on my aging mother. Is my spouse holding onto fixed views? I very much would like to honor my filial duty and at the same time maintain harmony in the family. As a practitioner, what is the best way to handle this situation? Thank you, Ajahn, for your time and advice.”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/vegetarianism.html">Vegetarianism</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S06_F19.mp3" title="2014 Thanksgiving Monastic Retreat, S6 E19" data-duration="131"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S06_F19.mp3" download="2014 Thanksgiving Monastic Retreat, S6 E19.mp3">Download audio</a> (2:11)</audio-chip><br /> <b style="text-decoration: underline;">19.</b> “I would like to invite my aging mother to live with my family. Our family observes the precept of no-killing. However, my mother is not vegetarian. My spouse insists that everyone in the house must uphold the precept. I think it’s unfair to impose that on my aging mother. Is my spouse holding onto fixed views? I very much would like to honor my filial duty and at the same time maintain harmony in the family. As a practitioner, what is the best way to handle this situation? Thank you, Ajahn, for your time and advice.”  [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/killing.html">Killing</a>] [<a href = "../tags/vegetarianism.html">Vegetarianism</a>]
 </p>
 <hr />
 <p id="TG2014_S06_F20">
@@ -223,7 +322,7 @@
 <hr />
 <div class="title" id="WR2015_S02"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S02">Session 2</a> – Jan. 7, 2015</div>
 <p id="WR2015_S02_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/02_AP_01_07_2015_Right_Effort_and_Mindfulness.mp3" title="Abhayagiri 2015 Winter Retreat, S2" data-duration="2385"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/02_AP_01_07_2015_Right_Effort_and_Mindfulness.mp3" download="Abhayagiri 2015 Winter Retreat, S2.mp3">Download audio</a> (39:45)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Dhamma talk:</b> Ajahn Pasanno reflects upon the question: “What kind of effort do we need to conform with what the Buddha means by mindfulness?” He answers in terms of the four aspects of right effort, the seven qualities of Dhamma the Buddha taught to Upali (<a href="https://sutta.readingfaithfully.org/?q=AN-7.79" target="_blank">AN 7.79</a>), and the Buddha's description of how he crossed the flood (<a href="https://sutta.readingfaithfully.org/?q=SN-1.1" target="_blank">SN 1.1</a>). [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/dhamma.html">Dhamma</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/02_AP_01_07_2015_Right_Effort_and_Mindfulness.mp3" title="Abhayagiri 2015 Winter Retreat, S2" data-duration="2385"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/02_AP_01_07_2015_Right_Effort_and_Mindfulness.mp3" download="Abhayagiri 2015 Winter Retreat, S2.mp3">Download audio</a> (39:45)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Dhamma talk:</b> Ajahn Pasanno reflects upon the question: “What kind of effort do we need to conform with what the Buddha means by mindfulness?” He answers in terms of the four aspects of right effort, the seven qualities of Dhamma the Buddha taught to Upali (<a href="https://sutta.readingfaithfully.org/?q=AN-7.79" target="_blank">AN 7.79</a>), and the Buddha’s description of how he crossed the flood (<a href="https://sutta.readingfaithfully.org/?q=SN-1.1" target="_blank">SN 1.1</a>). [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/dhamma.html">Dhamma</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S03"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S03">Session 3</a> – Jan. 8, 2015</div>
@@ -238,14 +337,14 @@
 <hr />
 <div class="title" id="WR2015_S05"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S05">Session 5</a> – Jan. 10, 2015</div>
 <p id="WR2015_S05_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S5 E1" data-duration="161"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S5 E1.mp3">Download audio</a> (2:41)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Do you need to be a non-returner to be free from the fear of death?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/non-return.html">Non-return</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] // [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/faith.html">Faith</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S5 E1" data-duration="161"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S5 E1.mp3">Download audio</a> (2:41)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Do you need to be a non-returner to be free from the fear of death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/non-return.html">Non-return</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] // [<a href = "../tags/arahant.html">Arahant</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/stream-entry.html">Stream entry</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <hr />
 <p id="WR2015_S05_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S5 E4" data-duration="326"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S5 E4.mp3">Download audio</a> (5:26)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Discussion</b> of which excercises described as mindfulness of the body (<a href="https://sutta.readingfaithfully.org/?q=MN-10" target="_blank">MN 10</a>) are reflective techniques and which are based on vedanā. Led by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S5 E4" data-duration="326"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S05_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S5 E4.mp3">Download audio</a> (5:26)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Discussion</b> of which excercises described as mindfulness of the body (<a href="https://sutta.readingfaithfully.org/?q=MN-10" target="_blank">MN 10</a>) are reflective techniques and which are based on vedanā. Led by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/recollection.html">Recollection</a>] [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comment</b> about S.N. Goenka's use of the term vedanā. Contributed by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/s-n-goenka.html">S. N. Goenka</a>] [<a href = "../tags/contact.html">Contact</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/aggregates.html">Aggregates</a>]
+  <b>Comment</b> about S.N. Goenka’s use of the term vedanā. Contributed by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/s-n-goenka.html">S. N. Goenka</a>] [<a href = "../tags/contact.html">Contact</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/aggregates.html">Aggregates</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S09"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S09">Session 9</a> – Jan. 16, 2015</div>
@@ -261,10 +360,10 @@
 </p>
 <hr />
 <p id="WR2015_S09_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S9 E3" data-duration="829"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S9 E3.mp3">Download audio</a> (13:49)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Readings</b> from the Introduction to <em>Listening to the Heart</em> by Kittisaro and Thanissara (commercial).  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S9 E3" data-duration="829"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S9 E3.mp3">Download audio</a> (13:49)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Readings</b> from the Introduction to <em>Listening to the Heart</em> by Kittisaro and Ṭhānissarā (commercial).  
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Kittisaro's first meeting with Ajahn Chah. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/humor.html">Humor</a>]
+  <b>Story:</b> Kittisaro’s first meeting with Ajahn Chah. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/body-scanning.html">Body scanning</a>] [<a href = "../tags/humor.html">Humor</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Stories:</b> The Squirrel Story and the Donkey Story. [<a href = "../tags/learning.html">Learning</a>]
@@ -272,11 +371,11 @@
 <hr />
 <div class="title" id="WR2015_S11"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S11">Session 11</a> – Jan. 18, 2015</div>
 <p id="WR2015_S11_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S11 E1" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S11 E1.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Has there been discussion of getting a skeleton for Abhayagiri?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S11 E1" data-duration="62"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S11 E1.mp3">Download audio</a> (1:02)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Has there been discussion of getting a skeleton for Abhayagiri?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
 </p>
 <hr />
 <p id="WR2015_S11_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S11 E2" data-duration="181"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S11 E2.mp3">Download audio</a> (3:01)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Is it common for body contemplation to veer towards aversion?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/elements.html">Elements</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S11 E2" data-duration="181"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S11_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S11 E2.mp3">Download audio</a> (3:01)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Is it common for body contemplation to veer towards aversion?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/elements.html">Elements</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-62:" target="_blank">MN 62:</a> Mahārāhulaovāda Sutta, The Greater Discourse of Advice to Rāhula. 
@@ -284,7 +383,7 @@
 <hr />
 <div class="title" id="WR2015_S12"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S12">Session 12</a> – Jan. 21, 2015</div>
 <p id="WR2015_S12_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/12_AP_01_21_2015_Elements_2.mp3" title="Abhayagiri 2015 Winter Retreat, S12" data-duration="1734"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/12_AP_01_21_2015_Elements_2.mp3" download="Abhayagiri 2015 Winter Retreat, S12.mp3">Download audio</a> (28:54)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> "Theory: Elements," <em>Meditation: A Way of Awakening</em> by <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a>, <a href="https://www.abhayagiri.org/media/books/sucitto_meditation_a_way_of_awakening.pdf#page=137" target="_blank">pp. 128-138</a>.  [<a href = "../tags/elements.html">Elements</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/12_AP_01_21_2015_Elements_2.mp3" title="Abhayagiri 2015 Winter Retreat, S12" data-duration="1734"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/12_AP_01_21_2015_Elements_2.mp3" download="Abhayagiri 2015 Winter Retreat, S12.mp3">Download audio</a> (28:54)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Theory: Elements,” <em>Meditation: A Way of Awakening</em> by <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a>, <a href="https://www.abhayagiri.org/media/books/sucitto_meditation_a_way_of_awakening.pdf#page=137" target="_blank">pp. 128-138</a>.  [<a href = "../tags/elements.html">Elements</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S13"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S13">Session 13</a> – Jan. 22, 2015</div>
@@ -297,10 +396,10 @@
 </p>
 <hr />
 <p id="WR2015_S13_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S13_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S13 E2" data-duration="134"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S13_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S13 E2.mp3">Download audio</a> (2:14)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Appreciation for the elements meditation in <em>Knowing and Seeing</em> by Pa Auk Sayadaw, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pa_Auk_Sayadaw_Knowing_and_Seeing_4th_Ed_2010.pdf#page=130" target="_blank">pp. 116-120</a>. <B>Comment</b> by Ajahn Kaccāna. [<a href = "../tags/elements.html">Elements</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S13_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S13 E2" data-duration="134"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S13_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S13 E2.mp3">Download audio</a> (2:14)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Appreciation for the elements meditation in <em>Knowing and Seeing</em> by Pa Auk Sayadaw, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pa_Auk_Sayadaw_Knowing_and_Seeing_4th_Ed_2010.pdf#page=130" target="_blank">pp. 116-120</a>. <b>Comment</b> by Ajahn Kaccāna. [<a href = "../tags/elements.html">Elements</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/delusion.html">Delusion</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/delusion.html">Delusion</a>]
 </p>
 <hr />
 <p id="WR2015_S13_F03">
@@ -322,20 +421,20 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S14 E1" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S14 E1.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment:</b> Venerable Analayo points out that present moment awareness and remembering the past are not mutually exclusive. [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/ven-analayo.html">Ven. Analayo</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <p style="margin-left: 2em;">
-  <b>References</b>: <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href = ../teachers/venerable-analayo.html>Venerable Analayo</a>, Chapter 3; "<a href="http://transformationalchange.pbworks.com/w/file/fetch/55259547/Definitions.pdf" target="_blank">On some definitions of Mindfulness</a>," Rupert Gethim, <em>Contemporary Buddhism</em> Vol. 12, No. 1, May 2011. 
+  <b>References</b>: <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href="../teachers/venerable-analayo.html">Venerable Analayo</a>, Chapter 3; “<a href="http://transformationalchange.pbworks.com/w/file/fetch/55259547/Definitions.pdf" target="_blank">On some definitions of Mindfulness</a>,” Rupert Gethim, <em>Contemporary Buddhism</em> Vol. 12, No. 1, May 2011. 
 </p>
 <hr />
 <p id="WR2015_S14_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S14 E2" data-duration="452"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S14 E2.mp3">Download audio</a> (7:32)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How can one be mindful of the beginning of thought?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, Ajahn Kaccāna and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] // [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>] [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S14 E2" data-duration="452"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S14 E2.mp3">Download audio</a> (7:32)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How can one be mindful of the beginning of thought?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>, Ajahn Kaccāna and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] // [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>] [<a href = "../tags/perception.html">Perception</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Comments</b> about observing proliferating thoughts. [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/feeling.html">Feeling</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/feeling.html">Feeling</a>]
 </p>
 <p style="margin-left: 6em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-118" target="_blank">MN 118</a> Ānāpānasati Sutta. 
@@ -349,7 +448,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S14 E4" data-duration="218"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S14_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S14 E4.mp3">Download audio</a> (3:38)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Could you clarify “the body in the body?””  [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] // [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>References</b>: <em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=100" target="_blank">p. 91</a>; <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank"><em>Right Mindfulness</em></a> by <a href = ../teachers/ajahn-thanissaro.html>Ajahn Ṭhānissaro</a>. [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>]
+  <b>References</b>: <em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=100" target="_blank">p. 91</a>; <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank"><em>Right Mindfulness</em></a> by <a href="../teachers/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>. [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/perception.html">Perception</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S15"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S15">Session 15</a> – Jan. 24, 2015</div>
@@ -391,7 +490,7 @@
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.58." target="_blank">AN 10.58.</a> 
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Listening to the Heart</em> by Kittisaro and Thanissara (commercial). 
+  <b>Reference</b>: <em>Listening to the Heart</em> by Kittisaro and Ṭhānissarā (commercial). 
 </p>
 <hr />
 <p id="WR2015_S15_F05">
@@ -403,13 +502,13 @@
 </p>
 <hr />
 <p id="WR2015_S15_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S15 E7" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S15 E7.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> Ajahn Sucitto speaks of feeling water washing through you [as a way of releasing tension related to effort]. <B>Comment</b> by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a>. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S15 E7" data-duration="191"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S15_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S15 E7.mp3">Download audio</a> (3:11)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> Ajahn Sucitto speaks of feeling water washing through you [as a way of releasing tension related to effort]. <b>Comment</b> by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a>. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/elements.html">Elements</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Khun Kesari's brother enters concentration by visualizing drinking a glass of water. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/visualization.html">Visualization</a>]
+  <b>Story:</b> Khun Kesari’s brother enters concentration by visualizing drinking a glass of water. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/visualization.html">Visualization</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Kesari's mother walked into Wat Ban Tad before there was a road. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>] [<a href = "../tags/relics.html">Relics</a>]
+  <b>Story:</b> Kesari’s mother walked into Wat Ban Tad before there was a road. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>] [<a href = "../tags/relics.html">Relics</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S16"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S16">Session 16</a> – Jan. 25, 2015</div>
@@ -418,10 +517,10 @@
 </p>
 <hr />
 <p id="WR2015_S16_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S16 E1" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S16 E1.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment:</b> The phrase "ancestral territory" [mentioned in <a href="https://sutta.readingfaithfully.org/?q=SN-47.6" target="_blank">SN 47.6</a>] doesn't carry oomph for (non-Native) Americans. Contributed by Ajahn Kaccāna. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturenative-american.html">Culture/Native American</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S16 E1" data-duration="184"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S16 E1.mp3">Download audio</a> (3:04)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Comment:</b> The phrase “ancestral territory” [mentioned in <a href="https://sutta.readingfaithfully.org/?q=SN-47.6" target="_blank">SN 47.6</a>] doesn’t carry oomph for (non-Native) Americans. Contributed by Ajahn Kaccāna. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturenative-american.html">Culture/Native American</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/historyamerica.html">History/America</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/historyamerica.html">History/America</a>]
 </p>
 <hr />
 <p id="WR2015_S16_F02">
@@ -435,7 +534,7 @@
 </p>
 <hr />
 <p id="WR2015_S16_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S16 E3" data-duration="123"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S16 E3.mp3">Download audio</a> (2:03)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Why doesn't the passage (<a href="https://sutta.readingfaithfully.org/?q=SN-47.7" target="_blank">SN 47.7</a>) mention obsession with painful objects?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S16 E3" data-duration="123"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S16_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S16 E3.mp3">Download audio</a> (2:03)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Why doesn’t the passage (<a href="https://sutta.readingfaithfully.org/?q=SN-47.7" target="_blank">SN 47.7</a>) mention obsession with painful objects?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <hr />
 <p id="WR2015_S16_F04">
@@ -489,29 +588,29 @@
 </p>
 <hr />
 <p id="WR2015_S17_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F06.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E6" data-duration="375"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F06.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E6.mp3">Download audio</a> (6:15)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comments</b> by <a href = ../teachers/abhayagiri-sangha.html>Abhayagiri Saṅgha</a> about the nature of practice. [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F06.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E6" data-duration="375"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F06.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E6.mp3">Download audio</a> (6:15)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comments</b> by <a href="../teachers/abhayagiri-sangha.html">Abhayagiri Saṅgha</a> about the nature of practice. [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Comment:</b> Patience remind me of going through deep grief. Contributed by Beth Steff. [<a href = "../tags/grief.html">Grief</a>]
 </p>
 <hr />
 <p id="WR2015_S17_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E7" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E7.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  "Do you still have anger?" "Yes, but I don't take it." — <a href = ../teachers/ajahn-dune.html>Ajahn Dune</a>. Quoted by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a>. [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E7" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E7.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “Do you still have anger?” “Yes, but I don’t take it.” — <a href="../teachers/ajahn-dune.html">Ajahn Dune</a>. Quoted by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a>. [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Do we know if the Buddha had anger?” [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/sutta.html">Sutta</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comment:</b> Māra cam to the Buddha many times after the Buddha's enlightenment. Contributed by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
+  <b>Comment:</b> Māra cam to the Buddha many times after the Buddha’s enlightenment. Contributed by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
 </p>
 <hr />
 <div class="title" id="WR2015_S18"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S18">Session 18</a> – Jan. 29, 2015</div>
@@ -542,190 +641,13 @@
   <b>Comment</b> about the difference between the third and fourth developments of concentration. [<a href = "../tags/conditionality.html">Conditionality</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
-</p>
-<hr />
-<div class="title" id="WR2015_S19"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S19">Session 19</a> – Jan. 30, 2015</div>
-<p id="WR2015_S19_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/19_AP_01_30_2015_Mindfulness_the_Gatekeeper_6.mp3" title="Abhayagiri 2015 Winter Retreat, S19" data-duration="2183"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/19_AP_01_30_2015_Mindfulness_the_Gatekeeper_6.mp3" download="Abhayagiri 2015 Winter Retreat, S19.mp3">Download audio</a> (36:23)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank">Right Mindfulness</a> p. 24-28.  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-19:" target="_blank">MN 19:</a> Dvedhavitakka Sutta, Two Kinds of Thought.  
-</p>
-<hr />
-<p id="WR2015_S19_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E1" data-duration="112"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E1.mp3">Download audio</a> (1:52)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “How does cruelty differ from ill will?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/ill-will.html">Ill-will</a>] // [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-19:" target="_blank">MN 19:</a> Dvedhavitakka Sutta, Two Kinds of Thought. 
-</p>
-<hr />
-<p id="WR2015_S19_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E2" data-duration="84"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E2.mp3">Download audio</a> (1:24)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “When Ajahn Ṭhānissaro talks about Right Concentration, are Right Concentration and jhāna one and the same?”  [<a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
-</p>
-<hr />
-<p id="WR2015_S19_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E3" data-duration="125"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E3.mp3">Download audio</a> (2:05)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “What are antidotes to the strained, tired mind?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>] // [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-19:" target="_blank">MN 19:</a> Dvedhavitakka Sutta, Two Kinds of Thought. 
-</p>
-<hr />
-<p id="WR2015_S19_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E4" data-duration="243"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E4.mp3">Download audio</a> (4:03)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is pain an obstacle to reaching right concentration?”  [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>] // [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/postures.html">Postures</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Quote:</b>  “What's really painful about pain is the way we hate it.”  [<a href = "../tags/aversion.html">Aversion</a>]
-</p>
-<hr />
-<p id="WR2015_S19_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S19 E5" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S19_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S19 E5.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Can jhana occur in walking meditation?”  [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>] // [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/ajahn-viradhammo.html">Ajahn Viradhammo</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-5.29:" target="_blank">AN 5.29:</a> Walking Meditatation. 
-</p>
-<hr />
-<div class="title" id="WR2015_S20"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S20">Session 20</a> – Jan. 31, 2015</div>
-<p id="WR2015_S20_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/20_AP_01_31_2015_Mindfulness_the_Gatekeeper_7.mp3" title="Abhayagiri 2015 Winter Retreat, S20" data-duration="1625"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/20_AP_01_31_2015_Mindfulness_the_Gatekeeper_7.mp3" download="Abhayagiri 2015 Winter Retreat, S20.mp3">Download audio</a> (27:05)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank">Right Mindfulness</a> p. 28-31.  
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=SN-47.40:" target="_blank">SN 47.40:</a> Analysis.  
-</p>
-<hr />
-<p id="WR2015_S20_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S20 E1" data-duration="165"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S20 E1.mp3">Download audio</a> (2:45)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “What is your experience of directed thought and evaluation?”  [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Quote:</b>  “Directed thought [vitakka] is like lifting up the object in the mind. Evaluation is then looking at it from different angles.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/similes.html">Similes</a>]
-</p>
-<hr />
-<p id="WR2015_S20_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S20 E2" data-duration="118"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S20 E2.mp3">Download audio</a> (1:58)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Does the consistency of vicara correlate with samadhi?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-119:" target="_blank">MN 119:</a> Simile of the bathman. [<a href = "../tags/similes.html">Similes</a>]
-</p>
-<hr />
-<p id="WR2015_S20_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S20 E3" data-duration="12"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S20 E3.mp3">Download audio</a> (0:12)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “What does Ajahn Geoff mean by “frames of reference?””  [<a href = "../tags/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
-</p>
-<hr />
-<p id="WR2015_S20_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S20 E4" data-duration="71"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S20 E4.mp3">Download audio</a> (1:11)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Is “arising and vanishing” the same as “arising and ceasing?””  [<a href = "../tags/impermanence.html">Impermanence</a>] // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
-</p>
-<hr />
-<p id="WR2015_S20_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S20 E5" data-duration="88"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S20_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S20 E5.mp3">Download audio</a> (1:28)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “How does the general sense of awareness fit into the jhana factors?”  [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] // [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
-</p>
-<hr />
-<div class="title" id="WR2015_S21"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S21">Session 21</a> – Feb. 1, 2015</div>
-<p id="WR2015_S21_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/21_AP_02_01_2015_Mindfulness_the_Gatekeeper_8.mp3" title="Abhayagiri 2015 Winter Retreat, S21" data-duration="1904"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/21_AP_02_01_2015_Mindfulness_the_Gatekeeper_8.mp3" download="Abhayagiri 2015 Winter Retreat, S21.mp3">Download audio</a> (31:44)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/right-concentration.html">Right Concentration</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank">Right Mindfulness</a> p. 31-34.  
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=SN-47.4:" target="_blank">SN 47.4:</a> At Sālā.  
-</p>
-<p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=Iti-90:" target="_blank">Iti 90:</a> Foremost Faith.  
-</p>
-<hr />
-<p id="WR2015_S21_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S21_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S21 E1" data-duration="283"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S21_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S21 E1.mp3">Download audio</a> (4:43)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Is it easy for a person with attainments to deal with the world?”  [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] // [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/wrong-concentration.html">Wrong concentration</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Quote:</b>  “To push away the world is also to reifying it. One gives it power when one is afraid of it.”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/fear.html">Fear</a>]
-</p>
-<p style="margin-left: 2em;">
-  Laypeople with highly developed meditation practice function well in the world. <B>Comment</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/meditationresults.html">Meditation/Results</a>] [<a href = "../tags/energy.html">Energy</a>]
-</p>
-<hr />
-<p id="WR2015_S21_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S21_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S21 E2" data-duration="84"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S21_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S21 E2.mp3">Download audio</a> (1:24)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “What is the Pāli word translated as disjoined or detached [in <a href="https://sutta.readingfaithfully.org/?q=SN-47.4" target="_blank">SN 47.4</a>]?”  [<a href = "../tags/translation.html">Translation</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Comment</b>: SuttaCentral would have the translation. 
-</p>
-<p style="margin-left: 4em;">
-  <b>Note</b>: The Pāli word is visaṁyuttā (<a href="https://suttacentral.net/sn47.4/en/sujato?lang=en&amp;layout=linebyline&amp;reference=main&amp;notes=asterisk&amp;highlight=false&amp;script=latin#4.1" target="_blank">SuttaCentral</a>). 
-</p>
-<hr />
-<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – Feb. 2, 2015</div>
-<p id="WR2015_S22_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/22_AP_02_02_2015_Anapanasati_Sutta.mp3" title="Abhayagiri 2015 Winter Retreat, S22" data-duration="2499"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/22_AP_02_02_2015_Anapanasati_Sutta.mp3" download="Abhayagiri 2015 Winter Retreat, S22.mp3">Download audio</a> (41:39)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> The Ānāpānasati Sutta (<a href="https://sutta.readingfaithfully.org/?q=MN-118" target="_blank">MN 118</a>) describes how the sixteen steps of mindfulness of breathing fufill the four foundations of mindfulness, which in turn fufill the seven factors of enlightenment.  [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
-</p>
-<hr />
-<p id="WR2015_S22_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F01.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E1" data-duration="63"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F01.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E1.mp3">Download audio</a> (1:03)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Which Pāli word is translated as “fading away?””  [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/translation.html">Translation</a>] [<a href = "../tags/dispassion.html">Dispassion</a>] // [<a href = "../tags/cessation.html">Cessation</a>]
-</p>
-<hr />
-<p id="WR2015_S22_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E2" data-duration="194"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E2.mp3">Download audio</a> (3:14)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How does nirodha differ from arising and ceasing?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/cessation.html">Cessation</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/translation.html">Translation</a>] // [<a href = "../tags/p-a-payutto.html">P. A. Payutto</a>] [<a href = "../tags/dependent-origination.html">Dependent origination</a>]
-</p>
-<hr />
-<p id="WR2015_S22_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E3" data-duration="180"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E3.mp3">Download audio</a> (3:00)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “How do you practice with painful feeling?”  [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/mindfulness-of-feeling.html">Mindfulness of feeling</a>] [<a href = "../tags/suffering.html">Suffering</a>] // [<a href = "../tags/emotion.html">Emotion</a>] [<a href = "../tags/blame-and-praise.html">Blame and praise</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-36.6:" target="_blank">SN 36.6:</a> Sallatha Sutta, The Arrow. 
-</p>
-<hr />
-<p id="WR2015_S22_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F04.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E4" data-duration="257"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F04.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E4.mp3">Download audio</a> (4:17)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “What does “know the mind as mind; know feeling as feeling” mean?”  [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] // [<a href = "../tags/proliferation.html">Proliferation</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Comment:</b> Self-view forms around the feeling from sense contact. [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/contact.html">Contact</a>] [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
-</p>
-<p style="margin-left: 4em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-18:" target="_blank">MN 18:</a> Madhupiṇḍika Sutta, The Honeyball. 
-</p>
-<p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/perception.html">Perception</a>]
-</p>
-<p style="margin-left: 4em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-118:" target="_blank">MN 118:</a> Ānāpānasati Sutta. [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>]
-</p>
-<hr />
-<p id="WR2015_S22_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F05.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E5" data-duration="98"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F05.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E5.mp3">Download audio</a> (1:38)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Should the sixteen steps be practiced simultaneously?”  [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/meditationgeneral-advice.html">Meditation/General advice</a>] [<a href = "../tags/right-effort.html">Right Effort</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-118:" target="_blank">MN 118:</a> Ānāpānasati Sutta. 
-</p>
-<hr />
-<p id="WR2015_S22_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F06.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E6" data-duration="171"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F06.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E6.mp3">Download audio</a> (2:51)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>: There is the concern that we practice meditation to make something happen. [<a href = "../tags/meditationgeneral-advice.html">Meditation/General advice</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/neutral-feeling.html">Neutral feeling</a>] [<a href = "../tags/delusion.html">Delusion</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-44:" target="_blank">MN 44:</a> Cūḷavedalla Sutta, The Small Discourse Giving an Elaboration. [<a href = "../tags/feeling.html">Feeling</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
-</p>
-<hr />
-<p id="WR2015_S22_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E7" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E7.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a>. Quoted by Beth Steff. [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/humor.html">Humor</a>]
-</p>
-<p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
-</p>
-<p style="margin-left: 2em;">
-  <b>Story:</b> "Do I look macho?" Told by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/cittavivieka.html">Cittavivieka</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-pasanno-9.html">https://abhayagiri.org/questions/teachers/ajahn-pasanno-9.html</a>.</p>
 </footer>
 

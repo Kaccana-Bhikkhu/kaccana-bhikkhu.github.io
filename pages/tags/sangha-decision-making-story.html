@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/sangha-decision-making-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/sangha.html#sangha"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSaṅgha decision making 
+  <div class="title"><a href="../drilldown/sangha.html#sangha" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspSaṅgha decision making 
   </div>
 
 <div class="intro">
@@ -54,27 +64,48 @@
   Parent topic: <a href = "../tags/sangha.html">Saṅgha</a><br>
   
   
-  13 excerpts, 59:43 total duration
+  18 excerpts, 1:17:35 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/sangha-decision-making.html">All excerpts (13)</a>
+<div class="sublink2"> <a href="../tags/sangha-decision-making.html">All excerpts (18)</a>
       <a href="../tags/sangha-decision-making-qtag.html">Questions about (5)</a>
       <a href="../tags/sangha-decision-making-atag.html">Answers involving (3)</a>
-      <a href="../tags/sangha-decision-making-story.html" class="active">Stories (5)</a>
+      <a href="../tags/sangha-decision-making-story.html" class="active">Stories (8)</a>
+      <a href="../tags/sangha-decision-making-quote.html">Quotes (1)</a>
       <a href="../tags/sangha-decision-making-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S05"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
-<p id="SRD2010_S05_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S05_F03.mp3" title="Recollections of Ajahn Chah, S5 E3" data-duration="440"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S05_F03.mp3" download="Recollections of Ajahn Chah, S5 E3.mp3">Download audio</a> (7:20)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> A group of military generals ask Ajahn Chah to bless amulets to create a kitchen fund. [<a href = "../tags/amulets.html">Amulets</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/military.html">Military</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> [<a href = "../tags/festival-days.html">Festival days</a>] [<a href = "../tags/almsbowl.html">Almsbowl</a>] [<a href = "../tags/stupasmonuments.html">Stupas/monuments</a>]
+<div class="title" id="Chah2001_S34"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S34">Session 34</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S34_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F04.mp3" title="Remembering Ajahn Chah Weekend, S34 E4" data-duration="386"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F04.mp3" download="Remembering Ajahn Chah Weekend, S34 E4.mp3">Download audio</a> (6:26)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Story:</b> Ajahn Chah goes to Bangkok for treatment and an operation. Told by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a>. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/generosity.html">Generosity</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> [<a href = "../tags/shelter.html">Shelter</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The Buddha set up the foundation 2,500 years ago with just one baht.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+  <b>Story:</b> Ajahn Chah’s last word. [<a href = "../tags/language.html">Language</a>]
 </p>
 <hr />
-<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="Chah2001_S35"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S35">Session 35</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S35_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F04.mp3" title="Remembering Ajahn Chah Weekend, S35 E4" data-duration="175"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F04.mp3" download="Remembering Ajahn Chah Weekend, S35 E4.mp3">Download audio</a> (2:55)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Recollection:</b> The June 2000 Saṅgha Meeting discusses allowable sweets and protecting Ajahn Chah’s name. Recounted by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> // [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/personality.html">Personality</a>] [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/technology.html">Technology</a>]
+</p>
+<hr />
+<p id="Chah2001_S35_F06">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F06.mp3" title="Remembering Ajahn Chah Weekend, S35 E6" data-duration="180"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S35_F06.mp3" download="Remembering Ajahn Chah Weekend, S35 E6.mp3">Download audio</a> (3:00)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Recollection:</b> The June 2000 Saṅgha Meeting concludes in harmony. Recounted by <a href="../teachers/ajahn-sumedho.html">Ajahn Sumedho</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/views.html">Views</a>] [<a href = "../tags/harsh-speech.html">Harsh speech</a>] [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “Luang Por Chah wasn’t giving us views and opinions....[He gave] us all a confidence in the unspoken unity of our humanity.”  [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/human.html">Human</a>]
+</p>
+<hr />
+<div class="title" id="SRD2010_S05"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S05">Session 5</a> – Sep. 19, 2010</div>
+<p id="SRD2010_S05_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S05_F03.mp3" title="Recollections of Ajahn Chah, S5 E3" data-duration="440"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S05_F03.mp3" download="Recollections of Ajahn Chah, S5 E3.mp3">Download audio</a> (7:20)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> A group of military generals ask Ajahn Chah to bless amulets to create a kitchen fund. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/amulets.html">Amulets</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/military.html">Military</a>] [<a href = "../tags/almsfood.html">Almsfood</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> [<a href = "../tags/festival-days.html">Festival days</a>] [<a href = "../tags/almsbowl.html">Almsbowl</a>] [<a href = "../tags/stupasmonuments.html">Stupas/monuments</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “The Buddha set up the foundation 2,500 years ago with just one baht.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/sangha.html">Saṅgha</a>]
+</p>
+<hr />
+<div class="title" id="SRD2011_S01"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S01">Session 1</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S01_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" title="Tudong Stories at Spirit Rock, S1 E5" data-duration="358"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" download="Tudong Stories at Spirit Rock, S1 E5.mp3">Download audio</a> (5:58)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Mun doesn't spend consecutive rains retreats in the same place until his mid-70s. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" title="Tudong Stories at Spirit Rock, S1 E5" data-duration="358"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S01_F05.mp3" download="Tudong Stories at Spirit Rock, S1 E5.mp3">Download audio</a> (5:58)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Story:</b> Ajahn Mun doesn’t spend consecutive rains retreats in the same place until his mid-70s. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Saṅgha authorities appoint Ajahn Mun abbot of a monastery in Chiang Mai. He leaves before dawn the next day. [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b>
@@ -83,28 +114,28 @@
   <b>Story:</b> One million people attend the funeral of Ajahn Mahā Boowa. [<a href = "../tags/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a>] [<a href = "../tags/funerals.html">Funerals</a>]
 </p>
 <hr />
-<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S03_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F06.mp3" title="Tudong Stories at Spirit Rock, S3 E6" data-duration="94"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F06.mp3" download="Tudong Stories at Spirit Rock, S3 E6.mp3">Download audio</a> (1:34)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> How Ajahn Pasanno became abbot of Wat Pah Nanachat. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F06.mp3" title="Tudong Stories at Spirit Rock, S3 E6" data-duration="94"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F06.mp3" download="Tudong Stories at Spirit Rock, S3 E6.mp3">Download audio</a> (1:34)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> How Ajahn Pasanno became abbot of Wat Pah Nanachat. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b>
 </p>
 <hr />
-<div class="title" id="WR2014_S24"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S24">Session 24</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 6, 2014</div>
+<div class="title" id="WR2014_S24"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S24">Session 24</a> – Feb. 6, 2014</div>
 <p id="WR2014_S24_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S24 E3" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S24 E3.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> The Queen invites the best neurosurgeons to help Ajahn Chah in a special suite in Chulalongkorn Hospital. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/royalty.html">Royalty</a>] [<a href = "../tags/health-care.html">Health care</a>] // <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S24 E3" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S24_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S24 E3.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Story:</b> The Queen invites the best neurosurgeons to help Ajahn Chah in a special suite in Chulalongkorn Hospital. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/royalty.html">Royalty</a>] [<a href = "../tags/health-care.html">Health care</a>] // <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Dune occupies the suite after Ajahn Chah. [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 11, 2014</div>
+<div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – Mar. 11, 2014</div>
 <p id="WR2014_S47_F11">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F11.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E11" data-duration="181"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F11.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E11.mp3">Download audio</a> (3:01)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Story:</b> A Saṅgha meeting decides that Ajahn Boon Choo should look after Wat Keun. [<a href = "../tags/ajahn-boon-choo.html">Ajahn Boon Choo</a>] [<a href = "../tags/wat-keun.html">Wat Keun</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] // [<a href = "../tags/ajahn-puriso.html">Ajahn Puriso</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F11.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E11" data-duration="181"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F11.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E11.mp3">Download audio</a> (3:01)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Story:</b> A Saṅgha meeting decides that Ajahn Boon Choo should look after Wat Keun. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-boon-choo.html">Ajahn Boon Choo</a>] [<a href = "../tags/wat-keun.html">Wat Keun</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>]</b> [<a href = "../tags/respect-for-elders.html">Respect for elders</a>] // [<a href = "../tags/ajahn-puriso.html">Ajahn Puriso</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Saṅgha decision making (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Saṅgha decision making (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/sangha-decision-making-story.html">https://abhayagiri.org/questions/tags/sangha-decision-making-story.html</a>.</p>
 </footer>
 

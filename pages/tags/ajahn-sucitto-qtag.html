@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-sucitto-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Sucitto 
+  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Sucitto 
     &nbsp&nbsp<span style="font-size:65%;"><a href="../teachers/ajahn-sucitto.html">Teachings by Ajahn Sucitto</a></span>
   </div>
 
@@ -55,31 +65,31 @@
   Parent topic: <a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a><br>
   
   
-  10 excerpts, 44:57 total duration
+  11 excerpts, 45:35 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/ajahn-sucitto.html">All excerpts (10)</a>
+<div class="sublink2"> <a href="../tags/ajahn-sucitto.html">All excerpts (11)</a>
       <a href="../tags/ajahn-sucitto-qtag.html" class="active">Questions about (1)</a>
       <a href="../tags/ajahn-sucitto-atag.html">Answers involving (7)</a>
       <a href="../tags/ajahn-sucitto-story.html">Stories (1)</a>
       <a href="../tags/ajahn-sucitto-quote.html">Quotes (4)</a> </div>
 <hr>
 
-<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 2, 2015</div>
+<div class="title" id="WR2015_S22"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S22">Session 22</a> – Feb. 2, 2015</div>
 <p id="WR2015_S22_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E7" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E7.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href = ../teachers/ajahn-sucitto.html>Ajahn Sucitto</a>. Quoted by Beth Steff. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/humor.html">Humor</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S22 E7" data-duration="85"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S22_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S22 E7.mp3">Download audio</a> (1:25)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href="../teachers/ajahn-sucitto.html">Ajahn Sucitto</a>. Quoted by Beth Steff. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/humor.html">Humor</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b>
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> "Do I look macho?" Told by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/cittavivieka.html">Cittavivieka</a>]
+  <b>Story:</b> “Do I look macho?” Told by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. <b>[<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>]</b> [<a href = "../tags/chithurst.html">Chithurst</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Sucitto (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Sucitto (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-sucitto-qtag.html">https://abhayagiri.org/questions/tags/ajahn-sucitto-qtag.html</a>.</p>
 </footer>
 

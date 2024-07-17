@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/long-term-practice-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/meditation.html#meditation"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspLong-term practice 
+  <div class="title"><a href="../drilldown/meditation.html#meditation" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspLong-term practice 
   </div>
 
 <div class="intro">
@@ -54,39 +64,40 @@
   Parent topic: <a href = "../tags/meditation.html">Meditation</a><br>
   
   
-  32 excerpts, 2:26:25 total duration
+  33 excerpts, 2:28:15 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/long-term-practice.html">All excerpts (32)</a>
+<div class="sublink2"> <a href="../tags/long-term-practice.html">All excerpts (33)</a>
       <a href="../tags/long-term-practice-qtag.html">Questions about (23)</a>
       <a href="../tags/long-term-practice-atag.html">Answers involving (9)</a>
+      <a href="../tags/long-term-practice-story.html">Stories (1)</a>
       <a href="../tags/long-term-practice-quote.html" class="active">Quotes (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" title="Metta Retreat, S4 E10" data-duration="615"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" download="Metta Retreat, S4 E10.mp3">Download audio</a> (10:15)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Would you share some of your personal journey, including the time before you became a monk, and why you became a monk, and how the holy life can help people grow and change?”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/travel.html">Travel</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" title="Metta Retreat, S4 E10" data-duration="615"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" download="Metta Retreat, S4 E10.mp3">Download audio</a> (10:15)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Would you share some of your personal journey, including the time before you became a monk, and why you became a monk, and how the holy life can help people grow and change?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/travel.html">Travel</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno begins meditation with a month-long Mahasi Sayadaw retreat. [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/mahasi-sayadaw.html">Mahasi Sayadaw</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno's first visit to Wat Pah Pong. [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+  <b>Story:</b> Ajahn Pasanno’s first visit to Wat Pah Pong. [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/sequence-of-training.html">Sequence of training</a>]
+  <b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/sequence-of-training.html">Sequence of training</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Reflection</b>: "Five years is five years. I'll go back and give myself to Ajahn Chah." — Ajahn Pasanno [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/mentoring.html">Mentoring</a>]
+  <b>Reflection</b>: “Five years is five years. I’ll go back and give myself to Ajahn Chah.” — Ajahn Pasanno [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/mentoring.html">Mentoring</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no such thing as the ideal monastic or the ideal practitioner.”  [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/disrobing.html">Disrobing</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/patience.html">Patience</a>] <b>[<a href = "../tags/long-term-practice.html">Long-term practice</a>]</b>
+  <b>Quote:</b>  “There’s no such thing as the ideal monastic or the ideal practitioner.”  [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/disrobing.html">Disrobing</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/patience.html">Patience</a>] <b>[<a href = "../tags/long-term-practice.html">Long-term practice</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Long-term practice (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Long-term practice (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/long-term-practice-quote.html">https://abhayagiri.org/questions/tags/long-term-practice-quote.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/appropriate-attention-text.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/factors-for-stream-entry.html#factors-for-stream-entry"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAppropriate attention (yoniso manasikāra)
+  <div class="title"><a href="../drilldown/factors-for-stream-entry.html#factors-for-stream-entry" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAppropriate attention (yoniso manasikāra)
   </div>
 
 <div class="intro">
@@ -63,9 +73,9 @@
       <a href="../tags/appropriate-attention-text.html" class="active">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="Sudhana2023_S00"><a href="../events/Sudhana2023.html">Q&ampA at Sudhana Center</a><a href="../events/Sudhana2023.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jul. 12, 2023</div>
+<div class="title" id="Sudhana2023_S00"><a href="../events/Sudhana2023.html">Q&ampA at Sudhana Center</a><a href="../events/Sudhana2023.html"></a> – Jul. 12, 2023</div>
 <p id="Sudhana2023_S00_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F05.mp3" title="Q&ampA at Sudhana Center, E5" data-duration="225"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F05.mp3" download="Q&ampA at Sudhana Center, E5.mp3">Download audio</a> (3:45)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I feel that a lot of people are disconnected with the reality world. They don't have a place of social, and they withdraw themselves and go on the internet. So I think the fundamental problem is people [audio unclear] in this real world. Do you have any comments on how to connect people in the real world so there can be a replacement of social media?”  [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/social-media.html">Social media</a>] [<a href = "../tags/internet.html">Internet</a>] // [<a href = "../tags/dhamma-online.html">Dhamma online</a>] [<a href = "../tags/pandemic.html">Pandemic</a>] [<a href = "../tags/online-community.html">Online community</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F05.mp3" title="Q&ampA at Sudhana Center, E5" data-duration="225"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Sudhana2023/Sudhana2023_S00_F05.mp3" download="Q&ampA at Sudhana Center, E5.mp3">Download audio</a> (3:45)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I feel that a lot of people are disconnected with the reality world. They don’t have a place of social, and they withdraw themselves and go on the internet. So I think the fundamental problem is people [audio unclear] in this real world. Do you have any comments on how to connect people in the real world so there can be a replacement of social media?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/community.html">Community</a>] [<a href = "../tags/social-media.html">Social media</a>] [<a href = "../tags/internet.html">Internet</a>] // [<a href = "../tags/dhamma-online.html">Dhamma online</a>] [<a href = "../tags/pandemic.html">Pandemic</a>] [<a href = "../tags/online-community.html">Online community</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-55.5:" target="_blank">SN 55.5:</a> Spiritual friendship as a condition for Right View. [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/right-view.html">Right View</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] <b>[<a href = "../tags/appropriate-attention.html">Appropriate attention</a>]</b>
@@ -73,8 +83,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Appropriate attention (Texts),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Appropriate attention (Texts),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/appropriate-attention-text.html">https://abhayagiri.org/questions/tags/appropriate-attention-text.html</a>.</p>
 </footer>
 

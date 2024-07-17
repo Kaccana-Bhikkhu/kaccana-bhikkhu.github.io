@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-thanissaro.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -56,17 +66,17 @@
 
 <div class="title" id="WR2014_S14"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S14">Session 14</a> – Jan. 25, 2014</div>
 <p id="WR2014_S14_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Thitapanno_01_25_2014_Winter_Retreat_Readings-Visions_of_a_Samana_partial.mp3" title="Abhayagiri 2014 Winter Retreat, S14" data-duration="2251"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Thitapanno_01_25_2014_Winter_Retreat_Readings-Visions_of_a_Samana_partial.mp3" download="Abhayagiri 2014 Winter Retreat, S14.mp3">Download audio</a> (37:31)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Visions of a Samaṇa” from <a href="https://www.abhayagiri.org/media/books/maha_boowa_samana.pdf" target="_blank"><em>Samaṇa</em></a> by <a href = ../teachers/ajahn-maha-boowa.html>Ajahn Mahā Boowa</a> pp. 11-12, <a href="https://www.abhayagiri.org/media/books/maha_boowa_samana.pdf#page=17" target="_blank">16-17</a>, <a href="https://www.abhayagiri.org/media/books/maha_boowa_samana.pdf#page=19" target="_blank">18-25</a>. Read by Ajahn Ṭhitapañño.  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Thitapanno_01_25_2014_Winter_Retreat_Readings-Visions_of_a_Samana_partial.mp3" title="Abhayagiri 2014 Winter Retreat, S14" data-duration="2251"><a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Thitapanno_01_25_2014_Winter_Retreat_Readings-Visions_of_a_Samana_partial.mp3" download="Abhayagiri 2014 Winter Retreat, S14.mp3">Download audio</a> (37:31)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Visions of a Samaṇa” from <a href="https://www.abhayagiri.org/media/books/maha_boowa_samana.pdf" target="_blank"><em>Samaṇa</em></a> by <a href="../teachers/ajahn-maha-boowa.html">Ajahn Mahā Boowa</a> pp. 11-12, <a href="https://www.abhayagiri.org/media/books/maha_boowa_samana.pdf#page=17" target="_blank">16-17</a>, <a href="https://www.abhayagiri.org/media/books/maha_boowa_samana.pdf#page=19" target="_blank">18-25</a>. Read by Ajahn Ṭhitapañño.  
 </p>
 <hr />
 <div class="title" id="WR2014_S50"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S50">Session 50</a> – Mar. 14, 2014</div>
 <p id="WR2014_S50_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E1" data-duration="1168"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E1.mp3">Download audio</a> (19:28)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Reading:</b> <a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/The%20Customs%20of%20the%20Noble%20Ones%20-%20Thanissaro%20Bhikkhu.htm" target="_blank">“The Customs of the Noble Ones”</a> by <a href = ../teachers/ajahn-thanissaro.html>Ajahn Ṭhānissaro</a>. Read by Ajahn Pesalo. 
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S50 E1" data-duration="1168"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S50_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S50 E1.mp3">Download audio</a> (19:28)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Reading:</b> <a href="https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/The%20Customs%20of%20the%20Noble%20Ones%20-%20Thanissaro%20Bhikkhu.htm" target="_blank">“The Customs of the Noble Ones”</a> by <a href="../teachers/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>. Read by Ajahn Pesalo. 
 </p>
 <hr />
 <div class="title" id="WR2015_S05"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S05">Session 5</a> – Jan. 10, 2015</div>
 <p id="WR2015_S05_F00">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/05_AKd_01_10_2015_Advantages_of_Mindfulness_Disadvantages_of_Attachment.mp3" title="Abhayagiri 2015 Winter Retreat, S5" data-duration="2535"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/05_AKd_01_10_2015_Advantages_of_Mindfulness_Disadvantages_of_Attachment.mp3" download="Abhayagiri 2015 Winter Retreat, S5.mp3">Download audio</a> (42:15)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Readings</b> from <a href="https://www.accesstoinsight.org/lib/study/bodymind.html" target="_blank"><em>Body Contemplation: A Study Guide</em></a> by <a href = ../teachers/ajahn-thanissaro.html>Ajahn Ṭhānissaro</a>.  [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/05_AKd_01_10_2015_Advantages_of_Mindfulness_Disadvantages_of_Attachment.mp3" title="Abhayagiri 2015 Winter Retreat, S5" data-duration="2535"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/05_AKd_01_10_2015_Advantages_of_Mindfulness_Disadvantages_of_Attachment.mp3" download="Abhayagiri 2015 Winter Retreat, S5.mp3">Download audio</a> (42:15)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Readings</b> from <a href="https://www.accesstoinsight.org/lib/study/bodymind.html" target="_blank"><em>Body Contemplation: A Study Guide</em></a> by <a href="../teachers/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>.  [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>]
 </p>
 <p style="margin-left: 2em;">
   <a href="https://sutta.readingfaithfully.org/?q=AN-4.184:" target="_blank">AN 4.184:</a> Janussonī; <a href="https://sutta.readingfaithfully.org/?q=AN-10.60:" target="_blank">AN 10.60:</a> Girimananda; <a href="https://sutta.readingfaithfully.org/?q=SN-35.247:" target="_blank">SN 35.247:</a> Six Animals; <a href="https://sutta.readingfaithfully.org/?q=AN-4.45:" target="_blank">AN 4.45:</a> Rohitassa; <a href="https://sutta.readingfaithfully.org/?q=Thag-1.104:" target="_blank">Thag 1.104:</a> Khitaka. 
@@ -312,7 +322,7 @@
   <b>Reading:</b> <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank">Right Mindfulness</a> p. 119-121.  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-28:" target="_blank">MN 28:</a> Mahāhatthipadopama Sutta, The Greater Discourse on the Simile of the Elephant's Footprint.  
+  <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-28:" target="_blank">MN 28:</a> Mahāhatthipadopama Sutta, The Greater Discourse on the Simile of the Elephant’s Footprint.  
 </p>
 <hr />
 <div class="title" id="WR2015_S38"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S38">Session 38</a> – Mar. 1, 2015</div>
@@ -361,7 +371,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/44_AKd_03_10_2015_Fleshing_Out_the_Four_Tetrads_14.mp3" title="Abhayagiri 2015 Winter Retreat, S44" data-duration="1769"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/44_AKd_03_10_2015_Fleshing_Out_the_Four_Tetrads_14.mp3" download="Abhayagiri 2015 Winter Retreat, S44.mp3">Download audio</a> (29:29)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/mindfulness-of-dhammas.html">Mindfulness of dhammas</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “Contemplation of Dhammas,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=196" target="_blank">p. 182-183, 185</a>, and “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=236" target="_blank">p. 222-223, 225-226</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href = ../teachers/venerable-analayo.html>Venerable Analayo</a>.  
+  <b>Reading:</b> “Contemplation of Dhammas,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=196" target="_blank">p. 182-183, 185</a>, and “The Perceptual Process,” <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf#page=236" target="_blank">p. 222-223, 225-226</a> in <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Analayo_Satipatthana-The-Direct-Path-to-Realization.pdf" target="_blank"><em>Satipaṭṭhāna: The Direct Path to Realization</em></a> by <a href="../teachers/venerable-analayo.html">Venerable Analayo</a>.  
 </p>
 <p style="margin-left: 2em;">
   <b>Reading:</b> <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/right_mindfulness_210213.pdf" target="_blank">Right Mindfulness</a> p. 142-148.  
@@ -375,7 +385,7 @@
   <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=MN-18:" target="_blank">MN 18:</a> Madhupiṇḍika Sutta, The Honeyball.  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> “Categorical Answers,” <em>Skill in Questions</em> by <a href = ../teachers/ajahn-thanissaro.html>Ajahn Ṭhānissaro</a>, <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/skillInQuestions_v210213.pdf#page=86" target="_blank">p. 85</a>.  
+  <b>Reading:</b> “Categorical Answers,” <em>Skill in Questions</em> by <a href="../teachers/ajahn-thanissaro.html">Ajahn Ṭhānissaro</a>, <a href="https://www.dhammatalks.org/Archive/Writings/Ebooks/skillInQuestions_v210213.pdf#page=86" target="_blank">p. 85</a>.  
 </p>
 <p style="margin-left: 2em;">
   <b>Reading:</b> <a href="https://sutta.readingfaithfully.org/?q=AN-8.30:" target="_blank">AN 8.30:</a> “Anuruddha.”  
@@ -388,8 +398,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Ṭhānissaro,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Ṭhānissaro,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-thanissaro.html">https://abhayagiri.org/questions/teachers/ajahn-thanissaro.html</a>.</p>
 </footer>
 

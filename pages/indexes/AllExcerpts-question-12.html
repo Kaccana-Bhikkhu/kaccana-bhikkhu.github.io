@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#indexes/AllExcerpts-question-12.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html" class="active">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -36,15 +46,15 @@
 <br>
 
   <div class="sublink">
-    <a href="../indexes/AllExcerpts.html">All excerpts (1967)</a>
-      <a href="../indexes/AllExcerpts-question.html" class="active">Questions (1563)</a>
-      <a href="../indexes/AllExcerpts-story.html">Stories (246)</a>
-      <a href="../indexes/AllExcerpts-quote.html">Quotes (186)</a>
-      <a href="../indexes/AllExcerpts-meditation.html">Meditations (8)</a>
-      <a href="../indexes/AllExcerpts-teaching.html">Teachings (64)</a>
-      <a href="../indexes/AllExcerpts-reading.html">Readings (159)</a>
+    <a href="../indexes/AllExcerpts.html">All excerpts (2087)</a>
+      <a href="../indexes/AllExcerpts-question.html" class="active">Questions (1573)</a>
+      <a href="../indexes/AllExcerpts-story.html">Stories (296)</a>
+      <a href="../indexes/AllExcerpts-quote.html">Quotes (216)</a>
+      <a href="../indexes/AllExcerpts-meditation.html">Meditations (16)</a>
+      <a href="../indexes/AllExcerpts-teaching.html">Teachings (102)</a>
+      <a href="../indexes/AllExcerpts-reading.html">Readings (164)</a>
       <a href="../indexes/AllExcerpts-text.html">Texts (136)</a>
-      <a href="../indexes/AllExcerpts-reference.html">References (83)</a>
+      <a href="../indexes/AllExcerpts-reference.html">References (90)</a>
   </div>
   <br>
 
@@ -52,7 +62,7 @@
   </div>
 
 <div class="intro">
-<p>40 events, 190 sessions, 1563 excerpts, 88:34:43 total duration</p>
+<p>41 events, 194 sessions, 1573 excerpts, 89:01:21 total duration</p>
 <p>
   <span style="text-decoration: underline;">
     Most common topics:
@@ -61,11 +71,11 @@
   <a href="../tags/monastic-life-qtag.html">
     Monastic life
   </a>
-   (105)&nbsp&nbsp&nbsp&nbsp 
+   (107)&nbsp&nbsp&nbsp&nbsp 
   <a href="../tags/ajahn-chah-qtag.html">
     Ajahn Chah
   </a>
-   (92)&nbsp&nbsp&nbsp&nbsp 
+   (97)&nbsp&nbsp&nbsp&nbsp 
   <a href="../tags/ajahn-pasanno-qtag.html">
     Ajahn Pasanno
   </a>
@@ -101,7 +111,7 @@
 </p>
 <p class="page-list">Page: &nbsp&nbsp <a href="../indexes/AllExcerpts-question.html">1</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-2.html">2</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-3.html">3</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-4.html">4</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-5.html">5</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-6.html">6</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-7.html">7</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-8.html">8</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-9.html">9</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-10.html">10</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-11.html">11</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-12.html" class="active">12</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-13.html">13</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-14.html">14</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-15.html">15</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="../indexes/AllExcerpts-question-all.html">All/Searchable</a> </p>
 
-<div class="title" id="TG2016_S03"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 21, 2016 </div>
+<div class="title" id="TG2016_S03"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S03">Session 3</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Nov. 21, 2016 </div>
 <p id="TG2016_S03_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S03_F01.mp3" title="Thanksgiving Retreat 2016, S3 E1" data-duration="190"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S03_F01.mp3" download="Thanksgiving Retreat 2016, S3 E1.mp3">Download audio</a> (3:10)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “From my limited understanding, when the construction of self drops away in meditation, the is joy and peace.  This makes me think that deep insight into anatta might be profoundly blissful.  I’m having trouble seeing how the same would be true for dukkha and anicca.  Can you help?”  [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>]
 </p>
@@ -150,9 +160,9 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S03_F12.mp3" title="Thanksgiving Retreat 2016, S3 E12" data-duration="603"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S03_F12.mp3" download="Thanksgiving Retreat 2016, S3 E12.mp3">Download audio</a> (10:03)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “I remember reading some stories of Ajahn Chah teaching lay people about herbal medicines. I know some Tibetan monks practice medicine.  Is there such a tradition in Thailand?  Are there any stores of Ajahn Chah healing people physically with traditional medicines?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <hr />
-<div class="title" id="TG2016_S04"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 22, 2016 </div>
+<div class="title" id="TG2016_S04"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S04">Session 4</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Nov. 22, 2016 </div>
 <p id="TG2016_S04_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" title="Thanksgiving Retreat 2016, S4 E1" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" download="Thanksgiving Retreat 2016, S4 E1.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “My dearest parents -in-law - very ill, 82-84 years old, live in Europe.  My dear husband loves his mother very much.  He said if his mother passes away, he doesn’t want to be in the funeral.  I don’t think it is a good idea. How can I help him and myself in the way of Buddha mind?  I am afraid my husband will break down.”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/funerals.html">Funerals</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" title="Thanksgiving Retreat 2016, S4 E1" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" download="Thanksgiving Retreat 2016, S4 E1.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “My dearest parents -in-law - very ill, 82-84 years old, live in Europe.  My dear husband loves his mother very much.  He said if his mother passes away, he doesn’t want to be in the funeral.  I don’t think it is a good idea. How can I help him and myself in the way of Buddha mind?  I am afraid my husband will break down.”  [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/funerals.html">Funerals</a>]
 </p>
 <hr />
 <p id="TG2016_S04_F02">
@@ -207,7 +217,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F14.mp3" title="Thanksgiving Retreat 2016, S4 E14" data-duration="334"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F14.mp3" download="Thanksgiving Retreat 2016, S4 E14.mp3">Download audio</a> (5:34)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “Is it true that it’s bad or disrespectful to point one’s heel at a monk?  I thought that I read or heard this somewhere.  Sometimes I have felt the necessity to stretch out one leg or the other in the meditation hall, but as all the monastics sit up front, I feel that I will be pointing my heel at one monastic or another and I really don’t want to be disrespectful if this is so.  Or is this worrying too much about conventions which causes suffering?”  [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/postures.html">Postures</a>]
 </p>
 <hr />
-<div class="title" id="TG2016_S05"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 23, 2016 </div>
+<div class="title" id="TG2016_S05"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S05">Session 5</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Nov. 23, 2016 </div>
 <p id="TG2016_S05_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S05_F01.mp3" title="Thanksgiving Retreat 2016, S5 E1" data-duration="151"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S05_F01.mp3" download="Thanksgiving Retreat 2016, S5 E1.mp3">Download audio</a> (2:31)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “When I sit for longer periods, I experience involuntary jerking and shaking.  I can suppress it, but in doubt if this is a good idea.”  [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
 </p>
@@ -260,7 +270,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S05_F13.mp3" title="Thanksgiving Retreat 2016, S5 E13" data-duration="400"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S05_F13.mp3" download="Thanksgiving Retreat 2016, S5 E13.mp3">Download audio</a> (6:40)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you please talk a bit about using the sound of silence (“nada sound”) as a meditation object?”  [<a href = "../tags/sound-of-silence.html">Sound of silence</a>]
 </p>
 <hr />
-<div class="title" id="TG2016_S06"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 24, 2016 </div>
+<div class="title" id="TG2016_S06"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S06">Session 6</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Nov. 24, 2016 </div>
 <p id="TG2016_S06_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F01.mp3" title="Thanksgiving Retreat 2016, S6 E1" data-duration="138"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F01.mp3" download="Thanksgiving Retreat 2016, S6 E1.mp3">Download audio</a> (2:18)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Thank you for additional information on the Sound of Silence.  I’ve known of the Sound of Silence, but not that there was any formal or structured practice around it.  I’m  wondering if Ajahn Chah or his predecessors did any teachings on this or if there are suttas related to it.”  [<a href = "../tags/sound-of-silence.html">Sound of silence</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/sutta.html">Sutta</a>]
 </p>
@@ -325,7 +335,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F16.mp3" title="Thanksgiving Retreat 2016, S6 E16" data-duration="559"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F16.mp3" download="Thanksgiving Retreat 2016, S6 E16.mp3">Download audio</a> (9:19)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Could you share some teaching about protecting qualities of the Dhamma and how I can feel less fear while keeping the precepts?”  [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/precepts.html">Precepts</a>]
 </p>
 <hr />
-<div class="title" id="TG2016_S07"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S07">Session 7</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 25, 2016 </div>
+<div class="title" id="TG2016_S07"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S07">Session 7</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Nov. 25, 2016 </div>
 <p id="TG2016_S07_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F01.mp3" title="Thanksgiving Retreat 2016, S7 E1" data-duration="125"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F01.mp3" download="Thanksgiving Retreat 2016, S7 E1.mp3">Download audio</a> (2:05)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Can you please say a little more about using the contemplation of death to gladden the mind?”  [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>]
 </p>
@@ -418,7 +428,7 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F23.mp3" title="Thanksgiving Retreat 2016, S7 E23" data-duration="163"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S07_F23.mp3" download="Thanksgiving Retreat 2016, S7 E23.mp3">Download audio</a> (2:43)</audio-chip><br /> <b style="text-decoration: underline;">23.</b> “When I watch my breath, I have all I can do to be aware of one breath and then the next.  But the Buddha said, “Know if it is long or short”.  Can you give an insight into why this step beyond bare awareness?  Also why long and short, vs, for example, shaky and smooth, consistent and inconsistent, belly breath or nostril breath?”  [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>]
 </p>
 <hr />
-<div class="title" id="TG2016_S08"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S08">Session 8</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 26, 2016 </div>
+<div class="title" id="TG2016_S08"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S08">Session 8</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Nov. 26, 2016 </div>
 <p id="TG2016_S08_F01">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F01.mp3" title="Thanksgiving Retreat 2016, S8 E1" data-duration="134"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F01.mp3" download="Thanksgiving Retreat 2016, S8 E1.mp3">Download audio</a> (2:14)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I was surprised to learn recently that there is a concept of hell in the suttas  Could you talk a bit about what Buddha meant by it and who goes there?”  [<a href = "../tags/hell.html">Hell</a>]
 </p>
@@ -484,38 +494,38 @@
 </p>
 <hr />
 <p id="TG2016_S08_F17">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" title="Thanksgiving Retreat 2016, S8 E17" data-duration="345"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" download="Thanksgiving Retreat 2016, S8 E17.mp3">Download audio</a> (5:45)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “Yesterday when you spoke of women’s ordination in California, I thought of the nuns at Aloka Vihara Forest Monastery who left the Thai Forest Tradition to ordain as nuns.  As a woman who has felt a strong calling to the monastic life, I feel a painful split in my heart between the love I have for the Thai Forest Tradition that has changed my life,  and its seemingly uncompassionate regard for women wishing to live the Holy Life. It leaves me with a profound feeling of hurt and “less-than” mana.  I have to believe that the Buddha, who revolutionarily taught against the caste system, would not want me to feel like second class member of the human race when trying to live a life in his example.  I have tried bringing self compassion to this felt sense of my heart breaking, but the pain seems to get worse with the association of the teachers of the Thai Forest tradition who showed me the dharma and yet follow this “anti-nun" rule.  Would you share some words of healing to help my heart and restore my faith in this tradition that has so profoundly changed my life?”  [<a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/faith.html">Faith</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" title="Thanksgiving Retreat 2016, S8 E17" data-duration="345"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F17.mp3" download="Thanksgiving Retreat 2016, S8 E17.mp3">Download audio</a> (5:45)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “Yesterday when you spoke of women’s ordination in California, I thought of the nuns at Aloka Vihara Forest Monastery who left the Thai Forest Tradition to ordain as nuns.  As a woman who has felt a strong calling to the monastic life, I feel a painful split in my heart between the love I have for the Thai Forest Tradition that has changed my life,  and its seemingly uncompassionate regard for women wishing to live the Holy Life. It leaves me with a profound feeling of hurt and “less-than” mana.  I have to believe that the Buddha, who revolutionarily taught against the caste system, would not want me to feel like second class member of the human race when trying to live a life in his example.  I have tried bringing self compassion to this felt sense of my heart breaking, but the pain seems to get worse with the association of the teachers of the Thai Forest tradition who showed me the dharma and yet follow this “anti-nun” rule.  Would you share some words of healing to help my heart and restore my faith in this tradition that has so profoundly changed my life?”  [<a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/women-in-buddhism.html">Women in Buddhism</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 <hr />
 <p id="TG2016_S08_F18">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F18.mp3" title="Thanksgiving Retreat 2016, S8 E18" data-duration="37"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S08_F18.mp3" download="Thanksgiving Retreat 2016, S8 E18.mp3">Download audio</a> (0:37)</audio-chip><br /> <b style="text-decoration: underline;">18.</b> “Do you have any doubts in the Dhamma’s promise that the result of accomplished practice is total liberation from suffering?”  [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
 </p>
 <hr />
-<div class="title" id="UD2017-2_S01"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S01">Session 1: Two Kinds of Thought</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017 [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]</div>
+<div class="title" id="UD2017-2_S01"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S01">Session 1: Two Kinds of Thought</a> – <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> – Jun. 4, 2017 [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]</div>
 <p id="UD2017-2_S01_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F01.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E1" data-duration="49"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F01.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E1.mp3">Download audio</a> (0:49)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “The term 'sense consciousness' is used in the morning chanting, but I didn't hear that [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>]. When the Buddha recognizes a thought and puts it into a certain bin, this seems like a step beyond sense consciousness.”  [<a href = "../tags/consciousness.html">Consciousness</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F01.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E1" data-duration="49"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F01.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E1.mp3">Download audio</a> (0:49)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “The term ‘sense consciousness’ is used in the morning chanting, but I didn’t hear that [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>]. When the Buddha recognizes a thought and puts it into a certain bin, this seems like a step beyond sense consciousness.”  [<a href = "../tags/consciousness.html">Consciousness</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F03.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E3" data-duration="189"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F03.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E3.mp3">Download audio</a> (3:09)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I got a little confused about the part [of <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>] where it says, 'these thoughts are not to be feared.'”  [<a href = "../tags/fear.html">Fear</a>] // [<a href = "../tags/right-intention.html">Right Intention</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/happiness.html">Happiness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F03.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E3" data-duration="189"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F03.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E3.mp3">Download audio</a> (3:09)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I got a little confused about the part [of <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>] where it says, ‘these thoughts are not to be feared.’”  [<a href = "../tags/fear.html">Fear</a>] // [<a href = "../tags/right-intention.html">Right Intention</a>] [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/happiness.html">Happiness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “In trying to stop thinking, there's an incredible tension that is created in the mind.”  [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Quote:</b>  “In trying to stop thinking, there’s an incredible tension that is created in the mind.”  [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “[<a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>] mentioned that these thoughts might make you tired.” [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Sometimes I get very worried and keep thinking about something and get tired and stressed out. Is this what the Buddha meant by 'a day and a night' [in <a href="https://sutta.readingfaithfully.org/?q=MN-19.8" target="_blank">MN 19.8</a>]?”  [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] // [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/heedfulness.html">Heedfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F06.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E6.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Sometimes I get very worried and keep thinking about something and get tired and stressed out. Is this what the Buddha meant by ‘a day and a night’ [in <a href="https://sutta.readingfaithfully.org/?q=MN-19.8" target="_blank">MN 19.8</a>]?”  [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] // [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/heedfulness.html">Heedfulness</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F07.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E7" data-duration="93"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F07.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E7.mp3">Download audio</a> (1:33)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Could you give some advice on using directed and sustained thought? Would these thoughts be like reapeating 'Buddho' or are they conceptual?”  [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F07.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E7" data-duration="93"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F07.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E7.mp3">Download audio</a> (1:33)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Could you give some advice on using directed and sustained thought? Would these thoughts be like reapeating ‘Buddho’ or are they conceptual?”  [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>] // [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F08">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8" data-duration="157"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8.mp3">Download audio</a> (2:37)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I'm curious about the wholesome/unwholesome assessment [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>]. If it's a thought of ill-will, greed, hatred, or delusion, but we're not attached to it, we're just seeing it arise, seeing it pass, recognizing it, being aware that it's in the mind. Does the unwholesomeness come from believing it?”  [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/hindrances.html">Hindrances</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8" data-duration="157"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F08.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E8.mp3">Download audio</a> (2:37)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I’m curious about the wholesome/unwholesome assessment [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>]. If it’s a thought of ill-will, greed, hatred, or delusion, but we’re not attached to it, we’re just seeing it arise, seeing it pass, recognizing it, being aware that it’s in the mind. Does the unwholesomeness come from believing it?”  [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/investigation-of-states.html">Investigation of states</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] // [<a href = "../tags/habits.html">Habits</a>] [<a href = "../tags/hindrances.html">Hindrances</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F09">
@@ -523,10 +533,10 @@
 </p>
 <hr />
 <p id="UD2017-2_S01_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F10.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E10" data-duration="66"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F10.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E10.mp3">Download audio</a> (1:06)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Comment</b>: In this teaching [<a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>], the Buddha doesn't talk about any middle ground such as neutral thoughts. 
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F10.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E10" data-duration="66"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F10.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E10.mp3">Download audio</a> (1:06)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Comment</b>: In this teaching [<a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>], the Buddha doesn’t talk about any middle ground such as neutral thoughts. 
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/jhana.html">Jhāna</a>]
 </p>
 <hr />
 <p id="UD2017-2_S01_F11">
@@ -534,7 +544,7 @@
 </p>
 <hr />
 <p id="UD2017-2_S01_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F12.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E12" data-duration="80"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F12.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E12.mp3">Download audio</a> (1:20)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “When [the Buddha] talks about sensual desire, that's craving, right?”  [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/craving.html">Craving</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F12.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E12" data-duration="80"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S01_F12.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S1 E12.mp3">Download audio</a> (1:20)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “When [the Buddha] talks about sensual desire, that’s craving, right?”  [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/craving.html">Craving</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Do you know what the Pāli word used for sensual desire [in <a href="https://sutta.readingfaithfully.org/?q=MN-19" target="_blank">MN 19</a>] is? I think that craving and sensual desire are different.” [<a href = "../tags/pali.html">Pāli</a>]
@@ -542,8 +552,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “All questions,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “All questions,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/indexes/AllExcerpts-question-12.html">https://abhayagiri.org/questions/indexes/AllExcerpts-question-12.html</a>.</p>
 </footer>
 

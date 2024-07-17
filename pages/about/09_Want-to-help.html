@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#about/09_Want-to-help.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html" class="active">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -76,7 +86,7 @@
 <h2 id="contributions-that-require-skill-and-commitment">Contributions That Require Skill and Commitment:</h2>
 <h3 id="tag-and-transcribe-thanksgiving-retreat-questions">Tag and transcribe Thanksgiving Retreat Questions</h3>
 <p><strong>Requirements:</strong> English proficiency, Comfortable using computers (spreadsheet experience a plus), Attended at least one retreat with Ajahn Pasanno</p>
-<p><strong>Time commitment:</strong> Most likely 20 hours to learn the system and transcribe your first retreat.</p>
+<p><strong>Time commitment:</strong> Most likely 15 hours to learn the system and transcribe your first retreat.</p>
 <p>The Archive currently contains questions from the 2013-2016 Thanksgiving Retreats transcribed and time-stamped by the monks who produced the CDs issued shortly after these retreats. The questions are taged based on the transcribe questions but not the audio content of Ajahn Pasanno's answers. I’m hoping that volunteers might listen to these questions, add tags based on the answers, and annotate noteworthy stories, references, and quotes.</p>
 <p>If there is energy and enthusiasm after these retreats are finished, there are another half-dozen Thanksgiving Retreats that haven’t been transcribed at all.</p>
 <hr />
@@ -90,8 +100,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Want to help?,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Want to help?,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/about/09_Want-to-help.html">https://abhayagiri.org/questions/about/09_Want-to-help.html</a>.</p>
 </footer>
 

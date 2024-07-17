@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/tranquility-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/factors-of-awakening.html#factors-of-awakening"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTranquility (passaddhi)
+  <div class="title"><a href="../drilldown/factors-of-awakening.html#factors-of-awakening" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTranquility (passaddhi)
   </div>
 
 <div class="intro">
@@ -54,26 +64,26 @@
   Parent topic: <a href = "../tags/factors-of-awakening.html">Factors of Awakening</a><br>
   
   
-  60 excerpts, 3:39:22 total duration
+  61 excerpts, 3:49:41 total duration
 </strong>
 <hr />
 <div class="sublink2"> <a href="../tags/tranquility-events.html">Events (1)</a>
-      <a href="../tags/tranquility.html">All excerpts (60)</a>
+      <a href="../tags/tranquility.html">All excerpts (62)</a>
       <a href="../tags/tranquility-qtag.html">Questions about (26)</a>
       <a href="../tags/tranquility-atag.html">Answers involving (26)</a>
       <a href="../tags/tranquility-story.html" class="active">Stories (1)</a>
       <a href="../tags/tranquility-quote.html">Quotes (1)</a> </div>
 <hr>
 
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F06.mp3" title="Death and Dying, S1 E6" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F06.mp3" download="Death and Dying, S1 E6.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Recollection:</b> Traditions around dying in Thailand. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/tranquility.html">Tranquility</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/rebirth.html">Rebirth</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F06.mp3" title="Death and Dying, S1 E6" data-duration="208"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F06.mp3" download="Death and Dying, S1 E6.mp3">Download audio</a> (3:28)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Recollection:</b> Traditions around dying in Thailand. Recounted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/tranquility.html">Tranquility</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/rebirth.html">Rebirth</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Tranquility (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Tranquility (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/tranquility-story.html">https://abhayagiri.org/questions/tags/tranquility-story.html</a>.</p>
 </footer>
 

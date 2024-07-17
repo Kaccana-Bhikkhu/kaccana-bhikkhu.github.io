@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-pasanno-question-11.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,15 +58,15 @@
   </div>
 
 <div class="intro">
-1736 excerpts, 104:52:26 total duration
+1749 excerpts, 105:24:26 total duration
 <hr />
-<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html">All excerpts (1736)</a>
-      <a href="../teachers/ajahn-pasanno-question.html" class="active">Questions (1495)</a>
-      <a href="../teachers/ajahn-pasanno-story.html">Stories (200)</a>
-      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (96)</a>
-      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (74)</a>
-      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (5)</a>
-      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (43)</a>
+<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html">All excerpts (1749)</a>
+      <a href="../teachers/ajahn-pasanno-question.html" class="active">Questions (1496)</a>
+      <a href="../teachers/ajahn-pasanno-story.html">Stories (207)</a>
+      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (99)</a>
+      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (77)</a>
+      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (6)</a>
+      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (48)</a>
       <a href="../teachers/ajahn-pasanno-read-from.html">Readings from (1)</a>
       <a href="../teachers/ajahn-pasanno-read-by.html">Readings by (89)</a> </div>
 <hr>
@@ -65,7 +75,7 @@
 
 <div class="title" id="TG2015_S07"><a href="../events/TG2015.html">2015 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2015.html#TG2015_S07">Session 7</a> – Nov. 27, 2015</div>
 <p id="TG2015_S07_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F01.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E1" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F01.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E1.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I was just reading a talk of Ajahn Chah's. He mentions “vipassanu.” Could you explain this more?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F01.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E1" data-duration="48"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F01.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E1.mp3">Download audio</a> (0:48)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I was just reading a talk of Ajahn Chah’s. He mentions “vipassanu.” Could you explain this more?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/insight-meditation.html">Insight meditation</a>]
 </p>
 <hr />
 <p id="TG2015_S07_F02">
@@ -77,7 +87,7 @@
 </p>
 <hr />
 <p id="TG2015_S07_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F04.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E4" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F04.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E4.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Can you repeat the Thai words for “Is it worth it?” that you mentioned this morning? I'd like to use it as a mantra.”  [<a href = "../tags/thai.html">Thai</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F04.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E4" data-duration="39"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F04.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E4.mp3">Download audio</a> (0:39)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “Can you repeat the Thai words for “Is it worth it?” that you mentioned this morning? I’d like to use it as a mantra.”  [<a href = "../tags/thai.html">Thai</a>]
 </p>
 <hr />
 <p id="TG2015_S07_F05">
@@ -97,7 +107,7 @@
 </p>
 <hr />
 <p id="TG2015_S07_F09">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F09.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E9" data-duration="593"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F09.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E9.mp3">Download audio</a> (9:53)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Can you say more about trusting the seeds of meditation practice after Alzheimer's/dementia kick in? What do you mean by going beyond liberation or consciousness? What do you mean by “many deeper layers” are affected by the practice and the fruits of it will express naturally?”  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/consciousness.html">Consciousness</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F09.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E9" data-duration="593"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F09.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E9.mp3">Download audio</a> (9:53)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “Can you say more about trusting the seeds of meditation practice after Alzheimer’s/dementia kick in? What do you mean by going beyond liberation or consciousness? What do you mean by “many deeper layers” are affected by the practice and the fruits of it will express naturally?”  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/consciousness.html">Consciousness</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
 </p>
 <hr />
 <p id="TG2015_S07_F10">
@@ -109,16 +119,16 @@
 </p>
 <hr />
 <p id="TG2015_S07_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F12.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E12" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F12.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E12.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “Several months ago, I started to use the phrase: “I'd rather be loved than right.” This small shift has had a tremendous impact in my life as I relinquish my need to be right, to control and to assert my ego into things.”  [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/views.html">Views</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F12.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E12" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F12.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E12.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “Several months ago, I started to use the phrase: “I’d rather be loved than right.” This small shift has had a tremendous impact in my life as I relinquish my need to be right, to control and to assert my ego into things.”  [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/views.html">Views</a>]
 </p>
 <hr />
 <p id="TG2015_S07_F13">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F13.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E13" data-duration="598"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F13.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E13.mp3">Download audio</a> (9:58)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “How important is chanting for one's practice? Do you have any tips for how to recite/remember the Pali chants?”  [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/memory.html">Memory</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F13.mp3" title="2015 Thanksgiving Monastic Retreat, S7 E13" data-duration="598"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S07_F13.mp3" download="2015 Thanksgiving Monastic Retreat, S7 E13.mp3">Download audio</a> (9:58)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “How important is chanting for one’s practice? Do you have any tips for how to recite/remember the Pali chants?”  [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/memory.html">Memory</a>]
 </p>
 <hr />
 <div class="title" id="TG2015_S08"><a href="../events/TG2015.html">2015 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2015.html#TG2015_S08">Session 8</a> – Nov. 28, 2015</div>
 <p id="TG2015_S08_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F01.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E1" data-duration="172"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F01.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E1.mp3">Download audio</a> (2:52)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I'm having a hard time with alcohol (not here!). Not heavy or even daily use; a glass of wine with dinner a few nights a week or at social events. I would like to stop but have a hard time sustaining for more than a month or so. Any words of encouragement?”  [<a href = "../tags/intoxicants.html">Intoxicants</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F01.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E1" data-duration="172"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F01.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E1.mp3">Download audio</a> (2:52)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “I’m having a hard time with alcohol (not here!). Not heavy or even daily use; a glass of wine with dinner a few nights a week or at social events. I would like to stop but have a hard time sustaining for more than a month or so. Any words of encouragement?”  [<a href = "../tags/intoxicants.html">Intoxicants</a>]
 </p>
 <hr />
 <p id="TG2015_S08_F02">
@@ -142,7 +152,7 @@
 </p>
 <hr />
 <p id="TG2015_S08_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F07.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E7" data-duration="213"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F07.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E7.mp3">Download audio</a> (3:33)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Can you give a concrete description of how you recollect or contemplate? What's going on in your mind while you do it? What resources or mental formations do you use?”  [<a href = "../tags/recollection.html">Recollection</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F07.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E7" data-duration="213"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F07.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E7.mp3">Download audio</a> (3:33)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Can you give a concrete description of how you recollect or contemplate? What’s going on in your mind while you do it? What resources or mental formations do you use?”  [<a href = "../tags/recollection.html">Recollection</a>]
 </p>
 <hr />
 <p id="TG2015_S08_F08">
@@ -158,7 +168,7 @@
 </p>
 <hr />
 <p id="TG2015_S08_F11">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F11.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E11" data-duration="142"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F11.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E11.mp3">Download audio</a> (2:22)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Do you have any tips for embodying the Dhamma in business situations when negotiating with aggressive individuals? I tend to walk away at a certain point, but am wondering if there's another way to turn it around, make it better for everyone?”  [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/right-speech.html">Right Speech</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F11.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E11" data-duration="142"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F11.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E11.mp3">Download audio</a> (2:22)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> “Do you have any tips for embodying the Dhamma in business situations when negotiating with aggressive individuals? I tend to walk away at a certain point, but am wondering if there’s another way to turn it around, make it better for everyone?”  [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/right-speech.html">Right Speech</a>]
 </p>
 <hr />
 <p id="TG2015_S08_F12">
@@ -182,7 +192,7 @@
 </p>
 <hr />
 <p id="TG2015_S08_F17">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F17.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E17" data-duration="126"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F17.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E17.mp3">Download audio</a> (2:06)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “I understand that our genetic disposition can't be changed, but epigenetics say that their expression can be modified by changing lifestyle. In a similar way, our kamma is given but understanding but your teachings say the expression and effects can be changed by practice. Please comment.”  [<a href = "../tags/science.html">Science</a>] [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/kamma.html">Kamma</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F17.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E17" data-duration="126"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F17.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E17.mp3">Download audio</a> (2:06)</audio-chip><br /> <b style="text-decoration: underline;">17.</b> “I understand that our genetic disposition can’t be changed, but epigenetics say that their expression can be modified by changing lifestyle. In a similar way, our kamma is given but understanding but your teachings say the expression and effects can be changed by practice. Please comment.”  [<a href = "../tags/science.html">Science</a>] [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/kamma.html">Kamma</a>]
 </p>
 <hr />
 <p id="TG2015_S08_F18">
@@ -206,7 +216,7 @@
 </p>
 <hr />
 <p id="TG2015_S08_F23">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F23.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E23" data-duration="179"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F23.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E23.mp3">Download audio</a> (2:59)</audio-chip><br /> <b style="text-decoration: underline;">23.</b> “I'm curious about the ceremony to bestow the honorific title. What does it entail? What is the new title? Does it change the appropriate way for us to address or refer to you?”  [<a href = "../tags/monastic-titles.html">Monastic titles</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F23.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E23" data-duration="179"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F23.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E23.mp3">Download audio</a> (2:59)</audio-chip><br /> <b style="text-decoration: underline;">23.</b> “I’m curious about the ceremony to bestow the honorific title. What does it entail? What is the new title? Does it change the appropriate way for us to address or refer to you?”  [<a href = "../tags/monastic-titles.html">Monastic titles</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <hr />
 <p id="TG2015_S08_F24">
@@ -214,7 +224,7 @@
 </p>
 <hr />
 <p id="TG2015_S08_F25">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F25.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E25" data-duration="83"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F25.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E25.mp3">Download audio</a> (1:23)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “Do you think it's possible to experience Nibbana before becoming fully awakened - “moments of enlightenment?” But if Nibbana is beyond consciousness, would you remember that it happened?”  [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/consciousness.html">Consciousness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F25.mp3" title="2015 Thanksgiving Monastic Retreat, S8 E25" data-duration="83"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S08_F25.mp3" download="2015 Thanksgiving Monastic Retreat, S8 E25.mp3">Download audio</a> (1:23)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “Do you think it’s possible to experience Nibbana before becoming fully awakened - “moments of enlightenment?” But if Nibbana is beyond consciousness, would you remember that it happened?”  [<a href = "../tags/nibbana.html">Nibbāna</a>] [<a href = "../tags/stages-of-awakening.html">Stages of awakening</a>] [<a href = "../tags/consciousness.html">Consciousness</a>]
 </p>
 <hr />
 <p id="TG2015_S08_F26">
@@ -234,48 +244,48 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F03.mp3" title="Suttas You've Never Heard Of, S1 E3" data-duration="45"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F03.mp3" download="Suttas You've Never Heard Of, S1 E3.mp3">Download audio</a> (0:45)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment:</b> I appreciate that <a href="https://sutta.readingfaithfully.org/?q=AN-5.48" target="_blank">AN 5.48</a> includes devas and Māra. [<a href = "../tags/deva.html">Deva</a>] [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/realms-of-existence.html">Realms of existence</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/human.html">Human</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <p id="UD2016-2_S01_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate guilt into Thai. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate guilt into Thai. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “That's really suffering. Tell them not to do that.” — Ajahn Paññānanda [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]
+  <b>Quote:</b>  “That’s really suffering. Tell them not to do that.” — Ajahn Paññānanda [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Can't We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health-care.html">Health care</a>]
+  <b>Reference</b>: <em>Can’t We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/health-care.html">Health care</a>]
 </p>
 <hr />
 <p id="UD2016-2_S01_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F05.mp3" title="Suttas You've Never Heard Of, S1 E5" data-duration="82"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F05.mp3" download="Suttas You've Never Heard Of, S1 E5.mp3">Download audio</a> (1:22)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “In this sutta (<a href="https://sutta.readingfaithfully.org/?q=AN-5.48" target="_blank">AN 5.48</a>), there's the assumption that everyone has enemies. It's making me a little paranoid.”  [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/human.html">Human</a>] // [<a href = "../tags/judgementalism.html">Judgementalism</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F05.mp3" title="Suttas You've Never Heard Of, S1 E5" data-duration="82"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F05.mp3" download="Suttas You've Never Heard Of, S1 E5.mp3">Download audio</a> (1:22)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “In this sutta (<a href="https://sutta.readingfaithfully.org/?q=AN-5.48" target="_blank">AN 5.48</a>), there’s the assumption that everyone has enemies. It’s making me a little paranoid.”  [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/human.html">Human</a>] // [<a href = "../tags/judgementalism.html">Judgementalism</a>]
 </p>
 <hr />
 <p id="UD2016-2_S01_F06">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F06.mp3" title="Suttas You've Never Heard Of, S1 E6" data-duration="99"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F06.mp3" download="Suttas You've Never Heard Of, S1 E6.mp3">Download audio</a> (1:39)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “With development (bhavana), is one able to shape the course of sickness or heal oneself to a degree?”  [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/health.html">Health</a>] // [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comment</b>: I've been reflecting on how <a href="https://sutta.readingfaithfully.org/?q=AN-5.48" target="_blank">AN 5.48</a> applies to environmental and collective well-being–engaging without the expectation that actions will have a certain result. [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>]
+  <b>Comment</b>: I’ve been reflecting on how <a href="https://sutta.readingfaithfully.org/?q=AN-5.48" target="_blank">AN 5.48</a> applies to environmental and collective well-being–engaging without the expectation that actions will have a certain result. [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Response</b>  [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]
 </p>
 <hr />
 <p id="UD2016-2_S01_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F07.mp3" title="Suttas You've Never Heard Of, S1 E7" data-duration="114"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F07.mp3" download="Suttas You've Never Heard Of, S1 E7.mp3">Download audio</a> (1:54)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Comment</b>: I find it difficult to find the line between what you can change and what you can't. [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/equanimity.html">Equanimity</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F07.mp3" title="Suttas You've Never Heard Of, S1 E7" data-duration="114"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F07.mp3" download="Suttas You've Never Heard Of, S1 E7.mp3">Download audio</a> (1:54)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Comment</b>: I find it difficult to find the line between what you can change and what you can’t. [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/equanimity.html">Equanimity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/delusion.html">Delusion</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/delusion.html">Delusion</a>]
 </p>
 <hr />
 <p id="UD2016-2_S01_F08">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F08.mp3" title="Suttas You've Never Heard Of, S1 E8" data-duration="80"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F08.mp3" download="Suttas You've Never Heard Of, S1 E8.mp3">Download audio</a> (1:20)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Comment</b>: Michael Olds translates sutta as 'magical spell.' The format, repetition, and structure of the suttas has a certain potency. When I read the suttas after meditating, it's completely different. [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/meditation.html">Meditation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F08.mp3" title="Suttas You've Never Heard Of, S1 E8" data-duration="80"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F08.mp3" download="Suttas You've Never Heard Of, S1 E8.mp3">Download audio</a> (1:20)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Comment</b>: Michael Olds translates sutta as ‘magical spell.’ The format, repetition, and structure of the suttas has a certain potency. When I read the suttas after meditating, it’s completely different. [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/meditation.html">Meditation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>]
 </p>
 <hr />
 <div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – Jun. 25, 2016</div>
@@ -283,14 +293,14 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F02.mp3" title="Suttas You've Never Heard Of, S2 E2" data-duration="106"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F02.mp3" download="Suttas You've Never Heard Of, S2 E2.mp3">Download audio</a> (1:46)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Comment</b>: When I practice and share Dhamma as a lay person, others complain when I make mistakes. [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <hr />
 <p id="UD2016-2_S02_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F04.mp3" title="Suttas You've Never Heard Of, S2 E4" data-duration="87"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F04.mp3" download="Suttas You've Never Heard Of, S2 E4.mp3">Download audio</a> (1:27)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Comment</b>: When I hear the word "shame," it's.a cousin of guilt. But in this context (<a href="https://sutta.readingfaithfully.org/?q=AN-7.6" target="_blank">AN 7.6</a>), it seems more acceptable. [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F04.mp3" title="Suttas You've Never Heard Of, S2 E4" data-duration="87"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F04.mp3" download="Suttas You've Never Heard Of, S2 E4.mp3">Download audio</a> (1:27)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Comment</b>: When I hear the word “shame,” it’s.a cousin of guilt. But in this context (<a href="https://sutta.readingfaithfully.org/?q=AN-7.6" target="_blank">AN 7.6</a>), it seems more acceptable. [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/christianity.html">Christianity</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/christianity.html">Christianity</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F05">
@@ -302,55 +312,55 @@
 </p>
 <hr />
 <p id="UD2016-2_S02_F09">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" title="Suttas You've Never Heard Of, S2 E9" data-duration="323"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" download="Suttas You've Never Heard Of, S2 E9.mp3">Download audio</a> (5:23)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “I like the translations 'conscience' aand 'concern' for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/divine-abidings.html">Divine Abidings</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" title="Suttas You've Never Heard Of, S2 E9" data-duration="323"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F09.mp3" download="Suttas You've Never Heard Of, S2 E9.mp3">Download audio</a> (5:23)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “I like the translations ‘conscience’ aand ‘concern’ for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/divine-abidings.html">Divine Abidings</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “As a human being, I have the opportunity to learn from the past and move on to skillful action in the future. I don't have to be like a dog that barfs stuff up and goes back and eats it again.”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “As a human being, I have the opportunity to learn from the past and move on to skillful action in the future. I don’t have to be like a dog that barfs stuff up and goes back and eats it again.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The not-self refrain, 'This is not me, this is not mine, this is not what or who I am,' is not an abdication of responsibility but an understanding, 'This is the way I can put things down and move on, move past the things that are still creating suffering.'”  — <A href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Quote:</b>  “The not-self refrain, ‘This is not me, this is not mine, this is not what or who I am,’ is not an abdication of responsibility but an understanding, ‘This is the way I can put things down and move on, move past the things that are still creating suffering.’”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/not-self.html">Not-self</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=SN-42.8" target="_blank">SN 42.8</a> The Conch Blower; <a href="https://sutta.readingfaithfully.org/?q=AN-3.100:" target="_blank">AN 3.100:</a> A Lump of Salt. 
 </p>
 <hr />
 <p id="UD2016-2_S02_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F10.mp3" title="Suttas You've Never Heard Of, S2 E10" data-duration="264"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F10.mp3" download="Suttas You've Never Heard Of, S2 E10.mp3">Download audio</a> (4:24)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “What is a good balance between listening to Dhamma and practicing more deeply? How long should one keep one's practices, and when to expand or shink them?”  [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] [<a href = "../tags/learning.html">Learning</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F10.mp3" title="Suttas You've Never Heard Of, S2 E10" data-duration="264"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F10.mp3" download="Suttas You've Never Heard Of, S2 E10.mp3">Download audio</a> (4:24)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “What is a good balance between listening to Dhamma and practicing more deeply? How long should one keep one’s practices, and when to expand or shink them?”  [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/dhamma-books.html">Dhamma books</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F11">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F11.mp3" title="Suttas You've Never Heard Of, S2 E11" data-duration="102"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F11.mp3" download="Suttas You've Never Heard Of, S2 E11.mp3">Download audio</a> (1:42)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: I listen to the Abhayagiri Dhamma talks, focusing more on the timbre of the voice rather than trying to get an intellectual grasp of what was said. That projects me into a dimension of well-being. [<a href = "../tags/hearing-the-true-dhamma.html">Hearing the true Dhamma</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/tranquility.html">Tranquility</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F12">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F12.mp3" title="Suttas You've Never Heard Of, S2 E12" data-duration="118"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F12.mp3" download="Suttas You've Never Heard Of, S2 E12.mp3">Download audio</a> (1:58)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comments</b> about ongoing Dhamma practice and coming back to the heart. [<a href = "../tags/long-term-practice.html">Long-term practice</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>] [<a href = "../tags/ill-will.html">Ill-will</a>] [<a href = "../tags/forgiveness.html">Forgiveness</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/merit.html">Merit</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/merit.html">Merit</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “We're making choices all the time anyway; we may as well choose to be happy.”  [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/happiness.html">Happiness</a>]
+  <b>Quote:</b>  “We’re making choices all the time anyway; we may as well choose to be happy.”  [<a href = "../tags/volitional-formations.html">Volitional formations</a>] [<a href = "../tags/happiness.html">Happiness</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F13">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F13.mp3" title="Suttas You've Never Heard Of, S2 E13" data-duration="401"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F13.mp3" download="Suttas You've Never Heard Of, S2 E13.mp3">Download audio</a> (6:41)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “When you're living on the precepts, how do I relate to (for example) a friend who tells me about an affair they are having?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a>. [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/right-speech.html">Right Speech</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F13.mp3" title="Suttas You've Never Heard Of, S2 E13" data-duration="401"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F13.mp3" download="Suttas You've Never Heard Of, S2 E13.mp3">Download audio</a> (6:41)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “When you’re living on the precepts, how do I relate to (for example) a friend who tells me about an affair they are having?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a>. [<a href = "../tags/precepts.html">Precepts</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] // [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/right-speech.html">Right Speech</a>] [<a href = "../tags/vinaya.html">Vinaya</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Don't admonish your fellow monks before the meal.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a>. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/eating-after-noon.html">Eating after noon</a>]
+  <b>Quote:</b>  “Don’t admonish your fellow monks before the meal.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>. Quoted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/eating-after-noon.html">Eating after noon</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F14">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F14.mp3" title="Suttas You've Never Heard Of, S2 E14" data-duration="154"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F14.mp3" download="Suttas You've Never Heard Of, S2 E14.mp3">Download audio</a> (2:34)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “Could you comment on the tendency to use one aspect of the teaching to bypass another?”  [<a href = "../tags/spiritual-bypass.html">Spiritual bypass</a>] // [<a href = "../tags/four-noble-truths.html">Four Noble Truths</a>] [<a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “With some things, letting go means you're willing to commit to hard work, and other times you're willing to put down what is burdensome.”  [<a href = "../tags/ardency.html">Ardency</a>]
+  <b>Quote:</b>  “With some things, letting go means you’re willing to commit to hard work, and other times you’re willing to put down what is burdensome.”  [<a href = "../tags/ardency.html">Ardency</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F15">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F15.mp3" title="Suttas You've Never Heard Of, S2 E15" data-duration="296"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F15.mp3" download="Suttas You've Never Heard Of, S2 E15.mp3">Download audio</a> (4:56)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “<a href="https://sutta.readingfaithfully.org/?q=AN-5.38" target="_blank">AN 5.38</a> says, 'Not by sorrow can even the slightest good come.' How does this work with the natural process of grieving?”  [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F15.mp3" title="Suttas You've Never Heard Of, S2 E15" data-duration="296"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F15.mp3" download="Suttas You've Never Heard Of, S2 E15.mp3">Download audio</a> (4:56)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “<a href="https://sutta.readingfaithfully.org/?q=AN-5.38" target="_blank">AN 5.38</a> says, ‘Not by sorrow can even the slightest good come.’ How does this work with the natural process of grieving?”  [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/characteristics-of-existence.html">Characteristics of existence</a>]
 </p>
 <hr />
 <p id="UD2016-2_S02_F16">
@@ -395,11 +405,11 @@
 </p>
 <hr />
 <p id="TG2016_S02_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F02.mp3" title="Thanksgiving Retreat 2016, S2 E2" data-duration="332"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F02.mp3" download="Thanksgiving Retreat 2016, S2 E2.mp3">Download audio</a> (5:32)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I was wondering since you are a monk of 40 years, you are happy and mindful.   How can you know of  the issues, problems of people's’ lives in the current modern times?  We are worried about Trump’s presidency!”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F02.mp3" title="Thanksgiving Retreat 2016, S2 E2" data-duration="332"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F02.mp3" download="Thanksgiving Retreat 2016, S2 E2.mp3">Download audio</a> (5:32)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I was wondering since you are a monk of 40 years, you are happy and mindful.   How can you know of  the issues, problems of people’s’ lives in the current modern times?  We are worried about Trump’s presidency!”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>]
 </p>
 <hr />
 <p id="TG2016_S02_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F03.mp3" title="Thanksgiving Retreat 2016, S2 E3" data-duration="245"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F03.mp3" download="Thanksgiving Retreat 2016, S2 E3.mp3">Download audio</a> (4:05)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Though unskillful mind states may come up, as long as we don’t pick them up and feed them, they are just ideas/thoughts that will end.'  Can you comment on the effectiveness of this practice?  Are there situations where you would definitely recommend it?  Definitely not recommend it?  Do you see this relating to metta?”  [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F03.mp3" title="Thanksgiving Retreat 2016, S2 E3" data-duration="245"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S02_F03.mp3" download="Thanksgiving Retreat 2016, S2 E3.mp3">Download audio</a> (4:05)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Though unskillful mind states may come up, as long as we don’t pick them up and feed them, they are just ideas/thoughts that will end.’  Can you comment on the effectiveness of this practice?  Are there situations where you would definitely recommend it?  Definitely not recommend it?  Do you see this relating to metta?”  [<a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
 </p>
 <hr />
 <p id="TG2016_S02_F04">
@@ -505,7 +515,7 @@
 <hr />
 <div class="title" id="TG2016_S04"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S04">Session 4</a> – Nov. 22, 2016</div>
 <p id="TG2016_S04_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" title="Thanksgiving Retreat 2016, S4 E1" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" download="Thanksgiving Retreat 2016, S4 E1.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “My dearest parents -in-law - very ill, 82-84 years old, live in Europe.  My dear husband loves his mother very much.  He said if his mother passes away, he doesn’t want to be in the funeral.  I don’t think it is a good idea. How can I help him and myself in the way of Buddha mind?  I am afraid my husband will break down.”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/funerals.html">Funerals</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" title="Thanksgiving Retreat 2016, S4 E1" data-duration="156"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F01.mp3" download="Thanksgiving Retreat 2016, S4 E1.mp3">Download audio</a> (2:36)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “My dearest parents -in-law - very ill, 82-84 years old, live in Europe.  My dear husband loves his mother very much.  He said if his mother passes away, he doesn’t want to be in the funeral.  I don’t think it is a good idea. How can I help him and myself in the way of Buddha mind?  I am afraid my husband will break down.”  [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/grief.html">Grief</a>] [<a href = "../tags/funerals.html">Funerals</a>]
 </p>
 <hr />
 <p id="TG2016_S04_F02">
@@ -562,8 +572,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno (Questions),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno (Questions),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-pasanno-question-11.html">https://abhayagiri.org/questions/teachers/ajahn-pasanno-question-11.html</a>.</p>
 </footer>
 

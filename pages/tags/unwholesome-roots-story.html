@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/unwholesome-roots-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/unwholesome-roots.html#unwholesome-roots"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThree Unwholesome Roots (akusala-mūla)
+  <div class="title"><a href="../drilldown/unwholesome-roots.html#unwholesome-roots" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThree Unwholesome Roots (akusala-mūla)
   </div>
 
 <div class="intro">
@@ -54,21 +64,26 @@
   Parent topic: <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a><br>
   Subtopics: <a href = "../tags/greed.html">Greed</a>, <a href = "../tags/aversion.html">Aversion</a>, <a href = "../tags/delusion.html">Delusion</a><br>
   
-  45 excerpts, 2:36:15 total duration
+  48 excerpts, 2:41:30 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/unwholesome-roots.html">All excerpts (45)</a>
+<div class="sublink2"> <a href="../tags/unwholesome-roots.html">All excerpts (48)</a>
       <a href="../tags/unwholesome-roots-qtag.html">Questions about (26)</a>
       <a href="../tags/unwholesome-roots-atag.html">Answers involving (17)</a>
-      <a href="../tags/unwholesome-roots-story.html" class="active">Stories (1)</a>
-      <a href="../tags/unwholesome-roots-quote.html">Quotes (7)</a>
+      <a href="../tags/unwholesome-roots-story.html" class="active">Stories (2)</a>
+      <a href="../tags/unwholesome-roots-quote.html">Quotes (8)</a>
       <a href="../tags/unwholesome-roots-reading.html">Readings (1)</a>
       <a href="../tags/unwholesome-roots-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S45"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S45">Session 45</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 7, 2014</div>
+<div class="title" id="Chah2001_S32"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S32">Session 32</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S32_F10">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F10.mp3" title="Remembering Ajahn Chah Weekend, S32 E7" data-duration="120"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S32_F10.mp3" download="Remembering Ajahn Chah Weekend, S32 E7.mp3">Download audio</a> (2:00)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> “Close the doors. Today I’m eating noodles!” Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/food.html">Food</a>] [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/ardency.html">Ardency</a>] <b>[<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]</b>
+</p>
+<hr />
+<div class="title" id="WR2014_S45"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S45">Session 45</a> – Mar. 7, 2014</div>
 <p id="WR2014_S45_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S45 E5" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S45 E5.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Did Ajahn Chah say, “I'm such a good teacher because I had so many defilements?””  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] <b>[<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S45 E5" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S45 E5.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “Did Ajahn Chah say, “I’m such a good teacher because I had so many defilements?””  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] <b>[<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Chah explains that he had a lot of defilements to work with. [<a href = "../tags/ajahn-viradhammo.html">Ajahn Viradhammo</a>] <b>[<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]</b>
@@ -76,8 +91,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Three Unwholesome Roots (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Three Unwholesome Roots (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/unwholesome-roots-story.html">https://abhayagiri.org/questions/tags/unwholesome-roots-story.html</a>.</p>
 </footer>
 

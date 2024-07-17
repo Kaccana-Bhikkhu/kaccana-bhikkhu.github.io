@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#indexes/EventsBySeries.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html" class="active">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -47,7 +57,7 @@
   </div>
 
 <div class="intro">
-<div class="listing"><a href="#thanksgiving-retreats">Thanksgiving Retreats (4)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#abhayagiri-winter-retreats">Abhayagiri Winter Retreats (3)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#spirit-rock-daylongs">Spirit Rock Daylongs (4)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#upasika-days">Upāsikā Days (20)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#qampa-sessions">Q&ampA sessions (6)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#other">Other (3)</a>
+<div class="listing"><a href="#thanksgiving-retreats">Thanksgiving Retreats (4)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#abhayagiri-winter-retreats">Abhayagiri Winter Retreats (3)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#spirit-rock-daylongs">Spirit Rock Daylongs (4)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#upasika-days">Upāsikā Days (20)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#qampa-sessions">Q&ampA sessions (6)</a> &nbsp&nbsp&nbsp&nbsp&nbsp<a href="#other">Other (4)</a>
 <hr>
 <h3 id="thanksgiving-retreats">Thanksgiving Retreats</h3>
 <p class="smaller">The Abhayagiri Monastic Thanksgiving retreat was traditionally an annual ten-day residential retreat held at the Angela Center in Santa Rosa, California during the week of Thanksgiving. After the Angela Center closed due to fire damage in 2017 and the COVID pandemic began in 2020, the location, date, duration, and format of this retreat have varied significantly. <a href="../about/02_Event-series.html#thanksgiving-retreats">More...</a></p><p><a href = ../events/TG2013.html>Abhayagiri Monastic Retreat 2013</a> (138) – November 2013</p>
@@ -97,14 +107,15 @@
 <p><a href = ../events/Sudhana2023.html>Q&ampA at Sudhana Center</a> (9) – July 2023</p>
 <hr>
 <h3 id="other">Other</h3>
-<p class="smaller">Events that don't fit into any of the above categories.</p><p><a href = ../events/Metta2008.html>Metta Retreat</a> (69) – September 2008</p>
+<p class="smaller">Events that don’t fit into any of the above categories.</p><p><a href = ../events/Chah2001.html>Remembering Ajahn Chah Weekend</a> (117) – April 2001</p>
+<p><a href = ../events/Metta2008.html>Metta Retreat</a> (69) – September 2008</p>
 <p><a href = ../events/BIA2013.html>New Year, New Life</a> (8) – December 2013</p>
 <p><a href = ../events/Path2019.html>The Path of Practice</a> (34) – June 2019</p></div>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Events: By series,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Events: By series,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/indexes/EventsBySeries.html">https://abhayagiri.org/questions/indexes/EventsBySeries.html</a>.</p>
 </footer>
 

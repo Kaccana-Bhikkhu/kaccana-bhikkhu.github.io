@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/listening.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/right-speech.html#right-speech"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspListening 
+  <div class="title"><a href="../drilldown/right-speech.html#right-speech" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspListening 
   </div>
 
 <div class="intro">
@@ -57,47 +67,47 @@
   5 excerpts, 18:26 total duration
 </strong>
 <hr />
-<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 12, 2017</div>
+<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – Aug. 12, 2017</div>
 <p id="UD2017-3_S00_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F07.mp3" title="Practice in a Global Context, E7" data-duration="135"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F07.mp3" download="Practice in a Global Context, E7.mp3">Download audio</a> (2:15)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Comment</b>: One thing I've gotten from Trump is the equanimity to listen to his supporters on a one-on-one basis. [<a href = "../tags/equanimity.html">Equanimity</a>] <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F07.mp3" title="Practice in a Global Context, E7" data-duration="135"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F07.mp3" download="Practice in a Global Context, E7.mp3">Download audio</a> (2:15)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Comment</b>: One thing I’ve gotten from Trump is the equanimity to listen to his supporters on a one-on-one basis. [<a href = "../tags/equanimity.html">Equanimity</a>] <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/respect.html">Respect</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/community.html">Community</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/human.html">Human</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/community.html">Community</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F12.mp3" title="The New Ajahn Chah Biography, S2 E12" data-duration="441"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F12.mp3" download="The New Ajahn Chah Biography, S2 E12.mp3">Download audio</a> (7:21)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “What can you offer dying people who didn't have the opportunity to engage in Buddhist practice?”  [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/compassion.html">Compassion</a>] // <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/right-speech.html">Right Speech</a>] [<a href = "../tags/chanting.html">Chanting</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F12.mp3" title="The New Ajahn Chah Biography, S2 E12" data-duration="441"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F12.mp3" download="The New Ajahn Chah Biography, S2 E12.mp3">Download audio</a> (7:21)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “What can you offer dying people who didn’t have the opportunity to engage in Buddhist practice?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/compassion.html">Compassion</a>] // <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/right-speech.html">Right Speech</a>] [<a href = "../tags/chanting.html">Chanting</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F14">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" title="The Path of Practice, S1 E14" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" download="The Path of Practice, S1 E14.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “What are your thoughts about maintaining a practice you're at the bedside of someone actively passing away?”  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/intuition.html">Intuition</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" title="The Path of Practice, S1 E14" data-duration="267"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F14.mp3" download="The Path of Practice, S1 E14.mp3">Download audio</a> (4:27)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “What are your thoughts about maintaining a practice you’re at the bedside of someone actively passing away?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] // <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/personal-presence.html">Personal presence</a>] [<a href = "../tags/intuition.html">Intuition</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ram Dass anxiously tries to guide his stepmother through the dying process. [<a href = "../tags/ram-dass.html">Ram Dass</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>]
 </p>
 <hr />
-<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S03_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F02.mp3" title="Love, Attachment, and Friendship, S3 E2" data-duration="101"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F02.mp3" download="Love, Attachment, and Friendship, S3 E2.mp3">Download audio</a> (1:41)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Quote:</b>  “Learning how to be comfortable with dukkha...is a willingness to open the heart to the whole realm of experience. That's an act of love.”  [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] // [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/fear.html">Fear</a>] <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F02.mp3" title="Love, Attachment, and Friendship, S3 E2" data-duration="101"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F02.mp3" download="Love, Attachment, and Friendship, S3 E2.mp3">Download audio</a> (1:41)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Quote:</b>  “Learning how to be comfortable with dukkha...is a willingness to open the heart to the whole realm of experience. That’s an act of love.”  — <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/direct-experience.html">Direct experience</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] // [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/fear.html">Fear</a>] <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>]
 </p>
 <hr />
-<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 16, 2021</div>
+<div class="title" id="Manijeh2021_S00"><a href="../events/Manijeh2021.html">Tea Time Q&A with Ajahn Pasanno</a><a href="../events/Manijeh2021.html"></a> – May. 16, 2021</div>
 <p id="Manijeh2021_S00_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" title="Tea Time Q&A with Ajahn Pasanno, E7" data-duration="162"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" download="Tea Time Q&A with Ajahn Pasanno, E7.mp3">Download audio</a> (2:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Your advice to leaders in the conflicts of 2021 in terms of the leaders themselves and how they can inspire their teams and communities?”  [<a href = "../tags/leadership.html">Leadership</a>] [<a href = "../tags/conflict.html">Conflict</a>] [<a href = "../tags/community.html">Community</a>] // [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" title="Tea Time Q&A with Ajahn Pasanno, E7" data-duration="162"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Manijeh2021/Manijeh2021_S00_F07.mp3" download="Tea Time Q&A with Ajahn Pasanno, E7.mp3">Download audio</a> (2:42)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Your advice to leaders in the conflicts of 2021 in terms of the leaders themselves and how they can inspire their teams and communities?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/leadership.html">Leadership</a>] [<a href = "../tags/conflict.html">Conflict</a>] [<a href = "../tags/community.html">Community</a>] // [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/compassion.html">Compassion</a>] <b>[<a href = "../tags/listening.html">Listening</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Leadership always comes by example.”  
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “[Ajahn Chah] never asked us to do something that he himself wasn't doing.”  
+  <b>Quote:</b>  “[Ajahn Chah] never asked us to do something that he himself wasn’t doing.”  
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Listening,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Listening,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/listening.html">https://abhayagiri.org/questions/tags/listening.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-buddhadasa-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/other-thai-forest-teachers.html#other-thai-forest-teachers"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Buddhadāsa Indapañño 
+  <div class="title"><a href="../drilldown/other-thai-forest-teachers.html#other-thai-forest-teachers" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Buddhadāsa Indapañño 
   </div>
 
 <div class="intro">
@@ -64,7 +74,7 @@
       <a href="../tags/ajahn-buddhadasa-quote.html">Quotes (2)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S23"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S23">Session 23</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 5, 2014</div>
+<div class="title" id="WR2014_S23"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S23">Session 23</a> – Feb. 5, 2014</div>
 <p id="WR2014_S23_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S23_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S23 E2" data-duration="101"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S23_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S23 E2.mp3">Download audio</a> (1:41)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> Ajahn Ñaniko speaks about the time Luang Por Liem spent at Suan Mokh. [<a href = "../tags/wat-suan-mokkh.html">Wat Suan Mokkh</a>] [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>]
 </p>
@@ -75,18 +85,18 @@
   <b>Recollection:</b> Ajahn Liem reads and comments on the monthly poem in the Ajahn Buddhadāsa calendar. <b>[<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]</b> [<a href = "../tags/artistic-expression.html">Artistic expression</a>]
 </p>
 <hr />
-<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 2, 2017</div>
+<div class="title" id="Teen2017_S00"><a href="../events/Teen2017.html">Teen Weekend 2017</a><a href="../events/Teen2017.html"></a> – Sep. 2, 2017</div>
 <p id="Teen2017_S00_F14">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F14.mp3" title="Teen Weekend 2017, E14" data-duration="247"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F14.mp3" download="Teen Weekend 2017, E14.mp3">Download audio</a> (4:07)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “What are the biggest misconceptions about being ordained?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/selfishness.html">Selfishness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F14.mp3" title="Teen Weekend 2017, E14" data-duration="247"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Teen2017/Teen2017_S00_F14.mp3" download="Teen Weekend 2017, E14.mp3">Download audio</a> (4:07)</audio-chip><br /> <b style="text-decoration: underline;">14.</b> “What are the biggest misconceptions about being ordained?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/selfishness.html">Selfishness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno visits Ajahn Buddhadāsa: "Don't be selfish!" <b>[<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <b>Story:</b> Ajahn Pasanno visits Ajahn Buddhadāsa: “Don’t be selfish!” <b>[<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Buddhadāsa Indapañño (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Buddhadāsa Indapañño (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-buddhadasa-story.html">https://abhayagiri.org/questions/tags/ajahn-buddhadasa-story.html</a>.</p>
 </footer>
 

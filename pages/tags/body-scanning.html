@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/body-scanning.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/meditationtechniques.html#meditationtechniques"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspBody scanning 
+  <div class="title"><a href="../drilldown/meditationtechniques.html#meditationtechniques" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspBody scanning 
   </div>
 
 <div class="intro">
@@ -54,12 +64,43 @@
   Parent topic: <a href = "../tags/meditationtechniques.html">Meditation/Techniques</a><br>
   
   
-  5 excerpts, 38:10 total duration
+  6 excerpts, 1:13:30 total duration
 </strong>
 <hr />
-<div class="title" id="SRD2010_S08"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S08">Session 8</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="Chah2001_S08"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S08">Session 8</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S08_F00">
+  <audio-chip src="https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2008%20-%20Ajahn%20Chah%20Reading.mp3" title="Remembering Ajahn Chah Weekend, S8" data-duration="565"><a href="https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2008%20-%20Ajahn%20Chah%20Reading.mp3" download="Remembering Ajahn Chah Weekend, S8.mp3">Download audio</a> (9:25)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>] <b>Reading:</b> “Meditation” from <em>Living Dhamma</em> by <a href="../teachers/ajahn-chah.html">Ajahn Chah</a>, <a href="https://www.abhayagiri.org/media/books/chah_living_dhamma.pdf#page=53" target="_blank">pp. 50-53</a>. Read by Ajahn Jitindriyā. [<a href = "../tags/meditation.html">Meditation</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Cultivate the tree right from the seed.” [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
+</p>
+<p style="margin-left: 2em;">
+  “To practice in a way that’s peaceful means to place the mind neither too high or too low, but at the point of balance.” [<a href = "../tags/middle-path.html">Middle Path</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+</p>
+<p style="margin-left: 2em;">
+  “So many teachers, so many teachings.” [<a href = "../tags/teachers.html">Teachers</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Where there is knowing, there is no need to think.” [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/proliferation.html">Proliferation</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Resolve that right now is the time for training the mind and nothing else.” [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+</p>
+<p style="margin-left: 2em;">
+  “Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.” [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/heedfulness.html">Heedfulness</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/feeling.html">Feeling</a>]
+</p>
+<p style="margin-left: 4em;">
+  <b>Simile:</b> Chicken in a coop. 
+</p>
+<hr />
+<div class="title" id="Chah2001_S24"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S24">Session 24</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S24_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S24_F02.mp3" title="Remembering Ajahn Chah Weekend, S24 E2" data-duration="1555"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S24_F02.mp3" download="Remembering Ajahn Chah Weekend, S24 E2.mp3">Download audio</a> (25:55)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Guided meditation</b>  offered by <a href="../teachers/ajahn-sundara.html">Ajahn Sundarā</a>. [<a href = "../tags/meditation.html">Meditation</a>] // [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>]
+</p>
+<hr />
+<div class="title" id="SRD2010_S08"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S08">Session 8</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S08_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" title="Recollections of Ajahn Chah, S8 E1" data-duration="932"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" download="Recollections of Ajahn Chah, S8 E1.mp3">Download audio</a> (15:32)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From "<a href="https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm" target="_blank">The Key to Liberation</a>" by Ajahn Chah.  [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" title="Recollections of Ajahn Chah, S8 E1" data-duration="932"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S08_F01.mp3" download="Recollections of Ajahn Chah, S8 E1.mp3">Download audio</a> (15:32)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Guided meditation:</b> Resolve right now is the time for training the mind and nothing else. From “<a href="https://www.budsas.org/ebud/ajchah_lib/03_meditation.htm" target="_blank">The Key to Liberation</a>“ by Ajahn Chah.  [<a href = "../tags/calming-meditation.html">Calming meditation</a>] [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/mindfulness.html">Mindfulness</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/present-moment-awareness.html">Present moment awareness</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “Sitting and walking meditation are in essence the same, differing only in the posture used.”  [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] [<a href = "../tags/posturewalking.html">Posture/Walking</a>]
@@ -71,39 +112,39 @@
   <b>Simile:</b> Mindfulness, clear comprehension, and wisdom are like three workers lifting heavy planks. 
 </p>
 <hr />
-<div class="title" id="TG2013_S03"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 25, 2013</div>
+<div class="title" id="TG2013_S03"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S03">Session 3</a> – Nov. 25, 2013</div>
 <p id="TG2013_S03_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F01.mp3" title="Abhayagiri Monastic Retreat 2013, S3 E1" data-duration="223"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F01.mp3" download="Abhayagiri Monastic Retreat 2013, S3 E1.mp3">Download audio</a> (3:43)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Is body scan as a meditation practice done in the Ajahn Chah tradition? Is there a sutta where the Buddha talks about it?”  <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/sutta.html">Sutta</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F01.mp3" title="Abhayagiri Monastic Retreat 2013, S3 E1" data-duration="223"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F01.mp3" download="Abhayagiri Monastic Retreat 2013, S3 E1.mp3">Download audio</a> (3:43)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Is body scan as a meditation practice done in the Ajahn Chah tradition? Is there a sutta where the Buddha talks about it?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a>] [<a href = "../tags/sutta.html">Sutta</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-3_S01"><a href="../events/UD2014-3.html">Mindfulness of Breathing</a>, <a href="../events/UD2014-3.html#UD2014-3_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 26, 2014</div>
+<div class="title" id="UD2014-3_S01"><a href="../events/UD2014-3.html">Mindfulness of Breathing</a>, <a href="../events/UD2014-3.html#UD2014-3_S01">Session 1</a> – Oct. 26, 2014</div>
 <p id="UD2014-3_S01_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F03.mp3" title="Mindfulness of Breathing, S1 E3" data-duration="171"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F03.mp3" download="Mindfulness of Breathing, S1 E3.mp3">Download audio</a> (2:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I have a hard time breathing normally due to congestion and athsma. How does one get past the initial fear, 'I just can't breath. How am I going to do this?'”  [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/tranquility.html">Tranquility</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F03.mp3" title="Mindfulness of Breathing, S1 E3" data-duration="171"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-3/UD2014-3_S01_F03.mp3" download="Mindfulness of Breathing, S1 E3.mp3">Download audio</a> (2:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “I have a hard time breathing normally due to congestion and athsma. How does one get past the initial fear, ‘I just can’t breath. How am I going to do this?’”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/health.html">Health</a>] [<a href = "../tags/fear.html">Fear</a>] [<a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/tranquility.html">Tranquility</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S09"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S09">Session 9</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 16, 2015</div>
+<div class="title" id="WR2015_S09"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S09">Session 9</a> – Jan. 16, 2015</div>
 <p id="WR2015_S09_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S9 E3" data-duration="829"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S9 E3.mp3">Download audio</a> (13:49)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Readings</b> from the Introduction to <em>Listening to the Heart</em> by Kittisaro and Thanissara (commercial).  
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S9 E3" data-duration="829"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S09_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S9 E3.mp3">Download audio</a> (13:49)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Readings</b> from the Introduction to <em>Listening to the Heart</em> by Kittisaro and Ṭhānissarā (commercial).  
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Kittisaro's first meeting with Ajahn Chah. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/conceit.html">Conceit</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/humor.html">Humor</a>]
+  <b>Story:</b> Kittisaro’s first meeting with Ajahn Chah. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/conceit.html">Conceit</a>] <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/humor.html">Humor</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Stories:</b> The Squirrel Story and the Donkey Story. [<a href = "../tags/learning.html">Learning</a>]
 </p>
 <hr />
-<div class="title" id="UD2017-2_S03"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S03"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S03">Session 3</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S03_F02">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F02.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E2" data-duration="135"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S03_F02.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S3 E2.mp3">Download audio</a> (2:15)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Comment</b>: Our group talked about body scanning, coming back to the body, as a way to find your center. Everyone was conscious of skillful means in knowing themselves. We all had different ways of knowing what works and adapting to different circumstances that arise. <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/body-scanning.html">Body scanning</a>]</b> [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Body scanning,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Body scanning,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/body-scanning.html">https://abhayagiri.org/questions/tags/body-scanning.html</a>.</p>
 </footer>
 

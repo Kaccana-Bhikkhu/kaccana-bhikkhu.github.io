@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-pasanno-read-from.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -48,15 +58,15 @@
   </div>
 
 <div class="intro">
-1736 excerpts, 104:52:26 total duration
+1749 excerpts, 105:24:26 total duration
 <hr />
-<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html">All excerpts (1736)</a>
-      <a href="../teachers/ajahn-pasanno-question.html">Questions (1495)</a>
-      <a href="../teachers/ajahn-pasanno-story.html">Stories (200)</a>
-      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (96)</a>
-      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (74)</a>
-      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (5)</a>
-      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (43)</a>
+<div class="sublink2"> <a href="../teachers/ajahn-pasanno.html">All excerpts (1749)</a>
+      <a href="../teachers/ajahn-pasanno-question.html">Questions (1496)</a>
+      <a href="../teachers/ajahn-pasanno-story.html">Stories (207)</a>
+      <a href="../teachers/ajahn-pasanno-d-quote.html">Direct quotes (99)</a>
+      <a href="../teachers/ajahn-pasanno-i-quote.html">Quotes others (77)</a>
+      <a href="../teachers/ajahn-pasanno-meditation.html">Meditations (6)</a>
+      <a href="../teachers/ajahn-pasanno-teaching.html">Teachings (48)</a>
       <a href="../teachers/ajahn-pasanno-read-from.html" class="active">Readings from (1)</a>
       <a href="../teachers/ajahn-pasanno-read-by.html">Readings by (89)</a> </div>
 <hr>
@@ -66,16 +76,16 @@
   <audio-chip src="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/43_AKd_03_09_2015_Fleshing_Out_the_Four_Tetrads_13.mp3" title="Abhayagiri 2015 Winter Retreat, S43" data-duration="1577"><a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Audio/43_AKd_03_09_2015_Fleshing_Out_the_Four_Tetrads_13.mp3" download="Abhayagiri 2015 Winter Retreat, S43.mp3">Download audio</a> (26:17)</audio-chip><br /> [<span style="text-decoration: underline;">Session</span>]  [<a href = "../tags/nibbana.html">Nibbāna</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> Introduction to Middle Length Discourses of the Buddha p. 31-32 (quoted in <em>The Island</em> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=36" target="_blank">p. 36-37</a>).  
+  <b>Reading:</b> Introduction to Middle Length Discourses of the Buddha p. 31-32 (quoted in <em>The Island</em> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=36" target="_blank">p. 36-37</a>).  
 </p>
 <p style="margin-left: 2em;">
-  <b>Reading:</b> <em>The Island</em> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=222" target="_blank">p. 222-224</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=30" target="_blank">30-31</a>.  
+  <b>Reading:</b> <em>The Island</em> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=222" target="_blank">p. 222-224</a>, <a href="https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=30" target="_blank">30-31</a>.  
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno (Readings from),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Pasanno (Readings from),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-pasanno-read-from.html">https://abhayagiri.org/questions/teachers/ajahn-pasanno-read-from.html</a>.</p>
 </footer>
 

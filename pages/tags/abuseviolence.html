@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/abuseviolence.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/unskillful-qualities.html#unskillful-qualities"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAbuse/violence 
+  <div class="title"><a href="../drilldown/unskillful-qualities.html#unskillful-qualities" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAbuse/violence 
   </div>
 
 <div class="intro">
@@ -57,52 +67,52 @@
   5 excerpts, 24:20 total duration
 </strong>
 <hr />
-<div class="title" id="TG2013_S03"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 25, 2013</div>
+<div class="title" id="TG2013_S03"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S03">Session 3</a> – Nov. 25, 2013</div>
 <p id="TG2013_S03_F09">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F09.mp3" title="Abhayagiri Monastic Retreat 2013, S3 E9" data-duration="234"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F09.mp3" download="Abhayagiri Monastic Retreat 2013, S3 E9.mp3">Download audio</a> (3:54)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “About a year ago, I was bullied and sexually harassed by a married male coworker...Any guidance as to how I can work with this and move beyond it?”  <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] [<a href = "../tags/work.html">Work</a>] // [<a href = "../tags/goodwill.html">Goodwill</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F09.mp3" title="Abhayagiri Monastic Retreat 2013, S3 E9" data-duration="234"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F09.mp3" download="Abhayagiri Monastic Retreat 2013, S3 E9.mp3">Download audio</a> (3:54)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “About a year ago, I was bullied and sexually harassed by a married male coworker...Any guidance as to how I can work with this and move beyond it?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] [<a href = "../tags/work.html">Work</a>] // [<a href = "../tags/goodwill.html">Goodwill</a>]
 </p>
 <hr />
-<div class="title" id="WR2015_S47"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S47">Session 47</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Mar. 17, 2015</div>
+<div class="title" id="WR2015_S47"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S47">Session 47</a> – Mar. 17, 2015</div>
 <p id="WR2015_S47_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S47 E2" data-duration="549"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S47 E2.mp3">Download audio</a> (9:09)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Discussion</b> about kamma and the results of kamma. Led by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>, <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/feeling.html">Feeling</a>] // <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/abhidhamma.html">Abhidhamma</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/cultureindia.html">Culture/India</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/disasters.html">Disasters</a>] [<a href = "../tags/christianity.html">Christianity</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" title="Abhayagiri 2015 Winter Retreat, S47 E2" data-duration="549"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S47_F02.mp3" download="Abhayagiri 2015 Winter Retreat, S47 E2.mp3">Download audio</a> (9:09)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Discussion</b> about kamma and the results of kamma. Led by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>, <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/feeling.html">Feeling</a>] // <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/abhidhamma.html">Abhidhamma</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/vajrayana.html">Vajrayāna</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/cultureindia.html">Culture/India</a>] [<a href = "../tags/equanimity.html">Equanimity</a>] [<a href = "../tags/disasters.html">Disasters</a>] [<a href = "../tags/christianity.html">Christianity</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “Too much Dhamma.” — <a href = ../teachers/ajahn-buddhadasa.html>Ajahn Buddhadāsa</a>. Quoted by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]
+  <b>Quote:</b>  “Too much Dhamma.” — <a href="../teachers/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>. Quoted by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-buddhadasa.html">Ajahn Buddhadāsa</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.77" target="_blank">AN 4.77</a> Acinteyya: "Vexation or madness." 
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.77" target="_blank">AN 4.77</a> Acinteyya: “Vexation or madness.” 
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Chah to Ajahn Munindo: "If it wasn't supposed to be this way, it wouldn't have been this way." Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-munindo.html">Ajahn Munindo</a>] [<a href = "../tags/self-pity.html">Self-pity</a>]
+  <b>Story:</b> Ajahn Chah to Ajahn Munindo: “If it wasn’t supposed to be this way, it wouldn’t have been this way.” Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-munindo.html">Ajahn Munindo</a>] [<a href = "../tags/self-pity.html">Self-pity</a>]
 </p>
 <p style="margin-left: 2em;">
-  Thai saying: "That's as far as their merit takes them." [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/thai.html">Thai</a>]
+  Thai saying: “That’s as far as their merit takes them.” [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/thai.html">Thai</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-3_S00"><a href="../events/UD2015-3.html">Buddhist Identity in the Modern World</a><a href="../events/UD2015-3.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 15, 2015</div>
+<div class="title" id="UD2015-3_S00"><a href="../events/UD2015-3.html">Buddhist Identity in the Modern World</a><a href="../events/UD2015-3.html"></a> – Aug. 15, 2015</div>
 <p id="UD2015-3_S00_F16">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F16.mp3" title="Buddhist Identity in the Modern World, E16" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F16.mp3" download="Buddhist Identity in the Modern World, E16.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “If you know of an abusive situation and both the abuser and victim are stuck in it, how do you hold this? How to encourage them to follow this path?”  <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F16.mp3" title="Buddhist Identity in the Modern World, E16" data-duration="128"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-3/UD2015-3_S00_F16.mp3" download="Buddhist Identity in the Modern World, E16.mp3">Download audio</a> (2:08)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “If you know of an abusive situation and both the abuser and victim are stuck in it, how do you hold this? How to encourage them to follow this path?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/buddhist-identity.html">Buddhist identity</a>] // [<a href = "../tags/cessation-of-suffering.html">Cessation of Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “You plant seeds of possibility. You can't make the seeds grow, but you can plant the seeds.”  [<a href = "../tags/similes.html">Similes</a>]
+  <b>Quote:</b>  “You plant seeds of possibility. You can’t make the seeds grow, but you can plant the seeds.”  [<a href = "../tags/similes.html">Similes</a>]
 </p>
 <hr />
-<div class="title" id="UD2017-2_S02"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 4, 2017</div>
+<div class="title" id="UD2017-2_S02"><a href="../events/UD2017-2.html">Two Kinds of Thought and the Removal of Distracting Thoughts</a>, <a href="../events/UD2017-2.html#UD2017-2_S02">Session 2</a> – Jun. 4, 2017</div>
 <p id="UD2017-2_S02_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F01.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E1" data-duration="405"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F01.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E1.mp3">Download audio</a> (6:45)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “The last option [in <a href="https://sutta.readingfaithfully.org/?q=MN-20" target="_blank">MN 20</a>] I thought was really interesting because it's reare I hear such agressive terms used. There's almost a sense of violence in some of those terms. Is that just because of the interpretation? Also, is another option to get rid of the thought to get up and actively do something?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/language.html">Language</a>] <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/excercise.html">Excercise</a>] // [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F01.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E1" data-duration="405"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F01.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E1.mp3">Download audio</a> (6:45)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “The last option [in <a href="https://sutta.readingfaithfully.org/?q=MN-20" target="_blank">MN 20</a>] I thought was really interesting because it’s reare I hear such agressive terms used. There’s almost a sense of violence in some of those terms. Is that just because of the interpretation? Also, is another option to get rid of the thought to get up and actively do something?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/language.html">Language</a>] <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/excercise.html">Excercise</a>] // [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>] [<a href = "../tags/similes.html">Similes</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a>]
 </p>
 <hr />
 <p id="UD2017-2_S02_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F12.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E12" data-duration="144"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F12.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E12.mp3">Download audio</a> (2:24)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: The language in method five [of <a href="https://sutta.readingfaithfully.org/?q=MN-20" target="_blank">MN 20</a>] still catches me. If I'm pushing against a thought and beating it down, I'm actually more attached to it because of that. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F12.mp3" title="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E12" data-duration="144"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-2/UD2017-2_S02_F12.mp3" download="Two Kinds of Thought and the Removal of Distracting Thoughts, S2 E12.mp3">Download audio</a> (2:24)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Comment</b>: The language in method five [of <a href="https://sutta.readingfaithfully.org/?q=MN-20" target="_blank">MN 20</a>] still catches me. If I’m pushing against a thought and beating it down, I’m actually more attached to it because of that. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] <b>[<a href = "../tags/abuseviolence.html">Abuse/violence</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Responses</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. 
+  <b>Responses</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. 
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Abuse/violence,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Abuse/violence,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/abuseviolence.html">https://abhayagiri.org/questions/tags/abuseviolence.html</a>.</p>
 </footer>
 

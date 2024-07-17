@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/other-thai-monastics.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/other-thai-monastics.html#other-thai-monastics"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspOther Thai monastics 
+  <div class="title"><a href="../drilldown/other-thai-monastics.html#other-thai-monastics" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspOther Thai monastics 
   </div>
 
 <div class="intro">
@@ -57,15 +67,15 @@
   1 excerpt, 14:59 total duration
 </strong>
 <hr />
-<div class="title" id="WR2018-2_S06"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 22, 2018</div>
+<div class="title" id="WR2018-2_S06"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S06">Session 6</a> – Mar. 22, 2018</div>
 <p id="WR2018-2_S06_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F02.mp3" title="The Teaching and the Training, S6 E2" data-duration="899"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F02.mp3" download="The Teaching and the Training, S6 E2.mp3">Download audio</a> (14:59)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I assume at Abhayagiri the upatakh sleeps in his own dwelling place? (in contrast to the previous story of Ajahn Lee)”  [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] // [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/other-thai-monastics.html">Other Thai monastics</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F02.mp3" title="The Teaching and the Training, S6 E2" data-duration="899"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2018-2/WR2018-2_S06_F02.mp3" download="The Teaching and the Training, S6 E2.mp3">Download audio</a> (14:59)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “I assume at Abhayagiri the upatakh sleeps in his own dwelling place? (in contrast to the previous story of Ajahn Lee)”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/sangha.html">Saṅgha</a>] // [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/other-thai-monastics.html">Other Thai monastics</a>]</b>
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Other Thai monastics,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Other Thai monastics,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/other-thai-monastics.html">https://abhayagiri.org/questions/tags/other-thai-monastics.html</a>.</p>
 </footer>
 

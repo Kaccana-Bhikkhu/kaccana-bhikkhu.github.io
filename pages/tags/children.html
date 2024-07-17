@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/children.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/family.html#family"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspChildren 
+  <div class="title"><a href="../drilldown/family.html#family" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspChildren 
   </div>
 
 <div class="intro">
@@ -54,61 +64,71 @@
   Parent topic: <a href = "../tags/family.html">Family</a><br>
   
   
-  6 excerpts, 22:11 total duration
+  8 excerpts, 28:33 total duration
 </strong>
 <hr />
-<div class="title" id="Metta2008_S05"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 13, 2008</div>
+<div class="title" id="Chah2001_S34"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S34">Session 34</a> – Apr. 29, 2001</div>
+<p id="Chah2001_S34_F07">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F07.mp3" title="Remembering Ajahn Chah Weekend, S34 E7" data-duration="165"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S34_F07.mp3" download="Remembering Ajahn Chah Weekend, S34 E7.mp3">Download audio</a> (2:45)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Story:</b> Mute, wheelchair-bound Ajahn Chah meets a mother and her young son. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sickness.html">Sickness</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/bowing.html">Bowing</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/joseph-kappel.html">Joseph Kappel</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+</p>
+<hr />
+<div class="title" id="Metta2008_S05"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S05">Session 5</a> – Sep. 13, 2008</div>
 <p id="Metta2008_S05_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F02.mp3" title="Metta Retreat, S5 E2" data-duration="183"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F02.mp3" download="Metta Retreat, S5 E2.mp3">Download audio</a> (3:03)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Would you explain the duties adult children have towards ageing parents and the duties of parents towards their children as taught by the Buddha?”  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/ageing.html">Ageing</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> // [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/cultureasia.html">Culture/Asia</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F02.mp3" title="Metta Retreat, S5 E2" data-duration="183"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F02.mp3" download="Metta Retreat, S5 E2.mp3">Download audio</a> (3:03)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “Would you explain the duties adult children have towards ageing parents and the duties of parents towards their children as taught by the Buddha?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/ageing.html">Ageing</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> // [<a href = "../tags/health-care.html">Health care</a>] [<a href = "../tags/cultureasia.html">Culture/Asia</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-2.33:" target="_blank">AN 2.33:</a> The greatest gifts to one's parents. [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/right-view.html">Right View</a>]
+  <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-2.33:" target="_blank">AN 2.33:</a> The greatest gifts to one’s parents. [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/right-view.html">Right View</a>]
 </p>
 <hr />
-<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" title="Recollections of Ajahn Chah, S1 E4" data-duration="269"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" download="Recollections of Ajahn Chah, S1 E4.mp3">Download audio</a> (4:29)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah's birthplace and early life.  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" title="Recollections of Ajahn Chah, S1 E4" data-duration="269"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F04.mp3" download="Recollections of Ajahn Chah, S1 E4.mp3">Download audio</a> (4:29)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah’s birthplace and early life.  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=44" target="_blank">p. 22</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=44" target="_blank">p. 22</a> 
 </p>
 <hr />
-<div class="title" id="WR2014_S38"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S38">Session 38</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 26, 2014</div>
+<div class="title" id="TG2013_S03"><a href="../events/TG2013.html">Abhayagiri Monastic Retreat 2013</a>, <a href="../events/TG2013.html#TG2013_S03">Session 3</a> – Nov. 25, 2013</div>
+<p id="TG2013_S03_F15">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F15.mp3" title="Abhayagiri Monastic Retreat 2013, S3 E15" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2013/TG2013_S03_F15.mp3" download="Abhayagiri Monastic Retreat 2013, S3 E15.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “Thank you Luang Por for your time and teachings. I would like to hear more about the idea of restraint (especially in regards to raising a teenager).”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] <b>[<a href = "../tags/children.html">Children</a>]</b>
+</p>
+<hr />
+<div class="title" id="WR2014_S38"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S38">Session 38</a> – Feb. 26, 2014</div>
 <p id="WR2014_S38_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S38 E3" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S38 E3.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Was there a time in Thai history when meditation was a routine part of childhood education?”  [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/meditation.html">Meditation</a>] // [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/right-view.html">Right View</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S38 E3" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S38 E3.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Was there a time in Thai history when meditation was a routine part of childhood education?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/meditation.html">Meditation</a>] // [<a href = "../tags/three-refuges.html">Three Refuges</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/right-view.html">Right View</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reflection</b>: Ajahn Liem's mother and sister were nuns with similar demeanor. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/mae-chee.html">Mae Chee</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/personality.html">Personality</a>]
+  <b>Reflection</b>: Ajahn Liem’s mother and sister were nuns with similar demeanor. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/mae-chee.html">Mae Chee</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/personality.html">Personality</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S45"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S45">Session 45</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 7, 2014</div>
+<div class="title" id="WR2014_S45"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S45">Session 45</a> – Mar. 7, 2014</div>
 <p id="WR2014_S45_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S45 E3" data-duration="69"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S45 E3.mp3">Download audio</a> (1:09)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Why are dead children buried?”  [<a href = "../tags/death.html">Death</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S45 E3" data-duration="69"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S45_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S45 E3.mp3">Download audio</a> (1:09)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Why are dead children buried?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/death.html">Death</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <hr />
-<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a>, Jeanne Daskais and <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S02"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S02">Session 2</a> – May. 9, 2014</div>
 <p id="UD2014-1_S02_F09">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" title="Death and Dying, S2 E9" data-duration="193"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" download="Death and Dying, S2 E9.mp3">Download audio</a> (3:13)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Stories</b> about being with dying relatives. Told by <a href = ../teachers/debbie-stamp.html>Debbie Stamp</a> and Jeanne Daskais. [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/death.html">Death</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" title="Death and Dying, S2 E9" data-duration="193"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S02_F09.mp3" download="Death and Dying, S2 E9.mp3">Download audio</a> (3:13)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> <b>Stories</b> about being with dying relatives. Told by <a href="../teachers/debbie-stamp.html">Debbie Stamp</a> and Jeanne Daskais. [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/family.html">Family</a>] <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/death.html">Death</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S02"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 16, 2019</div>
+<div class="title" id="Path2019_S02"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S02">Session 2</a> – Jun. 16, 2019</div>
 <p id="Path2019_S02_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F06.mp3" title="The Path of Practice, S2 E6" data-duration="356"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F06.mp3" download="The Path of Practice, S2 E6.mp3">Download audio</a> (5:56)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b>: I'm concerned about how much time people spend on computers, and I think it's sad that people use electronic devices rather than talk with each other. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/community.html">Community</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F06.mp3" title="The Path of Practice, S2 E6" data-duration="356"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F06.mp3" download="The Path of Practice, S2 E6.mp3">Download audio</a> (5:56)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Comment</b>: I’m concerned about how much time people spend on computers, and I think it’s sad that people use electronic devices rather than talk with each other. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/community.html">Community</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Should I say anything to my son who is on his device half the time during his brief, infrequent visits?” <b>[<a href = "../tags/children.html">Children</a>]</b> [<a href = "../tags/right-speech.html">Right Speech</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Abhayagiri's computer policy for monks. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/social-media.html">Social media</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/vinaya.html">Vinaya</a>]
+  <b>Story:</b> Abhayagiri’s computer policy for monks. [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/social-media.html">Social media</a>] [<a href = "../tags/sense-restraint.html">Sense restraint</a>] [<a href = "../tags/vinaya.html">Vinaya</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Children,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Children,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/children.html">https://abhayagiri.org/questions/tags/children.html</a>.</p>
 </footer>
 

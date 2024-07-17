@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-sumedho-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Sumedho 
+  <div class="title"><a href="../drilldown/ajahn-chah-lineage.html#ajahn-chah-lineage" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Sumedho 
     &nbsp&nbsp<span style="font-size:65%;"><a href="../teachers/ajahn-sumedho.html">Teachings by Ajahn Sumedho</a></span>
   </div>
 
@@ -55,48 +65,48 @@
   Parent topic: <a href = "../tags/ajahn-chah-lineage.html">Ajahn Chah lineage</a><br>
   
   
-  23 excerpts, 1:50:42 total duration
+  52 excerpts, 3:35:34 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/ajahn-sumedho.html">All excerpts (23)</a>
+<div class="sublink2"> <a href="../tags/ajahn-sumedho.html">All excerpts (52)</a>
       <a href="../tags/ajahn-sumedho-qtag.html" class="active">Questions about (3)</a>
-      <a href="../tags/ajahn-sumedho-atag.html">Answers involving (10)</a>
-      <a href="../tags/ajahn-sumedho-story.html">Stories (7)</a>
-      <a href="../tags/ajahn-sumedho-quote.html">Quotes (4)</a>
+      <a href="../tags/ajahn-sumedho-atag.html">Answers involving (11)</a>
+      <a href="../tags/ajahn-sumedho-story.html">Stories (21)</a>
+      <a href="../tags/ajahn-sumedho-quote.html">Quotes (9)</a>
       <a href="../tags/ajahn-sumedho-reading.html">Readings (2)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S11"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S11">Session 11</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 20, 2014</div>
+<div class="title" id="WR2014_S11"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S11">Session 11</a> – Jan. 20, 2014</div>
 <p id="WR2014_S11_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S11_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S11 E1" data-duration="242"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S11_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S11 E1.mp3">Download audio</a> (4:02)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Ajahn Chah took Ajahn Mahā Amon and Ajahn Sumedho to visit Luang Ta Mahā Boowa and Ajahn Kaew. What happened?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-maha-amorn.html">Ajahn Mahā Amorn</a>] <b>[<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]</b> [<a href = "../tags/ajahn-khao.html">Ajahn Khao</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/simplicity.html">Simplicity</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S11_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S11 E1" data-duration="242"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S11_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S11 E1.mp3">Download audio</a> (4:02)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Ajahn Chah took Ajahn Mahā Amon and Ajahn Sumedho to visit Luang Ta Mahā Boowa and Ajahn Kaew. What happened?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-maha-amorn.html">Ajahn Mahā Amorn</a>] <b>[<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]</b> [<a href = "../tags/ajahn-khao.html">Ajahn Khao</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/simplicity.html">Simplicity</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Chah turned on a tape recorder, but the only part of the conversation that was recorded was when Ajahn Kaew farted. [<a href = "../tags/technology.html">Technology</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Note</b>: A partially similar story appears in <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=211" target="_blank">p. 189</a>. 
+  <b>Note</b>: A partially similar story appears in <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=211" target="_blank">p. 189</a>. 
 </p>
 <hr />
-<div class="title" id="UD2014-2_S02"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Jun. 14, 2014</div>
+<div class="title" id="UD2014-2_S02"><a href="../events/UD2014-2.html">Thai Forest Tradition</a>, <a href="../events/UD2014-2.html#UD2014-2_S02">Session 2</a> – Jun. 14, 2014</div>
 <p id="UD2014-2_S02_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" title="Thai Forest Tradition, S2 E10" data-duration="29"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" download="Thai Forest Tradition, S2 E10.mp3">Download audio</a> (0:29)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “In the reading, Upasikā Kee Nanayon says the mind takes the fabrications itself as the object. Is that similar to Ajahn Sumedho's 'It's like this?'”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] <b>[<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]</b> [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" title="Thai Forest Tradition, S2 E10" data-duration="29"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-2/UD2014-2_S02_F10.mp3" download="Thai Forest Tradition, S2 E10.mp3">Download audio</a> (0:29)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “In the reading, Upasikā Kee Nanayon says the mind takes the fabrications itself as the object. Is that similar to Ajahn Sumedho’s ‘It’s like this?’”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/upasika-kee-nanayon.html">Upasikā Kee Nanayon</a>] [<a href = "../tags/volitional-formations.html">Volitional formations</a>] <b>[<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]</b> [<a href = "../tags/knowing-itself.html">Knowing itself</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>]
 </p>
 <hr />
-<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 27, 2015</div>
+<div class="title" id="UD2015-2_S02"><a href="../events/UD2015-2.html">The Middle Way of Not-Self</a>, <a href="../events/UD2015-2.html#UD2015-2_S02">Session 2</a> – May. 27, 2015</div>
 <p id="UD2015-2_S02_F11">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" title="The Middle Way of Not-Self, S2 E11" data-duration="145"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" download="The Middle Way of Not-Self, S2 E11.mp3">Download audio</a> (2:25)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: Before I get to all that [deep reflection on not-self], in the meantime I thing of Luang Por Sumedho's saying, 'Every time I think of myself, I get depressed.' <b>[<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/not-self.html">Not-self</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" title="The Middle Way of Not-Self, S2 E11" data-duration="145"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2015-2/UD2015-2_S02_F11.mp3" download="The Middle Way of Not-Self, S2 E11.mp3">Download audio</a> (2:25)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: Before I get to all that [deep reflection on not-self], in the meantime I thing of Luang Por Sumedho’s saying, ‘Every time I think of myself, I get depressed.’ <b>[<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>]</b> [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/not-self.html">Not-self</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/five-precepts.html">Five Precepts</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/five-precepts.html">Five Precepts</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “It's difficult but it's not that complicated. The Buddha's teachings go against the grain of our conditioning and habits, but the essence of it is quite simple.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
+  <b>Quote:</b>  “It’s difficult but it’s not that complicated. The Buddha’s teachings go against the grain of our conditioning and habits, but the essence of it is quite simple.”  [<a href = "../tags/proliferation.html">Proliferation</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Sumedho (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Sumedho (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-sumedho-qtag.html">https://abhayagiri.org/questions/tags/ajahn-sumedho-qtag.html</a>.</p>
 </footer>
 

@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/mindfulness-of-breathing-events.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/mindfulness-of-breathing.html#mindfulness-of-breathing"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMindfulness of breathing (ānāpānassati)
+  <div class="title"><a href="../drilldown/mindfulness-of-breathing.html#mindfulness-of-breathing" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMindfulness of breathing (ānāpānassati)
   </div>
 
 <div class="intro">
@@ -54,11 +64,11 @@
   Parent topics: <a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>, <a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>, <a href = "../tags/recollection.html">Recollection</a><br>
   Subtopic: <a href = "../tags/gladdening-the-mind.html">Gladdening the mind</a><br>
   
-  93 excerpts, 8:27:46 total duration
+  96 excerpts, 9:05:41 total duration
 </strong>
 <hr />
 <div class="sublink2"> <a href="../tags/mindfulness-of-breathing-events.html" class="active">Events (1)</a>
-      <a href="../tags/mindfulness-of-breathing.html">All excerpts (101)</a>
+      <a href="../tags/mindfulness-of-breathing.html">All excerpts (105)</a>
       <a href="../tags/mindfulness-of-breathing-qtag.html">Questions about (68)</a>
       <a href="../tags/mindfulness-of-breathing-atag.html">Answers involving (18)</a>
       <a href="../tags/mindfulness-of-breathing-quote.html">Quotes (1)</a>
@@ -72,7 +82,7 @@
   </a>
 </h3>
 <p>
-  <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>
+  <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>
   <br />
   Upāsikā Day, Oct. 26, 2014
   <br />
@@ -81,8 +91,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Mindfulness of breathing,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Mindfulness of breathing,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/mindfulness-of-breathing-events.html">https://abhayagiri.org/questions/tags/mindfulness-of-breathing-events.html</a>.</p>
 </footer>
 

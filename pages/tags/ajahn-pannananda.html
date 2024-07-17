@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/ajahn-pannananda.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/other-thai-forest-teachers.html#other-thai-forest-teachers"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Paññānanda Padumuttaro 
+  <div class="title"><a href="../drilldown/other-thai-forest-teachers.html#other-thai-forest-teachers" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspAjahn Paññānanda Padumuttaro 
   </div>
 
 <div class="intro">
@@ -57,40 +67,40 @@
   3 excerpts, 15:44 total duration
 </strong>
 <hr />
-<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – May. 9, 2014</div>
+<div class="title" id="UD2014-1_S01"><a href="../events/UD2014-1.html">Death and Dying</a>, <a href="../events/UD2014-1.html#UD2014-1_S01">Session 1</a> – May. 9, 2014</div>
 <p id="UD2014-1_S01_F21">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F21.mp3" title="Death and Dying, S1 E21" data-duration="230"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F21.mp3" download="Death and Dying, S1 E21.mp3">Download audio</a> (3:50)</audio-chip><br /> <b style="text-decoration: underline;">21.</b> “Can you dedicate merit to someone who is approaching death?”  [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/death.html">Death</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F21.mp3" title="Death and Dying, S1 E21" data-duration="230"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2014-1/UD2014-1_S01_F21.mp3" download="Death and Dying, S1 E21.mp3">Download audio</a> (3:50)</audio-chip><br /> <b style="text-decoration: underline;">21.</b> “Can you dedicate merit to someone who is approaching death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/merit.html">Merit</a>] [<a href = "../tags/death.html">Death</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Paññānanda speaks out against superstition but tells the story of a shipwrecked sailor who benefited from dedication of merit. <b>[<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]</b> [<a href = "../tags/superstition.html">Superstition</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <hr />
-<div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 14, 2015</div>
+<div class="title" id="SRD2015_S02"><a href="../events/SRD2015.html">Desire or Aspiration</a>, <a href="../events/SRD2015.html#SRD2015_S02">Session 2</a> – Jun. 14, 2015</div>
 <p id="SRD2015_S02_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F03.mp3" title="Desire or Aspiration, S2 E3" data-duration="400"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F03.mp3" download="Desire or Aspiration, S2 E3.mp3">Download audio</a> (6:40)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “A lot of my life has been based on guilt, punishment, achievement, feeling driven, and perfectionism. Recently I experienced the reverse of this. Perfectionism is mixed up with wholesome desire. Could you respond?”  [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/contentment.html">Contentment</a>] // [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/human.html">Human</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F03.mp3" title="Desire or Aspiration, S2 E3" data-duration="400"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2015/SRD2015_S02_F03.mp3" download="Desire or Aspiration, S2 E3.mp3">Download audio</a> (6:40)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “A lot of my life has been based on guilt, punishment, achievement, feeling driven, and perfectionism. Recently I experienced the reverse of this. Perfectionism is mixed up with wholesome desire. Could you respond?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/contentment.html">Contentment</a>] // [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/human.html">Human</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate the question 'How do I work with guilt?' into Thai. <b>[<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate the question ‘How do I work with guilt?’ into Thai. <b>[<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]</b> [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <hr />
-<div class="title" id="UD2016-2_S01"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S01"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S01">Session 1</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S01_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate guilt into Thai. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate guilt into Thai. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “That's really suffering. Tell them not to do that.” — Ajahn Paññānanda <b>[<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]</b>
+  <b>Quote:</b>  “That’s really suffering. Tell them not to do that.” — Ajahn Paññānanda <b>[<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Can't We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health-care.html">Health care</a>]
+  <b>Reference</b>: <em>Can’t We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/health-care.html">Health care</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Paññānanda Padumuttaro,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Ajahn Paññānanda Padumuttaro,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/ajahn-pannananda.html">https://abhayagiri.org/questions/tags/ajahn-pannananda.html</a>.</p>
 </footer>
 

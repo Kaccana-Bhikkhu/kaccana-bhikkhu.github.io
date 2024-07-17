@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/posturelying-down.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/postures.html#postures"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPosture/Lying down 
+  <div class="title"><a href="../drilldown/postures.html#postures" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPosture/Lying down 
   </div>
 
 <div class="intro">
@@ -57,28 +67,28 @@
   3 excerpts, 15:26 total duration
 </strong>
 <hr />
-<div class="title" id="TG2014_S02"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 23, 2014</div>
+<div class="title" id="TG2014_S02"><a href="../events/TG2014.html">2014 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2014.html#TG2014_S02">Session 2</a> – Nov. 23, 2014</div>
 <p id="TG2014_S02_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S02_F12.mp3" title="2014 Thanksgiving Monastic Retreat, S2 E12" data-duration="257"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S02_F12.mp3" download="2014 Thanksgiving Monastic Retreat, S2 E12.mp3">Download audio</a> (4:17)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “Its been years since I needed to do so much laying down meditation. My back is not cooperating this retreat. Can you refresh my memory on tricks to not fall asleep? Eyes open feels as if I struggle to maintain it.”  <b>[<a href = "../tags/posturelying-down.html">Posture/Lying down</a>]</b> [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S02_F12.mp3" title="2014 Thanksgiving Monastic Retreat, S2 E12" data-duration="257"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2014/TG2014_S02_F12.mp3" download="2014 Thanksgiving Monastic Retreat, S2 E12.mp3">Download audio</a> (4:17)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “Its been years since I needed to do so much laying down meditation. My back is not cooperating this retreat. Can you refresh my memory on tricks to not fall asleep? Eyes open feels as if I struggle to maintain it.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturelying-down.html">Posture/Lying down</a>]</b> [<a href = "../tags/sloth-and-torpor.html">Sloth and torpor</a>]
 </p>
 <hr />
-<div class="title" id="TG2015_S01"><a href="../events/TG2015.html">2015 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2015.html#TG2015_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 21, 2015</div>
+<div class="title" id="TG2015_S01"><a href="../events/TG2015.html">2015 Thanksgiving Monastic Retreat</a>, <a href="../events/TG2015.html#TG2015_S01">Session 1</a> – Nov. 21, 2015</div>
 <p id="TG2015_S01_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S01_F10.mp3" title="2015 Thanksgiving Monastic Retreat, S1 E10" data-duration="592"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S01_F10.mp3" download="2015 Thanksgiving Monastic Retreat, S1 E10.mp3">Download audio</a> (9:52)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “For those of us who need to routinely rest more due to aging, illness, or disability, could you share some suggestions and advice for how to optimize ths time as mediation in a lying down posture?”  <b>[<a href = "../tags/posturelying-down.html">Posture/Lying down</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S01_F10.mp3" title="2015 Thanksgiving Monastic Retreat, S1 E10" data-duration="592"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2015/TG2015_S01_F10.mp3" download="2015 Thanksgiving Monastic Retreat, S1 E10.mp3">Download audio</a> (9:52)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “For those of us who need to routinely rest more due to aging, illness, or disability, could you share some suggestions and advice for how to optimize ths time as mediation in a lying down posture?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/posturelying-down.html">Posture/Lying down</a>]</b>
 </p>
 <hr />
-<div class="title" id="UD2020_S00"><a href="../events/UD2020.html">Living in a Changing Society</a><a href="../events/UD2020.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Aug. 23, 2020</div>
+<div class="title" id="UD2020_S00"><a href="../events/UD2020.html">Living in a Changing Society</a><a href="../events/UD2020.html"></a> – Aug. 23, 2020</div>
 <p id="UD2020_S00_F11">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2020/UD2020_S00_F11.mp3" title="Living in a Changing Society, E11" data-duration="77"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2020/UD2020_S00_F11.mp3" download="Living in a Changing Society, E11.mp3">Download audio</a> (1:17)</audio-chip><br /> <b style="text-decoration: underline;">11.</b> <b>Comment</b>: I meditate much better kneeling than lying in bed. [<a href = "../tags/posturesitting.html">Posture/Sitting</a>] <b>[<a href = "../tags/posturelying-down.html">Posture/Lying down</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-viradhammo.html">Ajahn Viradhammo</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-viradhammo.html">Ajahn Viradhammo</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Posture/Lying down,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Posture/Lying down,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/posturelying-down.html">https://abhayagiri.org/questions/tags/posturelying-down.html</a>.</p>
 </footer>
 

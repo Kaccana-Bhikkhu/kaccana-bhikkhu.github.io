@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/guiltshameinadequacy-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/conceit-related.html#conceit-related"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGuilt/shame/inadequacy 
+  <div class="title"><a href="../drilldown/conceit-related.html#conceit-related" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspGuilt/shame/inadequacy 
   </div>
 
 <div class="intro">
@@ -64,7 +74,7 @@
       <a href="../tags/guiltshameinadequacy-quote.html">Quotes (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
+<div class="title" id="SRD2011_S02"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S02">Session 2</a> – Jun. 2, 2011</div>
 <p id="SRD2011_S02_F03">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F03.mp3" title="Tudong Stories at Spirit Rock, S2 E3" data-duration="429"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S02_F03.mp3" download="Tudong Stories at Spirit Rock, S2 E3.mp3">Download audio</a> (7:09)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: Living on faith increases your potential anxiety level. I came to Buddhism thinking this would settle my life, but I realize that being open, aware, and sensitive to the world keeps bringing me new challenges. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] [<a href = "../tags/everyday-life.html">Everyday life</a>] [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/tudong.html">Tudong</a>]
 </p>
@@ -72,66 +82,66 @@
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=Dhp-244" target="_blank">Dhp 244-245</a>: Life is easy for for one without shame. [<a href = "../tags/conceit.html">Conceit</a>] [<a href = "../tags/virtue.html">Virtue</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>: "You get more than what you bargained for." [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/right-effort.html">Right Effort</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>: “You get more than what you bargained for.” [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>] [<a href = "../tags/trust.html">Trust</a>] [<a href = "../tags/concentration.html">Concentration</a>] [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/discernment.html">Discernment</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/right-effort.html">Right Effort</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-11.1:" target="_blank">AN 11.1:</a> Virtue leads to non-remorse and samādhi. 
 </p>
 <hr />
-<div class="title" id="WR2014_S37"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S37">Session 37</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Feb. 25, 2014</div>
+<div class="title" id="WR2014_S37"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S37">Session 37</a> – Feb. 25, 2014</div>
 <p id="WR2014_S37_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S37 E2" data-duration="330"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S37 E2.mp3">Download audio</a> (5:30)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How should we relate to the Buddha's statement that sensual pleasure is to be feared?”  [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/fear.html">Fear</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S37 E2" data-duration="330"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S37_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S37 E2.mp3">Download audio</a> (5:30)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “How should we relate to the Buddha’s statement that sensual pleasure is to be feared?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/sensual-desire.html">Sensual desire</a>] [<a href = "../tags/sense-bases.html">Sense bases</a>] [<a href = "../tags/fear.html">Fear</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=MN-66.19:" target="_blank">MN 66.19:</a> Sensual pleasure is to be feared. 
 </p>
 <hr />
-<div class="title" id="WR2015_S42"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S42">Session 42</a> – <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> – Mar. 8, 2015</div>
+<div class="title" id="WR2015_S42"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S42">Session 42</a> – Mar. 8, 2015</div>
 <p id="WR2015_S42_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S42_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S42 E3" data-duration="219"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S42_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S42 E3.mp3">Download audio</a> (3:39)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “How do you respond to the cynical inner voice when you recollect your own virtue?”  Answered by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a> and Ajahn Ṭhitapañño. [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] // [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/habits.html">Habits</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/humor.html">Humor</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S42_F03.mp3" title="Abhayagiri 2015 Winter Retreat, S42 E3" data-duration="219"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S42_F03.mp3" download="Abhayagiri 2015 Winter Retreat, S42 E3.mp3">Download audio</a> (3:39)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “How do you respond to the cynical inner voice when you recollect your own virtue?”  Answered by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a> and Ajahn Ṭhitapañño. [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] // [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] [<a href = "../tags/habits.html">Habits</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/humor.html">Humor</a>]
 </p>
 <hr />
-<div class="title" id="UD2016-2_S01"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S01"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S01">Session 1</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S01_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" title="Suttas You've Never Heard Of, S1 E4" data-duration="314"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S01_F04.mp3" download="Suttas You've Never Heard Of, S1 E4.mp3">Download audio</a> (5:14)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “In the West, we personalize every bit of suffering. Is it different in Thailand?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] // [<a href = "../tags/language.html">Language</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate guilt into Thai. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate guilt into Thai. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/translation.html">Translation</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “That's really suffering. Tell them not to do that.” — Ajahn Paññānanda [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b>
+  <b>Quote:</b>  “That’s really suffering. Tell them not to do that.” — Ajahn Paññānanda [<a href = "../tags/ajahn-pannananda.html">Ajahn Paññānanda</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Can't We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/health-care.html">Health care</a>]
+  <b>Reference</b>: <em>Can’t We Talk about Something More Pleasant?</em> by Roz Chast (commercial). [<a href = "../tags/ageing.html">Ageing</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/health-care.html">Health care</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F16">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" title="The New Ajahn Chah Biography, S2 E16" data-duration="359"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" download="The New Ajahn Chah Biography, S2 E16.mp3">Download audio</a> (5:59)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Can you speak about regret?”  [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] // <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" title="The New Ajahn Chah Biography, S2 E16" data-duration="359"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F16.mp3" download="The New Ajahn Chah Biography, S2 E16.mp3">Download audio</a> (5:59)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “Can you speak about regret?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/conscience-and-prudence.html">Conscience and prudence</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>] // <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/kamma.html">Kamma</a>] [<a href = "../tags/goodwill.html">Goodwill</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno can't translate guilt into Thai. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+  <b>Story:</b> Ajahn Pasanno can’t translate guilt into Thai. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S03"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S03">Session 3</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S03_F16">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F16.mp3" title="The New Ajahn Chah Biography, S3 E16" data-duration="187"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F16.mp3" download="The New Ajahn Chah Biography, S3 E16.mp3">Download audio</a> (3:07)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “These readings give the sense that the Northeastern Thai Isan culture is the soil that supports the living tradition. Are there cultural attitudes or ingredients that would be helpful for laypeople in addition to the key things of sīla and Right View?”  [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/right-view.html">Right View</a>] // [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/precepts.html">Precepts</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/happiness.html">Happiness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F16.mp3" title="The New Ajahn Chah Biography, S3 E16" data-duration="187"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S03_F16.mp3" download="The New Ajahn Chah Biography, S3 E16.mp3">Download audio</a> (3:07)</audio-chip><br /> <b style="text-decoration: underline;">16.</b> “These readings give the sense that the Northeastern Thai Isan culture is the soil that supports the living tradition. Are there cultural attitudes or ingredients that would be helpful for laypeople in addition to the key things of sīla and Right View?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/right-view.html">Right View</a>] // [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/precepts.html">Precepts</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/happiness.html">Happiness</a>]
 </p>
 <hr />
-<div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S02_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F04.mp3" title="Love, Attachment, and Friendship, S2 E4" data-duration="119"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F04.mp3" download="Love, Attachment, and Friendship, S2 E4.mp3">Download audio</a> (1:59)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “I thought to be self-critical was to improve yourself, to know how and where you need to improve yourself. How is being self-critical not good for yourself?”  [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] // <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F04.mp3" title="Love, Attachment, and Friendship, S2 E4" data-duration="119"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S02_F04.mp3" download="Love, Attachment, and Friendship, S2 E4.mp3">Download audio</a> (1:59)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “I thought to be self-critical was to improve yourself, to know how and where you need to improve yourself. How is being self-critical not good for yourself?”  Answered by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] // <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Eight months to Enlightenment. [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] [<a href = "../tags/liberation.html">Liberation</a>]
 </p>
 <hr />
-<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Oct. 12, 2019</div>
+<div class="title" id="UD2019-4_S03"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S03">Session 3</a> – Oct. 12, 2019</div>
 <p id="UD2019-4_S03_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I'm working on trying to enjoy life. Do you have any ideas about this?”  [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" title="Love, Attachment, and Friendship, S3 E3" data-duration="711"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-4/UD2019-4_S03_F03.mp3" download="Love, Attachment, and Friendship, S3 E3.mp3">Download audio</a> (11:51)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “My natural tendency is to push the world away and to have the attitude that enjoyment is wrong. I’m working on trying to enjoy life. Do you have any ideas about this?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/craving-not-to-become.html">Craving not to become</a>] [<a href = "../tags/christianity.html">Christianity</a>] [<a href = "../tags/hinduism.html">Hinduism</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] // [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-sucitto.html">Ajahn Sucitto</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/culturewest.html">Culture/West</a>]
 </p>
 <p style="margin-left: 2em;">
-  The Rule of St. Benedict and Ajahn Sucitto's talk "<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>." [<a href = "../tags/humility.html">Humility</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b>
+  The Rule of St. Benedict and Ajahn Sucitto’s talk “<a href="https://dharmaseed.org/talks/14752/" target="_blank">Fellow Worms</a>.” [<a href = "../tags/humility.html">Humility</a>] <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> A BBC interviewer asks King Rama IX about original sin. [<a href = "../tags/media.html">Media</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
@@ -146,18 +156,18 @@
   <b>Quote:</b>  “The happy mind is easily concentrated.” 
 </p>
 <hr />
-<div class="title" id="UD2019-5_S02"><a href="../events/UD2019-5.html">Developing Skill in Reflective Meditation</a>, <a href="../events/UD2019-5.html#UD2019-5_S02">Session 2</a> – <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Dec. 1, 2019</div>
+<div class="title" id="UD2019-5_S02"><a href="../events/UD2019-5.html">Developing Skill in Reflective Meditation</a>, <a href="../events/UD2019-5.html#UD2019-5_S02">Session 2</a> – Dec. 1, 2019</div>
 <p id="UD2019-5_S02_F08">
   <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S02_F08.mp3" title="Developing Skill in Reflective Meditation, S2 E8" data-duration="110"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2019-5/UD2019-5_S02_F08.mp3" download="Developing Skill in Reflective Meditation, S2 E8.mp3">Download audio</a> (1:50)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Comment</b>: Instead of thinking of one thing which I was having difficulty with, I brought to mind all the things that were working. [<a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>] [<a href = "../tags/appropriate-attention.html">Appropriate attention</a>] [<a href = "../tags/recollection.html">Recollection</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>] [<a href = "../tags/faith.html">Faith</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>]</b> [<a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>] [<a href = "../tags/faith.html">Faith</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Guilt/shame/inadequacy (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Guilt/shame/inadequacy (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/guiltshameinadequacy-atag.html">https://abhayagiri.org/questions/tags/guiltshameinadequacy-atag.html</a>.</p>
 </footer>
 

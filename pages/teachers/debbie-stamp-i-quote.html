@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/debbie-stamp-i-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -59,25 +69,25 @@
 
 <div class="title" id="WR2015_S17"><a href="../events/WR2015.html">Abhayagiri 2015 Winter Retreat</a>, <a href="../events/WR2015.html#WR2015_S17">Session 17</a> – Jan. 26, 2015</div>
 <p id="WR2015_S17_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E7" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E7.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  "Do you still have anger?" "Yes, but I don't take it." — <a href = ../teachers/ajahn-dune.html>Ajahn Dune</a> [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" title="Abhayagiri 2015 Winter Retreat, S17 E7" data-duration="182"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2015/WR2015_S17_F07.mp3" download="Abhayagiri 2015 Winter Retreat, S17 E7.mp3">Download audio</a> (3:02)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> <b>Quote:</b>  “Do you still have anger?” “Yes, but I don’t take it.” — <a href="../teachers/ajahn-dune.html">Ajahn Dune</a> [<a href = "../tags/ajahn-dune.html">Ajahn Dune</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/right-mindfulness.html">Right Mindfulness</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/arahant.html">Arahant</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Do we know if the Buddha had anger?” [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/sutta.html">Sutta</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Comment:</b> Māra cam to the Buddha many times after the Buddha's enlightenment. Contributed by <a href = ../teachers/ajahn-karunadhammo.html>Ajahn Karuṇadhammo</a>. [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
+  <b>Comment:</b> Māra cam to the Buddha many times after the Buddha’s enlightenment. Contributed by <a href="../teachers/ajahn-karunadhammo.html">Ajahn Karuṇadhammo</a>. [<a href = "../tags/mara.html">Māra</a>] [<a href = "../tags/buddhabiography.html">Buddha/Biography</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/culturewest.html">Culture/West</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Debbie Stamp (Quotes others),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Debbie Stamp (Quotes others),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/debbie-stamp-i-quote.html">https://abhayagiri.org/questions/teachers/debbie-stamp-i-quote.html</a>.</p>
 </footer>
 

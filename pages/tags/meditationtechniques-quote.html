@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/meditationtechniques-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/meditationtechniques.html#meditationtechniques"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMeditation/Techniques 
+  <div class="title"><a href="../drilldown/meditationtechniques.html#meditationtechniques" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMeditation/Techniques 
   </div>
 
 <div class="intro">
@@ -54,19 +64,19 @@
   Parent topic: <a href = "../tags/meditation.html">Meditation</a><br>
   Subtopics: <a href = "../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>, <a href = "../tags/unattractiveness.html">Unattractiveness</a>, <a href = "../tags/elements.html">Elements</a>, <a href = "../tags/perception-of-light.html">Perception of light</a>, <a href = "../tags/kasina.html">Kasiṇa</a>, <a href = "../tags/divine-abidings.html">Divine Abidings</a>, <a href = "../tags/visualization.html">Visualization</a>, <a href = "../tags/body-scanning.html">Body scanning</a>, <a href = "../tags/noting.html">Noting</a>, <a href = "../tags/mantra.html">Mantra</a>, <a href = "../tags/movement-meditation.html">Movement meditation</a>, <a href = "../tags/hua-tou.html">Hua tou</a>, <a href = "../tags/sound-of-silence.html">Sound of silence</a><br>
   
-  15 excerpts, 51:35 total duration
+  15 excerpts, 1:01:00 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/meditationtechniques.html">All excerpts (15)</a>
+<div class="sublink2"> <a href="../tags/meditationtechniques.html">All excerpts (16)</a>
       <a href="../tags/meditationtechniques-qtag.html">Questions about (7)</a>
       <a href="../tags/meditationtechniques-atag.html">Answers involving (4)</a>
       <a href="../tags/meditationtechniques-story.html">Stories (2)</a>
       <a href="../tags/meditationtechniques-quote.html" class="active">Quotes (2)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S05"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S05">Session 5</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 13, 2008</div>
+<div class="title" id="Metta2008_S05"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S05">Session 5</a> – Sep. 13, 2008</div>
 <p id="Metta2008_S05_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F07.mp3" title="Metta Retreat, S5 E7" data-duration="190"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F07.mp3" download="Metta Retreat, S5 E7.mp3">Download audio</a> (3:10)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Just to clarify – when doing loving-kindness practice, is any phrase OK to repeat? They can be said as a chant, right? At any speed? Is any chant best for achieving concentration?”  [<a href = "../tags/goodwill.html">Goodwill</a>] <b>[<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F07.mp3" title="Metta Retreat, S5 E7" data-duration="190"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S05_F07.mp3" download="Metta Retreat, S5 E7.mp3">Download audio</a> (3:10)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Just to clarify – when doing loving-kindness practice, is any phrase OK to repeat? They can be said as a chant, right? At any speed? Is any chant best for achieving concentration?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/goodwill.html">Goodwill</a>] <b>[<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/nature-of-mind.html">Nature of mind</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “What is really important is not so much the phrases or the methodology but the feeling that is established within the heart of lovingkindness.”  <b>[<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]</b> [<a href = "../tags/emotion.html">Emotion</a>]
@@ -75,18 +85,18 @@
   <b>Simile:</b> A tradesman with only one tool. [<a href = "../tags/similes.html">Similes</a>] <b>[<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]</b>
 </p>
 <hr />
-<div class="title" id="WR2014_S48"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S48">Session 48</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 12, 2104</div>
+<div class="title" id="WR2014_S48"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S48">Session 48</a> – Mar. 12, 2104</div>
 <p id="WR2014_S48_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F06.mp3" title="Abhayagiri 2014 Winter Retreat, S48 E6" data-duration="70"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F06.mp3" download="Abhayagiri 2014 Winter Retreat, S48 E6.mp3">Download audio</a> (1:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Could the Ajahn Teean technique work for restlessness?”  [<a href = "../tags/ajahn-teean.html">Ajahn Teean</a>] [<a href = "../tags/movement-meditation.html">Movement meditation</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F06.mp3" title="Abhayagiri 2014 Winter Retreat, S48 E6" data-duration="70"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S48_F06.mp3" download="Abhayagiri 2014 Winter Retreat, S48 E6.mp3">Download audio</a> (1:10)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> “Could the Ajahn Teean technique work for restlessness?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-teean.html">Ajahn Teean</a>] [<a href = "../tags/movement-meditation.html">Movement meditation</a>] [<a href = "../tags/restlessness-and-worry.html">Restlessness and worry</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no such thing as the Ajahn Chah method of meditation.”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]</b> [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
+  <b>Quote:</b>  “There’s no such thing as the Ajahn Chah method of meditation.”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/meditationtechniques.html">Meditation/Techniques</a>]</b> [<a href = "../tags/right-effort.html">Right Effort</a>] [<a href = "../tags/mindfulness-of-mind.html">Mindfulness of mind</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Meditation/Techniques (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Meditation/Techniques (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/meditationtechniques-quote.html">https://abhayagiri.org/questions/tags/meditationtechniques-quote.html</a>.</p>
 </footer>
 

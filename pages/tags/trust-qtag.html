@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/trust-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/skillful-qualities.html#skillful-qualities"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTrust 
+  <div class="title"><a href="../drilldown/skillful-qualities.html#skillful-qualities" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspTrust 
   </div>
 
 <div class="intro">
@@ -54,33 +64,33 @@
   Parent topic: <a href = "../tags/skillful-qualities.html">Skillful qualities</a><br>
   
   
-  11 excerpts, 1:20:15 total duration
+  15 excerpts, 1:28:47 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/trust.html">All excerpts (11)</a>
+<div class="sublink2"> <a href="../tags/trust.html">All excerpts (15)</a>
       <a href="../tags/trust-qtag.html" class="active">Questions about (2)</a>
       <a href="../tags/trust-atag.html">Answers involving (8)</a>
-      <a href="../tags/trust-story.html">Stories (1)</a>
-      <a href="../tags/trust-quote.html">Quotes (1)</a> </div>
+      <a href="../tags/trust-story.html">Stories (2)</a>
+      <a href="../tags/trust-quote.html">Quotes (2)</a> </div>
 <hr>
 
-<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
+<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S03_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F03.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E3" data-duration="276"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F03.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E3.mp3">Download audio</a> (4:36)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Can you give some suggestions on dealing with betrayal in relationships?”  [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] <b>[<a href = "../tags/trust.html">Trust</a>]</b> // [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F03.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E3" data-duration="276"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F03.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E3.mp3">Download audio</a> (4:36)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “Can you give some suggestions on dealing with betrayal in relationships?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/relationships.html">Relationships</a>] [<a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>] <b>[<a href = "../tags/trust.html">Trust</a>]</b> // [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/generosity.html">Generosity</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <em>Amaravati Chanting Book</em>, <a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=55" target="_blank">p. 46</a>: The Highest Blessings (Mangala Sutta, <a href="https://sutta.readingfaithfully.org/?q=SN-2.4" target="_blank">SN 2.4</a>) 
 </p>
 <hr />
-<div class="title" id="TG2016_S04"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 22, 2016</div>
+<div class="title" id="TG2016_S04"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S04">Session 4</a> – Nov. 22, 2016</div>
 <p id="TG2016_S04_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F12.mp3" title="Thanksgiving Retreat 2016, S4 E12" data-duration="264"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F12.mp3" download="Thanksgiving Retreat 2016, S4 E12.mp3">Download audio</a> (4:24)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “It’s a common phrase:  “If you see the Buddha on the road, kill him.”  Obviously it’s using hyperbole for effect but I think it means to trust only in your own experience.  At what point do the guidelines and precepts leave off and the way to proceed on findings begins? I know it’s not a linear path, but I’d appreciate your thoughts.”  [<a href = "../tags/direct-experience.html">Direct experience</a>] <b>[<a href = "../tags/trust.html">Trust</a>]</b> [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F12.mp3" title="Thanksgiving Retreat 2016, S4 E12" data-duration="264"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S04_F12.mp3" download="Thanksgiving Retreat 2016, S4 E12.mp3">Download audio</a> (4:24)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> “It’s a common phrase:  “If you see the Buddha on the road, kill him.”  Obviously it’s using hyperbole for effect but I think it means to trust only in your own experience.  At what point do the guidelines and precepts leave off and the way to proceed on findings begins? I know it’s not a linear path, but I’d appreciate your thoughts.”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/direct-experience.html">Direct experience</a>] <b>[<a href = "../tags/trust.html">Trust</a>]</b> [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Trust (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Trust (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/trust-qtag.html">https://abhayagiri.org/questions/tags/trust-qtag.html</a>.</p>
 </footer>
 

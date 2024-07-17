@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/unconditioned-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThe Unconditioned/Ultimate Truth (asaṅkhata)
+  <div class="title"><a href="../drilldown/nature-of-the-cosmos.html#nature-of-the-cosmos" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspThe Unconditioned/Ultimate Truth (asaṅkhata)
   </div>
 
 <div class="intro">
@@ -54,10 +64,10 @@
   Parent topic: <a href = "../tags/nature-of-the-cosmos.html">Nature of the cosmos</a><br>
   
   See also: <a href = "../tags/nibbana.html">Nibbāna</a><br>
-  10 excerpts, 46:34 total duration
+  13 excerpts, 1:06:15 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/unconditioned.html">All excerpts (10)</a>
+<div class="sublink2"> <a href="../tags/unconditioned.html">All excerpts (13)</a>
       <a href="../tags/unconditioned-qtag.html">Questions about (4)</a>
       <a href="../tags/unconditioned-atag.html">Answers involving (4)</a>
       <a href="../tags/unconditioned-story.html" class="active">Stories (1)</a>
@@ -65,12 +75,12 @@
       <a href="../tags/unconditioned-reading.html">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="WR2014_S13"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S13">Session 13</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jan. 22, 2014</div>
+<div class="title" id="WR2014_S13"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S13">Session 13</a> – Jan. 22, 2014</div>
 <p id="WR2014_S13_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S13 E4" data-duration="361"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S13 E4.mp3">Download audio</a> (6:01)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “What does “the longing for the good is the cause of the trouble” mean?”  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] // [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F04.mp3" title="Abhayagiri 2014 Winter Retreat, S13 E4" data-duration="361"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S13_F04.mp3" download="Abhayagiri 2014 Winter Retreat, S13 E4.mp3">Download audio</a> (6:01)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “What does “the longing for the good is the cause of the trouble” mean?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/right-effort.html">Right Effort</a>] // [<a href = "../tags/eightfold-path.html">Eightfold Path</a>] [<a href = "../tags/aggregates.html">Aggregates</a>] [<a href = "../tags/liberation.html">Liberation</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/virtue.html">Virtue</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/ignorance.html">Ignorance</a>] [<a href = "../tags/cause-of-suffering.html">Cause of Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Sixth Patriarch Sutra: "No mirror, no dust." 
+  <b>Story:</b> Sixth Patriarch Sutra: “No mirror, no dust.” 
 </p>
 <p style="margin-left: 2em;">
   <b>Recollection:</b> Ajahn Chah taught you could grasp at either <em>samut</em> (the conventional) or <em>vimut</em> (the transcendant). [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/conventions.html">Conventions</a>] <b>[<a href = "../tags/unconditioned.html">Unconditioned</a>]</b> [<a href = "../tags/clinging.html">Clinging</a>] [<a href = "../tags/discernment.html">Discernment</a>]
@@ -78,8 +88,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: The Unconditioned/Ultimate Truth (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: The Unconditioned/Ultimate Truth (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/unconditioned-story.html">https://abhayagiri.org/questions/tags/unconditioned-story.html</a>.</p>
 </footer>
 

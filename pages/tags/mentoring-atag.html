@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/mentoring-atag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/monastic-life.html#monastic-life"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMentoring 
+  <div class="title"><a href="../drilldown/monastic-life.html#monastic-life" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspMentoring 
   </div>
 
 <div class="intro">
@@ -54,59 +64,60 @@
   Parent topics: <a href = "../tags/monastic-life.html">Monastic life</a>, <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a><br>
   
   
-  10 excerpts, 58:20 total duration
+  14 excerpts, 1:13:02 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/mentoring.html">All excerpts (10)</a>
+<div class="sublink2"> <a href="../tags/mentoring.html">All excerpts (14)</a>
       <a href="../tags/mentoring-qtag.html">Questions about (6)</a>
       <a href="../tags/mentoring-atag.html" class="active">Answers involving (3)</a>
-      <a href="../tags/mentoring-quote.html">Quotes (1)</a>
+      <a href="../tags/mentoring-story.html">Stories (1)</a>
+      <a href="../tags/mentoring-quote.html">Quotes (2)</a>
       <a href="../tags/mentoring-reading.html">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="Metta2008_S02"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 10, 2008</div>
+<div class="title" id="Metta2008_S02"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S02">Session 2</a> – Sep. 10, 2008</div>
 <p id="Metta2008_S02_F04">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S02_F04.mp3" title="Metta Retreat, S2 E4" data-duration="615"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S02_F04.mp3" download="Metta Retreat, S2 E4.mp3">Download audio</a> (10:15)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “If one were to become a monastic at Abhayagiri, how would one go about it? What are the day-to-day activities of a monk? What do I need to know and consider before making such a commitment?”  [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] // [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/building-projects.html">Building projects</a>] [<a href = "../tags/robes.html">Robes</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S02_F04.mp3" title="Metta Retreat, S2 E4" data-duration="615"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S02_F04.mp3" download="Metta Retreat, S2 E4.mp3">Download audio</a> (10:15)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> “If one were to become a monastic at Abhayagiri, how would one go about it? What are the day-to-day activities of a monk? What do I need to know and consider before making such a commitment?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/abhayagiri.html">Abhayagiri</a>] // [<a href = "../tags/sequence-of-training.html">Sequence of training</a>] [<a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b> [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/seclusion.html">Seclusion</a>] [<a href = "../tags/shelter.html">Shelter</a>] [<a href = "../tags/cleanliness.html">Cleanliness</a>] [<a href = "../tags/building-projects.html">Building projects</a>] [<a href = "../tags/robes.html">Robes</a>]
 </p>
 <hr />
-<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 12, 2008</div>
+<div class="title" id="Metta2008_S04"><a href="../events/Metta2008.html">Metta Retreat</a>, <a href="../events/Metta2008.html#Metta2008_S04">Session 4</a> – Sep. 12, 2008</div>
 <p id="Metta2008_S04_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" title="Metta Retreat, S4 E10" data-duration="615"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" download="Metta Retreat, S4 E10.mp3">Download audio</a> (10:15)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Would you share some of your personal journey, including the time before you became a monk, and why you became a monk, and how the holy life can help people grow and change?”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/travel.html">Travel</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" title="Metta Retreat, S4 E10" data-duration="615"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Metta2008/Metta2008_S04_F10.mp3" download="Metta Retreat, S4 E10.mp3">Download audio</a> (10:15)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> “Would you share some of your personal journey, including the time before you became a monk, and why you became a monk, and how the holy life can help people grow and change?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] // [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/travel.html">Travel</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno begins meditation with a month-long Mahasi Sayadaw retreat. [<a href = "../tags/meditation-retreats.html">Meditation retreats</a>] [<a href = "../tags/mahasi-sayadaw.html">Mahasi Sayadaw</a>] [<a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Pasanno's first visit to Wat Pah Pong. [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+  <b>Story:</b> Ajahn Pasanno’s first visit to Wat Pah Pong. [<a href = "../tags/ordination.html">Ordination</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/sequence-of-training.html">Sequence of training</a>]
+  <b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/sequence-of-training.html">Sequence of training</a>]
 </p>
 <p style="margin-left: 4em;">
-  <b>Reflection</b>: "Five years is five years. I'll go back and give myself to Ajahn Chah." — Ajahn Pasanno [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b>
+  <b>Reflection</b>: “Five years is five years. I’ll go back and give myself to Ajahn Chah.” — Ajahn Pasanno [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “There's no such thing as the ideal monastic or the ideal practitioner.”  [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/disrobing.html">Disrobing</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
+  <b>Quote:</b>  “There’s no such thing as the ideal monastic or the ideal practitioner.”  [<a href = "../tags/idealism.html">Idealism</a>] [<a href = "../tags/lay-life.html">Lay life</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/disrobing.html">Disrobing</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/long-term-practice.html">Long-term practice</a>]
 </p>
 <hr />
-<div class="title" id="WR2014_S55"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S55">Session 55</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Mar. 25, 2014</div>
+<div class="title" id="WR2014_S55"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S55">Session 55</a> – Mar. 25, 2014</div>
 <p id="WR2014_S55_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S55 E1" data-duration="387"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S55 E1.mp3">Download audio</a> (6:27)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Are there any stories you can share from the times when you were attendant to Luang Por Chah?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F01.mp3" title="Abhayagiri 2014 Winter Retreat, S55 E1" data-duration="387"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S55_F01.mp3" download="Abhayagiri 2014 Winter Retreat, S55 E1.mp3">Download audio</a> (6:27)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> “Are there any stories you can share from the times when you were attendant to Luang Por Chah?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/upatakh.html">Upatakh</a>] // [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] <b>[<a href = "../tags/mentoring.html">Mentoring</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “I never asked him for anything. It never occured to me to ask Ajahn Chah for anything.”  [<a href = "../tags/contentment.html">Contentment</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Chah makes fun of Ajahn Pasanno's first Pāṭimokkha chanting. [<a href = "../tags/patimokkha.html">Pāṭimokkha</a>]
+  <b>Story:</b> Ajahn Chah makes fun of Ajahn Pasanno’s first Pāṭimokkha chanting. [<a href = "../tags/patimokkha.html">Pāṭimokkha</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “He would be unrelenting if you were stuck in some aversion....He wouldn't indulge it. It was inevitably painful if one did.”  [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+  <b>Quote:</b>  “He would be unrelenting if you were stuck in some aversion....He wouldn’t indulge it. It was inevitably painful if one did.”  [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Mentoring (Answers involving),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Mentoring (Answers involving),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/mentoring-atag.html">https://abhayagiri.org/questions/tags/mentoring-atag.html</a>.</p>
 </footer>
 

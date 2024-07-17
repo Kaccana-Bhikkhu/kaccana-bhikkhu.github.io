@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#teachers/ajahn-naniko-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html" class="active">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -71,16 +81,16 @@
 <hr />
 <div class="title" id="WR2014_S28"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S28">Session 28</a> – Feb. 12, 2014</div>
 <p id="WR2014_S28_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S28_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S28 E2" data-duration="490"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S28_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S28 E2.mp3">Download audio</a> (8:10)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “In the Pure Land tradition, there are practices that prepare one for death. Are there are specific recommendations that yourself or Ajahn Chah would give for preparation for that last moment before death?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/pure-land.html">Pure Land</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] // [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S28_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S28 E2" data-duration="490"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S28_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S28 E2.mp3">Download audio</a> (8:10)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> “In the Pure Land tradition, there are practices that prepare one for death. Are there are specific recommendations that yourself or Ajahn Chah would give for preparation for that last moment before death?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/pure-land.html">Pure Land</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] // [<a href = "../tags/buddho-mantra.html">Buddho mantra</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Family members try to encourage a drunkard to recollect "Arahaṃ" in his last moments. [<a href = "../tags/mantra.html">Mantra</a>] [<a href = "../tags/humor.html">Humor</a>]
+  <b>Story:</b> Family members try to encourage a drunkard to recollect “Arahaṃ“ in his last moments. [<a href = "../tags/mantra.html">Mantra</a>] [<a href = "../tags/humor.html">Humor</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Chah's response to Paul Breiter's desire to teach meditation to dying people. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
+  <b>Story:</b> Ajahn Chah’s response to Paul Breiter’s desire to teach meditation to dying people. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/meditation.html">Meditation</a>] [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Karuṇadhammo advises Iris Landsberg to recollect "sorrowless, spotless, secure." Told by Ajahn Kaccāna. [<a href = "../tags/recollection.html">Recollection</a>]
+  <b>Story:</b> Ajahn Karuṇadhammo advises Iris Landsberg to recollect “sorrowless, spotless, secure.” Told by Ajahn Kaccāna. [<a href = "../tags/recollection.html">Recollection</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=Sn-2.4:" target="_blank">Sn 2.4:</a> Maṅgala Sutta (<a href="https://www.abhayagiri.org/media/books/Chanting-Book-Vol-1-Web.pdf#page=55" target="_blank">English chanting translation</a>). 
@@ -91,15 +101,15 @@
 <hr />
 <div class="title" id="WR2014_S35"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S35">Session 35</a> – Feb. 21, 2014</div>
 <p id="WR2014_S35_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F10.mp3" title="Abhayagiri 2014 Winter Retreat, S35 E10" data-duration="53"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F10.mp3" download="Abhayagiri 2014 Winter Retreat, S35 E10.mp3">Download audio</a> (0:53)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Story:</b> Ajahn Ñaniko meets Ajahn Mun's nephew. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/family.html">Family</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F10.mp3" title="Abhayagiri 2014 Winter Retreat, S35 E10" data-duration="53"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S35_F10.mp3" download="Abhayagiri 2014 Winter Retreat, S35 E10.mp3">Download audio</a> (0:53)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Story:</b> Ajahn Ñaniko meets Ajahn Mun’s nephew. [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/family.html">Family</a>]
 </p>
 <hr />
 <div class="title" id="WR2014_S38"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S38">Session 38</a> – Feb. 26, 2014</div>
 <p id="WR2014_S38_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S38 E7" data-duration="277"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S38 E7.mp3">Download audio</a> (4:37)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Does Ajahn Liem attend morning and evening pūjā?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/puja.html">Pūjā</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" title="Abhayagiri 2014 Winter Retreat, S38 E7" data-duration="277"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S38_F07.mp3" download="Abhayagiri 2014 Winter Retreat, S38 E7.mp3">Download audio</a> (4:37)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> “Does Ajahn Liem attend morning and evening pūjā?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-liem.html">Ajahn Liem</a>] [<a href = "../tags/puja.html">Pūjā</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Liem silently walks around and looks at the monks during morning pūjā. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. 
+  <b>Story:</b> Ajahn Liem silently walks around and looks at the monks during morning pūjā. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. 
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Did Ajahn Chah go to morning and evening pūjā?” [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>]
@@ -108,28 +118,28 @@
   <b>Follow-up:</b> “In the early years of Wat Ban Tad, was it always practice on your own?” [<a href = "../tags/wat-pah-ban-tat.html">Wat Pah Ban Tat</a>] [<a href = "../tags/thai-sects.html">Thai sects</a>] [<a href = "../tags/ajahn-tongrat.html">Ajahn Tongrat</a>] [<a href = "../tags/ajahn-baen.html">Ajahn Baen</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Too many monks skip pūjā to massage Ajahn Liem. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/upatakh.html">Upatakh</a>]
+  <b>Story:</b> Too many monks skip pūjā to massage Ajahn Liem. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/upatakh.html">Upatakh</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Recollections:</b> Bhante Gunaratana comes to morning jūjā early. Recounted by <a href = ../teachers/ajahn-jotipalo.html>Ajahn Jotipālo</a> and Beth Steff. [<a href = "../tags/bhante-gunaratana.html">Bhante Gunaratana</a>]
+  <b>Recollections:</b> Bhante Gunaratana comes to morning jūjā early. Recounted by <a href="../teachers/ajahn-jotipalo.html">Ajahn Jotipālo</a> and Beth Steff. [<a href = "../tags/bhante-gunaratana.html">Bhante Gunaratana</a>]
 </p>
 <hr />
 <div class="title" id="WR2014_S47"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S47">Session 47</a> – Mar. 11, 2014</div>
 <p id="WR2014_S47_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E2" data-duration="77"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E2.mp3">Download audio</a> (1:17)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Somboon spends a vassa at Wat Pah Pong. Told by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/ajahn-somboon.html">Ajahn Somboon</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/ardency.html">Ardency</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" title="Abhayagiri 2014 Winter Retreat, S47 E2" data-duration="77"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S47_F02.mp3" download="Abhayagiri 2014 Winter Retreat, S47 E2.mp3">Download audio</a> (1:17)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Somboon spends a vassa at Wat Pah Pong. Told by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-somboon.html">Ajahn Somboon</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] // [<a href = "../tags/abbot.html">Abbot</a>] [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/ardency.html">Ardency</a>]
 </p>
 <hr />
 <div class="title" id="WR2014_S51"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S51">Session 51</a> – Mar. 17, 2014</div>
 <p id="WR2014_S51_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E3" data-duration="209"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E3.mp3">Download audio</a> (3:29)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “If you keep chipping away at a theme of contemplation, you keep doing it, doing it, and nothing is changing in your experience, at some stage you feel this isn't working, do you just have to move on and try something else? Is it the case that you just have to try them all? No-one can tell you which is going to work for you?”  Answered by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/recollection.html">Recollection</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" title="Abhayagiri 2014 Winter Retreat, S51 E3" data-duration="209"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S51_F03.mp3" download="Abhayagiri 2014 Winter Retreat, S51 E3.mp3">Download audio</a> (3:29)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> “If you keep chipping away at a theme of contemplation, you keep doing it, doing it, and nothing is changing in your experience, at some stage you feel this isn’t working, do you just have to move on and try something else? Is it the case that you just have to try them all? No-one can tell you which is going to work for you?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/depression.html">Depression</a>] [<a href = "../tags/recollection.html">Recollection</a>] // [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Story:</b> Ajahn Wanchai has a spinal injury and is in chronic pain but doesn't refer to himself. Told by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/conceit.html">Conceit</a>]
+  <b>Story:</b> Ajahn Wanchai has a spinal injury and is in chronic pain but doesn’t refer to himself. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> and <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a>. [<a href = "../tags/ajahn-wanchai.html">Ajahn Wanchai</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/pain.html">Pain</a>] [<a href = "../tags/conceit.html">Conceit</a>]
 </p>
 <hr />
 <div class="title" id="WR2014_S53"><a href="../events/WR2014.html">Abhayagiri 2014 Winter Retreat</a>, <a href="../events/WR2014.html#WR2014_S53">Session 53</a> – Mar. 19, 2014</div>
 <p id="WR2014_S53_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S53 E5" data-duration="79"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S53 E5.mp3">Download audio</a> (1:19)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Recollections:</b> Deciding who went on the different alms routes at Wat Pah Pong. Recounted by <a href = ../teachers/ajahn-naniko.html>Ajahn Ñāṇiko</a> and <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsround.html">Almsround</a>] // [<a href = "../tags/rains-retreat.html">Rains retreat</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" title="Abhayagiri 2014 Winter Retreat, S53 E5" data-duration="79"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/WR2014/WR2014_S53_F05.mp3" download="Abhayagiri 2014 Winter Retreat, S53 E5.mp3">Download audio</a> (1:19)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> <b>Recollections:</b> Deciding who went on the different alms routes at Wat Pah Pong. Recounted by <a href="../teachers/ajahn-naniko.html">Ajahn Ñāṇiko</a> and <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/almsround.html">Almsround</a>] // [<a href = "../tags/rains-retreat.html">Rains retreat</a>]
 </p>
 <hr />
 <div class="title" id="WR2018-2_S09"><a href="../events/WR2018-2.html">The Teaching and the Training</a>, <a href="../events/WR2018-2.html#WR2018-2_S09">Session 9</a> – Mar. 27, 2018</div>
@@ -139,7 +149,7 @@
 <hr />
 <div class="title" id="UD2018-2_S03"><a href="../events/UD2018-2.html">Chanting</a>, <a href="../events/UD2018-2.html#UD2018-2_S03">Session 3</a> – Jun. 2, 2018</div>
 <p id="UD2018-2_S03_F06">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F06.mp3" title="Chanting, S3 E6" data-duration="90"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F06.mp3" download="Chanting, S3 E6.mp3">Download audio</a> (1:30)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> A monk at Poo Jum Gom dislodges a viper by chanting the Khandhaparitta despite believing that it won't work. [<a href = "../tags/animal.html">Animal</a>] [<a href = "../tags/poo-jum-gom.html">Poo Jum Gom</a>] [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/protective-chants.html">Protective chants</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F06.mp3" title="Chanting, S3 E6" data-duration="90"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-2/UD2018-2_S03_F06.mp3" download="Chanting, S3 E6.mp3">Download audio</a> (1:30)</audio-chip><br /> <b style="text-decoration: underline;">6.</b> <b>Story:</b> A monk at Poo Jum Gom dislodges a viper by chanting the Khandhaparitta despite believing that it won’t work. [<a href = "../tags/animal.html">Animal</a>] [<a href = "../tags/poo-jum-gom.html">Poo Jum Gom</a>] [<a href = "../tags/ajahn-naniko.html">Ajahn Ñāṇiko</a>] [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/chanting.html">Chanting</a>] [<a href = "../tags/protective-chants.html">Protective chants</a>]
 </p>
 <hr />
 <div class="title" id="UD2019-4_S02"><a href="../events/UD2019-4.html">Love, Attachment, and Friendship</a>, <a href="../events/UD2019-4.html#UD2019-4_S02">Session 2</a> – Oct. 12, 2019</div>
@@ -160,8 +170,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Ñāṇiko (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Teacher: Ajahn Ñāṇiko (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/teachers/ajahn-naniko-story.html">https://abhayagiri.org/questions/teachers/ajahn-naniko-story.html</a>.</p>
 </footer>
 

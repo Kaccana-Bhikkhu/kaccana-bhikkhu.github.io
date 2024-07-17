@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/conceit-qtag.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/fetters.html#fetters"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConceit (māna)
+  <div class="title"><a href="../drilldown/fetters.html#fetters" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConceit (māna)
   </div>
 
 <div class="intro">
@@ -54,31 +64,31 @@
   Parent topics: <a href = "../tags/fetters.html">Fetters</a>, <a href = "../tags/conceit-related.html">Conceit-related</a><br>
   
   
-  16 excerpts, 1:31:44 total duration
+  20 excerpts, 1:52:11 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/conceit.html">All excerpts (16)</a>
+<div class="sublink2"> <a href="../tags/conceit.html">All excerpts (20)</a>
       <a href="../tags/conceit-qtag.html" class="active">Questions about (2)</a>
       <a href="../tags/conceit-atag.html">Answers involving (12)</a>
-      <a href="../tags/conceit-story.html">Stories (3)</a>
-      <a href="../tags/conceit-quote.html">Quotes (1)</a>
+      <a href="../tags/conceit-story.html">Stories (5)</a>
+      <a href="../tags/conceit-quote.html">Quotes (2)</a>
       <a href="../tags/conceit-text.html">Texts (1)</a> </div>
 <hr>
 
-<div class="title" id="TG2016_S06"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S06">Session 6</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Nov. 24, 2016</div>
+<div class="title" id="TG2016_S06"><a href="../events/TG2016.html">Thanksgiving Retreat 2016</a>, <a href="../events/TG2016.html#TG2016_S06">Session 6</a> – Nov. 24, 2016</div>
 <p id="TG2016_S06_F05">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F05.mp3" title="Thanksgiving Retreat 2016, S6 E5" data-duration="170"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F05.mp3" download="Thanksgiving Retreat 2016, S6 E5.mp3">Download audio</a> (2:50)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I am tangled up in self-identification and conceit.  What should I do to get myself out?”  [<a href = "../tags/self-identity-view.html">Self-identity view</a>] <b>[<a href = "../tags/conceit.html">Conceit</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F05.mp3" title="Thanksgiving Retreat 2016, S6 E5" data-duration="170"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/TG2016/TG2016_S06_F05.mp3" download="Thanksgiving Retreat 2016, S6 E5.mp3">Download audio</a> (2:50)</audio-chip><br /> <b style="text-decoration: underline;">5.</b> “I am tangled up in self-identification and conceit.  What should I do to get myself out?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/self-identity-view.html">Self-identity view</a>] <b>[<a href = "../tags/conceit.html">Conceit</a>]</b>
 </p>
 <hr />
-<div class="title" id="Path2019_S02"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 16, 2019</div>
+<div class="title" id="Path2019_S02"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S02">Session 2</a> – Jun. 16, 2019</div>
 <p id="Path2019_S02_F09">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F09.mp3" title="The Path of Practice, S2 E9" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F09.mp3" download="The Path of Practice, S2 E9.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “When strong feelings associated with conceit come, what to do?”  <b>[<a href = "../tags/conceit.html">Conceit</a>]</b> [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/mindfulness-of-feeling.html">Mindfulness of feeling</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/nutriment.html">Nutriment</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/patience.html">Patience</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F09.mp3" title="The Path of Practice, S2 E9" data-duration="153"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S02_F09.mp3" download="The Path of Practice, S2 E9.mp3">Download audio</a> (2:33)</audio-chip><br /> <b style="text-decoration: underline;">9.</b> “When strong feelings associated with conceit come, what to do?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/conceit.html">Conceit</a>]</b> [<a href = "../tags/feeling.html">Feeling</a>] // [<a href = "../tags/noble-truth-of-suffering.html">Noble Truth of Suffering</a>] [<a href = "../tags/mindfulness-of-feeling.html">Mindfulness of feeling</a>] [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/nutriment.html">Nutriment</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/patience.html">Patience</a>]
 </p>
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Conceit (Questions about),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Conceit (Questions about),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/conceit-qtag.html">https://abhayagiri.org/questions/tags/conceit-qtag.html</a>.</p>
 </footer>
 

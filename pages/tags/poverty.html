@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/poverty.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/commerceeconomics.html#commerceeconomics"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPoverty 
+  <div class="title"><a href="../drilldown/commerceeconomics.html#commerceeconomics" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspPoverty 
   </div>
 
 <div class="intro">
@@ -54,39 +64,53 @@
   Parent topic: <a href = "../tags/commerceeconomics.html">Commerce/economics</a><br>
   
   
-  7 excerpts, 33:03 total duration
+  8 excerpts, 34:55 total duration
 </strong>
 <hr />
-<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 2, 2011</div>
-<p id="SRD2011_S03_F02">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F02.mp3" title="Tudong Stories at Spirit Rock, S3 E2" data-duration="282"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F02.mp3" download="Tudong Stories at Spirit Rock, S3 E2.mp3">Download audio</a> (4:42)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Chah obsesses about getting robes. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/greed.html">Greed</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>]
+<div class="title" id="Chah2001_S05"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S05">Session 5</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S05_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S05_F04.mp3" title="Remembering Ajahn Chah Weekend, S5 E4" data-duration="112"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S05_F04.mp3" download="Remembering Ajahn Chah Weekend, S5 E4.mp3">Download audio</a> (1:52)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Story:</b> Thousands of people receive Ajahn Chah upon his return from England. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/gratitude.html">Gratitude</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/lay-life.html">Lay life</a>]
+</p>
+<p style="margin-left: 2em;">
+  The sea of faith in Northeast Thailand. [<a href = "../tags/faith.html">Faith</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/culturenatural-environment.html">Culture/Natural environment</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/self-reliance.html">Self-reliance</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>] [<a href = "../tags/suffering.html">Suffering</a>]
+</p>
+<p style="margin-left: 2em;">
+  In Central Thailand, lay people don’t come to the monastery on observance days. [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/tudong.html">Tudong</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Story:</b> A direct teaching to a man whose wife had died. [<a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/grief.html">Grief</a>]
 </p>
 <hr />
-<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2013</div>
+<div class="title" id="SRD2011_S03"><a href="../events/SRD2011.html">Tudong Stories at Spirit Rock</a>, <a href="../events/SRD2011.html#SRD2011_S03">Session 3</a> – Jun. 2, 2011</div>
+<p id="SRD2011_S03_F02">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F02.mp3" title="Tudong Stories at Spirit Rock, S3 E2" data-duration="282"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2011/SRD2011_S03_F02.mp3" download="Tudong Stories at Spirit Rock, S3 E2.mp3">Download audio</a> (4:42)</audio-chip><br /> <b style="text-decoration: underline;">2.</b> <b>Story:</b> Ajahn Chah obsesses about getting robes. Told by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/robes.html">Robes</a>] [<a href = "../tags/greed.html">Greed</a>] [<a href = "../tags/tudong.html">Tudong</a>] // [<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>] [<a href = "../tags/determination.html">Determination</a>] [<a href = "../tags/simplicity.html">Simplicity</a>] [<a href = "../tags/craving.html">Craving</a>] [<a href = "../tags/ajahn-kinaree.html">Ajahn Kinaree</a>]
+</p>
+<hr />
+<div class="title" id="UD2013-1_S01"><a href="../events/UD2013-1.html">Right Livelihood</a>, <a href="../events/UD2013-1.html#UD2013-1_S01">Session 1</a> – Apr. 21, 2013</div>
 <p id="UD2013-1_S01_F25">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F25.mp3" title="Right Livelihood, S1 E25" data-duration="166"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F25.mp3" download="Right Livelihood, S1 E25.mp3">Download audio</a> (2:46)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “There are many people without access to resources for education or training without many choices. How does this all fit together?”  <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/idealism.html">Idealism</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F25.mp3" title="Right Livelihood, S1 E25" data-duration="166"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F25.mp3" download="Right Livelihood, S1 E25.mp3">Download audio</a> (2:46)</audio-chip><br /> <b style="text-decoration: underline;">25.</b> “There are many people without access to resources for education or training without many choices. How does this all fit together?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/idealism.html">Idealism</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=DN-27:" target="_blank">DN 27:</a> Agañña Sutta 
 </p>
 <hr />
 <p id="UD2013-1_S01_F27">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F27.mp3" title="Right Livelihood, S1 E27" data-duration="142"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F27.mp3" download="Right Livelihood, S1 E27.mp3">Download audio</a> (2:22)</audio-chip><br /> <b style="text-decoration: underline;">27.</b> <b>Comments</b> about the differences between ancient and modern economic systems and the importance of understanding and applying the Buddha's principles. [<a href = "../tags/commerceeconomics.html">Commerce/economics</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/food.html">Food</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F27.mp3" title="Right Livelihood, S1 E27" data-duration="142"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2013-1/UD2013-1_S01_F27.mp3" download="Right Livelihood, S1 E27.mp3">Download audio</a> (2:22)</audio-chip><br /> <b style="text-decoration: underline;">27.</b> <b>Comments</b> about the differences between ancient and modern economic systems and the importance of understanding and applying the Buddha’s principles. [<a href = "../tags/commerceeconomics.html">Commerce/economics</a>] [<a href = "../tags/cultural-context.html">Cultural context</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/work.html">Work</a>] [<a href = "../tags/right-livelihood.html">Right Livelihood</a>] // [<a href = "../tags/food.html">Food</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b>
 </p>
 <hr />
-<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 25, 2016</div>
+<div class="title" id="UD2016-2_S02"><a href="../events/UD2016-2.html">Suttas You've Never Heard Of</a>, <a href="../events/UD2016-2.html#UD2016-2_S02">Session 2</a> – Jun. 25, 2016</div>
 <p id="UD2016-2_S02_F07">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" title="Suttas You've Never Heard Of, S2 E7" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" download="Suttas You've Never Heard Of, S2 E7.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> A diligent early support of Wat Pah Nanachat reflects, "I don't have money, but I'm not poor." [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/lay-life.html">Lay life</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/thai.html">Thai</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" title="Suttas You've Never Heard Of, S2 E7" data-duration="130"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2016-2/UD2016-2_S02_F07.mp3" download="Suttas You've Never Heard Of, S2 E7.mp3">Download audio</a> (2:10)</audio-chip><br /> <b style="text-decoration: underline;">7.</b> A diligent early support of Wat Pah Nanachat reflects, “I don’t have money, but I’m not poor.” [<a href = "../tags/treasures.html">Treasures</a>] [<a href = "../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>] [<a href = "../tags/wat-pah-pong.html">Wat Pah Pong</a>] [<a href = "../tags/lay-life.html">Lay life</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> // [<a href = "../tags/lunar-observance-days.html">Lunar observance days</a>] [<a href = "../tags/thai.html">Thai</a>]
 </p>
 <hr />
-<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 21, 2018</div>
+<div class="title" id="UD2018-1_S02"><a href="../events/UD2018-1.html">The New Ajahn Chah Biography</a>, <a href="../events/UD2018-1.html#UD2018-1_S02">Session 2</a> – Apr. 21, 2018</div>
 <p id="UD2018-1_S02_F01">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F01.mp3" title="The New Ajahn Chah Biography, S2 E1" data-duration="305"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F01.mp3" download="The New Ajahn Chah Biography, S2 E1.mp3">Download audio</a> (5:05)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Reflections</b> on the origins of Ajahn Chah and his teachings. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/geographythailand.html">Geography/Thailand</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/human.html">Human</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F01.mp3" title="The New Ajahn Chah Biography, S2 E1" data-duration="305"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2018-1/UD2018-1_S02_F01.mp3" download="The New Ajahn Chah Biography, S2 E1.mp3">Download audio</a> (5:05)</audio-chip><br /> <b style="text-decoration: underline;">1.</b> <b>Reflections</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a> on the origins of Ajahn Chah and his teachings. [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/geographythailand.html">Geography/Thailand</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/human.html">Human</a>]
 </p>
 <hr />
-<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 15, 2019</div>
+<div class="title" id="Path2019_S01"><a href="../events/Path2019.html">The Path of Practice</a>, <a href="../events/Path2019.html#Path2019_S01">Session 1</a> – Jun. 15, 2019</div>
 <p id="Path2019_S01_F13">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" title="The Path of Practice, S1 E13" data-duration="519"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" download="The Path of Practice, S1 E13.mp3">Download audio</a> (8:39)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you say something about the fact that extreme hardship exists in the world?”  <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" title="The Path of Practice, S1 E13" data-duration="519"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Path2019/Path2019_S01_F13.mp3" download="The Path of Practice, S1 E13.mp3">Download audio</a> (8:39)</audio-chip><br /> <b style="text-decoration: underline;">13.</b> “Could you say something about the fact that extreme hardship exists in the world?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/compassion.html">Compassion</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Sutta</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-4.162:" target="_blank">AN 4.162:</a> Modes of Practice 
@@ -104,12 +128,12 @@
   <b>Recollection:</b> More Westerners came to study with Ajahn Chah than Central or Southern Thais. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/historywestern-buddhist-monasticism.html">History/Western Buddhist monasticism</a>]
 </p>
 <hr />
-<div class="title" id="Stanford2020_S00"><a href="../events/Stanford2020.html">Stanford Community Dhamma Discussion</a><a href="../events/Stanford2020.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Apr. 25, 2020</div>
+<div class="title" id="Stanford2020_S00"><a href="../events/Stanford2020.html">Stanford Community Dhamma Discussion</a><a href="../events/Stanford2020.html"></a> – Apr. 25, 2020</div>
 <p id="Stanford2020_S00_F08">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Stanford2020/Stanford2020_S00_F08.mp3" title="Stanford Community Dhamma Discussion, E8" data-duration="439"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Stanford2020/Stanford2020_S00_F08.mp3" download="Stanford Community Dhamma Discussion, E8.mp3">Download audio</a> (7:19)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “You mentioned that ruminating on how one would like to change the world or the conditions around oneself can be a source of needless suffering. But there are times when one does want to work to change the world or the way society is organized for the sake of lovingkindness and alleviating suffering. How do we engage with those desire for change in a skillful way?”  [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/activism.html">Activism</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/conflict.html">Conflict</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/idealism.html">Idealism</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Stanford2020/Stanford2020_S00_F08.mp3" title="Stanford Community Dhamma Discussion, E8" data-duration="439"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Stanford2020/Stanford2020_S00_F08.mp3" download="Stanford Community Dhamma Discussion, E8.mp3">Download audio</a> (7:19)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “You mentioned that ruminating on how one would like to change the world or the conditions around oneself can be a source of needless suffering. But there are times when one does want to work to change the world or the way society is organized for the sake of lovingkindness and alleviating suffering. How do we engage with those desire for change in a skillful way?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/politics-and-society.html">Politics and society</a>] [<a href = "../tags/suffering.html">Suffering</a>] [<a href = "../tags/desire.html">Desire</a>] [<a href = "../tags/goodwill.html">Goodwill</a>] [<a href = "../tags/compassion.html">Compassion</a>] [<a href = "../tags/skillful-qualities.html">Skillful qualities</a>] [<a href = "../tags/activism.html">Activism</a>] // [<a href = "../tags/conditionality.html">Conditionality</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/conflict.html">Conflict</a>] <b>[<a href = "../tags/poverty.html">Poverty</a>]</b> [<a href = "../tags/judgementalism.html">Judgementalism</a>] [<a href = "../tags/aversion.html">Aversion</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/environment.html">Environment</a>] [<a href = "../tags/idealism.html">Idealism</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “If one is going to commit oneself to change, one has to get used to looking at things from a big perspective, a perspective of 'How do we include rather than exclude?'”  [<a href = "../tags/community.html">Community</a>]
+  <b>Quote:</b>  “If one is going to commit oneself to change, one has to get used to looking at things from a big perspective, a perspective of ‘How do we include rather than exclude?’”  [<a href = "../tags/community.html">Community</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “You want to approach a particular problem with an open a mind as possible and then see who might be willing and able to help.”  
@@ -117,8 +141,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Poverty,” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Poverty,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/poverty.html">https://abhayagiri.org/questions/tags/poverty.html</a>.</p>
 </footer>
 

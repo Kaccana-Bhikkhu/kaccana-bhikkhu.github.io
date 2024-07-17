@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/knowledge-and-vision-quote.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspKnowledge and vision (ñāṇadassana)
+  <div class="title"><a href="../drilldown/progress-of-insight.html#progress-of-insight" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspKnowledge and vision (ñāṇadassana)
   </div>
 
 <div class="intro">
@@ -54,55 +64,66 @@
   Parent topic: <a href = "../tags/progress-of-insight.html">Progress of insight</a><br>
   
   
-  14 excerpts, 58:30 total duration
+  15 excerpts, 1:03:23 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/knowledge-and-vision.html">All excerpts (14)</a>
+<div class="sublink2"> <a href="../tags/knowledge-and-vision.html">All excerpts (15)</a>
       <a href="../tags/knowledge-and-vision-qtag.html">Questions about (3)</a>
       <a href="../tags/knowledge-and-vision-atag.html">Answers involving (10)</a>
-      <a href="../tags/knowledge-and-vision-quote.html" class="active">Quotes (3)</a> </div>
+      <a href="../tags/knowledge-and-vision-quote.html" class="active">Quotes (4)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
-<p id="SRD2010_S01_F10">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" title="Recollections of Ajahn Chah, S1 E10" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" download="Recollections of Ajahn Chah, S1 E10.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah accepts his dying father's request to stay as a monk for life.  [<a href = "../tags/family.html">Family</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>]
+<div class="title" id="Chah2001_S09"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S09">Session 9</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S09_F08">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F08.mp3" title="Remembering Ajahn Chah Weekend, S9 E8" data-duration="293"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S09_F08.mp3" download="Remembering Ajahn Chah Weekend, S9 E8.mp3">Download audio</a> (4:53)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah’s dying father asks him to remain in robes for life.  [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/recollectiondeath.html">Recollection/Death</a>] [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/learning.html">Learning</a>] [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/unattractiveness.html">Unattractiveness</a>] [<a href = "../tags/forest-versus-city-monks.html">Forest versus city monks</a>] [<a href = "../tags/sutta.html">Sutta</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40</a> 
+  <b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/buddha.html">Buddha</a>] [<a href = "../tags/dhamma.html">Dhamma</a>] [<a href = "../tags/practicing-in-accordance-with-dhamma.html">Practicing in accordance with Dhamma</a>] <b>[<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]</b> [<a href = "../tags/truth.html">Truth</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] [<a href = "../tags/suffering.html">Suffering</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href = ../teachers/ajahn-chah.html>Ajahn Chah</a> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]</b>
-</p>
-<p style="margin-left: 4em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=64" target="_blank">p. 42</a> 
-</p>
-<p style="margin-left: 2em;">
-  The singular quality of Ajahn Chah's resolution. <B>Reflection</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Reflection</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40</a> [<a href = "../tags/energy.html">Energy</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>]
 </p>
 <hr />
-<div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> and <a href = ../teachers/ajahn-yatiko.html>Ajahn Yatiko</a> – Oct. 20, 2012</div>
-<p id="UD2012-4_S02_F03">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" title="The Gradual Training, S2 E3" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" download="The Gradual Training, S2 E3.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: You spoke about suffusing the body with extreme well-being. But I've been in states like that and my body seems to disappear. [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>] [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
+<p id="SRD2010_S01_F10">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" title="Recollections of Ajahn Chah, S1 E10" data-duration="362"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F10.mp3" download="Recollections of Ajahn Chah, S1 E10.mp3">Download audio</a> (6:02)</audio-chip><br /> <b style="text-decoration: underline;">10.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Chah accepts his dying father’s request to stay as a monk for life.  [<a href = "../tags/parents.html">Parents</a>] [<a href = "../tags/monastic-lifemotivation.html">Monastic life/Motivation</a>] [<a href = "../tags/sickness.html">Sickness</a>] [<a href = "../tags/death.html">Death</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/determination.html">Determination</a>] // [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/sense-of-urgency.html">Sense of urgency</a>] [<a href = "../tags/samsara.html">Saṃsāra</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Response</b> by <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a>. 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=62" target="_blank">p. 40</a> 
+</p>
+<p style="margin-left: 2em;">
+  <b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href="../teachers/ajahn-chah.html">Ajahn Chah</a> [<a href = "../tags/ardency.html">Ardency</a>] [<a href = "../tags/patience.html">Patience</a>] [<a href = "../tags/doubt.html">Doubt</a>] [<a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]</b>
 </p>
 <p style="margin-left: 4em;">
-  <b>Quote:</b>  “It isn't so much the experience of extreme well-being that is the goal. It's the ability to gain clarity and stability so that one can see through the experience as something that is uncertain or impermanent, has a changing nature. The mind often wants to disregard that. The tendency to identify self with experience on a refined mental level is tempered by the body experience.”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/concentration.html">Concentration</a>] <b>[<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]</b> [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=64" target="_blank">p. 42</a> 
+</p>
+<p style="margin-left: 2em;">
+  The singular quality of Ajahn Chah’s resolution. <b>Reflection</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
+</p>
+<hr />
+<div class="title" id="UD2012-4_S02"><a href="../events/UD2012-4.html">The Gradual Training</a>, <a href="../events/UD2012-4.html#UD2012-4_S02">Session 2</a> – Oct. 20, 2012</div>
+<p id="UD2012-4_S02_F03">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" title="The Gradual Training, S2 E3" data-duration="217"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2012-4/UD2012-4_S02_F03.mp3" download="The Gradual Training, S2 E3.mp3">Download audio</a> (3:37)</audio-chip><br /> <b style="text-decoration: underline;">3.</b> <b>Comment</b>: You spoke about suffusing the body with extreme well-being. But I’ve been in states like that and my body seems to disappear. [<a href = "../tags/jhana.html">Jhāna</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/mindfulness-of-body.html">Mindfulness of body</a>] [<a href = "../tags/gradual-teaching.html">Gradual Teaching</a>] [<a href = "../tags/meditationunusual-experiences.html">Meditation/Unusual experiences</a>]
+</p>
+<p style="margin-left: 2em;">
+  <b>Response</b> by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. 
+</p>
+<p style="margin-left: 4em;">
+  <b>Quote:</b>  “It isn’t so much the experience of extreme well-being that is the goal. It’s the ability to gain clarity and stability so that one can see through the experience as something that is uncertain or impermanent, has a changing nature. The mind often wants to disregard that. The tendency to identify self with experience on a refined mental level is tempered by the body experience.”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/concentration.html">Concentration</a>] <b>[<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]</b> [<a href = "../tags/impermanence.html">Impermanence</a>] [<a href = "../tags/delusion.html">Delusion</a>] [<a href = "../tags/self-identity-view.html">Self-identity view</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Follow-up:</b> “Are you saying you can become attached to these states?” [<a href = "../tags/clinging.html">Clinging</a>]
 </p>
 <hr />
-<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Jun. 22, 2013</div>
+<div class="title" id="SRD2013_S03"><a href="../events/SRD2013.html">The Whole of the Path: The Fruits of Spiritual Friendship</a>, <a href="../events/SRD2013.html#SRD2013_S03">Session 3</a> – Jun. 22, 2013</div>
 <p id="SRD2013_S03_F08">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8" data-duration="508"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8.mp3">Download audio</a> (8:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I appreciate your emphasis on clarity, stability, and spaciousness. How does concentration relate to these?”  [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" title="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8" data-duration="508"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2013/SRD2013_S03_F08.mp3" download="The Whole of the Path: The Fruits of Spiritual Friendship, S3 E8.mp3">Download audio</a> (8:28)</audio-chip><br /> <b style="text-decoration: underline;">8.</b> “I appreciate your emphasis on clarity, stability, and spaciousness. How does concentration relate to these?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/clear-comprehension.html">Clear comprehension</a>] [<a href = "../tags/one-pointedness.html">One pointedness</a>] [<a href = "../tags/spaciousness.html">Spaciousness</a>] [<a href = "../tags/concentration.html">Concentration</a>] // [<a href = "../tags/pali.html">Pāli</a>] [<a href = "../tags/thai.html">Thai</a>] [<a href = "../tags/etymology.html">Etymology</a>] [<a href = "../tags/tranquility.html">Tranquility</a>] [<a href = "../tags/happiness.html">Happiness</a>] [<a href = "../tags/rapture.html">Rapture</a>] [<a href = "../tags/conditionality.html">Conditionality</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=AN-10.3:" target="_blank">AN 10.3:</a> Virtuous Behaivor; <a href="https://sutta.readingfaithfully.org/?q=AN-6.10" target="_blank">AN 6.10</a> Mahānāma [<a href = "../tags/virtue.html">Virtue</a>]
 </p>
 <p style="margin-left: 2em;">
-  <b>Quote:</b>  “The way my mind worked before was, 'Boy, when I get my concentration together, I'm going to be happy...'”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
+  <b>Quote:</b>  “The way my mind worked before was, ‘Boy, when I get my concentration together, I’m going to be happy...’”  [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>]
 </p>
 <p style="margin-left: 2em;">
   <b>Quote:</b>  “The happy mind is easily concentrated.”  [<a href = "../tags/hindrances.html">Hindrances</a>] [<a href = "../tags/relinquishment.html">Relinquishment</a>] <b>[<a href = "../tags/knowledge-and-vision.html">Knowledge and vision</a>]</b>
@@ -110,8 +131,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Knowledge and vision (Quotes),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Knowledge and vision (Quotes),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/knowledge-and-vision-quote.html">https://abhayagiri.org/questions/tags/knowledge-and-vision-quote.html</a>.</p>
 </footer>
 

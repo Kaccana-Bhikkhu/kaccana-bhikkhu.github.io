@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/conflict-story.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/politics-and-society.html#politics-and-society"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConflict 
+  <div class="title"><a href="../drilldown/politics-and-society.html#politics-and-society" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspConflict 
   </div>
 
 <div class="intro">
@@ -54,19 +64,24 @@
   Parent topic: <a href = "../tags/politics-and-society.html">Politics and society</a><br>
   
   
-  14 excerpts, 50:10 total duration
+  18 excerpts, 1:02:58 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/conflict.html">All excerpts (14)</a>
-      <a href="../tags/conflict-qtag.html">Questions about (8)</a>
-      <a href="../tags/conflict-atag.html">Answers involving (6)</a>
-      <a href="../tags/conflict-story.html" class="active">Stories (1)</a>
+<div class="sublink2"> <a href="../tags/conflict.html">All excerpts (18)</a>
+      <a href="../tags/conflict-qtag.html">Questions about (9)</a>
+      <a href="../tags/conflict-atag.html">Answers involving (7)</a>
+      <a href="../tags/conflict-story.html" class="active">Stories (2)</a>
       <a href="../tags/conflict-quote.html">Quotes (2)</a> </div>
 <hr>
 
-<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Aug. 12, 2017</div>
+<div class="title" id="Chah2001_S22"><a href="../events/Chah2001.html">Remembering Ajahn Chah Weekend</a>, <a href="../events/Chah2001.html#Chah2001_S22">Session 22</a> – Apr. 28, 2001</div>
+<p id="Chah2001_S22_F04">
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S22_F04.mp3" title="Remembering Ajahn Chah Weekend, S22 E4" data-duration="207"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/Chah2001/Chah2001_S22_F04.mp3" download="Remembering Ajahn Chah Weekend, S22 E4.mp3">Download audio</a> (3:27)</audio-chip><br /> <b style="text-decoration: underline;">4.</b> <b>Stories</b> about the people who criticized Chithurst Monastery in the early days. Told by <a href="../teachers/joseph-kappel.html">Joseph Kappel</a> and <a href="../teachers/ajahn-amaro.html">Ajahn Amaro</a>. <b>[<a href = "../tags/conflict.html">Conflict</a>]</b> [<a href = "../tags/chithurst.html">Chithurst</a>] // [<a href = "../tags/ajahn-sumedho.html">Ajahn Sumedho</a>] [<a href = "../tags/ajahn-anando.html">Ajahn Anando</a>] [<a href = "../tags/culturewest.html">Culture/West</a>] [<a href = "../tags/communal-harmony.html">Communal harmony</a>]
+</p>
+<hr />
+<div class="title" id="UD2017-3_S00"><a href="../events/UD2017-3.html">Practice in a Global Context</a><a href="../events/UD2017-3.html"></a> – Aug. 12, 2017</div>
 <p id="UD2017-3_S00_F15">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F15.mp3" title="Practice in a Global Context, E15" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F15.mp3" download="Practice in a Global Context, E15.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “One of the reflections that was sent online described Ajahn Chah's response to monks who wanted to go out and help refugees. Can you speak to this?”  [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/service.html">Service</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/military.html">Military</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F15.mp3" title="Practice in a Global Context, E15" data-duration="261"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/UD2017-3/UD2017-3_S00_F15.mp3" download="Practice in a Global Context, E15.mp3">Download audio</a> (4:21)</audio-chip><br /> <b style="text-decoration: underline;">15.</b> “One of the reflections that was sent online described Ajahn Chah’s response to monks who wanted to go out and help refugees. Can you speak to this?”  Answered by <a href="../teachers/ajahn-pasanno.html">Ajahn Pasanno</a>. [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] [<a href = "../tags/monastic-life.html">Monastic life</a>] [<a href = "../tags/service.html">Service</a>] [<a href = "../tags/politics-and-society.html">Politics and society</a>] // [<a href = "../tags/thai-ajahn-chah-monasteries.html">Thai Ajahn Chah monasteries</a>] [<a href = "../tags/military.html">Military</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b>
 </p>
 <p style="margin-left: 2em;">
   <b>Story:</b> Ajahn Pasanno spends time at a Cambodian refugee camp. [<a href = "../tags/ajahn-pasanno.html">Ajahn Pasanno</a>] [<a href = "../tags/preah-mahaghosananda.html">Preah Mahāghosānanda</a>] <b>[<a href = "../tags/conflict.html">Conflict</a>]</b>
@@ -74,8 +89,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Conflict (Stories),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: Conflict (Stories),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/conflict-story.html">https://abhayagiri.org/questions/tags/conflict-story.html</a>.</p>
 </footer>
 

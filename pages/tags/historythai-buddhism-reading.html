@@ -15,8 +15,18 @@
 </head>
 <body>
     <script>
+      const agent = window.navigator.userAgent;
+      const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+      let isBotUserAgent = false;
+      for (bot of botUsers){
+        if (agent.toLowerCase().indexOf(bot.toLowerCase()) !== -1){
+          isBotUserAgent = true;
+          break;
+        }
+      }
+
       url = new URL(location.href)
-      if (url.protocol != "file:") {
+      if (url.protocol != "file:" && !isBotUserAgent) {
         location.replace("../index.html#tags/historythai-buddhism-reading.html" + url.hash);
       }
     </script>
@@ -25,10 +35,10 @@
     <br>
     <nav id="topnav">
       <a href="../homepage.html">About</a>
+      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AlphabeticalTags.html" class="active">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
-      <a href="../search/Text-search.html">Search</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
       <a href="https://www.abhayagiri.org/questions-and-stories">Back to Abhayagiri.org</a>
     </nav>
@@ -44,7 +54,7 @@
   </div>
   <br>
 
-  <div class="title"><a href="../drilldown/history.html#history"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHistory/Thai Buddhism 
+  <div class="title"><a href="../drilldown/history.html#history" title="Show in tag hierarchy"><img src="../assets/text-bullet-list-tree.svg" width="20"></a> &nbspHistory/Thai Buddhism 
   </div>
 
 <div class="intro">
@@ -54,22 +64,22 @@
   Parent topic: <a href = "../tags/history.html">History</a><br>
   
   
-  42 excerpts, 2:51:12 total duration
+  46 excerpts, 3:04:08 total duration
 </strong>
 <hr />
-<div class="sublink2"> <a href="../tags/historythai-buddhism.html">All excerpts (42)</a>
-      <a href="../tags/historythai-buddhism-qtag.html">Questions about (15)</a>
-      <a href="../tags/historythai-buddhism-atag.html">Answers involving (20)</a>
+<div class="sublink2"> <a href="../tags/historythai-buddhism.html">All excerpts (46)</a>
+      <a href="../tags/historythai-buddhism-qtag.html">Questions about (16)</a>
+      <a href="../tags/historythai-buddhism-atag.html">Answers involving (21)</a>
       <a href="../tags/historythai-buddhism-story.html">Stories (10)</a>
       <a href="../tags/historythai-buddhism-reading.html" class="active">Readings (1)</a> </div>
 <hr>
 
-<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – <a href = ../teachers/ajahn-pasanno.html>Ajahn Pasanno</a> – Sep. 19, 2010</div>
+<div class="title" id="SRD2010_S01"><a href="../events/SRD2010.html">Recollections of Ajahn Chah</a>, <a href="../events/SRD2010.html#SRD2010_S01">Session 1</a> – Sep. 19, 2010</div>
 <p id="SRD2010_S01_F12">
-  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" title="Recollections of Ajahn Chah, S1 E12" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" download="Recollections of Ajahn Chah, S1 E12.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Mun's character and legacy  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/liberation.html">Liberation</a>] <b>[<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]</b>
+  <audio-chip src="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" title="Recollections of Ajahn Chah, S1 E12" data-duration="304"><a href="https://www.abhayagiri.org/media/discs/questions/audio/excerpts/SRD2010/SRD2010_S01_F12.mp3" download="Recollections of Ajahn Chah, S1 E12.mp3">Download audio</a> (5:04)</audio-chip><br /> <b style="text-decoration: underline;">12.</b> <b>Reading</b> from the <a href="https://www.abhayagiri.org/media/discs/questions/pages/about/DraftBiography.html" target="_blank">draft biography</a>: Ajahn Mun’s character and legacy  [<a href = "../tags/ajahn-mun.html">Ajahn Mun</a>] [<a href = "../tags/thai-forest-tradition.html">Thai Forest Tradition</a>] [<a href = "../tags/ajahn-chah.html">Ajahn Chah</a>] // [<a href = "../tags/culturethailand.html">Culture/Thailand</a>] [<a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>] [<a href = "../tags/great-disciples.html">Great disciples</a>] [<a href = "../tags/ascetic-practices.html">Ascetic practices</a>] [<a href = "../tags/rains-retreat.html">Rains retreat</a>] [<a href = "../tags/almsround.html">Almsround</a>] [<a href = "../tags/psychic-powers.html">Psychic powers</a>] [<a href = "../tags/discernment.html">Discernment</a>] [<a href = "../tags/liberation.html">Liberation</a>] <b>[<a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>]</b>
 </p>
 <p style="margin-left: 2em;">
-  <b>Reference</b>: <em>Stillness Flowing</em> by <a href = ../teachers/ajahn-jayasaro.html>Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=74" target="_blank">p. 52</a> 
+  <b>Reference</b>: <em>Stillness Flowing</em> by <a href="../teachers/ajahn-jayasaro.html">Ajahn Jayasaro</a>, <a href="https://www.abhayagiri.org/media/books/stillness-flowing%20-%202018-08-31.pdf#page=74" target="_blank">p. 52</a> 
 </p>
 <p style="margin-left: 2em;">
   <b>Suttas</b>: <a href="https://sutta.readingfaithfully.org/?q=Dhp-65" target="_blank">Dhp 65</a>, <a href="https://sutta.readingfaithfully.org/?q=Dhp-92" target="_blank">Dhp 92</a> 
@@ -80,8 +90,8 @@
 </div>
 
 <footer>
-    <p id="copyright">&copy; 2023 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: History/Thai Buddhism (Readings),” The Ajahn Pasanno Question and Story Archive, January 2024 release,
+    <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Tag: History/Thai Buddhism (Readings),” The Ajahn Pasanno Question and Story Archive, July 2024 release,
       <a href="https://abhayagiri.org/questions/tags/historythai-buddhism-reading.html">https://abhayagiri.org/questions/tags/historythai-buddhism-reading.html</a>.</p>
 </footer>
 

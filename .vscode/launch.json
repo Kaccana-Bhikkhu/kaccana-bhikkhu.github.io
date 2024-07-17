@@ -7,7 +7,7 @@
 
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -15,7 +15,7 @@
         },
         {
             "name": "AllSheets",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -29,7 +29,7 @@
         },
         {
             "name": "AllEvents",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -41,7 +41,7 @@
         },
         {
             "name": "ParseCSV",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
@@ -53,51 +53,88 @@
         },
         {
             "name": "ParseCSVOnly",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV",
-                "-vvv",
-                "--auditNames"
-            ],
+                "-vvv"            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
             "name": "Prototype",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype",
-                "--buildOnly",
-                "search"
+                "Prototype"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
-            "name": "BuildAll",
-            "type": "python",
+            "name": "BuildAllAbhayagiri",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "All",
                 "--args",
-                "python/config/BuildAll.args"
+                "python/config/BuildAbhayagiri.args"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildAllPreview",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "All",
+                "--args",
+                "python/config/BuildPreview.args"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildAllGithub",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "All",
+                "--args",
+                "python/config/BuildGithub.args"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "BuildAllArchival",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "All",
+                "--args",
+                "python/config/BuildArchival.args"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
             "name": "Testing",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV",
-                "--auditNames"
+                "DownloadFiles",
+                "--args",
+                "python/config/BuildPreview.args",
+                "--no-multithread"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
