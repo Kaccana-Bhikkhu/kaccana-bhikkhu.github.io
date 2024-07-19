@@ -7,7 +7,7 @@ call gsutil -m rsync -r -d audio/excerpts gs://apqs_archive/audio/excerpts
 
 echo Finished first command
 
-call gsutil -m rsync -r -d -x ".*json$" pages gs://apqs_archive/pages
+call gsutil -m rsync -r -d pages gs://apqs_archive/pages
 
 echo Finished second command
 
