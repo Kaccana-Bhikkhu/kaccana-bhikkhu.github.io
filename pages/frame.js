@@ -24,6 +24,7 @@ export function configureLinks(frame,url) {
 			let attributePath = el.getAttribute(attribute);
 			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
 				el.setAttribute(attribute,join(dirname(url),attributePath));
+				console.log("Changed",attributePath,"to",el.getAttribute(attribute));
 			};
 		});
 	});
@@ -39,7 +40,7 @@ export function configureLinks(frame,url) {
 		}
 
 		if (href.startsWith("#")) {
-			let noBookmark = decodeURIComponent(locationNoQuery.href).split("#").slice(0,2).join("#")
+			let noBookmark = decodeURIComponent(locationNoQuery.href).split("#").slice(0,2).join("#");
 			el.href = noBookmark+href;
 			el.addEventListener("click", () => {
 				history.pushState({}, "", el.href);
@@ -68,13 +69,13 @@ export function configureLinks(frame,url) {
 }
 
 async function changeURL(pUrl) {
-	pUrl = decodeURIComponent(pUrl)
-	console.log("changeURL",pUrl)
+	pUrl = decodeURIComponent(pUrl);
+	console.log("changeURL",pUrl);
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
-			let [text, resultUrl] = result
-			text = text.replaceAll(/<link[^>]*rel="stylesheet"[^>]*style\.css[^>]*>/gi,"")
+			let [text, resultUrl] = result;
+			text = text.replaceAll(/<link[^>]*rel="stylesheet"[^>]*style\.css[^>]*>/gi,"");
 			frame.innerHTML = text;
 
 			let innerTitle = frame.querySelector("title");
@@ -83,10 +84,10 @@ async function changeURL(pUrl) {
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
 			if (frame.querySelector("#search-button")) {
-				loadSearchPage()
+				loadSearchPage();
 			}
 
-			configureLinks(frame,resultUrl)
+			configureLinks(frame,resultUrl);
 		});
 }
 
@@ -99,7 +100,7 @@ function delayedScroll(bookmark) {
 
 if (frame) {
 	changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-		let urlHash = decodeURIComponent(location.hash)
+		let urlHash = decodeURIComponent(location.hash);
 		if (urlHash.slice(1).includes("#")) {
 			delayedScroll(urlHash.slice(1).split("#")[1]);
 		}
