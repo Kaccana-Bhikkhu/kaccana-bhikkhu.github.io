@@ -22,9 +22,9 @@ export function configureLinks(frame,url) {
 	["href","src"].forEach((attribute) => {
 		frame.querySelectorAll("["+attribute+"]").forEach((el) => {
 			let attributePath = el.getAttribute(attribute);
-			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
+			// Don't modify: 1. Absolute URLs; 2. Links to #bookmark; 3. audio-chip tags (processed in audioChip.js) 
+			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#") && !(el.localName == "audio-chip")) {
 				el.setAttribute(attribute,join(dirname(url),attributePath));
-				console.log("Changed",attributePath,"to",el.getAttribute(attribute));
 			};
 		});
 	});
