@@ -85,41 +85,128 @@ function substituteWildcards(regExpString) {
     return bounded.replaceAll("\\*",`[^${ESCAPED_HTML_CHARS}]*?`).replaceAll("_",`[^${ESCAPED_HTML_CHARS}]`).replaceAll("\\$","\\b");
 }
 
-function makeRegExp(element) {
-    // Take an element found by parseQuery and return a RegExp describing what it should match.
-    // Also add regex strings to gBoldTextItems to indicate how to display the match in bold.
-    let unwrapped = element;
-    switch (element[0]) {
-        case '"': // Items in quotes must match on word boundaries.
-            unwrapped = "$" + element.replace(/^"+/,'').replace(/"+$/,'') + "$";
-            break;
+// A class to parse and match a single term in a search query
+class searchTerm {
+    matcher; // A RegEx created from searchElement
+    negate = false; // Return true when matcher fails to match?
+    boldTextMatcher; // A RegEx used to highlight this term when displaying results
+
+    constructor(seachElement) {
+        // Create a searchTerm from an element found by parseQuery.
+        // Also create boldTextMatcher to display the match in bold.
+        let unwrapped = seachElement;
+        switch (seachElement[0]) {
+            case '"': // Items in quotes must match on word boundaries.
+                unwrapped = "$" + seachElement.replace(/^"+/,'').replace(/"+$/,'') + "$";
+                break;
+        }
+
+        // Replace inner * and $ with appropriate operators.
+        let escaped = substituteWildcards(unwrapped);
+        console.log("searchElement:",seachElement,escaped);
+        this.matcher = new RegExp(escaped,"g");
+
+        // Start processing again to create RegExps for bold text
+        let boldItem = escaped;
+        console.log("boldItem before:",boldItem);
+        if (seachElement.match(/^\[|\]$/g)) { // are we matching a tag?
+            boldItem = substituteWildcards(seachElement.replace(/^\[+/,'').replace(/\]+$/,''));
+                // remove enclosing [ ]
+        } else if (seachElement.match(/^\{|\}$/g)) { // are we matching a teacher?
+            boldItem = substituteWildcards(seachElement.replace(/^\{+/,'').replace(/\}+$/,''));
+                // remove enclosing { }
+        }
+        console.log("boldItem after:",boldItem);
+        this.boldTextMatcher = new RegExp(boldItem,"g");
+        gBoldTextItems.push(boldItem);
     }
 
-    // Replace inner * and $ with appropriate operators.
-    let escaped = substituteWildcards(unwrapped);
-    console.log("processQueryElement:",element,escaped);
-
-    // Start processing again to create RegExps for bold text
-    let boldItem = escaped;
-    console.log("boldItem before:",boldItem);
-    if (element.match(/^\[|\]$/g)) { // are we matching a tag?
-        boldItem = substituteWildcards(element.replace(/^\[+/,'').replace(/\]+$/,''));
-            // remove enclosing [ ]
-    } else if (element.match(/^\{|\}$/g)) { // are we matching a teacher?
-        boldItem = substituteWildcards(element.replace(/^\{+/,'').replace(/\}+$/,''));
-            // remove enclosing { }
+    matchesBlob(blob) { // Does this search term match a given blob?
+        return blob.search(this.matcher) != -1;
     }
-    console.log("boldItem after:",boldItem);
+}
 
-    gBoldTextItems.push(boldItem);
-    return new RegExp(escaped,"g");
+class searchGroup {
+    // An array of searchTerms. All searchTerms must match the same blob in order for an item to match.
+    terms = []; // An array of searchTerms in the group
+    negate = false; // Return true when searchGroup fails to match?
+
+    constructor() {
+        
+    }
+
+    addTerm(searchString) {
+        this.terms.push(new searchTerm(searchString));
+    }
+
+    matchesItem(item) { // Does this search group match an item?
+        for (const blob of item.blobs) {
+            let allTermsMatch = true;
+            for (const term of this.terms) {
+                if (!term.matchesBlob(blob))
+                    allTermsMatch = false;
+            }
+            if (allTermsMatch)
+                return true;
+        }
+        return false;
+    }
+
+    filterItems(items) { // Return an array containing items that match this group
+        let result = [];
+        for (const item of items) {
+            if (this.matchesItem(item))
+                result.push(item)
+        }
+        return result;
+    }
+}
+
+export class searchQuery {
+    // An array of searchGroups that describes an entire search query
+    groups = [];
+
+    constructor(queryText) {
+        // Construct a search query by parsing queryText into search groups containing search terms.
+        // Search groups are specified by enclosure within parenthesis.
+        // Each excerpt must match all search groups.
+        // Search keys within a search group must be matched within the same blob.
+        // So (#Read Pasanno}) matches only kind 'Reading' or 'Read by' with teacher ending with Pasanno
+        
+        queryText = queryText.toLowerCase();
+        queryText = queryText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+    
+        let partsSearch = "\\s*(" + [
+            matchEnclosedText('""',''),
+            matchEnclosedText('{}',SPECIAL_SEARCH_CHARS),
+            matchEnclosedText('[]',SPECIAL_SEARCH_CHARS),
+            "[^ ]+"
+        ].join("|") + ")";
+        console.log(partsSearch);
+        partsSearch = new RegExp(partsSearch,"g");
+    
+        gBoldTextItems = [];
+        for (let match of queryText.matchAll(partsSearch)) {
+            let group = new searchGroup();
+            group.addTerm(match[1].trim());
+            this.groups.push(group);
+        }
+    }
+
+    filterItems(items) { // Return an array containing items that match all groups in this query
+        let found = items;
+        for (const group of this.groups) {
+            found = group.filterItems(found);
+        }
+        return found;
+    }
 }
 
 let gBoldTextItems = []; // A list of RegExps representing search matches that should be displayed in bold text.
 
 export function parseQuery(query) {
-    // Given a query string, parse it into string search bits.
-    // Return a two-dimensional array representing search groups specified by enclosure within parenthesis.
+    // Given a query string, parse it into searchGroups.
+    // Return an array representing searchGroups specified by enclosure within parenthesis.
     // Each excerpt must match all search groups.
     // Search keys within a search group must be matched within the same blob.
     // So (#Read Pasanno}) matches only kind 'Reading' or 'Read by' with teacher ending with Pasanno
@@ -138,45 +225,12 @@ export function parseQuery(query) {
 
     gBoldTextItems = [];
     let returnValue = [];
-    let match = null;
-    for (match of query.matchAll(partsSearch)) {
-        returnValue.push([makeRegExp(match[1].trim())]);
+    for (let match of query.matchAll(partsSearch)) {
+        let group = new searchGroup();
+        group.addTerm(match[1].trim());
+        returnValue.push(group);
     }
     return returnValue;
-}
-
-export function searchExcerpts(excerpts,parsedQuery) {
-    // search the database and return excerpts that match parsedQuery
-
-    let found = [];
-    let x = null;
-    let blob = null;
-    let group = null;
-    let searchRegex = null;
-    for (x of excerpts) {
-        let allGroupsMatch = true;
-        for (group of parsedQuery) { 
-            let anyBlobMatches = false;
-            for (blob of x.blobs) {
-                let allKeysMatch = true;
-                for (searchRegex of group) {
-                    if ((searchRegex.source == '(?:)') || (blob.search(searchRegex) == -1)) {
-                        allKeysMatch = false;
-                    }
-                }
-                if (allKeysMatch) {
-                    anyBlobMatches = true;
-                }
-            }
-            if (!anyBlobMatches) {
-                allGroupsMatch = false;
-                break;
-            }
-        }
-        if (allGroupsMatch)
-            found.push(x);
-    }
-    return found;
 }
 
 export function renderExcerpts(excerpts,boldTextItems,sessionHeaders) {
@@ -278,16 +332,17 @@ function searchFromURL() {
         return;
     }
 
-    let parsed = parseQuery(query);
-    console.log(parsed);
+    let searchGroups = new searchQuery(query);
+    console.log(searchGroups);
 
-    let found = searchExcerpts(database.excerpts,parsed);
+    let found = searchGroups.filterItems(database.excerpts);
     
-    let regexList = parsed.map((x) => {return x[0].source});
+    /* let regexList = parsed.map((x) => {return x[0].source});
     let resultParts = DEBUG ? [query,
         "|" + regexList.join("|") + "|",
-        ""] : [];
-    showSearchResults(found,gBoldTextItems,resultParts.join("\n<hr>\n"));
+        ""] : []; */
+    
+    showSearchResults(found,gBoldTextItems)//resultParts.join("\n<hr>\n"));
 }
 
 function searchButtonClick() {

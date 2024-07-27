@@ -1,4 +1,4 @@
-import {parseQuery,searchExcerpts,renderExcerpts} from '../../pages/search.js';
+import {searchQuery,renderExcerpts} from '../../pages/search.js';
 
 let gDatabase = null;
 let gTestsCompleted = 0;
@@ -33,8 +33,8 @@ function unitTest(queryString,excerpts,expectedResultCount,description) {
     // Returns an html string. If successful this is a simple message.
     // If the test fails, it is the list of all excerpts found.
 
-    let query = parseQuery(queryString);
-    let results = searchExcerpts(excerpts,query)
+    let searchGroups = new searchQuery(queryString);
+    let results = searchGroups.filterItems(excerpts)
 
     gTestsCompleted++;
 
@@ -42,8 +42,16 @@ function unitTest(queryString,excerpts,expectedResultCount,description) {
     if (results.length === expectedResultCount) {
         output = `<b>${gTestsCompleted}. Passed.</b> ${description}: expected and found ${results.length} excerpts.`
     } else {
+        let queryStrings = [];
+        for (const group of searchGroups) {
+            queryStrings.push("(");
+            for (const item of group.terms) {
+                queryStrings.push(item.matcher.source + " ");
+            }
+            queryStrings.push(") ")
+        }
         output = `<b style="color:red;">${gTestsCompleted}. Failed.</b> ${description}: expected ${expectedResultCount} excerpts but found ${results.length}.<br>`
-        output += `Query text: ${queryString}<br>Regular expressions: ${query}<br>`
+        output += `Query text: ${queryString}<br>Regular expressions: ${queryStrings.join("")}<br>`
         output += renderExcerpts(results,[],gDatabase.sessionHeader);
         gFailures++;
     }
