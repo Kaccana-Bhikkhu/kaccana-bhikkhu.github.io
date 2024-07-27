@@ -50,9 +50,15 @@
   </div>
 
 <div class="intro">
-<h2 id="test-the-mp3-player-on-a-local-mp3-file">Test the mp3 player on a local mp3 file</h2>
-<p>This is a player pointing to LocalMp3PlayerTest.mp3 in this directory (pages/about/):</p>
+<h2 id="test-the-mp3-player-on-a-local-mp3-file">Test the mp3 player on a local mp3 file:</h2>
+<p>This is a player pointing to LocalMp3PlayerTest.mp3 in this directory (`pages/about/`):</p>
 <p><audio-chip src="LocalMp3PlayerTest.mp3" title="A veritable blizzard of questions"><a href="LocalMp3PlayerTest.mp3" download="LocalMp3PlayerTest.mp3">Download audio</a> ()</audio-chip><br /></p>
+<h2 id="live-server-path-oddity">Live Server path oddity:</h2>
+<p>This is the image at <code>../assets/download.svg</code>: <img alt="download icon" src="../assets/download.svg" /></p>
+<p>This is the image at <code>../../pages/assets/download.svg</code>: <img alt="download icon" src="../../pages/assets/download.svg" /></p>
+<p>This is the image at <code>../../../pages/assets/download.svg</code>: <img alt="download icon" src="../../../pages/assets/download.svg" /></p>
+<p>This is the image at <code>../../../../pages/assets/download.svg</code>: <img alt="download icon" src="../../../../pages/assets/download.svg" /></p>
+<p>No matter how many <code>../</code> we concatenate, VSCode Live Server still loads the same file. Don't try this on your production server!</p>
 </div>
 
 <footer>

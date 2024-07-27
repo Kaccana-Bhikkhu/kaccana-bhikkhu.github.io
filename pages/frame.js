@@ -24,7 +24,7 @@ export function configureLinks(frame,url) {
 			let attributePath = el.getAttribute(attribute);
 			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
 				el.setAttribute(attribute,join(dirname(url),attributePath));
-				console.log("Changed",attributePath,"to",el.getAttribute(attribute));
+				console.log("frame.js: Changed",attribute,attributePath,"to",el.getAttribute(attribute));
 			};
 		});
 	});
@@ -70,7 +70,7 @@ export function configureLinks(frame,url) {
 
 async function changeURL(pUrl) {
 	pUrl = decodeURIComponent(pUrl);
-	console.log("changeURL",pUrl);
+	console.log("frame.js: changeURL",pUrl);
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {

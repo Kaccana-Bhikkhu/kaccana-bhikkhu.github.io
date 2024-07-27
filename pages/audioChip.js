@@ -57,7 +57,7 @@ class AudioChip extends HTMLElement {
 
 	connectedCallback() {
 		let src = this.getAttribute("src");
-		console.log("Loading audio at",src)
+		console.log("audioChip.js: Loading audio at",src)
 		this.audio = new Audio(src);
 		let loadAudio = this.dataset.duration == null;
 		if (loadAudio)
