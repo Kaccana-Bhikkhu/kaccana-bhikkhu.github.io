@@ -1,7 +1,7 @@
 import {configureLinks} from './frame.js';
 
 const MAX_RESULTS = 100;
-const SPECIAL_SEARCH_CHARS = "][{}()#^@";
+const SPECIAL_SEARCH_CHARS = "][{}()#^@&";
 const PALI_DIACRITICS = {
     "a":"ā","i":"ī","u":"ū",
     "d":"ḍ","l":"ḷ","t":"ṭ",
@@ -268,8 +268,8 @@ function searchFromURL() {
         return;
     }
 
-    let params = new URLSearchParams(decodeURIComponent(location.search.slice(1)));
-    let query = params.has("q") ? params.get("q") : "";
+    let params = new URLSearchParams(location.search.slice(1));
+    let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
     console.log("Called searchFromURL. Query:",query);
     frame.querySelector('#search-text').value = query;
 

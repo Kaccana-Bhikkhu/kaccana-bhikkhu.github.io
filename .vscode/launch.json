@@ -131,10 +131,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadFiles",
-                "--args",
-                "python/config/BuildPreview.args",
-                "--no-multithread"
+                "SetupSearch"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

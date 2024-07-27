@@ -77,6 +77,9 @@ function runUnitTests() {
         ['@UD2014-1 #Question',13,'Questions'],
         ['@UD2014-1 "of good"',1,'"of good"'],
         ['@UD2014-1 of good',3,'of good without quotes'],
+        ['Excerpt blob format 2.0:'],
+        ['@UD2014-1 &References',9,'All references'],
+        ['@UD2014-1 @s02',17,'All excerpts in Session 2']
     ];
 
     let results = ["All results are from searching UD2014-1.<br><br>"];
@@ -85,7 +88,7 @@ function runUnitTests() {
         if (test.length === 3)
             results.push(unitTest(test[0],gDatabase.excerpts,test[1],test[2]) + "<br>");
         else
-            results.push(`<h3>${test[0]}</h3>`)
+            results.push(`<br><h3>${test[0]}</h3>`)
     }
 
     showResults(results.join(""))

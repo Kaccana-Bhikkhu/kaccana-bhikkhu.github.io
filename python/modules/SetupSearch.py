@@ -25,10 +25,10 @@ def RawBlobify(item: str) -> str:
     remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace."""
     output = re.sub(r'[‘’"“”]',"'",item) # Convert all quotes to single quotes
     output = output.replace("–","-").replace("—","-") # Conert all dashes to hypens
-    output = Utils.RemoveDiacritics(item.lower())
+    output = Utils.RemoveDiacritics(output.lower())
     output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
     output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
-    output = re.sub(r"\+\+[^+]*\+\+","",output) # Remove ++Kind++ tags
+    output = output.replace("++","") # Remove ++ bold format markers
     output = re.sub(r"[|]"," ",output) # convert these characters to a space
     output = re.sub(r"[][#()@_*]^","",output) # remove these characters
     output = re.sub(r"\s+"," ",output.strip()) # normalize whitespace
@@ -40,7 +40,7 @@ gOutputChars:set[str] = set()
 gNonSearchableTeacherRegex = None
 def Blobify(items: Iterable[str]) -> Iterator[str]:
     """Convert strings to lowercase, remove diacritics, special characters, 
-    remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace.
+    remove html tags, ++ markers, and Markdown hyperlinks, and normalize whitespace.
     Also remove teacher names who haven't given search consent."""
 
     global gNonSearchableTeacherRegex
@@ -83,13 +83,25 @@ def SearchBlobs(excerpt: dict) -> list[str]:
                 yield teacherDB[t]["attributionName"]
 
     for item in Filter.AllItems(excerpt):
+        aTags = item.get("tags",[])
+        if item is excerpt:
+            qTags = aTags[0:item["qTagCount"]]
+            aTags = aTags[item["qTagCount"]:]
+        else:
+            qTags = []
+
         bits = [
-            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
             Enclose(Blobify([item["text"]]),"^"),
             Enclose(Blobify(AllNames(item.get("teachers",[]))),"{}"),
-            Enclose(Blobify(item.get("tags",[])),"[]"),
-            Enclose(Blobify([excerpt["event"]]),"@")
+            Enclose(Blobify(qTags),"[]") if qTags else "",
+            "//",
+            Enclose(Blobify(aTags),"[]"),
+            "|",
+            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
+            Enclose(Blobify([re.sub("\W","",gDatabase["kind"][item["kind"]]["category"])]),"&")
         ]
+        if item is excerpt:
+            bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
         returnValue.append("".join(bits))
     return returnValue
 
