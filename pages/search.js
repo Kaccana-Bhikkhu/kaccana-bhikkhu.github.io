@@ -8,6 +8,11 @@ const PALI_DIACRITICS = {
     "n":"ñṇṅ","m":"ṁṃ"
 };
 
+let PALI_DIACRITIC_MATCH_ALL = {};
+Object.keys(PALI_DIACRITICS).forEach((letter) => {
+    PALI_DIACRITIC_MATCH_ALL[letter] = `[${letter}${PALI_DIACRITICS[letter]}]`;
+});
+
 const DEBUG = false;
 
 let database = null;
@@ -89,7 +94,7 @@ function substituteWildcards(regExpString) {
 class searchTerm {
     matcher; // A RegEx created from searchElement
     negate = false; // Return true when matcher fails to match?
-    boldTextMatcher; // A RegEx used to highlight this term when displaying results
+    boldTextMatcher; // A RegEx string used to highlight this term when displaying results
 
     constructor(seachElement) {
         // Create a searchTerm from an element found by parseQuery.
@@ -116,9 +121,13 @@ class searchTerm {
             boldItem = substituteWildcards(seachElement.replace(/^\{+/,'').replace(/\}+$/,''));
                 // remove enclosing { }
         }
+
+        for (const letter in PALI_DIACRITIC_MATCH_ALL) { // 
+            boldItem = boldItem.replaceAll(letter,PALI_DIACRITIC_MATCH_ALL[letter]);
+        }
+
         console.log("boldItem after:",boldItem);
-        this.boldTextMatcher = new RegExp(boldItem,"g");
-        gBoldTextItems.push(boldItem);
+        this.boldTextMatcher = boldItem;
     }
 
     matchesBlob(blob) { // Does this search term match a given blob?
@@ -164,7 +173,8 @@ class searchGroup {
 
 export class searchQuery {
     // An array of searchGroups that describes an entire search query
-    groups = [];
+    groups = []; // An array of searchGroups representing the query
+    boldTextRegex; // A regular expression matching found texts which should be displayed in bold
 
     constructor(queryText) {
         // Construct a search query by parsing queryText into search groups containing search terms.
@@ -176,6 +186,7 @@ export class searchQuery {
         queryText = queryText.toLowerCase();
         queryText = queryText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
     
+        // 1. Build a regex to parse queryText into items
         let partsSearch = "\\s*(" + [
             matchEnclosedText('""',''),
             matchEnclosedText('{}',SPECIAL_SEARCH_CHARS),
@@ -185,12 +196,23 @@ export class searchQuery {
         console.log(partsSearch);
         partsSearch = new RegExp(partsSearch,"g");
     
-        gBoldTextItems = [];
+        // 2. Create items and groups from the found parts
         for (let match of queryText.matchAll(partsSearch)) {
             let group = new searchGroup();
             group.addTerm(match[1].trim());
             this.groups.push(group);
         }
+
+        // 3. Construct the regex to match bold text.
+        let textMatchItems = [];
+        for (const group of this.groups) {
+            for (const term of group.terms) {
+                textMatchItems.push(term.boldTextMatcher);
+            }
+        }
+        console.log("textMatchItems",textMatchItems);
+        this.boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
+            // Negative lookahead assertion to avoid modifying html tags.
     }
 
     filterItems(items) { // Return an array containing items that match all groups in this query
@@ -200,91 +222,43 @@ export class searchQuery {
         }
         return found;
     }
-}
 
-let gBoldTextItems = []; // A list of RegExps representing search matches that should be displayed in bold text.
-
-export function parseQuery(query) {
-    // Given a query string, parse it into searchGroups.
-    // Return an array representing searchGroups specified by enclosure within parenthesis.
-    // Each excerpt must match all search groups.
-    // Search keys within a search group must be matched within the same blob.
-    // So (#Read Pasanno}) matches only kind 'Reading' or 'Read by' with teacher ending with Pasanno
-
-    query = query.toLowerCase();
-    query = query.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
-
-    let partsSearch = "\\s*(" + [
-        matchEnclosedText('""',''),
-        matchEnclosedText('{}',SPECIAL_SEARCH_CHARS),
-        matchEnclosedText('[]',SPECIAL_SEARCH_CHARS),
-        "[^ ]+"
-    ].join("|") + ")";
-    console.log(partsSearch);
-    partsSearch = new RegExp(partsSearch,"g");
-
-    gBoldTextItems = [];
-    let returnValue = [];
-    for (let match of query.matchAll(partsSearch)) {
-        let group = new searchGroup();
-        group.addTerm(match[1].trim());
-        returnValue.push(group);
+    displayMatchesInBold(string) { // Add <b> and </b> tags to string to display matches in bold
+       return string.replace(this.boldTextRegex,"<b>$&</b>")
     }
-    return returnValue;
 }
 
-export function renderExcerpts(excerpts,boldTextItems,sessionHeaders) {
+export function renderExcerpts(excerpts,searcher,sessionHeaders) {
     // Convert a list of excerpts to html code by concatenating their html attributes
     // Display strings in boldTextItems in bold.
 
-    let x = null;
     let bits = [];
     let lastSession = null;
 
-    console.log("boldTextItems",boldTextItems)
-    let matchDiacritics = {}
-    Object.keys(PALI_DIACRITICS).forEach((letter) => {
-        matchDiacritics[letter] = `[${letter}${PALI_DIACRITICS[letter]}]`;
-    });
-    let textMatchItems = boldTextItems.map((regex) => {
-        let letter = null;
-        for (letter in matchDiacritics) {
-            regex = regex.replaceAll(letter,matchDiacritics[letter]);
-        }
-        return regex;
-    });
-    console.log("textMatchItems:",textMatchItems);
-    let boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
-        // Negative lookahead assertion to avoid modifying html tags.
-    for (x of excerpts) {
+    for (const x of excerpts) {
         if (x.session != lastSession) {
             bits.push(sessionHeaders[x.session]);
             lastSession = x.session;
         }
-        bits.push(x.html.replace(boldTextRegex,"<b>$&</b>"));
+        bits.push(searcher.displayMatchesInBold(x.html));
         bits.push("<hr>");
     }
     return bits.join("\n");
 }
 
-function showSearchResults(excerpts = [],boldTextItems = [],message = "") {
+function showSearchResults(excerpts,searcher,message = "") {
     // excerpts are the excerpts to display
-    // boldTextItems is a list of strings to display in bold.
+    // searcher is the search query object.
     // message is an optional message to display.
     let messageFrame = document.getElementById('message');
     let instructionsFrame = document.getElementById('instructions');
     let resultsFrame = document.getElementById('results');
 
     if (excerpts.length > 0) {
-        //let resultParts = [query,
-        //    "|" + regexList.join("|") + "|",
-        //    `Found ${found.length} excerpts` + ((found.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":",
-        //    renderExcerpts(found.slice(0,MAX_RESULTS),regexList)];
-        
         message += `Found ${excerpts.length} excerpts` + ((excerpts.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":";
         instructionsFrame.style.display = "none";
 
-        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),boldTextItems,database.sessionHeader);
+        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),searcher,database.sessionHeader);
         configureLinks(resultsFrame,location.hash.slice(1));
     } else {
         message += "No excerpts found."
@@ -337,12 +311,7 @@ function searchFromURL() {
 
     let found = searchGroups.filterItems(database.excerpts);
     
-    /* let regexList = parsed.map((x) => {return x[0].source});
-    let resultParts = DEBUG ? [query,
-        "|" + regexList.join("|") + "|",
-        ""] : []; */
-    
-    showSearchResults(found,gBoldTextItems)//resultParts.join("\n<hr>\n"));
+    showSearchResults(found,searchGroups)
 }
 
 function searchButtonClick() {
