@@ -428,7 +428,7 @@ def Alphabetize(sortBy: str,html: str) -> _Alphabetize:
     return _Alphabetize(Utils.RemoveDiacritics(sortBy).lower(),html)
 
 def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
-    """Write a list of tags sorted by number of excerpts."""
+    """Write a list of tags sorted alphabetically."""
     
     pageInfo = Html.PageInfo("Alphabetical",Utils.PosixJoin(pageDir,"AlphabeticalTags.html"),"Tags – Alphabetical")
     yield pageInfo

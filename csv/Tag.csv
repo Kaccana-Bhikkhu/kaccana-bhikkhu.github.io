@@ -1,5 +1,5 @@
 Modified:,2024,,,,,,,,,,,,,,
-Count,181,790,50,400,166,39,65,,37,70,7,821,370,771,771
+Count,180,795,51,404,166,39,66,,37,77,7,826,374,776,776
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,Wholesome qualities,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,Middle Way,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -169,7 +169,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Non-return,,anāgamī,,,,,,,,      Non-return,anāgamī,Non-return,Non-return [anāgamī]
 3,,,,Arahant,,,,,,,,      Arahant,,Arahant,Arahant
 3,0,,,Bodhisattva,,,,,,,,      Bodhisattva,,Bodhisattva,Bodhisattva
-3,0C,,,Nibbāna,,,Unbinding,,,Deathless,Unconditioned,      Nibbāna,,Nibbāna,Nibbāna
+3,0C,,,Nibbāna,,,Unbinding,,,Deathless,Unconditioned;Unestablished consciousness,      Nibbāna,,Nibbāna,Nibbāna
 2,,Heedfulness,,appamāda,,,,,,,,   Heedfulness,appamāda,Heedfulness,Heedfulness [appamāda]
 3,,Spiritual urgency,,saṃvega,,,,,,,,      Spiritual urgency,saṃvega,Spiritual urgency,Spiritual urgency [saṃvega]
 3,,Spiritual search,,ariya-pariyesanā,,,,,,,,      Spiritual search,ariya-pariyesanā,Spiritual search,Spiritual search [ariya-pariyesanā]
@@ -177,6 +177,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Merit,,puñña,,,,,,,,   Merit,puñña,Merit,Merit [puñña]
 2,,Forgiveness,,khama,,,,,,,,   Forgiveness,khama,Forgiveness,Forgiveness [khama]
 2,,Contentment,,santuṭṭhi,,,,,,,,   Contentment,santuṭṭhi,Contentment,Contentment [santuṭṭhi]
+2,,Confidence,,pasāda,,,,,,Spiritual urgency,,   Confidence,pasāda,Confidence,Confidence [pasāda]
 2,,Trust,,,,,,,,,,   Trust,,Trust,Trust
 2,,Courage,,,,,,,,,,   Courage,,Courage,Courage
 2,,Humility,,,,,,,,,,   Humility,,Humility,Humility
@@ -241,7 +242,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Consciousness,,viññāṇa,,,,,,,,      Consciousness,viññāṇa,Consciousness,Consciousness [viññāṇa]
 2,*,Five Aggregates,5,pañcakkhandhā,Aggregates,khandhā,,,,,,   Five Aggregates,khandhā,Aggregates,Aggregates [khandhā]
 3,*,Form,,rūpa,,,Body,,,,,      Form,rūpa,Form,Form [rūpa]
-3,*,Feeling,,vedanā,,,,,,,,      Feeling,vedanā,Feeling,Feeling [vedanā]
+3,*,Feeling,,vedanā,,,,,,Contact,,      Feeling,vedanā,Feeling,Feeling [vedanā]
 3,*,Perception,,saññā,,,,,,,,      Perception,saññā,Perception,Perception [saññā]
 3,*,Volitional formations,,saṅkhāra,,,,,,Volition,,      Volitional formations,saṅkhāra,Volitional formations,Volitional formations [saṅkhāra]
 3,*,Consciousness,,viññāṇa,,,,,,Sense bases,Unestablished consciousness,      Consciousness,viññāṇa,Consciousness,Consciousness [viññāṇa]
@@ -267,10 +268,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Rites-and-rituals clinging,,sīlabbatupādāna,,,,,Attachment to rites and rituals,,,         Rites-and-rituals clinging,sīlabbatupādāna,,
 4,,Doctrine-of-self clinging,,attavādupādāna,,,,Soul,,,,         Doctrine-of-self clinging,attavādupādāna,Doctrine-of-self clinging,Doctrine-of-self clinging [attavādupādāna]
 3,,Becoming,,bhava,,,,,,,,      Becoming,bhava,Becoming,Becoming [bhava]
-3,,Birth,,jāti,,,,,,,,      Birth,jāti,Birth,Birth [jāti]
+3,,Birth,,jāti,,,,,,Rebirth,,      Birth,jāti,Birth,Birth [jāti]
 3,,Suffering,,dukkha,,,,,,,,      Suffering,dukkha,Suffering,Suffering [dukkha]
 2,,Characteristics of existence,3,,,,,,,,,   Characteristics of existence,,Characteristics of existence,Characteristics of existence
-3,*,Impermanence,,anicca,,,Inconstancy,Arising and ceasing;Uncertainty,,,,      Impermanence,anicca,Impermanence,Impermanence [anicca]
+3,*,Impermanence,,anicca,,,Inconstancy,Arising and ceasing;Uncertainty;Mai nae <em>Thai</em>,,,,      Impermanence,anicca,Impermanence,Impermanence [anicca]
 3,*,Suffering,,dukkha,,,,,,,,      Suffering,dukkha,Suffering,Suffering [dukkha]
 3,*,Not-self,,anattā,,,,,,,,      Not-self,anattā,Not-self,Not-self [anattā]
 3,0,Naturalness,,dhammaṭṭhitatā,,,,,,,,      Naturalness,dhammaṭṭhitatā,Naturalness,Naturalness [dhammaṭṭhitatā]
@@ -279,6 +280,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,0,Emptiness,,suññatā,,,,,,,,      Emptiness,suññatā,Emptiness,Emptiness [suññatā]
 3,0,Suchness,,tathatā,,,,,,,,      Suchness,tathatā,Suchness,Suchness [tathatā]
 3,0,Not-made-of-that,,atammayatā,,,,,,,,      Not-made-of-that,atammayatā,Not-made-of-that,Not-made-of-that [atammayatā]
+2,,Aspects of understanding,3,,,,,,,,,   Aspects of understanding,,Aspects of understanding,Aspects of understanding
+3,,Gratification,,assāda,,,,,,Sensual desire,,      Gratification,assāda,Gratification,Gratification [assāda]
+3,,Danger,,ādīnava,,,Drawbacks,,,Spiritual urgency,,      Danger,ādīnava,Danger,Danger [ādīnava]
+3,,Escape,,nissaraṇa,,,,,,Progress of insight,,      Escape,nissaraṇa,Escape,Escape [nissaraṇa]
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 2,*,Moods of the mind,,Arom kong git <em>Thai</em>,,,,,,,,   Moods of the mind,Arom kong git <em>Thai</em>,Moods of the mind,Moods of the mind [Arom kong git <em>Thai</em>]
@@ -295,11 +300,11 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 1,,Three Refuges,3,tisaraṇa,,,,,,,,Three Refuges,tisaraṇa,Three Refuges,Three Refuges [tisaraṇa]
-2,CEp,,,Buddha,,,,,,,,   Buddha,,Buddha,Buddha
+2,CEp,,,Buddha,,,,Tathāgata,,,,   Buddha,,Buddha,Buddha
 3,,Buddha/Biography,,,,,,,,,,      Buddha/Biography,,Buddha/Biography,Buddha/Biography
 3,,Buddha images,,,,,,,,,,      Buddha images,,Buddha images,Buddha images
 3,,Buddho mantra,,,,,,,,,,      Buddho mantra,,Buddho mantra,Buddho mantra
-2,CE,,,Dhamma,,,,,,,,   Dhamma,,Dhamma,Dhamma
+2,CE,,,Dhamma,,,,,,Teaching Dhamma,,   Dhamma,,Dhamma,Dhamma
 2,CE,,,Saṅgha,,,,Monastic community,,,,   Saṅgha,,Saṅgha,Saṅgha
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -407,7 +412,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Calming meditation,,samatha,,,,,,Tranquility,,   Calming meditation,samatha,Calming meditation,Calming meditation [samatha]
 2,,Insight meditation,,vipassanā,,,,,,Investigation of states,,   Insight meditation,vipassanā,Insight meditation,Insight meditation [vipassanā]
 2,,Recollection,10,anusati,,,,,,,,   Recollection,anusati,Recollection,Recollection [anusati]
-3,p,Recollection/Buddha,,buddhānussati,,,,,,Buddha,,      Recollection/Buddha,buddhānussati,Recollection/Buddha,Recollection/Buddha [buddhānussati]
+3,,Recollection/Buddha,,buddhānussati,,,,,,Buddha,,      Recollection/Buddha,buddhānussati,Recollection/Buddha,Recollection/Buddha [buddhānussati]
 3,,Recollection/Dhamma,,dhammānussati,,,,,,Dhamma,,      Recollection/Dhamma,dhammānussati,Recollection/Dhamma,Recollection/Dhamma [dhammānussati]
 3,,Recollection/Saṅgha,,saṅghānussati,,,,,,Saṅgha,,      Recollection/Saṅgha,saṅghānussati,Recollection/Saṅgha,Recollection/Saṅgha [saṅghānussati]
 3,,Recollection/Virtue,,sīlānussati,,,,,,Generosity,,      Recollection/Virtue,sīlānussati,Recollection/Virtue,Recollection/Virtue [sīlānussati]
