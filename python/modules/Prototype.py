@@ -427,6 +427,19 @@ class _Alphabetize(NamedTuple):
 def Alphabetize(sortBy: str,html: str) -> _Alphabetize:
     return _Alphabetize(Utils.RemoveDiacritics(sortBy).lower(),html)
 
+def LanguageTag(tagString: str) -> str:
+    "Return lang (lowercase, no diacritics) when tagString matches <em>LANG</em>. Otherwise return an empty string."
+    tagString = Utils.RemoveDiacritics(tagString).lower()
+    match = re.search(r"<em>([^<]*)</em>$",tagString)
+    if match:
+        return match[1]
+    else:
+        return ""
+
+def RemoveLanguageTag(tagString: str) -> str:
+    "Return tagString with any language tag removed."
+    return re.sub(r"<em>([^<]*)</em>$","",tagString).strip()
+
 def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of tags sorted alphabetically."""
     
@@ -474,7 +487,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         nonEnglish = tag["tag"] == tag["pali"]
         properNoun = ProperNounTag(tag)
         englishAlso = ParseCSV.TagFlag.ENGLISH_ALSO in tag["flags"]
-        hasPali = tag["pali"] and not tag["fullPali"].endswith("</em>")
+        hasPali = tag["pali"] and not LanguageTag(tag["fullPali"])
             # Non-Pāli language full tags end in <em>LANGUAGE</em>
 
         if nonEnglish: # If this tag has no English entry, add it to the appropriate language list and go on to the next tag
@@ -490,48 +503,56 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["proper"].append(entry) # Non-English proper nouns are listed here as well
             if englishAlso:
                 entries["english"].append(entry)
-            continue
-        
-        if properNoun:
-            entries["proper"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-            if englishAlso:
-                entries["english"].append(entry)
         else:
-            entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
-            if not AlphabetizeName(tag["fullTag"]).startswith(AlphabetizeName(tag["tag"])):
-                entries["english"].append(EnglishEntry(tag,tag["tag"]))
-                # File the abbreviated tag separately if it's not a simple truncation
         
-        if re.match(slashPrefixes,tag["fullTag"]):
-            entries["english"].append(Alphabetize(tag["fullTag"],TagDescription(tag,fullTag=True)))
-            # Alphabetize tags like History/Thailand under History/Thailand as well as Thailand, History
+            if properNoun:
+                entries["proper"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+                if englishAlso:
+                    entries["english"].append(entry)
+            else:
+                entries["english"].append(EnglishEntry(tag,tag["fullTag"],fullTag=True))
+                if not AlphabetizeName(tag["fullTag"]).startswith(AlphabetizeName(tag["tag"])):
+                    entries["english"].append(EnglishEntry(tag,tag["tag"]))
+                    # File the abbreviated tag separately if it's not a simple truncation
+            
+            if re.match(slashPrefixes,tag["fullTag"]):
+                entries["english"].append(Alphabetize(tag["fullTag"],TagDescription(tag,fullTag=True)))
+                # Alphabetize tags like History/Thailand under History/Thailand as well as Thailand, History
 
-        if tag["pali"]: # Add an entry for foriegn language items
-            entry = NonEnglishEntry(tag,tag["pali"])
-            if hasPali:
-                entries["pali"].append(entry)
-            else:
-                entries["other"].append(entry)
-            if englishAlso:
-                entries["english"].append(entry)
-        if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the full Pāli tag
-            entry = NonEnglishEntry(tag,tag["fullPali"],fullTag=True)
-            if hasPali:
-                entries["pali"].append(entry)
-            else:
-                entries["other"].append(entry)
-        
-        for translation in tag["alternateTranslations"]:
-            html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True,drilldownLink=False).html}"
-            if translation.endswith("</em>"):
-                entries["other"].append(Alphabetize(translation,html))
-            else:
-                entries["english"].append(Alphabetize(translation,html))
-        
+            if tag["pali"]: # Add an entry for foriegn language items
+                entry = NonEnglishEntry(tag,tag["pali"])
+                if hasPali:
+                    entries["pali"].append(entry)
+                else:
+                    entries["other"].append(entry)
+                if englishAlso:
+                    entries["english"].append(entry)
+            if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the full Pāli tag
+                entry = NonEnglishEntry(tag,tag["fullPali"],fullTag=True)
+                if hasPali:
+                    entries["pali"].append(entry)
+                else:
+                    entries["other"].append(entry)
+            
+            for translation in tag["alternateTranslations"]:
+                html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True,drilldownLink=False).html}"
+                if LanguageTag(translation):
+                    entries["other"].append(Alphabetize(translation,html))
+                else:
+                    entries["english"].append(Alphabetize(translation,html))
+            
         for gloss in tag["glosses"]:
             gloss = AlphabetizeName(gloss)
+            paliGloss = LanguageTag(gloss) == "pali"
+            if not paliGloss or properNoun: # Pali is listed in lowercase
+                gloss = gloss[0].capitalize() + gloss[1:]
+            if paliGloss:
+                gloss = RemoveLanguageTag(gloss)
+                
             html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
-            if gloss.endswith("</em>"):
+            if paliGloss:
+                entries["pali"].append(Alphabetize(gloss,html))
+            elif LanguageTag(gloss):
                 entries["other"].append(Alphabetize(gloss,html))
             else:
                 entries["english"].append(Alphabetize(gloss,html))
@@ -1283,7 +1304,10 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
-            a(TitledList("Other names" if ProperNounTag(tagInfo) else "Glosses",tagInfo['glosses'],plural = ""))
+            if ProperNounTag(tagInfo):
+                a(TitledList("Other names",[RemoveLanguageTag(name) for name in tagInfo['glosses']],plural = ""))
+            else:
+                a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
             a(ListLinkedTags("Parent topic",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
