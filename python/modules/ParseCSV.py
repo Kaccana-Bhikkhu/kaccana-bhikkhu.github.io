@@ -489,11 +489,9 @@ def SortTags(database: dict) -> None:
         parent = database["tagDisplayList"][parentIndex]
         if TagFlag.SORT_SUBTAGS not in parent["flags"]:
             continue
-
-        if len(childIndexes) < childIndexes[-1] - childIndexes[0] + 1:
-            Alert.caution("Cannot sort",repr(parent["name"]),"because it contains multiple levels of tags.")
-            continue
-
+        
+        childIndexes = range(childIndexes[0],childIndexes[-1] + 1)
+            # WalkTags omits subtags, so include all tags between the first and the last; 
         children = [database["tagDisplayList"][i] for i in childIndexes]
 
         def SortByDate(tagInfo:dict) -> float:
@@ -507,7 +505,16 @@ def SortTags(database: dict) -> None:
             datelessTags.append(fullTag)
             return 9999.0
 
-        children.sort(key=SortByDate)
+        baseIndent = children[0]["level"]
+        lastDate = None
+        tagDates = {}
+        for child in children:
+            if child["level"] == baseIndent: # Any subtags sort by the date of their parent.
+                    # Since the sort is stable, this keeps subtags with their parents.
+                lastDate = SortByDate(child)
+            tagDates[child["tag"]] = lastDate
+
+        children.sort(key=lambda tag: tagDates[tag["tag"]])
         for index,child in zip(childIndexes,children):
             database["tagDisplayList"][index] = child
     if datelessTags:

@@ -1,5 +1,5 @@
 Modified:,2024,,,,,,,,,,,,,,
-Count,184,819,51,410,162,39,66,,37,77,7,849,380,797,797
+Count,187,832,51,430,165,39,66,,37,77,7,863,399,811,811
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,Wholesome qualities,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,Middle Way,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -426,10 +426,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Recollection/Peace,,upasamānussati,,,,,,,,      Recollection/Peace,upasamānussati,Recollection/Peace,Recollection/Peace [upasamānussati]
 3,,,,,,,,,,,,      ,,,
 2,*,Four Postures,4,,Postures,,,,,,,   Four Postures,,Postures,Postures
-3,,Posture/Sitting,,nisīdati,,,,,,,,      Posture/Sitting,nisīdati,Posture/Sitting,Posture/Sitting [nisīdati]
-3,,Posture/Walking,,caṅkama,,,,,,,,      Posture/Walking,caṅkama,Posture/Walking,Posture/Walking [caṅkama]
-3,,Posture/Lying down,,,,,,,,,,      Posture/Lying down,,Posture/Lying down,Posture/Lying down
-3,,Posture/Standing,,,,,,,,,,      Posture/Standing,,Posture/Standing,Posture/Standing
+3,,Posture/Sitting,,nisinna,,,,,,,,      Posture/Sitting,nisinna,Posture/Sitting,Posture/Sitting [nisinna]
+3,,Posture/Walking,,caranta,,,,,,,,      Posture/Walking,caranta,Posture/Walking,Posture/Walking [caranta]
+3,,Posture/Lying down,,sayāna,,,,,,,,      Posture/Lying down,sayāna,Posture/Lying down,Posture/Lying down [sayāna]
+3,,Posture/Standing,,tiṭṭhanta,,,,,,,,      Posture/Standing,tiṭṭhanta,Posture/Standing,Posture/Standing [tiṭṭhanta]
 3,0*,Bowing,,,,,,,,,,      Bowing,,Bowing,Bowing
 2,,Meditation retreats,,,,,,,,,,   Meditation retreats,,Meditation retreats,Meditation retreats
 2,,Meditation/Results,,,,,,,,,,   Meditation/Results,,Meditation/Results,Meditation/Results
@@ -706,6 +706,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Tisarana Monastery,,,Tisarana,,,,,,,      Tisarana Monastery,,Tisarana,Tisarana
 3,,Kloster Dhammapala,,,Dhammapala,,,,,,,      Kloster Dhammapala,,Dhammapala,Dhammapala
 3,,Abhayagiri Monastery,,,Abhayagiri,,,,,,,      Abhayagiri Monastery,,Abhayagiri,Abhayagiri
+4,,Saṅghapāla foundation,,,Saṅghapāla,,,,,,,         Saṅghapāla foundation,,Saṅghapāla,Saṅghapāla
 3,,Pacific Hermitage,,,,,,,,,,      Pacific Hermitage,,Pacific Hermitage,Pacific Hermitage
 2,PS,Thai Forest monasteries in the West,,,,,,,,,,   Thai Forest monasteries in the West,,Thai Forest monasteries in the West,Thai Forest monasteries in the West
 3,,Wat Buridat,,,,,,,,,,      Wat Buridat,,Wat Buridat,Wat Buridat
@@ -717,6 +718,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 2,PS,Monasteries in other traditions,,,,,,,,,,   Monasteries in other traditions,,Monasteries in other traditions,Monasteries in other traditions
 3,,City of Ten Thousand Buddhas,,,,,,,,,,      City of Ten Thousand Buddhas,,City of Ten Thousand Buddhas,City of Ten Thousand Buddhas
+3,,Gold Mountain Monastery,,,,,,,,,,      Gold Mountain Monastery,,Gold Mountain Monastery,Gold Mountain Monastery
+3,,Three Conditions Monastery,,,,,,,,,,      Three Conditions Monastery,,Three Conditions Monastery,Three Conditions Monastery
+3,,Holy Tranfiguration Monastery,,,,,,Mount Tabor Monastery,,,,      Holy Tranfiguration Monastery,,Holy Tranfiguration Monastery,Holy Tranfiguration Monastery
+,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 3,,Dhammadharini Monastery,,,,,,,,,,      Dhammadharini Monastery,,Dhammadharini Monastery,Dhammadharini Monastery
 3,,Karuna Buddhist Vihara,,,,,,,,,,      Karuna Buddhist Vihara,,Karuna Buddhist Vihara,Karuna Buddhist Vihara
@@ -732,25 +737,25 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Rebirth,,,,,,,,,,   Rebirth,,Rebirth,Rebirth
 2,,,,Saṃsāra,,,,,,,,   Saṃsāra,,Saṃsāra,Saṃsāra
 2,,Realms of existence,5,,,,,,,,,   Realms of existence,,Realms of existence,Realms of existence
-3,,Deva,,,,,,,,,,      Deva,,Deva,Deva
-3,,Human,,,,,,,,,,      Human,,Human,Human
-3,,Ghost,,,,,,,,,,      Ghost,,Ghost,Ghost
-3,,Animal,,,,,,,,,,      Animal,,Animal,Animal
-3,,Hell,,,,,,,,,,      Hell,,Hell,Hell
+3,,,,Deva,,,,,,,,      Deva,,Deva,Deva
+3,,Human,,manussa,,,,,,,,      Human,manussa,Human,Human [manussa]
+3,,Ghost,,peta,,,,,,,,      Ghost,peta,Ghost,Ghost [peta]
+3,,Animal,,tiracchāna,,,,,,,,      Animal,tiracchāna,Animal,Animal [tiracchāna]
+3,,Hell,,niraya,,,,,,,,      Hell,niraya,Hell,Hell [niraya]
 2,.,Other beings,,,,,,,,,,   Other beings,,,
 3,,God,,,,,,,,,,      God,,God,God
 3,Cp,,,Māra,,,,,,,,      Māra,,Māra,Māra
 3,,Non-human beings,,amanussa,,,,,,,,      Non-human beings,amanussa,Non-human beings,Non-human beings [amanussa]
 2,,Nature of mind,,,,,,,,,,   Nature of mind,,Nature of mind,Nature of mind
-3,,Memory,,,,,,,,,,      Memory,,Memory,Memory
+3,,Memory,,sati,,,,,,,,      Memory,sati,Memory,Memory [sati]
 3,,Moods of the mind,,Arom kong git <em>Thai</em>,,,,,,,,      Moods of the mind,Arom kong git <em>Thai</em>,Moods of the mind,Moods of the mind [Arom kong git <em>Thai</em>]
-3,,Dreams,,,,,,,,,,      Dreams,,Dreams,Dreams
-3,,Psychic powers,,,,,,,,,,      Psychic powers,,Psychic powers,Psychic powers
+3,,Dreams,,supinā,,,,,,,,      Dreams,supinā,Dreams,Dreams [supinā]
+3,,Psychic powers,,iddhi,,,,,,,,      Psychic powers,iddhi,Psychic powers,Psychic powers [iddhi]
 2,,Supernatural,,,,,,,,,,   Supernatural,,Supernatural,Supernatural
 ,,,,,,,,,,,,,,,
 2,,The Deathless,,amata,Deathless,,,,,Nibbāna,,   The Deathless,amata,Deathless,Deathless [amata]
 2,,Unestablished consciousness,,appatiṭṭhitaṁ viññāṇaṁ,,,,Signless consciousness,,Nibbāna,,   Unestablished consciousness,appatiṭṭhitaṁ viññāṇaṁ,Unestablished consciousness,Unestablished consciousness [appatiṭṭhitaṁ viññāṇaṁ]
-2,,The Unconditioned/Ultimate Truth,,asaṅkhata,Unconditioned,,,Ultimate Truth,,Nibbāna,,   The Unconditioned/Ultimate Truth,asaṅkhata,Unconditioned,Unconditioned [asaṅkhata]
+2,,The Unconditioned/Ultimate Truth,,asaṅkhata,Unconditioned,,,Ultimate Truth; Vimut <em>Thai</em>,,Nibbāna,,   The Unconditioned/Ultimate Truth,asaṅkhata,Unconditioned,Unconditioned [asaṅkhata]
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -767,10 +772,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,History/Other Theravāda traditions,,,,,,,,,,   History/Other Theravāda traditions,,History/Other Theravāda traditions,History/Other Theravāda traditions
 ,,,,,,,,,,,,,,,
 2,,History/Mahāyāna Buddhism,,,,,,,,,,   History/Mahāyāna Buddhism,,History/Mahāyāna Buddhism,History/Mahāyāna Buddhism
-,,,,,,,,,,,,,,,
+2,,History/America,,,,,,,,,,   History/America,,History/America,History/America
 2,,History/Western Buddhism,,,,,,,,,,   History/Western Buddhism,,History/Western Buddhism,History/Western Buddhism
 3,p,History/Western Buddhist monasticism,,,,,,,,,,      History/Western Buddhist monasticism,,History/Western Buddhist monasticism,History/Western Buddhist monasticism
-2,,History/America,,,,,,,,,,   History/America,,History/America,History/America
+2,,Geography/India,,,,,,,,,,   Geography/India,,Geography/India,Geography/India
 2,,Geography/Thailand,,,,,,,,,,   Geography/Thailand,,Geography/Thailand,Geography/Thailand
 ,,,,,,,,,,,,,,,
 1,,Cultural context,,,,,,,,,,Cultural context,,Cultural context,Cultural context
@@ -798,7 +803,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Buddhist identity,,,,,,,,,,   Buddhist identity,,Buddhist identity,Buddhist identity
 2,,Popular culture,,,,,,,,,,   Popular culture,,Popular culture,Popular culture
 3,p,Winnie-the-Pooh,,,,,,,,,,      Winnie-the-Pooh,,Winnie-the-Pooh,Winnie-the-Pooh
-,,,,,,,,,,,,,,,
+3,p,The Far Side,,,,,,,,,,      The Far Side,,The Far Side,The Far Side
 ,,,,,,,,,,,,,,,
 1,P,Spiritual traditions,,,,,,,,,,Spiritual traditions,,Spiritual traditions,Spiritual traditions
 2,,Theravāda,,,,,,,,,,   Theravāda,,Theravāda,Theravāda
@@ -809,6 +814,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 2,,Secular Buddhism,,,,,,,,,,   Secular Buddhism,,Secular Buddhism,Secular Buddhism
 2,,Hinduism,,,,,,,,,,   Hinduism,,Hinduism,Hinduism
+2,,Taoism,,,,,,,,,,   Taoism,,Taoism,Taoism
 2,,Judaism,,,,,,,,,,   Judaism,,Judaism,Judaism
 2,,Christianity,,,,,,,,,,   Christianity,,Christianity,Christianity
 2,,Islam,,,,,,,,,,   Islam,,Islam,Islam
@@ -837,7 +843,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Four Requisites,4,,Requisites,,,,,,,   Four Requisites,,Requisites,Requisites
 3,,Robes,,cīvara,,,,,,,,      Robes,cīvara,Robes,Robes [cīvara]
 3,,Almsfood,,piṇḍapāta,,,,,,,,      Almsfood,piṇḍapāta,Almsfood,Almsfood [piṇḍapāta]
-4,,Almsbowl,,,,,,,,,,         Almsbowl,,Almsbowl,Almsbowl
+4,,Almsbowl,,patta,,,,,,,,         Almsbowl,patta,Almsbowl,Almsbowl [patta]
 4,,Almsround,,Pindapat <em>Thai</em>,,,,,,,,         Almsround,Pindapat <em>Thai</em>,Almsround,Almsround [Pindapat <em>Thai</em>]
 3,,Shelter,,senāsana,,,,,,,,      Shelter,senāsana,Shelter,Shelter [senāsana]
 4,,Building projects,,,,,,,,,,         Building projects,,Building projects,Building projects
@@ -848,17 +854,18 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Moderation in eating,,bhojane mattaññū,,,,,,Food,,      Moderation in eating,bhojane mattaññū,Moderation in eating,Moderation in eating [bhojane mattaññū]
 3,,Devotion to wakefulness,,jāgariyaṁ anuyutto,,,,,,Energy,,      Devotion to wakefulness,jāgariyaṁ anuyutto,Devotion to wakefulness,Devotion to wakefulness [jāgariyaṁ anuyutto]
 ,,,,,,,,,,,,,,,
-2,,Monastic life,,,,,,,,,,   Monastic life,,Monastic life,Monastic life
+2,,Monastic life,,brahmacariyā,,,,,,,,   Monastic life,brahmacariyā,Monastic life,Monastic life [brahmacariyā]
 3,,Monastic life/Motivation,,,,,,,,,,      Monastic life/Motivation,,Monastic life/Motivation,Monastic life/Motivation
-3,,Ordination,,,,,,,,,,      Ordination,,Ordination,Ordination
+3,,Ordination,,upasampadā,,,,,,,,      Ordination,upasampadā,Ordination,Ordination [upasampadā]
 4,,Temporary ordination,,,,,,,,,,         Temporary ordination,,Temporary ordination,Temporary ordination
 3,*,Mentoring,,,,,,,,,,      Mentoring,,Mentoring,Mentoring
 3,,,,Vinaya,,,,,,,,      Vinaya,,Vinaya,Vinaya
 4,,,,Pāṭimokkha,,,,,,,,         Pāṭimokkha,,Pāṭimokkha,Pāṭimokkha
-4,,Confession,,,,,,,,,,         Confession,,Confession,Confession
+4,,Confession,,paṭidesanā,,,,,,,,         Confession,paṭidesanā,Confession,Confession [paṭidesanā]
+4,,Disciplinary transactions,,,,,,,,,,         Disciplinary transactions,,Disciplinary transactions,Disciplinary transactions
 4,,Dependence,,nissaya,,,,,,,,         Dependence,nissaya,Dependence,Dependence [nissaya]
 4,,Sequence of training,,,,,,,,,,         Sequence of training,,Sequence of training,Sequence of training
-4,,Protocols,,kiccavatta,,,,,,,,         Protocols,kiccavatta,Protocols,Protocols [kiccavatta]
+4,,Protocols,,kiccavatta,,,,korwat <em>Thai</em>,,,,         Protocols,kiccavatta,Protocols,Protocols [kiccavatta]
 4,,Not handling money,,,,,,,,,,         Not handling money,,Not handling money,Not handling money
 4,,Rains retreat,,vassa,,,,,,,,         Rains retreat,vassa,Rains retreat,Rains retreat [vassa]
 ,,,,,,,,,,,,,,,
@@ -866,7 +873,8 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 3,*Cg,,,Saṅgha,,,,Monastic community,,,,      Saṅgha,,Saṅgha,Saṅgha
 4,*,Fourfold Assembly,,,,,,,,,,         Fourfold Assembly,,Fourfold Assembly,Fourfold Assembly
-4,,Communal harmony,,,,,,,,,,         Communal harmony,,Communal harmony,Communal harmony
+4,*,Communal harmony,,sāmaggī,,,,,,,,         Communal harmony,sāmaggī,Communal harmony,Communal harmony [sāmaggī]
+4,*,Principles of (communal) non-decline,,aparihāniye dhamme,Principles of non-decline,,,,,,,         Principles of (communal) non-decline,aparihāniye dhamme,Principles of non-decline,Principles of non-decline [aparihāniye dhamme]
 4,,Monastery organizational structure,,,,,,,,,,         Monastery organizational structure,,Monastery organizational structure,Monastery organizational structure
 4,,Saṅgha decision making,,,,,,,,,,         Saṅgha decision making,,Saṅgha decision making,Saṅgha decision making
 4,,Role of abbot,,,Abbot,,,,,,,         Role of abbot,,Abbot,Abbot
@@ -890,7 +898,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Older monks,,,,,,,,,,         Older monks,,Older monks,Older monks
 4,*,Temporary ordination,,,,,,,,,,         Temporary ordination,,Temporary ordination,Temporary ordination
 4,,Thai sects,,,,,,,,,,         Thai sects,,Thai sects,Thai sects
-4,,Novices,,,,,,,,,,         Novices,,Novices,Novices
+4,,Novices,,samanera,,,,,,,,         Novices,samanera,Novices,Novices [samanera]
 4,,Postulants,,anagārika,,,Pakow <em>Thai</em>,,,,,         Postulants,anagārika,Postulants,Postulants [anagārika]
 3,*,Women's monastic forms,,,,,,,,,,      Women's monastic forms,,Women's monastic forms,Women's monastic forms
 4,*,,,Bhikkhunī,,,,,,,,         Bhikkhunī,,Bhikkhunī,Bhikkhunī
@@ -913,7 +921,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,False speech,,musā-vādā,,,,,,,,      False speech,musā-vādā,False speech,False speech [musā-vādā]
 3,,Intoxicants,,surāmeraya-majja-pamādaṭṭhānā,,,,,,,,      Intoxicants,surāmeraya-majja-pamādaṭṭhānā,Intoxicants,Intoxicants [surāmeraya-majja-pamādaṭṭhānā]
 2,,Lay life,,,,,,,,,,   Lay life,,Lay life,Lay life
-2,,Conventions,,,,,,,,,,   Conventions,,Conventions,Conventions
+2,,Conventions,,,,,,Samut <em>Thai</em>,,,,   Conventions,,Conventions,Conventions
 2,,Eight Worldly Conditions,8,aṭṭha lokadhammā,Worldly Conditions,lokadhammā,,,,,,   Eight Worldly Conditions,lokadhammā,Worldly Conditions,Worldly Conditions [lokadhammā]
 3,2,Gain and loss,,lābho ca alābho ca,,,,,,,,      Gain and loss,lābho ca alābho ca,Gain and loss,Gain and loss [lābho ca alābho ca]
 3,2,Fame and disrepute,,yaso ca ayaso ca,,,,,,,,      Fame and disrepute,yaso ca ayaso ca,Fame and disrepute,Fame and disrepute [yaso ca ayaso ca]
@@ -938,8 +946,12 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Pace of life,,,,,,,,,,      Pace of life,,Pace of life,Pace of life
 2,,Community,,,,,,,,,,   Community,,Community,Community
 3,,Environment,,,,,,,,,,      Environment,,Environment,Environment
+4,,Weather,,utu,,,,,,,,         Weather,utu,Weather,Weather [utu]
 3,,Fourfold Assembly,,,,,,,,,,      Fourfold Assembly,,Fourfold Assembly,Fourfold Assembly
+3,,Communal harmony,,sāmaggī,,,,,,,,      Communal harmony,sāmaggī,Communal harmony,Communal harmony [sāmaggī]
+3,,Principles of (communal) non-decline,,aparihāniye dhamme,Principles of non-decline,,,,,,,      Principles of (communal) non-decline,aparihāniye dhamme,Principles of non-decline,Principles of non-decline [aparihāniye dhamme]
 3,,Meditation groups,,,,,,,,,,      Meditation groups,,Meditation groups,Meditation groups
+3,,Sharing circles,,,,,,,,,,      Sharing circles,,Sharing circles,Sharing circles
 3,,Politics and society,,,,,,,,,,      Politics and society,,Politics and society,Politics and society
 4,,Leadership,,,,,,,,,,         Leadership,,Leadership,Leadership
 4,,Royalty,,,,,,,,,,         Royalty,,Royalty,Royalty
@@ -948,6 +960,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Non-profit organizations,,,,,,,,,,         Non-profit organizations,,Non-profit organizations,Non-profit organizations
 4,,Corruption,,,,,,,,,,         Corruption,,Corruption,Corruption
 4,,Crime,,,,,,,,,,         Crime,,Crime,Crime
+5,,Prisons,,,,,,,,,,            Prisons,,Prisons,Prisons
 4,,Discrimination,,,,,,,,,,         Discrimination,,Discrimination,Discrimination
 4,,Conflict,,,,,,,,,,         Conflict,,Conflict,Conflict
 ,,,,,,,,,,,,,,,

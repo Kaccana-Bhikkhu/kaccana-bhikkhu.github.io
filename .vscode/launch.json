@@ -58,7 +58,8 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "ParseCSV",
-                "-vvv"            ],
+                "-vvv",
+                "--keepUnusedTags"],
             "console": "integratedTerminal",
             "justMyCode": true
         },
