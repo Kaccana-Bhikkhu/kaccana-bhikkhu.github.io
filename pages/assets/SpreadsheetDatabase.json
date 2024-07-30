@@ -11633,7 +11633,7 @@
       "fileNumber": 11,
       "kind": "Story",
       "flags": "",
-      "text": "Ajahn Chah begins wandering in search of teachers",
+      "text": "Ajahn Chah begins wandering in search of teachers.",
       "teachers": [
         "AP"
       ],
@@ -11662,7 +11662,7 @@
       "fileNumber": 12,
       "kind": "Reading",
       "flags": "",
-      "text": "from the [draft biography](): Ajahn Mun's character and legacy",
+      "text": "from the [draft biography](): Ajahn Mun's character and legacy.",
       "teachers": [
         "AJaya"
       ],
@@ -23561,9 +23561,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Pamutto",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -23668,9 +23666,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Khemako",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -24958,9 +24954,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Khantiko",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -25137,9 +25131,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Anagārika J.R.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -25170,9 +25162,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Anagārika J.R.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -26673,9 +26663,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Kovilo",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -26842,9 +26830,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Pamutto",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -26875,9 +26861,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Khemako",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -27929,9 +27913,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Khantiko",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -28434,9 +28416,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Anagārika J.R.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -28460,9 +28440,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Anagārika J.R.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -31573,9 +31551,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Pamutto",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -31943,9 +31919,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Khemako",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -33484,9 +33458,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Tan Khantiko",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         }
       ],
@@ -33902,9 +33874,7 @@
           "kind": "Read by",
           "flags": "",
           "text": "Anagārika J.R.",
-          "teachers": [
-            "AP"
-          ],
+          "teachers": [],
           "indentLevel": 1
         },
         {
@@ -82802,8 +82772,8 @@
       "takesTags": false,
       "ignoreConsent": true,
       "appendToExcerpt": true,
-      "inheritTeachersFrom": "Session",
-      "form1": "{'Read by ' if text else ''}{text}{'.' if text else ''}||Read by {teachers}.",
+      "inheritTeachersFrom": "Session unless text",
+      "form1": "{'Read by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Read by ' + teachers + '.'}",
       "form2": "unimplemented",
       "form3": "unimplemented",
       "exclude": false,
@@ -82820,8 +82790,8 @@
       "takesTags": false,
       "ignoreConsent": true,
       "appendToExcerpt": true,
-      "inheritTeachersFrom": "Session",
-      "form1": "{'Translated by ' if text else ''}{text}{'.' if text else ''}||Translated by {teachers}.",
+      "inheritTeachersFrom": "Session unless text",
+      "form1": "{'Translated by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Translated by ' + teachers + '.'}",
       "form2": "unimplemented",
       "form3": "unimplemented",
       "exclude": false,
@@ -82838,8 +82808,8 @@
       "takesTags": false,
       "ignoreConsent": false,
       "appendToExcerpt": true,
-      "inheritTeachersFrom": "Session",
-      "form1": "{'Asked by ' if text else ''}{text}{'.' if text else ''}||Asked by {teachers}.",
+      "inheritTeachersFrom": "None",
+      "form1": "{'Asked by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Asked by ' + teachers + '.'}",
       "form2": "unimplemented",
       "form3": "unimplemented",
       "exclude": true,
@@ -83456,7 +83426,7 @@
       "lineage": "Western disciples of Ajahn Chah",
       "eventCount": 41,
       "sessionCount": 200,
-      "excerptCount": 1705,
+      "excerptCount": 1690,
       "htmlFile": "ajahn-pasanno.html"
     },
     "AVira": {

@@ -179,7 +179,8 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
             if grandparent:
                 defaultTeachers = grandparent["teachers"]
             else:
-                defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
+                defaultTeachers = () # If there is no grandparent (i.e. this is a first-level Read by annotation), then always
+                # attribute it. It will be attached to the excerpt, and the annotation will be hidden if it matches the session teachers.
         else:
             parent = Utils.ParentAnnotation(container,item)
             defaultTeachers = parent.get("teachers",())

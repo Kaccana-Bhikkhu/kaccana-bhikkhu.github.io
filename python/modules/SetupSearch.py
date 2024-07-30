@@ -110,6 +110,7 @@ def OptimizedExcerpts() -> list[dict]:
     formatter = Prototype.Formatter()
     formatter.excerptOmitSessionTags = False
     formatter.showHeading = False
+    formatter.headingShowTeacher = False
     for x in gDatabase["excerpts"]:
         xDict = {"session": Utils.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": SearchBlobs(x),
@@ -122,6 +123,7 @@ def SessionHeader() -> dict[str,str]:
     returnValue = {}
     formatter = Prototype.Formatter()
     formatter.headingShowTags = False
+    formatter.headingShowTeacher = False
 
     for s in gDatabase["sessions"]:
         returnValue[Utils.ItemCode(s)] = formatter.FormatSessionHeading(s,horizontalRule=False)

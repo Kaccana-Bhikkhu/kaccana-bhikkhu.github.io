@@ -726,7 +726,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 annotation["teachers"] = ["Anon"]
             elif defaultTeacher == "Excerpt":
                 annotation["teachers"] = excerpt["teachers"]
-            elif defaultTeacher == "Session":
+            elif defaultTeacher == "Session" or (defaultTeacher == "Session unless text" and not annotation["text"]):
                 ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
                 annotation["teachers"] = ourSession["teachers"]
         
