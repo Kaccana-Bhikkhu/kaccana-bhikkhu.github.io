@@ -1283,11 +1283,11 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the teacher page if this tag represents a teacher."
 
-    for teacher in gDatabase["teacher"].values():
-        if teacher["fullName"] == page.info.title:
-            link = TeacherLink(teacher["teacher"])
-            if link:
-                page.AppendContent(f'<a href="{link}">Teachings by {teacher["attributionName"]}</a>',"smallTitle")
+    teacher = Utils.TeacherLookup(page.info.title)
+    if teacher:
+        link = TeacherLink(teacher)
+        if link:
+            page.AppendContent(f'<a href="{link}">Teachings by {gDatabase["teacher"][teacher]["attributionName"]}</a>',"smallTitle")
     
     return page
 
@@ -1363,8 +1363,9 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 def LinkToTagPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the tag page if this teacher has a tag."
 
-    if page.info.title in gDatabase["tag"]:
-        page.AppendContent(HtmlTagLink(page.info.title,text = f'Tag [{page.info.title}]'),"smallTitle")
+    tag = Utils.TagLookup(page.info.title)
+    if tag:
+        page.AppendContent(HtmlTagLink(tag,text = f'Tag [{tag}]'),"smallTitle")
 
     return page
 
@@ -1373,8 +1374,6 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
     
     xDB = gDatabase["excerpts"]
     teacherDB = gDatabase["teacher"]
-
-    teacherPageData = {}
 
     for t,tInfo in teacherDB.items():
         if not tInfo["htmlFile"]:
@@ -1385,7 +1384,6 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
         a = Airium()
         
         excerptInfo = ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False,countSessionExcerpts=True)
-        teacherPageData[t] = excerptInfo
         a(excerptInfo)
         a.hr()
 
