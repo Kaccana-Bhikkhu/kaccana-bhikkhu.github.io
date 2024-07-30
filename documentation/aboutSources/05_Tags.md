@@ -71,7 +71,7 @@ The root tags [History](tag:) and [Cultural context](tag:) contain many similar 
 ## Other Details
  - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.
  - Monastic teacher tags are sorted by date of ordination regardless of gender. Lay teacher tags are sorted by date of birth.
- - The traditional three [Characteristics of existence](tag:) are supplemented with the inclusion of an [additional six](The Island p. 116) by Ajahn Buddhadāsa.
+ - The traditional three [Characteristics of existence](tag:) are supplemented with the inclusion of an [additional six](The Island p. 113) by Ajahn Buddhadāsa.
 
 
 

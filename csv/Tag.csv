@@ -1,5 +1,5 @@
 Modified:,2024,,,,,,,,,,,,,,
-Count,180,795,51,404,166,39,66,,37,77,7,826,374,776,776
+Count,184,819,51,410,162,39,66,,37,77,7,849,380,797,797
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,Wholesome qualities,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,Middle Way,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -313,6 +313,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,,,Pūjā,,,,,,,,      Pūjā,,Pūjā,Pūjā
 2,,Chanting,,,,,,,,,,   Chanting,,Chanting,Chanting
 3,,Protective chants,,paritta,,,,,,,,      Protective chants,paritta,Protective chants,Protective chants [paritta]
+3,,Prayer,,,,,,,,,,      Prayer,,Prayer,Prayer
 2,,Bowing,,,,,,,,,,   Bowing,,Bowing,Bowing
 2,,Festival days,,,,,,,,,,   Festival days,,Festival days,Festival days
 3,*,Lunar observance days,,uposatha,,,,,,,,      Lunar observance days,uposatha,Lunar observance days,Lunar observance days [uposatha]
@@ -320,12 +321,13 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Ajahn Chah Remembrance Day,,,,,,,,,,      Ajahn Chah Remembrance Day,,Ajahn Chah Remembrance Day,Ajahn Chah Remembrance Day
 2,,Visiting holy sites,,,,,,,,,,   Visiting holy sites,,Visiting holy sites,Visiting holy sites
 2,,Objects of veneration,,,,,,,,,,   Objects of veneration,,Objects of veneration,Objects of veneration
-3,,Relics,,,,,,,,,,      Relics,,Relics,Relics
-3,,Stupas/monuments,,,,,,Monuments,,,,      Stupas/monuments,,Stupas/monuments,Stupas/monuments
+3,,Relics,,sarīra,,,,,,,,      Relics,sarīra,Relics,Relics [sarīra]
+3,,Stupas/monuments,,thūpaṃ,,,,Monuments,,,,      Stupas/monuments,thūpaṃ,Stupas/monuments,Stupas/monuments [thūpaṃ]
 3,,Bodhi Tree,,,,,,,,,,      Bodhi Tree,,Bodhi Tree,Bodhi Tree
 3,*,Buddha images,,,,,,,,,,      Buddha images,,Buddha images,Buddha images
 3,,Malas,,,,,,,,,,      Malas,,Malas,Malas
 3,,Amulets,,,,,,,,,,      Amulets,,Amulets,Amulets
+3,,Icons,,,,,,,,,,      Icons,,Icons,Icons
 2,,Funerals,,,,,,,,,,   Funerals,,Funerals,Funerals
 2,,Superstition,,,,,,,,,,   Superstition,,Superstition,Superstition
 ,,,,,,,,,,,,,,,
@@ -405,10 +407,10 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 3,,Mantra,,,,,,,,,,      Mantra,,Mantra,Mantra
 4,*,Buddho mantra,,,,,,,,,,         Buddho mantra,,Buddho mantra,Buddho mantra
-3,,Movement meditation,,,,,,,,,,      Movement meditation,,Movement meditation,Movement meditation
+3,,Koan,,,,,,,,,,      Koan,,Koan,Koan
 3,,,,Hua tou <em>Chinese</em>,,Hua tou,,,,,,      Hua tou <em>Chinese</em>,,Hua tou,Hua tou
 3,,Sound of silence,,,,,,,,,,      Sound of silence,,Sound of silence,Sound of silence
-,,,,,,,,,,,,,,,
+3,,Movement meditation,,,,,,,,,,      Movement meditation,,Movement meditation,Movement meditation
 2,,Calming meditation,,samatha,,,,,,Tranquility,,   Calming meditation,samatha,Calming meditation,Calming meditation [samatha]
 2,,Insight meditation,,vipassanā,,,,,,Investigation of states,,   Insight meditation,vipassanā,Insight meditation,Insight meditation [vipassanā]
 2,,Recollection,10,anusati,,,,,,,,   Recollection,anusati,Recollection,Recollection [anusati]
@@ -424,7 +426,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Recollection/Peace,,upasamānussati,,,,,,,,      Recollection/Peace,upasamānussati,Recollection/Peace,Recollection/Peace [upasamānussati]
 3,,,,,,,,,,,,      ,,,
 2,*,Four Postures,4,,Postures,,,,,,,   Four Postures,,Postures,Postures
-3,,Posture/Sitting,,,,,,,,,,      Posture/Sitting,,Posture/Sitting,Posture/Sitting
+3,,Posture/Sitting,,nisīdati,,,,,,,,      Posture/Sitting,nisīdati,Posture/Sitting,Posture/Sitting [nisīdati]
 3,,Posture/Walking,,caṅkama,,,,,,,,      Posture/Walking,caṅkama,Posture/Walking,Posture/Walking [caṅkama]
 3,,Posture/Lying down,,,,,,,,,,      Posture/Lying down,,Posture/Lying down,Posture/Lying down
 3,,Posture/Standing,,,,,,,,,,      Posture/Standing,,Posture/Standing,Posture/Standing
@@ -437,7 +439,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Present moment awareness,,,,,,,,,,      Present moment awareness,,Present moment awareness,Present moment awareness
 3,,Spaciousness,,,,,,,,,,      Spaciousness,,Spaciousness,Spaciousness
 3,,Direct experience,,,,,,,,,,      Direct experience,,Direct experience,Direct experience
-3,,Knowing itself,,,,,,,,,,      Knowing itself,,Knowing itself,Knowing itself
+3,,Knowing itself,,,,,,Poo roo <em>Thai</em>,,,,      Knowing itself,,Knowing itself,Knowing itself
 2,,Meditation/Unusual experiences,,,,,,,,,,   Meditation/Unusual experiences,,Meditation/Unusual experiences,Meditation/Unusual experiences
 ,,,,,,,,,,,,,,,
 2,,Long-term practice,,,,,,,,,,   Long-term practice,,Long-term practice,Long-term practice
@@ -471,17 +473,18 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 5,,Liberation,,vimutti,,,Freedom,,,,,            Liberation,vimutti,Liberation,Liberation [vimutti]
 4,,Noble Truth of the Path to the Cessation of Suffering,,dukkha-nirodha-gāminī paṭipadā ariya-sacca,Path to the Cessation of Suffering,dukkha-nirodha-gāminī paṭipadā,,,Eightfold Path,,,         Noble Truth of the Path to the Cessation of Suffering,dukkha-nirodha-gāminī paṭipadā,,
 ,,,,,,,,,,,,,,,
-2,,Questions,,,,,,,,,,   Questions,,Questions,Questions
-2,,Dhamma discussion,,,,,,,,,,   Dhamma discussion,,Dhamma discussion,Dhamma discussion
+2,,Questions,,pañhā,,,,,,,,   Questions,pañhā,Questions,Questions [pañhā]
+2,,Dhamma discussion,,dhammasākacchā,,,,,,,,   Dhamma discussion,dhammasākacchā,Dhamma discussion,Dhamma discussion [dhammasākacchā]
 2,,Mentoring,,,,,,,,,,   Mentoring,,Mentoring,Mentoring
 2,,Personal presence,,,,,,,,,,   Personal presence,,Personal presence,Personal presence
 2,,Admonishment/feedback,,,,,,Feedback,,,,   Admonishment/feedback,,Admonishment/feedback,Admonishment/feedback
 2,,Fierce/direct teaching,,,,,,,,,,   Fierce/direct teaching,,Fierce/direct teaching,Fierce/direct teaching
 2,,Stories,,,,,,,,,,   Stories,,Stories,Stories
-2,,Similes,,,,,,,,,,   Similes,,Similes,Similes
+2,,Similes,,opammā,,,,,,,,   Similes,opammā,Similes,Similes [opammā]
 2,,Symbolism,,,,,,,,,,   Symbolism,,Symbolism,Symbolism
 2,,Dhamma books,,,,,,,,,,   Dhamma books,,Dhamma books,Dhamma books
 3,,Free distribution,,,,,,,,,,      Free distribution,,Free distribution,Free distribution
+2,,Recorded Dhamma talks,,,,,,,,,,   Recorded Dhamma talks,,Recorded Dhamma talks,Recorded Dhamma talks
 2,,Dhamma online,,,,,,,,,,   Dhamma online,,Dhamma online,Dhamma online
 ,,,,,,,,,,,,,,,
 1,P,Teachers,,,,,,,,,,Teachers,,Teachers,Teachers
@@ -491,20 +494,28 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Ajahn Sao Kantasīlo,,,Ajahn Sao,,,,,,,         Ajahn Sao Kantasīlo,,Ajahn Sao,Ajahn Sao
 4,,Ajahn Mun Bhūridatto,,,Ajahn Mun,,,,,,,         Ajahn Mun Bhūridatto,,Ajahn Mun,Ajahn Mun
 4,,Ajahn Chah Subhaddo,,,Ajahn Chah,,,,,,,         Ajahn Chah Subhaddo,,Ajahn Chah,Ajahn Chah
-4,PS,Ajahn Chah lineage,,,,,,,,,,         Ajahn Chah lineage,,Ajahn Chah lineage,Ajahn Chah lineage
-5,,Ajahn Jun Indavīro,,,Ajahn Jun,,,,,,,            Ajahn Jun Indavīro,,Ajahn Jun,Ajahn Jun
-5,,Ajahn Sinuan,,,,,,,,,,            Ajahn Sinuan,,Ajahn Sinuan,Ajahn Sinuan
-5,,Ajahn Liem Ṭhitadhammo,,,Ajahn Liem,,,,,,,            Ajahn Liem Ṭhitadhammo,,Ajahn Liem,Ajahn Liem
-5,,Ajahn Boon Choo Ṭhitaguṇo,,,Ajahn Boon Choo,,,,,,,            Ajahn Boon Choo Ṭhitaguṇo,,Ajahn Boon Choo,Ajahn Boon Choo
-5,,Ajahn Mahā Amorn Khemacitto,,,Ajahn Mahā Amorn,,,,,,,            Ajahn Mahā Amorn Khemacitto,,Ajahn Mahā Amorn,Ajahn Mahā Amorn
-5,,Ajahn Sumedho,,,,,,,,,,            Ajahn Sumedho,,Ajahn Sumedho,Ajahn Sumedho
-5,,Ajahn Anek Yasadinno,,,Ajahn Anek,,,,,,,            Ajahn Anek Yasadinno,,Ajahn Anek,Ajahn Anek
-5,,Ajahn Koon Aggadhammo,,,Ajahn Koon,,,,,,,            Ajahn Koon Aggadhammo,,Ajahn Koon,Ajahn Koon
-5,,Ajahn Toon Cittasallo,,,Ajahn Toon,,,,,,,            Ajahn Toon Cittasallo,,Ajahn Toon,Ajahn Toon
-5,,Ajahn Gunha Sukhagāmo,,,Ajahn Gunha,,,,,,,            Ajahn Gunha Sukhagāmo,,Ajahn Gunha,Ajahn Gunha
-5,,Ajahn Bunjong,,,,,,,,,,            Ajahn Bunjong,,Ajahn Bunjong,Ajahn Bunjong
-5,,Ajahn Mahā In,,,,,,,,,,            Ajahn Mahā In,,Ajahn Mahā In,Ajahn Mahā In
-5,,Ajahn Somboon Cittapañño,,,Ajahn Somboon,,,,,,,            Ajahn Somboon Cittapañño,,Ajahn Somboon,Ajahn Somboon
+4,P,Ajahn Chah lineage,,,,,,,,,,         Ajahn Chah lineage,,Ajahn Chah lineage,Ajahn Chah lineage
+5,PS,Thai Ajahn Chah lineage,,,,,,,,,,            Thai Ajahn Chah lineage,,Thai Ajahn Chah lineage,Thai Ajahn Chah lineage
+6,,Ajahn Jun Indavīro,,,Ajahn Jun,,,,,,,               Ajahn Jun Indavīro,,Ajahn Jun,Ajahn Jun
+6,,Ajahn Sinuan,,,,,,,,,,               Ajahn Sinuan,,Ajahn Sinuan,Ajahn Sinuan
+6,,Ajahn Liem Ṭhitadhammo,,,Ajahn Liem,,,,,,,               Ajahn Liem Ṭhitadhammo,,Ajahn Liem,Ajahn Liem
+6,,Ajahn Boon Choo Ṭhitaguṇo,,,Ajahn Boon Choo,,,,,,,               Ajahn Boon Choo Ṭhitaguṇo,,Ajahn Boon Choo,Ajahn Boon Choo
+6,,Ajahn Mahā Amorn Khemacitto,,,Ajahn Mahā Amorn,,,,,,,               Ajahn Mahā Amorn Khemacitto,,Ajahn Mahā Amorn,Ajahn Mahā Amorn
+,,,,,,,,,,,,,,,
+6,,Ajahn Anek Yasadinno,,,Ajahn Anek,,,,,,,               Ajahn Anek Yasadinno,,Ajahn Anek,Ajahn Anek
+6,,Ajahn Koon Aggadhammo,,,Ajahn Koon,,,,,,,               Ajahn Koon Aggadhammo,,Ajahn Koon,Ajahn Koon
+6,,Ajahn Toon Cittasallo,,,Ajahn Toon,,,,,,,               Ajahn Toon Cittasallo,,Ajahn Toon,Ajahn Toon
+6,,Ajahn Gunha Sukhagāmo,,,Ajahn Gunha,,,,,,,               Ajahn Gunha Sukhagāmo,,Ajahn Gunha,Ajahn Gunha
+6,,Ajahn Bunjong,,,,,,,,,,               Ajahn Bunjong,,Ajahn Bunjong,Ajahn Bunjong
+6,,Ajahn Mahā In,,,,,,,,,,               Ajahn Mahā In,,Ajahn Mahā In,Ajahn Mahā In
+6,,Ajahn Somboon Cittapañño,,,Ajahn Somboon,,,,,,,               Ajahn Somboon Cittapañño,,Ajahn Somboon,Ajahn Somboon
+6,,Ajahn Dtun Thiracitto,,,Ajahn Dtun,,,,,,,               Ajahn Dtun Thiracitto,,Ajahn Dtun,Ajahn Dtun
+6,,Ajahn Anan Akiñcano,,,Ajahn Anan,,,,,,,               Ajahn Anan Akiñcano,,Ajahn Anan,Ajahn Anan
+6,,Ajahn Piak Kantasīlo,,,Ajahn Piak,,,,,,,               Ajahn Piak Kantasīlo,,Ajahn Piak,Ajahn Piak
+6,,Ajahn Mahā Adisak Dhammābhinando,,,Ajahn Mahā Adisak,,,,,,,               Ajahn Mahā Adisak Dhammābhinando,,Ajahn Mahā Adisak,Ajahn Mahā Adisak
+6,,Ajahn Preecha Jutindharo,,,Ajahn Preecha,,,,,,,               Ajahn Preecha Jutindharo,,Ajahn Preecha,Ajahn Preecha
+6,,Ajahn Jundee Kantasāro,,,Ajahn Jundee,,,,,,,               Ajahn Jundee Kantasāro,,Ajahn Jundee,Ajahn Jundee
+6,,Ajahn Vitoon,,,,,,,,,,               Ajahn Vitoon,,Ajahn Vitoon,Ajahn Vitoon
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -513,92 +524,105 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
-5,,Ajahn Anando,,,,,,,,,,            Ajahn Anando,,Ajahn Anando,Ajahn Anando
-5,,Ajahn Puriso,,,,,,,,,,            Ajahn Puriso,,Ajahn Puriso,Ajahn Puriso
-5,,Ajahn Pasanno,,,,,,,,,,            Ajahn Pasanno,,Ajahn Pasanno,Ajahn Pasanno
-5,,Ajahn Viradhammo,,,,,,,,,,            Ajahn Viradhammo,,Ajahn Viradhammo,Ajahn Viradhammo
-5,,Ajahn Tiradhammo,,,,,,,,,,            Ajahn Tiradhammo,,Ajahn Tiradhammo,Ajahn Tiradhammo
-5,,Ajahn Dtun Thiracitto,,,Ajahn Dtun,,,,,,,            Ajahn Dtun Thiracitto,,Ajahn Dtun,Ajahn Dtun
-5,,Ajahn Anan Akiñcano,,,Ajahn Anan,,,,,,,            Ajahn Anan Akiñcano,,Ajahn Anan,Ajahn Anan
-5,,Ajahn Piak Kantasīlo,,,Ajahn Piak,,,,,,,            Ajahn Piak Kantasīlo,,Ajahn Piak,Ajahn Piak
-5,,Ajahn Munindo,,,,,,,,,,            Ajahn Munindo,,Ajahn Munindo,Ajahn Munindo
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+6,,Mae Somchai,,,,,,,,,,               Mae Somchai,,Mae Somchai,Mae Somchai
+,,,,,,,,,,,,,,,
+5,PS,Western Ajahn Chah lineage,,,,,,,,,,            Western Ajahn Chah lineage,,Western Ajahn Chah lineage,Western Ajahn Chah lineage
+6,,Ajahn Sumedho,,,,,,,,,,               Ajahn Sumedho,,Ajahn Sumedho,Ajahn Sumedho
+6,,Ajahn Anando,,,,,,,,,,               Ajahn Anando,,Ajahn Anando,Ajahn Anando
+6,,Ajahn Puriso,,,,,,,,,,               Ajahn Puriso,,Ajahn Puriso,Ajahn Puriso
+6,,Ajahn Pasanno,,,,,,,,,,               Ajahn Pasanno,,Ajahn Pasanno,Ajahn Pasanno
+6,,Ajahn Viradhammo,,,,,,,,,,               Ajahn Viradhammo,,Ajahn Viradhammo,Ajahn Viradhammo
+6,,Ajahn Tiradhammo,,,,,,,,,,               Ajahn Tiradhammo,,Ajahn Tiradhammo,Ajahn Tiradhammo
+6,,Ajahn Khemadhammo,,,,,,,,,,               Ajahn Khemadhammo,,Ajahn Khemadhammo,Ajahn Khemadhammo
+,,,,,,,,,,,,,,,
+6,,Ajahn Brahmavaṃso,,,,,,,,,,               Ajahn Brahmavaṃso,,Ajahn Brahmavaṃso,Ajahn Brahmavaṃso
+6,,Ajahn Munindo,,,,,,,,,,               Ajahn Munindo,,Ajahn Munindo,Ajahn Munindo
+6,,Ajahn Vajiro,,,,,,,,,,               Ajahn Vajiro,,Ajahn Vajiro,Ajahn Vajiro
+6,,Ajahn Kalyāṇo,,,,,,,,,,               Ajahn Kalyāṇo,,Ajahn Kalyāṇo,Ajahn Kalyāṇo
+,,,,,,,,,,,,,,,
+6,,Ajahn Kusalo,,,,,,,,,,               Ajahn Kusalo,,Ajahn Kusalo,Ajahn Kusalo
+,,,,,,,,,,,,,,,
+6,,Ajahn Siripañño,,,,,,,,,,               Ajahn Siripañño,,Ajahn Siripañño,Ajahn Siripañño
+6,,Ajahn Kevali,,,,,,,,,,               Ajahn Kevali,,Ajahn Kevali,Ajahn Kevali
+6,,Ajahn Pavaro,,,,,,,,,,               Ajahn Pavaro,,Ajahn Pavaro,Ajahn Pavaro
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+6,,Ajahn Sucitto,,,,,,,,,,               Ajahn Sucitto,,Ajahn Sucitto,Ajahn Sucitto
+,,,,,,,,,,,,,,,
+6,,Ajahn Ñāṇadhammo,,,,,,,,,,               Ajahn Ñāṇadhammo,,Ajahn Ñāṇadhammo,Ajahn Ñāṇadhammo
+6,,Ajahn Soṇa,,,,,,,,,,               Ajahn Soṇa,,Ajahn Soṇa,Ajahn Soṇa
+6,,Ajahn Gavesako,,,,,,,,,,               Ajahn Gavesako,,Ajahn Gavesako,Ajahn Gavesako
+6,,Ajahn Amaro,,,,,,,,,,               Ajahn Amaro,,Ajahn Amaro,Ajahn Amaro
+6,,Ajahn Jayasaro,,,,,,,,,,               Ajahn Jayasaro,,Ajahn Jayasaro,Ajahn Jayasaro
+6,,Ajahn Sudanto,,,,,,,,,,               Ajahn Sudanto,,Ajahn Sudanto,Ajahn Sudanto
+6,,Ajahn Karuṇadhammo,,,,,,,,,,               Ajahn Karuṇadhammo,,Ajahn Karuṇadhammo,Ajahn Karuṇadhammo
+6,,Ajahn Jotipālo,,,,,,,,,,               Ajahn Jotipālo,,Ajahn Jotipālo,Ajahn Jotipālo
+6,,Ajahn Ñāṇiko,,,,,,,,,,               Ajahn Ñāṇiko,,Ajahn Ñāṇiko,Ajahn Ñāṇiko
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
-5,,Ajahn Mahā Adisak Dhammābhinando,,,Ajahn Mahā Adisak,,,,,,,            Ajahn Mahā Adisak Dhammābhinando,,Ajahn Mahā Adisak,Ajahn Mahā Adisak
-5,,Ajahn Siripañño,,,Ajahn Siripañño,,,,,,,            Ajahn Siripañño,,Ajahn Siripañño,Ajahn Siripañño
-5,,Ajahn Kevali,,,,,,,,,,            Ajahn Kevali,,Ajahn Kevali,Ajahn Kevali
-5,,Ajahn Pavaro,,,,,,,,,,            Ajahn Pavaro,,Ajahn Pavaro,Ajahn Pavaro
-5,,Ajahn Preecha Jutindharo,,,Ajahn Preecha,,,,,,,            Ajahn Preecha Jutindharo,,Ajahn Preecha,Ajahn Preecha
-,,,,,,,,,,,,,,,
-5,,Ajahn Sucitto,,,,,,,,,,            Ajahn Sucitto,,Ajahn Sucitto,Ajahn Sucitto
-5,,Ajahn Jundee Kantasāro,,,Ajahn Jundee,,,,,,,            Ajahn Jundee Kantasāro,,Ajahn Jundee,Ajahn Jundee
-5,,Ajahn Ñāṇadhammo,,,,,,,,,,            Ajahn Ñāṇadhammo,,Ajahn Ñāṇadhammo,Ajahn Ñāṇadhammo
-5,,Ajahn Soṇa,,,,,,,,,,            Ajahn Soṇa,,Ajahn Soṇa,Ajahn Soṇa
-5,,Ajahn Gavesako,,,,,,,,,,            Ajahn Gavesako,,Ajahn Gavesako,Ajahn Gavesako
-5,,Ajahn Amaro,,,,,,,,,,            Ajahn Amaro,,Ajahn Amaro,Ajahn Amaro
-5,,Ajahn Jayasaro,,,,,,,,,,            Ajahn Jayasaro,,Ajahn Jayasaro,Ajahn Jayasaro
-5,,Ajahn Sudanto,,,,,,,,,,            Ajahn Sudanto,,Ajahn Sudanto,Ajahn Sudanto
-5,,Ajahn Karuṇadhammo,,,,,,,,,,            Ajahn Karuṇadhammo,,Ajahn Karuṇadhammo,Ajahn Karuṇadhammo
-5,,Ajahn Jotipālo,,,,,,,,,,            Ajahn Jotipālo,,Ajahn Jotipālo,Ajahn Jotipālo
-5,,Ajahn Ñāṇiko,,,,,,,,,,            Ajahn Ñāṇiko,,Ajahn Ñāṇiko,Ajahn Ñāṇiko
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
+6,,Ajahn Sundarā,,,,,,,,,,               Ajahn Sundarā,,Ajahn Sundarā,Ajahn Sundarā
+6,,Mae Chee Kumfah,,,,,,,,,,               Mae Chee Kumfah,,Mae Chee Kumfah,Mae Chee Kumfah
+4,,Other Thai Forest teachers,,,,,,,,,,         Other Thai Forest teachers,,Other Thai Forest teachers,Other Thai Forest teachers
+5,.S,Thai teachers,,,,,,,,,,            Thai teachers,,,
+6,,Ajahn Lee Dhammadharo,,,,,,,,,,               Ajahn Lee Dhammadharo,,Ajahn Lee Dhammadharo,Ajahn Lee Dhammadharo
+6,,Ajahn Dee,,,,,,,,,,               Ajahn Dee,,Ajahn Dee,Ajahn Dee
+6,,Ajahn Phut,,,,,,,,,,               Ajahn Phut,,Ajahn Phut,Ajahn Phut
+6,,Ajahn Gi Dhammuttamo,,,Ajahn Gi,,,,,,,               Ajahn Gi Dhammuttamo,,Ajahn Gi,Ajahn Gi
 ,,,,,,,,,,,,,,,
+6,,Ajahn Jia Cundo,,,Ajahn Jia,,,,,,,               Ajahn Jia Cundo,,Ajahn Jia,Ajahn Jia
+6,,Ajahn Sanong Katapuñño,,,Ajahn Sanong,,,,,,,               Ajahn Sanong Katapuñño,,Ajahn Sanong,Ajahn Sanong
+6,,Ajahn Sim Buddhacaro,,,Ajahn Sim,,,,,,,               Ajahn Sim Buddhacaro,,Ajahn Sim,Ajahn Sim
+6,,Ajahn Chorp Ṭhānasamo,,,Ajahn Chorp,,,,,,,               Ajahn Chorp Ṭhānasamo,,Ajahn Chorp,Ajahn Chorp
+6,,Ajahn Teean Cittasubho,,,Ajahn Teean,,,,,,,               Ajahn Teean Cittasubho,,Ajahn Teean,Ajahn Teean
+6,,Ajahn Waen Suciṇṇo,,,Ajahn Waen,,,,,,,               Ajahn Waen Suciṇṇo,,Ajahn Waen,Ajahn Waen
+6,,Ajahn Tongrat Kantasīlo,,,Ajahn Tongrat,,,,,,,               Ajahn Tongrat Kantasīlo,,Ajahn Tongrat,Ajahn Tongrat
+6,,Ajahn Kinaree Candiyo,,,Ajahn Kinaree,,,,,,,               Ajahn Kinaree Candiyo,,Ajahn Kinaree,Ajahn Kinaree
+6,,Ajahn Fun Ācāro,,,Ajahn Fun,,,,,,,               Ajahn Fun Ācāro,,Ajahn Fun,Ajahn Fun
+6,,Ajahn Dune Atulo,,,Ajahn Dune,,,,,,,               Ajahn Dune Atulo,,Ajahn Dune,Ajahn Dune
+6,,Ajahn Utane Kalyāno,,,Ajahn Utane,,,,,,,               Ajahn Utane Kalyāno,,Ajahn Utane,Ajahn Utane
+6,,Ajahn Supah Kantasīlo,,,Ajahn Supah,,,,,,,               Ajahn Supah Kantasīlo,,Ajahn Supah,Ajahn Supah
+6,,Ajahn Mahā Boowa Ñāṇasampanno,,,Ajahn Mahā Boowa,,,,,,,               Ajahn Mahā Boowa Ñāṇasampanno,,Ajahn Mahā Boowa,Ajahn Mahā Boowa
+6,,Ajahn Baen Dhanākaro,,,Ajahn Baen,,,,,,,               Ajahn Baen Dhanākaro,,Ajahn Baen,Ajahn Baen
+6,,Ajahn Jumnien,,,,,,,,,,               Ajahn Jumnien,,Ajahn Jumnien,Ajahn Jumnien
+6,,Ajahn Plien Paññapatipo,,,Ajahn Plien,,,,,,,               Ajahn Plien Paññapatipo,,Ajahn Plien,Ajahn Plien
+6,,Ajahn Tate Desaransi,,,Ajahn Tate,,,,,,,               Ajahn Tate Desaransi,,Ajahn Tate,Ajahn Tate
+6,,Ajahn Khao Anālayo,,,Ajahn Khao,,,,,,,               Ajahn Khao Anālayo,,Ajahn Khao,Ajahn Khao
+6,,Ajahn Mahā Chatchai,,,,,,,,,,               Ajahn Mahā Chatchai,,Ajahn Mahā Chatchai,Ajahn Mahā Chatchai
+6,,Ajahn Buddhadāsa Indapañño,,,Ajahn Buddhadāsa,,,,,,,               Ajahn Buddhadāsa Indapañño,,Ajahn Buddhadāsa,Ajahn Buddhadāsa
+6,,Ajahn Paññānanda Padumuttaro,,,Ajahn Paññānanda,,,,,,,               Ajahn Paññānanda Padumuttaro,,Ajahn Paññānanda,Ajahn Paññānanda
+6,,Ajahn Samwong,,,,,,,,,,               Ajahn Samwong,,Ajahn Samwong,Ajahn Samwong
+6,,Ajahn Suwat Suvaco,,,,,,,,,,               Ajahn Suwat Suvaco,,Ajahn Suwat Suvaco,Ajahn Suwat Suvaco
+6,,Ajahn Suwat Suvaco,,,Ajahn Suwat,,,,,,,               Ajahn Suwat Suvaco,,Ajahn Suwat,Ajahn Suwat
+6,,Ajahn Wanchai Vicitto,,,Ajahn Wanchai,,,,,,,               Ajahn Wanchai Vicitto,,Ajahn Wanchai,Ajahn Wanchai
+6,,Ajahn Fuang Jotiko,,,Ajahn Fuang,,,,,,,               Ajahn Fuang Jotiko,,Ajahn Fuang,Ajahn Fuang
+6,,Mae Chee Kaew,,,,,,,,,,               Mae Chee Kaew,,Mae Chee Kaew,Mae Chee Kaew
 ,,,,,,,,,,,,,,,
+5,.S,Western teachers,,,,,,,,,,            Western teachers,,,
 ,,,,,,,,,,,,,,,
-5,,Mae Chee Songchai,,,,,,,,,,            Mae Chee Songchai,,Mae Chee Songchai,Mae Chee Songchai
-5,,Ajahn Sundarā,,,,,,,,,,            Ajahn Sundarā,,Ajahn Sundarā,Ajahn Sundarā
-5,,Mae Chee Kumfah,,,,,,,,,,            Mae Chee Kumfah,,Mae Chee Kumfah,Mae Chee Kumfah
-4,PS,Other Thai Forest teachers,,,,,,,,,,         Other Thai Forest teachers,,Other Thai Forest teachers,Other Thai Forest teachers
+6,,Ajahn Khantipālo,,,,,,,,,,               Ajahn Khantipālo,,Ajahn Khantipālo,Ajahn Khantipālo
+6,,Ajahn Paññavaddho,,,,,,,,,,               Ajahn Paññavaddho,,Ajahn Paññavaddho,Ajahn Paññavaddho
+6,,Ajahn Piyadhammo,,,,,,,,,,               Ajahn Piyadhammo,,Ajahn Piyadhammo,Ajahn Piyadhammo
 ,,,,,,,,,,,,,,,
-5,,Ajahn Lee Dhammadharo,,,,,,,,,,            Ajahn Lee Dhammadharo,,Ajahn Lee Dhammadharo,Ajahn Lee Dhammadharo
-5,,Ajahn Dee,,,,,,,,,,            Ajahn Dee,,Ajahn Dee,Ajahn Dee
-5,,Ajahn Phut,,,,,,,,,,            Ajahn Phut,,Ajahn Phut,Ajahn Phut
-5,,Ajahn Gi Dhammuttamo,,,Ajahn Gi,,,,,,,            Ajahn Gi Dhammuttamo,,Ajahn Gi,Ajahn Gi
-5,,Ajahn Vajirayan Vajirañāno,,,Ajahn Vajirayan,,,King Mongut (Rama IV),,,,            Ajahn Vajirayan Vajirañāno,,Ajahn Vajirayan,Ajahn Vajirayan
-5,,Ajahn Jia Cundo,,,Ajahn Jia,,,,,,,            Ajahn Jia Cundo,,Ajahn Jia,Ajahn Jia
-5,,Ajahn Sanong Katapuñño,,,Ajahn Sanong,,,,,,,            Ajahn Sanong Katapuñño,,Ajahn Sanong,Ajahn Sanong
-5,,Ajahn Sim Buddhacaro,,,Ajahn Sim,,,,,,,            Ajahn Sim Buddhacaro,,Ajahn Sim,Ajahn Sim
-5,,Ajahn Chorp Ṭhānasamo,,,Ajahn Chorp,,,,,,,            Ajahn Chorp Ṭhānasamo,,Ajahn Chorp,Ajahn Chorp
-5,,Ajahn Teean Cittasubho,,,Ajahn Teean,,,,,,,            Ajahn Teean Cittasubho,,Ajahn Teean,Ajahn Teean
-5,,Ajahn Waen Suciṇṇo,,,Ajahn Waen,,,,,,,            Ajahn Waen Suciṇṇo,,Ajahn Waen,Ajahn Waen
-5,,Ajahn Tongrat Kantasīlo,,,Ajahn Tongrat,,,,,,,            Ajahn Tongrat Kantasīlo,,Ajahn Tongrat,Ajahn Tongrat
-5,,Ajahn Kinaree Candiyo,,,Ajahn Kinaree,,,,,,,            Ajahn Kinaree Candiyo,,Ajahn Kinaree,Ajahn Kinaree
-5,,Ajahn Fun Ācāro,,,Ajahn Fun,,,,,,,            Ajahn Fun Ācāro,,Ajahn Fun,Ajahn Fun
-5,,Ajahn Dune Atulo,,,Ajahn Dune,,,,,,,            Ajahn Dune Atulo,,Ajahn Dune,Ajahn Dune
-5,,Ajahn Utane Kalyāno,,,Ajahn Utane,,,,,,,            Ajahn Utane Kalyāno,,Ajahn Utane,Ajahn Utane
-5,,Ajahn Supah Kantasīlo,,,Ajahn Supah,,,,,,,            Ajahn Supah Kantasīlo,,Ajahn Supah,Ajahn Supah
-5,,Ajahn Mahā Boowa Ñāṇasampanno,,,Ajahn Mahā Boowa,,,,,,,            Ajahn Mahā Boowa Ñāṇasampanno,,Ajahn Mahā Boowa,Ajahn Mahā Boowa
-5,,Ajahn Baen Dhanākaro,,,Ajahn Baen,,,,,,,            Ajahn Baen Dhanākaro,,Ajahn Baen,Ajahn Baen
-5,,Ajahn Jumnien,,,,,,,,,,            Ajahn Jumnien,,Ajahn Jumnien,Ajahn Jumnien
-5,,Ajahn Plien Paññapatipo,,,Ajahn Plien,,,,,,,            Ajahn Plien Paññapatipo,,Ajahn Plien,Ajahn Plien
-5,,Ajahn Tate Desaransi,,,Ajahn Tate,,,,,,,            Ajahn Tate Desaransi,,Ajahn Tate,Ajahn Tate
-5,,Ajahn Khao Anālayo,,,Ajahn Khao,,,,,,,            Ajahn Khao Anālayo,,Ajahn Khao,Ajahn Khao
-5,,Ajahn Mahā Chatchai,,,,,,,,,,            Ajahn Mahā Chatchai,,Ajahn Mahā Chatchai,Ajahn Mahā Chatchai
-5,,Ajahn Buddhadāsa Indapañño,,,Ajahn Buddhadāsa,,,,,,,            Ajahn Buddhadāsa Indapañño,,Ajahn Buddhadāsa,Ajahn Buddhadāsa
-5,,Ajahn Paññānanda Padumuttaro,,,Ajahn Paññānanda,,,,,,,            Ajahn Paññānanda Padumuttaro,,Ajahn Paññānanda,Ajahn Paññānanda
-5,,Ajahn Samwong,,,,,,,,,,            Ajahn Samwong,,Ajahn Samwong,Ajahn Samwong
+6,,Ajahn Ṭhānissaro,,,,,,,,,,               Ajahn Ṭhānissaro,,Ajahn Ṭhānissaro,Ajahn Ṭhānissaro
 ,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-5,,Ajahn Suwat Suvaco,,,Ajahn Suwat,,,,,,,            Ajahn Suwat Suvaco,,Ajahn Suwat,Ajahn Suwat
-5,,Ajahn Khantipālo,,,,,,,,,,            Ajahn Khantipālo,,Ajahn Khantipālo,Ajahn Khantipālo
-5,,Ajahn Wanchai Vicitto,,,Ajahn Wanchai,,,,,,,            Ajahn Wanchai Vicitto,,Ajahn Wanchai,Ajahn Wanchai
-5,,Ajahn Piyadhammo,,,,,,,,,,            Ajahn Piyadhammo,,Ajahn Piyadhammo,Ajahn Piyadhammo
-5,,Ajahn Fuang Jotiko,,,Ajahn Fuang,,,,,,,            Ajahn Fuang Jotiko,,Ajahn Fuang,Ajahn Fuang
-5,,Ajahn Ṭhānissaro,,,,,,,,,,            Ajahn Ṭhānissaro,,Ajahn Ṭhānissaro,Ajahn Ṭhānissaro
-5,,Mae Chee Kaew,,,,,,,,,,            Mae Chee Kaew,,Mae Chee Kaew,Mae Chee Kaew
 ,,,,,,,,,,,,,,,
 3,PS,Other Thai monastics,,,,,,,,,,      Other Thai monastics,,Other Thai monastics,Other Thai monastics
+4,,Ajahn Vajirayan Vajirañāno,,,Ajahn Vajirayan,,,King Mongut (Rama IV),,,,         Ajahn Vajirayan Vajirañāno,,Ajahn Vajirayan,Ajahn Vajirayan
 4,,Tan Chao Khun Upāli Guṇūpamājahn,,,Chao Khun Upāli,,,,,,,         Tan Chao Khun Upāli Guṇūpamājahn,,Chao Khun Upāli,Chao Khun Upāli
 4,,Chao Khun Nor,,,,,,,,,,         Chao Khun Nor,,Chao Khun Nor,Chao Khun Nor
 4,,Tan Chao Khun Prayoon Dhammacitto,,,Chao Khun Prayoon,,,,,,,         Tan Chao Khun Prayoon Dhammacitto,,Chao Khun Prayoon,Chao Khun Prayoon
-4,,P. A. Payutto,,,,,,,,,,         P. A. Payutto,,P. A. Payutto,P. A. Payutto
-,,,,,,,,,,,,,,,
+4,,P. A. Payutto,,,,,,Somdet Phra Buddhaghosacariya,,,,         P. A. Payutto,,P. A. Payutto,P. A. Payutto
+4,,Ajahn Mahā Prasert,,,,,,,,,,         Ajahn Mahā Prasert,,Ajahn Mahā Prasert,Ajahn Mahā Prasert
 3,PS,Other Theravāda monastics,,,,,,,,,,      Other Theravāda monastics,,Other Theravāda monastics,Other Theravāda monastics
 4,,Mahasi Sayadaw,,,,,,,,,,         Mahasi Sayadaw,,Mahasi Sayadaw,Mahasi Sayadaw
 4,,Ven. Ñāṇamoli,,,,,,,,,,         Ven. Ñāṇamoli,,Ven. Ñāṇamoli,Ven. Ñāṇamoli
@@ -608,8 +632,8 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Bhikkhu Bodhi,,,,,,,,,,         Bhikkhu Bodhi,,Bhikkhu Bodhi,Bhikkhu Bodhi
 4,,Venerable Analayo,,,Ven. Analayo,,,,,,,         Venerable Analayo,,Ven. Analayo,Ven. Analayo
 4,,Ayya Tāthalokā,,,,,,,,,,         Ayya Tāthalokā,,Ayya Tāthalokā,Ayya Tāthalokā
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
+4,,Dr. Hammalawa Saddhatissa,,,Dr. Saddhatissa,,,,,,,         Dr. Hammalawa Saddhatissa,,Dr. Saddhatissa,Dr. Saddhatissa
+4,,Bhante Yogavacara Rahula,,,Bhante Rahula,,,,,,,         Bhante Yogavacara Rahula,,Bhante Rahula,Bhante Rahula
 ,,,,,,,,,,,,,,,
 3,PS,Mahāyāna monastics,,,,,,,,,,      Mahāyāna monastics,,Mahāyāna monastics,Mahāyāna monastics
 4,,Dōgen,,,,,,,,,,         Dōgen,,Dōgen,Dōgen
@@ -619,7 +643,14 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Reverend Heng Sure,,,Rev. Heng Sure,,,,,,,         Reverend Heng Sure,,Rev. Heng Sure,Rev. Heng Sure
 4,,Trulshik Rinpoche,,,,,,,,,,         Trulshik Rinpoche,,Trulshik Rinpoche,Trulshik Rinpoche
 4,,Lama Zopa Rinpoche,,,Lama Zopa,,,,,,,         Lama Zopa Rinpoche,,Lama Zopa,Lama Zopa
+4,,Harata Roshi,,,,,,,,,,         Harata Roshi,,Harata Roshi,Harata Roshi
+4,,Dharma Master Heng Lyu,,,Heng Lyu,,,,,,,         Dharma Master Heng Lyu,,Heng Lyu,Heng Lyu
 ,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+3,,Non-Buddhist monastics,,,,,,,,,,      Non-Buddhist monastics,,Non-Buddhist monastics,Non-Buddhist monastics
+4,,Father Boniface,,,,,,,,,,         Father Boniface,,Father Boniface,Father Boniface
+4,,Father Damien,,,,,,,,,,         Father Damien,,Father Damien,Father Damien
 ,,,,,,,,,,,,,,,
 2,PS,Lay teachers,,,,,,,,,,   Lay teachers,,Lay teachers,Lay teachers
 3,,Mahatma Gandhi,,,,,,,,,,      Mahatma Gandhi,,Mahatma Gandhi,Mahatma Gandhi
@@ -632,10 +663,16 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Jack Kornfield,,,,,,,,,,      Jack Kornfield,,Jack Kornfield,Jack Kornfield
 3,,Paul Breiter,,,,,,,,,,      Paul Breiter,,Paul Breiter,Paul Breiter
 3,,Joseph Kappel,,,,,,,,,,      Joseph Kappel,,Joseph Kappel,Joseph Kappel
-3,,George Sharp,,,,,,,,,,      George Sharp,,George Sharp,George Sharp
+,,,,,,,,,,,,,,,
 3,,Kittisaro,,,,,,,,,,      Kittisaro,,Kittisaro,Kittisaro
 3,,Ṭhānissarā,,,,,,,,,,      Ṭhānissarā,,Ṭhānissarā,Ṭhānissarā
 3,,Debbie Stamp,,,,,,,,,,      Debbie Stamp,,Debbie Stamp,Debbie Stamp
+3,,Nick Scott,,,,,,,,,,      Nick Scott,,Nick Scott,Nick Scott
+2,PS,Lay supporters,,,,,,,,,,   Lay supporters,,Lay supporters,Lay supporters
+3,,George Sharp,,,,,,,,,,      George Sharp,,George Sharp,George Sharp
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -931,28 +968,3 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Advertizing,,,,,,,,,,         Advertizing,,Advertizing,Advertizing
 4,,Internet,,,,,,,,,,         Internet,,Internet,Internet
 4,,Social media,,,,,,,,,,         Social media,,Social media,Social media
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-1,,New unsorted tags,,,,,,,,,,New unsorted tags,,New unsorted tags,New unsorted tags
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-2,,Ajahn Mahā Prasert,,,,,,,,,,   Ajahn Mahā Prasert,,Ajahn Mahā Prasert,Ajahn Mahā Prasert
-2,,Ajahn Vitoon,,,,,,,,,,   Ajahn Vitoon,,Ajahn Vitoon,Ajahn Vitoon
