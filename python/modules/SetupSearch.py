@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import os, json, re
 import Utils, Alert, Link, Prototype, Filter
-from typing import Iterable,Iterator
+from typing import Iterable, Iterator, Callable
 
 def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     """Enclose the strings in items in the specified characters:
@@ -68,7 +68,8 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         gOutputChars.update(blob)
         if gOptions.debug:
             gBlobDict[item] = blob
-        yield blob
+        if blob:
+            yield blob
 
 def SearchBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
@@ -129,7 +130,41 @@ def SessionHeader() -> dict[str,str]:
         returnValue[Utils.ItemCode(s)] = formatter.FormatSessionHeading(s,horizontalRule=False)
     
     return returnValue
-    
+
+def TagBlob(tag) -> str:
+    "Make a search blob from this tag."
+    bits = [
+        Enclose(Blobify({tag["tag"],tag["fullTag"]}),"[]"), # Use sets to remove duplicates
+        Enclose(Blobify({tag["pali"],tag["fullPali"]}),"<>"),
+        Enclose(Blobify(tag["alternateTranslations"] + tag["glosses"]),"^^"),
+    ]
+    return "".join(bits)
+
+def TagBlobs() -> Iterator[dict]:
+    """Return a blob for each tag, sorted alphabetically."""
+
+    for tag,tagInfo in gDatabase["tag"].items():
+        yield {
+            "blobs": [TagBlob(tagInfo)],
+            "html": f"[{tag}]"
+        } 
+
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],separator:str = "\n<br>\n",plural:str = "s") -> None:
+    """Add the search (tags, teachers, etc.) to searchList.
+    code: a one-letter code to identify the search.
+    name: the name of the search.
+    blobsAndHtml: an iterator that yields a dict for each search item.
+    separator: the html code to separate each displayed search result.
+    plural: the plural name of the search. 's' means just add s."""
+
+    searchList[code] = {
+        "code": code,
+        "name": name,
+        "plural": name + "s" if plural == "s" else plural,
+        "separator": separator,
+        "items": [b for b in blobsAndHtml]
+    }
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     pass
@@ -148,8 +183,11 @@ def main() -> None:
     optimizedDB = {
         "excerpts": OptimizedExcerpts(),
         "sessionHeader": SessionHeader(),
+        "searches": {},
         "blobDict":list(gBlobDict.values())
     }
+
+    AddSearch(optimizedDB["searches"],"g","Tag",TagBlobs())
 
     Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))
     Alert.debug("Characters remaining in blobs:","".join(sorted(gOutputChars)))
