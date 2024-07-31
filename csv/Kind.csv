@@ -34,8 +34,8 @@ Other,Other,0,Yes,Yes,Yes,Yes,Yes,No,No,None,unimplemented,unimplemented,unimple
 ,,,,,,,,,,,,,,,
 Commentary,References,1,No,Yes,No,No,Yes,,No,,++Commentary:++ {text},unimplemented,unimplemented,,
 ,,,,,,,,,,,,,,,
-Read by,Attribution,1,No,Yes,No,Yes,No,Yes,Yes,Session unless text,{'Read by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Read by ' + teachers + '.'},unimplemented,unimplemented,,"If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader."
-Translated by,Attribution,1,No,Yes,No,Yes,No,Yes,Yes,Session unless text,{'Translated by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Translated by ' + teachers + '.'},unimplemented,unimplemented,,
+Read by,Attribution,1,No,Yes,No,Yes,No,Yes,Yes,Session unless text,{'Read by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Read by ' + teachers + '.'},unimplemented,unimplemented,,"If the reader is not a teacher, {teachers} should be empty and {text} specifies the name of the reader."
+Translated by,Attribution,1,No,Yes,No,Yes,No,Yes,Yes,None,{'Translated by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Translated by ' + teachers + '.'},unimplemented,unimplemented,,
 Asked by,Attribution,1,No,Yes,No,Yes,No,No,Yes,None,{'Asked by ' if text else ''}{text}{'.' if text else ''}||{'' if text else 'Asked by ' + teachers + '.'},unimplemented,unimplemented,Yes,
 ,,,,,,,,,,,,,,,
 Extra tags,Other,0,No,Yes,No,No,Yes,,No,,unimplemented,unimplemented,unimplemented,,

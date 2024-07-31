@@ -1495,7 +1495,9 @@
       "kind": "Other",
       "flags": "",
       "text": "[Ajahn Amaro](teacher:) introduces Paul Breiter and Joseph Kappel.",
-      "teachers": [],
+      "teachers": [
+        "AA"
+      ],
       "annotations": [],
       "tags": [
         "Paul Breiter",
@@ -3915,7 +3917,9 @@
       "kind": "Other",
       "flags": "",
       "text": "[Ajahn Amaro](teacher:) introduces Ajahn Mahaprasert and Ajahn Sundarā.",
-      "teachers": [],
+      "teachers": [
+        "AA"
+      ],
       "annotations": [],
       "tags": [
         "Ajahn Mahā Prasert",
@@ -4025,7 +4029,9 @@
       "kind": "Other",
       "flags": "",
       "text": "Ajahn Mahā Prasert greets the other Ajahns.",
-      "teachers": [],
+      "teachers": [
+        "AMahaprasert"
+      ],
       "annotations": [],
       "tags": [
         "Thai audio"
@@ -92984,7 +92990,7 @@
       "appendToExcerpt": true,
       "inheritTeachersFrom": "Session unless text",
       "exclude": false,
-      "usageNotes": "If the reader is not a teacher, {teachers} should be Anon and {text} specifies the name of the reader.",
+      "usageNotes": "If the reader is not a teacher, {teachers} should be empty and {text} specifies the name of the reader.",
       "form": [
         "$!'Read by ' if text else ''!$$!text!$$!'.' if text else ''!$||$!'' if text else 'Read by ' + teachers + '.'!$",
         "unimplemented",
@@ -93012,7 +93018,7 @@
       "takesTags": false,
       "ignoreConsent": true,
       "appendToExcerpt": true,
-      "inheritTeachersFrom": "Session unless text",
+      "inheritTeachersFrom": "None",
       "exclude": false,
       "usageNotes": "",
       "form": [
@@ -93779,7 +93785,7 @@
       "lineage": "Western disciples of Ajahn Chah",
       "eventCount": 2,
       "sessionCount": 3,
-      "excerptCount": 43,
+      "excerptCount": 45,
       "htmlFile": "ajahn-amaro.html"
     },
     "AJaya": {
@@ -94091,7 +94097,7 @@
       "group": "Monastics",
       "lineage": "Other Thai",
       "sessionCount": 1,
-      "excerptCount": 3,
+      "excerptCount": 4,
       "htmlFile": "ajahn-maha-prasert.html"
     },
     "DS": {
@@ -98752,7 +98758,7 @@
     "Aspects of understanding": {
       "tag": "Aspects of understanding",
       "pali": "",
-      "fullTag": "Aspects of understanding",
+      "fullTag": "Three aspects of understanding",
       "fullPali": "",
       "number": "3",
       "alternateTranslations": [],
@@ -112662,11 +112668,11 @@
       "level": 2,
       "indexNumber": "",
       "flags": "",
-      "name": "Aspects of understanding",
+      "name": "Three aspects of understanding",
       "pali": "",
       "excerptCount": 0,
       "subsumed": false,
-      "text": "Aspects of understanding",
+      "text": "Three aspects of understanding",
       "tag": "Aspects of understanding",
       "subtagCount": 3,
       "subtagExcerptCount": 0

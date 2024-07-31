@@ -263,8 +263,9 @@ def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
         ourLevel = tagList[tagNumber]["level"]
         if tagNumber + 1 >= len(tagList) or tagList[tagNumber + 1]["level"] <= ourLevel:
             # If this tag doesn't have subtags, find its parent tag
-            while tagList[tagNumber]["level"] >= ourLevel:
-                tagNumber -= 1
+            if ourLevel > 1:
+                while tagList[tagNumber]["level"] >= ourLevel:
+                    tagNumber -= 1
         
         tagName = tagList[tagNumber]["tag"]
         displayName = tagName or tagList[tagNumber]["name"]
@@ -289,8 +290,8 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
 
     tagList = gDatabase["tagDisplayList"]
 
-    for n,tag in enumerate(tagList[:-1]):
-        if tagList[n+1]["level"] > tag["level"]: # If the next tag is deeper, then we can expand this one
+    for n,tag in enumerate(tagList):
+        if (n + 1 < len(tagList) and tagList[n+1]["level"] > tag["level"]) or tag["level"] == 1: # If the next tag is deeper, then we can expand this one
             tagsToExpand = {n}
             reverseIndex = n - 1
             nextLevelToExpand = tag["level"] - 1
