@@ -1524,21 +1524,15 @@ def TeacherMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
 def SearchMenu(searchDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Search menu item and its associated submenus."""
+
+    searchPageName = "Text-search.html"
+    searchTemplate = Utils.PosixJoin(gOptions.prototypeDir,"templates",searchPageName)
+    with open(searchTemplate,encoding='utf8') as file:
+        searchPage = file.read()
     
-    @Alert.extra.Supress()
-    def QuietRender() -> Iterator[Html.PageDesc]:
-        return Document.RenderDocumentationFiles(Utils.PosixJoin("../",gOptions.prototypeDir,"templates","search"),searchDir,html = True)
-
-    searchMenu = []
-    for page in QuietRender():
-        searchMenu.append([page.info,page])
-
-    searchMenu[0][0] = searchMenu[0][0]._replace(title="Search")
-    searchMenu[0][1].info = searchMenu[0][1].info._replace(titleIB="Search")
-    yield searchMenu[0][0]
-    yield searchMenu[0]
-    """ basePage = Html.PageDesc()
-    # yield from basePage.AddMenuAndYieldPages(searchMenu,**SUBMENU_STYLE)"""
+    pageInfo = Html.PageInfo("Search",Utils.PosixJoin(searchDir,searchPageName),titleIB="Search")
+    yield pageInfo
+    yield (pageInfo._replace(title="Text search"), searchPage)
 
 def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
     """Add a table of contents to the event which is being built."""
