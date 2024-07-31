@@ -146,7 +146,7 @@ def TagBlobs() -> Iterator[dict]:
     for tag,tagInfo in gDatabase["tag"].items():
         yield {
             "blobs": [TagBlob(tagInfo)],
-            "html": f"[{tag}]"
+            "html": f"[{Prototype.HtmlTagLink(tag,fullTag = True)}]"
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],separator:str = "\n<br>\n",plural:str = "s") -> None:
@@ -187,7 +187,7 @@ def main() -> None:
         "blobDict":list(gBlobDict.values())
     }
 
-    AddSearch(optimizedDB["searches"],"g","Tag",TagBlobs())
+    AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
 
     Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))
     Alert.debug("Characters remaining in blobs:","".join(sorted(gOutputChars)))

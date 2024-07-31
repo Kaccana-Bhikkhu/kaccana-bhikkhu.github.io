@@ -15,7 +15,8 @@ Object.keys(PALI_DIACRITICS).forEach((letter) => {
 
 const DEBUG = false;
 
-let database = null;
+let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
+let gSearchers = {}; // A dictionary of searchers by item code
 
 export function regExpEscape(literal_string) {
     return literal_string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
@@ -28,10 +29,12 @@ export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
     // fill the search bar with the URL query string and run a search.
 
-    let searchButton = document.getElementById("search-button");
-    if (!searchButton)
-        return; // Exit if it's a non-search page.
-    searchButton.onclick = () => { searchButtonClick(); }
+    for (let kind of "xg") {
+        let searchButton = document.getElementById(`search-${kind}-button`);
+        if (!searchButton)
+            return; // Exit if it's a non-search page.
+        searchButton.onclick = () => { searchButtonClick(kind); }
+    }
 
     // Execute a function when the user presses a key on the keyboard
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
@@ -41,14 +44,21 @@ export async function loadSearchPage() {
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
-            document.getElementById("search-button").click();
+            document.getElementById("search-x-button").click();
         }
     });
 
-    if (!database) {
+    if (!gDatabase) {
         await fetch('./assets/SearchDatabase.json')
         .then((response) => response.json())
-        .then((json) => {database = json; console.log("Loaded search database.")});
+        .then((json) => {
+            gDatabase = json; 
+            console.log("Loaded search database.");
+            for (let code of "g") {
+                gSearchers[code] = new searcher(gDatabase.searches[code]);
+            }
+        });
+
     }
 
     searchFromURL();
@@ -258,7 +268,7 @@ function showSearchResults(excerpts,searcher,message = "") {
         message += `Found ${excerpts.length} excerpts` + ((excerpts.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":";
         instructionsFrame.style.display = "none";
 
-        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),searcher,database.sessionHeader);
+        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),searcher,gDatabase.sessionHeader);
         configureLinks(resultsFrame,location.hash.slice(1));
     } else {
         message += "No excerpts found."
@@ -289,9 +299,70 @@ function clearSearchResults(message) {
         messageFrame.style.display = "none";
 }
 
+class searcher {
+    code; // a one-letter code to identify the search.
+    name; // the name of the search, e.g. "Tag"
+    plural; // the plural name of the search.
+    separator; // the html code to separate each displayed search result.
+    items; // A list of items of the form:
+        // database[n].blobs: an array of search blobs to match
+        // database[n].html: the html code to display this item when found
+    foundItems = []; // The items we have found.
+    
+    constructor(databaseItem) {
+        // Build this search from an entry in the search database
+        for (let element of ["code","name","plural","separator","items"]) {
+            this[element] = databaseItem[element];
+        }
+    }
+
+    search(searchGroups) {
+        console.log(this.name,"search.");
+        this.foundItems = searchGroups.filterItems(this.items);
+    }
+
+    renderItems() {
+        // Return a string of the found items.
+
+        let rendered = [];
+        for (let item of this.foundItems) {
+            rendered.push(item.html);
+        }
+
+        return rendered.join(this.separator);
+    }
+
+    showResults(message = "") {
+        // excerpts are the excerpts to display
+        // searcher is the search query object.
+        // message is an optional message to display.
+        let messageFrame = document.getElementById('message');
+        let instructionsFrame = document.getElementById('instructions');
+        let resultsFrame = document.getElementById('results');
+
+        if (this.foundItems.length > 0) {
+            message += `Found ${this.foundItems.length} ${this.foundItems.length > 1 ? this.plural : this.name}:`;
+            instructionsFrame.style.display = "none";
+
+            resultsFrame.innerHTML = this.renderItems();
+            configureLinks(resultsFrame,location.hash.slice(1));
+        } else {
+            message += `No ${this.plural} found.`
+            instructionsFrame.style.display = "block";
+            resultsFrame.innerHTML = "";
+        }
+
+        if (message) {
+            messageFrame.innerHTML = message;
+            messageFrame.style.display = "block";
+        } else
+            messageFrame.style.display = "none";
+    }
+}
+
 function searchFromURL() {
     // Find excerpts matching the search query from the page URL.
-    if (!database) {
+    if (!gDatabase) {
         console.log("Error: database not loaded.");
         return;
     }
@@ -309,18 +380,24 @@ function searchFromURL() {
     let searchGroups = new searchQuery(query);
     console.log(searchGroups);
 
-    let found = searchGroups.filterItems(database.excerpts);
-    
-    showSearchResults(found,searchGroups)
+    let searchKind = params.has("what") ? decodeURIComponent(params.get("what")) : "x";
+    if (searchKind == "x") {
+        let found = searchGroups.filterItems(gDatabase.excerpts);
+        
+        showSearchResults(found,searchGroups);
+    } else {
+        gSearchers[searchKind].search(searchGroups);
+        gSearchers[searchKind].showResults();
+    }
 }
 
-function searchButtonClick() {
+function searchButtonClick(searchKind) {
     // Read the search bar text, push the updated URL to history, and run a search.
     let query = frame.querySelector('#search-text').value;
-    console.log("Called runFromURLSearch. Query:",query);
+    console.log("Called runFromURLSearch. Query:",query,"Kind:",searchKind);
 
     let newURL = new URL(location.href);
-    newURL.search = "?q=" + encodeURIComponent(query)
+    newURL.search = `?q=${encodeURIComponent(query)}&what=${searchKind}`
     history.pushState({}, "",newURL.href);
 
     searchFromURL();
