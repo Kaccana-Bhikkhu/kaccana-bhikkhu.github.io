@@ -149,20 +149,22 @@ def TagBlobs() -> Iterator[dict]:
             "html": f"[{Prototype.HtmlTagLink(tag,fullTag = True)}]"
         } 
 
-def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],separator:str = "\n<br>\n",plural:str = "s") -> None:
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],separator:str = "<br>",plural:str = "s",itemsPerPage = 5) -> None:
     """Add the search (tags, teachers, etc.) to searchList.
     code: a one-letter code to identify the search.
     name: the name of the search.
     blobsAndHtml: an iterator that yields a dict for each search item.
     separator: the html code to separate each displayed search result.
-    plural: the plural name of the search. 's' means just add s."""
+    plural: the plural name of the search. 's' means just add s.
+    itemsPerPage: the number of items to show per search display page."""
 
     searchList[code] = {
         "code": code,
         "name": name,
         "plural": name + "s" if plural == "s" else plural,
         "separator": separator,
-        "items": [b for b in blobsAndHtml]
+        "items": [b for b in blobsAndHtml],
+        "itemsPerPage": itemsPerPage
     }
 
 def AddArguments(parser) -> None:
@@ -180,14 +182,13 @@ gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def main() -> None:
-    optimizedDB = {
-        "excerpts": OptimizedExcerpts(),
-        "sessionHeader": SessionHeader(),
-        "searches": {},
-        "blobDict":list(gBlobDict.values())
-    }
+    optimizedDB = {"searches": {}}
 
+    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),separator="<hr>",itemsPerPage=100)
+    optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
+
+    optimizedDB["blobDict"] = list(gBlobDict.values())
 
     Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))
     Alert.debug("Characters remaining in blobs:","".join(sorted(gOutputChars)))

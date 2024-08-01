@@ -1,6 +1,5 @@
 import {configureLinks} from './frame.js';
 
-const MAX_RESULTS = 100;
 const SPECIAL_SEARCH_CHARS = "][{}()#^@&";
 const PALI_DIACRITICS = {
     "a":"ā","i":"ī","u":"ū",
@@ -54,8 +53,11 @@ export async function loadSearchPage() {
         .then((json) => {
             gDatabase = json; 
             console.log("Loaded search database.");
-            for (let code of "g") {
-                gSearchers[code] = new searcher(gDatabase.searches[code]);
+            for (let code of "xg") {
+                if (code == "x")
+                    gSearchers[code] = new excerptSearcher(gDatabase.searches[code]);
+                else
+                    gSearchers[code] = new searcher(gDatabase.searches[code]);
             }
         });
 
@@ -256,33 +258,6 @@ export function renderExcerpts(excerpts,searcher,sessionHeaders) {
     return bits.join("\n");
 }
 
-function showSearchResults(excerpts,searcher,message = "") {
-    // excerpts are the excerpts to display
-    // searcher is the search query object.
-    // message is an optional message to display.
-    let messageFrame = document.getElementById('message');
-    let instructionsFrame = document.getElementById('instructions');
-    let resultsFrame = document.getElementById('results');
-
-    if (excerpts.length > 0) {
-        message += `Found ${excerpts.length} excerpts` + ((excerpts.length > 100) ? `. Showing only the first ${MAX_RESULTS}` : "") + ":";
-        instructionsFrame.style.display = "none";
-
-        resultsFrame.innerHTML = renderExcerpts(excerpts.slice(0,MAX_RESULTS),searcher,gDatabase.sessionHeader);
-        configureLinks(resultsFrame,location.hash.slice(1));
-    } else {
-        message += "No excerpts found."
-        instructionsFrame.style.display = "block";
-        resultsFrame.innerHTML = "";
-    }
-
-    if (message) {
-        messageFrame.innerHTML = message;
-        messageFrame.style.display = "block";
-    } else
-        messageFrame.style.display = "none";
-}
-
 function clearSearchResults(message) {
     // Called when the search query is blank
     let messageFrame = document.getElementById('message');
@@ -304,29 +279,33 @@ class searcher {
     name; // the name of the search, e.g. "Tag"
     plural; // the plural name of the search.
     separator; // the html code to separate each displayed search result.
+    itemsPerPage; // The number of items to display per page. 
+        // For the base class searcher, this is the number of items to display before the user clicks "Show all"
     items; // A list of items of the form:
         // database[n].blobs: an array of search blobs to match
         // database[n].html: the html code to display this item when found
+    query = null; // A searchQuery object describing the search
     foundItems = []; // The items we have found.
     
     constructor(databaseItem) {
         // Build this search from an entry in the search database
-        for (let element of ["code","name","plural","separator","items"]) {
+        for (let element in databaseItem) {
             this[element] = databaseItem[element];
         }
     }
 
-    search(searchGroups) {
+    search(searchQuery) {
         console.log(this.name,"search.");
-        this.foundItems = searchGroups.filterItems(this.items);
+        this.query = searchQuery
+        this.foundItems = searchQuery.filterItems(this.items);
     }
 
     renderItems() {
         // Return a string of the found items.
 
         let rendered = [];
-        for (let item of this.foundItems) {
-            rendered.push(item.html);
+        for (let item of this.foundItems.slice(0,this.itemsPerPage)) {
+            rendered.push(this.query.displayMatchesInBold(item.html));
         }
 
         return rendered.join(this.separator);
@@ -341,7 +320,11 @@ class searcher {
         let resultsFrame = document.getElementById('results');
 
         if (this.foundItems.length > 0) {
-            message += `Found ${this.foundItems.length} ${this.foundItems.length > 1 ? this.plural : this.name}:`;
+            message += `Found ${this.foundItems.length} ${this.foundItems.length > 1 ? this.plural : this.name}`;
+            if (this.foundItems.length > this.itemsPerPage)
+                message += `. Showing only the first ${this.itemsPerPage}:`;
+            else
+                message += ":"
             instructionsFrame.style.display = "none";
 
             resultsFrame.innerHTML = this.renderItems();
@@ -357,6 +340,31 @@ class searcher {
             messageFrame.style.display = "block";
         } else
             messageFrame.style.display = "none";
+    }
+}
+
+export class excerptSearcher extends searcher {
+    // Specialised search object for excerpts
+    // sessionHeader;   // Contains rendered headers for each session.
+                        // Its value is set in the base class constructor function.
+                        // If we prototype the variable here, that overwrites the value set by the base class constructor.
+                    
+    renderItems() {
+        // Convert a list of excerpts to html code by concatenating their html attributes
+        // Display strings in boldTextItems in bold.
+    
+        let bits = [];
+        let lastSession = null;
+    
+        for (const x of this.foundItems) {
+            if (x.session != lastSession) {
+                bits.push(this.sessionHeader[x.session]);
+                lastSession = x.session;
+            }
+            bits.push(this.query.displayMatchesInBold(x.html));
+            bits.push(this.separator);
+        }
+        return bits.join("\n");
     }
 }
 
@@ -380,15 +388,9 @@ function searchFromURL() {
     let searchGroups = new searchQuery(query);
     console.log(searchGroups);
 
-    let searchKind = params.has("what") ? decodeURIComponent(params.get("what")) : "x";
-    if (searchKind == "x") {
-        let found = searchGroups.filterItems(gDatabase.excerpts);
-        
-        showSearchResults(found,searchGroups);
-    } else {
-        gSearchers[searchKind].search(searchGroups);
-        gSearchers[searchKind].showResults();
-    }
+    let searchKind = params.has("search") ? decodeURIComponent(params.get("search")) : "x";
+    gSearchers[searchKind].search(searchGroups);
+    gSearchers[searchKind].showResults();
 }
 
 function searchButtonClick(searchKind) {
@@ -397,7 +399,7 @@ function searchButtonClick(searchKind) {
     console.log("Called runFromURLSearch. Query:",query,"Kind:",searchKind);
 
     let newURL = new URL(location.href);
-    newURL.search = `?q=${encodeURIComponent(query)}&what=${searchKind}`
+    newURL.search = `?q=${encodeURIComponent(query)}&search=${searchKind}`
     history.pushState({}, "",newURL.href);
 
     searchFromURL();
