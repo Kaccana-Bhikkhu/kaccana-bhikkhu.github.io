@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import os, json, re
 import Utils, Alert, Link, Prototype, Filter
+import Html2 as Html
 from typing import Iterable, Iterator, Callable
 
 def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
@@ -143,13 +144,30 @@ def TagBlob(tag) -> str:
 def TagBlobs() -> Iterator[dict]:
     """Return a blob for each tag, sorted alphabetically."""
 
-    for tag,tagInfo in gDatabase["tag"].items():
+    def AlphabetizeName(string: str) -> str:
+        return Utils.RemoveDiacritics(string).lower()
+
+    alphabetizedTags = [(AlphabetizeName(tag["fullTag"]),tag["tag"]) for tag in gDatabase["tag"].values() if tag["htmlFile"]]
+    alphabetizedTags.sort()
+
+    def HtmlTagDisplay(tagInfo: dict) -> str:
+        bits = [
+            Prototype.DrilldownIconLink(tagInfo['tag'],iconWidth = 14),
+            f"[{Prototype.HtmlTagLink(tagInfo['tag'],fullTag = True)}]"
+        ]
+        if tagInfo["fullPali"] and tagInfo["fullPali"] != tagInfo["fullTag"]:
+            bits.append(f"({tagInfo['fullPali']})")
+        if tagInfo.get("excerptCount",0):
+            bits.append(f"({tagInfo['excerptCount']})")
+        return " ".join(bits)
+
+    for _,tag in alphabetizedTags:
         yield {
-            "blobs": [TagBlob(tagInfo)],
-            "html": f"[{Prototype.HtmlTagLink(tag,fullTag = True)}]"
+            "blobs": [TagBlob(gDatabase["tag"][tag])],
+            "html": HtmlTagDisplay(gDatabase["tag"][tag])
         } 
 
-def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],separator:str = "<br>",plural:str = "s",itemsPerPage = 5) -> None:
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),separator:str = "",plural:str = "s",itemsPerPage = 5) -> None:
     """Add the search (tags, teachers, etc.) to searchList.
     code: a one-letter code to identify the search.
     name: the name of the search.
@@ -162,6 +180,8 @@ def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Itera
         "code": code,
         "name": name,
         "plural": name + "s" if plural == "s" else plural,
+        "prefix": wrapper.prefix,
+        "suffix": wrapper.suffix,
         "separator": separator,
         "items": [b for b in blobsAndHtml],
         "itemsPerPage": itemsPerPage
@@ -184,9 +204,9 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     optimizedDB = {"searches": {}}
 
-    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),separator="<hr>",itemsPerPage=100)
+    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper(),separator="<hr>",itemsPerPage=100)
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
-    AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
+    AddSearch(optimizedDB["searches"],"g","tag",TagBlobs(),itemsPerPage=100)
 
     optimizedDB["blobDict"] = list(gBlobDict.values())
 

@@ -278,6 +278,8 @@ class searcher {
     code; // a one-letter code to identify the search.
     name; // the name of the search, e.g. "Tag"
     plural; // the plural name of the search.
+    prefix; // html prefix of each search result.
+    suffix; // hmtl suffix of each search result.
     separator; // the html code to separate each displayed search result.
     itemsPerPage; // The number of items to display per page. 
         // For the base class searcher, this is the number of items to display before the user clicks "Show all"
@@ -305,7 +307,7 @@ class searcher {
 
         let rendered = [];
         for (let item of this.foundItems.slice(0,this.itemsPerPage)) {
-            rendered.push(this.query.displayMatchesInBold(item.html));
+            rendered.push(this.prefix + this.query.displayMatchesInBold(item.html) + this.suffix);
         }
 
         return rendered.join(this.separator);
