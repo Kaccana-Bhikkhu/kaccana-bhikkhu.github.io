@@ -83,9 +83,9 @@ async function changeURL(pUrl) {
 			innerTitle.remove();
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
-			loadSearchPage();
 
 			configureLinks(frame,resultUrl);
+			loadSearchPage();
 		});
 }
 
