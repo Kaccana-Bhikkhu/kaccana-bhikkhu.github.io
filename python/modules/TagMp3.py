@@ -4,6 +4,7 @@ We leave the session file tags untouched."""
 from __future__ import annotations
 
 import json, re, os
+import Database
 import Utils, Alert, Filter, Link
 from typing import Tuple, Type, Callable
 from Mp3DirectCut import Clip
@@ -90,7 +91,7 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
 def ExcerptTags(excerpt: dict) -> dict:
     """Given an excerpt, return a dictionary of the id3 tags it should have."""
     event = gDatabase["event"][excerpt["event"]]
-    session = Utils.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])
+    session = Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])
 
     sessionStr = f", Session {excerpt['sessionNumber']}" if excerpt['sessionNumber'] else ""
     returnValue = {
@@ -104,7 +105,7 @@ def ExcerptTags(excerpt: dict) -> dict:
         "genre": gDatabase["kind"][excerpt["kind"]]["category"],
         "copyright": f"© {gOptions.info.releaseYear} Abhayagiri Monastery; not for distribution outside the APQS Archive",
         "organization": "The Ajahn Pasanno Question and Story Achive",
-        "website": f"https://abhayagiri.org/questions/events/{excerpt['event']}.html#{Utils.ItemCode(excerpt)}",
+        "website": f"https://abhayagiri.org/questions/events/{excerpt['event']}.html#{Database.ItemCode(excerpt)}",
     }
 
     if not returnValue["artist"]:

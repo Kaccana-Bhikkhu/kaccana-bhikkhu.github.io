@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os, sys, re, csv, json, unicodedata
+import Database
 import Filter
 import Render
 import SplitMp3,Mp3DirectCut
@@ -734,7 +735,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
             elif defaultTeacher == "Excerpt":
                 annotation["teachers"] = excerpt["teachers"]
             elif defaultTeacher == "Session" or (defaultTeacher == "Session unless text" and not annotation["text"]):
-                ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
+                ourSession = Database.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
                 annotation["teachers"] = ourSession["teachers"]
         
         if not (TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts") or database["kind"][annotation["kind"]]["ignoreConsent"]):
@@ -853,7 +854,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 
 
     # Then scan through the excerpts and add key "clips"
-    for session,sessionExcerpts in Utils.GroupBySession(excerpts,sessions):
+    for session,sessionExcerpts in Database.GroupBySession(excerpts,sessions):
         prevExcerpt = None
         if session["filename"]:
             AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
@@ -872,7 +873,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             endTime = x["endTime"]
             if startTime == "Session":
                     # The session excerpt has the length of the session and has no clips key
-                session = Utils.FindSession(sessions,x["event"],x["sessionNumber"])
+                session = Database.FindSession(sessions,x["event"],x["sessionNumber"])
                 x["duration"] = session["duration"]
                 if not x["duration"]:
                     Alert.error("Deleting session excerpt",x,"since the session has no duration.")
@@ -997,7 +998,7 @@ def LoadEventFile(database,eventName,directory):
         x["annotations"] = []    
         x["event"] = eventName
         
-        ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
+        ourSession = Database.FindSession(sessions,eventName,x["sessionNumber"])
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
             Utils.ExtendUnique(x["qTag"],ourSession["tags"])

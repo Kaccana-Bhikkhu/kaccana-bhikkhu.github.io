@@ -14,7 +14,7 @@ sys.path.append(os.path.join(scriptDir,'python/modules')) # Look for modules in 
 sys.path.append(os.path.join(scriptDir,'python/utils'))
 
 import Utils, Alert, Filter, Database
-Alert.ObjectPrinter = Utils.ItemRepr
+Alert.ObjectPrinter = Database.ItemRepr
 
 def PrintModuleSeparator(moduleName:str) -> None:
     if moduleName:
@@ -214,7 +214,7 @@ if newOpSet != opSet:
 # Set up the global namespace for each module - this allows the modules to call each other out of order
 for mod in modules.values():
     mod.gDatabase = database
-Utils.gDatabase = database
+Database.gDatabase = database
 Filter.gDatabase = database
 
 # Then run the specified operations in sequential order

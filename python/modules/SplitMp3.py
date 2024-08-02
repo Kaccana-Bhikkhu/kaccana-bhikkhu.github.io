@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os, json, platform
+import Database
 import Utils, Alert, Link, TagMp3, PrepareUpload
 import Mp3DirectCut
 from Mp3DirectCut import Clip, ClipTD
@@ -38,7 +39,7 @@ def main():
         # excerpt file filename
     excerptsByFilename:dict[str,dict] = {}
         # Store each excerpt by filename for future reference
-    for event,eventExcerpts in Utils.GroupByEvent(gDatabase["excerpts"]):        
+    for event,eventExcerpts in Database.GroupByEvent(gDatabase["excerpts"]):        
         eventName = event["code"]
         if gOptions.events != "All" and eventName not in gOptions.events:
             continue
@@ -55,9 +56,9 @@ def main():
         session = dict(sessionNumber=None)
         for excerpt in excerptsNeedingSplit:
             if session["sessionNumber"] != excerpt["sessionNumber"]:
-                session = Utils.FindSession(gDatabase["sessions"],eventName,excerpt["sessionNumber"])
+                session = Database.FindSession(gDatabase["sessions"],eventName,excerpt["sessionNumber"])
 
-            filename = f"{Utils.ItemCode(excerpt)}.mp3"
+            filename = f"{Database.ItemCode(excerpt)}.mp3"
             clips = list(excerpt["clips"])
             defaultSource = session["filename"]
             for index in range(len(clips)):

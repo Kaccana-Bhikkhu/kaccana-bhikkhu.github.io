@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
+import Database
 import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
 from datetime import datetime,timedelta
@@ -138,7 +139,7 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
         teacherRegex = gAllTeacherRegex
 
     def HtmlTeacherLink(matchObject: re.Match) -> str:
-        teacher = Utils.TeacherLookup(matchObject[1])
+        teacher = Database.TeacherLookup(matchObject[1])
         htmlFile = TeacherLink(teacher)
         return f'<a href="{htmlFile}">{matchObject[1]}</a>'
 
@@ -668,13 +669,13 @@ def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
-    return AudioIcon(Utils.Mp3Link(excerpt),title=PlayerTitle(excerpt),dataDuration = excerpt["duration"],**kwArgs)
+    return AudioIcon(Database.Mp3Link(excerpt),title=PlayerTitle(excerpt),dataDuration = excerpt["duration"],**kwArgs)
     
 def Mp3SessionLink(session: dict,**kwArgs) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
         
-    return AudioIcon(Utils.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
+    return AudioIcon(Database.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
     
 def EventLink(event:str, session: int = 0) -> str:
     "Return a link to a given event and session. If session == 0, link to the top of the event page"
@@ -781,7 +782,7 @@ class Formatter:
         for n,tag in enumerate(excerpt["tags"]):
             omitTags = self.excerptOmitTags
             if self.excerptOmitSessionTags:
-                omitTags = set.union(omitTags,set(Utils.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
+                omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
             
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
@@ -824,7 +825,7 @@ class Formatter:
         a = Airium(source_minify=True)
         event = gDatabase["event"][session["event"]]
 
-        bookmark = Utils.ItemCode(session)
+        bookmark = Database.ItemCode(session)
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
@@ -935,7 +936,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
     localFormatter = copy.deepcopy(formatter) # Make a copy in case the formatter object is reused
     for count,x in enumerate(excerpts):
         if localFormatter.showHeading and (x["event"] != prevEvent or x["sessionNumber"] != prevSession):
-            session = Utils.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
+            session = Database.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
             linkSessionAudio = formatter.headingAudio and x["fileNumber"]
                 # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
@@ -959,7 +960,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
         if x["body"] or (not x["fileNumber"] and hasMultipleAnnotations):
             """ Render blank session excerpts which have more than one annotation as [Session].
                 If a blank session excerpt has only one annotation, [Session] will be added below."""
-            with a.p(id = Utils.ItemCode(x)):
+            with a.p(id = Database.ItemCode(x)):
                 a(localFormatter.FormatExcerpt(x,**options))
         
         tagsAlreadyPrinted = set(x["tags"])
@@ -1004,7 +1005,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         menuItem = Html.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
         pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
 
-        excerptPage.update((Utils.ItemCode(x),fileName) for x in excerptsInThisPage)
+        excerptPage.update((Database.ItemCode(x),fileName) for x in excerptsInThisPage)
 
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
@@ -1284,7 +1285,7 @@ def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the teacher page if this tag represents a teacher."
 
-    teacher = Utils.TeacherLookup(page.info.title)
+    teacher = Database.TeacherLookup(page.info.title)
     if teacher:
         link = TeacherLink(teacher)
         if link:
@@ -1364,7 +1365,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
 def LinkToTagPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the tag page if this teacher has a tag."
 
-    tag = Utils.TagLookup(page.info.title)
+    tag = Database.TagLookup(page.info.title)
     if tag:
         page.AppendContent(HtmlTagLink(tag,text = f'Tag [{tag}]'),"smallTitle")
 
@@ -1541,7 +1542,7 @@ def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
         with open(tocPath,encoding='utf8') as file:
             template = pyratemp.Template(file.read())
         
-        markdownText = template(gOptions = gOptions,gDatabase = gDatabase,Utils = Utils)
+        markdownText = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database)
 
         def ApplyToMarkdownFile(transform: Callable[[str],Tuple[str,int]]) -> int:
             nonlocal markdownText
@@ -1567,14 +1568,14 @@ def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
                 for s in sessions:
                     with a.p():
                         a(f"Session {s['sessionNumber']}:")
-                        with a.a(href = f"#{Utils.ItemCode(s)}"):
+                        with a.a(href = f"#{Database.ItemCode(s)}"):
                             a(str(s['sessionTitle']))
         else:
             squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
             squish("Sessions:")
             for s in sessions:
                 squish(" " + 3*"&nbsp")
-                with squish.a(href = f"#{Utils.ItemCode(s)}"):
+                with squish.a(href = f"#{Database.ItemCode(s)}"):
                     squish(str(s['sessionNumber']))
             
             a(str(squish))

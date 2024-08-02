@@ -10,34 +10,34 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](drilldown:) ($!Utils.SubtagDescription("Skillful qualities")!$)
-2. [Unskillful qualities](drilldown:) ($!Utils.SubtagDescription("Unskillful qualities")!$)
-3. [Indeterminate qualities](drilldown:) ($!Utils.SubtagDescription("Indeterminate qualities")!$)
+1. [Skillful qualities](drilldown:) ($!Database.SubtagDescription("Skillful qualities")!$)
+2. [Unskillful qualities](drilldown:) ($!Database.SubtagDescription("Unskillful qualities")!$)
+3. [Indeterminate qualities](drilldown:) ($!Database.SubtagDescription("Indeterminate qualities")!$)
 
  __B. Modes of practice__
 
-4. [Three Refuges](drilldown:) ($!Utils.SubtagDescription("Three Refuges")!$)
-5. [Devotional practice](drilldown:) ($!Utils.SubtagDescription("Devotional practice")!$)
-6. [Precepts](drilldown:) ($!Utils.SubtagDescription("Precepts")!$)
-7. [Meditation](drilldown:) ($!Utils.SubtagDescription("Meditation")!$)
+4. [Three Refuges](drilldown:) ($!Database.SubtagDescription("Three Refuges")!$)
+5. [Devotional practice](drilldown:) ($!Database.SubtagDescription("Devotional practice")!$)
+6. [Precepts](drilldown:) ($!Database.SubtagDescription("Precepts")!$)
+7. [Meditation](drilldown:) ($!Database.SubtagDescription("Meditation")!$)
 
  __C. Sources of Dhamma teachings__
 
-8. [Teaching Dhamma](drilldown:) ($!Utils.SubtagDescription("Teaching Dhamma")!$)
-9. [Teachers](drilldown:) ($!Utils.SubtagDescription("Teachers")!$)
-10. [Monasteries](drilldown:) ($!Utils.SubtagDescription("Monasteries")!$)
+8. [Teaching Dhamma](drilldown:) ($!Database.SubtagDescription("Teaching Dhamma")!$)
+9. [Teachers](drilldown:) ($!Database.SubtagDescription("Teachers")!$)
+10. [Monasteries](drilldown:) ($!Database.SubtagDescription("Monasteries")!$)
 
  __D. Context of teaching and and practice__
 
-11. [Nature of the cosmos](drilldown:) ($!Utils.SubtagDescription("Nature of the cosmos")!$)
-12. [History](drilldown:) ($!Utils.SubtagDescription("History")!$)
-13. [Cultural context](drilldown:) ($!Utils.SubtagDescription("Cultural context")!$)
-14. [Spiritual traditions](drilldown:) ($!Utils.SubtagDescription("Spiritual traditions")!$)
+11. [Nature of the cosmos](drilldown:) ($!Database.SubtagDescription("Nature of the cosmos")!$)
+12. [History](drilldown:) ($!Database.SubtagDescription("History")!$)
+13. [Cultural context](drilldown:) ($!Database.SubtagDescription("Cultural context")!$)
+14. [Spiritual traditions](drilldown:) ($!Database.SubtagDescription("Spiritual traditions")!$)
 
  __E. Domains of teaching and practice__
 
-15. [Renunciant practice](drilldown:) ($!Utils.SubtagDescription("Renunciant practice")!$)
-16. [Everyday life](drilldown:) ($!Utils.SubtagDescription("Everyday life")!$)
+15. [Renunciant practice](drilldown:) ($!Database.SubtagDescription("Renunciant practice")!$)
+16. [Everyday life](drilldown:) ($!Database.SubtagDescription("Everyday life")!$)
 
 Like the teachings themselves, the tag structure gives first priority to understanding skillful and unskillful states of mind. Next come strategies for cultivating skillful states of mind and details about the transmission of the teachings, followed by tags describing the context within which this all occurs.
 

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import os, json, re
+import Database
 import Utils, Alert, Link, Prototype, Filter
 import Html2 as Html
 from typing import Iterable, Iterator, Callable
@@ -114,7 +115,7 @@ def OptimizedExcerpts() -> list[dict]:
     formatter.showHeading = False
     formatter.headingShowTeacher = False
     for x in gDatabase["excerpts"]:
-        xDict = {"session": Utils.ItemCode(event=x["event"],session=x["sessionNumber"]),
+        xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": SearchBlobs(x),
                  "html": Prototype.HtmlExcerptList([x],formatter)}
         returnValue.append(xDict)
@@ -128,7 +129,7 @@ def SessionHeader() -> dict[str,str]:
     formatter.headingShowTeacher = False
 
     for s in gDatabase["sessions"]:
-        returnValue[Utils.ItemCode(s)] = formatter.FormatSessionHeading(s,horizontalRule=False)
+        returnValue[Database.ItemCode(s)] = formatter.FormatSessionHeading(s,horizontalRule=False)
     
     return returnValue
 
