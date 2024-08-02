@@ -136,8 +136,8 @@ def SessionHeader() -> dict[str,str]:
 def TagBlob(tag) -> str:
     "Make a search blob from this tag."
     bits = [
-        Enclose(Blobify({tag["tag"],tag["fullTag"]}),"[]"), # Use sets to remove duplicates
-        Enclose(Blobify({tag["pali"],tag["fullPali"]}),"<>"),
+        Enclose(Blobify(sorted({tag["tag"],tag["fullTag"]})),"[]"), # Use sets to remove duplicates
+        Enclose(Blobify(sorted({tag["pali"],tag["fullPali"]})),"<>"),
         Enclose(Blobify(tag["alternateTranslations"] + tag["glosses"]),"^^"),
     ]
     return "".join(bits)
