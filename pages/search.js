@@ -1,10 +1,14 @@
 import {configureLinks} from './frame.js';
 
-const SPECIAL_SEARCH_CHARS = "][{}()#^@&";
+const TEXT_DELIMITERS = "][{}<>^";
+const METADATA_DELIMITERS = "#&@";
+const SPECIAL_SEARCH_CHARS = TEXT_DELIMITERS + METADATA_DELIMITERS + "()";
+
 const PALI_DIACRITICS = {
     "a":"ā","i":"ī","u":"ū",
     "d":"ḍ","l":"ḷ","t":"ṭ",
-    "n":"ñṇṅ","m":"ṁṃ"
+    "n":"ñṇṅ","m":"ṁṃ",
+    "'": '‘’"“”'                // A single quote matches all types of quotes
 };
 
 let PALI_DIACRITIC_MATCH_ALL = {};
@@ -18,11 +22,11 @@ let gDatabase = null; // The global database, loaded from assets/SearchDatabase.
 let gSearchers = {}; // A dictionary of searchers by item code
 
 export function regExpEscape(literal_string) {
-    return literal_string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&');
+    return literal_string.replace(/[-[\]{}()*+!<>=:?.\/\\^$|#\s,]/g, '\\$&');
 }
 
-const ESCAPED_SPECIAL_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS);
-const ESCAPED_HTML_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS + "<>")
+const ESCAPED_HTML_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS);
+const MATCH_END_DELIMITERS = new RegExp(`^\\\\[${regExpEscape(TEXT_DELIMITERS)}]+|\\\\[${regExpEscape(TEXT_DELIMITERS)}]+$`,"g");
 
 export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
@@ -126,13 +130,7 @@ class searchTerm {
         // Start processing again to create RegExps for bold text
         let boldItem = escaped;
         console.log("boldItem before:",boldItem);
-        if (seachElement.match(/^\[|\]$/g)) { // are we matching a tag?
-            boldItem = substituteWildcards(seachElement.replace(/^\[+/,'').replace(/\]+$/,''));
-                // remove enclosing [ ]
-        } else if (seachElement.match(/^\{|\}$/g)) { // are we matching a teacher?
-            boldItem = substituteWildcards(seachElement.replace(/^\{+/,'').replace(/\}+$/,''));
-                // remove enclosing { }
-        }
+        boldItem = boldItem.replaceAll(MATCH_END_DELIMITERS,"");
 
         for (const letter in PALI_DIACRITIC_MATCH_ALL) { // 
             boldItem = boldItem.replaceAll(letter,PALI_DIACRITIC_MATCH_ALL[letter]);
