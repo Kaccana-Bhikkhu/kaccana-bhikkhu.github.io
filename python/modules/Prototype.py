@@ -562,10 +562,43 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 entries["proper"].append(Alphabetize(gloss,html))
     
     for subsumedTag in gDatabase["tagSubsumed"].values():
-        subsumedUnder = subsumedTag["subsumedUnder"]
-        tag = gDatabase["tag"][subsumedUnder]
-        html = f"{subsumedTag['tag']} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
-        entries["english"].append(Alphabetize(subsumedTag["tag"],html))
+        if ParseCSV.TagFlag.HIDE in subsumedTag["flags"]:
+            continue
+
+        subsumedUnder = gDatabase["tag"][subsumedTag["subsumedUnder"]]
+        referenceText = f" – see {EnglishEntry(subsumedUnder,subsumedUnder['fullTag'],fullTag=True,drilldownLink=False).html}"
+        
+        if subsumedTag["tag"] != subsumedTag["pali"]:
+            entries["english"].append(Alphabetize(subsumedTag["fullTag"],subsumedTag["fullTag"] + referenceText))
+            if not AlphabetizeName(subsumedTag["fullTag"]).startswith(AlphabetizeName(subsumedTag["tag"])):
+                entries["english"].append(Alphabetize(subsumedTag["tag"],subsumedTag["tag"] + referenceText))
+                # File the abbreviated tag separately if it's not a simple truncation
+        
+        hasPali = subsumedTag["pali"] and not LanguageTag(subsumedTag["fullPali"])
+        if subsumedTag["pali"]:
+            entry = Alphabetize(subsumedTag["pali"],f"{subsumedTag['pali']} [{subsumedTag['tag']}]{referenceText}")
+            if hasPali:
+                entries["pali"].append(entry)
+            else:
+                entries["other"].append(entry)
+            
+            if subsumedTag["pali"] != subsumedTag["fullPali"]:
+                entry = Alphabetize(subsumedTag["fullPali"],f"{subsumedTag['fullPali']} [{subsumedTag['fullTag']}]{referenceText}")
+                if hasPali:
+                    entries["pali"].append(entry)
+                else:
+                    entries["other"].append(entry)
+        
+        for gloss in subsumedTag["glosses"] + subsumedTag["alternateTranslations"]:
+            language = LanguageTag(gloss)
+            if language:
+                if language == "pali":
+                    gloss = RemoveLanguageTag(gloss)
+                    entries["pali"].append(Alphabetize(gloss,gloss + referenceText))
+                else:
+                    entries["other"].append(Alphabetize(gloss,gloss + referenceText))
+            else:
+                entries["english"].append(Alphabetize(gloss,gloss + referenceText))
 
     def Deduplicate(iterable: Iterable) -> Iterator:
         iterable = iter(iterable)
@@ -1735,11 +1768,11 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     Also write a page for each tag."""
 
     drilldownDir = "drilldown"
-    yield next(iter(AlphabeticalTagList(indexDir)))._replace(title="Tags")
+    yield next(iter(TagHierarchyMenu(indexDir,drilldownDir)))._replace(title="Tags")
 
     tagMenu = [
-        AlphabeticalTagList(indexDir),
         TagHierarchyMenu(indexDir,drilldownDir),
+        AlphabeticalTagList(indexDir),
         NumericalTagList(indexDir),
         MostCommonTagList(indexDir),
         [Html.PageInfo("About tags","about/05_Tags.html")],
