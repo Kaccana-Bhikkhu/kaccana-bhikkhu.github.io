@@ -61,16 +61,23 @@ def main():
             filename = f"{Database.ItemCode(excerpt)}.mp3"
             clips = list(excerpt["clips"])
             defaultSource = session["filename"]
+            allFilesFound = True
             for index in range(len(clips)):
-                source = clips[index].file
-                if source == "$":
-                    source = defaultSource
+                sourceFile = clips[index].file
+                if sourceFile == "$":
+                    sourceFile = defaultSource
                 elif index == 0:
                     defaultSource = clips[0].file
-                clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(gDatabase["audioSource"][source],"local")))
-
-            excerptClipsDict[filename] = clips
-            excerptsByFilename[filename] = excerpt
+                source = gDatabase["audioSource"].get(sourceFile,None)
+                if source:
+                    clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(source,"local")))
+                else:
+                    Alert.error(f"Cannot find source file '{sourceFile}' for",excerpt,". Will not split this excerpt.")
+                    allFilesFound = False
+            
+            if allFilesFound:
+                excerptClipsDict[filename] = clips
+                excerptsByFilename[filename] = excerpt
     
         eventExcerptClipsDict[eventName] = excerptClipsDict
     
@@ -87,8 +94,8 @@ def main():
         Link.DownloadItem(item,scanRemoteMirrors=False)
 
     with Utils.ConditionalThreader() as pool:
-        for source in allSources:
-            pool.submit(DownloadItem,source)
+        for sourceFile in allSources:
+            pool.submit(DownloadItem,sourceFile)
 
     splitCount = 0
     errorCount = 0
