@@ -132,7 +132,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch"
+                "SplitMp3",
+                "--events",
+                "Anniversary2021",
+                "--linkCheckLevel",
+                "3"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
