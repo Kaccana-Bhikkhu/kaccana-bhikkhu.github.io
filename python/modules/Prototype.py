@@ -1296,7 +1296,20 @@ def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
 
 def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Write a html file for each tag in the database"""
-            
+    
+    def SubsumedTagDescription(tagData:dict) -> str:
+        """Return a string describing this subsumed tag."""
+        additionalBits = []
+        if tagData["fullPali"]:
+            additionalBits.append(tagData["fullPali"])
+        additionalBits += tagData["alternateTranslations"]
+        additionalBits += tagData["glosses"]
+        if additionalBits:
+            return tagData["fullTag"] + f" ({', '.join(additionalBits)})"
+        else:
+            return tagData["fullTag"]
+
+    subsumesTags = Database.SubsumesTags()
     for tag,tagInfo in gDatabase["tag"].items():
         if not tagInfo["htmlFile"]:
             continue
@@ -1306,6 +1319,8 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a = Airium()
         
         with a.strong():
+            if tag in subsumesTags:
+                a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
             if ProperNounTag(tagInfo):
                 a(TitledList("Other names",[RemoveLanguageTag(name) for name in tagInfo['glosses']],plural = ""))
