@@ -121548,35 +121548,495 @@
     }
   },
   "tagSubsumed": {
-    "Non-ill-will": "Goodwill",
-    "Non-cruelty": "Compassion",
-    "Non-arising of unarisen evil, unskillful qualities": "Right Effort",
-    "Abandoning of arisen evil, unskillful qualities": "Right Effort",
-    "Arising of unarisen skillful qualities": "Right Effort",
-    "Fulfillment of arisen skillful qualities": "Right Effort",
-    "Five aggregates affected by clinging": "Aggregates",
-    "Craving for sensuality": "Sensual desire",
-    "Craving to become": "Becoming",
-    "Path to the Cessation of Suffering": "Eightfold Path",
-    "Foundations of Mindfulness": "Right Mindfulness",
-    "Four Right Efforts": "Right Effort",
-    "Powers": "Faculties",
-    "Investigation": "Discernment",
-    "Confidence": "Faith",
-    "Sensuality": "Sensual desire",
-    "Restlessness": "Restlessness and worry",
-    "Defilement": "Unwholesome Roots",
-    "Name and form": "Aggregates",
-    "Pleasant feeling": "Happiness",
-    "Unpleasant feeling": "Pain",
-    "Sensuality-clinging": "Sensual desire",
-    "View-clinging": "Views",
-    "Rites-and-rituals clinging": "Attachment to rites and rituals",
-    "Sexual activity": "Celibacy",
-    "Monastic precepts": "Vinaya",
-    "Heaven": "Deva",
-    "Danger of sensual pleasure": "Sensual desire",
-    "Accomplishment in virtue": "Virtue",
-    "Pleasure": "Happiness"
+    "Non-ill-will": {
+      "tag": "Non-ill-will",
+      "pali": "abyāpāda",
+      "fullTag": "Non-ill-will",
+      "fullPali": "abyāpāda",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Right Intention"
+      ],
+      "subsumedUnder": "Goodwill"
+    },
+    "Non-cruelty": {
+      "tag": "Non-cruelty",
+      "pali": "avihiṃsā",
+      "fullTag": "Non-cruelty",
+      "fullPali": "avihiṃsā",
+      "number": "",
+      "alternateTranslations": [
+        "Harmlessness"
+      ],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Right Intention"
+      ],
+      "subsumedUnder": "Compassion"
+    },
+    "Non-arising of unarisen evil, unskillful qualities": {
+      "tag": "Non-arising of unarisen evil, unskillful qualities",
+      "pali": "anuppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ anuppādāya",
+      "fullTag": "Non-arising of unarisen evil, unskillful qualities",
+      "fullPali": "anuppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ anuppādāya",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Right Effort"
+      ],
+      "subsumedUnder": "Right Effort"
+    },
+    "Abandoning of arisen evil, unskillful qualities": {
+      "tag": "Abandoning of arisen evil, unskillful qualities",
+      "pali": "uppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ pahānāya",
+      "fullTag": "Abandoning of arisen evil, unskillful qualities",
+      "fullPali": "uppannānaṁ pāpakānaṁ akusalānaṁ dhammānaṁ pahānāya",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Right Effort"
+      ],
+      "subsumedUnder": "Right Effort"
+    },
+    "Arising of unarisen skillful qualities": {
+      "tag": "Arising of unarisen skillful qualities",
+      "pali": "anuppannānaṁ kusalānaṁ dhammānaṁ uppādāya",
+      "fullTag": "Arising of unarisen skillful qualities",
+      "fullPali": "anuppannānaṁ kusalānaṁ dhammānaṁ uppādāya",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Right Effort"
+      ],
+      "subsumedUnder": "Right Effort"
+    },
+    "Fulfillment of arisen skillful qualities": {
+      "tag": "Fulfillment of arisen skillful qualities",
+      "pali": "uppannānaṁ kusalānaṁ dhammānaṁ pāripūriyā",
+      "fullTag": "Fulfillment of arisen skillful qualities",
+      "fullPali": "uppannānaṁ kusalānaṁ dhammānaṁ pāripūriyā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Right Effort"
+      ],
+      "subsumedUnder": "Right Effort"
+    },
+    "Five aggregates affected by clinging": {
+      "tag": "Five aggregates affected by clinging",
+      "pali": "pañcupādānakkhandhā",
+      "fullTag": "Five aggregates affected by clinging",
+      "fullPali": "pañcupādānakkhandhā",
+      "number": "",
+      "alternateTranslations": [
+        "Five clinging-aggregates"
+      ],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Noble Truth of Suffering"
+      ],
+      "subsumedUnder": "Aggregates"
+    },
+    "Craving for sensuality": {
+      "tag": "Craving for sensuality",
+      "pali": "kāma-taṇhā",
+      "fullTag": "Craving for sensuality",
+      "fullPali": "kāma-taṇhā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Cause of Suffering"
+      ],
+      "subsumedUnder": "Sensual desire"
+    },
+    "Craving to become": {
+      "tag": "Craving to become",
+      "pali": "bhava-taṇhā",
+      "fullTag": "Craving to become",
+      "fullPali": "bhava-taṇhā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Cause of Suffering"
+      ],
+      "subsumedUnder": "Becoming"
+    },
+    "Path to the Cessation of Suffering": {
+      "tag": "Path to the Cessation of Suffering",
+      "pali": "dukkha-nirodha-gāminī paṭipadā",
+      "fullTag": "Noble Truth of the Path to the Cessation of Suffering",
+      "fullPali": "dukkha-nirodha-gāminī paṭipadā ariya-sacca",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Four Noble Truths"
+      ],
+      "subsumedUnder": "Eightfold Path"
+    },
+    "Foundations of Mindfulness": {
+      "tag": "Foundations of Mindfulness",
+      "pali": "satipaṭṭhānā",
+      "fullTag": "Four Foundations of Mindfulness",
+      "fullPali": "cattāro satipaṭṭhānā",
+      "number": "4",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Meditation"
+      ],
+      "subsumedUnder": "Right Mindfulness"
+    },
+    "Four Right Efforts": {
+      "tag": "Four Right Efforts",
+      "pali": "cattāro sammappadhānā",
+      "fullTag": "Four Right Efforts",
+      "fullPali": "cattāro sammappadhānā",
+      "number": "4",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "4",
+      "subtags": [],
+      "supertags": [
+        "Aids to Awakening"
+      ],
+      "subsumedUnder": "Right Effort"
+    },
+    "Powers": {
+      "tag": "Powers",
+      "pali": "balā",
+      "fullTag": "Five Powers",
+      "fullPali": "pañca balā",
+      "number": "5",
+      "alternateTranslations": [
+        "Five Strengths"
+      ],
+      "glosses": [],
+      "related": [],
+      "flags": "5",
+      "subtags": [],
+      "supertags": [
+        "Aids to Awakening"
+      ],
+      "subsumedUnder": "Faculties"
+    },
+    "Investigation": {
+      "tag": "Investigation",
+      "pali": "vīmaṃsā",
+      "fullTag": "Investigation",
+      "fullPali": "vīmaṃsā",
+      "number": "",
+      "alternateTranslations": [
+        "Inquiry"
+      ],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Bases of Success"
+      ],
+      "subsumedUnder": "Discernment"
+    },
+    "Confidence": {
+      "tag": "Confidence",
+      "pali": "pasāda",
+      "fullTag": "Confidence",
+      "fullPali": "pasāda",
+      "number": "",
+      "alternateTranslations": [
+        "Inspiration"
+      ],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Spiritual search"
+      ],
+      "subsumedUnder": "Faith"
+    },
+    "Sensuality": {
+      "tag": "Sensuality",
+      "pali": "kāmāsava",
+      "fullTag": "Sensuality",
+      "fullPali": "kāmāsava",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Outflows"
+      ],
+      "subsumedUnder": "Sensual desire"
+    },
+    "Restlessness": {
+      "tag": "Restlessness",
+      "pali": "uddhacca",
+      "fullTag": "Restlessness",
+      "fullPali": "uddhacca",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Fetters"
+      ],
+      "subsumedUnder": "Restlessness and worry"
+    },
+    "Defilement": {
+      "tag": "Defilement",
+      "pali": "kilesa",
+      "fullTag": "Defilement",
+      "fullPali": "kilesa",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Unskillful qualities"
+      ],
+      "subsumedUnder": "Unwholesome Roots"
+    },
+    "Name and form": {
+      "tag": "Name and form",
+      "pali": "nāma-rūpa",
+      "fullTag": "Name and form",
+      "fullPali": "nāma-rūpa",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Dependent origination"
+      ],
+      "subsumedUnder": "Aggregates"
+    },
+    "Pleasant feeling": {
+      "tag": "Pleasant feeling",
+      "pali": "sukhā vedanā",
+      "fullTag": "Pleasant feeling",
+      "fullPali": "sukhā vedanā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Feeling"
+      ],
+      "subsumedUnder": "Happiness"
+    },
+    "Unpleasant feeling": {
+      "tag": "Unpleasant feeling",
+      "pali": "dukkhā vedanā",
+      "fullTag": "Unpleasant feeling",
+      "fullPali": "dukkhā vedanā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Feeling"
+      ],
+      "subsumedUnder": "Pain"
+    },
+    "Sensuality-clinging": {
+      "tag": "Sensuality-clinging",
+      "pali": "kāmupādāna",
+      "fullTag": "Sensuality-clinging",
+      "fullPali": "kāmupādāna",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Clinging"
+      ],
+      "subsumedUnder": "Sensual desire"
+    },
+    "View-clinging": {
+      "tag": "View-clinging",
+      "pali": "diṭṭhupādāna",
+      "fullTag": "View-clinging",
+      "fullPali": "diṭṭhupādāna",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Clinging"
+      ],
+      "subsumedUnder": "Views"
+    },
+    "Rites-and-rituals clinging": {
+      "tag": "Rites-and-rituals clinging",
+      "pali": "sīlabbatupādāna",
+      "fullTag": "Rites-and-rituals clinging",
+      "fullPali": "sīlabbatupādāna",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Clinging"
+      ],
+      "subsumedUnder": "Attachment to rites and rituals"
+    },
+    "Sexual activity": {
+      "tag": "Sexual activity",
+      "pali": "abrahmacariya",
+      "fullTag": "Sexual activity",
+      "fullPali": "abrahmacariya",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Eight Precepts"
+      ],
+      "subsumedUnder": "Celibacy"
+    },
+    "Monastic precepts": {
+      "tag": "Monastic precepts",
+      "pali": "",
+      "fullTag": "Monastic precepts",
+      "fullPali": "",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Precepts"
+      ],
+      "subsumedUnder": "Vinaya"
+    },
+    "Heaven": {
+      "tag": "Heaven",
+      "pali": "sagga",
+      "fullTag": "Rewards of heaven",
+      "fullPali": "sagga",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Gradual Teaching"
+      ],
+      "subsumedUnder": "Deva"
+    },
+    "Danger of sensual pleasure": {
+      "tag": "Danger of sensual pleasure",
+      "pali": "kāmānaṃ ādīnava",
+      "fullTag": "Danger of sensual pleasure",
+      "fullPali": "kāmānaṃ ādīnava",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Gradual Teaching"
+      ],
+      "subsumedUnder": "Sensual desire"
+    },
+    "Accomplishment in virtue": {
+      "tag": "Accomplishment in virtue",
+      "pali": "sīlasampanno",
+      "fullTag": "Accomplishment in virtue",
+      "fullPali": "sīlasampanno",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Qualities for non-decline"
+      ],
+      "subsumedUnder": "Virtue"
+    },
+    "Pleasure": {
+      "tag": "Pleasure",
+      "pali": "sukha",
+      "fullTag": "Pleasure",
+      "fullPali": "sukha",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Worldly Conditions"
+      ],
+      "subsumedUnder": "Happiness"
+    }
   }
 }

@@ -133,15 +133,20 @@ def SessionHeader() -> dict[str,str]:
     
     return returnValue
 
-def TagBlob(tag) -> str:
+def TagBlob(tagName:str) -> str:
     "Make a search blob from this tag."
-    bits = [
-        Enclose(Blobify(sorted({tag["tag"],tag["fullTag"]})),"[]"), # Use sets to remove duplicates
-        Enclose(Blobify(sorted({tag["pali"],tag["fullPali"]})),"<>"),
-        Enclose(Blobify(tag["alternateTranslations"] + tag["glosses"]),"^^"),
-    ]
-    if tag["number"]:
-        bits.append("^" + tag["number"] + "^")
+
+    subsumesTags = Database.SubsumesTags()
+    bits = []
+    for tagData in [gDatabase["tag"][tagName]] + subsumesTags.get(tagName,[]):
+        bits += [
+            Enclose(Blobify(sorted({tagData["tag"],tagData["fullTag"]})),"[]"), # Use sets to remove duplicates
+            Enclose(Blobify(sorted({tagData["pali"],tagData["fullPali"]})),"<>"),
+            Enclose(Blobify(tagData["alternateTranslations"] + tagData["glosses"]),"^^")
+        ]
+        if tagData["number"]:
+            bits.append("^" + tagData["number"] + "^")
+
     return "".join(bits)
 
 def TagBlobs() -> Iterator[dict]:
@@ -167,7 +172,7 @@ def TagBlobs() -> Iterator[dict]:
 
     for _,tag in alphabetizedTags:
         yield {
-            "blobs": [TagBlob(gDatabase["tag"][tag])],
+            "blobs": [TagBlob(tag)],
             "html": HtmlTagDisplay(gDatabase["tag"][tag])
         } 
 

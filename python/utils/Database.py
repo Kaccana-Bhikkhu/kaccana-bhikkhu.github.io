@@ -278,3 +278,13 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
     if not found:
         Alert.error("Annotation",annotation,"doesn't have a proper parent.")
         return None
+
+def SubsumesTags() -> dict:
+    """Inverts gDatabase["tagSubsumed"] to create a dictionary of which tags a tag subsumes."""
+
+    subsumesTags:dict[str,list[dict]] = {}
+
+    for subsumedTag in gDatabase["tagSubsumed"].values():
+        subsumesTags[subsumedTag["subsumedUnder"]] = subsumesTags.get(subsumedTag["subsumedUnder"],[]) + [subsumedTag]
+
+    return subsumesTags

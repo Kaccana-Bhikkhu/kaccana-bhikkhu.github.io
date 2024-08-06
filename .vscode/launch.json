@@ -57,9 +57,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV",
-                "-vvv",
-                "--keepUnusedTags"],
+                "ParseCSV"
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -132,11 +131,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SplitMp3",
-                "--events",
-                "Anniversary2021",
-                "--linkCheckLevel",
-                "3"
+                "SetupSearch"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

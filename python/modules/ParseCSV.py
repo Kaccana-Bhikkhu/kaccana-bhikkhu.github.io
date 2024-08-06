@@ -351,7 +351,8 @@ def LoadTagsFile(database,tagFileName):
         
         # Subsumed tags don't have a tag entry
         if rawTag["subsumedUnder"]:
-            subsumedTags[tagName] = rawTag["subsumedUnder"]
+            tagDesc["subsumedUnder"] = rawTag["subsumedUnder"]
+            subsumedTags[tagName] = tagDesc
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
@@ -402,7 +403,7 @@ def RemoveUnusedTags(database: dict) -> None:
             return False
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
-    usedTags.update(t for t in gDatabase["tagSubsumed"].values())
+    usedTags.update(t["subsumedUnder"] for t in gDatabase["tagSubsumed"].values())
 
     Alert.extra(len(usedTags),"unique tags applied.")
     

@@ -104,7 +104,7 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str
         if fullTag:
             tag = gDatabase["tag"][tag]["fullTag"]
     except KeyError:
-        ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]]["htmlFile"]
+        ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]["subsumedUnder"]]["htmlFile"]
     
     if not text:
         text = tag
@@ -561,10 +561,11 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             if properNoun:
                 entries["proper"].append(Alphabetize(gloss,html))
     
-    for subsumedTag,subsumedUnder in gDatabase["tagSubsumed"].items():
+    for subsumedTag in gDatabase["tagSubsumed"].values():
+        subsumedUnder = subsumedTag["subsumedUnder"]
         tag = gDatabase["tag"][subsumedUnder]
-        html = f"{subsumedTag} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
-        entries["english"].append(Alphabetize(subsumedTag,html))
+        html = f"{subsumedTag['tag']} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
+        entries["english"].append(Alphabetize(subsumedTag["tag"],html))
 
     def Deduplicate(iterable: Iterable) -> Iterator:
         iterable = iter(iterable)
