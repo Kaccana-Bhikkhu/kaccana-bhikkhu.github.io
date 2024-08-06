@@ -22,10 +22,11 @@ class TagFlag(StrEnum):
     PRIMARY = "*"               # The primary instance of this tag in the hierarchical tag list
     PROPER_NOUN = "p"           # Alphabetize as a proper noun
     PROPER_NOUN_SUBTAGS = "P"   # Alphabetize all subtags as proper nouns
-    SORT_SUBTAGS = "S"          # Sort this tag's subtags using the "sortBy" 
+    SORT_SUBTAGS = "S"          # Sort this tag's subtags using the "sortBy"
     DISPLAY_GLOSS = "g"         # Display the first gloss in the tag name; e.g. Saṅgha (Monastic community)
     ENGLISH_ALSO = "E"          # Show in English tags as well as Pali or proper nouns
     CAPITALIZE = "C"            # Capitalize the Pali entry; e.g. Nibbāna
+    HIDE = "h"                  # Hide this tag in alphabetical lists
 
 class ExcerptFlag(StrEnum):
     INDENT = "-"

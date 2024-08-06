@@ -483,7 +483,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     entries = defaultdict(list)
     for tag in gDatabase["tag"].values():
-        if not tag["htmlFile"]:
+        if not tag["htmlFile"] or ParseCSV.TagFlag.HIDE in tag["flags"]:
             continue
 
         nonEnglish = tag["tag"] == tag["pali"]

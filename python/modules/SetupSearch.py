@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import os, json, re
 import Database
-import Utils, Alert, Link, Prototype, Filter
+import Utils, Alert, ParseCSV, Prototype, Filter
 import Html2 as Html
 from typing import Iterable, Iterator, Callable
 
@@ -150,7 +150,8 @@ def TagBlobs() -> Iterator[dict]:
     def AlphabetizeName(string: str) -> str:
         return Utils.RemoveDiacritics(string).lower()
 
-    alphabetizedTags = [(AlphabetizeName(tag["fullTag"]),tag["tag"]) for tag in gDatabase["tag"].values() if tag["htmlFile"]]
+    alphabetizedTags = [(AlphabetizeName(tag["fullTag"]),tag["tag"]) for tag in gDatabase["tag"].values() 
+                        if tag["htmlFile"] and not ParseCSV.TagFlag.HIDE in tag["flags"]]
     alphabetizedTags.sort()
 
     def HtmlTagDisplay(tagInfo: dict) -> str:

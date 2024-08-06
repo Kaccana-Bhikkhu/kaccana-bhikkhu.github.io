@@ -65803,7 +65803,7 @@
         "Sensual desire",
         "Spiritual urgency",
         "Ajahn Pasanno",
-        "Confidence",
+        "Faith",
         "Conditionality",
         "Appropriate attention",
         "Perfections"
@@ -85389,11 +85389,11 @@
         "Progress of insight",
         "Stages of awakening",
         "Heedfulness",
+        "Spiritual search",
         "Gratitude",
         "Merit",
         "Forgiveness",
         "Contentment",
-        "Confidence",
         "Trust",
         "Courage",
         "Humility",
@@ -87212,7 +87212,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "faith.html",
-      "excerptCount": 85,
+      "excerptCount": 86,
       "listIndex": 97
     },
     "Concentration": {
@@ -88062,10 +88062,7 @@
       "glosses": [],
       "related": [],
       "flags": "",
-      "subtags": [
-        "Spiritual urgency",
-        "Spiritual search"
-      ],
+      "subtags": [],
       "supertags": [
         "Skillful qualities"
       ],
@@ -88074,6 +88071,28 @@
       "htmlFile": "heedfulness.html",
       "excerptCount": 9,
       "listIndex": 160
+    },
+    "Spiritual search": {
+      "tag": "Spiritual search",
+      "pali": "ariya-pariyesanā",
+      "fullTag": "Spiritual search",
+      "fullPali": "ariya-pariyesanā",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [
+        "Spiritual urgency"
+      ],
+      "supertags": [
+        "Skillful qualities"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "spiritual-search.html",
+      "excerptCount": 11,
+      "listIndex": 161
     },
     "Spiritual urgency": {
       "tag": "Spiritual urgency",
@@ -88087,32 +88106,12 @@
       "flags": "",
       "subtags": [],
       "supertags": [
-        "Heedfulness"
+        "Spiritual search"
       ],
       "copies": 1,
       "primaries": 0,
       "htmlFile": "spiritual-urgency.html",
       "excerptCount": 14,
-      "listIndex": 161
-    },
-    "Spiritual search": {
-      "tag": "Spiritual search",
-      "pali": "ariya-pariyesanā",
-      "fullTag": "Spiritual search",
-      "fullPali": "ariya-pariyesanā",
-      "number": "",
-      "alternateTranslations": [],
-      "glosses": [],
-      "related": [],
-      "flags": "",
-      "subtags": [],
-      "supertags": [
-        "Heedfulness"
-      ],
-      "copies": 1,
-      "primaries": 0,
-      "htmlFile": "spiritual-search.html",
-      "excerptCount": 11,
       "listIndex": 162
     },
     "Gratitude": {
@@ -88133,7 +88132,7 @@
       "primaries": 0,
       "htmlFile": "gratitude.html",
       "excerptCount": 63,
-      "listIndex": 163
+      "listIndex": 164
     },
     "Merit": {
       "tag": "Merit",
@@ -88153,7 +88152,7 @@
       "primaries": 0,
       "htmlFile": "merit.html",
       "excerptCount": 36,
-      "listIndex": 164
+      "listIndex": 165
     },
     "Forgiveness": {
       "tag": "Forgiveness",
@@ -88173,7 +88172,7 @@
       "primaries": 0,
       "htmlFile": "forgiveness.html",
       "excerptCount": 14,
-      "listIndex": 165
+      "listIndex": 166
     },
     "Contentment": {
       "tag": "Contentment",
@@ -88193,30 +88192,6 @@
       "primaries": 0,
       "htmlFile": "contentment.html",
       "excerptCount": 19,
-      "listIndex": 166
-    },
-    "Confidence": {
-      "tag": "Confidence",
-      "pali": "pasāda",
-      "fullTag": "Confidence",
-      "fullPali": "pasāda",
-      "number": "",
-      "alternateTranslations": [
-        "Inspiration"
-      ],
-      "glosses": [],
-      "related": [
-        "Spiritual urgency"
-      ],
-      "flags": "",
-      "subtags": [],
-      "supertags": [
-        "Skillful qualities"
-      ],
-      "copies": 1,
-      "primaries": 0,
-      "htmlFile": "confidence.html",
-      "excerptCount": 1,
       "listIndex": 167
     },
     "Trust": {
@@ -92878,7 +92853,7 @@
       "alternateTranslations": [],
       "glosses": [],
       "related": [],
-      "flags": ".S",
+      "flags": ".Sh",
       "subtags": [
         "Ajahn Lee Dhammadharo",
         "Ajahn Gi",
@@ -93465,7 +93440,7 @@
       "alternateTranslations": [],
       "glosses": [],
       "related": [],
-      "flags": ".S",
+      "flags": ".Sh",
       "subtags": [
         "Ajahn Khantipālo",
         "Ajahn Piyadhammo",
@@ -99644,7 +99619,7 @@
       "subsumed": false,
       "text": "Skillful qualities (56) [kusalā dhammā]",
       "tag": "Skillful qualities",
-      "subtagCount": 126,
+      "subtagCount": 125,
       "subtagExcerptCount": 1533
     },
     {
@@ -100739,7 +100714,7 @@
       "text": "Five Faculties (5) [pañca indriyā]",
       "tag": "Faculties",
       "subtagCount": 5,
-      "subtagExcerptCount": 326
+      "subtagExcerptCount": 327
     },
     {
       "level": 3,
@@ -100747,9 +100722,9 @@
       "flags": "*",
       "name": "Faith",
       "pali": "saddhā",
-      "excerptCount": 85,
+      "excerptCount": 86,
       "subsumed": false,
-      "text": "Faith (85) [saddhā]",
+      "text": "Faith (86) [saddhā]",
       "tag": "Faith"
     },
     {
@@ -100954,7 +100929,7 @@
       "text": "Seven Treasures (7) [satta dhanā]",
       "tag": "Treasures",
       "subtagCount": 10,
-      "subtagExcerptCount": 407
+      "subtagExcerptCount": 408
     },
     {
       "level": 3,
@@ -100962,9 +100937,9 @@
       "flags": "",
       "name": "Faith",
       "pali": "saddhā",
-      "excerptCount": 85,
+      "excerptCount": 86,
       "subsumed": false,
-      "text": "Faith (85) [saddhā]",
+      "text": "Faith (86) [saddhā]",
       "tag": "Faith"
     },
     {
@@ -101463,9 +101438,20 @@
       "excerptCount": 9,
       "subsumed": false,
       "text": "Heedfulness (9) [appamāda]",
-      "tag": "Heedfulness",
+      "tag": "Heedfulness"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Spiritual search",
+      "pali": "ariya-pariyesanā",
+      "excerptCount": 11,
+      "subsumed": false,
+      "text": "Spiritual search (11) [ariya-pariyesanā]",
+      "tag": "Spiritual search",
       "subtagCount": 2,
-      "subtagExcerptCount": 34
+      "subtagExcerptCount": 108
     },
     {
       "level": 3,
@@ -101482,12 +101468,12 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
-      "name": "Spiritual search",
-      "pali": "ariya-pariyesanā",
-      "excerptCount": 11,
-      "subsumed": false,
-      "text": "Spiritual search (11) [ariya-pariyesanā]",
-      "tag": "Spiritual search"
+      "name": "Confidence",
+      "pali": "pasāda",
+      "excerptCount": 86,
+      "subsumed": true,
+      "text": "Confidence [pasāda] see Faith (86)",
+      "tag": "Faith"
     },
     {
       "level": 2,
@@ -101532,17 +101518,6 @@
       "subsumed": false,
       "text": "Contentment (19) [santuṭṭhi]",
       "tag": "Contentment"
-    },
-    {
-      "level": 2,
-      "indexNumber": "",
-      "flags": "",
-      "name": "Confidence",
-      "pali": "pasāda",
-      "excerptCount": 1,
-      "subsumed": false,
-      "text": "Confidence (1) [pasāda]",
-      "tag": "Confidence"
     },
     {
       "level": 2,
@@ -105265,7 +105240,7 @@
     {
       "level": 5,
       "indexNumber": "",
-      "flags": ".S",
+      "flags": ".Sh",
       "name": "Thai teachers",
       "pali": "",
       "excerptCount": 0,
@@ -105576,7 +105551,7 @@
     {
       "level": 5,
       "indexNumber": "",
-      "flags": ".S",
+      "flags": ".Sh",
       "name": "Western teachers",
       "pali": "",
       "excerptCount": 0,
@@ -111606,6 +111581,7 @@
     "Four Right Efforts": "Right Effort",
     "Powers": "Faculties",
     "Investigation": "Discernment",
+    "Confidence": "Faith",
     "Sensuality": "Sensual desire",
     "Restlessness": "Restlessness and worry",
     "Defilement": "Unwholesome Roots",
