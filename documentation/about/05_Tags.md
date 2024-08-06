@@ -10,21 +10,21 @@ The superstructure of the tagging scheme can be understood by examining this gro
 
 __A. Mental qualities__
 
-1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (126 subtags, 1532 excerpts)
-2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 574 excerpts)
-3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (47 subtags, 806 excerpts)
+1. [Skillful qualities](../../pages/drilldown/skillful-qualities.html#skillful-qualities) (125 subtags, 1533 excerpts)
+2. [Unskillful qualities](../../pages/drilldown/unskillful-qualities.html#unskillful-qualities) (33 subtags, 575 excerpts)
+3. [Indeterminate qualities](../../pages/drilldown/indeterminate-qualities.html#indeterminate-qualities) (47 subtags, 807 excerpts)
 
  __B. Modes of practice__
 
 4. [Three Refuges](../../pages/drilldown/three-refuges.html#three-refuges) (6 subtags, 217 excerpts)
 5. [Devotional practice](../../pages/drilldown/devotional-practice.html#devotional-practice) (19 subtags, 183 excerpts)
 6. [Precepts](../../pages/drilldown/precepts.html#precepts) (16 subtags, 168 excerpts)
-7. [Meditation](../../pages/drilldown/meditation.html#meditation) (66 subtags, 1039 excerpts)
+7. [Meditation](../../pages/drilldown/meditation.html#meditation) (66 subtags, 1040 excerpts)
 
  __C. Sources of Dhamma teachings__
 
 8. [Teaching Dhamma](../../pages/drilldown/teaching-dhamma.html#teaching-dhamma) (37 subtags, 879 excerpts)
-9. [Teachers](../../pages/drilldown/teachers.html#teachers) (113 subtags, 892 excerpts)
+9. [Teachers](../../pages/drilldown/teachers.html#teachers) (115 subtags, 894 excerpts)
 10. [Monasteries](../../pages/drilldown/monasteries.html#monasteries) (37 subtags, 263 excerpts)
 
  __D. Context of teaching and and practice__

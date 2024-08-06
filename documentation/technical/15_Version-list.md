@@ -83,3 +83,7 @@
 - 4.0.2 (January 2024 release) About page with search instructions.
 
 - 4.1 (July 2024 release) 2001 Ajahn Chah Conference almost finished. Finalized the license. Allow search engines to index pages (fingers crossed). Apply smart quotes to text. ParseCSV option --pendingMeansYes. Unit tests for search feature. Fix several minor bugs.
+
+- 4.1.1 Removed All/Searchable pages.
+
+- 4.2 (August 2024 release) Added Upāsikā Day: Can We Function Without Attachement? and Ajahn Pasanno's Q&A sessions from the 25th Anniversary Retreat. Obtained teacher consent for almost all Chah2001 excerpts. Added tag search feature. Updated the tags with changes from Version 9. Alphabetical tag listing improvements. search.js is more readable. Database-related functions moved to Database.py.
