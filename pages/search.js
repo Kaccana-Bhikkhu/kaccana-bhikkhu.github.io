@@ -2,7 +2,10 @@ import {configureLinks} from './frame.js';
 
 const TEXT_DELIMITERS = "][{}<>^";
 const METADATA_DELIMITERS = "#&@";
+const METADATA_SEPERATOR = "|"
 const SPECIAL_SEARCH_CHARS = TEXT_DELIMITERS + METADATA_DELIMITERS + "()";
+
+const HAS_METADATADELIMITERS = new RegExp(`.*[${METADATA_DELIMITERS}]`);
 
 const PALI_DIACRITICS = {
     "a":"ā","i":"ī","u":"ū",
@@ -110,22 +113,31 @@ function substituteWildcards(regExpString) {
 class searchTerm {
     matcher; // A RegEx created from searchElement
     negate = false; // Return true when matcher fails to match?
-    boldTextMatcher; // A RegEx string used to highlight this term when displaying results
+    matchesMetadata = false; // Does this search term apply to metadata?
+    boldTextMatcher = ""; // A RegEx string used to highlight this term when displaying results
 
-    constructor(seachElement) {
+    constructor(searchElement) {
         // Create a searchTerm from an element found by parseQuery.
         // Also create boldTextMatcher to display the match in bold.
-        let unwrapped = seachElement;
-        switch (seachElement[0]) {
+        this.matchesMetadata = HAS_METADATADELIMITERS.test(searchElement);
+
+        if (/^[0-9]+$/.test(searchElement)) // Enclose bare numbers in quotes so 7 does not match 37
+            searchElement = '"' + searchElement + '"'
+
+        let unwrapped = searchElement;
+        switch (searchElement[0]) {
             case '"': // Items in quotes must match on word boundaries.
-                unwrapped = "$" + seachElement.replace(/^"+/,'').replace(/"+$/,'') + "$";
+                unwrapped = "$" + searchElement.replace(/^"+/,'').replace(/"+$/,'') + "$";
                 break;
         }
 
         // Replace inner * and $ with appropriate operators.
         let escaped = substituteWildcards(unwrapped);
-        console.log("searchElement:",seachElement,escaped);
-        this.matcher = new RegExp(escaped,"g");
+        console.log("searchElement:",searchElement,escaped);
+        this.matcher = new RegExp(escaped);
+
+        if (this.matchesMetadata)
+            return; // Don't apply boldface to metadata searches
 
         // Start processing again to create RegExps for bold text
         let boldItem = escaped;
@@ -141,7 +153,9 @@ class searchTerm {
     }
 
     matchesBlob(blob) { // Does this search term match a given blob?
-        return blob.search(this.matcher) != -1;
+        if (!this.matchesMetadata)
+            blob = blob.split(METADATA_SEPERATOR)[0];
+        return this.matcher.test(blob);
     }
 }
 
@@ -217,7 +231,8 @@ export class searchQuery {
         let textMatchItems = [];
         for (const group of this.groups) {
             for (const term of group.terms) {
-                textMatchItems.push(term.boldTextMatcher);
+                if (term.boldTextMatcher)
+                    textMatchItems.push(term.boldTextMatcher);
             }
         }
         console.log("textMatchItems",textMatchItems);

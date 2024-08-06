@@ -140,6 +140,8 @@ def TagBlob(tag) -> str:
         Enclose(Blobify(sorted({tag["pali"],tag["fullPali"]})),"<>"),
         Enclose(Blobify(tag["alternateTranslations"] + tag["glosses"]),"^^"),
     ]
+    if tag["number"]:
+        bits.append("^" + tag["number"] + "^")
     return "".join(bits)
 
 def TagBlobs() -> Iterator[dict]:

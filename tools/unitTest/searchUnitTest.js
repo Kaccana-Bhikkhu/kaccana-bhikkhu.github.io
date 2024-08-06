@@ -92,7 +92,12 @@ function runUnitTests() {
         ['@UD2014-1 of good',3,'of good without quotes'],
         ['Excerpt blob format 2.0:'],
         ['@UD2014-1 &References',9,'All references'],
-        ['@UD2014-1 @s02',17,'All excerpts in Session 2']
+        ['@UD2014-1 @s02',17,'All excerpts in Session 2'],
+        ["Don't match metadata unless the query contains metadata chars:"],
+        ['@UD2014-1 ud',7,'All excerpts containing text "ud"'],
+        ["Search by number:"],
+        ['@UD2014-1 2',1,'All excerpts containing the digit 2 alone'],
+        ['@UD2014-1 "*2*"',6,'All excerpts containing any digit 2']
     ];
 
     let results = ["All results are from searching UD2014-1.<br><br>"];
