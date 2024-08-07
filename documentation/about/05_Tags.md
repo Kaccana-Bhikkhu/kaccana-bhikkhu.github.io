@@ -72,6 +72,7 @@ The root tags [[History](../../pages/tags/history.html)] and [[Cultural context]
  - Many of the teachers in the archive have tags corresponding to their names. Searching by teacher shows excerpts taught by the teacher; searching by tag shows excerpts containing biographical information about the teacher.
  - Monastic teacher tags are sorted by date of ordination regardless of gender. Lay teacher tags are sorted by date of birth.
  - The traditional three [[Characteristics of existence](../../pages/tags/characteristics-of-existence.html)] are supplemented with the inclusion of an [additional six](https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Pasanno_Amaro_The_Island.pdf#page=113) by Ajahn Buddhadāsa.
+ - The common trio of [[Gratification](../../pages/tags/gratification.html)], [[Drawbacks](../../pages/tags/drawbacks.html)], and [[Escape](../../pages/tags/escape.html)] does not appear to have a traditional Pāli designation. The Archive calls them [[Three Aspects of Understanding](../../pages/tags/aspects-of-understanding.html)].
 
 
 
