@@ -480,7 +480,6 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
         return Alphabetize(text,html)
 
-
     entries = defaultdict(list)
     for tag in gDatabase["tag"].values():
         if not tag["htmlFile"] or ParseCSV.TagFlag.HIDE in tag["flags"]:
@@ -569,11 +568,19 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         referenceText = f" – see {EnglishEntry(subsumedUnder,subsumedUnder['fullTag'],fullTag=True,drilldownLink=False).html}"
         
         if subsumedTag["tag"] != subsumedTag["pali"]:
-            entries["english"].append(Alphabetize(subsumedTag["fullTag"],subsumedTag["fullTag"] + referenceText))
+            if subsumedTag["pali"]:
+                paliRef = f" ({subsumedTag['pali']})"
+            else:
+                paliRef = ""
+            entries["english"].append(Alphabetize(subsumedTag["fullTag"],subsumedTag["fullTag"] + paliRef + referenceText))
             if not AlphabetizeName(subsumedTag["fullTag"]).startswith(AlphabetizeName(subsumedTag["tag"])):
-                entries["english"].append(Alphabetize(subsumedTag["tag"],subsumedTag["tag"] + referenceText))
                 # File the abbreviated tag separately if it's not a simple truncation
-        
+                if subsumedTag["fullPali"]:
+                    paliRef = f" ({subsumedTag['fullPali']})"
+                else:
+                    paliRef = ""
+                entries["english"].append(Alphabetize(subsumedTag["tag"],subsumedTag["tag"] + paliRef + referenceText))
+            
         hasPali = subsumedTag["pali"] and not LanguageTag(subsumedTag["fullPali"])
         if subsumedTag["pali"]:
             entry = Alphabetize(subsumedTag["pali"],f"{subsumedTag['pali']} [{subsumedTag['tag']}]{referenceText}")

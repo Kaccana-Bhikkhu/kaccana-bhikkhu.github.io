@@ -347,12 +347,14 @@ def LoadTagsFile(database,tagFileName):
             tagDesc["supertags"] = []
 
         lastTagLevel = curTagLevel
-        lastTag = TagStackItem(tagName,TagFlag.PRIMARY in rawTag["flags"],bool(rawTag["number"])) # Count subtags if this tag is numerical
+        lastTag = TagStackItem(tagName,TagFlag.PRIMARY in rawTag["flags"] and not rawTag["subsumedUnder"],
+                               bool(rawTag["number"])) # Count subtags if this tag is numerical
         
         # Subsumed tags don't have a tag entry
         if rawTag["subsumedUnder"]:
-            tagDesc["subsumedUnder"] = rawTag["subsumedUnder"]
-            subsumedTags[tagName] = tagDesc
+            if TagFlag.PRIMARY in tagDesc["flags"] or tagName not in subsumedTags:
+                tagDesc["subsumedUnder"] = rawTag["subsumedUnder"]
+                subsumedTags[tagName] = tagDesc
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
