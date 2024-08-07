@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re, os, itertools
-import Utils, Render, Alert, Filter
+import Utils, Render, Alert, Filter, Database
 import Html2 as Html
 from typing import Tuple, Type, Callable, Iterable
 import pyratemp, markdown
@@ -45,7 +45,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
         with open(sourcePath,encoding='utf8') as file:
             template = pyratemp.Template(file.read())
-            fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Utils = Utils)
+            fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database)
             gDocumentationWordCount += WordCount(fileContents[fileName])
             
     def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:

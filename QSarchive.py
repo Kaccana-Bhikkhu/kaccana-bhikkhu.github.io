@@ -14,7 +14,7 @@ sys.path.append(os.path.join(scriptDir,'python/modules')) # Look for modules in 
 sys.path.append(os.path.join(scriptDir,'python/utils'))
 
 import Utils, Alert, Filter, Database
-Alert.ObjectPrinter = Utils.ItemRepr
+Alert.ObjectPrinter = Database.ItemRepr
 
 def PrintModuleSeparator(moduleName:str) -> None:
     if moduleName:
@@ -129,6 +129,7 @@ All - run all the above modules in sequence.
 parser.add_argument('--homeDir',type=str,default='.',help='All other pathnames are relative to this directory; Default: ./')
 parser.add_argument('--defaults',type=str,default='python/config/Default.args,python/config/LocalDefault.args',help='A comma-separated list of .args default argument files; see python/config/Default.args')
 parser.add_argument("--args",type=str,action="append",default=[],help="Read arguments from an .args file")
+parser.add_argument('--skip',type=str,default='',help='A comma-separated list of operations to skip')
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
@@ -206,6 +207,13 @@ for verb in opSet:
     if verb not in moduleList:
         Alert.warning("Unsupported operation",verb)
 
+# Skip specified ops; useful when all operations are specified.
+skipOps = set(verb.strip() for verb in clOptions.skip.split(','))
+for verb in skipOps:
+    if verb and verb not in moduleList:
+        Alert.caution("Can't skip unknown operation",verb)
+opSet -= skipOps
+
 database, newOpSet = LoadDatabaseAndAddMissingOps(opSet)
 if newOpSet != opSet:
     Alert.info(f"Will run additional module(s): {newOpSet.difference(opSet)}.")
@@ -214,7 +222,7 @@ if newOpSet != opSet:
 # Set up the global namespace for each module - this allows the modules to call each other out of order
 for mod in modules.values():
     mod.gDatabase = database
-Utils.gDatabase = database
+Database.gDatabase = database
 Filter.gDatabase = database
 
 # Then run the specified operations in sequential order

@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import os, json, re
-import Utils, Alert, Link, Prototype, Filter
-from typing import Iterable,Iterator
+import Database
+import Utils, Alert, ParseCSV, Prototype, Filter
+import Html2 as Html
+from typing import Iterable, Iterator, Callable
 
 def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     """Enclose the strings in items in the specified characters:
@@ -25,10 +27,10 @@ def RawBlobify(item: str) -> str:
     remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace."""
     output = re.sub(r'[‘’"“”]',"'",item) # Convert all quotes to single quotes
     output = output.replace("–","-").replace("—","-") # Conert all dashes to hypens
-    output = Utils.RemoveDiacritics(item.lower())
+    output = Utils.RemoveDiacritics(output.lower())
     output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
     output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
-    output = re.sub(r"\+\+[^+]*\+\+","",output) # Remove ++Kind++ tags
+    output = output.replace("++","") # Remove ++ bold format markers
     output = re.sub(r"[|]"," ",output) # convert these characters to a space
     output = re.sub(r"[][#()@_*]^","",output) # remove these characters
     output = re.sub(r"\s+"," ",output.strip()) # normalize whitespace
@@ -40,7 +42,7 @@ gOutputChars:set[str] = set()
 gNonSearchableTeacherRegex = None
 def Blobify(items: Iterable[str]) -> Iterator[str]:
     """Convert strings to lowercase, remove diacritics, special characters, 
-    remove html tags, ++Kind++ markers, and Markdown hyperlinks, and normalize whitespace.
+    remove html tags, ++ markers, and Markdown hyperlinks, and normalize whitespace.
     Also remove teacher names who haven't given search consent."""
 
     global gNonSearchableTeacherRegex
@@ -68,7 +70,8 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         gOutputChars.update(blob)
         if gOptions.debug:
             gBlobDict[item] = blob
-        yield blob
+        if blob:
+            yield blob
 
 def SearchBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
@@ -83,13 +86,25 @@ def SearchBlobs(excerpt: dict) -> list[str]:
                 yield teacherDB[t]["attributionName"]
 
     for item in Filter.AllItems(excerpt):
+        aTags = item.get("tags",[])
+        if item is excerpt:
+            qTags = aTags[0:item["qTagCount"]]
+            aTags = aTags[item["qTagCount"]:]
+        else:
+            qTags = []
+
         bits = [
-            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
             Enclose(Blobify([item["text"]]),"^"),
             Enclose(Blobify(AllNames(item.get("teachers",[]))),"{}"),
-            Enclose(Blobify(item.get("tags",[])),"[]"),
-            Enclose(Blobify([excerpt["event"]]),"@")
+            Enclose(Blobify(qTags),"[]") if qTags else "",
+            "//",
+            Enclose(Blobify(aTags),"[]"),
+            "|",
+            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
+            Enclose(Blobify([re.sub("\W","",gDatabase["kind"][item["kind"]]["category"])]),"&")
         ]
+        if item is excerpt:
+            bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
         returnValue.append("".join(bits))
     return returnValue
 
@@ -98,8 +113,9 @@ def OptimizedExcerpts() -> list[dict]:
     formatter = Prototype.Formatter()
     formatter.excerptOmitSessionTags = False
     formatter.showHeading = False
+    formatter.headingShowTeacher = False
     for x in gDatabase["excerpts"]:
-        xDict = {"session": Utils.ItemCode(event=x["event"],session=x["sessionNumber"]),
+        xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": SearchBlobs(x),
                  "html": Prototype.HtmlExcerptList([x],formatter)}
         returnValue.append(xDict)
@@ -110,12 +126,80 @@ def SessionHeader() -> dict[str,str]:
     returnValue = {}
     formatter = Prototype.Formatter()
     formatter.headingShowTags = False
+    formatter.headingShowTeacher = False
 
     for s in gDatabase["sessions"]:
-        returnValue[Utils.ItemCode(s)] = formatter.FormatSessionHeading(s,horizontalRule=False)
+        returnValue[Database.ItemCode(s)] = formatter.FormatSessionHeading(s,horizontalRule=False)
     
     return returnValue
-    
+
+def TagBlob(tagName:str) -> str:
+    "Make a search blob from this tag."
+
+    subsumesTags = Database.SubsumesTags()
+    bits = []
+    for tagData in [gDatabase["tag"][tagName]] + subsumesTags.get(tagName,[]):
+        bits += [
+            Enclose(Blobify(sorted({tagData["tag"],tagData["fullTag"]})),"[]"), # Use sets to remove duplicates
+            Enclose(Blobify(sorted({tagData["pali"],tagData["fullPali"]})),"<>"),
+            Enclose(Blobify(tagData["alternateTranslations"] + tagData["glosses"]),"^^")
+        ]
+        if tagData["number"]:
+            bits.append("^" + tagData["number"] + "^")
+
+    return "".join(bits)
+
+def TagBlobs() -> Iterator[dict]:
+    """Return a blob for each tag, sorted alphabetically."""
+
+    def AlphabetizeName(string: str) -> str:
+        return Utils.RemoveDiacritics(string).lower()
+
+    alphabetizedTags = [(AlphabetizeName(tag["fullTag"]),tag["tag"]) for tag in gDatabase["tag"].values() 
+                        if tag["htmlFile"] and not ParseCSV.TagFlag.HIDE in tag["flags"]]
+    alphabetizedTags.sort()
+
+    def HtmlTagDisplay(tagInfo: dict) -> str:
+        bits = [
+            Prototype.DrilldownIconLink(tagInfo['tag'],iconWidth = 14),
+            f"[{Prototype.HtmlTagLink(tagInfo['tag'],fullTag = True)}]"
+        ]
+        if tagInfo["fullPali"] and tagInfo["fullPali"] != tagInfo["fullTag"]:
+            bits.append(f"({tagInfo['fullPali']})")
+        if tagInfo.get("excerptCount",0):
+            bits.append(f"({tagInfo['excerptCount']})")
+        return " ".join(bits)
+
+    for _,tag in alphabetizedTags:
+        yield {
+            "blobs": [TagBlob(tag)],
+            "html": HtmlTagDisplay(gDatabase["tag"][tag])
+        } 
+
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:
+    """Add the search (tags, teachers, etc.) to searchList.
+    code: a one-letter code to identify the search.
+    name: the name of the search.
+    blobsAndHtml: an iterator that yields a dict for each search item.
+    separator: the html code to separate each displayed search result.
+    plural: the plural name of the search. 's' means just add s.
+    itemsPerPage: the number of items to show per search display page.
+    showAtFirst: the number of items to show before displaying the "more" prompt in a multi-search.
+    divClass: the class of <div> tag to enclose the search in."""
+
+    searchList[code] = {
+        "code": code,
+        "name": name,
+        "plural": name + "s" if plural == "s" else plural,
+        "prefix": wrapper.prefix,
+        "suffix": wrapper.suffix,
+        "separator": "",
+        "items": [b for b in blobsAndHtml],
+        "itemsPerPage": None,
+        "showAtFirst": 5,
+        "divClass": "listing"
+    }
+
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     pass
@@ -131,11 +215,14 @@ gOptions = None
 gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we define them to keep Pylance happy
 
 def main() -> None:
-    optimizedDB = {
-        "excerpts": OptimizedExcerpts(),
-        "sessionHeader": SessionHeader(),
-        "blobDict":list(gBlobDict.values())
-    }
+    optimizedDB = {"searches": {}}
+
+    AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
+    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper())
+    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "intro")
+    optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
+
+    optimizedDB["blobDict"] = list(gBlobDict.values())
 
     Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))
     Alert.debug("Characters remaining in blobs:","".join(sorted(gOutputChars)))

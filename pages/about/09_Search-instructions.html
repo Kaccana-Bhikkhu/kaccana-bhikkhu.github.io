@@ -36,7 +36,7 @@
     <nav id="topnav">
       <a href="../homepage.html" class="active">About</a>
       <a href="../search/Text-search.html">Search</a>
-      <a href="../indexes/AlphabeticalTags.html">Tags</a>
+      <a href="../drilldown/root.html">Tags</a>
       <a href="../indexes/EventsBySeries.html">Events</a>
       <a href="../teachers/TeachersAlphabetical.html">Teachers</a>
       <a href="../indexes/AllExcerpts.html">All excerpts</a>
@@ -88,8 +88,26 @@
 <p>To search for excerpts containing a specific kind of teaching, use a hash mark before or after the type of teaching:</p>
 <p>Search for excepts containing a direct quote and the characters 'Thai': <code>#Quote Thai</code> </p>
 <p>Search for excepts containing an indirect quote and the characters 'Thai': <code>#IndirectQuote Thai</code></p>
-<p>Search for excepts containing both kinds of quotes and the characters 'Thai': <code>#*Quote Thai</code></p>
-<p>The available kinds are: <code>Question</code>, <code>Response</code>, <code>FollowUp</code>, <code>Story</code>, <code>Recollection</code>, <code>Teaching</code>, <code>Reflection</code>, <code>Simile</code>, <code>DhammaTalk</code>, <code>Quote</code>, <code>IndirectQuote</code>, <code>MeditationInstruction</code>, <code>GuidedMeditation</code>, <code>Chanting</code>, <code>Reading</code>, <code>Reference</code>, <code>Sutta</code>, <code>Vinaya</code>, <code>Comment</code>, <code>Discussion</code>, <code>Note</code>, <code>Summary</code>, <code>Other</code>, <code>Commentary</code>, <code>ReadBy</code>, and <code>TranslatedBy</code>.</p>
+<h2 id="searching-by-category">Searching by category</h2>
+<p>Excerpt kinds are grouped into categories as follows:</p>
+<p><strong><code>Questions</code></strong>: <code>Question</code>, <code>Response</code>, <code>FollowUp</code>
+<br>
+<strong><code>Stories</code></strong>: <code>Story</code>, <code>Recollection</code>
+<br>
+<strong><code>Teachings</code></strong>: <code>Teaching</code>, <code>Reflection</code>, <code>Simile</code>, <code>DhammaTalk</code>
+<br>
+<strong><code>Quotes</code></strong>: <code>Quote</code>, <code>IndirectQuote</code>
+<br>
+<strong><code>Meditations</code></strong>: <code>MeditationInstruction</code>, <code>GuidedMeditation</code>, <code>Chanting</code>
+<br>
+<strong><code>Readings</code></strong>: <code>Reading</code>
+<br>
+<strong><code>References</code></strong>: <code>Reference</code>, <code>Sutta</code>, <code>Vinaya</code>, <code>Commentary</code>
+<br>
+<strong><code>Other</code></strong>: <code>Comment</code>, <code>Discussion</code>, <code>Note</code>, <code>Summary</code>, <code>Other</code>
+<br>
+<strong><code>Attribution</code></strong>: <code>ReadBy</code>, <code>TranslatedBy</code></p>
+<p>Search for any quote containing the characters 'Thai': <code>&amp;Quotes Thai</code></p>
 <h2 id="searching-by-event">Searching by event</h2>
 <p>To search for excerpts from a specific event use the @ symbol before the event code. Event codes are of the form <code>Metta2008</code> or <code>UD2015-3</code> and contain a four-digit year. One can find event codes in the hyperlinks on the <a href="../indexes/EventsBySeries.html">Events page</a>. Since all events in a series begin with the same characters, one can search for excerpts from a particular series:</p>
 <p>Search for Thanksgiving Retreats: <code>@TG</code></p>
@@ -102,13 +120,14 @@
 <p><img alt="Example Excerpt" src="../images/ExampleExcerpt.png" /></p>
 <p>is converted into these five blobs:</p>
 <ol>
-<li><code>#question#^could you please explain about the death process...how quickly does rebirth occur?^{ajahn pasanno}[death][rebirth][recollection/death][delusion][self-identity view][recollection][impermanence][not-self][theravada][history/early buddhism][sutta][vajrayana][clinging][culture/thailand][chanting][goodwill][relinquishment][ceremony/ritual][kamma]@metta2008@</code></li>
-<li><code>#reference#^chanting book p 55: five recollections; chanting book p 12: the body is impermanent...^{}[similes][craving][rebirth]@metta2008@</code></li>
-<li><code>#simile#^fire blown by the wind (mn-72: aggivacchagotta sutta)^{ajahn pasanno}[]@metta2008@</code></li>
-<li><code>#story#^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}[ajahn chah][death][teachers][rebirth][fierce/direct teaching]@metta2008@</code></li>
-<li><code>#indirectquote#^i practice dying. the dalai lama^{ajahn pasanno}[dalai lama][recollection/death]@metta2008@</code></li>
+<li><code>^could you please explain about the death process...how quickly does rebirth occur?^{ajahn pasanno}[death][rebirth]//[recollection/death][delusion][self-identity view][recollection][impermanence][not-self][theravada][history/early buddhism][sutta][vajrayana][clinging][culture/thailand][chanting][goodwill][relinquishment][ceremony/ritual][kamma]|#question#&amp;questions&amp;@metta2008@s01@</code></li>
+<li><code>^chanting book p 55: five recollections; chanting book p 12: the body is impermanent...^{}//[similes][craving][rebirth]|#reference#&amp;references&amp;</code></li>
+<li><code>^fire blown by the wind (mn-72: aggivacchagotta sutta)^{ajahn pasanno}//[]|#simile#&amp;teachings&amp;</code></li>
+<li><code>^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}//[ajahn chah][death][teachers][rebirth][fierce/direct teaching]|#story#&amp;stories&amp;</code></li>
+<li><code>^i practice dying. the dalai lama^{ajahn pasanno}//[dalai lama][recollection/death]|#indirectquote#&amp;quotes&amp;</code></li>
 </ol>
-<p>The format of each blob can be informally represented as: <code>#kind#^text^{teachers}[tags]@eventCode@</code>.</p>
+<p>The format of each blob can be informally represented as: <code>^text^{teachers}[qTags]//[aTags]|#kind#&amp;category&amp;@eventCode@sNN@</code>.</p>
+<p><code>sNN</code> is the zero-padded session number, so Session 1 is <code>s01</code>. <code>[qTags]</code> and <code>@eventCode@sNN@</code> do not appear in annotations. Text-only searches match text on the left of the <code>|</code> separator symbol. To match <code>kind</code>, <code>category</code>, and <code>eventCode</code>, the query must include the symbols <code>#</code>, <code>&amp;</code>, or <code>@</code>.</p>
 <p>Search queries are broken into individual strings separated by spaces. If all search strings can be found within an excerpts' blobs, then the excerpt is considered to be found.</p>
 <p>The search engine implements the following wildcard characters:</p>
 <p><code>_</code> matches any single character except those with special meaning in the blobs: <code>#^[]{}@</code></p>
@@ -119,7 +138,7 @@
 
 <footer>
     <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Search instructions,” The Ajahn Pasanno Question and Story Archive, July 2024 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “About: Search instructions,” The Ajahn Pasanno Question and Story Archive, August 2024 release,
       <a href="https://abhayagiri.org/questions/about/09_Search-instructions.html">https://abhayagiri.org/questions/about/09_Search-instructions.html</a>.</p>
 </footer>
 

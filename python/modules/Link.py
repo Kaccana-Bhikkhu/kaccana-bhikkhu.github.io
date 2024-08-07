@@ -8,6 +8,7 @@ import os
 from functools import reduce
 from datetime import timedelta
 from io import BytesIO
+import Database
 import Utils, Alert
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
@@ -241,7 +242,7 @@ class Linker:
     def Filename(self,item: dict) -> str:
         "Return the file name for a given item."
         if self.itemType == ItemType.EXCERPT:
-            return Utils.PosixJoin(item["event"],Utils.ItemCode(item) + ".mp3")
+            return Utils.PosixJoin(item["event"],Database.ItemCode(item) + ".mp3")
         elif self.itemType == ItemType.AUDIO_SOURCE:
             return Utils.PosixJoin(item["event"],item["filename"])
         else:

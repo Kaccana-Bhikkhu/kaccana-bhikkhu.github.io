@@ -41,9 +41,29 @@ Search for excepts containing a direct quote and the characters 'Thai': `#Quote 
 
 Search for excepts containing an indirect quote and the characters 'Thai': `#IndirectQuote Thai`
 
-Search for excepts containing both kinds of quotes and the characters 'Thai': `#*Quote Thai`
+## Searching by category
 
-The available kinds are: `Question`, `Response`, `FollowUp`, `Story`, `Recollection`, `Teaching`, `Reflection`, `Simile`, `DhammaTalk`, `Quote`, `IndirectQuote`, `MeditationInstruction`, `GuidedMeditation`, `Chanting`, `Reading`, `Reference`, `Sutta`, `Vinaya`, `Comment`, `Discussion`, `Note`, `Summary`, `Other`, `Commentary`, `ReadBy`, and `TranslatedBy`.
+Excerpt kinds are grouped into categories as follows:
+
+__`Questions`__: `Question`, `Response`, `FollowUp`
+<br>
+__`Stories`__: `Story`, `Recollection`
+<br>
+__`Teachings`__: `Teaching`, `Reflection`, `Simile`, `DhammaTalk`
+<br>
+__`Quotes`__: `Quote`, `IndirectQuote`
+<br>
+__`Meditations`__: `MeditationInstruction`, `GuidedMeditation`, `Chanting`
+<br>
+__`Readings`__: `Reading`
+<br>
+__`References`__: `Reference`, `Sutta`, `Vinaya`, `Commentary`
+<br>
+__`Other`__: `Comment`, `Discussion`, `Note`, `Summary`, `Other`
+<br>
+__`Attribution`__: `ReadBy`, `TranslatedBy`
+
+Search for any quote containing the characters 'Thai': `&Quotes Thai`
 
 ## Searching by event
 
@@ -67,13 +87,15 @@ To go beyond the recipies above, it is necessary to understand the search engine
 
 is converted into these five blobs:
 
-1. `#question#^could you please explain about the death process...how quickly does rebirth occur?^{ajahn pasanno}[death][rebirth][recollection/death][delusion][self-identity view][recollection][impermanence][not-self][theravada][history/early buddhism][sutta][vajrayana][clinging][culture/thailand][chanting][goodwill][relinquishment][ceremony/ritual][kamma]@metta2008@`
-2. `#reference#^chanting book p 55: five recollections; chanting book p 12: the body is impermanent...^{}[similes][craving][rebirth]@metta2008@`
-3. `#simile#^fire blown by the wind (mn-72: aggivacchagotta sutta)^{ajahn pasanno}[]@metta2008@`
-4. `#story#^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}[ajahn chah][death][teachers][rebirth][fierce/direct teaching]@metta2008@`
-5. `#indirectquote#^i practice dying. the dalai lama^{ajahn pasanno}[dalai lama][recollection/death]@metta2008@`
+1. `^could you please explain about the death process...how quickly does rebirth occur?^{ajahn pasanno}[death][rebirth]//[recollection/death][delusion][self-identity view][recollection][impermanence][not-self][theravada][history/early buddhism][sutta][vajrayana][clinging][culture/thailand][chanting][goodwill][relinquishment][ceremony/ritual][kamma]|#question#&questions&@metta2008@s01@`
+2. `^chanting book p 55: five recollections; chanting book p 12: the body is impermanent...^{}//[similes][craving][rebirth]|#reference#&references&`
+3. `^fire blown by the wind (mn-72: aggivacchagotta sutta)^{ajahn pasanno}//[]|#simile#&teachings&`
+4. `^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}//[ajahn chah][death][teachers][rebirth][fierce/direct teaching]|#story#&stories&`
+5. `^i practice dying. the dalai lama^{ajahn pasanno}//[dalai lama][recollection/death]|#indirectquote#&quotes&`
 
-The format of each blob can be informally represented as: `#kind#^text^{teachers}[tags]@eventCode@`.
+The format of each blob can be informally represented as: `^text^{teachers}[qTags]//[aTags]|#kind#&category&@eventCode@sNN@`.
+
+`sNN` is the zero-padded session number, so Session 1 is `s01`. `[qTags]` and `@eventCode@sNN@` do not appear in annotations. Text-only searches match text on the left of the `|` separator symbol. To match `kind`, `category`, and `eventCode`, the query must include the symbols `#`, `&`, or `@`.
 
 Search queries are broken into individual strings separated by spaces. If all search strings can be found within an excerpts' blobs, then the excerpt is considered to be found.
 

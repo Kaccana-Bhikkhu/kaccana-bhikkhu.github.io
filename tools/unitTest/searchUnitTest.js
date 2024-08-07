@@ -1,6 +1,7 @@
-import {parseQuery,searchExcerpts,renderExcerpts} from '../../pages/search.js';
+import {searchQuery,excerptSearcher} from '../../pages/search.js';
 
 let gDatabase = null;
+let gSearcher = null;
 let gTestsCompleted = 0;
 let gFailures = 0;
 
@@ -23,28 +24,40 @@ async function loadDatabase() {
     if (!gDatabase) {
         await fetch('../../pages/assets/SearchDatabase.json')
         .then((response) => response.json())
-        .then((json) => {gDatabase = json; showStatus(`Loaded search database. Keys: ${Object.keys(gDatabase)}`); });
+        .then((json) => {
+            gDatabase = json;
+            showStatus(`Loaded search database. Keys: ${Object.keys(gDatabase)}`);
+            gSearcher = new excerptSearcher(gDatabase.searches["x"]);
+        });
     }
 }
 
-function unitTest(queryString,excerpts,expectedResultCount,description) {
+function unitTest(queryString,expectedResultCount,description) {
     // Search excerpts using query. 
     // It will find expectedResultsCount if everything is working.
     // Returns an html string. If successful this is a simple message.
     // If the test fails, it is the list of all excerpts found.
 
-    let query = parseQuery(queryString);
-    let results = searchExcerpts(excerpts,query)
+    let searchGroups = new searchQuery(queryString);
+    gSearcher.search(searchGroups);
 
     gTestsCompleted++;
 
     let output = "";
-    if (results.length === expectedResultCount) {
-        output = `<b>${gTestsCompleted}. Passed.</b> ${description}: expected and found ${results.length} excerpts.`
+    if (gSearcher.foundItems.length === expectedResultCount) {
+        output = `<b>${gTestsCompleted}. Passed.</b> ${description}: expected and found ${gSearcher.foundItems.length} excerpts.`
     } else {
-        output = `<b style="color:red;">${gTestsCompleted}. Failed.</b> ${description}: expected ${expectedResultCount} excerpts but found ${results.length}.<br>`
-        output += `Query text: ${queryString}<br>Regular expressions: ${query}<br>`
-        output += renderExcerpts(results,[],gDatabase.sessionHeader);
+        let queryStrings = [];
+        for (const group of searchGroups.groups) {
+            queryStrings.push("(");
+            for (const item of group.terms) {
+                queryStrings.push(item.matcher.source + " ");
+            }
+            queryStrings.push(") ")
+        }
+        output = `<b style="color:red;">${gTestsCompleted}. Failed.</b> ${description}: expected ${expectedResultCount} excerpts but found ${gSearcher.foundItems.length}.<br>`
+        output += `Query text: ${queryString}<br>Regular expressions: ${queryStrings.join("")}<br>`
+        output += gSearcher.renderItems();
         gFailures++;
     }
     showStatus(`${gTestsCompleted} tests completed. ${gFailures} failures.`);
@@ -77,15 +90,23 @@ function runUnitTests() {
         ['@UD2014-1 #Question',13,'Questions'],
         ['@UD2014-1 "of good"',1,'"of good"'],
         ['@UD2014-1 of good',3,'of good without quotes'],
+        ['Excerpt blob format 2.0:'],
+        ['@UD2014-1 &References',9,'All references'],
+        ['@UD2014-1 @s02',17,'All excerpts in Session 2'],
+        ["Don't match metadata unless the query contains metadata chars:"],
+        ['@UD2014-1 ud',7,'All excerpts containing text "ud"'],
+        ["Search by number:"],
+        ['@UD2014-1 2',1,'All excerpts containing the digit 2 alone'],
+        ['@UD2014-1 "*2*"',6,'All excerpts containing any digit 2']
     ];
 
     let results = ["All results are from searching UD2014-1.<br><br>"];
     let test = [];
     for (test of unitTestList) {
         if (test.length === 3)
-            results.push(unitTest(test[0],gDatabase.excerpts,test[1],test[2]) + "<br>");
+            results.push(unitTest(test[0],test[1],test[2]) + "<br>");
         else
-            results.push(`<h3>${test[0]}</h3>`)
+            results.push(`<br><h3>${test[0]}</h3>`)
     }
 
     showResults(results.join(""))

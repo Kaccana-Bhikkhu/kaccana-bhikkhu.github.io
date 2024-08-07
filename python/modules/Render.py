@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json, re
 import markdown
+import Database
 from markdown_newtab_remote import NewTabRemoteExtension
 from typing import Tuple, Type, Callable
 import pyratemp
@@ -94,7 +95,7 @@ def PrepareTemplates():
 
 def AddImplicitAttributions() -> None:
     "If an excerpt or annotation of kind Reading doesn't have a Read by annotation, attribute it to the session or excerpt teachers"
-    for session,x in Utils.PairWithSession(gDatabase["excerpts"]):
+    for session,x in Database.PairWithSession(gDatabase["excerpts"]):
         if x["kind"] == "Reading":
             readBy = [a for a in x["annotations"] if a["kind"] == "Read by"]
             if not readBy:
@@ -103,7 +104,7 @@ def AddImplicitAttributions() -> None:
                 x["annotations"].insert(0,newAnnotation)
         for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
             if a["kind"] == "Reading":
-                readBy = [subA for subA in Utils.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                readBy = [subA for subA in Database.SubAnnotations(x,a) if subA["kind"] == "Read by"]
                 if not readBy:
                     if x["kind"] == "Reading":
                         readers = session["teachers"]
@@ -134,7 +135,7 @@ def AppendAnnotationToExcerpt(a: dict, x: dict) -> None:
         x["body"] += " " + a["body"]
     else: # Append the annotation to its enclosing excerpt
         body = a["body"].replace("{attribution}",a["attribution"])
-        Utils.ParentAnnotation(x,a)["body"] += " " + body
+        Database.ParentAnnotation(x,a)["body"] += " " + body
 
     a["body"] = ""
     del a["attribution"]
@@ -173,15 +174,16 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     teachers = item.get("teachers",())
     if container:
         if item["kind"] == "Read by":
-            grandparent = Utils.ParentAnnotation(container,Utils.ParentAnnotation(container,item))
+            grandparent = Database.ParentAnnotation(container,Database.ParentAnnotation(container,item))
                 # The parent of this Read by annotation is a reading, which has the authors as teachers
                 # Thus the grandparent indicates the default reader(s)
             if grandparent:
                 defaultTeachers = grandparent["teachers"]
             else:
-                defaultTeachers = Utils.FindSession(gDatabase["sessions"],container["event"],container["sessionNumber"])["teachers"]
+                defaultTeachers = () # If there is no grandparent (i.e. this is a first-level Read by annotation), then always
+                # attribute it. It will be attached to the excerpt, and the annotation will be hidden if it matches the session teachers.
         else:
-            parent = Utils.ParentAnnotation(container,item)
+            parent = Database.ParentAnnotation(container,item)
             defaultTeachers = parent.get("teachers",())
         if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
             teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
@@ -227,7 +229,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     
     # If the first tag of an indirect quote specifies a teacher, link the last occurence of the teacher in the body
     if item["kind"] == "Indirect quote" and item["tags"]:
-        quotedTeacher = Utils.TeacherLookup(item["tags"][0])
+        quotedTeacher = Database.TeacherLookup(item["tags"][0])
         if quotedTeacher:
             parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["attributionName"]]),item["body"])
             if len(parts) > 1:
@@ -444,7 +446,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             else:
                 tag = text
     
-            realTag = Utils.TagLookup(tag)            
+            realTag = Database.TagLookup(tag)            
             if pageType == "tag":
                 if realTag:
                     linkTo = f"tags/{gDatabase['tag'][realTag]['htmlFile']}"
@@ -460,19 +462,19 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
                 else:
                     Alert.warning("Cannot link to tag",tag,"in link",matchObject[0])
         elif pageType in excerptTypes:
-            event,session,fileNumber = Utils.ParseItemCode(link)
+            event,session,fileNumber = Database.ParseItemCode(link)
             if event in gDatabase["event"]:
                 if session or fileNumber:
-                    bookmark = "#" + Utils.ItemCode(event=event,session=session,fileNumber=fileNumber)
+                    bookmark = "#" + Database.ItemCode(event=event,session=session,fileNumber=fileNumber)
                 else:
                     bookmark = ""
                 linkTo = f"events/{event}.html{bookmark}"
             else:
                 Alert.warning("Cannot link to event",event,"in link",matchObject[0])
         elif pageType == "player":
-            event,session,fileNumber = Utils.ParseItemCode(link)
+            event,session,fileNumber = Database.ParseItemCode(link)
             if fileNumber is not None:
-                x = Utils.FindExcerpt(event,session,fileNumber)
+                x = Database.FindExcerpt(event,session,fileNumber)
                 if x:
                     linkTo = Prototype.Mp3ExcerptLink(x)
                 else:
@@ -488,7 +490,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             else:
                 teacher = text
             
-            teacherCode = Utils.TeacherLookup(teacher)
+            teacherCode = Database.TeacherLookup(teacher)
             if teacherCode:
                 htmlPage = gDatabase['teacher'][teacherCode]['htmlFile']
                 if htmlPage:

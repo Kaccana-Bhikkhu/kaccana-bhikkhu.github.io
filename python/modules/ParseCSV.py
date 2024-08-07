@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os, sys, re, csv, json, unicodedata
+import Database
 import Filter
 import Render
 import SplitMp3,Mp3DirectCut
@@ -21,10 +22,11 @@ class TagFlag(StrEnum):
     PRIMARY = "*"               # The primary instance of this tag in the hierarchical tag list
     PROPER_NOUN = "p"           # Alphabetize as a proper noun
     PROPER_NOUN_SUBTAGS = "P"   # Alphabetize all subtags as proper nouns
-    SORT_SUBTAGS = "S"          # Sort this tag's subtags using the "sortBy" 
+    SORT_SUBTAGS = "S"          # Sort this tag's subtags using the "sortBy"
     DISPLAY_GLOSS = "g"         # Display the first gloss in the tag name; e.g. Saṅgha (Monastic community)
     ENGLISH_ALSO = "E"          # Show in English tags as well as Pali or proper nouns
     CAPITALIZE = "C"            # Capitalize the Pali entry; e.g. Nibbāna
+    HIDE = "h"                  # Hide this tag in alphabetical lists
 
 class ExcerptFlag(StrEnum):
     INDENT = "-"
@@ -345,11 +347,14 @@ def LoadTagsFile(database,tagFileName):
             tagDesc["supertags"] = []
 
         lastTagLevel = curTagLevel
-        lastTag = TagStackItem(tagName,TagFlag.PRIMARY in rawTag["flags"],bool(rawTag["number"])) # Count subtags if this tag is numerical
+        lastTag = TagStackItem(tagName,TagFlag.PRIMARY in rawTag["flags"] and not rawTag["subsumedUnder"],
+                               bool(rawTag["number"])) # Count subtags if this tag is numerical
         
         # Subsumed tags don't have a tag entry
         if rawTag["subsumedUnder"]:
-            subsumedTags[tagName] = rawTag["subsumedUnder"]
+            if TagFlag.PRIMARY in tagDesc["flags"] or tagName not in subsumedTags:
+                tagDesc["subsumedUnder"] = rawTag["subsumedUnder"]
+                subsumedTags[tagName] = tagDesc
             continue
         
         # If this is a duplicate tag, insert only if the primary flag is true
@@ -400,7 +405,7 @@ def RemoveUnusedTags(database: dict) -> None:
             return False
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
-    usedTags.update(t for t in gDatabase["tagSubsumed"].values())
+    usedTags.update(t["subsumedUnder"] for t in gDatabase["tagSubsumed"].values())
 
     Alert.extra(len(usedTags),"unique tags applied.")
     
@@ -489,11 +494,9 @@ def SortTags(database: dict) -> None:
         parent = database["tagDisplayList"][parentIndex]
         if TagFlag.SORT_SUBTAGS not in parent["flags"]:
             continue
-
-        if len(childIndexes) < childIndexes[-1] - childIndexes[0] + 1:
-            Alert.caution("Cannot sort",repr(parent["name"]),"because it contains multiple levels of tags.")
-            continue
-
+        
+        childIndexes = range(childIndexes[0],childIndexes[-1] + 1)
+            # WalkTags omits subtags, so include all tags between the first and the last; 
         children = [database["tagDisplayList"][i] for i in childIndexes]
 
         def SortByDate(tagInfo:dict) -> float:
@@ -507,7 +510,16 @@ def SortTags(database: dict) -> None:
             datelessTags.append(fullTag)
             return 9999.0
 
-        children.sort(key=SortByDate)
+        baseIndent = children[0]["level"]
+        lastDate = None
+        tagDates = {}
+        for child in children:
+            if child["level"] == baseIndent: # Any subtags sort by the date of their parent.
+                    # Since the sort is stable, this keeps subtags with their parents.
+                lastDate = SortByDate(child)
+            tagDates[child["tag"]] = lastDate
+
+        children.sort(key=lambda tag: tagDates[tag["tag"]])
         for index,child in zip(childIndexes,children):
             database["tagDisplayList"][index] = child
     if datelessTags:
@@ -726,8 +738,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 annotation["teachers"] = ["Anon"]
             elif defaultTeacher == "Excerpt":
                 annotation["teachers"] = excerpt["teachers"]
-            elif defaultTeacher == "Session":
-                ourSession = Utils.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
+            elif defaultTeacher == "Session" or (defaultTeacher == "Session unless text" and not annotation["text"]):
+                ourSession = Database.FindSession(database["sessions"],excerpt["event"],excerpt["sessionNumber"])
                 annotation["teachers"] = ourSession["teachers"]
         
         if not (TeacherConsent(database["teacher"],annotation["teachers"],"indexExcerpts") or database["kind"][annotation["kind"]]["ignoreConsent"]):
@@ -846,7 +858,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 
 
     # Then scan through the excerpts and add key "clips"
-    for session,sessionExcerpts in Utils.GroupBySession(excerpts,sessions):
+    for session,sessionExcerpts in Database.GroupBySession(excerpts,sessions):
         prevExcerpt = None
         if session["filename"]:
             AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
@@ -865,7 +877,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             endTime = x["endTime"]
             if startTime == "Session":
                     # The session excerpt has the length of the session and has no clips key
-                session = Utils.FindSession(sessions,x["event"],x["sessionNumber"])
+                session = Database.FindSession(sessions,x["event"],x["sessionNumber"])
                 x["duration"] = session["duration"]
                 if not x["duration"]:
                     Alert.error("Deleting session excerpt",x,"since the session has no duration.")
@@ -990,7 +1002,7 @@ def LoadEventFile(database,eventName,directory):
         x["annotations"] = []    
         x["event"] = eventName
         
-        ourSession = Utils.FindSession(sessions,eventName,x["sessionNumber"])
+        ourSession = Database.FindSession(sessions,eventName,x["sessionNumber"])
         
         if not x.pop("offTopic",False): # We don't need the off topic key after this, so throw it away with pop
             Utils.ExtendUnique(x["qTag"],ourSession["tags"])

@@ -22,7 +22,8 @@ export function configureLinks(frame,url) {
 	["href","src"].forEach((attribute) => {
 		frame.querySelectorAll("["+attribute+"]").forEach((el) => {
 			let attributePath = el.getAttribute(attribute);
-			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#")) {
+			// Don't modify: 1. Absolute URLs; 2. Links to #bookmark; 3. audio-chip tags (processed in audioChip.js) 
+			if (!attributePath.match(absoluteURLRegex) && !attributePath.startsWith("#") && !(el.localName == "audio-chip")) {
 				el.setAttribute(attribute,join(dirname(url),attributePath));
 			};
 		});
@@ -39,7 +40,7 @@ export function configureLinks(frame,url) {
 		}
 
 		if (href.startsWith("#")) {
-			let noBookmark = decodeURIComponent(locationNoQuery.href).split("#").slice(0,2).join("#")
+			let noBookmark = decodeURIComponent(locationNoQuery.href).split("#").slice(0,2).join("#");
 			el.href = noBookmark+href;
 			el.addEventListener("click", () => {
 				history.pushState({}, "", el.href);
@@ -68,13 +69,13 @@ export function configureLinks(frame,url) {
 }
 
 async function changeURL(pUrl) {
-	pUrl = decodeURIComponent(pUrl)
-	console.log("changeURL",pUrl)
+	pUrl = decodeURIComponent(pUrl);
+	console.log("changeURL",pUrl);
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
-			let [text, resultUrl] = result
-			text = text.replaceAll(/<link[^>]*rel="stylesheet"[^>]*style\.css[^>]*>/gi,"")
+			let [text, resultUrl] = result;
+			text = text.replaceAll(/<link[^>]*rel="stylesheet"[^>]*style\.css[^>]*>/gi,"");
 			frame.innerHTML = text;
 
 			let innerTitle = frame.querySelector("title");
@@ -82,11 +83,9 @@ async function changeURL(pUrl) {
 			innerTitle.remove();
 
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
-			if (frame.querySelector("#search-button")) {
-				loadSearchPage()
-			}
 
-			configureLinks(frame,resultUrl)
+			configureLinks(frame,resultUrl);
+			loadSearchPage();
 		});
 }
 
@@ -99,7 +98,7 @@ function delayedScroll(bookmark) {
 
 if (frame) {
 	changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-		let urlHash = decodeURIComponent(location.hash)
+		let urlHash = decodeURIComponent(location.hash);
 		if (urlHash.slice(1).includes("#")) {
 			delayedScroll(urlHash.slice(1).split("#")[1]);
 		}

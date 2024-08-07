@@ -2,10 +2,11 @@
 
 # Status
 
-## New in the July 2024 release:
-- Added much material from the [2001 Ajahn Chah Weekend](event:Chah2001). Some sessions have been omitted pending obtaining teacher consent.
-- Finalized the [license details](about:license).
-- Allow search engine indexing (we hope!).
+## New in the August 2024 release:
+- October 2017 Upāsikā Day: [Can We Function Without Attachement?](event:UD2017-4)
+- Two Q&A sessions with Ajahn Pasanno from [Abhayagiri's 25th Anniversary Retreat](event:Anniversary2021).
+- Almost all excerpts from the [2001 Ajahn Chah Weekend](event:Chah2001) are now available. 
+- [Search for tags](../search/Text-search.html)
 
 ## Content
 This release contains $!len(gDatabase["excerpts"])!$ excerpts from $!len(gDatabase["event"])!$ events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 372 transcribed pages, of which 275 have been entered into the Archive. The detailed status of transcription is as follows:
@@ -20,10 +21,10 @@ All sessions from the [2014](event:WR2014) and [2015](event:WR2015) Winter Retre
 All four recordings of daylong events led by Ajahn Pasanno at Spirit Rock Meditation Center on abhayagiri.org are included in the Archive.
 
 ### Upāsikā Days
-All 20 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive.
+All 21 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive. TWo more on YouTube haven't made it yet.
 
 ### Other
-The 2001 Ajahn Chah Conference is nearly finished. Several sessions do not yet appear in the Archive pending obtaining teacher consent.
+Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio. Several Abhayagiri anniversary celebrations and a podcast with Ajahn Pasanno are in progress.
 
 ## Known issues and limitations
 
@@ -40,3 +41,7 @@ The 2001 Ajahn Chah Conference is nearly finished. Several sessions do not yet a
 ### January 2024:
 - Completed [Winter Retreat 2014](event:WR2014): Our Roots in the Thai Forest Tradition
 - [Text search feature](../search/Text-search.html)
+### July 2024:
+- Added much material from the [2001 Ajahn Chah Weekend](event:Chah2001). Some sessions have been omitted pending obtaining teacher consent.
+- Finalized the [license details](about:license).
+- Allow search engine indexing (we hope!).

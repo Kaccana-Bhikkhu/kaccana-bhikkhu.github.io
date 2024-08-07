@@ -2,13 +2,14 @@
 
 # Status
 
-## New in the July 2024 release:
-- Added much material from the [2001 Ajahn Chah Weekend](../../pages/events/Chah2001.html). Some sessions have been omitted pending obtaining teacher consent.
-- Finalized the [license details](../../pages/about/12_License.html).
-- Allow search engine indexing (we hope!).
+## New in the August 2024 release:
+- October 2017 Upāsikā Day: [Can We Function Without Attachement?](../../pages/events/UD2017-4.html)
+- Two Q&A sessions with Ajahn Pasanno from [Abhayagiri's 25th Anniversary Retreat](../../pages/events/Anniversary2021.html).
+- Almost all excerpts from the [2001 Ajahn Chah Weekend](../../pages/events/Chah2001.html) are now available. 
+- [Search for tags](../search/Text-search.html)
 
 ## Content
-This release contains 2086 excerpts from 41 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 372 transcribed pages, of which 275 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 2221 excerpts from 43 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 372 transcribed pages, of which 275 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.
@@ -20,10 +21,10 @@ All sessions from the [2014](../../pages/events/WR2014.html) and [2015](../../pa
 All four recordings of daylong events led by Ajahn Pasanno at Spirit Rock Meditation Center on abhayagiri.org are included in the Archive.
 
 ### Upāsikā Days
-All 20 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive.
+All 21 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive. TWo more on YouTube haven't made it yet.
 
 ### Other
-The 2001 Ajahn Chah Conference is nearly finished. Several sessions do not yet appear in the Archive pending obtaining teacher consent.
+Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio. Several Abhayagiri anniversary celebrations and a podcast with Ajahn Pasanno are in progress.
 
 ## Known issues and limitations
 
@@ -40,3 +41,7 @@ The 2001 Ajahn Chah Conference is nearly finished. Several sessions do not yet a
 ### January 2024:
 - Completed [Winter Retreat 2014](../../pages/events/WR2014.html): Our Roots in the Thai Forest Tradition
 - [Text search feature](../search/Text-search.html)
+### July 2024:
+- Added much material from the [2001 Ajahn Chah Weekend](../../pages/events/Chah2001.html). Some sessions have been omitted pending obtaining teacher consent.
+- Finalized the [license details](../../pages/about/12_License.html).
+- Allow search engine indexing (we hope!).

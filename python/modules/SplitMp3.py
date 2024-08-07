@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os, json, platform
+import Database
 import Utils, Alert, Link, TagMp3, PrepareUpload
 import Mp3DirectCut
 from Mp3DirectCut import Clip, ClipTD
@@ -38,7 +39,7 @@ def main():
         # excerpt file filename
     excerptsByFilename:dict[str,dict] = {}
         # Store each excerpt by filename for future reference
-    for event,eventExcerpts in Utils.GroupByEvent(gDatabase["excerpts"]):        
+    for event,eventExcerpts in Database.GroupByEvent(gDatabase["excerpts"]):        
         eventName = event["code"]
         if gOptions.events != "All" and eventName not in gOptions.events:
             continue
@@ -55,21 +56,28 @@ def main():
         session = dict(sessionNumber=None)
         for excerpt in excerptsNeedingSplit:
             if session["sessionNumber"] != excerpt["sessionNumber"]:
-                session = Utils.FindSession(gDatabase["sessions"],eventName,excerpt["sessionNumber"])
+                session = Database.FindSession(gDatabase["sessions"],eventName,excerpt["sessionNumber"])
 
-            filename = f"{Utils.ItemCode(excerpt)}.mp3"
+            filename = f"{Database.ItemCode(excerpt)}.mp3"
             clips = list(excerpt["clips"])
             defaultSource = session["filename"]
+            allFilesFound = True
             for index in range(len(clips)):
-                source = clips[index].file
-                if source == "$":
-                    source = defaultSource
+                sourceFile = clips[index].file
+                if sourceFile == "$":
+                    sourceFile = defaultSource
                 elif index == 0:
                     defaultSource = clips[0].file
-                clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(gDatabase["audioSource"][source],"local")))
-
-            excerptClipsDict[filename] = clips
-            excerptsByFilename[filename] = excerpt
+                source = gDatabase["audioSource"].get(sourceFile,None)
+                if source:
+                    clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(source,"local")))
+                else:
+                    Alert.error(f"Cannot find source file '{sourceFile}' for",excerpt,". Will not split this excerpt.")
+                    allFilesFound = False
+            
+            if allFilesFound:
+                excerptClipsDict[filename] = clips
+                excerptsByFilename[filename] = excerpt
     
         eventExcerptClipsDict[eventName] = excerptClipsDict
     
@@ -86,8 +94,8 @@ def main():
         Link.DownloadItem(item,scanRemoteMirrors=False)
 
     with Utils.ConditionalThreader() as pool:
-        for source in allSources:
-            pool.submit(DownloadItem,source)
+        for sourceFile in allSources:
+            pool.submit(DownloadItem,sourceFile)
 
     splitCount = 0
     errorCount = 0

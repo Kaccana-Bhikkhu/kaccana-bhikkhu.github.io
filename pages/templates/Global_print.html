@@ -27,9 +27,9 @@
 
 $!page.RenderNumberedSections()!$
 
-<p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-<p id="cite-as"><b>How to cite this page</b> (suggested style): “$!page.info.title!$,” The Ajahn Pasanno Question and Story Archive, November 8, 2023,
-  $!f'<a href="{page.gOptions.info.citationURL}{page.info.file}">{page.gOptions.info.citationURL}{page.info.file}</a>'!$.</p>
+<p id="copyright" style="margin-left: 0em;">&copy; $!page.gOptions.info.releaseYear!$ Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
+<p id="cite-as" style="margin-left: 0em;"><b>How to cite this page</b> (suggested style): “$!page.section["citationTitle"] if page.HasSection("citationTitle") else page.info.title!$,” The Ajahn Pasanno Question and Story Archive, $!page.gOptions.info.releaseName!$,
+      $!f'<a href="{page.gOptions.info.citationURL}{page.info.file}">{page.gOptions.info.citationURL}{page.info.file}</a>'!$.</p>
 
 </body>
 </html>
