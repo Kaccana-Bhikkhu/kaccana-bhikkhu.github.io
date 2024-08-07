@@ -6,7 +6,7 @@
 - October 2017 Upāsikā Day: [Can We Function Without Attachement?](../../pages/events/UD2017-4.html)
 - Two Q&A sessions with Ajahn Pasanno from [Abhayagiri's 25th Anniversary Retreat](../../pages/events/Anniversary2021.html).
 - Almost all excerpts from the [2001 Ajahn Chah Weekend](../../pages/events/Chah2001.html) are now available. 
-- [Search by tags](../search/Text-search.html)
+- [Search for tags](../search/Text-search.html)
 
 ## Content
 This release contains 2221 excerpts from 43 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 372 transcribed pages, of which 275 have been entered into the Archive. The detailed status of transcription is as follows:
