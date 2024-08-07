@@ -60,7 +60,7 @@ export async function loadSearchPage() {
         .then((json) => {
             gDatabase = json; 
             console.log("Loaded search database.");
-            for (let code of "xg") {
+            for (let code in gDatabase["searches"]) {
                 if (code == "x")
                     gSearchers[code] = new excerptSearcher(gDatabase.searches[code]);
                 else
@@ -296,6 +296,8 @@ class searcher {
     separator; // the html code to separate each displayed search result.
     itemsPerPage; // The number of items to display per page. 
         // For the base class searcher, this is the number of items to display before the user clicks "Show all"
+    showAtFirst; // The number of items to display at first in a multi-search
+    divClass; // Enlcose the search results in a <div> tag with this class.
     items; // A list of items of the form:
         // database[n].blobs: an array of search blobs to match
         // database[n].html: the html code to display this item when found
@@ -315,15 +317,23 @@ class searcher {
         this.foundItems = searchQuery.filterItems(this.items);
     }
 
-    renderItems() {
+    renderItems(startItem = 0,endItem = null) {
         // Return a string of the found items.
 
+        if (endItem == null)
+            endItem = undefined;
         let rendered = [];
-        for (let item of this.foundItems.slice(0,this.itemsPerPage)) {
+        for (let item of this.foundItems.slice(0,endItem)) {
             rendered.push(this.prefix + this.query.displayMatchesInBold(item.html) + this.suffix);
         }
 
         return rendered.join(this.separator);
+    }
+
+    singleSearchHtmlResults() {
+        // Return an html string containing the search results when displaying only this search.
+
+        return `<div class="${this.divClass}" id="results-${this.code}">\n${this.renderItems(0,this.itemsPerPage)}\n</div>`;
     }
 
     showResults(message = "") {
@@ -336,13 +346,13 @@ class searcher {
 
         if (this.foundItems.length > 0) {
             message += `Found ${this.foundItems.length} ${this.foundItems.length > 1 ? this.plural : this.name}`;
-            if (this.foundItems.length > this.itemsPerPage)
+            if (this.itemsPerPage && this.foundItems.length > this.itemsPerPage)
                 message += `. Showing only the first ${this.itemsPerPage}:`;
             else
                 message += ":"
             instructionsFrame.style.display = "none";
 
-            resultsFrame.innerHTML = this.renderItems();
+            resultsFrame.innerHTML = this.singleSearchHtmlResults();
             configureLinks(resultsFrame,location.hash.slice(1));
         } else {
             message += `No ${this.plural} found.`
@@ -364,14 +374,17 @@ export class excerptSearcher extends searcher {
                         // Its value is set in the base class constructor function.
                         // If we prototype the variable here, that overwrites the value set by the base class constructor.
                     
-    renderItems() {
+    renderItems(startItem = 0,endItem = null) {
         // Convert a list of excerpts to html code by concatenating their html attributes
         // Display strings in boldTextItems in bold.
-    
+
+        if (endItem == null)
+            endItem = undefined;
+
         let bits = [];
         let lastSession = null;
-    
-        for (const x of this.foundItems) {
+
+        for (const x of this.foundItems.slice(0,endItem)) {
             if (x.session != lastSession) {
                 bits.push(this.sessionHeader[x.session]);
                 lastSession = x.session;

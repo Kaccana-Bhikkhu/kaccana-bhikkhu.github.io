@@ -176,14 +176,16 @@ def TagBlobs() -> Iterator[dict]:
             "html": HtmlTagDisplay(gDatabase["tag"][tag])
         } 
 
-def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),separator:str = "",plural:str = "s",itemsPerPage = 5) -> None:
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:
     """Add the search (tags, teachers, etc.) to searchList.
     code: a one-letter code to identify the search.
     name: the name of the search.
     blobsAndHtml: an iterator that yields a dict for each search item.
     separator: the html code to separate each displayed search result.
     plural: the plural name of the search. 's' means just add s.
-    itemsPerPage: the number of items to show per search display page."""
+    itemsPerPage: the number of items to show per search display page.
+    showAtFirst: the number of items to show before displaying the "more" prompt in a multi-search.
+    divClass: the class of <div> tag to enclose the search in."""
 
     searchList[code] = {
         "code": code,
@@ -191,9 +193,11 @@ def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Itera
         "plural": name + "s" if plural == "s" else plural,
         "prefix": wrapper.prefix,
         "suffix": wrapper.suffix,
-        "separator": separator,
+        "separator": "",
         "items": [b for b in blobsAndHtml],
-        "itemsPerPage": itemsPerPage
+        "itemsPerPage": None,
+        "showAtFirst": 5,
+        "divClass": "listing"
     }
 
 def AddArguments(parser) -> None:
@@ -213,9 +217,10 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     optimizedDB = {"searches": {}}
 
-    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper(),separator="<hr>",itemsPerPage=100)
+    AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
+    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper())
+    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "intro")
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
-    AddSearch(optimizedDB["searches"],"g","tag",TagBlobs(),itemsPerPage=100)
 
     optimizedDB["blobDict"] = list(gBlobDict.values())
 
