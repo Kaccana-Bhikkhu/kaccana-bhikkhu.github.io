@@ -131,7 +131,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch"
+                "Link",
+                "--linkCheckLevel",
+                "reference:3"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
