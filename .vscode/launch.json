@@ -131,10 +131,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Link",
-                "--linkCheckLevel",
-                "reference:3"
-            ],
+                "Prototype",
+                "--buildOnlyIndexes"            ],
             "console": "integratedTerminal",
             "justMyCode": true
         }

@@ -159,21 +159,10 @@ def TagBlobs() -> Iterator[dict]:
                         if tag["htmlFile"] and not ParseCSV.TagFlag.HIDE in tag["flags"]]
     alphabetizedTags.sort()
 
-    def HtmlTagDisplay(tagInfo: dict) -> str:
-        bits = [
-            Prototype.DrilldownIconLink(tagInfo['tag'],iconWidth = 14),
-            f"[{Prototype.HtmlTagLink(tagInfo['tag'],fullTag = True)}]"
-        ]
-        if tagInfo["fullPali"] and tagInfo["fullPali"] != tagInfo["fullTag"]:
-            bits.append(f"({tagInfo['fullPali']})")
-        if tagInfo.get("excerptCount",0):
-            bits.append(f"({tagInfo['excerptCount']})")
-        return " ".join(bits)
-
     for _,tag in alphabetizedTags:
         yield {
             "blobs": [TagBlob(tag)],
-            "html": HtmlTagDisplay(gDatabase["tag"][tag])
+            "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True) # HtmlTagDisplay(gDatabase["tag"][tag])
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:

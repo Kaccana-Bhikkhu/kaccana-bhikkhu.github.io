@@ -312,9 +312,11 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
 def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
     "Return html code describing this tag."
     
-    xCount = ExcerptCount(tag["tag"])
+    xCount = tag.get("excerptCount",0)
     countStr = f' ({xCount})' if xCount > 0 else ''
     
+    if not listAs and fullTag:
+        listAs = tag["fullTag"]
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
 
     paliStr = ''
@@ -467,14 +469,16 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False,drilldownLink = True) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
         tagName = AlphabetizeName(tagName)
-        html = TagDescription(tag,fullTag=fullTag,listAs=tagName)
-        if drilldownLink:
-            html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
+        html = TagDescription(tag,fullTag=fullTag,listAs=tagName,drilldownLink=drilldownLink)
         return Alphabetize(tagName,html)
 
-    def NonEnglishEntry(tag: dict,text: str,fullTag:bool = False,drilldownLink = True) -> _Alphabetize:
+    def NonEnglishEntry(tag: dict,fullTag:bool = False,drilldownLink = True) -> _Alphabetize:
         count = tag.get('excerptCount',0)
         countStr = f" ({count})" if count else ""
+        if fullTag:
+            text = tag["fullPali"]
+        else:
+            text = tag["pali"]
         html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}]{countStr}"
         if drilldownLink:
             html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
@@ -521,7 +525,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 # Alphabetize tags like History/Thailand under History/Thailand as well as Thailand, History
 
             if tag["pali"]: # Add an entry for foriegn language items
-                entry = NonEnglishEntry(tag,tag["pali"])
+                entry = NonEnglishEntry(tag)
                 if hasPali:
                     entries["pali"].append(entry)
                 else:
@@ -529,14 +533,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                 if englishAlso:
                     entries["english"].append(entry)
             if tag["fullPali"] and tag["fullPali"] != tag["pali"]: # Add an entry for the full Pāli tag
-                entry = NonEnglishEntry(tag,tag["fullPali"],fullTag=True)
+                entry = NonEnglishEntry(tag,fullTag=True)
                 if hasPali:
                     entries["pali"].append(entry)
                 else:
                     entries["other"].append(entry)
             
             for translation in tag["alternateTranslations"]:
-                html = f"{translation} – alternative translation of {NonEnglishEntry(tag,tag['fullPali'],fullTag=True,drilldownLink=False).html}"
+                html = f"{translation} – alternative translation of {NonEnglishEntry(tag,fullTag=True,drilldownLink=False).html}"
                 if LanguageTag(translation):
                     entries["other"].append(Alphabetize(translation,html))
                 else:
@@ -550,7 +554,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             if paliGloss:
                 gloss = RemoveLanguageTag(gloss)
                 
-            html = f"{gloss} – see {EnglishEntry(tag,tag['fullTag'],fullTag=True,drilldownLink=False).html}"
+            html = f"{gloss} – see {TagDescription(tag,fullTag=True)}"
             if paliGloss:
                 entries["pali"].append(Alphabetize(gloss,html))
             elif LanguageTag(gloss):
@@ -565,22 +569,14 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             continue
 
         subsumedUnder = gDatabase["tag"][subsumedTag["subsumedUnder"]]
-        referenceText = f" – see {EnglishEntry(subsumedUnder,subsumedUnder['fullTag'],fullTag=True,drilldownLink=False).html}"
+        referenceText = f" – see {TagDescription(subsumedUnder,fullTag=True)}"
         
         if subsumedTag["tag"] != subsumedTag["pali"]:
-            if subsumedTag["pali"]:
-                paliRef = f" ({subsumedTag['pali']})"
-            else:
-                paliRef = ""
-            entries["english"].append(Alphabetize(subsumedTag["fullTag"],subsumedTag["fullTag"] + paliRef + referenceText))
+            entries["english"].append(Alphabetize(subsumedTag["fullTag"],TagDescription(subsumedTag,fullTag = True,link = False) + referenceText))
             if not AlphabetizeName(subsumedTag["fullTag"]).startswith(AlphabetizeName(subsumedTag["tag"])):
                 # File the abbreviated tag separately if it's not a simple truncation
-                if subsumedTag["fullPali"]:
-                    paliRef = f" ({subsumedTag['fullPali']})"
-                else:
-                    paliRef = ""
-                entries["english"].append(Alphabetize(subsumedTag["tag"],subsumedTag["tag"] + paliRef + referenceText))
-            
+                entries["english"].append(Alphabetize(subsumedTag["tag"],TagDescription(subsumedTag,fullTag = False,link = False) + referenceText))
+        
         hasPali = subsumedTag["pali"] and not LanguageTag(subsumedTag["fullPali"])
         if subsumedTag["pali"]:
             entry = Alphabetize(subsumedTag["pali"],f"{subsumedTag['pali']} [{subsumedTag['tag']}]{referenceText}")
@@ -1337,6 +1333,9 @@ def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
 def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Write a html file for each tag in the database"""
     
+    if gOptions.buildOnlyIndexes:
+        return
+    
     def SubsumedTagDescription(tagData:dict) -> str:
         """Return a string describing this subsumed tag."""
         additionalBits = []
@@ -1430,6 +1429,8 @@ def LinkToTagPage(page: Html.PageDesc) -> Html.PageDesc:
 def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
     """Yield a page for each individual teacher"""
     
+    if gOptions.buildOnlyIndexes:
+        return
     xDB = gDatabase["excerpts"]
     teacherDB = gDatabase["teacher"]
 
@@ -1837,6 +1838,7 @@ def AddArguments(parser):
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='templates/Global.html',help='Template for all pages relative to prototypeDir; Default: templates/Global.html')
     parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of Tags,Drilldown,Events,Teachers,AllExcerpts.')
+    parser.add_argument('--buildOnlyIndexes',**Utils.STORE_TRUE,help="Build only index pages")
     parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')
@@ -1850,7 +1852,7 @@ def AddArguments(parser):
 gAllSections = {"tags","drilldown","events","teachers","search","allexcerpts"}
 def ParseArguments():
     if gOptions.buildOnly == "":
-        gOptions.buildOnly = gAllSections
+        gOptions.buildOnly = set(gAllSections)
     elif gOptions.buildOnly.lower() == "none":
         gOptions.buildOnly = set()
     else:
@@ -1861,6 +1863,9 @@ def ParseArguments():
         if unknownSections:
             Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
             gOptions.buildOnly = gOptions.buildOnly.difference(unknownSections)
+    
+    if gOptions.buildOnlyIndexes:
+        gOptions.buildOnly -= {"drilldown","allexcerpts","events","search"}
 
 def Initialize() -> None:
     pass
@@ -1916,6 +1921,6 @@ def main():
         Alert.extra("html files:",writer.StatusSummary())
         if gOptions.buildOnly == gAllSections and writer.Count(FileRegister.Status.STALE):
             Alert.extra("stale files:",writer.FilesWithStatus(FileRegister.Status.STALE))
-        if not gOptions.keepOldHtmlFiles:
+        if not gOptions.keepOldHtmlFiles and not gOptions.buildOnlyIndexes:
             DeleteUnwrittenHtmlFiles(writer)
     
