@@ -162,7 +162,7 @@ def TagBlobs() -> Iterator[dict]:
     for _,tag in alphabetizedTags:
         yield {
             "blobs": [TagBlob(tag)],
-            "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True) # HtmlTagDisplay(gDatabase["tag"][tag])
+            "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True)
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:

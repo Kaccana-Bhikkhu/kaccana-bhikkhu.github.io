@@ -1640,9 +1640,10 @@ def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
 
 def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Generate html for each event in the database"""
-            
+    if gOptions.buildOnlyIndexes:
+        return
+
     for eventCode,eventInfo in gDatabase["event"].items():
-        
         sessions = [s for s in gDatabase["sessions"] if s["event"] == eventCode]
         excerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
         a = Airium()
@@ -1852,7 +1853,10 @@ def AddArguments(parser):
 gAllSections = {"tags","drilldown","events","teachers","search","allexcerpts"}
 def ParseArguments():
     if gOptions.buildOnly == "":
-        gOptions.buildOnly = set(gAllSections)
+        if gOptions.buildOnlyIndexes:
+            gOptions.buildOnly = {"tags","events","teachers"}
+        else:
+            gOptions.buildOnly = gAllSections
     elif gOptions.buildOnly.lower() == "none":
         gOptions.buildOnly = set()
     else:
@@ -1863,9 +1867,6 @@ def ParseArguments():
         if unknownSections:
             Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
             gOptions.buildOnly = gOptions.buildOnly.difference(unknownSections)
-    
-    if gOptions.buildOnlyIndexes:
-        gOptions.buildOnly -= {"drilldown","allexcerpts","events","search"}
 
 def Initialize() -> None:
     pass
