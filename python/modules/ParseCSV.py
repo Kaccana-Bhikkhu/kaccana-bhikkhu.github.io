@@ -195,13 +195,20 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
 def ConvertToInteger(dictList,key,defaultValue = None,reportError:Alert.AlertClass|None = None):
     "Convert the values in key to ints"
     
-    for d in Utils.Contents(dictList):
+    def Convert(s: str) -> int:
         try:
-            d[key] = int(d[key])
+            return int(s)
         except ValueError as err:
-            if reportError and d[key]:
-                reportError("Cannot convert",repr(d[key]),"to an integer in",d)
-            d[key] = defaultValue
+            if reportError and s:
+                reportError("Cannot convert",repr(s),"to an integer in",d)
+            return defaultValue
+
+    nonContainers = frozenset((str,int,float))
+    for d in Utils.Contents(dictList):
+        if type(d[key]) in nonContainers:
+            d[key] = Convert(d[key])
+        else:
+            d[key] = [Convert(item) for item in d[key]]
 
 def ListToDict(inList,key = None):
     """Convert a list of dicts to a dict of dicts using key. If key is None, use the first key
@@ -932,6 +939,17 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
 
+def FinalizeExcerptTags(x: dict) -> None:
+    """Combine qTags and aTags into a single list, but keep track of how many qTags there are."""
+    x["tags"] = x["qTag"] + x["aTag"]
+    x["qTagCount"] = len(x["qTag"])
+    if not gOptions.jsonNoClean:
+        del x["qTag"]
+        del x["aTag"]
+        x.pop("aListen",None)
+        if not x["fTag"]:
+            x.pop("fTagOrder")
+
 def LoadEventFile(database,eventName,directory):
     
     with open(os.path.join(directory,eventName + '.csv'),encoding='utf8') as file:
@@ -990,9 +1008,10 @@ def LoadEventFile(database,eventName,directory):
     database["sessions"] += sessions
 
 
-    for key in ["teachers","qTag1","aTag1"]:
+    for key in ["teachers","qTag1","aTag1","fTag","fTagOrder"]:
         ListifyKey(rawExcerpts,key)
     ConvertToInteger(rawExcerpts,"sessionNumber")
+    ConvertToInteger(rawExcerpts,"fTagOrder")
     
     includedSessions = set(s["sessionNumber"] for s in sessions)
     rawExcerpts = [x for x in rawExcerpts if x["sessionNumber"] in includedSessions]
@@ -1014,6 +1033,7 @@ def LoadEventFile(database,eventName,directory):
 
         x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
         x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
+        x["fTag"] = [tag for tag in x["fTag"] if tag not in redactedTagSet]
 
         if not x["kind"]:
             x["kind"] = "Question"
@@ -1088,13 +1108,7 @@ def LoadEventFile(database,eventName,directory):
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
     for x in excerpts:
-        # Combine all tags into a single list, but keep track of how many qTags there are
-        x["tags"] = x["qTag"] + x["aTag"]
-        x["qTagCount"] = len(x["qTag"])
-        if not gOptions.jsonNoClean:
-            del x["qTag"]
-            del x["aTag"]
-            x.pop("aListen",None)
+        FinalizeExcerptTags(x)
 
     CreateClips(excerpts,sessions,database)
     
