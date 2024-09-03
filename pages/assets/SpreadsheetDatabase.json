@@ -28769,7 +28769,7 @@
         {
           "kind": "Recollection",
           "flags": "s",
-          "text": "Bhante Gunaratana comes to morning jūjā early.",
+          "text": "Bhante Gunaratana comes to morning pūjā early.",
           "teachers": [
             "AJoti",
             "BSteff"
@@ -78095,7 +78095,7 @@
       "startDate": "25/04/2020",
       "endDate": "",
       "format": "Short teaching",
-      "medium": "In-person",
+      "medium": "Online",
       "tags": [],
       "website": "https://www.abhayagiri.org/talks/7338-stanford-community-dhamma-discussion",
       "description": "Ajahn Pasanno offers a live stream Dhamma talk and Q&A for the Buddhist Community at Stanford (BCAS).",
@@ -98864,6 +98864,12 @@
       "location": "Portola Valley, California",
       "address": "",
       "websiteLink": ""
+    },
+    "Online": {
+      "venue": "Online",
+      "location": "Online",
+      "address": "",
+      "websiteLink": ""
     }
   },
   "format": {
@@ -111562,6 +111568,662 @@
       "newPage": "tags/mae-somchai.html"
     }
   },
+  "keyTag": {
+    "Impermanence": {
+      "tag": "Impermanence",
+      "displayAs": "Impermanence",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Suffering": {
+      "tag": "Suffering",
+      "displayAs": "Suffering",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Fear": {
+      "tag": "Fear",
+      "displayAs": "Fear",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Sickness": {
+      "tag": "Sickness",
+      "displayAs": "Sickness",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Ageing": {
+      "tag": "Ageing",
+      "displayAs": "Ageing",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Death": {
+      "tag": "Death",
+      "displayAs": "Death",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Grief": {
+      "tag": "Grief",
+      "displayAs": "Grief",
+      "topic": "The Human Dillema",
+      "topicCode": "human"
+    },
+    "Three Refuges": {
+      "tag": "Three Refuges",
+      "displayAs": "Three Refuges",
+      "topic": "The Three Refuges",
+      "topicCode": "refuges"
+    },
+    "Buddha": {
+      "tag": "Buddha",
+      "displayAs": "Buddha",
+      "topic": "The Three Refuges",
+      "topicCode": "refuges"
+    },
+    "Dhamma": {
+      "tag": "Dhamma",
+      "displayAs": "Dhamma",
+      "topic": "The Three Refuges",
+      "topicCode": "refuges"
+    },
+    "Saṅgha": {
+      "tag": "Saṅgha",
+      "displayAs": "Saṅgha",
+      "topic": "The Three Refuges",
+      "topicCode": "refuges"
+    },
+    "Generosity": {
+      "tag": "Generosity",
+      "displayAs": "Generosity",
+      "topic": "Foundations of Dhamma Practice",
+      "topicCode": "foundations"
+    },
+    "Goodwill": {
+      "tag": "Goodwill",
+      "displayAs": "Goodwill",
+      "topic": "Foundations of Dhamma Practice",
+      "topicCode": "foundations"
+    },
+    "Virtue": {
+      "tag": "Virtue",
+      "displayAs": "Virtue",
+      "topic": "Foundations of Dhamma Practice",
+      "topicCode": "foundations"
+    },
+    "Precepts": {
+      "tag": "Precepts",
+      "displayAs": "Precepts",
+      "topic": "Foundations of Dhamma Practice",
+      "topicCode": "foundations"
+    },
+    "Renunciation": {
+      "tag": "Renunciation",
+      "displayAs": "Renunciation",
+      "topic": "Foundations of Dhamma Practice",
+      "topicCode": "foundations"
+    },
+    "Four Noble Truths": {
+      "tag": "Four Noble Truths",
+      "displayAs": "Four Noble Truths",
+      "topic": "The Four Noble Truths",
+      "topicCode": "truths"
+    },
+    "Noble Truth of Suffering": {
+      "tag": "Noble Truth of Suffering",
+      "displayAs": "Noble Truth of Suffering",
+      "topic": "The Four Noble Truths",
+      "topicCode": "truths"
+    },
+    "Cause of Suffering": {
+      "tag": "Cause of Suffering",
+      "displayAs": "Noble Truth of the Cause of Suffering",
+      "topic": "The Four Noble Truths",
+      "topicCode": "truths"
+    },
+    "Cessation of Suffering": {
+      "tag": "Cessation of Suffering",
+      "displayAs": "Noble Truth of the Cessation of Suffering",
+      "topic": "The Four Noble Truths",
+      "topicCode": "truths"
+    },
+    "Eightfold Path": {
+      "tag": "Eightfold Path",
+      "displayAs": "Eightfold Path",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Right View": {
+      "tag": "Right View",
+      "displayAs": "Right View",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Right Speech": {
+      "tag": "Right Speech",
+      "displayAs": "Right Speech",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Right Livelihood": {
+      "tag": "Right Livelihood",
+      "displayAs": "Right Livelihood",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Right Effort": {
+      "tag": "Right Effort",
+      "displayAs": "Right Effort",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Right Mindfulness": {
+      "tag": "Right Mindfulness",
+      "displayAs": "Right Mindfulness",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Right Concentration": {
+      "tag": "Right Concentration",
+      "displayAs": "Right Concentration",
+      "topic": "The Noble Eightfold Path",
+      "topicCode": "path"
+    },
+    "Meditation": {
+      "tag": "Meditation",
+      "displayAs": "Meditation",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Meditation/General advice": {
+      "tag": "Meditation/General advice",
+      "displayAs": "General advice",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Mindfulness of body": {
+      "tag": "Mindfulness of body",
+      "displayAs": "Mindfulness of body",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Mindfulness of breathing": {
+      "tag": "Mindfulness of breathing",
+      "displayAs": "Mindfulness of breathing",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Chanting": {
+      "tag": "Chanting",
+      "displayAs": "Chanting",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Recollection": {
+      "tag": "Recollection",
+      "displayAs": "Recollection",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Directed thought and evaluation": {
+      "tag": "Directed thought and evaluation",
+      "displayAs": "Thinking",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Continuity of mindfulness": {
+      "tag": "Continuity of mindfulness",
+      "displayAs": "Continuity of mindfulness",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Jhāna": {
+      "tag": "Jhāna",
+      "displayAs": "Jhāna",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Present moment awareness": {
+      "tag": "Present moment awareness",
+      "displayAs": "Present moment awareness",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Direct experience": {
+      "tag": "Direct experience",
+      "displayAs": "Direct experience",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Knowing itself": {
+      "tag": "Knowing itself",
+      "displayAs": "Knowing itself",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Long-term practice": {
+      "tag": "Long-term practice",
+      "displayAs": "Long-term practice",
+      "topic": "Meditation Practices",
+      "topicCode": "meditation"
+    },
+    "Faith": {
+      "tag": "Faith",
+      "displayAs": "Faith",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Energy": {
+      "tag": "Energy",
+      "displayAs": "Energy",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Mindfulness": {
+      "tag": "Mindfulness",
+      "displayAs": "Mindfulness",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Concentration": {
+      "tag": "Concentration",
+      "displayAs": "Concentration",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Discernment": {
+      "tag": "Discernment",
+      "displayAs": "Discernment",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Desire": {
+      "tag": "Desire",
+      "displayAs": "Skillful desire",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Patience": {
+      "tag": "Patience",
+      "displayAs": "Patience",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Happiness": {
+      "tag": "Happiness",
+      "displayAs": "Happiness",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Gratitude": {
+      "tag": "Gratitude",
+      "displayAs": "Gratitude",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Compassion": {
+      "tag": "Compassion",
+      "displayAs": "Compassion",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Equanimity": {
+      "tag": "Equanimity",
+      "displayAs": "Equanimity",
+      "topic": "Skillful Qualities",
+      "topicCode": "skillful"
+    },
+    "Unwholesome Roots": {
+      "tag": "Unwholesome Roots",
+      "displayAs": "Defilements",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Sensual desire": {
+      "tag": "Sensual desire",
+      "displayAs": "Sensual desire",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Aversion": {
+      "tag": "Aversion",
+      "displayAs": "Aversion",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Sloth and torpor": {
+      "tag": "Sloth and torpor",
+      "displayAs": "Sloth and torpor",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Restlessness and worry": {
+      "tag": "Restlessness and worry",
+      "displayAs": "Restlessness and worry",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Doubt": {
+      "tag": "Doubt",
+      "displayAs": "Doubt",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Delusion": {
+      "tag": "Delusion",
+      "displayAs": "Delusion",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Proliferation": {
+      "tag": "Proliferation",
+      "displayAs": "Proliferation",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Self-identity view": {
+      "tag": "Self-identity view",
+      "displayAs": "Self-identity view",
+      "topic": "Unskillful Qualites",
+      "topicCode": "unskillful"
+    },
+    "Dependent origination": {
+      "tag": "Dependent origination",
+      "displayAs": "Dependent origination",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Volitional formations": {
+      "tag": "Volitional formations",
+      "displayAs": "Volitional formations",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Consciousness": {
+      "tag": "Consciousness",
+      "displayAs": "Consciousness",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Aggregates": {
+      "tag": "Aggregates",
+      "displayAs": "Name and form",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Sense bases": {
+      "tag": "Sense bases",
+      "displayAs": "Sense bases",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Contact": {
+      "tag": "Contact",
+      "displayAs": "Contact",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Feeling": {
+      "tag": "Feeling",
+      "displayAs": "Feeling",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Craving": {
+      "tag": "Craving",
+      "displayAs": "Craving",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Clinging": {
+      "tag": "Clinging",
+      "displayAs": "Clinging",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Becoming": {
+      "tag": "Becoming",
+      "displayAs": "Becoming",
+      "topic": "Dependent origination",
+      "topicCode": "origination"
+    },
+    "Conditionality": {
+      "tag": "Conditionality",
+      "displayAs": "Conditionality",
+      "topic": "Buddhist Perspectivies on the World",
+      "topicCode": "perspectives"
+    },
+    "Kamma": {
+      "tag": "Kamma",
+      "displayAs": "Kamma",
+      "topic": "Buddhist Perspectivies on the World",
+      "topicCode": "perspectives"
+    },
+    "Rebirth": {
+      "tag": "Rebirth",
+      "displayAs": "Rebirth",
+      "topic": "Buddhist Perspectivies on the World",
+      "topicCode": "perspectives"
+    },
+    "Not-self": {
+      "tag": "Not-self",
+      "displayAs": "Not-self",
+      "topic": "Buddhist Perspectivies on the World",
+      "topicCode": "perspectives"
+    },
+    "Nature of mind": {
+      "tag": "Nature of mind",
+      "displayAs": "Nature of mind",
+      "topic": "Buddhist Perspectivies on the World",
+      "topicCode": "perspectives"
+    },
+    "Cessation": {
+      "tag": "Cessation",
+      "displayAs": "Cessation",
+      "topic": "Fruits of the Practice",
+      "topicCode": "fruits"
+    },
+    "Relinquishment": {
+      "tag": "Relinquishment",
+      "displayAs": "Relinquishment",
+      "topic": "Fruits of the Practice",
+      "topicCode": "fruits"
+    },
+    "Liberation": {
+      "tag": "Liberation",
+      "displayAs": "Liberation",
+      "topic": "Fruits of the Practice",
+      "topicCode": "fruits"
+    },
+    "Stream entry": {
+      "tag": "Stream entry",
+      "displayAs": "Stream entry",
+      "topic": "Fruits of the Practice",
+      "topicCode": "fruits"
+    },
+    "Nibbāna": {
+      "tag": "Nibbāna",
+      "displayAs": "Nibbāna",
+      "topic": "Fruits of the Practice",
+      "topicCode": "fruits"
+    },
+    "Buddha/Biography": {
+      "tag": "Buddha/Biography",
+      "displayAs": "Buddha/Biography",
+      "topic": "Teachers",
+      "topicCode": "teachers"
+    },
+    "Ajahn Mun": {
+      "tag": "Ajahn Mun",
+      "displayAs": "Ajahn Mun",
+      "topic": "Teachers",
+      "topicCode": "teachers"
+    },
+    "Ajahn Chah": {
+      "tag": "Ajahn Chah",
+      "displayAs": "Ajahn Chah",
+      "topic": "Teachers",
+      "topicCode": "teachers"
+    },
+    "Ajahn Sumedho": {
+      "tag": "Ajahn Sumedho",
+      "displayAs": "Ajahn Sumedho",
+      "topic": "Teachers",
+      "topicCode": "teachers"
+    },
+    "Ajahn Pasanno": {
+      "tag": "Ajahn Pasanno",
+      "displayAs": "Ajahn Pasanno",
+      "topic": "Teachers",
+      "topicCode": "teachers"
+    },
+    "Teaching Dhamma": {
+      "tag": "Teaching Dhamma",
+      "displayAs": "Teaching Dhamma",
+      "topic": "Teachers",
+      "topicCode": "teachers"
+    },
+    "Wat Pah Pong": {
+      "tag": "Wat Pah Pong",
+      "displayAs": "Wat Pah Pong",
+      "topic": "Monasteries",
+      "topicCode": "monasteries"
+    },
+    "Wat Pah Nanachat": {
+      "tag": "Wat Pah Nanachat",
+      "displayAs": "Wat Pah Nanachat",
+      "topic": "Monasteries",
+      "topicCode": "monasteries"
+    },
+    "Abhayagiri": {
+      "tag": "Abhayagiri",
+      "displayAs": "Abhayagiri",
+      "topic": "Monasteries",
+      "topicCode": "monasteries"
+    },
+    "Culture/Natural environment": {
+      "tag": "Culture/Natural environment",
+      "displayAs": "Natural environment",
+      "topic": "Context of the Teachings",
+      "topicCode": "context"
+    },
+    "History/Thai Buddhism": {
+      "tag": "History/Thai Buddhism",
+      "displayAs": "History/Thai Buddhism",
+      "topic": "Context of the Teachings",
+      "topicCode": "context"
+    },
+    "Culture/Thailand": {
+      "tag": "Culture/Thailand",
+      "displayAs": "Culture/Thailand",
+      "topic": "Context of the Teachings",
+      "topicCode": "context"
+    },
+    "Culture/West": {
+      "tag": "Culture/West",
+      "displayAs": "Culture/West",
+      "topic": "Context of the Teachings",
+      "topicCode": "context"
+    },
+    "Monastic life": {
+      "tag": "Monastic life",
+      "displayAs": "Monastic life",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Monastic life/Motivation": {
+      "tag": "Monastic life/Motivation",
+      "displayAs": "Monastic life/Motivation",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Thai Forest Tradition": {
+      "tag": "Thai Forest Tradition",
+      "displayAs": "Thai Forest Tradition",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Vinaya": {
+      "tag": "Vinaya",
+      "displayAs": "Vinaya",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Almsround": {
+      "tag": "Almsround",
+      "displayAs": "Almsround",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Ascetic practices": {
+      "tag": "Ascetic practices",
+      "displayAs": "Ascetic practices",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Tudong": {
+      "tag": "Tudong",
+      "displayAs": "Tudong",
+      "topic": "Monastic Life",
+      "topicCode": "monastic"
+    },
+    "Everyday life": {
+      "tag": "Everyday life",
+      "displayAs": "Everyday life",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Lay life": {
+      "tag": "Lay life",
+      "displayAs": "Lay life",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Family": {
+      "tag": "Family",
+      "displayAs": "Family",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Relationships": {
+      "tag": "Relationships",
+      "displayAs": "Relationships",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Work": {
+      "tag": "Work",
+      "displayAs": "Work",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Environment": {
+      "tag": "Environment",
+      "displayAs": "Environment",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Politics and society": {
+      "tag": "Politics and society",
+      "displayAs": "Politics and society",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Commerce/economics": {
+      "tag": "Commerce/economics",
+      "displayAs": "Commerce/economics",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    },
+    "Health care": {
+      "tag": "Health care",
+      "displayAs": "Health care",
+      "topic": "Everyday Life Practice",
+      "topicCode": "everyday"
+    }
+  },
   "tagSubsumed": {
     "Non-ill-will": {
       "tag": "Non-ill-will",
@@ -112103,6 +112765,245 @@
     "Sharing circles",
     "Prisons"
   ],
+  "keyTopic": {
+    "human": {
+      "code": "human",
+      "topic": "The Human Dillema",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Impermanence",
+        "Suffering",
+        "Fear",
+        "Sickness",
+        "Ageing",
+        "Death",
+        "Grief"
+      ]
+    },
+    "refuges": {
+      "code": "refuges",
+      "topic": "The Three Refuges",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Three Refuges",
+        "Buddha",
+        "Dhamma",
+        "Saṅgha"
+      ]
+    },
+    "foundations": {
+      "code": "foundations",
+      "topic": "Foundations of Dhamma Practice",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Generosity",
+        "Goodwill",
+        "Virtue",
+        "Precepts",
+        "Renunciation"
+      ]
+    },
+    "truths": {
+      "code": "truths",
+      "topic": "The Four Noble Truths",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Four Noble Truths",
+        "Noble Truth of Suffering",
+        "Cause of Suffering",
+        "Cessation of Suffering"
+      ]
+    },
+    "path": {
+      "code": "path",
+      "topic": "The Noble Eightfold Path",
+      "shortNote": "Only path factors with substantial coverage in the Archive are included.",
+      "longNote": "",
+      "tags": [
+        "Eightfold Path",
+        "Right View",
+        "Right Speech",
+        "Right Livelihood",
+        "Right Effort",
+        "Right Mindfulness",
+        "Right Concentration"
+      ]
+    },
+    "meditation": {
+      "code": "meditation",
+      "topic": "Meditation Practices",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Meditation",
+        "Meditation/General advice",
+        "Mindfulness of body",
+        "Mindfulness of breathing",
+        "Chanting",
+        "Recollection",
+        "Directed thought and evaluation",
+        "Continuity of mindfulness",
+        "Jhāna",
+        "Present moment awareness",
+        "Direct experience",
+        "Knowing itself",
+        "Long-term practice"
+      ]
+    },
+    "skillful": {
+      "code": "skillful",
+      "topic": "Skillful Qualities",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Faith",
+        "Energy",
+        "Mindfulness",
+        "Concentration",
+        "Discernment",
+        "Desire",
+        "Patience",
+        "Happiness",
+        "Gratitude",
+        "Compassion",
+        "Equanimity"
+      ]
+    },
+    "unskillful": {
+      "code": "unskillful",
+      "topic": "Unskillful Qualites",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Unwholesome Roots",
+        "Sensual desire",
+        "Aversion",
+        "Sloth and torpor",
+        "Restlessness and worry",
+        "Doubt",
+        "Delusion",
+        "Proliferation",
+        "Self-identity view"
+      ]
+    },
+    "origination": {
+      "code": "origination",
+      "topic": "Dependent origination",
+      "shortNote": "Only links with substantial coverage in the Archive are included.",
+      "longNote": "",
+      "tags": [
+        "Dependent origination",
+        "Volitional formations",
+        "Consciousness",
+        "Aggregates",
+        "Sense bases",
+        "Contact",
+        "Feeling",
+        "Craving",
+        "Clinging",
+        "Becoming"
+      ]
+    },
+    "perspectives": {
+      "code": "perspectives",
+      "topic": "Buddhist Perspectivies on the World",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Conditionality",
+        "Kamma",
+        "Rebirth",
+        "Not-self",
+        "Nature of mind"
+      ]
+    },
+    "fruits": {
+      "code": "fruits",
+      "topic": "Fruits of the Practice",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Cessation",
+        "Relinquishment",
+        "Liberation",
+        "Stream entry",
+        "Nibbāna"
+      ]
+    },
+    "teachers": {
+      "code": "teachers",
+      "topic": "Teachers",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Buddha/Biography",
+        "Ajahn Mun",
+        "Ajahn Chah",
+        "Ajahn Sumedho",
+        "Ajahn Pasanno",
+        "Teaching Dhamma"
+      ]
+    },
+    "monasteries": {
+      "code": "monasteries",
+      "topic": "Monasteries",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Wat Pah Pong",
+        "Wat Pah Nanachat",
+        "Abhayagiri"
+      ]
+    },
+    "context": {
+      "code": "context",
+      "topic": "Context of the Teachings",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Culture/Natural environment",
+        "History/Thai Buddhism",
+        "Culture/Thailand",
+        "Culture/West"
+      ]
+    },
+    "monastic": {
+      "code": "monastic",
+      "topic": "Monastic Life",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Monastic life",
+        "Monastic life/Motivation",
+        "Thai Forest Tradition",
+        "Vinaya",
+        "Almsround",
+        "Ascetic practices",
+        "Tudong"
+      ]
+    },
+    "everyday": {
+      "code": "everyday",
+      "topic": "Everyday Life Practice",
+      "shortNote": "",
+      "longNote": "",
+      "tags": [
+        "Everyday life",
+        "Lay life",
+        "Family",
+        "Relationships",
+        "Work",
+        "Environment",
+        "Politics and society",
+        "Commerce/economics",
+        "Health care"
+      ]
+    }
+  },
   "keyCaseTranslation": {
     "": "",
     "#": "number",
@@ -112134,6 +113035,7 @@
     "Date": "date",
     "Default form": "defaultForm",
     "Description": "description",
+    "Display as": "displayAs",
     "Duplicate": "duplicate",
     "Duration": "duration",
     "End date": "endDate",
@@ -112161,12 +113063,14 @@
     "Inherit teachers from:": "inheritTeachersFrom",
     "Invalid tags": "invalidTags",
     "Key": "key",
+    "KeyTag": "keyTag",
     "Kind": "kind",
     "Known month": "knownMonth",
     "Known year": "knownYear",
     "Level": "level",
     "Lineage": "lineage",
     "Location": "location",
+    "Long note": "longNote",
     "Medium": "medium",
     "Name": "name",
     "New Page": "newPage",
@@ -112195,12 +113099,14 @@
     "Session #": "sessionNumber",
     "Session title": "sessionTitle",
     "Sessions": "sessions",
+    "Short note": "shortNote",
     "Sort by": "sortBy",
     "SortBy": "sortBy",
     "Start date": "startDate",
     "Start time": "startTime",
     "Subsumed under": "subsumedUnder",
     "Subtitle": "subtitle",
+    "Tag": "tag",
     "Tag menu": "tagMenu",
     "Tags": "tags",
     "Tags 2": "tags2",
@@ -112214,6 +113120,8 @@
     "Teachers": "teachers",
     "Text": "text",
     "Title": "title",
+    "Topic": "topic",
+    "Topic code": "topicCode",
     "Tweak": "tweak",
     "Usage notes": "usageNotes",
     "Value": "value",

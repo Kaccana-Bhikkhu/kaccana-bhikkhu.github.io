@@ -557,6 +557,32 @@ def CountSubtagExcerpts(database):
         tagList[parentIndex]["subtagCount"] = len(theseTags) - 1
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
+def CollectKeyTopics(database:dict[str]) -> None:
+    """Create keyTopic dictionary from keyTag dictionary."""
+
+    keyTopic = {}
+    currentTopic = {}
+    for tag in database["keyTag"].values():
+        if tag["topic"]:
+            currentTopic = {
+                "code": tag["topicCode"],
+                "topic": tag["topic"],
+                "shortNote": tag["shortNote"],
+                "longNote": tag["longNote"],
+                "tags": []
+            }
+            keyTopic[tag["topicCode"]] = currentTopic
+        
+        tag["topicCode"] = currentTopic["code"]
+        tag["topic"] = currentTopic["topic"]
+        if not tag["displayAs"]:
+            tag["displayAs"] = tag["tag"]
+        tag.pop("shortNote",None)
+        tag.pop("longNote",None)
+        
+        currentTopic["tags"].append(tag["tag"])
+    
+    database["keyTopic"] = keyTopic
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -1453,7 +1479,8 @@ def main():
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
     CountSubtagExcerpts(gDatabase)
-    
+    CollectKeyTopics(gDatabase)
+
     if gOptions.auditNames:
         AuditNames()
 

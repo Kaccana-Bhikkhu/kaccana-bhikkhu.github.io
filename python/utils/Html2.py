@@ -397,8 +397,8 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
             menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
         menu = Menu(menuItems)
         page.AppendContent(menu,section = addMenu if type(addMenu) == str else None)
+        page.AppendContent("<hr>")
     
-    page.AppendContent("<hr>")
     page.AppendContent(bodyWrapper("\n".join(bodyParts)))
 
     return page

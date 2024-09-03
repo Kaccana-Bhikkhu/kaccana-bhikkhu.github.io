@@ -85,7 +85,9 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     if not items:
         return ""
-    if len(items) > 1:
+    if not title:
+        titleEnd = ""
+    if title and len(items) > 1:
         title += plural
     
     listStr = ItemList(items,joinStr,lastJoinStr)
@@ -1745,6 +1747,28 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
     else:
         yield from aboutMenu
 
+def KeyTopics(pageDir: str) -> Html.PageDescriptorMenuItem:
+    """Display a list of key topics and corresponding key tags."""
+
+    info = Html.PageInfo("Key topics",Utils.PosixJoin(pageDir,"KeyTopics.html"))
+    yield info
+    
+    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
+        tagList = Html.Tag("p")("&nbsp&nbsp ".join(HtmlTagLink(t,text = gDatabase["keyTag"][t]["displayAs"]) for t in keyTopic["tags"]))
+
+        if keyTopic["shortNote"]:
+            tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
+        #tagList = ListLinkedTags("",keyTopic["tags"],joinStr = "&nbsp&nbsp ")
+        return keyTopic["topic"],tagList,keyTopic["code"]
+
+    pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,bodyWrapper=Html.Tag("div",{"class":"listing"}),addMenu=False,betweenSections="<br>")
+
+    page = Html.PageDesc(info)
+    page.AppendContent(pageContent)
+    page.AppendContent("Key topics",section="citationTitle")
+    page.keywords = ["Tags","Key topics"]
+    yield page 
+
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
@@ -1777,9 +1801,10 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     Also write a page for each tag."""
 
     drilldownDir = "drilldown"
-    yield next(iter(TagHierarchyMenu(indexDir,drilldownDir)))._replace(title="Tags")
+    yield next(iter(KeyTopics(indexDir)))._replace(title="Tags")
 
     tagMenu = [
+        KeyTopics(indexDir),
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         NumericalTagList(indexDir),
