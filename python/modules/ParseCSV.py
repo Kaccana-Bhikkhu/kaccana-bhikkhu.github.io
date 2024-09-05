@@ -203,12 +203,12 @@ def ConvertToInteger(dictList,key,defaultValue = None,reportError:Alert.AlertCla
                 reportError("Cannot convert",repr(s),"to an integer in",d)
             return defaultValue
 
-    nonContainers = frozenset((str,int,float))
+    sequences = frozenset((list,tuple))
     for d in Utils.Contents(dictList):
-        if type(d[key]) in nonContainers:
-            d[key] = Convert(d[key])
-        else:
+        if type(d[key]) in sequences:
             d[key] = [Convert(item) for item in d[key]]
+        else:
+            d[key] = Convert(d[key])
 
 def ListToDict(inList,key = None):
     """Convert a list of dicts to a dict of dicts using key. If key is None, use the first key
@@ -733,6 +733,24 @@ def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
             else:
                 Alert.caution(item,"to",prevExcerpt,message)
 
+def FinalizeExcerptTags(x: dict) -> None:
+    """Combine qTags and aTags into a single list, but keep track of how many qTags there are."""
+    x["tags"] = x["qTag"] + x["aTag"]
+    x["qTagCount"] = len(x["qTag"])
+    x["fTags"] = x.pop("fTag",[]) # Convention: List keys are plural
+    if not gOptions.jsonNoClean:
+        del x["qTag"]
+        del x["aTag"]
+        x.pop("aListen",None)
+        if not x["fTags"]:
+            x.pop("fTagOrder")
+
+def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
+    "Combine qTag, aTag, fTag, and fTagOrder keys from an Extra Tags annotation with an existing excerpt."
+
+    for key in ("qTag","aTag","fTags","fTagOrder"):
+        excerpt[key] = excerpt.get(key,[]) + annotation.get(key,[])
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
@@ -746,8 +764,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
                 return
         
-        excerpt["qTag"] += annotation["qTag"] # If no annotation takes the tags, give them to the excerpt
-        excerpt["aTag"] += annotation["aTag"]
+        AddExcerptTags(excerpt,annotation) # If no annotation takes the tags, give them to the excerpt
         return
     
     global gRemovedAnnotations
@@ -938,17 +955,6 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
-
-def FinalizeExcerptTags(x: dict) -> None:
-    """Combine qTags and aTags into a single list, but keep track of how many qTags there are."""
-    x["tags"] = x["qTag"] + x["aTag"]
-    x["qTagCount"] = len(x["qTag"])
-    if not gOptions.jsonNoClean:
-        del x["qTag"]
-        del x["aTag"]
-        x.pop("aListen",None)
-        if not x["fTag"]:
-            x.pop("fTagOrder")
 
 def LoadEventFile(database,eventName,directory):
     
@@ -1196,6 +1202,7 @@ def CountAndVerify(database):
     tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
     
+    fTagCount = 0
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
         tagsToRemove = []
@@ -1210,8 +1217,12 @@ def CountAndVerify(database):
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
+        
+        for tag in x["fTags"]:
+            tagDB[tag]["fTagCount"] = tagDB[tag].get("fTagCount",0) + 1
+            fTagCount += 1
     
-    Alert.info(tagCount,"total tags applied.")
+    Alert.info(tagCount,"total tags applied.",fTagCount,"featured tags applied.")
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")

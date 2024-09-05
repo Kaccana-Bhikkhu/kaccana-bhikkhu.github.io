@@ -8,16 +8,14 @@ from airium import Airium
 import Database
 import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
-from datetime import datetime,timedelta
+from datetime import timedelta
 import re, copy, itertools
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
-from functools import lru_cache
 from typing import NamedTuple, Generator
 from collections import defaultdict, Counter
 import itertools
 import FileRegister
-import urllib.parse
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
@@ -95,16 +93,18 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     return title + titleEnd + listStr + endStr
 
-def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True) -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,) -> str:
     """Turn a tag name into a hyperlink to that tag.
     Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
     If fullTag, the link text contains the full tag name."""
     
+    tagData = None
     try:
-        ref = gDatabase["tag"][tag]["htmlFile"]
+        tagData = gDatabase["tag"][tag]
+        ref = tagData["htmlFile"]
         if fullTag:
-            tag = gDatabase["tag"][tag]["fullTag"]
+            tag = tagData["fullTag"]
     except KeyError:
         ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]["subsumedUnder"]]["htmlFile"]
     
@@ -825,17 +825,20 @@ class Formatter:
             
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
-                
+
+            text = tag
+            if tag in excerpt["fTags"]:
+                text += ' <i class="fa fa-star"></i>'
             if tag in self.excerptBoldTags: # Always print boldface tags
-                tagStrings.append('<b>[' + HtmlTagLink(tag) + ']</b>')
+                tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
-                tagStrings.append('[' + HtmlTagLink(tag) + ']')
+                tagStrings.append(f'[{HtmlTagLink(tag,text=text)}]')
             
         a(' '.join(tagStrings))
         
         return str(a)
     
-    def FormatAnnotation(self,annotation: dict,tagsAlreadyPrinted: set) -> str:
+    def FormatAnnotation(self,excerpt: dict,annotation: dict,tagsAlreadyPrinted: set) -> str:
         "Return annotation formatted in html according to our stored settings. Don't print tags that have appeared earlier in this excerpt"
         
         a = Airium(source_minify=True)
@@ -846,10 +849,13 @@ class Formatter:
         for n,tag in enumerate(annotation.get("tags",())):
             omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags)
             
+            text = tag
+            if tag in excerpt["fTags"]:
+                text += ' <i class="fa fa-star"></i>'
             if tag in self.excerptBoldTags: # Always print boldface tags
-                tagStrings.append('<b>[' + HtmlTagLink(tag) + ']</b>')
+                tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
-                tagStrings.append('[' + HtmlTagLink(tag) + ']')
+                tagStrings.append(f'[{HtmlTagLink(tag,text=text)}]')
             
         a(' '.join(tagStrings))
         
@@ -1012,7 +1018,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
                 with a.p(style = f"margin-left: {tabLength * indentLevel}{tabMeasurement};"):
                     if not indentLevel:
                         a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
-                    a(localFormatter.FormatAnnotation(annotation,tagsAlreadyPrinted))
+                    a(localFormatter.FormatAnnotation(x,annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
         if (localFormatter.audioLinks != "img") and x is not lastExcerpt:
