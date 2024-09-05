@@ -121,6 +121,22 @@ def Tag(tag: str|set[str],kind:str|set[str] = All,category:str|set[str] = All) -
 
     return lambda item,tag=tag,kind=kind,category=category: _Tag(item,tag,kind,category)
 
+def _FeaturedTag(excerpt: dict,fTag:set[str]) -> bool:
+    "Helper function for FeaturedTag."
+
+    for ft in excerpt.get("fTags",()):
+        if ft in fTag:
+            return True
+    return False
+
+def FeaturedTag(fTag: str|set[str] = All) -> Filter:
+    """Returns a Filter that passes any excerpt with a given featured tag.
+    If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
+
+    fTag = StrToSet(fTag)
+
+    return lambda item,fTag=fTag: _FeaturedTag(item,fTag)
+
 def _QTag(excerpt: dict,tag:str) -> bool:
     return tag in excerpt["tags"][0:excerpt["qTagCount"]]
 

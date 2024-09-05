@@ -1430,13 +1430,36 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             
             return FilteredExcerptsMenuItem(excerpts=excerpts,filter=filter,formatter=formatter,mainPageInfo=pageInfo,menuTitle=menuTitle,fileExt=fileExt,pageAugmentor=AddSearchCategory(menuTitle))
 
+        def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tag: str):
+            "Insert featured excerpts to the top of the first page."
+            
+            menuItemAndPages = iter(pageGenerator)
+            firstPage = next(menuItemAndPages)
+            if type(firstPage) == Html.PageInfo:
+                yield firstPage # First yield the menu item descriptor, if any
+                firstPage = next(menuItemAndPages)
+            
+            featuredExcerpts = list(Filter.Apply(excerpts,Filter.FeaturedTag(tag)))
+            if featuredExcerpts:
+                textToAdd = f"<p>There are {len(featuredExcerpts)} featured excerpts.</p>\n"
+            else:
+                textToAdd = ""
+
+            firstTextSection = 0 # The first section could be a menu, in which case we skip it
+            while type(firstPage.section[firstTextSection]) != str:
+                firstTextSection += 1
+
+            firstPage.section[firstTextSection] = textToAdd + firstPage.section[firstTextSection]
+            yield firstPage
+            yield from menuItemAndPages
+
         if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
             questions = Filter.Apply(relevantExcerpts,Filter.Kind(category="Questions"))
             qTags,aTags = Filter.Partition(questions,Filter.QTag(tag))
 
             filterMenu = [
                 FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tag),pageInfo,"Events","events"),
-                FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
+                HoistFTags(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),relevantExcerpts,tag),
                 FilteredTagMenuItem(qTags,Filter.PassAll,"Questions about","qtag"),
                 FilteredTagMenuItem(aTags,Filter.PassAll,"Answers involving","atag"),
                 FilteredTagMenuItem(relevantExcerpts,Filter.Tag(tag,category="Stories"),"Stories"),
@@ -1452,7 +1475,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             else:
                 yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
         else:
-            yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
+            yield from map(LinkToTeacherPage,HoistFTags(MultiPageExcerptList(basePage,relevantExcerpts,formatter),relevantExcerpts,tag))
 
 def LinkToTagPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the tag page if this teacher has a tag."
