@@ -326,11 +326,13 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     "Return html code describing this tag."
     
     xCount = tag.get("excerptCount",0)
-    countStr = f' ({xCount})' if xCount > 0 and TagDescriptionFlag.NO_COUNT not in flags else ''
+    countStr = f'({xCount})' if xCount > 0 and TagDescriptionFlag.NO_COUNT not in flags else ''
     
     if not listAs and fullTag:
         listAs = tag["fullTag"]
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
+    if TagDescriptionFlag.PALI_FIRST in flags:
+        tagStr = '[' + tagStr + ']'
 
     paliStr = ''
     if not TagDescriptionFlag.NO_PALI in flags:
@@ -344,15 +346,14 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     if paliStr and TagDescriptionFlag.PALI_FIRST not in flags:
             paliStr = '(' + paliStr + ')'
 
-    if drilldownLink:
-        tagStr = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + tagStr
+    drillDownStr = DrilldownIconLink(tag["tag"],iconWidth = 12) if drilldownLink else ""
 
     if TagDescriptionFlag.COUNT_FIRST in flags:
-        joinList = [countStr,tagStr,paliStr]
+        joinList = [drillDownStr,countStr,tagStr,paliStr]
     elif TagDescriptionFlag.PALI_FIRST in flags:
-        joinList = [paliStr,tagStr,countStr]
+        joinList = [drillDownStr,paliStr,tagStr,countStr]
     else:
-        joinList = [tagStr,paliStr,countStr]
+        joinList = [drillDownStr,tagStr,paliStr,countStr]
     
     return ' '.join(s for s in joinList if s)
 
@@ -470,6 +471,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     slashPrefixes = Utils.RegexMatchAny(p for p in prefixes if p.endswith("/"))
     prefixRegex = Utils.RegexMatchAny(prefixes,capturingGroup=True) + r"(.+)"
     noAlphabetize = {"alphabetize":""}
+
     def AlphabetizeName(string: str) -> str:
         if gDatabase["name"].get(string,noAlphabetize)["alphabetize"]:
             return gDatabase["name"][string]["alphabetize"]
@@ -486,15 +488,11 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
         return Alphabetize(tagName,html)
 
     def NonEnglishEntry(tag: dict,fullTag:bool = False,drilldownLink = True) -> _Alphabetize:
-        count = tag.get('excerptCount',0)
-        countStr = f" ({count})" if count else ""
         if fullTag:
             text = tag["fullPali"]
         else:
             text = tag["pali"]
-        html = f"{text} [{HtmlTagLink(tag['tag'],fullTag)}]{countStr}"
-        if drilldownLink:
-            html = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + html
+        html = TagDescription(tag,fullTag,flags=TagDescriptionFlag.PALI_FIRST,drilldownLink=drilldownLink)
         return Alphabetize(text,html)
 
     entries = defaultdict(list)
