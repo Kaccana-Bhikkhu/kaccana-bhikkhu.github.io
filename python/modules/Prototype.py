@@ -14,6 +14,7 @@ import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
 from typing import NamedTuple, Generator
 from collections import defaultdict, Counter
+from enum import Enum
 import itertools
 import FileRegister
 
@@ -311,39 +312,49 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             page.AppendContent(f': {tag["name"]}',section="citationTitle")
             yield page
 
-def TagDescription(tag: dict,fullTag:bool = False,style: str = "tagFirst",listAs: str = "",link = True,drilldownLink = False) -> str:
+class StrEnum(str,Enum):
+    pass
+
+class TagDescriptionFlag(StrEnum):
+    PALI_FIRST = "P"
+    COUNT_FIRST = "N"
+    NO_PALI = "p"
+    NO_COUNT = "n"
+    SHOW_STAR = "S"
+
+def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = "",link = True,drilldownLink = False) -> str:
     "Return html code describing this tag."
     
     xCount = tag.get("excerptCount",0)
-    countStr = f' ({xCount})' if xCount > 0 else ''
+    countStr = f' ({xCount})' if xCount > 0 and TagDescriptionFlag.NO_COUNT not in flags else ''
     
     if not listAs and fullTag:
         listAs = tag["fullTag"]
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
 
     paliStr = ''
-    if tag['pali'] and tag['pali'] != tag['tag']:
-        if fullTag:
-            paliStr = '(' + tag['fullPali'] + ')'
-        else:
-            paliStr = '(' + tag['pali'] + ')'
-    elif ParseCSV.TagFlag.DISPLAY_GLOSS in tag["flags"]:
-        if tag['glosses']:
-            paliStr = '(' + tag['glosses'][0] + ')'
-        else:
-            Alert.caution(tag,"has flag g: DISPLAY_GLOSS but has no glosses.")
-    
+    if not TagDescriptionFlag.NO_PALI in flags:
+        if tag['pali'] and tag['pali'] != tag['tag']:
+            paliStr = tag['fullPali'] if fullTag else tag['pali']
+        elif ParseCSV.TagFlag.DISPLAY_GLOSS in tag["flags"]:
+            if tag['glosses']:
+                paliStr = tag['glosses'][0]
+            else:
+                Alert.caution(tag,"has flag g: DISPLAY_GLOSS but has no glosses.")
+    if paliStr and TagDescriptionFlag.PALI_FIRST not in flags:
+            paliStr = '(' + paliStr + ')'
+
     if drilldownLink:
         tagStr = DrilldownIconLink(tag["tag"],iconWidth = 12) + " " + tagStr
 
-    if style == "tagFirst":
-        return ' '.join([tagStr,paliStr,countStr])
-    elif style == "numberFirst":
-        return ' '.join([countStr,tagStr,paliStr])
-    elif style == "noNumber":
-        return ' '.join([tagStr,paliStr])
-    elif style == "noPali":
-        return ' '.join([tagStr,countStr])
+    if TagDescriptionFlag.COUNT_FIRST in flags:
+        joinList = [countStr,tagStr,paliStr]
+    elif TagDescriptionFlag.PALI_FIRST in flags:
+        joinList = [paliStr,tagStr,countStr]
+    else:
+        joinList = [tagStr,paliStr,countStr]
+    
+    return ' '.join(s for s in joinList if s)
 
 def NumericalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Write a list of numerical tags sorted by number:
@@ -413,7 +424,7 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     with a.div(Class="listing"):
         for tag in tagsSortedByQCount:
             with a.p():
-                a(TagDescription(gDatabase["tag"][tag],fullTag=True,style="numberFirst",drilldownLink=True))
+                a(TagDescription(gDatabase["tag"][tag],fullTag=True,flags=TagDescriptionFlag.COUNT_FIRST,drilldownLink=True))
     
     page = Html.PageDesc(info)
     page.AppendContent(str(a))
@@ -1386,7 +1397,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.excerptOmitSessionTags = False
         formatter.headingShowTeacher = False
         
-        tagPlusPali = TagDescription(tagInfo,fullTag=True,style="noNumber",link = False)
+        tagPlusPali = TagDescription(tagInfo,fullTag=True,flags=TagDescriptionFlag.NO_COUNT,link = False)
         pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
         basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
