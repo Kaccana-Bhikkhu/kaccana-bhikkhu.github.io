@@ -94,7 +94,7 @@ def TitledList(title:str, items:List[str], plural:str = "s", joinStr:str = ", ",
     
     return title + titleEnd + listStr + endStr
 
-def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,) -> str:
+def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,showStar = False) -> str:
     """Turn a tag name into a hyperlink to that tag.
     Simplying assumption: All html pages (except homepage.html and index.html) are in a subdirectory of prototype.
     Thus ../tags will reference the tags directory from any other html pages.
@@ -103,23 +103,27 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,) -> st
     tagData = None
     try:
         tagData = gDatabase["tag"][tag]
-        ref = tagData["htmlFile"]
-        if fullTag:
-            tag = tagData["fullTag"]
     except KeyError:
-        ref = gDatabase["tag"][gDatabase["tagSubsumed"][tag]["subsumedUnder"]]["htmlFile"]
+        tagData = gDatabase["tag"][gDatabase["tagSubsumed"][tag]["subsumedUnder"]]
+    
+    ref = tagData["htmlFile"]
+    if fullTag:
+        tag = tagData["fullTag"]
     
     if not text:
         text = tag
+
+    flag = ' <i class="fa fa-star" style="color: #9b7030;"></i>' if showStar and tagData and tagData.get("fTagCount",0) else ""
+
     if link:
         splitItalics = text.split("<em>")
         if len(splitItalics) > 1:
             textOutsideLink = " <em>" + splitItalics[1]
         else:
             textOutsideLink = ""
-        return f'<a href = "../tags/{ref}">{splitItalics[0].strip()}</a>{textOutsideLink}'
+        return f'<a href = "../tags/{ref}">{splitItalics[0].strip() + flag}</a>{textOutsideLink}'
     else:
-        return text
+        return text + flag
 
 
 def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
@@ -160,7 +164,7 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
 def ExcerptCount(tag:str) -> int:
     return gDatabase["tag"][tag].get("excerptCount",0)
 
-def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None,showSubtagCount = True) -> str:
+def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None,showSubtagCount = True,showStar = True) -> str:
     """Generate html for an indented list of tags.
     tagList is the list of tags to print; use the global list if not provided
     If expandSpecificTags is specified, then expand only tags with index numbers in this set.
@@ -223,6 +227,10 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
                         itemCount = item["excerptCount"]
                         if not item['tag']:
                             itemCount = "-"
+                        else:
+                            fTagCount = gDatabase["tag"][item["tag"]].get("fTagCount",0)
+                            if fTagCount:
+                                itemCount = f'{fTagCount}<i class="fa fa-star" style="color: #9b7030;"></i>/{itemCount}'
                         countStr = f' ({itemCount}/{subtagExcerptCount})'
                     else:
                         countStr = f' ({item["excerptCount"]})'
@@ -326,10 +334,22 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     "Return html code describing this tag."
     
     xCount = tag.get("excerptCount",0)
-    countStr = f'({xCount})' if xCount > 0 and TagDescriptionFlag.NO_COUNT not in flags else ''
-    
+    if xCount > 0 and TagDescriptionFlag.NO_COUNT not in flags:
+        if TagDescriptionFlag.SHOW_STAR in flags and tag.get("fTagCount",0):
+            starStr = f'{tag["fTagCount"]}<i class="fa fa-star" style="color: #9b7030;"></i>'
+            if TagDescriptionFlag.COUNT_FIRST in flags:
+                countStr = f'({xCount}/{starStr})'
+            else:
+                countStr = f'({starStr}/{xCount})'
+        else:
+            countStr = f'({xCount})'
+    else:
+        countStr = ""
+
     if not listAs and fullTag:
-        listAs = tag["fullTag"]
+        listAs = tag["fullTag"] if fullTag else tag["tag"]
+    if TagDescriptionFlag.SHOW_STAR and not TagDescriptionFlag.NO_COUNT:
+        listAs += ' <i class="fa fa-star" style="color: #9b7030;"></i>/'
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
     if TagDescriptionFlag.PALI_FIRST in flags:
         tagStr = '[' + tagStr + ']'
@@ -425,7 +445,7 @@ def MostCommonTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     with a.div(Class="listing"):
         for tag in tagsSortedByQCount:
             with a.p():
-                a(TagDescription(gDatabase["tag"][tag],fullTag=True,flags=TagDescriptionFlag.COUNT_FIRST,drilldownLink=True))
+                a(TagDescription(gDatabase["tag"][tag],fullTag=True,flags=TagDescriptionFlag.COUNT_FIRST + TagDescriptionFlag.SHOW_STAR,drilldownLink=True))
     
     page = Html.PageDesc(info)
     page.AppendContent(str(a))
@@ -484,7 +504,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
     def EnglishEntry(tag: dict,tagName: str,fullTag:bool=False,drilldownLink = True) -> _Alphabetize:
         "Return an entry for an English item in the alphabetized list"
         tagName = AlphabetizeName(tagName)
-        html = TagDescription(tag,fullTag=fullTag,listAs=tagName,drilldownLink=drilldownLink)
+        html = TagDescription(tag,fullTag=fullTag,listAs=tagName,drilldownLink=drilldownLink,flags = TagDescriptionFlag.SHOW_STAR)
         return Alphabetize(tagName,html)
 
     def NonEnglishEntry(tag: dict,fullTag:bool = False,drilldownLink = True) -> _Alphabetize:
@@ -492,7 +512,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             text = tag["fullPali"]
         else:
             text = tag["pali"]
-        html = TagDescription(tag,fullTag,flags=TagDescriptionFlag.PALI_FIRST,drilldownLink=drilldownLink)
+        html = TagDescription(tag,fullTag,flags=TagDescriptionFlag.PALI_FIRST + TagDescriptionFlag.SHOW_STAR,drilldownLink=drilldownLink)
         return Alphabetize(text,html)
 
     entries = defaultdict(list)
@@ -532,7 +552,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                     # File the abbreviated tag separately if it's not a simple truncation
             
             if re.match(slashPrefixes,tag["fullTag"]):
-                entries["english"].append(Alphabetize(tag["fullTag"],TagDescription(tag,fullTag=True)))
+                entries["english"].append(Alphabetize(tag["fullTag"],TagDescription(tag,fullTag=True,flags = TagDescriptionFlag.SHOW_STAR)))
                 # Alphabetize tags like History/Thailand under History/Thailand as well as Thailand, History
 
             if tag["pali"]: # Add an entry for foriegn language items
@@ -551,7 +571,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
                     entries["other"].append(entry)
             
             for translation in tag["alternateTranslations"]:
-                html = f"{translation} – alternative translation of {NonEnglishEntry(tag,fullTag=True,drilldownLink=False).html}"
+                html = f"{translation} – alternative translation of {TagDescription(tag,fullTag=True,flags=TagDescriptionFlag.PALI_FIRST + TagDescriptionFlag.SHOW_STAR,drilldownLink=False)}"
                 if LanguageTag(translation):
                     entries["other"].append(Alphabetize(translation,html))
                 else:
@@ -565,7 +585,7 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             if paliGloss:
                 gloss = RemoveLanguageTag(gloss)
                 
-            html = f"{gloss} – see {TagDescription(tag,fullTag=True)}"
+            html = f"{gloss} – see {TagDescription(tag,fullTag=True,flags = TagDescriptionFlag.SHOW_STAR)}"
             if paliGloss:
                 entries["pali"].append(Alphabetize(gloss,html))
             elif LanguageTag(gloss):
@@ -580,13 +600,13 @@ def AlphabeticalTagList(pageDir: str) -> Html.PageDescriptorMenuItem:
             continue
 
         subsumedUnder = gDatabase["tag"][subsumedTag["subsumedUnder"]]
-        referenceText = f" – see {TagDescription(subsumedUnder,fullTag=True)}"
+        referenceText = f" – see {TagDescription(subsumedUnder,fullTag=True,flags = TagDescriptionFlag.SHOW_STAR)}"
         
         if subsumedTag["tag"] != subsumedTag["pali"]:
-            entries["english"].append(Alphabetize(subsumedTag["fullTag"],TagDescription(subsumedTag,fullTag = True,link = False) + referenceText))
+            entries["english"].append(Alphabetize(subsumedTag["fullTag"],TagDescription(subsumedTag,fullTag = True,link = False,flags = TagDescriptionFlag.SHOW_STAR) + referenceText))
             if not AlphabetizeName(subsumedTag["fullTag"]).startswith(AlphabetizeName(subsumedTag["tag"])):
                 # File the abbreviated tag separately if it's not a simple truncation
-                entries["english"].append(Alphabetize(subsumedTag["tag"],TagDescription(subsumedTag,fullTag = False,link = False) + referenceText))
+                entries["english"].append(Alphabetize(subsumedTag["tag"],TagDescription(subsumedTag,fullTag = False,link = False,flags = TagDescriptionFlag.SHOW_STAR) + referenceText))
         
         hasPali = subsumedTag["pali"] and not LanguageTag(subsumedTag["fullPali"])
         if subsumedTag["pali"]:
@@ -1769,7 +1789,7 @@ def KeyTopics(pageDir: str) -> Html.PageDescriptorMenuItem:
     yield info
     
     def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        tagList = Html.Tag("p")("&nbsp&nbsp ".join(HtmlTagLink(t,text = gDatabase["keyTag"][t]["displayAs"]) for t in keyTopic["tags"]))
+        tagList = Html.Tag("p")("&nbsp&nbsp ".join(HtmlTagLink(t,text = gDatabase["keyTag"][t]["displayAs"],showStar=True) for t in keyTopic["tags"]))
 
         if keyTopic["shortNote"]:
             tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
