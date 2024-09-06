@@ -697,39 +697,19 @@ def PlayerTitle(item:dict) -> str:
     return " ".join(titleItems)
     
 
-def AudioIcon(hyperlink: str,title: str, iconWidth:str = "30",linkKind = None,preload:str = "metadata",dataDuration:str = "") -> str:
+def AudioIcon(hyperlink: str,title: str,dataDuration:str = "") -> str:
     "Return an audio icon with the given hyperlink"
-    
-    if not linkKind:
-        linkKind = gOptions.audioLinks
-
     filename = title + ".mp3"
 
     a = Airium(source_minify=True)
-    if linkKind == "img":
-        a.a(href = hyperlink, title = title, style="text-decoration: none;").img(src = "../images/audio.png",width = iconWidth)
-            # text-decoration: none ensures the icon isn't underlined
-    elif linkKind == "linkToPlayerPage":
-        with a.a(href = hyperlink,title = "Back to player"):
-            a('<i class="fa fa-long-arrow-left"></i> Playable')
-        a(" "+4*"&nbsp")
-        a.a(href = hyperlink,download = filename,title = "Download").img(src="../assets/download.svg",width="15",style="opacity:50%;",alt="⇓ Download")
-        a.br()
-    elif linkKind == "audio":
-        with a.audio(controls = "", src = hyperlink, title = title, preload = preload, style="vertical-align: middle;"):
-            with a.a(href = hyperlink,download=filename):
-                a(f"Download audio")
-            a(f" ({dataDuration})")
-        a.br()
-    else:
-        durationDict = {}
-        if dataDuration:
-            durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
-        with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
-            with a.a(href = hyperlink,download=filename):
-                a(f"Download audio")
-            a(f" ({dataDuration})")
-        a.br()
+    durationDict = {}
+    if dataDuration:
+        durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
+    with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
+        with a.a(href = hyperlink,download=filename):
+            a(f"Download audio")
+        a(f" ({dataDuration})")
+    a.br()
 	
     return str(a)
 
@@ -784,9 +764,7 @@ def EventSeriesAndDateStr(event: dict) -> str:
 class Formatter: 
     """A class that formats lists of events, sessions, and excerpts into html"""
     
-    def __init__(self):
-        self.audioLinks = gOptions.audioLinks
-        
+    def __init__(self):        
         self.excerptDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
         self.excerptOmitTags = set() # Don't display these tags in excerpt description
         self.excerptBoldTags = set() # Display these tags in boldface
@@ -808,7 +786,7 @@ class Formatter:
         
         a = Airium(source_minify=True)
         
-        a(Mp3ExcerptLink(excerpt,linkKind = self.audioLinks,**kwArgs))
+        a(Mp3ExcerptLink(excerpt,**kwArgs))
         a(' ')
         if excerpt['excerptNumber']:
             with a.b(style="text-decoration: underline;"):
@@ -819,8 +797,6 @@ class Formatter:
         a(" ")
         if self.excerptPreferStartTime and excerpt['excerptNumber']:
             a(f'[{excerpt["clips"][0].start}] ')
-        elif self.audioLinks != "chip":
-            a(f'({excerpt["duration"]}) ')
 
         def ListAttributionKeys() -> Generator[Tuple[str,str]]:
             for num in range(1,10):
@@ -934,14 +910,10 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and (self.audioLinks == "img" or self.audioLinks =="chip"):
-                audioLink = Mp3SessionLink(session,linkKind = self.audioLinks)
-                if self.audioLinks == "img":
-                    durStr = f' ({Utils.TimeDeltaToStr(Utils.StrToTimeDelta(session["duration"]))})' # Pretty-print duration by converting it to seconds and back
-                    itemsToJoin.append(audioLink + durStr + ' ')
-                else:
-                    itemsToJoin[-1] += ' ' + audioLink
-                        # The audio chip goes on a new line, so don't separate with a dash
+            if linkSessionAudio:
+                audioLink = Mp3SessionLink(session)
+                itemsToJoin[-1] += ' ' + audioLink
+                    # The audio chip goes on a new line, so don't separate with a dash
             
             a(' – '.join(itemsToJoin))
 
@@ -951,11 +923,6 @@ class Formatter:
                 for tag in session["tags"]:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
-            
-        if linkSessionAudio and self.audioLinks == "audio":
-            a(Mp3SessionLink(session,linkKind = self.audioLinks))
-            if horizontalRule:
-                a.hr()
         
         return str(a)
 
@@ -1026,16 +993,12 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
             else:
                 localFormatter.excerptDefaultTeacher = formatter.excerptDefaultTeacher
             
-        if count > 20:
-            options = {"preload": "none"}
-        else:
-            options = {}
         hasMultipleAnnotations = sum(len(a["body"]) > 0 for a in x["annotations"]) > 1
         if x["body"] or (not x["fileNumber"] and hasMultipleAnnotations):
             """ Render blank session excerpts which have more than one annotation as [Session].
                 If a blank session excerpt has only one annotation, [Session] will be added below."""
             with a.p(id = Database.ItemCode(x)):
-                a(localFormatter.FormatExcerpt(x,**options))
+                a(localFormatter.FormatExcerpt(x))
         
         tagsAlreadyPrinted = set(x["tags"])
         for annotation in x["annotations"]:
@@ -1050,7 +1013,7 @@ def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
                     a(localFormatter.FormatAnnotation(x,annotation,tagsAlreadyPrinted))
                 tagsAlreadyPrinted.update(annotation.get("tags",()))
         
-        if (localFormatter.audioLinks != "img") and x is not lastExcerpt:
+        if x is not lastExcerpt:
             a.hr()
         
     return str(a)
@@ -1105,18 +1068,6 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             return mp3Link[0]
 
     if len(menuItems) > 1:
-        if allItemsPage:
-            noPlayer = copy.deepcopy(formatter)
-            noPlayer.audioLinks = "linkToPlayerPage"
-            menuItem = Html.PageInfo(basePage.info.title,Utils.AppendToFilename(basePage.info.file,"-all"),basePage.info.titleInBody)
-            
-            pageHtml = Html.Tag("p")("""Use your browser's find command (Ctrl+F or Cmd+F) to search the excerpt text.<br> Then click <i class="fa fa-long-arrow-left"></i> Playable to return to a page where you can play the excerpt.""") + "\n"
-            pageHtml += HtmlExcerptList(excerpts,noPlayer)
-            pageHtml = re.sub(r'href=".*?/([^/]+)\.mp3(?![^>]*download)"',LinkToPage,pageHtml)
-                # Match only the non-download link
-
-            menuItems.append((menuItem._replace(title="All/Searchable"),(menuItem,pageHtml)))
-
         yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>\n"),highlight={"class":"active"})
     else:
         clone = basePage.Clone()
@@ -1923,7 +1874,6 @@ def AddArguments(parser):
     parser.add_argument('--globalTemplate',type=str,default='templates/Global.html',help='Template for all pages relative to prototypeDir; Default: templates/Global.html')
     parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of Tags,Drilldown,Events,Teachers,AllExcerpts.')
     parser.add_argument('--buildOnlyIndexes',**Utils.STORE_TRUE,help="Build only index pages")
-    parser.add_argument('--audioLinks',type=str,default='chip',help='Options: img (simple image), audio (html 5 audio player), chip (new interface by Owen)')
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')
     parser.add_argument('--attributeAll',**Utils.STORE_TRUE,help="Attribute all excerpts; mostly for debugging")
