@@ -725,15 +725,6 @@ def Mp3SessionLink(session: dict,**kwArgs) -> str:
         
     return AudioIcon(Database.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
     
-def EventLink(event:str, session: int = 0) -> str:
-    "Return a link to a given event and session. If session == 0, link to the top of the event page"
-    
-    directory = "../events/"
-    if session:
-        return f"{directory}{event}.html#{event}_S{session:02d}"
-    else:
-        return f"{directory}{event}.html"
-
 def TeacherLink(teacher:str) -> str:
     "Return a link to a given teacher page. Return an empty string if the teacher doesn't have a page."
     directory = "../teachers/"
@@ -761,15 +752,51 @@ def EventSeriesAndDateStr(event: dict) -> str:
     joinItems.append(EventDateStr(event))
     return ", ".join(joinItems)
 
+def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,countSessionExcerpts = False,sessionExcerptDuration = True) -> str:
+    "Return a string describing the duration of the excerpts we were passed."
+    
+    if not excerpts:
+        return "No excerpts"
+    
+    events = set(x["event"] for x in excerpts)
+    sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
+
+    duration = timedelta()
+    for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
+        sessionExcerpts = list(sessionExcerpts)
+        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+            # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
+            # This prevents confusing results due to double counting times
+    
+    strItems = []
+    
+    if len(events) > 1 and countEvents:
+        strItems.append(f"{len(events)} events,")
+    
+    if len(sessions) > 1 and countSessions:
+        strItems.append(f"{len(sessions)} sessions,")
+    
+    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
+    if excerptCount > 1:
+        strItems.append(f"{excerptCount} excerpts,")
+    else:
+        strItems.append(f"{excerptCount} excerpt,")
+    
+    strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
+    
+    return ' '.join(strItems)
 class Formatter: 
     """A class that formats lists of events, sessions, and excerpts into html"""
     
     def __init__(self):        
+        self.excerptNumbers = True # Display excerpt numbers?
         self.excerptDefaultTeacher = set() # Don't print the list of teachers if it matches the items in this list / set
         self.excerptOmitTags = set() # Don't display these tags in excerpt description
         self.excerptBoldTags = set() # Display these tags in boldface
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
+        self.excerptAttributeSource = False # Add a line after each excerpt linking to it source?
+            # Best used with showHeading = False
         
         self.showHeading = True # Show headings at all?
         self.headingShowEvent = True # Show the event name in headings?
@@ -788,11 +815,12 @@ class Formatter:
         
         a(Mp3ExcerptLink(excerpt,**kwArgs))
         a(' ')
-        if excerpt['excerptNumber']:
-            with a.b(style="text-decoration: underline;"):
-                a(f"{excerpt['excerptNumber']}.")
-        else:
-            a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
+        if self.excerptNumbers:
+            if excerpt['excerptNumber']:
+                with a.b(style="text-decoration: underline;"):
+                    a(f"{excerpt['excerptNumber']}.")
+            else:
+                a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
 
         a(" ")
         if self.excerptPreferStartTime and excerpt['excerptNumber']:
@@ -840,7 +868,7 @@ class Formatter:
                 tagStrings.append(f'[{HtmlTagLink(tag,text=text)}]')
             
         a(' '.join(tagStrings))
-        
+
         return str(a)
     
     def FormatAnnotation(self,excerpt: dict,annotation: dict,tagsAlreadyPrinted: set) -> str:
@@ -879,7 +907,7 @@ class Formatter:
         with a.div(Class = "title",id = bookmark):
             if self.headingShowEvent: 
                 if self.headingLinks:
-                    with (a.a(href = EventLink(session["event"]))):
+                    with (a.a(href = Database.EventLink(session["event"]))):
                         a(event["title"])
                 else:
                     a(event["title"])
@@ -894,7 +922,7 @@ class Formatter:
                 sessionTitle = ""
             
             if self.headingLinks:
-                with a.a(href = EventLink(session["event"],session["sessionNumber"])):
+                with a.a(href = Database.EventLink(session["event"],session["sessionNumber"])):
                     a(sessionTitle)
             else:
                 a(sessionTitle)
@@ -925,98 +953,68 @@ class Formatter:
                 a(' '.join(tagStrings))
         
         return str(a)
+    
+    def HtmlExcerptList(self,excerpts: List[dict]) -> str:
+        """Return a html list of the excerpts."""
+        
+        a = Airium()
+        tabMeasurement = 'em'
+        tabLength = 2
+        
+        prevEvent = None
+        prevSession = None
+        if excerpts:
+            lastExcerpt = excerpts[-1]
+        else:
+            lastExcerpt = None
+        
+        localFormatter = copy.deepcopy(self) # Make a copy in case the formatter object is reused
+        for count,x in enumerate(excerpts):
+            if localFormatter.showHeading and (x["event"] != prevEvent or x["sessionNumber"] != prevSession):
+                session = Database.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
 
-def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,countSessionExcerpts = False,sessionExcerptDuration = True) -> str:
-    "Return a string describing the duration of the excerpts we were passed."
-    
-    if not excerpts:
-        return "No excerpts"
-    
-    events = set(x["event"] for x in excerpts)
-    sessions = set((x["event"],x["sessionNumber"]) for x in excerpts) # Use sets to count unique elements
-
-    duration = timedelta()
-    for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
-        sessionExcerpts = list(sessionExcerpts)
-        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
-            # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
-            # This prevents confusing results due to double counting times
-    
-    strItems = []
-    
-    if len(events) > 1 and countEvents:
-        strItems.append(f"{len(events)} events,")
-    
-    if len(sessions) > 1 and countSessions:
-        strItems.append(f"{len(sessions)} sessions,")
-    
-    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
-    if excerptCount > 1:
-        strItems.append(f"{excerptCount} excerpts,")
-    else:
-        strItems.append(f"{excerptCount} excerpt,")
-    
-    strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
-    
-    return ' '.join(strItems)
-
-def HtmlExcerptList(excerpts: List[dict],formatter: Formatter) -> str:
-    """Return a html list of the excerpts."""
-    
-    a = Airium()
-    tabMeasurement = 'em'
-    tabLength = 2
-    
-    prevEvent = None
-    prevSession = None
-    if excerpts:
-        lastExcerpt = excerpts[-1]
-    else:
-        lastExcerpt = None
-    
-    localFormatter = copy.deepcopy(formatter) # Make a copy in case the formatter object is reused
-    for count,x in enumerate(excerpts):
-        if localFormatter.showHeading and (x["event"] != prevEvent or x["sessionNumber"] != prevSession):
-            session = Database.FindSession(gDatabase["sessions"],x["event"],x["sessionNumber"])
-
-            linkSessionAudio = formatter.headingAudio and x["fileNumber"]
-                # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
-            hr = x["fileNumber"] or x["body"]
-                # Omit the horzional rule if the first excerpt is a session excerpt with no body
+                linkSessionAudio = self.headingAudio and x["fileNumber"]
+                    # Omit link to the session audio if the first excerpt is a session excerpt with a body that will include it
+                hr = x["fileNumber"] or x["body"]
+                    # Omit the horzional rule if the first excerpt is a session excerpt with no body
+                    
+                a(localFormatter.FormatSessionHeading(session,linkSessionAudio,hr))
+                prevEvent = x["event"]
+                prevSession = x["sessionNumber"]
+                if localFormatter.headingShowTeacher and len(session["teachers"]) == 1: 
+                        # If there's only one teacher who is mentioned in the session heading, don't mention him/her in the excerpts
+                    localFormatter.excerptDefaultTeacher = set(session["teachers"])
+                else:
+                    localFormatter.excerptDefaultTeacher = self.excerptDefaultTeacher
                 
-            a(localFormatter.FormatSessionHeading(session,linkSessionAudio,hr))
-            prevEvent = x["event"]
-            prevSession = x["sessionNumber"]
-            if localFormatter.headingShowTeacher and len(session["teachers"]) == 1: 
-                    # If there's only one teacher who is mentioned in the session heading, don't mention him/her in the excerpts
-                localFormatter.excerptDefaultTeacher = set(session["teachers"])
-            else:
-                localFormatter.excerptDefaultTeacher = formatter.excerptDefaultTeacher
+            hasMultipleAnnotations = sum(len(a["body"]) > 0 for a in x["annotations"]) > 1
+            if x["body"] or (not x["fileNumber"] and hasMultipleAnnotations):
+                """ Render blank session excerpts which have more than one annotation as [Session].
+                    If a blank session excerpt has only one annotation, [Session] will be added below."""
+                with a.p(id = Database.ItemCode(x)):
+                    a(localFormatter.FormatExcerpt(x))
             
-        hasMultipleAnnotations = sum(len(a["body"]) > 0 for a in x["annotations"]) > 1
-        if x["body"] or (not x["fileNumber"] and hasMultipleAnnotations):
-            """ Render blank session excerpts which have more than one annotation as [Session].
-                If a blank session excerpt has only one annotation, [Session] will be added below."""
-            with a.p(id = Database.ItemCode(x)):
-                a(localFormatter.FormatExcerpt(x))
-        
-        tagsAlreadyPrinted = set(x["tags"])
-        for annotation in x["annotations"]:
-            if annotation["body"]:
-                indentLevel = annotation['indentLevel']
-                if not x["fileNumber"] and not x["body"] and not hasMultipleAnnotations:
-                    # If a single annotation follows a blank session excerpt, don't indent and add [Session] in front of it
-                    indentLevel = 0
-                with a.p(style = f"margin-left: {tabLength * indentLevel}{tabMeasurement};"):
-                    if not indentLevel:
-                        a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
-                    a(localFormatter.FormatAnnotation(x,annotation,tagsAlreadyPrinted))
-                tagsAlreadyPrinted.update(annotation.get("tags",()))
-        
-        if x is not lastExcerpt:
-            a.hr()
-        
-    return str(a)
+            tagsAlreadyPrinted = set(x["tags"])
+            for annotation in x["annotations"]:
+                if annotation["body"]:
+                    indentLevel = annotation['indentLevel']
+                    if not x["fileNumber"] and not x["body"] and not hasMultipleAnnotations:
+                        # If a single annotation follows a blank session excerpt, don't indent and add [Session] in front of it
+                        indentLevel = 0
+                    with a.p(style = f"margin-left: {tabLength * indentLevel}{tabMeasurement};"):
+                        if not indentLevel:
+                            a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
+                        a(localFormatter.FormatAnnotation(x,annotation,tagsAlreadyPrinted))
+                    tagsAlreadyPrinted.update(annotation.get("tags",()))
+            
+            if self.excerptAttributeSource:
+                with a.p(Class="x-cite"):
+                    a(Database.ItemCitation(x))
+
+            if x is not lastExcerpt:
+                a.hr()
+            
+        return str(a)
 
 def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter: Formatter,itemLimit:int = 0,allItemsPage = False) -> Iterator[Html.PageAugmentorType]:
     """Split an excerpt list into multiple pages, yielding a series of PageAugmentorType objects
@@ -1040,7 +1038,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         else:
             fileName = basePage.info.file
         menuItem = Html.PageInfo(str(pageNumber),fileName,basePage.info.titleInBody)
-        pageHtml = HtmlExcerptList(excerptsInThisPage,formatter)
+        pageHtml = formatter.HtmlExcerptList(excerptsInThisPage)
 
         excerptPage.update((Database.ItemCode(x),fileName) for x in excerptsInThisPage)
 
@@ -1227,7 +1225,7 @@ def ListDetailedEvents(events: Iterable[dict]) -> str:
             a.hr()
         firstEvent = False
         with a.h3():
-            with a.a(href = EventLink(eventCode)):
+            with a.a(href = Database.EventLink(eventCode)):
                 a(e["title"])            
         with a.p():
             a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
@@ -1243,7 +1241,7 @@ def EventSeries(event: dict) -> str:
     return event["series"]
 
 def EventDescription(event: dict,showMonth = False) -> str:
-    href = Html.Wrapper(f"<a href = {EventLink(event['code'])}>","</a>")
+    href = Html.Wrapper(f"<a href = {Database.EventLink(event['code'])}>","</a>")
     if showMonth:
         date = Utils.ParseDate(event["startDate"])
         monthStr = f' – {date.strftime("%B")} {int(date.year)}'
@@ -1389,18 +1387,30 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             if type(firstPage) == Html.PageInfo:
                 yield firstPage # First yield the menu item descriptor, if any
                 firstPage = next(menuItemAndPages)
-            
+
             featuredExcerpts = list(Filter.Apply(excerpts,Filter.FeaturedTag(tag)))
             if featuredExcerpts:
-                textToAdd = f"<p>There are {len(featuredExcerpts)} featured excerpts.</p>\n"
-            else:
-                textToAdd = ""
+                featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tag))
 
-            firstTextSection = 0 # The first section could be a menu, in which case we skip it
-            while type(firstPage.section[firstTextSection]) != str:
-                firstTextSection += 1
+                headerHtml = []
+                headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(f"Featured excerpts ({len(featuredExcerpts)})"))
 
-            firstPage.section[firstTextSection] = textToAdd + firstPage.section[firstTextSection]
+                featuredFormatter = copy.copy(formatter)
+                featuredFormatter.excerptOmitSessionTags = False
+                featuredFormatter.showHeading = False
+                featuredFormatter.headingShowTeacher = False
+                featuredFormatter.excerptNumbers = False
+                featuredFormatter.excerptAttributeSource = True
+
+                headerHtml.append(featuredFormatter.HtmlExcerptList(featuredExcerpts))
+                headerHtml.append("<hr>")
+
+                firstTextSection = 0 # The first section could be a menu, in which case we skip it
+                while type(firstPage.section[firstTextSection]) != str:
+                    firstTextSection += 1
+
+                firstPage.section[firstTextSection] = "\n".join(headerHtml + [firstPage.section[firstTextSection]])
+                                                                
             yield firstPage
             yield from menuItemAndPages
 
@@ -1691,7 +1701,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.headingLinks = False
         formatter.headingAudio = True
         formatter.excerptPreferStartTime = True
-        a(HtmlExcerptList(excerpts,formatter))
+        a(formatter.HtmlExcerptList(excerpts))
         
         titleInBody = eventInfo["title"]
         if eventInfo["subtitle"]:

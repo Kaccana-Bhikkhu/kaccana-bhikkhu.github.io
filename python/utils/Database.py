@@ -2,7 +2,9 @@
 
 from collections.abc import Iterable
 import json, re
+import Html2 as Html
 import Link
+from Prototype import gDatabase
 import SplitMp3
 import Utils
 import Alert
@@ -43,6 +45,42 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     session = FindSession(gDatabase["sessions"],item["event"],item["sessionNumber"])
     audioSource = gDatabase["audioSource"][session["filename"]]
     return Link.URL(audioSource,directoryDepth=directoryDepth)
+
+
+def EventLink(event:str, session: int|None = None, fileNumber:int|None = None) -> str:
+    "Return a link to a given event, session, and fileNumber. If session == None, link to the top of the event page"
+
+    directory = "../events/"
+    if session or fileNumber:
+        return f"{directory}{event}.html#{ItemCode(event=event,session=session,fileNumber=fileNumber)}"
+    else:
+        return f"{directory}{event}.html"
+
+
+def ItemCitation(item: dict) -> str:
+    """Return html code with the name of the event, session number, and file number.
+    item can be an event, session or excerpt"""
+
+    event = item.get("event",None)
+    session = item.get("sessionNumber",None)
+    fileNumber = item.get("fileNumber",None)
+
+    link = EventLink(event,session,fileNumber)
+
+    eventName = gDatabase["event"][event]["title"]
+    if not re.search(r"[0-9]{4}",eventName):
+        eventYear = re.search(r"[0-9]{4}",event)
+        if eventYear:
+            eventName += f" ({eventYear[0]})"
+    parts = [eventName]
+    if session:
+        parts.append(f"Session {session}")
+    excerptNumber = item.get("excerptNumber",None)
+    if excerptNumber:
+        parts.append(f"Excerpt {excerptNumber}")
+    text = ", ".join(parts)
+
+    return Html.Tag("a",{"href":link})(text)
 
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
@@ -288,3 +326,13 @@ def SubsumesTags() -> dict:
         subsumesTags[subsumedTag["subsumedUnder"]] = subsumesTags.get(subsumedTag["subsumedUnder"],[]) + [subsumedTag]
 
     return subsumesTags
+
+def FTagOrder(excerpt: dict,tag: str) -> int:
+    "Return the fTagOrder number of the excerpt x."
+    
+    try:
+        fTagIndex = excerpt["fTags"].index(tag)
+        return excerpt["fTagOrder"][fTagIndex]
+    except (ValueError, IndexError):
+        return 999
+

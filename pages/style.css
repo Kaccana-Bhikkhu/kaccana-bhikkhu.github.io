@@ -218,6 +218,13 @@ p.smaller {
 	font-size: 1em;
 }
 
+p.x-cite {
+	font-size: 1em;
+	text-align: right;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 ul,ol {
 	font-size: 18px;
 	color: #333;
