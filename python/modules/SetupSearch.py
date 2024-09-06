@@ -73,7 +73,7 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         if blob:
             yield blob
 
-def SearchBlobs(excerpt: dict) -> list[str]:
+def ExcerptBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
     teacherDB = gDatabase["teacher"]
@@ -116,7 +116,7 @@ def OptimizedExcerpts() -> list[dict]:
     formatter.headingShowTeacher = False
     for x in gDatabase["excerpts"]:
         xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
-                 "blobs": SearchBlobs(x),
+                 "blobs": ExcerptBlobs(x),
                  "html": formatter.HtmlExcerptList([x])}
         returnValue.append(xDict)
     return returnValue
@@ -162,7 +162,7 @@ def TagBlobs() -> Iterator[dict]:
     for _,tag in alphabetizedTags:
         yield {
             "blobs": [TagBlob(tag)],
-            "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True)
+            "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True,flags=Prototype.TagDescriptionFlag.SHOW_STAR)
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:

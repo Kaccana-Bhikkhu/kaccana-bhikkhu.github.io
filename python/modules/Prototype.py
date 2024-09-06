@@ -25,6 +25,8 @@ MAIN_MENU_STYLE |= BASE_MENU_STYLE
 SUBMENU_STYLE |= BASE_MENU_STYLE
 EXTRA_MENU_STYLE = BASE_MENU_STYLE | dict(wrapper=Html.Tag("div",{"class":"sublink2"}) + "\n<hr>\n")
 
+FA_STAR = '<i class="fa fa-star" style="color: #9b7030;"></i>'
+
 def WriteIndentedTagDisplayList(fileName):
     with open(fileName,'w',encoding='utf-8') as file:
         for item in gDatabase["tagDisplayList"]:
@@ -113,7 +115,7 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,showSta
     if not text:
         text = tag
 
-    flag = ' <i class="fa fa-star" style="color: #9b7030;"></i>' if showStar and tagData and tagData.get("fTagCount",0) else ""
+    flag = f' {FA_STAR}' if showStar and tagData and tagData.get("fTagCount",0) else ""
 
     if link:
         splitItalics = text.split("<em>")
@@ -230,7 +232,7 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
                         else:
                             fTagCount = gDatabase["tag"][item["tag"]].get("fTagCount",0)
                             if fTagCount:
-                                itemCount = f'{fTagCount}<i class="fa fa-star" style="color: #9b7030;"></i>/{itemCount}'
+                                itemCount = f'{fTagCount}{FA_STAR}/{itemCount}'
                         countStr = f' ({itemCount}/{subtagExcerptCount})'
                     else:
                         countStr = f' ({item["excerptCount"]})'
@@ -336,7 +338,7 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     xCount = tag.get("excerptCount",0)
     if xCount > 0 and TagDescriptionFlag.NO_COUNT not in flags:
         if TagDescriptionFlag.SHOW_STAR in flags and tag.get("fTagCount",0):
-            starStr = f'{tag["fTagCount"]}<i class="fa fa-star" style="color: #9b7030;"></i>'
+            starStr = f'{tag["fTagCount"]}{FA_STAR}'
             if TagDescriptionFlag.COUNT_FIRST in flags:
                 countStr = f'({xCount}/{starStr})'
             else:
@@ -349,7 +351,7 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     if not listAs and fullTag:
         listAs = tag["fullTag"] if fullTag else tag["tag"]
     if TagDescriptionFlag.SHOW_STAR and not TagDescriptionFlag.NO_COUNT:
-        listAs += ' <i class="fa fa-star" style="color: #9b7030;"></i>/'
+        listAs += f' {FA_STAR}/'
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
     if TagDescriptionFlag.PALI_FIRST in flags:
         tagStr = '[' + tagStr + ']'
@@ -861,7 +863,7 @@ class Formatter:
 
             text = tag
             if tag in excerpt["fTags"]:
-                text += ' <i class="fa fa-star"></i>'
+                text += f' {FA_STAR}'
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -884,7 +886,7 @@ class Formatter:
             
             text = tag
             if tag in excerpt["fTags"]:
-                text += ' <i class="fa fa-star"></i>'
+                text += f' {FA_STAR}'
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -1393,7 +1395,10 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tag))
 
                 headerHtml = []
-                headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(f"Featured excerpts ({len(featuredExcerpts)})"))
+                headerStr = "Featured excerpt"
+                if len(featuredExcerpts) > 1:
+                    headerStr += f"s ({len(featuredExcerpts)})"
+                headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
 
                 featuredFormatter = copy.copy(formatter)
                 featuredFormatter.excerptOmitSessionTags = False
