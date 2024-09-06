@@ -117,7 +117,7 @@ def OptimizedExcerpts() -> list[dict]:
     for x in gDatabase["excerpts"]:
         xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": SearchBlobs(x),
-                 "html": Prototype.HtmlExcerptList([x],formatter)}
+                 "html": formatter.HtmlExcerptList([x])}
         returnValue.append(xDict)
     return returnValue
 
@@ -208,7 +208,7 @@ def main() -> None:
 
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
     AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper())
-    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "intro")
+    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "main")
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 
     optimizedDB["blobDict"] = list(gBlobDict.values())

@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/LPP with novices Thailand Dec 2015.jpg" alt="Ajahn Pasanno in Thailand, December 2015" id="cover" title="Ajahn Pasanno in Thailand, December 2015" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/LPP with novices Thailand Dec 2015.jpg" alt="Ajahn Pasanno in Thailand, December 2015" class="cover" title="Ajahn Pasanno in Thailand, December 2015" align="bottom" width="200" border="0"/> -->
 # Version list
 - 1.0: First publicly available prototype; contains all questions from Thanksgiving Retreats 2013-2015 from pre-existing transcriptions; subject tags are based on transcription text rather than audio content.
 

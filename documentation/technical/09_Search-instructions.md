@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/Abhayagiri library.jpg" alt="Abhayagiri library" id="cover" title="Abhayagiri library" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Abhayagiri library.jpg" alt="Abhayagiri library" class="cover" title="Abhayagiri library" align="bottom" width="200" border="0"/> -->
 # Search instructions
 
 The [search page](../search/Text-search.html) allows one to search excerpts for text, tags, and teachers. One can narrow the search to specific kinds of teaching or events. Simple queries are easy, but more complex searches require an understanding of how the search engine works. Read this page only as far as you need to and then start searching.

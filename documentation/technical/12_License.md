@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/Abhayagiri Buddha Rupa.jpg" alt="Abhayagiri Reception Hall Buddha Image" id="cover" title="Abhayagiri Reception Hall Buddha Image" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Abhayagiri Buddha Rupa.jpg" alt="Abhayagiri Reception Hall Buddha Image" class="cover" title="Abhayagiri Reception Hall Buddha Image" align="bottom" width="200" border="0"/> -->
 # License
 
 This license applies to all new material created as part of the Ajahn Pasanno Question and Story Archive. This includes all versions of the website itself, the json database files, the material on github, and all versions of the main Google sheet used to generate the database and website. It neither grants nor removes permissions regarding material used in the Archive obtained from other sources.

@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/AP Thailand 2018.jpg" alt="Ajahn Pasanno, Thailand 2018" id="cover" title="Ajahn Pasanno, Thailand 2018" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AP Thailand 2018.jpg" alt="Ajahn Pasanno, Thailand 2018" class="cover" title="Ajahn Pasanno, Thailand 2018" align="bottom" width="200" border="0"/> -->
 # Overview
 The Ajahn Pasanno Question and Story Archive is an attempt to make the recorded oral teachings of Ajahn Pasanno and those who teach alongside him more accessible. There are already many books and booklets of Ajahn Pasanno’s transcribed teachings, but these cover only a fraction of the available audio recordings. In particular, there are hours of recorded question and answer sessions and topical discussions which are very relevant to people with similar concerns and of less interest to everyone else. Transcribing all of these would be a major undertaking.
 

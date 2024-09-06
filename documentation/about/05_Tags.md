@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/Preparation for novice going forth 2016.jpg" alt="Preparation for novice going forth 2016" id="cover" title="Preparation for novice going forth 2016" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Preparation for novice going forth 2016.jpg" alt="Preparation for novice going forth 2016" class="cover" title="Preparation for novice going forth 2016" align="bottom" width="200" border="0"/> -->
 
 # Tags
 The Archive uses over 500 tags to organize its contents.

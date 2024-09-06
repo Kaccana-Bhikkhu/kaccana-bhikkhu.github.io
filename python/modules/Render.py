@@ -513,7 +513,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             imagePath = Utils.PosixJoin(pathToPrototype,"images/photos",link)
             if not hashTag:
                 hashTag = "cover"
-            text = f'<!--HTML <img src="{imagePath}" alt="{text}" id="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
+            text = f'<!--HTML <img src="{imagePath}" alt="{text}" class="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
 
         if linkTo:
             path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)
