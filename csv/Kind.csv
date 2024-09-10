@@ -40,5 +40,8 @@ Asked by,Attribution,1,No,Yes,No,Yes,No,No,Yes,None,{'Asked by ' if text else ''
 ,,,,,,,,,,,,,,,
 Extra tags,Other,0,No,Yes,No,No,Yes,,No,,unimplemented,unimplemented,unimplemented,,
 ,,,,,,,,,,,,,,,
+Fragment,Other,0,No,Yes,Yes,No,No,,,,unimplemented,unimplemented,unimplemented,Yes,A fragment annotation indicates that the next annotation and its sub-annotations should be duplicated in a separate except following the main excerpt. The Fragment annotation itself is rendered as an audio player to play that excerpt.
+,,,,,,,,,,,,,,,
 Alt. audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,
 Append audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,
+Cut audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,

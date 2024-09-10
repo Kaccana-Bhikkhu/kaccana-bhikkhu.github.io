@@ -106,8 +106,11 @@ def RemoveEmptyFolders(root: str) -> set[str]:
                 break
     
         if not any(files) and not still_has_subdirs:
-            os.rmdir(current_dir)
-            deleted.add(current_dir)
+            try:
+                os.rmdir(current_dir)
+                deleted.add(current_dir)
+            except OSError:
+                pass
 
     return deleted
 

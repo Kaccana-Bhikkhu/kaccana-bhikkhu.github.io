@@ -756,6 +756,16 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     
     if annotation["sessionNumber"] != excerpt["sessionNumber"]:
         Alert.warning("Annotation",annotation,"to",excerpt,f"has a different session number ({annotation['sessionNumber']}) than its excerpt ({excerpt['sessionNumber']})")
+    global gRemovedAnnotations
+    if annotation["exclude"]:
+        excludeAlert(annotation,"to",excerpt,"- exclude flag Yes.")
+        gRemovedAnnotations += 1
+        return
+    if database["kind"][annotation["kind"]].get("exclude",False):
+        excludeAlert(annotation,"to",excerpt,"- kind",repr(annotation["kind"]),"exclude flag Yes.")
+        gRemovedAnnotations += 1
+        return
+    
     CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
     if annotation["kind"] == "Extra tags":
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
@@ -765,16 +775,6 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
                 return
         
         AddExcerptTags(excerpt,annotation) # If no annotation takes the tags, give them to the excerpt
-        return
-    
-    global gRemovedAnnotations
-    if annotation["exclude"]:
-        excludeAlert(annotation,"to",excerpt,"- exclude flag Yes.")
-        gRemovedAnnotations += 1
-        return
-    if database["kind"][annotation["kind"]].get("exclude",False):
-        excludeAlert(annotation,"to",excerpt,"- kind",repr(annotation["kind"]),"exclude flag Yes.")
-        gRemovedAnnotations += 1
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -1044,7 +1044,8 @@ def LoadEventFile(database,eventName,directory):
         if not x["kind"]:
             x["kind"] = "Question"
 
-        if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
+        if not x["startTime"] or not database["kind"][x["kind"]]["canBeExcerpt"]:
+                # If Start time is blank and it's not an audio annotation, this is an annotation to the previous excerpt
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
@@ -1087,17 +1088,17 @@ def LoadEventFile(database,eventName,directory):
                 x["exclude"] = True
         x["fileNumber"] = fileNumber
 
-        CheckItemContents(x,None,database["kind"][x["kind"]])
-
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
         elif database["kind"][x["kind"]].get("exclude",False):
-            excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
+            excludeReason = [x,"is of kind",x["kind"],"which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
             excludeReason = [x,"due to excerpt teachers",x["teachers"]]
-        
+
+        CheckItemContents(x,None,database["kind"][x["kind"]])
+
         if excludeReason:
             excludeAlert(*excludeReason)
 
