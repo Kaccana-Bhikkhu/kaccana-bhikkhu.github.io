@@ -21,6 +21,7 @@ class Status(Enum):
     UPDATED = auto()        # File registered; its record did not match the cache and has been updated 
     NEW = auto()            # New file registered that had no record in the cache
     BLOCKED = auto()        # There are changes to be made in the file, but something stopped us making them
+    NOT_FOUND = auto()      # The file does not appear in the register
 
 Record = TypedDict("Record",{"_status": Status,"_modified": datetime})
 """Stores the information about a file. The elements requred by FileRegister are:
@@ -56,6 +57,23 @@ class FileRegister():
             rawCache = {}
         
         self.record = {fileName:self.JsonItemToRecord(data) for fileName,data in rawCache.items()}
+
+    def GetStatus(self,fileName: str) -> Status:
+        "Return the status for a given fileName"
+        if fileName in self.record:
+            return self.record[fileName]["_status"]
+        else:
+            return Status.NOT_FOUND
+
+    def SetStatus(self,fileName: str,status: Status) -> bool:
+        """Set the status of an already-registered file.
+        Returns False if the record doesn't exist."""
+        if fileName in self.record:
+            self.record[fileName]["_status"] = status
+            return True
+        else:
+            return False
+
 
     def CheckStatus(self,fileName: str,recordData: Record) -> Status:
         """Check the status value that would be returned if we registered this record,

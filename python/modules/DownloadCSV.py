@@ -7,7 +7,7 @@ import urllib.request, urllib.error
 from typing import List
 from ParseCSV import CSVToDictList, DictFromPairs
 import Alert, Utils
-from FileRegister import HashWriter
+import FileRegister
 
 def BuildSheetUrl(docId: str, sheetId: str):
     "From https://stackoverflow.com/excerpts/12842341/download-google-docs-public-spreadsheet-to-csv-with-python"
@@ -35,7 +35,7 @@ def DownloadSmallFile(filename:str,url:str,retries:int = 2):
                 Alert.error(f"HTTP error when attempting to download {filename}. Giving up after {retries + 1} attempts.")
         
 
-def DownloadSheetCSV(docId: str, sheetId: str, filename: str, writer: HashWriter|None = None) -> None:
+def DownloadSheetCSV(docId: str, sheetId: str, filename: str, writer: FileRegister.HashWriter|None = None) -> None:
     """Download a Google Sheet with the given docId and sheetId to filename.
     Use writer if given."""
     
@@ -76,7 +76,7 @@ def ReadSummarySheet(printSheetName: bool = False) -> tuple[dict[str,str],dict[s
 
     return sheetIds,modDates
 
-def DownloadSheets(sheetIds: dict,writer: HashWriter) -> None:
+def DownloadSheets(sheetIds: dict,writer: FileRegister.HashWriter) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"
     
     with Utils.ConditionalThreader() as pool:
@@ -177,12 +177,27 @@ def main():
         else:
             sheetsToDownload = sheetIds
     
-    with HashWriter(gOptions.csvDir,exactDates=True) as writer:
+    with FileRegister.HashWriter(gOptions.csvDir,exactDates=True) as writer:
         DownloadSheets(sheetsToDownload,writer)
+        if downloadSummary:
+            for sheet in sheetIds:
+                fileName = sheet + ".csv"
+                if writer.GetStatus(fileName) == FileRegister.Status.STALE:
+                    writer.SetStatus(fileName,FileRegister.Status.UNCHANGED)
         writerReport = writer.StatusSummary()
-    
+
+        staleFiles = writer.FilesWithStatus(FileRegister.Status.STALE)
+        if staleFiles:
+            Alert.extra("Stale files:",staleFiles)
+        ignoreSummary = r"(?!.*Summary\.csv).*\.csv$"
+        deletedFiles = writer.DeleteStaleFiles(filterRegex=ignoreSummary)
+        deletedFiles += writer.DeleteUnregisteredFiles(filterRegex=ignoreSummary)
+        if deletedFiles:
+            Alert.extra(f"{deletedFiles} .csv files deleted.")
+
     downloadedSheets = list(sheetsToDownload.keys())
     if downloadSummary:
         downloadedSheets = ['Summary'] + downloadedSheets
     Alert.info(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
     Alert.extra(f'csv files:',writerReport)
+
