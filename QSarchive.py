@@ -134,6 +134,7 @@ parser.add_argument('--events',type=str,default='All',help='A comma-separated li
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
 parser.add_argument('--multithread',**Utils.STORE_TRUE,help="Multithread some operations")
+parser.add_argument('--dumpArgs',**Utils.STORE_TRUE,help="Print the argument parser arguments and exit")
 
 for mod in modules.values():
     mod.AddArguments(parser)
@@ -192,6 +193,13 @@ for modName in priorityInitialization:
 if Alert.error.count:
     print("Aborting due to argument parsing errors.")
     sys.exit(2)
+
+if clOptions.dumpArgs:
+    print("Parsed arguments (clOptions):")
+    for attribute in sorted(dir(clOptions)):
+        if not attribute.startswith("_"):
+            print(f"   {attribute} = {repr(getattr(clOptions,attribute))}")
+    sys.exit(0)
 
 if clOptions.events != 'All':
     clOptions.events = clOptions.events.split(',')

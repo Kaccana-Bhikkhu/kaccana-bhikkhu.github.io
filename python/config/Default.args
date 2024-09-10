@@ -32,7 +32,6 @@
 --excerptMp3 local
 --reference remote,local
 // --uploadMirror abhayagiri
-// --linkCheckLevel excerptMp3:local:3 // Use this to update excerpts with changed timestamps. Somewhat slower.
 
 // Render options:
 --renderedDatabase pages/assets/RenderedDatabase.json
@@ -52,3 +51,7 @@
 
 // Increase verbosity to maximum
 -vvv
+
+--args python/config/BuildPreview.args
+--linkCheckLevel 1
+// --linkCheckLevel excerptMp3:local:3 // Use this to update excerpts with changed timestamps. Somewhat slower.
