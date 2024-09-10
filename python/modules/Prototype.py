@@ -1611,8 +1611,7 @@ def SearchMenu(searchDir: str) -> Html.PageDescriptorMenuItem:
 
     searchPageName = "Text-search.html"
     searchTemplate = Utils.PosixJoin(gOptions.prototypeDir,"templates",searchPageName)
-    with open(searchTemplate,encoding='utf8') as file:
-        searchPage = file.read()
+    searchPage = Utils.ReadFile(searchTemplate)
     
     pageInfo = Html.PageInfo("Search",Utils.PosixJoin(searchDir,searchPageName),titleIB="Search")
     yield pageInfo
@@ -1622,8 +1621,7 @@ def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
     """Add a table of contents to the event which is being built."""
     tocPath = Utils.PosixJoin(gOptions.documentationDir,"tableOfContents",sessions[0]["event"] + ".md")
     if os.path.isfile(tocPath):
-        with open(tocPath,encoding='utf8') as file:
-            template = pyratemp.Template(file.read())
+        template = Utils.ReadFile(tocPath)
         
         markdownText = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database)
 
@@ -1721,8 +1719,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
 def ExtractHtmlBody(fileName: str) -> str:
     """Extract the body text from a html page"""
     
-    with open(fileName,encoding='utf8') as file:
-        htmlPage = file.read()
+    htmlPage = Utils.ReadFile(fileName)
     
     bodyStart = re.search(r'<body[^>]*>',htmlPage)
     bodyEnd = re.search(r'</body',htmlPage)
@@ -1882,6 +1879,23 @@ def XmlSitemap(siteFiles: FileRegister.HashWriter) -> str:
     
     return str(xml)
 
+def WriteRedirectPages(writer: FileRegister.HashWriter):
+    indexPageRedirect = ("../index.html","homepage.html")
+    
+    for oldPage,newPage in [indexPageRedirect]:
+        newPageHtml = Utils.ReadFile(Utils.PosixJoin(gOptions.prototypeDir,newPage))
+        if newPage == "homepage.html": # ../index.html lives at the root directory, so we need to change all relative links to it.
+            cannonicalURL = Utils.PosixJoin(gOptions.info.cannonicalURL,"index.html")
+            newPageHtml = re.sub(r'location.replace\([^)]*\)','location.replace("pages/index.html#homepage.html")',newPageHtml)
+                # Replace the redirect in Javascript
+            newPageHtml = re.sub(r'href="(?![^"]*://)','href="pages/',newPageHtml,flags=re.IGNORECASE)
+            newPageHtml = re.sub(r'src="(?![^"]*://)','src="pages/',newPageHtml,flags=re.IGNORECASE)
+                # Then replace all href and src links
+        else:
+            cannonicalURL = Utils.PosixJoin(gOptions.info.cannonicalURL,gOptions.prototypeDir,newPage)
+        newPageHtml = newPageHtml.replace('</head>',f'<link rel="canonical" href="{cannonicalURL}">\n</head>')
+        writer.WriteTextFile(oldPage,newPageHtml)
+
 def AddArguments(parser):
     "Add command-line arguments used by this module"
     
@@ -1967,6 +1981,7 @@ def main():
             print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
         
         writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
+        WriteRedirectPages(writer)
         Alert.extra("html files:",writer.StatusSummary())
         if gOptions.buildOnly == gAllSections and writer.Count(FileRegister.Status.STALE):
             Alert.extra("stale files:",writer.FilesWithStatus(FileRegister.Status.STALE))

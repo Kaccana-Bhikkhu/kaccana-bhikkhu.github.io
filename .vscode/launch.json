@@ -133,8 +133,10 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV",
-                "--buildOnlyIndexes"            ],
+                "Prototype",
+                "--buildOnly",
+                "None"        
+            ],
             "console": "integratedTerminal",
             "justMyCode": true
         }

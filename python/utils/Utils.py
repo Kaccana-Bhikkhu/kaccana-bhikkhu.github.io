@@ -74,6 +74,11 @@ def OpenUrlOrFile(url:str) -> BinaryIO:
     else:
         return open(url,"rb")
 
+def ReadFile(filePath: str) -> str:
+    "Return an entire file as a utf-8 encoded string."
+    with open(filePath,encoding='utf8') as file:
+        return file.read()
+
 def SwitchedMoveFile(locationFalse: str,locationTrue: str,switch: bool) -> bool:
     """Move a file to either locationFalse or locationTrue depending on the value of switch.
     Raise FileExistsError if both locations are occupied.

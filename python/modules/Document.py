@@ -43,10 +43,9 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
             continue
 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
-        with open(sourcePath,encoding='utf8') as file:
-            template = pyratemp.Template(file.read())
-            fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database)
-            gDocumentationWordCount += WordCount(fileContents[fileName])
+        template = pyratemp.Template(Utils.ReadFile(sourcePath))
+        fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database)
+        gDocumentationWordCount += WordCount(fileContents[fileName])
             
     def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:
         changeCount = 0
