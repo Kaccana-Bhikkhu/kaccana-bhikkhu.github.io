@@ -10,6 +10,7 @@ from collections.abc import Iterator, Iterable, Callable
 from typing import List
 import copy
 import Utils
+import re
 
 class Wrapper(NamedTuple):
     "A prefix and suffix to wrap an html object in."
@@ -356,7 +357,7 @@ T = TypeVar("T")
 def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
-    itemRenderer: Takes an item and returns the tuple heading,htmlBody[,headingID].
+    itemRenderer: Takes an item and returns the tuple heading[,htmlBody[,headingID]].
     headingWrapper: Wrap the heading in the body with this html code.
     addMenu: Generate a horizontal menu linking to each section at the top?
     """
@@ -369,31 +370,39 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
     for item in items:
         rendered = itemRenderer(item)
         if len(rendered) == 3:
-            heading,htmlBody,headingID = rendered
+            htmlHeading,htmlBody,headingID = rendered
+        elif len(rendered) == 2:
+            htmlHeading,htmlBody = rendered
+            headingID = None
         else:
-            heading,htmlBody = rendered
-            headingID = heading
-        headingID = Utils.slugify(headingID)
+            htmlHeading, = rendered
+            htmlBody = ""
+            headingID = None
 
-        if heading != prevHeading:
+        textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
+        if not headingID:
+            headingID = Utils.slugify(textHeading)
+
+        if textHeading != prevHeading:
             if prevHeading is not None and betweenSections:
                 bodyParts.append(betweenSections)
             
-            if countItems and menuItems: # Append the number of items to the previous menu item
+            if countItems and menuItems and itemCount: # Append the number of items to the previous menu item
                 menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
 
-            menuItems.append(PageInfo(heading,f"#{headingID}"))
+            menuItems.append(PageInfo(textHeading,f"#{headingID}"))
             idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
-            bodyParts.append(idWrapper.Wrap(heading))
+            bodyParts.append(idWrapper.Wrap(htmlHeading))
 
-            prevHeading = heading
+            prevHeading = textHeading
             itemCount = 0
-        bodyParts.append(htmlBody)
-        itemCount += 1
+        if htmlBody:
+            bodyParts.append(htmlBody)
+            itemCount += 1
     
     page = PageDesc()
     if addMenu:
-        if countItems: # Append the number of items to the last menu item
+        if countItems and menuItems: # Append the number of items to the last menu item
             menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
         menu = Menu(menuItems)
         page.AppendContent(menu,section = addMenu if type(addMenu) == str else None)
