@@ -28,6 +28,13 @@ class TagFlag(StrEnum):
     CAPITALIZE = "C"            # Capitalize the Pali entry; e.g. Nibbāna
     HIDE = "h"                  # Hide this tag in alphabetical lists
 
+class KeyTagFlag(StrEnum):
+    HEADING = "h"               # This tag is subsumed under the Key Topic heading and shouldn't be displayed
+    PEER_TAG = "-"              # Subtag of previous topic X. Shown as: X, Y, and Z
+    SUBORDINATE_TAG = ","       # Subtag of previous topic X. Shown as: X (includes Y)
+    HIDDEN_TAG = "."            # Subtag of previous topic X. Not displayed.
+
+SUBTAG_FLAGS = set([KeyTagFlag.PEER_TAG,KeyTagFlag.SUBORDINATE_TAG,KeyTagFlag.HIDDEN_TAG])
 class ExcerptFlag(StrEnum):
     INDENT = "-"
     ATTRIBUTE = "a"
@@ -221,9 +228,9 @@ def ListToDict(inList,key = None):
     for item in inList:
         newKey = item[key]
         if newKey in outDict:
-            raise KeyError("ListToDict: Duplicate key "+str(newKey))
-        
-        outDict[newKey] = item
+            Alert.warning("ListToDict: Duplicate key:",newKey,". Will use the value of the old key:",outDict[newKey])
+        else:
+            outDict[newKey] = item
     
     return outDict
 
@@ -234,9 +241,9 @@ def DictFromPairs(inList,keyKey,valueKey,camelCase = True):
     for item in inList:
         newKey = item[keyKey]
         if newKey in outDict:
-            raise KeyError("DictFromPairs: Duplicate key "+str(newKey))
-        
-        outDict[newKey] = item[valueKey]
+            Alert.warning("DictFromPairs: Duplicate key:",newKey,". Will use the value of the old key:",outDict[newKey])
+        else:
+            outDict[newKey] = item[valueKey]
     
     if camelCase:
         CamelCaseKeys(outDict)
@@ -569,6 +576,8 @@ def CollectKeyTopics(database:dict[str]) -> None:
 
     keyTopic = {}
     currentTopic = {}
+    tagsToRemove = set()
+    mainTag = None
     for tag in database["keyTag"].values():
         if tag["topic"]:
             currentTopic = {
@@ -580,15 +589,25 @@ def CollectKeyTopics(database:dict[str]) -> None:
             }
             keyTopic[tag["topicCode"]] = currentTopic
         
-        tag["topicCode"] = currentTopic["code"]
-        tag["topic"] = currentTopic["topic"]
-        if not tag["displayAs"]:
-            tag["displayAs"] = tag["tag"]
-        tag.pop("shortNote",None)
-        tag.pop("longNote",None)
-        
-        currentTopic["tags"].append(tag["tag"])
+        if tag["flags"] in SUBTAG_FLAGS:
+            tagsToRemove.add(tag["tag"])
+            mainTag["subtags"][tag["tag"]] = tag["flags"]
+        else:
+            mainTag = tag
+            tag["subtags"] = {}
+            tag["topicCode"] = currentTopic["code"]
+            tag["topic"] = currentTopic["topic"]
+            database["tag"][tag["tag"]]["topicCode"] = currentTopic["code"]
+            if not tag["displayAs"]:
+                tag["displayAs"] = tag["tag"]
+            tag.pop("shortNote",None)
+            tag.pop("longNote",None)
+            
+            currentTopic["tags"].append(tag["tag"])
     
+    for tag in tagsToRemove:
+        del database["keyTag"][tag]
+
     database["keyTopic"] = keyTopic
 
 def CreateTagDisplayList(database):

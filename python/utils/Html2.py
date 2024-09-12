@@ -383,7 +383,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
         if not headingID:
             headingID = Utils.slugify(textHeading)
 
-        if textHeading != prevHeading:
+        if textHeading and textHeading != prevHeading:
             if prevHeading is not None and betweenSections:
                 bodyParts.append(betweenSections)
             
@@ -402,7 +402,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
     
     page = PageDesc()
     if addMenu:
-        if countItems and menuItems: # Append the number of items to the last menu item
+        if countItems and menuItems and itemCount: # Append the number of items to the last menu item
             menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
         menu = Menu(menuItems)
         page.AppendContent(menu,section = addMenu if type(addMenu) == str else None)

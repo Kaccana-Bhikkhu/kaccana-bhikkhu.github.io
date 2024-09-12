@@ -57,6 +57,8 @@ def DeleteUnwrittenHtmlFiles(writer: FileRegister.HashWriter) -> None:
 
     # Delete files only in directories we have built
     dirs = gOptions.buildOnly & {"events","tags","teachers","drilldown","search"}
+    if "tags" in gOptions.buildOnly:
+        dirs.add("topics")
     dirs.add("about")
     if gOptions.buildOnly == gAllSections:
         dirs.add("indexes")
@@ -1776,7 +1778,20 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     yield indexPageInfo
     
     def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        tagList = Html.Tag("p")("&nbsp&nbsp ".join(HtmlTagLink(t,text = gDatabase["keyTag"][t]["displayAs"],showStar=True) for t in keyTopic["tags"]))
+        tagsToList = (t for t in keyTopic["tags"] if not gDatabase["keyTag"][t]["flags"])
+        
+        if gOptions.keyTopicsLinkToTags:
+            tagList = Html.Tag("p")("&nbsp&nbsp ".join(HtmlTagLink(t,text = gDatabase["keyTag"][t]["displayAs"],showStar=True) for t in keyTopic["tags"]))
+        else:
+            topicLinks = []
+            for tag in tagsToList:
+                link = Utils.PosixJoin("../",topicDir,keyTopic["code"] + ".html") + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
+                text = gDatabase["keyTag"][tag]["displayAs"]
+                if gDatabase["tag"][tag].get("fTagCount",0):
+                    text += f' {FA_STAR}'
+                topicLinks.append(Html.Tag("a",{"href":link})(text))
+
+            tagList = Html.Tag("p")("&nbsp&nbsp ".join(topicLinks))
 
         if keyTopic["shortNote"]:
             tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
@@ -1816,16 +1831,22 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
             def SortKey(x) -> int:
                 return Database.FTagOrder(x,tag)
 
-            excerptsByTopic[tag] = sorted(Filter.Apply(gDatabase["excerpts"],Filter.FeaturedTag(tag)),key=SortKey)
+            searchTags = set([tag] + list(gDatabase["keyTag"][tag]["subtags"].keys()))
+            excerptsByTopic[tag] = sorted(Filter.Apply(gDatabase["excerpts"],Filter.FeaturedTag(searchTags)),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str]) -> tuple[str,str,str]:
             excerpt,tag = item
-            linkToTag = Html.Tag("a",{"href": Utils.PosixJoin("../","tags",gDatabase["tag"][tag]["htmlFile"])})
-            heading = linkToTag(gDatabase["tag"][tag]["fullTag"])
+
             if excerpt:
                 excerptHtml = formatter.HtmlExcerptList([excerpt])
             else:
                 excerptHtml = ""
+
+            if ParseCSV.KeyTagFlag.HEADING in gDatabase["keyTag"][tag]["flags"]:
+                return "",excerptHtml
+            
+            linkToTag = Html.Tag("a",{"href": Utils.PosixJoin("../","tags",gDatabase["tag"][tag]["htmlFile"])})
+            heading = linkToTag(gDatabase["keyTag"][tag]["displayAs"])
             return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html","")
 
         def PairExcerptsWithTopic() -> Generator[tuple[dict,str]]:
@@ -1967,12 +1988,13 @@ def AddArguments(parser):
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')
     parser.add_argument('--attributeAll',**Utils.STORE_TRUE,help="Attribute all excerpts; mostly for debugging")
+    parser.add_argument('--keyTopicsLinkToTags',**Utils.STORE_TRUE,help="Tags listed in the Key topics page link to tags instead of topics.")
     parser.add_argument('--maxPlayerTitleLength',type=int,default = 30,help="Maximum length of title tag for chip audio player.")
     parser.add_argument('--blockRobots',**Utils.STORE_TRUE,help="Use <meta name robots> to prevent crawling staging sites.")
     parser.add_argument('--redirectToJavascript',**Utils.STORE_TRUE,help="Redirect page to index.html/#page if Javascript is available.")
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
     parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
-
+    
 gAllSections = {"tags","drilldown","events","teachers","search","allexcerpts"}
 def ParseArguments():
     if gOptions.buildOnly == "":

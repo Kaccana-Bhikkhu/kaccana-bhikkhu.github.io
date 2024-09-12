@@ -105,7 +105,12 @@ def ExcerptBlobs(excerpt: dict) -> list[str]:
         ]
         if item is excerpt:
             bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
-        returnValue.append("".join(bits))
+        
+        joined = "".join(bits)
+        for fTag in excerpt["fTags"]:
+            tagCode = f"[{RawBlobify(fTag)}]"
+            joined = joined.replace(tagCode,tagCode + "+")
+        returnValue.append(joined)
     return returnValue
 
 def OptimizedExcerpts() -> list[dict]:
@@ -147,7 +152,10 @@ def TagBlob(tagName:str) -> str:
         if tagData["number"]:
             bits.append("^" + tagData["number"] + "^")
 
-    return "".join(bits)
+    blob = "".join(bits)
+    if "topicCode" in gDatabase["tag"][tagName]: # If this tag is listed under a key topic,
+        blob = blob.replace("]","]+") # add "+" after each tag closure.
+    return blob
 
 def TagBlobs() -> Iterator[dict]:
     """Return a blob for each tag, sorted alphabetically."""
