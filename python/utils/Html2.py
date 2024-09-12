@@ -367,6 +367,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
 
     itemCount = 0
     prevHeading = None
+    anythingListed = False
     for item in items:
         rendered = itemRenderer(item)
         if len(rendered) == 3:
@@ -383,22 +384,25 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
         if not headingID:
             headingID = Utils.slugify(textHeading)
 
-        if textHeading and textHeading != prevHeading:
-            if prevHeading is not None and betweenSections:
+        if textHeading != prevHeading:
+            if (prevHeading or anythingListed) and betweenSections:
                 bodyParts.append(betweenSections)
             
             if countItems and menuItems and itemCount: # Append the number of items to the previous menu item
                 menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
 
-            menuItems.append(PageInfo(textHeading,f"#{headingID}"))
-            idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
-            bodyParts.append(idWrapper.Wrap(htmlHeading))
+            if textHeading:
+                menuItems.append(PageInfo(textHeading,f"#{headingID}"))
+                idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
+                bodyParts.append(idWrapper.Wrap(htmlHeading))
+                anythingListed = True
 
             prevHeading = textHeading
             itemCount = 0
         if htmlBody:
             bodyParts.append(htmlBody)
             itemCount += 1
+            anythingListed = True
     
     page = PageDesc()
     if addMenu:

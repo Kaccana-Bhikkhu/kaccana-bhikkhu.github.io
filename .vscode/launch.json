@@ -133,9 +133,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch",
-                "--buildOnly",
-                "events"      
+                "Prototype",
+                "--buildOnlyIndexes"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
