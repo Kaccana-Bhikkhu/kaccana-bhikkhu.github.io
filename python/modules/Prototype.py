@@ -1863,15 +1863,6 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
         page.AppendContent(pageContent)
         yield page
 
-        """for tag in topic["tags"]:
-            headerText = Html.Tag("a",{"href": Utils.PosixJoin("../","tags",gDatabase["tag"][tag]["htmlFile"])})(gDatabase["tag"][tag]["fullTag"])
-            page.AppendContent(Html.Tag("div",{"class":"title","id":topic["code"]})(headerText))
-
-            excerpts = list(Filter.Apply(gDatabase["excerpts"],Filter.FeaturedTag(tag)))
-            page.AppendContent(formatter.HtmlExcerptList(excerpts))
-
-        yield page"""
-
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     

@@ -767,7 +767,7 @@ def FinalizeExcerptTags(x: dict) -> None:
 def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
     "Combine qTag, aTag, fTag, and fTagOrder keys from an Extra Tags annotation with an existing excerpt."
 
-    for key in ("qTag","aTag","fTags","fTagOrder"):
+    for key in ("qTag","aTag","fTag","fTagOrder"):
         excerpt[key] = excerpt.get(key,[]) + annotation.get(key,[])
 
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:

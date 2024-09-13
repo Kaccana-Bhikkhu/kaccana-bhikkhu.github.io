@@ -298,7 +298,7 @@ class PageDesc(Renderable):
             Each generator function (optionally) first yields a PageInfo object containing the menu title and link.
             Next it yields a series of PageDesc objects which have been cloned from basePage plus the menu with additional material added.
             An empty generator means that no menu item is generated.
-        PagesFromMenuDescriptors is a simpler version of this function."""
+        AddMenuAndYieldPages is a simpler version of this function."""
         
         menuGenerators = [m(self) for m in menuGenerators] # Initialize the menu iterators
         menuItems = [next(m,None) for m in menuGenerators] # The menu items are the first item in each iterator
@@ -385,7 +385,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
             headingID = Utils.slugify(textHeading)
 
         if textHeading != prevHeading:
-            if (prevHeading or anythingListed) and betweenSections:
+            if anythingListed and betweenSections:
                 bodyParts.append(betweenSections)
             
             if countItems and menuItems and itemCount: # Append the number of items to the previous menu item
