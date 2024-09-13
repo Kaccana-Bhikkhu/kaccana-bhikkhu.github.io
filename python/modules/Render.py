@@ -46,6 +46,10 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
         s["description"],count = twoVariableTransform(s["description"],s)
         changeCount += count
 
+    for s in gDatabase["sessions"]:
+        s["sessionTitle"],count = twoVariableTransform(s["sessionTitle"],s)
+        changeCount += count
+
     return changeCount
     
 
@@ -68,16 +72,6 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
     attribution = parts[1]
     parts[1] = "{attribution}"
     return "".join(parts), attribution
-
-def ApplySmartQuotes():
-    for e in gDatabase["event"].values():
-        e["description"] = Utils.SmartQuotes(e["description"])
-
-    for s in gDatabase["series"].values():
-        s["description"] = Utils.SmartQuotes(s["description"])
-
-    for s in gDatabase["sessions"]:
-        s["sessionTitle"] = Utils.SmartQuotes(s["sessionTitle"])
 
 def PrepareTemplates():
     ParseCSV.ListifyKey(gDatabase["kind"],"form1")
@@ -204,7 +198,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
-    item["body"] = Utils.SmartQuotes(bodyTemplate(**renderDict))
+    item["body"] = bodyTemplate(**renderDict) # Utils.SmartQuotes(bodyTemplate(**renderDict))
 
     if teachers:
 
@@ -212,7 +206,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",item["body"]) else ""
         renderDict["fullStop"] = fullStop
         
-        attributionStr = Utils.SmartQuotes(attributionTemplate(**renderDict))
+        attributionStr = attributionTemplate(**renderDict) # Utils.SmartQuotes(attributionTemplate(**renderDict))
 
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
         # Avoid capitalizing html tags
@@ -566,6 +560,10 @@ def LinkReferences() -> None:
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra(f"{markdownChanges} items changed by markdown")
     
+def SmartQuotes(text: str) -> tuple[str,int]:
+    newText = Utils.SmartQuotes(text)
+    changeCount = 0 if text == newText else 1
+    return newText,changeCount
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
@@ -582,8 +580,6 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 
 def main() -> None:
 
-    ApplySmartQuotes()
-
     PrepareTemplates()
 
     AddImplicitAttributions()
@@ -591,6 +587,8 @@ def main() -> None:
     RenderExcerpts()
 
     LinkReferences()
+
+    ApplyToBodyText(SmartQuotes)
 
     for key in ["tagRedacted","tagRemoved","summary","keyCaseTranslation"]:
         del gDatabase[key]

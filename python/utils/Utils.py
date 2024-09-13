@@ -165,7 +165,7 @@ def SmartQuotes(s: str):
 
     # Find dumb double quotes coming directly after letters or punctuation,
     # and replace them with right double quotes.
-    s = re.sub(r'([a-zA-Z0-9.,?!;:)/\'\"])"', r'\1”', s)
+    s = re.sub(r'([a-zA-Z0-9.,?!;:)>/\'\"])"', r'\1”', s)
     # Find any remaining dumb double quotes and replace them with
     # left double quotes.
     s = s.replace('"', '“')
@@ -173,7 +173,7 @@ def SmartQuotes(s: str):
     # attributes (following =) and replace them with dumb quotes.
     s = re.sub(r'=“(.*?)”', r'="\1"', s)
     # Follow the same process with dumb/smart single quotes
-    s = re.sub(r"([a-zA-Z0-9.,?!;:)/\"\'])'", r'\1’', s)
+    s = re.sub(r"([a-zA-Z0-9.,?!;:)>/\"\'])'", r'\1’', s)
     s = s.replace("'", '‘')
     s = re.sub(r'=‘(.*?)’', r"='\1'", s)
     return s
