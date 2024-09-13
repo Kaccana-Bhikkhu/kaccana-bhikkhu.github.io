@@ -1787,7 +1787,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
             for tag in tagsToList:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["code"] + ".html") + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
                 text = gDatabase["keyTag"][tag]["displayAs"]
-                if gDatabase["tag"][tag].get("fTagCount",0):
+                if gDatabase["keyTag"][tag]["excerptCount"]:
                     text += f'&nbsp{FA_STAR}'
                 topicLinks.append(Html.Tag("a",{"href":link})(text))
 
@@ -1796,6 +1796,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
         if keyTopic["shortNote"]:
             tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
         heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["code"] + ".html")})(keyTopic["topic"])
+        heading += f" ({keyTopic['excerptCount']})"
         return heading,tagList,keyTopic["code"]
 
     pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,

@@ -757,6 +757,8 @@ def FinalizeExcerptTags(x: dict) -> None:
     x["tags"] = x["qTag"] + x["aTag"]
     x["qTagCount"] = len(x["qTag"])
     x["fTags"] = x.pop("fTag",[]) # Convention: List keys are plural
+    if len(x["fTagOrder"]) != len(x["fTags"]):
+        Alert.caution(x,f"has {len(x['fTags'])} fTag but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
     if not gOptions.jsonNoClean:
         del x["qTag"]
         del x["aTag"]
@@ -1239,6 +1241,8 @@ def CountAndVerify(database):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
         
         for tag in x["fTags"]:
+            if tag not in tagSet:
+                Alert.caution(x,"specifies fTag",tag,"but this does not appear as a regular tag.")
             tagDB[tag]["fTagCount"] = tagDB[tag].get("fTagCount",0) + 1
             fTagCount += 1
     
@@ -1252,6 +1256,16 @@ def CountAndVerify(database):
         teacher["excerptCount"] = len(list(Filter.Apply(database["excerpts"],Filter.Teacher(teacher["teacher"]))))
         # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
     
+    for topic in database["keyTopic"].values():
+        topicExcerpts = set()
+        for tag in topic["tags"]:
+            allTags = set([tag] + list(database["keyTag"][tag]["subtags"].keys()))
+            tagExcerpts = set(id(x) for x in Filter.Apply(database["excerpts"],Filter.FeaturedTag(allTags)))
+            database["keyTag"][tag]["excerptCount"] = len(tagExcerpts)
+            topicExcerpts.update(tagExcerpts)
+        
+        topic["excerptCount"] = len(topicExcerpts)
+
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"eventCount")
@@ -1510,6 +1524,7 @@ def main():
         Alert.error("No excerpts have been parsed. Aborting.")
         sys.exit(1)
 
+    CollectKeyTopics(gDatabase)
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)
@@ -1524,7 +1539,6 @@ def main():
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
     CountSubtagExcerpts(gDatabase)
-    CollectKeyTopics(gDatabase)
 
     if gOptions.auditNames:
         AuditNames()
