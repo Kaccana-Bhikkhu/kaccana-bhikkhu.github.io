@@ -556,7 +556,7 @@ def CountSubtagExcerpts(database):
                 tag = tagList[index]["tag"]
                 if tag:
                     subtags[index] = {tag}
-                    savedSearches[index] = {id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag))}
+                    savedSearches[index] = {id(x) for x in Filter.Tag(tag)(excerpts)}
                     #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
                 else:
                     subtags[index] = set()
@@ -1253,14 +1253,14 @@ def CountAndVerify(database):
     CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
 
     for teacher in database["teacher"].values():
-        teacher["excerptCount"] = len(list(Filter.Apply(database["excerpts"],Filter.Teacher(teacher["teacher"]))))
+        teacher["excerptCount"] = len(Filter.Teacher(teacher["teacher"])(database["excerpts"]))
         # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
     
     for topic in database["keyTopic"].values():
         topicExcerpts = set()
         for tag in topic["tags"]:
             allTags = set([tag] + list(database["keyTag"][tag]["subtags"].keys()))
-            tagExcerpts = set(id(x) for x in Filter.Apply(database["excerpts"],Filter.FeaturedTag(allTags)))
+            tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
             database["keyTag"][tag]["excerptCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         

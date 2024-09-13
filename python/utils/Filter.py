@@ -2,17 +2,12 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Callable
-from typing import Tuple
+from collections.abc import Iterable, Callable, Iterator
+from typing import Any, Tuple
 import Utils
+import copy
 
 gDatabase:dict[str] = {} # This will be overwritten by the main program
-
-Filter = Callable[[dict],bool]
-"Returns whether the dict matches our filter function."
-
-def PassAll(_) -> bool:
-    return True
 
 class InverseSet:
     """A class which contains everything except the objects in self.inverse"""
@@ -32,158 +27,224 @@ class InverseSet:
 
 All = InverseSet(frozenset())
 
-def StrToSet(item:str|set) -> set:
-    """Convert a single string to a set containing that string."""
+def MakeSet(item:str|Iterable[str]) -> set[str]:
+    """Intelligently converts a string or iterable a set."""
     if type(item) == str:
         return {item}
+    elif type(item) not in (set,frozenset,InverseSet):
+        return set(item)
     else:
         return item
 
-def AllItems(excerpt: dict) -> Iterable[dict]:
+def AllItems(excerpt: dict) -> Iterator[dict]:
     """If this is an excerpt, iterate over the excerpt and annotations.
     If not, iterate just this item."""
 
     yield excerpt
     yield from excerpt.get("annotations",())
 
-def AllSingularItems(excerpt: dict) -> Iterable[dict]:
+def AllSingularItems(excerpt: dict) -> Iterator[dict]:
     """Same as AllItems, but yield the excerpt alone without its annotations, followed by the annotations."""
 
     if "annotations" in excerpt:
-        temp = excerpt["annotations"]
-        excerpt["annotations"] = ()
-        yield excerpt
-        excerpt["annotations"] = temp
+        temp = copy.copy(excerpt)
+        temp["annotations"] = ()
+        yield temp
         yield from excerpt["annotations"]
     else:
         yield excerpt
 
-def Apply(items:Iterable[dict],filter: Filter) -> Iterable[dict]:
-    """Apply filter to items."""
-    for i in items:
-        if filter(i):
-            yield i
+class Filter:
+    """A filter for excerpts and other dicts.
+    Subclasses provide the necessary details."""
 
-def Indexes(items:Iterable[dict],filter: Filter) -> Iterable[int]:
-    """Apply filter to items."""
-    for n,i in enumerate(items):
-        if filter(i):
-            yield n
-
-def Partition(items:Iterable[dict],filter: Filter) -> Tuple[list[dict],list[dict]]:
-    "Split items into two lists depending on the filter function."
-
-    trueList = []
-    falseList = []
-
-    for i in items:
-        (trueList if filter(i) else falseList).append(i)
+    def __init__(self) -> None:
+        self.negate:bool = False
     
-    return trueList,falseList
+    def Not(self) -> Filter:
+        "Return a copy of this filter that rejects what it used to pass and vice-versa."
+        newFilter = copy.deepcopy(self)
+        newFilter.negate = not newFilter.negate
+        return newFilter
 
-def _Kind(item: dict,kind:set[str],category:set[str]) -> bool:
-    "Helper function for Tag."
-
-    for i in AllItems(item):
-        if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
-            return True
-    return False
-
-def Kind(kind:str|set[str] = All,category:str|set[str] = All) -> Filter:
-    """Returns a Filter that passes any item with a given tag.
-    If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
-
-    kind = StrToSet(kind)
-    category = StrToSet(category)
-
-    return lambda item,kind=kind,category=category: _Kind(item,kind,category)
-
-def _Tag(item: dict,tag:set[str],kind:set[str],category:set[str]) -> bool:
-    "Helper function for Tag."
-
-    for i in AllItems(item):
-        for t in i.get("tags",()):
-            if t in tag:
-                if "kind" in i:
-                    if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
-                        return True
-                else:
-                    return True
-    return False
-
-def Tag(tag: str|set[str],kind:str|set[str] = All,category:str|set[str] = All) -> Filter:
-    """Returns a Filter that passes any item with a given tag.
-    If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
-
-    tag = StrToSet(tag)
-    kind = StrToSet(kind)
-    category = StrToSet(category)
-
-    return lambda item,tag=tag,kind=kind,category=category: _Tag(item,tag,kind,category)
-
-def _FeaturedTag(excerpt: dict,fTag:set[str]) -> bool:
-    "Helper function for FeaturedTag."
-
-    for ft in excerpt.get("fTags",()):
-        if ft in fTag:
-            return True
-    return False
-
-def FeaturedTag(fTag: str|set[str] = All) -> Filter:
-    """Returns a Filter that passes any excerpt with a given featured tag.
-    If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
-
-    fTag = StrToSet(fTag)
-
-    return lambda item,fTag=fTag: _FeaturedTag(item,fTag)
-
-def _QTag(excerpt: dict,tag:str) -> bool:
-    return tag in excerpt["tags"][0:excerpt["qTagCount"]]
-
-def QTag(tag:str) -> Filter:
-    """Returns excerpts in which tag appears as a qTag, in other words, the subject of a question."""
-
-    return lambda excerpt,tag=tag: _QTag(excerpt,tag)
-
-def ATag(tag:str) -> Filter:
-    """Returns excerpts in which tag appears but not as a qTag, in other words, part of the answer to a question."""
-
-    return lambda excerpt,tag=tag: _Tag(excerpt,tag,All,All) and not _QTag(excerpt,tag)
-
-def _Teacher(item: dict,teacher:set[str],kind:set[str],category:set[str],quotesOthers:bool,quotedBy:bool) -> bool:
-    "Helper function for Teacher."
-
-    fullNames = set(gDatabase["teacher"][t]["attributionName"] for t in teacher)
-
-    for i in AllItems(item):
-        for t in i.get("teachers",()):
-            if t in teacher:
-                if "kind" in i:
-                    if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
-                        if i["kind"] == "Indirect quote" and not quotesOthers:
-                            return False
-                        else:
-                            return True
-                else:
-                    return True
-
-        if i.get("kind") == "Indirect quote" and quotedBy:
-            if i.get("tags",(None))[0] in fullNames:
-                if (i["kind"] in kind) and (gDatabase["kind"][i["kind"]]["category"] in category):
-                    return True
+    def Match(self,item: dict) -> bool:
+        "Return True if this filter passes item."
+        return not self.negate
     
-    return False
+    def Apply(self,items: Iterable[dict]) -> Iterator[dict]:
+        "Return an iterator over items that pass this filter. "
+        return (item for item in items if self.Match(item))
+    
+    def __call__(self,items: Iterable[dict]|list[dict]) -> Iterator[dict]|list[dict]:
+        """Apply this filter to an iterable or list of items.
+        Return an iterator or list depending on the input type."""
+        filteredItems = self.Apply(items)
+        if type(items) == list:
+            return list(filteredItems)
+        else:
+            return filteredItems
+    
+    def Indexes(self,items: Iterable[dict]) -> Iterator[int]:
+        "Return the indices of items which pass this filter."
+        return (n for n,item in enumerate(items) if self.Match(item))
+    
+    def Partition(self,items:Iterable[dict]) -> Tuple[list[dict],list[dict]]:
+        "Split items into two lists depending on the filter function."
 
-def Teacher(teacher: str|set[str],kind:str|set[str] = All,category:str|set[str] = All,quotesOthers = True,quotedBy = True) -> Filter:
-    """Returns a Filter that passes any item with a given teacher.
-    In the case of indirect quotes, pass items in which the teacher quotes others or is quoted by others depending on the flags
-    If kind or category is specified, return only excerpts which have an item of that sort with a matching tag."""
+        trueList = []
+        falseList = []
 
-    teacher = StrToSet(teacher)
-    kind = StrToSet(kind)
-    category = StrToSet(category)
+        for item in items:
+            (trueList if self.Match(item) else falseList).append(item)
+        
+        return trueList,falseList
 
-    return lambda item,teacher=teacher,kind=kind,category=category: _Teacher(item,teacher,kind,category,quotesOthers,quotedBy)
+"Returns whether the dict matches our filter function."
+
+class PassAll(Filter):
+    "A filter that passes all objects."
+    pass
+
+PassAll = PassAll()
+PassNone = PassAll.Not()
+
+class Tag(Filter):
+    "A filter that passes items containing a particular tag."
+
+    def __init__(self,passTags:str|Iterable[str]) -> None:
+        super().__init__()
+        self.passTags = MakeSet(passTags)
+    
+    def Match(self, item: dict) -> bool:
+        for i in AllItems(item):
+            for t in i.get("tags",()):
+                if t in self.passTags:
+                    return not self.negate
+        
+        return self.negate
+
+class FTag(Tag):
+    "A filter that passes items containing particular featured tags."
+
+    def Match(self, item: dict) -> bool:
+        for i in AllItems(item):
+            for t in i.get("fTags",()):
+                if t in self.passTags:
+                    return not self.negate
+        
+        return self.negate
+
+class QTag(Filter):
+    """A filter that passes items containing a particular qTags.
+    Note that this Filter can take only a str as its argument."""
+    def __init__(self,qTag:str) -> None:
+        super().__init__()
+        self.passTag = qTag
+    
+    def Match(self, excerpt: dict) -> bool:
+        if self.passTag in excerpt["tags"][0:excerpt["qTagCount"]]:
+            return not self.negate
+        else:
+            return self.negate
+    
+class Teacher(Filter):
+    "A filter that passes items containing a particular tag."
+
+    def __init__(self,passTeachers:str|Iterable[str],quotesOthers:bool = True,quotedBy:bool = True) -> None:
+        super().__init__()
+        self.passTeachers = MakeSet(passTeachers)
+        self.quotesOthers = quotesOthers
+        self.quotedBy = quotedBy
+    
+    def Match(self, item: dict) -> bool:
+        fullTeacherNames = {gDatabase["teacher"][t]["attributionName"] for t in self.passTeachers}
+
+        for i in AllItems(item):
+            for t in i.get("teachers",()):
+                if t in self.passTeachers:
+                    if "kind" in i:
+                        if i["kind"] != "Indirect quote" or self.quotesOthers:
+                            return not self.negate
+                    else:
+                        return not self.negate
+
+            if i.get("kind") == "Indirect quote" and self.quotedBy:
+                if i.get("tags",(None))[0] in fullTeacherNames:
+                    return not self.negate
+                
+        return self.negate
+
+class Kind(Filter):
+    "A filter that passes items of a particular kind."
+
+    def __init__(self,passKinds:str|Iterable[str]) -> None:
+        super().__init__()
+        self.passKinds = MakeSet(passKinds)
+    
+    def Match(self, item: dict) -> bool:
+        for i in AllItems(item):
+            if i["kind"] in self.passKinds:
+                return not self.negate
+        
+        return self.negate
+
+class Category(Filter):
+    "A filter that passes excerpts of a particular category."
+
+    def __init__(self,passCategories:str|Iterable[str]) -> None:
+        super().__init__()
+        self.passCategories = MakeSet(passCategories)
+    
+    def Match(self, item: dict) -> bool:
+        for i in AllItems(item):
+            if gDatabase["kind"][i["kind"]]["category"] in self.passCategories:
+                return not self.negate
+        
+        return self.negate
+
+class FilterGroup(Filter):
+    """A group of filters to operate on items using boolean operations.
+    The default group passes items which match all filters e.g And."""
+
+    def __init__(self,*subFilters:Filter):
+        super().__init__()
+        self.subFilters = subFilters
+    
+    def Match(self, item: dict) -> bool:
+        for filter in self.subFilters:
+            if not filter.match(item):
+                return self.negate
+        
+        return not self.negate
+    
+class And(FilterGroup):
+    "Pass items which match all specified filters."
+    pass
+
+class Or(FilterGroup):
+    "Pass items which match any of the specified filters."
+    
+    def Match(self, item: dict) -> bool:
+        for filter in self.subFilters:
+            if filter.match(item):
+                return not self.negate
+        
+        return self.negate
+
+class SingleItemMatch(FilterGroup):
+    "Pass excerpts for which the excerpt itself or a single annotation  matches all these conditions."
+    
+    def Match(self, item: dict) -> bool:
+        for i in AllSingularItems(item):
+            matchesAllFilters = True
+            for filter in self.subFilters:
+                if not filter.Match(i):
+                    matchesAllFilters = False
+        
+            if matchesAllFilters:
+                return not self.negate
+        
+        return self.negate
 
 def AllTags(item: dict) -> set:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""

@@ -1100,7 +1100,7 @@ def FilteredExcerptsMenuItem(excerpts:Iterable[dict], filter:Filter.Filter, form
     menuTitle: the title in the menu.
     fileExt: the extension to add to the main page file for the filtered page.
     pageAugmentor: a function which modifies the base page """
-    filteredExcerpts = list(Filter.Apply(excerpts,filter))
+    filteredExcerpts = list(filter.Apply(excerpts))
 
     if not filteredExcerpts:
         return []
@@ -1125,7 +1125,7 @@ def FilteredEventsMenuItem(events:Iterable[dict], filter:Filter.Filter, mainPage
     menutitle: the title in the menu.
     fileExt: the extension to add to the main page file for the filtered page."""
 
-    filteredEvents = list(Filter.Apply(events,filter))
+    filteredEvents = list(filter.Apply(events))
 
     if not filteredEvents:
         return []
@@ -1151,13 +1151,13 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     # formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
 
-    def FilteredItem(filter:Filter,name:str) -> Html.PageDescriptorMenuItem:
+    def FilteredItem(filter:Filter.Filter,name:str) -> Html.PageDescriptorMenuItem:
         newTitle = "All " + name.lower()
         singular = Utils.Singular(name).lower()
         
         return FilteredExcerptsMenuItem(excerpts,filter,formatter,pageInfo._replace(title=newTitle),name,singular,pageAugmentor= lambda p,x: MostCommonTags(p,x,filter,name))
 
-    def MostCommonTags(page: Html.PageDesc,excerpts: list[dict],filter:Filter = Filter.PassAll, kind: str = "") -> None:
+    def MostCommonTags(page: Html.PageDesc,excerpts: list[dict],filter:Filter.Filter = Filter.PassAll, kind: str = "") -> None:
         "Append a list of the most common tags to the beginning of each section"
         ShowDuration(page,excerpts)
         if len(excerpts) < gOptions.minSubsearchExcerpts * 3:
@@ -1172,7 +1172,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
                 tags.update(x["tags"][0:x["qTagCount"]])
             else:
                 for item in Filter.AllSingularItems(x):
-                    if filter(item):
+                    if filter.Match(item):
                         tags.update(item.get("tags",()))
             
             for tag in tags:
@@ -1204,14 +1204,14 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     excerpts = gDatabase["excerpts"]
     filterMenu = [
         FilteredExcerptsMenuItem(excerpts,Filter.PassAll,formatter,pageInfo,"All excerpts",pageAugmentor=MostCommonTags),
-        FilteredItem(Filter.Kind(category="Questions"),"Questions"),
-        FilteredItem(Filter.Kind(category="Stories"),"Stories"),
-        FilteredItem(Filter.Kind(category="Quotes"),"Quotes"),
-        FilteredItem(Filter.Kind(category="Meditations"),"Meditations"),
-        FilteredItem(Filter.Kind(category="Teachings"),"Teachings"),
-        FilteredItem(Filter.Kind(category="Readings"),"Readings"),
-        FilteredItem(Filter.Kind(kind={"Sutta","Vinaya","Commentary"}),"Texts"),
-        FilteredItem(Filter.Kind(kind={"Reference"}),"References")
+        FilteredItem(Filter.Category("Questions"),"Questions"),
+        FilteredItem(Filter.Category("Stories"),"Stories"),
+        FilteredItem(Filter.Category("Quotes"),"Quotes"),
+        FilteredItem(Filter.Category("Meditations"),"Meditations"),
+        FilteredItem(Filter.Category("Teachings"),"Teachings"),
+        FilteredItem(Filter.Category("Readings"),"Readings"),
+        FilteredItem(Filter.Kind({"Sutta","Vinaya","Commentary"}),"Texts"),
+        FilteredItem(Filter.Kind("Reference"),"References")
     ]
 
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
@@ -1343,7 +1343,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         if not tagInfo["htmlFile"]:
             continue
 
-        relevantExcerpts = list(Filter.Apply(gDatabase["excerpts"],Filter.Tag(tag)))
+        relevantExcerpts = Filter.Tag(tag)(gDatabase["excerpts"])
 
         a = Airium()
         
@@ -1377,7 +1377,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             basePage.keywords.append(tagInfo["fullPali"])
         basePage.AppendContent(f"Tag: {tagInfo['fullTag']}",section="citationTitle")
 
-        def FilteredTagMenuItem(excerpts: Iterable[dict],filter: Filter,menuTitle: str,fileExt:str = "") -> Html.PageDescriptorMenuItem:
+        def FilteredTagMenuItem(excerpts: Iterable[dict],filter: Filter.Filter,menuTitle: str,fileExt:str = "") -> Html.PageDescriptorMenuItem:
             if not fileExt:
                 fileExt = Utils.Singular(menuTitle).lower()
             
@@ -1392,7 +1392,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 yield firstPage # First yield the menu item descriptor, if any
                 firstPage = next(menuItemAndPages)
 
-            featuredExcerpts = list(Filter.Apply(excerpts,Filter.FeaturedTag(tag)))
+            featuredExcerpts = list(Filter.FTag(tag).Apply(excerpts))
             if featuredExcerpts:
                 featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tag))
 
@@ -1422,19 +1422,19 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             yield from menuItemAndPages
 
         if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
-            questions = Filter.Apply(relevantExcerpts,Filter.Kind(category="Questions"))
-            qTags,aTags = Filter.Partition(questions,Filter.QTag(tag))
+            questions = Filter.Category("Questions")(relevantExcerpts)
+            qTags,aTags = Filter.QTag(tag).Partition(questions)
 
             filterMenu = [
                 FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tag),pageInfo,"Events","events"),
                 HoistFTags(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),relevantExcerpts,tag),
                 FilteredTagMenuItem(qTags,Filter.PassAll,"Questions about","qtag"),
                 FilteredTagMenuItem(aTags,Filter.PassAll,"Answers involving","atag"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.Tag(tag,category="Stories"),"Stories"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.Tag(tag,category="Quotes"),"Quotes"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.Tag(tag,category="Readings"),"Readings"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Sutta","Vinaya","Commentary"}),"Texts"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.Tag(tag,kind={"Reference"}),"References")
+                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Stories")),"Stories"),
+                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Quotes")),"Quotes"),
+                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Readings")),"Readings"),
+                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Kind({"Sutta","Vinaya","Commentary"})),"Texts"),
+                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Kind("Reference")),"References")
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
@@ -1466,7 +1466,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
         if not tInfo["htmlFile"]:
             continue
 
-        relevantExcerpts = list(Filter.Apply(xDB,Filter.Teacher(t)))
+        relevantExcerpts = Filter.Teacher(t)(xDB)
     
         a = Airium()
         
@@ -1486,7 +1486,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
         basePage.AppendContent(f"Teacher: {tInfo['fullName']}",section="citationTitle")
         basePage.keywords = ["Teacher",tInfo["fullName"]]
 
-        def FilteredTeacherMenuItem(excerpts: Iterable[dict],filter: Filter,menuTitle: str,fileExt:str = "") -> Html.PageDescriptorMenuItem:
+        def FilteredTeacherMenuItem(excerpts: Iterable[dict],filter: Filter.Filter,menuTitle: str,fileExt:str = "") -> Html.PageDescriptorMenuItem:
             if not fileExt:
                 fileExt = Utils.Singular(menuTitle).lower()
             
@@ -1497,15 +1497,15 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
 
             filterMenu = [
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,category="Questions"),"Questions"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,category="Stories"),"Stories"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Quote"),"Direct quotes","d-quote"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Indirect quote",quotedBy=False),"Quotes others","i-quote"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Indirect quote",quotesOthers=False),"Quoted by others","quoted-by"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,category="Meditations"),"Meditations"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,category="Teachings"),"Teachings"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,category="Readings"),"Readings from","read-from"),
-                FilteredTeacherMenuItem(relevantExcerpts,Filter.Teacher(t,kind="Read by"),"Readings by","read-by")
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Questions")),"Questions"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Stories")),"Stories"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Kind("Quote")),"Direct quotes","d-quote"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t,quotedBy=False),Filter.Kind("Indirect quote")),"Quotes others","i-quote"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t,quotesOthers=False),Filter.Kind("Indirect quote")),"Quoted by others","quoted-by"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Meditations")),"Meditations"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Teachings")),"Teachings"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Readings")),"Readings from","read-from"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Kind("Read by")),"Readings by","read-by")
             ]
 
             filterMenu = [f for f in filterMenu if f] # Remove blank menu items
@@ -1833,7 +1833,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
                 return Database.FTagOrder(x,tag)
 
             searchTags = set([tag] + list(gDatabase["keyTag"][tag]["subtags"].keys()))
-            excerptsByTopic[tag] = sorted(Filter.Apply(gDatabase["excerpts"],Filter.FeaturedTag(searchTags)),key=SortKey)
+            excerptsByTopic[tag] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool]) -> tuple[str,str,str]:
             excerpt,tag,lastExcerpt = item
