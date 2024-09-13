@@ -117,7 +117,7 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,showSta
     if not text:
         text = tag
 
-    flag = f' {FA_STAR}' if showStar and tagData and tagData.get("fTagCount",0) else ""
+    flag = f'&nbsp{FA_STAR}' if showStar and tagData and tagData.get("fTagCount",0) else ""
 
     if link:
         splitItalics = text.split("<em>")
@@ -353,7 +353,7 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     if not listAs and fullTag:
         listAs = tag["fullTag"] if fullTag else tag["tag"]
     if TagDescriptionFlag.SHOW_STAR and not TagDescriptionFlag.NO_COUNT:
-        listAs += f' {FA_STAR}/'
+        listAs += f'&nbsp{FA_STAR}/'
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
     if TagDescriptionFlag.PALI_FIRST in flags:
         tagStr = '[' + tagStr + ']'
@@ -865,7 +865,7 @@ class Formatter:
 
             text = tag
             if tag in excerpt["fTags"]:
-                text += f' {FA_STAR}'
+                text += f'&nbsp{FA_STAR}'
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -888,7 +888,7 @@ class Formatter:
             
             text = tag
             if tag in excerpt["fTags"]:
-                text += f' {FA_STAR}'
+                text += f'&nbsp{FA_STAR}'
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -1788,7 +1788,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["code"] + ".html") + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
                 text = gDatabase["keyTag"][tag]["displayAs"]
                 if gDatabase["tag"][tag].get("fTagCount",0):
-                    text += f' {FA_STAR}'
+                    text += f'&nbsp{FA_STAR}'
                 topicLinks.append(Html.Tag("a",{"href":link})(text))
 
             tagList = Html.Tag("p")("&nbsp&nbsp ".join(topicLinks))
