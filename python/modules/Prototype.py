@@ -1834,13 +1834,16 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
             searchTags = set([tag] + list(gDatabase["keyTag"][tag]["subtags"].keys()))
             excerptsByTopic[tag] = sorted(Filter.Apply(gDatabase["excerpts"],Filter.FeaturedTag(searchTags)),key=SortKey)
 
-        def FeaturedExcerptList(item: tuple[dict,str]) -> tuple[str,str,str]:
-            excerpt,tag = item
+        def FeaturedExcerptList(item: tuple[dict,str,bool]) -> tuple[str,str,str]:
+            excerpt,tag,lastExcerpt = item
 
             if excerpt:
                 excerptHtml = formatter.HtmlExcerptList([excerpt])
             else:
                 excerptHtml = ""
+
+            if not lastExcerpt:
+                excerptHtml += "\n<hr>"
 
             if ParseCSV.KeyTagFlag.HEADING in gDatabase["keyTag"][tag]["flags"]:
                 return "",excerptHtml
@@ -1852,10 +1855,11 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
         def PairExcerptsWithTopic() -> Generator[tuple[dict,str]]:
             for tag,excerpts in excerptsByTopic.items():
                 if excerpts:
-                    for x in excerpts:
-                        yield x,tag
+                    for x in excerpts[:-1]:
+                        yield x,tag,False
+                    yield excerpts[-1],tag,True
                 else:
-                    yield None,tag
+                    yield None,tag,True
 
         title = Html.Tag("div",{"class":"title","id":"HEADING_ID"})
         pageContent = Html.ListWithHeadings(PairExcerptsWithTopic(),FeaturedExcerptList,
