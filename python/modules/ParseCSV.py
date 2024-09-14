@@ -608,6 +608,12 @@ def CollectKeyTopics(database:dict[str]) -> None:
     
     for tag in tagsToRemove:
         del database["keyTag"][tag]
+    
+    for tag in database["keyTag"].values():
+        if tag["subtags"]: # Topics with subtopics link to separate pages in the topics directory
+            tag["htmlPath"] = f"topics/{Utils.slugify(tag['tag'])}.html"
+        else: # Tags without subtopics link to pages in the tags directory
+            tag["htmlPath"] = f"tags/{database['tag'][tag['tag']]['htmlFile']}"
 
     database["keyTopic"] = keyTopic
 

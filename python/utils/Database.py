@@ -8,6 +8,7 @@ from Prototype import gDatabase
 import SplitMp3
 import Utils
 import Alert
+import Filter
 
 gDatabase:dict[str] = {} # This will be set later by QSarchive.py
 
@@ -327,12 +328,15 @@ def SubsumesTags() -> dict:
 
     return subsumesTags
 
-def FTagOrder(excerpt: dict,tag: str) -> int:
-    "Return the fTagOrder number of the excerpt x."
+def FTagOrder(excerpt: dict,tags: Iterable[str]) -> int:
+    """Return the fTagOrder number of the excerpt x.
+    tags is a list of tags to attempt to get the fTag order from"""
     
-    try:
-        fTagIndex = excerpt["fTags"].index(tag)
-        return excerpt["fTagOrder"][fTagIndex]
-    except (ValueError, IndexError):
-        return 999
+    for tag in tags:
+        try:
+            fTagIndex = excerpt["fTags"].index(tag)
+            return excerpt["fTagOrder"][fTagIndex]
+        except (ValueError, IndexError):
+            pass
+    return 999
 

@@ -1320,6 +1320,90 @@ def LinkToTeacherPage(page: Html.PageDesc) -> Html.PageDesc:
     
     return page
 
+def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: Html.PageDesc) -> Iterator[Html.PageAugmentorType]:
+    """Generate a list of pages obtained by running a series of tag subsearches.
+    tags: The tag or tags to search for.
+    tagExcerpts: The excerpts to search. Should already have passed Filter.Tag(tags).
+    basePage: The base page to append our pages to."""
+
+    def FilteredTagMenuItem(excerpts: Iterable[dict],filter: Filter.Filter,menuTitle: str,fileExt:str = "") -> Html.PageDescriptorMenuItem:
+        if not fileExt:
+            fileExt = Utils.Singular(menuTitle).lower()
+        
+        return FilteredExcerptsMenuItem(excerpts=excerpts,filter=filter,formatter=formatter,mainPageInfo=basePage.info,menuTitle=menuTitle,fileExt=fileExt,pageAugmentor=AddSearchCategory(menuTitle))
+
+    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: Iterable[str]):
+        "Insert featured excerpts to the top of the first page."
+        
+        menuItemAndPages = iter(pageGenerator)
+        firstPage = next(menuItemAndPages)
+        if type(firstPage) == Html.PageInfo:
+            yield firstPage # First yield the menu item descriptor, if any
+            firstPage = next(menuItemAndPages)
+
+        featuredExcerpts = list(Filter.FTag(tags).Apply(excerpts))
+        if featuredExcerpts:
+            featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tags))
+
+            headerHtml = []
+            headerStr = "Featured excerpt"
+            if len(featuredExcerpts) > 1:
+                headerStr += f"s ({len(featuredExcerpts)})"
+            headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
+
+            featuredFormatter = copy.copy(formatter)
+            featuredFormatter.excerptOmitSessionTags = False
+            featuredFormatter.showHeading = False
+            featuredFormatter.headingShowTeacher = False
+            featuredFormatter.excerptNumbers = False
+            featuredFormatter.excerptAttributeSource = True
+
+            headerHtml.append(featuredFormatter.HtmlExcerptList(featuredExcerpts))
+            headerHtml.append("<hr>")
+
+            firstTextSection = 0 # The first section could be a menu, in which case we skip it
+            while type(firstPage.section[firstTextSection]) != str:
+                firstTextSection += 1
+
+            firstPage.section[firstTextSection] = "\n".join(headerHtml + [firstPage.section[firstTextSection]])
+                                                            
+        yield firstPage
+        yield from menuItemAndPages
+
+    formatter = Formatter()
+    formatter.excerptBoldTags = Filter.FrozenSet(tags)
+    formatter.headingShowTags = False
+    formatter.excerptOmitSessionTags = False
+    formatter.headingShowTeacher = False
+
+    tags = Filter.FrozenSet(tags)
+
+    if len(tagExcerpts) >= gOptions.minSubsearchExcerpts:
+        questions = Filter.Category("Questions")(tagExcerpts)
+        qTags,aTags = Filter.QTag(tags).Partition(questions)
+        mostRelevant = Filter.MostRelevant(tags)(tagExcerpts)
+
+        filterMenu = [
+            FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tags),basePage.info,"Events","events"),
+            HoistFTags(FilteredExcerptsMenuItem(tagExcerpts,Filter.PassAll,formatter,basePage.info,"All excerpts"),tagExcerpts,tags),
+            HoistFTags(FilteredTagMenuItem(mostRelevant,Filter.PassAll,"Most relevant","relevant"),mostRelevant,tags),
+            FilteredTagMenuItem(qTags,Filter.PassAll,"Questions about","qtag"),
+            FilteredTagMenuItem(aTags,Filter.PassAll,"Answers involving","atag"),
+            FilteredTagMenuItem(tagExcerpts,Filter.SingleItemMatch(Filter.Tag(tags),Filter.Category("Stories")),"Stories"),
+            FilteredTagMenuItem(tagExcerpts,Filter.SingleItemMatch(Filter.Tag(tags),Filter.Category("Quotes")),"Quotes"),
+            FilteredTagMenuItem(tagExcerpts,Filter.SingleItemMatch(Filter.Tag(tags),Filter.Category("Readings")),"Readings"),
+            FilteredTagMenuItem(tagExcerpts,Filter.SingleItemMatch(Filter.Tag(tags),Filter.Kind({"Sutta","Vinaya","Commentary"})),"Texts"),
+            FilteredTagMenuItem(tagExcerpts,Filter.SingleItemMatch(Filter.Tag(tags),Filter.Kind("Reference")),"References")
+        ]
+
+        filterMenu = [f for f in filterMenu if f] # Remove blank menu items
+        if len(filterMenu) > 1:
+            yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**EXTRA_MENU_STYLE))
+        else:
+            yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,tagExcerpts,formatter))
+    else:
+        yield from map(LinkToTeacherPage,HoistFTags(MultiPageExcerptList(basePage,tagExcerpts,formatter),tagExcerpts,tags))
+
 def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Write a html file for each tag in the database"""
     
@@ -1361,12 +1445,6 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))
         
         a.hr()
-
-        formatter = Formatter()
-        formatter.excerptBoldTags = set([tag])
-        formatter.headingShowTags = False
-        formatter.excerptOmitSessionTags = False
-        formatter.headingShowTeacher = False
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,flags=TagDescriptionFlag.NO_COUNT,link = False)
         pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
@@ -1377,75 +1455,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             basePage.keywords.append(tagInfo["fullPali"])
         basePage.AppendContent(f"Tag: {tagInfo['fullTag']}",section="citationTitle")
 
-        def FilteredTagMenuItem(excerpts: Iterable[dict],filter: Filter.Filter,menuTitle: str,fileExt:str = "") -> Html.PageDescriptorMenuItem:
-            if not fileExt:
-                fileExt = Utils.Singular(menuTitle).lower()
-            
-            return FilteredExcerptsMenuItem(excerpts=excerpts,filter=filter,formatter=formatter,mainPageInfo=pageInfo,menuTitle=menuTitle,fileExt=fileExt,pageAugmentor=AddSearchCategory(menuTitle))
-
-        def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tag: str):
-            "Insert featured excerpts to the top of the first page."
-            
-            menuItemAndPages = iter(pageGenerator)
-            firstPage = next(menuItemAndPages)
-            if type(firstPage) == Html.PageInfo:
-                yield firstPage # First yield the menu item descriptor, if any
-                firstPage = next(menuItemAndPages)
-
-            featuredExcerpts = list(Filter.FTag(tag).Apply(excerpts))
-            if featuredExcerpts:
-                featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tag))
-
-                headerHtml = []
-                headerStr = "Featured excerpt"
-                if len(featuredExcerpts) > 1:
-                    headerStr += f"s ({len(featuredExcerpts)})"
-                headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
-
-                featuredFormatter = copy.copy(formatter)
-                featuredFormatter.excerptOmitSessionTags = False
-                featuredFormatter.showHeading = False
-                featuredFormatter.headingShowTeacher = False
-                featuredFormatter.excerptNumbers = False
-                featuredFormatter.excerptAttributeSource = True
-
-                headerHtml.append(featuredFormatter.HtmlExcerptList(featuredExcerpts))
-                headerHtml.append("<hr>")
-
-                firstTextSection = 0 # The first section could be a menu, in which case we skip it
-                while type(firstPage.section[firstTextSection]) != str:
-                    firstTextSection += 1
-
-                firstPage.section[firstTextSection] = "\n".join(headerHtml + [firstPage.section[firstTextSection]])
-                                                                
-            yield firstPage
-            yield from menuItemAndPages
-
-        if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
-            questions = Filter.Category("Questions")(relevantExcerpts)
-            qTags,aTags = Filter.QTag(tag).Partition(questions)
-            mostRelevant = Filter.MostRelevant(tag)(relevantExcerpts)
-
-            filterMenu = [
-                FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tag),pageInfo,"Events","events"),
-                HoistFTags(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),relevantExcerpts,tag),
-                HoistFTags(FilteredTagMenuItem(mostRelevant,Filter.PassAll,"Most relevant","relevant"),mostRelevant,tag),
-                FilteredTagMenuItem(qTags,Filter.PassAll,"Questions about","qtag"),
-                FilteredTagMenuItem(aTags,Filter.PassAll,"Answers involving","atag"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Stories")),"Stories"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Quotes")),"Quotes"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Readings")),"Readings"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Kind({"Sutta","Vinaya","Commentary"})),"Texts"),
-                FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Kind("Reference")),"References")
-            ]
-
-            filterMenu = [f for f in filterMenu if f] # Remove blank menu items
-            if len(filterMenu) > 1:
-                yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**EXTRA_MENU_STYLE))
-            else:
-                yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,relevantExcerpts,formatter))
-        else:
-            yield from map(LinkToTeacherPage,HoistFTags(MultiPageExcerptList(basePage,relevantExcerpts,formatter),relevantExcerpts,tag))
+        yield from TagSubsearchPages(tag,relevantExcerpts,basePage)
 
 def LinkToTagPage(page: Html.PageDesc) -> Html.PageDesc:
     "Link to the tag page if this teacher has a tag."
@@ -1795,7 +1805,7 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
         excerptsByTopic:dict[str:list[str]] = {}
         for tag in topic["tags"]:
             def SortKey(x) -> int:
-                return Database.FTagOrder(x,tag)
+                return Database.FTagOrder(x,[tag])
 
             searchTags = set([tag] + list(gDatabase["keyTag"][tag]["subtags"].keys()))
             excerptsByTopic[tag] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
@@ -1833,6 +1843,42 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
         page.AppendContent(pageContent)
         yield page
 
+def KeyTopicPages(topicDir: str):
+    """Generate a series of pages for each key topic that has subtags."""
+    for topic,topicInfo in gDatabase["keyTag"].items():
+        if not topicInfo["subtags"]:
+            continue
+
+        tags = [topic] + list(topicInfo["subtags"].keys())
+        relevantExcerpts = Filter.Tag(tags)(gDatabase["excerpts"])
+
+        a = Airium()
+        
+        with a.strong():
+            a("This is a key topic.")
+            """if tag in subsumesTags:
+                a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
+            a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
+            if ProperNounTag(tagInfo):
+                a(TitledList("Other names",[RemoveLanguageTag(name) for name in tagInfo['glosses']],plural = ""))
+            else:
+                a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
+            a(ListLinkedTags("Parent topic",tagInfo['supertags']))
+            a(ListLinkedTags("Subtopic",tagInfo['subtags']))
+            a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
+            a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))"""
+        
+        a.hr()
+        
+        # tagPlusPali = TagDescription(tagInfo,fullTag=True,flags=TagDescriptionFlag.NO_COUNT,link = False)
+        pageInfo = Html.PageInfo(topicInfo["displayAs"],topicInfo["htmlPath"])
+        basePage = Html.PageDesc(pageInfo)
+        basePage.AppendContent(str(a))
+        basePage.keywords = ["Topic",topicInfo["displayAs"]]
+        basePage.AppendContent(f"Topic: {topicInfo['displayAs']}",section="citationTitle")
+
+        yield from TagSubsearchPages(tags,relevantExcerpts,basePage)
+
 def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     """Display a list of key topics and corresponding key tags.
     Also generate one page containing a list of all featured excepts for each key topic."""
@@ -1846,7 +1892,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
         topicLinks = []
         for tag in tagsToList:
             if gOptions.keyTopicsLinkToTags:
-                link = Utils.PosixJoin("../","tags",Utils.AppendToFilename(gDatabase["tag"][tag]["htmlFile"],"-relevant"))
+                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["keyTag"][tag]["htmlPath"],"-relevant"))
             else:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
             text = gDatabase["keyTag"][tag]["displayAs"]
@@ -1873,6 +1919,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     yield page
 
     yield from KeyTopicExcerptLists(topicDir,indexPageInfo)
+    yield from KeyTopicPages(topicDir)
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
