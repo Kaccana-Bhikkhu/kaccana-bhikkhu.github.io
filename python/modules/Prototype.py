@@ -1428,6 +1428,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             filterMenu = [
                 FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tag),pageInfo,"Events","events"),
                 HoistFTags(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),relevantExcerpts,tag),
+                FilteredTagMenuItem(relevantExcerpts,Filter.MostRelevant(tag),"Most relevant","relevant"),
                 FilteredTagMenuItem(qTags,Filter.PassAll,"Questions about","qtag"),
                 FilteredTagMenuItem(aTags,Filter.PassAll,"Answers involving","atag"),
                 FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Stories")),"Stories"),

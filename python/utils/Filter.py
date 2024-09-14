@@ -27,12 +27,12 @@ class InverseSet:
 
 All = InverseSet(frozenset())
 
-def MakeSet(item:str|Iterable[str]) -> set[str]:
-    """Intelligently converts a string or iterable a set."""
+def FrozenSet(item:str|Iterable[str]) -> set[str]:
+    """Intelligently converts a string or iterable a frozenset."""
     if type(item) == str:
         return {item}
-    elif type(item) not in (set,frozenset,InverseSet):
-        return set(item)
+    elif type(item) not in (frozenset,InverseSet):
+        return frozenset(item)
     else:
         return item
 
@@ -62,10 +62,9 @@ class Filter:
         self.negate:bool = False
     
     def Not(self) -> Filter:
-        "Return a copy of this filter that rejects what it used to pass and vice-versa."
-        newFilter = copy.deepcopy(self)
-        newFilter.negate = not newFilter.negate
-        return newFilter
+        "Modify this filter to reject what it used to pass and vice-versa."
+        self.negate = not self.negate
+        return self
 
     def Match(self,item: dict) -> bool:
         "Return True if this filter passes item."
@@ -101,19 +100,15 @@ class Filter:
 
 "Returns whether the dict matches our filter function."
 
-class PassAll(Filter):
-    "A filter that passes all objects."
-    pass
-
-PassAll = PassAll()
-PassNone = PassAll.Not()
+PassAll = Filter()
+PassNone = Filter().Not()
 
 class Tag(Filter):
     "A filter that passes items containing a particular tag."
 
     def __init__(self,passTags:str|Iterable[str]) -> None:
         super().__init__()
-        self.passTags = MakeSet(passTags)
+        self.passTags = FrozenSet(passTags)
     
     def Match(self, item: dict) -> bool:
         for i in AllItems(item):
@@ -126,33 +121,30 @@ class Tag(Filter):
 class FTag(Tag):
     "A filter that passes items containing particular featured tags."
 
-    def Match(self, item: dict) -> bool:
-        for i in AllItems(item):
-            for t in i.get("fTags",()):
-                if t in self.passTags:
-                    return not self.negate
+    def Match(self, item: dict) -> bool:        
+        for t in item.get("fTags",()):
+            if t in self.passTags:
+                return not self.negate
         
         return self.negate
 
-class QTag(Filter):
+class QTag(Tag):
     """A filter that passes items containing a particular qTag.
     Note that this Filter can take only a str as its argument."""
-    def __init__(self,qTag:str) -> None:
-        super().__init__()
-        self.passTag = qTag
     
     def Match(self, excerpt: dict) -> bool:
-        if self.passTag in excerpt["tags"][0:excerpt["qTagCount"]]:
-            return not self.negate
-        else:
-            return self.negate
+        for index in range(excerpt["qTagCount"]):
+            if excerpt["tags"][index] in self.passTags:
+                return not self.negate
+
+        return self.negate
     
 class Teacher(Filter):
     "A filter that passes items containing a particular tag."
 
     def __init__(self,passTeachers:str|Iterable[str],quotesOthers:bool = True,quotedBy:bool = True) -> None:
         super().__init__()
-        self.passTeachers = MakeSet(passTeachers)
+        self.passTeachers = FrozenSet(passTeachers)
         self.quotesOthers = quotesOthers
         self.quotedBy = quotedBy
     
@@ -179,7 +171,7 @@ class Kind(Filter):
 
     def __init__(self,passKinds:str|Iterable[str]) -> None:
         super().__init__()
-        self.passKinds = MakeSet(passKinds)
+        self.passKinds = FrozenSet(passKinds)
     
     def Match(self, item: dict) -> bool:
         for i in AllItems(item):
@@ -193,7 +185,7 @@ class Category(Filter):
 
     def __init__(self,passCategories:str|Iterable[str]) -> None:
         super().__init__()
-        self.passCategories = MakeSet(passCategories)
+        self.passCategories = FrozenSet(passCategories)
     
     def Match(self, item: dict) -> bool:
         for i in AllItems(item):
@@ -226,7 +218,7 @@ class Or(FilterGroup):
     
     def Match(self, item: dict) -> bool:
         for filter in self.subFilters:
-            if filter.match(item):
+            if filter.Match(item):
                 return not self.negate
         
         return self.negate
@@ -245,6 +237,11 @@ class SingleItemMatch(FilterGroup):
                 return not self.negate
         
         return self.negate
+
+def MostRelevant(tags:str|Iterable[str]) -> Filter:
+    "Return a filter that passes the most relevant excerpts for the given tag(s)."
+    t = FrozenSet(tags)
+    return Or(FTag(t),QTag(t),SingleItemMatch(Tag(t),Category(("Quotes","Stories"))))
 
 def AllTags(item: dict) -> set:
     """Return the set of all tags in item, which is either an excerpt or an annotation."""
