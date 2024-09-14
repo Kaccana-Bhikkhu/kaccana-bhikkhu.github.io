@@ -42,6 +42,11 @@ export async function loadSearchPage() {
         searchButton.onclick = () => { searchButtonClick(kind); }
     }
 
+    let params = new URLSearchParams(location.search.slice(1));
+    let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
+    if (!query)
+        document.getElementById("search-text").focus();
+
     // Execute a function when the user presses a key on the keyboard
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
     document.getElementById("search-text").addEventListener("keydown", function(event) {
