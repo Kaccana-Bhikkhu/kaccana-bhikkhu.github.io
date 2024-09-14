@@ -46,7 +46,7 @@ def AllItems(excerpt: dict) -> Iterator[dict]:
 def AllSingularItems(excerpt: dict) -> Iterator[dict]:
     """Same as AllItems, but yield the excerpt alone without its annotations, followed by the annotations."""
 
-    if "annotations" in excerpt:
+    if excerpt.get("annotations",None):
         temp = copy.copy(excerpt)
         temp["annotations"] = ()
         yield temp
@@ -135,7 +135,7 @@ class FTag(Tag):
         return self.negate
 
 class QTag(Filter):
-    """A filter that passes items containing a particular qTags.
+    """A filter that passes items containing a particular qTag.
     Note that this Filter can take only a str as its argument."""
     def __init__(self,qTag:str) -> None:
         super().__init__()
