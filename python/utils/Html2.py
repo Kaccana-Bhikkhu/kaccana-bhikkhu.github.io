@@ -109,9 +109,13 @@ class Menu(Renderable):
 
         menuLinks = []
         for n,item in enumerate(self.items):
-            link = dict(href="../" + item.file if RelativeLink(item.file) else item.file)
-                # Render relative links as if the file is at directory depth 1.
-                # PageDesc.RenderWithTemplate will later account for the true directory depth.
+            if RelativeLink(item.file):
+                link = {"href": "../" + item.file + ("" if "#" in item.file else "#_keep_scroll")}
+                    # Render relative links as if the file is at directory depth 1.
+                    # PageDesc.RenderWithTemplate will later account for the true directory depth.
+                    # Keep the scroll position if the link doesn't specify a bookmark.
+            else:
+                link = {"href": item.file}
             if n == self.menu_highlightedItem:
                 link.update(self.menu_highlight)
             menuLinks.append(Tag("a",link)(item.title))
