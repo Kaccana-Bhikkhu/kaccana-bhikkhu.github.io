@@ -44247,6 +44247,9 @@
       "flags": "",
       "text": "Biography and role of Ajahn Liem.",
       "teachers": [],
+      "fTagOrder": [
+        80
+      ],
       "annotations": [
         {
           "kind": "Quote",
@@ -44274,7 +44277,9 @@
         "Leadership"
       ],
       "qTagCount": 2,
-      "fTags": [],
+      "fTags": [
+        "Ajahn Liem"
+      ],
       "clips": [
         [
           "$",
@@ -54869,7 +54874,7 @@
         {
           "kind": "Comment",
           "flags": "2",
-          "text": "Māra cam to the Buddha many times after the Buddha's enlightenment.",
+          "text": "Māra came to the Buddha many times after the Buddha's enlightenment.",
           "teachers": [
             "AKd"
           ],
@@ -54880,7 +54885,7 @@
             "Buddha/Biography"
           ],
           "indentLevel": 1,
-          "body": "<b>Comment:</b> Māra cam to the Buddha many times after the Buddha’s enlightenment. Contributed by <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
+          "body": "<b>Comment:</b> Māra came to the Buddha many times after the Buddha’s enlightenment. Contributed by <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
         },
         {
           "kind": "Response",
@@ -56578,7 +56583,7 @@
         {
           "kind": "Reading",
           "flags": "",
-          "text": "Forest Desanas [p. 52](Forest Desanas p. 49).",
+          "text": "_Forest Desanas_ by [Ajahn Mahā Boowa](teacher:) [p. 52](Forest Desanas p. 49).",
           "teachers": [
             "AMahaB"
           ],
@@ -56586,7 +56591,7 @@
           "fTagOrder": [],
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Reading:</b> Forest Desanas <a href=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Maha_Boowa_Forest_Desanas.pdf#page=49\" target=\"_blank\">p. 52</a>. "
+          "body": "<b>Reading:</b> <em>Forest Desanas</em> by <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a> <a href=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Sources/Maha_Boowa_Forest_Desanas.pdf#page=49\" target=\"_blank\">p. 52</a>. "
         },
         {
           "kind": "Read by",
@@ -74095,7 +74100,7 @@
       "fileNumber": 4,
       "kind": "Question",
       "flags": "",
-      "text": "Where is the middle way taught in the suttas ? and how might that help some of us who consider extensive sitting practice an ascetic practice?",
+      "text": "Where is the middle way taught in the suttas? and how might that help some of us who consider extensive sitting practice an ascetic practice?",
       "teachers": [
         "AP"
       ],
@@ -74115,7 +74120,7 @@
       ],
       "duration": "5:13",
       "mirror": "local",
-      "body": "“Where is the middle way taught in the suttas ? and how might that help some of us who consider extensive sitting practice an ascetic practice?” {attribution}",
+      "body": "“Where is the middle way taught in the suttas? and how might that help some of us who consider extensive sitting practice an ascetic practice?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
@@ -107107,6 +107112,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "aversion.html",
+      "topicCode": "unskillful",
       "excerptCount": 79,
       "listIndex": 177
     },
@@ -107271,7 +107277,6 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "ill-will.html",
-      "topicCode": "unskillful",
       "excerptCount": 14,
       "listIndex": 186
     },
@@ -110819,7 +110824,7 @@
       "htmlFile": "ajahn-liem.html",
       "sessionCount": 2,
       "excerptCount": 34,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 458
     },
     "Ajahn Boon Choo": {
@@ -128748,14 +128753,14 @@
       "subtags": {},
       "excerptCount": 0
     },
-    "Ill-will": {
-      "tag": "Ill-will",
+    "Aversion": {
+      "tag": "Aversion",
       "flags": "",
-      "displayAs": "Ill-will",
+      "displayAs": "Aversion",
       "topic": "Unskillful Qualites",
       "topicCode": "unskillful",
       "subtags": {
-        "Aversion": "-"
+        "Ill-will": "-"
       },
       "excerptCount": 0
     },
@@ -128972,7 +128977,9 @@
       "displayAs": "Liberation",
       "topic": "Fruits of the Practice",
       "topicCode": "fruits",
-      "subtags": {},
+      "subtags": {
+        "Release": ","
+      },
       "excerptCount": 0
     },
     "Stream entry": {
@@ -129190,8 +129197,11 @@
       "displayAs": "Family",
       "topic": "Everyday Life Practice",
       "topicCode": "everyday",
-      "subtags": {},
-      "excerptCount": 1
+      "subtags": {
+        "Parents": ".",
+        "Children": "."
+      },
+      "excerptCount": 2
     },
     "Relationships": {
       "tag": "Relationships",
@@ -131958,7 +131968,8 @@
       "code": "human",
       "topic": "The Human Dillema",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-human.html",
       "tags": [
         "Impermanence",
         "Suffering",
@@ -131974,7 +131985,8 @@
       "code": "refuges",
       "topic": "The Three Refuges",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-refuges.html",
       "tags": [
         "Three Refuges",
         "Buddha",
@@ -131987,7 +131999,8 @@
       "code": "foundations",
       "topic": "Foundations of Dhamma Practice",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-foundations.html",
       "tags": [
         "Generosity",
         "Goodwill",
@@ -132000,8 +132013,9 @@
     "truths": {
       "code": "truths",
       "topic": "The Four Noble Truths",
-      "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "shortNote": "The Fourth Noble Truth of the Path to the Cessation of Suffering is equivalent to the Noble Eightfold Path below.",
+      "longNote": "The Fourth Noble Truth of the Path to the Cessation of Suffering is equivalent to the Noble Eightfold Path.<br>This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-truths.html",
       "tags": [
         "Four Noble Truths",
         "Noble Truth of Suffering",
@@ -132014,7 +132028,8 @@
       "code": "path",
       "topic": "The Noble Eightfold Path",
       "shortNote": "Includes only path factors with substantial coverage in the Archive.",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-path.html",
       "tags": [
         "Eightfold Path",
         "Right View",
@@ -132030,7 +132045,8 @@
       "code": "meditation",
       "topic": "Meditation Practices",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-meditation.html",
       "tags": [
         "Meditation",
         "Mindfulness of body",
@@ -132051,7 +132067,8 @@
       "code": "skillful",
       "topic": "Skillful Qualities",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-skillful.html",
       "tags": [
         "Faith",
         "Energy",
@@ -132071,12 +132088,13 @@
       "code": "unskillful",
       "topic": "Unskillful Qualites",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-unskillful.html",
       "tags": [
         "Unwholesome Roots",
         "Hindrances",
         "Sensual desire",
-        "Ill-will",
+        "Aversion",
         "Sloth and torpor",
         "Restlessness and worry",
         "Doubt",
@@ -132090,7 +132108,8 @@
       "code": "origination",
       "topic": "Dependent origination",
       "shortNote": "Includes only links with substantial coverage in the Archive.",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-origination.html",
       "tags": [
         "Dependent origination",
         "Volitional formations",
@@ -132109,7 +132128,8 @@
       "code": "perspectives",
       "topic": "Buddhist Perspectivies on the World",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-perspectives.html",
       "tags": [
         "Conditionality",
         "Kamma",
@@ -132123,7 +132143,8 @@
       "code": "fruits",
       "topic": "Fruits of the Practice",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-fruits.html",
       "tags": [
         "Cessation",
         "Relinquishment",
@@ -132137,7 +132158,8 @@
       "code": "teachers",
       "topic": "Teachers",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-teachers.html",
       "tags": [
         "Buddha/Biography",
         "Ajahn Mun",
@@ -132152,7 +132174,8 @@
       "code": "monasteries",
       "topic": "Monasteries",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-monasteries.html",
       "tags": [
         "Wat Pah Pong",
         "Wat Pah Nanachat",
@@ -132164,7 +132187,8 @@
       "code": "context",
       "topic": "Context of the Teachings",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-context.html",
       "tags": [
         "Culture/Natural environment",
         "History/Thai Buddhism",
@@ -132176,7 +132200,8 @@
       "code": "monastic",
       "topic": "Monastic Life",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-monastic.html",
       "tags": [
         "Monastic life",
         "Monastic life/Motivation",
@@ -132192,7 +132217,8 @@
       "code": "everyday",
       "topic": "Everyday Life Practice",
       "shortNote": "",
-      "longNote": "This page needs many more featured excerpts with these topics to be complete. Please help suggest featured excerpts.",
+      "longNote": "This page needs many more featured excerpts with these tags to be complete. Please help suggest featured excerpts.",
+      "listFile": "list-everyday.html",
       "tags": [
         "Everyday life",
         "Lay life",
@@ -132204,7 +132230,7 @@
         "Commerce/economics",
         "Health care"
       ],
-      "excerptCount": 2
+      "excerptCount": 3
     }
   }
 }

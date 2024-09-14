@@ -49,6 +49,12 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
     for s in gDatabase["sessions"]:
         s["sessionTitle"],count = twoVariableTransform(s["sessionTitle"],s)
         changeCount += count
+    
+    for t in gDatabase["keyTopic"].values():
+        t["shortNote"],count = twoVariableTransform(t["shortNote"],t)
+        changeCount += count
+        t["longNote"],count = twoVariableTransform(t["longNote"],t)
+        changeCount += count
 
     return changeCount
     
@@ -424,7 +430,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player"}))
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player","topic","topicList"}))
     linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()#]*)#?([^()#]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
@@ -508,6 +514,8 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             if not hashTag:
                 hashTag = "cover"
             text = f'<!--HTML <img src="{imagePath}" alt="{text}" class="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
+        elif pageType == "topicList":
+            pass
 
         if linkTo:
             path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)
@@ -551,7 +559,9 @@ def LinkReferences() -> None:
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
         about - Link to about page pageName
         image - Link to images in prototypeDir/images
-        photo - Link to photos in prototypeDir/images/photos"""
+        photo - Link to photos in prototypeDir/images/photos
+        topic - Link to the subtopic page corresponding to this tag
+        topicList - Link to the topic list page specified by this topic code"""
 
     LinkSubpages()
     LinkKnownReferences()

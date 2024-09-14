@@ -585,6 +585,7 @@ def CollectKeyTopics(database:dict[str]) -> None:
                 "topic": tag["topic"],
                 "shortNote": tag["shortNote"],
                 "longNote": tag["longNote"],
+                "listFile": "list-" + tag["topicCode"] + ".html",
                 "tags": []
             }
             keyTopic[tag["topicCode"]] = currentTopic

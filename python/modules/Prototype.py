@@ -1424,11 +1424,12 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         if len(relevantExcerpts) >= gOptions.minSubsearchExcerpts:
             questions = Filter.Category("Questions")(relevantExcerpts)
             qTags,aTags = Filter.QTag(tag).Partition(questions)
+            mostRelevant = Filter.MostRelevant(tag)(relevantExcerpts)
 
             filterMenu = [
                 FilteredEventsMenuItem(gDatabase["event"].values(),Filter.Tag(tag),pageInfo,"Events","events"),
                 HoistFTags(FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),relevantExcerpts,tag),
-                FilteredTagMenuItem(relevantExcerpts,Filter.MostRelevant(tag),"Most relevant","relevant"),
+                HoistFTags(FilteredTagMenuItem(mostRelevant,Filter.PassAll,"Most relevant","relevant"),mostRelevant,tag),
                 FilteredTagMenuItem(qTags,Filter.PassAll,"Questions about","qtag"),
                 FilteredTagMenuItem(aTags,Filter.PassAll,"Answers involving","atag"),
                 FilteredTagMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Tag(tag),Filter.Category("Stories")),"Stories"),
@@ -1771,46 +1772,9 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
     else:
         yield from aboutMenu
 
-def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
-    """Display a list of key topics and corresponding key tags.
-    Also generate one page containing all featured excepts for each key topic."""
+def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
+    """Yield one page for each key topic listing all featured excerpts."""
 
-    indexPageInfo = Html.PageInfo("Key topics",Utils.PosixJoin(indexDir,"KeyTopics.html"))
-    yield indexPageInfo
-    
-    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        tagsToList = (t for t in keyTopic["tags"] if not gDatabase["keyTag"][t]["flags"])
-        
-        if gOptions.keyTopicsLinkToTags:
-            tagList = Html.Tag("p")("&nbsp&nbsp ".join(HtmlTagLink(t,text = gDatabase["keyTag"][t]["displayAs"],showStar=True) for t in keyTopic["tags"]))
-        else:
-            topicLinks = []
-            for tag in tagsToList:
-                link = Utils.PosixJoin("../",topicDir,keyTopic["code"] + ".html") + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
-                text = gDatabase["keyTag"][tag]["displayAs"]
-                if gDatabase["keyTag"][tag]["excerptCount"]:
-                    text += f'&nbsp{FA_STAR}'
-                topicLinks.append(Html.Tag("a",{"href":link})(text))
-
-            tagList = Html.Tag("p")("&nbsp&nbsp ".join(topicLinks))
-
-        if keyTopic["shortNote"]:
-            tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
-        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["code"] + ".html")})(keyTopic["topic"])
-        heading += f" ({keyTopic['excerptCount']})"
-        return heading,tagList,keyTopic["code"]
-
-    pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
-                                        bodyWrapper=Html.Tag("div",{"class":"listing"}),
-                                        addMenu=False,betweenSections="<br>")
-
-    page = Html.PageDesc(indexPageInfo)
-    page.AppendContent(pageContent)
-    page.AppendContent("Key topics",section="citationTitle")
-    page.keywords = ["Tags","Key topics"]
-    yield page
-
-    # Now yield the list of subtopic pages
     formatter = Formatter()
     formatter.excerptOmitSessionTags = False
     formatter.showHeading = False
@@ -1820,7 +1784,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
 
     for topic in gDatabase["keyTopic"].values():
         linkBack = Html.Tag("a",{"href": Utils.PosixJoin("../",indexPageInfo.file + "#" + topic["code"])})
-        info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["code"] + ".html"),linkBack(topic["topic"]))
+        info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),linkBack(topic["topic"]))
         page = Html.PageDesc(info)
         page.AppendContent("Key topic: " + topic["topic"],section="citationTitle")
         page.keywords = ["Tags","Key topics",topic["topic"]]
@@ -1850,7 +1814,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
             if ParseCSV.KeyTagFlag.HEADING in gDatabase["keyTag"][tag]["flags"]:
                 return "",excerptHtml
             
-            linkToTag = Html.Tag("a",{"href": Utils.PosixJoin("../","tags",gDatabase["tag"][tag]["htmlFile"])})
+            linkToTag = Html.Tag("a",{"href": Utils.PosixJoin("../","tags",Utils.AppendToFilename(gDatabase["tag"][tag]["htmlFile"],"-relevant"))})
             heading = linkToTag(gDatabase["keyTag"][tag]["displayAs"])
             return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html","")
 
@@ -1868,6 +1832,47 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
                                             headingWrapper=title)
         page.AppendContent(pageContent)
         yield page
+
+def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+    """Display a list of key topics and corresponding key tags.
+    Also generate one page containing a list of all featured excepts for each key topic."""
+
+    indexPageInfo = Html.PageInfo("Key topics",Utils.PosixJoin(indexDir,"KeyTopics.html"))
+    yield indexPageInfo
+    
+    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
+        tagsToList = (t for t in keyTopic["tags"] if not gDatabase["keyTag"][t]["flags"])
+        
+        topicLinks = []
+        for tag in tagsToList:
+            if gOptions.keyTopicsLinkToTags:
+                link = Utils.PosixJoin("../","tags",Utils.AppendToFilename(gDatabase["tag"][tag]["htmlFile"],"-relevant"))
+            else:
+                link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
+            text = gDatabase["keyTag"][tag]["displayAs"]
+            if gDatabase["keyTag"][tag]["excerptCount"]:
+                text += f'&nbsp{FA_STAR}'
+            topicLinks.append(Html.Tag("a",{"href":link})(text))
+
+        tagList = Html.Tag("p")("&nbsp&nbsp ".join(topicLinks))
+
+        if keyTopic["shortNote"]:
+            tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
+        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"])})(keyTopic["topic"])
+        heading += f" ({keyTopic['excerptCount']})"
+        return heading,tagList,keyTopic["code"]
+
+    pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
+                                        bodyWrapper=Html.Tag("div",{"class":"listing"}),
+                                        addMenu=False,betweenSections="<br>")
+
+    page = Html.PageDesc(indexPageInfo)
+    page.AppendContent(pageContent)
+    page.AppendContent("Key topics",section="citationTitle")
+    page.keywords = ["Tags","Key topics"]
+    yield page
+
+    yield from KeyTopicExcerptLists(topicDir,indexPageInfo)
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
