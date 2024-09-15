@@ -129,6 +129,16 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,showSta
     else:
         return text + flag
 
+def HtmlTopicHeadingLink(headingCode:str,text:str = "",link=True) -> str:
+    "Return a link to the specified topic heading."
+
+    if not text:
+        text = gDatabase["topicHeading"][headingCode]["heading"]
+
+    if link:
+        return Html.Tag("a",{"href":Utils.PosixJoin("../topics","list-"+headingCode+".html")})(text)
+    else:
+        return text
 
 def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
     "Write a list of hyperlinked tags"
@@ -1428,10 +1438,14 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             continue
 
         relevantExcerpts = Filter.Tag(tag)(gDatabase["excerpts"])
+        peerTopicCount = 1 + len(gDatabase["keyTopic"][tag]["subtags"]) if tag in gDatabase["keyTopic"] else 0
 
         a = Airium()
         
         with a.strong():
+            if peerTopicCount == 1:
+                a(f"A Key Topic in {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
+                a.br()
             if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
@@ -1439,8 +1453,8 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a(TitledList("Other names",[RemoveLanguageTag(name) for name in tagInfo['glosses']],plural = ""))
             else:
                 a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
-            a(ListLinkedTags("Parent topic",tagInfo['supertags']))
-            a(ListLinkedTags("Subtopic",tagInfo['subtags']))
+            a(ListLinkedTags("Parent tag",tagInfo['supertags']))
+            a(ListLinkedTags("Subtags",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))
         
@@ -1855,7 +1869,9 @@ def KeyTopicPages(topicDir: str):
         a = Airium()
         
         with a.strong():
-            a("This is a key topic.")
+            a(f"Key Topic in {HtmlTopicHeadingLink(topicInfo['headingCode'])}")
+            a.br()
+            a(ListLinkedTags("Includes tag",tags))
             """if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
             a(TitledList("Alternative translations",tagInfo['alternateTranslations'],plural = ""))
@@ -1863,7 +1879,7 @@ def KeyTopicPages(topicDir: str):
                 a(TitledList("Other names",[RemoveLanguageTag(name) for name in tagInfo['glosses']],plural = ""))
             else:
                 a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
-            a(ListLinkedTags("Parent topic",tagInfo['supertags']))
+            a(ListLinkedTags("Parent tag",tagInfo['supertags']))
             a(ListLinkedTags("Subtopic",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))"""
@@ -1887,7 +1903,7 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     yield indexPageInfo
     
     def KeyTopicList(keyTopicHeader: dict) -> tuple[str,str,str]:
-        topicsToList = (t for t in keyTopicHeader["topics"] if not gDatabase["keyTopic"][t]["flags"])
+        topicsToList = (t for t in keyTopicHeader["topics"] if not gDatabase["keyTopic"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
         
         topicLinks = []
         for tag in topicsToList:
