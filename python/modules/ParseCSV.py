@@ -571,51 +571,51 @@ def CountSubtagExcerpts(database):
         tagList[parentIndex]["subtagCount"] = len(theseTags) - 1
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
-def CollectKeyTopics(database:dict[str]) -> None:
+def CollectTopicHeadings(database:dict[str]) -> None:
     """Create keyTopic dictionary from keyTag dictionary."""
 
-    keyTopic = {}
-    currentTopic = {}
-    tagsToRemove = set()
-    mainTag = None
-    for tag in database["keyTag"].values():
-        if tag["topic"]:
-            currentTopic = {
-                "code": tag["topicCode"],
-                "topic": tag["topic"],
-                "shortNote": tag["shortNote"],
-                "longNote": tag["longNote"],
-                "listFile": "list-" + tag["topicCode"] + ".html",
-                "tags": []
+    topicHeading = {}
+    currentHeading = {}
+    topicsToRemove = set()
+    mainTopic = None
+    for topic in database["keyTopic"].values():
+        if topic["heading"]:
+            currentHeading = {
+                "code": topic["headingCode"],
+                "heading": topic["heading"],
+                "shortNote": topic["shortNote"],
+                "longNote": topic["longNote"],
+                "listFile": "list-" + topic["headingCode"] + ".html",
+                "topics": []
             }
-            keyTopic[tag["topicCode"]] = currentTopic
+            topicHeading[topic["headingCode"]] = currentHeading
         
-        if tag["flags"] in SUBTAG_FLAGS:
-            tagsToRemove.add(tag["tag"])
-            mainTag["subtags"][tag["tag"]] = tag["flags"]
+        if topic["flags"] in SUBTAG_FLAGS:
+            topicsToRemove.add(topic["topic"])
+            mainTopic["subtags"][topic["topic"]] = topic["flags"]
         else:
-            mainTag = tag
-            tag["subtags"] = {}
-            tag["topicCode"] = currentTopic["code"]
-            tag["topic"] = currentTopic["topic"]
-            database["tag"][tag["tag"]]["topicCode"] = currentTopic["code"]
-            if not tag["displayAs"]:
-                tag["displayAs"] = tag["tag"]
-            tag.pop("shortNote",None)
-            tag.pop("longNote",None)
+            mainTopic = topic
+            topic["subtags"] = {}
+            topic["headingCode"] = currentHeading["code"]
+            topic["heading"] = currentHeading["heading"]
+            database["tag"][topic["topic"]]["topicHeading"] = currentHeading["code"]
+            if not topic["displayAs"]:
+                topic["displayAs"] = topic["topic"]
+            topic.pop("shortNote",None)
+            topic.pop("longNote",None)
             
-            currentTopic["tags"].append(tag["tag"])
+            currentHeading["topics"].append(topic["topic"])
     
-    for tag in tagsToRemove:
-        del database["keyTag"][tag]
+    for topic in topicsToRemove:
+        del database["keyTopic"][topic]
     
-    for tag in database["keyTag"].values():
-        if tag["subtags"]: # Topics with subtopics link to separate pages in the topics directory
-            tag["htmlPath"] = f"topics/{Utils.slugify(tag['tag'])}.html"
+    for topic in database["keyTopic"].values():
+        if topic["subtags"]: # Topics with subtopics link to separate pages in the topics directory
+            topic["htmlPath"] = f"topics/{Utils.slugify(topic['topic'])}.html"
         else: # Tags without subtopics link to pages in the tags directory
-            tag["htmlPath"] = f"tags/{database['tag'][tag['tag']]['htmlFile']}"
+            topic["htmlPath"] = f"tags/{database['tag'][topic['topic']]['htmlFile']}"
 
-    database["keyTopic"] = keyTopic
+    database["topicHeading"] = topicHeading
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -763,7 +763,6 @@ def FinalizeExcerptTags(x: dict) -> None:
     """Combine qTags and aTags into a single list, but keep track of how many qTags there are."""
     x["tags"] = x["qTag"] + x["aTag"]
     x["qTagCount"] = len(x["qTag"])
-    x["fTags"] = x.pop("fTag",[]) # Convention: List keys are plural
     if len(x["fTagOrder"]) != len(x["fTags"]):
         Alert.caution(x,f"has {len(x['fTags'])} fTag but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
     if not gOptions.jsonNoClean:
@@ -776,7 +775,7 @@ def FinalizeExcerptTags(x: dict) -> None:
 def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
     "Combine qTag, aTag, fTag, and fTagOrder keys from an Extra Tags annotation with an existing excerpt."
 
-    for key in ("qTag","aTag","fTag","fTagOrder"):
+    for key in ("qTag","aTag","fTags","fTagOrder"):
         excerpt[key] = excerpt.get(key,[]) + annotation.get(key,[])
 
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
@@ -1042,7 +1041,7 @@ def LoadEventFile(database,eventName,directory):
     database["sessions"] += sessions
 
 
-    for key in ["teachers","qTag1","aTag1","fTag","fTagOrder"]:
+    for key in ["teachers","qTag1","aTag1","fTags","fTagOrder"]:
         ListifyKey(rawExcerpts,key)
     ConvertToInteger(rawExcerpts,"sessionNumber")
     ConvertToInteger(rawExcerpts,"fTagOrder")
@@ -1067,7 +1066,7 @@ def LoadEventFile(database,eventName,directory):
 
         x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
         x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
-        x["fTag"] = [tag for tag in x["fTag"] if tag not in redactedTagSet]
+        x["fTags"] = [tag for tag in x["fTags"] if tag not in redactedTagSet]
 
         if not x["kind"]:
             x["kind"] = "Question"
@@ -1235,22 +1234,22 @@ def CountAndVerify(database):
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
         tagsToRemove = []
-        for tag in tagSet:
+        for topic in tagSet:
             try:
-                tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
+                tagDB[topic]["excerptCount"] = tagDB[topic].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.warning(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
-                tagsToRemove.append(tag)
+                Alert.warning(f"CountAndVerify: Tag",repr(topic),"is not defined. Will remove this tag.")
+                tagsToRemove.append(topic)
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
         
-        for tag in x["fTags"]:
-            if tag not in tagSet:
-                Alert.caution(x,"specifies fTag",tag,"but this does not appear as a regular tag.")
-            tagDB[tag]["fTagCount"] = tagDB[tag].get("fTagCount",0) + 1
+        for topic in x["fTags"]:
+            if topic not in tagSet:
+                Alert.caution(x,"specifies fTag",topic,"but this does not appear as a regular tag.")
+            tagDB[topic]["fTagCount"] = tagDB[topic].get("fTagCount",0) + 1
             fTagCount += 1
     
     Alert.info(tagCount,"total tags applied.",fTagCount,"featured tags applied.")
@@ -1263,23 +1262,23 @@ def CountAndVerify(database):
         teacher["excerptCount"] = len(Filter.Teacher(teacher["teacher"])(database["excerpts"]))
         # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
     
-    for topic in database["keyTopic"].values():
+    for heading in database["topicHeading"].values():
         topicExcerpts = set()
-        for tag in topic["tags"]:
-            allTags = set([tag] + list(database["keyTag"][tag]["subtags"].keys()))
+        for topic in heading["topics"]:
+            allTags = set([topic] + list(database["keyTopic"][topic]["subtags"].keys()))
             tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
-            database["keyTag"][tag]["excerptCount"] = len(tagExcerpts)
+            database["keyTopic"][topic]["excerptCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         
-        topic["excerptCount"] = len(topicExcerpts)
+        heading["excerptCount"] = len(topicExcerpts)
 
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"eventCount")
     
     # Are tags flagged Primary as needed?
-    for tag in database["tag"]:
-        tagDesc = database["tag"][tag]
+    for topic in database["tag"]:
+        tagDesc = database["tag"][topic]
         if tagDesc["primaries"] > 1:
             Alert.caution(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
         if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and TagFlag.VIRTUAL not in tagDesc["flags"]:
@@ -1531,7 +1530,7 @@ def main():
         Alert.error("No excerpts have been parsed. Aborting.")
         sys.exit(1)
 
-    CollectKeyTopics(gDatabase)
+    CollectTopicHeadings(gDatabase)
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)

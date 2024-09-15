@@ -1792,22 +1792,22 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
     formatter.excerptNumbers = False
     formatter.excerptAttributeSource = True
 
-    for topic in gDatabase["keyTopic"].values():
-        linkBack = Html.Tag("a",{"href": Utils.PosixJoin("../",indexPageInfo.file + "#" + topic["code"])})
-        info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),linkBack(topic["topic"]))
+    for heading in gDatabase["topicHeading"].values():
+        linkBack = Html.Tag("a",{"href": Utils.PosixJoin("../",indexPageInfo.file + "#" + heading["code"])})
+        info = Html.PageInfo(heading["heading"],Utils.PosixJoin(topicDir,heading["listFile"]),linkBack(heading["heading"]))
         page = Html.PageDesc(info)
-        page.AppendContent("Key topic: " + topic["topic"],section="citationTitle")
-        page.keywords = ["Tags","Key topics",topic["topic"]]
+        page.AppendContent("Key topic: " + heading["heading"],section="citationTitle")
+        page.keywords = ["Tags","Key topics",heading["heading"]]
 
-        if topic["longNote"]:
-            page.AppendContent(topic["longNote"] + "<hr>")
+        if heading["longNote"]:
+            page.AppendContent(heading["longNote"] + "<hr>")
 
         excerptsByTopic:dict[str:list[str]] = {}
-        for tag in topic["tags"]:
+        for tag in heading["topics"]:
             def SortKey(x) -> int:
                 return Database.FTagOrder(x,[tag])
 
-            searchTags = set([tag] + list(gDatabase["keyTag"][tag]["subtags"].keys()))
+            searchTags = set([tag] + list(gDatabase["keyTopic"][tag]["subtags"].keys()))
             excerptsByTopic[tag] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool]) -> tuple[str,str,str]:
@@ -1821,11 +1821,11 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
             if not lastExcerpt:
                 excerptHtml += "\n<hr>"
 
-            if ParseCSV.KeyTagFlag.HEADING in gDatabase["keyTag"][tag]["flags"]:
+            if ParseCSV.KeyTagFlag.HEADING in gDatabase["keyTopic"][tag]["flags"]:
                 return "",excerptHtml
             
             linkToTag = Html.Tag("a",{"href": Utils.PosixJoin("../","tags",Utils.AppendToFilename(gDatabase["tag"][tag]["htmlFile"],"-relevant"))})
-            heading = linkToTag(gDatabase["keyTag"][tag]["displayAs"])
+            heading = linkToTag(gDatabase["keyTopic"][tag]["displayAs"])
             return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html","")
 
         def PairExcerptsWithTopic() -> Generator[tuple[dict,str]]:
@@ -1845,7 +1845,7 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
 
 def KeyTopicPages(topicDir: str):
     """Generate a series of pages for each key topic that has subtags."""
-    for topic,topicInfo in gDatabase["keyTag"].items():
+    for topic,topicInfo in gDatabase["keyTopic"].items():
         if not topicInfo["subtags"]:
             continue
 
@@ -1886,29 +1886,29 @@ def KeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     indexPageInfo = Html.PageInfo("Key topics",Utils.PosixJoin(indexDir,"KeyTopics.html"))
     yield indexPageInfo
     
-    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        tagsToList = (t for t in keyTopic["tags"] if not gDatabase["keyTag"][t]["flags"])
+    def KeyTopicList(keyTopicHeader: dict) -> tuple[str,str,str]:
+        topicsToList = (t for t in keyTopicHeader["topics"] if not gDatabase["keyTopic"][t]["flags"])
         
         topicLinks = []
-        for tag in tagsToList:
+        for tag in topicsToList:
             if gOptions.keyTopicsLinkToTags:
-                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["keyTag"][tag]["htmlPath"],"-relevant"))
+                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["keyTopic"][tag]["htmlPath"],"-relevant"))
             else:
-                link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
-            text = gDatabase["keyTag"][tag]["displayAs"]
-            if gDatabase["keyTag"][tag]["excerptCount"]:
+                link = Utils.PosixJoin("../",topicDir,keyTopicHeader["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
+            text = gDatabase["keyTopic"][tag]["displayAs"]
+            if gDatabase["keyTopic"][tag]["excerptCount"]:
                 text += f'&nbsp{FA_STAR}'
             topicLinks.append(Html.Tag("a",{"href":link})(text))
 
         tagList = Html.Tag("p")("&nbsp&nbsp ".join(topicLinks))
 
-        if keyTopic["shortNote"]:
-            tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
-        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"])})(keyTopic["topic"])
-        heading += f" ({keyTopic['excerptCount']})"
-        return heading,tagList,keyTopic["code"]
+        if keyTopicHeader["shortNote"]:
+            tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopicHeader["shortNote"])])
+        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopicHeader["listFile"])})(keyTopicHeader["heading"])
+        heading += f" ({keyTopicHeader['excerptCount']})"
+        return heading,tagList,keyTopicHeader["code"]
 
-    pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
+    pageContent = Html.ListWithHeadings(gDatabase["topicHeading"].values(),KeyTopicList,
                                         bodyWrapper=Html.Tag("div",{"class":"listing"}),
                                         addMenu=False,betweenSections="<br>")
 

@@ -50,7 +50,7 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
         s["sessionTitle"],count = twoVariableTransform(s["sessionTitle"],s)
         changeCount += count
     
-    for t in gDatabase["keyTopic"].values():
+    for t in gDatabase["topicHeading"].values():
         t["shortNote"],count = twoVariableTransform(t["shortNote"],t)
         changeCount += count
         t["longNote"],count = twoVariableTransform(t["longNote"],t)

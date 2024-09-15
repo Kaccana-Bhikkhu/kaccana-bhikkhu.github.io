@@ -153,7 +153,7 @@ def TagBlob(tagName:str) -> str:
             bits.append("^" + tagData["number"] + "^")
 
     blob = "".join(bits)
-    if "topicCode" in gDatabase["tag"][tagName]: # If this tag is listed under a key topic,
+    if "topicHeading" in gDatabase["tag"][tagName]: # If this tag is listed under a key topic,
         blob = blob.replace("]","]+") # add "+" after each tag closure.
     return blob
 
