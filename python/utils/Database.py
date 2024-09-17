@@ -96,6 +96,21 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
 
     return tagDictCache.get(tagRef,None)
 
+def ParentTagListEntry(listIndex: int) -> dict|None:
+    "Return a the entry in gDatabase['tagDisplayList'] that corresponds to this tag's parent tag."
+
+    tagHierarchy = gDatabase["tagDisplayList"]
+    level = tagHierarchy[listIndex]["level"]
+    
+    if level < 2:
+        return None
+    while (listIndex >= 0):
+        if tagHierarchy[listIndex]["level"] < level:
+            return tagHierarchy[listIndex]
+        listIndex -= 1
+
+    return None
+
 
 def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."

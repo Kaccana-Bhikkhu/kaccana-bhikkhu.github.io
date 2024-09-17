@@ -139,8 +139,19 @@ def HtmlTopicHeadingLink(headingCode:str,text:str = "",link=True) -> str:
         return Html.Tag("a",{"href":Utils.PosixJoin("../topics","list-"+headingCode+".html")})(text)
     else:
         return text
+    
+def HtmlTopicLink(topic:str,text:str = "",link=True) -> str:
+    "Return a link to the specified topic."
 
-def ListLinkedTags(title:str, tags:List[str],*args,**kwargs) -> str:
+    if not text:
+        text = gDatabase["keyTopic"][topic]["displayAs"]
+
+    if link:
+        return Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["keyTopic"][topic]["htmlPath"])})(text)
+    else:
+        return text
+
+def ListLinkedTags(title:str, tags:Iterable[str],*args,**kwargs) -> str:
     "Write a list of hyperlinked tags"
     
     linkedTags = [HtmlTagLink(tag) for tag in tags]
@@ -1415,6 +1426,32 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
     else:
         yield from map(LinkToTeacherPage,HoistFTags(MultiPageExcerptList(basePage,tagExcerpts,formatter),tagExcerpts,tags))
 
+def TagBreadCrumbs(tagInfo: dict) -> tuple[str,list[str]]:
+    "Return a hyperlinked string of the form: 'grandparent / parent / tag'"
+    
+    tagHierarchy = gDatabase["tagDisplayList"]
+    listIndex = tagInfo["listIndex"]
+    prevLevel = tagHierarchy[listIndex]["level"]
+    
+    parents = []
+    while (listIndex >= 0 and prevLevel > 1):
+        currentLevel = tagHierarchy[listIndex]["level"]
+        if currentLevel < prevLevel:
+            thisItem = tagHierarchy[listIndex]
+            parents.append(HtmlTagLink(thisItem["tag"] or thisItem["virtualTag"],fullTag = True))
+            """if thisItem["tag"]:
+                parents.append(HtmlTagLink(thisItem["tag"],fullTag = True)) #TagDescription(gDatabase["tag"][thisItem["tag"]],listAs=thisItem["name"],fullTag=True,flags=TagDescriptionFlag.NO_COUNT + TagDescriptionFlag.NO_PALI))
+            elif thisItem["name"] in gDatabase["tagSubsumed"]:
+                parents.append(HtmlTagLink(thisItem["name"]),fullTag = True)
+            else:
+                parents.append(thisItem["name"])"""
+            prevLevel = currentLevel
+        listIndex -= 1
+    
+    parents.reverse()
+    return " / ".join(parents + [tagInfo["fullTag"]]) + "\n<br>\n"
+
+
 def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Write a html file for each tag in the database"""
     
@@ -1444,8 +1481,12 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a = Airium()
         
         with a.strong():
-            if peerTopicCount == 1:
-                a(f"A Key Topic in {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
+            a(TagBreadCrumbs(tagInfo))
+            if peerTopicCount:
+                if peerTopicCount > 1:
+                    a(f"Part of Key Topic {HtmlTopicLink(tag)}")
+                else:
+                    a(f"Key Topic under {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
                 a.br()
             if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
@@ -1454,11 +1495,14 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
                 a(TitledList("Other names",[RemoveLanguageTag(name) for name in tagInfo['glosses']],plural = ""))
             else:
                 a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
-            a(ListLinkedTags("Parent tag",tagInfo['supertags']))
-            a(ListLinkedTags("Subtags",tagInfo['subtags']))
+            mainParent = Database.ParentTagListEntry(tagInfo["listIndex"])
+            mainParent = mainParent and mainParent["name"] # Prevent error if mainParent == None
+            a(ListLinkedTags("Also a subtag of",
+                             (t for t in tagInfo['supertags'] if t != mainParent and t in gDatabase["tag"]),
+                             plural="",lastJoinStr=" and ",titleEnd=" "))
+            a(ListLinkedTags("Subtag",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))
-        
         a.hr()
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,flags=TagDescriptionFlag.NO_COUNT,link = False)
@@ -1870,7 +1914,7 @@ def KeyTopicPages(topicDir: str):
         a = Airium()
         
         with a.strong():
-            a(f"Key Topic in {HtmlTopicHeadingLink(topicInfo['headingCode'])}")
+            a(f"Key Topic under {HtmlTopicHeadingLink(topicInfo['headingCode'])}")
             a.br()
             a(ListLinkedTags("Includes tag",tags))
             """if tag in subsumesTags:
