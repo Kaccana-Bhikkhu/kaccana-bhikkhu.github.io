@@ -1040,7 +1040,8 @@ def LoadEventFile(database,eventName,directory):
         # Remove sessions if none of the session teachers have given consent
     database["sessions"] += sessions
 
-
+    for x in rawExcerpts:
+        x["fTagOrder"] = re.sub(r"\?+",lambda m: str(len(m[0]) + 1000),x["fTagOrder"])
     for key in ["teachers","qTag1","aTag1","fTags","fTagOrder"]:
         ListifyKey(rawExcerpts,key)
     ConvertToInteger(rawExcerpts,"sessionNumber")

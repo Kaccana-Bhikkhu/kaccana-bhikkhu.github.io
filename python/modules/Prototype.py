@@ -876,6 +876,7 @@ class Formatter:
             text = tag
             if tag in excerpt["fTags"]:
                 text += f'&nbsp{FA_STAR}'
+                text += "?" * (Database.FTagOrder(excerpt,[tag]) - 1000) # Add ? to uncertain fTags; "?" * -N = """
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
