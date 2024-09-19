@@ -1179,8 +1179,12 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     basePage = Html.PageDesc(pageInfo)
 
     formatter = Formatter()
-    # formatter.excerptDefaultTeacher = ['AP']
     formatter.headingShowSessionTitle = True
+
+    def SimpleDuration(page: Html.PageDesc,excerpts: list[dict]):
+        "Append the number of excerpts and duration to page."
+        durationStr = ExcerptDurationStr(excerpts,countEvents=False,countSessions=False,sessionExcerptDuration=False)
+        page.AppendContent(Html.Tag("p")(durationStr))
 
     def FilteredItem(filter:Filter.Filter,name:str) -> Html.PageDescriptorMenuItem:
         newTitle = "All " + name.lower()
@@ -1235,6 +1239,9 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     excerpts = gDatabase["excerpts"]
     filterMenu = [
         FilteredExcerptsMenuItem(excerpts,Filter.PassAll,formatter,pageInfo,"All excerpts",pageAugmentor=MostCommonTags),
+        FilteredExcerptsMenuItem(excerpts,Filter.FTag(Filter.All),formatter,
+                                 Html.PageInfo("Featured",Utils.PosixJoin(pageDir,"AllExcerpts.html"),"All featured excerpts"),
+                                 "Featured","featured",pageAugmentor=SimpleDuration),
         FilteredItem(Filter.Category("Questions"),"Questions"),
         FilteredItem(Filter.Category("Stories"),"Stories"),
         FilteredItem(Filter.Category("Quotes"),"Quotes"),
@@ -1493,7 +1500,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(TagBreadCrumbs(tagInfo))
             if peerTopicCount:
                 if peerTopicCount > 1:
-                    a(f"Part of tag group {HtmlTopicLink(gDatabase['tag'][tag]['topic'])} in key topic {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
+                    a(f"Part of tag cluster {HtmlTopicLink(gDatabase['tag'][tag]['topic'])} in key topic {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
                 else:
                     a(f"Part of key topic {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
                 a.br()
@@ -2051,7 +2058,7 @@ def KeyTopicMenu(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
-    drilldownItem = Html.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
+    drilldownItem = Html.PageInfo("Tag hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
