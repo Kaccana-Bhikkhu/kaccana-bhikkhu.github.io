@@ -62,6 +62,8 @@ def CheckUrl(url:str) -> UrlInfo:
     parsed = urllib.parse.urlparse(url)
     htmlFile = parsed.path.lower().endswith(".html")
     fragmentToCheck = parsed.fragment
+    if fragmentToCheck == "_keep_scroll":
+        fragmentToCheck = ""
     url = urllib.parse.urlunparse(parsed._replace(fragment=""))
 
     try:

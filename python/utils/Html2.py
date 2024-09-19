@@ -385,7 +385,8 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
         if not textHeading:
             textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
         if not headingID:
-            headingID = Utils.slugify(textHeading)
+            headingID = textHeading
+        headingID = Utils.slugify(headingID)
 
         if textHeading != prevHeading:
             if anythingListed and betweenSections:
