@@ -358,10 +358,14 @@ class PageDesc(Renderable):
 
 
 T = TypeVar("T")
-def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None,str]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
-    itemRenderer: Takes an item and returns the tuple heading[,htmlBody[,headingID]].
+    itemRenderer: Takes an item and returns the tuple htmlHeading[,htmlBody[,headingID[,textHeading]]].
+        htmlHeading: html code for the heading; displayed between htmlBody units
+        htmlBody: html code for the body; print the heading only if omitted
+        headingID: html id for the heading; generated from textHeading if omitted
+        textHeading: text to display in the menu; generated from htmlHeading if omitted
     headingWrapper: Wrap the heading in the body with this html code.
     addMenu: Generate a horizontal menu linking to each section at the top?
     """
@@ -373,18 +377,13 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
     prevHeading = None
     anythingListed = False
     for item in items:
-        rendered = itemRenderer(item)
-        if len(rendered) == 3:
-            htmlHeading,htmlBody,headingID = rendered
-        elif len(rendered) == 2:
-            htmlHeading,htmlBody = rendered
-            headingID = None
-        else:
-            htmlHeading, = rendered
-            htmlBody = ""
-            headingID = None
-
-        textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
+        rendered = iter(itemRenderer(item))
+        htmlHeading = next(rendered)
+        htmlBody = next(rendered,"")
+        headingID = next(rendered,"")
+        textHeading = next(rendered,"")
+        if not textHeading:
+            textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
         if not headingID:
             headingID = Utils.slugify(textHeading)
 

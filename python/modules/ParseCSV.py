@@ -593,12 +593,14 @@ def CollectTopicHeadings(database:dict[str]) -> None:
         if topic["flags"] in SUBTAG_FLAGS:
             topicsToRemove.add(topic["topic"])
             mainTopic["subtags"][topic["topic"]] = topic["flags"]
+            database["tag"][topic["topic"]]["topic"] = mainTopic["topic"]
         else:
             mainTopic = topic
             topic["subtags"] = {}
             topic["headingCode"] = currentHeading["code"]
             topic["heading"] = currentHeading["heading"]
             database["tag"][topic["topic"]]["topicHeading"] = currentHeading["code"]
+            database["tag"][topic["topic"]]["topic"] = topic["topic"]
             if not topic["displayAs"]:
                 topic["displayAs"] = topic["topic"]
             topic.pop("shortNote",None)
