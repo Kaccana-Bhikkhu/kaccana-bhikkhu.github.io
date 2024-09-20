@@ -133,8 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "CheckLinks",
-                "--buildOnlyIndexes"
+                "Prototype",
+                "--buildOnly",
+                "events"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

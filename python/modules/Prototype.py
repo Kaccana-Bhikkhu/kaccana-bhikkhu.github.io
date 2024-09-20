@@ -130,34 +130,34 @@ def HtmlTagLink(tag:str, fullTag: bool = False,text:str = "",link = True,showSta
     else:
         return text + flag
 
-def HtmlTopicHeadingLink(headingCode:str,text:str = "",link=True,count = False) -> str:
-    "Return a link to the specified topic heading."
+def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> str:
+    "Return a link to the specified key topic."
 
     if not text:
-        text = gDatabase["topicHeading"][headingCode]["heading"]
+        text = gDatabase["keyTopic"][headingCode]["topic"]
 
     if link:
         returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../topics","list-"+headingCode+".html")})(text)
     else:
         returnValue = text
 
-    if count and gDatabase['topicHeading'][headingCode]['excerptCount']:
-        returnValue += f" ({gDatabase['topicHeading'][headingCode]['excerptCount']})"
+    if count and gDatabase['keyTopic'][headingCode]['excerptCount']:
+        returnValue += f" ({gDatabase['keyTopic'][headingCode]['excerptCount']})"
     return returnValue
 
     
-def HtmlTopicLink(topic:str,text:str = "",link=True,count=False) -> str:
-    "Return a link to the specified topic."
+def HtmlTagClusterLink(topic:str,text:str = "",link=True,count=False) -> str:
+    "Return a link to the specified tag cluster."
 
     if not text:
-        text = gDatabase["keyTopic"][topic]["displayAs"]
+        text = gDatabase["tagCluster"][topic]["displayAs"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["keyTopic"][topic]["htmlPath"])})(text)
+        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["tagCluster"][topic]["htmlPath"])})(text)
     else:
         returnValue = text
-    if count and gDatabase['keyTopic'][topic]['excerptCount']:
-        returnValue += f" ({gDatabase['keyTopic'][topic]['excerptCount']})"
+    if count and gDatabase['tagCluster'][topic]['excerptCount']:
+        returnValue += f" ({gDatabase['tagCluster'][topic]['excerptCount']})"
     return returnValue
 
 def ListLinkedTags(title:str, tags:Iterable[str],*args,**kwargs) -> str:
@@ -1511,7 +1511,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             continue
 
         relevantExcerpts = Filter.Tag(tag)(gDatabase["excerpts"])
-        peerTopicCount = 1 + len(gDatabase["keyTopic"][tag]["subtags"]) if tag in gDatabase["keyTopic"] else 0
+        peerTopicCount = 1 + len(gDatabase["tagCluster"][tag]["subtags"]) if tag in gDatabase["tagCluster"] else 0
 
         a = Airium()
         
@@ -1519,9 +1519,9 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(TagBreadCrumbs(tagInfo))
             if peerTopicCount:
                 if peerTopicCount > 1:
-                    a(f"Part of tag cluster {HtmlTopicLink(gDatabase['tag'][tag]['topic'])} in key topic {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
+                    a(f"Part of tag cluster {HtmlTagClusterLink(gDatabase['tag'][tag]['cluster'])} in key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][tag]['topicCode'])}")
                 else:
-                    a(f"Part of key topic {HtmlTopicHeadingLink(gDatabase['keyTopic'][tag]['headingCode'])}")
+                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][tag]['topicCode'])}")
                 a.br()
             if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
@@ -1890,24 +1890,24 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
     formatter.excerptNumbers = False
     formatter.excerptAttributeSource = True
 
-    for heading in gDatabase["topicHeading"].values():
-        link = Html.Tag("a",{"href": Utils.PosixJoin("../",indexPageInfo.file + "#" + heading["code"]),"title":"Show in key topic list"})
+    for topic in gDatabase["keyTopic"].values():
+        link = Html.Tag("a",{"href": Utils.PosixJoin("../",indexPageInfo.file + "#" + topic["code"]),"title":"Show in key topic list"})
         listIconLink = link(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=20)).prefix)
-        info = Html.PageInfo(heading["heading"],Utils.PosixJoin(topicDir,heading["listFile"]),listIconLink + "&nbsp Featured excerpts about " + heading["heading"])
+        info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),listIconLink + "&nbsp Featured excerpts about " + topic["topic"])
         page = Html.PageDesc(info)
-        page.AppendContent("Featured excerpts about " + heading["heading"],section="citationTitle")
-        page.keywords = ["Key topics",heading["heading"]]
+        page.AppendContent("Featured excerpts about " + topic["topic"],section="citationTitle")
+        page.keywords = ["Key topics",topic["topic"]]
 
-        if heading["longNote"]:
-            page.AppendContent(heading["longNote"] + "<hr>")
+        if topic["longNote"]:
+            page.AppendContent(topic["longNote"] + "<hr>")
 
         excerptsByTopic:dict[str:list[str]] = {}
-        for tag in heading["topics"]:
+        for cluster in topic["clusters"]:
             def SortKey(x) -> int:
-                return Database.FTagOrder(x,[tag])
+                return Database.FTagOrder(x,[cluster])
 
-            searchTags = set([tag] + list(gDatabase["keyTopic"][tag]["subtags"].keys()))
-            excerptsByTopic[tag] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
+            searchTags = set([cluster] + list(gDatabase["tagCluster"][cluster]["subtags"].keys()))
+            excerptsByTopic[cluster] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
             excerpt,tag,firstExcerpt,lastExcerpt = item
@@ -1917,16 +1917,16 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
             else:
                 excerptHtml = ""
 
-            if firstExcerpt and gDatabase["keyTopic"][tag]["subtags"]:
-                excerptHtml = ListLinkedTags("Cluster includes",[tag] + list(gDatabase["keyTopic"][tag]["subtags"]),plural="") + "\n<br>\n" + excerptHtml
+            if firstExcerpt and gDatabase["tagCluster"][tag]["subtags"]:
+                excerptHtml = ListLinkedTags("Cluster includes",[tag] + list(gDatabase["tagCluster"][tag]["subtags"]),plural="") + "\n<br>\n" + excerptHtml
 
             if excerpt and not lastExcerpt:
                 excerptHtml += "\n<hr>"
 
             
-            heading = "Tag cluster: " if gDatabase["keyTopic"][tag]["subtags"] else "Tag: "
-            heading += HtmlTopicLink(tag).replace(".html","-relevant.html")
-            return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html",""),gDatabase["keyTopic"][tag]["displayAs"]
+            heading = "Tag cluster: " if gDatabase["tagCluster"][tag]["subtags"] else "Tag: "
+            heading += HtmlTagClusterLink(tag).replace(".html","-relevant.html")
+            return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html",""),gDatabase["tagCluster"][tag]["displayAs"]
 
         def PairExcerptsWithTopic() -> Generator[tuple[dict,str]]:
             for tag,excerpts in excerptsByTopic.items():
@@ -1952,59 +1952,59 @@ def TagClusterPages(topicDir: str):
     if gOptions.buildOnlyIndexes:
         return
     
-    for topic,topicInfo in gDatabase["keyTopic"].items():
-        if not topicInfo["subtags"]:
+    for cluster,clusterInfo in gDatabase["tagCluster"].items():
+        if not clusterInfo["subtags"]:
             continue
 
-        tags = [topic] + list(topicInfo["subtags"].keys())
+        tags = [cluster] + list(clusterInfo["subtags"].keys())
         relevantExcerpts = Filter.Tag(tags)(gDatabase["excerpts"])
 
         a = Airium()
         
         with a.strong():
-            a(f"Part of key topic {HtmlTopicHeadingLink(topicInfo['headingCode'])}")
+            a(f"Part of key topic {HtmlKeyTopicLink(clusterInfo['topicCode'])}")
             a.br()
             a(ListLinkedTags("Includes tag",tags))
         
         a.hr()
         
-        pageInfo = Html.PageInfo("Tag cluster: " + topicInfo["displayAs"],topicInfo["htmlPath"])
+        pageInfo = Html.PageInfo("Tag cluster: " + clusterInfo["displayAs"],clusterInfo["htmlPath"])
         basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
-        basePage.keywords = ["Tag cluster",topicInfo["displayAs"]]
-        basePage.AppendContent(f"Tag cluster: {topicInfo['displayAs']}",section="citationTitle")
+        basePage.keywords = ["Tag cluster",clusterInfo["displayAs"]]
+        basePage.AppendContent(f"Tag cluster: {clusterInfo['displayAs']}",section="citationTitle")
 
         yield from TagSubsearchPages(tags,relevantExcerpts,basePage)
 
-def CompactTopicHeadings(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("Compact",Utils.PosixJoin(indexDir,"KeyTopics.html"),"Key topics")
     yield menuItem
 
-    def KeyTopicList(keyTopicHeader: dict) -> tuple[str,str,str]:
-        topicsToList = (t for t in keyTopicHeader["topics"] if not gDatabase["keyTopic"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
+    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
+        clustersToList = (t for t in keyTopic["clusters"] if not gDatabase["tagCluster"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
         
-        topicLinks = []
-        for tag in topicsToList:
+        clusterLinks = []
+        for tag in clustersToList:
             if gOptions.keyTopicsLinkToTags:
-                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["keyTopic"][tag]["htmlPath"],"-relevant"))
+                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["tagCluster"][tag]["htmlPath"],"-relevant"))
             else:
-                link = Utils.PosixJoin("../",topicDir,keyTopicHeader["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
-            text = gDatabase["keyTopic"][tag]["displayAs"]
-            if gDatabase["keyTopic"][tag]["excerptCount"]:
+                link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
+            text = gDatabase["tagCluster"][tag]["displayAs"]
+            if gDatabase["tagCluster"][tag]["excerptCount"]:
                 text += f'&nbsp{FA_STAR}'
-            topicLinks.append(Html.Tag("a",{"href":link})(text))
+            clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
-        tagList = Html.Tag("p")("&nbsp&nbsp ".join(topicLinks))
+        clusterList = Html.Tag("p")("&nbsp&nbsp ".join(clusterLinks))
 
-        if keyTopicHeader["shortNote"]:
-            tagList = "\n".join([tagList,Html.Tag('p')("Note: " + keyTopicHeader["shortNote"])])
-        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopicHeader["listFile"]),"style": "text-decoration: underline;"})(keyTopicHeader["heading"])
-        heading += f" ({keyTopicHeader['excerptCount']})"
-        return heading,tagList,keyTopicHeader["code"]
+        if keyTopic["shortNote"]:
+            clusterList = "\n".join([clusterList,Html.Tag('p')("Note: " + keyTopic["shortNote"])])
+        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"]),"style": "text-decoration: underline;"})(keyTopic["topic"])
+        heading += f" ({keyTopic['excerptCount']})"
+        return heading,clusterList,keyTopic["code"]
 
-    pageContent = Html.ListWithHeadings(gDatabase["topicHeading"].values(),KeyTopicList,
+    pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
                                         bodyWrapper="Number of featured excerpts for each topic appears in parentheses.<br><br>" + Html.Tag("div",{"class":"listing"}),
                                         addMenu=False,betweenSections="<br>")
 
@@ -2016,7 +2016,7 @@ def CompactTopicHeadings(indexDir: str,topicDir: str) -> Html.PageDescriptorMenu
 
     yield page
 
-def DetailedTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
@@ -2025,20 +2025,20 @@ def DetailedTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     a = Airium()
     with a.div(Class="listing"):
         a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
-        for headingCode,heading in gDatabase["topicHeading"].items():
-            with a.h3(id=headingCode,style="text-decoration: underline;"):
-                a(HtmlTopicHeadingLink(headingCode,count=True))
-            if heading["shortNote"]:
+        for topicCode,topic in gDatabase["keyTopic"].items():
+            with a.h3(id=topicCode,style="text-decoration: underline;"):
+                a(HtmlKeyTopicLink(topicCode,count=True))
+            if topic["shortNote"]:
                 with a.span(style="margin-left: 3.5em;"):
-                    a(heading["shortNote"])
-            for topic in heading["topics"]:
+                    a(topic["shortNote"])
+            for cluster in topic["clusters"]:
                 with a.p(style="margin-left: 2em;"):
-                    subtags = list(gDatabase["keyTopic"][topic]["subtags"].keys())
+                    subtags = list(gDatabase["tagCluster"][cluster]["subtags"].keys())
                     with a.strong() if len(subtags) > 0 else nullcontext(0):
-                        a(HtmlTopicLink(topic,count=True))
+                        a(HtmlTagClusterLink(cluster,count=True))
                     if len(subtags) > 0:
                         a(" – ")
-                        a(ListLinkedTags("Cluster includes",[topic] + subtags,plural=""))
+                        a(ListLinkedTags("Cluster includes",[cluster] + subtags,plural=""))
             a.br()
 
     page = Html.PageDesc(menuItem)
@@ -2054,7 +2054,7 @@ def PrintTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     menuItem = Html.PageInfo("Printable",Utils.PosixJoin(indexDir,"KeyTopicDetail_print.html"),"Key topics")
     yield menuItem
 
-    topicList = DetailedTopics(indexDir,topicDir)
+    topicList = DetailedKeyTopics(indexDir,topicDir)
     _ = next(topicList)
     page = next(topicList)
     page.info = menuItem
@@ -2064,15 +2064,15 @@ def KeyTopicMenu(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     """Display a list of key topics and corresponding key tags.
     Also generate one page containing a list of all featured excepts for each key topic."""
 
-    menuItem = next(CompactTopicHeadings(indexDir,topicDir))
+    menuItem = next(CompactKeyTopics(indexDir,topicDir))
     menuItem = menuItem._replace(title="Key topics",titleIB="Key topics")
     yield menuItem
     
     basePage = Html.PageDesc(menuItem)
 
     keyTopicMenu = [
-        CompactTopicHeadings(indexDir,topicDir),
-        DetailedTopics(indexDir,topicDir),
+        CompactKeyTopics(indexDir,topicDir),
+        DetailedKeyTopics(indexDir,topicDir),
         PrintTopics(indexDir,topicDir),
     ]
 

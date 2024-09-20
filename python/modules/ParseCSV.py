@@ -571,53 +571,53 @@ def CountSubtagExcerpts(database):
         tagList[parentIndex]["subtagCount"] = len(theseTags) - 1
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
-def CollectTopicHeadings(database:dict[str]) -> None:
-    """Create keyTopic dictionary from keyTag dictionary."""
+def CollectKeyTopics(database:dict[str]) -> None:
+    """Create keyTopic dictionary from tagCluster dictionary."""
 
-    topicHeading = {}
-    currentHeading = {}
-    topicsToRemove = set()
-    mainTopic = None
-    for topic in database["keyTopic"].values():
-        if topic["heading"]:
-            currentHeading = {
-                "code": topic["headingCode"],
-                "heading": topic["heading"],
-                "shortNote": topic["shortNote"],
-                "longNote": topic["longNote"],
-                "listFile": "list-" + topic["headingCode"] + ".html",
-                "topics": []
+    keyTopic = {}
+    currentKeyTopic = {}
+    clustersToRemove = set()
+    thisCluster = None
+    for cluster in database["tagCluster"].values():
+        if cluster["keyTopic"]:
+            currentKeyTopic = {
+                "code": cluster["topicCode"],
+                "topic": cluster["keyTopic"],
+                "shortNote": cluster["shortNote"],
+                "longNote": cluster["longNote"],
+                "listFile": cluster["topicCode"] + ".html",
+                "clusters": []
             }
-            topicHeading[topic["headingCode"]] = currentHeading
+            keyTopic[cluster["topicCode"]] = currentKeyTopic
         
-        if topic["flags"] in SUBTAG_FLAGS:
-            topicsToRemove.add(topic["topic"])
-            mainTopic["subtags"][topic["topic"]] = topic["flags"]
-            database["tag"][topic["topic"]]["topic"] = mainTopic["topic"]
+        if cluster["flags"] in SUBTAG_FLAGS:
+            clustersToRemove.add(cluster["tag"])
+            thisCluster["subtags"][cluster["tag"]] = cluster["flags"]
+            database["tag"][cluster["tag"]]["cluster"] = thisCluster["tag"]
         else:
-            mainTopic = topic
-            topic["subtags"] = {}
-            topic["headingCode"] = currentHeading["code"]
-            topic["heading"] = currentHeading["heading"]
-            database["tag"][topic["topic"]]["topicHeading"] = currentHeading["code"]
-            database["tag"][topic["topic"]]["topic"] = topic["topic"]
-            if not topic["displayAs"]:
-                topic["displayAs"] = topic["topic"]
-            topic.pop("shortNote",None)
-            topic.pop("longNote",None)
+            thisCluster = cluster
+            cluster["subtags"] = {}
+            cluster["topicCode"] = currentKeyTopic["code"]
+            cluster["keyTopic"] = currentKeyTopic["topic"]
+            database["tag"][cluster["tag"]]["keyTopicCode"] = currentKeyTopic["code"]
+            database["tag"][cluster["tag"]]["cluster"] = cluster["tag"]
+            if not cluster["displayAs"]:
+                cluster["displayAs"] = cluster["tag"]
+            cluster.pop("shortNote",None)
+            cluster.pop("longNote",None)
             
-            currentHeading["topics"].append(topic["topic"])
+            currentKeyTopic["clusters"].append(cluster["tag"])
     
-    for topic in topicsToRemove:
-        del database["keyTopic"][topic]
+    for cluster in clustersToRemove:
+        del database["tagCluster"][cluster]
     
-    for topic in database["keyTopic"].values():
-        if topic["subtags"]: # Topics with subtopics link to separate pages in the topics directory
-            topic["htmlPath"] = f"topics/{Utils.slugify(topic['topic'])}.html"
+    for cluster in database["tagCluster"].values():
+        if cluster["subtags"]: # Topics with subtopics link to separate pages in the topics directory
+            cluster["htmlPath"] = f"topics/{Utils.slugify(cluster['tag'])}.html"
         else: # Tags without subtopics link to pages in the tags directory
-            topic["htmlPath"] = f"tags/{database['tag'][topic['topic']]['htmlFile']}"
+            cluster["htmlPath"] = f"tags/{database['tag'][cluster['tag']]['htmlFile']}"
 
-    database["topicHeading"] = topicHeading
+    database["keyTopic"] = keyTopic
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -1237,22 +1237,22 @@ def CountAndVerify(database):
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
         tagsToRemove = []
-        for topic in tagSet:
+        for cluster in tagSet:
             try:
-                tagDB[topic]["excerptCount"] = tagDB[topic].get("excerptCount",0) + 1
+                tagDB[cluster]["excerptCount"] = tagDB[cluster].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.warning(f"CountAndVerify: Tag",repr(topic),"is not defined. Will remove this tag.")
-                tagsToRemove.append(topic)
+                Alert.warning(f"CountAndVerify: Tag",repr(cluster),"is not defined. Will remove this tag.")
+                tagsToRemove.append(cluster)
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
         
-        for topic in x["fTags"]:
-            if topic not in tagSet:
-                Alert.caution(x,"specifies fTag",topic,"but this does not appear as a regular tag.")
-            tagDB[topic]["fTagCount"] = tagDB[topic].get("fTagCount",0) + 1
+        for cluster in x["fTags"]:
+            if cluster not in tagSet:
+                Alert.caution(x,"specifies fTag",cluster,"but this does not appear as a regular tag.")
+            tagDB[cluster]["fTagCount"] = tagDB[cluster].get("fTagCount",0) + 1
             fTagCount += 1
     
     Alert.info(tagCount,"total tags applied.",fTagCount,"featured tags applied.")
@@ -1265,23 +1265,23 @@ def CountAndVerify(database):
         teacher["excerptCount"] = len(Filter.Teacher(teacher["teacher"])(database["excerpts"]))
         # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
     
-    for heading in database["topicHeading"].values():
+    for topic in database["keyTopic"].values():
         topicExcerpts = set()
-        for topic in heading["topics"]:
-            allTags = set([topic] + list(database["keyTopic"][topic]["subtags"].keys()))
+        for cluster in topic["clusters"]:
+            allTags = set([cluster] + list(database["tagCluster"][cluster]["subtags"].keys()))
             tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
-            database["keyTopic"][topic]["excerptCount"] = len(tagExcerpts)
+            database["tagCluster"][cluster]["excerptCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         
-        heading["excerptCount"] = len(topicExcerpts)
+        topic["excerptCount"] = len(topicExcerpts)
 
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"eventCount")
     
     # Are tags flagged Primary as needed?
-    for topic in database["tag"]:
-        tagDesc = database["tag"][topic]
+    for cluster in database["tag"]:
+        tagDesc = database["tag"][cluster]
         if tagDesc["primaries"] > 1:
             Alert.caution(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
         if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and TagFlag.VIRTUAL not in tagDesc["flags"]:
@@ -1533,7 +1533,7 @@ def main():
         Alert.error("No excerpts have been parsed. Aborting.")
         sys.exit(1)
 
-    CollectTopicHeadings(gDatabase)
+    CollectKeyTopics(gDatabase)
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)
