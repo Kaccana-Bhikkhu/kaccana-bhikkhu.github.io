@@ -889,14 +889,15 @@ class Formatter:
             omitTags = self.excerptOmitTags
             if self.excerptOmitSessionTags:
                 omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
-            
+            omitTags -= set(excerpt["fTags"]) # Always show fTags
+
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
 
             text = tag
             if tag in excerpt["fTags"]:
                 text += f'&nbsp{FA_STAR}'
-                text += "?" * (Database.FTagOrder(excerpt,[tag]) - 1000) # Add ? to uncertain fTags; "?" * -N = """
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10) # Add ? to uncertain fTags; "?" * -N = ""
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -915,7 +916,7 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation.get("tags",())):
-            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags)
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"]))
             
             text = tag
             if tag in excerpt["fTags"]:
