@@ -30,9 +30,9 @@ class TagFlag(StrEnum):
 
 class KeyTagFlag(StrEnum):
     HEADING = "h"               # This tag is subsumed under the Key Topic heading and shouldn't be displayed
-    PEER_TAG = "-"              # Subtag of previous topic X. Shown as: X, Y, and Z
-    SUBORDINATE_TAG = ","       # Subtag of previous topic X. Shown as: X (includes Y)
-    HIDDEN_TAG = "."            # Subtag of previous topic X. Not displayed.
+    PEER_TAG = "+"              # Subtag of previous topic X. Shown as: X, Y, and Z
+    SUBORDINATE_TAG = "*"       # Subtag of previous topic X. Shown as: X (includes Y)
+    HIDDEN_TAG = "-"            # Subtag of previous topic X. Not displayed.
 
 SUBTAG_FLAGS = set([KeyTagFlag.PEER_TAG,KeyTagFlag.SUBORDINATE_TAG,KeyTagFlag.HIDDEN_TAG])
 class ExcerptFlag(StrEnum):

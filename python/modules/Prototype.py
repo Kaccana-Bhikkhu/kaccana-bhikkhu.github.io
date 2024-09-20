@@ -141,7 +141,7 @@ def HtmlTopicHeadingLink(headingCode:str,text:str = "",link=True,count = False) 
     else:
         returnValue = text
 
-    if (count):
+    if count and gDatabase['topicHeading'][headingCode]['excerptCount']:
         returnValue += f" ({gDatabase['topicHeading'][headingCode]['excerptCount']})"
     return returnValue
 
@@ -156,7 +156,7 @@ def HtmlTopicLink(topic:str,text:str = "",link=True,count=False) -> str:
         returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["keyTopic"][topic]["htmlPath"])})(text)
     else:
         returnValue = text
-    if (count):
+    if count and gDatabase['keyTopic'][topic]['excerptCount']:
         returnValue += f" ({gDatabase['keyTopic'][topic]['excerptCount']})"
     return returnValue
 
@@ -2028,6 +2028,9 @@ def DetailedTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
         for headingCode,heading in gDatabase["topicHeading"].items():
             with a.h3(id=headingCode,style="text-decoration: underline;"):
                 a(HtmlTopicHeadingLink(headingCode,count=True))
+            if heading["shortNote"]:
+                with a.span(style="margin-left: 3.5em;"):
+                    a(heading["shortNote"])
             for topic in heading["topics"]:
                 with a.p(style="margin-left: 2em;"):
                     subtags = list(gDatabase["keyTopic"][topic]["subtags"].keys())
