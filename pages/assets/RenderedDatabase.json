@@ -96877,7 +96877,7 @@
       "title": "Metta Retreat",
       "subtitle": "",
       "code": "Metta2008",
-      "series": "Other",
+      "series": "Retreats",
       "venue": "Padmasambhava Peace Institute",
       "teachers": [
         "AP"
@@ -97577,7 +97577,7 @@
       "title": "The Path of Practice",
       "subtitle": "",
       "code": "Path2019",
-      "series": "Other",
+      "series": "Retreats",
       "venue": "Victoria Insight Meditation Center",
       "teachers": [
         "AP"
@@ -97726,7 +97726,7 @@
       "title": "Abhayagiri 25th Anniversary Retreat",
       "subtitle": "Nine Days of Dhamma",
       "code": "Anniversary2021",
-      "series": "Other",
+      "series": "Retreats",
       "venue": "Abhayagiri Buddhist Monastery",
       "teachers": [
         "AP",
@@ -97773,7 +97773,7 @@
       "subtitle": "A Treasure Mountain podcast",
       "code": "Podcast2023",
       "series": "Other",
-      "venue": "Abhayagiri Buddhist Monastery",
+      "venue": "",
       "teachers": [
         "AP"
       ],
@@ -97812,7 +97812,7 @@
       "title": "Madison Insight Retreat 2023",
       "subtitle": "",
       "code": "Madison2023",
-      "series": "Other",
+      "series": "Retreats",
       "venue": "Madison Insight",
       "teachers": [
         "AP"
@@ -97831,7 +97831,7 @@
       "title": "Interreligious Retreat-Seminar on Dhamma and Non-duality",
       "subtitle": "",
       "code": "Rishikesh2023",
-      "series": "Other",
+      "series": "Retreats",
       "venue": "Ajatananda Ashram",
       "teachers": [
         "AP"
@@ -120117,6 +120117,11 @@
       "abbreviation": "UD",
       "description": "Well-organized afternoon teaching sessions held at Abhayagiri Monastery attended by committed supporters. Themes are chosen in advance and touch upon formal meditation practice, devotional practice, sutta study, daily life practice, and social aspects of Dhamma practice. <a href=\"../about/02_Event-series.html#upasika-days\">More...</a>"
     },
+    "Retreats": {
+      "series": "Retreats",
+      "abbreviation": "varies",
+      "description": "Multi-day retreats held at venues around the world."
+    },
     "Q&ampA sessions": {
       "series": "Q&ampA sessions",
       "abbreviation": "varies",
@@ -120124,7 +120129,7 @@
     },
     "Other": {
       "series": "Other",
-      "abbreviation": "",
+      "abbreviation": "varies",
       "description": "Events that don’t fit into any of the above categories."
     }
   },

@@ -782,9 +782,23 @@ def EventSeriesAndDateStr(event: dict) -> str:
     joinItems = []
     series = event["series"]
     if series != "Other":
-        joinItems.append(re.sub(r's$','',series))
+        if series != "Q&ampA sessions" or event["sessions"] == 1: # Don't remove the s for multiple Q&A sessions
+            joinItems.append(re.sub(r's$','',series))
     joinItems.append(EventDateStr(event))
     return ", ".join(joinItems)
+
+def EventVenueStr(event: dict) -> str:
+    "Return a string describing the event venue"
+    if not event["venue"]:
+        if event["format"] == "Interview":
+            return "Online interview" if event["medium"] == "Online" else "Interview"
+    
+    venueStr = f"{event['venue']} in {gDatabase['venue'][event['venue']]['location']}"
+    if event["medium"] == "Online":
+        venueStr = "Online from " + venueStr
+    elif event["medium"] == "Hybrid":
+        venueStr += " and online"
+    return venueStr
 
 def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = True,countSessionExcerpts = False,sessionExcerptDuration = True) -> str:
     "Return a string describing the duration of the excerpts we were passed."
@@ -1275,6 +1289,10 @@ def ListDetailedEvents(events: Iterable[dict]) -> str:
             a.br()
             a(EventSeriesAndDateStr(e))
             a.br()
+            venueStr = EventVenueStr(e)
+            if venueStr:
+                a(venueStr)
+                a.br()
             eventExcerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
             a(ExcerptDurationStr(eventExcerpts))
                 
@@ -1769,8 +1787,10 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a(EventSeriesAndDateStr(eventInfo))
         a.br()
         
-        a(f"{eventInfo['venue']} in {gDatabase['venue'][eventInfo['venue']]['location']}")
-        a.br()
+        venueInfo = EventVenueStr(eventInfo)
+        if venueInfo:
+            a(venueInfo)
+            a.br()
         
         a(ExcerptDurationStr(excerpts))
         a.br()
