@@ -430,7 +430,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player","topic","topicList"}))
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player","topic","cluster"}))
     linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()#]*)#?([^()#]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
@@ -514,8 +514,20 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             if not hashTag:
                 hashTag = "cover"
             text = f'<!--HTML <img src="{imagePath}" alt="{text}" class="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
-        elif pageType == "topicList":
-            pass
+        elif pageType == "cluster":
+            if link:
+                cluster = link
+            else:
+                cluster = text
+            
+            realCluster = Database.TagClusterLookup(cluster)
+            if realCluster:
+                linkTo = gDatabase["tagCluster"][realCluster]["htmlPath"].replace(".html","-relevant.html")
+        elif pageType == "topic":
+            if link in gDatabase["keyTopic"]:
+                linkTo = f"topics/{link}.html"
+            else:
+                Alert.warning("Cannot link to key topic",link,"in link",matchObject[0])
 
         if linkTo:
             path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)

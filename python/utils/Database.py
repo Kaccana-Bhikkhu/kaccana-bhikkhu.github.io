@@ -96,6 +96,18 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
 
     return tagDictCache.get(tagRef,None)
 
+def TagClusterLookup(clusterRef:str,tagClusterDictCache:dict = {}) -> str|None:
+    "Search for a tag cluster based on any of its various names. Return the base tag name."
+
+    if not tagClusterDictCache: # modify the value of a default argument to create a cache of potential tag references
+        clusterDB = gDatabase["tagCluster"]
+        tagDB = gDatabase["tag"]
+        tagClusterDictCache.update((cluster,cluster) for cluster in clusterDB)
+        tagClusterDictCache.update((clusterDB[cluster]["displayAs"],cluster) for cluster in clusterDB)
+        tagClusterDictCache.update((tagDB[cluster]["fullTag"],cluster) for cluster in clusterDB)
+
+    return tagClusterDictCache.get(clusterRef,None)
+
 def ParentTagListEntry(listIndex: int) -> dict|None:
     "Return a the entry in gDatabase['tagDisplayList'] that corresponds to this tag's parent tag."
 
