@@ -333,6 +333,8 @@ class HashWriter(FileRegister):
         deleteCount = 0
         matcher = re.compile(filterRegex)
         baseDir = posixpath.join(self.basePath,directory)
+        if not os.path.isdir(baseDir):
+            return 0
         stale = {"_status":Status.STALE}
         for fileName in sorted(os.listdir(baseDir)):
             fullPath = posixpath.join(baseDir,fileName)

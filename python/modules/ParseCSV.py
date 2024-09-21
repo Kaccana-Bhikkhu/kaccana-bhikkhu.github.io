@@ -420,6 +420,10 @@ def RemoveUnusedTags(database: dict) -> None:
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
     usedTags.update(t["subsumedUnder"] for t in gDatabase["tagSubsumed"].values())
+    for cluster in database["tagCluster"].values():
+        usedTags.add(cluster["tag"])
+        usedTags.update(cluster["subtags"].keys())
+
 
     Alert.extra(len(usedTags),"unique tags applied.")
     
@@ -613,7 +617,7 @@ def CollectKeyTopics(database:dict[str]) -> None:
     
     for cluster in database["tagCluster"].values():
         if cluster["subtags"]: # Topics with subtopics link to separate pages in the topics directory
-            cluster["htmlPath"] = f"topics/{Utils.slugify(cluster['tag'])}.html"
+            cluster["htmlPath"] = f"clusters/{Utils.slugify(cluster['tag'])}.html"
         else: # Tags without subtopics link to pages in the tags directory
             cluster["htmlPath"] = f"tags/{database['tag'][cluster['tag']]['htmlFile']}"
 

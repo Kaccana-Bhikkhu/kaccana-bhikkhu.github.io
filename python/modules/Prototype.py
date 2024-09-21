@@ -57,8 +57,8 @@ def DeleteUnwrittenHtmlFiles(writer: FileRegister.HashWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     # Delete files only in directories we have built
-    dirs = gOptions.buildOnly & {"events","tags","teachers","drilldown","search"}
-    if "tags" in gOptions.buildOnly:
+    dirs = gOptions.buildOnly & {"events","tags","clusters","teachers","drilldown","search"}
+    if "clusters" in gOptions.buildOnly:
         dirs.add("topics")
     dirs.add("about")
     if gOptions.buildOnly == gAllSections:
@@ -1490,7 +1490,7 @@ def TagBreadCrumbs(tagInfo: dict) -> tuple[str,list[str]]:
 def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
     """Write a html file for each tag in the database"""
     
-    if gOptions.buildOnlyIndexes:
+    if gOptions.buildOnlyIndexes or not "tags" in gOptions.buildOnly:
         return
     
     def SubsumedTagDescription(tagData:dict) -> str:
@@ -1949,7 +1949,7 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
 
 def TagClusterPages(topicDir: str):
     """Generate a series of pages for each tag cluster."""
-    if gOptions.buildOnlyIndexes:
+    if gOptions.buildOnlyIndexes or not "clusters" in gOptions.buildOnly:
         return
     
     for cluster,clusterInfo in gDatabase["tagCluster"].items():
@@ -2114,14 +2114,14 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     yield next(KeyTopicMenu(indexDir,"topics"))._replace(title="Tags")
 
     tagMenu = [
-        KeyTopicMenu(indexDir,"topics"),
+        YieldAllIf(KeyTopicMenu(indexDir,"topics"),"clusters" in gOptions.buildOnly),
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         NumericalTagList(indexDir),
         MostCommonTagList(indexDir),
         [Html.PageInfo("About tags","about/05_Tags.html")],
         TagPages("tags"),
-        TagClusterPages("topics")
+        TagClusterPages("clusters")
     ]
 
     baseTagPage = Html.PageDesc()
@@ -2203,11 +2203,11 @@ def AddArguments(parser):
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
     parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
     
-gAllSections = {"tags","drilldown","events","teachers","search","allexcerpts"}
+gAllSections = {"tags","clusters","drilldown","events","teachers","search","allexcerpts"}
 def ParseArguments():
     if gOptions.buildOnly == "":
         if gOptions.buildOnlyIndexes:
-            gOptions.buildOnly = {"tags","events","teachers"}
+            gOptions.buildOnly = {"tags","clusters","events","teachers"}
         else:
             gOptions.buildOnly = gAllSections
     elif gOptions.buildOnly.lower() == "none":
@@ -2258,7 +2258,7 @@ def main():
     mainMenu.append(DocumentationMenu("misc",makeMenu=False))
 
     mainMenu.append(YieldAllIf(SearchMenu("search"),"search" in gOptions.buildOnly))
-    mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(TagMenu(indexDir),{"tags","clusters"} | gOptions.buildOnly))
     mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
