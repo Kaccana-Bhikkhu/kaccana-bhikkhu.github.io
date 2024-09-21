@@ -1980,7 +1980,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("Compact",Utils.PosixJoin(indexDir,"KeyTopics.html"),"Key topics")
-    yield menuItem
+    yield menuItem.AddQuery("hideAll")
 
     def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
         clustersToList = (t for t in keyTopic["clusters"] if not gDatabase["tagCluster"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
@@ -2000,13 +2000,13 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
 
         if keyTopic["shortNote"]:
             clusterList = "\n".join([clusterList,Html.Tag('p')(keyTopic["shortNote"])])
-        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"]),"style": "text-decoration: underline;"})(keyTopic["topic"])
+        heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"])})(keyTopic["topic"])
         heading += f" ({keyTopic['excerptCount']})"
         return heading,clusterList,keyTopic["code"]
 
-    pageContent = Html.ListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
+    pageContent = Html.ToggleListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
                                         bodyWrapper="Number of featured excerpts for each topic appears in parentheses.<br><br>" + Html.Tag("div",{"class":"listing"}),
-                                        addMenu=False,betweenSections="<br>")
+                                        addMenu=False,betweenSections="\n")
 
     page = Html.PageDesc(menuItem)
     page.AppendContent(pageContent)
@@ -2027,10 +2027,10 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
         a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
         for topicCode,topic in gDatabase["keyTopic"].items():
             with a.p(id=topicCode):
-                with a.a().i(Class = "fa fa-plus-square toggle-view",id=topicCode):
+                with a.a().i(Class = "fa fa-minus-square toggle-view",id=topicCode):
                     pass
                 a(HtmlKeyTopicLink(topicCode,count=True))
-            with a.div(id=topicCode + ".b",style="display:none;"):
+            with a.div(id=topicCode + ".b"):
                 if topic["shortNote"]:
                     with a.span(style="margin-left: 3.5em;"):
                         a(topic["shortNote"])

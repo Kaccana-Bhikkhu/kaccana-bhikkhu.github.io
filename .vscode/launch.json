@@ -135,7 +135,8 @@
             "args": [
                 "Prototype",
                 "--buildOnly",
-                "events"
+                "clusters",
+                "--buildOnlyIndexes"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

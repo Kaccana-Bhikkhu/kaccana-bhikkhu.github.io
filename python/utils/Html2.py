@@ -11,12 +11,13 @@ from typing import List
 import copy
 import Utils
 import re
+import urllib.parse
 
 class Wrapper(NamedTuple):
     "A prefix and suffix to wrap an html object in."
     prefix: str = ""
     suffix: str = ""
-    def Wrap(self,contents: str|Wrapper, joinStr: str = "") -> str:
+    def Wrap(self,contents: str|Wrapper = "", joinStr: str = "") -> str:
         if type(contents) == Wrapper:
             return Wrapper(self.prefix + joinStr + contents.prefix,contents.suffix + joinStr + self.suffix)
         else:
@@ -62,6 +63,12 @@ class PageInfo(NamedTuple):
             return self.titleIB
         else:
             return self.title
+    
+    def AddQuery(self,query: str) -> NamedTuple:
+        "Return a NamedTuple with a query string added to the file URL."
+        parsed = urllib.parse.urlparse(self.file)
+        return self._replace(file = parsed._replace(query=query).geturl())
+
 
 class Renderable:
     """An object that supports the Render method to (optionally) substitute attributes and then convert to a str."""
@@ -422,4 +429,26 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
 
 def ToggleListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None,str]],*args,**kwdArgs):
     """Create a list using the same parameters as ListWithHeadings and add a toggle-view opener/closer to each heading."""
-    pass
+    
+    toggler = Tag("a")(Tag("i",{"class":"fa fa-minus-square toggle-view","id":"HEADING_ID"})())
+    toggleHeading = Wrapper("<p>" + toggler + " ","</p>")
+
+    def WrapWithDivTag(item: T) -> list[str,str,str|None,str]:
+        rendered = iter(itemRenderer(item))
+        htmlHeading = next(rendered)
+        htmlBody = next(rendered,"")
+        headingID = next(rendered,"")
+        textHeading = next(rendered,"")
+
+        if not textHeading:
+            textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
+        if not headingID:
+            headingID = textHeading
+        headingID = Utils.slugify(headingID)
+
+        htmlBody = Tag("div",{"id":headingID + ".b"})(htmlBody)
+
+        return htmlHeading,htmlBody,headingID,textHeading
+
+
+    return ListWithHeadings(items,WrapWithDivTag,headingWrapper=toggleHeading,*args,**kwdArgs)

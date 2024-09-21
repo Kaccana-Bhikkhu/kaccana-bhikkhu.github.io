@@ -1,11 +1,18 @@
 
-function setVisible(element,visible) {
+function setVisible(element,newVisible) {
     // Set the visibility of this toggle-view element
     // element: the html element corresponding to the toggle button
-    // visible: true = show, false = hide, any other value = toggle
+    // newVisible: true = show, false = hide, null = no change, any other value = toggle
 
-    console.log("Toggled.");
+    if (newVisible == null)
+        return;
+
     let body = document.getElementById(element.id + ".b");
+    let isVisible = body.style.display != "none";
+
+    if (newVisible == isVisible)
+        return;
+
     if (body.style.display == "none") {
         body.style.display = "block";
         element.className = "fa fa-minus-square toggle-view";
@@ -18,9 +25,13 @@ function setVisible(element,visible) {
 export function loadToggleView() {
     let togglers = document.getElementsByClassName("toggle-view");
 
+    let params = new URLSearchParams(location.search.slice(1));
+    let initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
+
     for (let t of togglers) {
+        setVisible(t,initView)
         t.addEventListener("click", function() {
-            setVisible(this);
+            setVisible(this,"toggle");
         });
     }
 }
