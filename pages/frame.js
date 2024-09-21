@@ -1,5 +1,6 @@
 import posix from "./path.js";
 import { loadSearchPage } from "./search.js";
+import { loadToggleView } from "./toggle-view.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
@@ -86,6 +87,7 @@ async function changeURL(pUrl) {
 
 			configureLinks(frame,resultUrl);
 			loadSearchPage();
+			loadToggleView()
 		});
 }
 

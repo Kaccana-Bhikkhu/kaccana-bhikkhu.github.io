@@ -419,3 +419,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
     page.AppendContent(bodyWrapper("\n".join(bodyParts)))
 
     return page
+
+def ToggleListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None,str]],*args,**kwdArgs):
+    """Create a list using the same parameters as ListWithHeadings and add a toggle-view opener/closer to each heading."""
+    pass
