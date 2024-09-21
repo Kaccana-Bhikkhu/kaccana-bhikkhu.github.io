@@ -137,7 +137,7 @@ def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> s
         text = gDatabase["keyTopic"][headingCode]["topic"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../topics","list-"+headingCode+".html")})(text)
+        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../topics",headingCode+".html")})(text)
     else:
         returnValue = text
 
