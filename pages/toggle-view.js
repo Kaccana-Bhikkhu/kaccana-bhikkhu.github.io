@@ -23,13 +23,14 @@ function setVisible(element,newVisible) {
 }
 
 export function loadToggleView() {
-    let togglers = document.getElementsByClassName("toggle-view");
-
-    let subURL = location.hash.slice(1)
-    let params = new URLSearchParams(subURL.match(/\?[^#]*/)[0].slice(1))
+    let initView = null
+    let subURLSearch = location.hash.slice(1).match(/\?[^#]*/)
+    if (subURLSearch) {
+        let params = new URLSearchParams(subURLSearch[0].slice(1))
         // take our params from the frame psuedo-URL that follows after the #.
-    let initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
-
+        initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
+    }
+    let togglers = document.getElementsByClassName("toggle-view");
     for (let t of togglers) {
         setVisible(t,initView)
         t.addEventListener("click", function() {
