@@ -25,7 +25,9 @@ function setVisible(element,newVisible) {
 export function loadToggleView() {
     let togglers = document.getElementsByClassName("toggle-view");
 
-    let params = new URLSearchParams(location.search.slice(1));
+    let subURL = location.hash.slice(1)
+    let params = new URLSearchParams(subURL.match(/\?[^#]*/)[0].slice(1))
+        // take our params from the frame psuedo-URL that follows after the #.
     let initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
 
     for (let t of togglers) {

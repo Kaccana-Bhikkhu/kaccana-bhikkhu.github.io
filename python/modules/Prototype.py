@@ -2020,7 +2020,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
-    yield menuItem
+    yield menuItem.AddQuery("hideAll")
 
     a = Airium()
     with a.div(Class="listing"):
