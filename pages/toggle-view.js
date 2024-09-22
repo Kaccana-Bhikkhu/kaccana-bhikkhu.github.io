@@ -52,8 +52,9 @@ export function loadToggleView() {
             setVisible(t,initView);
         else
             setVisible(t,!initView);
-        t.addEventListener("click", function() {
+        t.addEventListener("click", function(event) {
             setVisible(this,"toggle",true);
+            event.preventDefault();
         });
     }
 }

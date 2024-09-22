@@ -31,8 +31,8 @@ export function setFrameSearch(params) {
 	if (hash.includes("?")) {
 		hash = hash.replace(SEARCH_PART,"?" + params.toString());
 	} else {
-		parts = hash.split("#");
-		parts[2] += "?" + params.toString();
+		let parts = hash.split("#");
+		parts[1] += "?" + params.toString();
 		hash = parts.join("#");
 	}
 	url.hash = hash;
@@ -83,7 +83,7 @@ export function configureLinks(frame,url) {
 			let url = href.replaceAll("index.html", "homepage.html")
 			let newLocation = new URL(locationNoQuery);
 			newLocation.hash = "#" + url;
-			let newFullUrl = newLocation.href;
+			let newFullUrl = newLocation.href.replace("#_keep_scroll","");
 			el.href = newFullUrl;
 
 			el.addEventListener("click", async (event) => {

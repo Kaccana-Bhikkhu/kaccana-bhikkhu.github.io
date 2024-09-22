@@ -1,4 +1,4 @@
-import {configureLinks} from './frame.js';
+import {configureLinks,frameSearch,setFrameSearch} from './frame.js';
 
 const TEXT_DELIMITERS = "][{}<>^";
 const METADATA_DELIMITERS = "#&@";
@@ -42,7 +42,7 @@ export async function loadSearchPage() {
         searchButton.onclick = () => { searchButtonClick(kind); }
     }
 
-    let params = new URLSearchParams(location.search.slice(1));
+    let params = frameSearch();
     let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
     if (!query)
         document.getElementById("search-text").focus();
@@ -408,7 +408,7 @@ function searchFromURL() {
         return;
     }
 
-    let params = new URLSearchParams(location.search.slice(1));
+    let params = frameSearch();
     let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
     console.log("Called searchFromURL. Query:",query);
     frame.querySelector('#search-text').value = query;
@@ -431,9 +431,13 @@ function searchButtonClick(searchKind) {
     let query = frame.querySelector('#search-text').value;
     console.log("Called runFromURLSearch. Query:",query,"Kind:",searchKind);
 
-    let newURL = new URL(location.href);
+    let search = new URLSearchParams({q : encodeURIComponent(query),search : searchKind});
+    history.pushState({},"",location.href); // First push a new history frame
+    setFrameSearch(search); // Then replace the history with the search query
+
+    /* let newURL = new URL(location.href);
     newURL.search = `?q=${encodeURIComponent(query)}&search=${searchKind}`
-    history.pushState({}, "",newURL.href);
+    history.pushState({}, "",newURL.href); */
 
     searchFromURL();
 }
