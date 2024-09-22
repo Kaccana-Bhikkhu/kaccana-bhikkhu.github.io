@@ -146,19 +146,36 @@ def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> s
     return returnValue
 
     
-def HtmlTagClusterLink(topic:str,text:str = "",link=True,count=False) -> str:
+def HtmlTagClusterLink(cluster:str,text:str = "",link=True,count=False) -> str:
     "Return a link to the specified tag cluster."
 
     if not text:
-        text = gDatabase["tagCluster"][topic]["displayAs"]
+        text = gDatabase["tagCluster"][cluster]["displayAs"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["tagCluster"][topic]["htmlPath"])})(text)
+        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["tagCluster"][cluster]["htmlPath"])})(text)
     else:
         returnValue = text
-    if count and gDatabase['tagCluster'][topic]['excerptCount']:
-        returnValue += f" ({gDatabase['tagCluster'][topic]['excerptCount']})"
+    if count and gDatabase['tagCluster'][cluster]['excerptCount']:
+        returnValue += f" ({gDatabase['tagCluster'][cluster]['excerptCount']})"
     return returnValue
+
+def HtmlClusterTagList(cluster:dict,summarize:int = 0,group:bool = False,showStar = False) -> str:
+    """Return a list of tags in the given cluster.
+    summarize: Don't list subtags if the total number of tags exceeds this value.
+    group: Use the form: Tag1 (Subtag1, Subtag2), Tag2 (Subtag3)..."""
+
+    subordinateTags = sum(1 for flag in cluster["subtags"].values() if flag == ParseCSV.KeyTagFlag.SUBORDINATE_TAG)
+    listSubtags = (summarize and len(cluster["subtags"]) + 1 <= summarize) or subordinateTags < 2
+    bits = []
+    for tag,flag in itertools.chain([(cluster["tag"],ParseCSV.KeyTagFlag.PEER_TAG)],cluster["subtags"].items()):
+        if not summarize or flag == ParseCSV.KeyTagFlag.PEER_TAG:
+            bits.append(HtmlTagLink(tag,showStar=showStar))
+    
+    if not listSubtags:
+        bits.append(f"and {len(cluster['subtags']) + 1 - len(bits)} subtags")
+
+    return ", ".join(bits)
 
 def ListLinkedTags(title:str, tags:Iterable[str],*args,**kwargs) -> str:
     "Write a list of hyperlinked tags"
@@ -1912,21 +1929,25 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
             excerpt,tag,firstExcerpt,lastExcerpt = item
 
+            clusterInfo = gDatabase["tagCluster"][tag]
             if excerpt:
                 excerptHtml = formatter.HtmlExcerptList([excerpt])
             else:
                 excerptHtml = ""
 
-            if firstExcerpt and gDatabase["tagCluster"][tag]["subtags"]:
-                excerptHtml = ListLinkedTags("Cluster includes",[tag] + list(gDatabase["tagCluster"][tag]["subtags"]),plural="") + "\n<br>\n" + excerptHtml
+            if firstExcerpt and clusterInfo["subtags"]:
+                excerptHtml = "Cluster includes: " + HtmlClusterTagList(clusterInfo,summarize=5) + "<br>\n<br>\n" + excerptHtml
 
             if excerpt and not lastExcerpt:
                 excerptHtml += "\n<hr>"
 
-            
-            heading = "Tag cluster: " if gDatabase["tagCluster"][tag]["subtags"] else "Tag: "
-            heading += HtmlTagClusterLink(tag).replace(".html","-relevant.html")
-            return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html",""),gDatabase["tagCluster"][tag]["displayAs"]
+            isCluster = bool(clusterInfo["subtags"])
+            heading = "Tag cluster: " if isCluster else "Tag: "
+            text = clusterInfo["displayAs"] if isCluster else tag
+            heading += HtmlTagClusterLink(tag,text=text).replace(".html","-relevant.html")
+            if not isCluster and clusterInfo["displayAs"] != tag:
+                heading = f"{clusterInfo['displayAs']} ({heading})"
+            return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html",""),clusterInfo["displayAs"]
 
         def PairExcerptsWithTopic() -> Generator[tuple[dict,str]]:
             for tag,excerpts in excerptsByTopic.items():
@@ -1939,7 +1960,7 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
                             yield x,tag,False,False
                         yield excerpts[-1],tag,False,True
                 else:
-                    yield None,tag,False,False
+                    yield None,tag,True,True
 
         title = Html.Tag("div",{"class":"title","id":"HEADING_ID"})
         pageContent = Html.ListWithHeadings(PairExcerptsWithTopic(),FeaturedExcerptList,
