@@ -86548,7 +86548,7 @@
         },
         {
           "kind": "Teaching",
-          "flags": "",
+          "flags": "2",
           "text": "The four forms of clinging.",
           "teachers": [
             "AP"
@@ -98268,8 +98268,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "greed.html",
-      "keyTopicCode": "unskillful",
-      "cluster": "Greed",
+      "cluster": "Sensual desire",
       "excerptCount": 9,
       "listIndex": 176
     },
@@ -99984,6 +99983,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "buddho-mantra.html",
+      "cluster": "Buddha",
       "excerptCount": 9,
       "listIndex": 374
     },
@@ -108039,8 +108039,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "lay-life.html",
-      "keyTopicCode": "everyday",
-      "cluster": "Lay life",
+      "cluster": "Everyday life",
       "eventCount": 1,
       "excerptCount": 46,
       "listIndex": 772
@@ -108183,6 +108182,8 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "health.html",
+      "keyTopicCode": "everyday",
+      "cluster": "Health",
       "excerptCount": 23,
       "listIndex": 781
     },
@@ -108203,6 +108204,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "excercise.html",
+      "cluster": "Health",
       "excerptCount": 4,
       "listIndex": 782
     },
@@ -108223,6 +108225,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "smoking.html",
+      "cluster": "Health",
       "excerptCount": 1,
       "listIndex": 783
     },
@@ -108243,6 +108246,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "mental-illness.html",
+      "cluster": "Health",
       "excerptCount": 4,
       "listIndex": 784
     },
@@ -108656,6 +108660,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "leadership.html",
+      "cluster": "Politics and society",
       "excerptCount": 9,
       "fTagCount": 1,
       "listIndex": 804
@@ -108697,6 +108702,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "service.html",
+      "cluster": "Politics and society",
       "excerptCount": 2,
       "listIndex": 806
     },
@@ -108717,6 +108723,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "activism.html",
+      "cluster": "Politics and society",
       "excerptCount": 6,
       "listIndex": 807
     },
@@ -108737,6 +108744,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "non-profit-organizations.html",
+      "cluster": "Politics and society",
       "excerptCount": 1,
       "listIndex": 808
     },
@@ -108757,6 +108765,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "corruption.html",
+      "cluster": "Politics and society",
       "excerptCount": 2,
       "listIndex": 809
     },
@@ -108777,6 +108786,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "crime.html",
+      "cluster": "Politics and society",
       "excerptCount": 5,
       "listIndex": 810
     },
@@ -108797,6 +108807,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "discrimination.html",
+      "cluster": "Politics and society",
       "excerptCount": 2,
       "listIndex": 811
     },
@@ -108817,6 +108828,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "conflict.html",
+      "cluster": "Politics and society",
       "excerptCount": 25,
       "listIndex": 812
     },
@@ -108837,6 +108849,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "military.html",
+      "cluster": "Politics and society",
       "excerptCount": 16,
       "listIndex": 813
     },
@@ -108883,6 +108896,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "poverty.html",
+      "cluster": "Commerce/economics",
       "excerptCount": 9,
       "listIndex": 815
     },
@@ -108905,8 +108919,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "health-care.html",
-      "keyTopicCode": "everyday",
-      "cluster": "Health care",
+      "cluster": "Health",
       "excerptCount": 47,
       "listIndex": 816
     },
@@ -108927,6 +108940,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "pandemic.html",
+      "cluster": "Health",
       "excerptCount": 7,
       "listIndex": 817
     },
@@ -108967,6 +108981,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "science.html",
+      "cluster": "Technology",
       "excerptCount": 9,
       "listIndex": 819
     },
@@ -108990,6 +109005,8 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "technology.html",
+      "keyTopicCode": "everyday",
+      "cluster": "Technology",
       "excerptCount": 15,
       "listIndex": 820
     },
@@ -109010,6 +109027,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "industry.html",
+      "cluster": "Technology",
       "excerptCount": 2,
       "listIndex": 821
     },
@@ -109030,6 +109048,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "online-community.html",
+      "cluster": "Technology",
       "excerptCount": 6,
       "listIndex": 822
     },
@@ -109055,6 +109074,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "media.html",
+      "cluster": "Technology",
       "excerptCount": 11,
       "listIndex": 823
     },
@@ -109075,6 +109095,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "news.html",
+      "cluster": "Technology",
       "excerptCount": 3,
       "listIndex": 824
     },
@@ -109095,6 +109116,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "advertizing.html",
+      "cluster": "Technology",
       "excerptCount": 3,
       "listIndex": 825
     },
@@ -109115,6 +109137,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "internet.html",
+      "cluster": "Technology",
       "excerptCount": 4,
       "listIndex": 826
     },
@@ -109135,6 +109158,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "social-media.html",
+      "cluster": "Technology",
       "excerptCount": 4,
       "listIndex": 827
     },
@@ -109263,6 +109287,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "retirement.html",
+      "cluster": "Work",
       "excerptCount": 2,
       "listIndex": 833
     },
@@ -122577,7 +122602,7 @@
       "topicCode": "human",
       "related": "",
       "subtags": {
-        "Recollection/Death": "-"
+        "Recollection/Death": "+"
       },
       "htmlPath": "clusters/death.html",
       "excerptCount": 1
@@ -122595,7 +122620,7 @@
     },
     "Three Refuges": {
       "tag": "Three Refuges",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Three Refuges",
       "keyTopic": "The Three Refuges",
       "topicCode": "refuges",
@@ -122612,7 +122637,8 @@
       "topicCode": "refuges",
       "related": "",
       "subtags": {
-        "Recollection/Buddha": "-"
+        "Recollection/Buddha": "+",
+        "Buddho mantra": "+"
       },
       "htmlPath": "clusters/buddha.html",
       "excerptCount": 2
@@ -122625,7 +122651,7 @@
       "topicCode": "refuges",
       "related": "",
       "subtags": {
-        "Recollection/Dhamma": "-"
+        "Recollection/Dhamma": "+"
       },
       "htmlPath": "clusters/dhamma.html",
       "excerptCount": 2
@@ -122638,7 +122664,7 @@
       "topicCode": "refuges",
       "related": "",
       "subtags": {
-        "Recollection/Saṅgha": "-"
+        "Recollection/Saṅgha": "+"
       },
       "htmlPath": "clusters/sangha.html",
       "excerptCount": 1
@@ -122651,7 +122677,7 @@
       "topicCode": "foundations",
       "related": "",
       "subtags": {
-        "Recollection/Generosity": "-"
+        "Recollection/Generosity": "+"
       },
       "htmlPath": "clusters/generosity.html",
       "excerptCount": 0
@@ -122675,7 +122701,7 @@
       "topicCode": "foundations",
       "related": "",
       "subtags": {
-        "Recollection/Virtue": "-"
+        "Recollection/Virtue": "+"
       },
       "htmlPath": "clusters/virtue.html",
       "excerptCount": 0
@@ -122688,8 +122714,8 @@
       "topicCode": "foundations",
       "related": "",
       "subtags": {
-        "Five Precepts": "-",
-        "Eight Precepts": "-"
+        "Five Precepts": "+",
+        "Eight Precepts": "+"
       },
       "htmlPath": "clusters/precepts.html",
       "excerptCount": 2
@@ -122707,7 +122733,7 @@
     },
     "Four Noble Truths": {
       "tag": "Four Noble Truths",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Four Noble Truths",
       "keyTopic": "The Four Noble Truths",
       "topicCode": "truths",
@@ -122751,7 +122777,7 @@
     },
     "Eightfold Path": {
       "tag": "Eightfold Path",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Eightfold Path",
       "keyTopic": "The Noble Eightfold Path",
       "topicCode": "path",
@@ -122779,11 +122805,11 @@
       "topicCode": "path",
       "related": "",
       "subtags": {
-        "False speech": "-",
-        "Malicious speech": "-",
-        "Harsh speech": "-",
-        "Idle chatter": "-",
-        "Admonishment/feedback": "-"
+        "False speech": "+",
+        "Malicious speech": "+",
+        "Harsh speech": "+",
+        "Idle chatter": "+",
+        "Admonishment/feedback": "+"
       },
       "htmlPath": "clusters/right-speech.html",
       "excerptCount": 1
@@ -122796,9 +122822,9 @@
       "topicCode": "path",
       "related": "",
       "subtags": {
-        "Killing": "-",
-        "Stealing": "-",
-        "Sexual misconduct": "-"
+        "Killing": "+",
+        "Stealing": "+",
+        "Sexual misconduct": "+"
       },
       "htmlPath": "clusters/right-action.html",
       "excerptCount": 0
@@ -122833,8 +122859,8 @@
       "topicCode": "path",
       "related": "Mindfulness",
       "subtags": {
-        "Ardency": "-",
-        "Clear comprehension": "-"
+        "Ardency": "+",
+        "Clear comprehension": "+"
       },
       "htmlPath": "clusters/right-mindfulness.html",
       "excerptCount": 1
@@ -122847,21 +122873,21 @@
       "topicCode": "path",
       "related": "Concentration",
       "subtags": {
-        "Unification": "-",
-        "Jhāna": "-"
+        "Unification": "+",
+        "Jhāna": "+"
       },
       "htmlPath": "clusters/right-concentration.html",
       "excerptCount": 0
     },
     "Meditation": {
       "tag": "Meditation",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Meditation",
       "keyTopic": "Meditation Practices",
       "topicCode": "meditation",
       "related": "",
       "subtags": {
-        "Meditation/General advice": "-"
+        "Meditation/General advice": "+"
       },
       "htmlPath": "clusters/meditation.html",
       "excerptCount": 1
@@ -122995,7 +123021,7 @@
       "topicCode": "skillful",
       "related": "",
       "subtags": {
-        "Devotion to wakefulness": "-"
+        "Devotion to wakefulness": "+"
       },
       "htmlPath": "clusters/energy.html",
       "excerptCount": 0
@@ -123101,13 +123127,13 @@
     },
     "Unwholesome Roots": {
       "tag": "Unwholesome Roots",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Defilements",
       "keyTopic": "Unskillful Qualities",
       "topicCode": "unskillful",
       "related": "",
       "subtags": {
-        "Unskillful qualities": "-"
+        "Unskillful qualities": "+"
       },
       "htmlPath": "clusters/unwholesome-roots.html",
       "excerptCount": 0
@@ -123130,19 +123156,10 @@
       "keyTopic": "Unskillful Qualities",
       "topicCode": "unskillful",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/sensual-desire.html",
-      "excerptCount": 0
-    },
-    "Greed": {
-      "tag": "Greed",
-      "flags": "",
-      "displayAs": "Greed",
-      "keyTopic": "Unskillful Qualities",
-      "topicCode": "unskillful",
-      "related": "",
-      "subtags": {},
-      "htmlPath": "tags/greed.html",
+      "subtags": {
+        "Greed": "+"
+      },
+      "htmlPath": "clusters/sensual-desire.html",
       "excerptCount": 0
     },
     "Aversion": {
@@ -123153,7 +123170,7 @@
       "topicCode": "unskillful",
       "related": "",
       "subtags": {
-        "Ill-will": "-"
+        "Ill-will": "+"
       },
       "htmlPath": "clusters/aversion.html",
       "excerptCount": 0
@@ -123232,12 +123249,12 @@
       "topicCode": "unskillful",
       "related": "",
       "subtags": {
-        "Guilt/shame/inadequacy": "-",
-        "Judgementalism": "-",
-        "Perfectionism": "-",
+        "Guilt/shame/inadequacy": "+",
+        "Judgementalism": "+",
+        "Perfectionism": "+",
         "Jealousy": "-",
         "Competitiveness": "-",
-        "Selfishness": "-",
+        "Selfishness": "+",
         "Self-pity": "-"
       },
       "htmlPath": "clusters/conceit.html",
@@ -123438,7 +123455,7 @@
       "topicCode": "fruits",
       "related": "",
       "subtags": {
-        "Release": "*"
+        "Release": "+"
       },
       "htmlPath": "clusters/liberation.html",
       "excerptCount": 0
@@ -123462,9 +123479,9 @@
       "topicCode": "fruits",
       "related": "",
       "subtags": {
-        "Deathless": "*",
-        "Unestablished consciousness": "*",
-        "Unconditioned": "*"
+        "Deathless": "+",
+        "Unestablished consciousness": "+",
+        "Unconditioned": "+"
       },
       "htmlPath": "clusters/nibbana.html",
       "excerptCount": 1
@@ -123587,7 +123604,7 @@
       "topicCode": "context",
       "related": "",
       "subtags": {
-        "Culture/Thailand": "-"
+        "Culture/Thailand": "+"
       },
       "htmlPath": "clusters/historythai-buddhism.html",
       "excerptCount": 1
@@ -123605,7 +123622,7 @@
     },
     "Monastic life": {
       "tag": "Monastic life",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Monastic life",
       "keyTopic": "Monastic Life",
       "topicCode": "monastic",
@@ -123682,24 +123699,32 @@
     },
     "Everyday life": {
       "tag": "Everyday life",
-      "flags": "h",
+      "flags": "",
       "displayAs": "Everyday life",
       "keyTopic": "Everyday Life Practice",
       "topicCode": "everyday",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/everyday-life.html",
+      "subtags": {
+        "Lay life": "+"
+      },
+      "htmlPath": "clusters/everyday-life.html",
       "excerptCount": 0
     },
-    "Lay life": {
-      "tag": "Lay life",
+    "Health": {
+      "tag": "Health",
       "flags": "",
-      "displayAs": "Lay life",
+      "displayAs": "Health",
       "keyTopic": "Everyday Life Practice",
       "topicCode": "everyday",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/lay-life.html",
+      "subtags": {
+        "Excercise": "-",
+        "Smoking": "-",
+        "Mental illness": "-",
+        "Health care": "+",
+        "Pandemic": "-"
+      },
+      "htmlPath": "clusters/health.html",
       "excerptCount": 0
     },
     "Family": {
@@ -123710,8 +123735,8 @@
       "topicCode": "everyday",
       "related": "",
       "subtags": {
-        "Parents": "-",
-        "Children": "-"
+        "Parents": "+",
+        "Children": "+"
       },
       "htmlPath": "clusters/family.html",
       "excerptCount": 2
@@ -123734,8 +123759,10 @@
       "keyTopic": "Everyday Life Practice",
       "topicCode": "everyday",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/work.html",
+      "subtags": {
+        "Retirement": "+"
+      },
+      "htmlPath": "clusters/work.html",
       "excerptCount": 0
     },
     "Environment": {
@@ -123756,9 +123783,19 @@
       "keyTopic": "Everyday Life Practice",
       "topicCode": "everyday",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/politics-and-society.html",
-      "excerptCount": 0
+      "subtags": {
+        "Leadership": "+",
+        "Service": "-",
+        "Activism": "+",
+        "Non-profit organizations": "-",
+        "Corruption": "-",
+        "Crime": "-",
+        "Discrimination": "-",
+        "Conflict": "+",
+        "Military": "-"
+      },
+      "htmlPath": "clusters/politics-and-society.html",
+      "excerptCount": 1
     },
     "Commerce/economics": {
       "tag": "Commerce/economics",
@@ -123767,19 +123804,30 @@
       "keyTopic": "Everyday Life Practice",
       "topicCode": "everyday",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/commerceeconomics.html",
+      "subtags": {
+        "Poverty": "+"
+      },
+      "htmlPath": "clusters/commerceeconomics.html",
       "excerptCount": 0
     },
-    "Health care": {
-      "tag": "Health care",
+    "Technology": {
+      "tag": "Technology",
       "flags": "",
-      "displayAs": "Health care",
+      "displayAs": "Technology and media",
       "keyTopic": "Everyday Life Practice",
       "topicCode": "everyday",
       "related": "",
-      "subtags": {},
-      "htmlPath": "tags/health-care.html",
+      "subtags": {
+        "Industry": "-",
+        "Science": "+",
+        "Media": "+",
+        "News": "-",
+        "Advertizing": "-",
+        "Internet": "-",
+        "Social media": "-",
+        "Online community": "-"
+      },
+      "htmlPath": "clusters/technology.html",
       "excerptCount": 0
     }
   },
@@ -124410,7 +124458,6 @@
         "Unwholesome Roots",
         "Hindrances",
         "Sensual desire",
-        "Greed",
         "Aversion",
         "Sloth and torpor",
         "Restlessness and worry",
@@ -124539,16 +124586,16 @@
       "listFile": "everyday.html",
       "clusters": [
         "Everyday life",
-        "Lay life",
+        "Health",
         "Family",
         "Relationships",
         "Work",
         "Environment",
         "Politics and society",
         "Commerce/economics",
-        "Health care"
+        "Technology"
       ],
-      "excerptCount": 4
+      "excerptCount": 5
     }
   },
   "tagRemoved": [
