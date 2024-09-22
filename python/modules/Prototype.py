@@ -1895,7 +1895,7 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
     else:
         yield from aboutMenu
 
-def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
+def KeyTopicExcerptLists(indexDir: str, topicDir: str):
     """Yield one page for each key topic listing all featured excerpts."""
     if gOptions.buildOnlyIndexes:
         return
@@ -1907,8 +1907,10 @@ def KeyTopicExcerptLists(topicDir: str,indexPageInfo: Html.PageInfo):
     formatter.excerptNumbers = False
     formatter.excerptAttributeSource = True
 
+    topicDetailPage = next(DetailedKeyTopics(indexDir,topicDir))
+
     for topic in gDatabase["keyTopic"].values():
-        link = Html.Tag("a",{"href": Utils.PosixJoin("../",indexPageInfo.file + "#" + topic["code"]),"title":"Show in key topic list"})
+        link = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDetailPage.AddQuery(f"hideAll&toggle={topic['code']}").file + "#" + topic["code"]),"title":"Show in key topic list"})
         listIconLink = link(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=20)).prefix)
         info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),listIconLink + "&nbsp Featured excerpts about " + topic["topic"])
         page = Html.PageDesc(info)
@@ -2100,7 +2102,7 @@ def KeyTopicMenu(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     ]
 
     yield from basePage.AddMenuAndYieldPages(keyTopicMenu,**EXTRA_MENU_STYLE)
-    yield from KeyTopicExcerptLists(topicDir,menuItem)
+    yield from KeyTopicExcerptLists(indexDir,topicDir)
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
