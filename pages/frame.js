@@ -93,9 +93,12 @@ async function changeURL(pUrl) {
 
 function delayedScroll(bookmark) {
 	document.getElementById(bookmark)?.scrollIntoView();
-	setTimeout(function(){
-		document.getElementById(bookmark)?.scrollIntoView();
-	}, 1000);
+	// If there are many images on a page (about/02_EventSeries.html), then wait for them to load and scroll again.
+	if (document.getElementsByClassName("cover").length > 1) {
+		setTimeout(function(){
+			document.getElementById(bookmark)?.scrollIntoView();
+		}, 1000);
+	}
 }
 
 if (frame) {
