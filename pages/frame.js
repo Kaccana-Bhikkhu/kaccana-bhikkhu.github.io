@@ -7,6 +7,38 @@ const titleEl = document.querySelector("title");
 const absoluteURLRegex = "^(//|[a-z+]+:)"
 const errorPage = "./about/Page-Not-Found.html"
 
+const SEARCH_PART = /\?[^#]*/
+
+export function frameSearch(hash = null) {
+	// return a URLSearchParams object corresponding to the search params given in the URL hash
+	// representing the frame location
+	
+	if (hash == null)
+		hash = location.hash;
+	
+	let subURLSearch = hash.slice(1).match(SEARCH_PART);
+	if (subURLSearch)
+		return new URLSearchParams(subURLSearch[0].slice(1));
+	else
+		return new URLSearchParams("");
+}
+
+export function setFrameSearch(params) {
+	// params: the URLSearchParams object to set the frame search to
+	let url = new URL(location)
+	let hash = url.hash;
+
+	if (hash.includes("?")) {
+		hash = hash.replace(SEARCH_PART,"?" + params.toString());
+	} else {
+		parts = hash.split("#");
+		parts[2] += "?" + params.toString();
+		hash = parts.join("#");
+	}
+	url.hash = hash;
+	history.replaceState(history.state,"",url);
+}
+
 function pageText(r,url) {
 	if (r.ok) {
 		return r.text().then((text) => Promise.resolve([text,url]))

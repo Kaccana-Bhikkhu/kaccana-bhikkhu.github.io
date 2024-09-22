@@ -1,8 +1,10 @@
+import {frameSearch, setFrameSearch} from './frame.js';
 
-function setVisible(element,newVisible) {
+function setVisible(element,newVisible,changeURL) {
     // Set the visibility of this toggle-view element
     // element: the html element corresponding to the toggle button
     // newVisible: true = show, false = hide, null = no change, any other value = toggle
+    // if changeURL, then update the URL hash query component
 
     if (newVisible == null)
         return;
@@ -20,21 +22,38 @@ function setVisible(element,newVisible) {
         body.style.display = "none";
         element.className = "fa fa-plus-square toggle-view";
     }
+
+    if (changeURL) {
+        let params = frameSearch();
+        let toggled = (params.get("toggle") || "").split(".");
+        if (toggled[0] == "")
+            toggled.splice(0,1);
+        let index = toggled.indexOf(element.id);
+        if (index == -1) {
+            toggled.push(element.id);
+        } else {
+            toggled.splice(index,1);
+        }
+        params.set("toggle",toggled.join("."));
+        setFrameSearch(params);
+    }
 }
 
 export function loadToggleView() {
-    let initView = null
-    let subURLSearch = location.hash.slice(1).match(/\?[^#]*/)
-    if (subURLSearch) {
-        let params = new URLSearchParams(subURLSearch[0].slice(1))
-        // take our params from the frame psuedo-URL that follows after the #.
-        initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
-    }
+    let params = frameSearch()
+    let initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
+    let toggled = (params.get("toggle") || "").split(".");
+    if (toggled[0] == "")
+        toggled.splice(0,1);
+
     let togglers = document.getElementsByClassName("toggle-view");
     for (let t of togglers) {
-        setVisible(t,initView)
+        if ((initView == null) || (toggled.indexOf(t.id) == -1))
+            setVisible(t,initView);
+        else
+            setVisible(t,!initView);
         t.addEventListener("click", function() {
-            setVisible(this,"toggle");
+            setVisible(this,"toggle",true);
         });
     }
 }

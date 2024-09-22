@@ -1996,10 +1996,10 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
                 text += f'&nbsp{FA_STAR}'
             clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
-        clusterList = Html.Tag("p")("&nbsp&nbsp ".join(clusterLinks))
+        clusterList = Html.Tag("p",{"style":"margin-left: 2em;"})("&nbsp&nbsp ".join(clusterLinks))
 
         if keyTopic["shortNote"]:
-            clusterList = "\n".join([clusterList,Html.Tag('p')(keyTopic["shortNote"])])
+            clusterList = "\n".join([clusterList,Html.Tag("p",{"style":"margin-left: 2em;"})(keyTopic["shortNote"])])
         heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"])})(keyTopic["topic"])
         heading += f" ({keyTopic['excerptCount']})"
         return heading,clusterList,keyTopic["code"]
@@ -2031,9 +2031,6 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
                     pass
                 a(HtmlKeyTopicLink(topicCode,count=True))
             with a.div(id=topicCode + ".b"):
-                if topic["shortNote"]:
-                    with a.span(style="margin-left: 3.5em;"):
-                        a(topic["shortNote"])
                 for cluster in topic["clusters"]:
                     with a.p(style="margin-left: 2em;"):
                         subtags = list(gDatabase["tagCluster"][cluster]["subtags"].keys())
@@ -2042,6 +2039,9 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
                         if len(subtags) > 0:
                             a(" – ")
                             a(ListLinkedTags("Cluster includes",[cluster] + subtags,plural=""))
+                if topic["shortNote"]:
+                    with a.p(style="margin-left: 2em;"):
+                        a(topic["shortNote"])
 
     page = Html.PageDesc(menuItem)
     page.AppendContent(str(a))
