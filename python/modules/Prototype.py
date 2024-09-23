@@ -1528,17 +1528,17 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             continue
 
         relevantExcerpts = Filter.Tag(tag)(gDatabase["excerpts"])
-        peerTopicCount = 1 + len(gDatabase["tagCluster"][tag]["subtags"]) if tag in gDatabase["tagCluster"] else 0
 
         a = Airium()
         
         with a.strong():
             a(TagBreadCrumbs(tagInfo))
-            if peerTopicCount:
-                if peerTopicCount > 1:
-                    a(f"Part of tag cluster {HtmlTagClusterLink(gDatabase['tag'][tag]['cluster'])} in key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][tag]['topicCode'])}")
+            cluster = gDatabase["tag"][tag].get("cluster",None)
+            if cluster:
+                if len(gDatabase["tagCluster"][cluster]["subtags"]) > 0:
+                    a(f"Part of tag cluster {HtmlTagClusterLink(cluster)} in key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][cluster]['topicCode'])}")
                 else:
-                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][tag]['topicCode'])}")
+                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][cluster]['topicCode'])}")
                 a.br()
             if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
