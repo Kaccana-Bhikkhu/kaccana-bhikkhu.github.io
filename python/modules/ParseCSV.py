@@ -688,7 +688,10 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False,yieldRootTags = Fal
             yield parent,children
         
         if tagLevel > len(tagStack):
-            assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
+            if tagLevel != len(tagStack) + 1:
+                Alert.error("Level of tag",tag,"increased by more than one.")
+                Alert.error("This is a fatal error. Exiting.")
+                sys.exit()
             tagStack.append([])
         
         if returnIndices:
