@@ -1548,9 +1548,9 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             else:
                 a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
             mainParent = Database.ParentTagListEntry(tagInfo["listIndex"])
-            mainParent = mainParent and mainParent["name"] # Prevent error if mainParent == None
+            mainParent = mainParent and mainParent["tag"] # Prevent error if mainParent == None
             a(ListLinkedTags("Also a subtag of",
-                             (t for t in tagInfo['supertags'] if t != mainParent and t in gDatabase["tag"]),
+                             (t for t in tagInfo['supertags'] if Database.TagLookup(t) != mainParent),
                              plural="",lastJoinStr=" and ",titleEnd=" "))
             a(ListLinkedTags("Subtag",tagInfo['subtags']))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))

@@ -133,9 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype",
+                "Render",
                 "--buildOnly",
-                "clusters"
+                "tags"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

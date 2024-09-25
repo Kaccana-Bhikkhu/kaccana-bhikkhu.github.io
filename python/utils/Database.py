@@ -94,6 +94,12 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
         tagDictCache.update((tagDB[tag]["pali"],tag) for tag in tagDB if tagDB[tag]["pali"])
         tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
 
+        subsumedDB = gDatabase["tagSubsumed"]
+        tagDictCache.update((tag,subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB)
+        tagDictCache.update((subsumedDB[tag]["fullTag"],subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB)
+        tagDictCache.update((subsumedDB[tag]["pali"],subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB if subsumedDB[tag]["pali"])
+        tagDictCache.update((subsumedDB[tag]["fullPali"],subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB if subsumedDB[tag]["fullPali"])
+
     return tagDictCache.get(tagRef,None)
 
 def TagClusterLookup(clusterRef:str,tagClusterDictCache:dict = {}) -> str|None:
