@@ -22,11 +22,23 @@ Each excerpt is labeled by a set of tags that describe its content. To aid in se
 ### Annotations
 Excerpts may further be described by a series of annotations, which the website displays as indented paragraphs below the main body of an excerpt. Like excerpts, each annotation has a kind. For example, in answering the question below, Ajahn Pasanno refers to the Amaravati Chanting book, a simile in a sutta, a story about Ajahn Chah and a quote by the Dalai Lama. Depending on their kind, annotations may have teachers and tags associated with them, but have no audio clip independent of the excerpt they belong to. All tags applied to excerpts are considered a-tags for search purposes.
 
+### Featured Excerpts
+Many tags apply to so many excerpts that it's difficult to read through them all to find the most relevant. For this reason, the October 2024 release introduces hand-picked featured excerpts that appear first in the list for a particular tag. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. Tags for which an excerpt is featured are marked with a star (<i class="fa fa-star" style="color: #9b7030;"></i>).
+
+Deciding which excerpts to feature takes time and care. The eventual goal is that tags applied to 100 or more excerpts will feature roughly five excepts illlustrating key aspects of the topic, arranged chronologically or simplest to most in-depth. Less common tags will feature fewer excerpts. For the time being, even the most common tags feature only one or two excerps. If you would like to suggest excerpts to feature, please refer to the guidelines on the Want to Help? page.
+
 ### Example Excerpt
 
 ![ExampleExcerpt](../../pages/images/ExampleExcerpt.png)
 
 The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../../pages/tags/death.html)] and [[Rebirth](../../pages/tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
+
+### Key Topics and Tag Clusters
+The October 2024 release also introduces a [list of 16 key topics](../indexes/KeyTopics.html?hideAll) which organize the most important tags into a logical sequence. Each topic is a list of tags related to a central theme. To simply the list, closely-related tags are grouped together in clusters. For example, the tag cluster [Buddha](../../pages/clusters/buddha-relevant.html) includes the tags [[Buddha](../../pages/tags/buddha.html)], [[Recollection/Buddha](../../pages/tags/recollectionbuddha.html)], and [[Buddho mantra](../../pages/tags/buddho-mantra.html)] and is part of the key topic [The Three Refuges](../../pages/topics/refuges.html).
+
+The key topics begin with the Buddha's description of [The Human Dilemma](../../pages/topics/human.html) followed his prescribed resolution. Next come topics related to meditation practice, qualities of the mind, and results of the practice. The key topics conclude with applications of Dhamma practice in monastic and lay life.
+
+Each key topic links to a page showing the featured excerpts of all tags within that topic. These pages are currently sparse on content because there are few featured excerpts. Hopefully the key topic pages will become a rich resource for contemplation when more featured excerpts are selected in the future.
 
 ## Searching the Archive
 The website menus link to a series of static pages which allow the user to browse the tags, events, and teachers contained in the archive in a variety of ways. Links to particular tags, events, and teachers go to static pages which list each relevant excerpt. Event pages simply list each excerpt in each of the event sessions. The tag and teacher pages also group excerpts by event and session, but additionally allow the user to narrow the search by excerpt kind. (Pages containing fewer than 10 excerpts don’t have this feature.) Selecting the “All excerpts” menu item allows one to see all excerpts of a particular kind in the archive.
