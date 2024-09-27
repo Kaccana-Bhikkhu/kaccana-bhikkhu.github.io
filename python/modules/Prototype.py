@@ -57,9 +57,7 @@ def DeleteUnwrittenHtmlFiles(writer: FileRegister.HashWriter) -> None:
     """Remove old html files from previous runs to keep things neat and tidy."""
 
     # Delete files only in directories we have built
-    dirs = gOptions.buildOnly & {"events","tags","clusters","teachers","drilldown","search"}
-    if "clusters" in gOptions.buildOnly:
-        dirs.add("topics")
+    dirs = gOptions.buildOnly & {"events","topics","tags","clusters","teachers","drilldown","search"}
     dirs.add("about")
     if gOptions.buildOnly == gAllSections:
         dirs.add("indexes")
@@ -2031,7 +2029,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
                                         bodyWrapper="Number of featured excerpts for each topic appears in parentheses.<br><br>" + Html.Tag("div",{"class":"listing"}),
                                         addMenu=False,betweenSections="\n")
 
-    page = Html.PageDesc(menuItem)
+    page = Html.PageDesc(menuItem._replace(title="Key topics"))
     page.AppendContent(pageContent)
 
     page.keywords = ["Key topics"]
@@ -2066,7 +2064,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
                     with a.p(style="margin-left: 2em;"):
                         a(topic["shortNote"])
 
-    page = Html.PageDesc(menuItem)
+    page = Html.PageDesc(menuItem._replace(title="Key topics"))
     page.AppendContent(str(a))
 
     page.keywords = ["Key topics"]
@@ -2082,13 +2080,14 @@ def PrintTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     topicList = DetailedKeyTopics(indexDir,topicDir)
     _ = next(topicList)
     page = next(topicList)
-    page.info = menuItem
+    page.info = menuItem._replace(title="Key topics")
     yield page
 
-def KeyTopicMenu(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Display a list of key topics and corresponding key tags.
     Also generate one page containing a list of all featured excepts for each key topic."""
 
+    topicDir = "topics"
     menuItem = next(CompactKeyTopics(indexDir,topicDir))
     menuItem = menuItem._replace(title="Key topics",titleIB="Key topics")
     yield menuItem
@@ -2107,7 +2106,7 @@ def KeyTopicMenu(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
-    drilldownItem = Html.PageInfo("Tag hierarchy",drilldownDir,"Tags – Hierarchical")
+    drilldownItem = Html.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
@@ -2136,10 +2135,9 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     Also write a page for each tag."""
 
     drilldownDir = "drilldown"
-    yield next(KeyTopicMenu(indexDir,"topics"))._replace(title="Tags")
+    yield next(TagHierarchyMenu(indexDir,drilldownDir))._replace(title="Tags")
 
     tagMenu = [
-        YieldAllIf(KeyTopicMenu(indexDir,"topics"),"clusters" in gOptions.buildOnly),
         TagHierarchyMenu(indexDir,drilldownDir),
         AlphabeticalTagList(indexDir),
         NumericalTagList(indexDir),
@@ -2228,7 +2226,7 @@ def AddArguments(parser):
     parser.add_argument('--urlList',type=str,default='',help='Write a list of URLs to this file.')
     parser.add_argument('--keepOldHtmlFiles',**Utils.STORE_TRUE,help="Keep old html files from previous runs; otherwise delete them.")
     
-gAllSections = {"tags","clusters","drilldown","events","teachers","search","allexcerpts"}
+gAllSections = {"topics","tags","clusters","drilldown","events","teachers","search","allexcerpts"}
 def ParseArguments():
     if gOptions.buildOnly == "":
         if gOptions.buildOnlyIndexes:
@@ -2283,7 +2281,8 @@ def main():
     mainMenu.append(DocumentationMenu("misc",makeMenu=False))
 
     mainMenu.append(YieldAllIf(SearchMenu("search"),"search" in gOptions.buildOnly))
-    mainMenu.append(YieldAllIf(TagMenu(indexDir),{"tags","clusters"} | gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(KeyTopicMenu(indexDir),{"topics","clusters"} | gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
