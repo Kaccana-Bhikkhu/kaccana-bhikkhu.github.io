@@ -1895,7 +1895,7 @@ def DocumentationMenu(directory: str,makeMenu = True,specialFirstItem:Html.PageI
 
 def KeyTopicExcerptLists(indexDir: str, topicDir: str):
     """Yield one page for each key topic listing all featured excerpts."""
-    if gOptions.buildOnlyIndexes:
+    if gOptions.buildOnlyIndexes or "topics" not in gOptions.buildOnly:
         return
 
     formatter = Formatter()
@@ -1970,7 +1970,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
 
 def TagClusterPages(topicDir: str):
     """Generate a series of pages for each tag cluster."""
-    if gOptions.buildOnlyIndexes or not "clusters" in gOptions.buildOnly:
+    if gOptions.buildOnlyIndexes or "clusters" not in gOptions.buildOnly:
         return
     
     for cluster,clusterInfo in gDatabase["tagCluster"].items():
@@ -2098,10 +2098,11 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
         PrintTopics(indexDir,topicDir),
+        TagClusterPages("clusters"),
+        KeyTopicExcerptLists(indexDir,topicDir)
     ]
 
     yield from basePage.AddMenuAndYieldPages(keyTopicMenu,**EXTRA_MENU_STYLE)
-    yield from KeyTopicExcerptLists(indexDir,topicDir)
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
@@ -2143,8 +2144,7 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         NumericalTagList(indexDir),
         MostCommonTagList(indexDir),
         [Html.PageInfo("About tags","about/05_Tags.html")],
-        TagPages("tags"),
-        TagClusterPages("clusters")
+        TagPages("tags")
     ]
 
     baseTagPage = Html.PageDesc()
