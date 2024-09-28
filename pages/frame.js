@@ -101,7 +101,7 @@ export function configureLinks(frame,url) {
 	});
 }
 
-async function changeURL(pUrl) {
+async function changeURL(pUrl,scrollTo = null) {
 	pUrl = decodeURIComponent(pUrl);
 	console.log("changeURL",pUrl);
 	await fetch("./" + pUrl)
@@ -119,7 +119,9 @@ async function changeURL(pUrl) {
 
 			configureLinks(frame,resultUrl);
 			loadSearchPage();
-			loadToggleView()
+			loadToggleView();
+			if (scrollTo && Object.hasOwn(scrollTo,"scrollX") && Object.hasOwn(scrollTo,"scrollY"))
+				window.scrollTo(scrollTo.scrollX,scrollTo.scrollY)
 		});
 }
 
@@ -141,7 +143,11 @@ if (frame) {
 		}
 	});
 
-	addEventListener("popstate", () => {
-		changeURL(location.hash.slice(1) || frame.dataset.url);
+	addEventListener("popstate", (event) => {
+		changeURL(location.hash.slice(1) || frame.dataset.url,event.state);
 	});
 }
+
+window.addEventListener("scrollend", (event) => {
+	history.replaceState({"scrollX":window.scrollX,"scrollY":window.scrollY},"");
+  });
