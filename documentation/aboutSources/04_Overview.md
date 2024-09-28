@@ -25,7 +25,7 @@ Excerpts may further be described by a series of annotations, which the website 
 ### Featured Excerpts
 Many tags apply to so many excerpts that it's difficult to read through them all to find the most relevant. For this reason, the October 2024 release introduces hand-picked featured excerpts that appear first in the list for a particular tag. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. Tags for which an excerpt is featured are marked with a star (<i class="fa fa-star" style="color: #9b7030;"></i>).
 
-Deciding which excerpts to feature takes time and care. The eventual goal is that tags applied to 100 or more excerpts will feature roughly five excepts illlustrating key aspects of the topic, arranged chronologically or simplest to most in-depth. Less common tags will feature fewer excerpts. For the time being, even the most common tags feature only one or two excerpts. If you would like to suggest excerpts to feature, please refer to the guidelines on the Want to Help? page.
+Deciding which excerpts to feature takes time and care. The eventual goal is that tags applied to 100 or more excerpts will feature roughly five excepts illlustrating key aspects of the topic, arranged chronologically or simplest to most in-depth. Less common tags will feature fewer excerpts. For the time being, even the most common tags feature only one or two excerpts. If you would like to suggest excerpts to feature, please refer to the guidelines on the [Want to Help?](about:Want-to-help#ways-anyone-can-contribute) page.
 
 ### Example Excerpt
 
@@ -36,7 +36,7 @@ The figure above shows the website display of excerpt 3 in session 1 of the 2008
 ### Key Topics and Tag Clusters
 The October 2024 release also introduces a [list of 16 key topics](../indexes/KeyTopics.html?hideAll) which organize the most important tags into a logical sequence. Each topic is a list of tags related to a central theme. To simply the list, closely-related tags are grouped together in clusters. For example, the tag cluster [Buddha](cluster:) includes the tags [Buddha](tag:), [Recollection/Buddha](tag:), and [Buddho mantra](tag:) and is part of the key topic [The Three Refuges](topic:refuges).
 
-The key topics begin with the Buddha's description of [The Human Dilemma](topic:human) followed his prescribed resolution. Next come topics related to meditation practice, qualities of the mind, and results of the practice. The key topics conclude with applications of Dhamma practice in monastic and lay life.
+The key topics begin with the Buddha's description of [the human dilemma](topic:human) followed by an overview of his prescribed solution [prescribed resolution](topic:truths). Next come topics related to [meditation practice](topic:meditation), [qualities of the mind](topic:skillful), and [results of the practice](topic:fruits). The key topics conclude with applications of Dhamma practice in [monastic](topic:monastic) and [lay life](topic:everyday).
 
 Each key topic links to a page showing the featured excerpts of all tags within that topic. These pages are currently sparse on content because there are few featured excerpts. Hopefully the key topic pages will become a rich resource for contemplation when more featured excerpts are selected in the future.
 
