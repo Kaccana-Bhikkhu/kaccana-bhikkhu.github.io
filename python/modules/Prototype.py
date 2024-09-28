@@ -2246,8 +2246,6 @@ def ParseArguments():
         gOptions.buildOnly = set()
     else:
         gOptions.buildOnly = set(section.strip().lower() for section in gOptions.buildOnly.split(','))
-        if "drilldown" in gOptions.buildOnly:
-            gOptions.buildOnly.add("tags")
         unknownSections = gOptions.buildOnly.difference(gAllSections)
         if unknownSections:
             Alert.warning(f"--buildOnly: Unrecognized section(s) {unknownSections} will be ignored.")
@@ -2270,8 +2268,6 @@ def main():
     if not os.path.exists(gOptions.prototypeDir):
         os.makedirs(gOptions.prototypeDir)
     
-    # WriteIndentedTagDisplayList(Utils.PosixJoin(gOptions.prototypeDir,"TagDisplayList.txt"))
-
     if gOptions.buildOnly != gAllSections:
         if gOptions.buildOnly:
             Alert.warning(f"Building only section(s) --buildOnly {gOptions.buildOnly}. This should be used only for testing and debugging purposes.")
@@ -2291,7 +2287,7 @@ def main():
 
     mainMenu.append(YieldAllIf(SearchMenu("search"),"search" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(KeyTopicMenu(indexDir),{"topics","clusters"} | gOptions.buildOnly))
-    mainMenu.append(YieldAllIf(TagMenu(indexDir),"tags" in gOptions.buildOnly))
+    mainMenu.append(YieldAllIf(TagMenu(indexDir),{"tags","drilldown"} | gOptions.buildOnly))
     mainMenu.append(YieldAllIf(EventsMenu(indexDir),"events" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(TeacherMenu("teachers"),"teachers" in gOptions.buildOnly))
     mainMenu.append(YieldAllIf(AllExcerpts(indexDir),"allexcerpts" in gOptions.buildOnly))
