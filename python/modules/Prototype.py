@@ -1907,7 +1907,8 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
 
     topicDetailPage = next(DetailedKeyTopics(indexDir,topicDir))
 
-    for topic in gDatabase["keyTopic"].values():
+    topicList = list(gDatabase["keyTopic"])
+    for topicNumber,topic in enumerate(gDatabase["keyTopic"].values()):
         link = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDetailPage.AddQuery(f"hideAll&toggle={topic['code']}").file + "#" + topic["code"]),"title":"Show in key topic list"})
         listIconLink = link(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=20)).prefix)
         info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),listIconLink + "&nbsp Featured excerpts about " + topic["topic"])
@@ -1915,8 +1916,16 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         page.AppendContent("Featured excerpts about " + topic["topic"],section="citationTitle")
         page.keywords = ["Key topics",topic["topic"]]
 
+        if topicNumber > 0:
+            page.AppendContent(HtmlKeyTopicLink(topicList[topicNumber - 1],
+                                                text=f"<< {gDatabase['keyTopic'][topicList[topicNumber - 1]]['topic']}") + "\n")
+        if topicNumber < len(topicList) - 1:
+            page.AppendContent(Html.Tag("span",{"style":"float:right;"})(HtmlKeyTopicLink(topicList[topicNumber + 1],
+                                                text=f"{gDatabase['keyTopic'][topicList[topicNumber + 1]]['topic']} >>" + "\n")))
+        page.AppendContent("<br>")
+
         if topic["longNote"]:
-            page.AppendContent(topic["longNote"] + "<hr>")
+            page.AppendContent(topic["longNote"] + "<hr>\n")
 
         excerptsByTopic:dict[str:list[str]] = {}
         for cluster in topic["clusters"]:
