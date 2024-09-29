@@ -2039,6 +2039,13 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
                                         addMenu=False,betweenSections="\n")
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
+
+    page.AppendContent(Html.Tag("button",{"type":"button",
+                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("showAll").file)})("Expand all"))
+    page.AppendContent(Html.Tag("button",{"type":"button",
+                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("hideAll").file)})("Contract all"))
+    page.AppendContent("<br><br>")
+
     page.AppendContent(pageContent)
 
     page.keywords = ["Key topics"]
@@ -2074,6 +2081,13 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
                         a(topic["shortNote"])
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
+    
+    page.AppendContent(Html.Tag("button",{"type":"button",
+                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("showAll").file)})("Expand all"))
+    page.AppendContent(Html.Tag("button",{"type":"button",
+                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("hideAll").file)})("Contract all"))
+    page.AppendContent("<br><br>")
+
     page.AppendContent(str(a))
 
     page.keywords = ["Key topics"]

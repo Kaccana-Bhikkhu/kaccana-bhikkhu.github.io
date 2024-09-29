@@ -74,6 +74,11 @@ def OpenUrlOrFile(url:str) -> BinaryIO:
     else:
         return open(url,"rb")
 
+def JavascriptLink(url:str) -> str:
+    "Return Javascript code to jump to url."
+
+    return f"location.hash = '#{url}'"
+
 def ReadFile(filePath: str) -> str:
     "Return an entire file as a utf-8 encoded string."
     with open(filePath,encoding='utf8') as file:
