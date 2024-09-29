@@ -797,8 +797,11 @@ def EventSeriesAndDateStr(event: dict) -> str:
     joinItems = []
     series = event["series"]
     if series != "Other":
+        if series == "Other retreats":
+            series = "Retreat"
         if series != "Q&ampA sessions" or event["sessions"] == 1: # Don't remove the s for multiple Q&A sessions
-            joinItems.append(re.sub(r's$','',series))
+            series = re.sub(r's$','',series)
+        joinItems.append(series)
     joinItems.append(EventDateStr(event))
     return ", ".join(joinItems)
 

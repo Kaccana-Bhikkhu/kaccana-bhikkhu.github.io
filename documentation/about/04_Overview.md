@@ -31,7 +31,7 @@ Deciding which excerpts to feature takes time and care. The eventual goal is tha
 
 ![ExampleExcerpt](../../pages/images/ExampleExcerpt.png)
 
-The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../../pages/tags/death.html)] and [[Rebirth](../../pages/tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
+The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../../pages/tags/death.html)] and [[Rebirth](../../pages/tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds. The star indicates that this is a featured excerpt for the tag [[Death](../../pages/tags/death.html)].
 
 ### Key Topics and Tag Clusters
 The October 2024 release also introduces a [list of 16 key topics](../indexes/KeyTopics.html?hideAll) which organize the most important tags into a logical sequence. Each topic is a list of tags related to a central theme. To simply the list, closely-related tags are grouped together in clusters. For example, the tag cluster [Buddha](../../pages/clusters/buddha-relevant.html) includes the tags [[Buddha](../../pages/tags/buddha.html)], [[Recollection/Buddha](../../pages/tags/recollectionbuddha.html)], and [[Buddho mantra](../../pages/tags/buddho-mantra.html)] and is part of the key topic [The Three Refuges](../../pages/topics/refuges.html).

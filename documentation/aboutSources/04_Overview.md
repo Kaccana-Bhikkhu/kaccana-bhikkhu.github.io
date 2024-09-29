@@ -31,7 +31,7 @@ Deciding which excerpts to feature takes time and care. The eventual goal is tha
 
 ![ExampleExcerpt](image:ExampleExcerpt.png)
 
-The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [Death](tag:) and [Rebirth](tag:) are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
+The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [Death](tag:) and [Rebirth](tag:) are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds. The star indicates that this is a featured excerpt for the tag [Death](tag:).
 
 ### Key Topics and Tag Clusters
 The October 2024 release also introduces a [list of 16 key topics](../indexes/KeyTopics.html?hideAll) which organize the most important tags into a logical sequence. Each topic is a list of tags related to a central theme. To simply the list, closely-related tags are grouped together in clusters. For example, the tag cluster [Buddha](cluster:) includes the tags [Buddha](tag:), [Recollection/Buddha](tag:), and [Buddho mantra](tag:) and is part of the key topic [The Three Refuges](topic:refuges).
