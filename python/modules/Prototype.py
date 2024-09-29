@@ -2010,7 +2010,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("Compact",Utils.PosixJoin(indexDir,"KeyTopics.html"),"Key topics")
-    yield menuItem.AddQuery("hideAll")
+    yield menuItem.AddQuery("_keep_query")
 
     def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
         clustersToList = (t for t in keyTopic["clusters"] if not gDatabase["tagCluster"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
@@ -2057,7 +2057,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
-    yield menuItem.AddQuery("hideAll")
+    yield menuItem.AddQuery("_keep_query")
 
     a = Airium()
     with a.div(Class="listing"):
@@ -2112,7 +2112,7 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
     topicDir = "topics"
     menuItem = next(CompactKeyTopics(indexDir,topicDir))
-    menuItem = menuItem._replace(title="Key topics",titleIB="Key topics")
+    menuItem = menuItem.AddQuery("hideAll")._replace(title="Key topics",titleIB="Key topics")
     yield menuItem
     
     basePage = Html.PageDesc(menuItem)

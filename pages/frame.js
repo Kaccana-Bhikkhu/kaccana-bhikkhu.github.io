@@ -87,6 +87,11 @@ export function configureLinks(frame,url) {
 			el.href = newFullUrl;
 
 			el.addEventListener("click", async (event) => {
+				if (newFullUrl.includes("?_keep_query")) {
+					let oldSearch = "?" + frameSearch().toString()
+					newFullUrl = newFullUrl.replace("?_keep_query",oldSearch)
+					url = url.replace("?_keep_query",oldSearch)
+				}
 				history.pushState({}, "", newFullUrl);
 				event.preventDefault(); // Don't follow the href link
 				await changeURL(url);
