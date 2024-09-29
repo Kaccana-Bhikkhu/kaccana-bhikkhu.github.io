@@ -46,7 +46,8 @@ def ScanPageForLinks(url: str) -> list[str]:
                     if parsed.scheme.lower().startswith("http"): # Don't check mailto:, etc.
                         urlsToCheck.add(link)
                 else: # Local file reference
-                    urlsToCheck.add(urllib.parse.urljoin(url,link))
+                    parsed = parsed._replace(query="")
+                    urlsToCheck.add(urllib.parse.urljoin(url,parsed.geturl()))
             else: # Link to a bookmark in this page
                 if parsed.fragment:
                     if parsed.fragment not in idsInPage:
