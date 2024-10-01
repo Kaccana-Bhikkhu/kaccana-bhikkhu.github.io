@@ -471,8 +471,9 @@ def RemoveUnusedTags(database: dict) -> None:
     database["tagRemoved"] = [tagName for tagName,tag in database["tag"].items() if tagName not in usedTags]
     database["tag"] = {tagName:tag for tagName,tag in database["tag"].items() if tagName in usedTags}
 
+    noSubsumed = {"subsumedUnder":""}
     for tag in database["tag"].values():
-        tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
+        tag["subtags"] = [t for t in tag["subtags"] if t in usedTags or database["tagSubsumed"].get(t,noSubsumed)["subsumedUnder"] in usedTags]
         tag["related"] = [t for t in tag["related"] if t in usedTags]
 
 def IndexTags(database: dict) -> None:
