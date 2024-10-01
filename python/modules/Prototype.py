@@ -2025,8 +2025,8 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
             else:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
             text = gDatabase["tagCluster"][tag]["displayAs"]
-            if gDatabase["tagCluster"][tag]["excerptCount"]:
-                text += f'&nbsp{FA_STAR}'
+            #if gDatabase["tagCluster"][tag]["excerptCount"]:
+            #    text += f'&nbsp{FA_STAR}'
             clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
         clusterList = Html.Tag("p",{"style":"margin-left: 2em;"})("&nbsp&nbsp ".join(clusterLinks))
@@ -2038,7 +2038,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
         return heading,clusterList,keyTopic["code"]
 
     pageContent = Html.ToggleListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
-                                        bodyWrapper="Number of featured excerpts for each topic appears in parentheses.<br><br>" + Html.Tag("div",{"class":"listing"}),
+                                        bodyWrapper=f"Number of featured excerpts for each topic appears in parentheses.<br><br>" + Html.Tag("div",{"class":"listing"}),
                                         addMenu=False,betweenSections="\n")
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
@@ -2256,7 +2256,7 @@ gAllSections = {"topics","tags","clusters","drilldown","events","teachers","sear
 def ParseArguments():
     if gOptions.buildOnly == "":
         if gOptions.buildOnlyIndexes:
-            gOptions.buildOnly = {"tags","clusters","events","teachers"}
+            gOptions.buildOnly = {"topics","tags","clusters","events","teachers"}
         else:
             gOptions.buildOnly = gAllSections
     elif gOptions.buildOnly.lower() == "none":
