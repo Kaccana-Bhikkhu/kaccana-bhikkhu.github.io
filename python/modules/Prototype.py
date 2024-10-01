@@ -270,21 +270,24 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
 
                 indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
                 
+                countItems = []
+                fTagCount = item["tag"] and gDatabase["tag"][item["tag"]].get("fTagCount",0)
+                if fTagCount:
+                    countItems.append(f'{fTagCount}{FA_STAR}')
                 subtagExcerptCount = showSubtagCount and item.get("subtagExcerptCount",0)
-                if item["excerptCount"] or subtagExcerptCount:
+                itemCount = item["excerptCount"]
+                if itemCount or subtagExcerptCount:
                     if subtagExcerptCount:
-                        itemCount = item["excerptCount"]
                         if not item['tag']:
                             itemCount = "-"
-                        else:
-                            fTagCount = gDatabase["tag"][item["tag"]].get("fTagCount",0)
-                            if fTagCount:
-                                itemCount = f'{fTagCount}{FA_STAR}/{itemCount}'
-                        countStr = f' ({itemCount}/{subtagExcerptCount})'
+                        countItems.append(str(itemCount))
+                        countItems.append(str(subtagExcerptCount))
                     else:
-                        countStr = f' ({item["excerptCount"]})'
+                        countItems.append(str(itemCount))
+                if countItems:
+                    countStr = f' ({"/".join(countItems)})'
                 else:
-                    countStr = ""
+                    countStr = ''
                 
                 if item['tag'] and not item['subsumed']:
                     nameStr = HtmlTagLink(item['tag'],True) + countStr
