@@ -893,7 +893,7 @@ class Formatter:
 
         a(" ")
         if self.excerptPreferStartTime and excerpt['excerptNumber']:
-            a(f'[{excerpt["clips"][0].start}] ')
+            a(f'[{excerpt.get("startTimeInSession",None) or excerpt["clips"][0].start}] ')
 
         def ListAttributionKeys() -> Generator[Tuple[str,str]]:
             for num in range(1,10):

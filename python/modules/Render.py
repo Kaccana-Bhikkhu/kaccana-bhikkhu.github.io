@@ -80,7 +80,7 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
     return "".join(parts), attribution
 
 def PrepareTemplates():
-    ParseCSV.ListifyKey(gDatabase["kind"],"form1")
+    ParseCSV.ListifyKey(gDatabase["kind"],"form1",removeBlank=False)
     ParseCSV.ConvertToInteger(gDatabase["kind"],"defaultForm")
 
     for kind in gDatabase["kind"].values():

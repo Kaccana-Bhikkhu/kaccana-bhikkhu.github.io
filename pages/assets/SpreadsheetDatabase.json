@@ -87392,7 +87392,18 @@
       "fTagOrder": [
         200
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Rishikesh2023_S01_F04.mp3",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Ajahn Pasanno",
         "Energy",
@@ -87402,11 +87413,12 @@
       "qTagCount": 2,
       "clips": [
         [
-          "$",
-          "20:24",
-          "21:07"
+          "Rishikesh2023_S01_F04.mp3",
+          "0:00",
+          "0:43"
         ]
       ],
+      "startTimeInSession": "20:24",
       "duration": "0:43"
     },
     {
@@ -94685,6 +94697,12 @@
       "event": "Rishikesh2023",
       "url": "https://www.abhayagiri.org/media/audio/2023%20LPP%20Rishikesh/QA_LPP_Rishikesh_11.23.2023.mp3"
     },
+    "Rishikesh2023_S01_F04.mp3": {
+      "filename": "Rishikesh2023_S01_F04.mp3",
+      "duration": "0:43",
+      "event": "Rishikesh2023",
+      "url": ""
+    },
     "2023-11-25 Questions and Answers (24 Nov Morning) Interreligious Retreat-Seminar in Rishikesh (411).mp3": {
       "filename": "2023-11-25 Questions and Answers (24 Nov Morning) Interreligious Retreat-Seminar in Rishikesh (411).mp3",
       "duration": "0:17:02",
@@ -95249,7 +95267,25 @@
       "form2": "unimplemented",
       "form3": "unimplemented",
       "exclude": true,
-      "usageNotes": ""
+      "usageNotes": "Specifes a replacedment audio file for this excerpt which is treated as if it were the session audio file for this excerpt. Text has the format: filename.mp3|url. End time specifies the duration of the file."
+    },
+    "Edited audio": {
+      "kind": "Edited audio",
+      "category": "Audio",
+      "defaultForm": "1",
+      "canBeExcerpt": false,
+      "canBeAnnotation": true,
+      "takesTimes": true,
+      "takesTeachers": false,
+      "takesTags": false,
+      "ignoreConsent": false,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "form1": "",
+      "form2": "unimplemented",
+      "form3": "unimplemented",
+      "exclude": false,
+      "usageNotes": "Specifes a replacedment audio file for this excerpt, which is otherwise treated as if it were part of the session. End time specifies the duration of the excerpt; if blank, use the duration specified by the excerpt start and end times."
     },
     "Append audio": {
       "kind": "Append audio",

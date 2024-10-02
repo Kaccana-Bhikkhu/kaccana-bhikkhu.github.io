@@ -42,6 +42,7 @@ Extra tags,Other,0,No,Yes,No,No,Yes,,No,,unimplemented,unimplemented,unimplement
 ,,,,,,,,,,,,,,,
 Fragment,Other,0,No,Yes,Yes,No,No,,,,unimplemented,unimplemented,unimplemented,Yes,A fragment annotation indicates that the next annotation and its sub-annotations should be duplicated in a separate except following the main excerpt. The Fragment annotation itself is rendered as an audio player to play that excerpt.
 ,,,,,,,,,,,,,,,
-Alt. audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,
+Alt. audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,Specifes a replacedment audio file for this excerpt which is treated as if it were the session audio file for this excerpt. Text has the format: filename.mp3|url. End time specifies the duration of the file.
+Edited audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,,"Specifes a replacedment audio file for this excerpt, which is otherwise treated as if it were part of the session. End time specifies the duration of the excerpt; if blank, use the duration specified by the excerpt start and end times."
 Append audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,
 Cut audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,

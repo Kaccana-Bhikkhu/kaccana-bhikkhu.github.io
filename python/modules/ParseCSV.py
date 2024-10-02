@@ -157,7 +157,7 @@ def CSVFileToDictList(fileName,*args,**kwArgs):
         SkipModificationLine(file)
         return CSVToDictList(file,*args,**kwArgs)
 
-def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
+def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';',removeBlank = True) -> None:
     """Convert the values in a specific key to a list for all dictionaries in dictList.
     First, look for other keys with names like dictKey+'2', etc.
     Then split all these keys using the given delimiter, concatenate the results, and store it in dictKey.
@@ -187,7 +187,8 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
         items = []
         for sequentialKey in keyList:
             items += d[sequentialKey].split(delimiter)
-        items = [s.strip() for s in items if s.strip()]
+        if removeBlank:
+            items = [s.strip() for s in items if s.strip()]
         d[baseKey] = items
                     
         if baseKey == key:
@@ -897,7 +898,7 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
 def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
     Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
-    Eventually this function will scan for Alt. Audio and Append Audio annotations for extended functionality."""
+    Eventually this function will scan for Alt. Audio, Edited Audio, Append Audio, and Cut Audio annotations for extended functionality."""
 
     # First eliminate excerpts with fatal parsing errors.
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
@@ -941,6 +942,23 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             return "0:00"
         return Utils.TimeDeltaToStr(duration)
 
+    def ProcessAltAudio(excerpt: dict,altAudioAnnotation: dict) -> None:
+        """Prepare for an excerpt that specifies an alternate audio source."""
+        splitBits = altAudioAnnotation["text"].split("|")
+        filename = splitBits[0]
+        duration = altAudioAnnotation["endTime"]
+        url = ""
+        if altAudioAnnotation["kind"] == "Edited audio":
+            clip = excerpt["clips"][0]
+            if not duration:
+                duration = Utils.TimeDeltaToStr(clip.Duration(None))
+            excerpt["startTimeInSession"] = clip.start
+            excerpt["clips"][0] = clip._replace(start="0:00",end=duration)
+            excerpt["duration"] = duration
+        else: # "kind" == "Alt. audio"
+            if len(splitBits) > 1:
+                url = splitBits[1]
+        AddAudioSource(filename,duration,excerpt["event"],url)
 
     # Then scan through the excerpts and add key "clips"
     for session,sessionExcerpts in Database.GroupBySession(excerpts,sessions):
@@ -957,6 +975,16 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         del session["remoteMp3Url"]
 
         for x in sessionExcerpts:
+            # First check if there is an Alt. Audio or Edited Audio annotation
+            altAudioList = [a for a in x["annotations"] if a["kind"] in ("Alt. audio","Edited audio")]
+            if altAudioList:
+                if len(altAudioList) > 1:
+                    Alert.caution(x,"has more than one Alt. Audio or Edited Audio annotation. Only the first will be used.")
+                audioSource = altAudioList[0]["text"].split("|")[0]
+                    # The annotation text contains the audio source file name
+            else:
+                audioSource = "$"
+
             # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
             endTime = x["endTime"]
@@ -977,12 +1005,12 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
                 
                 if prevExcerpt["clips"][0].ToClipTD().end > Mp3DirectCut.ToTimeDelta(startTime):
-                    # startTime = prevExcerpt["clips"][0].end # This code eliminates clip overlaps
-                    # x["startTime"] = prevExcerpt["endTime"]
                     if ExcerptFlag.OVERLAP not in x["flags"]:
                         Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
-            x["clips"] = [SplitMp3.Clip("$",startTime,endTime)]
+            x["clips"] = [SplitMp3.Clip(audioSource,startTime,endTime)]
+            if altAudioList:
+                ProcessAltAudio(x,altAudioList[0])
             prevExcerpt = x
         
         if prevExcerpt:
