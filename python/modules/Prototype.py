@@ -892,7 +892,7 @@ class Formatter:
                 a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
 
         a(" ")
-        if self.excerptPreferStartTime and excerpt['excerptNumber']:
+        if self.excerptPreferStartTime and excerpt['excerptNumber'] and (excerpt["clips"][0].file == "$" or excerpt.get("startTimeInSession",None)):
             a(f'[{excerpt.get("startTimeInSession",None) or excerpt["clips"][0].start}] ')
 
         def ListAttributionKeys() -> Generator[Tuple[str,str]]:
@@ -1009,7 +1009,7 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio:
+            if linkSessionAudio and session['filename']:
                 audioLink = Mp3SessionLink(session)
                 itemsToJoin[-1] += ' ' + audioLink
                     # The audio chip goes on a new line, so don't separate with a dash
@@ -1454,7 +1454,8 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
     formatter.excerptOmitSessionTags = False
     formatter.headingShowTeacher = False
 
-    tags = Filter.FrozenSet(tags)
+    if type(tags) == str:
+        tags = [tags]
 
     if len(tagExcerpts) >= gOptions.minSubsearchExcerpts:
         questions = Filter.Category("Questions")(tagExcerpts)

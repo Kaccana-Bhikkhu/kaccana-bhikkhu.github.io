@@ -84,7 +84,8 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
             tagStrs.insert(excerpt["qTagCount"],"//")
         parts += tagStrs
     
-    source = f'Source: {excerpt["clips"][0].start} in file "{session["filename"]}"'
+    firstClip = excerpt["clips"][0]
+    source = f'Source: {firstClip.start} in file "{session["filename"] if firstClip.file == "$" else firstClip.file}"'
     parts.append(source)
 
     return " ".join(parts)

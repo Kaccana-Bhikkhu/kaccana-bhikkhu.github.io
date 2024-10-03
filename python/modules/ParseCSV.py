@@ -13,6 +13,7 @@ from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
 from collections import Counter, defaultdict
+import itertools
 
 class StrEnum(str,Enum):
     pass
@@ -39,6 +40,7 @@ class ExcerptFlag(StrEnum):
     OVERLAP = "o"
     PLURAL = "s"
     UNQUOTE = "u"
+    
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -898,7 +900,7 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
 def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
     Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
-    Eventually this function will scan for Alt. Audio, Edited Audio, Append Audio, and Cut Audio annotations for extended functionality."""
+    Eventually this function will scan for Alternate audio, Edited audio, Append audio, and Cut audio annotations for extended functionality."""
 
     # First eliminate excerpts with fatal parsing errors.
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
@@ -924,6 +926,11 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             Alert.error("Audio filename",repr(filename),"contains diacritics, which are not allowed.")
             filename = noDiacritics
 
+        try:
+            Mp3DirectCut.ToTimeDelta(duration)
+        except ValueError:
+            Alert.error(filename,"in event",event,"has invalid duration:",repr(duration))
+
         if filename in database["audioSource"]:
             existingSource = database["audioSource"][filename]
             if existingSource["duration"] != duration or existingSource["url"] != url:
@@ -935,8 +942,13 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
     def ExcerptDuration(excerpt: dict,sessionDuration:timedelta) -> str:
         "Return the duration of excerpt as a string."
         try:
-            clip = excerpt["clips"][0].ToClipTD()
-            duration = clip.Duration(sessionDuration)
+            duration = timedelta(0)
+            for clip in excerpt["clips"]:
+                if clip.file == "$":
+                    fileDuration = sessionDuration
+                else:
+                    fileDuration = database["audioSource"][clip.file]["duration"]
+                duration += clip.Duration(fileDuration)
         except Mp3DirectCut.TimeError as error:
             Alert.error(excerpt,"generates time error:",error.args[0])
             return "0:00"
@@ -947,39 +959,34 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         splitBits = altAudioAnnotation["text"].split("|")
         filename = splitBits[0]
         duration = altAudioAnnotation["endTime"]
-        url = ""
+        url = splitBits[1] if len(splitBits) > 1 else ""
         if altAudioAnnotation["kind"] == "Edited audio":
             clip = excerpt["clips"][0]
             if not duration:
                 duration = Utils.TimeDeltaToStr(clip.Duration(None))
             excerpt["startTimeInSession"] = clip.start
-            excerpt["clips"][0] = clip._replace(start="0:00",end=duration)
+            excerpt["clips"][0] = clip._replace(start="0:00",end="")
             excerpt["duration"] = duration
-        else: # "kind" == "Alt. audio"
-            if len(splitBits) > 1:
-                url = splitBits[1]
         AddAudioSource(filename,duration,excerpt["event"],url)
 
     # Then scan through the excerpts and add key "clips"
     for session,sessionExcerpts in Database.GroupBySession(excerpts,sessions):
-        prevExcerpt = None
         if session["filename"]:
             AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
             try:
                 sessionDuration = Mp3DirectCut.ToTimeDelta(session["duration"])
             except ValueError:
-                Alert.error(session,"has invalid duration:",repr(session["duration"]))
                 sessionDuration = None
         else:
             sessionDuration = None
         del session["remoteMp3Url"]
 
         for x in sessionExcerpts:
-            # First check if there is an Alt. Audio or Edited Audio annotation
-            altAudioList = [a for a in x["annotations"] if a["kind"] in ("Alt. audio","Edited audio")]
+            # First check if there is an Alternate audio or Edited audio annotation
+            altAudioList = [a for a in x["annotations"] if a["kind"] in ("Alternate audio","Edited audio")]
             if altAudioList:
                 if len(altAudioList) > 1:
-                    Alert.caution(x,"has more than one Alt. Audio or Edited Audio annotation. Only the first will be used.")
+                    Alert.caution(x,"has more than one Alternate audio or Edited audio annotation. Only the first will be used.")
                 audioSource = altAudioList[0]["text"].split("|")[0]
                     # The annotation text contains the audio source file name
             else:
@@ -997,24 +1004,31 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                     deletedExcerptIDs.add(id(x))
                 continue
             
-            if prevExcerpt and "clips" in prevExcerpt:
-                if not prevExcerpt["clips"][0].end:
-                        # If the previous excerpt didn't specify an end time, use the start time of this excerpt
-                    prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
-            
-                prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
-                
-                if prevExcerpt["clips"][0].ToClipTD().end > Mp3DirectCut.ToTimeDelta(startTime):
-                    if ExcerptFlag.OVERLAP not in x["flags"]:
-                        Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
-
             x["clips"] = [SplitMp3.Clip(audioSource,startTime,endTime)]
             if altAudioList:
                 ProcessAltAudio(x,altAudioList[0])
-            prevExcerpt = x
         
-        if prevExcerpt:
-            prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
+        # Excerpts without an end time end when the next excerpt starts
+        for x1,x2 in itertools.pairwise(sessionExcerpts):
+            if "clips" not in x1: # Skip the session excerpt
+                continue
+            lastClip = x1["clips"][-1]
+            firstClip = x2["clips"][0]
+            sameFile = lastClip.file == firstClip.file
+            if not lastClip.end:
+                if sameFile:
+                    x1["clips"][-1] = lastClip._replace(end=firstClip.start)
+                if "startTimeInSession" in x2 and lastClip.file == "$":
+                    x1["clips"][-1] = lastClip._replace(end=x2["startTimeInSession"])
+
+            endTime = lastClip.ToClipTD().end
+            if sameFile and endTime and endTime > firstClip.ToClipTD().start:
+                if ExcerptFlag.OVERLAP not in x2["flags"]:
+                    Alert.warning(f"excerpt",x2,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+        for x in sessionExcerpts:
+            if "clips" in x:
+                x["duration"] = ExcerptDuration(x,sessionDuration)
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
