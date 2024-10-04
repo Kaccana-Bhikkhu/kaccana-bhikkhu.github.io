@@ -24,11 +24,10 @@ All four recordings of daylong events led by Ajahn Pasanno at Spirit Rock Medita
 All 21 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive. TWo more on YouTube haven't made it yet.
 
 ### Other
-Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio. Several Abhayagiri anniversary celebrations and a podcast with Ajahn Pasanno are in progress.
+Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio. Several Abhayagiri anniversary celebrations are in progress.
 
 ## Known issues and limitations
 
- - Pressing the back button sometimes returns to a seemingly random scroll position on the previous page ([Github issue #52](https://github.com/Kaccana-Bhikkhu/qs-archive/issues/52)).
  - References do not link to specific pages within the pdf on mobile browsers.
 
 ## Previous releases:

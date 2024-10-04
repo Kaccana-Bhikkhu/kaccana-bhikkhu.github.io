@@ -89,3 +89,7 @@
 - 4.2 Added Upāsikā Day: Can We Function Without Attachement? and Ajahn Pasanno's Q&A sessions from the 25th Anniversary Retreat. Obtained teacher consent for almost all Chah2001 excerpts. Added tag search feature. Updated the tags with changes from Version 9. Alphabetical tag listing improvements. search.js is more readable. Database-related functions moved to Database.py.
 
 - 4.2.1 (August 2024 release) Minor changes to tags and alphabetical tag listings. Minor fixes to search display.
+
+- 5.0 Key topics, featured excerpts, and tag clusters. Edited audio and Alternate audio annotations. toggle-view implemented in Javascript. Rewrite Filter.py to use Filter class instead of functions. Fixed the long-standing scroll bug when pressing back. Allow root index.html to be indexed. 
+
+Add events: Madision2023, Rishikesh 2023, Podcast 2023. Listened in detail to some excerpts from TG2014 and the first four sessions of TG2015.
