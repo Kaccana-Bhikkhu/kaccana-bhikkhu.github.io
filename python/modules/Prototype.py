@@ -2078,7 +2078,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
 
     yield page
 
-def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.PageDescriptorMenuItem:
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
@@ -2089,8 +2089,9 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
         a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
         for topicCode,topic in gDatabase["keyTopic"].items():
             with a.p(id=topicCode):
-                with a.a().i(Class = "fa fa-minus-square toggle-view",id=topicCode):
-                    pass
+                if not printPage:
+                    with a.a().i(Class = "fa fa-minus-square toggle-view",id=topicCode):
+                        pass
                 a(HtmlKeyTopicLink(topicCode,count=True))
             with a.div(id=topicCode + ".b"):
                 for cluster in topic["clusters"]:
@@ -2098,20 +2099,26 @@ def DetailedKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuIte
                         subtags = list(gDatabase["tagCluster"][cluster]["subtags"].keys())
                         with a.strong() if len(subtags) > 0 else nullcontext(0):
                             a(HtmlTagClusterLink(cluster,count=True))
+                        bitsAfterDash = []
                         if len(subtags) > 0:
-                            a(" – ")
-                            a(ListLinkedTags("Cluster includes",[cluster] + subtags,plural=""))
+                            bitsAfterDash.append(ListLinkedTags("Cluster includes",[cluster] + subtags,plural="",endStr=""))
+                        if printPage and gDatabase["tagCluster"][cluster]["related"]:
+                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["tagCluster"][cluster]["related"],plural="",endStr=""))
+                        if bitsAfterDash:
+                            a(" – " + "; ".join(bitsAfterDash))
+                
                 if topic["shortNote"]:
                     with a.p(style="margin-left: 2em;"):
                         a(topic["shortNote"])
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
     
-    page.AppendContent(Html.Tag("button",{"type":"button",
-                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("showAll").file)})("Expand all"))
-    page.AppendContent(Html.Tag("button",{"type":"button",
-                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("hideAll").file)})("Contract all"))
-    page.AppendContent("<br><br>")
+    if not printPage:
+        page.AppendContent(Html.Tag("button",{"type":"button",
+                                            "onclick":Utils.JavascriptLink(menuItem.AddQuery("showAll").file)})("Expand all"))
+        page.AppendContent(Html.Tag("button",{"type":"button",
+                                            "onclick":Utils.JavascriptLink(menuItem.AddQuery("hideAll").file)})("Contract all"))
+        page.AppendContent("<br><br>")
 
     page.AppendContent(str(a))
 
@@ -2125,7 +2132,7 @@ def PrintTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     menuItem = Html.PageInfo("Printable",Utils.PosixJoin(indexDir,"KeyTopicDetail_print.html"),"Key topics")
     yield menuItem
 
-    topicList = DetailedKeyTopics(indexDir,topicDir)
+    topicList = DetailedKeyTopics(indexDir,topicDir,printPage=True)
     _ = next(topicList)
     page = next(topicList)
     page.info = menuItem._replace(title="Key topics")
@@ -2146,11 +2153,11 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
         PrintTopics(indexDir,topicDir),
-        TagClusterPages("clusters"),
-        KeyTopicExcerptLists(indexDir,topicDir)
     ]
 
     yield from basePage.AddMenuAndYieldPages(keyTopicMenu,**EXTRA_MENU_STYLE)
+    yield from TagClusterPages("clusters")
+    yield from KeyTopicExcerptLists(indexDir,topicDir)
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
