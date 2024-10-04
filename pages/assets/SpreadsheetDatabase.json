@@ -88363,8 +88363,8 @@
       "excerpts": 36
     },
     "SRD2013": {
-      "title": "The Whole of the Path: The Fruits of Spiritual Friendship",
-      "subtitle": "",
+      "title": "The Whole of the Path",
+      "subtitle": "The Fruits of Spiritual Friendship",
       "code": "SRD2013",
       "series": "Spirit Rock Daylongs",
       "venue": "Spirit Rock Meditation Center",
@@ -103069,7 +103069,6 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "posturesitting.html",
-      "cluster": "Ascetic practices",
       "excerptCount": 19,
       "listIndex": 410
     },
@@ -109541,6 +109540,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "fourfold-assembly.html",
+      "cluster": "Communal harmony",
       "excerptCount": 2,
       "listIndex": 758
     },
@@ -109562,6 +109562,8 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "communal-harmony.html",
+      "keyTopicCode": "monastic",
+      "cluster": "Communal harmony",
       "excerptCount": 21,
       "listIndex": 759
     },
@@ -109587,6 +109589,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "principles-of-cordiality.html",
+      "cluster": "Communal harmony",
       "excerptCount": 1,
       "listIndex": 760
     },
@@ -109607,6 +109610,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "monastery-organizational-structure.html",
+      "cluster": "Communal harmony",
       "excerptCount": 2,
       "listIndex": 765
     },
@@ -109627,6 +109631,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "sangha-decision-making.html",
+      "cluster": "Communal harmony",
       "excerptCount": 19,
       "listIndex": 766
     },
@@ -109647,6 +109652,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "abbot.html",
+      "cluster": "Communal harmony",
       "excerptCount": 24,
       "fTagCount": 1,
       "listIndex": 767
@@ -109890,6 +109896,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "sitters-practice.html",
+      "cluster": "Ascetic practices",
       "excerptCount": 1,
       "listIndex": 778
     },
@@ -124976,7 +124983,9 @@
       "tag": "Saṅgha",
       "flags": "",
       "displayAs": "Saṅgha",
-      "related": [],
+      "related": [
+        "Communal harmony"
+      ],
       "keyTopic": "The Three Refuges",
       "topicCode": "refuges",
       "subtags": {
@@ -126105,6 +126114,25 @@
       "htmlPath": "clusters/vinaya.html",
       "excerptCount": 4
     },
+    "Communal harmony": {
+      "tag": "Communal harmony",
+      "flags": "",
+      "displayAs": "Monastic community",
+      "related": [
+        "Saṅgha"
+      ],
+      "keyTopic": "Monastic Life",
+      "topicCode": "monastic",
+      "subtags": {
+        "Fourfold Assembly": "+",
+        "Principles of Cordiality": "+",
+        "Saṅgha decision making": "+",
+        "Abbot": "+",
+        "Monastery organizational structure": "-"
+      },
+      "htmlPath": "clusters/communal-harmony.html",
+      "excerptCount": 1
+    },
     "Ascetic practices": {
       "tag": "Ascetic practices",
       "flags": "",
@@ -126114,8 +126142,8 @@
       "topicCode": "monastic",
       "subtags": {
         "Tudong": "+",
-        "Posture/Sitting": "-",
-        "Fasting": "-"
+        "Fasting": "-",
+        "Sitter's practice": "-"
       },
       "htmlPath": "clusters/ascetic-practices.html",
       "excerptCount": 0
@@ -127147,9 +127175,10 @@
         "Requisites",
         "Thai Forest Tradition",
         "Vinaya",
+        "Communal harmony",
         "Ascetic practices"
       ],
-      "excerptCount": 7
+      "excerptCount": 8
     },
     "everyday": {
       "code": "everyday",

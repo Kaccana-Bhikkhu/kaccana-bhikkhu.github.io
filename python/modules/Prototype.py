@@ -167,7 +167,7 @@ def HtmlClusterTagList(cluster:dict,summarize:int = 0,group:bool = False,showSta
     listSubtags = (summarize and len(cluster["subtags"]) + 1 <= summarize) or subordinateTags < 2
     bits = []
     for tag,flag in itertools.chain([(cluster["tag"],ParseCSV.KeyTagFlag.PEER_TAG)],cluster["subtags"].items()):
-        if not summarize or flag == ParseCSV.KeyTagFlag.PEER_TAG:
+        if listSubtags or flag == ParseCSV.KeyTagFlag.PEER_TAG:
             bits.append(HtmlTagLink(tag,showStar=showStar))
     
     if not listSubtags:
@@ -1204,7 +1204,7 @@ def FilteredEventsMenuItem(events:Iterable[dict], filter:Filter.Filter, mainPage
 
     menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredEvents)})")
 
-    return menuItem,ListDetailedEvents(filteredEvents)
+    return menuItem,ListDetailedEvents(filteredEvents,showTags=False)
 
 def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     """Generate a single page containing all excerpts."""
@@ -1291,7 +1291,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
     filterMenu = [f for f in filterMenu if f] # Remove blank menu items
     yield from basePage.AddMenuAndYieldPages(filterMenu,**SUBMENU_STYLE)
 
-def ListDetailedEvents(events: Iterable[dict]) -> str:
+def ListDetailedEvents(events: Iterable[dict],showTags = True) -> str:
     """Generate html containing a detailed list of all events."""
     
     a = Airium()
@@ -1308,6 +1308,10 @@ def ListDetailedEvents(events: Iterable[dict]) -> str:
         with a.p():
             a(f'{ListLinkedTeachers(e["teachers"],lastJoinStr = " and ")}')
             a.br()
+            if showTags and e["tags"]:
+                bits = list(f"[{HtmlTagLink(t)}]" for t in e["tags"])
+                a(" ".join(bits))
+                a.br()
             a(EventSeriesAndDateStr(e))
             a.br()
             venueStr = EventVenueStr(e)
@@ -1947,13 +1951,24 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
             excerpt,tag,firstExcerpt,lastExcerpt = item
 
             clusterInfo = gDatabase["tagCluster"][tag]
-            if excerpt:
-                excerptHtml = formatter.HtmlExcerptList([excerpt])
-            else:
-                excerptHtml = Html.ITEM_NO_COUNT
+            excerptHtml = ""
 
-            if firstExcerpt and clusterInfo["subtags"]:
-                excerptHtml = "Cluster includes: " + HtmlClusterTagList(clusterInfo,summarize=5) + "<br>\n<br>\n" + excerptHtml
+            if firstExcerpt:
+                lines = []
+                if clusterInfo["subtags"]:
+                    lines.append("Cluster includes: " + HtmlClusterTagList(clusterInfo,summarize=5)) #  + "<br>\n<br>\n"
+                relatedEvents = list(Filter.Tag([clusterInfo["tag"]] + list(clusterInfo["subtags"]))(gDatabase["event"].values()))
+                if relatedEvents:
+                    lines.append("Related events: " + ", ".join(Database.ItemCitation(e) for e in relatedEvents))
+
+                if lines:
+                    lines.append("")
+                    excerptHtml += "<br>\n".join(lines)
+
+            if excerpt:
+                excerptHtml += formatter.HtmlExcerptList([excerpt])
+            else:
+                excerptHtml += Html.ITEM_NO_COUNT
 
             if excerpt and not lastExcerpt:
                 excerptHtml += "\n<hr>"

@@ -62,7 +62,7 @@ def ItemCitation(item: dict) -> str:
     """Return html code with the name of the event, session number, and file number.
     item can be an event, session or excerpt"""
 
-    event = item.get("event",None)
+    event = item.get("event",item.get("code",None))
     session = item.get("sessionNumber",None)
     fileNumber = item.get("fileNumber",None)
 

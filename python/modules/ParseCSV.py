@@ -615,6 +615,9 @@ def CollectKeyTopics(database:dict[str]) -> None:
             currentKeyTopic["clusters"].append(cluster["tag"])
     
     for cluster in clustersToRemove:
+        extraFields = [{key:value} for key,value in database["tagCluster"][cluster].items() if value and key not in ("tag","flags")]
+        if extraFields:
+            Alert.notice("CollectKeyTopics: Extra fields in subtag",cluster,":",extraFields)
         del database["tagCluster"][cluster]
     
     ListifyKey(database["tagCluster"],"related")
