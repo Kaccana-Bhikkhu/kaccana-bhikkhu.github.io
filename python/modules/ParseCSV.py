@@ -617,6 +617,8 @@ def CollectKeyTopics(database:dict[str]) -> None:
     for cluster in clustersToRemove:
         del database["tagCluster"][cluster]
     
+    ListifyKey(database["tagCluster"],"related")
+
     for cluster in database["tagCluster"].values():
         if cluster["subtags"]: # Topics with subtopics link to separate pages in the topics directory
             cluster["htmlPath"] = f"clusters/{Utils.slugify(cluster['tag'])}.html"

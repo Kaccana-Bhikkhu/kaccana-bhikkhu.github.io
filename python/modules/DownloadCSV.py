@@ -184,20 +184,21 @@ def main():
                 fileName = sheet + ".csv"
                 if writer.GetStatus(fileName) == FileRegister.Status.STALE:
                     writer.SetStatus(fileName,FileRegister.Status.UNCHANGED)
-        writerReport = writer.StatusSummary()
+            writerReport = writer.StatusSummary()
 
-        staleFiles = writer.FilesWithStatus(FileRegister.Status.STALE)
-        if staleFiles:
-            Alert.extra("Stale files:",staleFiles)
-        ignoreSummary = r"(?!.*Summary\.csv).*\.csv$"
-        deletedFiles = writer.DeleteStaleFiles(filterRegex=ignoreSummary)
-        deletedFiles += writer.DeleteUnregisteredFiles(filterRegex=ignoreSummary)
-        if deletedFiles:
-            Alert.extra(f"{deletedFiles} .csv files deleted.")
+            staleFiles = writer.FilesWithStatus(FileRegister.Status.STALE)
+            if staleFiles:
+                Alert.extra("Stale files:",staleFiles)
+            ignoreSummary = r"(?!.*Summary\.csv).*\.csv$"
+            deletedFiles = writer.DeleteStaleFiles(filterRegex=ignoreSummary)
+            deletedFiles += writer.DeleteUnregisteredFiles(filterRegex=ignoreSummary)
+            if deletedFiles:
+                Alert.extra(f"{deletedFiles} .csv files deleted.")
 
     downloadedSheets = list(sheetsToDownload.keys())
     if downloadSummary:
         downloadedSheets = ['Summary'] + downloadedSheets
     Alert.info(f'Downloaded {len(downloadedSheets)} sheets: {", ".join(downloadedSheets)}')
-    Alert.extra(f'csv files:',writerReport)
+    if downloadSummary:
+        Alert.extra(f'csv files:',writerReport)
 

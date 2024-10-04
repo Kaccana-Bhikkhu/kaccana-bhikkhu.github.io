@@ -2002,6 +2002,8 @@ def TagClusterPages(topicDir: str):
             a(f"Part of key topic {HtmlKeyTopicLink(clusterInfo['topicCode'])}")
             a.br()
             a(ListLinkedTags("Includes tag",tags))
+            relatedClusters = [HtmlTagClusterLink(c) for c in clusterInfo["related"]]
+            a(TitledList("Related",relatedClusters,plural=""))
         
         a.hr()
         
