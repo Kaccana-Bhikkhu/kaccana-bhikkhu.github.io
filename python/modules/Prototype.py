@@ -1932,8 +1932,9 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         page.AppendContent("<br>")
 
         if topic["longNote"]:
-            page.AppendContent(topic["longNote"] + "<hr>\n")
-
+            page.AppendContent("<br>\n" + topic["longNote"])
+        page.AppendContent("<hr>\n")
+        
         excerptsByTopic:dict[str:list[str]] = {}
         for cluster in topic["clusters"]:
             def SortKey(x) -> int:
@@ -1949,7 +1950,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
             if excerpt:
                 excerptHtml = formatter.HtmlExcerptList([excerpt])
             else:
-                excerptHtml = ""
+                excerptHtml = Html.ITEM_NO_COUNT
 
             if firstExcerpt and clusterInfo["subtags"]:
                 excerptHtml = "Cluster includes: " + HtmlClusterTagList(clusterInfo,summarize=5) + "<br>\n<br>\n" + excerptHtml
@@ -2003,7 +2004,7 @@ def TagClusterPages(topicDir: str):
             a.br()
             a(ListLinkedTags("Includes tag",tags))
             relatedClusters = [HtmlTagClusterLink(c) for c in clusterInfo["related"]]
-            a(TitledList("Related",relatedClusters,plural=""))
+            a(TitledList("See also",relatedClusters,plural=""))
         
         a.hr()
         

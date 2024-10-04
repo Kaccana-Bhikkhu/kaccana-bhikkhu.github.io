@@ -364,6 +364,7 @@ class PageDesc(Renderable):
         yield from self._PagesFromMenuGenerators(menuFunctions,menuSection=menuSection,**menuStyle)
 
 
+ITEM_NO_COUNT = "<!--NO_COUNT-->" # Don't count an item with this in htmlBody 
 T = TypeVar("T")
 def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None,str]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
@@ -411,8 +412,11 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
             prevHeading = textHeading
             itemCount = 0
         if htmlBody:
+            if ITEM_NO_COUNT in htmlBody:
+                htmlBody = htmlBody.replace(ITEM_NO_COUNT,"")
+            else:
+                itemCount += 1
             bodyParts.append(htmlBody)
-            itemCount += 1
             anythingListed = True
     
     page = PageDesc()

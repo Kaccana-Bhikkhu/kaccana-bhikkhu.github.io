@@ -618,6 +618,9 @@ def CollectKeyTopics(database:dict[str]) -> None:
         del database["tagCluster"][cluster]
     
     ListifyKey(database["tagCluster"],"related")
+    nonClustersWithRelated = [{c["tag"]:c["related"]} for c in database["tagCluster"].values() if c["related"] and not c["subtags"]]
+    if nonClustersWithRelated:
+        Alert.notice("These",len(nonClustersWithRelated),"subtopics are mapped to tags. Their related tags should be moved to tags.",nonClustersWithRelated)
 
     for cluster in database["tagCluster"].values():
         if cluster["subtags"]: # Topics with subtopics link to separate pages in the topics directory
