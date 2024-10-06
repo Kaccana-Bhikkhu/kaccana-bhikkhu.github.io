@@ -134,8 +134,7 @@
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
                 "Prototype",
-                "--buildOnly",
-                "events"
+                "--buildOnlyIndexes",
             ],
             "console": "integratedTerminal",
             "justMyCode": true

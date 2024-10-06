@@ -1323,9 +1323,6 @@ def ListDetailedEvents(events: Iterable[dict],showTags = True) -> str:
                 
     return str(a)
 
-def EventSeries(event: dict) -> str:
-    return event["series"]
-
 def EventDescription(event: dict,showMonth = False) -> str:
     href = Html.Wrapper(f"<a href = {Database.EventLink(event['code'])}>","</a>")
     if showMonth:
@@ -1334,6 +1331,38 @@ def EventDescription(event: dict,showMonth = False) -> str:
     else:
         monthStr = ""
     return f"<p>{href.Wrap(event['title'])} ({event['excerpts']}){monthStr}</p>"
+
+def ListEventsBySubject(events: list[dict]) -> str:
+    """Return html code listing these events by series."""
+    
+    eventsByTag:dict[str,list[str]] = defaultdict(list) # tag:list[event["code"]]
+    for e in events:
+        for tags in e["tags"]:
+            eventsByTag[tags].append(e["code"])
+
+    # Combine tags with identical event lists
+    tagsByEvent:dict[tuple[str],list[str]] = defaultdict(list) # tuple[event codes]:list[tag]
+    for tags,eventList in eventsByTag.items():
+        tagsByEvent[tuple(eventList)].append(tags)
+
+    # Switch keys and values
+    eventsByMultiTags = {tuple(tags):eventList for eventList,tags in tagsByEvent.items()}
+
+    def TagOrderKey(tagList: tuple[str]) -> tuple[int,int]:
+        "Sort the tag groups by decreasing event frequency and by index in the tag list"
+        return (-len(eventsByMultiTags[tagList]),gDatabase["tag"][tagList[0]]["listIndex"])
+
+    eventListByTags:list[tuple[tuple[str],str]] = []
+    for tags in sorted(eventsByMultiTags,key=TagOrderKey):
+        for e in eventsByMultiTags[tags]:
+            listItem = (ListLinkedTags("",tags,lastJoinStr = " and "),
+                        Html.Tag("p")(Database.ItemCitation(gDatabase["event"][e])),
+                        "-".join(tags),
+                        (" and ".join(tags) if len(tags) <= 2 else tags[0] + ", etc.").replace(" ","&nbsp"))
+            eventListByTags.append(listItem)
+            
+    
+    return str(Html.ListWithHeadings(eventListByTags,lambda t:t,countItems=False))
 
 def ListEventsBySeries(events: list[dict]) -> str:
     """Return html code listing these events by series."""
@@ -1363,19 +1392,21 @@ def ListEventsBySeries(events: list[dict]) -> str:
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""
     
-    return str(Html.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)) ,countItems=False))
+    return str(Html.ListWithHeadings(events,lambda e: (str(Utils.ParseDate(e["startDate"]).year),EventDescription(e)),countItems=False))
 
 def EventsMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Events menu item and its associated submenus."""
 
+    subjectInfo = Html.PageInfo("By subject",Utils.PosixJoin(indexDir,"EventsBySubject.html"),"Events – By subject")
     seriesInfo = Html.PageInfo("Series",Utils.PosixJoin(indexDir,"EventsBySeries.html"),"Events – By series")
     chronologicalInfo = Html.PageInfo("Chronological",Utils.PosixJoin(indexDir,"EventsChronological.html"),"Events – Chronological")
     detailInfo = Html.PageInfo("Detailed",Utils.PosixJoin(indexDir,"EventDetails.html"),"Events – Detailed view")
 
-    yield seriesInfo._replace(title="Events")
+    yield subjectInfo._replace(title="Events")
 
     listing = Html.Tag("div",{"class":"listing"})
     eventMenu = [
+        [subjectInfo,listing(ListEventsBySubject(gDatabase["event"].values()))],
         [seriesInfo,listing(ListEventsBySeries(gDatabase["event"].values()))],
         [chronologicalInfo,listing(ListEventsByYear(gDatabase["event"].values()))],
         [detailInfo,listing(ListDetailedEvents(gDatabase["event"].values()))],
@@ -2205,8 +2236,8 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,**SUBMENU_STYLE)
 
-SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching",
-                    }
+SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching"}
+
 def WriteSitemapURL(pagePath:str,xml:Airium) -> None:
     "Write the URL of the page at pagePath into an xml sitemap."
     

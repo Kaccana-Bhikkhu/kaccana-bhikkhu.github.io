@@ -371,7 +371,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
     items: The list of items; should be sorted into groups which each have the same heading.
     itemRenderer: Takes an item and returns the tuple htmlHeading[,htmlBody[,headingID[,textHeading]]].
         htmlHeading: html code for the heading; displayed between htmlBody units
-        htmlBody: html code for the body; print the heading only if omitted
+        htmlBody: html code for the body; if omitted, print the heading only
         headingID: html id for the heading; generated from textHeading if omitted
         textHeading: text to display in the menu; generated from htmlHeading if omitted
     headingWrapper: Wrap the heading in the body with this html code.
@@ -391,7 +391,7 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
         headingID = next(rendered,"")
         textHeading = next(rendered,"")
         if not textHeading:
-            textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
+            textHeading = Utils.RemoveHtmlTags(htmlHeading)
         if not headingID:
             headingID = textHeading
         headingID = Utils.slugify(headingID)

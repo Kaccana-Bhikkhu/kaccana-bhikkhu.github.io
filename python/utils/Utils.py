@@ -44,6 +44,9 @@ def PosixToWindows(path:str) -> str:
 PosixJoin = posixpath.join
 PosixSplit = posixpath.split
 
+def RemoveHtmlTags(html: str) -> str:
+    return re.sub(r"\<[^>]*\>","",html)
+
 def DirectoryURL(url:str) -> str:
     "Ensure that this url specifies a directory path."
     if url.endswith("/"):
