@@ -784,6 +784,7 @@ def FinalizeExcerptTags(x: dict) -> None:
     x["qTagCount"] = len(x["qTag"])
     if len(x["fTagOrder"]) != len(x["fTags"]):
         Alert.caution(x,f"has {len(x['fTags'])} fTag but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
+
     if not gOptions.jsonNoClean:
         del x["qTag"]
         del x["aTag"]
@@ -1288,10 +1289,28 @@ def CountAndVerify(database):
     tagDB = database["tag"]
     tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
-    
-    fTagCount = 0
+
+    fTagCount = draftFTagCount = 0
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
+
+        for index in reversed(range(len(x["fTags"]))):
+            fTag = x["fTags"][index]
+            fTagOrder = x["fTagOrder"][index]
+            if fTag not in tagSet:
+                Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
+
+            if gOptions.draftFTags == "omit" and fTagOrder > 1000:
+                del x["fTagOrder"][index]
+                del x["fTags"][index]
+                draftFTagCount += 1
+            else:
+                tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
+                if fTagOrder > 1000:
+                    draftFTagCount += 1
+                else:
+                    fTagCount += 1
+
         tagsToRemove = []
         for cluster in tagSet:
             try:
@@ -1304,14 +1323,9 @@ def CountAndVerify(database):
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
-        
-        for cluster in x["fTags"]:
-            if cluster not in tagSet:
-                Alert.caution(x,"specifies fTag",cluster,"but this does not appear as a regular tag.")
-            tagDB[cluster]["fTagCount"] = tagDB[cluster].get("fTagCount",0) + 1
-            fTagCount += 1
     
-    Alert.info(tagCount,"total tags applied.",fTagCount,"featured tags applied.")
+    Alert.info(tagCount,"total tags applied.",
+               fTagCount,"featured tags applied.",draftFTagCount,f"draft featured tags{' have been omitted' if gOptions.draftFTags == 'omit' else ''}.")
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
@@ -1504,6 +1518,7 @@ def AddArguments(parser):
     parser.add_argument('--pendingMeansYes',**Utils.STORE_TRUE,help="Treat teacher consent pending as yes - debugging only")
     parser.add_argument('--ignoreExcludes',**Utils.STORE_TRUE,help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--parseOnlySpecifiedEvents',**Utils.STORE_TRUE,help="Load only events specified by --events into the database")
+    parser.add_argument('--draftFTags',type=str,default="omit",help='What to do with fTags marked "?" "omit", "mark", or "show"')
     parser.add_argument('--detailedCount',**Utils.STORE_TRUE,help="Count all possible items; otherwise just count tags")
     parser.add_argument('--keepUnusedTags',**Utils.STORE_TRUE,help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',**Utils.STORE_TRUE,help="Keep intermediate data in json file for debugging")
@@ -1512,7 +1527,10 @@ def AddArguments(parser):
     parser.add_argument('--dumpCSV',type=str,default='',help='Dump csv output files to this directory.')
 
 def ParseArguments() -> None:
-    pass
+    gOptions.draftFTags = gOptions.draftFTags.lower()
+    if gOptions.draftFTags not in ("omit","mark","show"):
+        Alert.caution("Cannot recognize --draftFTags",repr(gOptions.draftFTags),"; reverting to omit.")
+        gOptions.draftFTags = "omit"
 
 def Initialize() -> None:
     pass

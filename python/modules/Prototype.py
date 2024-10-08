@@ -932,7 +932,8 @@ class Formatter:
             text = tag
             if tag in excerpt["fTags"]:
                 text += f'&nbsp{FA_STAR}'
-                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10) # Add ? to uncertain fTags; "?" * -N = ""
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags == "mark" else 0)
+                    # Add ? to uncertain fTags; "?" * -N = ""
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -956,6 +957,7 @@ class Formatter:
             text = tag
             if tag in excerpt["fTags"]:
                 text += f'&nbsp{FA_STAR}'
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags == "mark" else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
