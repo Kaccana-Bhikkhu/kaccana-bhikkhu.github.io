@@ -90,6 +90,6 @@
 
 - 4.2.1 (August 2024 release) Minor changes to tags and alphabetical tag listings. Minor fixes to search display.
 
-- 5.0 Key topics, featured excerpts, and tag clusters. Edited audio and Alternate audio annotations. toggle-view implemented in Javascript. Rewrite Filter.py to use Filter class instead of functions. Fixed the long-standing scroll bug when pressing back. Allow root index.html to be indexed. 
+- 5.0 Key topics, featured excerpts, and tag clusters. Edited audio and Alternate audio annotations. toggle-view implemented in Javascript. Rewrite Filter.py to use Filter class instead of functions. Fixed the long-standing scroll bug ([issue #52](https://github.com/Kaccana-Bhikkhu/qs-archive/issues/52)) when pressing back. Allow root index.html to be indexed. Added events: Madision2023, Rishikesh 2023, Podcast 2023. Listened in detail to some excerpts from TG2014 and the first four sessions of TG2015.
 
-Add events: Madision2023, Rishikesh 2023, Podcast 2023. Listened in detail to some excerpts from TG2014 and the first four sessions of TG2015.
+- 5.0.1 (October 2024 release) Events by subject page. Added annotations to TG2015 sessions 5-8. 

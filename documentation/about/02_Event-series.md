@@ -44,10 +44,14 @@ The coronavirus pandemic disrupted this orderly scheme of Upāsikā Days, and th
 
 Upāsikā Day participants were typically core Abhayagiri lay supporters, many of whom have made a formal commitment to the Upāsikā Program. One hears the same voices weave through multiple recordings over the years. Some participants were lay Dhamma teachers themselves. Questions and comments often reflect years of committed practice and explore lay practice in more depth than any other series. This is also a good place to hear Ajahn Pasanno’s perspective on various social issues.
 
+<!--HTML <img src="../../pages/images/photos/Rishikesh2023.jpg" alt="Interreligious Retreat-Seminar on Dhamma and Non-duality, Rishikesh, India" class="cover" title="Interreligious Retreat-Seminar on Dhamma and Non-duality, Rishikesh, India" align="bottom" width="200" border="0"/> -->
+## Other Retreats (<a id="other-retreats" href="../indexes/EventsBySeries.html#other-retreats">List</a>)
+Multi-day retreats led by Ajahn Pasanno around the world.
+
 ## Question and Answer Sessions (<a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">List</a>)
-These are assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
+Assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
 
 <!--HTML <img src="../../pages/images/photos/15 Full Stage.jpg" alt="Ajahn Chah Conference 2001" class="cover" title="Ajahn Chah Conference 2001" align="bottom" width="200" border="0"/> -->
 ## Other (<a id="other" href="../indexes/EventsBySeries.html#other">List</a>)
-These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. It also includes the wonderful and significant [2001 Ajahn Chah Conference](../../pages/events/Chah2001.html) in Portola Valley, California.
+Events that don’t fit into any of the above categories. It includes the wonderful and significant [2001 Ajahn Chah Conference](../../pages/events/Chah2001.html) in Portola Valley, California.
 
