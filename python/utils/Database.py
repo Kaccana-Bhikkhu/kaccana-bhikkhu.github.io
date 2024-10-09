@@ -66,22 +66,18 @@ def ItemCitation(item: dict) -> str:
     session = item.get("sessionNumber",None)
     fileNumber = item.get("fileNumber",None)
 
-    link = EventLink(event,session,fileNumber)
-
     eventName = gDatabase["event"][event]["title"]
     if not re.search(r"[0-9]{4}",eventName):
         eventYear = re.search(r"[0-9]{4}",event)
         if eventYear:
             eventName += f" ({eventYear[0]})"
-    parts = [eventName]
+    parts = [Html.Tag("a",{"href":EventLink(event)})(eventName)]
     if session:
-        parts.append(f"Session {session}")
+        parts.append(Html.Tag("a",{"href":EventLink(event,session)})(f"Session {session}"))
     excerptNumber = item.get("excerptNumber",None)
     if excerptNumber:
-        parts.append(f"Excerpt {excerptNumber}")
-    text = ", ".join(parts)
-
-    return Html.Tag("a",{"href":link})(text)
+        parts.append(Html.Tag("a",{"href":EventLink(event,session,fileNumber)})(f"Excerpt {excerptNumber}"))
+    return ", ".join(parts)
 
 
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
