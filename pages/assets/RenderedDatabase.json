@@ -4499,7 +4499,7 @@
         "Mae Chee"
       ],
       "fTagOrder": [
-        100
+        70
       ],
       "annotations": [
         {
@@ -94222,7 +94222,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Women's monastic forms"
+      ],
+      "fTagOrder": [
+        100
+      ],
       "annotations": [],
       "tags": [
         "Women's monastic forms",
@@ -109981,7 +109986,9 @@
       "number": "",
       "alternateTranslations": [],
       "glosses": [],
-      "related": [],
+      "related": [
+        "Becoming"
+      ],
       "flags": "*",
       "subtags": [],
       "supertags": [
@@ -109991,6 +109998,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "craving-not-to-become.html",
+      "cluster": "Becoming",
       "excerptCount": 16,
       "listIndex": 75
     },
@@ -111776,7 +111784,9 @@
       "number": "",
       "alternateTranslations": [],
       "glosses": [],
-      "related": [],
+      "related": [
+        "Craving not to become"
+      ],
       "flags": "*",
       "subtags": [],
       "supertags": [
@@ -111836,6 +111846,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "views.html",
+      "cluster": "Proliferation",
       "excerptCount": 38,
       "listIndex": 214
     },
@@ -112017,7 +112028,10 @@
       "number": "",
       "alternateTranslations": [],
       "glosses": [],
-      "related": [],
+      "related": [
+        "Doctrine-of-self clinging",
+        "Conceit"
+      ],
       "flags": "*",
       "subtags": [],
       "supertags": [
@@ -112108,7 +112122,10 @@
       "glosses": [
         "Conceiving"
       ],
-      "related": [],
+      "related": [
+        "Doctrine-of-self clinging",
+        "Self-identity view"
+      ],
       "flags": "*",
       "subtags": [],
       "supertags": [
@@ -112850,7 +112867,10 @@
       "glosses": [
         "Soul"
       ],
-      "related": [],
+      "related": [
+        "Self-identity view",
+        "Conceit"
+      ],
       "flags": "",
       "subtags": [],
       "supertags": [
@@ -114694,6 +114714,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectiondevas.html",
+      "cluster": "Realms of existence",
       "sessionCount": 1,
       "excerptCount": 11,
       "listIndex": 400
@@ -114715,6 +114736,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "recollectionpeace.html",
+      "cluster": "Nibbāna",
       "excerptCount": 3,
       "listIndex": 404
     },
@@ -115149,6 +115171,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "gradual-teaching.html",
+      "cluster": "Teaching Dhamma",
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 18,
@@ -115171,6 +115194,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "questions.html",
+      "cluster": "Teaching Dhamma",
       "excerptCount": 19,
       "listIndex": 455
     },
@@ -115191,6 +115215,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "dhamma-discussion.html",
+      "cluster": "Teaching Dhamma",
       "excerptCount": 2,
       "listIndex": 456
     },
@@ -115212,6 +115237,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "mentoring.html",
+      "cluster": "Teachers",
       "excerptCount": 24,
       "listIndex": 751
     },
@@ -115232,6 +115258,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "personal-presence.html",
+      "cluster": "Teachers",
       "excerptCount": 18,
       "listIndex": 458
     },
@@ -115252,6 +115279,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "fiercedirect-teaching.html",
+      "cluster": "Teachers",
       "excerptCount": 39,
       "fTagCount": 1,
       "listIndex": 460
@@ -115273,6 +115301,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "stories.html",
+      "cluster": "Teaching Dhamma",
       "excerptCount": 3,
       "listIndex": 461
     },
@@ -115313,6 +115342,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "symbolism.html",
+      "cluster": "Teaching Dhamma",
       "excerptCount": 3,
       "listIndex": 463
     },
@@ -115417,6 +115447,8 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "teachers.html",
+      "keyTopicCode": "teachers",
+      "cluster": "Teachers",
       "excerptCount": 23,
       "fTagCount": 1,
       "listIndex": 468
@@ -119213,6 +119245,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "human.html",
+      "cluster": "Realms of existence",
       "eventCount": 1,
       "sessionCount": 1,
       "excerptCount": 55,
@@ -120044,7 +120077,10 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "womens-monastic-forms.html",
+      "keyTopicCode": "monastic",
+      "cluster": "Women's monastic forms",
       "excerptCount": 7,
+      "fTagCount": 1,
       "listIndex": 792
     },
     "Bhikkhunī": {
@@ -120064,6 +120100,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "bhikkhuni.html",
+      "cluster": "Women's monastic forms",
       "excerptCount": 4,
       "listIndex": 793
     },
@@ -120084,6 +120121,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "siladhara.html",
+      "cluster": "Women's monastic forms",
       "excerptCount": 7,
       "listIndex": 794
     },
@@ -120104,6 +120142,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "mae-chee.html",
+      "cluster": "Women's monastic forms",
       "fTagCount": 1,
       "excerptCount": 7,
       "listIndex": 795
@@ -120726,6 +120765,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "simplicity.html",
+      "cluster": "Monastic life",
       "excerptCount": 32,
       "listIndex": 732
     },
@@ -120819,6 +120859,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "almsbowl.html",
+      "cluster": "Requisites",
       "excerptCount": 8,
       "listIndex": 737
     },
@@ -120885,6 +120926,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "building-projects.html",
+      "cluster": "Requisites",
       "excerptCount": 7,
       "listIndex": 740
     },
@@ -136978,8 +137020,10 @@
       "related": [],
       "keyTopic": "Unskillful Qualities",
       "topicCode": "unskillful",
-      "subtags": {},
-      "htmlPath": "tags/proliferation.html",
+      "subtags": {
+        "Views": "+"
+      },
+      "htmlPath": "clusters/proliferation.html",
       "excerptCount": 0
     },
     "Self-identity view": {
@@ -137011,6 +137055,80 @@
       },
       "htmlPath": "clusters/conceit.html",
       "excerptCount": 3
+    },
+    "Conditionality": {
+      "tag": "Conditionality",
+      "flags": "",
+      "displayAs": "Conditionality",
+      "related": [],
+      "keyTopic": "Buddhist Perspectives on the World",
+      "topicCode": "perspectives",
+      "subtags": {},
+      "htmlPath": "tags/conditionality.html",
+      "excerptCount": 2
+    },
+    "Kamma": {
+      "tag": "Kamma",
+      "flags": "",
+      "displayAs": "Kamma",
+      "related": [],
+      "keyTopic": "Buddhist Perspectives on the World",
+      "topicCode": "perspectives",
+      "subtags": {},
+      "htmlPath": "tags/kamma.html",
+      "excerptCount": 1
+    },
+    "Rebirth": {
+      "tag": "Rebirth",
+      "flags": "",
+      "displayAs": "Rebirth",
+      "related": [],
+      "keyTopic": "Buddhist Perspectives on the World",
+      "topicCode": "perspectives",
+      "subtags": {},
+      "htmlPath": "tags/rebirth.html",
+      "excerptCount": 3
+    },
+    "Not-self": {
+      "tag": "Not-self",
+      "flags": "",
+      "displayAs": "Not-self",
+      "related": [],
+      "keyTopic": "Buddhist Perspectives on the World",
+      "topicCode": "perspectives",
+      "subtags": {},
+      "htmlPath": "tags/not-self.html",
+      "excerptCount": 1
+    },
+    "Nature of mind": {
+      "tag": "Nature of mind",
+      "flags": "",
+      "displayAs": "Nature of mind",
+      "related": [],
+      "keyTopic": "Buddhist Perspectives on the World",
+      "topicCode": "perspectives",
+      "subtags": {},
+      "htmlPath": "tags/nature-of-mind.html",
+      "excerptCount": 1
+    },
+    "Realms of existence": {
+      "tag": "Realms of existence",
+      "flags": "",
+      "displayAs": "Realms of existence",
+      "related": [],
+      "keyTopic": "Buddhist Perspectives on the World",
+      "topicCode": "perspectives",
+      "subtags": {
+        "Deva": "+",
+        "Human": "+",
+        "Ghost": "+",
+        "Animal": "+",
+        "Hell": "+",
+        "Non-human beings": "-",
+        "Recollection/Devas": "-"
+      },
+      "htmlPath": "clusters/realms-of-existence.html",
+      "excerptCount": 0
     },
     "Dependent origination": {
       "tag": "Dependent origination",
@@ -137129,81 +137247,11 @@
       "related": [],
       "keyTopic": "Dependent Origination",
       "topicCode": "origination",
-      "subtags": {},
-      "htmlPath": "tags/becoming.html",
-      "excerptCount": 1
-    },
-    "Conditionality": {
-      "tag": "Conditionality",
-      "flags": "",
-      "displayAs": "Conditionality",
-      "related": [],
-      "keyTopic": "Buddhist Perspectives on the World",
-      "topicCode": "perspectives",
-      "subtags": {},
-      "htmlPath": "tags/conditionality.html",
-      "excerptCount": 2
-    },
-    "Kamma": {
-      "tag": "Kamma",
-      "flags": "",
-      "displayAs": "Kamma",
-      "related": [],
-      "keyTopic": "Buddhist Perspectives on the World",
-      "topicCode": "perspectives",
-      "subtags": {},
-      "htmlPath": "tags/kamma.html",
-      "excerptCount": 1
-    },
-    "Rebirth": {
-      "tag": "Rebirth",
-      "flags": "",
-      "displayAs": "Rebirth",
-      "related": [],
-      "keyTopic": "Buddhist Perspectives on the World",
-      "topicCode": "perspectives",
-      "subtags": {},
-      "htmlPath": "tags/rebirth.html",
-      "excerptCount": 3
-    },
-    "Not-self": {
-      "tag": "Not-self",
-      "flags": "",
-      "displayAs": "Not-self",
-      "related": [],
-      "keyTopic": "Buddhist Perspectives on the World",
-      "topicCode": "perspectives",
-      "subtags": {},
-      "htmlPath": "tags/not-self.html",
-      "excerptCount": 1
-    },
-    "Nature of mind": {
-      "tag": "Nature of mind",
-      "flags": "",
-      "displayAs": "Nature of mind",
-      "related": [],
-      "keyTopic": "Buddhist Perspectives on the World",
-      "topicCode": "perspectives",
-      "subtags": {},
-      "htmlPath": "tags/nature-of-mind.html",
-      "excerptCount": 1
-    },
-    "Realms of existence": {
-      "tag": "Realms of existence",
-      "flags": "",
-      "displayAs": "Other realms",
-      "related": [],
-      "keyTopic": "Buddhist Perspectives on the World",
-      "topicCode": "perspectives",
       "subtags": {
-        "Deva": "+",
-        "Ghost": "+",
-        "Animal": "+",
-        "Hell": "+",
-        "Non-human beings": "-"
+        "Craving not to become": "+"
       },
-      "htmlPath": "clusters/realms-of-existence.html",
-      "excerptCount": 0
+      "htmlPath": "clusters/becoming.html",
+      "excerptCount": 1
     },
     "Dispassion": {
       "tag": "Dispassion",
@@ -137271,9 +137319,42 @@
       "subtags": {
         "Deathless": "+",
         "Unestablished consciousness": "+",
-        "Unconditioned": "+"
+        "Unconditioned": "+",
+        "Recollection/Peace": "-"
       },
       "htmlPath": "clusters/nibbana.html",
+      "excerptCount": 2
+    },
+    "Teaching Dhamma": {
+      "tag": "Teaching Dhamma",
+      "flags": "",
+      "displayAs": "Teaching Dhamma",
+      "related": [],
+      "keyTopic": "Teaching and Teachers",
+      "topicCode": "teachers",
+      "subtags": {
+        "Gradual Teaching": "+",
+        "Questions": "+",
+        "Dhamma discussion": "-",
+        "Stories": "-",
+        "Symbolism": "-"
+      },
+      "htmlPath": "clusters/teaching-dhamma.html",
+      "excerptCount": 0
+    },
+    "Teachers": {
+      "tag": "Teachers",
+      "flags": "",
+      "displayAs": "Teachers",
+      "related": [],
+      "keyTopic": "Teaching and Teachers",
+      "topicCode": "teachers",
+      "subtags": {
+        "Mentoring": "+",
+        "Personal presence": "+",
+        "Fierce/direct teaching": "+"
+      },
+      "htmlPath": "clusters/teachers.html",
       "excerptCount": 2
     },
     "Buddha/Biography": {
@@ -137281,7 +137362,7 @@
       "flags": "",
       "displayAs": "The Buddha",
       "related": [],
-      "keyTopic": "Teachers",
+      "keyTopic": "Teaching and Teachers",
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/buddhabiography.html",
@@ -137292,7 +137373,7 @@
       "flags": "",
       "displayAs": "Ajahn Mun",
       "related": [],
-      "keyTopic": "Teachers",
+      "keyTopic": "Teaching and Teachers",
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/ajahn-mun.html",
@@ -137303,7 +137384,7 @@
       "flags": "",
       "displayAs": "Ajahn Chah",
       "related": [],
-      "keyTopic": "Teachers",
+      "keyTopic": "Teaching and Teachers",
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/ajahn-chah.html",
@@ -137314,7 +137395,7 @@
       "flags": "",
       "displayAs": "Ajahn Sumedho",
       "related": [],
-      "keyTopic": "Teachers",
+      "keyTopic": "Teaching and Teachers",
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/ajahn-sumedho.html",
@@ -137325,22 +137406,11 @@
       "flags": "",
       "displayAs": "Ajahn Pasanno",
       "related": [],
-      "keyTopic": "Teachers",
+      "keyTopic": "Teaching and Teachers",
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/ajahn-pasanno.html",
       "excerptCount": 6
-    },
-    "Teaching Dhamma": {
-      "tag": "Teaching Dhamma",
-      "flags": "",
-      "displayAs": "Teaching Dhamma",
-      "related": [],
-      "keyTopic": "Teachers",
-      "topicCode": "teachers",
-      "subtags": {},
-      "htmlPath": "tags/teaching-dhamma.html",
-      "excerptCount": 0
     },
     "Wat Pah Pong": {
       "tag": "Wat Pah Pong",
@@ -137437,7 +137507,8 @@
         "Sequence of training": "+",
         "Dependence": "-",
         "Monastic routine": "-",
-        "Perception of a samaṇa": "+"
+        "Perception of a samaṇa": "+",
+        "Simplicity": "-"
       },
       "htmlPath": "clusters/monastic-life.html",
       "excerptCount": 1
@@ -137476,9 +137547,11 @@
       "subtags": {
         "Robes": "+",
         "Almsfood": "+",
+        "Almsbowl": "-",
         "Lodging": "+",
         "Medicinal requisites": "+",
-        "Monastic crafts": "-"
+        "Monastic crafts": "-",
+        "Building projects": "-"
       },
       "htmlPath": "clusters/requisites.html",
       "excerptCount": 1
@@ -137544,6 +137617,21 @@
       },
       "htmlPath": "clusters/ascetic-practices.html",
       "excerptCount": 0
+    },
+    "Women's monastic forms": {
+      "tag": "Women's monastic forms",
+      "flags": "",
+      "displayAs": "Women's monastic forms",
+      "related": [],
+      "keyTopic": "Monastic Life",
+      "topicCode": "monastic",
+      "subtags": {
+        "Bhikkhunī": "+",
+        "Sīladharā": "+",
+        "Mae Chee": "+"
+      },
+      "htmlPath": "clusters/womens-monastic-forms.html",
+      "excerptCount": 2
     },
     "Everyday life": {
       "tag": "Everyday life",
@@ -138440,7 +138528,7 @@
     "unskillful": {
       "code": "unskillful",
       "topic": "Unskillful Qualities",
-      "shortNote": "<a href=\"../tags/ignorance-relevant.html\">Ignorance</a>, <a href=\"../tags/craving-relevant.html\">Craving</a>, <a href=\"../tags/clinging-relevant.html\">Clinging</a>, and <a href=\"../tags/becoming-relevant.html\">Becoming</a> appear in Dependent Origination below.",
+      "shortNote": "<a href=\"../tags/ignorance-relevant.html\">Ignorance</a>, <a href=\"../tags/craving-relevant.html\">Craving</a>, <a href=\"../tags/clinging-relevant.html\">Clinging</a>, and <a href=\"../clusters/becoming-relevant.html\">Becoming</a> appear in Dependent Origination below.",
       "longNote": "Some tags need more featured excerpts to complete this page. If you are familiar with Ajahn Pasanno’s teachings, please <a href=\"../about/09_Want-to-help.html#ways-anyone-can-contribute\">help suggest featured excerpts</a>.",
       "listFile": "unskillful.html",
       "clusters": [
@@ -138457,6 +138545,22 @@
         "Conceit"
       ],
       "excerptCount": 11
+    },
+    "perspectives": {
+      "code": "perspectives",
+      "topic": "Buddhist Perspectives on the World",
+      "shortNote": "",
+      "longNote": "Some tags need more featured excerpts to complete this page. If you are familiar with Ajahn Pasanno’s teachings, please <a href=\"../about/09_Want-to-help.html#ways-anyone-can-contribute\">help suggest featured excerpts</a>.",
+      "listFile": "perspectives.html",
+      "clusters": [
+        "Conditionality",
+        "Kamma",
+        "Rebirth",
+        "Not-self",
+        "Nature of mind",
+        "Realms of existence"
+      ],
+      "excerptCount": 8
     },
     "origination": {
       "code": "origination",
@@ -138479,22 +138583,6 @@
       ],
       "excerptCount": 8
     },
-    "perspectives": {
-      "code": "perspectives",
-      "topic": "Buddhist Perspectives on the World",
-      "shortNote": "",
-      "longNote": "Some tags need more featured excerpts to complete this page. If you are familiar with Ajahn Pasanno’s teachings, please <a href=\"../about/09_Want-to-help.html#ways-anyone-can-contribute\">help suggest featured excerpts</a>.",
-      "listFile": "perspectives.html",
-      "clusters": [
-        "Conditionality",
-        "Kamma",
-        "Rebirth",
-        "Not-self",
-        "Nature of mind",
-        "Realms of existence"
-      ],
-      "excerptCount": 8
-    },
     "fruits": {
       "code": "fruits",
       "topic": "Fruits of the Practice",
@@ -138512,19 +138600,20 @@
     },
     "teachers": {
       "code": "teachers",
-      "topic": "Teachers",
+      "topic": "Teaching and Teachers",
       "shortNote": "",
       "longNote": "Some tags need more featured excerpts to complete this page. If you are familiar with Ajahn Pasanno’s teachings, please <a href=\"../about/09_Want-to-help.html#ways-anyone-can-contribute\">help suggest featured excerpts</a>.",
       "listFile": "teachers.html",
       "clusters": [
+        "Teaching Dhamma",
+        "Teachers",
         "Buddha/Biography",
         "Ajahn Mun",
         "Ajahn Chah",
         "Ajahn Sumedho",
-        "Ajahn Pasanno",
-        "Teaching Dhamma"
+        "Ajahn Pasanno"
       ],
-      "excerptCount": 10
+      "excerptCount": 12
     },
     "monasteries": {
       "code": "monasteries",
@@ -138567,9 +138656,10 @@
         "Thai Forest Tradition",
         "Vinaya",
         "Communal harmony",
-        "Ascetic practices"
+        "Ascetic practices",
+        "Women's monastic forms"
       ],
-      "excerptCount": 8
+      "excerptCount": 10
     },
     "everyday": {
       "code": "everyday",
