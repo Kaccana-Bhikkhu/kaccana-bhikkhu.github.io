@@ -814,7 +814,9 @@ def EventVenueStr(event: dict) -> str:
         if event["format"] == "Interview":
             return "Online interview" if event["medium"] == "Online" else "Interview"
     
-    venueStr = f"{event['venue']} in {gDatabase['venue'][event['venue']]['location']}"
+    venueStr = event['venue']
+    if gDatabase['venue'][event['venue']]['location']:
+        venueStr += f" in {gDatabase['venue'][event['venue']]['location']}"
     if event["medium"] == "Online":
         venueStr = "Online from " + venueStr
     elif event["medium"] == "Hybrid":

@@ -73,8 +73,11 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
     
     parts = [body,date]
     if event["venue"]:
-        parts.append(event["venue"] + ",")
-        parts.append(gDatabase["venue"][event["venue"]]["location"] + ".")
+        if gDatabase["venue"][event["venue"]]["location"]:
+            parts.append(event["venue"] + ",")
+            parts.append(gDatabase["venue"][event["venue"]]["location"] + ".")
+        else:
+            parts.append(event["venue"] + ".")
     allTags = Filter.AllTagsOrdered(excerpt)
     if allTags:
         parts.append("Tag:" if len(allTags) == 1 else "Tags:")
