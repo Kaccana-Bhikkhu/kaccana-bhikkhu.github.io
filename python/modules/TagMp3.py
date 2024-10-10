@@ -70,10 +70,14 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
         body += "."
     
     date = Utils.ReformatDate(session["date"],fullMonth=True) + ","
-    venue = event["venue"] + ","
-    location = gDatabase["venue"][event["venue"]]["location"] + "."
     
-    parts = [body,date,venue,location]
+    parts = [body,date]
+    if event["venue"]:
+        if gDatabase["venue"][event["venue"]]["location"]:
+            parts.append(event["venue"] + ",")
+            parts.append(gDatabase["venue"][event["venue"]]["location"] + ".")
+        else:
+            parts.append(event["venue"] + ".")
     allTags = Filter.AllTagsOrdered(excerpt)
     if allTags:
         parts.append("Tag:" if len(allTags) == 1 else "Tags:")
@@ -83,7 +87,8 @@ def ExcerptComment(excerpt:dict,session:dict,event:dict) -> str:
             tagStrs.insert(excerpt["qTagCount"],"//")
         parts += tagStrs
     
-    source = f'Source: {excerpt["clips"][0].start} in file "{session["filename"]}"'
+    firstClip = excerpt["clips"][0]
+    source = f'Source: {firstClip.start} in file "{session["filename"] if firstClip.file == "$" else firstClip.file}"'
     parts.append(source)
 
     return " ".join(parts)

@@ -1,10 +1,43 @@
 import posix from "./path.js";
 import { loadSearchPage } from "./search.js";
+import { loadToggleView } from "./toggle-view.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
 const titleEl = document.querySelector("title");
 const absoluteURLRegex = "^(//|[a-z+]+:)"
 const errorPage = "./about/Page-Not-Found.html"
+
+const SEARCH_PART = /\?[^#]*/
+
+export function frameSearch(hash = null) {
+	// return a URLSearchParams object corresponding to the search params given in the URL hash
+	// representing the frame location
+	
+	if (hash == null)
+		hash = location.hash;
+	
+	let subURLSearch = hash.slice(1).match(SEARCH_PART);
+	if (subURLSearch)
+		return new URLSearchParams(subURLSearch[0].slice(1));
+	else
+		return new URLSearchParams("");
+}
+
+export function setFrameSearch(params) {
+	// params: the URLSearchParams object to set the frame search to
+	let url = new URL(location)
+	let hash = url.hash;
+
+	if (hash.includes("?")) {
+		hash = hash.replace(SEARCH_PART,"?" + params.toString());
+	} else {
+		let parts = hash.split("#");
+		parts[1] += "?" + params.toString();
+		hash = parts.join("#");
+	}
+	url.hash = hash;
+	history.replaceState(history.state,"",url);
+}
 
 function pageText(r,url) {
 	if (r.ok) {
@@ -50,10 +83,15 @@ export function configureLinks(frame,url) {
 			let url = href.replaceAll("index.html", "homepage.html")
 			let newLocation = new URL(locationNoQuery);
 			newLocation.hash = "#" + url;
-			let newFullUrl = newLocation.href;
+			let newFullUrl = newLocation.href.replace("#_keep_scroll","");
 			el.href = newFullUrl;
 
 			el.addEventListener("click", async (event) => {
+				if (newFullUrl.includes("?_keep_query")) {
+					let oldSearch = "?" + frameSearch().toString()
+					newFullUrl = newFullUrl.replace("?_keep_query",oldSearch)
+					url = url.replace("?_keep_query",oldSearch)
+				}
 				history.pushState({}, "", newFullUrl);
 				event.preventDefault(); // Don't follow the href link
 				await changeURL(url);
@@ -68,7 +106,7 @@ export function configureLinks(frame,url) {
 	});
 }
 
-async function changeURL(pUrl) {
+async function changeURL(pUrl,scrollTo = null) {
 	pUrl = decodeURIComponent(pUrl);
 	console.log("changeURL",pUrl);
 	await fetch("./" + pUrl)
@@ -86,14 +124,20 @@ async function changeURL(pUrl) {
 
 			configureLinks(frame,resultUrl);
 			loadSearchPage();
+			loadToggleView();
+			if (scrollTo && Object.hasOwn(scrollTo,"scrollX") && Object.hasOwn(scrollTo,"scrollY"))
+				window.scrollTo(scrollTo.scrollX,scrollTo.scrollY)
 		});
 }
 
 function delayedScroll(bookmark) {
 	document.getElementById(bookmark)?.scrollIntoView();
-	setTimeout(function(){
-		document.getElementById(bookmark)?.scrollIntoView();
-	}, 1000);
+	// If there are many images on a page (about/02_EventSeries.html), then wait for them to load and scroll again.
+	if (document.getElementsByClassName("cover").length > 1) {
+		setTimeout(function(){
+			document.getElementById(bookmark)?.scrollIntoView();
+		}, 1000);
+	}
 }
 
 if (frame) {
@@ -104,7 +148,11 @@ if (frame) {
 		}
 	});
 
-	addEventListener("popstate", () => {
-		changeURL(location.hash.slice(1) || frame.dataset.url);
+	addEventListener("popstate", (event) => {
+		changeURL(location.hash.slice(1) || frame.dataset.url,event.state);
 	});
 }
+
+window.addEventListener("scrollend", (event) => {
+	history.replaceState({"scrollX":window.scrollX,"scrollY":window.scrollY},"");
+  });

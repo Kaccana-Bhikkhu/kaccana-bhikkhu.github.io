@@ -1,11 +1,29 @@
 <!--TITLE:Want to help?-->
-<!--HTML <img src="../../pages/images/photos/Abhayagiri 20th Anniversary.jpg" alt="Preparing for Abhayagiri's 20th Anniversary Celebration" id="cover" title="Preparing for Abhayagiri's 20th Anniversary Celebration" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Abhayagiri 20th Anniversary.jpg" alt="Preparing for Abhayagiri's 20th Anniversary Celebration" class="cover" title="Preparing for Abhayagiri's 20th Anniversary Celebration" align="bottom" width="200" border="0"/> -->
 # Want to Help?
 If you would like to contribute to the Ajahn Pasanno Question and Story Archive, here are some possibilities.
 
 -----
 
 ## Ways Anyone Can Contribute:
+### Suggest excerpts to feature
+The October 2024 release introduces hand-picked featured excerpts which appear at the top of the corresponding tag pages. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illlustrating key aspects of the topic. Less common tags will feature fewer excerpts.
+
+The process of selecting featured excerpts has just begun. Many tags have no featured excerpts at all, and we welcome contributions to this process. One of the most helpful ways to contribute is to select a tag or tag cluster from the [list of key topics](../indexes/KeyTopicDetail.html?showAll) that interests you. Then listen to the excerpts with that tag and suggest which ones to feature. Some pointers for suggesting featured excerpts:
+
+ - Single-topic questions (e.g. “Equanimity...your thoughts?”) often make good featured excerpts.
+ - Short answers are often preferable to long answers.
+ - Try not to duplicate material when possible.
+ - Illustrative stories and memorable quotes are a plus.
+ - Feel free to point out stories or quotes that the Archive hasn't transcribed if they contribute substantially to the topic.
+ - Featured excerpts may be arranged logically, chronologically, or simplest to most in-depth.
+ - You may suggest that closely-related tags in the same key topic (e.g. Continuity of mindfulness and Present moment awareness) be combined into a single tag cluster or that new tags should be added to key topics.
+ - If an excellent answer follows a nearly inaudible question, we can amplify the question. Or better yet, amplify the question yourself and send the edited audio file.
+
+Please send your suggestions to [questionsandstories@abhayagiri.org](mailto:questionsandstories@abhayagiri.org). Additional support for suggesting featured excerpts may be provided if there is sufficient interest.
+
+-----
+
 ### Find stories in Dhamma talks
 The APQS Archive indexes stories told in Q&A sessions and Dhamma discussions. Ajahn Pasanno tells many stories during Dhamma talks, but we’re not planning to hunt for them all. If you remember inspiring stories told by or about Ajahn Pasanno contained in recordings on [abhayagiri.org](https://www.abhayagiri.org/talks), please send them to us. If the story isn’t duplicated elsewhere in the archive and seems worthy to be included, we’ll aim to add it to a future version of the Archive.
 

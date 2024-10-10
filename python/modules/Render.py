@@ -46,6 +46,16 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
         s["description"],count = twoVariableTransform(s["description"],s)
         changeCount += count
 
+    for s in gDatabase["sessions"]:
+        s["sessionTitle"],count = twoVariableTransform(s["sessionTitle"],s)
+        changeCount += count
+    
+    for t in gDatabase["keyTopic"].values():
+        t["shortNote"],count = twoVariableTransform(t["shortNote"],t)
+        changeCount += count
+        t["longNote"],count = twoVariableTransform(t["longNote"],t)
+        changeCount += count
+
     return changeCount
     
 
@@ -69,18 +79,8 @@ def ExtractAnnotation(form: str) -> Tuple[str,str]:
     parts[1] = "{attribution}"
     return "".join(parts), attribution
 
-def ApplySmartQuotes():
-    for e in gDatabase["event"].values():
-        e["description"] = Utils.SmartQuotes(e["description"])
-
-    for s in gDatabase["series"].values():
-        s["description"] = Utils.SmartQuotes(s["description"])
-
-    for s in gDatabase["sessions"]:
-        s["sessionTitle"] = Utils.SmartQuotes(s["sessionTitle"])
-
 def PrepareTemplates():
-    ParseCSV.ListifyKey(gDatabase["kind"],"form1")
+    ParseCSV.ListifyKey(gDatabase["kind"],"form1",removeBlank=False)
     ParseCSV.ConvertToInteger(gDatabase["kind"],"defaultForm")
 
     for kind in gDatabase["kind"].values():
@@ -204,7 +204,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
-    item["body"] = Utils.SmartQuotes(bodyTemplate(**renderDict))
+    item["body"] = bodyTemplate(**renderDict) # Utils.SmartQuotes(bodyTemplate(**renderDict))
 
     if teachers:
 
@@ -212,7 +212,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         fullStop = "." if re.search(r"[.?!][^a-zA-Z]*\{attribution\}",item["body"]) else ""
         renderDict["fullStop"] = fullStop
         
-        attributionStr = Utils.SmartQuotes(attributionTemplate(**renderDict))
+        attributionStr = attributionTemplate(**renderDict) # Utils.SmartQuotes(attributionTemplate(**renderDict))
 
         # If the template itself doesn't specify how to handle fullStop, capitalize the first letter of the attribution string
         # Avoid capitalizing html tags
@@ -430,7 +430,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
 
     tagTypes = {"tag","drilldown"}
     excerptTypes = {"event","excerpt","session"}
-    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player"}))
+    pageTypes = Utils.RegexMatchAny(tagTypes.union(excerptTypes,{"teacher","about","image","photo","player","topic","cluster"}))
     linkRegex = r"\[([^][]*)\]\(" + pageTypes + r":([^()#]*)#?([^()#]*)\)"
 
     def SubpageSubstitution(matchObject: re.Match) -> str:
@@ -513,7 +513,23 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             imagePath = Utils.PosixJoin(pathToPrototype,"images/photos",link)
             if not hashTag:
                 hashTag = "cover"
-            text = f'<!--HTML <img src="{imagePath}" alt="{text}" id="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
+            text = f'<!--HTML <img src="{imagePath}" alt="{text}" class="{hashTag}" title="{text}" align="bottom" width="200" border="0"/> -->'
+        elif pageType == "cluster":
+            if link:
+                cluster = link
+            else:
+                cluster = text
+            
+            realCluster = Database.TagClusterLookup(cluster)
+            if realCluster:
+                linkTo = gDatabase["tagCluster"][realCluster]["htmlPath"].replace(".html","-relevant.html")
+            else:
+                Alert.warning("Cannot link to tag cluster",cluster,"in link",matchObject[0])
+        elif pageType == "topic":
+            if link in gDatabase["keyTopic"]:
+                linkTo = f"topics/{link}.html"
+            else:
+                Alert.warning("Cannot link to key topic",link,"in link",matchObject[0])
 
         if linkTo:
             path = Utils.PosixJoin(pathToPrototype if linkToPage else pathToHome,linkTo)
@@ -557,7 +573,9 @@ def LinkReferences() -> None:
         teacher - Link to a teacher page; pageName is the teacher code, e.g. AP
         about - Link to about page pageName
         image - Link to images in prototypeDir/images
-        photo - Link to photos in prototypeDir/images/photos"""
+        photo - Link to photos in prototypeDir/images/photos
+        topic - Link to the subtopic page corresponding to this tag
+        topicList - Link to the topic list page specified by this topic code"""
 
     LinkSubpages()
     LinkKnownReferences()
@@ -566,6 +584,10 @@ def LinkReferences() -> None:
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra(f"{markdownChanges} items changed by markdown")
     
+def SmartQuotes(text: str) -> tuple[str,int]:
+    newText = Utils.SmartQuotes(text)
+    changeCount = 0 if text == newText else 1
+    return newText,changeCount
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
@@ -582,8 +604,6 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 
 def main() -> None:
 
-    ApplySmartQuotes()
-
     PrepareTemplates()
 
     AddImplicitAttributions()
@@ -591,6 +611,8 @@ def main() -> None:
     RenderExcerpts()
 
     LinkReferences()
+
+    ApplyToBodyText(SmartQuotes)
 
     for key in ["tagRedacted","tagRemoved","summary","keyCaseTranslation"]:
         del gDatabase[key]

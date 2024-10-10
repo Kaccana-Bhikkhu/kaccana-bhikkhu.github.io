@@ -42,7 +42,7 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     try:
         floatVal = float(time)
         return timedelta(seconds=floatVal)
-    except ValueError:
+    except (ValueError,TypeError):
         pass
 
     if not time:

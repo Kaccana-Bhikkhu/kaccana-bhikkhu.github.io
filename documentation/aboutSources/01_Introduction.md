@@ -10,22 +10,15 @@ This archive is an attempt to make the oral teachings of Ajahn Pasanno more acce
 ## Where to Begin
 The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:
 
-If you have a question about a specific topic, try looking for it on the [search page](../search/Text-search.html) or in the [alphabetical tag list](../indexes/AlphabeticalTags.html).
+If you have a question about a specific topic, try looking for it on the [search page](../search/Text-search.html).
 
-If you would like to listen to thematic teachings, look on the [events page](../indexes/EventsBySeries.html). Here are some events I recommend:
+If you are less certain what you're looking for, the [key topics page](../indexes/KeyTopics.html?hideAll) lists broad Dhamma themes and subtopics within these.  
 
-- [Recollections of Ajahn Chah](event:SRD2010)
-- [Tudong Stories at Spirit Rock](event:SRD2011)
-- [Right Livelihood](event:UD2013-1)
-- [Death and Dying](event:UD2014-1)
-- [The Thai Forest Tradition](event:UD2014-2)
-- [The Middle Way of Not-self](event:UD2015-2)
-- [Jhāna: A Practical Approach](event:UD2015-4)
-- [Remembering Ajahn Chah Weekend](event:Chah2001)
+For in-depth study, see what's available on the [events by subjects page](../indexes/EventsBySubject.html).
 
-If you would like to browse and listen to stories, visit the [all stories page](../indexes/AllExcerpts-story.html).
+To browse and listen to stories, visit the [all stories page](../indexes/AllExcerpts-story.html).
 
-If you are interested in the conceptual framework underlying these teachings, look at the [numerical tags page](../indexes/NumericalTags.html) or the [tag hierarchy page](../drilldown/root.html).
+For the conceptual framework underlying these teachings, look at the [numerical tags page](../indexes/NumericalTags.html) or the [tag hierarchy page](../drilldown/root.html).
 
 One can incorporate this archive into a contemplative practice by selecting a theme such as [Happiness](tag:), [Equanimity](tag:), or [Renunciation](tag:) and listening to a few excerpts each day.
 

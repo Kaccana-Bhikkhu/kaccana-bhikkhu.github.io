@@ -73,7 +73,7 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         if blob:
             yield blob
 
-def SearchBlobs(excerpt: dict) -> list[str]:
+def ExcerptBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
     teacherDB = gDatabase["teacher"]
@@ -105,7 +105,12 @@ def SearchBlobs(excerpt: dict) -> list[str]:
         ]
         if item is excerpt:
             bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
-        returnValue.append("".join(bits))
+        
+        joined = "".join(bits)
+        for fTag in excerpt["fTags"]:
+            tagCode = f"[{RawBlobify(fTag)}]"
+            joined = joined.replace(tagCode,tagCode + "+")
+        returnValue.append(joined)
     return returnValue
 
 def OptimizedExcerpts() -> list[dict]:
@@ -116,8 +121,8 @@ def OptimizedExcerpts() -> list[dict]:
     formatter.headingShowTeacher = False
     for x in gDatabase["excerpts"]:
         xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
-                 "blobs": SearchBlobs(x),
-                 "html": Prototype.HtmlExcerptList([x],formatter)}
+                 "blobs": ExcerptBlobs(x),
+                 "html": formatter.HtmlExcerptList([x])}
         returnValue.append(xDict)
     return returnValue
 
@@ -147,7 +152,10 @@ def TagBlob(tagName:str) -> str:
         if tagData["number"]:
             bits.append("^" + tagData["number"] + "^")
 
-    return "".join(bits)
+    blob = "".join(bits)
+    if "topicHeading" in gDatabase["tag"][tagName]: # If this tag is listed under a key topic,
+        blob = blob.replace("]","]+") # add "+" after each tag closure.
+    return blob
 
 def TagBlobs() -> Iterator[dict]:
     """Return a blob for each tag, sorted alphabetically."""
@@ -159,21 +167,10 @@ def TagBlobs() -> Iterator[dict]:
                         if tag["htmlFile"] and not ParseCSV.TagFlag.HIDE in tag["flags"]]
     alphabetizedTags.sort()
 
-    def HtmlTagDisplay(tagInfo: dict) -> str:
-        bits = [
-            Prototype.DrilldownIconLink(tagInfo['tag'],iconWidth = 14),
-            f"[{Prototype.HtmlTagLink(tagInfo['tag'],fullTag = True)}]"
-        ]
-        if tagInfo["fullPali"] and tagInfo["fullPali"] != tagInfo["fullTag"]:
-            bits.append(f"({tagInfo['fullPali']})")
-        if tagInfo.get("excerptCount",0):
-            bits.append(f"({tagInfo['excerptCount']})")
-        return " ".join(bits)
-
     for _,tag in alphabetizedTags:
         yield {
             "blobs": [TagBlob(tag)],
-            "html": HtmlTagDisplay(gDatabase["tag"][tag])
+            "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True,flags=Prototype.TagDescriptionFlag.SHOW_STAR)
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:
@@ -219,7 +216,7 @@ def main() -> None:
 
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
     AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper())
-    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "intro")
+    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "main")
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 
     optimizedDB["blobDict"] = list(gBlobDict.values())

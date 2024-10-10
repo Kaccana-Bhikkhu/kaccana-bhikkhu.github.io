@@ -1,5 +1,5 @@
 <!--TITLE:The Ajahn Pasanno Question and Story Archive-->
-<!--HTML <img src="../../pages/images/photos/AjahnPasanno.jpg" alt="" id="cover" title="" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AjahnPasanno.jpg" alt="" class="cover" title="" align="bottom" width="200" border="0"/> -->
 
 # Introduction
 
@@ -10,22 +10,15 @@ This archive is an attempt to make the oral teachings of Ajahn Pasanno more acce
 ## Where to Begin
 The Archive contains so much material that it can be difficult to know where to start. Here are my suggestions:
 
-If you have a question about a specific topic, try looking for it on the [search page](../search/Text-search.html) or in the [alphabetical tag list](../indexes/AlphabeticalTags.html).
+If you have a question about a specific topic, try looking for it on the [search page](../search/Text-search.html).
 
-If you would like to listen to thematic teachings, look on the [events page](../indexes/EventsBySeries.html). Here are some events I recommend:
+If you are less certain what you're looking for, the [key topics page](../indexes/KeyTopics.html?hideAll) lists broad Dhamma themes and subtopics within these.  
 
-- [Recollections of Ajahn Chah](../../pages/events/SRD2010.html)
-- [Tudong Stories at Spirit Rock](../../pages/events/SRD2011.html)
-- [Right Livelihood](../../pages/events/UD2013-1.html)
-- [Death and Dying](../../pages/events/UD2014-1.html)
-- [The Thai Forest Tradition](../../pages/events/UD2014-2.html)
-- [The Middle Way of Not-self](../../pages/events/UD2015-2.html)
-- [Jhāna: A Practical Approach](../../pages/events/UD2015-4.html)
-- [Remembering Ajahn Chah Weekend](../../pages/events/Chah2001.html)
+For in-depth study, see what's available on the [events by subjects page](../indexes/EventsBySubject.html).
 
-If you would like to browse and listen to stories, visit the [all stories page](../indexes/AllExcerpts-story.html).
+To browse and listen to stories, visit the [all stories page](../indexes/AllExcerpts-story.html).
 
-If you are interested in the conceptual framework underlying these teachings, look at the [numerical tags page](../indexes/NumericalTags.html) or the [tag hierarchy page](../drilldown/root.html).
+For the conceptual framework underlying these teachings, look at the [numerical tags page](../indexes/NumericalTags.html) or the [tag hierarchy page](../drilldown/root.html).
 
 One can incorporate this archive into a contemplative practice by selecting a theme such as [[Happiness](../../pages/tags/happiness.html)], [[Equanimity](../../pages/tags/equanimity.html)], or [[Renunciation](../../pages/tags/renunciation.html)] and listening to a few excerpts each day.
 

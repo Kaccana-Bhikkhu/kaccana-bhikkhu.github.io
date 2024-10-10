@@ -2,10 +2,13 @@
 
 from collections.abc import Iterable
 import json, re
+import Html2 as Html
 import Link
+from Prototype import gDatabase
 import SplitMp3
 import Utils
 import Alert
+import Filter
 
 gDatabase:dict[str] = {} # This will be set later by QSarchive.py
 
@@ -45,6 +48,38 @@ def Mp3Link(item: dict,directoryDepth: int = 2) -> str:
     return Link.URL(audioSource,directoryDepth=directoryDepth)
 
 
+def EventLink(event:str, session: int|None = None, fileNumber:int|None = None) -> str:
+    "Return a link to a given event, session, and fileNumber. If session == None, link to the top of the event page"
+
+    directory = "../events/"
+    if session or fileNumber:
+        return f"{directory}{event}.html#{ItemCode(event=event,session=session,fileNumber=fileNumber)}"
+    else:
+        return f"{directory}{event}.html"
+
+
+def ItemCitation(item: dict) -> str:
+    """Return html code with the name of the event, session number, and file number.
+    item can be an event, session or excerpt"""
+
+    event = item.get("event",item.get("code",None))
+    session = item.get("sessionNumber",None)
+    fileNumber = item.get("fileNumber",None)
+
+    eventName = gDatabase["event"][event]["title"]
+    if not re.search(r"[0-9]{4}",eventName):
+        eventYear = re.search(r"[0-9]{4}",event)
+        if eventYear:
+            eventName += f" ({eventYear[0]})"
+    parts = [Html.Tag("a",{"href":EventLink(event)})(eventName)]
+    if session:
+        parts.append(Html.Tag("a",{"href":EventLink(event,session)})(f"Session {session}"))
+    excerptNumber = item.get("excerptNumber",None)
+    if excerptNumber:
+        parts.append(Html.Tag("a",{"href":EventLink(event,session,fileNumber)})(f"Excerpt {excerptNumber}"))
+    return ", ".join(parts)
+
+
 def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
     "Search for a tag based on any of its various names. Return the base tag name."
 
@@ -55,7 +90,40 @@ def TagLookup(tagRef:str,tagDictCache:dict = {}) -> str|None:
         tagDictCache.update((tagDB[tag]["pali"],tag) for tag in tagDB if tagDB[tag]["pali"])
         tagDictCache.update((tagDB[tag]["fullPali"],tag) for tag in tagDB if tagDB[tag]["fullPali"])
 
+        subsumedDB = gDatabase["tagSubsumed"]
+        tagDictCache.update((tag,subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB)
+        tagDictCache.update((subsumedDB[tag]["fullTag"],subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB)
+        tagDictCache.update((subsumedDB[tag]["pali"],subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB if subsumedDB[tag]["pali"])
+        tagDictCache.update((subsumedDB[tag]["fullPali"],subsumedDB[tag]["subsumedUnder"]) for tag in subsumedDB if subsumedDB[tag]["fullPali"])
+
     return tagDictCache.get(tagRef,None)
+
+def TagClusterLookup(clusterRef:str,tagClusterDictCache:dict = {}) -> str|None:
+    "Search for a tag cluster based on any of its various names. Return the base tag name."
+
+    if not tagClusterDictCache: # modify the value of a default argument to create a cache of potential tag references
+        clusterDB = gDatabase["tagCluster"]
+        tagDB = gDatabase["tag"]
+        tagClusterDictCache.update((cluster,cluster) for cluster in clusterDB)
+        tagClusterDictCache.update((clusterDB[cluster]["displayAs"],cluster) for cluster in clusterDB)
+        tagClusterDictCache.update((tagDB[cluster]["fullTag"],cluster) for cluster in clusterDB)
+
+    return tagClusterDictCache.get(clusterRef,None)
+
+def ParentTagListEntry(listIndex: int) -> dict|None:
+    "Return a the entry in gDatabase['tagDisplayList'] that corresponds to this tag's parent tag."
+
+    tagHierarchy = gDatabase["tagDisplayList"]
+    level = tagHierarchy[listIndex]["level"]
+    
+    if level < 2:
+        return None
+    while (listIndex >= 0):
+        if tagHierarchy[listIndex]["level"] < level:
+            return tagHierarchy[listIndex]
+        listIndex -= 1
+
+    return None
 
 
 def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
@@ -288,3 +356,16 @@ def SubsumesTags() -> dict:
         subsumesTags[subsumedTag["subsumedUnder"]] = subsumesTags.get(subsumedTag["subsumedUnder"],[]) + [subsumedTag]
 
     return subsumesTags
+
+def FTagOrder(excerpt: dict,tags: Iterable[str]) -> int:
+    """Return the fTagOrder number of the excerpt x.
+    tags is a list of tags to attempt to get the fTag order from"""
+    
+    for tag in tags:
+        try:
+            fTagIndex = excerpt["fTags"].index(tag)
+            return excerpt["fTagOrder"][fTagIndex]
+        except (ValueError, IndexError):
+            pass
+    return 999
+

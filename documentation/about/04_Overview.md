@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/AP Thailand 2018.jpg" alt="Ajahn Pasanno, Thailand 2018" id="cover" title="Ajahn Pasanno, Thailand 2018" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AP Thailand 2018.jpg" alt="Ajahn Pasanno, Thailand 2018" class="cover" title="Ajahn Pasanno, Thailand 2018" align="bottom" width="200" border="0"/> -->
 # Overview
 The Ajahn Pasanno Question and Story Archive is an attempt to make the recorded oral teachings of Ajahn Pasanno and those who teach alongside him more accessible. There are already many books and booklets of Ajahn Pasanno’s transcribed teachings, but these cover only a fraction of the available audio recordings. In particular, there are hours of recorded question and answer sessions and topical discussions which are very relevant to people with similar concerns and of less interest to everyone else. Transcribing all of these would be a major undertaking.
 
@@ -22,11 +22,23 @@ Each excerpt is labeled by a set of tags that describe its content. To aid in se
 ### Annotations
 Excerpts may further be described by a series of annotations, which the website displays as indented paragraphs below the main body of an excerpt. Like excerpts, each annotation has a kind. For example, in answering the question below, Ajahn Pasanno refers to the Amaravati Chanting book, a simile in a sutta, a story about Ajahn Chah and a quote by the Dalai Lama. Depending on their kind, annotations may have teachers and tags associated with them, but have no audio clip independent of the excerpt they belong to. All tags applied to excerpts are considered a-tags for search purposes.
 
+### Featured Excerpts
+Many tags apply to so many excerpts that it's difficult to read through them all to find the most relevant. For this reason, the October 2024 release introduces hand-picked featured excerpts that appear first in the list for a particular tag. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. Tags for which an excerpt is featured are marked with a star (<i class="fa fa-star" style="color: #9b7030;"></i>).
+
+Deciding which excerpts to feature takes time and care. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illlustrating key aspects of the topic, arranged chronologically or simplest to most in-depth. Less common tags will feature fewer excerpts. For the time being, even the most common tags feature only one or two excerpts. If you would like to suggest excerpts to feature, please refer to the guidelines on the [Want to Help?](../../pages/about/09_Want-to-help.html#ways-anyone-can-contribute) page.
+
 ### Example Excerpt
 
 ![ExampleExcerpt](../../pages/images/ExampleExcerpt.png)
 
-The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../../pages/tags/death.html)] and [[Rebirth](../../pages/tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
+The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [[Death](../../pages/tags/death.html)] and [[Rebirth](../../pages/tags/rebirth.html)] are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds. The star indicates that this is a featured excerpt for the tag [[Death](../../pages/tags/death.html)].
+
+### Key Topics and Tag Clusters
+The October 2024 release also introduces a [list of 16 key topics](../indexes/KeyTopics.html?hideAll) which organize the most important tags into a logical sequence. Each topic contains a list of subtopics related to its central theme. Subtopics can be either single tags or tag clusters that group together closely-related tags. For example, the tag cluster [Buddha](../../pages/clusters/buddha-relevant.html) includes the tags [[Buddha](../../pages/tags/buddha.html)], [[Recollection/Buddha](../../pages/tags/recollectionbuddha.html)], and [[Buddho mantra](../../pages/tags/buddho-mantra.html)] and is part of the key topic [The Three Refuges](../../pages/topics/refuges.html).
+
+The key topics begin with the Buddha's description of [the human dilemma](../../pages/topics/human.html) followed by an overview of his [prescribed resolution](../../pages/topics/truths.html). Next come topics related to [meditation practice](../../pages/topics/meditation.html), [qualities of the mind](../../pages/topics/skillful.html), and [results of the practice](../../pages/topics/fruits.html). The key topics conclude with applications of Dhamma practice in [monastic](../../pages/topics/monastic.html) and [lay life](../../pages/topics/everyday.html).
+
+Each key topic links to a page showing the featured excerpts of all tags within that topic. These pages are currently sparse on content because there are few featured excerpts. Hopefully the key topic pages will become a rich resource for contemplation when more featured excerpts are selected in the future.
 
 ## Searching the Archive
 The website menus link to a series of static pages which allow the user to browse the tags, events, and teachers contained in the archive in a variety of ways. Links to particular tags, events, and teachers go to static pages which list each relevant excerpt. Event pages simply list each excerpt in each of the event sessions. The tag and teacher pages also group excerpts by event and session, but additionally allow the user to narrow the search by excerpt kind. (Pages containing fewer than 10 excerpts don’t have this feature.) Selecting the “All excerpts” menu item allows one to see all excerpts of a particular kind in the archive.

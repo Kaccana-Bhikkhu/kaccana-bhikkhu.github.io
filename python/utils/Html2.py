@@ -10,12 +10,14 @@ from collections.abc import Iterator, Iterable, Callable
 from typing import List
 import copy
 import Utils
+import re
+import urllib.parse
 
 class Wrapper(NamedTuple):
     "A prefix and suffix to wrap an html object in."
     prefix: str = ""
     suffix: str = ""
-    def Wrap(self,contents: str|Wrapper, joinStr: str = "") -> str:
+    def Wrap(self,contents: str|Wrapper = "", joinStr: str = "") -> str:
         if type(contents) == Wrapper:
             return Wrapper(self.prefix + joinStr + contents.prefix,contents.suffix + joinStr + self.suffix)
         else:
@@ -61,6 +63,12 @@ class PageInfo(NamedTuple):
             return self.titleIB
         else:
             return self.title
+    
+    def AddQuery(self,query: str) -> NamedTuple:
+        "Return a NamedTuple with a query string added to the file URL."
+        parsed = urllib.parse.urlparse(self.file)
+        return self._replace(file = parsed._replace(query=query).geturl())
+
 
 class Renderable:
     """An object that supports the Render method to (optionally) substitute attributes and then convert to a str."""
@@ -108,9 +116,13 @@ class Menu(Renderable):
 
         menuLinks = []
         for n,item in enumerate(self.items):
-            link = dict(href="../" + item.file if RelativeLink(item.file) else item.file)
-                # Render relative links as if the file is at directory depth 1.
-                # PageDesc.RenderWithTemplate will later account for the true directory depth.
+            if RelativeLink(item.file):
+                link = {"href": "../" + item.file + ("" if "#" in item.file else "#_keep_scroll")}
+                    # Render relative links as if the file is at directory depth 1.
+                    # PageDesc.RenderWithTemplate will later account for the true directory depth.
+                    # Keep the scroll position if the link doesn't specify a bookmark.
+            else:
+                link = {"href": item.file}
             if n == self.menu_highlightedItem:
                 link.update(self.menu_highlight)
             menuLinks.append(Tag("a",link)(item.title))
@@ -297,7 +309,7 @@ class PageDesc(Renderable):
             Each generator function (optionally) first yields a PageInfo object containing the menu title and link.
             Next it yields a series of PageDesc objects which have been cloned from basePage plus the menu with additional material added.
             An empty generator means that no menu item is generated.
-        PagesFromMenuDescriptors is a simpler version of this function."""
+        AddMenuAndYieldPages is a simpler version of this function."""
         
         menuGenerators = [m(self) for m in menuGenerators] # Initialize the menu iterators
         menuItems = [next(m,None) for m in menuGenerators] # The menu items are the first item in each iterator
@@ -352,11 +364,16 @@ class PageDesc(Renderable):
         yield from self._PagesFromMenuGenerators(menuFunctions,menuSection=menuSection,**menuStyle)
 
 
+ITEM_NO_COUNT = "<!--NO_COUNT-->" # Don't count an item with this in htmlBody 
 T = TypeVar("T")
-def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
+def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None,str]],headingWrapper:Wrapper = Tag("h3",dict(id="HEADING_ID")),bodyWrapper:Wrapper=Wrapper(),addMenu = True,countItems = True,betweenSections = "<hr>") -> PageDesc:
     """Create a list grouped by headings from items.
     items: The list of items; should be sorted into groups which each have the same heading.
-    itemRenderer: Takes an item and returns the tuple heading,htmlBody[,headingID].
+    itemRenderer: Takes an item and returns the tuple htmlHeading[,htmlBody[,headingID[,textHeading]]].
+        htmlHeading: html code for the heading; displayed between htmlBody units
+        htmlBody: html code for the body; if omitted, print the heading only
+        headingID: html id for the heading; generated from textHeading if omitted
+        textHeading: text to display in the menu; generated from htmlHeading if omitted
     headingWrapper: Wrap the heading in the body with this html code.
     addMenu: Generate a horizontal menu linking to each section at the top?
     """
@@ -366,39 +383,76 @@ def ListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str
 
     itemCount = 0
     prevHeading = None
+    anythingListed = False
     for item in items:
-        rendered = itemRenderer(item)
-        if len(rendered) == 3:
-            heading,htmlBody,headingID = rendered
-        else:
-            heading,htmlBody = rendered
-            headingID = heading
+        rendered = iter(itemRenderer(item))
+        htmlHeading = next(rendered)
+        htmlBody = next(rendered,"")
+        headingID = next(rendered,"")
+        textHeading = next(rendered,"")
+        if not textHeading:
+            textHeading = Utils.RemoveHtmlTags(htmlHeading)
+        if not headingID:
+            headingID = textHeading
         headingID = Utils.slugify(headingID)
 
-        if heading != prevHeading:
-            if prevHeading is not None and betweenSections:
+        if textHeading != prevHeading:
+            if anythingListed and betweenSections:
                 bodyParts.append(betweenSections)
             
-            if countItems and menuItems: # Append the number of items to the previous menu item
+            if countItems and menuItems and itemCount: # Append the number of items to the previous menu item
                 menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
 
-            menuItems.append(PageInfo(heading,f"#{headingID}"))
-            idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
-            bodyParts.append(idWrapper.Wrap(heading))
+            if textHeading:
+                menuItems.append(PageInfo(textHeading,f"#{headingID}"))
+                idWrapper = headingWrapper._replace(prefix=headingWrapper.prefix.replace("HEADING_ID",headingID))
+                bodyParts.append(idWrapper.Wrap(htmlHeading))
+                anythingListed = True
 
-            prevHeading = heading
+            prevHeading = textHeading
             itemCount = 0
-        bodyParts.append(htmlBody)
-        itemCount += 1
+        if htmlBody:
+            if ITEM_NO_COUNT in htmlBody:
+                htmlBody = htmlBody.replace(ITEM_NO_COUNT,"")
+            else:
+                itemCount += 1
+            bodyParts.append(htmlBody)
+            anythingListed = True
     
     page = PageDesc()
     if addMenu:
-        if countItems: # Append the number of items to the last menu item
+        if countItems and menuItems and itemCount: # Append the number of items to the last menu item
             menuItems[-1] = menuItems[-1]._replace(title=menuItems[-1].title + f" ({itemCount})")
         menu = Menu(menuItems)
         page.AppendContent(menu,section = addMenu if type(addMenu) == str else None)
+        page.AppendContent("<hr>")
     
-    page.AppendContent("<hr>")
     page.AppendContent(bodyWrapper("\n".join(bodyParts)))
 
     return page
+
+def ToggleListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,str,str|None,str]],*args,**kwdArgs):
+    """Create a list using the same parameters as ListWithHeadings and add a toggle-view opener/closer to each heading."""
+    
+    toggler = Tag("a")(Tag("i",{"class":"fa fa-minus-square toggle-view","id":"HEADING_ID"})())
+    toggleHeading = Wrapper("<p>" + toggler + " ","</p>")
+
+    def WrapWithDivTag(item: T) -> list[str,str,str|None,str]:
+        rendered = iter(itemRenderer(item))
+        htmlHeading = next(rendered)
+        htmlBody = next(rendered,"")
+        headingID = next(rendered,"")
+        textHeading = next(rendered,"")
+
+        if not textHeading:
+            textHeading = re.sub(r"\<[^>]*\>","",htmlHeading) # Remove html tags
+        if not headingID:
+            headingID = textHeading
+        headingID = Utils.slugify(headingID)
+
+        htmlBody = Tag("div",{"id":headingID + ".b"})(htmlBody)
+
+        return htmlHeading,htmlBody,headingID,textHeading
+
+
+    return ListWithHeadings(items,WrapWithDivTag,headingWrapper=toggleHeading,*args,**kwdArgs)

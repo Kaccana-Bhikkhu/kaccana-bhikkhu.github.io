@@ -1,9 +1,9 @@
-<!--HTML <img src="../../pages/images/photos/LPP Sathien Dhammasathan 2016.jpg" alt="Ajahn Pasanno teaching in Thailand, 2016" id="cover" title="Ajahn Pasanno teaching in Thailand, 2016" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/LPP Sathien Dhammasathan 2016.jpg" alt="Ajahn Pasanno teaching in Thailand, 2016" class="cover" title="Ajahn Pasanno teaching in Thailand, 2016" align="bottom" width="200" border="0"/> -->
 
 # Event Series
 Most of Ajahn Pasanno’s recorded teachings come from events which recur on a weekly, monthly, or yearly basis. Since the content and tone of Ajahn Pasanno’s teaching depends greatly on his audience, it is helpful to understand these recurring events in detail.
 
-<!--HTML <img src="../../pages/images/photos/Thanksgiving Retreat 2010.jpg" alt="Thanksgiving Retreat 2010 at the Angela Center" id="cover" title="Thanksgiving Retreat 2010 at the Angela Center" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Thanksgiving Retreat 2010.jpg" alt="Thanksgiving Retreat 2010 at the Angela Center" class="cover" title="Thanksgiving Retreat 2010 at the Angela Center" align="bottom" width="200" border="0"/> -->
 ## Thanksgiving Retreats (<a id="thanksgiving-retreats" href="../indexes/EventsBySeries.html#thanksgiving-retreats">List</a>)
 Ajahn Sumedho and later Ajahn Amaro began leading residential retreats in Northern California years before Abhayagiri Monastery was founded in 1996. Although the duration and venue of early retreats varied, by the early 1990s the event had crystallized into an annual 10-day retreat at the Angela Center in Santa Rosa spanning the weekends on either side of the November Thanksgiving holiday. The name “Thanksgiving Retreat” thus originated from the dates of the retreat, although themes of gratitude commonly arose in the teachings.
 
@@ -11,17 +11,17 @@ During the co-abbotship years (1997-2010), Ajahn Amaro took on the majority of e
 
 Ajahn Amaro typically invited one or two senior Sīladharā from England to co-lead the retreat with him. He also invited multiple junior Abhayagiri monastics to participate as retreatants. Ajahn Amaro and the nun(s) gave daily Dhamma talks and occasional Q&A sessions, but most interactions with retreatants occurred in small group interviews. Thus there are fewer recordings suitable for this archive from this period.
 
-Due to Saṅgha meetings no sīladharā were available in 2005 and 2006, so Ajahn Amaro invited female lay teachers for these retreats: Taraniya and Jananta from the Community of Abhayagiri Lay Ministers in 2005 and Mary Paffard and long-term Abhayagiri resident Debbie Stamp in 2006.
+Due to Saṅgha meetings no sīladharā were available in 2005 and 2006, so Ajahn Amaro invited female lay teachers for these retreats: Taraniya and Jayanta from the Community of Abhayagiri Lay Ministers in 2005 and Mary Paffard and long-term Abhayagiri resident Debbie Stamp in 2006.
 
 When Ajahn Pasanno assumed the role of sole abbot in 2010, he made minor changes to the format of the Thanksgiving Retreat. Lacking Ajahn Amaro’s long-standing connection to the English Sīladhara Order, he invited the now-maturing junior Abhayagiri ajahns and Debbie Stamp as his co-teachers.
 
-Reasoning that most retreatant’s questions aren’t unique and we can all learn from each other’s experiences, he replaced group interviews with daily Q&A sessions. Retreatants were invited to write questions in advance, which Ajahn Pasanno would read and respond to in a recorded session. Realizing the value of these questions, the monks who produced the 2013-2016 retreat compilation CDs included time-stamped transcriptions of the questions along with the audio files. These formed the inspiration and nucleus of this project.
+Reasoning that most retreatants’ questions aren’t unique and we can all learn from each other’s experiences, he replaced group interviews with daily Q&A sessions. Retreatants were invited to write questions in advance, which Ajahn Pasanno would read and respond to in a recorded session. Realizing the value of these questions, the monks who produced the 2013-2016 retreat compilation CDs included time-stamped transcriptions of the questions along with the audio files. These formed the inspiration and nucleus of this project.
 
-The Angela Center suffered catastrophic damage in the California fires of October 2017, which ended the classical Thanksgiving Retreat format. Later retreats were held at different venues at different dates. During the pandemic, Thanksgiving Retreat teachings and Q&A sessions were broadcast live from Abhayagiri. After Ajahn Pasanno stepped down as abbot in 2018, he participated as an invited senior teacher rather than leader of Thanksgiving Retreats and so hosted many fewer Q&A sessions.
+The Angela Center suffered catastrophic damage in the California fires of October 2017, which ended the classic Thanksgiving Retreat format. Later retreats were held at different venues at different dates. During the pandemic, Thanksgiving Retreat teachings and Q&A sessions were broadcast live from Abhayagiri. After Ajahn Pasanno stepped down as abbot in 2018, he participated as an invited senior teacher rather than leader of Thanksgiving Retreats and so hosted many fewer Q&A sessions.
 
 Thanksgiving Retreat participants are usually long-term practitioners familiar with monastic teachings and customs. The container of a 10-day retreat gives the Q&A sessions a spacious, contemplative quality. Common topics include working with hindrances, unusual experiences in meditation, curiosity about monastic life, and how to apply the teachings beyond the retreat container.
 
-<!--HTML <img src="../../pages/images/photos/AbhayagiriWinter.jpg" alt="Snow covering Abhayagiri Monastery" id="cover" title="Snow covering Abhayagiri Monastery" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/AbhayagiriWinter.jpg" alt="Snow covering Abhayagiri Monastery" class="cover" title="Snow covering Abhayagiri Monastery" align="bottom" width="200" border="0"/> -->
 ## Winter Retreats (<a id="abhayagiri-winter-retreats" href="../indexes/EventsBySeries.html#abhayagiri-winter-retreats">List</a>)
 The tradition of Western Ajahn Chah monasteries halting work projects during the winter to engage in intensive meditation practice began in the early years of Chithurst and Amaravati. Abhayagiri’s Winter Retreat occurs during the months of January, February, and March. There are typically roughly five teaching sessions each week. Until recently, all residents attended all sessions (Support team members cooking the day's meal listened via speakers in the kitchen).
 
@@ -34,7 +34,7 @@ Ajahn Sumedho was invited to teach at Spirit Rock Meditation Center even before 
 
 Spirit Rock Meditation Center is physically and often culturally more accessible to inhabitants of the San Francisco Bay Area than Abhayagiri Monastery. For this reason, many participants have little experience with Buddhist monastics, and some are new to Buddhist practice in general. These sessions are an opportunity to hear Ajahn Pasanno explain the Ajahn Chah tradition while making few assumptions about the prior experience of his audience. Questions and comments vary widely, but often relate to everyday life.
 
-<!--HTML <img src="../../pages/images/photos/Upasika Day 9 Oct 2010.jpg" alt="October 2010 Upāsikā Day" id="cover" title="October 2010 Upāsikā Day" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Upasika Day 9 Oct 2010.jpg" alt="October 2010 Upāsikā Day" class="cover" title="October 2010 Upāsikā Day" align="bottom" width="200" border="0"/> -->
 ## Abhayagiri Upāsikā Days (<a id="upasika-days" href="../indexes/EventsBySeries.html#upasika-days">List</a>)
 The term “upāsikā” means “one who sits close by” and it has come to refer to lay people who join with monastics in the practice of the Dhamma. Abhayagiri Upāsikā Days are afternoon teaching sessions held at the monastery organized around a particular theme.
 
@@ -44,10 +44,14 @@ The coronavirus pandemic disrupted this orderly scheme of Upāsikā Days, and th
 
 Upāsikā Day participants were typically core Abhayagiri lay supporters, many of whom have made a formal commitment to the Upāsikā Program. One hears the same voices weave through multiple recordings over the years. Some participants were lay Dhamma teachers themselves. Questions and comments often reflect years of committed practice and explore lay practice in more depth than any other series. This is also a good place to hear Ajahn Pasanno’s perspective on various social issues.
 
-## Question and Answer Sessions (<a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">List</a>)
-These are assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
+<!--HTML <img src="../../pages/images/photos/Rishikesh2023.jpg" alt="Interreligious Retreat-Seminar on Dhamma and Non-duality, Rishikesh, India" class="cover" title="Interreligious Retreat-Seminar on Dhamma and Non-duality, Rishikesh, India" align="bottom" width="200" border="0"/> -->
+## Other Retreats (<a id="other-retreats" href="../indexes/EventsBySeries.html#other-retreats">List</a>)
+Multi-day retreats led by Ajahn Pasanno around the world.
 
-<!--HTML <img src="../../pages/images/photos/15 Full Stage.jpg" alt="Ajahn Chah Conference 2001" id="cover" title="Ajahn Chah Conference 2001" align="bottom" width="200" border="0"/> -->
+## Question and Answer Sessions (<a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">List</a>)
+Assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
+
+<!--HTML <img src="../../pages/images/photos/15 Full Stage.jpg" alt="Ajahn Chah Conference 2001" class="cover" title="Ajahn Chah Conference 2001" align="bottom" width="200" border="0"/> -->
 ## Other (<a id="other" href="../indexes/EventsBySeries.html#other">List</a>)
-These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. It also includes the wonderful and significant [2001 Ajahn Chah Conference](../../pages/events/Chah2001.html) in Portola Valley, California.
+Events that don’t fit into any of the above categories. It includes the wonderful and significant [2001 Ajahn Chah Conference](../../pages/events/Chah2001.html) in Portola Valley, California.
 

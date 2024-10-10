@@ -1,4 +1,4 @@
-<!--HTML <img src="../../pages/images/photos/Abhayagiri library.jpg" alt="Abhayagiri library" id="cover" title="Abhayagiri library" align="bottom" width="200" border="0"/> -->
+<!--HTML <img src="../../pages/images/photos/Abhayagiri library.jpg" alt="Abhayagiri library" class="cover" title="Abhayagiri library" align="bottom" width="200" border="0"/> -->
 # Search instructions
 
 The [search page](../search/Text-search.html) allows one to search excerpts for text, tags, and teachers. One can narrow the search to specific kinds of teaching or events. Simple queries are easy, but more complex searches require an understanding of how the search engine works. Read this page only as far as you need to and then start searching.
@@ -33,6 +33,10 @@ Search for all teachers beginning with characters: `{Mae Chee*}`
 
 Search for all teachers ending with characters: `{*Pasanno}`
 
+## Searching for featured excerpts
+
+To limit the search to featured excerpts, add ` +` after the search terms, e. g. `Thai +`.
+
 ## Searching by kind
 
 To search for excerpts containing a specific kind of teaching, use a hash mark before or after the type of teaching:
@@ -63,6 +67,8 @@ __`Other`__: `Comment`, `Discussion`, `Note`, `Summary`, `Other`
 <br>
 __`Attribution`__: `ReadBy`, `TranslatedBy`
 
+Use an ampersand (&) before the category name to search for excerpts in that category.
+
 Search for any quote containing the characters 'Thai': `&Quotes Thai`
 
 ## Searching by event
@@ -87,15 +93,17 @@ To go beyond the recipies above, it is necessary to understand the search engine
 
 is converted into these five blobs:
 
-1. `^could you please explain about the death process...how quickly does rebirth occur?^{ajahn pasanno}[death][rebirth]//[recollection/death][delusion][self-identity view][recollection][impermanence][not-self][theravada][history/early buddhism][sutta][vajrayana][clinging][culture/thailand][chanting][goodwill][relinquishment][ceremony/ritual][kamma]|#question#&questions&@metta2008@s01@`
+1. `^could you please explain about the death process...how quickly does rebirth occur?^{ajahn pasanno}[death]+[rebirth]//[recollection/death][delusion][self-identity view][recollection][impermanence][not-self][theravada][history/early buddhism][sutta][vajrayana][clinging][culture/thailand][chanting][goodwill][relinquishment][ceremony/ritual][kamma]|#question#&questions&@metta2008@s01@`
 2. `^chanting book p 55: five recollections; chanting book p 12: the body is impermanent...^{}//[similes][craving][rebirth]|#reference#&references&`
 3. `^fire blown by the wind (mn-72: aggivacchagotta sutta)^{ajahn pasanno}//[]|#simile#&teachings&`
-4. `^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}//[ajahn chah][death][teachers][rebirth][fierce/direct teaching]|#story#&stories&`
+4. `^a former monk asks ajahn chah about working with dying people to give them the opportunity for wholesome rebirth.^{ajahn pasanno}//[ajahn chah][death]+[teachers][rebirth][fierce/direct teaching]|#story#&stories&`
 5. `^i practice dying. the dalai lama^{ajahn pasanno}//[dalai lama][recollection/death]|#indirectquote#&quotes&`
 
 The format of each blob can be informally represented as: `^text^{teachers}[qTags]//[aTags]|#kind#&category&@eventCode@sNN@`.
 
 `sNN` is the zero-padded session number, so Session 1 is `s01`. `[qTags]` and `@eventCode@sNN@` do not appear in annotations. Text-only searches match text on the left of the `|` separator symbol. To match `kind`, `category`, and `eventCode`, the query must include the symbols `#`, `&`, or `@`.
+
+Tags for which this excerpt is featured are marked `+`, e.g. `[death]+`.
 
 Search queries are broken into individual strings separated by spaces. If all search strings can be found within an excerpts' blobs, then the excerpt is considered to be found.
 

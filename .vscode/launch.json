@@ -45,7 +45,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ParseCSV,Render,Prototype",
+                "ParseCSV",
                 "-vvv"
             ],
             "console": "integratedTerminal",
@@ -68,7 +68,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype"
+                "Prototype",
+                "--buildOnly",
+                "tags"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
@@ -131,7 +133,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch"
+                "Job",
+                "BuildAllAbhayagiri"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

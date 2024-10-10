@@ -7,6 +7,7 @@
 
 // ParseCSV options:
 --pendingMeansYes
+--draftFTags mark
 
 // Link options:
 --linkCheckLevel excerptMp3:local:3 // Check local excerpt mp3 split times
@@ -14,6 +15,7 @@
 --sessionMp3 remote,local
 --excerptMp3 local
 --reference remote,local
+--uploadMirror preview
 
 // Prototype options:
 --blockRobots

@@ -44,6 +44,9 @@ def PosixToWindows(path:str) -> str:
 PosixJoin = posixpath.join
 PosixSplit = posixpath.split
 
+def RemoveHtmlTags(html: str) -> str:
+    return re.sub(r"\<[^>]*\>","",html)
+
 def DirectoryURL(url:str) -> str:
     "Ensure that this url specifies a directory path."
     if url.endswith("/"):
@@ -73,6 +76,16 @@ def OpenUrlOrFile(url:str) -> BinaryIO:
         return urllib.request.urlopen(url)
     else:
         return open(url,"rb")
+
+def JavascriptLink(url:str) -> str:
+    "Return Javascript code to jump to url."
+
+    return f"location.hash = '#{url}'"
+
+def ReadFile(filePath: str) -> str:
+    "Return an entire file as a utf-8 encoded string."
+    with open(filePath,encoding='utf8') as file:
+        return file.read()
 
 def SwitchedMoveFile(locationFalse: str,locationTrue: str,switch: bool) -> bool:
     """Move a file to either locationFalse or locationTrue depending on the value of switch.
@@ -106,8 +119,11 @@ def RemoveEmptyFolders(root: str) -> set[str]:
                 break
     
         if not any(files) and not still_has_subdirs:
-            os.rmdir(current_dir)
-            deleted.add(current_dir)
+            try:
+                os.rmdir(current_dir)
+                deleted.add(current_dir)
+            except OSError:
+                pass
 
     return deleted
 
@@ -157,7 +173,7 @@ def SmartQuotes(s: str):
 
     # Find dumb double quotes coming directly after letters or punctuation,
     # and replace them with right double quotes.
-    s = re.sub(r'([a-zA-Z0-9.,?!;:)/\'\"])"', r'\1”', s)
+    s = re.sub(r'([a-zA-Z0-9.,?!;:)>/\'\"])"', r'\1”', s)
     # Find any remaining dumb double quotes and replace them with
     # left double quotes.
     s = s.replace('"', '“')
@@ -165,7 +181,7 @@ def SmartQuotes(s: str):
     # attributes (following =) and replace them with dumb quotes.
     s = re.sub(r'=“(.*?)”', r'="\1"', s)
     # Follow the same process with dumb/smart single quotes
-    s = re.sub(r"([a-zA-Z0-9.,?!;:)/\"\'])'", r'\1’', s)
+    s = re.sub(r"([a-zA-Z0-9.,?!;:)>/\"\'])'", r'\1’', s)
     s = s.replace("'", '‘')
     s = re.sub(r'=‘(.*?)’', r"='\1'", s)
     return s

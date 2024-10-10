@@ -8,6 +8,7 @@ import importlib
 import os, sys, re
 import json
 from typing import Tuple
+from collections import Counter
 
 scriptDir,_ = os.path.split(os.path.abspath(sys.argv[0]))
 sys.path.append(os.path.join(scriptDir,'python/modules')) # Look for modules in these subdirectories of the directory containing QAarchive.py
@@ -39,12 +40,39 @@ def ReadJobOptions(jobName: str) -> list[str]:
     print(f"Available jobs: {allJobs}")
     sys.exit(2)
 
-def ApplyDefaults(argsFilename: str,parser: argparse.ArgumentParser) -> None:
-    "Read the specified .args file and apply these as default values to parser."
-    if argsFilename in gParsedArgsFiles:
-        Alert.error(f"Cannot load the .args file {argsFilename} multiple times.")
-        sys.exit(1)
+def ApplyDefaults(argumentStrings:list[str],parser: argparse.ArgumentParser) -> None:
+    "Parse and apply the given arguments as defaults to the parser."
 
+    processedArgs = shlex.split(" ".join(argumentStrings))
+    argIndexes = [n for n,arg in enumerate(processedArgs) if arg == "--args"]
+
+    nextArgumentToProcess = 0
+    for argIndex in argIndexes:
+        # First process all arguments up to the --args argument
+        commandArgs = ["DummyOp"] + processedArgs[nextArgumentToProcess:argIndex]
+        defaultArgs = parser.parse_args(commandArgs)
+        parser.set_defaults(**vars(defaultArgs))
+        nextArgumentToProcess = argIndex + 2
+
+        # Then parse the file specified by the --args argument
+        if (argIndex + 1) < len(processedArgs):
+            argsFile = processedArgs[argIndex + 1]
+            ReadArgsFile(argsFile,parser)
+        else:
+            Alert.error("--args must be followed by a file to read from.")
+
+    # Finally process any remaining arguments
+    commandArgs = ["DummyOp"] + processedArgs[nextArgumentToProcess:]
+    defaultArgs = parser.parse_args(commandArgs)
+    parser.set_defaults(**vars(defaultArgs))
+
+def ReadArgsFile(argsFilename: str,parser: argparse.ArgumentParser) -> None:
+    "Read the specified .args file and apply these as default values to parser."
+    if gParsedArgsFileCount[argsFilename] > 3:
+        Alert.error(f"Attempting to load .args file {argsFilename} more than three times. This probably indicates recursive inclusion.")
+        sys.exit(1)
+    gParsedArgsFileCount[argsFilename] += 1
+    
     try:
         with open(argsFilename,"r",encoding="utf-8") as argsFile:
             argumentStrings = []
@@ -57,17 +85,7 @@ def ApplyDefaults(argsFilename: str,parser: argparse.ArgumentParser) -> None:
         gErrorArgsFiles.append(argsFilename)
         return
     
-    commandArgs = ["DummyOp"] + shlex.split(" ".join(argumentStrings))
-    searchForArgs = parser.parse_args(commandArgs)
-
-    for subArgsFile in searchForArgs.args:
-        ApplyDefaults(subArgsFile,parser)
-        
-    defaultArgs = parser.parse_args(commandArgs)
-    del defaultArgs.args
-
-    gParsedArgsFiles.append(argsFilename)
-    parser.set_defaults(**vars(defaultArgs))
+    ApplyDefaults(argumentStrings,parser)
 
 def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
     "Scan the list of specified ops to see if we can load a database to save time. Add any ops needed to support those specified."
@@ -134,6 +152,7 @@ parser.add_argument('--events',type=str,default='All',help='A comma-separated li
 parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
 parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
 parser.add_argument('--multithread',**Utils.STORE_TRUE,help="Multithread some operations")
+parser.add_argument('--dumpArgs',**Utils.STORE_TRUE,help="Print the argument parser arguments and exit")
 
 for mod in modules.values():
     mod.AddArguments(parser)
@@ -161,16 +180,16 @@ if baseOptions.homeDir != '.':
     Alert.info("Home directory:",baseOptions.homeDir)
 
 ## STEP 2: Configure parser with default options read from the .args files
-gParsedArgsFiles = [] # ApplyDefaults fills these with the names of parsed files
+gParsedArgsFileCount = Counter() # Count the number of times an .args file is applied to stop infinite recursion
 gErrorArgsFiles = []
 argsFileList = baseOptions.defaults.split(",") + baseOptions.args
 for argsFile in argsFileList:
     try:
-        ApplyDefaults(argsFile,parser)
+        ReadArgsFile(argsFile,parser)
     except OSError:
         pass
-if gParsedArgsFiles:
-    Alert.structure("Read arguments from:",", ".join(gParsedArgsFiles))
+if gParsedArgsFileCount:
+    Alert.structure("Read arguments from:",", ".join(gParsedArgsFileCount.keys()))
 if gErrorArgsFiles:
     Alert.structure("Could not read:",", ".join(gErrorArgsFiles))
 
@@ -192,6 +211,13 @@ for modName in priorityInitialization:
 if Alert.error.count:
     print("Aborting due to argument parsing errors.")
     sys.exit(2)
+
+if clOptions.dumpArgs:
+    print("Parsed arguments (clOptions):")
+    for attribute in sorted(dir(clOptions)):
+        if not attribute.startswith("_"):
+            print(f"   {attribute} = {repr(getattr(clOptions,attribute))}")
+    sys.exit(0)
 
 if clOptions.events != 'All':
     clOptions.events = clOptions.events.split(',')

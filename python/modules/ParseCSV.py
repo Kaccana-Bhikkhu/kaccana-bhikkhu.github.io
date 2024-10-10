@@ -13,6 +13,7 @@ from datetime import timedelta
 import Prototype, Alert
 from enum import Enum
 from collections import Counter, defaultdict
+import itertools
 
 class StrEnum(str,Enum):
     pass
@@ -28,12 +29,18 @@ class TagFlag(StrEnum):
     CAPITALIZE = "C"            # Capitalize the Pali entry; e.g. Nibbāna
     HIDE = "h"                  # Hide this tag in alphabetical lists
 
+class KeyTagFlag(StrEnum):
+    PEER_TAG = "+"              # Subtag of previous topic X. Shown as: X, Y, and Z
+    SUBORDINATE_TAG = "-"       # Subtag of previous topic X. Shown as: X (includes Y)
+
+SUBTAG_FLAGS = set([KeyTagFlag.PEER_TAG,KeyTagFlag.SUBORDINATE_TAG])
 class ExcerptFlag(StrEnum):
     INDENT = "-"
     ATTRIBUTE = "a"
     OVERLAP = "o"
     PLURAL = "s"
     UNQUOTE = "u"
+    
 
 gCamelCaseTranslation = {}
 def CamelCase(input: str) -> str: 
@@ -152,7 +159,7 @@ def CSVFileToDictList(fileName,*args,**kwArgs):
         SkipModificationLine(file)
         return CSVToDictList(file,*args,**kwArgs)
 
-def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
+def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';',removeBlank = True) -> None:
     """Convert the values in a specific key to a list for all dictionaries in dictList.
     First, look for other keys with names like dictKey+'2', etc.
     Then split all these keys using the given delimiter, concatenate the results, and store it in dictKey.
@@ -182,7 +189,8 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
         items = []
         for sequentialKey in keyList:
             items += d[sequentialKey].split(delimiter)
-        items = [s.strip() for s in items if s.strip()]
+        if removeBlank:
+            items = [s.strip() for s in items if s.strip()]
         d[baseKey] = items
                     
         if baseKey == key:
@@ -195,13 +203,20 @@ def ListifyKey(dictList: list|dict,key: str,delimiter:str = ';') -> None:
 def ConvertToInteger(dictList,key,defaultValue = None,reportError:Alert.AlertClass|None = None):
     "Convert the values in key to ints"
     
-    for d in Utils.Contents(dictList):
+    def Convert(s: str) -> int:
         try:
-            d[key] = int(d[key])
+            return int(s)
         except ValueError as err:
-            if reportError and d[key]:
-                reportError("Cannot convert",repr(d[key]),"to an integer in",d)
-            d[key] = defaultValue
+            if reportError and s:
+                reportError("Cannot convert",repr(s),"to an integer in",d)
+            return defaultValue
+
+    sequences = frozenset((list,tuple))
+    for d in Utils.Contents(dictList):
+        if type(d[key]) in sequences:
+            d[key] = [Convert(item) for item in d[key]]
+        else:
+            d[key] = Convert(d[key])
 
 def ListToDict(inList,key = None):
     """Convert a list of dicts to a dict of dicts using key. If key is None, use the first key
@@ -214,9 +229,9 @@ def ListToDict(inList,key = None):
     for item in inList:
         newKey = item[key]
         if newKey in outDict:
-            raise KeyError("ListToDict: Duplicate key "+str(newKey))
-        
-        outDict[newKey] = item
+            Alert.warning("ListToDict: Duplicate key:",newKey,". Will use the value of the old key:",outDict[newKey])
+        else:
+            outDict[newKey] = item
     
     return outDict
 
@@ -227,9 +242,9 @@ def DictFromPairs(inList,keyKey,valueKey,camelCase = True):
     for item in inList:
         newKey = item[keyKey]
         if newKey in outDict:
-            raise KeyError("DictFromPairs: Duplicate key "+str(newKey))
-        
-        outDict[newKey] = item[valueKey]
+            Alert.warning("DictFromPairs: Duplicate key:",newKey,". Will use the value of the old key:",outDict[newKey])
+        else:
+            outDict[newKey] = item[valueKey]
     
     if camelCase:
         CamelCaseKeys(outDict)
@@ -406,6 +421,10 @@ def RemoveUnusedTags(database: dict) -> None:
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
     usedTags.update(t["subsumedUnder"] for t in gDatabase["tagSubsumed"].values())
+    for cluster in database["tagCluster"].values():
+        usedTags.add(cluster["tag"])
+        usedTags.update(cluster["subtags"].keys())
+
 
     Alert.extra(len(usedTags),"unique tags applied.")
     
@@ -455,8 +474,9 @@ def RemoveUnusedTags(database: dict) -> None:
     database["tagRemoved"] = [tagName for tagName,tag in database["tag"].items() if tagName not in usedTags]
     database["tag"] = {tagName:tag for tagName,tag in database["tag"].items() if tagName in usedTags}
 
+    noSubsumed = {"subsumedUnder":""}
     for tag in database["tag"].values():
-        tag["subtags"] = [t for t in tag["subtags"] if t in usedTags]
+        tag["subtags"] = [t for t in tag["subtags"] if t in usedTags or database["tagSubsumed"].get(t,noSubsumed)["subsumedUnder"] in usedTags]
         tag["related"] = [t for t in tag["related"] if t in usedTags]
 
 def IndexTags(database: dict) -> None:
@@ -542,7 +562,7 @@ def CountSubtagExcerpts(database):
                 tag = tagList[index]["tag"]
                 if tag:
                     subtags[index] = {tag}
-                    savedSearches[index] = {id(x) for x in Filter.Apply(excerpts,Filter.Tag(tag))}
+                    savedSearches[index] = {id(x) for x in Filter.Tag(tag)(excerpts)}
                     #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
                 else:
                     subtags[index] = set()
@@ -557,6 +577,61 @@ def CountSubtagExcerpts(database):
         tagList[parentIndex]["subtagCount"] = len(theseTags) - 1
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
+def CollectKeyTopics(database:dict[str]) -> None:
+    """Create keyTopic dictionary from tagCluster dictionary."""
+
+    keyTopic = {}
+    currentKeyTopic = {}
+    clustersToRemove = set()
+    thisCluster = None
+    for cluster in database["tagCluster"].values():
+        if cluster["keyTopic"]:
+            currentKeyTopic = {
+                "code": cluster["topicCode"],
+                "topic": cluster["keyTopic"],
+                "shortNote": cluster["shortNote"],
+                "longNote": cluster["longNote"],
+                "listFile": cluster["topicCode"] + ".html",
+                "clusters": []
+            }
+            keyTopic[cluster["topicCode"]] = currentKeyTopic
+        
+        if cluster["flags"] in SUBTAG_FLAGS:
+            clustersToRemove.add(cluster["tag"])
+            thisCluster["subtags"][cluster["tag"]] = cluster["flags"]
+            database["tag"][cluster["tag"]]["cluster"] = thisCluster["tag"]
+        else:
+            thisCluster = cluster
+            cluster["subtags"] = {}
+            cluster["topicCode"] = currentKeyTopic["code"]
+            cluster["keyTopic"] = currentKeyTopic["topic"]
+            database["tag"][cluster["tag"]]["keyTopicCode"] = currentKeyTopic["code"]
+            database["tag"][cluster["tag"]]["cluster"] = cluster["tag"]
+            if not cluster["displayAs"]:
+                cluster["displayAs"] = cluster["tag"]
+            cluster.pop("shortNote",None)
+            cluster.pop("longNote",None)
+            
+            currentKeyTopic["clusters"].append(cluster["tag"])
+    
+    for cluster in clustersToRemove:
+        extraFields = [{key:value} for key,value in database["tagCluster"][cluster].items() if value and key not in ("tag","flags")]
+        if extraFields:
+            Alert.notice("CollectKeyTopics: Extra fields in subtag",cluster,":",extraFields)
+        del database["tagCluster"][cluster]
+    
+    ListifyKey(database["tagCluster"],"related")
+    nonClustersWithRelated = [{c["tag"]:c["related"]} for c in database["tagCluster"].values() if c["related"] and not c["subtags"]]
+    if nonClustersWithRelated:
+        Alert.notice("These",len(nonClustersWithRelated),"subtopics are mapped to tags. Their related tags should be moved to tags.",nonClustersWithRelated)
+
+    for cluster in database["tagCluster"].values():
+        if cluster["subtags"]: # Topics with subtopics link to separate pages in the topics directory
+            cluster["htmlPath"] = f"clusters/{Utils.slugify(cluster['tag'])}.html"
+        else: # Tags without subtopics link to pages in the tags directory
+            cluster["htmlPath"] = f"tags/{database['tag'][cluster['tag']]['htmlFile']}"
+
+    database["keyTopic"] = keyTopic
 
 def CreateTagDisplayList(database):
     """Generate Tag_DisplayList from Tag_Raw and Tag keys in database
@@ -625,7 +700,10 @@ def WalkTags(tagDisplayList: list,returnIndices:bool = False,yieldRootTags = Fal
             yield parent,children
         
         if tagLevel > len(tagStack):
-            assert tagLevel == len(tagStack) + 1, f"Level of tag {tag['tagName']} increased by more than one."
+            if tagLevel != len(tagStack) + 1:
+                Alert.error("Level of tag",tag,"increased by more than one.")
+                Alert.error("This is a fatal error. Exiting.")
+                sys.exit()
             tagStack.append([])
         
         if returnIndices:
@@ -700,23 +778,31 @@ def CheckItemContents(item: dict,prevExcerpt: dict|None,kind: dict) -> bool:
             else:
                 Alert.caution(item,"to",prevExcerpt,message)
 
+def FinalizeExcerptTags(x: dict) -> None:
+    """Combine qTags and aTags into a single list, but keep track of how many qTags there are."""
+    x["tags"] = x["qTag"] + x["aTag"]
+    x["qTagCount"] = len(x["qTag"])
+    if len(x["fTagOrder"]) != len(x["fTags"]):
+        Alert.caution(x,f"has {len(x['fTags'])} fTag but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
+
+    if not gOptions.jsonNoClean:
+        del x["qTag"]
+        del x["aTag"]
+        x.pop("aListen",None)
+        if not x["fTags"]:
+            x.pop("fTagOrder")
+
+def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
+    "Combine qTag, aTag, fTag, and fTagOrder keys from an Extra Tags annotation with an existing excerpt."
+
+    for key in ("qTag","aTag","fTags","fTagOrder"):
+        excerpt[key] = excerpt.get(key,[]) + annotation.get(key,[])
+
 def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     """Add an annotation to a excerpt."""
     
     if annotation["sessionNumber"] != excerpt["sessionNumber"]:
         Alert.warning("Annotation",annotation,"to",excerpt,f"has a different session number ({annotation['sessionNumber']}) than its excerpt ({excerpt['sessionNumber']})")
-    CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
-    if annotation["kind"] == "Extra tags":
-        for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
-            if "tags" in prevAnnotation:
-                prevAnnotation["tags"] += annotation["qTag"]
-                prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
-                return
-        
-        excerpt["qTag"] += annotation["qTag"] # If no annotation takes the tags, give them to the excerpt
-        excerpt["aTag"] += annotation["aTag"]
-        return
-    
     global gRemovedAnnotations
     if annotation["exclude"]:
         excludeAlert(annotation,"to",excerpt,"- exclude flag Yes.")
@@ -725,6 +811,17 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     if database["kind"][annotation["kind"]].get("exclude",False):
         excludeAlert(annotation,"to",excerpt,"- kind",repr(annotation["kind"]),"exclude flag Yes.")
         gRemovedAnnotations += 1
+        return
+    
+    CheckItemContents(annotation,excerpt,database["kind"][annotation["kind"]])
+    if annotation["kind"] == "Extra tags":
+        for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
+            if "tags" in prevAnnotation:
+                prevAnnotation["tags"] += annotation["qTag"]
+                prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
+                return
+        
+        AddExcerptTags(excerpt,annotation) # If no annotation takes the tags, give them to the excerpt
         return
     
     kind = database["kind"][annotation["kind"]]
@@ -812,7 +909,7 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
 def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
     Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
-    Eventually this function will scan for Alt. Audio and Append Audio annotations for extended functionality."""
+    Eventually this function will scan for Alternate audio, Edited audio, Append audio, and Cut audio annotations for extended functionality."""
 
     # First eliminate excerpts with fatal parsing errors.
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
@@ -838,6 +935,11 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             Alert.error("Audio filename",repr(filename),"contains diacritics, which are not allowed.")
             filename = noDiacritics
 
+        try:
+            Mp3DirectCut.ToTimeDelta(duration)
+        except ValueError:
+            Alert.error(filename,"in event",event,"has invalid duration:",repr(duration))
+
         if filename in database["audioSource"]:
             existingSource = database["audioSource"][filename]
             if existingSource["duration"] != duration or existingSource["url"] != url:
@@ -849,29 +951,56 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
     def ExcerptDuration(excerpt: dict,sessionDuration:timedelta) -> str:
         "Return the duration of excerpt as a string."
         try:
-            clip = excerpt["clips"][0].ToClipTD()
-            duration = clip.Duration(sessionDuration)
+            duration = timedelta(0)
+            for clip in excerpt["clips"]:
+                if clip.file == "$":
+                    fileDuration = sessionDuration
+                else:
+                    fileDuration = database["audioSource"][clip.file]["duration"]
+                duration += clip.Duration(fileDuration)
         except Mp3DirectCut.TimeError as error:
             Alert.error(excerpt,"generates time error:",error.args[0])
             return "0:00"
         return Utils.TimeDeltaToStr(duration)
 
+    def ProcessAltAudio(excerpt: dict,altAudioAnnotation: dict) -> None:
+        """Prepare for an excerpt that specifies an alternate audio source."""
+        splitBits = altAudioAnnotation["text"].split("|")
+        filename = splitBits[0]
+        duration = altAudioAnnotation["endTime"]
+        url = splitBits[1] if len(splitBits) > 1 else ""
+        if altAudioAnnotation["kind"] == "Edited audio":
+            clip = excerpt["clips"][0]
+            if not duration:
+                duration = Utils.TimeDeltaToStr(clip.Duration(None))
+            excerpt["startTimeInSession"] = clip.start
+            excerpt["clips"][0] = clip._replace(start="0:00",end="")
+            excerpt["duration"] = duration
+        AddAudioSource(filename,duration,excerpt["event"],url)
 
     # Then scan through the excerpts and add key "clips"
     for session,sessionExcerpts in Database.GroupBySession(excerpts,sessions):
-        prevExcerpt = None
         if session["filename"]:
             AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
             try:
                 sessionDuration = Mp3DirectCut.ToTimeDelta(session["duration"])
             except ValueError:
-                Alert.error(session,"has invalid duration:",repr(session["duration"]))
                 sessionDuration = None
         else:
             sessionDuration = None
         del session["remoteMp3Url"]
 
         for x in sessionExcerpts:
+            # First check if there is an Alternate audio or Edited audio annotation
+            altAudioList = [a for a in x["annotations"] if a["kind"] in ("Alternate audio","Edited audio")]
+            if altAudioList:
+                if len(altAudioList) > 1:
+                    Alert.caution(x,"has more than one Alternate audio or Edited audio annotation. Only the first will be used.")
+                audioSource = altAudioList[0]["text"].split("|")[0]
+                    # The annotation text contains the audio source file name
+            else:
+                audioSource = "$"
+
             # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
             endTime = x["endTime"]
@@ -884,24 +1013,31 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                     deletedExcerptIDs.add(id(x))
                 continue
             
-            if prevExcerpt and "clips" in prevExcerpt:
-                if not prevExcerpt["clips"][0].end:
-                        # If the previous excerpt didn't specify an end time, use the start time of this excerpt
-                    prevExcerpt["clips"][0] = prevExcerpt["clips"][0]._replace(end=startTime)
-            
-                prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
-                
-                if prevExcerpt["clips"][0].ToClipTD().end > Mp3DirectCut.ToTimeDelta(startTime):
-                    # startTime = prevExcerpt["clips"][0].end # This code eliminates clip overlaps
-                    # x["startTime"] = prevExcerpt["endTime"]
-                    if ExcerptFlag.OVERLAP not in x["flags"]:
-                        Alert.warning(f"excerpt",x,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
-
-            x["clips"] = [SplitMp3.Clip("$",startTime,endTime)]
-            prevExcerpt = x
+            x["clips"] = [SplitMp3.Clip(audioSource,startTime,endTime)]
+            if altAudioList:
+                ProcessAltAudio(x,altAudioList[0])
         
-        if prevExcerpt:
-            prevExcerpt["duration"] = ExcerptDuration(prevExcerpt,sessionDuration)
+        # Excerpts without an end time end when the next excerpt starts
+        for x1,x2 in itertools.pairwise(sessionExcerpts):
+            if "clips" not in x1: # Skip the session excerpt
+                continue
+            lastClip = x1["clips"][-1]
+            firstClip = x2["clips"][0]
+            sameFile = lastClip.file == firstClip.file
+            if not lastClip.end:
+                if sameFile:
+                    x1["clips"][-1] = lastClip._replace(end=firstClip.start)
+                if "startTimeInSession" in x2 and lastClip.file == "$":
+                    x1["clips"][-1] = lastClip._replace(end=x2["startTimeInSession"])
+
+            endTime = lastClip.ToClipTD().end
+            if sameFile and endTime and endTime > firstClip.ToClipTD().start:
+                if ExcerptFlag.OVERLAP not in x2["flags"]:
+                    Alert.warning(f"excerpt",x2,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+
+        for x in sessionExcerpts:
+            if "clips" in x:
+                x["duration"] = ExcerptDuration(x,sessionDuration)
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
@@ -963,10 +1099,12 @@ def LoadEventFile(database,eventName,directory):
         # Remove sessions if none of the session teachers have given consent
     database["sessions"] += sessions
 
-
-    for key in ["teachers","qTag1","aTag1"]:
+    for x in rawExcerpts:
+        x["fTagOrder"] = re.sub(r"\?+",lambda m: str(len(m[0]) + 1000),x["fTagOrder"])
+    for key in ["teachers","qTag1","aTag1","fTags","fTagOrder"]:
         ListifyKey(rawExcerpts,key)
     ConvertToInteger(rawExcerpts,"sessionNumber")
+    ConvertToInteger(rawExcerpts,"fTagOrder")
     
     includedSessions = set(s["sessionNumber"] for s in sessions)
     rawExcerpts = [x for x in rawExcerpts if x["sessionNumber"] in includedSessions]
@@ -988,11 +1126,13 @@ def LoadEventFile(database,eventName,directory):
 
         x["qTag"] = [tag for tag in x["qTag"] if tag not in redactedTagSet] # Redact non-consenting teacher tags for both annotations and excerpts
         x["aTag"] = [tag for tag in x["aTag"] if tag not in redactedTagSet]
+        x["fTags"] = [tag for tag in x["fTags"] if tag not in redactedTagSet]
 
         if not x["kind"]:
             x["kind"] = "Question"
 
-        if not x["startTime"]: # If Start time is blank, this is an annotation to the previous excerpt
+        if not x["startTime"] or not database["kind"][x["kind"]]["canBeExcerpt"]:
+                # If Start time is blank and it's not an audio annotation, this is an annotation to the previous excerpt
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
@@ -1035,17 +1175,17 @@ def LoadEventFile(database,eventName,directory):
                 x["exclude"] = True
         x["fileNumber"] = fileNumber
 
-        CheckItemContents(x,None,database["kind"][x["kind"]])
-
         excludeReason = []
         if x["exclude"] and not gOptions.ignoreExcludes:
             excludeReason = [x," - marked for exclusion in spreadsheet"]
         elif database["kind"][x["kind"]].get("exclude",False):
-            excludeReason = [x," is of kind",x["kind"]," which is excluded in the spreadsheet"]
+            excludeReason = [x,"is of kind",x["kind"],"which is excluded in the spreadsheet"]
         elif not (TeacherConsent(database["teacher"],x["teachers"],"indexExcerpts") or database["kind"][x["kind"]]["ignoreConsent"]):
             x["exclude"] = True
             excludeReason = [x,"due to excerpt teachers",x["teachers"]]
-        
+
+        CheckItemContents(x,None,database["kind"][x["kind"]])
+
         if excludeReason:
             excludeAlert(*excludeReason)
 
@@ -1062,13 +1202,7 @@ def LoadEventFile(database,eventName,directory):
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
     for x in excerpts:
-        # Combine all tags into a single list, but keep track of how many qTags there are
-        x["tags"] = x["qTag"] + x["aTag"]
-        x["qTagCount"] = len(x["qTag"])
-        if not gOptions.jsonNoClean:
-            del x["qTag"]
-            del x["aTag"]
-            x.pop("aListen",None)
+        FinalizeExcerptTags(x)
 
     CreateClips(excerpts,sessions,database)
     
@@ -1155,39 +1289,69 @@ def CountAndVerify(database):
     tagDB = database["tag"]
     tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
-    
+
+    fTagCount = draftFTagCount = 0
     for x in database["excerpts"]:
         tagSet = Filter.AllTags(x)
+
+        for index in reversed(range(len(x["fTags"]))):
+            fTag = x["fTags"][index]
+            fTagOrder = x["fTagOrder"][index]
+            if fTag not in tagSet:
+                Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
+
+            if gOptions.draftFTags == "omit" and fTagOrder > 1000:
+                del x["fTagOrder"][index]
+                del x["fTags"][index]
+                draftFTagCount += 1
+            else:
+                tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
+                if fTagOrder > 1000:
+                    draftFTagCount += 1
+                else:
+                    fTagCount += 1
+
         tagsToRemove = []
-        for tag in tagSet:
+        for cluster in tagSet:
             try:
-                tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
+                tagDB[cluster]["excerptCount"] = tagDB[cluster].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.warning(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
-                tagsToRemove.append(tag)
+                Alert.warning(f"CountAndVerify: Tag",repr(cluster),"is not defined. Will remove this tag.")
+                tagsToRemove.append(cluster)
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
     
-    Alert.info(tagCount,"total tags applied.")
+    Alert.info(tagCount,"total tags applied.",
+               fTagCount,"featured tags applied.",draftFTagCount,f"draft featured tags{' have been omitted' if gOptions.draftFTags == 'omit' else ''}.")
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
     CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
 
     for teacher in database["teacher"].values():
-        teacher["excerptCount"] = len(list(Filter.Apply(database["excerpts"],Filter.Teacher(teacher["teacher"]))))
+        teacher["excerptCount"] = len(Filter.Teacher(teacher["teacher"])(database["excerpts"]))
         # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
     
+    for topic in database["keyTopic"].values():
+        topicExcerpts = set()
+        for cluster in topic["clusters"]:
+            allTags = set([cluster] + list(database["tagCluster"][cluster]["subtags"].keys()))
+            tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
+            database["tagCluster"][cluster]["excerptCount"] = len(tagExcerpts)
+            topicExcerpts.update(tagExcerpts)
+        
+        topic["excerptCount"] = len(topicExcerpts)
+
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:
             CountInstances(database["event"],key,database[key],"eventCount")
     
     # Are tags flagged Primary as needed?
-    for tag in database["tag"]:
-        tagDesc = database["tag"][tag]
+    for cluster in database["tag"]:
+        tagDesc = database["tag"][cluster]
         if tagDesc["primaries"] > 1:
             Alert.caution(f"{tagDesc['primaries']} instances of tag {tagDesc['tag']} are flagged as primary.")
         if tagDesc["copies"] > 1 and tagDesc["primaries"] == 0 and TagFlag.VIRTUAL not in tagDesc["flags"]:
@@ -1354,6 +1518,7 @@ def AddArguments(parser):
     parser.add_argument('--pendingMeansYes',**Utils.STORE_TRUE,help="Treat teacher consent pending as yes - debugging only")
     parser.add_argument('--ignoreExcludes',**Utils.STORE_TRUE,help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--parseOnlySpecifiedEvents',**Utils.STORE_TRUE,help="Load only events specified by --events into the database")
+    parser.add_argument('--draftFTags',type=str,default="omit",help='What to do with fTags marked "?" "omit", "mark", or "show"')
     parser.add_argument('--detailedCount',**Utils.STORE_TRUE,help="Count all possible items; otherwise just count tags")
     parser.add_argument('--keepUnusedTags',**Utils.STORE_TRUE,help="Don't remove unused tags")
     parser.add_argument('--jsonNoClean',**Utils.STORE_TRUE,help="Keep intermediate data in json file for debugging")
@@ -1362,7 +1527,10 @@ def AddArguments(parser):
     parser.add_argument('--dumpCSV',type=str,default='',help='Dump csv output files to this directory.')
 
 def ParseArguments() -> None:
-    pass
+    gOptions.draftFTags = gOptions.draftFTags.lower()
+    if gOptions.draftFTags not in ("omit","mark","show"):
+        Alert.caution("Cannot recognize --draftFTags",repr(gOptions.draftFTags),"; reverting to omit.")
+        gOptions.draftFTags = "omit"
 
 def Initialize() -> None:
     pass
@@ -1439,6 +1607,7 @@ def main():
         Alert.error("No excerpts have been parsed. Aborting.")
         sys.exit(1)
 
+    CollectKeyTopics(gDatabase)
     CountAndVerify(gDatabase)
     if not gOptions.keepUnusedTags:
         RemoveUnusedTags(gDatabase)
@@ -1453,7 +1622,7 @@ def main():
     if gOptions.verbose > 0:
         VerifyListCounts(gDatabase)
     CountSubtagExcerpts(gDatabase)
-    
+
     if gOptions.auditNames:
         AuditNames()
 

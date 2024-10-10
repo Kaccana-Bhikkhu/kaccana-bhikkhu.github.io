@@ -11,13 +11,13 @@ During the co-abbotship years (1997-2010), Ajahn Amaro took on the majority of e
 
 Ajahn Amaro typically invited one or two senior Sīladharā from England to co-lead the retreat with him. He also invited multiple junior Abhayagiri monastics to participate as retreatants. Ajahn Amaro and the nun(s) gave daily Dhamma talks and occasional Q&A sessions, but most interactions with retreatants occurred in small group interviews. Thus there are fewer recordings suitable for this archive from this period.
 
-Due to Saṅgha meetings no sīladharā were available in 2005 and 2006, so Ajahn Amaro invited female lay teachers for these retreats: Taraniya and Jananta from the Community of Abhayagiri Lay Ministers in 2005 and Mary Paffard and long-term Abhayagiri resident Debbie Stamp in 2006.
+Due to Saṅgha meetings no sīladharā were available in 2005 and 2006, so Ajahn Amaro invited female lay teachers for these retreats: Taraniya and Jayanta from the Community of Abhayagiri Lay Ministers in 2005 and Mary Paffard and long-term Abhayagiri resident Debbie Stamp in 2006.
 
 When Ajahn Pasanno assumed the role of sole abbot in 2010, he made minor changes to the format of the Thanksgiving Retreat. Lacking Ajahn Amaro’s long-standing connection to the English Sīladhara Order, he invited the now-maturing junior Abhayagiri ajahns and Debbie Stamp as his co-teachers.
 
-Reasoning that most retreatant’s questions aren’t unique and we can all learn from each other’s experiences, he replaced group interviews with daily Q&A sessions. Retreatants were invited to write questions in advance, which Ajahn Pasanno would read and respond to in a recorded session. Realizing the value of these questions, the monks who produced the 2013-2016 retreat compilation CDs included time-stamped transcriptions of the questions along with the audio files. These formed the inspiration and nucleus of this project.
+Reasoning that most retreatants’ questions aren’t unique and we can all learn from each other’s experiences, he replaced group interviews with daily Q&A sessions. Retreatants were invited to write questions in advance, which Ajahn Pasanno would read and respond to in a recorded session. Realizing the value of these questions, the monks who produced the 2013-2016 retreat compilation CDs included time-stamped transcriptions of the questions along with the audio files. These formed the inspiration and nucleus of this project.
 
-The Angela Center suffered catastrophic damage in the California fires of October 2017, which ended the classical Thanksgiving Retreat format. Later retreats were held at different venues at different dates. During the pandemic, Thanksgiving Retreat teachings and Q&A sessions were broadcast live from Abhayagiri. After Ajahn Pasanno stepped down as abbot in 2018, he participated as an invited senior teacher rather than leader of Thanksgiving Retreats and so hosted many fewer Q&A sessions.
+The Angela Center suffered catastrophic damage in the California fires of October 2017, which ended the classic Thanksgiving Retreat format. Later retreats were held at different venues at different dates. During the pandemic, Thanksgiving Retreat teachings and Q&A sessions were broadcast live from Abhayagiri. After Ajahn Pasanno stepped down as abbot in 2018, he participated as an invited senior teacher rather than leader of Thanksgiving Retreats and so hosted many fewer Q&A sessions.
 
 Thanksgiving Retreat participants are usually long-term practitioners familiar with monastic teachings and customs. The container of a 10-day retreat gives the Q&A sessions a spacious, contemplative quality. Common topics include working with hindrances, unusual experiences in meditation, curiosity about monastic life, and how to apply the teachings beyond the retreat container.
 
@@ -44,9 +44,13 @@ The coronavirus pandemic disrupted this orderly scheme of Upāsikā Days, and th
 
 Upāsikā Day participants were typically core Abhayagiri lay supporters, many of whom have made a formal commitment to the Upāsikā Program. One hears the same voices weave through multiple recordings over the years. Some participants were lay Dhamma teachers themselves. Questions and comments often reflect years of committed practice and explore lay practice in more depth than any other series. This is also a good place to hear Ajahn Pasanno’s perspective on various social issues.
 
+[Interreligious Retreat-Seminar on Dhamma and Non-duality, Rishikesh, India](photo:Rishikesh2023.jpg)
+## Other Retreats (<a id="other-retreats" href="../indexes/EventsBySeries.html#other-retreats">List</a>)
+Multi-day retreats led by Ajahn Pasanno around the world.
+
 ## Question and Answer Sessions (<a id="qampa-sessions" href="../indexes/EventsBySeries.html#qampa-sessions">List</a>)
-These are assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
+Assorted question and answer sessions that are not part of a larger event. Their content and character vary depending on the participants and setting.
 
 [Ajahn Chah Conference 2001](photo:15 Full Stage.jpg)
 ## Other (<a id="other" href="../indexes/EventsBySeries.html#other">List</a>)
-These are mostly question and answer sessions from residential retreats led by Ajahn Pasanno around the world. It also includes the wonderful and significant [2001 Ajahn Chah Conference](event:Chah2001) in Portola Valley, California.
+Events that don’t fit into any of the above categories. It includes the wonderful and significant [2001 Ajahn Chah Conference](event:Chah2001) in Portola Valley, California.

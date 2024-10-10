@@ -22,11 +22,23 @@ Each excerpt is labeled by a set of tags that describe its content. To aid in se
 ### Annotations
 Excerpts may further be described by a series of annotations, which the website displays as indented paragraphs below the main body of an excerpt. Like excerpts, each annotation has a kind. For example, in answering the question below, Ajahn Pasanno refers to the Amaravati Chanting book, a simile in a sutta, a story about Ajahn Chah and a quote by the Dalai Lama. Depending on their kind, annotations may have teachers and tags associated with them, but have no audio clip independent of the excerpt they belong to. All tags applied to excerpts are considered a-tags for search purposes.
 
+### Featured Excerpts
+Many tags apply to so many excerpts that it's difficult to read through them all to find the most relevant. For this reason, the October 2024 release introduces hand-picked featured excerpts that appear first in the list for a particular tag. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. Tags for which an excerpt is featured are marked with a star (<i class="fa fa-star" style="color: #9b7030;"></i>).
+
+Deciding which excerpts to feature takes time and care. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illlustrating key aspects of the topic, arranged chronologically or simplest to most in-depth. Less common tags will feature fewer excerpts. For the time being, even the most common tags feature only one or two excerpts. If you would like to suggest excerpts to feature, please refer to the guidelines on the [Want to Help?](about:Want-to-help#ways-anyone-can-contribute) page.
+
 ### Example Excerpt
 
 ![ExampleExcerpt](image:ExampleExcerpt.png)
 
-The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [Death](tag:) and [Rebirth](tag:) are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds.
+The figure above shows the website display of excerpt 3 in session 1 of the 2008 Metta Retreat. The audio begins at 7:18 in the session and runs for 17 minutes, 10 seconds. [Death](tag:) and [Rebirth](tag:) are the two q-tags; all other tags are a-tags. The excerpt itself is a question, and it contains four annotations of varying kinds. The star indicates that this is a featured excerpt for the tag [Death](tag:).
+
+### Key Topics and Tag Clusters
+The October 2024 release also introduces a [list of 16 key topics](../indexes/KeyTopics.html?hideAll) which organize the most important tags into a logical sequence. Each topic contains a list of subtopics related to its central theme. Subtopics can be either single tags or tag clusters that group together closely-related tags. For example, the tag cluster [Buddha](cluster:) includes the tags [Buddha](tag:), [Recollection/Buddha](tag:), and [Buddho mantra](tag:) and is part of the key topic [The Three Refuges](topic:refuges).
+
+The key topics begin with the Buddha's description of [the human dilemma](topic:human) followed by an overview of his [prescribed resolution](topic:truths). Next come topics related to [meditation practice](topic:meditation), [qualities of the mind](topic:skillful), and [results of the practice](topic:fruits). The key topics conclude with applications of Dhamma practice in [monastic](topic:monastic) and [lay life](topic:everyday).
+
+Each key topic links to a page showing the featured excerpts of all tags within that topic. These pages are currently sparse on content because there are few featured excerpts. Hopefully the key topic pages will become a rich resource for contemplation when more featured excerpts are selected in the future.
 
 ## Searching the Archive
 The website menus link to a series of static pages which allow the user to browse the tags, events, and teachers contained in the archive in a variety of ways. Links to particular tags, events, and teachers go to static pages which list each relevant excerpt. Event pages simply list each excerpt in each of the event sessions. The tag and teacher pages also group excerpts by event and session, but additionally allow the user to narrow the search by excerpt kind. (Pages containing fewer than 10 excerpts don’t have this feature.) Selecting the “All excerpts” menu item allows one to see all excerpts of a particular kind in the archive.
