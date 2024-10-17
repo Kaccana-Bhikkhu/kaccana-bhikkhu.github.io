@@ -9,6 +9,8 @@ const errorPage = "./about/Page-Not-Found.html"
 
 const SEARCH_PART = /\?[^#]*/
 
+let gFirstPageLoad = true;
+
 export function frameSearch(hash = null) {
 	// return a URLSearchParams object corresponding to the search params given in the URL hash
 	// representing the frame location
@@ -80,7 +82,7 @@ export function configureLinks(frame,url) {
 				document.getElementById(href.slice(1)).scrollIntoView();
 			});
 		} else {
-			let url = href.replaceAll("index.html", "homepage.html")
+			let url = href;
 			let newLocation = new URL(locationNoQuery);
 			newLocation.hash = "#" + url;
 			let newFullUrl = newLocation.href.replace("#_keep_scroll","");
@@ -108,7 +110,14 @@ export function configureLinks(frame,url) {
 
 async function changeURL(pUrl,scrollTo = null) {
 	pUrl = decodeURIComponent(pUrl);
+	if (pUrl.startsWith("homepage.html") && gFirstPageLoad) {
+		console.log("homepage.html already loaded; changeURL exiting.")
+		gFirstPageLoad = false;
+		return; // index.html already contains the content of homepage.html, so no need to load it the first time
+	}
+	gFirstPageLoad = false;
 	console.log("changeURL",pUrl);
+
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {

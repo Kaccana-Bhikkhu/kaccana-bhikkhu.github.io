@@ -2287,6 +2287,17 @@ def XmlSitemap(siteFiles: FileRegister.HashWriter) -> str:
     
     return str(xml)
 
+def WriteIndexPage(writer: FileRegister.HashWriter):
+    """Copy the contents of homepage.html into the body of index.html."""
+
+    homepageBody = ExtractHtmlBody(Utils.PosixJoin(gOptions.prototypeDir,"homepage.html"))
+    homepageBody = re.sub(r"<script>.*?</script>","",homepageBody,flags=re.DOTALL)
+
+    indexTemplate = Utils.ReadFile(Utils.PosixJoin(gOptions.prototypeDir,"templates","index.html"))
+    
+    indexHtml = pyratemp.Template(indexTemplate)(bodyHtml = homepageBody)
+    writer.WriteTextFile(Utils.PosixJoin("index.html"),indexHtml)
+
 def WriteRedirectPages(writer: FileRegister.HashWriter):
     indexPageRedirect = ("../index.html","homepage.html")
     
@@ -2387,6 +2398,7 @@ def main():
             print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
         
         writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
+        WriteIndexPage(writer)
         WriteRedirectPages(writer)
         Alert.extra("html files:",writer.StatusSummary())
         if gOptions.buildOnly == gAllSections and writer.Count(FileRegister.Status.STALE):
