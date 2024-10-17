@@ -1449,8 +1449,9 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
         
         return FilteredExcerptsMenuItem(excerpts=excerpts,filter=filter,formatter=formatter,mainPageInfo=basePage.info,menuTitle=menuTitle,fileExt=fileExt,pageAugmentor=AddSearchCategory(menuTitle))
 
-    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: Iterable[str]):
-        "Insert featured excerpts to the top of the first page."
+    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: Iterable[str],skipSections:int = 0):
+        """Insert featured excerpts at the top of the first page.
+        skipSections allows inserting the featured excerpts between blocks of text."""
         
         menuItemAndPages = iter(pageGenerator)
         firstPage = next(menuItemAndPages)
@@ -1481,8 +1482,12 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
             firstTextSection = 0 # The first section could be a menu, in which case we skip it
             while type(firstPage.section[firstTextSection]) != str:
                 firstTextSection += 1
+            firstTextSection += skipSections
 
-            firstPage.section[firstTextSection] = "\n".join(headerHtml + [firstPage.section[firstTextSection]])
+            if firstTextSection in firstPage.section:
+                firstPage.section[firstTextSection] = "\n".join(headerHtml + [firstPage.section[firstTextSection]])
+            else:
+                firstPage.AppendContent("\n".join(headerHtml))
                                                             
         yield firstPage
         yield from menuItemAndPages
@@ -1517,10 +1522,10 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
         filterMenu = [f for f in filterMenu if f] # Remove blank menu items
         if len(filterMenu) > 1:
             yield from map(LinkToTeacherPage,basePage.AddMenuAndYieldPages(filterMenu,**EXTRA_MENU_STYLE))
-        else:
-            yield from map(LinkToTeacherPage,MultiPageExcerptList(basePage,tagExcerpts,formatter))
-    else:
-        yield from map(LinkToTeacherPage,HoistFTags(MultiPageExcerptList(basePage,tagExcerpts,formatter),tagExcerpts,tags))
+            return
+    
+    basePage.AppendContent("",newSection=True)
+    yield from map(LinkToTeacherPage,HoistFTags(MultiPageExcerptList(basePage,tagExcerpts,formatter),tagExcerpts,tags,skipSections=1))
 
 def TagBreadCrumbs(tagInfo: dict) -> tuple[str,list[str]]:
     "Return a hyperlinked string of the form: 'grandparent / parent / tag'"
