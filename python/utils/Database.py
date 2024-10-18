@@ -1,7 +1,7 @@
 """Functions for reading and writing the json databases used in QSArchive."""
 
-from collections.abc import Iterable
-import json, re
+from collections.abc import Iterable, Generator
+import json, re, itertools
 import Html2 as Html
 import Link
 from Prototype import gDatabase
@@ -10,7 +10,8 @@ import Utils
 import Alert
 import Filter
 
-gDatabase:dict[str] = {} # This will be set later by QSarchive.py
+gOptions = None
+gDatabase:dict[str] = {} # These will be set later by QSarchive.py
 
 def LoadDatabase(filename: str) -> dict:
     """Read the database indicated by filename"""
@@ -259,6 +260,8 @@ def ItemRepr(item: dict) -> str:
         if "tag" in item:
             if "level" in item:
                 kind = "tagDisplay"
+            elif "subtags" in item:
+                kind = "subtopic"
             else:
                 kind = "tag"
             return(f"{kind}({repr(item['tag'])})")
@@ -291,6 +294,9 @@ def ItemRepr(item: dict) -> str:
         elif "url" in item:
             kind = "audioSource"
             args = [item["event"],item["filename"]]
+        elif "subtopics" in item:
+            kind = "keyTopic"
+            args = [item["code"]]
         else:
             return(repr(item))
 
@@ -357,6 +363,11 @@ def SubsumesTags() -> dict:
 
     return subsumesTags
 
+def SubtagIterator(tagOrSubtopic:dict[str]) -> Generator[str]:
+    "Yield this items subtags."
+    yield tagOrSubtopic["tag"]
+    yield from tagOrSubtopic.get("subtags",())
+
 def FTagOrder(excerpt: dict,tags: Iterable[str]) -> int:
     """Return the fTagOrder number of the excerpt x.
     tags is a list of tags to attempt to get the fTag order from"""
@@ -369,3 +380,5 @@ def FTagOrder(excerpt: dict,tags: Iterable[str]) -> int:
             pass
     return 999
 
+
+    

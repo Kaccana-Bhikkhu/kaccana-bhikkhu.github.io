@@ -615,8 +615,8 @@ def CollectKeyTopics(database:dict[str]) -> None:
 
             if not subtopic["displayAs"]:
                 subtopic["displayAs"] = subtopic["tag"]
-            subtopic.pop("shortNote",None)
-            subtopic.pop("longNote",None)
+            for key in ("shortNote","longNote","keyTopic","flags"):
+                subtopic.pop(key,None)
             
             currentKeyTopic["subtopics"].append(subtopic["tag"])
     
@@ -1319,13 +1319,24 @@ def CountAndVerify(database):
                     fTagCount += 1
 
         tagsToRemove = []
-        for cluster in tagSet:
+        topics = set()
+        subtopics = set()
+        for tag in tagSet:
             try:
-                tagDB[cluster]["excerptCount"] = tagDB[cluster].get("excerptCount",0) + 1
+                tagDB[tag]["excerptCount"] = tagDB[tag].get("excerptCount",0) + 1
                 tagCount += 1
             except KeyError:
-                Alert.warning(f"CountAndVerify: Tag",repr(cluster),"is not defined. Will remove this tag.")
-                tagsToRemove.append(cluster)
+                Alert.warning(f"CountAndVerify: Tag",repr(tag),"is not defined. Will remove this tag.")
+                tagsToRemove.append(tag)
+            else:
+                for subtopic in tagDB[tag].get("partOfSubtopics",()):
+                    subtopics.add(subtopic)
+                    topics.add(database["subtopic"][subtopic]["topicCode"])
+        
+        for topic in topics:
+            database["keyTopic"][topic]["excerptCount"] = database["keyTopic"][topic].get("excerptCount",0) + 1
+        for subtopic in subtopics:
+            database["subtopic"][subtopic]["excerptCount"] = database["subtopic"][subtopic].get("excerptCount",0) + 1   
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
@@ -1347,10 +1358,10 @@ def CountAndVerify(database):
         for cluster in topic["subtopics"]:
             allTags = set([cluster] + list(database["subtopic"][cluster]["subtags"].keys()))
             tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
-            database["subtopic"][cluster]["excerptCount"] = len(tagExcerpts)
+            database["subtopic"][cluster]["fTagCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         
-        topic["excerptCount"] = len(topicExcerpts)
+        topic["fTagCount"] = len(topicExcerpts)
 
     if gOptions.detailedCount:
         for key in ["venue","series","format","medium"]:

@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
-import Database
+import Database, ReviewDatabase
 import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
 from datetime import timedelta
@@ -139,8 +139,8 @@ def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> s
     else:
         returnValue = text
 
-    if count and gDatabase['keyTopic'][headingCode]['excerptCount']:
-        returnValue += f" ({gDatabase['keyTopic'][headingCode]['excerptCount']})"
+    if count and gDatabase['keyTopic'][headingCode]['fTagCount']:
+        returnValue += f" ({gDatabase['keyTopic'][headingCode]['fTagCount']})"
     return returnValue
 
     
@@ -154,8 +154,8 @@ def HtmlTagClusterLink(cluster:str,text:str = "",link=True,count=False) -> str:
         returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["subtopic"][cluster]["htmlPath"])})(text)
     else:
         returnValue = text
-    if count and gDatabase['subtopic'][cluster]['excerptCount']:
-        returnValue += f" ({gDatabase['subtopic'][cluster]['excerptCount']})"
+    if count and gDatabase['subtopic'][cluster]['fTagCount']:
+        returnValue += f" ({gDatabase['subtopic'][cluster]['fTagCount']})"
     return returnValue
 
 def HtmlClusterTagList(cluster:dict,summarize:int = 0,group:bool = False,showStar = False) -> str:
@@ -2076,17 +2076,15 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
     menuItem = Html.PageInfo("Compact",Utils.PosixJoin(indexDir,"KeyTopics.html"),"Key topics")
     yield menuItem.AddQuery("_keep_query")
 
-    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        clustersToList = (t for t in keyTopic["subtopics"] if not gDatabase["subtopic"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
-        
+    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:     
         clusterLinks = []
-        for tag in clustersToList:
+        for tag in keyTopic["subtopics"]:
             if gOptions.keyTopicsLinkToTags:
                 link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["subtopic"][tag]["htmlPath"],"-relevant"))
             else:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
             text = gDatabase["subtopic"][tag]["displayAs"]
-            #if gDatabase["subtopic"][tag]["excerptCount"]:
+            #if gDatabase["subtopic"][tag]["fTagCount"]:
             #    text += f'&nbsp{FA_STAR}'
             clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
@@ -2095,7 +2093,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
         if keyTopic["shortNote"]:
             clusterList = "\n".join([clusterList,Html.Tag("p",{"style":"margin-left: 2em;"})(keyTopic["shortNote"])])
         heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"])})(keyTopic["topic"])
-        heading += f" ({keyTopic['excerptCount']})"
+        heading += f" ({keyTopic['fTagCount']})"
         return heading,clusterList,keyTopic["code"]
 
     pageContent = Html.ToggleListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
@@ -2137,20 +2135,37 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.Pag
                 for subtopic in topic["subtopics"]:
                     with a.p(style="margin-left: 2em;"):
                         subtags = [subtopic] + list(gDatabase["subtopic"][subtopic]["subtags"].keys())
+                        fTagCount = gDatabase['subtopic'][subtopic].get('fTagCount',0)
+                        minFTag,maxFTag,diffFTag = ReviewDatabase.OptimalFTagCount(gDatabase["subtopic"][subtopic])
                         
-                        prefixChar = "☑" if gDatabase["subtopic"][subtopic]["reviewed"] else "☐"
+                        if gDatabase["subtopic"][subtopic]["reviewed"]:
+                            prefixChar = "☑"
+                        elif fTagCount == 0:
+                            prefixChar = "∅"
+                        else:
+                            prefixChar = "⊟☐⊞"[(diffFTag > 0) - (diffFTag < 0) + 1]
+                        
                         if prefixChar and printPage:
                             a(f"{prefixChar} ")
                         with a.strong() if len(subtags) > 1 else nullcontext(0):
                             a(HtmlTagClusterLink(subtopic))
-                        a(f" ({gDatabase['subtopic'][subtopic]['excerptCount']})")
+                        
+                        parenthetical = str(fTagCount)
+                        if printPage:
+                            parenthetical += f":{minFTag}-{maxFTag}/{gDatabase['subtopic'][subtopic].get('excerptCount',0)}"
+                        if parenthetical != "0":
+                            a(f" ({parenthetical})")
 
                         bitsAfterDash = []
                         if len(subtags) > 1:
                             subtagStrs = []
                             for tag in subtags:
-                                tagCount = gDatabase['tag'][tag].get("fTagCount",0)
-                                subtagStrs.append(HtmlTagLink(tag) + (f" ({tagCount})" if printPage and tagCount else ""))
+                                if tag in ReviewDatabase.SignificantSubtagsWithoutFTags():
+                                    tagCount = "<b>∅</b>"
+                                else:
+                                    tagCount = str(gDatabase['tag'][tag].get("fTagCount",0))
+                                tagCount += f"/{gDatabase['tag'][tag].get('excerptCount',0)}"
+                                subtagStrs.append(HtmlTagLink(tag) + (f" ({tagCount})" if printPage else ""))
                             bitsAfterDash.append(f"Cluster includes: {', '.join(subtagStrs)}")
                         if printPage and gDatabase["subtopic"][subtopic]["related"]:
                             bitsAfterDash.append(ListLinkedTags("Related",gDatabase["subtopic"][subtopic]["related"],plural="",endStr=""))
