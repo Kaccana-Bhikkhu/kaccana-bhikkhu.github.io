@@ -582,9 +582,10 @@ def CollectKeyTopics(database:dict[str]) -> None:
 
     keyTopic = {}
     currentKeyTopic = {}
-    clustersToRemove = set()
+    primarySubtopics = set()
     thisSubtopic = None
     for subtopic in database["subtopic"].values():
+        subtopic["tag"] = subtopic["tag"].rstrip("'")
         if subtopic["keyTopic"]:
             currentKeyTopic = {
                 "code": subtopic["topicCode"],
@@ -600,10 +601,10 @@ def CollectKeyTopics(database:dict[str]) -> None:
             database["tag"][subtopic["tag"]]["partOfSubtopics"] = [] # Add to this empty list later on
 
         if subtopic["flags"] in SUBTAG_FLAGS:
-            clustersToRemove.add(subtopic["tag"])
             thisSubtopic["subtags"][subtopic["tag"]] = subtopic["flags"]
             database["tag"][subtopic["tag"]]["partOfSubtopics"].append(thisSubtopic["tag"])
         else:
+            primarySubtopics.add(subtopic["tag"])
             thisSubtopic = subtopic
             subtopic["subtags"] = {}
             subtopic["topicCode"] = currentKeyTopic["code"]
@@ -619,11 +620,12 @@ def CollectKeyTopics(database:dict[str]) -> None:
             
             currentKeyTopic["subtopics"].append(subtopic["tag"])
     
-    for subtopic in clustersToRemove:
-        extraFields = [{key:value} for key,value in database["subtopic"][subtopic].items() if value and key not in ("tag","flags")]
+    subtagsOnly = set(database["subtopic"]) - primarySubtopics
+    for tag in subtagsOnly:
+        extraFields = [{key:value} for key,value in database["subtopic"][tag].items() if value and key not in ("tag","flags")]
         if extraFields:
-            Alert.notice("CollectKeyTopics: Extra fields in subtag",subtopic,":",extraFields)
-        del database["subtopic"][subtopic]
+            Alert.notice("CollectKeyTopics: Extra fields in subtag",tag,":",extraFields)
+        del database["subtopic"][tag]
     
     ListifyKey(database["subtopic"],"related")
     nonClustersWithRelated = [{c["tag"]:c["related"]} for c in database["subtopic"].values() if c["related"] and not c["subtags"]]
