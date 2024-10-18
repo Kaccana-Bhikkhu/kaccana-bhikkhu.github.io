@@ -2131,22 +2131,33 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.Pag
                 if not printPage:
                     with a.a().i(Class = "fa fa-minus-square toggle-view",id=topicCode):
                         pass
-                a(HtmlKeyTopicLink(topicCode,count=True))
+                with a.span(style="text-decoration: underline;" if printPage else ""):
+                    a(HtmlKeyTopicLink(topicCode,count=True))
             with a.div(id=topicCode + ".b"):
-                for cluster in topic["subtopics"]:
+                for subtopic in topic["subtopics"]:
                     with a.p(style="margin-left: 2em;"):
-                        subtags = list(gDatabase["subtopic"][cluster]["subtags"].keys())
-                        with a.strong() if len(subtags) > 0 else nullcontext(0):
-                            a(HtmlTagClusterLink(cluster,count=True))
+                        subtags = [subtopic] + list(gDatabase["subtopic"][subtopic]["subtags"].keys())
+                        
+                        prefixChar = "☑" if gDatabase["subtopic"][subtopic]["reviewed"] else "☐"
+                        if prefixChar and printPage:
+                            a(f"{prefixChar} ")
+                        with a.strong() if len(subtags) > 1 else nullcontext(0):
+                            a(HtmlTagClusterLink(subtopic))
+                        a(f" ({gDatabase['subtopic'][subtopic]['excerptCount']})")
+
                         bitsAfterDash = []
-                        if len(subtags) > 0:
-                            bitsAfterDash.append(ListLinkedTags("Cluster includes",[cluster] + subtags,plural="",endStr=""))
-                        if printPage and gDatabase["subtopic"][cluster]["related"]:
-                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["subtopic"][cluster]["related"],plural="",endStr=""))
+                        if len(subtags) > 1:
+                            subtagStrs = []
+                            for tag in subtags:
+                                tagCount = gDatabase['tag'][tag].get("fTagCount",0)
+                                subtagStrs.append(HtmlTagLink(tag) + (f" ({tagCount})" if printPage and tagCount else ""))
+                            bitsAfterDash.append(f"Cluster includes: {', '.join(subtagStrs)}")
+                        if printPage and gDatabase["subtopic"][subtopic]["related"]:
+                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["subtopic"][subtopic]["related"],plural="",endStr=""))
                         if bitsAfterDash:
                             a(" – " + "; ".join(bitsAfterDash))
                 
-                if topic["shortNote"]:
+                if topic["shortNote"] and not printPage:
                     with a.p(style="margin-left: 2em;"):
                         a(topic["shortNote"])
 
