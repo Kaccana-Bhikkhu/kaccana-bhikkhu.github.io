@@ -148,14 +148,14 @@ def HtmlTagClusterLink(cluster:str,text:str = "",link=True,count=False) -> str:
     "Return a link to the specified tag cluster."
 
     if not text:
-        text = gDatabase["tagCluster"][cluster]["displayAs"]
+        text = gDatabase["subtopic"][cluster]["displayAs"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["tagCluster"][cluster]["htmlPath"])})(text)
+        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["subtopic"][cluster]["htmlPath"])})(text)
     else:
         returnValue = text
-    if count and gDatabase['tagCluster'][cluster]['excerptCount']:
-        returnValue += f" ({gDatabase['tagCluster'][cluster]['excerptCount']})"
+    if count and gDatabase['subtopic'][cluster]['excerptCount']:
+        returnValue += f" ({gDatabase['subtopic'][cluster]['excerptCount']})"
     return returnValue
 
 def HtmlClusterTagList(cluster:dict,summarize:int = 0,group:bool = False,showStar = False) -> str:
@@ -1582,12 +1582,11 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TagBreadCrumbs(tagInfo))
-            cluster = gDatabase["tag"][tag].get("cluster",None)
-            if cluster:
-                if len(gDatabase["tagCluster"][cluster]["subtags"]) > 0:
-                    a(f"Part of tag cluster {HtmlTagClusterLink(cluster)} in key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][cluster]['topicCode'])}")
+            for subtopic in gDatabase["tag"][tag].get("partOfSubtopics",()):
+                if len(gDatabase["subtopic"][subtopic]["subtags"]) > 0:
+                    a(f"Part of tag cluster {HtmlTagClusterLink(subtopic)} in key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
                 else:
-                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][cluster]['topicCode'])}")
+                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
                 a.br()
             if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
@@ -1980,17 +1979,17 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         page.AppendContent("<hr>\n")
         
         excerptsByTopic:dict[str:list[str]] = {}
-        for cluster in topic["clusters"]:
+        for cluster in topic["subtopics"]:
             def SortKey(x) -> int:
                 return Database.FTagOrder(x,[cluster])
 
-            searchTags = set([cluster] + list(gDatabase["tagCluster"][cluster]["subtags"].keys()))
+            searchTags = set([cluster] + list(gDatabase["subtopic"][cluster]["subtags"].keys()))
             excerptsByTopic[cluster] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
             excerpt,tag,firstExcerpt,lastExcerpt = item
 
-            clusterInfo = gDatabase["tagCluster"][tag]
+            clusterInfo = gDatabase["subtopic"][tag]
             excerptHtml = ""
 
             if firstExcerpt:
@@ -2045,7 +2044,7 @@ def TagClusterPages(topicDir: str):
     if gOptions.buildOnlyIndexes or "clusters" not in gOptions.buildOnly:
         return
     
-    for cluster,clusterInfo in gDatabase["tagCluster"].items():
+    for cluster,clusterInfo in gDatabase["subtopic"].items():
         if not clusterInfo["subtags"]:
             continue
 
@@ -2078,16 +2077,16 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
     yield menuItem.AddQuery("_keep_query")
 
     def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        clustersToList = (t for t in keyTopic["clusters"] if not gDatabase["tagCluster"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
+        clustersToList = (t for t in keyTopic["subtopics"] if not gDatabase["subtopic"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
         
         clusterLinks = []
         for tag in clustersToList:
             if gOptions.keyTopicsLinkToTags:
-                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["tagCluster"][tag]["htmlPath"],"-relevant"))
+                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["subtopic"][tag]["htmlPath"],"-relevant"))
             else:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
-            text = gDatabase["tagCluster"][tag]["displayAs"]
-            #if gDatabase["tagCluster"][tag]["excerptCount"]:
+            text = gDatabase["subtopic"][tag]["displayAs"]
+            #if gDatabase["subtopic"][tag]["excerptCount"]:
             #    text += f'&nbsp{FA_STAR}'
             clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
@@ -2134,16 +2133,16 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.Pag
                         pass
                 a(HtmlKeyTopicLink(topicCode,count=True))
             with a.div(id=topicCode + ".b"):
-                for cluster in topic["clusters"]:
+                for cluster in topic["subtopics"]:
                     with a.p(style="margin-left: 2em;"):
-                        subtags = list(gDatabase["tagCluster"][cluster]["subtags"].keys())
+                        subtags = list(gDatabase["subtopic"][cluster]["subtags"].keys())
                         with a.strong() if len(subtags) > 0 else nullcontext(0):
                             a(HtmlTagClusterLink(cluster,count=True))
                         bitsAfterDash = []
                         if len(subtags) > 0:
                             bitsAfterDash.append(ListLinkedTags("Cluster includes",[cluster] + subtags,plural="",endStr=""))
-                        if printPage and gDatabase["tagCluster"][cluster]["related"]:
-                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["tagCluster"][cluster]["related"],plural="",endStr=""))
+                        if printPage and gDatabase["subtopic"][cluster]["related"]:
+                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["subtopic"][cluster]["related"],plural="",endStr=""))
                         if bitsAfterDash:
                             a(" – " + "; ".join(bitsAfterDash))
                 

@@ -421,7 +421,7 @@ def RemoveUnusedTags(database: dict) -> None:
 
     usedTags = set(tag["tag"] for tag in database["tag"].values() if TagCount(tag))
     usedTags.update(t["subsumedUnder"] for t in gDatabase["tagSubsumed"].values())
-    for cluster in database["tagCluster"].values():
+    for cluster in database["subtopic"].values():
         usedTags.add(cluster["tag"])
         usedTags.update(cluster["subtags"].keys())
 
@@ -578,58 +578,63 @@ def CountSubtagExcerpts(database):
         tagList[parentIndex]["subtagExcerptCount"] = len(thisSearch)
 
 def CollectKeyTopics(database:dict[str]) -> None:
-    """Create keyTopic dictionary from tagCluster dictionary."""
+    """Create keyTopic dictionary from subtopic dictionary."""
 
     keyTopic = {}
     currentKeyTopic = {}
     clustersToRemove = set()
-    thisCluster = None
-    for cluster in database["tagCluster"].values():
-        if cluster["keyTopic"]:
+    thisSubtopic = None
+    for subtopic in database["subtopic"].values():
+        if subtopic["keyTopic"]:
             currentKeyTopic = {
-                "code": cluster["topicCode"],
-                "topic": cluster["keyTopic"],
-                "shortNote": cluster["shortNote"],
-                "longNote": cluster["longNote"],
-                "listFile": cluster["topicCode"] + ".html",
-                "clusters": []
+                "code": subtopic["topicCode"],
+                "topic": subtopic["keyTopic"],
+                "shortNote": subtopic["shortNote"],
+                "longNote": subtopic["longNote"],
+                "listFile": subtopic["topicCode"] + ".html",
+                "subtopics": []
             }
-            keyTopic[cluster["topicCode"]] = currentKeyTopic
+            keyTopic[subtopic["topicCode"]] = currentKeyTopic
         
-        if cluster["flags"] in SUBTAG_FLAGS:
-            clustersToRemove.add(cluster["tag"])
-            thisCluster["subtags"][cluster["tag"]] = cluster["flags"]
-            database["tag"][cluster["tag"]]["cluster"] = thisCluster["tag"]
+        if "subtopics" not in database["tag"][subtopic["tag"]]:
+            database["tag"][subtopic["tag"]]["partOfSubtopics"] = [] # Add to this empty list later on
+
+        if subtopic["flags"] in SUBTAG_FLAGS:
+            clustersToRemove.add(subtopic["tag"])
+            thisSubtopic["subtags"][subtopic["tag"]] = subtopic["flags"]
+            database["tag"][subtopic["tag"]]["partOfSubtopics"].append(thisSubtopic["tag"])
         else:
-            thisCluster = cluster
-            cluster["subtags"] = {}
-            cluster["topicCode"] = currentKeyTopic["code"]
-            cluster["keyTopic"] = currentKeyTopic["topic"]
-            database["tag"][cluster["tag"]]["keyTopicCode"] = currentKeyTopic["code"]
-            database["tag"][cluster["tag"]]["cluster"] = cluster["tag"]
-            if not cluster["displayAs"]:
-                cluster["displayAs"] = cluster["tag"]
-            cluster.pop("shortNote",None)
-            cluster.pop("longNote",None)
+            thisSubtopic = subtopic
+            subtopic["subtags"] = {}
+            subtopic["topicCode"] = currentKeyTopic["code"]
+
+            if "subtopics" not in database["tag"][subtopic["tag"]]:
+                database["tag"][subtopic["tag"]]["subtopics"] = []
+            database["tag"][subtopic["tag"]]["partOfSubtopics"].append(subtopic["tag"])
+
+            if not subtopic["displayAs"]:
+                subtopic["displayAs"] = subtopic["tag"]
+            subtopic.pop("shortNote",None)
+            subtopic.pop("longNote",None)
             
-            currentKeyTopic["clusters"].append(cluster["tag"])
+            currentKeyTopic["subtopics"].append(subtopic["tag"])
     
-    for cluster in clustersToRemove:
-        extraFields = [{key:value} for key,value in database["tagCluster"][cluster].items() if value and key not in ("tag","flags")]
+    for subtopic in clustersToRemove:
+        extraFields = [{key:value} for key,value in database["subtopic"][subtopic].items() if value and key not in ("tag","flags")]
         if extraFields:
-            Alert.notice("CollectKeyTopics: Extra fields in subtag",cluster,":",extraFields)
-        del database["tagCluster"][cluster]
+            Alert.notice("CollectKeyTopics: Extra fields in subtag",subtopic,":",extraFields)
+        del database["subtopic"][subtopic]
     
-    ListifyKey(database["tagCluster"],"related")
-    nonClustersWithRelated = [{c["tag"]:c["related"]} for c in database["tagCluster"].values() if c["related"] and not c["subtags"]]
+    ListifyKey(database["subtopic"],"related")
+    nonClustersWithRelated = [{c["tag"]:c["related"]} for c in database["subtopic"].values() if c["related"] and not c["subtags"]]
     if nonClustersWithRelated:
         Alert.notice("These",len(nonClustersWithRelated),"subtopics are mapped to tags. Their related tags should be moved to tags.",nonClustersWithRelated)
 
-    for cluster in database["tagCluster"].values():
-        if cluster["subtags"]: # Topics with subtopics link to separate pages in the topics directory
-            cluster["htmlPath"] = f"clusters/{Utils.slugify(cluster['tag'])}.html"
+    for subtopic in database["subtopic"].values():
+        if subtopic["subtags"]: # Topics with subtopics link to separate pages in the topics directory
+            subtopic["htmlPath"] = f"clusters/{Utils.slugify(subtopic['tag'])}.html"
         else: # Tags without subtopics link to pages in the tags directory
-            cluster["htmlPath"] = f"tags/{database['tag'][cluster['tag']]['htmlFile']}"
+            subtopic["htmlPath"] = f"tags/{database['tag'][subtopic['tag']]['htmlFile']}"
 
     database["keyTopic"] = keyTopic
 
@@ -1337,10 +1342,10 @@ def CountAndVerify(database):
     
     for topic in database["keyTopic"].values():
         topicExcerpts = set()
-        for cluster in topic["clusters"]:
-            allTags = set([cluster] + list(database["tagCluster"][cluster]["subtags"].keys()))
+        for cluster in topic["subtopics"]:
+            allTags = set([cluster] + list(database["subtopic"][cluster]["subtags"].keys()))
             tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
-            database["tagCluster"][cluster]["excerptCount"] = len(tagExcerpts)
+            database["subtopic"][cluster]["excerptCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         
         topic["excerptCount"] = len(topicExcerpts)

@@ -102,7 +102,7 @@ def TagClusterLookup(clusterRef:str,tagClusterDictCache:dict = {}) -> str|None:
     "Search for a tag cluster based on any of its various names. Return the base tag name."
 
     if not tagClusterDictCache: # modify the value of a default argument to create a cache of potential tag references
-        clusterDB = gDatabase["tagCluster"]
+        clusterDB = gDatabase["subtopic"]
         tagDB = gDatabase["tag"]
         tagClusterDictCache.update((cluster,cluster) for cluster in clusterDB)
         tagClusterDictCache.update((clusterDB[cluster]["displayAs"],cluster) for cluster in clusterDB)

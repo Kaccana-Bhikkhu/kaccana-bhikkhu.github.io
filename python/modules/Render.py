@@ -522,7 +522,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             
             realCluster = Database.TagClusterLookup(cluster)
             if realCluster:
-                linkTo = gDatabase["tagCluster"][realCluster]["htmlPath"].replace(".html","-relevant.html")
+                linkTo = gDatabase["subtopic"][realCluster]["htmlPath"].replace(".html","-relevant.html")
             else:
                 Alert.warning("Cannot link to tag cluster",cluster,"in link",matchObject[0])
         elif pageType == "topic":
