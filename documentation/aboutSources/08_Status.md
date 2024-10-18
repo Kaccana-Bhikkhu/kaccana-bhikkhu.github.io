@@ -5,7 +5,7 @@
 ## New in the October 2024 release:#
 - Featured excerpts marked <i class="fa fa-star" style="color: #9b7030;"></i> highlight the best material in the Archive. Look for them at the top of any tag page or [see them all together](../indexes/AllExcerpts-featured.html).
 - [Key topics](../indexes/KeyTopics.html?hideAll) group tags and featured excerpts into a thematic progression.
-- Tag clusters group related tags together, e. g. [Buddha](cluster:), contains [Buddha](tag:), [Recollection/Buddha](tag:), and [Buddho mantra](tag:).
+- Tag clusters group related tags together. For example, the tag cluster [Buddha](cluster:), contains [Buddha](tag:), [Recollection/Buddha](tag:), and [Buddho mantra](tag:).
 - [Events by subject page](../indexes/EventsBySubject.html)
 - Added three recent events: [Following the Path of a Forest Monk](event:Podcast2023), [Madison Insight Retreat 2023](event:Madison2023), and [The Interreligious Retreat-Seminar on Dhamma and Non-duality](event:Rishikesh2023).
 - Listened to and annotated selected questions in the [2014](event:TG2014) and [2015](event:TG2015) Thanksgiving Retreats.

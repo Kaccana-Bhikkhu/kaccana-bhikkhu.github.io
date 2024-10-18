@@ -7,7 +7,7 @@ If you would like to contribute to the Ajahn Pasanno Question and Story Archive,
 
 ## Ways Anyone Can Contribute:
 ### Suggest excerpts to feature
-The October 2024 release introduces hand-picked featured excerpts which appear at the top of the corresponding tag pages. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illlustrating key aspects of the topic. Less common tags will feature fewer excerpts.
+The October 2024 release introduces hand-picked featured excerpts which appear at the top of the corresponding tag pages. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illustrating key aspects of the topic. Less common tags will feature fewer excerpts.
 
 The process of selecting featured excerpts has just begun. Many tags have no featured excerpts at all, and we welcome contributions to this process. One of the most helpful ways to contribute is to select a tag or tag cluster from the [list of key topics](../indexes/KeyTopicDetail.html?showAll) that interests you. Then listen to the excerpts with that tag and suggest which ones to feature. Some pointers for suggesting featured excerpts:
 
