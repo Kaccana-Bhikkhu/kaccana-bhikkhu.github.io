@@ -28,11 +28,12 @@
 
       url = new URL(location.href)
       if (url.protocol != "file:" && !isBotUserAgent) {
-        location.replace("../index.html#tags/sangha.html" + url.hash);
+        location.replace("../index.html#tags/sangha.html" + url.search + url.hash);
       }
     </script>
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
+    <h4>Pre-release version; please share and link to the <a href="https://abhayagiri.org/questions/">main site</a>.</h4>
     <br>
     <nav id="topnav">
       <a href="../homepage.html#_keep_scroll">About</a>
