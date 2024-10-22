@@ -2320,7 +2320,7 @@ def WriteIndexPage(writer: FileRegister.HashWriter):
 
     indexTemplate = Utils.ReadFile(Utils.PosixJoin(gOptions.prototypeDir,"templates","index.html"))
     
-    indexHtml = pyratemp.Template(indexTemplate)(bodyHtml = homepageBody)
+    indexHtml = pyratemp.Template(indexTemplate)(bodyHtml = homepageBody,gOptions = gOptions)
     writer.WriteTextFile(Utils.PosixJoin("index.html"),indexHtml)
 
 def WriteRedirectPages(writer: FileRegister.HashWriter):
