@@ -868,6 +868,8 @@ class Formatter:
         self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
         self.excerptAttributeSource = False # Add a line after each excerpt linking to it source?
             # Best used with showHeading = False
+        self.showFTagOrder = () # Display {fTagOrder} before each excerpt
+            # Helps to sort featured excerpts in the preview edition
         
         self.showHeading = True # Show headings at all?
         self.headingShowEvent = True # Show the event name in headings?
@@ -876,9 +878,15 @@ class Formatter:
         self.headingShowTeacher = True # Include the teacher name in headings?
         self.headingAudio = False # Link to original session audio?
         self.headingShowTags = True # List tags in the session heading
-        
-        pass
     
+    def SetHeaderlessFormat(self,headerless: bool = True) -> None:
+        "Switch to the headerless excerpt format."
+        self.excerptOmitSessionTags = not headerless
+        self.showHeading = not headerless
+        self.headingShowTeacher = not headerless
+        self.excerptNumbers = not headerless
+        self.excerptAttributeSource = headerless
+
     def FormatExcerpt(self,excerpt:dict,**kwArgs) -> str:
         "Return excerpt formatted in html according to our stored settings."
         
@@ -892,6 +900,8 @@ class Formatter:
                     a(f"{excerpt['excerptNumber']}.")
             else:
                 a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
+        if self.showFTagOrder and set(excerpt["fTags"]) & set(self.showFTagOrder):
+            a(" {" + str(Database.FTagOrder(excerpt,self.showFTagOrder)) + "}")
 
         a(" ")
         if self.excerptPreferStartTime and excerpt['excerptNumber'] and (excerpt["clips"][0].file == "$" or excerpt.get("startTimeInSession",None)):
@@ -934,7 +944,7 @@ class Formatter:
             text = tag
             if tag in excerpt["fTags"]:
                 text += f'&nbsp{FA_STAR}'
-                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags == "mark" else 0)
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
                     # Add ? to uncertain fTags; "?" * -N = ""
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
@@ -959,7 +969,7 @@ class Formatter:
             text = tag
             if tag in excerpt["fTags"]:
                 text += f'&nbsp{FA_STAR}'
-                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags == "mark" else 0)
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -1449,7 +1459,7 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
         
         return FilteredExcerptsMenuItem(excerpts=excerpts,filter=filter,formatter=formatter,mainPageInfo=basePage.info,menuTitle=menuTitle,fileExt=fileExt,pageAugmentor=AddSearchCategory(menuTitle))
 
-    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: Iterable[str],skipSections:int = 0):
+    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: list[str],skipSections:int = 0):
         """Insert featured excerpts at the top of the first page.
         skipSections allows inserting the featured excerpts between blocks of text."""
         
@@ -1470,11 +1480,9 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
             headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
 
             featuredFormatter = copy.copy(formatter)
-            featuredFormatter.excerptOmitSessionTags = False
-            featuredFormatter.showHeading = False
-            featuredFormatter.headingShowTeacher = False
-            featuredFormatter.excerptNumbers = False
-            featuredFormatter.excerptAttributeSource = True
+            featuredFormatter.SetHeaderlessFormat()
+            if gOptions.draftFTags == "number":
+                featuredFormatter.showFTagOrder = tags
 
             headerHtml.append(featuredFormatter.HtmlExcerptList(featuredExcerpts))
             headerHtml.append("<hr>")
@@ -1949,11 +1957,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         return
 
     formatter = Formatter()
-    formatter.excerptOmitSessionTags = False
-    formatter.showHeading = False
-    formatter.headingShowTeacher = False
-    formatter.excerptNumbers = False
-    formatter.excerptAttributeSource = True
+    formatter.SetHeaderlessFormat()
 
     topicDetailPage = next(DetailedKeyTopics(indexDir,topicDir))
 
@@ -1981,9 +1985,9 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         excerptsByTopic:dict[str:list[str]] = {}
         for cluster in topic["subtopics"]:
             def SortKey(x) -> int:
-                return Database.FTagOrder(x,[cluster])
+                return Database.FTagOrder(x,searchTags)
 
-            searchTags = set([cluster] + list(gDatabase["subtopic"][cluster]["subtags"].keys()))
+            searchTags = [cluster] + list(gDatabase["subtopic"][cluster]["subtags"].keys())
             excerptsByTopic[cluster] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
@@ -2004,6 +2008,8 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
                     lines.append("")
                     excerptHtml += "<br>\n".join(lines)
 
+            if gOptions.draftFTags == "number":
+                formatter.showFTagOrder = [tag] + list(gDatabase["subtopic"][tag]["subtags"].keys())
             if excerpt:
                 excerptHtml += formatter.HtmlExcerptList([excerpt])
             else:
@@ -2345,7 +2351,7 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='templates/Global.html',help='Template for all pages relative to prototypeDir; Default: templates/Global.html')
-    parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of Tags,Drilldown,Events,Teachers,AllExcerpts.')
+    parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of topics,tags,clusters,drilldown,events,teachers,search,allexcerpts.')
     parser.add_argument('--buildOnlyIndexes',**Utils.STORE_TRUE,help="Build only index pages")
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')
