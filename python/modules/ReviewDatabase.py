@@ -63,7 +63,8 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
     maxFTags = bisect.bisect_right((4,8,16,32,80,200,500,1250),tagOrSubtopic["excerptCount"])
 
     # Then add fTags to subtopics with many significant subtags
-    significantTags = insignificantTags = 0
+    significantTags = 0
+    insignificantTags = -1
     for subtag in Database.SubtagIterator(tagOrSubtopic):
         if database["tag"][subtag].get("excerptCount",0) >= gOptions.significantTagThreshold:
             significantTags += 1
@@ -71,8 +72,8 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
             insignificantTags += 1
 
     # oldMin,oldMax = minFTags,maxFTags
-    minFTags += (2*significantTags + insignificantTags - 1) // 10
-    maxFTags += (4*significantTags + 2*insignificantTags - 2) // 10
+    minFTags += (2*significantTags + insignificantTags) // 10
+    maxFTags += (4*significantTags + 2*insignificantTags) // 10
 
     #if oldMax != maxFTags:
     #    Alert.extra(tagOrSubtopic,"now needs",minFTags,"-",maxFTags,"fTags. Subtags:",significantTags,"significant;",insignificantTags,"insignificant.")
@@ -84,7 +85,7 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--significantTagThreshold',type=int,default=12,help='Tags count as significant if they have this many excerpts.')
-    parser.add_argument('--signficantSubtagPercent',type=int,default=30,help="Subtags count as significant if they account for more than this percentage of their subtopics' excerpts.")
+    parser.add_argument('--signficantSubtagPercent',type=int,default=25,help="Subtags count as significant if they account for more than this percentage of their subtopics' excerpts.")
 
 def ParseArguments() -> None:
     pass    

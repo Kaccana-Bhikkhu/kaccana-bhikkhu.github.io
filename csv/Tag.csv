@@ -1,5 +1,5 @@
 Modified:,2024,,,,,,,,,,,,,,
-Count,218,881,54,449,177,45,74,,47,97,18,913,409,852,852
+Count,218,881,54,449,177,45,74,,47,97,18,917,412,856,856
 Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translations,Glosses,Subsumed under,Related,Related 2,Indented tags,Pali term,Tag menu,Pali tag menu
 1,,Skillful qualities,,kusalā dhammā,,,Wholesome qualities,,,,,Skillful qualities,kusalā dhammā,Skillful qualities,Skillful qualities [kusalā dhammā]
 2,,Middle Path,,majjhimā paṭipadā,,,Middle Way,,,,,   Middle Path,majjhimā paṭipadā,Middle Path,Middle Path [majjhimā paṭipadā]
@@ -228,9 +228,9 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 2,,Heedlessness,,pamāda,,,,,,,,   Heedlessness,pamāda,Heedlessness,Heedlessness [pamāda]
 2,,Defilement,,kilesa,,,,,Unwholesome Roots,,,   Defilement,kilesa,,
 2,,Proliferation,,papañca,,,Objectification,Thinking (unskillful),,Directed thought and evaluation,,   Proliferation,papañca,Proliferation,Proliferation [papañca]
-3,,Craving,,taṇhā,,,,,,,,,,,
-3,*,Views,,diṭṭhī,,,,,,,,,,,
-3,,Conceit,,māna,,,,Conceiving,,Doctrine-of-self clinging,Self-identity view,,,,
+3,,Craving,,taṇhā,,,,,,,,      Craving,taṇhā,Craving,Craving [taṇhā]
+3,*,Views,,diṭṭhī,,,,,,,,      Views,diṭṭhī,Views,Views [diṭṭhī]
+3,,Conceit,,māna,,,,Conceiving,,Doctrine-of-self clinging,Self-identity view,      Conceit,māna,Conceit,Conceit [māna]
 2,.,Conceit-related,,,,,,,,,,   Conceit-related,,,
 3,,Self-identity view,,sakkāya-diṭṭhi,,,,,,,,      Self-identity view,sakkāya-diṭṭhi,Self-identity view,Self-identity view [sakkāya-diṭṭhi]
 3,,Conceit,,māna,,,,Conceiving,,Doctrine-of-self clinging,Self-identity view,      Conceit,māna,Conceit,Conceit [māna]
@@ -593,7 +593,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 6,,Ajahn Cunda,,,,,,,,,,               Ajahn Cunda,,Ajahn Cunda,Ajahn Cunda
 6,,Ajahn Kaccāna,,,,,,,,,,               Ajahn Kaccāna,,Ajahn Kaccāna,Ajahn Kaccāna
 6,,Ajahn Ṭhitapañño,,,,,,,,,,               Ajahn Ṭhitapañño,,Ajahn Ṭhitapañño,Ajahn Ṭhitapañño
-6,,Ajahn Kovilo,,,,,,,,,,,,,
+6,,Ajahn Kovilo,,,,,,,,,,               Ajahn Kovilo,,Ajahn Kovilo,Ajahn Kovilo
 6,,Ajahn Sudhīro,,,,,,,,,,               Ajahn Sudhīro,,Ajahn Sudhīro,Ajahn Sudhīro
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
@@ -1012,10 +1012,12 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 3,,Fourfold Assembly,,,,,,,,,,      Fourfold Assembly,,Fourfold Assembly,Fourfold Assembly
 3,,Communal harmony,,sāmaggī,,,,,,,,      Communal harmony,sāmaggī,Communal harmony,Communal harmony [sāmaggī]
 3,,Principles of (communal) non-decline,,aparihānāya dhammā,Principles of non-decline,,,,,,,      Principles of (communal) non-decline,aparihānāya dhammā,Principles of non-decline,Principles of non-decline [aparihānāya dhammā]
+3,,Leadership,,,,,,,,,,      Leadership,,Leadership,Leadership
+3,,Conflict,,,,,,,,,,      Conflict,,Conflict,Conflict
 3,,Meditation groups,,,,,,,,,,      Meditation groups,,Meditation groups,Meditation groups
 3,,Sharing circles,,,,,,,,,,      Sharing circles,,Sharing circles,Sharing circles
 3,,Politics and society,,,,,,,,,,      Politics and society,,Politics and society,Politics and society
-4,,Leadership,,,,,,,,,,         Leadership,,Leadership,Leadership
+,,,,,,,,,,,,,,,
 4,,Royalty,,,,,,,,,,         Royalty,,Royalty,Royalty
 4,,Service,,,,,,,,,,         Service,,Service,Service
 4,,Activism,,,,,,,,,,         Activism,,Activism,Activism
@@ -1024,7 +1026,7 @@ Level,Flags,Full tag,#,Pāli,Abbreviation,Pāli abbreviation,Alternate translati
 4,,Crime,,,,,,,,,,         Crime,,Crime,Crime
 5,,Prisons,,,,,,,,,,            Prisons,,Prisons,Prisons
 4,,Discrimination,,,,,,,,,,         Discrimination,,Discrimination,Discrimination
-4,,Conflict,,,,,,,,,,         Conflict,,Conflict,Conflict
+,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,
 4,,Military,,,,,,,,,,         Military,,Military,Military
