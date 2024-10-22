@@ -142,7 +142,7 @@ function delayedScroll(bookmark) {
 
 if (frame) {
 	const agent = window.navigator.userAgent.toLowerCase();
-	const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights','mozilla'];
+	const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
 	let isBotUserAgent = false;
 	for (let bot of botUsers) {
 		if (agent.indexOf(bot) !== -1) {
@@ -152,6 +152,7 @@ if (frame) {
 	}
 
 	let url = new URL(location.href)
+	// Skip changeURL for local files and robots loading index.html (url.hash == '')
 	if (url.protocol != "file:" && (!isBotUserAgent || url.hash)) {
 		changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
 			let urlHash = decodeURIComponent(location.hash);
