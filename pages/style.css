@@ -238,6 +238,14 @@ div.listing p {
 	padding: 8px;
 }
 
+div.featured {
+	border-left: 3px solid #a28a4e;
+}
+
+div.featured p,div {
+	padding-left: 20px;
+}
+
 .title {
 	font-size: 1.3em;
 	font-family: "Roboto", sans-serif;

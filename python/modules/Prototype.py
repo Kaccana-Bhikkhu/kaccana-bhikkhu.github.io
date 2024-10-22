@@ -1477,7 +1477,7 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
             headerStr = "Featured excerpt"
             if len(featuredExcerpts) > 1:
                 headerStr += f"s ({len(featuredExcerpts)})"
-            headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
+            headerHtml.append('<div class="featured">' + Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
 
             featuredFormatter = copy.copy(formatter)
             featuredFormatter.SetHeaderlessFormat()
@@ -1485,7 +1485,7 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
                 featuredFormatter.showFTagOrder = tags
 
             headerHtml.append(featuredFormatter.HtmlExcerptList(featuredExcerpts))
-            headerHtml.append("<hr>")
+            headerHtml.append("</div>\n<hr>\n")
 
             firstTextSection = 0 # The first section could be a menu, in which case we skip it
             while type(firstPage.section[firstTextSection]) != str:
