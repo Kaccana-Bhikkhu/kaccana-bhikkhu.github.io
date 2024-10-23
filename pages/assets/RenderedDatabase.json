@@ -1,6 +1,65 @@
 {
   "excerpts": [
     {
+      "event": "Test1999",
+      "sessionNumber": 2,
+      "excerptNumber": 1,
+      "fileNumber": 1,
+      "kind": "Teaching",
+      "flags": "0",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Part 1.",
+      "teachers": [],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "0",
+          "text": "Thai audio with English translation read by {teachers}.",
+          "teachers": [],
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Reference",
+          "flags": "",
+          "text": "\"Living with the Cobra,\" Collected Teachings p. 233.",
+          "fTags": [],
+          "fTagOrder": [],
+          "tags": [],
+          "indentLevel": 1,
+          "body": "<b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a></em>, <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271\" target=\"_blank\">p. 233</a>."
+        },
+        {
+          "kind": "Other",
+          "flags": "",
+          "text": "Continued in [Part 2](excerpt:Chah2001_S13_F01).",
+          "teachers": [],
+          "fTags": [],
+          "fTagOrder": [],
+          "tags": [],
+          "indentLevel": 1,
+          "body": "Continued in <a href=\"../events/Chah2001.html#Chah2001_S13_F01\">Part 2</a>."
+        }
+      ],
+      "tags": [
+        "Ajahn Chah"
+      ],
+      "qTagCount": 1,
+      "clips": [
+        [
+          "$",
+          "6:23",
+          "19:47"
+        ]
+      ],
+      "duration": "13:24",
+      "mirror": "local",
+      "body": "<b>Teachings</b> to Marjorie by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>, Part 1. Thai audio with English translation read by .",
+      "attribution": ""
+    },
+    {
       "event": "Chah2001",
       "sessionNumber": 1,
       "excerptNumber": 0,
@@ -100281,6 +100340,25 @@
     }
   ],
   "event": {
+    "Test1999": {
+      "title": "Test Event",
+      "subtitle": "",
+      "code": "Test1999",
+      "series": "Other",
+      "venue": "Online",
+      "teachers": [
+        "AP"
+      ],
+      "startDate": "10/10/1999",
+      "endDate": "",
+      "format": "Short teaching",
+      "medium": "Online",
+      "tags": [],
+      "website": "",
+      "description": "This event is used to test new Archive features and should not be uploaded to the web. Use --includeTestEvent to include it.",
+      "sessions": 1,
+      "excerpts": 1
+    },
     "Chah2001": {
       "title": "Remembering Ajahn Chah Weekend",
       "subtitle": "",
@@ -101288,6 +101366,19 @@
     }
   },
   "sessions": [
+    {
+      "event": "Test1999",
+      "sessionNumber": 2,
+      "date": "28/4/2001",
+      "filename": "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3",
+      "duration": "19:53",
+      "teachers": [],
+      "sessionTitle": "Welcome and Reflection by Ajahn Chah",
+      "excerpts": 3,
+      "tags": [
+        "Ajahn Chah"
+      ]
+    },
     {
       "event": "Chah2001",
       "sessionNumber": 1,
@@ -105182,18 +105273,18 @@
     }
   ],
   "audioSource": {
+    "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3": {
+      "filename": "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3",
+      "duration": "19:53",
+      "event": "Test1999",
+      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2002%20-%20Welcome%20and%20Reflection%20by%20Ajahn%20Chah.mp3",
+      "mirror": "remote"
+    },
     "Ajahn Chah Weekend - 01 - Opening Chanting.mp3": {
       "filename": "Ajahn Chah Weekend - 01 - Opening Chanting.mp3",
       "duration": "5:06",
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2001%20-%20Opening%20Chanting.mp3",
-      "mirror": "remote"
-    },
-    "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3": {
-      "filename": "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3",
-      "duration": "19:53",
-      "event": "Chah2001",
-      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2002%20-%20Welcome%20and%20Reflection%20by%20Ajahn%20Chah.mp3",
       "mirror": "remote"
     },
     "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3": {
@@ -108756,7 +108847,7 @@
       "allowTag": true,
       "group": "Monastics",
       "lineage": "Western disciples of Ajahn Chah",
-      "eventCount": 46,
+      "eventCount": 47,
       "sessionCount": 215,
       "excerptCount": 1815,
       "htmlFile": "ajahn-pasanno.html"
@@ -116996,8 +117087,8 @@
       ],
       "subtopics": [],
       "eventCount": 3,
-      "sessionCount": 38,
-      "excerptCount": 567,
+      "sessionCount": 39,
+      "excerptCount": 568,
       "fTagCount": 4,
       "listIndex": 473
     },
@@ -131077,7 +131168,7 @@
       "text": "Teachers (23)",
       "tag": "Teachers",
       "subtagCount": 126,
-      "subtagExcerptCount": 995
+      "subtagExcerptCount": 996
     },
     {
       "level": 2,
@@ -131090,7 +131181,7 @@
       "text": "Monastic teachers (2)",
       "tag": "Monastic teachers",
       "subtagCount": 106,
-      "subtagExcerptCount": 964
+      "subtagExcerptCount": 965
     },
     {
       "level": 3,
@@ -131103,7 +131194,7 @@
       "text": "Thai Forest Tradition (79)",
       "tag": "Thai Forest Tradition",
       "subtagCount": 83,
-      "subtagExcerptCount": 948
+      "subtagExcerptCount": 949
     },
     {
       "level": 4,
@@ -131133,9 +131224,9 @@
       "flags": "",
       "name": "Ajahn Chah Subhaddo",
       "pali": "",
-      "excerptCount": 567,
+      "excerptCount": 568,
       "subsumed": false,
-      "text": "Ajahn Chah Subhaddo (567)",
+      "text": "Ajahn Chah Subhaddo (568)",
       "tag": "Ajahn Chah"
     },
     {
@@ -139040,7 +139131,7 @@
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/ajahn-chah.html",
-      "excerptCount": 567,
+      "excerptCount": 568,
       "fTagCount": 4
     },
     "Ajahn Sumedho": {
@@ -140305,7 +140396,7 @@
         "Ajahn Sumedho",
         "Ajahn Pasanno"
       ],
-      "excerptCount": 869,
+      "excerptCount": 870,
       "fTagCount": 15
     },
     "monasteries": {
