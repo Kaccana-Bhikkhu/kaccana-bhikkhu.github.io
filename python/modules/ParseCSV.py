@@ -1536,6 +1536,7 @@ def AddArguments(parser):
     parser.add_argument('--pendingMeansYes',**Utils.STORE_TRUE,help="Treat teacher consent pending as yes - debugging only")
     parser.add_argument('--ignoreExcludes',**Utils.STORE_TRUE,help="Ignore exclude session and excerpt flags - debugging only")
     parser.add_argument('--parseOnlySpecifiedEvents',**Utils.STORE_TRUE,help="Load only events specified by --events into the database")
+    parser.add_argument('--includeTestEvent',**Utils.STORE_TRUE,help="Include event Test1999 in the database.")
     parser.add_argument('--draftFTags',type=str,default="omit",help='What to do with fTags marked "?" "omit", "mark", "number", or "show"')
     parser.add_argument('--detailedCount',**Utils.STORE_TRUE,help="Count all possible items; otherwise just count tags")
     parser.add_argument('--keepUnusedTags',**Utils.STORE_TRUE,help="Don't remove unused tags")
@@ -1611,7 +1612,8 @@ def main():
     gDatabase["excerpts"] = []
     for event in gDatabase["summary"]:
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
-            LoadEventFile(gDatabase,event,gOptions.csvDir)
+            if not event.startswith("Test") or gOptions.includeTestEvent:
+                LoadEventFile(gDatabase,event,gOptions.csvDir)
     excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
     gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
         # Remove sessions that have no excerpts in them

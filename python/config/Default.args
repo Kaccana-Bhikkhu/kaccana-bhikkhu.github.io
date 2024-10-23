@@ -53,6 +53,8 @@
 // Increase verbosity to maximum
 -vvv
 
+--includeTestEvent
+
 --args python/config/BuildPreview.args
 --linkCheckLevel 1
 --sheets Changed

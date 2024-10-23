@@ -1,4 +1,4 @@
-"""Render the text of each excerpt in the database with its annotations to html using the pryatemp templates in database["Kind"].
+"""Render the text of each excerpt in the database with its annotations to html using the pyratemp templates in database["Kind"].
 The only remaining work for Prototype.py to do is substitute the list of teachers for {attribtuion}, {attribtuion2}, and {attribtuion3} when needed."""
 
 from __future__ import annotations
@@ -204,7 +204,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
-    item["body"] = bodyTemplate(**renderDict) # Utils.SmartQuotes(bodyTemplate(**renderDict))
+    item["body"] = bodyTemplate(**renderDict)
 
     if teachers:
 
