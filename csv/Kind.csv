@@ -44,5 +44,5 @@ Fragment,Other,0,No,Yes,Yes,No,No,,,,unimplemented,unimplemented,unimplemented,Y
 ,,,,,,,,,,,,,,,
 Alternate audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,,Specifes an audio file which is treated as if it were the session audio file for this excerpt. Text has the format: filename.mp3|url. End time specifies the duration of the file.
 Edited audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,,"Specifes a replacedment audio file for this excerpt, which is otherwise treated as if it were taken from the session audio file. End time specifies the duration of the excerpt; if blank, use the duration specified by the excerpt start and end times."
-Append audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,
+Append audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,,"Append audio after the audio already present in an excerpt. Text specifies the source file and can be one of: <blank>: same source as previous clip; ""$"": session audio file; ""duration|filename|URL"": an audio source within the current event folder. URL [optional] indicates the remote URL to download from. Duration [optional] indicates the file's duration. Start and end time specify times in the source file."
 Cut audio,Audio,1,No,Yes,Yes,No,No,,No,,,unimplemented,unimplemented,Yes,

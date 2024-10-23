@@ -133,9 +133,10 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype",
-                "--buildOnly",
-                "clusters"
+                "SplitMp3",
+                "--events",
+                "Test1999",
+                "--overwriteMp3"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

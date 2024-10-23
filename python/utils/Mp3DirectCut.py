@@ -73,9 +73,6 @@ class Clip(NamedTuple):
 
     def __eq__(self,other:Clip):
         return self.ToClipTD() == other.ToClipTD()
-    
-    def __hash__(self):
-        return hash(self.ToClipTD())
 
 class ClipTD(Clip):
     """Same as a Clip, except the times must be of type timedelta."""
@@ -255,22 +252,29 @@ def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set[str]:
             sources.update(SourceFiles(item))
     return sources
 
-def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple[set[str],dict[str,list[Clip]]]]:
-    """Group the fileClips by source files. Returns an iterator of tuples:
-    (files,fileClips), where files is a set of source files and fileClips is the dict of files that use
-    these source files. For the time being, assume that all clips have only one source file."""
+def GroupBySourceFiles(outputFiles:dict[str,list[Clip]]) -> Iterator[tuple[set[str],dict[str,list[Clip]]]]:
+    """Group the outputFiles by source files. Returns an iterator of tuples:
+    (sourceFiles,theseOutputFiles), where sourceFiles is a set of source files and theseOutputFiles is the dict of files that use
+    these source files."""
 
-    clipsRemaining = dict(fileClips)
-    while clipsRemaining:
-        sourceFiles = SourceFiles(next(iter(clipsRemaining.values())))
-            # Select the first file of the first item in clipsRemaining
-        clipsWithThisSource = {}
-        newClipsRemaining = {}
-        for filename,clips in clipsRemaining.items():
-            (clipsWithThisSource if clips[0].file in sourceFiles else newClipsRemaining).update({filename:clips})
+    filesRemaining = outputFiles
+    while filesRemaining:
+        sourceFiles:set[str] = SourceFiles(next(iter(filesRemaining.values())))
+            # Begin with the first file of the first item in clipsRemaining
+        prevSourceFiles:set[str] = set()
+
+        while (prevSourceFiles != sourceFiles):
+            filesWithTheseSources:dict[str,list[Clip]] = {}
+            for filename,clips in filesRemaining.items():
+                for clip in clips:
+                    if clip.file in sourceFiles:
+                        filesWithTheseSources[filename] = clips
+            
+            prevSourceFiles = sourceFiles
+            sourceFiles = SourceFiles(filesWithTheseSources)
         
-        yield sourceFiles,clipsWithThisSource
-        clipsRemaining = newClipsRemaining
+        yield sourceFiles,filesWithTheseSources
+        filesRemaining = {file:clips for file,clips in filesRemaining.items() if file not in filesWithTheseSources}
 
 def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None) -> None:
     """Split and join multiple mp3 files using Mp3DirectCut.
@@ -285,12 +289,50 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
     if outputDir is None:
         outputDir = inputDir
 
-    for sourceFiles,clips in GroupBySourceFiles(fileClips):
-        sourceFile = next(iter(sourceFiles))
-        sourcePath = os.path.join(inputDir,sourceFile)
+    for sourceFiles,selectFileClips in GroupBySourceFiles(fileClips):
 
-        destClipList = [clipList[0]._replace(file=outputFile) for outputFile,clipList in clips.items()]
-        Split(sourcePath,destClipList,outputDir)
+        # Strategy: Create dictionaries describing the operations that need to be executed, then run these operations
+
+        splitOps:dict[Clip,str] = {} 
+            # key: the clip that we need to split (clip file relative to inputDir)
+            # value: the filename where the clip will be split to (relative to outputDir) 
+            # can be either a final output file which doesn't require joining or a temporary file
+        joinOps:dict[str,list[Clip]] = {}
+            # keys: the name of a final output file that requires joining (relative to outputDir)
+            # values: the clips to join to create the final output file (clip files relative to outputDir)
+        
+        tempFilePrefix = "__QStemp_"
+        tempFileCount = 0
+
+        for outputFile,clips in selectFileClips.items():
+            if len(clips) > 1:
+                for clip in clips:
+                    clipFile = splitOps.get(clip.file,"")
+                    if not clipFile:
+                        tempFileCount += 1
+                        clipFile = f"{tempFilePrefix}{tempFileCount:02d}.mp3"
+                        splitOps[clip] = clipFile
+                joinOps[outputFile] = clips
+            else:
+                existingFilename = splitOps.get(clips[0],"")
+                if not existingFilename or existingFilename.startsWith(tempFilePrefix):
+                        # If we haven't split clip before or it splits to a temporary file,
+                    splitOps[clips[0]] = outputFile
+                        # register a new splitOp or redirect an existing splitOp away from the temporary file.
+                else:
+                    joinOps[outputFile] = [existingFilename]
+                        # Otherwise copy an existing file.
+
+        for sourceFile in sourceFiles:
+            clipsWithDestFile = [clip._replace(file = dest) for clip,dest in splitOps.items() if clip.file == sourceFile]
+            sourcePath = os.path.join(inputDir,sourceFile)
+            Split(sourcePath,clipsWithDestFile,outputDir)
+
+        for outputFile,clipsToJoin in joinOps.items():
+            destPath = os.path.join(outputDir,outputFile)
+            joinFiles = [os.path.join(outputDir,splitOps[clip]) for clip in clipsToJoin]
+            Join(joinFiles,destPath)
+        
 
 def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     """Join mp3 files into a single file using simple file copying operations.
@@ -311,8 +353,8 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
                 shutil.copyfileobj(source, dest)
     
     if heal:
-        dir, name = os.path.split(name)
-        SinglePassSplit(tempFile,[(name,timedelta(0))],dir)
+        dir, filename = os.path.split(outputFile)
+        SinglePassSplit(tempFile,[ClipTD(filename,timedelta(0),None)],dir)
         os.remove(tempFile)
     else:
         os.rename(tempFile,outputFile)

@@ -60,14 +60,11 @@ def main():
 
             filename = f"{Database.ItemCode(excerpt)}.mp3"
             clips = list(excerpt["clips"])
-            defaultSource = session["filename"]
             allFilesFound = True
             for index in range(len(clips)):
                 sourceFile = clips[index].file
                 if sourceFile == "$":
-                    sourceFile = defaultSource
-                elif index == 0:
-                    defaultSource = clips[0].file
+                    sourceFile = session["filename"]
                 source = gDatabase["audioSource"].get(sourceFile,None)
                 if source:
                     clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(source,"local")))

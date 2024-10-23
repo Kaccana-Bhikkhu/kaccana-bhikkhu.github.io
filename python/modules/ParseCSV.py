@@ -917,6 +917,86 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
     Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
     Eventually this function will scan for Alternate audio, Edited audio, Append audio, and Cut audio annotations for extended functionality."""
+    
+    def AddAudioSource(filename:str, duration:str, event: str, url: str) -> None:
+        """Add an audio source to database["audioSource"]."""
+        noDiacritics = Utils.RemoveDiacritics(filename)
+        if filename != noDiacritics:
+            Alert.error("Audio filename",repr(filename),"contains diacritics, which are not allowed.")
+            filename = noDiacritics
+
+        try:
+            Mp3DirectCut.ToTimeDelta(duration)
+        except ValueError:
+            Alert.error(filename,"in event",event,"has invalid duration:",repr(duration))
+
+
+        source = {"filename": filename, "duration":duration, "event":event, "url":url}
+        
+        # Check if duration and url match with an existing audio source; prefer the old values if they conflict
+        existingSource = database["audioSource"].get(filename,None) or source
+        for key in source:
+            if key != "event" and existingSource[key] and existingSource[key] != source[key]:
+                Alert.warning(f"Audio file {filename} in event {event}: {key} ({source[key]}) does not match url given previously ({existingSource[key]}). Will use the old value.")
+            source[key] = existingSource[key] or source[key]
+
+        database["audioSource"][filename] = source
+
+    def ExcerptDuration(excerpt: dict,sessionDuration:timedelta) -> str:
+        "Return the duration of excerpt as a string."
+        try:
+            duration = timedelta(0)
+            for clip in excerpt["clips"]:
+                if clip.file == "$":
+                    fileDuration = sessionDuration
+                else:
+                    fileDuration = database["audioSource"][clip.file]["duration"]
+                duration += clip.Duration(fileDuration)
+        except Mp3DirectCut.TimeError as error:
+            Alert.error(excerpt,"generates time error:",error.args[0])
+            return "0:00"
+        return Utils.TimeDeltaToStr(duration)
+
+    def SplitAudioSourceText(text: str) -> tuple[str,str,str]:
+        """Split an audio annotation of the form duration|filename|url into the tuple filename,url,duration.
+        url and duration are optional; empty strings are returned if they are omitted."""
+        duration = url = ""
+        splitBits = text.split("|")
+        if len(splitBits) >= 3:
+            duration,filename,url = splitBits[0:3]
+        elif len(splitBits) == 2:
+            filename,url = splitBits
+        else:
+            filename = splitBits[0]
+        return filename,url,duration
+
+    def ProcessAltAudio(excerpt: dict,altAudioAnnotation: dict) -> None:
+        """Prepare for an excerpt that specifies an alternate audio source."""
+        filename,url,duration = SplitAudioSourceText(altAudioAnnotation["text"])
+        duration = altAudioAnnotation["endTime"] or duration # Duration usually comes from endTime
+        if altAudioAnnotation["kind"] == "Edited audio":
+            clip = excerpt["clips"][0]
+            if not duration:
+                duration = Utils.TimeDeltaToStr(clip.Duration(fileDuration=None))
+            excerpt["startTimeInSession"] = clip.start
+            excerpt["clips"][0] = clip._replace(start="0:00",end="")
+            excerpt["duration"] = duration
+        AddAudioSource(filename,duration,excerpt["event"],url)
+
+    def ProcessAppendAudio(excerpt: dict[str],appendAudioAnnotations: list[dict[str]]):
+        """Add clips to an excerpt that contains Append audio or Cut audio annotations."""
+        for annotation in appendAudioAnnotations:
+            if annotation["kind"] == "Append audio":
+                filename,url,duration = SplitAudioSourceText(annotation["text"])
+                if filename:
+                    if filename != "$":
+                        AddAudioSource(filename,duration,excerpt["event"],url)
+                else:
+                    filename = excerpt["clips"][-1].file
+                
+                excerpt["clips"].append(SplitMp3.Clip(filename,annotation["startTime"],annotation["endTime"]))
+            elif annotation["kind"] == "Cut audio":
+                pass
 
     # First eliminate excerpts with fatal parsing errors.
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
@@ -934,56 +1014,6 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         if id(excerpts[index]) in deletedExcerptIDs:
             Alert.error("Misformed time string in",excerpts[index],". Will delete this excerpt.")
             del excerpts[index]
-    
-    def AddAudioSource(filename:str, duration:str, event: str, url: str) -> None:
-        """Add an audio source to database["audioSource"]."""
-        noDiacritics = Utils.RemoveDiacritics(filename)
-        if filename != noDiacritics:
-            Alert.error("Audio filename",repr(filename),"contains diacritics, which are not allowed.")
-            filename = noDiacritics
-
-        try:
-            Mp3DirectCut.ToTimeDelta(duration)
-        except ValueError:
-            Alert.error(filename,"in event",event,"has invalid duration:",repr(duration))
-
-        if filename in database["audioSource"]:
-            existingSource = database["audioSource"][filename]
-            if existingSource["duration"] != duration or existingSource["url"] != url:
-                Alert.error(f"Audio file {filename} in event {event}: Duration ({duration}) or url ({url}) do not match parameters given previously.")
-        else:
-            source = {"filename": filename, "duration":duration, "event":event, "url":url}
-            database["audioSource"][filename] = source
-
-    def ExcerptDuration(excerpt: dict,sessionDuration:timedelta) -> str:
-        "Return the duration of excerpt as a string."
-        try:
-            duration = timedelta(0)
-            for clip in excerpt["clips"]:
-                if clip.file == "$":
-                    fileDuration = sessionDuration
-                else:
-                    fileDuration = database["audioSource"][clip.file]["duration"]
-                duration += clip.Duration(fileDuration)
-        except Mp3DirectCut.TimeError as error:
-            Alert.error(excerpt,"generates time error:",error.args[0])
-            return "0:00"
-        return Utils.TimeDeltaToStr(duration)
-
-    def ProcessAltAudio(excerpt: dict,altAudioAnnotation: dict) -> None:
-        """Prepare for an excerpt that specifies an alternate audio source."""
-        splitBits = altAudioAnnotation["text"].split("|")
-        filename = splitBits[0]
-        duration = altAudioAnnotation["endTime"]
-        url = splitBits[1] if len(splitBits) > 1 else ""
-        if altAudioAnnotation["kind"] == "Edited audio":
-            clip = excerpt["clips"][0]
-            if not duration:
-                duration = Utils.TimeDeltaToStr(clip.Duration(None))
-            excerpt["startTimeInSession"] = clip.start
-            excerpt["clips"][0] = clip._replace(start="0:00",end="")
-            excerpt["duration"] = duration
-        AddAudioSource(filename,duration,excerpt["event"],url)
 
     # Then scan through the excerpts and add key "clips"
     for session,sessionExcerpts in Database.GroupBySession(excerpts,sessions):
@@ -1023,6 +1053,10 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             x["clips"] = [SplitMp3.Clip(audioSource,startTime,endTime)]
             if altAudioList:
                 ProcessAltAudio(x,altAudioList[0])
+            
+            appendAudioList = [a for a in x["annotations"] if a["kind"] in ("Append audio","Cut audio")]
+            if appendAudioList:
+                ProcessAppendAudio(x,appendAudioList)
         
         # Excerpts without an end time end when the next excerpt starts
         for x1,x2 in itertools.pairwise(sessionExcerpts):
