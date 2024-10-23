@@ -71,6 +71,21 @@ class Clip(NamedTuple):
     def Duration(self,fileDuration:TimeSpec|None) -> timedelta:
         return self.ToClipTD().Duration(ToTimeDelta(fileDuration))
 
+    def Cut(self,cutStart: TimeSpec,cutEnd: TimeSpec) -> list[Clip]:
+        """Return a list of two Clips corresponding to this clip with the specified bit removed.
+        Raises TimeError unless self.start < cutStart < cutEnd < self.end."""
+
+        selfTD = self.ToClipTD()
+        cutStartTD = ToTimeDelta(cutStart)
+        cutEndTD = ToTimeDelta(cutEnd)
+
+        try:
+            if selfTD.start < cutStartTD < cutEndTD and (selfTD.end is None or cutEndTD < selfTD.end):
+                return [self._replace(end=cutStart),self._replace(start=cutEnd)]
+        except TypeError:
+            pass
+        raise TimeError(f"Clip.Cut: ({cutStart}, {cutEnd}) must lie strictly within ({self.start}, {self.end}).")
+
     def __eq__(self,other:Clip):
         return self.ToClipTD() == other.ToClipTD()
 

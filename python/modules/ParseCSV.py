@@ -930,7 +930,6 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         except ValueError:
             Alert.error(filename,"in event",event,"has invalid duration:",repr(duration))
 
-
         source = {"filename": filename, "duration":duration, "event":event, "url":url}
         
         # Check if duration and url match with an existing audio source; prefer the old values if they conflict
@@ -996,7 +995,11 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 
                 excerpt["clips"].append(SplitMp3.Clip(filename,annotation["startTime"],annotation["endTime"]))
             elif annotation["kind"] == "Cut audio":
-                pass
+                try:
+                    excerpt["clips"][-1:] = excerpt["clips"][-1].Cut(annotation["startTime"],annotation["endTime"])
+                except (Mp3DirectCut.ParseError,Mp3DirectCut.TimeError) as error:
+                    Alert.error(annotation,"to",excerpt,"produces error:",error.args[0])
+
 
     # First eliminate excerpts with fatal parsing errors.
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors

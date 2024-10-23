@@ -1,228 +1,6 @@
 {
   "excerpts": [
     {
-      "event": "Test1999",
-      "sessionNumber": 2,
-      "excerptNumber": 1,
-      "fileNumber": 1,
-      "kind": "Teaching",
-      "flags": "0",
-      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), English and Thai, Part 1.",
-      "teachers": [],
-      "fTags": [],
-      "annotations": [
-        {
-          "kind": "Read by",
-          "flags": "0",
-          "text": "Thai audio with English translation read by {teachers}.",
-          "teachers": [],
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Reference",
-          "flags": "",
-          "text": "\"Living with the Cobra,\" Collected Teachings p. 233.",
-          "fTags": [],
-          "fTagOrder": [],
-          "tags": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Other",
-          "flags": "",
-          "text": "Continued in [Part 2](excerpt:Chah2001_S13_F01).",
-          "teachers": [],
-          "fTags": [],
-          "fTagOrder": [],
-          "tags": [],
-          "indentLevel": 1
-        }
-      ],
-      "tags": [
-        "Ajahn Chah"
-      ],
-      "qTagCount": 1,
-      "clips": [
-        [
-          "$",
-          "6:23",
-          "19:47"
-        ]
-      ],
-      "duration": "13:24"
-    },
-    {
-      "event": "Test1999",
-      "sessionNumber": 2,
-      "excerptNumber": 2,
-      "fileNumber": 2,
-      "kind": "Teaching",
-      "flags": "0",
-      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), English only.",
-      "teachers": [],
-      "fTags": [],
-      "annotations": [
-        {
-          "kind": "Read by",
-          "flags": "",
-          "text": "",
-          "teachers": [],
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "10:16",
-          "endTime": "11:02",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "11:54",
-          "endTime": "12:44",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "14:13",
-          "endTime": "15:46",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "16:48",
-          "endTime": "18:00",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "18:52",
-          "endTime": "19:47",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "1:36",
-          "endTime": "3:21",
-          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "4:09",
-          "endTime": "4:46",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "5:41",
-          "endTime": "6:28",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Append audio",
-          "flags": "",
-          "startTime": "8:50",
-          "endTime": "11:00",
-          "text": "",
-          "fTags": [],
-          "fTagOrder": [],
-          "indentLevel": 1
-        }
-      ],
-      "tags": [
-        "Ajahn Chah"
-      ],
-      "qTagCount": 1,
-      "clips": [
-        [
-          "$",
-          "7:57",
-          "9:09"
-        ],
-        [
-          "$",
-          "10:16",
-          "11:02"
-        ],
-        [
-          "$",
-          "11:54",
-          "12:44"
-        ],
-        [
-          "$",
-          "14:13",
-          "15:46"
-        ],
-        [
-          "$",
-          "16:48",
-          "18:00"
-        ],
-        [
-          "$",
-          "18:52",
-          "19:47"
-        ],
-        [
-          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-          "1:36",
-          "3:21"
-        ],
-        [
-          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-          "4:09",
-          "4:46"
-        ],
-        [
-          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-          "5:41",
-          "6:28"
-        ],
-        [
-          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-          "8:50",
-          "11:00"
-        ]
-      ],
-      "duration": "11:47"
-    },
-    {
       "event": "Chah2001",
       "sessionNumber": 1,
       "excerptNumber": 0,
@@ -7918,7 +7696,7 @@
       "excerptNumber": 3,
       "fileNumber": 3,
       "kind": "Story",
-      "flags": "",
+      "flags": "o",
       "text": "Ajahn Chah's presence.",
       "teachers": [
         "GKappel"
@@ -46450,6 +46228,26 @@
       ],
       "annotations": [
         {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "63:47",
+          "endTime": "63:53",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "64:03",
+          "endTime": "64:07",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
           "kind": "Reference",
           "flags": "",
           "text": "[Word of the Buddha]()",
@@ -46487,10 +46285,20 @@
         [
           "$",
           "63:31",
+          "63:47"
+        ],
+        [
+          "$",
+          "63:53",
+          "64:03"
+        ],
+        [
+          "$",
+          "64:07",
           ""
         ]
       ],
-      "duration": "2:56"
+      "duration": "2:46"
     },
     {
       "event": "TG2014",
@@ -46624,6 +46432,16 @@
       ],
       "annotations": [
         {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "10:26",
+          "endTime": "10:36",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
           "kind": "Recollection",
           "flags": "0",
           "teachers": [
@@ -46673,10 +46491,15 @@
         [
           "$",
           "10:02",
+          "10:26"
+        ],
+        [
+          "$",
+          "10:36",
           "18:56"
         ]
       ],
-      "duration": "8:54"
+      "duration": "8:44"
     },
     {
       "event": "TG2014",
@@ -46802,6 +46625,16 @@
       ],
       "annotations": [
         {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "37:35",
+          "endTime": "37:44",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
           "kind": "Recollection",
           "flags": "",
           "teachers": [
@@ -46832,10 +46665,15 @@
         [
           "$",
           "32:26",
+          "37:35"
+        ],
+        [
+          "$",
+          "37:44",
           "38:26"
         ]
       ],
-      "duration": "6:00"
+      "duration": "5:51"
     },
     {
       "event": "TG2014",
@@ -60599,6 +60437,16 @@
       ],
       "annotations": [
         {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "40:24",
+          "endTime": "40:38",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
           "kind": "Sutta",
           "flags": "",
           "text": "MN 22.58: \"Whatever is not yours, abandon it.\"",
@@ -60624,10 +60472,15 @@
         [
           "$",
           "34:44",
+          "40:24"
+        ],
+        [
+          "$",
+          "40:38",
           "42:58"
         ]
       ],
-      "duration": "8:14"
+      "duration": "8:00"
     },
     {
       "event": "TG2015",
@@ -63321,6 +63174,16 @@
       "fTags": [],
       "annotations": [
         {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "31:37",
+          "endTime": "31:44",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
           "kind": "Quote",
           "flags": "",
           "teachers": [
@@ -63376,10 +63239,15 @@
         [
           "$",
           "28:29",
+          "31:37"
+        ],
+        [
+          "$",
+          "31:44",
           "35:36"
         ]
       ],
-      "duration": "7:07"
+      "duration": "7:00"
     },
     {
       "event": "TG2015",
@@ -64753,7 +64621,18 @@
       ],
       "text": "Could you explain what your ordination names mean and how they were chosen?",
       "fTags": [],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "57:31",
+          "endTime": "57:43",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Ordination",
         "Monastic titles",
@@ -64766,10 +64645,15 @@
         [
           "$",
           "57:24",
+          "57:31"
+        ],
+        [
+          "$",
+          "57:43",
           "59:06"
         ]
       ],
-      "duration": "1:42"
+      "duration": "1:30"
     },
     {
       "event": "TG2015",
@@ -65121,7 +65005,18 @@
       ],
       "text": "If one were to choose a life partner who was not practicing the Dhamma as we know it but had some spirited lightness about them, what are some qualities we should look for in them that would make them a good partner?",
       "fTags": [],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "1:23:20",
+          "endTime": "1:23:26",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Relationships",
         "Faith",
@@ -65134,10 +65029,15 @@
         [
           "$",
           "82:55",
+          "1:23:20"
+        ],
+        [
+          "$",
+          "1:23:26",
           "1:24:49"
         ]
       ],
-      "duration": "1:54"
+      "duration": "1:48"
     },
     {
       "event": "TG2015",
@@ -90026,6 +89926,16 @@
       ],
       "annotations": [
         {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "4:10",
+          "endTime": "4:18",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
+        {
           "kind": "Other",
           "flags": "",
           "text": "Ancient etymology of dukkha: du = bad, unwanted, unpleasant, uncomfotable, not easy; kha = where the alex fits into the wheel.",
@@ -90111,10 +90021,15 @@
         [
           "$",
           "0:03",
+          "4:10"
+        ],
+        [
+          "$",
+          "4:18",
           "18:45"
         ]
       ],
-      "duration": "18:42"
+      "duration": "18:34"
     },
     {
       "event": "Rishikesh2023",
@@ -90128,7 +90043,18 @@
         "AP"
       ],
       "fTags": [],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "20:12",
+          "endTime": "20:22",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Desire",
         "Fear",
@@ -90147,10 +90073,15 @@
         [
           "$",
           "18:56",
+          "20:12"
+        ],
+        [
+          "$",
+          "20:22",
           ""
         ]
       ],
-      "duration": "5:14"
+      "duration": "5:04"
     },
     {
       "event": "Rishikesh2023",
@@ -90170,6 +90101,16 @@
         1001
       ],
       "annotations": [
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "0:55",
+          "endTime": "1:07",
+          "text": "",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
         {
           "kind": "Quote",
           "flags": "",
@@ -90214,32 +90155,18 @@
         [
           "$",
           "0:24",
+          "0:55"
+        ],
+        [
+          "$",
+          "1:07",
           ""
         ]
       ],
-      "duration": "5:52"
+      "duration": "5:40"
     }
   ],
   "event": {
-    "Test1999": {
-      "title": "Test Event",
-      "subtitle": "",
-      "code": "Test1999",
-      "series": "Other",
-      "venue": "Online",
-      "teachers": [
-        "AP"
-      ],
-      "startDate": "10/10/1999",
-      "endDate": "",
-      "format": "Short teaching",
-      "medium": "Online",
-      "tags": [],
-      "website": "",
-      "description": "This event is used to test new Archive features and should not be uploaded to the web. Use --includeTestEvent to include it.",
-      "sessions": 1,
-      "excerpts": 2
-    },
     "Chah2001": {
       "title": "Remembering Ajahn Chah Weekend",
       "subtitle": "",
@@ -91247,19 +91174,6 @@
     }
   },
   "sessions": [
-    {
-      "event": "Test1999",
-      "sessionNumber": 2,
-      "date": "28/4/2001",
-      "filename": "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3",
-      "duration": "19:53",
-      "teachers": [],
-      "sessionTitle": "Welcome and Reflection by Ajahn Chah",
-      "excerpts": 3,
-      "tags": [
-        "Ajahn Chah"
-      ]
-    },
     {
       "event": "Chah2001",
       "sessionNumber": 1,
@@ -95154,23 +95068,17 @@
     }
   ],
   "audioSource": {
-    "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3": {
-      "filename": "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3",
-      "duration": "19:53",
-      "event": "Test1999",
-      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2002%20-%20Welcome%20and%20Reflection%20by%20Ajahn%20Chah.mp3"
-    },
-    "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3": {
-      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-      "duration": "11:34",
-      "event": "Test1999",
-      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2013%20-%20Teachings%20to%20Marjorie%20-%20Ajahn%20Chah.mp3"
-    },
     "Ajahn Chah Weekend - 01 - Opening Chanting.mp3": {
       "filename": "Ajahn Chah Weekend - 01 - Opening Chanting.mp3",
       "duration": "5:06",
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2001%20-%20Opening%20Chanting.mp3"
+    },
+    "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3": {
+      "filename": "Ajahn Chah Weekend - 02 - Welcome and Reflection by Ajahn Chah.mp3",
+      "duration": "19:53",
+      "event": "Chah2001",
+      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2002%20-%20Welcome%20and%20Reflection%20by%20Ajahn%20Chah.mp3"
     },
     "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3": {
       "filename": "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3",
@@ -95231,6 +95139,12 @@
       "duration": "18:26",
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2012%20-%20Questions%20&%20Answers%201.mp3"
+    },
+    "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3": {
+      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+      "duration": "11:34",
+      "event": "Chah2001",
+      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2013%20-%20Teachings%20to%20Marjorie%20-%20Ajahn%20Chah.mp3"
     },
     "Ajahn Chah Weekend - 14 - Ajahn Chah's Teachings by Thanissara.mp3": {
       "filename": "Ajahn Chah Weekend - 14 - Ajahn Chah's Teachings by Thanissara.mp3",
@@ -97433,8 +97347,8 @@
       "form1": "",
       "form2": "unimplemented",
       "form3": "unimplemented",
-      "exclude": true,
-      "usageNotes": ""
+      "exclude": false,
+      "usageNotes": "Cut the audio between start and end time."
     }
   },
   "category": {
@@ -98051,7 +97965,7 @@
       "allowTag": true,
       "group": "Monastics",
       "lineage": "Western disciples of Ajahn Chah",
-      "eventCount": 47,
+      "eventCount": 46,
       "sessionCount": 215,
       "excerptCount": 1815,
       "htmlFile": "ajahn-pasanno.html"
@@ -106291,8 +106205,8 @@
       ],
       "subtopics": [],
       "eventCount": 3,
-      "sessionCount": 39,
-      "excerptCount": 568,
+      "sessionCount": 38,
+      "excerptCount": 566,
       "fTagCount": 4,
       "listIndex": 473
     },
@@ -120308,7 +120222,7 @@
       "text": "Teachers (23)",
       "tag": "Teachers",
       "subtagCount": 126,
-      "subtagExcerptCount": 996
+      "subtagExcerptCount": 994
     },
     {
       "level": 2,
@@ -120321,7 +120235,7 @@
       "text": "Monastic teachers (2)",
       "tag": "Monastic teachers",
       "subtagCount": 106,
-      "subtagExcerptCount": 965
+      "subtagExcerptCount": 963
     },
     {
       "level": 3,
@@ -120334,7 +120248,7 @@
       "text": "Thai Forest Tradition (79)",
       "tag": "Thai Forest Tradition",
       "subtagCount": 83,
-      "subtagExcerptCount": 949
+      "subtagExcerptCount": 947
     },
     {
       "level": 4,
@@ -120364,9 +120278,9 @@
       "flags": "",
       "name": "Ajahn Chah Subhaddo",
       "pali": "",
-      "excerptCount": 568,
+      "excerptCount": 566,
       "subsumed": false,
-      "text": "Ajahn Chah Subhaddo (568)",
+      "text": "Ajahn Chah Subhaddo (566)",
       "tag": "Ajahn Chah"
     },
     {
@@ -128790,7 +128704,7 @@
       "topicCode": "teachers",
       "subtags": {},
       "htmlPath": "tags/ajahn-chah.html",
-      "excerptCount": 568,
+      "excerptCount": 566,
       "fTagCount": 4
     },
     "Ajahn Sumedho": {
@@ -130062,7 +129976,7 @@
         "Ajahn Sumedho",
         "Ajahn Pasanno"
       ],
-      "excerptCount": 870,
+      "excerptCount": 868,
       "fTagCount": 15
     },
     "monasteries": {
