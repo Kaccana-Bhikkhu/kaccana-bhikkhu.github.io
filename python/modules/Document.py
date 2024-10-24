@@ -1,4 +1,4 @@
-"""Render raw documentation files in documentation/aboutSources to markdown files in documentation/about using pryatemp."""
+"""Render raw documentation files in documentation/aboutSources to markdown files in documentation/about using pyratemp."""
 
 from __future__ import annotations
 
@@ -8,6 +8,7 @@ import Html2 as Html
 from typing import Tuple, Type, Callable, Iterable
 import pyratemp, markdown
 from markdown_newtab_remote import NewTabRemoteExtension
+from datetime import datetime
 import FileRegister
 
 def WordCount(text: str) -> int:
@@ -44,7 +45,7 @@ def RenderDocumentationFiles(aboutDir: str,destDir:str = "",pathToPrototype:str 
 
         fileModified[fileName] = Utils.ModificationDate(sourcePath)
         template = pyratemp.Template(Utils.ReadFile(sourcePath))
-        fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database)
+        fileContents[fileName] = template(gOptions = gOptions,gDatabase = gDatabase,Database = Database,today = datetime.today().strftime("%B %d, %Y"))
         gDocumentationWordCount += WordCount(fileContents[fileName])
             
     def ApplyToText(transform: Callable[[str],Tuple[str,int]]) -> int:
