@@ -7,8 +7,10 @@ import copy
 from datetime import time,timedelta
 from typing import List, Union, NamedTuple, Iterator, Iterable
 
-Executable = 'mp3DirectCut.exe'
-ExecutableDir = 'mp3DirectCut'
+executable = 'mp3DirectCut.exe'
+executableDir = 'mp3DirectCut'
+joinUsingPydub = False
+pydubBitrate = "64k"
 class Mp3CutError(Exception):
     "Raised if mp3DirectCut returns with an error code"
     pass
@@ -25,10 +27,10 @@ class ExecutableNotFound(Mp3CutError):
     pass
 
 def SetExecutable(directory,program='mp3DirectCut.exe'):
-    global Executable,ExecutableDir
+    global executable,executableDir
     
-    Executable = program
-    ExecutableDir = directory
+    executable = program
+    executableDir = directory
 
 TimeSpec = Union[timedelta,float,str]
 "A union of types that can indicate a time index to an audio file."
@@ -134,7 +136,7 @@ def ConfigureMp3DirectCut() -> str:
     if platform.system() != "Windows":
         raise ExecutableNotFound(f"mp3DirectCut.exe only runs on Windows; cannot split mp3 files.")
 
-    mp3DirectCutProgram = os.path.join(ExecutableDir,Executable)
+    mp3DirectCutProgram = os.path.join(executableDir,executable)
     if not os.path.exists(mp3DirectCutProgram):
         raise ExecutableNotFound(f"mp3DirectCut.exe not found at {mp3DirectCutProgram}; cannot split mp3 files.")
     
@@ -161,7 +163,7 @@ def SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueF
     deleteCueFile - delete cue file when finished?"""
     
     mp3DirectCutProgram = ConfigureMp3DirectCut()
-
+    print(mp3DirectCutProgram)
     directory,originalFileName = os.path.split(file)
     fileNameBase,extension = os.path.splitext(originalFileName)
     cueFileName = fileNameBase + '.cue'
@@ -324,8 +326,8 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
                 for clip in clips:
                     clipFile = splitOps.get(clip.file,"")
                     if not clipFile:
-                        tempFileCount += 1
                         clipFile = f"{tempFilePrefix}{tempFileCount:02d}.mp3"
+                        tempFileCount += 1
                         splitOps[clip] = clipFile
                 joinOps[outputFile] = clips
             else:
@@ -348,6 +350,12 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
             joinFiles = [os.path.join(outputDir,splitOps[clip]) for clip in clipsToJoin]
             Join(joinFiles,destPath)
         
+        for tempFileNumber in range(tempFileCount):
+            try:
+                os.remove(os.path.join(outputDir,f"{tempFilePrefix}{tempFileNumber:02d}.mp3"))
+            except OSError:
+                print(f"Can't delete tempfile {tempFileNumber}")
+                pass
 
 def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     """Join mp3 files into a single file using simple file copying operations.
@@ -355,6 +363,18 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     outFile: pathname of output file.
     heal: Use Mp3DirectCut to clean up the output file. Usually a good idea.
     This operation fails with mp3 files with different sample rates."""
+
+    if len(fileList) > 1 and joinUsingPydub:
+        try:
+            from pydub import AudioSegment
+
+            joined = AudioSegment.empty()
+            for file in fileList:
+                joined += AudioSegment.from_mp3(file)
+            joined.export(outputFile,format="mp3",id3v2_version="4",bitrate=pydubBitrate)
+            return
+        except OSError as error:
+            print(error.args[0]," occured when attempting to join ",fileList," with pydub. Will join using Mp3DirectCut.")
 
     if len(fileList) == 1:
         heal = False # In this case, we're just copying the file

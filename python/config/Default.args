@@ -23,6 +23,10 @@
 
 // ParseCSV options:
 // --pendingMeansYes
+// --includeTestEvent
+
+// SplitMp3 options:
+//--joinUsingPydub
 
 // Link options:
 --mirror abhayagiri:https://www.abhayagiri.org/media/discs/questions/
@@ -52,8 +56,6 @@
 
 // Increase verbosity to maximum
 -vvv
-
-// --includeTestEvent
 
 --args python/config/BuildPreview.args
 --linkCheckLevel 1
