@@ -184,7 +184,10 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
                 # attribute it. It will be attached to the excerpt, and the annotation will be hidden if it matches the session teachers.
         else:
             parent = Database.ParentAnnotation(container,item)
-            defaultTeachers = parent.get("teachers",())
+            if parent:
+                defaultTeachers = parent.get("teachers",())
+            else:
+                defaultTeachers = ()
         if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
             teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')

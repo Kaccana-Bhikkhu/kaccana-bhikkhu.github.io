@@ -89319,13 +89319,18 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [
-        "Leadership"
-      ],
-      "fTagOrder": [
-        100
-      ],
+      "fTags": [],
       "annotations": [
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "13:07",
+          "endTime": "15:16",
+          "text": "[](player:Rishikesh2023_S01_F04)",
+          "fTags": [],
+          "fTagOrder": [],
+          "indentLevel": 1
+        },
         {
           "kind": "Reflection",
           "flags": "s",
@@ -89333,8 +89338,12 @@
           "teachers": [
             "AP"
           ],
-          "fTags": [],
-          "fTagOrder": [],
+          "fTags": [
+            "Leadership"
+          ],
+          "fTagOrder": [
+            100
+          ],
           "tags": [
             "Leadership",
             "Ajahn Chah",
@@ -89396,13 +89405,83 @@
           "20:22"
         ]
       ],
-      "duration": "9:55"
+      "duration": "9:55",
+      "displayFTags": [
+        "Leadership"
+      ]
+    },
+    {
+      "event": "Rishikesh2023",
+      "sessionNumber": 1,
+      "excerptNumber": 3.1,
+      "fileNumber": 4,
+      "annotations": [
+        {
+          "kind": "Quote",
+          "flags": "-",
+          "text": "You can't lead just by telling people what to do and they are going to obey. Forget it!",
+          "teachers": [
+            "AP"
+          ],
+          "fTags": [],
+          "fTagOrder": [],
+          "tags": [
+            "Leadership",
+            "Abbot"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Quote",
+          "flags": "-",
+          "text": "Everybody else is a mirror for oneself if one is willing to learn in teaching or leading others.",
+          "teachers": [
+            "AP"
+          ],
+          "fTags": [],
+          "fTagOrder": [],
+          "tags": [
+            "Leadership",
+            "Discernment",
+            "Learning"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "kind": "Reflection",
+      "flags": "sf",
+      "teachers": [
+        "AP"
+      ],
+      "text": "on leadership.",
+      "fTags": [
+        "Leadership"
+      ],
+      "fTagOrder": [
+        100
+      ],
+      "tags": [
+        "Leadership",
+        "Ajahn Chah",
+        "Abbot",
+        "Wat Pah Nanachat",
+        "Discernment"
+      ],
+      "qTagCount": 1,
+      "clips": [
+        [
+          "$",
+          "13:07",
+          "15:16"
+        ]
+      ],
+      "duration": "2:09"
     },
     {
       "event": "Rishikesh2023",
       "sessionNumber": 1,
       "excerptNumber": 4,
-      "fileNumber": 4,
+      "fileNumber": 5,
       "kind": "Question",
       "flags": "",
       "text": "What makes you keep on moving?",
@@ -89448,7 +89527,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 1,
       "excerptNumber": 5,
-      "fileNumber": 5,
+      "fileNumber": 6,
       "kind": "Question",
       "flags": "",
       "text": "What would be your advice when young monks are wavering in their decsion?",
@@ -89501,7 +89580,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 1,
       "excerptNumber": 6,
-      "fileNumber": 6,
+      "fileNumber": 7,
       "kind": "Question",
       "flags": "",
       "text": "Going to Thailand—was it a divine plan or was it your own wish? Is enlightenment a path or a destination?",
@@ -89546,7 +89625,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 1,
       "excerptNumber": 7,
-      "fileNumber": 7,
+      "fileNumber": 8,
       "kind": "Question",
       "flags": "",
       "text": "At the San Francisco Zen Center, they chant the Heart Sutra daily: 'No path, no knowledge, no attainment.' Could you help me understand the paths we're talking about here and Zen no-path?",
@@ -89616,7 +89695,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 1,
       "excerptNumber": 8,
-      "fileNumber": 8,
+      "fileNumber": 9,
       "kind": "Question",
       "flags": "",
       "text": "Can building a continuous narrative regarding impermanence hinder the perception of beauty?",
@@ -128803,7 +128882,7 @@
       },
       "htmlPath": "clusters/community.html",
       "excerptCount": 89,
-      "fTagCount": 3
+      "fTagCount": 2
     },
     "Environment": {
       "tag": "Environment",
@@ -129833,7 +129912,7 @@
         "Technology"
       ],
       "excerptCount": 435,
-      "fTagCount": 22
+      "fTagCount": 21
     }
   },
   "tagRemoved": [

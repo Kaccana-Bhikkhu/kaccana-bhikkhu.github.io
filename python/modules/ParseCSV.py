@@ -1112,7 +1112,7 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
 
             fragmentAnnotations = [copy.copy(a) for a in Database.SubAnnotations(excerpt,baseAnnotations[n + 1])]
             for a in fragmentAnnotations:
-                a["indentLevel"] = a["indentLevel"] - baseLevel + 1
+                a["indentLevel"] = a["indentLevel"] - baseLevel
 
             fragmentExcerpts.append(dict(
                 event = excerpt["event"],
