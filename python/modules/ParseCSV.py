@@ -1276,7 +1276,10 @@ def LoadEventFile(database,eventName,directory):
                 xNumber = 0
             lastSession = x["sessionNumber"]
         else:
-            xNumber += 1
+            if ExcerptFlag.FRAGMENT in x["flags"]:
+                xNumber += 0.1  # Fragments have fractional excerpt numbers
+            else:
+                xNumber = int(xNumber) + 1
         
         x["excerptNumber"] = xNumber
     
@@ -1292,14 +1295,14 @@ def LoadEventFile(database,eventName,directory):
     database["excerpts"] += excerpts
 
     eventDesc["sessions"] = len(sessions)
-    eventDesc["excerpts"] = sum(1 for x in excerpts if x["fileNumber"]) # Count only non-session excerpts   
+    eventDesc["excerpts"] = Database.CountExcerpts(excerpts) # Count only non-session excerpts   
 
 def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False) -> int:
     """Loop through items in a collection of dicts and count the number of appearances a given str.
         source: A dict of dicts or a list of dicts containing the items to count.
         sourceKey: The key whose values we should count.
         countDicts: A dict of dicts that we use to count the items. Each item should be a key in this dict.
-        countKey: The key we add to countDict[item] with the running tally of each item.
+        countKey: The key we add to countDicts[item] with the running tally of each item.
         zeroCount: add countKey even when there are no items counted?
         return the total number of items counted"""
         
@@ -1309,7 +1312,9 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
                 countDicts[key][countKey] = 0
 
     totalCount = 0
+    excerptsCounted = 0
     for d in Utils.Contents(source):
+        excerptsCounted += 1
         valuesToCount = d[sourceKey]
         if type(valuesToCount) != list:
             valuesToCount = [valuesToCount]
@@ -1327,7 +1332,7 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
             for item in removeItems:
                 valuesToCount.remove(item)
     
-    return totalCount
+    return excerptsCounted
 
 def CountAndVerify(database):
     
@@ -1385,11 +1390,10 @@ def CountAndVerify(database):
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
-    CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
 
     for teacher in database["teacher"].values():
-        teacher["excerptCount"] = len(Filter.Teacher(teacher["teacher"])(database["excerpts"]))
-        # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
+        teacher["excerptCount"] = len(list(Filter.Teacher(teacher["teacher"])(Database.RemoveFragments(database["excerpts"]))))
+        # Count indirect quotes from teachers as well as attributed teachers
     
     for topic in database["keyTopic"].values():
         topicExcerpts = set()

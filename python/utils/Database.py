@@ -9,6 +9,7 @@ import SplitMp3
 import Utils
 import Alert
 import Filter
+from ParseCSV import ExcerptFlag
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -25,6 +26,29 @@ def LoadDatabase(filename: str) -> dict:
     
     return newDB
 
+def RemoveFragments(excerpts: Iterable[dict[str]]) -> Generator[dict[str]]:
+    """Yield these excerpts but skip fragments if their source excerpt is present."""
+
+    lastNonFragment = ()
+    for x in excerpts:
+        if ExcerptFlag.FRAGMENT in x["flags"]:
+            if (x["event"],x["sessionNumber"],int(x["excerptNumber"])) != lastNonFragment:
+                yield x
+        else:
+            yield x
+            lastNonFragment = (x["event"],x["sessionNumber"],x["excerptNumber"])
+
+def CountExcerpts(excerpts: Iterable[dict[str]],countSessionExcerpts:bool = False) -> int:
+    """Count excerpts excluding fragments if the list includes their source excerpt."""
+
+    return sum(1 for x in RemoveFragments(excerpts) if x["fileNumber"] or countSessionExcerpts)
+
+def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
+    """Yield lists containing non-fragment excerpts followed by their fragments."""
+    
+    # Fragments share the integral part of their excerpt number with their source.
+    for key,group in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"],int(x["excerptNumber"]))):
+        return list(group)
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."

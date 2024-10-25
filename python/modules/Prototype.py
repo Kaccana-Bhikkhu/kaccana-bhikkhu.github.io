@@ -835,7 +835,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     duration = timedelta()
     for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
         sessionExcerpts = list(sessionExcerpts)
-        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in Database.RemoveFragments(sessionExcerpts) if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
             # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
             # This prevents confusing results due to double counting times
     
@@ -847,7 +847,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     if len(sessions) > 1 and countSessions:
         strItems.append(f"{len(sessions)} sessions,")
     
-    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
+    excerptCount = Database.CountExcerpts(excerpts,countSessionExcerpts)
     if excerptCount > 1:
         strItems.append(f"{excerptCount} excerpts,")
     else:
@@ -1190,7 +1190,7 @@ def FilteredExcerptsMenuItem(excerpts:Iterable[dict], filter:Filter.Filter, form
         pageInfo = mainPageInfo._replace(file = Utils.AppendToFilename(mainPageInfo.file,"-" + fileExt))
     else:
         pageInfo = mainPageInfo
-    menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredExcerpts)})")
+    menuItem = pageInfo._replace(title=f"{menuTitle} ({Database.CountExcerpts(filteredExcerpts,countSessionExcerpts=True)})")
 
 
     blankPage = Html.PageDesc(pageInfo)
