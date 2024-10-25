@@ -1123,11 +1123,11 @@ def LoadEventFile(database,eventName,directory):
     
     for key in ["tags","teachers"]:
         ListifyKey(sessions,key)
-    for key in ["sessionNumber","excerpts"]:
-        ConvertToInteger(sessions,key)
-
+    ConvertToInteger(sessions,"sessionNumber")
+    
     for s in sessions:
         s["event"] = eventName
+        s.pop("excerpts",None)
         Utils.ReorderKeys(s,["event","sessionNumber"])
         RemoveUnknownTeachers(s["teachers"],s)
         s["teachers"] = [teacher for teacher in s["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
@@ -1340,6 +1340,7 @@ def CountAndVerify(database):
     tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
 
+    fTagCount = draftFTagCount = 0
     # Don't count tags on fragments which are duplicated in their source excerpt
     for excerptWithFragments in Database.GroupFragments(database["excerpts"]):
         tagSet = set()
@@ -1369,27 +1370,31 @@ def CountAndVerify(database):
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
-    
-    fTagCount = draftFTagCount = 0
-    for x in database["excerpts"]:
-        tagSet = Filter.AllTags(x)
+        
+        for x in excerptWithFragments:
+            tagSet = Filter.AllTags(x)
 
-        for index in reversed(range(len(x["fTags"]))):
-            fTag = x["fTags"][index]
-            fTagOrder = x["fTagOrder"][index]
-            if fTag not in tagSet:
-                Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
+            for index in reversed(range(len(x["fTags"]))):
+                fTag = x["fTags"][index]
+                fTagOrder = x["fTagOrder"][index]
+                if fTag not in tagSet:
+                    Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
 
-            if gOptions.draftFTags == "omit" and fTagOrder > 1000:
-                del x["fTagOrder"][index]
-                del x["fTags"][index]
-                draftFTagCount += 1
-            else:
-                tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
-                if fTagOrder > 1000:
+                if gOptions.draftFTags == "omit" and fTagOrder > 1000:
+                    del x["fTagOrder"][index]
+                    del x["fTags"][index]
                     draftFTagCount += 1
                 else:
-                    fTagCount += 1
+                    tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
+                    if fTagOrder > 1000:
+                        draftFTagCount += 1
+                    else:
+                        fTagCount += 1
+            
+        # The source excerpt should display stars for its fragements' fTags, so set the displayFTags key
+        for fragment in excerptWithFragments[1:]:
+            for fTag,fTagOrder in zip(fragment["fTags"],fragment["fTagOrder"]):
+                excerptWithFragments[0]["displayFTags"] = excerptWithFragments[0].get("displayFTags",[]) + [fTag]
 
     Alert.info(tagCount,"total tags applied.",
                fTagCount,"featured tags applied.",draftFTagCount,f"draft featured tags{' have been omitted' if gOptions.draftFTags == 'omit' else ''}.")
@@ -1405,7 +1410,7 @@ def CountAndVerify(database):
         topicExcerpts = set()
         for cluster in topic["subtopics"]:
             allTags = set([cluster] + list(database["subtopic"][cluster]["subtags"].keys()))
-            tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
+            tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(Database.RemoveFragments(database["excerpts"])))
             database["subtopic"][cluster]["fTagCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         
@@ -1663,8 +1668,6 @@ def main():
             if not event.startswith("Test") or gOptions.includeTestEvent:
                 LoadEventFile(gDatabase,event,gOptions.csvDir)
     excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
-    gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
-        # Remove sessions that have no excerpts in them
     gUnattributedTeachers.pop("Anon",None)
     if gUnattributedTeachers:
         excludeAlert(f": Did not attribute excerpts to the following teachers:",dict(gUnattributedTeachers))

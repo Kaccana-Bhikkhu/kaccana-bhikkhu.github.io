@@ -942,7 +942,7 @@ class Formatter:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
 
             text = tag
-            if tag in excerpt["fTags"]:
+            if tag in excerpt["fTags"] or tag in excerpt.get("displayFTags",()):
                 text += f'&nbsp{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
                     # Add ? to uncertain fTags; "?" * -N = ""
@@ -967,7 +967,7 @@ class Formatter:
             omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"]))
             
             text = tag
-            if tag in excerpt["fTags"]:
+            if tag in excerpt["fTags"] or tag in excerpt.get("displayFTags",()):
                 text += f'&nbsp{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
@@ -1469,7 +1469,7 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
             yield firstPage # First yield the menu item descriptor, if any
             firstPage = next(menuItemAndPages)
 
-        featuredExcerpts = list(Filter.FTag(tags).Apply(excerpts))
+        featuredExcerpts = list(Database.RemoveFragments(Filter.FTag(tags).Apply(excerpts)))
         if featuredExcerpts:
             featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tags))
 
@@ -1887,7 +1887,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.headingLinks = False
         formatter.headingAudio = True
         formatter.excerptPreferStartTime = True
-        a(formatter.HtmlExcerptList(excerpts))
+        a(formatter.HtmlExcerptList(list(Database.RemoveFragments(excerpts))))
         
         titleInBody = eventInfo["title"]
         if eventInfo["subtitle"]:
@@ -1988,7 +1988,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
                 return Database.FTagOrder(x,searchTags)
 
             searchTags = [cluster] + list(gDatabase["subtopic"][cluster]["subtags"].keys())
-            excerptsByTopic[cluster] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
+            excerptsByTopic[cluster] = sorted(Database.RemoveFragments(Filter.FTag(searchTags).Apply(gDatabase["excerpts"])),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
             excerpt,tag,firstExcerpt,lastExcerpt = item
