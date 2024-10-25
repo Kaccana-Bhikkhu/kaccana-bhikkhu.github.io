@@ -1,6 +1,7 @@
 """Functions for reading and writing the json databases used in QSArchive."""
 
 from collections.abc import Iterable, Generator
+from collections import defaultdict
 import json, re, itertools
 import Html2 as Html
 import Link
@@ -10,6 +11,8 @@ import Utils
 import Alert
 import Filter
 from ParseCSV import ExcerptFlag
+from functools import lru_cache
+
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -101,6 +104,10 @@ def ItemCitation(item: dict) -> str:
         parts.append(Html.Tag("a",{"href":EventLink(event,session)})(f"Session {session}"))
     excerptNumber = item.get("excerptNumber",None)
     if excerptNumber:
+        newExcerptNumber = excerptNumber
+        while (newExcerptNumber != int(newExcerptNumber)) and fileNumber > 0: # If this is a fragment, look backward for the source excerpt
+            fileNumber -= 1
+            newExcerptNumber = FindExcerpt(event,session,fileNumber)["excerptNumber"]
         parts.append(Html.Tag("a",{"href":EventLink(event,session,fileNumber)})(f"Excerpt {excerptNumber}"))
     return ", ".join(parts)
 
@@ -162,6 +169,14 @@ def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
 
     return teacherDictCache.get(teacherRef,None)
 
+"""Return a dictionary of excerpts that can be referenced as:
+ExcerptDict()[event][sessionNumber][fileNumber]"""
+@lru_cache(maxsize=None)
+def ExcerptDict() -> dict[str,dict[int,dict[int,dict[str]]]]:
+    excerptDict = defaultdict(lambda: defaultdict(defaultdict))
+    for x in gDatabase["excerpts"]:
+        excerptDict[x["event"]][x["sessionNumber"]][x["fileNumber"]] = x
+    return excerptDict
 
 def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|None:
     "Return the excerpt that matches these parameters. Otherwise return None."
@@ -172,10 +187,10 @@ def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|Non
         return None
     if session is None:
         session = 0
-    for x in gDatabase["excerpts"]:
-        if x["event"] == event and x["sessionNumber"] == session and x["fileNumber"] == fileNumber:
-            return x
-    return None
+    try:
+        return ExcerptDict()[event][session][fileNumber]
+    except KeyError:
+        return None
 
 
 def FindOwningExcerpt(annotation: dict) -> dict:
