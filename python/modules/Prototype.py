@@ -1129,7 +1129,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
 
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
-    for x in excerpts:
+    for x in Database.RemoveFragments(excerpts):
         thisSession = (x["event"],x["sessionNumber"])
         if prevSession != thisSession:
             if itemLimit and len(excerptsInThisPage) >= itemLimit:

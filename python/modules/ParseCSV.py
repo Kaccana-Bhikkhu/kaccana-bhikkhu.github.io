@@ -552,7 +552,7 @@ def CountSubtagExcerpts(database):
     of excerpts which are tagged by this tag or any of its subtags."""
 
     tagList = database["tagDisplayList"]
-    excerpts = database["excerpts"]
+    excerptsWithoutFragments = list(Database.RemoveFragments(database["excerpts"]))
     subtags = [None] * len(tagList)
     savedSearches = [None] * len(tagList)
     for parentIndex,childIndexes in WalkTags(tagList,returnIndices=True):
@@ -563,7 +563,7 @@ def CountSubtagExcerpts(database):
                 tag = tagList[index]["tag"]
                 if tag:
                     subtags[index] = {tag}
-                    savedSearches[index] = {id(x) for x in Filter.Tag(tag)(excerpts)}
+                    savedSearches[index] = {id(x) for x in Filter.Tag(tag)(excerptsWithoutFragments)}
                     #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
                 else:
                     subtags[index] = set()
@@ -1340,26 +1340,11 @@ def CountAndVerify(database):
     tagCount = CountInstances(database["event"],"tags",tagDB,"eventCount")
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
 
-    fTagCount = draftFTagCount = 0
-    for x in database["excerpts"]:
-        tagSet = Filter.AllTags(x)
-
-        for index in reversed(range(len(x["fTags"]))):
-            fTag = x["fTags"][index]
-            fTagOrder = x["fTagOrder"][index]
-            if fTag not in tagSet:
-                Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
-
-            if gOptions.draftFTags == "omit" and fTagOrder > 1000:
-                del x["fTagOrder"][index]
-                del x["fTags"][index]
-                draftFTagCount += 1
-            else:
-                tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
-                if fTagOrder > 1000:
-                    draftFTagCount += 1
-                else:
-                    fTagCount += 1
+    # Don't count tags on fragments which are duplicated in their source excerpt
+    for excerptWithFragments in Database.GroupFragments(database["excerpts"]):
+        tagSet = set()
+        for x in excerptWithFragments:
+            tagSet.update(Filter.AllTags(x))
 
         tagsToRemove = []
         topics = set()
@@ -1385,6 +1370,27 @@ def CountAndVerify(database):
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
     
+    fTagCount = draftFTagCount = 0
+    for x in database["excerpts"]:
+        tagSet = Filter.AllTags(x)
+
+        for index in reversed(range(len(x["fTags"]))):
+            fTag = x["fTags"][index]
+            fTagOrder = x["fTagOrder"][index]
+            if fTag not in tagSet:
+                Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
+
+            if gOptions.draftFTags == "omit" and fTagOrder > 1000:
+                del x["fTagOrder"][index]
+                del x["fTags"][index]
+                draftFTagCount += 1
+            else:
+                tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
+                if fTagOrder > 1000:
+                    draftFTagCount += 1
+                else:
+                    fTagCount += 1
+
     Alert.info(tagCount,"total tags applied.",
                fTagCount,"featured tags applied.",draftFTagCount,f"draft featured tags{' have been omitted' if gOptions.draftFTags == 'omit' else ''}.")
     
