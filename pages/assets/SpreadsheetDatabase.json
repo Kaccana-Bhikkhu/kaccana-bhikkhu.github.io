@@ -45466,7 +45466,7 @@
       "excerptNumber": 2,
       "fileNumber": 2,
       "kind": "Question",
-      "flags": "m",
+      "flags": "",
       "teachers": [
         "AP"
       ],
@@ -45496,8 +45496,14 @@
             "AKd"
           ],
           "text": "\"What's it like being the abbot of a big monastery?\" — \"I come out of my kuti and I do the things that I need to do, and then I go back to my kuti. And if some people want to call that being an abbot, well that's their business.\"|Ajahn Liem",
-          "fTags": [],
-          "fTagOrder": [],
+          "fTags": [
+            "Ajahn Liem",
+            "Abbot"
+          ],
+          "fTagOrder": [
+            100,
+            100
+          ],
           "tags": [
             "Ajahn Liem",
             "Abbot",
@@ -45532,6 +45538,7 @@
       "sessionNumber": 6,
       "excerptNumber": 2.1,
       "fileNumber": 3,
+      "annotations": [],
       "kind": "Indirect quote",
       "flags": "uf",
       "teachers": [
@@ -45547,7 +45554,6 @@
         100,
         100
       ],
-      "annotations": [],
       "tags": [
         "Ajahn Liem",
         "Abbot",
@@ -67633,9 +67639,11 @@
         "AP"
       ],
       "fTags": [
-        "Mindfulness"
+        "Mindfulness",
+        "Right Mindfulness"
       ],
       "fTagOrder": [
+        100,
         100
       ],
       "annotations": [
@@ -99160,7 +99168,7 @@
       "eventCount": 1,
       "sessionCount": 4,
       "excerptCount": 62,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 33
     },
     "Mindfulness of body": {
@@ -124729,9 +124737,9 @@
       "startDate": "21/11/2014",
       "teachers": "AP;AKd;ANy;DS",
       "sessions": 7,
-      "excerpts": 214,
+      "excerpts": 213,
       "answersListenedTo": 63,
-      "tagsApplied": 639,
+      "tagsApplied": 633,
       "invalidTags": 0,
       "duration": "8:10:22"
     },
@@ -127733,7 +127741,7 @@
       },
       "htmlPath": "clusters/right-mindfulness.html",
       "excerptCount": 148,
-      "fTagCount": 3
+      "fTagCount": 4
     },
     "Right Concentration": {
       "tag": "Right Concentration",
@@ -129615,7 +129623,7 @@
         "Right Concentration"
       ],
       "excerptCount": 483,
-      "fTagCount": 21
+      "fTagCount": 22
     },
     "meditation": {
       "code": "meditation",

@@ -104,7 +104,7 @@ def AddImplicitAttributions() -> None:
                 x["annotations"].insert(0,newAnnotation)
         for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
             if a["kind"] == "Reading":
-                readBy = [subA for subA in Database.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                readBy = [subA for subA in Database.ChildAnnotations(x,a) if subA["kind"] == "Read by"]
                 if not readBy:
                     if x["kind"] == "Reading":
                         readers = session["teachers"]

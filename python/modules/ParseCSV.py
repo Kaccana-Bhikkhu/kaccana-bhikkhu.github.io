@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os, sys, re, csv, json, unicodedata
+import os, sys, re, csv, json, unicodedata, copy
 import Database
 import Filter
 import Render
@@ -792,7 +792,7 @@ def FinalizeExcerptTags(x: dict) -> None:
     x["tags"] = x["qTag"] + x["aTag"]
     x["qTagCount"] = len(x["qTag"])
     if len(x["fTagOrder"]) != len(x["fTags"]):
-        Alert.caution(x,f"has {len(x['fTags'])} fTag but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
+        Alert.caution(x,f"has {len(x['fTags'])} fTags but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
 
     if not gOptions.jsonNoClean:
         del x["qTag"]
@@ -800,6 +800,11 @@ def FinalizeExcerptTags(x: dict) -> None:
         x.pop("aListen",None)
         if not x["fTags"]:
             x.pop("fTagOrder")
+        
+        # Remove these keys from all annotations
+        for a in x["annotations"]:
+            for key in ("qTag","aTag"): #,"fTags","fTagOrder"):
+                a.pop(key,None)
 
 def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
     "Combine qTag, aTag, fTag, and fTagOrder keys from an Extra Tags annotation with an existing excerpt."
@@ -827,7 +832,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
             if "tags" in prevAnnotation:
                 prevAnnotation["tags"] += annotation["qTag"]
-                prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
+                prevAnnotation["tags"] += annotation["aTag"] # Annotations don't distinguish between q and a tags,
+                AddExcerptTags(prevAnnotation,annotation) # but store qTags and aTags separately in case this annotation is a fragment that will be promoted to an excerpt
                 return
         
         AddExcerptTags(excerpt,annotation) # If no annotation takes the tags, give them to the excerpt
@@ -835,7 +841,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     
     kind = database["kind"][annotation["kind"]]
     
-    keysToRemove = ["sessionNumber","offTopic","aListen","exclude","qTag","aTag"]
+    keysToRemove = ["sessionNumber","offTopic","aListen","exclude"]
     
     if kind["takesTeachers"]:
         if not annotation["teachers"]:
@@ -1090,16 +1096,48 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
     # fragmentNumbers = [n for n,a in enumerate(excerpt["annotations"]) if a["Kind"] == "Fragment"]
     
     fragmentExcerpts = []
-    fileNumber = excerpt["fileNumber"]
-    for n,fragmentAnnotation in enumerate(excerpt["annotations"]):
+    nextFileNumber = excerpt["fileNumber"] + 1
+    baseAnnotations = excerpt["annotations"]
+    for n,fragmentAnnotation in enumerate(baseAnnotations):
         if fragmentAnnotation["kind"] != "Fragment":
             continue
 
         if not ExcerptFlag.MANUAL_FRAGMENTS in excerpt["flags"]:
-            pass
-        
-        fileNumber += 1
-        fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=fileNumber)})"
+            if n + 1 >= len(baseAnnotations) or baseAnnotations[n]["indentLevel"] != baseAnnotations[n + 1]["indentLevel"]:
+                Alert.error("Error processing Fragment annotation #",n,"in",excerpt,": an annotation at the same level must follow a Fragment annotation.")
+                return fragmentExcerpts
+            
+            baseLevel = fragmentAnnotation["indentLevel"]
+            nextAnnotation = baseAnnotations[n + 1]
+
+            fragmentAnnotations = [copy.copy(a) for a in Database.SubAnnotations(excerpt,baseAnnotations[n + 1])]
+            for a in fragmentAnnotations:
+                a["indentLevel"] = a["indentLevel"] - baseLevel + 1
+
+            fragmentExcerpts.append(dict(
+                event = excerpt["event"],
+                sessionNumber = excerpt["sessionNumber"],
+                fileNumber = nextFileNumber,
+                annotations = fragmentAnnotations,
+
+                kind = nextAnnotation["kind"],
+                flags = nextAnnotation["flags"] + ExcerptFlag.FRAGMENT,
+                teachers = nextAnnotation["teachers"],
+                text = nextAnnotation["text"],
+
+                qTag = nextAnnotation["qTag"],
+                aTag = nextAnnotation["aTag"],
+                fTags = nextAnnotation["fTags"],
+                fTagOrder = nextAnnotation["fTagOrder"],
+
+                startTime = fragmentAnnotation["startTime"],
+                endTime = fragmentAnnotation["endTime"],
+
+                exclude = False
+            ))
+
+        fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
+        nextFileNumber += 1
     
     return fragmentExcerpts
 
@@ -1420,7 +1458,7 @@ def CountAndVerify(database):
             
         # The source excerpt should display stars for its fragements' fTags, so set the displayFTags key
         for fragment in excerptWithFragments[1:]:
-            for fTag,fTagOrder in zip(fragment["fTags"],fragment["fTagOrder"]):
+            for fTag,fTagOrder in zip(fragment["fTags"],fragment.get("fTagOrder",())):
                 excerptWithFragments[0]["displayFTags"] = excerptWithFragments[0].get("displayFTags",[]) + [fTag]
 
     Alert.info(tagCount,"total tags applied.",
