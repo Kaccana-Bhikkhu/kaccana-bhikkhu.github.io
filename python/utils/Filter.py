@@ -149,7 +149,7 @@ class Teacher(Filter):
         self.quotedBy = quotedBy
     
     def Match(self, item: dict) -> bool:
-        fullTeacherNames = {gDatabase["teacher"][t]["attributionName"] for t in self.passTeachers}
+        teacherNames = {gDatabase["teacher"][t]["attributionName"] for t in self.passTeachers}
 
         for i in AllItems(item):
             for t in i.get("teachers",()):
@@ -161,7 +161,7 @@ class Teacher(Filter):
                         return not self.negate
 
             if i.get("kind") == "Indirect quote" and self.quotedBy:
-                if i.get("tags",(None))[0] in fullTeacherNames:
+                if i.get("tags",None) and i["tags"][0] in teacherNames:
                     return not self.negate
                 
         return self.negate

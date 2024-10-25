@@ -35,11 +35,12 @@ class KeyTagFlag(StrEnum):
 
 SUBTAG_FLAGS = set([KeyTagFlag.PEER_TAG,KeyTagFlag.SUBORDINATE_TAG])
 class ExcerptFlag(StrEnum):
-    INDENT = "-"
-    ATTRIBUTE = "a"
-    OVERLAP = "o"
-    PLURAL = "s"
-    UNQUOTE = "u"
+    INDENT = "-"            # Increment the annotation's indentLevel. Base indent level is 1.
+    ATTRIBUTE = "a"         # Always attribute this item
+    OVERLAP = "o"           # This excerpt overlaps with the previous excerpt
+    PLURAL = "s"            # Use the plural form, e.g. stories instead of story
+    UNQUOTE = "u"           # Remove quotes from this items's template
+    FRAGMENT = "f"          # This excerpt is a fragment of the excerpt above it.
     
 
 gCamelCaseTranslation = {}
@@ -1076,7 +1077,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 
             endTime = lastClip.ToClipTD().end
             if sameFile and endTime and endTime > firstClip.ToClipTD().start:
-                if ExcerptFlag.OVERLAP not in x2["flags"]:
+                if ExcerptFlag.OVERLAP not in x2["flags"] and ExcerptFlag.FRAGMENT not in x2["flags"]:
                     Alert.warning(f"excerpt",x2,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         for x in sessionExcerpts:
