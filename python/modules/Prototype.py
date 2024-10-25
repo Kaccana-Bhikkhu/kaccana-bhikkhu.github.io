@@ -761,7 +761,6 @@ def AudioIcon(hyperlink: str,title: str,dataDuration:str = "") -> str:
         with a.a(href = hyperlink,download=filename):
             a(f"Download audio")
         a(f" ({dataDuration})")
-    a.br()
 	
     return str(a)
 
@@ -893,6 +892,7 @@ class Formatter:
         a = Airium(source_minify=True)
         
         a(Mp3ExcerptLink(excerpt,**kwArgs))
+        a.br()
         a(' ')
         if self.excerptNumbers:
             if excerpt['excerptNumber']:
@@ -1025,7 +1025,7 @@ class Formatter:
 
             if linkSessionAudio and session['filename']:
                 audioLink = Mp3SessionLink(session)
-                itemsToJoin[-1] += ' ' + audioLink
+                itemsToJoin[-1] += ' ' + audioLink + '<br />'
                     # The audio chip goes on a new line, so don't separate with a dash
             
             a(' – '.join(itemsToJoin))

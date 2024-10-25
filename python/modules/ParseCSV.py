@@ -41,6 +41,7 @@ class ExcerptFlag(StrEnum):
     PLURAL = "s"            # Use the plural form, e.g. stories instead of story
     UNQUOTE = "u"           # Remove quotes from this items's template
     FRAGMENT = "f"          # This excerpt is a fragment of the excerpt above it.
+    MANUAL_FRAGMENTS = "m"  # Don't automatically extract fragments from this excerpt.
     
 
 gCamelCaseTranslation = {}
@@ -1084,6 +1085,25 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             if "clips" in x:
                 x["duration"] = ExcerptDuration(x,sessionDuration)
 
+def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
+    """Process the fragments in excerpt and return a list to add to the event."""
+    # fragmentNumbers = [n for n,a in enumerate(excerpt["annotations"]) if a["Kind"] == "Fragment"]
+    
+    fragmentExcerpts = []
+    fileNumber = excerpt["fileNumber"]
+    for n,fragmentAnnotation in enumerate(excerpt["annotations"]):
+        if fragmentAnnotation["kind"] != "Fragment":
+            continue
+
+        if not ExcerptFlag.MANUAL_FRAGMENTS in excerpt["flags"]:
+            pass
+        
+        fileNumber += 1
+        fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=fileNumber)})"
+    
+    return fragmentExcerpts
+
+
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
 
@@ -1177,12 +1197,16 @@ def LoadEventFile(database,eventName,directory):
             x["kind"] = "Question"
 
         if not x["startTime"] or not database["kind"][x["kind"]]["canBeExcerpt"]:
-                # If Start time is blank and it's not an audio annotation, this is an annotation to the previous excerpt
+                # If Start time is blank or it's an audio annotation, this is an annotation to the previous excerpt
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
                 Alert.error(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
             continue
+        elif prevExcerpt: # Process the fragments of the previous excerpt once all annotations have been appended
+            fragments = ProcessFragments(prevExcerpt)
+            excerpts.extend(fragments)
+            fileNumber += len(fragments)
 
         x["annotations"] = []    
         x["event"] = eventName
@@ -1242,6 +1266,9 @@ def LoadEventFile(database,eventName,directory):
         
         excerpts.append(x)
         prevExcerpt = x
+
+    fragments = ProcessFragments(prevExcerpt) # Process the fragments of the last excerpt
+    excerpts.extend(fragments)
 
     if blankExcerpts:
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)

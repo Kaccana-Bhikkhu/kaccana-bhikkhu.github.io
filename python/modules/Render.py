@@ -553,6 +553,11 @@ def MarkdownFormat(text: str) -> Tuple[str,int]:
     else:
         return text,0
 
+def RemoveHTMLPassthroughComments(html: str) -> tuple[str,int]:
+    """Remove the <!--HTML html code--> comments used to pass html code through Markdown."""
+
+    html,changeCount = re.subn(r"<!--HTML(.*?)-->",r"\1",html) # Remove comments around HTML code
+    return html,changeCount
 
 def LinkReferences() -> None:
     """Add hyperlinks to references contained in the excerpts and annotations.
@@ -583,6 +588,7 @@ def LinkReferences() -> None:
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra(f"{markdownChanges} items changed by markdown")
+    ApplyToBodyText(RemoveHTMLPassthroughComments)
     
 def SmartQuotes(text: str) -> tuple[str,int]:
     newText = Utils.SmartQuotes(text)
