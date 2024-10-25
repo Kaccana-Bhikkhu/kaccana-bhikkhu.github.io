@@ -163,7 +163,6 @@ def SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueF
     deleteCueFile - delete cue file when finished?"""
     
     mp3DirectCutProgram = ConfigureMp3DirectCut()
-    print(mp3DirectCutProgram)
     directory,originalFileName = os.path.split(file)
     fileNameBase,extension = os.path.splitext(originalFileName)
     cueFileName = fileNameBase + '.cue'
@@ -321,6 +320,7 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
         tempFilePrefix = "__QStemp_"
         tempFileCount = 0
 
+        # 1. Create dictionaries
         for outputFile,clips in selectFileClips.items():
             if len(clips) > 1:
                 for clip in clips:
@@ -339,24 +339,23 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
                 else:
                     joinOps[outputFile] = [existingFilename]
                         # Otherwise copy an existing file.
-
+        # 2. Run splitOps
         for sourceFile in sourceFiles:
             clipsWithDestFile = [clip._replace(file = dest) for clip,dest in splitOps.items() if clip.file == sourceFile]
             sourcePath = os.path.join(inputDir,sourceFile)
             Split(sourcePath,clipsWithDestFile,outputDir)
 
+        # 3. Run joinOps
         for outputFile,clipsToJoin in joinOps.items():
             destPath = os.path.join(outputDir,outputFile)
             joinFiles = [os.path.join(outputDir,splitOps[clip]) for clip in clipsToJoin]
             Join(joinFiles,destPath)
         
-        for tempFileNumber in range(tempFileCount):
-            try:
-                os.remove(os.path.join(outputDir,f"{tempFilePrefix}{tempFileNumber:02d}.mp3"))
-            except OSError:
-                print(f"Can't delete tempfile {tempFileNumber}")
-                pass
-
+        #4. Clean up temporary files
+        for filename in splitOps.values():
+            if filename.startswith(tempFilePrefix):
+                os.remove(os.path.join(outputDir,filename))
+        
 def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     """Join mp3 files into a single file using simple file copying operations.
     fileList: list of pathnames of the files to join.
