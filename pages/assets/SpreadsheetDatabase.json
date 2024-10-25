@@ -18633,7 +18633,14 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Contentment",
+        "Ardency"
+      ],
+      "fTagOrder": [
+        150,
+        150
+      ],
       "annotations": [
         {
           "kind": "Sutta",
@@ -99841,7 +99848,7 @@
         "Right Mindfulness"
       ],
       "excerptCount": 39,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 49
     },
     "Mindfulness": {
@@ -101931,6 +101938,7 @@
       "primaries": 0,
       "htmlFile": "contentment.html",
       "excerptCount": 20,
+      "fTagCount": 1,
       "listIndex": 171
     },
     "Trust": {
@@ -127955,7 +127963,7 @@
       },
       "htmlPath": "clusters/right-mindfulness.html",
       "excerptCount": 148,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Right Concentration": {
       "tag": "Right Concentration",
@@ -129837,7 +129845,7 @@
         "Right Concentration"
       ],
       "excerptCount": 483,
-      "fTagCount": 20
+      "fTagCount": 21
     },
     "meditation": {
       "code": "meditation",
