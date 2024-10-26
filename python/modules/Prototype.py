@@ -933,9 +933,10 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(excerpt["tags"]):
-            omitTags = self.excerptOmitTags
             if self.excerptOmitSessionTags:
                 omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
+            else:
+                omitTags = set(self.excerptOmitTags)
             omitTags -= set(excerpt["fTags"]) # Always show fTags
             omitTags -= set(excerpt.get("fragmentFTags",()))
 
@@ -965,7 +966,7 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation.get("tags",())):
-            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"])) - set(excerpt.get("fragmentFTags",()))
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags) # - set(excerpt["fTags"]) - set(excerpt.get("fragmentFTags",()))
             
             text = tag
             if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
