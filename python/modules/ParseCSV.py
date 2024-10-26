@@ -803,7 +803,7 @@ def FinalizeExcerptTags(x: dict) -> None:
         
         # Remove these keys from all annotations
         for a in x["annotations"]:
-            for key in ("qTag","aTag"): #,"fTags","fTagOrder"):
+            for key in ("qTag","aTag","fTags","fTagOrder"):
                 a.pop(key,None)
 
 def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
@@ -1459,10 +1459,10 @@ def CountAndVerify(database):
                     else:
                         fTagCount += 1
             
-        # The source excerpt should display stars for its fragements' fTags, so set the displayFTags key
+        # The source excerpt should display stars for its fragements' fTags, so set the fragmentFTags key
         for fragment in excerptWithFragments[1:]:
             for fTag,fTagOrder in zip(fragment["fTags"],fragment.get("fTagOrder",())):
-                excerptWithFragments[0]["displayFTags"] = excerptWithFragments[0].get("displayFTags",[]) + [fTag]
+                excerptWithFragments[0]["fragmentFTags"] = excerptWithFragments[0].get("fragmentFTags",[]) + [fTag]
 
     Alert.info(tagCount,"total tags applied.",
                fTagCount,"featured tags applied.",draftFTagCount,f"draft featured tags{' have been omitted' if gOptions.draftFTags == 'omit' else ''}.")
@@ -1478,7 +1478,7 @@ def CountAndVerify(database):
         topicExcerpts = set()
         for cluster in topic["subtopics"]:
             allTags = set([cluster] + list(database["subtopic"][cluster]["subtags"].keys()))
-            tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(Database.RemoveFragments(database["excerpts"])))
+            tagExcerpts = set(id(x) for x in Filter.FTag(allTags)(database["excerpts"]))
             database["subtopic"][cluster]["fTagCount"] = len(tagExcerpts)
             topicExcerpts.update(tagExcerpts)
         

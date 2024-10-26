@@ -937,12 +937,13 @@ class Formatter:
             if self.excerptOmitSessionTags:
                 omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
             omitTags -= set(excerpt["fTags"]) # Always show fTags
+            omitTags -= set(excerpt.get("fragmentFTags",()))
 
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
 
             text = tag
-            if tag in excerpt["fTags"] or tag in excerpt.get("displayFTags",()):
+            if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
                 text += f'&nbsp{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
                     # Add ? to uncertain fTags; "?" * -N = ""
@@ -964,10 +965,10 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation.get("tags",())):
-            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"]))
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"])) - set(excerpt.get("fragmentFTags",()))
             
             text = tag
-            if tag in excerpt["fTags"] or tag in excerpt.get("displayFTags",()):
+            if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
                 text += f'&nbsp{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
