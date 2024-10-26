@@ -1,6 +1,7 @@
 """Functions for reading and writing the json databases used in QSArchive."""
 
 from collections.abc import Iterable, Generator
+from collections import defaultdict
 import json, re, itertools
 import Html2 as Html
 import Link
@@ -9,6 +10,9 @@ import SplitMp3
 import Utils
 import Alert
 import Filter
+from ParseCSV import ExcerptFlag
+from functools import lru_cache
+
 
 gOptions = None
 gDatabase:dict[str] = {} # These will be set later by QSarchive.py
@@ -25,6 +29,33 @@ def LoadDatabase(filename: str) -> dict:
     
     return newDB
 
+def RemoveFragments(excerpts: Iterable[dict[str]]) -> Generator[dict[str]]:
+    """Yield these excerpts but skip fragments if their source excerpt is present."""
+
+    lastNonFragment = ()
+    for x in excerpts:
+        if ExcerptFlag.FRAGMENT in x["flags"]:
+            if (x["event"],x["sessionNumber"],int(x["excerptNumber"])) != lastNonFragment:
+                yield x
+        else:
+            yield x
+            lastNonFragment = (x["event"],x["sessionNumber"],x["excerptNumber"])
+
+def CountExcerpts(excerpts: Iterable[dict[str]],countSessionExcerpts:bool = False) -> int:
+    """Count excerpts excluding fragments if the list includes their source excerpt."""
+
+    return sum(1 for x in RemoveFragments(excerpts) if x["fileNumber"] or countSessionExcerpts)
+
+def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
+    """Yield lists containing non-fragment excerpts followed by their fragments."""
+    group = []
+    for x in excerpts:
+        if not ExcerptFlag.FRAGMENT in x["flags"] and group:
+            yield group
+            group = []
+        group.append(x)
+    if group:
+        yield group
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
@@ -77,6 +108,10 @@ def ItemCitation(item: dict) -> str:
         parts.append(Html.Tag("a",{"href":EventLink(event,session)})(f"Session {session}"))
     excerptNumber = item.get("excerptNumber",None)
     if excerptNumber:
+        newExcerptNumber = excerptNumber
+        while (newExcerptNumber != int(newExcerptNumber)) and fileNumber > 0: # If this is a fragment, look backward for the source excerpt
+            fileNumber -= 1
+            newExcerptNumber = FindExcerpt(event,session,fileNumber)["excerptNumber"]
         parts.append(Html.Tag("a",{"href":EventLink(event,session,fileNumber)})(f"Excerpt {excerptNumber}"))
     return ", ".join(parts)
 
@@ -138,6 +173,14 @@ def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
 
     return teacherDictCache.get(teacherRef,None)
 
+"""Return a dictionary of excerpts that can be referenced as:
+ExcerptDict()[event][sessionNumber][fileNumber]"""
+@lru_cache(maxsize=None)
+def ExcerptDict() -> dict[str,dict[int,dict[int,dict[str]]]]:
+    excerptDict = defaultdict(lambda: defaultdict(defaultdict))
+    for x in gDatabase["excerpts"]:
+        excerptDict[x["event"]][x["sessionNumber"]][x["fileNumber"]] = x
+    return excerptDict
 
 def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|None:
     "Return the excerpt that matches these parameters. Otherwise return None."
@@ -148,10 +191,10 @@ def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|Non
         return None
     if session is None:
         session = 0
-    for x in gDatabase["excerpts"]:
-        if x["event"] == event and x["sessionNumber"] == session and x["fileNumber"] == fileNumber:
-            return x
-    return None
+    try:
+        return ExcerptDict()[event][session][fileNumber]
+    except KeyError:
+        return None
 
 
 def FindOwningExcerpt(annotation: dict) -> dict:
@@ -313,8 +356,32 @@ def ItemRepr(item: dict) -> str:
         return repr(item)
 
 
-def SubAnnotations(excerpt: dict,annotation: dict) -> list[dict]:
-    """Return the annotations that are under this annotation or excerpt."""
+def ChildAnnotations(excerpt: dict,annotation: dict|None = None) -> list[dict]:
+    """Return the annotations that are directly under this annotation or excerpt."""
+
+    if annotation is excerpt:
+        scanLevel = 1
+        scanning = True
+    else:
+        scanLevel = annotation["indentLevel"] + 1
+        scanning = False
+
+    children = []
+    for a in excerpt["annotations"]:
+        if scanning:
+            if a["indentLevel"] == scanLevel:
+                children.append(a)
+            elif a["indentLevel"] < scanLevel:
+                scanning = False
+                break
+        elif a is annotation:
+            scanning = True
+
+    return children
+
+
+def SubAnnotations(excerpt: dict,annotation: dict|None = None) -> list[dict]:
+    """Return all annotations contained by this excerpt or annotation."""
 
     if annotation is excerpt:
         scanLevel = 1
@@ -326,10 +393,10 @@ def SubAnnotations(excerpt: dict,annotation: dict) -> list[dict]:
     subs = []
     for a in excerpt["annotations"]:
         if scanning:
-            if a["indentLevel"] == scanLevel:
+            if a["indentLevel"] >= scanLevel:
                 subs.append(a)
-            elif a["indentLevel"] < scanLevel:
-                scanning = False
+            else:
+                break
         elif a is annotation:
             scanning = True
 
@@ -345,13 +412,16 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
     searchForLevel = 0
     found = False
     for searchAnnotation in reversed(excerpt["annotations"]):
-        if searchAnnotation["indentLevel"] == searchForLevel:
+        if searchAnnotation["indentLevel"] <= searchForLevel:
+            if searchAnnotation["indentLevel"] < searchForLevel:
+                Alert.error("Annotation",annotation,f"doesn't have a parent at level {searchForLevel}. Returning prior annotation at level {searchAnnotation['indentLevel']}.")
             return searchAnnotation
         if searchAnnotation is annotation:
             searchForLevel = annotation["indentLevel"] - 1
     if not found:
         Alert.error("Annotation",annotation,"doesn't have a proper parent.")
         return None
+
 
 def SubsumesTags() -> dict:
     """Inverts gDatabase["tagSubsumed"] to create a dictionary of which tags a tag subsumes."""

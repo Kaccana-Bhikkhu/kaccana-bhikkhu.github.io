@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os, sys, re, csv, json, unicodedata
+import os, sys, re, csv, json, unicodedata, copy
 import Database
 import Filter
 import Render
@@ -35,11 +35,13 @@ class KeyTagFlag(StrEnum):
 
 SUBTAG_FLAGS = set([KeyTagFlag.PEER_TAG,KeyTagFlag.SUBORDINATE_TAG])
 class ExcerptFlag(StrEnum):
-    INDENT = "-"
-    ATTRIBUTE = "a"
-    OVERLAP = "o"
-    PLURAL = "s"
-    UNQUOTE = "u"
+    INDENT = "-"            # Increment the annotation's indentLevel. Base indent level is 1.
+    ATTRIBUTE = "a"         # Always attribute this item
+    OVERLAP = "o"           # This excerpt overlaps with the previous excerpt
+    PLURAL = "s"            # Use the plural form, e.g. stories instead of story
+    UNQUOTE = "u"           # Remove quotes from this items's template
+    FRAGMENT = "f"          # This excerpt is a fragment of the excerpt above it.
+    MANUAL_FRAGMENTS = "m"  # Don't automatically extract fragments from this excerpt.
     
 
 gCamelCaseTranslation = {}
@@ -551,7 +553,7 @@ def CountSubtagExcerpts(database):
     of excerpts which are tagged by this tag or any of its subtags."""
 
     tagList = database["tagDisplayList"]
-    excerpts = database["excerpts"]
+    excerptsWithoutFragments = list(Database.RemoveFragments(database["excerpts"]))
     subtags = [None] * len(tagList)
     savedSearches = [None] * len(tagList)
     for parentIndex,childIndexes in WalkTags(tagList,returnIndices=True):
@@ -562,7 +564,7 @@ def CountSubtagExcerpts(database):
                 tag = tagList[index]["tag"]
                 if tag:
                     subtags[index] = {tag}
-                    savedSearches[index] = {id(x) for x in Filter.Tag(tag)(excerpts)}
+                    savedSearches[index] = {id(x) for x in Filter.Tag(tag)(excerptsWithoutFragments)}
                     #print(f"{index} {tag}: {len(savedSearches[index])} excerpts singly")
                 else:
                     subtags[index] = set()
@@ -790,7 +792,7 @@ def FinalizeExcerptTags(x: dict) -> None:
     x["tags"] = x["qTag"] + x["aTag"]
     x["qTagCount"] = len(x["qTag"])
     if len(x["fTagOrder"]) != len(x["fTags"]):
-        Alert.caution(x,f"has {len(x['fTags'])} fTag but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
+        Alert.caution(x,f"has {len(x['fTags'])} fTags but specifies {len(x['fTagOrder'])} fTagOrder numbers.")
 
     if not gOptions.jsonNoClean:
         del x["qTag"]
@@ -798,6 +800,11 @@ def FinalizeExcerptTags(x: dict) -> None:
         x.pop("aListen",None)
         if not x["fTags"]:
             x.pop("fTagOrder")
+        
+        # Remove these keys from all annotations
+        for a in x["annotations"]:
+            for key in ("qTag","aTag","fTags","fTagOrder"):
+                a.pop(key,None)
 
 def AddExcerptTags(excerpt: dict,annotation: dict) -> None:
     "Combine qTag, aTag, fTag, and fTagOrder keys from an Extra Tags annotation with an existing excerpt."
@@ -825,7 +832,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         for prevAnnotation in reversed(excerpt["annotations"]): # look backwards and add these tags to the first annotation that supports them
             if "tags" in prevAnnotation:
                 prevAnnotation["tags"] += annotation["qTag"]
-                prevAnnotation["tags"] += annotation["aTag"] # annotations don't distinguish between q and a tags
+                prevAnnotation["tags"] += annotation["aTag"] # Annotations don't distinguish between q and a tags,
+                AddExcerptTags(prevAnnotation,annotation) # but store qTags and aTags separately in case this annotation is a fragment that will be promoted to an excerpt
                 return
         
         AddExcerptTags(excerpt,annotation) # If no annotation takes the tags, give them to the excerpt
@@ -833,7 +841,7 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
     
     kind = database["kind"][annotation["kind"]]
     
-    keysToRemove = ["sessionNumber","offTopic","aListen","exclude","qTag","aTag"]
+    keysToRemove = ["sessionNumber","offTopic","aListen","exclude"]
     
     if kind["takesTeachers"]:
         if not annotation["teachers"]:
@@ -1036,7 +1044,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             if altAudioList:
                 if len(altAudioList) > 1:
                     Alert.caution(x,"has more than one Alternate audio or Edited audio annotation. Only the first will be used.")
-                audioSource = altAudioList[0]["text"].split("|")[0]
+                audioSource = SplitAudioSourceText(altAudioList[0]["text"])[0]
                     # The annotation text contains the audio source file name
             else:
                 audioSource = "$"
@@ -1061,27 +1069,81 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             if appendAudioList:
                 ProcessAppendAudio(x,appendAudioList)
         
-        # Excerpts without an end time end when the next excerpt starts
-        for x1,x2 in itertools.pairwise(sessionExcerpts):
-            if "clips" not in x1: # Skip the session excerpt
+        # Excerpts without an end time end when the next non-fragment excerpt starts
+        for xf1,xf2 in itertools.pairwise(Database.GroupFragments(sessionExcerpts)):
+            if "clips" not in xf1[0]: # Skip the session excerpt
                 continue
-            lastClip = x1["clips"][-1]
-            firstClip = x2["clips"][0]
-            sameFile = lastClip.file == firstClip.file
-            if not lastClip.end:
-                if sameFile:
-                    x1["clips"][-1] = lastClip._replace(end=firstClip.start)
-                if "startTimeInSession" in x2 and lastClip.file == "$":
-                    x1["clips"][-1] = lastClip._replace(end=x2["startTimeInSession"])
+            
+            nextExcerpt = xf2[0]
+            nextClip = nextExcerpt["clips"][0]
+            for x in xf1:
+                lastClip = x["clips"][-1]
+                sameFile = lastClip.file == nextClip.file
+                if not lastClip.end:
+                    if sameFile:
+                        x["clips"][-1] = lastClip._replace(end=nextClip.start)
+                    if "startTimeInSession" in nextExcerpt and lastClip.file == "$":
+                        x["clips"][-1] = lastClip._replace(end=nextExcerpt["startTimeInSession"])
 
-            endTime = lastClip.ToClipTD().end
-            if sameFile and endTime and endTime > firstClip.ToClipTD().start:
-                if ExcerptFlag.OVERLAP not in x2["flags"]:
-                    Alert.warning(f"excerpt",x2,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+                endTime = lastClip.ToClipTD().end
+                if sameFile and endTime and endTime > nextClip.ToClipTD().start:
+                    if ExcerptFlag.OVERLAP not in nextExcerpt["flags"]:
+                        Alert.warning(f"excerpt",nextExcerpt,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         for x in sessionExcerpts:
             if "clips" in x:
                 x["duration"] = ExcerptDuration(x,sessionDuration)
+
+def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
+    """Process the fragments in excerpt and return a list to add to the event."""
+    # fragmentNumbers = [n for n,a in enumerate(excerpt["annotations"]) if a["Kind"] == "Fragment"]
+    
+    fragmentExcerpts = []
+    nextFileNumber = excerpt["fileNumber"] + 1
+    baseAnnotations = excerpt["annotations"]
+    for n,fragmentAnnotation in enumerate(baseAnnotations):
+        if fragmentAnnotation["kind"] != "Fragment":
+            continue
+
+        if not ExcerptFlag.MANUAL_FRAGMENTS in excerpt["flags"]:
+            if n + 1 >= len(baseAnnotations) or baseAnnotations[n]["indentLevel"] != baseAnnotations[n + 1]["indentLevel"]:
+                Alert.error("Error processing Fragment annotation #",n,"in",excerpt,": an annotation at the same level must follow a Fragment annotation.")
+                return fragmentExcerpts
+            
+            baseLevel = fragmentAnnotation["indentLevel"]
+            nextAnnotation = baseAnnotations[n + 1]
+
+            fragmentAnnotations = [copy.copy(a) for a in Database.SubAnnotations(excerpt,baseAnnotations[n + 1])]
+            for a in fragmentAnnotations:
+                a["indentLevel"] = a["indentLevel"] - baseLevel
+
+            fragmentExcerpts.append(dict(
+                event = excerpt["event"],
+                sessionNumber = excerpt["sessionNumber"],
+                fileNumber = nextFileNumber,
+                annotations = fragmentAnnotations,
+
+                kind = nextAnnotation["kind"],
+                flags = nextAnnotation["flags"] + ExcerptFlag.FRAGMENT,
+                teachers = nextAnnotation["teachers"],
+                text = nextAnnotation["text"],
+
+                qTag = nextAnnotation["qTag"],
+                aTag = nextAnnotation["aTag"],
+                fTags = nextAnnotation["fTags"],
+                fTagOrder = nextAnnotation["fTagOrder"],
+
+                startTime = fragmentAnnotation["startTime"],
+                endTime = fragmentAnnotation["endTime"],
+
+                exclude = False
+            ))
+
+        fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
+        nextFileNumber += 1
+    
+    return fragmentExcerpts
+
 
 gUnattributedTeachers = Counter()
 "Counts the number of times we hide a teacher's name when their attribute permission is false."
@@ -1122,11 +1184,11 @@ def LoadEventFile(database,eventName,directory):
     
     for key in ["tags","teachers"]:
         ListifyKey(sessions,key)
-    for key in ["sessionNumber","excerpts"]:
-        ConvertToInteger(sessions,key)
-
+    ConvertToInteger(sessions,"sessionNumber")
+    
     for s in sessions:
         s["event"] = eventName
+        s.pop("excerpts",None)
         Utils.ReorderKeys(s,["event","sessionNumber"])
         RemoveUnknownTeachers(s["teachers"],s)
         s["teachers"] = [teacher for teacher in s["teachers"] if TeacherConsent(database["teacher"],[teacher],"attribute")]
@@ -1176,12 +1238,16 @@ def LoadEventFile(database,eventName,directory):
             x["kind"] = "Question"
 
         if not x["startTime"] or not database["kind"][x["kind"]]["canBeExcerpt"]:
-                # If Start time is blank and it's not an audio annotation, this is an annotation to the previous excerpt
+                # If Start time is blank or it's an audio annotation, this is an annotation to the previous excerpt
             if prevExcerpt is not None:
                 AddAnnotation(database,prevExcerpt,x)
             else:
                 Alert.error(f"Error: The first item in {eventName} session {x['sessionNumber']} must specify at start time.")
             continue
+        elif prevExcerpt: # Process the fragments of the previous excerpt once all annotations have been appended
+            fragments = ProcessFragments(prevExcerpt)
+            excerpts.extend(fragments)
+            fileNumber += len(fragments)
 
         x["annotations"] = []    
         x["event"] = eventName
@@ -1242,6 +1308,9 @@ def LoadEventFile(database,eventName,directory):
         excerpts.append(x)
         prevExcerpt = x
 
+    fragments = ProcessFragments(prevExcerpt) # Process the fragments of the last excerpt
+    excerpts.extend(fragments)
+
     if blankExcerpts:
         Alert.notice(blankExcerpts,"blank excerpts in",eventDesc)
 
@@ -1275,7 +1344,10 @@ def LoadEventFile(database,eventName,directory):
                 xNumber = 0
             lastSession = x["sessionNumber"]
         else:
-            xNumber += 1
+            if ExcerptFlag.FRAGMENT in x["flags"]:
+                xNumber += 0.1  # Fragments have fractional excerpt numbers
+            else:
+                xNumber = int(xNumber) + 1
         
         x["excerptNumber"] = xNumber
     
@@ -1291,14 +1363,14 @@ def LoadEventFile(database,eventName,directory):
     database["excerpts"] += excerpts
 
     eventDesc["sessions"] = len(sessions)
-    eventDesc["excerpts"] = sum(1 for x in excerpts if x["fileNumber"]) # Count only non-session excerpts   
+    eventDesc["excerpts"] = Database.CountExcerpts(excerpts) # Count only non-session excerpts   
 
 def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],countKey: str,zeroCount = False) -> int:
     """Loop through items in a collection of dicts and count the number of appearances a given str.
         source: A dict of dicts or a list of dicts containing the items to count.
         sourceKey: The key whose values we should count.
         countDicts: A dict of dicts that we use to count the items. Each item should be a key in this dict.
-        countKey: The key we add to countDict[item] with the running tally of each item.
+        countKey: The key we add to countDicts[item] with the running tally of each item.
         zeroCount: add countKey even when there are no items counted?
         return the total number of items counted"""
         
@@ -1308,7 +1380,9 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
                 countDicts[key][countKey] = 0
 
     totalCount = 0
+    excerptsCounted = 0
     for d in Utils.Contents(source):
+        excerptsCounted += 1
         valuesToCount = d[sourceKey]
         if type(valuesToCount) != list:
             valuesToCount = [valuesToCount]
@@ -1326,7 +1400,7 @@ def CountInstances(source: dict|list,sourceKey: str,countDicts: List[dict],count
             for item in removeItems:
                 valuesToCount.remove(item)
     
-    return totalCount
+    return excerptsCounted
 
 def CountAndVerify(database):
     
@@ -1335,25 +1409,11 @@ def CountAndVerify(database):
     tagCount += CountInstances(database["sessions"],"tags",tagDB,"sessionCount")
 
     fTagCount = draftFTagCount = 0
-    for x in database["excerpts"]:
-        tagSet = Filter.AllTags(x)
-
-        for index in reversed(range(len(x["fTags"]))):
-            fTag = x["fTags"][index]
-            fTagOrder = x["fTagOrder"][index]
-            if fTag not in tagSet:
-                Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
-
-            if gOptions.draftFTags == "omit" and fTagOrder > 1000:
-                del x["fTagOrder"][index]
-                del x["fTags"][index]
-                draftFTagCount += 1
-            else:
-                tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
-                if fTagOrder > 1000:
-                    draftFTagCount += 1
-                else:
-                    fTagCount += 1
+    # Don't count tags on fragments which are duplicated in their source excerpt
+    for excerptWithFragments in Database.GroupFragments(database["excerpts"]):
+        tagSet = set()
+        for x in excerptWithFragments:
+            tagSet.update(Filter.AllTags(x))
 
         tagsToRemove = []
         topics = set()
@@ -1378,17 +1438,41 @@ def CountAndVerify(database):
         if tagsToRemove:
             for item in Filter.AllItems(x):
                 item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
-    
+        
+        for x in excerptWithFragments:
+            tagSet = Filter.AllTags(x)
+
+            for index in reversed(range(len(x["fTags"]))):
+                fTag = x["fTags"][index]
+                fTagOrder = x["fTagOrder"][index]
+                if fTag not in tagSet:
+                    Alert.caution(x,"specifies fTag",fTag,"but this does not appear as a regular tag.")
+
+                if gOptions.draftFTags == "omit" and fTagOrder > 1000:
+                    del x["fTagOrder"][index]
+                    del x["fTags"][index]
+                    draftFTagCount += 1
+                else:
+                    tagDB[fTag]["fTagCount"] = tagDB[fTag].get("fTagCount",0) + 1
+                    if fTagOrder > 1000:
+                        draftFTagCount += 1
+                    else:
+                        fTagCount += 1
+            
+        # The source excerpt should display stars for its fragements' fTags, so set the fragmentFTags key
+        for fragment in excerptWithFragments[1:]:
+            for fTag,fTagOrder in zip(fragment["fTags"],fragment.get("fTagOrder",())):
+                excerptWithFragments[0]["fragmentFTags"] = excerptWithFragments[0].get("fragmentFTags",[]) + [fTag]
+
     Alert.info(tagCount,"total tags applied.",
                fTagCount,"featured tags applied.",draftFTagCount,f"draft featured tags{' have been omitted' if gOptions.draftFTags == 'omit' else ''}.")
     
     CountInstances(database["event"],"teachers",database["teacher"],"eventCount")
     CountInstances(database["sessions"],"teachers",database["teacher"],"sessionCount")
-    CountInstances(database["excerpts"],"teachers",database["teacher"],"excerptCount")
 
     for teacher in database["teacher"].values():
-        teacher["excerptCount"] = len(Filter.Teacher(teacher["teacher"])(database["excerpts"]))
-        # Modify excerptCount so that it includes indirect quotes from teachers as well as attributed teachers
+        teacher["excerptCount"] = len(list(Filter.Teacher(teacher["teacher"])(Database.RemoveFragments(database["excerpts"]))))
+        # Count indirect quotes from teachers as well as attributed teachers
     
     for topic in database["keyTopic"].values():
         topicExcerpts = set()
@@ -1652,8 +1736,6 @@ def main():
             if not event.startswith("Test") or gOptions.includeTestEvent:
                 LoadEventFile(gDatabase,event,gOptions.csvDir)
     excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
-    gDatabase["sessions"] = FilterAndExplain(gDatabase["sessions"],lambda s: s["excerpts"],excludeAlert,"since it has no excerpts.")
-        # Remove sessions that have no excerpts in them
     gUnattributedTeachers.pop("Anon",None)
     if gUnattributedTeachers:
         excludeAlert(f": Did not attribute excerpts to the following teachers:",dict(gUnattributedTeachers))

@@ -104,7 +104,7 @@ def AddImplicitAttributions() -> None:
                 x["annotations"].insert(0,newAnnotation)
         for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
             if a["kind"] == "Reading":
-                readBy = [subA for subA in Database.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                readBy = [subA for subA in Database.ChildAnnotations(x,a) if subA["kind"] == "Read by"]
                 if not readBy:
                     if x["kind"] == "Reading":
                         readers = session["teachers"]
@@ -184,7 +184,10 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
                 # attribute it. It will be attached to the excerpt, and the annotation will be hidden if it matches the session teachers.
         else:
             parent = Database.ParentAnnotation(container,item)
-            defaultTeachers = parent.get("teachers",())
+            if parent:
+                defaultTeachers = parent.get("teachers",())
+            else:
+                defaultTeachers = ()
         if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
             teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
@@ -553,6 +556,11 @@ def MarkdownFormat(text: str) -> Tuple[str,int]:
     else:
         return text,0
 
+def RemoveHTMLPassthroughComments(html: str) -> tuple[str,int]:
+    """Remove the <!--HTML html code--> comments used to pass html code through Markdown."""
+
+    html,changeCount = re.subn(r"<!--HTML(.*?)-->",r"\1",html) # Remove comments around HTML code
+    return html,changeCount
 
 def LinkReferences() -> None:
     """Add hyperlinks to references contained in the excerpts and annotations.
@@ -583,6 +591,7 @@ def LinkReferences() -> None:
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra(f"{markdownChanges} items changed by markdown")
+    ApplyToBodyText(RemoveHTMLPassthroughComments)
     
 def SmartQuotes(text: str) -> tuple[str,int]:
     newText = Utils.SmartQuotes(text)

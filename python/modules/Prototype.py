@@ -761,7 +761,6 @@ def AudioIcon(hyperlink: str,title: str,dataDuration:str = "") -> str:
         with a.a(href = hyperlink,download=filename):
             a(f"Download audio")
         a(f" ({dataDuration})")
-    a.br()
 	
     return str(a)
 
@@ -835,7 +834,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     duration = timedelta()
     for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
         sessionExcerpts = list(sessionExcerpts)
-        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in Database.RemoveFragments(sessionExcerpts) if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
             # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
             # This prevents confusing results due to double counting times
     
@@ -847,7 +846,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     if len(sessions) > 1 and countSessions:
         strItems.append(f"{len(sessions)} sessions,")
     
-    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
+    excerptCount = Database.CountExcerpts(excerpts,countSessionExcerpts)
     if excerptCount > 1:
         strItems.append(f"{excerptCount} excerpts,")
     else:
@@ -893,6 +892,7 @@ class Formatter:
         a = Airium(source_minify=True)
         
         a(Mp3ExcerptLink(excerpt,**kwArgs))
+        a.br()
         a(' ')
         if self.excerptNumbers:
             if excerpt['excerptNumber']:
@@ -933,16 +933,18 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(excerpt["tags"]):
-            omitTags = self.excerptOmitTags
             if self.excerptOmitSessionTags:
                 omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
+            else:
+                omitTags = set(self.excerptOmitTags)
             omitTags -= set(excerpt["fTags"]) # Always show fTags
+            omitTags -= set(excerpt.get("fragmentFTags",()))
 
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
 
             text = tag
-            if tag in excerpt["fTags"]:
+            if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
                 text += f'&nbsp{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
                     # Add ? to uncertain fTags; "?" * -N = ""
@@ -964,10 +966,10 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation.get("tags",())):
-            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"]))
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags) # - set(excerpt["fTags"]) - set(excerpt.get("fragmentFTags",()))
             
             text = tag
-            if tag in excerpt["fTags"]:
+            if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
                 text += f'&nbsp{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
@@ -1025,7 +1027,7 @@ class Formatter:
 
             if linkSessionAudio and session['filename']:
                 audioLink = Mp3SessionLink(session)
-                itemsToJoin[-1] += ' ' + audioLink
+                itemsToJoin[-1] += ' ' + audioLink + '<br />'
                     # The audio chip goes on a new line, so don't separate with a dash
             
             a(' – '.join(itemsToJoin))
@@ -1129,7 +1131,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
 
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
-    for x in excerpts:
+    for x in Database.RemoveFragments(excerpts):
         thisSession = (x["event"],x["sessionNumber"])
         if prevSession != thisSession:
             if itemLimit and len(excerptsInThisPage) >= itemLimit:
@@ -1190,7 +1192,7 @@ def FilteredExcerptsMenuItem(excerpts:Iterable[dict], filter:Filter.Filter, form
         pageInfo = mainPageInfo._replace(file = Utils.AppendToFilename(mainPageInfo.file,"-" + fileExt))
     else:
         pageInfo = mainPageInfo
-    menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredExcerpts)})")
+    menuItem = pageInfo._replace(title=f"{menuTitle} ({Database.CountExcerpts(filteredExcerpts,countSessionExcerpts=True)})")
 
 
     blankPage = Html.PageDesc(pageInfo)
@@ -1469,7 +1471,7 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
             yield firstPage # First yield the menu item descriptor, if any
             firstPage = next(menuItemAndPages)
 
-        featuredExcerpts = list(Filter.FTag(tags).Apply(excerpts))
+        featuredExcerpts = list(Database.RemoveFragments(Filter.FTag(tags).Apply(excerpts)))
         if featuredExcerpts:
             featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tags))
 
@@ -1887,7 +1889,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.headingLinks = False
         formatter.headingAudio = True
         formatter.excerptPreferStartTime = True
-        a(formatter.HtmlExcerptList(excerpts))
+        a(formatter.HtmlExcerptList(list(Database.RemoveFragments(excerpts))))
         
         titleInBody = eventInfo["title"]
         if eventInfo["subtitle"]:
@@ -1988,7 +1990,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
                 return Database.FTagOrder(x,searchTags)
 
             searchTags = [cluster] + list(gDatabase["subtopic"][cluster]["subtags"].keys())
-            excerptsByTopic[cluster] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
+            excerptsByTopic[cluster] = sorted(Database.RemoveFragments(Filter.FTag(searchTags).Apply(gDatabase["excerpts"])),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
             excerpt,tag,firstExcerpt,lastExcerpt = item

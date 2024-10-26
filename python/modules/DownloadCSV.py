@@ -52,29 +52,32 @@ def DownloadSummarySheet() -> None:
 
 def ReadSummarySheet(printSheetName: bool = False) -> tuple[dict[str,str],dict[str,str]]:
     "Read Summary.csv and return two dicts {sheetName : sheetId} and {sheetName : modifiedDate (str)}"
-    
-    with open(os.path.join(gOptions.csvDir,'Summary.csv'),encoding='utf8') as file:
-        CSVToDictList(file,skipLines = 1,endOfSection = '<---->',camelCase = False)
-            # Skip the first half of the summary file
+    try:
+        with open(os.path.join(gOptions.csvDir,'Summary.csv'),encoding='utf8') as file:
+            CSVToDictList(file,skipLines = 1,endOfSection = '<---->',camelCase = False)
+                # Skip the first half of the summary file
+            
+            reader = csv.reader(file)
+            next(reader)
+            sheetInfo = next(reader)
+            try:
+                if printSheetName:
+                    Alert.info("Reading from spreadsheet",repr(sheetInfo[sheetInfo.index("Spreadsheet:") + 1]))
+            except (ValueError,IndexError):
+                pass
+
+            summarySheet = CSVToDictList(file,camelCase = False,skipLines = 0)
         
-        reader = csv.reader(file)
-        next(reader)
-        sheetInfo = next(reader)
-        try:
-            if printSheetName:
-                Alert.info("Reading from spreadsheet",repr(sheetInfo[sheetInfo.index("Spreadsheet:") + 1]))
-        except (ValueError,IndexError):
-            pass
+        sheetIds = DictFromPairs(summarySheet,'Sheet','gid',camelCase=False)
+        if 'Modified' in summarySheet[0]:
+            modDates = DictFromPairs(summarySheet,'Sheet','Modified',camelCase=False)
+        else:
+            modDates = {sheetName:"" for sheetName in sheetIds}
 
-        summarySheet = CSVToDictList(file,camelCase = False,skipLines = 0)
-    
-    sheetIds = DictFromPairs(summarySheet,'Sheet','gid',camelCase=False)
-    if 'Modified' in summarySheet[0]:
-        modDates = DictFromPairs(summarySheet,'Sheet','Modified',camelCase=False)
-    else:
-        modDates = {sheetName:"" for sheetName in sheetIds}
-
-    return sheetIds,modDates
+        return sheetIds,modDates
+    except OSError:
+        Alert.error("Could not read Summary.csv.")
+        return ({},{})
 
 def DownloadSheets(sheetIds: dict,writer: FileRegister.HashWriter) -> None:
     "Download the sheets specified by the sheetIds in the form {sheetName : sheetId}"
