@@ -241,8 +241,12 @@ export class searchQuery {
             }
         }
         console.log("textMatchItems",textMatchItems);
-        this.boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
-            // Negative lookahead assertion to avoid modifying html tags.
+        if (textMatchItems.length > 0)
+            this.boldTextRegex = new RegExp(`(${textMatchItems.join("|")})(?![^<]*\>)`,"gi");
+                // Negative lookahead assertion to avoid modifying html tags.
+        else
+            this.boldTextRegex = /^a\ba/ // a RegEx that doesn't match anything
+        console.log(this.boldTextRegex)
     }
 
     filterItems(items) { // Return an array containing items that match all groups in this query
