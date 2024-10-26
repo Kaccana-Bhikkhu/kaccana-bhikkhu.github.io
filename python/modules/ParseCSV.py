@@ -1044,7 +1044,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             if altAudioList:
                 if len(altAudioList) > 1:
                     Alert.caution(x,"has more than one Alternate audio or Edited audio annotation. Only the first will be used.")
-                audioSource = altAudioList[0]["text"].split("|")[0]
+                audioSource = SplitAudioSourceText(altAudioList[0]["text"])[0]
                     # The annotation text contains the audio source file name
             else:
                 audioSource = "$"
@@ -1069,23 +1069,26 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             if appendAudioList:
                 ProcessAppendAudio(x,appendAudioList)
         
-        # Excerpts without an end time end when the next excerpt starts
-        for x1,x2 in itertools.pairwise(sessionExcerpts):
-            if "clips" not in x1: # Skip the session excerpt
+        # Excerpts without an end time end when the next non-fragment excerpt starts
+        for xf1,xf2 in itertools.pairwise(Database.GroupFragments(sessionExcerpts)):
+            if "clips" not in xf1[0]: # Skip the session excerpt
                 continue
-            lastClip = x1["clips"][-1]
-            firstClip = x2["clips"][0]
-            sameFile = lastClip.file == firstClip.file
-            if not lastClip.end:
-                if sameFile:
-                    x1["clips"][-1] = lastClip._replace(end=firstClip.start)
-                if "startTimeInSession" in x2 and lastClip.file == "$":
-                    x1["clips"][-1] = lastClip._replace(end=x2["startTimeInSession"])
+            
+            nextExcerpt = xf2[0]
+            nextClip = nextExcerpt["clips"][0]
+            for x in xf1:
+                lastClip = x["clips"][-1]
+                sameFile = lastClip.file == nextClip.file
+                if not lastClip.end:
+                    if sameFile:
+                        x["clips"][-1] = lastClip._replace(end=nextClip.start)
+                    if "startTimeInSession" in nextExcerpt and lastClip.file == "$":
+                        x["clips"][-1] = lastClip._replace(end=nextExcerpt["startTimeInSession"])
 
-            endTime = lastClip.ToClipTD().end
-            if sameFile and endTime and endTime > firstClip.ToClipTD().start:
-                if ExcerptFlag.OVERLAP not in x2["flags"] and ExcerptFlag.FRAGMENT not in x2["flags"]:
-                    Alert.warning(f"excerpt",x2,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+                endTime = lastClip.ToClipTD().end
+                if sameFile and endTime and endTime > nextClip.ToClipTD().start:
+                    if ExcerptFlag.OVERLAP not in nextExcerpt["flags"]:
+                        Alert.warning(f"excerpt",nextExcerpt,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
 
         for x in sessionExcerpts:
             if "clips" in x:

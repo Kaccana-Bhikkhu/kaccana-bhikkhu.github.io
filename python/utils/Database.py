@@ -48,10 +48,14 @@ def CountExcerpts(excerpts: Iterable[dict[str]],countSessionExcerpts:bool = Fals
 
 def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
     """Yield lists containing non-fragment excerpts followed by their fragments."""
-    
-    # Fragments share the integral part of their excerpt number with their source.
-    for key,group in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"],int(x["excerptNumber"]))):
-        yield list(group)
+    group = []
+    for x in excerpts:
+        if not ExcerptFlag.FRAGMENT in x["flags"] and group:
+            yield group
+            group = []
+        group.append(x)
+    if group:
+        yield group
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
@@ -408,7 +412,9 @@ def ParentAnnotation(excerpt: dict,annotation: dict) -> dict|None:
     searchForLevel = 0
     found = False
     for searchAnnotation in reversed(excerpt["annotations"]):
-        if searchAnnotation["indentLevel"] == searchForLevel:
+        if searchAnnotation["indentLevel"] <= searchForLevel:
+            if searchAnnotation["indentLevel"] < searchForLevel:
+                Alert.error("Annotation",annotation,f"doesn't have a parent at level {searchForLevel}. Returning prior annotation at level {searchAnnotation['indentLevel']}.")
             return searchAnnotation
         if searchAnnotation is annotation:
             searchForLevel = annotation["indentLevel"] - 1
