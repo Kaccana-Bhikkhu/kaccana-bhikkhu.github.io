@@ -48,14 +48,10 @@ def CountExcerpts(excerpts: Iterable[dict[str]],countSessionExcerpts:bool = Fals
 
 def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
     """Yield lists containing non-fragment excerpts followed by their fragments."""
-    group = []
-    for x in excerpts:
-        if not ExcerptFlag.FRAGMENT in x["flags"] and group:
-            yield group
-            group = []
-        group.append(x)
-    if group:
-        yield group
+    
+    # Fragments share the integral part of their excerpt number with their source.
+    for key,group in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"],int(x["excerptNumber"]))):
+        yield list(group)
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."

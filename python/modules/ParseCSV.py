@@ -921,6 +921,25 @@ def FilterAndExplain(items: list,filter: Callable[[Any],bool],printer: Alert.Ale
         printer(i,message)
     return filteredItems
 
+def NumberExcerpts(excerpts: dict[str]) -> None:
+    "Add excerptNumber to these excerpts"
+    xNumber = 1
+    lastSession = -1
+    for x in excerpts:
+        if x["sessionNumber"] != lastSession:
+            if "clips" in x: # Does the session begin with a regular (non-session) excerpt?
+                xNumber = 1
+            else:
+                xNumber = 0
+            lastSession = x["sessionNumber"]
+        else:
+            if ExcerptFlag.FRAGMENT in x["flags"]:
+                xNumber += 0.1  # Fragments have fractional excerpt numbers
+            else:
+                xNumber = int(xNumber) + 1
+        
+        x["excerptNumber"] = xNumber
+
 def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
     Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
@@ -1317,6 +1336,8 @@ def LoadEventFile(database,eventName,directory):
     for x in excerpts:
         FinalizeExcerptTags(x)
 
+    # Apply temporary excerpt numbers before calling CreateClips
+    NumberExcerpts(excerpts)
     CreateClips(excerpts,sessions,database)
     
     originalCount = len(excerpts)
@@ -1329,27 +1350,15 @@ def LoadEventFile(database,eventName,directory):
         del gDatabase["sessions"][Utils.SessionIndex(gDatabase["sessions"],eventName,unusedSession)]
         # Remove sessions with no excerpts
 
+    # Renumber the excerpts after removing excluded excerpts
+    NumberExcerpts(excerpts)
+
     if sessionsWithExcerpts:
         database["event"][eventName] = eventDesc
     else:
         Alert.caution(eventDesc,"has no non-excluded session. Removing this event from the database.")
+        return
 
-    xNumber = 1
-    lastSession = -1
-    for x in excerpts:
-        if x["sessionNumber"] != lastSession:
-            if "clips" in x: # Does the session begin with a regular (non-session) excerpt?
-                xNumber = 1
-            else:
-                xNumber = 0
-            lastSession = x["sessionNumber"]
-        else:
-            if ExcerptFlag.FRAGMENT in x["flags"]:
-                xNumber += 0.1  # Fragments have fractional excerpt numbers
-            else:
-                xNumber = int(xNumber) + 1
-        
-        x["excerptNumber"] = xNumber
     
     for index in range(len(excerpts)):
         Utils.ReorderKeys(excerpts[index],["event","sessionNumber","excerptNumber","fileNumber"])

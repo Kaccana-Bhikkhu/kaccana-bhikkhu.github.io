@@ -60,7 +60,7 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         if nonSearchableTeachers:
             gNonSearchableTeacherRegex = Utils.RegexMatchAny(nonSearchableTeachers,literal=True)
         else:
-            gNonSearchableTeacherRegex = "xyzxyz" # Matches nothing
+            gNonSearchableTeacherRegex = r"^a\bc" # Matches nothing
 
 
     for item in items:

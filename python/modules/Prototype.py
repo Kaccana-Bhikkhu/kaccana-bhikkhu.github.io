@@ -934,7 +934,7 @@ class Formatter:
         tagStrings = []
         for n,tag in enumerate(excerpt["tags"]):
             if self.excerptOmitSessionTags:
-                omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
+                omitTags = set.union(self.excerptOmitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
             else:
                 omitTags = set(self.excerptOmitTags)
             omitTags -= set(excerpt["fTags"]) # Always show fTags
