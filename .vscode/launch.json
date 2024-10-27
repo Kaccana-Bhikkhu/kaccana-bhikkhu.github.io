@@ -133,9 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "DownloadCSV",
+                "Prototype",
                 "--buildOnly",
-                "events"
+                "tags"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
