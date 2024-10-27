@@ -8,6 +8,7 @@ import Database
 import Utils, Alert, ParseCSV, Prototype, Filter
 import Html2 as Html
 from typing import Iterable, Iterator, Callable
+import itertools
 
 def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     """Enclose the strings in items in the specified characters:
@@ -107,7 +108,7 @@ def ExcerptBlobs(excerpt: dict) -> list[str]:
             bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
         
         joined = "".join(bits)
-        for fTag in excerpt["fTags"]:
+        for fTag in itertools.chain(excerpt["fTags"],excerpt.get("fragmentFTags",())):
             tagCode = f"[{RawBlobify(fTag)}]"
             joined = joined.replace(tagCode,tagCode + "+")
         returnValue.append(joined)
@@ -119,7 +120,7 @@ def OptimizedExcerpts() -> list[dict]:
     formatter.excerptOmitSessionTags = False
     formatter.showHeading = False
     formatter.headingShowTeacher = False
-    for x in gDatabase["excerpts"]:
+    for x in Database.RemoveFragments(gDatabase["excerpts"]):
         xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": ExcerptBlobs(x),
                  "html": formatter.HtmlExcerptList([x])}
