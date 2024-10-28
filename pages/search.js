@@ -129,6 +129,17 @@ class searchTerm {
         if (/^[0-9]+$/.test(searchElement)) // Enclose bare numbers in quotes so 7 does not match 37
             searchElement = '"' + searchElement + '"'
 
+        let qTagMatch = false
+        let aTagMatch = false
+        if (/\]\/\/$/.test(searchElement)) { // Does this query match qTags only?
+            searchElement = searchElement.replace(/\/*$/,"")
+            qTagMatch = true
+        }
+        if (/^\/\/\[/.test(searchElement)) { // Does this query match aTags only?
+            searchElement = searchElement.replace(/^\/*/,"")
+            aTagMatch = true
+        }
+        
         let unwrapped = searchElement;
         switch (searchElement[0]) {
             case '"': // Items in quotes must match on word boundaries.
@@ -138,8 +149,15 @@ class searchTerm {
 
         // Replace inner * and $ with appropriate operators.
         let escaped = substituteWildcards(unwrapped);
-        console.log("searchElement:",searchElement,escaped);
-        this.matcher = new RegExp(escaped);
+        let finalRegEx = escaped
+        if (qTagMatch) {
+            finalRegEx += "(?=.*//)"
+        }
+        if (aTagMatch) {
+            finalRegEx += "(?!.*//)"
+        }
+        console.log("searchElement:",searchElement,finalRegEx);
+        this.matcher = new RegExp(finalRegEx);
 
         if (this.matchesMetadata)
             return; // Don't apply boldface to metadata searches
@@ -219,7 +237,8 @@ export class searchQuery {
         let partsSearch = "\\s*(" + [
             matchEnclosedText('""',''),
             matchEnclosedText('{}',SPECIAL_SEARCH_CHARS),
-            matchEnclosedText('[]',SPECIAL_SEARCH_CHARS),
+            "/*" + matchEnclosedText('[]',SPECIAL_SEARCH_CHARS) + "\\+?/*",
+                // Match the forms: [tag]// (qTag only), //[tag] (aTag only), [tag]+ (fTag only)
             "[^ ]+"
         ].join("|") + ")";
         console.log(partsSearch);

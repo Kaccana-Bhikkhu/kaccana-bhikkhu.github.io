@@ -97,10 +97,17 @@ function runUnitTests() {
         ['@UD2014-1 ud',7,'All excerpts containing text "ud"'],
         ["Search by number:"],
         ['@UD2014-1 2',1,'All excerpts containing the digit 2 alone'],
-        ['@UD2014-1 "*2*"',6,'All excerpts containing any digit 2']
+        ['@UD2014-1 "*2*"',6,'All excerpts containing any digit 2'],
+        ['Search for fTags'],
+        ['[Renunciation]+',3,'All [Renunciation] featured excerpts'],
+        ['[Renunciation] +',7,'All featured excerpts with tag [Renunciation]'],
+        ['Search for qTags and aTags'],
+        ['@UD2014-1 [Merit]',9,'All excerpts with tag [Merit]'],
+        ['@UD2014-1 [Merit]//',6,'All excerpts with qTag [Merit]'],
+        ['@UD2014-1 //[Merit]',5,'All excerpts with aTag [Merit]'],
     ];
 
-    let results = ["All results are from searching UD2014-1.<br><br>"];
+    let results = ["All results are from searching UD2014-1 and tag [Renunciation].<br><br>"];
     let test = [];
     for (test of unitTestList) {
         if (test.length === 3)
@@ -119,3 +126,4 @@ startButton.onclick = () => {
         runUnitTests();
     }) 
 }
+startButton.click()
