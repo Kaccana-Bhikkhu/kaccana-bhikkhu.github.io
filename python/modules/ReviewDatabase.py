@@ -7,8 +7,9 @@ import os, bisect, csv, re
 from functools import lru_cache
 import Database, Filter
 import Utils, Database, Alert
+import FileRegister
 import ParseCSV
-from typing import NamedTuple, Iterable
+from typing import Generator, Iterable
 from collections import defaultdict
 
 @lru_cache(maxsize=None)
@@ -234,10 +235,10 @@ def CheckRelatedTags() -> None:
         if overlap:
             Alert .caution(tagInfo,"related tags",overlap,"are already mentioned as subtags or supertags.")
 
-def FeaturedExcerptSummary(subtopic: str) -> str:
+def FeaturedExcerptSummary(subtopicOrTag: str) -> str:
     """Return a list of this subtopic's featured excerpts in tab separated values format."""
-    subtopic = gDatabase["subtopic"][subtopic]
-    tags = [subtopic["tag"]] + list(subtopic["subtags"])
+    subtopicOrTag = gDatabase["subtopic"].get(subtopicOrTag,None) or gDatabase["tag"].get(subtopicOrTag)
+    tags = [subtopicOrTag["tag"]] + list(subtopicOrTag.get("subtags",()))
     featuredExcerpts = Filter.FTag(tags)(gDatabase["excerpts"])
     featuredExcerpts = sorted(featuredExcerpts,key=lambda x: Database.FTagOrder(x,tags))
     lines = []
@@ -251,10 +252,18 @@ def FeaturedExcerptSummary(subtopic: str) -> str:
         lines.append("\t".join(items))
     return "\n".join(lines)
 
+def SubtopicsAndTags() -> Generator[str]:
+    "Iterate over all subtopics and then over all tags not in subtopics"
+    yield from gDatabase["subtopic"].values()
+    keyTopicTags = Database.KeyTopicTags()
+    yield from (tag for tag in gDatabase["tag"].values() if tag["tag"] not in keyTopicTags)
+
 def CheckFTagOrder() -> None:
     """Print alerts when there is ambiguity sorting featured excerpts."""
-    for subtopic in gDatabase["subtopic"].values():
-        tags = [subtopic["tag"]] + list(subtopic["subtags"])
+    for subtopicOrTag in SubtopicsAndTags():
+        tags = [subtopicOrTag["tag"]]
+        if "topicCode" in subtopicOrTag: # Is this a subtopic?
+            tags += list(subtopicOrTag.get("subtags",()))
         featuredExcerpts = Filter.FTag(tags)(gDatabase["excerpts"])
         problems = []
         fTagOrder = set(Database.FTagOrder(x,tags) for x in featuredExcerpts)
@@ -263,9 +272,24 @@ def CheckFTagOrder() -> None:
         if any(n > 1000 for n in fTagOrder):
             problems.append("draft featured excerpts")
         if problems:
-            Alert.caution(subtopic,f"has {' and '.join(problems)}:",lineSpacing=0)
-            print(FeaturedExcerptSummary(subtopic["tag"]))
+            Alert.caution(subtopicOrTag,f"has {' and '.join(problems)}:",lineSpacing=0)
+            print(FeaturedExcerptSummary(subtopicOrTag["tag"]))
             print()
+
+def LogReviewedFTags() -> None:
+    """Write one file for each reviewed subtopic or tag containing its list of featured excerpts so git will flag any changes."""
+    directory = "documentation/reviewedFTags/"
+    os.makedirs(directory,exist_ok=True)
+    with FileRegister.HashWriter(directory) as writer:
+        for subtopic in gDatabase["subtopic"].values():
+            if subtopic["reviewed"]:
+                fileLines = ["\t".join(("fTagOrder","excerpt","kind","text")),
+                            FeaturedExcerptSummary(subtopic["tag"]),
+                            "",
+                            "Subtopic tags:"]
+                fileLines += [subtopic["tag"]] + list(subtopic["subtags"].keys())
+                
+                writer.WriteTextFile(Utils.PosixJoin("subtopics",subtopic["tag"] + ".tsv"),"\n".join(fileLines))
 
 def DumpCSV(directory:str) -> None:
     "Write a summary of gDatabase to csv files in directory."
@@ -303,6 +327,7 @@ def main() -> None:
     AuditNames()
     CheckRelatedTags()
     CheckFTagOrder()
+    LogReviewedFTags()
 
     if gOptions.dumpCSV:
         DumpCSV(gOptions.dumpCSV)

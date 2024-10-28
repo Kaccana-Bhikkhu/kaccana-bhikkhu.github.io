@@ -142,6 +142,17 @@ def TagClusterLookup(clusterRef:str,tagClusterDictCache:dict = {}) -> str|None:
 
     return tagClusterDictCache.get(clusterRef,None)
 
+@lru_cache(maxsize=None)
+def KeyTopicTags() -> dict[str,None]:
+    "Return a dict of tag names which appear in key topics. The dict class simulates an ordered set."
+
+    returnValue = {}
+    for subtopic in gDatabase["subtopic"].values():
+        returnValue[subtopic["tag"]] = None
+        for tag in subtopic["subtags"]:
+            returnValue[tag] = None
+    return returnValue
+
 def ParentTagListEntry(listIndex: int) -> dict|None:
     "Return a the entry in gDatabase['tagDisplayList'] that corresponds to this tag's parent tag."
 
@@ -299,7 +310,7 @@ def ItemRepr(item: dict) -> str:
         if "tag" in item:
             if "level" in item:
                 kind = "tagDisplay"
-            elif "subtags" in item:
+            elif "topicCode" in item:
                 kind = "subtopic"
             else:
                 kind = "tag"
