@@ -105,6 +105,7 @@ function runUnitTests() {
         ['@UD2014-1 [Merit]',9,'All excerpts with tag [Merit]'],
         ['@UD2014-1 [Merit]//',6,'All excerpts with qTag [Merit]'],
         ['@UD2014-1 //[Merit]',5,'All excerpts with aTag [Merit]'],
+        ['@UD2014-1 !death',19,'All excerpts with <b>no item</b> which does not contain death'],
     ];
 
     let results = ["All results are from searching UD2014-1 and tag [Renunciation].<br><br>"];

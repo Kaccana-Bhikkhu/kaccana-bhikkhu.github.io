@@ -126,18 +126,21 @@ class searchTerm {
         // Also create boldTextMatcher to display the match in bold.
         this.matchesMetadata = HAS_METADATADELIMITERS.test(searchElement);
 
+        this.negate = searchElement.startsWith("!");
+        searchElement = searchElement.replace(/^!/,"");
+
         if (/^[0-9]+$/.test(searchElement)) // Enclose bare numbers in quotes so 7 does not match 37
             searchElement = '"' + searchElement + '"'
 
-        let qTagMatch = false
-        let aTagMatch = false
+        let qTagMatch = false;
+        let aTagMatch = false;
         if (/\]\/\/$/.test(searchElement)) { // Does this query match qTags only?
-            searchElement = searchElement.replace(/\/*$/,"")
-            qTagMatch = true
+            searchElement = searchElement.replace(/\/*$/,"");
+            qTagMatch = true;
         }
         if (/^\/\/\[/.test(searchElement)) { // Does this query match aTags only?
-            searchElement = searchElement.replace(/^\/*/,"")
-            aTagMatch = true
+            searchElement = searchElement.replace(/^\/*/,"");
+            aTagMatch = true;
         }
         
         let unwrapped = searchElement;
@@ -149,12 +152,12 @@ class searchTerm {
 
         // Replace inner * and $ with appropriate operators.
         let escaped = substituteWildcards(unwrapped);
-        let finalRegEx = escaped
+        let finalRegEx = escaped;
         if (qTagMatch) {
-            finalRegEx += "(?=.*//)"
+            finalRegEx += "(?=.*//)";
         }
         if (aTagMatch) {
-            finalRegEx += "(?!.*//)"
+            finalRegEx += "(?!.*//)";
         }
         console.log("searchElement:",searchElement,finalRegEx);
         this.matcher = new RegExp(finalRegEx);
@@ -176,9 +179,10 @@ class searchTerm {
     }
 
     matchesBlob(blob) { // Does this search term match a given blob?
-        if (!this.matchesMetadata)
+        if (!this.matchesMetadata) {
             blob = blob.split(METADATA_SEPERATOR)[0];
-        return this.matcher.test(blob);
+        }
+        return (this.matcher.test(blob) != this.negate);
     }
 }
 
@@ -234,13 +238,19 @@ export class searchQuery {
         queryText = queryText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
     
         // 1. Build a regex to parse queryText into items
-        let partsSearch = "\\s*(" + [
+        let parts = [
             matchEnclosedText('""',''),
+                // Match text enclosed in quotes
             matchEnclosedText('{}',SPECIAL_SEARCH_CHARS),
+                // Match teachers enclosed in braces
             "/*" + matchEnclosedText('[]',SPECIAL_SEARCH_CHARS) + "\\+?/*",
+                // Match tags enclosed in brackets
                 // Match the forms: [tag]// (qTag only), //[tag] (aTag only), [tag]+ (fTag only)
             "[^ ]+"
-        ].join("|") + ")";
+                // Match everything else until we encounter a space
+        ];
+        parts = parts.map((s) => "!?" + s); // Add an optional ! (negation) to these parts
+        let partsSearch = "\\s*(" + parts.join("|") + ")"
         console.log(partsSearch);
         partsSearch = new RegExp(partsSearch,"g");
     

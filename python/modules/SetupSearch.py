@@ -30,7 +30,7 @@ def RawBlobify(item: str) -> str:
     output = output.replace("–","-").replace("—","-") # Conert all dashes to hypens
     output = Utils.RemoveDiacritics(output.lower())
     output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
-    output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
+    output = re.sub(r"!?\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
     output = output.replace("++","") # Remove ++ bold format markers
     output = re.sub(r"[|]"," ",output) # convert these characters to a space
     output = re.sub(r"[][#()@_*]^","",output) # remove these characters
