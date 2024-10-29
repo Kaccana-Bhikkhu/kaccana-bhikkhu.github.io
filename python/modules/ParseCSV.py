@@ -1140,7 +1140,7 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
             for a in fragmentAnnotations:
                 a["indentLevel"] = a["indentLevel"] - baseLevel
 
-            fragmentExcerpts.append(dict(
+            fragmentExcerpt = dict(
                 event = excerpt["event"],
                 sessionNumber = excerpt["sessionNumber"],
                 fileNumber = nextFileNumber,
@@ -1160,7 +1160,19 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
                 endTime = fragmentAnnotation["endTime"],
 
                 exclude = False
-            ))
+            )
+
+            audioEdited = any(a["kind"] == "Edited audio" for a in excerpt["annotations"])
+            relativeAudio = ExcerptFlag.RELATIVE_AUDIO in fragmentAnnotation["flags"]
+            if audioEdited and not relativeAudio:
+                Alert.error(excerpt,": Excerpts with edited audio must specify relative fragment times.")
+            elif relativeAudio:
+                offsetTime = Utils.StrToTimeDelta(excerpt["startTime"])
+                for key in ("startTime","endTime"):
+                    fragmentExcerpt[key] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(fragmentExcerpt[key]) + offsetTime)
+            
+            fragmentExcerpts.append(fragmentExcerpt)
+
 
         fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
         nextFileNumber += 1

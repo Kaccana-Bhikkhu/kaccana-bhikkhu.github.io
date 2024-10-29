@@ -2123,7 +2123,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
 
     yield page
 
-def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.PageDescriptorMenuItem:
+def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemos = False) -> Html.PageDescriptorMenuItem:
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
@@ -2179,10 +2179,14 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.Pag
                             bitsAfterDash.append(ListLinkedTags("Related",gDatabase["subtopic"][subtopic]["related"],plural="",endStr=""))
                         if bitsAfterDash:
                             a(" – " + "; ".join(bitsAfterDash))
-                
+                        if printPage and progressMemos:
+                            with a.p(style="margin-left: 4em;"):
+                                a(gDatabase['subtopic'][subtopic]["progressMemo"] or ".")
+
                 if topic["shortNote"] and not printPage:
                     with a.p(style="margin-left: 2em;"):
                         a(topic["shortNote"])
+
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
     
@@ -2200,12 +2204,17 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.Pag
 
     yield page
 
-def PrintTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+def PrintTopics(indexDir: str,topicDir: str,progressMemos: bool) -> Html.PageDescriptorMenuItem:
     "Yield a printable listing of all topic headings."
-    menuItem = Html.PageInfo("Printable",Utils.PosixJoin(indexDir,"KeyTopicDetail_print.html"),"Key topics")
+    menuEntry = "Printable"
+    filename = "KeyTopicDetail_print.html"
+    if progressMemos:
+        filename = "KeyTopicMemos_print.html"
+        menuEntry += " with memos"
+    menuItem = Html.PageInfo(menuEntry,Utils.PosixJoin(indexDir,filename),"Key topics")
     yield menuItem
 
-    topicList = DetailedKeyTopics(indexDir,topicDir,printPage=True)
+    topicList = DetailedKeyTopics(indexDir,topicDir,printPage=True,progressMemos=progressMemos)
     _ = next(topicList)
     page = next(topicList)
     page.info = menuItem._replace(title="Key topics")
@@ -2225,7 +2234,8 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     keyTopicMenu = [
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
-        PrintTopics(indexDir,topicDir),
+        PrintTopics(indexDir,topicDir,False),
+        PrintTopics(indexDir,topicDir,True)
     ]
 
     yield from basePage.AddMenuAndYieldPages(keyTopicMenu,**EXTRA_MENU_STYLE)

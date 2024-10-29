@@ -273,7 +273,7 @@ def CheckFTagOrder() -> None:
         if any(n > 1000 for n in fTagOrder):
             problems.append("draft featured excerpts")
         if problems:
-            Alert.caution(subtopicOrTag,f"has {' and '.join(problems)}:",lineSpacing=0)
+            Alert.notice(subtopicOrTag,f"has {' and '.join(problems)}:",lineSpacing=0)
             print(FeaturedExcerptSummary(subtopicOrTag["tag"]))
             print()
 
@@ -297,6 +297,20 @@ def LogReviewedFTags() -> None:
         for tag in gDatabase["tag"].values():
             if tag["tag"] in gDatabase["reviewedTag"]:
                 writer.WriteTextFile(Utils.PosixJoin("tags",tag["tag"] + ".tsv"),LogFile(tag))
+
+def NeedsAudioEditing() -> None:
+    "Print which excerpts need audio editing."
+    amplifyQuestions = [x for x in gDatabase["excerpts"] if ParseCSV.ExcerptFlag.AMPLIFY_QUESTION in x["flags"]]
+    if amplifyQuestions:
+        Alert.notice("Questions should be amplified for the following",len(amplifyQuestions),"excerpts:",lineSpacing=0)
+        print("\n".join(Database.ItemRepr(x) for x in amplifyQuestions))
+        print()
+    
+    audioEditing = [x for x in gDatabase["excerpts"] if ParseCSV.ExcerptFlag.AUDIO_EDITING in x["flags"]]
+    if audioEditing:
+        Alert.notice("The following",len(amplifyQuestions),"excerpts need audio editing:",lineSpacing=0)
+        print("\n".join(Database.ItemRepr(x) for x in audioEditing))
+        print()
 
 def DumpCSV(directory:str) -> None:
     "Write a summary of gDatabase to csv files in directory."
@@ -335,6 +349,7 @@ def main() -> None:
     CheckRelatedTags()
     CheckFTagOrder()
     LogReviewedFTags()
+    NeedsAudioEditing()
 
     if gOptions.dumpCSV:
         DumpCSV(gOptions.dumpCSV)

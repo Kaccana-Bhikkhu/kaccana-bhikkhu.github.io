@@ -9303,6 +9303,14 @@
       "fTags": [],
       "annotations": [
         {
+          "kind": "Fragment",
+          "flags": "r",
+          "startTime": "6:19",
+          "endTime": "8:13",
+          "text": "[](player:Metta2008_S02_F11)",
+          "indentLevel": 1
+        },
+        {
           "kind": "Recollection",
           "flags": "",
           "text": "Ajahn Chah was this peaceful, happy presence in the center of the universe. Things happened around him all the time...and Ajahn Chah was always happy. You realize that that's really possible in the human condition.",
@@ -9338,13 +9346,52 @@
           "53:55"
         ]
       ],
-      "duration": "9:12"
+      "duration": "9:12",
+      "fragmentFTags": [
+        "Ajahn Chah"
+      ]
+    },
+    {
+      "event": "Metta2008",
+      "sessionNumber": 2,
+      "excerptNumber": 10.1,
+      "fileNumber": 11,
+      "annotations": [],
+      "kind": "Recollection",
+      "flags": "f",
+      "teachers": [
+        "AP"
+      ],
+      "text": "Ajahn Chah was this peaceful, happy presence in the center of the universe. Things happened around him all the time...and Ajahn Chah was always happy. You realize that that's really possible in the human condition.",
+      "fTags": [
+        "Ajahn Chah"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "tags": [
+        "Ajahn Chah",
+        "Happiness",
+        "Worldly Conditions",
+        "Faith",
+        "Disrobing",
+        "Human"
+      ],
+      "qTagCount": 4,
+      "clips": [
+        [
+          "$",
+          "51:02",
+          "52:56"
+        ]
+      ],
+      "duration": "1:54"
     },
     {
       "event": "Metta2008",
       "sessionNumber": 2,
       "excerptNumber": 11,
-      "fileNumber": 11,
+      "fileNumber": 12,
       "kind": "Question",
       "flags": "",
       "text": "Please repeat the metta phrases you taught yesterday and today.",
@@ -104077,7 +104124,7 @@
       "eventCount": 3,
       "sessionCount": 38,
       "excerptCount": 570,
-      "fTagCount": 6,
+      "fTagCount": 7,
       "listIndex": 473
     },
     "Ajahn Chah lineage": {
@@ -126675,13 +126722,13 @@
       "tag": "Ajahn Chah",
       "displayAs": "Ajahn Chah",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "teachers",
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/ajahn-chah.html",
       "excerptCount": 570,
-      "fTagCount": 6
+      "fTagCount": 7
     },
     "Ajahn Sumedho": {
       "tag": "Ajahn Sumedho",
@@ -126701,7 +126748,7 @@
       "related": [],
       "reviewed": false,
       "topicCode": "teachers",
-      "progressMemo": "",
+      "progressMemo": "Looking for one more excerpt about AP training under LP Chah.",
       "subtags": {},
       "htmlPath": "tags/ajahn-pasanno.html",
       "excerptCount": 233,
@@ -127988,7 +128035,7 @@
         "Ajahn Pasanno"
       ],
       "excerptCount": 875,
-      "fTagCount": 18
+      "fTagCount": 19
     },
     "context": {
       "code": "context",
