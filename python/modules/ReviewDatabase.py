@@ -246,6 +246,7 @@ def FeaturedExcerptSummary(subtopicOrTag: str) -> str:
         items = [
             str(Database.FTagOrder(x,tags)),
             Database.ItemCode(x),
+            x["duration"],
             x["kind"],
             Utils.EllideText(x["text"],70)
         ]
@@ -280,16 +281,22 @@ def LogReviewedFTags() -> None:
     """Write one file for each reviewed subtopic or tag containing its list of featured excerpts so git will flag any changes."""
     directory = "documentation/reviewedFTags/"
     os.makedirs(directory,exist_ok=True)
+
+    def LogFile(subtopicOrTag: dict[str]) -> str:
+        "Return the contents of the log file for this subtopic or tag."
+        fileLines = ["\t".join(("fTagOrder","excerpt","duration","kind","text")),
+            FeaturedExcerptSummary(subtopicOrTag["tag"])]
+        if "displayAs" in subtopicOrTag:
+            fileLines += ["","Subtopic tags:",subtopicOrTag["tag"]] + list(subtopicOrTag["subtags"].keys())
+        return "\n".join(fileLines)
+    
     with FileRegister.HashWriter(directory) as writer:
         for subtopic in gDatabase["subtopic"].values():
             if subtopic["reviewed"]:
-                fileLines = ["\t".join(("fTagOrder","excerpt","kind","text")),
-                            FeaturedExcerptSummary(subtopic["tag"]),
-                            "",
-                            "Subtopic tags:"]
-                fileLines += [subtopic["tag"]] + list(subtopic["subtags"].keys())
-                
-                writer.WriteTextFile(Utils.PosixJoin("subtopics",subtopic["tag"] + ".tsv"),"\n".join(fileLines))
+                writer.WriteTextFile(Utils.PosixJoin("subtopics",subtopic["tag"] + ".tsv"),LogFile(subtopic))
+        for tag in gDatabase["tag"].values():
+            if tag["tag"] in gDatabase["reviewedTag"]:
+                writer.WriteTextFile(Utils.PosixJoin("tags",tag["tag"] + ".tsv"),LogFile(tag))
 
 def DumpCSV(directory:str) -> None:
     "Write a summary of gDatabase to csv files in directory."
