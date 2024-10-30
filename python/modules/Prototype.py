@@ -312,6 +312,86 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
     
     return str(a)
 
+def DrilldownTemplate() -> str:
+    """Return a pyratemp template for an indented list of """
+
+    tabMeasurement = 'em'
+    tabLength = 2
+
+    tagList = gDatabase["tagDisplayList"]
+    a = Airium()
+    with a.div(Class="listing"):
+        for index, item in enumerate(tagList):
+            #print(index,item["name"])
+            
+            bookmark = Utils.slugify(item["tag"] or item["name"])
+            with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+                indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
+                
+                countItems = []
+                fTagCount = item["tag"] and gDatabase["tag"][item["tag"]].get("fTagCount",0)
+                if fTagCount:
+                    countItems.append(f'{fTagCount}{FA_STAR}')
+                subtagExcerptCount = item.get("subtagExcerptCount",0)
+                itemCount = item["excerptCount"]
+                if itemCount or subtagExcerptCount:
+                    if subtagExcerptCount:
+                        if not item['tag']:
+                            itemCount = "-"
+                        countItems.append(str(itemCount))
+                        countItems.append(str(subtagExcerptCount))
+                    else:
+                        countItems.append(str(itemCount))
+                if countItems:
+                    countStr = f' ({"/".join(countItems)})'
+                else:
+                    countStr = ''
+                
+                if item['tag'] and not item['subsumed']:
+                    nameStr = HtmlTagLink(item['tag'],True) + countStr
+                else:
+                    nameStr = item['name'] + ("" if item["subsumed"] else countStr)
+                
+                if item['pali'] and item['pali'] != item['name']:
+                    paliStr = '(' + item['pali'] + ')'
+                elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
+                    paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
+                    # If specified, use paliStr to display the tag's first gloss
+                else:
+                    paliStr = ''
+                
+                if item['subsumed']:
+                    seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
+                else:
+                    seeAlsoStr = ''
+                
+                drilldownLink = ""
+                divTag = "" # These are start and end tags for the toggle-view divisions
+                if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
+                    tagAtPrevLevel = -1
+                    for reverseIndex in range(index - 1,-1,-1):
+                        if tagList[reverseIndex]["level"] < item["level"]:
+                            tagAtPrevLevel = reverseIndex
+                            break
+                    drilldownID = DrilldownPageFile(index).replace(".html","")
+                    # drilldownLink = f'<a href="../drilldown/{DrilldownPageFile(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
+                    plusBox = Html.Tag("i",{"class":"fa fa-minus-square toggle-view","id":drilldownID})("")
+                    drilldownLink = Html.Tag("a")(plusBox)
+                    divTag = f'<div id="{drilldownID + ".b"}" class="no-padding">'
+                elif index >= len(tagList) - 1 or tagList[index + 1]["level"] < item["level"]:
+                        # Is this the next tag less indented?
+                    if index >= len(tagList) - 1:
+                        newLevel = 1
+                    else:
+                        newLevel = tagList[index + 1]["level"]
+                    divTag = "</div>" * (item["level"] - newLevel)
+            
+                joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
+                a(' '.join(joinBits))
+            a(divTag)
+    
+    return str(a)
+
 def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
     """Return the name of the page that has this tag expanded.
     The tag can be specified by number in the hierarchy or by name."""
@@ -2248,18 +2328,19 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     drilldownItem = Html.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
     expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
+    templateItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"DrilldownTemplate.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
     yield contractAllItem
 
     drilldownMenu = []
     contractAll = [contractAllItem._replace(title="Contract all")]
-    if "drilldown" in gOptions.buildOnly:
-        contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
+    contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
     drilldownMenu.append(contractAll)
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
+    drilldownMenu.append([templateItem._replace(title="Toggle-view template"),(templateItem,DrilldownTemplate())])
     drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
-    if "drilldown" in gOptions.buildOnly:
+    if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
         drilldownMenu.append(DrilldownTags(drilldownItem))
 
     basePage = Html.PageDesc()

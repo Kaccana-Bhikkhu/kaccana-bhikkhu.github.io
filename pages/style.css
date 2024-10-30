@@ -246,6 +246,10 @@ div.featured p,div {
 	padding-left: 20px;
 }
 
+div.no-padding {
+	padding: 0px;
+}
+
 .title {
 	font-size: 1.3em;
 	font-family: "Roboto", sans-serif;
