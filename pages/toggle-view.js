@@ -47,7 +47,7 @@ export function loadToggleView() {
         toggled.splice(0,1);
 
     let togglers = document.getElementsByClassName("toggle-view");
-    for (let t of togglers) {
+    for (let t of togglers) { // Need to rewrite this logic
         if ((initView == null) || (toggled.indexOf(t.id) == -1))
             setVisible(t,initView);
         else

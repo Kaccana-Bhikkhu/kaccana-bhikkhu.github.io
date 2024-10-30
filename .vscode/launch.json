@@ -133,9 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ReviewDatabase",
+                "Prototype",
                 "--buildOnly",
-                "tags"
+                "none"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

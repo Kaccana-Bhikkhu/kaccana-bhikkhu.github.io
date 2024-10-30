@@ -18,6 +18,7 @@ from enum import Enum
 import itertools
 import FileRegister
 from contextlib import nullcontext
+from functools import lru_cache
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
@@ -312,8 +313,13 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
     
     return str(a)
 
+@lru_cache(maxsize=None)
 def DrilldownTemplate() -> str:
-    """Return a pyratemp template for an indented list of """
+    """Return a pyratemp template for an indented list of tags which can be expanded using
+    the javascript toggle-view class.
+    Variables within the template:
+    xTagIndexes: the set of integer tag indexes to expand
+    """
 
     tabMeasurement = 'em'
     tabLength = 2
@@ -321,9 +327,7 @@ def DrilldownTemplate() -> str:
     tagList = gDatabase["tagDisplayList"]
     a = Airium()
     with a.div(Class="listing"):
-        for index, item in enumerate(tagList):
-            #print(index,item["name"])
-            
+        for index, item in enumerate(tagList):            
             bookmark = Utils.slugify(item["tag"] or item["name"])
             with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
                 indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
@@ -367,7 +371,11 @@ def DrilldownTemplate() -> str:
                 
                 drilldownLink = ""
                 divTag = "" # These are start and end tags for the toggle-view divisions
-                if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
+                if index >= len(tagList) - 1:
+                    nextLevel = 1
+                else:
+                    nextLevel = tagList[index + 1]["level"]
+                if nextLevel > item["level"]: # Can the tag be expanded?
                     tagAtPrevLevel = -1
                     for reverseIndex in range(index - 1,-1,-1):
                         if tagList[reverseIndex]["level"] < item["level"]:
@@ -375,22 +383,32 @@ def DrilldownTemplate() -> str:
                             break
                     drilldownID = DrilldownPageFile(index).replace(".html","")
                     # drilldownLink = f'<a href="../drilldown/{DrilldownPageFile(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
-                    plusBox = Html.Tag("i",{"class":"fa fa-minus-square toggle-view","id":drilldownID})("")
+                    
+                    boxType = f"$!'minus' if {index} in xTagIndexes else 'plus'!$"
+                        # Code to be executed by pyratemp
+                    plusBox = Html.Tag("i",{"class":f"fa fa-{boxType}-square toggle-view","id":drilldownID})("")
                     drilldownLink = Html.Tag("a")(plusBox)
-                    divTag = f'<div id="{drilldownID + ".b"}" class="no-padding">'
-                elif index >= len(tagList) - 1 or tagList[index + 1]["level"] < item["level"]:
-                        # Is this the next tag less indented?
-                    if index >= len(tagList) - 1:
-                        newLevel = 1
-                    else:
-                        newLevel = tagList[index + 1]["level"]
-                    divTag = "</div>" * (item["level"] - newLevel)
+
+                    hideCode = f"""$!'' if {index} in xTagIndexes else 'style="display: none;"'!$"""
+                    divTag = f'<div id="{drilldownID + ".b"}" class="no-padding" {hideCode}>'
+                elif nextLevel < item["level"]:
+                    divTag = "</div>" * (item["level"] - nextLevel)
             
                 joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
                 a(' '.join(joinBits))
             a(divTag)
     
     return str(a)
+
+def EvaluateDrilldownTemplate(expandSpecificTags:set[int]|None = Filter.All) -> str:
+    """Evaluate the drilldown template to expand the given set of tags.
+    expandSpecificTags is the set of tag indexes to expand.
+    The default is to expand all tags."""
+
+    template = pyratemp.Template(DrilldownTemplate())
+    evaluated = template(xTagIndexes = {})
+    return str(evaluated)
+
 
 def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
     """Return the name of the page that has this tag expanded.
@@ -2338,7 +2356,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
     drilldownMenu.append(contractAll)
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
-    drilldownMenu.append([templateItem._replace(title="Toggle-view template"),(templateItem,DrilldownTemplate())])
+    drilldownMenu.append([templateItem._replace(title="Toggle-view template"),(templateItem,EvaluateDrilldownTemplate())])
     drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
     if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
         drilldownMenu.append(DrilldownTags(drilldownItem))
