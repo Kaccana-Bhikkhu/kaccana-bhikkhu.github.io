@@ -400,13 +400,13 @@ def DrilldownTemplate() -> str:
     
     return str(a)
 
-def EvaluateDrilldownTemplate(expandSpecificTags:set[int]|None = Filter.All) -> str:
+def EvaluateDrilldownTemplate(expandSpecificTags:set[int] = frozenset()) -> str:
     """Evaluate the drilldown template to expand the given set of tags.
     expandSpecificTags is the set of tag indexes to expand.
     The default is to expand all tags."""
 
     template = pyratemp.Template(DrilldownTemplate())
-    evaluated = template(xTagIndexes = {})
+    evaluated = template(xTagIndexes = expandSpecificTags)
     return str(evaluated)
 
 
@@ -465,7 +465,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             
             page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
             page.keywords.append(tag["name"])
-            page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page.AppendContent(EvaluateDrilldownTemplate(expandSpecificTags=tagsToExpand))
             page.specialJoinChar["citationTitle"] = ""
             page.AppendContent(f': {tag["name"]}',section="citationTitle")
             yield page
@@ -2353,7 +2353,7 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
 
     drilldownMenu = []
     contractAll = [contractAllItem._replace(title="Contract all")]
-    contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
+    contractAll.append((contractAllItem,EvaluateDrilldownTemplate()))
     drilldownMenu.append(contractAll)
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
     drilldownMenu.append([templateItem._replace(title="Toggle-view template"),(templateItem,EvaluateDrilldownTemplate())])
@@ -2364,8 +2364,13 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
+    
     menuStyle = dict(EXTRA_MENU_STYLE)
-    menuStyle["wrapper"] += "Numbers in parentheses following tag names: (number of excerpts tagged/number of excerpts tagged with this tag or its subtags).<br><br>"
+    menuStyle["wrapper"] += Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.AddQuery("showAll").file)})("Expand all")
+    menuStyle["wrapper"] += " " + Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.file)})("Contract all")
+    menuStyle["wrapper"] += "<br><br>"
+    menuStyle["wrapper"] += f"Numbers in parentheses: (featured excerpts{FA_STAR}/excerpts tagged/excerpts tagged with this tag or its subtags).<br><br>"
+    
     yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
