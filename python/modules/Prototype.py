@@ -2345,43 +2345,50 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
     
     drilldownItem = Html.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
-    expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
-    templateItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"DrilldownTemplate.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
     yield contractAllItem
-
-    """drilldownMenu = []
-    contractAll = [contractAllItem._replace(title="Contract all")]
-    contractAll.append((contractAllItem,EvaluateDrilldownTemplate()))
-    drilldownMenu.append(contractAll)
-    drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
-    drilldownMenu.append([templateItem._replace(title="Toggle-view template"),(templateItem,EvaluateDrilldownTemplate())])
-    drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])"""
 
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
     
-    # menuStyle = dict(EXTRA_MENU_STYLE)
-    basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.AddQuery("showAll").file)})("Expand all"))
-    basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.file)})("Contract all"))
-    basePage.AppendContent("<br><br>")
-    basePage.AppendContent(f"Numbers in parentheses: (featured excerpts{FA_STAR}/excerpts tagged/excerpts tagged with this tag or its subtags).<br><br>")
+    def TagsWithPrimarySubtags():
+        tagSet = set()
+        tagList = gDatabase["tagDisplayList"]
+        for parent,children in ParseCSV.WalkTags(tagList,returnIndices=True):
+            for n in children:
+                tag = tagList[n]["tag"]
+                if n in tagSet or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
+                    tagSet.add(parent) # Then expand the parent tag
+        return tagSet
 
-    rootPage = Html.PageDesc(contractAllItem)
-    rootPage.AppendContent(EvaluateDrilldownTemplate())
-    newPage = basePage.Clone()
-    newPage.Merge(rootPage)
-    yield newPage
+    def Pages() -> Generator[Html.PageDesc]:
+        printPage = Html.PageDesc(printableItem)
+        tagsExpanded = EvaluateDrilldownTemplate(expandSpecificTags = TagsWithPrimarySubtags())
+        noToggle = re.sub(r'<i class="[^"]*?toggle[^"]*"[^>]*>*.?</i>',"",tagsExpanded)
+        printPage.AppendContent(noToggle)
+        yield printPage
 
-    if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
-        for page in DrilldownTags(drilldownItem):
-            newPage = basePage.Clone()
-            newPage.Merge(page)
-            yield newPage
+        # Hack: Add buttons to basePage after yielding printPage so that all subsequent pages have buttons at the top.
+        basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.AddQuery("showAll").file)})("Expand all"))
+        basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.file)})("Contract all"))
+        basePage.AppendContent(Html.Tag("span",{"style":"float: right;"})(Html.Tag("a",{"href":Utils.PosixJoin("../",printableItem.file)})("Printable")))
+        basePage.AppendContent("<br><br>")
+        basePage.AppendContent(f"Numbers in parentheses: (featured excerpts{FA_STAR}/excerpts tagged/excerpts tagged with this tag or its subtags).<br><br>")
 
-    # yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
+        rootPage = Html.PageDesc(contractAllItem)
+        rootPage.AppendContent(EvaluateDrilldownTemplate())
+        yield rootPage
+
+        if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
+            yield from DrilldownTags(drilldownItem)
+
+    for page in Pages():
+        newPage = basePage.Clone()
+        newPage.Merge(page)
+        yield newPage
+
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
