@@ -2351,27 +2351,37 @@ def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenu
 
     yield contractAllItem
 
-    drilldownMenu = []
+    """drilldownMenu = []
     contractAll = [contractAllItem._replace(title="Contract all")]
     contractAll.append((contractAllItem,EvaluateDrilldownTemplate()))
     drilldownMenu.append(contractAll)
     drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
     drilldownMenu.append([templateItem._replace(title="Toggle-view template"),(templateItem,EvaluateDrilldownTemplate())])
-    drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
-    if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
-        drilldownMenu.append(DrilldownTags(drilldownItem))
+    drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])"""
 
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
     
-    menuStyle = dict(EXTRA_MENU_STYLE)
-    menuStyle["wrapper"] += Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.AddQuery("showAll").file)})("Expand all")
-    menuStyle["wrapper"] += " " + Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.file)})("Contract all")
-    menuStyle["wrapper"] += "<br><br>"
-    menuStyle["wrapper"] += f"Numbers in parentheses: (featured excerpts{FA_STAR}/excerpts tagged/excerpts tagged with this tag or its subtags).<br><br>"
-    
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
+    # menuStyle = dict(EXTRA_MENU_STYLE)
+    basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.AddQuery("showAll").file)})("Expand all"))
+    basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.file)})("Contract all"))
+    basePage.AppendContent("<br><br>")
+    basePage.AppendContent(f"Numbers in parentheses: (featured excerpts{FA_STAR}/excerpts tagged/excerpts tagged with this tag or its subtags).<br><br>")
+
+    rootPage = Html.PageDesc(contractAllItem)
+    rootPage.AppendContent(EvaluateDrilldownTemplate())
+    newPage = basePage.Clone()
+    newPage.Merge(rootPage)
+    yield newPage
+
+    if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
+        for page in DrilldownTags(drilldownItem):
+            newPage = basePage.Clone()
+            newPage.Merge(page)
+            yield newPage
+
+    # yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
