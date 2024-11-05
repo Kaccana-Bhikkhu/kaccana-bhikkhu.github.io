@@ -1125,20 +1125,27 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
     nextFileNumber = excerpt["fileNumber"] + 1
     baseAnnotations = excerpt["annotations"]
     for n,fragmentAnnotation in enumerate(baseAnnotations):
-        if fragmentAnnotation["kind"] != "Fragment":
+        if fragmentAnnotation["kind"] not in ("Fragment","Main fragment"):
             continue
+        mainFragment = fragmentAnnotation["kind"] == "Main fragment"
 
         if not ExcerptFlag.MANUAL_FRAGMENTS in excerpt["flags"]:
-            if n + 1 >= len(baseAnnotations) or baseAnnotations[n]["indentLevel"] != baseAnnotations[n + 1]["indentLevel"]:
-                Alert.error("Error processing Fragment annotation #",n,"in",excerpt,": an annotation at the same level must follow a Fragment annotation.")
-                return fragmentExcerpts
-            
-            baseLevel = fragmentAnnotation["indentLevel"]
-            nextAnnotation = baseAnnotations[n + 1]
+            if mainFragment:
+                fragmentExcerptTemplate = excerpt
+                fragmentAnnotations = [copy.copy(baseAnnotations[number]) for number in range(n)]
+                    # Copy all annotations previous to the Main fragment annotation
+                fragmentTagSource = fragmentAnnotation
+            else:
+                if n + 1 >= len(baseAnnotations) or baseAnnotations[n]["indentLevel"] != baseAnnotations[n + 1]["indentLevel"]:
+                    Alert.error("Error processing Fragment annotation #",n,"in",excerpt,": an annotation at the same level must follow a Fragment annotation.")
+                    return fragmentExcerpts
+                
+                baseLevel = fragmentAnnotation["indentLevel"]
+                fragmentExcerptTemplate = fragmentTagSource = baseAnnotations[n + 1]
 
-            fragmentAnnotations = [copy.copy(a) for a in Database.SubAnnotations(excerpt,baseAnnotations[n + 1])]
-            for a in fragmentAnnotations:
-                a["indentLevel"] = a["indentLevel"] - baseLevel
+                fragmentAnnotations = [copy.copy(a) for a in Database.SubAnnotations(excerpt,baseAnnotations[n + 1])]
+                for a in fragmentAnnotations:
+                    a["indentLevel"] = a["indentLevel"] - baseLevel
 
             fragmentExcerpt = dict(
                 event = excerpt["event"],
@@ -1146,15 +1153,15 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
                 fileNumber = nextFileNumber,
                 annotations = fragmentAnnotations,
 
-                kind = nextAnnotation["kind"],
-                flags = nextAnnotation["flags"] + ExcerptFlag.FRAGMENT,
-                teachers = nextAnnotation["teachers"],
-                text = nextAnnotation["text"],
+                kind = fragmentExcerptTemplate["kind"],
+                flags = fragmentExcerptTemplate["flags"] + ExcerptFlag.FRAGMENT,
+                teachers = fragmentExcerptTemplate["teachers"],
+                text = fragmentExcerptTemplate["text"],
 
-                qTag = nextAnnotation["qTag"],
-                aTag = nextAnnotation["aTag"],
-                fTags = nextAnnotation["fTags"],
-                fTagOrder = nextAnnotation["fTagOrder"],
+                qTag = fragmentTagSource["qTag"],
+                aTag = fragmentTagSource["aTag"],
+                fTags = fragmentTagSource["fTags"],
+                fTagOrder = fragmentTagSource["fTagOrder"],
 
                 startTime = fragmentAnnotation["startTime"],
                 endTime = fragmentAnnotation["endTime"],
@@ -1173,8 +1180,8 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
             
             fragmentExcerpts.append(fragmentExcerpt)
 
-
-        fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
+        if not mainFragment: # Main fragments don't display a player
+            fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
         nextFileNumber += 1
     
     return fragmentExcerpts

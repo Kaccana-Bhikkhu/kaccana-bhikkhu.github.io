@@ -192,9 +192,9 @@ def StrToTimeDelta(inStr):
     numbers = str.split(inStr,":")
     try:
         if len(numbers) == 2:
-            return timedelta(minutes = int(numbers[0]),seconds = int(numbers[1]))
+            return timedelta(minutes = int(numbers[0]),seconds = float(numbers[1]))
         elif len(numbers) == 3:
-            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = int(numbers[2]))
+            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = float(numbers[2]))
     except ValueError:
         pass
         

@@ -733,7 +733,12 @@
       "teachers": [
         "ASumedho"
       ],
-      "fTags": [],
+      "fTags": [
+        "Ajahn Sumedho"
+      ],
+      "fTagOrder": [
+        80
+      ],
       "annotations": [
         {
           "kind": "Quote",
@@ -1259,7 +1264,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Culture/Natural environment"
+      ],
+      "fTagOrder": [
+        100
+      ],
       "annotations": [
         {
           "kind": "Story",
@@ -2586,7 +2596,22 @@
         "JKappel"
       ],
       "fTags": [],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Main fragment",
+          "flags": "r",
+          "startTime": "0:33",
+          "endTime": "0:57.5",
+          "text": "",
+          "tags": [
+            "Teaching Dhamma",
+            "Ajahn Chah",
+            "Trust"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
       "tags": [
         "Teaching Dhamma",
         "Ajahn Chah",
@@ -2604,6 +2629,45 @@
         ]
       ],
       "duration": "3:51",
+      "fragmentFTags": [
+        "Teaching Dhamma"
+      ],
+      "mirror": "local",
+      "body": "Ajahn Chah taught us to speak without preparation.{attribution}",
+      "attribution": " <b>Recollection</b> by <a href=\"../teachers/joseph-kappel.html\">Joseph Kappel</a>."
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 11,
+      "excerptNumber": 5.1,
+      "fileNumber": 6,
+      "annotations": [],
+      "kind": "Recollection",
+      "flags": "3f",
+      "teachers": [
+        "JKappel"
+      ],
+      "text": "Ajahn Chah taught us to speak without preparation.",
+      "fTags": [
+        "Teaching Dhamma"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "tags": [
+        "Teaching Dhamma",
+        "Ajahn Chah",
+        "Trust"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "$",
+          "8:06",
+          "8:30"
+        ]
+      ],
+      "duration": "0:24",
       "mirror": "local",
       "body": "Ajahn Chah taught us to speak without preparation.{attribution}",
       "attribution": " <b>Recollection</b> by <a href=\"../teachers/joseph-kappel.html\">Joseph Kappel</a>."
@@ -2612,7 +2676,7 @@
       "event": "Chah2001",
       "sessionNumber": 11,
       "excerptNumber": 6,
-      "fileNumber": 6,
+      "fileNumber": 7,
       "kind": "Teaching",
       "flags": "0",
       "text": "Most people celebrate birth, but people should be crying. When people die, everyone grieves and sorrows, but they should be celebrating. ++Teaching++ of [Ajahn Chah](teacher:) recollected by [Joseph Kappel](teacher:).",
@@ -2646,7 +2710,7 @@
       "event": "Chah2001",
       "sessionNumber": 11,
       "excerptNumber": 7,
-      "fileNumber": 7,
+      "fileNumber": 8,
       "kind": "Recollection",
       "flags": "3",
       "text": "Ajahn Chah could be with people where they are.",
@@ -2677,7 +2741,7 @@
       "event": "Chah2001",
       "sessionNumber": 11,
       "excerptNumber": 8,
-      "fileNumber": 8,
+      "fileNumber": 9,
       "kind": "Recollection",
       "flags": "3o",
       "text": "Ajahn Chah emphasized sīla and precepts when teaching in the West.",
@@ -2719,7 +2783,7 @@
       "event": "Chah2001",
       "sessionNumber": 11,
       "excerptNumber": 9,
-      "fileNumber": 9,
+      "fileNumber": 10,
       "kind": "Reflection",
       "flags": "o",
       "text": "Jumping off the Saṅgha ocean liner.",
@@ -2754,7 +2818,7 @@
       "event": "Chah2001",
       "sessionNumber": 11,
       "excerptNumber": 10,
-      "fileNumber": 10,
+      "fileNumber": 11,
       "kind": "Reflection",
       "flags": "0",
       "text": "[Ajahn Amaro](teacher:) introduces Paul Breiter and Joseph Kappel.",
@@ -106830,7 +106894,7 @@
     },
     "Fragment": {
       "kind": "Fragment",
-      "category": "Other",
+      "category": "Fragment",
       "defaultForm": 0,
       "canBeExcerpt": false,
       "canBeAnnotation": true,
@@ -106849,6 +106913,36 @@
       ],
       "body": [
         "unimplemented",
+        "unimplemented",
+        "unimplemented"
+      ],
+      "attribution": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "Main fragment": {
+      "kind": "Main fragment",
+      "category": "Fragment",
+      "defaultForm": 1,
+      "canBeExcerpt": false,
+      "canBeAnnotation": true,
+      "takesTimes": true,
+      "takesTeachers": false,
+      "takesTags": true,
+      "ignoreConsent": false,
+      "appendToExcerpt": false,
+      "inheritTeachersFrom": "",
+      "exclude": false,
+      "usageNotes": "A main fragment annotation indicates a fragment should be created from the excerpt and any annotations preceding this annotation. The fragment excerpt tags are replaced by the tags applied to the main fragment annotation. Main fragments do not display a separate audio player.",
+      "form": [
+        "",
+        "unimplemented",
+        "unimplemented"
+      ],
+      "body": [
+        "",
         "unimplemented",
         "unimplemented"
       ],
@@ -107014,6 +107108,10 @@
     },
     "Audio": {
       "category": "Audio",
+      "description": ""
+    },
+    "Fragment": {
+      "category": "Fragment",
       "description": ""
     },
     "Other": {
@@ -115376,6 +115474,7 @@
       "subtopics": [],
       "sessionCount": 1,
       "excerptCount": 136,
+      "fTagCount": 1,
       "listIndex": 428
     },
     "Gradual Teaching": {
@@ -116367,7 +116466,7 @@
       "subtopics": [],
       "sessionCount": 2,
       "excerptCount": 78,
-      "fTagCount": 3,
+      "fTagCount": 4,
       "listIndex": 497
     },
     "Ajahn Anando": {
@@ -120207,6 +120306,7 @@
       ],
       "subtopics": [],
       "excerptCount": 39,
+      "fTagCount": 1,
       "listIndex": 678
     },
     "Culture/Asia": {
@@ -137960,7 +138060,7 @@
       },
       "htmlPath": "clusters/teaching-dhamma.html",
       "excerptCount": 170,
-      "fTagCount": 0
+      "fTagCount": 1
     },
     "Teachers": {
       "tag": "Teachers",
@@ -138024,7 +138124,7 @@
       "subtags": {},
       "htmlPath": "tags/ajahn-sumedho.html",
       "excerptCount": 78,
-      "fTagCount": 3
+      "fTagCount": 4
     },
     "Ajahn Pasanno": {
       "tag": "Ajahn Pasanno",
@@ -138048,7 +138148,7 @@
       "subtags": {},
       "htmlPath": "tags/culturenatural-environment.html",
       "excerptCount": 39,
-      "fTagCount": 0
+      "fTagCount": 1
     },
     "Language": {
       "tag": "Language",
@@ -139312,7 +139412,7 @@
         "Ajahn Pasanno"
       ],
       "excerptCount": 885,
-      "fTagCount": 19
+      "fTagCount": 21
     },
     "context": {
       "code": "context",
@@ -139327,7 +139427,7 @@
         "Culture/West"
       ],
       "excerptCount": 451,
-      "fTagCount": 6
+      "fTagCount": 7
     },
     "monastic": {
       "code": "monastic",
