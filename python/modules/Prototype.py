@@ -1564,7 +1564,9 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
         skipSections allows inserting the featured excerpts between blocks of text."""
         
         menuItemAndPages = iter(pageGenerator)
-        firstPage = next(menuItemAndPages)
+        firstPage = next(menuItemAndPages,None)
+        if not firstPage:
+            return []
         if type(firstPage) == Html.PageInfo:
             yield firstPage # First yield the menu item descriptor, if any
             firstPage = next(menuItemAndPages)
