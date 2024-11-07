@@ -89771,7 +89771,8 @@
       "medium": "In-person",
       "tags": [
         "Proliferation",
-        "Tranquility"
+        "Tranquility",
+        "Meditation"
       ],
       "website": "https://www.abhayagiri.org/talks/collections/8/66-calming-the-busy-mind-upasika-day-2013#",
       "description": "",
@@ -89901,7 +89902,8 @@
       "format": "Daylong event",
       "medium": "In-person",
       "tags": [
-        "Mindfulness of breathing"
+        "Mindfulness of breathing",
+        "Meditation"
       ],
       "website": "https://www.abhayagiri.org/talks/collections/8/62-mindfulness-of-breathing-upasika-day-2014",
       "description": "Ajahn Pasanno describes mindfulness of breathing as a method to firmly establish the mind and develop insight.",
@@ -90080,7 +90082,8 @@
       "format": "Daylong event",
       "medium": "In-person",
       "tags": [
-        "Jhāna"
+        "Jhāna",
+        "Meditation"
       ],
       "website": "https://www.abhayagiri.org/talks/collections/8/57-jhana-a-practical-approach-upasika-day-2015",
       "description": "Ajahn Pasanno explains jhāna as a fundamental clarity and stillness that the mind can experience.",
@@ -90169,7 +90172,8 @@
       "format": "Daylong event",
       "medium": "Hybrid",
       "tags": [
-        "Directed thought and evaluation"
+        "Directed thought and evaluation",
+        "Meditation"
       ],
       "website": "https://www.abhayagiri.org/talks/collections/8/78-two-kinds-of-thought-and-the-removal-of-distracting-thoughts-upasika-day-2017",
       "description": "A study and discussion of MN 19: Dvedhāvitakka Sutta and MN 20: Vitakkasaṇṭhāna Sutta.",
@@ -90362,8 +90366,8 @@
       "format": "Daylong event",
       "medium": "Hybrid",
       "tags": [
-        "Meditation",
-        "Recollection"
+        "Recollection",
+        "Meditation"
       ],
       "website": "https://www.abhayagiri.org/talks/collections/8/126-developing-skill-in-reflective-meditation-upasika-day-2019",
       "description": "Luang Por Pasanno, Ajahn Karunadhammo and Ajahn Nyaniko lead an exploration of the Buddha’s teachings on bringing a specific theme into the mind for reflection during meditation, including choosing and developing fruitful themes and the benefits of this skill.",
@@ -99127,9 +99131,8 @@
       "primaries": 1,
       "htmlFile": "directed-thought-and-evaluation.html",
       "partOfSubtopics": [
-        "Directed thought and evaluation"
+        "Right Concentration"
       ],
-      "subtopics": [],
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 78,
@@ -103954,7 +103957,7 @@
         "Meditation"
       ],
       "subtopics": [],
-      "eventCount": 1,
+      "eventCount": 5,
       "sessionCount": 1,
       "excerptCount": 74,
       "listIndex": 346
@@ -124262,7 +124265,7 @@
       "teachers": "AP;ASd;AKd;DS",
       "sessions": 8,
       "excerpts": 123,
-      "answersListenedTo": 0,
+      "answersListenedTo": 87,
       "tagsApplied": 735,
       "invalidTags": 0,
       "duration": "7:54:29"
@@ -127207,13 +127210,14 @@
       "topicCode": "path",
       "progressMemo": "",
       "subtags": {
+        "Directed thought and evaluation": "+",
         "Rapture": "+",
         "Unification": "+",
         "Jhāna": "+"
       },
       "htmlPath": "clusters/right-concentration.html",
-      "excerptCount": 107,
-      "fTagCount": 8
+      "excerptCount": 171,
+      "fTagCount": 9
     },
     "Meditation": {
       "tag": "Meditation",
@@ -127288,18 +127292,6 @@
       "htmlPath": "tags/recollection.html",
       "excerptCount": 51,
       "fTagCount": 3
-    },
-    "Directed thought and evaluation": {
-      "tag": "Directed thought and evaluation",
-      "displayAs": "Skillful thinking",
-      "related": [],
-      "reviewed": false,
-      "topicCode": "meditation",
-      "progressMemo": "",
-      "subtags": {},
-      "htmlPath": "tags/directed-thought-and-evaluation.html",
-      "excerptCount": 78,
-      "fTagCount": 1
     },
     "Continuity of mindfulness": {
       "tag": "Continuity of mindfulness",
@@ -129173,8 +129165,8 @@
         "Right Mindfulness",
         "Right Concentration"
       ],
-      "excerptCount": 490,
-      "fTagCount": 29
+      "excerptCount": 536,
+      "fTagCount": 30
     },
     "meditation": {
       "code": "meditation",
@@ -129189,14 +129181,13 @@
         "Posture/Walking",
         "Chanting",
         "Recollection",
-        "Directed thought and evaluation",
         "Continuity of mindfulness",
         "Direct experience",
         "Knowing itself",
         "Long-term practice"
       ],
-      "excerptCount": 553,
-      "fTagCount": 25
+      "excerptCount": 510,
+      "fTagCount": 24
     },
     "skillful": {
       "code": "skillful",

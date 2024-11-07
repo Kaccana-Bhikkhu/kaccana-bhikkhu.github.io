@@ -1333,6 +1333,9 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     formatter = Formatter()
     formatter.headingShowSessionTitle = True
+    formatter.excerptOmitSessionTags = False
+    formatter.headingShowTags = False
+    formatter.headingShowTeacher = False
 
     def SimpleDuration(page: Html.PageDesc,excerpts: list[dict]):
         "Append the number of excerpts and duration to page."
