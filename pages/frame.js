@@ -65,6 +65,8 @@ export function configureLinks(frame,url) {
 	let locationNoQuery = new URL(location.href);
 	locationNoQuery.search = "";
 	frame.querySelectorAll("a").forEach((el) => {
+		if (el.firstChild?.classList?.contains("toggle-view")) return;
+			// Don't modify href links of toggle-view togglers
 		let href = el.getAttribute("href");
 		if (!href || href.match(absoluteURLRegex)) return;
 		if (href.endsWith("#noscript")) { // Code to escape javascript

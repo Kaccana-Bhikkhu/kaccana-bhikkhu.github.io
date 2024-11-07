@@ -315,7 +315,7 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
     return str(a)
 
 @lru_cache(maxsize=None)
-def DrilldownTemplate() -> str:
+def DrilldownTemplate() -> pyratemp.Template:
     """Return a pyratemp template for an indented list of tags which can be expanded using
     the javascript toggle-view class.
     Variables within the template:
@@ -382,13 +382,15 @@ def DrilldownTemplate() -> str:
                         if tagList[reverseIndex]["level"] < item["level"]:
                             tagAtPrevLevel = reverseIndex
                             break
-                    drilldownID = DrilldownPageFile(index).replace(".html","")
-                    # drilldownLink = f'<a href="../drilldown/{DrilldownPageFile(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
+                    drilldownFile = DrilldownPageFile(index)
+                    drilldownID = drilldownFile.replace(".html","")
+                    prevLevelDrilldownFile = DrilldownPageFile(tagAtPrevLevel)
                     
                     boxType = f"$!'minus' if {index} in xTagIndexes else 'plus'!$"
                         # Code to be executed by pyratemp
                     plusBox = Html.Tag("i",{"class":f"fa fa-{boxType}-square toggle-view","id":drilldownID})("")
-                    drilldownLink = Html.Tag("a")(plusBox)
+                    drilldownLink = Html.Tag("a",{"href":f"../drilldown/$!'{prevLevelDrilldownFile}' if {index} in xTagIndexes else '{drilldownFile}'!$"})(plusBox)
+                        # Add html links to the drilldown boxes that work without Javascript
 
                     hideCode = f"""$!'' if {index} in xTagIndexes else 'style="display: none;"'!$"""
                     divTag = f'<div id="{drilldownID + ".b"}" class="no-padding" {hideCode}>'
@@ -399,14 +401,14 @@ def DrilldownTemplate() -> str:
                 a(' '.join(joinBits))
             a(divTag)
     
-    return str(a)
+    return pyratemp.Template(str(a))
 
 def EvaluateDrilldownTemplate(expandSpecificTags:set[int] = frozenset()) -> str:
     """Evaluate the drilldown template to expand the given set of tags.
     expandSpecificTags is the set of tag indexes to expand.
     The default is to expand all tags."""
 
-    template = pyratemp.Template(DrilldownTemplate())
+    template = DrilldownTemplate()
     evaluated = template(xTagIndexes = expandSpecificTags)
     return str(evaluated)
 
