@@ -985,7 +985,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         except Mp3DirectCut.TimeError as error:
             Alert.error(excerpt,"generates time error:",error.args[0])
             return "0:00"
-        return Utils.TimeDeltaToStr(duration)
+        return Mp3DirectCut.TimeDeltaToStr(duration)
 
     def SplitAudioSourceText(text: str) -> tuple[str,str,str]:
         """Split an audio annotation of the form duration|filename|url into the tuple filename,url,duration.
@@ -1007,7 +1007,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         if altAudioAnnotation["kind"] == "Edited audio":
             clip = excerpt["clips"][0]
             if not duration:
-                duration = Utils.TimeDeltaToStr(clip.Duration(fileDuration=None))
+                duration = Mp3DirectCut.TimeDeltaToStr(clip.Duration(fileDuration=None))
             excerpt["startTimeInSession"] = clip.start
             excerpt["clips"][0] = clip._replace(start="0:00",end="")
             excerpt["duration"] = duration
@@ -1134,14 +1134,16 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
                 fragmentExcerptTemplate = excerpt
                 fragmentAnnotations = [copy.copy(baseAnnotations[number]) for number in range(n)]
                     # Copy all annotations previous to the Main fragment annotation
-                fragmentTagSource = fragmentAnnotation
+                fragmentFTagSource = fragmentTagSource = fragmentAnnotation
+                if not fragmentTagSource["qTag"] and not fragmentTagSource["aTag"]:
+                    fragmentTagSource = excerpt
             else:
                 if n + 1 >= len(baseAnnotations) or baseAnnotations[n]["indentLevel"] != baseAnnotations[n + 1]["indentLevel"]:
                     Alert.error("Error processing Fragment annotation #",n,"in",excerpt,": an annotation at the same level must follow a Fragment annotation.")
                     return fragmentExcerpts
                 
                 baseLevel = fragmentAnnotation["indentLevel"]
-                fragmentExcerptTemplate = fragmentTagSource = baseAnnotations[n + 1]
+                fragmentExcerptTemplate = fragmentFTagSource = fragmentTagSource = baseAnnotations[n + 1]
 
                 fragmentAnnotations = [copy.copy(a) for a in Database.SubAnnotations(excerpt,baseAnnotations[n + 1])]
                 for a in fragmentAnnotations:
@@ -1160,8 +1162,8 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
 
                 qTag = fragmentTagSource["qTag"],
                 aTag = fragmentTagSource["aTag"],
-                fTags = fragmentTagSource["fTags"],
-                fTagOrder = fragmentTagSource["fTagOrder"],
+                fTags = fragmentFTagSource["fTags"],
+                fTagOrder = fragmentFTagSource["fTagOrder"],
 
                 startTime = fragmentAnnotation["startTime"],
                 endTime = fragmentAnnotation["endTime"],
@@ -1174,9 +1176,10 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
             if audioEdited and not relativeAudio:
                 Alert.error(excerpt,": Excerpts with edited audio must specify relative fragment times.")
             elif relativeAudio:
-                offsetTime = Utils.StrToTimeDelta(excerpt["startTime"])
+                offsetTime = Mp3DirectCut.ToTimeDelta(excerpt["startTime"])
                 for key in ("startTime","endTime"):
-                    fragmentExcerpt[key] = Utils.TimeDeltaToStr(Utils.StrToTimeDelta(fragmentExcerpt[key]) + offsetTime)
+                    if fragmentExcerpt[key]:
+                        fragmentExcerpt[key] = Mp3DirectCut.TimeDeltaToStr(Mp3DirectCut.ToTimeDelta(fragmentExcerpt[key]) + offsetTime)
             
             fragmentExcerpts.append(fragmentExcerpt)
 

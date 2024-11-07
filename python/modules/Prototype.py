@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
+import Mp3DirectCut
 import Database, ReviewDatabase
 import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
@@ -854,7 +855,7 @@ def AudioIcon(hyperlink: str,title: str,dataDuration:str = "") -> str:
     a = Airium(source_minify=True)
     durationDict = {}
     if dataDuration:
-        durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
+        durationDict = {"data-duration": str(Mp3DirectCut.ToTimeDelta(dataDuration).seconds)}
     with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
         with a.a(href = hyperlink,download=filename):
             a(f"Download audio")
@@ -932,7 +933,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     duration = timedelta()
     for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
         sessionExcerpts = list(sessionExcerpts)
-        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in Database.RemoveFragments(sessionExcerpts) if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+        duration += sum((Mp3DirectCut.ToTimeDelta(x["duration"]) for x in Database.RemoveFragments(sessionExcerpts) if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
             # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
             # This prevents confusing results due to double counting times
     
@@ -950,7 +951,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     else:
         strItems.append(f"{excerptCount} excerpt,")
     
-    strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
+    strItems.append(f"{Mp3DirectCut.TimeDeltaToStr(duration)} total duration")
     
     return ' '.join(strItems)
 class Formatter: 

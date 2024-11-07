@@ -9,6 +9,7 @@ from functools import reduce
 from datetime import timedelta
 from io import BytesIO
 import Database
+import Mp3DirectCut
 import Utils, Alert
 from urllib.parse import urljoin,urlparse,quote,urlunparse
 import urllib.request, urllib.error
@@ -198,9 +199,9 @@ class Mp3LengthChecker(RemoteURLChecker):
         audio = mutagen.mp3.MP3(data)
         length = audio.info.length
         expectedLengthStr = item.get("duration","0")
-        expectedLength = Utils.StrToTimeDelta(expectedLengthStr).total_seconds()
+        expectedLength = Mp3DirectCut.ToTimeDelta(expectedLengthStr).total_seconds()
         diff = abs(length - expectedLength)
-        lengthStr = Utils.TimeDeltaToStr(timedelta(seconds=length))
+        lengthStr = Mp3DirectCut.TimeDeltaToStr(timedelta(seconds=length))
         
         data.seek(0)
         if diff >= self.invalidateDelta:

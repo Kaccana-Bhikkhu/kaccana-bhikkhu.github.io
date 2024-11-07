@@ -36,7 +36,7 @@ TimeSpec = Union[timedelta,float,str]
 "A union of types that can indicate a time index to an audio file."
 
 def ToTimeDelta(time: TimeSpec) -> timedelta|None:
-    "Convert various types to a timedetla object."
+    "Convert various types to a timedelta object."
 
     if type(time) == timedelta:
         return time
@@ -60,7 +60,23 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
         pass
     
     raise ParseError(f"{repr(time)} cannot be converted to a time.")
-    
+
+
+def TimeDeltaToStr(time: timedelta) -> str:
+    "Convert a timedelta object to the form [HH:]MM:SS"
+
+    seconds = (time.days * 24 * 60 * 60) + time.seconds
+
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = seconds % 60
+
+    if hours:
+        return f"{hours}:{minutes:02d}:{seconds:02d}"
+    else:
+        return f"{minutes}:{seconds:02d}"
+
+
 class Clip(NamedTuple):
     """A Clip represents a section of a given audio file."""
     file: str                       # Filename of the audio file

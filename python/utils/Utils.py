@@ -186,34 +186,6 @@ def SmartQuotes(s: str):
     s = re.sub(r'=‘(.*?)’', r"='\1'", s)
     return s
 
-def StrToTimeDelta(inStr):
-    "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
-    
-    numbers = str.split(inStr,":")
-    try:
-        if len(numbers) == 2:
-            return timedelta(minutes = int(numbers[0]),seconds = float(numbers[1]))
-        elif len(numbers) == 3:
-            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = float(numbers[2]))
-    except ValueError:
-        pass
-        
-    raise ValueError("'" + inStr + "' cannot be converted to a time.")
-
-def TimeDeltaToStr(time):
-    "Convert a timedelta object to the form [HH:]MM:SS"
-    
-    seconds = (time.days * 24 * 60 * 60) + time.seconds
-    
-    hours = seconds // 3600
-    minutes = (seconds % 3600) // 60
-    seconds = seconds % 60
-
-    if hours:
-        return f"{hours}:{minutes:02d}:{seconds:02d}"
-    else:
-        return f"{minutes}:{seconds:02d}"
-
 def ParseDate(dateStr:str) -> datetime.date:
     "Read a date formated as DD/MM/YYYY and return datetime.date."
     
