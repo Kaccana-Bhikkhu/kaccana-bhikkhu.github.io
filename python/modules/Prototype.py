@@ -20,6 +20,7 @@ import itertools
 import FileRegister
 from contextlib import nullcontext
 from functools import lru_cache
+import urllib.parse
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
@@ -1784,6 +1785,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
 
             filterMenu = [
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.FTag(Filter.All),"Featured"),
                 FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Questions")),"Questions"),
                 FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Stories")),"Stories"),
                 FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Kind("Quote")),"Direct quotes","d-quote"),
@@ -1959,6 +1961,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
     for eventCode,eventInfo in gDatabase["event"].items():
         sessions = [s for s in gDatabase["sessions"] if s["event"] == eventCode]
         excerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+        featuredExcerpts = Filter.FTag(Filter.All)(excerpts)
         a = Airium()
         
         with a.strong():
@@ -1975,6 +1978,13 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         a(ExcerptDurationStr(excerpts))
         a.br()
+
+        if featuredExcerpts:
+            query = urllib.parse.urlencode({"q":f"@{eventCode} +","search":"x"},doseq=True,quote_via=urllib.parse.quote)
+            with a.a(href = f"../search/Text-search.html?{query}"):
+                a(f"Show featured excerpt{'s' if len(featuredExcerpts) > 1 else ''}")
+            a(f"({len(featuredExcerpts)})")
+            a.br()
         
         if eventInfo["description"]:
             with a.p(Class="smaller"):
