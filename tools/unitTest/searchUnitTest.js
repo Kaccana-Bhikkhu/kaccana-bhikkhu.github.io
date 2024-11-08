@@ -1,4 +1,4 @@
-import {searchQuery,excerptSearcher} from '../../pages/search.js';
+import {SearchQuery,ExcerptSearcher} from '../../pages/search.js';
 
 let gDatabase = null;
 let gSearcher = null;
@@ -27,7 +27,7 @@ async function loadDatabase() {
         .then((json) => {
             gDatabase = json;
             showStatus(`Loaded search database. Keys: ${Object.keys(gDatabase)}`);
-            gSearcher = new excerptSearcher(gDatabase.searches["x"]);
+            gSearcher = new ExcerptSearcher(gDatabase.searches["x"]);
         });
     }
 }
@@ -38,7 +38,7 @@ function unitTest(queryString,expectedResultCount,description) {
     // Returns an html string. If successful this is a simple message.
     // If the test fails, it is the list of all excerpts found.
 
-    let searchGroups = new searchQuery(queryString);
+    let searchGroups = new SearchQuery(queryString);
     gSearcher.search(searchGroups);
 
     gTestsCompleted++;
@@ -99,13 +99,14 @@ function runUnitTests() {
         ['@UD2014-1 2',1,'All excerpts containing the digit 2 alone'],
         ['@UD2014-1 "*2*"',6,'All excerpts containing any digit 2'],
         ['Search for fTags'],
-        ['[Renunciation]+',3,'All [Renunciation] featured excerpts'],
-        ['[Renunciation] +',7,'All featured excerpts with tag [Renunciation]'],
+        ['[Renunciation]+',4,'All [Renunciation] featured excerpts'],
+        ['[Renunciation] +',9,'All featured excerpts with tag [Renunciation]'],
         ['Search for qTags and aTags'],
         ['@UD2014-1 [Merit]',9,'All excerpts with tag [Merit]'],
         ['@UD2014-1 [Merit]//',6,'All excerpts with qTag [Merit]'],
         ['@UD2014-1 //[Merit]',5,'All excerpts with aTag [Merit]'],
-        ['@UD2014-1 !death',19,'All excerpts with <b>no item</b> which does not contain death'],
+        ['Negation operator'],
+        ['@UD2014-1 !death',2,'All excerpts that do not contain text "death"'],
     ];
 
     let results = ["All results are from searching UD2014-1 and tag [Renunciation].<br><br>"];
