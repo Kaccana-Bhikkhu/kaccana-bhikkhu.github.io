@@ -216,12 +216,53 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
 def ExcerptCount(tag:str) -> int:
     return gDatabase["tag"][tag].get("excerptCount",0)
 
-def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None,showSubtagCount = True,showStar = True) -> str:
+def HtmlTagListItem(listItem: dict,showSubtagCount = False,showStar = True) -> str:
+    indexStr = listItem["indexNumber"] + "." if listItem["indexNumber"] else ""
+    
+    countItems = []
+    fTagCount = listItem["tag"] and gDatabase["tag"][listItem["tag"]].get("fTagCount",0)
+    if fTagCount and showStar:
+        countItems.append(f'{fTagCount}{FA_STAR}')
+    subtagExcerptCount = listItem.get("subtagExcerptCount",0)
+    itemCount = listItem["excerptCount"]
+    if itemCount or subtagExcerptCount:
+        if subtagExcerptCount:
+            if not listItem['tag']:
+                itemCount = "-"
+            countItems.append(str(itemCount))
+            if showSubtagCount:
+                countItems.append(str(subtagExcerptCount))
+        else:
+            countItems.append(str(itemCount))
+    if countItems:
+        countStr = f' ({"/".join(countItems)})'
+    else:
+        countStr = ''
+    
+    if listItem['tag'] and not listItem['subsumed']:
+        nameStr = HtmlTagLink(listItem['tag'],True) + countStr
+    else:
+        nameStr = listItem['name'] + ("" if listItem["subsumed"] else countStr)
+    
+    if listItem['pali'] and listItem['pali'] != listItem['name']:
+        paliStr = '(' + listItem['pali'] + ')'
+    elif ParseCSV.TagFlag.DISPLAY_GLOSS in listItem['flags']:
+        paliStr = '(' + gDatabase['tag'][listItem['tag']]['glosses'][0] + ')'
+        # If specified, use paliStr to display the tag's first gloss
+    else:
+        paliStr = ''
+    
+    if listItem['subsumed']:
+        seeAlsoStr = 'see ' + HtmlTagLink(listItem['tag'],False) + countStr
+    else:
+        seeAlsoStr = ''
+    
+    joinBits = [s for s in [indexStr,nameStr,paliStr,seeAlsoStr] if s]
+    return ' '.join(joinBits)
+
+def IndentedHtmlTagList(tagList:list[dict] = [],showSubtagCount = True,showStar = True) -> str:
     """Generate html for an indented list of tags.
-    tagList is the list of tags to print; use the global list if not provided
-    If expandSpecificTags is specified, then expand only tags with index numbers in this set.
-    If not, then expand all tags if expandDuplicateSubtags; otherwise expand only tags with primary subtags.
-    If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
+    tagList is the list of tags to print; use the global list if not provided"""
     
     tabMeasurement = 'em'
     tabLength = 2
@@ -230,88 +271,13 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
     
     if not tagList:
         tagList = gDatabase["tagDisplayList"]
-    if expandSpecificTags is None:
-        if expandDuplicateSubtags:
-            expandSpecificTags = range(len(tagList))
-        else:
-            expandSpecificTags = set()
-            for parent,children in ParseCSV.WalkTags(tagList,returnIndices=True):
-                for n in children:
-                    tag = tagList[n]["tag"]
-                    if n in expandSpecificTags or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
-                        expandSpecificTags.add(parent) # Then expand the parent tag
-    
+        
     baseIndent = tagList[0]["level"]
-    skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     with a.div(Class="listing"):
-        for index, item in enumerate(tagList):
-            #print(index,item["name"])
-            if item["level"] > skipSubtagLevel:
-                continue
-
-            if index in expandSpecificTags:
-                skipSubtagLevel = 999 # don't skip anything
-            else:
-                skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
-            
+        for item in tagList:
             bookmark = Utils.slugify(item["tag"] or item["name"])
             with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-baseIndent)}{tabMeasurement};"):
-                drilldownLink = ''
-                if expandTagLink:
-                    if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
-                        if index in expandSpecificTags: # Is it already expanded?
-                            tagAtPrevLevel = -1
-                            for reverseIndex in range(index - 1,-1,-1):
-                                if tagList[reverseIndex]["level"] < item["level"]:
-                                    tagAtPrevLevel = reverseIndex
-                                    break
-                            drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
-                        else:
-                            drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
-                    else:
-                        drilldownLink = "&nbsp"
-
-                indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
-                
-                countItems = []
-                fTagCount = item["tag"] and gDatabase["tag"][item["tag"]].get("fTagCount",0)
-                if fTagCount:
-                    countItems.append(f'{fTagCount}{FA_STAR}')
-                subtagExcerptCount = showSubtagCount and item.get("subtagExcerptCount",0)
-                itemCount = item["excerptCount"]
-                if itemCount or subtagExcerptCount:
-                    if subtagExcerptCount:
-                        if not item['tag']:
-                            itemCount = "-"
-                        countItems.append(str(itemCount))
-                        countItems.append(str(subtagExcerptCount))
-                    else:
-                        countItems.append(str(itemCount))
-                if countItems:
-                    countStr = f' ({"/".join(countItems)})'
-                else:
-                    countStr = ''
-                
-                if item['tag'] and not item['subsumed']:
-                    nameStr = HtmlTagLink(item['tag'],True) + countStr
-                else:
-                    nameStr = item['name'] + ("" if item["subsumed"] else countStr)
-                
-                if item['pali'] and item['pali'] != item['name']:
-                    paliStr = '(' + item['pali'] + ')'
-                elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
-                    paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
-                    # If specified, use paliStr to display the tag's first gloss
-                else:
-                    paliStr = ''
-                
-                if item['subsumed']:
-                    seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
-                else:
-                    seeAlsoStr = ''
-                
-                joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
-                a(' '.join(joinBits))
+                a(HtmlTagListItem(item,showSubtagCount=showSubtagCount,showStar=showStar))
     
     return str(a)
 
@@ -332,44 +298,7 @@ def DrilldownTemplate() -> pyratemp.Template:
         for index, item in enumerate(tagList):            
             bookmark = Utils.slugify(item["tag"] or item["name"])
             with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
-                indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
-                
-                countItems = []
-                fTagCount = item["tag"] and gDatabase["tag"][item["tag"]].get("fTagCount",0)
-                if fTagCount:
-                    countItems.append(f'{fTagCount}{FA_STAR}')
-                subtagExcerptCount = item.get("subtagExcerptCount",0)
-                itemCount = item["excerptCount"]
-                if itemCount or subtagExcerptCount:
-                    if subtagExcerptCount:
-                        if not item['tag']:
-                            itemCount = "-"
-                        countItems.append(str(itemCount))
-                        countItems.append(str(subtagExcerptCount))
-                    else:
-                        countItems.append(str(itemCount))
-                if countItems:
-                    countStr = f' ({"/".join(countItems)})'
-                else:
-                    countStr = ''
-                
-                if item['tag'] and not item['subsumed']:
-                    nameStr = HtmlTagLink(item['tag'],True) + countStr
-                else:
-                    nameStr = item['name'] + ("" if item["subsumed"] else countStr)
-                
-                if item['pali'] and item['pali'] != item['name']:
-                    paliStr = '(' + item['pali'] + ')'
-                elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
-                    paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
-                    # If specified, use paliStr to display the tag's first gloss
-                else:
-                    paliStr = ''
-                
-                if item['subsumed']:
-                    seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
-                else:
-                    seeAlsoStr = ''
+                itemHtml = HtmlTagListItem(item,showSubtagCount=True)
                 
                 drilldownLink = ""
                 divTag = "" # These are start and end tags for the toggle-view divisions
@@ -398,7 +327,7 @@ def DrilldownTemplate() -> pyratemp.Template:
                 elif nextLevel < item["level"]:
                     divTag = "</div>" * (item["level"] - nextLevel)
             
-                joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
+                joinBits = [s for s in [drilldownLink,itemHtml] if s]
                 a(' '.join(joinBits))
             a(divTag)
     
