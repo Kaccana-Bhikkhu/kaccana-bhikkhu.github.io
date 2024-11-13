@@ -3662,7 +3662,7 @@
       "excerptNumber": 2,
       "fileNumber": 2,
       "kind": "Indirect quote",
-      "flags": "",
+      "flags": "E",
       "text": "These Five Precepts are the basis for human existence. If people could only do this, never mind talking about enlightenment, we would have a world without much trouble.|Ajahn Chah",
       "teachers": [
         "PBreiter"
@@ -3689,10 +3689,10 @@
         [
           "$",
           "6:14",
-          "8:40"
+          "8:42"
         ]
       ],
-      "duration": "2:26",
+      "duration": "2:28",
       "mirror": "local",
       "body": "<b>Quote:</b>  “These Five Precepts are the basis for human existence. If people could only do this, never mind talking about enlightenment, we would have a world without much trouble.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
       "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
@@ -3742,7 +3742,12 @@
       "teachers": [
         "PBreiter"
       ],
-      "fTags": [],
+      "fTags": [
+        "Human"
+      ],
+      "fTagOrder": [
+        80
+      ],
       "annotations": [],
       "tags": [
         "Ajahn Chah",
@@ -3781,7 +3786,18 @@
         "PBreiter"
       ],
       "fTags": [],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Main fragment",
+          "flags": "r",
+          "startTime": "0:13.5",
+          "endTime": "",
+          "text": "",
+          "tags": [],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
       "tags": [
         "Ajahn Chah",
         "Learning",
@@ -3799,6 +3815,48 @@
         ]
       ],
       "duration": "0:54",
+      "fragmentFTags": [
+        "Technology"
+      ],
+      "mirror": "local",
+      "body": "<b>Quote:</b>  “Everybody worships knowledge. Not many people worship virtue.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> at Insight Meditation Center{attribution}",
+      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 15,
+      "excerptNumber": 5.1,
+      "fileNumber": 6,
+      "annotations": [],
+      "kind": "Indirect quote",
+      "flags": "f",
+      "teachers": [
+        "PBreiter"
+      ],
+      "text": "Everybody worships knowledge. Not many people worship virtue.|Ajahn Chah at Insight Meditation Center",
+      "fTags": [
+        "Technology"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "tags": [
+        "Ajahn Chah",
+        "Learning",
+        "Science",
+        "Technology",
+        "Virtue",
+        "Insight Meditation Society"
+      ],
+      "qTagCount": 6,
+      "clips": [
+        [
+          "$",
+          "11:27",
+          "12:39"
+        ]
+      ],
+      "duration": "1:12",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Everybody worships knowledge. Not many people worship virtue.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> at Insight Meditation Center{attribution}",
       "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
@@ -3807,7 +3865,7 @@
       "event": "Chah2001",
       "sessionNumber": 15,
       "excerptNumber": 6,
-      "fileNumber": 6,
+      "fileNumber": 7,
       "kind": "Indirect quote",
       "flags": "",
       "text": "Is the boulder heavy? ... Is a lemon sour?|Ajahn Chah",
@@ -3839,7 +3897,7 @@
       "event": "Chah2001",
       "sessionNumber": 15,
       "excerptNumber": 7,
-      "fileNumber": 7,
+      "fileNumber": 8,
       "kind": "Indirect quote",
       "flags": "",
       "text": "If you see one monkey, you can understand the nature of monkeys.|Ajahn Chah",
@@ -6184,7 +6242,12 @@
       "teachers": [
         "JKornfield"
       ],
-      "fTags": [],
+      "fTags": [
+        "Judgementalism"
+      ],
+      "fTagOrder": [
+        180
+      ],
       "annotations": [
         {
           "kind": "Story",
@@ -8016,7 +8079,12 @@
       "teachers": [
         "AA"
       ],
-      "fTags": [],
+      "fTags": [
+        "Sensual desire"
+      ],
+      "fTagOrder": [
+        90
+      ],
       "annotations": [],
       "tags": [
         "Determination",
@@ -12754,7 +12822,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Equanimity"
+      ],
+      "fTagOrder": [
+        130
+      ],
       "annotations": [
         {
           "kind": "Quote",
@@ -20701,7 +20774,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Discernment"
+      ],
+      "fTagOrder": [
+        70
+      ],
       "annotations": [],
       "tags": [
         "Discernment",
@@ -26389,9 +26467,18 @@
           "body": "<b>Quote:</b>  “In daily life, in contact with the world, do you still breathe?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
         },
         {
+          "kind": "Fragment",
+          "flags": "r",
+          "startTime": "2:57.4",
+          "endTime": "5:12",
+          "text": "[](player:BIA2013_S01_F06)",
+          "indentLevel": 1,
+          "body": "<audio-chip src=\"../../audio/excerpts/BIA2013/BIA2013_S01_F06.mp3\" title=\"New Year, New Life, S1 E5.1\" data-duration=\"135\"><a href=\"../../audio/excerpts/BIA2013/BIA2013_S01_F06.mp3\" download=\"New Year, New Life, S1 E5.1.mp3\">Download audio</a> (2:15)</audio-chip>"
+        },
+        {
           "kind": "Follow-up",
           "flags": "",
-          "text": "Could you give some examples? In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.",
+          "text": "In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.",
           "teachers": [
             "AP"
           ],
@@ -26404,7 +26491,7 @@
             "Proliferation"
           ],
           "indentLevel": 1,
-          "body": "<b>Follow-up:</b> “Could you give some examples? In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.”"
+          "body": "<b>Follow-up:</b> “In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.”"
         },
         {
           "kind": "Quote",
@@ -26437,10 +26524,13 @@
         [
           "$",
           "19:11",
-          "24:33"
+          "24:23"
         ]
       ],
-      "duration": "5:22",
+      "duration": "5:12",
+      "fragmentFTags": [
+        "News"
+      ],
       "mirror": "local",
       "body": "“You said you have to adjust and think about contemplating. But how can you do that in your working time?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -26448,8 +26538,63 @@
     {
       "event": "BIA2013",
       "sessionNumber": 1,
-      "excerptNumber": 6,
+      "excerptNumber": 5.1,
       "fileNumber": 6,
+      "annotations": [
+        {
+          "kind": "Quote",
+          "flags": "-",
+          "text": "I don't care. Not in the sense that I don't think it's serious or that it's not a problem. But I don't care in the sense that I don't want to be getting involved in whatever side people are working themselves up about, because the problem is much deeper than that. We have to pay attention to the deeper problem, both in the human condition and politically.",
+          "teachers": [
+            "AP"
+          ],
+          "tags": [
+            "Politics and society",
+            "Conflict",
+            "Human"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Quote:</b>  “I don’t care. Not in the sense that I don’t think it’s serious or that it’s not a problem. But I don’t care in the sense that I don’t want to be getting involved in whatever side people are working themselves up about, because the problem is much deeper than that. We have to pay attention to the deeper problem, both in the human condition and politically.” "
+        }
+      ],
+      "kind": "Follow-up",
+      "flags": "f",
+      "teachers": [
+        "AP"
+      ],
+      "text": "In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.",
+      "fTags": [
+        "News"
+      ],
+      "fTagOrder": [
+        150
+      ],
+      "tags": [
+        "News",
+        "Conflict",
+        "Aversion",
+        "Right Speech",
+        "Politics and society",
+        "Proliferation"
+      ],
+      "qTagCount": 4,
+      "clips": [
+        [
+          "$",
+          "22:08",
+          "24:23"
+        ]
+      ],
+      "duration": "2:15",
+      "mirror": "local",
+      "body": "<b>Follow-up:</b> “In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.”{attribution}",
+      "attribution": " Aswered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+    },
+    {
+      "event": "BIA2013",
+      "sessionNumber": 1,
+      "excerptNumber": 6,
+      "fileNumber": 7,
       "kind": "Question",
       "flags": "",
       "text": "I find I do need some pleasures even thought they don't last, things like fine arts and being in nature. I'm curious, how did you manage as a monk in your early years at Ajahn Chah's monastery where there's almost no pleasure....How did you manage to keep going over the years until the present?",
@@ -30826,10 +30971,10 @@
         [
           "$",
           "30:18",
-          "32:00"
+          "32:29"
         ]
       ],
-      "duration": "1:42",
+      "duration": "2:11",
       "mirror": "local",
       "body": "“His monastery is quite loud, isn’t it?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -30845,7 +30990,12 @@
       "teachers": [
         "ADune"
       ],
-      "fTags": [],
+      "fTags": [
+        "Contact"
+      ],
+      "fTagOrder": [
+        100
+      ],
       "annotations": [
         {
           "kind": "Read by",
@@ -30882,11 +31032,11 @@
       "clips": [
         [
           "$",
-          "32:00",
-          "34:18"
+          "32:29",
+          "33:36"
         ]
       ],
-      "duration": "2:18",
+      "duration": "1:07",
       "mirror": "local",
       "body": "<b>Reading:</b> “Its Easy if You are not Attached,” <em>Gifts He Left Behind</em> by <a href=\"../teachers/ajahn-dune.html\">Ajahn Dune</a>, <a href=\"https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Texts/Gifts%20He%20Left%20Behind%20-%20Ajaan%20Dune.pdf#page=91\" target=\"_blank\">p. 77</a>. {attribution2}",
       "attribution": "",
@@ -40776,7 +40926,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Pace of life"
+      ],
+      "fTagOrder": [
+        80
+      ],
       "annotations": [],
       "tags": [
         "Ajahn Sucitto",
@@ -41897,7 +42052,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Ghost"
+      ],
+      "fTagOrder": [
+        180
+      ],
       "annotations": [
         {
           "kind": "Sutta",
@@ -41937,10 +42097,10 @@
         [
           "$",
           "1:37:12",
-          ""
+          "1:39:52"
         ]
       ],
-      "duration": "2:43",
+      "duration": "2:40",
       "mirror": "local",
       "body": "“If a family member who has passed turns into a hungry ghost, how might one help them when they’re in that realm?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -43663,7 +43823,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Work"
+      ],
+      "fTagOrder": [
+        130
+      ],
       "annotations": [],
       "tags": [
         "Volitional formations",
@@ -43684,10 +43849,10 @@
         [
           "$",
           "40:21",
-          "44:49"
+          "44:47"
         ]
       ],
-      "duration": "4:28",
+      "duration": "4:26",
       "mirror": "local",
       "body": "“Regarding thought fabrications, in daily life we have to focus on our work. How can we intergrate the principles of anatta and dukkha into daily life?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -45946,7 +46111,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Thai Forest Tradition"
+      ],
+      "fTagOrder": [
+        100
+      ],
       "annotations": [
         {
           "kind": "Indirect quote",
@@ -46751,25 +46921,65 @@
       "teachers": [
         "AP"
       ],
-      "text": "A scientist—popular, interesting—said as parting shot to his audience, 'don't trust the senses,' i.e., we'd still think the world flat, and that the sun actually rises and sets, if we trusted the sensory world. Your thoughts on clear comprehension via 'sense-doors?' The 'just-rightness' of it all. I wonder if we still thought the world flat and the sun to rise whether we might care for it.",
+      "text": "A scientist—popular, interesting—said as parting shot to his audience, 'don't trust the senses,' i.e., we'd still think the world flat, and that the sun actually rises and sets, if we trusted the sensory world. Your thoughts on clear comprehension via 'sense-doors?' The 'just-rightness' of it all. I wonder if we still thought the world flat and the sun to rise whether we might care for it better.",
       "fTags": [],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "40:31.5",
+          "endTime": "40:48",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Cut audio",
+          "flags": "",
+          "startTime": "41:04",
+          "endTime": "41:13",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Sutta",
+          "flags": "",
+          "text": "Ud 3.10: \"However one conceives it, it will always be other than that.\"",
+          "tags": [],
+          "indentLevel": 1,
+          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=Ud-3.10:\" target=\"_blank\">Ud 3.10:</a> “However one conceives it, it will always be other than that.”"
+        }
+      ],
       "tags": [
         "Sense bases",
         "Science",
-        "Clear comprehension"
+        "Clear comprehension",
+        "Ignorance",
+        "Four Noble Truths",
+        "Perception"
       ],
       "qTagCount": 3,
       "clips": [
         [
           "$",
           "39:46",
+          "40:31.5"
+        ],
+        [
+          "$",
+          "40:48",
+          "41:04"
+        ],
+        [
+          "$",
+          "41:13",
           "44:11"
         ]
       ],
-      "duration": "4:25",
+      "duration": "3:59",
       "mirror": "local",
-      "body": "“A scientist—popular, interesting—said as parting shot to his audience, ‘don’t trust the senses,’ i.e., we’d still think the world flat, and that the sun actually rises and sets, if we trusted the sensory world. Your thoughts on clear comprehension via ‘sense-doors?’ The ‘just-rightness’ of it all. I wonder if we still thought the world flat and the sun to rise whether we might care for it.” {attribution}",
+      "body": "“A scientist—popular, interesting—said as parting shot to his audience, ‘don’t trust the senses,’ i.e., we’d still think the world flat, and that the sun actually rises and sets, if we trusted the sensory world. Your thoughts on clear comprehension via ‘sense-doors?’ The ‘just-rightness’ of it all. I wonder if we still thought the world flat and the sun to rise whether we might care for it better.” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
@@ -46856,7 +47066,7 @@
         "Four Noble Truths"
       ],
       "fTagOrder": [
-        100
+        150
       ],
       "annotations": [
         {
@@ -49708,7 +49918,7 @@
       "teachers": [
         "AP"
       ],
-      "text": "A question regarding the 5 precepts. In daily life, I am really good about keeping #1, 2, 3 and 5; but somehow I found that the precept #4 is really hard. I find myself lying everyday such as: 'Do I look good?' → Yes, of course. 'Do you want to eat some more?' → No, thanks, I’m full (but in fact the food didn’t taste good). Or speaking at a wrong time, speaking too long, toos hort, too harsh or speaking with a wrong tone of voice. This is the hardest one for me. Kindly advise. Thank you.",
+      "text": "A question regarding the 5 precepts. In daily life, I am really good about keeping #1, 2, 3 and 5; but somehow I found that the precept #4 is really hard. I find myself lying everyday such as: 'Do I look good?' → Yes, of course. 'Do you want to eat some more?' → No, thanks, I’m full (but in fact the food didn’t taste good). Or speaking at a wrong time, speaking too long, too short, too harsh or speaking with a wrong tone of voice. This is the hardest one for me. Kindly advise. Thank you.",
       "fTags": [
         "Precepts",
         "Right Speech",
@@ -49755,7 +49965,7 @@
       ],
       "duration": "2:51",
       "mirror": "local",
-      "body": "“A question regarding the 5 precepts. In daily life, I am really good about keeping #1, 2, 3 and 5; but somehow I found that the precept #4 is really hard. I find myself lying everyday such as: ‘Do I look good?’ → Yes, of course. ‘Do you want to eat some more?’ → No, thanks, I’m full (but in fact the food didn’t taste good). Or speaking at a wrong time, speaking too long, toos hort, too harsh or speaking with a wrong tone of voice. This is the hardest one for me. Kindly advise. Thank you.” {attribution}",
+      "body": "“A question regarding the 5 precepts. In daily life, I am really good about keeping #1, 2, 3 and 5; but somehow I found that the precept #4 is really hard. I find myself lying everyday such as: ‘Do I look good?’ → Yes, of course. ‘Do you want to eat some more?’ → No, thanks, I’m full (but in fact the food didn’t taste good). Or speaking at a wrong time, speaking too long, too short, too harsh or speaking with a wrong tone of voice. This is the hardest one for me. Kindly advise. Thank you.” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
@@ -58709,8 +58919,21 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Psychic powers"
+      ],
+      "fTagOrder": [
+        120
+      ],
       "annotations": [
+        {
+          "kind": "Vinaya",
+          "flags": "",
+          "text": "Kd 15.8: Piṇḍola Bhāradvāja uses psychic powers.",
+          "tags": [],
+          "indentLevel": 1,
+          "body": "<b>Vinaya:</b> <a href=\"https://suttacentral.net/pli-tv-kd15/en/brahmali?layout=plain&amp;reference=main&amp;notes=asterisk&amp;highlight=false&amp;script=latin#8.1.1\" target=\"_blank\">Kd 15.8:</a> Piṇḍola Bhāradvāja uses psychic powers."
+        },
         {
           "kind": "Reference",
           "flags": "",
@@ -63313,7 +63536,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Compassion"
+      ],
+      "fTagOrder": [
+        180
+      ],
       "annotations": [
         {
           "kind": "Quote",
@@ -67794,7 +68022,7 @@
         "Precepts"
       ],
       "fTagOrder": [
-        110
+        180
       ],
       "annotations": [
         {
@@ -68029,7 +68257,7 @@
         "Politics and society"
       ],
       "fTagOrder": [
-        100
+        80
       ],
       "annotations": [
         {
@@ -68619,7 +68847,7 @@
         "Recollection"
       ],
       "fTagOrder": [
-        100,
+        140,
         90
       ],
       "annotations": [
@@ -71225,10 +71453,10 @@
         [
           "$",
           "49:34",
-          "51:52"
+          "51:54"
         ]
       ],
-      "duration": "2:18",
+      "duration": "2:20",
       "mirror": "local",
       "body": "“Do you have any tips for embodying the Dhamma in business situations when negotiating with aggressive individuals? I tend to walk away at a certain point, but am wondering if there’s another way to turn it around, make it better for everyone?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -71460,12 +71688,10 @@
       ],
       "text": "I often feel overwhelmed with the greed, hatred, ill-will, and delusion that the corporate world exerts over the masses to the benefit of only themselves and that is destroying the planet's ability to renew itself. Could you speak about Buddhist involvement in social change movements?",
       "fTags": [
-        "Environment",
         "Activism"
       ],
       "fTagOrder": [
-        100,
-        1001
+        180
       ],
       "annotations": [
         {
@@ -71518,10 +71744,10 @@
         [
           "$",
           "62:59",
-          "69:33"
+          "69:35"
         ]
       ],
-      "duration": "6:34",
+      "duration": "6:36",
       "mirror": "local",
       "body": "“I often feel overwhelmed with the greed, hatred, ill-will, and delusion that the corporate world exerts over the masses to the benefit of only themselves and that is destroying the planet’s ability to renew itself. Could you speak about Buddhist involvement in social change movements?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -72680,13 +72906,18 @@
       "excerptNumber": 9,
       "fileNumber": 9,
       "kind": "Question",
-      "flags": "",
-      "text": "I like the translations 'conscience' aand 'concern' for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?",
+      "flags": "E",
+      "text": "I like the translations 'conscience' and 'concern' for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?",
       "teachers": [
         "AP",
         "AKd"
       ],
-      "fTags": [],
+      "fTags": [
+        "Conscience and prudence"
+      ],
+      "fTagOrder": [
+        150
+      ],
       "annotations": [
         {
           "kind": "Quote",
@@ -72747,12 +72978,12 @@
         [
           "$",
           "1:00:35",
-          "1:05:58"
+          "1:05:59"
         ]
       ],
-      "duration": "5:23",
+      "duration": "5:24",
       "mirror": "local",
-      "body": "“I like the translations ‘conscience’ aand ‘concern’ for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?” {attribution}",
+      "body": "“I like the translations ‘conscience’ and ‘concern’ for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a> and <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
     },
     {
@@ -73174,7 +73405,7 @@
         "Appropriate attention"
       ],
       "fTagOrder": [
-        100
+        120
       ],
       "annotations": [],
       "tags": [
@@ -73892,10 +74123,10 @@
         [
           "$",
           "36:24",
-          "40:10"
+          "40:12"
         ]
       ],
-      "duration": "3:46",
+      "duration": "3:48",
       "mirror": "local",
       "body": "“Can you talk about working with the practice in what seems like perilous times?, e.g. the rise in overt expressions of hatred toward sectors of society and the associated change in national leadership? How does one cultivate equanimity while also not turning away?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -75296,7 +75527,7 @@
         "AP"
       ],
       "fTags": [
-        "Precepts"
+        "False speech"
       ],
       "fTagOrder": [
         150
@@ -75567,7 +75798,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Social media"
+      ],
+      "fTagOrder": [
+        120
+      ],
       "annotations": [],
       "tags": [
         "Social media",
@@ -75581,10 +75817,10 @@
         [
           "$",
           "10:07",
-          "13:18"
+          "12:40"
         ]
       ],
-      "duration": "3:11",
+      "duration": "2:33",
       "mirror": "local",
       "body": "“I am away from a social network for almost six days which is quite incredible for me. Normally, I spend time by distracting myself with the social network every 10 minutes. I must check and see what people are doing, and sometimes I think is it is quite useless. This is a different world. However, I cannot stop using it. I am so attached to it, and I know I will go back to the same routine when I go back to my normal life. What would you suggest to detach or use it wisely?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -76484,7 +76720,7 @@
       "fileNumber": 14,
       "kind": "Question",
       "flags": "",
-      "text": "“There is a crack in everything. That’s where the light gets in” Leonard Cohen Lots of cracks out there. Lots of potential for awakenings and wise compassionate action. Do you agree? If so, where do you see the light emerging? In what arenas? Where would you focus your energy if you were not a monk?",
+      "text": "“There is a crack in everything. That’s where the light gets in.” — Leonard Cohen. Lots of cracks out there. Lots of potential for awakenings and wise compassionate action. Do you agree? If so, where do you see the light emerging? In what arenas? Where would you focus your energy if you were not a monk?",
       "teachers": [
         "AP"
       ],
@@ -76492,7 +76728,7 @@
         "Activism"
       ],
       "fTagOrder": [
-        1001
+        120
       ],
       "annotations": [],
       "tags": [
@@ -76514,7 +76750,7 @@
       ],
       "duration": "2:51",
       "mirror": "local",
-      "body": "““There is a crack in everything. That’s where the light gets in” Leonard Cohen Lots of cracks out there. Lots of potential for awakenings and wise compassionate action. Do you agree? If so, where do you see the light emerging? In what arenas? Where would you focus your energy if you were not a monk?” {attribution}",
+      "body": "““There is a crack in everything. That’s where the light gets in.” — Leonard Cohen. Lots of cracks out there. Lots of potential for awakenings and wise compassionate action. Do you agree? If so, where do you see the light emerging? In what arenas? Where would you focus your energy if you were not a monk?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
@@ -81089,12 +81325,10 @@
         "AP"
       ],
       "fTags": [
-        "Environment",
-        "Politics and society"
+        "Environment"
       ],
       "fTagOrder": [
-        200,
-        1001
+        200
       ],
       "annotations": [
         {
@@ -81146,7 +81380,7 @@
       "excerptNumber": 12,
       "fileNumber": 12,
       "kind": "Question",
-      "flags": "",
+      "flags": "Q",
       "text": "What is the most important thing we can do to help the next generation in terms of the environment?",
       "teachers": [
         "AP"
@@ -82363,12 +82597,7 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [
-        "Renunciation"
-      ],
-      "fTagOrder": [
-        120
-      ],
+      "fTags": [],
       "annotations": [
         {
           "kind": "Reading",
@@ -82405,10 +82634,10 @@
         [
           "$",
           "31:32",
-          "34:30"
+          "34:31"
         ]
       ],
-      "duration": "2:58",
+      "duration": "2:59",
       "mirror": "local",
       "body": "<b>Reflection</b>{attribution}: The common root of renunciation and compassion is the relationship to suffering.",
       "attribution": " by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
@@ -82557,10 +82786,10 @@
         {
           "kind": "Sutta",
           "flags": "",
-          "text": "Snp 1.8: The Metta Sutta",
+          "text": "Snp 1.8: The Metta Sutta.",
           "tags": [],
           "indentLevel": 1,
-          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=Snp-1.8:\" target=\"_blank\">Snp 1.8:</a> The Metta Sutta"
+          "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=Snp-1.8:\" target=\"_blank\">Snp 1.8:</a> The Metta Sutta."
         }
       ],
       "tags": [
@@ -83030,10 +83259,10 @@
         [
           "$",
           "0:00",
-          "2:20"
+          "2:21"
         ]
       ],
-      "duration": "2:20",
+      "duration": "2:21",
       "mirror": "local",
       "body": "“Why are the precepts worded as things not to do rather than as aspirations?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -87079,7 +87308,12 @@
       "teachers": [
         "AJaya"
       ],
-      "fTags": [],
+      "fTags": [
+        "Work"
+      ],
+      "fTagOrder": [
+        200
+      ],
       "annotations": [
         {
           "kind": "Read by",
@@ -89127,7 +89361,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Discernment"
+      ],
+      "fTagOrder": [
+        90
+      ],
       "annotations": [],
       "tags": [
         "Judgementalism",
@@ -92323,7 +92562,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Lay life"
+      ],
+      "fTagOrder": [
+        90
+      ],
       "annotations": [],
       "tags": [
         "Eightfold Path",
@@ -92351,10 +92595,10 @@
         [
           "$",
           "45:46",
-          "52:35"
+          "52:36.5"
         ]
       ],
-      "duration": "6:49",
+      "duration": "6:50",
       "mirror": "local",
       "body": "“What advice do you have for students or graduates hoping to progess on the Noble Path towards Nibbāna while a student or in the workplace?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -93780,7 +94024,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Online community"
+      ],
+      "fTagOrder": [
+        200
+      ],
       "annotations": [],
       "tags": [
         "Community",
@@ -94711,7 +94960,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Restlessness and worry"
+      ],
+      "fTagOrder": [
+        80
+      ],
       "annotations": [],
       "tags": [
         "Restlessness and worry",
@@ -97858,7 +98112,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Equanimity"
+      ],
+      "fTagOrder": [
+        120
+      ],
       "annotations": [
         {
           "kind": "Quote",
@@ -97888,11 +98147,11 @@
       "clips": [
         [
           "$",
-          "41:43",
+          "41:40.4",
           "45:58"
         ]
       ],
-      "duration": "4:15",
+      "duration": "4:17",
       "mirror": "local",
       "body": "“What are the words or practices to develop equanimity? In this difficult, divisive period, it’s helpful to have as much non-ill-will as possible.” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -99341,6 +99600,15 @@
           "body": "<b>Sutta</b>: <a href=\"https://sutta.readingfaithfully.org/?q=SN-1.1\" target=\"_blank\">SN 1.1</a>"
         },
         {
+          "kind": "Fragment",
+          "flags": "r",
+          "startTime": "1:20",
+          "endTime": "3:27.1",
+          "text": "[](player:Rishikesh2023_S02_F02)",
+          "indentLevel": 1,
+          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F02.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E1.1\" data-duration=\"127\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F02.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E1.1.mp3\">Download audio</a> (2:07)</audio-chip>"
+        },
+        {
           "kind": "Quote",
           "flags": "",
           "text": "To me it's much more faith that surrenders, that relinquishes, that's willing to let go.",
@@ -99391,6 +99659,9 @@
         ]
       ],
       "duration": "4:25",
+      "fragmentFTags": [
+        "Faith"
+      ],
       "mirror": "local",
       "body": "“From the Christian perspective, I understand we get knowledge or wisdom from God, but it is through our human effort that we get a taste of the wisdom. You mentioned [neither] moving backward, forward, or being still. In Zen meditation, they taught being present. Is this grace or effort?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -99398,8 +99669,44 @@
     {
       "event": "Rishikesh2023",
       "sessionNumber": 2,
-      "excerptNumber": 2,
+      "excerptNumber": 1.1,
       "fileNumber": 2,
+      "annotations": [],
+      "kind": "Quote",
+      "flags": "f",
+      "teachers": [
+        "AP"
+      ],
+      "text": "To me it's much more faith that surrenders, that relinquishes, that's willing to let go.",
+      "fTags": [
+        "Faith"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "tags": [
+        "Faith",
+        "Relinquishment",
+        "Discernment"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "$",
+          "1:20",
+          "3:27"
+        ]
+      ],
+      "duration": "2:07",
+      "mirror": "local",
+      "body": "<b>Quote:</b>  “To me it’s much more faith that surrenders, that relinquishes, that’s willing to let go.” {attribution}",
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+    },
+    {
+      "event": "Rishikesh2023",
+      "sessionNumber": 2,
+      "excerptNumber": 2,
+      "fileNumber": 3,
       "kind": "Question",
       "flags": "",
       "text": "Where can I find the effort and patience to transcend resistance? How can we balance effort and effortlessness?",
@@ -99431,7 +99738,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 2,
       "excerptNumber": 3,
-      "fileNumber": 3,
+      "fileNumber": 4,
       "kind": "Question",
       "flags": "",
       "text": "Does the concept of refuge in Buddhism contain an element of grace?",
@@ -99468,9 +99775,9 @@
           "flags": "",
           "startTime": "12:06",
           "endTime": "13:43.5",
-          "text": "[](player:Rishikesh2023_S02_F04)",
+          "text": "[](player:Rishikesh2023_S02_F05)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F04.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1\" data-duration=\"97\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F04.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1.mp3\">Download audio</a> (1:37)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F05.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1\" data-duration=\"97\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F05.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1.mp3\">Download audio</a> (1:37)</audio-chip>"
         },
         {
           "kind": "Indirect quote",
@@ -99518,7 +99825,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 2,
       "excerptNumber": 3.1,
-      "fileNumber": 4,
+      "fileNumber": 5,
       "annotations": [],
       "kind": "Indirect quote",
       "flags": "f",
@@ -99556,7 +99863,7 @@
       "event": "Rishikesh2023",
       "sessionNumber": 2,
       "excerptNumber": 4,
-      "fileNumber": 5,
+      "fileNumber": 6,
       "kind": "Question",
       "flags": "",
       "text": "Krishnamurti spoke of 'effortless effort.' Can you make sense of this?",
@@ -109116,7 +109423,7 @@
       ],
       "subtopics": [],
       "excerptCount": 21,
-      "fTagCount": 4,
+      "fTagCount": 3,
       "listIndex": 5
     },
     "Right Speech": {
@@ -109204,7 +109511,7 @@
         "Right Speech"
       ],
       "excerptCount": 6,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 10
     },
     "Malicious speech": {
@@ -110084,7 +110391,7 @@
         "Four Noble Truths"
       ],
       "subtopics": [],
-      "excerptCount": 45,
+      "excerptCount": 46,
       "fTagCount": 3,
       "listIndex": 62
     },
@@ -110360,7 +110667,7 @@
       ],
       "subtopics": [],
       "excerptCount": 43,
-      "fTagCount": 3,
+      "fTagCount": 5,
       "listIndex": 115
     },
     "Unification": {
@@ -111061,7 +111368,7 @@
       ],
       "subtopics": [],
       "excerptCount": 101,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 98
     },
     "Discernment": {
@@ -111090,6 +111397,7 @@
       ],
       "subtopics": [],
       "excerptCount": 134,
+      "fTagCount": 2,
       "listIndex": 102
     },
     "Investigation of states": {
@@ -111226,7 +111534,7 @@
       ],
       "subtopics": [],
       "excerptCount": 106,
-      "fTagCount": 3,
+      "fTagCount": 4,
       "listIndex": 113
     },
     "Empathetic joy": {
@@ -111325,7 +111633,7 @@
       "primaries": 1,
       "htmlFile": "conscience-and-prudence.html",
       "excerptCount": 16,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 119
     },
     "Learning": {
@@ -112579,7 +112887,7 @@
         "Ignorance"
       ],
       "subtopics": [],
-      "excerptCount": 8,
+      "excerptCount": 9,
       "fTagCount": 1,
       "listIndex": 244
     },
@@ -112639,7 +112947,7 @@
       "subtopics": [],
       "sessionCount": 1,
       "excerptCount": 57,
-      "fTagCount": 2,
+      "fTagCount": 3,
       "listIndex": 194
     },
     "Ill-will": {
@@ -112726,7 +113034,7 @@
       ],
       "subtopics": [],
       "excerptCount": 51,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 197
     },
     "Doubt": {
@@ -113057,6 +113365,7 @@
         "Conceit"
       ],
       "excerptCount": 28,
+      "fTagCount": 1,
       "listIndex": 219
     },
     "Perfectionism": {
@@ -113389,6 +113698,7 @@
       ],
       "subtopics": [],
       "excerptCount": 13,
+      "fTagCount": 1,
       "listIndex": 249
     },
     "Volition": {
@@ -113517,7 +113827,7 @@
       "primaries": 1,
       "htmlFile": "perception.html",
       "sessionCount": 2,
-      "excerptCount": 42,
+      "excerptCount": 43,
       "fTagCount": 2,
       "listIndex": 239
     },
@@ -114883,7 +115193,7 @@
       ],
       "subtopics": [],
       "excerptCount": 40,
-      "fTagCount": 5,
+      "fTagCount": 4,
       "listIndex": 319
     },
     "Five Precepts": {
@@ -116411,7 +116721,7 @@
       "eventCount": 2,
       "sessionCount": 3,
       "excerptCount": 80,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 470
     },
     "Ajahn Sao": {
@@ -120208,6 +120518,7 @@
       "eventCount": 1,
       "sessionCount": 1,
       "excerptCount": 59,
+      "fTagCount": 1,
       "listIndex": 646
     },
     "Ghost": {
@@ -120231,6 +120542,7 @@
         "Realms of existence"
       ],
       "excerptCount": 12,
+      "fTagCount": 1,
       "listIndex": 647
     },
     "Animal": {
@@ -120456,7 +120768,7 @@
       "primaries": 0,
       "htmlFile": "psychic-powers.html",
       "excerptCount": 20,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 658
     },
     "Supernatural": {
@@ -123027,7 +123339,7 @@
       ],
       "eventCount": 1,
       "excerptCount": 50,
-      "fTagCount": 2,
+      "fTagCount": 3,
       "listIndex": 810
     },
     "Conventions": {
@@ -123334,6 +123646,7 @@
       ],
       "subtopics": [],
       "excerptCount": 38,
+      "fTagCount": 2,
       "listIndex": 826
     },
     "Time management": {
@@ -123541,6 +123854,7 @@
       "primaries": 0,
       "htmlFile": "pace-of-life.html",
       "excerptCount": 12,
+      "fTagCount": 1,
       "listIndex": 835
     },
     "Retirement": {
@@ -123629,7 +123943,7 @@
       ],
       "subtopics": [],
       "excerptCount": 28,
-      "fTagCount": 4,
+      "fTagCount": 3,
       "listIndex": 838
     },
     "Weather": {
@@ -123753,7 +124067,7 @@
       "eventCount": 2,
       "sessionCount": 1,
       "excerptCount": 56,
-      "fTagCount": 4,
+      "fTagCount": 3,
       "listIndex": 845
     },
     "Royalty": {
@@ -124108,6 +124422,7 @@
       ],
       "subtopics": [],
       "excerptCount": 15,
+      "fTagCount": 1,
       "listIndex": 861
     },
     "Industry": {
@@ -124154,6 +124469,7 @@
         "Technology"
       ],
       "excerptCount": 6,
+      "fTagCount": 1,
       "listIndex": 863
     },
     "Media": {
@@ -124205,6 +124521,7 @@
         "Technology"
       ],
       "excerptCount": 3,
+      "fTagCount": 1,
       "listIndex": 865
     },
     "Advertizing": {
@@ -124274,6 +124591,7 @@
         "Technology"
       ],
       "excerptCount": 4,
+      "fTagCount": 1,
       "listIndex": 868
     }
   },
@@ -125840,9 +126158,9 @@
       "flags": "",
       "name": "Four Noble Truths",
       "pali": "cattāri ariya-saccāni",
-      "excerptCount": 45,
+      "excerptCount": 46,
       "subsumed": false,
-      "text": "Four Noble Truths (45) [cattāri ariya-saccāni]",
+      "text": "Four Noble Truths (46) [cattāri ariya-saccāni]",
       "tag": "Four Noble Truths"
     },
     {
@@ -125996,12 +126314,12 @@
       "flags": "*",
       "name": "Four Noble Truths",
       "pali": "cattāri ariya-saccāni",
-      "excerptCount": 45,
+      "excerptCount": 46,
       "subsumed": false,
-      "text": "Four Noble Truths (45) [cattāri ariya-saccāni]",
+      "text": "Four Noble Truths (46) [cattāri ariya-saccāni]",
       "tag": "Four Noble Truths",
       "subtagCount": 20,
-      "subtagExcerptCount": 739
+      "subtagExcerptCount": 740
     },
     {
       "level": 3,
@@ -127316,7 +127634,7 @@
       "text": "Unskillful qualities (35) [akusalā dhammā]",
       "tag": "Unskillful qualities",
       "subtagCount": 37,
-      "subtagExcerptCount": 713
+      "subtagExcerptCount": 714
     },
     {
       "level": 2,
@@ -127432,7 +127750,7 @@
       "text": "Outflows (5) [āsava]",
       "tag": "Outflows",
       "subtagCount": 4,
-      "subtagExcerptCount": 127
+      "subtagExcerptCount": 128
     },
     {
       "level": 3,
@@ -127462,9 +127780,9 @@
       "flags": "",
       "name": "Ignorance",
       "pali": "avijjāsava",
-      "excerptCount": 8,
+      "excerptCount": 9,
       "subsumed": false,
-      "text": "Ignorance (8) [avijjāsava]",
+      "text": "Ignorance (9) [avijjāsava]",
       "tag": "Ignorance"
     },
     {
@@ -127557,7 +127875,7 @@
       "text": "Ten Fetters (3) [dasa saṃyojanā]",
       "tag": "Fetters",
       "subtagCount": 10,
-      "subtagExcerptCount": 309
+      "subtagExcerptCount": 310
     },
     {
       "level": 3,
@@ -127664,9 +127982,9 @@
       "flags": "",
       "name": "Ignorance",
       "pali": "avijjā",
-      "excerptCount": 8,
+      "excerptCount": 9,
       "subsumed": false,
-      "text": "Ignorance (8) [avijjā]",
+      "text": "Ignorance (9) [avijjā]",
       "tag": "Ignorance"
     },
     {
@@ -127976,7 +128294,7 @@
       "text": "Five Aggregates (44) [pañcakkhandhā]",
       "tag": "Aggregates",
       "subtagCount": 5,
-      "subtagExcerptCount": 173
+      "subtagExcerptCount": 174
     },
     {
       "level": 3,
@@ -128006,9 +128324,9 @@
       "flags": "*",
       "name": "Perception",
       "pali": "saññā",
-      "excerptCount": 42,
+      "excerptCount": 43,
       "subsumed": false,
-      "text": "Perception (42) [saññā]",
+      "text": "Perception (43) [saññā]",
       "tag": "Perception"
     },
     {
@@ -128063,9 +128381,9 @@
       "flags": "*",
       "name": "Ignorance",
       "pali": "avijjā",
-      "excerptCount": 8,
+      "excerptCount": 9,
       "subsumed": false,
-      "text": "Ignorance (8) [avijjā]",
+      "text": "Ignorance (9) [avijjā]",
       "tag": "Ignorance"
     },
     {
@@ -130154,7 +130472,7 @@
       "text": "Teaching Dhamma (136)",
       "tag": "Teaching Dhamma",
       "subtagCount": 38,
-      "subtagExcerptCount": 990
+      "subtagExcerptCount": 991
     },
     {
       "level": 2,
@@ -130167,7 +130485,7 @@
       "text": "The Gradual Teaching (18) [anupubbikathā]",
       "tag": "Gradual Teaching",
       "subtagCount": 24,
-      "subtagExcerptCount": 785
+      "subtagExcerptCount": 786
     },
     {
       "level": 3,
@@ -130230,12 +130548,12 @@
       "flags": "",
       "name": "Four Noble Truths",
       "pali": "cattāri ariya-saccāni",
-      "excerptCount": 45,
+      "excerptCount": 46,
       "subsumed": false,
-      "text": "Four Noble Truths (45) [cattāri ariya-saccāni]",
+      "text": "Four Noble Truths (46) [cattāri ariya-saccāni]",
       "tag": "Four Noble Truths",
       "subtagCount": 19,
-      "subtagExcerptCount": 660
+      "subtagExcerptCount": 661
     },
     {
       "level": 4,
@@ -137682,7 +138000,7 @@
         "Right Speech",
         "Right Action"
       ],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "foundations",
       "progressMemo": "",
       "subtags": {
@@ -137691,7 +138009,7 @@
       },
       "htmlPath": "clusters/precepts.html",
       "excerptCount": 60,
-      "fTagCount": 6
+      "fTagCount": 5
     },
     "Renunciation": {
       "tag": "Renunciation",
@@ -137703,7 +138021,7 @@
       "subtags": {},
       "htmlPath": "tags/renunciation.html",
       "excerptCount": 21,
-      "fTagCount": 4
+      "fTagCount": 3
     },
     "Four Noble Truths": {
       "tag": "Four Noble Truths",
@@ -137714,7 +138032,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/four-noble-truths.html",
-      "excerptCount": 45,
+      "excerptCount": 46,
       "fTagCount": 3
     },
     "Noble Truth of Suffering": {
@@ -137805,7 +138123,7 @@
       },
       "htmlPath": "clusters/right-speech.html",
       "excerptCount": 55,
-      "fTagCount": 4
+      "fTagCount": 5
     },
     "Right Action": {
       "tag": "Right Action",
@@ -138017,7 +138335,7 @@
       "subtags": {},
       "htmlPath": "tags/faith.html",
       "excerptCount": 101,
-      "fTagCount": 1
+      "fTagCount": 2
     },
     "Energy": {
       "tag": "Energy",
@@ -138063,7 +138381,7 @@
       "tag": "Discernment",
       "displayAs": "Discernment",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "skillful",
       "progressMemo": "",
       "subtags": {
@@ -138072,7 +138390,7 @@
       },
       "htmlPath": "clusters/discernment.html",
       "excerptCount": 186,
-      "fTagCount": 3
+      "fTagCount": 5
     },
     "Desire": {
       "tag": "Desire",
@@ -138126,25 +138444,25 @@
       "tag": "Compassion",
       "displayAs": "Compassion",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "skillful",
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/compassion.html",
       "excerptCount": 106,
-      "fTagCount": 3
+      "fTagCount": 4
     },
     "Equanimity": {
       "tag": "Equanimity",
       "displayAs": "Equanimity",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "skillful",
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/equanimity.html",
       "excerptCount": 43,
-      "fTagCount": 3
+      "fTagCount": 5
     },
     "Unwholesome Roots": {
       "tag": "Unwholesome Roots",
@@ -138184,7 +138502,7 @@
       },
       "htmlPath": "clusters/sensual-desire.html",
       "excerptCount": 68,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Aversion": {
       "tag": "Aversion",
@@ -138222,7 +138540,7 @@
       "subtags": {},
       "htmlPath": "tags/restlessness-and-worry.html",
       "excerptCount": 51,
-      "fTagCount": 1
+      "fTagCount": 2
     },
     "Doubt": {
       "tag": "Doubt",
@@ -138302,7 +138620,7 @@
       },
       "htmlPath": "clusters/conceit.html",
       "excerptCount": 100,
-      "fTagCount": 6
+      "fTagCount": 7
     },
     "Conditionality": {
       "tag": "Conditionality",
@@ -138382,7 +138700,7 @@
       },
       "htmlPath": "clusters/realms-of-existence.html",
       "excerptCount": 122,
-      "fTagCount": 2
+      "fTagCount": 4
     },
     "Dependent origination": {
       "tag": "Dependent origination",
@@ -138405,7 +138723,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/ignorance.html",
-      "excerptCount": 8,
+      "excerptCount": 9,
       "fTagCount": 1
     },
     "Volitional formations": {
@@ -138466,7 +138784,7 @@
       "subtags": {},
       "htmlPath": "tags/contact.html",
       "excerptCount": 13,
-      "fTagCount": 0
+      "fTagCount": 1
     },
     "Feeling": {
       "tag": "Feeling",
@@ -138818,7 +139136,7 @@
       "subtags": {},
       "htmlPath": "tags/thai-forest-tradition.html",
       "excerptCount": 80,
-      "fTagCount": 1
+      "fTagCount": 2
     },
     "Vinaya": {
       "tag": "Vinaya",
@@ -138929,7 +139247,7 @@
       "tag": "Everyday life",
       "displayAs": "Everyday life",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "everyday",
       "progressMemo": "",
       "subtags": {
@@ -138937,7 +139255,7 @@
       },
       "htmlPath": "clusters/everyday-life.html",
       "excerptCount": 81,
-      "fTagCount": 3
+      "fTagCount": 4
     },
     "Health": {
       "tag": "Health",
@@ -139004,13 +139322,13 @@
       "tag": "Environment",
       "displayAs": "Environment",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "everyday",
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/environment.html",
       "excerptCount": 28,
-      "fTagCount": 4
+      "fTagCount": 3
     },
     "Work": {
       "tag": "Work",
@@ -139026,13 +139344,13 @@
       },
       "htmlPath": "clusters/work.html",
       "excerptCount": 40,
-      "fTagCount": 0
+      "fTagCount": 2
     },
     "Politics and society": {
       "tag": "Politics and society",
       "displayAs": "Politics and society",
       "related": [],
-      "reviewed": false,
+      "reviewed": true,
       "topicCode": "everyday",
       "progressMemo": "",
       "subtags": {
@@ -139046,7 +139364,7 @@
       },
       "htmlPath": "clusters/politics-and-society.html",
       "excerptCount": 76,
-      "fTagCount": 6
+      "fTagCount": 5
     },
     "Commerce/economics": {
       "tag": "Commerce/economics",
@@ -139081,7 +139399,7 @@
       },
       "htmlPath": "clusters/technology.html",
       "excerptCount": 49,
-      "fTagCount": 0
+      "fTagCount": 4
     }
   },
   "group": {
@@ -139788,7 +140106,7 @@
         "Renunciation"
       ],
       "excerptCount": 346,
-      "fTagCount": 21
+      "fTagCount": 19
     },
     "truths": {
       "code": "truths",
@@ -139802,7 +140120,7 @@
         "Cause of Suffering",
         "Cessation of Suffering"
       ],
-      "excerptCount": 132,
+      "excerptCount": 133,
       "fTagCount": 7
     },
     "path": {
@@ -139823,7 +140141,7 @@
         "Right Concentration"
       ],
       "excerptCount": 536,
-      "fTagCount": 30
+      "fTagCount": 31
     },
     "meditation": {
       "code": "meditation",
@@ -139866,7 +140184,7 @@
         "Equanimity"
       ],
       "excerptCount": 700,
-      "fTagCount": 28
+      "fTagCount": 34
     },
     "unskillful": {
       "code": "unskillful",
@@ -139889,7 +140207,7 @@
         "Conceit"
       ],
       "excerptCount": 612,
-      "fTagCount": 28
+      "fTagCount": 31
     },
     "perspectives": {
       "code": "perspectives",
@@ -139906,7 +140224,7 @@
         "Realms of existence"
       ],
       "excerptCount": 380,
-      "fTagCount": 14
+      "fTagCount": 16
     },
     "origination": {
       "code": "origination",
@@ -139928,7 +140246,7 @@
         "Becoming"
       ],
       "excerptCount": 322,
-      "fTagCount": 14
+      "fTagCount": 15
     },
     "fruits": {
       "code": "fruits",
@@ -139997,7 +140315,7 @@
         "Women's monastic forms"
       ],
       "excerptCount": 577,
-      "fTagCount": 29
+      "fTagCount": 30
     },
     "monasteries": {
       "code": "monasteries",
@@ -140032,7 +140350,7 @@
         "Technology"
       ],
       "excerptCount": 442,
-      "fTagCount": 26
+      "fTagCount": 33
     }
   }
 }
