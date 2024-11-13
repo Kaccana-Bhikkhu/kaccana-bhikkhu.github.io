@@ -133,8 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Job",
-                "BuildAllAbhayagiri"
+                "Prototype",
+                "--buildOnly",
+                "clusters"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

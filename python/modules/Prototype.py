@@ -5,7 +5,8 @@ from __future__ import annotations
 import os
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
-import Database
+import Mp3DirectCut
+import Database, ReviewDatabase
 import Utils, Alert, Filter, ParseCSV, Document, Render
 import Html2 as Html
 from datetime import timedelta
@@ -18,6 +19,8 @@ from enum import Enum
 import itertools
 import FileRegister
 from contextlib import nullcontext
+from functools import lru_cache
+import urllib.parse
 
 MAIN_MENU_STYLE = dict(menuSection="mainMenu")
 SUBMENU_STYLE = dict(menuSection="subMenu")
@@ -139,8 +142,8 @@ def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> s
     else:
         returnValue = text
 
-    if count and gDatabase['keyTopic'][headingCode]['excerptCount']:
-        returnValue += f" ({gDatabase['keyTopic'][headingCode]['excerptCount']})"
+    if count and gDatabase['keyTopic'][headingCode]['fTagCount']:
+        returnValue += f" ({gDatabase['keyTopic'][headingCode]['fTagCount']})"
     return returnValue
 
     
@@ -148,14 +151,14 @@ def HtmlTagClusterLink(cluster:str,text:str = "",link=True,count=False) -> str:
     "Return a link to the specified tag cluster."
 
     if not text:
-        text = gDatabase["tagCluster"][cluster]["displayAs"]
+        text = gDatabase["subtopic"][cluster]["displayAs"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["tagCluster"][cluster]["htmlPath"])})(text)
+        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["subtopic"][cluster]["htmlPath"])})(text)
     else:
         returnValue = text
-    if count and gDatabase['tagCluster'][cluster]['excerptCount']:
-        returnValue += f" ({gDatabase['tagCluster'][cluster]['excerptCount']})"
+    if count and gDatabase['subtopic'][cluster]['fTagCount']:
+        returnValue += f" ({gDatabase['subtopic'][cluster]['fTagCount']})"
     return returnValue
 
 def HtmlClusterTagList(cluster:dict,summarize:int = 0,group:bool = False,showStar = False) -> str:
@@ -213,12 +216,53 @@ def ListLinkedTeachers(teachers:List[str],*args,**kwargs) -> str:
 def ExcerptCount(tag:str) -> int:
     return gDatabase["tag"][tag].get("excerptCount",0)
 
-def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None = None,expandDuplicateSubtags:bool = True,expandTagLink:Callable[[int],str]|None = None,showSubtagCount = True,showStar = True) -> str:
+def HtmlTagListItem(listItem: dict,showSubtagCount = False,showStar = True) -> str:
+    indexStr = listItem["indexNumber"] + "." if listItem["indexNumber"] else ""
+    
+    countItems = []
+    fTagCount = listItem["tag"] and gDatabase["tag"][listItem["tag"]].get("fTagCount",0)
+    if fTagCount and showStar:
+        countItems.append(f'{fTagCount}{FA_STAR}')
+    subtagExcerptCount = listItem.get("subtagExcerptCount",0)
+    itemCount = listItem["excerptCount"]
+    if itemCount or subtagExcerptCount:
+        if subtagExcerptCount:
+            if not listItem['tag']:
+                itemCount = "-"
+            countItems.append(str(itemCount))
+            if showSubtagCount:
+                countItems.append(str(subtagExcerptCount))
+        else:
+            countItems.append(str(itemCount))
+    if countItems:
+        countStr = f' ({"/".join(countItems)})'
+    else:
+        countStr = ''
+    
+    if listItem['tag'] and not listItem['subsumed']:
+        nameStr = HtmlTagLink(listItem['tag'],True) + countStr
+    else:
+        nameStr = listItem['name'] + ("" if listItem["subsumed"] else countStr)
+    
+    if listItem['pali'] and listItem['pali'] != listItem['name']:
+        paliStr = '(' + listItem['pali'] + ')'
+    elif ParseCSV.TagFlag.DISPLAY_GLOSS in listItem['flags']:
+        paliStr = '(' + gDatabase['tag'][listItem['tag']]['glosses'][0] + ')'
+        # If specified, use paliStr to display the tag's first gloss
+    else:
+        paliStr = ''
+    
+    if listItem['subsumed']:
+        seeAlsoStr = 'see ' + HtmlTagLink(listItem['tag'],False) + countStr
+    else:
+        seeAlsoStr = ''
+    
+    joinBits = [s for s in [indexStr,nameStr,paliStr,seeAlsoStr] if s]
+    return ' '.join(joinBits)
+
+def IndentedHtmlTagList(tagList:list[dict] = [],showSubtagCount = True,showStar = True) -> str:
     """Generate html for an indented list of tags.
-    tagList is the list of tags to print; use the global list if not provided
-    If expandSpecificTags is specified, then expand only tags with index numbers in this set.
-    If not, then expand all tags if expandDuplicateSubtags; otherwise expand only tags with primary subtags.
-    If expandTagLink, add boxes to expand and contract each tag with links given by this function."""
+    tagList is the list of tags to print; use the global list if not provided"""
     
     tabMeasurement = 'em'
     tabLength = 2
@@ -227,90 +271,77 @@ def IndentedHtmlTagList(tagList:list[dict] = [],expandSpecificTags:set[int]|None
     
     if not tagList:
         tagList = gDatabase["tagDisplayList"]
-    if expandSpecificTags is None:
-        if expandDuplicateSubtags:
-            expandSpecificTags = range(len(tagList))
-        else:
-            expandSpecificTags = set()
-            for parent,children in ParseCSV.WalkTags(tagList,returnIndices=True):
-                for n in children:
-                    tag = tagList[n]["tag"]
-                    if n in expandSpecificTags or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
-                        expandSpecificTags.add(parent) # Then expand the parent tag
-    
+        
     baseIndent = tagList[0]["level"]
-    skipSubtagLevel = 999 # Skip subtags indented more than this value; don't skip any to start with
     with a.div(Class="listing"):
-        for index, item in enumerate(tagList):
-            #print(index,item["name"])
-            if item["level"] > skipSubtagLevel:
-                continue
-
-            if index in expandSpecificTags:
-                skipSubtagLevel = 999 # don't skip anything
-            else:
-                skipSubtagLevel = item["level"] # otherwise skip tags deeper than this level
-            
+        for item in tagList:
             bookmark = Utils.slugify(item["tag"] or item["name"])
             with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-baseIndent)}{tabMeasurement};"):
-                drilldownLink = ''
-                if expandTagLink:
-                    if index < len(tagList) - 1 and tagList[index + 1]["level"] > item["level"]: # Can the tag be expanded?
-                        if index in expandSpecificTags: # Is it already expanded?
-                            tagAtPrevLevel = -1
-                            for reverseIndex in range(index - 1,-1,-1):
-                                if tagList[reverseIndex]["level"] < item["level"]:
-                                    tagAtPrevLevel = reverseIndex
-                                    break
-                            drilldownLink = f'<a href="../drilldown/{expandTagLink(tagAtPrevLevel)}#_keep_scroll"><i class="fa fa-minus-square"></i></a>'
-                        else:
-                            drilldownLink = f'<a href="../drilldown/{expandTagLink(index)}#_keep_scroll"><i class="fa fa-plus-square"></i></a>'
-                    else:
-                        drilldownLink = "&nbsp"
-
-                indexStr = item["indexNumber"] + "." if item["indexNumber"] else ""
-                
-                countItems = []
-                fTagCount = item["tag"] and gDatabase["tag"][item["tag"]].get("fTagCount",0)
-                if fTagCount:
-                    countItems.append(f'{fTagCount}{FA_STAR}')
-                subtagExcerptCount = showSubtagCount and item.get("subtagExcerptCount",0)
-                itemCount = item["excerptCount"]
-                if itemCount or subtagExcerptCount:
-                    if subtagExcerptCount:
-                        if not item['tag']:
-                            itemCount = "-"
-                        countItems.append(str(itemCount))
-                        countItems.append(str(subtagExcerptCount))
-                    else:
-                        countItems.append(str(itemCount))
-                if countItems:
-                    countStr = f' ({"/".join(countItems)})'
-                else:
-                    countStr = ''
-                
-                if item['tag'] and not item['subsumed']:
-                    nameStr = HtmlTagLink(item['tag'],True) + countStr
-                else:
-                    nameStr = item['name'] + ("" if item["subsumed"] else countStr)
-                
-                if item['pali'] and item['pali'] != item['name']:
-                    paliStr = '(' + item['pali'] + ')'
-                elif ParseCSV.TagFlag.DISPLAY_GLOSS in item['flags']:
-                    paliStr = '(' + gDatabase['tag'][item['tag']]['glosses'][0] + ')'
-                    # If specified, use paliStr to display the tag's first gloss
-                else:
-                    paliStr = ''
-                
-                if item['subsumed']:
-                    seeAlsoStr = 'see ' + HtmlTagLink(item['tag'],False) + countStr
-                else:
-                    seeAlsoStr = ''
-                
-                joinBits = [s for s in [drilldownLink,indexStr,nameStr,paliStr,seeAlsoStr] if s]
-                a(' '.join(joinBits))
+                a(HtmlTagListItem(item,showSubtagCount=showSubtagCount,showStar=showStar))
     
     return str(a)
+
+@lru_cache(maxsize=None)
+def DrilldownTemplate() -> pyratemp.Template:
+    """Return a pyratemp template for an indented list of tags which can be expanded using
+    the javascript toggle-view class.
+    Variables within the template:
+    xTagIndexes: the set of integer tag indexes to expand
+    """
+
+    tabMeasurement = 'em'
+    tabLength = 2
+
+    tagList = gDatabase["tagDisplayList"]
+    a = Airium()
+    with a.div(Class="listing"):
+        for index, item in enumerate(tagList):            
+            bookmark = Utils.slugify(item["tag"] or item["name"])
+            with a.p(id = bookmark,style = f"margin-left: {tabLength * (item['level']-1)}{tabMeasurement};"):
+                itemHtml = HtmlTagListItem(item,showSubtagCount=True)
+                
+                drilldownLink = ""
+                divTag = "" # These are start and end tags for the toggle-view divisions
+                if index >= len(tagList) - 1:
+                    nextLevel = 1
+                else:
+                    nextLevel = tagList[index + 1]["level"]
+                if nextLevel > item["level"]: # Can the tag be expanded?
+                    tagAtPrevLevel = -1
+                    for reverseIndex in range(index - 1,-1,-1):
+                        if tagList[reverseIndex]["level"] < item["level"]:
+                            tagAtPrevLevel = reverseIndex
+                            break
+                    drilldownFile = DrilldownPageFile(index)
+                    drilldownID = drilldownFile.replace(".html","")
+                    prevLevelDrilldownFile = DrilldownPageFile(tagAtPrevLevel)
+                    
+                    boxType = f"$!'minus' if {index} in xTagIndexes else 'plus'!$"
+                        # Code to be executed by pyratemp
+                    plusBox = Html.Tag("i",{"class":f"fa fa-{boxType}-square toggle-view","id":drilldownID})("")
+                    drilldownLink = Html.Tag("a",{"href":f"../drilldown/$!'{prevLevelDrilldownFile}' if {index} in xTagIndexes else '{drilldownFile}'!$"})(plusBox)
+                        # Add html links to the drilldown boxes that work without Javascript
+
+                    hideCode = f"""$!'' if {index} in xTagIndexes else 'style="display: none;"'!$"""
+                    divTag = f'<div id="{drilldownID + ".b"}" class="no-padding" {hideCode}>'
+                elif nextLevel < item["level"]:
+                    divTag = "</div>" * (item["level"] - nextLevel)
+            
+                joinBits = [s for s in [drilldownLink,itemHtml] if s]
+                a(' '.join(joinBits))
+            a(divTag)
+    
+    return pyratemp.Template(str(a))
+
+def EvaluateDrilldownTemplate(expandSpecificTags:set[int] = frozenset()) -> str:
+    """Evaluate the drilldown template to expand the given set of tags.
+    expandSpecificTags is the set of tag indexes to expand.
+    The default is to expand all tags."""
+
+    template = DrilldownTemplate()
+    evaluated = template(xTagIndexes = expandSpecificTags)
+    return str(evaluated)
+
 
 def DrilldownPageFile(tagNumberOrName: int|str,jumpToEntry:bool = False) -> str:
     """Return the name of the page that has this tag expanded.
@@ -367,7 +398,7 @@ def DrilldownTags(pageInfo: Html.PageInfo) -> Iterator[Html.PageAugmentorType]:
             
             page = Html.PageDesc(pageInfo._replace(file=Utils.PosixJoin(pageInfo.file,DrilldownPageFile(n))))
             page.keywords.append(tag["name"])
-            page.AppendContent(IndentedHtmlTagList(expandSpecificTags=tagsToExpand,expandTagLink=DrilldownPageFile))
+            page.AppendContent(EvaluateDrilldownTemplate(expandSpecificTags=tagsToExpand))
             page.specialJoinChar["citationTitle"] = ""
             page.AppendContent(f': {tag["name"]}',section="citationTitle")
             yield page
@@ -756,12 +787,11 @@ def AudioIcon(hyperlink: str,title: str,dataDuration:str = "") -> str:
     a = Airium(source_minify=True)
     durationDict = {}
     if dataDuration:
-        durationDict = {"data-duration": str(Utils.StrToTimeDelta(dataDuration).seconds)}
+        durationDict = {"data-duration": str(Mp3DirectCut.ToTimeDelta(dataDuration).seconds)}
     with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
         with a.a(href = hyperlink,download=filename):
             a(f"Download audio")
         a(f" ({dataDuration})")
-    a.br()
 	
     return str(a)
 
@@ -835,7 +865,7 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     duration = timedelta()
     for _,sessionExcerpts in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"])):
         sessionExcerpts = list(sessionExcerpts)
-        duration += sum((Utils.StrToTimeDelta(x["duration"]) for x in sessionExcerpts if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
+        duration += sum((Mp3DirectCut.ToTimeDelta(x["duration"]) for x in Database.RemoveFragments(sessionExcerpts) if x["fileNumber"] or (sessionExcerptDuration and len(sessionExcerpts) == 1)),start = timedelta())
             # Don't sum session excerpts (fileNumber = 0) unless the session excerpt is the only excerpt in the list
             # This prevents confusing results due to double counting times
     
@@ -847,13 +877,13 @@ def ExcerptDurationStr(excerpts: List[dict],countEvents = True,countSessions = T
     if len(sessions) > 1 and countSessions:
         strItems.append(f"{len(sessions)} sessions,")
     
-    excerptCount = len(excerpts) if countSessionExcerpts else sum(1 for x in excerpts if x["fileNumber"])
+    excerptCount = Database.CountExcerpts(excerpts,countSessionExcerpts)
     if excerptCount > 1:
         strItems.append(f"{excerptCount} excerpts,")
     else:
         strItems.append(f"{excerptCount} excerpt,")
     
-    strItems.append(f"{Utils.TimeDeltaToStr(duration)} total duration")
+    strItems.append(f"{Mp3DirectCut.TimeDeltaToStr(duration)} total duration")
     
     return ' '.join(strItems)
 class Formatter: 
@@ -866,8 +896,10 @@ class Formatter:
         self.excerptBoldTags = set() # Display these tags in boldface
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
-        self.excerptAttributeSource = False # Add a line after each excerpt linking to it source?
+        self.excerptAttributeSource = False # Add a line after each excerpt linking to its source?
             # Best used with showHeading = False
+        self.showFTagOrder = () # Display {fTagOrder} before each excerpt
+            # Helps to sort featured excerpts in the preview edition
         
         self.showHeading = True # Show headings at all?
         self.headingShowEvent = True # Show the event name in headings?
@@ -876,15 +908,22 @@ class Formatter:
         self.headingShowTeacher = True # Include the teacher name in headings?
         self.headingAudio = False # Link to original session audio?
         self.headingShowTags = True # List tags in the session heading
-        
-        pass
     
+    def SetHeaderlessFormat(self,headerless: bool = True) -> None:
+        "Switch to the headerless excerpt format."
+        self.excerptOmitSessionTags = not headerless
+        self.showHeading = not headerless
+        self.headingShowTeacher = not headerless
+        self.excerptNumbers = not headerless
+        self.excerptAttributeSource = headerless
+
     def FormatExcerpt(self,excerpt:dict,**kwArgs) -> str:
         "Return excerpt formatted in html according to our stored settings."
         
         a = Airium(source_minify=True)
         
         a(Mp3ExcerptLink(excerpt,**kwArgs))
+        a.br()
         a(' ')
         if self.excerptNumbers:
             if excerpt['excerptNumber']:
@@ -892,6 +931,8 @@ class Formatter:
                     a(f"{excerpt['excerptNumber']}.")
             else:
                 a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
+        if self.showFTagOrder and set(excerpt["fTags"]) & set(self.showFTagOrder):
+            a(" {" + str(Database.FTagOrder(excerpt,self.showFTagOrder)) + "}")
 
         a(" ")
         if self.excerptPreferStartTime and excerpt['excerptNumber'] and (excerpt["clips"][0].file == "$" or excerpt.get("startTimeInSession",None)):
@@ -923,18 +964,20 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(excerpt["tags"]):
-            omitTags = self.excerptOmitTags
             if self.excerptOmitSessionTags:
-                omitTags = set.union(omitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
+                omitTags = set.union(self.excerptOmitTags,set(Database.FindSession(gDatabase["sessions"],excerpt["event"],excerpt["sessionNumber"])["tags"]))
+            else:
+                omitTags = set(self.excerptOmitTags)
             omitTags -= set(excerpt["fTags"]) # Always show fTags
+            omitTags -= set(excerpt.get("fragmentFTags",()))
 
             if n and n == excerpt["qTagCount"]:
                 tagStrings.append("//") # Separate QTags and ATags with the symbol //
 
             text = tag
-            if tag in excerpt["fTags"]:
+            if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
                 text += f'&nbsp{FA_STAR}'
-                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags == "mark" else 0)
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
                     # Add ? to uncertain fTags; "?" * -N = ""
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
@@ -954,12 +997,12 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation.get("tags",())):
-            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags - set(excerpt["fTags"]))
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags) # - set(excerpt["fTags"]) - set(excerpt.get("fragmentFTags",()))
             
             text = tag
-            if tag in excerpt["fTags"]:
+            if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
                 text += f'&nbsp{FA_STAR}'
-                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags == "mark" else 0)
+                text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
             elif tag not in omitTags: # Don't print tags which should be omitted
@@ -1013,19 +1056,18 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and session['filename']:
-                audioLink = Mp3SessionLink(session)
-                itemsToJoin[-1] += ' ' + audioLink
-                    # The audio chip goes on a new line, so don't separate with a dash
-            
             a(' – '.join(itemsToJoin))
 
             if self.headingShowTags:
-                a(' ')
+                a.br()
                 tagStrings = []
                 for tag in session["tags"]:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
+
+            if linkSessionAudio and session['filename']:
+                audioLink = Mp3SessionLink(session)
+                a(audioLink) 
         
         return str(a)
     
@@ -1119,7 +1161,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
 
         return menuItem,(basePage.info._replace(file=fileName),pageHtml)
 
-    for x in excerpts:
+    for x in Database.RemoveFragments(excerpts):
         thisSession = (x["event"],x["sessionNumber"])
         if prevSession != thisSession:
             if itemLimit and len(excerptsInThisPage) >= itemLimit:
@@ -1180,7 +1222,7 @@ def FilteredExcerptsMenuItem(excerpts:Iterable[dict], filter:Filter.Filter, form
         pageInfo = mainPageInfo._replace(file = Utils.AppendToFilename(mainPageInfo.file,"-" + fileExt))
     else:
         pageInfo = mainPageInfo
-    menuItem = pageInfo._replace(title=f"{menuTitle} ({len(filteredExcerpts)})")
+    menuItem = pageInfo._replace(title=f"{menuTitle} ({Database.CountExcerpts(filteredExcerpts,countSessionExcerpts=True)})")
 
 
     blankPage = Html.PageDesc(pageInfo)
@@ -1220,6 +1262,9 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
 
     formatter = Formatter()
     formatter.headingShowSessionTitle = True
+    formatter.excerptOmitSessionTags = False
+    formatter.headingShowTags = False
+    formatter.headingShowTeacher = False
 
     def SimpleDuration(page: Html.PageDesc,excerpts: list[dict]):
         "Append the number of excerpts and duration to page."
@@ -1449,17 +1494,19 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
         
         return FilteredExcerptsMenuItem(excerpts=excerpts,filter=filter,formatter=formatter,mainPageInfo=basePage.info,menuTitle=menuTitle,fileExt=fileExt,pageAugmentor=AddSearchCategory(menuTitle))
 
-    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: Iterable[str],skipSections:int = 0):
+    def HoistFTags(pageGenerator: Html.PageDescriptorMenuItem,excerpts: Iterable[dict],tags: list[str],skipSections:int = 0):
         """Insert featured excerpts at the top of the first page.
         skipSections allows inserting the featured excerpts between blocks of text."""
         
         menuItemAndPages = iter(pageGenerator)
-        firstPage = next(menuItemAndPages)
+        firstPage = next(menuItemAndPages,None)
+        if not firstPage:
+            return []
         if type(firstPage) == Html.PageInfo:
             yield firstPage # First yield the menu item descriptor, if any
             firstPage = next(menuItemAndPages)
 
-        featuredExcerpts = list(Filter.FTag(tags).Apply(excerpts))
+        featuredExcerpts = list(Database.RemoveFragments(Filter.FTag(tags).Apply(excerpts)))
         if featuredExcerpts:
             featuredExcerpts.sort(key = lambda x: Database.FTagOrder(x,tags))
 
@@ -1467,17 +1514,15 @@ def TagSubsearchPages(tags: str|Iterable[str],tagExcerpts: list[dict],basePage: 
             headerStr = "Featured excerpt"
             if len(featuredExcerpts) > 1:
                 headerStr += f"s ({len(featuredExcerpts)})"
-            headerHtml.append(Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
+            headerHtml.append('<div class="featured">' + Html.Tag("div",{"class":"title","id":"featured"})(headerStr))
 
             featuredFormatter = copy.copy(formatter)
-            featuredFormatter.excerptOmitSessionTags = False
-            featuredFormatter.showHeading = False
-            featuredFormatter.headingShowTeacher = False
-            featuredFormatter.excerptNumbers = False
-            featuredFormatter.excerptAttributeSource = True
+            featuredFormatter.SetHeaderlessFormat()
+            if gOptions.draftFTags == "number":
+                featuredFormatter.showFTagOrder = tags
 
             headerHtml.append(featuredFormatter.HtmlExcerptList(featuredExcerpts))
-            headerHtml.append("<hr>")
+            headerHtml.append("</div>\n<hr>\n")
 
             firstTextSection = 0 # The first section could be a menu, in which case we skip it
             while type(firstPage.section[firstTextSection]) != str:
@@ -1582,12 +1627,11 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         with a.strong():
             a(TagBreadCrumbs(tagInfo))
-            cluster = gDatabase["tag"][tag].get("cluster",None)
-            if cluster:
-                if len(gDatabase["tagCluster"][cluster]["subtags"]) > 0:
-                    a(f"Part of tag cluster {HtmlTagClusterLink(cluster)} in key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][cluster]['topicCode'])}")
+            for subtopic in gDatabase["tag"][tag].get("partOfSubtopics",()):
+                if len(gDatabase["subtopic"][subtopic]["subtags"]) > 0:
+                    a(f"Part of tag cluster {HtmlTagClusterLink(subtopic)} in key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
                 else:
-                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['tagCluster'][cluster]['topicCode'])}")
+                    a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
                 a.br()
             if tag in subsumesTags:
                 a(TitledList("Subsumes",[SubsumedTagDescription(t) for t in subsumesTags[tag]],plural=""))
@@ -1597,7 +1641,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             else:
                 a(TitledList("Glosses",tagInfo['glosses'],plural = ""))
             mainParent = Database.ParentTagListEntry(tagInfo["listIndex"])
-            mainParent = mainParent and mainParent["tag"] # Prevent error if mainParent == None
+            mainParent = mainParent and (mainParent["tag"] or mainParent["virtualTag"]) # Prevent error if mainParent == None
             a(ListLinkedTags("Also a subtag of",
                              (t for t in tagInfo['supertags'] if Database.TagLookup(t) != mainParent),
                              plural="",lastJoinStr=" and ",titleEnd=" "))
@@ -1669,6 +1713,7 @@ def TeacherPages(teacherPageDir: str) -> Html.PageDescriptorMenuItem:
 
             filterMenu = [
                 FilteredExcerptsMenuItem(relevantExcerpts,Filter.PassAll,formatter,pageInfo,"All excerpts"),
+                FilteredTeacherMenuItem(relevantExcerpts,Filter.FTag(Filter.All),"Featured"),
                 FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Questions")),"Questions"),
                 FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Category("Stories")),"Stories"),
                 FilteredTeacherMenuItem(relevantExcerpts,Filter.SingleItemMatch(Filter.Teacher(t),Filter.Kind("Quote")),"Direct quotes","d-quote"),
@@ -1844,6 +1889,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
     for eventCode,eventInfo in gDatabase["event"].items():
         sessions = [s for s in gDatabase["sessions"] if s["event"] == eventCode]
         excerpts = [x for x in gDatabase["excerpts"] if x["event"] == eventCode]
+        featuredExcerpts = Filter.FTag(Filter.All)(excerpts)
         a = Airium()
         
         with a.strong():
@@ -1860,6 +1906,13 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         
         a(ExcerptDurationStr(excerpts))
         a.br()
+
+        if featuredExcerpts:
+            query = urllib.parse.urlencode({"q":f"@{eventCode} +","search":"x"},doseq=True,quote_via=urllib.parse.quote)
+            with a.a(href = f"../search/Text-search.html?{query}"):
+                a(f"Show featured excerpt{'s' if len(featuredExcerpts) > 1 else ''}")
+            a(f"({len(featuredExcerpts)})")
+            a.br()
         
         if eventInfo["description"]:
             with a.p(Class="smaller"):
@@ -1880,7 +1933,7 @@ def EventPages(eventPageDir: str) -> Iterator[Html.PageAugmentorType]:
         formatter.headingLinks = False
         formatter.headingAudio = True
         formatter.excerptPreferStartTime = True
-        a(formatter.HtmlExcerptList(excerpts))
+        a(formatter.HtmlExcerptList(list(Database.RemoveFragments(excerpts))))
         
         titleInBody = eventInfo["title"]
         if eventInfo["subtitle"]:
@@ -1950,11 +2003,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         return
 
     formatter = Formatter()
-    formatter.excerptOmitSessionTags = False
-    formatter.showHeading = False
-    formatter.headingShowTeacher = False
-    formatter.excerptNumbers = False
-    formatter.excerptAttributeSource = True
+    formatter.SetHeaderlessFormat()
 
     topicDetailPage = next(DetailedKeyTopics(indexDir,topicDir))
 
@@ -1980,17 +2029,17 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
         page.AppendContent("<hr>\n")
         
         excerptsByTopic:dict[str:list[str]] = {}
-        for cluster in topic["clusters"]:
+        for cluster in topic["subtopics"]:
             def SortKey(x) -> int:
-                return Database.FTagOrder(x,[cluster])
+                return Database.FTagOrder(x,searchTags)
 
-            searchTags = set([cluster] + list(gDatabase["tagCluster"][cluster]["subtags"].keys()))
-            excerptsByTopic[cluster] = sorted(Filter.FTag(searchTags).Apply(gDatabase["excerpts"]),key=SortKey)
+            searchTags = [cluster] + list(gDatabase["subtopic"][cluster]["subtags"].keys())
+            excerptsByTopic[cluster] = sorted(Database.RemoveFragments(Filter.FTag(searchTags).Apply(gDatabase["excerpts"])),key=SortKey)
 
         def FeaturedExcerptList(item: tuple[dict,str,bool,bool]) -> tuple[str,str,str,str]:
             excerpt,tag,firstExcerpt,lastExcerpt = item
 
-            clusterInfo = gDatabase["tagCluster"][tag]
+            clusterInfo = gDatabase["subtopic"][tag]
             excerptHtml = ""
 
             if firstExcerpt:
@@ -2005,6 +2054,8 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
                     lines.append("")
                     excerptHtml += "<br>\n".join(lines)
 
+            if gOptions.draftFTags == "number":
+                formatter.showFTagOrder = [tag] + list(gDatabase["subtopic"][tag]["subtags"].keys())
             if excerpt:
                 excerptHtml += formatter.HtmlExcerptList([excerpt])
             else:
@@ -2045,7 +2096,7 @@ def TagClusterPages(topicDir: str):
     if gOptions.buildOnlyIndexes or "clusters" not in gOptions.buildOnly:
         return
     
-    for cluster,clusterInfo in gDatabase["tagCluster"].items():
+    for cluster,clusterInfo in gDatabase["subtopic"].items():
         if not clusterInfo["subtags"]:
             continue
 
@@ -2075,19 +2126,17 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("Compact",Utils.PosixJoin(indexDir,"KeyTopics.html"),"Key topics")
-    yield menuItem.AddQuery("_keep_query")
+    yield menuItem.AddQuery("hideAll")
 
-    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:
-        clustersToList = (t for t in keyTopic["clusters"] if not gDatabase["tagCluster"][t]["flags"] in ParseCSV.SUBTAG_FLAGS)
-        
+    def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:     
         clusterLinks = []
-        for tag in clustersToList:
+        for tag in keyTopic["subtopics"]:
             if gOptions.keyTopicsLinkToTags:
-                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["tagCluster"][tag]["htmlPath"],"-relevant"))
+                link = Utils.PosixJoin("../",Utils.AppendToFilename(gDatabase["subtopic"][tag]["htmlPath"],"-relevant"))
             else:
                 link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
-            text = gDatabase["tagCluster"][tag]["displayAs"]
-            #if gDatabase["tagCluster"][tag]["excerptCount"]:
+            text = gDatabase["subtopic"][tag]["displayAs"]
+            #if gDatabase["subtopic"][tag]["fTagCount"]:
             #    text += f'&nbsp{FA_STAR}'
             clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
@@ -2096,7 +2145,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
         if keyTopic["shortNote"]:
             clusterList = "\n".join([clusterList,Html.Tag("p",{"style":"margin-left: 2em;"})(keyTopic["shortNote"])])
         heading = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDir,keyTopic["listFile"])})(keyTopic["topic"])
-        heading += f" ({keyTopic['excerptCount']})"
+        heading += f" ({keyTopic['fTagCount']})"
         return heading,clusterList,keyTopic["code"]
 
     pageContent = Html.ToggleListWithHeadings(gDatabase["keyTopic"].values(),KeyTopicList,
@@ -2118,38 +2167,70 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
 
     yield page
 
-def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.PageDescriptorMenuItem:
+def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemos = False) -> Html.PageDescriptorMenuItem:
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
-    yield menuItem.AddQuery("_keep_query")
+    yield menuItem.AddQuery("hideAll")
 
     a = Airium()
+    a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
     with a.div(Class="listing"):
-        a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
         for topicCode,topic in gDatabase["keyTopic"].items():
             with a.p(id=topicCode):
                 if not printPage:
                     with a.a().i(Class = "fa fa-minus-square toggle-view",id=topicCode):
                         pass
-                a(HtmlKeyTopicLink(topicCode,count=True))
+                with a.span(style="text-decoration: underline;" if printPage else ""):
+                    a(HtmlKeyTopicLink(topicCode,count=True))
             with a.div(id=topicCode + ".b"):
-                for cluster in topic["clusters"]:
+                for subtopic in topic["subtopics"]:
                     with a.p(style="margin-left: 2em;"):
-                        subtags = list(gDatabase["tagCluster"][cluster]["subtags"].keys())
-                        with a.strong() if len(subtags) > 0 else nullcontext(0):
-                            a(HtmlTagClusterLink(cluster,count=True))
+                        subtags = [subtopic] + list(gDatabase["subtopic"][subtopic]["subtags"].keys())
+                        fTagCount = gDatabase['subtopic'][subtopic].get('fTagCount',0)
+                        minFTag,maxFTag,diffFTag = ReviewDatabase.OptimalFTagCount(gDatabase["subtopic"][subtopic])
+                        
+                        if gDatabase["subtopic"][subtopic]["reviewed"]:
+                            prefixChar = "☑"
+                        elif fTagCount == 0:
+                            prefixChar = "∅"
+                        else:
+                            prefixChar = "⊟☐⊞"[(diffFTag > 0) - (diffFTag < 0) + 1]
+                        
+                        if prefixChar and printPage:
+                            a(f"{prefixChar} ")
+                        with a.strong() if len(subtags) > 1 else nullcontext(0):
+                            a(HtmlTagClusterLink(subtopic))
+                        
+                        parenthetical = str(fTagCount)
+                        if printPage:
+                            parenthetical += f":{minFTag}-{maxFTag}/{gDatabase['subtopic'][subtopic].get('excerptCount',0)}"
+                        if parenthetical != "0":
+                            a(f" ({parenthetical})")
+
                         bitsAfterDash = []
-                        if len(subtags) > 0:
-                            bitsAfterDash.append(ListLinkedTags("Cluster includes",[cluster] + subtags,plural="",endStr=""))
-                        if printPage and gDatabase["tagCluster"][cluster]["related"]:
-                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["tagCluster"][cluster]["related"],plural="",endStr=""))
+                        if len(subtags) > 1:
+                            subtagStrs = []
+                            for tag in subtags:
+                                if tag in ReviewDatabase.SignificantSubtagsWithoutFTags():
+                                    tagCount = "<b>∅</b>"
+                                else:
+                                    tagCount = str(gDatabase['tag'][tag].get("fTagCount",0))
+                                tagCount += f"/{gDatabase['tag'][tag].get('excerptCount',0)}"
+                                subtagStrs.append(HtmlTagLink(tag) + (f" ({tagCount})" if printPage else ""))
+                            bitsAfterDash.append(f"Cluster includes: {', '.join(subtagStrs)}")
+                        if printPage and gDatabase["subtopic"][subtopic]["related"]:
+                            bitsAfterDash.append(ListLinkedTags("Related",gDatabase["subtopic"][subtopic]["related"],plural="",endStr=""))
                         if bitsAfterDash:
                             a(" – " + "; ".join(bitsAfterDash))
-                
-                if topic["shortNote"]:
+                        if printPage and progressMemos:
+                            with a.p(style="margin-left: 4em;"):
+                                a(gDatabase['subtopic'][subtopic]["progressMemo"] or ".")
+
+                if topic["shortNote"] and not printPage:
                     with a.p(style="margin-left: 2em;"):
                         a(topic["shortNote"])
+
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
     
@@ -2167,12 +2248,17 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False) -> Html.Pag
 
     yield page
 
-def PrintTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
+def PrintTopics(indexDir: str,topicDir: str,progressMemos: bool) -> Html.PageDescriptorMenuItem:
     "Yield a printable listing of all topic headings."
-    menuItem = Html.PageInfo("Printable",Utils.PosixJoin(indexDir,"KeyTopicDetail_print.html"),"Key topics")
+    menuEntry = "Printable"
+    filename = "KeyTopicDetail_print.html"
+    if progressMemos:
+        filename = "KeyTopicMemos_print.html"
+        menuEntry += " with memos"
+    menuItem = Html.PageInfo(menuEntry,Utils.PosixJoin(indexDir,filename),"Key topics")
     yield menuItem
 
-    topicList = DetailedKeyTopics(indexDir,topicDir,printPage=True)
+    topicList = DetailedKeyTopics(indexDir,topicDir,printPage=True,progressMemos=progressMemos)
     _ = next(topicList)
     page = next(topicList)
     page.info = menuItem._replace(title="Key topics")
@@ -2192,39 +2278,74 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     keyTopicMenu = [
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
-        PrintTopics(indexDir,topicDir),
+        PrintTopics(indexDir,topicDir,False),
+        TagClusterPages("clusters"),
+        KeyTopicExcerptLists(indexDir,topicDir)
     ]
 
-    yield from basePage.AddMenuAndYieldPages(keyTopicMenu,**EXTRA_MENU_STYLE)
-    yield from TagClusterPages("clusters")
-    yield from KeyTopicExcerptLists(indexDir,topicDir)
+    if gOptions.uploadMirror == "preview": # Only insert Printable with memos in the preview build
+        keyTopicMenu.insert(4,PrintTopics(indexDir,topicDir,True))
+
+    for page in basePage.AddMenuAndYieldPages(keyTopicMenu,**SUBMENU_STYLE):
+        filename = page.info.file.split("/")[-1]
+        # Modify the pages after they are generated such that switching betweeen these two files does not close
+        # open topic tabs.
+        if filename in ("KeyTopics.html,KeyTopicDetail.html"):
+            for n,menuItem in enumerate(page.section["subMenu"].items):
+                if menuItem.file.endswith("?hideAll"):
+                    page.section["subMenu"].items[n] = menuItem._replace(file=menuItem.file.replace("hideAll","_keep_query"))
+
+        yield page
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
     
     drilldownItem = Html.PageInfo("Hierarchy",drilldownDir,"Tags – Hierarchical")
     contractAllItem = drilldownItem._replace(file=Utils.PosixJoin(drilldownDir,DrilldownPageFile(-1)))
-    expandAllItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"AllTagsExpanded.html"))
     printableItem = drilldownItem._replace(file=Utils.PosixJoin(indexDir,"Tags_print.html"))
 
     yield contractAllItem
 
-    drilldownMenu = []
-    contractAll = [contractAllItem._replace(title="Contract all")]
-    if "drilldown" in gOptions.buildOnly:
-        contractAll.append((contractAllItem,IndentedHtmlTagList(expandSpecificTags=set(),expandTagLink=DrilldownPageFile)))
-    drilldownMenu.append(contractAll)
-    drilldownMenu.append([expandAllItem._replace(title="Expand all"),(expandAllItem,IndentedHtmlTagList(expandDuplicateSubtags=True))])
-    drilldownMenu.append([printableItem._replace(title="Printable"),(printableItem,IndentedHtmlTagList(expandDuplicateSubtags=False))])
-    if "drilldown" in gOptions.buildOnly:
-        drilldownMenu.append(DrilldownTags(drilldownItem))
-
     basePage = Html.PageDesc()
     basePage.AppendContent("Hierarchical tags",section="citationTitle")
     basePage.keywords = ["Tags","Tag hierarchy"]
-    menuStyle = dict(EXTRA_MENU_STYLE)
-    menuStyle["wrapper"] += "Numbers in parentheses following tag names: (number of excerpts tagged/number of excerpts tagged with this tag or its subtags).<br><br>"
-    yield from basePage.AddMenuAndYieldPages(drilldownMenu,**menuStyle)
+    
+    def TagsWithPrimarySubtags():
+        tagSet = set()
+        tagList = gDatabase["tagDisplayList"]
+        for parent,children in ParseCSV.WalkTags(tagList,returnIndices=True):
+            for n in children:
+                tag = tagList[n]["tag"]
+                if n in tagSet or (tag and gDatabase["tag"][tag]["listIndex"] == n): # If this is a primary tag
+                    tagSet.add(parent) # Then expand the parent tag
+        return tagSet
+
+    def Pages() -> Generator[Html.PageDesc]:
+        printPage = Html.PageDesc(printableItem)
+        tagsExpanded = EvaluateDrilldownTemplate(expandSpecificTags = TagsWithPrimarySubtags())
+        noToggle = re.sub(r'<i class="[^"]*?toggle[^"]*"[^>]*>*.?</i>',"",tagsExpanded)
+        printPage.AppendContent(noToggle)
+        yield printPage
+
+        # Hack: Add buttons to basePage after yielding printPage so that all subsequent pages have buttons at the top.
+        basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.AddQuery("showAll").file)})("Expand all"))
+        basePage.AppendContent(Html.Tag("button",{"type":"button","onclick":Utils.JavascriptLink(contractAllItem.file)})("Contract all"))
+        basePage.AppendContent(Html.Tag("span",{"style":"float: right;"})(Html.Tag("a",{"href":Utils.PosixJoin("../",printableItem.file)})("Printable")))
+        basePage.AppendContent("<br><br>")
+        basePage.AppendContent(f"Numbers in parentheses: (featured excerpts{FA_STAR}/excerpts tagged/excerpts tagged with this tag or its subtags).<br><br>")
+
+        rootPage = Html.PageDesc(contractAllItem)
+        rootPage.AppendContent(EvaluateDrilldownTemplate())
+        yield rootPage
+
+        if "drilldown" in gOptions.buildOnly and not gOptions.buildOnlyIndexes:
+            yield from DrilldownTags(drilldownItem)
+
+    for page in Pages():
+        newPage = basePage.Clone()
+        newPage.Merge(page)
+        yield newPage
+
 
 def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     """Create the Tags menu item and its associated submenus.
@@ -2295,7 +2416,7 @@ def WriteIndexPage(writer: FileRegister.HashWriter):
 
     indexTemplate = Utils.ReadFile(Utils.PosixJoin(gOptions.prototypeDir,"templates","index.html"))
     
-    indexHtml = pyratemp.Template(indexTemplate)(bodyHtml = homepageBody)
+    indexHtml = pyratemp.Template(indexTemplate)(bodyHtml = homepageBody,gOptions = gOptions)
     writer.WriteTextFile(Utils.PosixJoin("index.html"),indexHtml)
 
 def WriteRedirectPages(writer: FileRegister.HashWriter):
@@ -2320,7 +2441,7 @@ def AddArguments(parser):
     
     parser.add_argument('--prototypeDir',type=str,default='prototype',help='Write prototype files to this directory; Default: ./prototype')
     parser.add_argument('--globalTemplate',type=str,default='templates/Global.html',help='Template for all pages relative to prototypeDir; Default: templates/Global.html')
-    parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of Tags,Drilldown,Events,Teachers,AllExcerpts.')
+    parser.add_argument('--buildOnly',type=str,default='',help='Build only specified sections. Set of topics,tags,clusters,drilldown,events,teachers,search,allexcerpts.')
     parser.add_argument('--buildOnlyIndexes',**Utils.STORE_TRUE,help="Build only index pages")
     parser.add_argument('--excerptsPerPage',type=int,default=100,help='Maximum excerpts per page')
     parser.add_argument('--minSubsearchExcerpts',type=int,default=10,help='Create subsearch pages for pages with at least this many excerpts.')

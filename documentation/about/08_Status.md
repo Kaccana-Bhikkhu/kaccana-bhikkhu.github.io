@@ -2,21 +2,17 @@
 
 # Status
 
-## New in the October 2024 release:#
-- Featured excerpts marked <i class="fa fa-star" style="color: #9b7030;"></i> highlight the best material in the Archive. Look for them at the top of any tag page or [see them all together](../indexes/AllExcerpts-featured.html).
-- [Key topics](../indexes/KeyTopics.html?hideAll) group tags and featured excerpts into a thematic progression.
-- Tag clusters group related tags together, e. g. [Buddha](../../pages/clusters/buddha-relevant.html), contains [[Buddha](../../pages/tags/buddha.html)], [[Recollection/Buddha](../../pages/tags/recollectionbuddha.html)], and [[Buddho mantra](../../pages/tags/buddho-mantra.html)].
-- [Events by subject page](../indexes/EventsBySubject.html)
-- Added three recent events: [Following the Path of a Forest Monk](../../pages/events/Podcast2023.html), [Madison Insight Retreat 2023](../../pages/events/Madison2023.html), and [The Interreligious Retreat-Seminar on Dhamma and Non-duality](../../pages/events/Rishikesh2023.html).
-- Listened to and annotated selected questions in the [2014](../../pages/events/TG2014.html) and [2015](../../pages/events/TG2015.html) Thanksgiving Retreats.
-- Improved tag information including breadcrumbs: [Skillful qualities](../../pages/tags/skillful-qualities.html) / [Divine Abidings](../../pages/tags/divine-abidings.html) / [Goodwill](../../pages/tags/goodwill.html).
-- The back button now consistently restores the correct scroll position.
+## New in the November 2024 release:
+- All subtopics feature at least one excerpt, substantially improving the [Key topics page](../indexes/KeyTopicDetail.html).
+- Improved [tag hierarchy](../drilldown/root.html) interface.
+- Fragment annotations allow the Archive to feature only the best part of an excerpt.
+- Audio splicing allows joining non-contiguous audio clips and removing silence. 
 
 ## Content
-This release contains 2303 excerpts from 46 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 2327 excerpts from 46 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
-The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Selected questions are annotated for the [2014](../../pages/events/TG2014.html) and [2015](../../pages/events/TG2015.html) retreats. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.
+The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Selected questions are annotated for the [2014](../../pages/events/TG2014.html), [2015](../../pages/events/TG2015.html), and [2016](../../pages/events/TG2016.html) retreats. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.
 
 ### Winter Retreats
 All sessions from the [2014](../../pages/events/WR2014.html) and [2015](../../pages/events/WR2015.html) Winter Retreats are included in the Archive. The 2013 and 2016 Winter Retreats have been transcribed on paper but not entered into the Archive. A series of interviews and discussions with Ajahn Pasanno at the end of the 2018 Winter Retreat is included as [The Teaching and the Training](../../pages/events/WR2018-2.html). Audio recordings are available of many more Winter Retreats on [abhayagiri.org](https://www.abhayagiri.org/talks/collections/1-winter-retreats).
@@ -25,7 +21,7 @@ All sessions from the [2014](../../pages/events/WR2014.html) and [2015](../../pa
 All four recordings of daylong events led by Ajahn Pasanno at Spirit Rock Meditation Center on abhayagiri.org are included in the Archive.
 
 ### Upāsikā Days
-All 21 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive. TWo more on YouTube haven't made it yet.
+All 21 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are in the Archive. Two more on YouTube haven't made it yet.
 
 ### Other
 Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio. Several Abhayagiri anniversary celebrations are in progress.
@@ -53,3 +49,12 @@ Almost all teachers have given consent for their 2001 Ajahn Chah Conference audi
 - Two Q&A sessions with Ajahn Pasanno from [Abhayagiri's 25th Anniversary Retreat](../../pages/events/Anniversary2021.html).
 - Almost all excerpts from the [2001 Ajahn Chah Weekend](../../pages/events/Chah2001.html) are now available. 
 - [Search for tags](../search/Text-search.html)
+### October 2024:
+- Featured excerpts marked <i class="fa fa-star" style="color: #9b7030;"></i> highlight the best material in the Archive. Look for them at the top of any tag page or [see them all together](../indexes/AllExcerpts-featured.html).
+- [Key topics](../indexes/KeyTopics.html?hideAll) group tags and featured excerpts into a thematic progression.
+- Tag clusters group related tags together. For example, the tag cluster [Buddha](../../pages/clusters/buddha-relevant.html), contains [[Buddha](../../pages/tags/buddha.html)], [[Recollection/Buddha](../../pages/tags/recollectionbuddha.html)], and [[Buddho mantra](../../pages/tags/buddho-mantra.html)].
+- [Events by subject page](../indexes/EventsBySubject.html)
+- Added three recent events: [Following the Path of a Forest Monk](../../pages/events/Podcast2023.html), [Madison Insight Retreat 2023](../../pages/events/Madison2023.html), and [The Interreligious Retreat-Seminar on Dhamma and Non-duality](../../pages/events/Rishikesh2023.html).
+- Listened to and annotated selected questions in the [2014](../../pages/events/TG2014.html) and [2015](../../pages/events/TG2015.html) Thanksgiving Retreats.
+- Improved tag information including breadcrumbs: [Skillful qualities](../../pages/tags/skillful-qualities.html) / [Divine Abidings](../../pages/tags/divine-abidings.html) / [Goodwill](../../pages/tags/goodwill.html).
+- The back button now consistently restores the correct scroll position.

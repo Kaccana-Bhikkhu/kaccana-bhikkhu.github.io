@@ -7,9 +7,9 @@ If you would like to contribute to the Ajahn Pasanno Question and Story Archive,
 
 ## Ways Anyone Can Contribute:
 ### Suggest excerpts to feature
-The October 2024 release introduces hand-picked featured excerpts which appear at the top of the corresponding tag pages. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illlustrating key aspects of the topic. Less common tags will feature fewer excerpts.
+The October 2024 release introduces hand-picked featured excerpts which appear at the top of the corresponding tag pages. Featured excerpts can be clear answers to the most common or significant questions, pivotal or illustrative stories in the life of a teacher or community, or insightful reflections about important aspects of Dhamma. The eventual goal is that tags applied to 100 or more excerpts will feature three to five excerpts illustrating key aspects of the topic. Less common tags will feature fewer excerpts.
 
-The process of selecting featured excerpts has just begun. Many tags have no featured excerpts at all, and we welcome contributions to this process. One of the most helpful ways to contribute is to select a tag or tag cluster from the [list of key topics](../indexes/KeyTopicDetail.html?showAll) that interests you. Then listen to the excerpts with that tag and suggest which ones to feature. Some pointers for suggesting featured excerpts:
+As of the November 2024 release, most important tags feature at least one excerpt. However, many tags could benefit from a few more. If you come across a particularly good excerpt that does not display a star, please suggest it as described below. Some pointers for suggesting featured excerpts:
 
  - Single-topic questions (e.g. “Equanimity...your thoughts?”) often make good featured excerpts.
  - Short answers are often preferable to long answers.
@@ -19,6 +19,7 @@ The process of selecting featured excerpts has just begun. Many tags have no fea
  - Featured excerpts may be arranged logically, chronologically, or simplest to most in-depth.
  - You may suggest that closely-related tags in the same key topic (e.g. Continuity of mindfulness and Present moment awareness) be combined into a single tag cluster or that new tags should be added to key topics.
  - If an excellent answer follows a nearly inaudible question, we can amplify the question. Or better yet, amplify the question yourself and send the edited audio file.
+ - One can select only part of an excerpt to feature as a fragment.
 
 Please send your suggestions to [questionsandstories@abhayagiri.org](mailto:questionsandstories@abhayagiri.org). Additional support for suggesting featured excerpts may be provided if there is sufficient interest.
 
@@ -40,7 +41,7 @@ For example: “Master Hsu Yun and the Bandits,” 13:49 in the talk “Developi
 
 ----
 
-### Point out typos or tagging errors
+### Point out typos, tagging errors, or audio glitches
 There is so much potential material for the Archive that little proofreading has been done after typing in transcriptions. Thus typos are inevitable, and some tags intended for one excerpt might end up on another. There’s no need for the Archive to be as polished as a printed book, and it often quotes imperfectly phrased questions verbatim. Nevertheless, please let me know if you find any glitches.
 
 -----

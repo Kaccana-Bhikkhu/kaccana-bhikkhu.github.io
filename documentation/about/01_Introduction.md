@@ -3,6 +3,7 @@
 
 # Introduction
 
+
 Ajahn Pasanno, one of founding abbots of Abhayagiri Monastery and now its Guiding Elder, excels at answering Dhamma questions. There are more than 100 hours of his question and answer sessions posted online. If you have a Dhamma question, it’s likely that Ajahn Pasanno has spoken to it in the past. But how will you find his answer amidst the hours of available recordings?
 
 This archive is an attempt to make the oral teachings of Ajahn Pasanno more accessible. It contains transcriptions/summaries of questions asked and audio recordings of Ajahn Pasanno’s answers. The questions are organized by event and tagged by subject. The stories Ajahn Pasanno tells in the course of answering Dhamma questions are often as valuable as the questions themselves. Thus I expanded the archive to include stories, quotes, readings, sutta references, and other content in addition to questions and answers. Ajahn Pasanno readily shares the teaching seat with other Abhayagiri residents and invited guests, and the archive includes material from those who teach alongside him.

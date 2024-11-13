@@ -12,7 +12,7 @@
 <!--(end)-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-  p {font-size: 100%;}
+  p {font-size: 100%; max-width: none;}
   div.listing p {padding: 0px}
   #audio-player {display:none}
   a {color:black}
@@ -20,14 +20,6 @@
     
 </head>
 <body>
-
-<h1>The Ajahn Pasanno Question and Story Archive</h1>
-
-<h4>$!page.section["mainMenu"].Render()!$</h4>
-
-<!--(if page.HasSection("subMenu"))-->
-<h4>$!page.section["subMenu"].Render()!$</h4>
-<!--(end)-->
 
 $!page.RenderNumberedSections()!$
 

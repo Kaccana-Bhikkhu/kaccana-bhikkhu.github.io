@@ -48,13 +48,15 @@ export function loadToggleView() {
 
     let togglers = document.getElementsByClassName("toggle-view");
     for (let t of togglers) {
-        if ((initView == null) || (toggled.indexOf(t.id) == -1))
+        if (toggled.indexOf(t.id) == -1)
             setVisible(t,initView);
+        else if (initView == null)
+            setVisible(t,"toggle");
         else
             setVisible(t,!initView);
         t.addEventListener("click", function(event) {
-            setVisible(this,"toggle",true);
             event.preventDefault();
+            setVisible(this,"toggle",true);
         });
     }
 }

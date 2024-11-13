@@ -14,7 +14,9 @@ Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3Dire
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
-    parser.add_argument('--overwriteMp3',**Utils.STORE_TRUE,help="Overwrite existing mp3 files; otherwise leave existing files untouched")
+    parser.add_argument('--overwriteMp3',**Utils.STORE_TRUE,help="Overwrite existing excerpt mp3 files; otherwise leave existing files untouched")
+    parser.add_argument('--redoJoinMp3',**Utils.STORE_TRUE,help="Overwrite mp3 files for excerpts that join clips together")
+    parser.add_argument('--joinUsingPydub',**Utils.STORE_TRUE,help="Use pydub to smoothly join audio clips (requires pydub and ffmpeg)")
 
 def ParseArguments() -> None:
     pass
@@ -32,6 +34,8 @@ def main():
     if platform.system() != "Windows":
         Alert.error(f"SplitMp3 requires Windows to run mp3DirectCut.exe. mp3 files cannot be split on {platform.system()}.")
         return
+    
+    Mp3DirectCut.joinUsingPydub = gOptions.joinUsingPydub
 
     # Step 1: Determine which excerpt mp3 files need to be created
     eventExcerptClipsDict:dict[str,dict[str,list[Mp3DirectCut.Clip]]] = {}
@@ -49,7 +53,7 @@ def main():
         if gOptions.overwriteMp3:
             excerptsNeedingSplit = eventExcerpts
         else:
-            excerptsNeedingSplit = [x for x in eventExcerpts if Link.LocalItemNeeded(x)]
+            excerptsNeedingSplit = [x for x in eventExcerpts if (gOptions.redoJoinMp3 and len(x.get("clips",())) > 1) or Link.LocalItemNeeded(x)]
         if not excerptsNeedingSplit:
             continue
         
@@ -60,14 +64,11 @@ def main():
 
             filename = f"{Database.ItemCode(excerpt)}.mp3"
             clips = list(excerpt["clips"])
-            defaultSource = session["filename"]
             allFilesFound = True
             for index in range(len(clips)):
                 sourceFile = clips[index].file
                 if sourceFile == "$":
-                    sourceFile = defaultSource
-                elif index == 0:
-                    defaultSource = clips[0].file
+                    sourceFile = session["filename"]
                 source = gDatabase["audioSource"].get(sourceFile,None)
                 if source:
                     clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(source,"local")))

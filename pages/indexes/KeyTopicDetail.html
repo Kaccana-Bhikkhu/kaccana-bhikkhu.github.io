@@ -27,7 +27,7 @@
 
       url = new URL(location.href)
       if (url.protocol != "file:" && !isBotUserAgent) {
-        location.replace("../index.html#indexes/KeyTopicDetail.html" + url.hash);
+        location.replace("../index.html#indexes/KeyTopicDetail.html" + url.search + url.hash);
       }
     </script>
   <div id="header">
@@ -46,52 +46,62 @@
   </div>
 <br>
 
+  <div class="sublink">
+    <a href="../indexes/KeyTopics.html?_keep_query#_keep_scroll">Compact</a>
+      <a href="../indexes/KeyTopicDetail.html?_keep_query#_keep_scroll" class="active">In detail</a>
+      <a href="../indexes/KeyTopicDetail_print.html#_keep_scroll">Printable</a>
+  </div>
+  <br>
 
   <div class="title">Key topics
   </div>
 
 <div class="main">
-<div class="sublink2"> <a href="../indexes/KeyTopics.html?_keep_query#_keep_scroll">Compact</a>
-      <a href="../indexes/KeyTopicDetail.html?_keep_query#_keep_scroll" class="active">In detail</a>
-      <a href="../indexes/KeyTopicDetail_print.html#_keep_scroll">Printable</a> </div>
-<hr>
-
 <button type="button" onclick="location.hash = '#indexes/KeyTopicDetail.html?showAll'">Expand all</button>
 <button type="button" onclick="location.hash = '#indexes/KeyTopicDetail.html?hideAll'">Contract all</button>
 <br><br>
+Number of featured excerpts for each topic appears in parentheses.<br><br>
 <div class="listing">
-  Number of featured excerpts for each topic appears in parentheses.<br><br>
   <p id="human">
     <a>
       <i class="fa fa-minus-square toggle-view" id="human">
       </i>
     </a>
-    <a href="../topics/human.html">The Human Dillema</a> (10)
+    <span style="">
+      <a href="../topics/human.html">The Human Dillema</a> (17)
+    </span>
   </p>
   <div id="human.b">
     <p style="margin-left: 2em;">
-      <a href="../tags/impermanence.html">Impermanence</a> (1)
+      <a href="../tags/impermanence.html">Impermanence</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/suffering.html">Suffering</a> (1)
+      <a href="../tags/suffering.html">Suffering</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/fear.html">Fear</a> (1)
+      <a href="../tags/fear.html">Fear</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/sickness.html">Sickness</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/ageing.html">Ageing</a> (1)
+      <a href="../tags/ageing.html">Ageing</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/death.html">Death</a> (3)
+        <a href="../clusters/death.html">Death</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/death.html">Death</a>, <a href = "../tags/recollectiondeath.html">Recollection/Death</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/grief.html">Grief</a> (3)
+      <a href="../tags/grief.html">Grief</a>
+       (4)
     </p>
   </div>
   <p id="refuges">
@@ -99,28 +109,34 @@
       <i class="fa fa-minus-square toggle-view" id="refuges">
       </i>
     </a>
-    <a href="../topics/refuges.html">The Three Refuges</a> (10)
+    <span style="">
+      <a href="../topics/refuges.html">The Three Refuges</a> (14)
+    </span>
   </p>
   <div id="refuges.b">
     <p style="margin-left: 2em;">
-      <a href="../tags/three-refuges.html">Three Refuges</a> (1)
+      <a href="../tags/three-refuges.html">Three Refuges</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/buddha.html">Buddha</a> (5)
+        <a href="../clusters/buddha.html">Buddha</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/buddha.html">Buddha</a>, <a href = "../tags/recollectionbuddha.html">Recollection/Buddha</a>, <a href = "../tags/buddho-mantra.html">Buddho mantra</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/dhamma.html">Dhamma</a> (3)
+        <a href="../clusters/dhamma.html">Dhamma</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/dhamma.html">Dhamma</a>, <a href = "../tags/recollectiondhamma.html">Recollection/Dhamma</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/sangha.html">Saṅgha</a> (1)
+        <a href="../clusters/sangha.html">Saṅgha</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/sangha.html">Saṅgha</a>, <a href = "../tags/recollectionsangha.html">Recollection/Saṅgha</a>
     </p>
   </div>
@@ -129,38 +145,46 @@
       <i class="fa fa-minus-square toggle-view" id="foundations">
       </i>
     </a>
-    <a href="../topics/foundations.html">Foundations of Dhamma Practice</a> (5)
+    <span style="">
+      <a href="../topics/foundations.html">Foundations of Dhamma Practice</a> (19)
+    </span>
   </p>
   <div id="foundations.b">
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/spiritual-friendship.html">Spiritual friendship</a>
       </strong>
+       (1)
        – Cluster includes: <a href = "../tags/spiritual-friendship.html">Spiritual friendship</a>, <a href = "../tags/association-with-people-of-integrity.html">Association with people of integrity</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/generosity.html">Generosity</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/generosity.html">Generosity</a>, <a href = "../tags/recollectiongenerosity.html">Recollection/Generosity</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/goodwill.html">Goodwill</a> (2)
+      <a href="../tags/goodwill.html">Goodwill</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/virtue.html">Virtue</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/virtue.html">Virtue</a>, <a href = "../tags/recollectionvirtue.html">Recollection/Virtue</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/precepts.html">Precepts</a> (3)
+        <a href="../clusters/precepts.html">Precepts</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/precepts.html">Precepts</a>, <a href = "../tags/five-precepts.html">Five Precepts</a>, <a href = "../tags/eight-precepts.html">Eight Precepts</a>
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/renunciation.html">Renunciation</a>
+       (3)
     </p>
   </div>
   <p id="truths">
@@ -168,20 +192,26 @@
       <i class="fa fa-minus-square toggle-view" id="truths">
       </i>
     </a>
-    <a href="../topics/truths.html">The Four Noble Truths</a> (3)
+    <span style="">
+      <a href="../topics/truths.html">The Four Noble Truths</a> (7)
+    </span>
   </p>
   <div id="truths.b">
     <p style="margin-left: 2em;">
-      <a href="../tags/four-noble-truths.html">Four Noble Truths</a> (1)
+      <a href="../tags/four-noble-truths.html">Four Noble Truths</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/noble-truth-of-suffering.html">Suffering</a> (1)
+      <a href="../tags/noble-truth-of-suffering.html">Suffering</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/cause-of-suffering.html">Cause of Suffering</a> (1)
+      <a href="../tags/cause-of-suffering.html">Cause of Suffering</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/cessation-of-suffering.html">Cessation of Suffering</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       The Fourth Noble Truth of the Path to the Cessation of Suffering is equivalent to the Noble Eightfold Path below.
@@ -192,47 +222,58 @@
       <i class="fa fa-minus-square toggle-view" id="path">
       </i>
     </a>
-    <a href="../topics/path.html">The Noble Eightfold Path</a> (8)
+    <span style="">
+      <a href="../topics/path.html">The Noble Eightfold Path</a> (31)
+    </span>
   </p>
   <div id="path.b">
     <p style="margin-left: 2em;">
-      <strong>
-        <a href="../clusters/eightfold-path.html">Eightfold Path</a> (3)
-      </strong>
-       – Cluster includes: <a href = "../tags/eightfold-path.html">Eightfold Path</a>, <a href = "../tags/middle-path.html">Middle Path</a>
+      <a href="../tags/middle-path.html">Middle Path</a>
+       (4)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/right-view.html">Right View</a> (1)
+      <a href="../tags/eightfold-path.html">Eightfold Path</a>
+       (1)
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/right-view.html">Right View</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/right-speech.html">Right Speech</a> (1)
+        <a href="../clusters/right-speech.html">Right Speech</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/right-speech.html">Right Speech</a>, <a href = "../tags/false-speech.html">False speech</a>, <a href = "../tags/malicious-speech.html">Malicious speech</a>, <a href = "../tags/harsh-speech.html">Harsh speech</a>, <a href = "../tags/idle-chatter.html">Idle chatter</a>, <a href = "../tags/admonishmentfeedback.html">Admonishment/feedback</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/right-action.html">Right Action</a>
       </strong>
+       (1)
        – Cluster includes: <a href = "../tags/right-action.html">Right Action</a>, <a href = "../tags/killing.html">Killing</a>, <a href = "../tags/stealing.html">Stealing</a>, <a href = "../tags/sexual-misconduct.html">Sexual misconduct</a>
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/right-livelihood.html">Right Livelihood</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/right-effort.html">Right Effort</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/right-mindfulness.html">Right Mindfulness</a> (1)
+        <a href="../clusters/right-mindfulness.html">Right Mindfulness</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/right-mindfulness.html">Right Mindfulness</a>, <a href = "../tags/ardency.html">Ardency</a>, <a href = "../tags/clear-comprehension.html">Clear comprehension</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/right-concentration.html">Right Concentration</a> (2)
+        <a href="../clusters/right-concentration.html">Right Concentration</a>
       </strong>
-       – Cluster includes: <a href = "../tags/right-concentration.html">Right Concentration</a>, <a href = "../tags/rapture.html">Rapture</a>, <a href = "../tags/unification.html">Unification</a>, <a href = "../tags/jhana.html">Jhāna</a>
+       (9)
+       – Cluster includes: <a href = "../tags/right-concentration.html">Right Concentration</a>, <a href = "../tags/directed-thought-and-evaluation.html">Directed thought and evaluation</a>, <a href = "../tags/rapture.html">Rapture</a>, <a href = "../tags/unification.html">Unification</a>, <a href = "../tags/jhana.html">Jhāna</a>
     </p>
     <p style="margin-left: 2em;">
       For Right Intention, see <a href="../tags/renunciation-relevant.html">Renunciation</a>, <a href="../tags/goodwill-relevant.html">Non-ill-will</a>, and <a href="../tags/compassion-relevant.html">Non-cruelty</a>.
@@ -243,47 +284,56 @@
       <i class="fa fa-minus-square toggle-view" id="meditation">
       </i>
     </a>
-    <a href="../topics/meditation.html">Meditation Practices</a> (9)
+    <span style="">
+      <a href="../topics/meditation.html">Meditation Practices</a> (24)
+    </span>
   </p>
   <div id="meditation.b">
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/meditation.html">Meditation</a> (2)
+        <a href="../clusters/meditation.html">Meditation</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/meditation.html">Meditation</a>, <a href = "../tags/meditationgeneral-advice.html">Meditation/General advice</a>
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/mindfulness-of-body.html">Mindfulness of body</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a> (2)
+      <a href="../tags/mindfulness-of-breathing.html">Mindfulness of breathing</a>
+       (6)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/posturewalking.html">Walking meditation</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/chanting.html">Chanting</a> (1)
+      <a href="../tags/chanting.html">Chanting</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/recollection.html">Recollection</a> (2)
-    </p>
-    <p style="margin-left: 2em;">
-      <a href="../tags/directed-thought-and-evaluation.html">Skillful thinking</a>
+      <a href="../tags/recollection.html">Recollection</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/continuity-of-mindfulness.html">Continuity of mindfulness</a> (1)
+        <a href="../clusters/continuity-of-mindfulness.html">Continuity of mindfulness</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/continuity-of-mindfulness.html">Continuity of mindfulness</a>, <a href = "../tags/present-moment-awareness.html">Present moment awareness</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/direct-experience.html">Direct experience</a> (1)
+      <a href="../tags/direct-experience.html">Direct experience</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/knowing-itself.html">Knowing itself</a> (1)
+      <a href="../tags/knowing-itself.html">Knowing itself</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/long-term-practice.html">Long-term practice</a>
+       (3)
     </p>
   </div>
   <p id="skillful">
@@ -291,47 +341,60 @@
       <i class="fa fa-minus-square toggle-view" id="skillful">
       </i>
     </a>
-    <a href="../topics/skillful.html">Skillful Qualities</a> (9)
+    <span style="">
+      <a href="../topics/skillful.html">Skillful Qualities</a> (34)
+    </span>
   </p>
   <div id="skillful.b">
     <p style="margin-left: 2em;">
       <a href="../tags/faith.html">Faith</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/energy.html">Energy</a>
       </strong>
+       (1)
        – Cluster includes: <a href = "../tags/energy.html">Energy</a>, <a href = "../tags/devotion-to-wakefulness.html">Devotion to wakefulness</a>
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/mindfulness.html">Mindfulness</a>
+       (4)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/concentration.html">Concentration</a>
+       (4)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/discernment.html">Discernment</a> (2)
+        <a href="../clusters/discernment.html">Discernment</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/discernment.html">Discernment</a>, <a href = "../tags/appropriate-attention.html">Appropriate attention</a>, <a href = "../tags/investigation-of-states.html">Investigation of states</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/desire.html">Skillful desire</a> (1)
+      <a href="../tags/desire.html">Skillful desire</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/patience.html">Patience</a> (1)
+      <a href="../tags/patience.html">Patience</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/happiness.html">Happiness</a> (2)
+      <a href="../tags/happiness.html">Happiness</a>
+       (4)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/gratitude.html">Gratitude</a> (1)
+      <a href="../tags/gratitude.html">Gratitude</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/compassion.html">Compassion</a> (1)
+      <a href="../tags/compassion.html">Compassion</a>
+       (4)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/equanimity.html">Equanimity</a> (1)
+      <a href="../tags/equanimity.html">Equanimity</a>
+       (5)
     </p>
   </div>
   <p id="unskillful">
@@ -339,55 +402,69 @@
       <i class="fa fa-minus-square toggle-view" id="unskillful">
       </i>
     </a>
-    <a href="../topics/unskillful.html">Unskillful Qualities</a> (11)
+    <span style="">
+      <a href="../topics/unskillful.html">Unskillful Qualities</a> (31)
+    </span>
   </p>
   <div id="unskillful.b">
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/unwholesome-roots.html">Defilements</a> (1)
+        <a href="../clusters/unwholesome-roots.html">Defilements</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/unwholesome-roots.html">Unwholesome Roots</a>, <a href = "../tags/unskillful-qualities.html">Unskillful qualities</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/hindrances.html">Hindrances</a> (1)
+      <a href="../tags/hindrances.html">The Five Hindrances</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/sensual-desire.html">Sensual desire</a> (1)
+        <a href="../clusters/sensual-desire.html">Sensual desire</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/sensual-desire.html">Sensual desire</a>, <a href = "../tags/greed.html">Greed</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/aversion.html">Aversion and Ill-will</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/aversion.html">Aversion</a>, <a href = "../tags/ill-will.html">Ill-will</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/sloth-and-torpor.html">Sloth and torpor</a> (2)
+      <a href="../tags/sloth-and-torpor.html">Sloth and torpor</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/restlessness-and-worry.html">Restlessness and worry</a> (1)
+      <a href="../tags/restlessness-and-worry.html">Restlessness and worry</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/doubt.html">Doubt</a> (1)
+      <a href="../tags/doubt.html">Doubt</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/delusion.html">Delusion</a>
+       (2)
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/proliferation.html">Proliferation</a>
+       (1)
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/views.html">Views</a>
+       (2)
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/self-identity-view.html">Self-identity view</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/proliferation.html">Proliferation</a>
+        <a href="../clusters/conceit.html">Conceit and guilt</a>
       </strong>
-       – Cluster includes: <a href = "../tags/proliferation.html">Proliferation</a>, <a href = "../tags/views.html">Views</a>
-    </p>
-    <p style="margin-left: 2em;">
-      <a href="../tags/self-identity-view.html">Self-identity view</a> (1)
-    </p>
-    <p style="margin-left: 2em;">
-      <strong>
-        <a href="../clusters/conceit.html">Conceit and guilt</a> (3)
-      </strong>
+       (7)
        – Cluster includes: <a href = "../tags/conceit.html">Conceit</a>, <a href = "../tags/guiltshameinadequacy.html">Guilt/shame/inadequacy</a>, <a href = "../tags/judgementalism.html">Judgementalism</a>, <a href = "../tags/perfectionism.html">Perfectionism</a>, <a href = "../tags/jealousy.html">Jealousy</a>, <a href = "../tags/competitiveness.html">Competitiveness</a>, <a href = "../tags/selfishness.html">Selfishness</a>, <a href = "../tags/self-pity.html">Self-pity</a>
     </p>
     <p style="margin-left: 2em;">
@@ -399,28 +476,36 @@
       <i class="fa fa-minus-square toggle-view" id="perspectives">
       </i>
     </a>
-    <a href="../topics/perspectives.html">Buddhist Perspectives on the World</a> (8)
+    <span style="">
+      <a href="../topics/perspectives.html">Buddhist Perspectives on the World</a> (16)
+    </span>
   </p>
   <div id="perspectives.b">
     <p style="margin-left: 2em;">
-      <a href="../tags/conditionality.html">Conditionality</a> (2)
+      <a href="../tags/conditionality.html">Conditionality</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/kamma.html">Kamma</a> (1)
+      <a href="../tags/kamma.html">Kamma</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/rebirth.html">Rebirth</a> (3)
+      <a href="../tags/rebirth.html">Rebirth</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/not-self.html">Not-self</a> (1)
+      <a href="../tags/not-self.html">Not-self</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/nature-of-mind.html">Nature of mind</a> (1)
+      <a href="../tags/nature-of-mind.html">Nature of mind</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/realms-of-existence.html">Realms of existence</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/realms-of-existence.html">Realms of existence</a>, <a href = "../tags/deva.html">Deva</a>, <a href = "../tags/human.html">Human</a>, <a href = "../tags/ghost.html">Ghost</a>, <a href = "../tags/animal.html">Animal</a>, <a href = "../tags/hell.html">Hell</a>, <a href = "../tags/non-human-beings.html">Non-human beings</a>, <a href = "../tags/recollectiondevas.html">Recollection/Devas</a>
     </p>
   </div>
@@ -429,43 +514,56 @@
       <i class="fa fa-minus-square toggle-view" id="origination">
       </i>
     </a>
-    <a href="../topics/origination.html">Dependent Origination</a> (8)
+    <span style="">
+      <a href="../topics/origination.html">Dependent Origination</a> (15)
+    </span>
   </p>
   <div id="origination.b">
     <p style="margin-left: 2em;">
       <a href="../tags/dependent-origination.html">Dependent origination</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/ignorance.html">Ignorance</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/volitional-formations.html">Volitional formations</a> (2)
+      <a href="../tags/volitional-formations.html">Volitional formations</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/consciousness.html">Consciousness</a> (2)
+      <a href="../tags/consciousness.html">Consciousness</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/aggregates.html">Name and form</a> (1)
+      <a href="../tags/aggregates.html">Name and form</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/sense-bases.html">Sense bases</a> (1)
+      <a href="../tags/sense-bases.html">Sense bases</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/contact.html">Contact</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/feeling.html">Feeling</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/craving.html">Craving</a> (1)
+      <a href="../tags/craving.html">Craving</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/clinging.html">Clinging</a> (1)
+      <a href="../tags/clinging.html">Clinging</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/becoming.html">Becoming</a> (1)
+        <a href="../clusters/becoming.html">Becoming</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/becoming.html">Becoming</a>, <a href = "../tags/craving-not-to-become.html">Craving not to become</a>
     </p>
   </div>
@@ -474,34 +572,41 @@
       <i class="fa fa-minus-square toggle-view" id="fruits">
       </i>
     </a>
-    <a href="../topics/fruits.html">Fruits of the Practice</a> (5)
+    <span style="">
+      <a href="../topics/fruits.html">Fruits of the Practice</a> (10)
+    </span>
   </p>
   <div id="fruits.b">
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/dispassion.html">Dispassion</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/dispassion.html">Dispassion</a>, <a href = "../tags/disenchantment.html">Disenchantment</a>, <a href = "../tags/cessation.html">Cessation</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/relinquishment.html">Relinquishment</a> (1)
+      <a href="../tags/relinquishment.html">Relinquishment</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/liberation.html">Liberation</a> (1)
+        <a href="../clusters/liberation.html">Liberation</a>
       </strong>
+       (1)
        – Cluster includes: <a href = "../tags/liberation.html">Liberation</a>, <a href = "../tags/release.html">Release</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/stages-of-awakening.html">Stages of awakening</a> (1)
+        <a href="../clusters/stages-of-awakening.html">Stages of awakening</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/stages-of-awakening.html">Stages of awakening</a>, <a href = "../tags/stream-entry.html">Stream entry</a>, <a href = "../tags/once-return.html">Once return</a>, <a href = "../tags/non-return.html">Non-return</a>, <a href = "../tags/arahant.html">Arahant</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/nibbana.html">Nibbāna</a> (2)
+        <a href="../clusters/nibbana.html">Nibbāna</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/nibbana.html">Nibbāna</a>, <a href = "../tags/deathless.html">Deathless</a>, <a href = "../tags/unestablished-consciousness.html">Unestablished consciousness</a>, <a href = "../tags/unconditioned.html">Unconditioned</a>, <a href = "../tags/recollectionpeace.html">Recollection/Peace</a>
     </p>
   </div>
@@ -510,53 +615,44 @@
       <i class="fa fa-minus-square toggle-view" id="teachers">
       </i>
     </a>
-    <a href="../topics/teachers.html">Teaching and Teachers</a> (12)
+    <span style="">
+      <a href="../topics/teachers.html">Teaching and Teachers</a> (29)
+    </span>
   </p>
   <div id="teachers.b">
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/teaching-dhamma.html">Teaching Dhamma</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/teaching-dhamma.html">Teaching Dhamma</a>, <a href = "../tags/gradual-teaching.html">Gradual Teaching</a>, <a href = "../tags/questions.html">Questions</a>, <a href = "../tags/dhamma-discussion.html">Dhamma discussion</a>, <a href = "../tags/stories.html">Stories</a>, <a href = "../tags/symbolism.html">Symbolism</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/teachers.html">Teachers</a> (2)
+        <a href="../clusters/teachers.html">Teachers</a>
       </strong>
+       (6)
        – Cluster includes: <a href = "../tags/teachers.html">Teachers</a>, <a href = "../tags/mentoring.html">Mentoring</a>, <a href = "../tags/personal-presence.html">Personal presence</a>, <a href = "../tags/fiercedirect-teaching.html">Fierce/direct teaching</a>
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/buddhabiography.html">The Buddha</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/ajahn-mun.html">Ajahn Mun</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/ajahn-chah.html">Ajahn Chah</a> (2)
+      <a href="../tags/ajahn-chah.html">Ajahn Chah</a>
+       (7)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/ajahn-sumedho.html">Ajahn Sumedho</a> (2)
+      <a href="../tags/ajahn-sumedho.html">Ajahn Sumedho</a>
+       (4)
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/ajahn-pasanno.html">Ajahn Pasanno</a> (6)
-    </p>
-  </div>
-  <p id="monasteries">
-    <a>
-      <i class="fa fa-minus-square toggle-view" id="monasteries">
-      </i>
-    </a>
-    <a href="../topics/monasteries.html">Monasteries</a> (1)
-  </p>
-  <div id="monasteries.b">
-    <p style="margin-left: 2em;">
-      <a href="../tags/wat-pah-pong.html">Wat Pah Pong</a>
-    </p>
-    <p style="margin-left: 2em;">
-      <a href="../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>
-    </p>
-    <p style="margin-left: 2em;">
-      <a href="../tags/abhayagiri.html">Abhayagiri</a> (1)
+      <a href="../tags/ajahn-pasanno.html">Ajahn Pasanno</a>
+       (6)
     </p>
   </div>
   <p id="context">
@@ -564,26 +660,32 @@
       <i class="fa fa-minus-square toggle-view" id="context">
       </i>
     </a>
-    <a href="../topics/context.html">Context of the Teachings</a> (2)
+    <span style="">
+      <a href="../topics/context.html">Context of the Teachings</a> (8)
+    </span>
   </p>
   <div id="context.b">
     <p style="margin-left: 2em;">
       <a href="../tags/culturenatural-environment.html">Natural environment</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/language.html">Language</a>
       </strong>
+       (1)
        – Cluster includes: <a href = "../tags/language.html">Language</a>, <a href = "../tags/pali.html">Pāli</a>, <a href = "../tags/translation.html">Translation</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/culturethailand.html">Thai culture</a> (1)
+        <a href="../clusters/culturethailand.html">Thai culture</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/culturethailand.html">Culture/Thailand</a>, <a href = "../tags/thai.html">Thai</a>, <a href = "../tags/historythai-buddhism.html">History/Thai Buddhism</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/culturewest.html">Western culture</a> (1)
+      <a href="../tags/culturewest.html">Western culture</a>
+       (3)
     </p>
   </div>
   <p id="monastic">
@@ -591,56 +693,90 @@
       <i class="fa fa-minus-square toggle-view" id="monastic">
       </i>
     </a>
-    <a href="../topics/monastic.html">Monastic Life</a> (10)
+    <span style="">
+      <a href="../topics/monastic.html">Monastic Life</a> (30)
+    </span>
   </p>
   <div id="monastic.b">
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/monastic-life.html">Monastic life</a> (1)
+        <a href="../clusters/monastic-life.html">Monastic life</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/monastic-life.html">Monastic life</a>, <a href = "../tags/ordination.html">Ordination</a>, <a href = "../tags/sequence-of-training.html">Sequence of training</a>, <a href = "../tags/dependence.html">Dependence</a>, <a href = "../tags/monastic-routine.html">Monastic routine</a>, <a href = "../tags/perception-of-a-samana.html">Perception of a samaṇa</a>, <a href = "../tags/simplicity.html">Simplicity</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/monastic-lifemotivation.html">Motivation</a> (1)
+      <a href="../tags/monastic-lifemotivation.html">Motivation</a>
+       (1)
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/mutual-laysangha-support.html">Mutual support</a>
       </strong>
+       (3)
        – Cluster includes: <a href = "../tags/mutual-laysangha-support.html">Mutual lay/Saṅgha support</a>, <a href = "../tags/almsround.html">Almsround</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/requisites.html">The Four Requisites</a> (1)
+        <a href="../clusters/requisites.html">The Four Requisites</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/requisites.html">Requisites</a>, <a href = "../tags/robes.html">Robes</a>, <a href = "../tags/almsfood.html">Almsfood</a>, <a href = "../tags/almsbowl.html">Almsbowl</a>, <a href = "../tags/lodging.html">Lodging</a>, <a href = "../tags/medicinal-requisites.html">Medicinal requisites</a>, <a href = "../tags/monastic-crafts.html">Monastic crafts</a>, <a href = "../tags/building-projects.html">Building projects</a>
     </p>
     <p style="margin-left: 2em;">
       <a href="../tags/thai-forest-tradition.html">Thai Forest Tradition</a>
+       (2)
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/vinaya.html">Vinaya</a> (4)
+        <a href="../clusters/vinaya.html">Vinaya</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/vinaya.html">Vinaya</a>, <a href = "../tags/patimokkha.html">Pāṭimokkha</a>, <a href = "../tags/confession.html">Confession</a>, <a href = "../tags/protocols.html">Protocols</a>, <a href = "../tags/not-handling-money.html">Not handling money</a>, <a href = "../tags/rains-retreat.html">Rains retreat</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/communal-harmony.html">Monastic community</a> (1)
+        <a href="../clusters/communal-harmony.html">Monastic community</a>
       </strong>
-       – Cluster includes: <a href = "../tags/communal-harmony.html">Communal harmony</a>, <a href = "../tags/fourfold-assembly.html">Fourfold Assembly</a>, <a href = "../tags/principles-of-cordiality.html">Principles of Cordiality</a>, <a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>, <a href = "../tags/abbot.html">Abbot</a>, <a href = "../tags/monastery-organizational-structure.html">Monastery organizational structure</a>
+       (5)
+       – Cluster includes: <a href = "../tags/communal-harmony.html">Communal harmony</a>, <a href = "../tags/sangha.html">Saṅgha</a>, <a href = "../tags/fourfold-assembly.html">Fourfold Assembly</a>, <a href = "../tags/principles-of-cordiality.html">Principles of Cordiality</a>, <a href = "../tags/sangha-decision-making.html">Saṅgha decision making</a>, <a href = "../tags/abbot.html">Abbot</a>, <a href = "../tags/monastery-organizational-structure.html">Monastery organizational structure</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/ascetic-practices.html">Ascetic practices</a>
       </strong>
+       (5)
        – Cluster includes: <a href = "../tags/ascetic-practices.html">Ascetic practices</a>, <a href = "../tags/tudong.html">Tudong</a>, <a href = "../tags/fasting.html">Fasting</a>, <a href = "../tags/sitters-practice.html">Sitter's practice</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/womens-monastic-forms.html">Women's monastic forms</a> (2)
+        <a href="../clusters/womens-monastic-forms.html">Women's monastic forms</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/womens-monastic-forms.html">Women's monastic forms</a>, <a href = "../tags/bhikkhuni.html">Bhikkhunī</a>, <a href = "../tags/siladhara.html">Sīladharā</a>, <a href = "../tags/mae-chee.html">Mae Chee</a>
+    </p>
+  </div>
+  <p id="monasteries">
+    <a>
+      <i class="fa fa-minus-square toggle-view" id="monasteries">
+      </i>
+    </a>
+    <span style="">
+      <a href="../topics/monasteries.html">Monasteries</a> (5)
+    </span>
+  </p>
+  <div id="monasteries.b">
+    <p style="margin-left: 2em;">
+      <a href="../tags/wat-pah-pong.html">Wat Pah Pong</a>
+       (2)
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/wat-pah-nanachat.html">Wat Pah Nanachat</a>
+       (2)
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/abhayagiri.html">Abhayagiri</a>
+       (1)
     </p>
   </div>
   <p id="everyday">
@@ -648,55 +784,73 @@
       <i class="fa fa-minus-square toggle-view" id="everyday">
       </i>
     </a>
-    <a href="../topics/everyday.html">Everyday Life Practice</a> (9)
+    <span style="">
+      <a href="../topics/everyday.html">Everyday Life Practice</a> (33)
+    </span>
   </p>
   <div id="everyday.b">
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/everyday-life.html">Everyday life</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/everyday-life.html">Everyday life</a>, <a href = "../tags/lay-life.html">Lay life</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/health.html">Health</a>
       </strong>
+       (1)
        – Cluster includes: <a href = "../tags/health.html">Health</a>, <a href = "../tags/excercise.html">Excercise</a>, <a href = "../tags/smoking.html">Smoking</a>, <a href = "../tags/mental-illness.html">Mental illness</a>, <a href = "../tags/health-care.html">Health care</a>, <a href = "../tags/pandemic.html">Pandemic</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/family.html">Family</a> (3)
+        <a href="../clusters/family.html">Family</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/family.html">Family</a>, <a href = "../tags/parents.html">Parents</a>, <a href = "../tags/children.html">Children</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/relationships.html">Relationships</a> (2)
+      <a href="../tags/relationships.html">Relationships</a>
+       (3)
+    </p>
+    <p style="margin-left: 2em;">
+      <strong>
+        <a href="../clusters/community.html">Community</a>
+      </strong>
+       (3)
+       – Cluster includes: <a href = "../tags/community.html">Community</a>, <a href = "../tags/communal-harmony.html">Communal harmony</a>, <a href = "../tags/conflict.html">Conflict</a>, <a href = "../tags/leadership.html">Leadership</a>
+    </p>
+    <p style="margin-left: 2em;">
+      <a href="../tags/environment.html">Environment</a>
+       (3)
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/work.html">Work</a>
       </strong>
+       (2)
        – Cluster includes: <a href = "../tags/work.html">Work</a>, <a href = "../tags/retirement.html">Retirement</a>
     </p>
     <p style="margin-left: 2em;">
-      <a href="../tags/environment.html">Environment</a> (2)
-    </p>
-    <p style="margin-left: 2em;">
       <strong>
-        <a href="../clusters/politics-and-society.html">Politics and society</a> (3)
+        <a href="../clusters/politics-and-society.html">Politics and society</a>
       </strong>
-       – Cluster includes: <a href = "../tags/politics-and-society.html">Politics and society</a>, <a href = "../tags/leadership.html">Leadership</a>, <a href = "../tags/service.html">Service</a>, <a href = "../tags/activism.html">Activism</a>, <a href = "../tags/non-profit-organizations.html">Non-profit organizations</a>, <a href = "../tags/corruption.html">Corruption</a>, <a href = "../tags/crime.html">Crime</a>, <a href = "../tags/discrimination.html">Discrimination</a>, <a href = "../tags/conflict.html">Conflict</a>, <a href = "../tags/military.html">Military</a>
+       (5)
+       – Cluster includes: <a href = "../tags/politics-and-society.html">Politics and society</a>, <a href = "../tags/service.html">Service</a>, <a href = "../tags/activism.html">Activism</a>, <a href = "../tags/non-profit-organizations.html">Non-profit organizations</a>, <a href = "../tags/corruption.html">Corruption</a>, <a href = "../tags/crime.html">Crime</a>, <a href = "../tags/discrimination.html">Discrimination</a>, <a href = "../tags/military.html">Military</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/commerceeconomics.html">Commerce and economics</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/commerceeconomics.html">Commerce/economics</a>, <a href = "../tags/poverty.html">Poverty</a>
     </p>
     <p style="margin-left: 2em;">
       <strong>
         <a href="../clusters/technology.html">Technology and media</a>
       </strong>
+       (4)
        – Cluster includes: <a href = "../tags/technology.html">Technology</a>, <a href = "../tags/industry.html">Industry</a>, <a href = "../tags/science.html">Science</a>, <a href = "../tags/media.html">Media</a>, <a href = "../tags/news.html">News</a>, <a href = "../tags/advertizing.html">Advertizing</a>, <a href = "../tags/internet.html">Internet</a>, <a href = "../tags/social-media.html">Social media</a>, <a href = "../tags/online-community.html">Online community</a>
     </p>
   </div>
@@ -705,7 +859,7 @@
 
 <footer>
     <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Key topics in detail,” The Ajahn Pasanno Question and Story Archive, October 2024 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Key topics in detail,” The Ajahn Pasanno Question and Story Archive, November 2024 release,
       <a href="https://abhayagiri.org/questions/indexes/KeyTopicDetail.html">https://abhayagiri.org/questions/indexes/KeyTopicDetail.html</a>.</p>
 </footer>
 

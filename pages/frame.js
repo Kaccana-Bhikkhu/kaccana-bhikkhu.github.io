@@ -9,8 +9,6 @@ const errorPage = "./about/Page-Not-Found.html"
 
 const SEARCH_PART = /\?[^#]*/
 
-let gFirstPageLoad = true;
-
 export function frameSearch(hash = null) {
 	// return a URLSearchParams object corresponding to the search params given in the URL hash
 	// representing the frame location
@@ -67,6 +65,8 @@ export function configureLinks(frame,url) {
 	let locationNoQuery = new URL(location.href);
 	locationNoQuery.search = "";
 	frame.querySelectorAll("a").forEach((el) => {
+		if (el.firstChild?.classList?.contains("toggle-view")) return;
+			// Don't modify href links of toggle-view togglers
 		let href = el.getAttribute("href");
 		if (!href || href.match(absoluteURLRegex)) return;
 		if (href.endsWith("#noscript")) { // Code to escape javascript
@@ -110,14 +110,7 @@ export function configureLinks(frame,url) {
 
 async function changeURL(pUrl,scrollTo = null) {
 	pUrl = decodeURIComponent(pUrl);
-	if (pUrl.startsWith("homepage.html") && gFirstPageLoad) {
-		console.log("homepage.html already loaded; changeURL exiting.")
-		gFirstPageLoad = false;
-		return; // index.html already contains the content of homepage.html, so no need to load it the first time
-	}
-	gFirstPageLoad = false;
 	console.log("changeURL",pUrl);
-
 	await fetch("./" + pUrl)
 		.then((r) => pageText(r,pUrl))
 		.then((result) => {
@@ -150,16 +143,30 @@ function delayedScroll(bookmark) {
 }
 
 if (frame) {
-	changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-		let urlHash = decodeURIComponent(location.hash);
-		if (urlHash.slice(1).includes("#")) {
-			delayedScroll(urlHash.slice(1).split("#")[1]);
+	const agent = window.navigator.userAgent.toLowerCase();
+	const botUsers = ['googlebot','bingbot','linkedinbot','duckduckbot','mediapartners-google','lighthouse','insights'];
+	let isBotUserAgent = false;
+	for (let bot of botUsers) {
+		if (agent.indexOf(bot) !== -1) {
+			isBotUserAgent = true;
+			break;
 		}
-	});
+	}
 
-	addEventListener("popstate", (event) => {
-		changeURL(location.hash.slice(1) || frame.dataset.url,event.state);
-	});
+	let url = new URL(location.href)
+	// Skip changeURL for local files and robots loading index.html (url.hash == '')
+	if (url.protocol != "file:" && (!isBotUserAgent || url.hash)) {
+		changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
+			let urlHash = decodeURIComponent(location.hash);
+			if (urlHash.slice(1).includes("#")) {
+				delayedScroll(urlHash.slice(1).split("#")[1]);
+			}
+		});
+
+		addEventListener("popstate", (event) => {
+			changeURL(location.hash.slice(1) || frame.dataset.url,event.state);
+		});
+	}
 }
 
 window.addEventListener("scrollend", (event) => {

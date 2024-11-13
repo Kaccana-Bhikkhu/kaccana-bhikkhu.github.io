@@ -7,8 +7,10 @@ import copy
 from datetime import time,timedelta
 from typing import List, Union, NamedTuple, Iterator, Iterable
 
-Executable = 'mp3DirectCut.exe'
-ExecutableDir = 'mp3DirectCut'
+executable = 'mp3DirectCut.exe'
+executableDir = 'mp3DirectCut'
+joinUsingPydub = False
+pydubBitrate = "64k"
 class Mp3CutError(Exception):
     "Raised if mp3DirectCut returns with an error code"
     pass
@@ -25,16 +27,16 @@ class ExecutableNotFound(Mp3CutError):
     pass
 
 def SetExecutable(directory,program='mp3DirectCut.exe'):
-    global Executable,ExecutableDir
+    global executable,executableDir
     
-    Executable = program
-    ExecutableDir = directory
+    executable = program
+    executableDir = directory
 
 TimeSpec = Union[timedelta,float,str]
 "A union of types that can indicate a time index to an audio file."
 
 def ToTimeDelta(time: TimeSpec) -> timedelta|None:
-    "Convert various types to a timedetla object."
+    "Convert various types to a timedelta object."
 
     if type(time) == timedelta:
         return time
@@ -58,7 +60,23 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
         pass
     
     raise ParseError(f"{repr(time)} cannot be converted to a time.")
-    
+
+
+def TimeDeltaToStr(time: timedelta) -> str:
+    "Convert a timedelta object to the form [HH:]MM:SS"
+
+    seconds = (time.days * 24 * 60 * 60) + time.seconds
+
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = seconds % 60
+
+    if hours:
+        return f"{hours}:{minutes:02d}:{seconds:02d}"
+    else:
+        return f"{minutes}:{seconds:02d}"
+
+
 class Clip(NamedTuple):
     """A Clip represents a section of a given audio file."""
     file: str                       # Filename of the audio file
@@ -71,11 +89,23 @@ class Clip(NamedTuple):
     def Duration(self,fileDuration:TimeSpec|None) -> timedelta:
         return self.ToClipTD().Duration(ToTimeDelta(fileDuration))
 
+    def Cut(self,cutStart: TimeSpec,cutEnd: TimeSpec) -> list[Clip]:
+        """Return a list of two Clips corresponding to this clip with the specified bit removed.
+        Raises TimeError unless self.start < cutStart < cutEnd < self.end."""
+
+        selfTD = self.ToClipTD()
+        cutStartTD = ToTimeDelta(cutStart)
+        cutEndTD = ToTimeDelta(cutEnd)
+
+        try:
+            if selfTD.start < cutStartTD < cutEndTD and (selfTD.end is None or cutEndTD < selfTD.end):
+                return [self._replace(end=cutStart),self._replace(start=cutEnd)]
+        except TypeError:
+            pass
+        raise TimeError(f"Clip.Cut: ({cutStart}, {cutEnd}) must lie strictly within ({self.start}, {self.end}).")
+
     def __eq__(self,other:Clip):
         return self.ToClipTD() == other.ToClipTD()
-    
-    def __hash__(self):
-        return hash(self.ToClipTD())
 
 class ClipTD(Clip):
     """Same as a Clip, except the times must be of type timedelta."""
@@ -122,7 +152,7 @@ def ConfigureMp3DirectCut() -> str:
     if platform.system() != "Windows":
         raise ExecutableNotFound(f"mp3DirectCut.exe only runs on Windows; cannot split mp3 files.")
 
-    mp3DirectCutProgram = os.path.join(ExecutableDir,Executable)
+    mp3DirectCutProgram = os.path.join(executableDir,executable)
     if not os.path.exists(mp3DirectCutProgram):
         raise ExecutableNotFound(f"mp3DirectCut.exe not found at {mp3DirectCutProgram}; cannot split mp3 files.")
     
@@ -149,7 +179,6 @@ def SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueF
     deleteCueFile - delete cue file when finished?"""
     
     mp3DirectCutProgram = ConfigureMp3DirectCut()
-
     directory,originalFileName = os.path.split(file)
     fileNameBase,extension = os.path.splitext(originalFileName)
     cueFileName = fileNameBase + '.cue'
@@ -255,22 +284,29 @@ def SourceFiles(clips:Clip|Iterable[Clip]|dict[object,Clip]) -> set[str]:
             sources.update(SourceFiles(item))
     return sources
 
-def GroupBySourceFiles(fileClips:dict[str,list[Clip]]) -> Iterator[tuple[set[str],dict[str,list[Clip]]]]:
-    """Group the fileClips by source files. Returns an iterator of tuples:
-    (files,fileClips), where files is a set of source files and fileClips is the dict of files that use
-    these source files. For the time being, assume that all clips have only one source file."""
+def GroupBySourceFiles(outputFiles:dict[str,list[Clip]]) -> Iterator[tuple[set[str],dict[str,list[Clip]]]]:
+    """Group the outputFiles by source files. Returns an iterator of tuples:
+    (sourceFiles,theseOutputFiles), where sourceFiles is a set of source files and theseOutputFiles is the dict of files that use
+    these source files."""
 
-    clipsRemaining = dict(fileClips)
-    while clipsRemaining:
-        sourceFiles = SourceFiles(next(iter(clipsRemaining.values())))
-            # Select the first file of the first item in clipsRemaining
-        clipsWithThisSource = {}
-        newClipsRemaining = {}
-        for filename,clips in clipsRemaining.items():
-            (clipsWithThisSource if clips[0].file in sourceFiles else newClipsRemaining).update({filename:clips})
+    filesRemaining = outputFiles
+    while filesRemaining:
+        sourceFiles:set[str] = SourceFiles(next(iter(filesRemaining.values())))
+            # Begin with the first file of the first item in clipsRemaining
+        prevSourceFiles:set[str] = set()
+
+        while (prevSourceFiles != sourceFiles):
+            filesWithTheseSources:dict[str,list[Clip]] = {}
+            for filename,clips in filesRemaining.items():
+                for clip in clips:
+                    if clip.file in sourceFiles:
+                        filesWithTheseSources[filename] = clips
+            
+            prevSourceFiles = sourceFiles
+            sourceFiles = SourceFiles(filesWithTheseSources)
         
-        yield sourceFiles,clipsWithThisSource
-        clipsRemaining = newClipsRemaining
+        yield sourceFiles,filesWithTheseSources
+        filesRemaining = {file:clips for file,clips in filesRemaining.items() if file not in filesWithTheseSources}
 
 def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputDir:str|None = None) -> None:
     """Split and join multiple mp3 files using Mp3DirectCut.
@@ -285,19 +321,75 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
     if outputDir is None:
         outputDir = inputDir
 
-    for sourceFiles,clips in GroupBySourceFiles(fileClips):
-        sourceFile = next(iter(sourceFiles))
-        sourcePath = os.path.join(inputDir,sourceFile)
+    for sourceFiles,selectFileClips in GroupBySourceFiles(fileClips):
 
-        destClipList = [clipList[0]._replace(file=outputFile) for outputFile,clipList in clips.items()]
-        Split(sourcePath,destClipList,outputDir)
+        # Strategy: Create dictionaries describing the operations that need to be executed, then run these operations
 
+        splitOps:dict[Clip,str] = {} 
+            # key: the clip that we need to split (clip file relative to inputDir)
+            # value: the filename where the clip will be split to (relative to outputDir) 
+            # can be either a final output file which doesn't require joining or a temporary file
+        joinOps:dict[str,list[Clip]] = {}
+            # keys: the name of a final output file that requires joining (relative to outputDir)
+            # values: the clips to join to create the final output file (clip files relative to outputDir)
+        
+        tempFilePrefix = "__QStemp_"
+        tempFileCount = 0
+
+        # 1. Create dictionaries
+        for outputFile,clips in selectFileClips.items():
+            if len(clips) > 1:
+                for clip in clips:
+                    clipFile = splitOps.get(clip.file,"")
+                    if not clipFile:
+                        clipFile = f"{tempFilePrefix}{tempFileCount:02d}.mp3"
+                        tempFileCount += 1
+                        splitOps[clip] = clipFile
+                joinOps[outputFile] = clips
+            else:
+                existingFilename = splitOps.get(clips[0],"")
+                if not existingFilename or existingFilename.startsWith(tempFilePrefix):
+                        # If we haven't split clip before or it splits to a temporary file,
+                    splitOps[clips[0]] = outputFile
+                        # register a new splitOp or redirect an existing splitOp away from the temporary file.
+                else:
+                    joinOps[outputFile] = [existingFilename]
+                        # Otherwise copy an existing file.
+        # 2. Run splitOps
+        for sourceFile in sourceFiles:
+            clipsWithDestFile = [clip._replace(file = dest) for clip,dest in splitOps.items() if clip.file == sourceFile]
+            sourcePath = os.path.join(inputDir,sourceFile)
+            Split(sourcePath,clipsWithDestFile,outputDir)
+
+        # 3. Run joinOps
+        for outputFile,clipsToJoin in joinOps.items():
+            destPath = os.path.join(outputDir,outputFile)
+            joinFiles = [os.path.join(outputDir,splitOps[clip]) for clip in clipsToJoin]
+            Join(joinFiles,destPath)
+        
+        #4. Clean up temporary files
+        for filename in splitOps.values():
+            if filename.startswith(tempFilePrefix):
+                os.remove(os.path.join(outputDir,filename))
+        
 def Join(fileList: List[str],outputFile: str,heal = True) -> None:
     """Join mp3 files into a single file using simple file copying operations.
     fileList: list of pathnames of the files to join.
     outFile: pathname of output file.
     heal: Use Mp3DirectCut to clean up the output file. Usually a good idea.
     This operation fails with mp3 files with different sample rates."""
+
+    if len(fileList) > 1 and joinUsingPydub:
+        try:
+            from pydub import AudioSegment
+
+            joined = AudioSegment.empty()
+            for file in fileList:
+                joined += AudioSegment.from_mp3(file)
+            joined.export(outputFile,format="mp3",id3v2_version="4",bitrate=pydubBitrate)
+            return
+        except OSError as error:
+            print(error.args[0]," occured when attempting to join ",fileList," with pydub. Will join using Mp3DirectCut.")
 
     if len(fileList) == 1:
         heal = False # In this case, we're just copying the file
@@ -311,8 +403,8 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
                 shutil.copyfileobj(source, dest)
     
     if heal:
-        dir, name = os.path.split(name)
-        SinglePassSplit(tempFile,[(name,timedelta(0))],dir)
+        dir, filename = os.path.split(outputFile)
+        SinglePassSplit(tempFile,[ClipTD(filename,timedelta(0),None)],dir)
         os.remove(tempFile)
     else:
         os.rename(tempFile,outputFile)

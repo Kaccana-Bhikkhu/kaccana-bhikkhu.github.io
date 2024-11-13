@@ -186,34 +186,6 @@ def SmartQuotes(s: str):
     s = re.sub(r'=‘(.*?)’', r"='\1'", s)
     return s
 
-def StrToTimeDelta(inStr):
-    "Convert a string with format mm:ss or hh:mm:ss to a timedelta object"
-    
-    numbers = str.split(inStr,":")
-    try:
-        if len(numbers) == 2:
-            return timedelta(minutes = int(numbers[0]),seconds = int(numbers[1]))
-        elif len(numbers) == 3:
-            return timedelta(hours = int(numbers[0]),minutes = int(numbers[1]),seconds = int(numbers[2]))
-    except ValueError:
-        pass
-        
-    raise ValueError("'" + inStr + "' cannot be converted to a time.")
-
-def TimeDeltaToStr(time):
-    "Convert a timedelta object to the form [HH:]MM:SS"
-    
-    seconds = (time.days * 24 * 60 * 60) + time.seconds
-    
-    hours = seconds // 3600
-    minutes = (seconds % 3600) // 60
-    seconds = seconds % 60
-
-    if hours:
-        return f"{hours}:{minutes:02d}:{seconds:02d}"
-    else:
-        return f"{minutes}:{seconds:02d}"
-
 def ParseDate(dateStr:str) -> datetime.date:
     "Read a date formated as DD/MM/YYYY and return datetime.date."
     
@@ -263,7 +235,7 @@ def RegexMatchAny(strings: Iterable[str],capturingGroup = True,literal = False):
         else:
             return r"(?:" + r"|".join(strings) + r")"
     else:
-        return r'a\bc' # Looking for a word boundary between text characters always fails: https://stackoverflow.com/questions/1723182/a-regex-that-will-never-be-matched-by-anything
+        return r'^a\bc' # Looking for a word boundary between text characters always fails: https://stackoverflow.com/questions/1723182/a-regex-that-will-never-be-matched-by-anything
 
 
 def ReorderKeys(ioDict: dict,firstKeys = [],lastKeys = []) -> None:

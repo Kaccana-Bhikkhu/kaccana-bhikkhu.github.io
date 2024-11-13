@@ -8,6 +8,7 @@ import Database
 import Utils, Alert, ParseCSV, Prototype, Filter
 import Html2 as Html
 from typing import Iterable, Iterator, Callable
+import itertools
 
 def Enclose(items: Iterable[str],encloseChars: str = "()") -> str:
     """Enclose the strings in items in the specified characters:
@@ -29,7 +30,7 @@ def RawBlobify(item: str) -> str:
     output = output.replace("–","-").replace("—","-") # Conert all dashes to hypens
     output = Utils.RemoveDiacritics(output.lower())
     output = re.sub(r"\<[^>]*\>","",output) # Remove html tags
-    output = re.sub(r"\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
+    output = re.sub(r"!?\[([^]]*)\]\([^)]*\)",r"\1",output) # Extract text from Markdown hyperlinks
     output = output.replace("++","") # Remove ++ bold format markers
     output = re.sub(r"[|]"," ",output) # convert these characters to a space
     output = re.sub(r"[][#()@_*]^","",output) # remove these characters
@@ -60,7 +61,7 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         if nonSearchableTeachers:
             gNonSearchableTeacherRegex = Utils.RegexMatchAny(nonSearchableTeachers,literal=True)
         else:
-            gNonSearchableTeacherRegex = "xyzxyz" # Matches nothing
+            gNonSearchableTeacherRegex = r"^a\bc" # Matches nothing
 
 
     for item in items:
@@ -107,7 +108,7 @@ def ExcerptBlobs(excerpt: dict) -> list[str]:
             bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
         
         joined = "".join(bits)
-        for fTag in excerpt["fTags"]:
+        for fTag in itertools.chain(excerpt["fTags"],excerpt.get("fragmentFTags",())):
             tagCode = f"[{RawBlobify(fTag)}]"
             joined = joined.replace(tagCode,tagCode + "+")
         returnValue.append(joined)
@@ -119,7 +120,7 @@ def OptimizedExcerpts() -> list[dict]:
     formatter.excerptOmitSessionTags = False
     formatter.showHeading = False
     formatter.headingShowTeacher = False
-    for x in gDatabase["excerpts"]:
+    for x in Database.RemoveFragments(gDatabase["excerpts"]):
         xDict = {"session": Database.ItemCode(event=x["event"],session=x["sessionNumber"]),
                  "blobs": ExcerptBlobs(x),
                  "html": formatter.HtmlExcerptList([x])}

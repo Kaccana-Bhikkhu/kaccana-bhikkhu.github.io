@@ -71,7 +71,6 @@ def ReadArgsFile(argsFilename: str,parser: argparse.ArgumentParser) -> None:
     if gParsedArgsFileCount[argsFilename] > 3:
         Alert.error(f"Attempting to load .args file {argsFilename} more than three times. This probably indicates recursive inclusion.")
         sys.exit(1)
-    gParsedArgsFileCount[argsFilename] += 1
     
     try:
         with open(argsFilename,"r",encoding="utf-8") as argsFile:
@@ -81,6 +80,7 @@ def ReadArgsFile(argsFilename: str,parser: argparse.ArgumentParser) -> None:
                 line = removeComments[0].strip()
                 if line:
                     argumentStrings.append(line)
+        gParsedArgsFileCount[argsFilename] += 1
     except OSError:
         gErrorArgsFiles.append(argsFilename)
         return
@@ -99,7 +99,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
         else:
             return newDB,opSet
     
-    requireSpreadsheetDB = {'DownloadFiles','SplitMp3','Link','Render'}
+    requireSpreadsheetDB = {'ReviewDatabase','DownloadFiles','SplitMp3','Link','Render'}
     requireRenderedDB = {'Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks'}
 
     if 'Render' in opSet: # Render requires link in all cases
@@ -124,7 +124,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks']
+moduleList = ['DownloadCSV','ParseCSV','ReviewDatabase','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']
@@ -203,6 +203,7 @@ for mod in modules.values():
     mod.gOptions = clOptions
         # Let each module access all arguments
 Utils.gOptions = clOptions
+Database.gOptions = clOptions
 
 for modName in priorityInitialization:
     modules[modName].ParseArguments()

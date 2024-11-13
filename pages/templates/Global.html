@@ -31,7 +31,7 @@
 
       url = new URL(location.href)
       if (url.protocol != "file:" && !isBotUserAgent) {
-        location.replace("../index.html#$!page.info.file!$" + url.hash);
+        location.replace("../index.html#$!page.info.file!$" + url.search + url.hash);
       }
     </script>
   <!--(else)-->
@@ -42,6 +42,9 @@
   <!--(end)-->
   <div id="header">
     <h1><strong>The Ajahn Pasanno Question and Story Archive</strong></h1>
+    <!--(if page.gOptions.uploadMirror == "preview")-->
+    <h4>Pre-release version; please share and link to the <a href="https://abhayagiri.org/questions/">main site</a>.</h4>
+    <!--(end)-->
     <br>
     <nav id="topnav">
       $!page.section["mainMenu"].Render()!$

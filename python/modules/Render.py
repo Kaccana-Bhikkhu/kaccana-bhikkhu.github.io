@@ -1,4 +1,4 @@
-"""Render the text of each excerpt in the database with its annotations to html using the pryatemp templates in database["Kind"].
+"""Render the text of each excerpt in the database with its annotations to html using the pyratemp templates in database["Kind"].
 The only remaining work for Prototype.py to do is substitute the list of teachers for {attribtuion}, {attribtuion2}, and {attribtuion3} when needed."""
 
 from __future__ import annotations
@@ -104,7 +104,7 @@ def AddImplicitAttributions() -> None:
                 x["annotations"].insert(0,newAnnotation)
         for n,a in reversed(list(enumerate(x["annotations"]))): # Go backwards to allow multiple insertions
             if a["kind"] == "Reading":
-                readBy = [subA for subA in Database.SubAnnotations(x,a) if subA["kind"] == "Read by"]
+                readBy = [subA for subA in Database.ChildAnnotations(x,a) if subA["kind"] == "Read by"]
                 if not readBy:
                     if x["kind"] == "Reading":
                         readers = session["teachers"]
@@ -184,7 +184,10 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
                 # attribute it. It will be attached to the excerpt, and the annotation will be hidden if it matches the session teachers.
         else:
             parent = Database.ParentAnnotation(container,item)
-            defaultTeachers = parent.get("teachers",())
+            if parent:
+                defaultTeachers = parent.get("teachers",())
+            else:
+                defaultTeachers = ()
         if set(defaultTeachers) == set(teachers) and ParseCSV.ExcerptFlag.ATTRIBUTE not in item["flags"] and not gOptions.attributeAll:
             teachers = () # Don't attribute an annotation which has the same teachers as it's excerpt
     teacherStr = Prototype.ListLinkedTeachers(teachers = teachers,lastJoinStr = ' and ')
@@ -204,7 +207,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
     colon = "" if not text or re.match(r"\s*[a-z]",text) else ":"
     renderDict = {"text": text, "s": plural, "colon": colon, "prefix": prefix, "suffix": suffix, "teachers": teacherStr}
 
-    item["body"] = bodyTemplate(**renderDict) # Utils.SmartQuotes(bodyTemplate(**renderDict))
+    item["body"] = bodyTemplate(**renderDict)
 
     if teachers:
 
@@ -522,7 +525,7 @@ def LinkSubpages(ApplyToFunction:Callable = ApplyToBodyText,pathToPrototype:str 
             
             realCluster = Database.TagClusterLookup(cluster)
             if realCluster:
-                linkTo = gDatabase["tagCluster"][realCluster]["htmlPath"].replace(".html","-relevant.html")
+                linkTo = gDatabase["subtopic"][realCluster]["htmlPath"].replace(".html","-relevant.html")
             else:
                 Alert.warning("Cannot link to tag cluster",cluster,"in link",matchObject[0])
         elif pageType == "topic":
@@ -553,6 +556,11 @@ def MarkdownFormat(text: str) -> Tuple[str,int]:
     else:
         return text,0
 
+def RemoveHTMLPassthroughComments(html: str) -> tuple[str,int]:
+    """Remove the <!--HTML html code--> comments used to pass html code through Markdown."""
+
+    html,changeCount = re.subn(r"<!--HTML(.*?)-->",r"\1",html) # Remove comments around HTML code
+    return html,changeCount
 
 def LinkReferences() -> None:
     """Add hyperlinks to references contained in the excerpts and annotations.
@@ -583,6 +591,7 @@ def LinkReferences() -> None:
 
     markdownChanges = ApplyToBodyText(MarkdownFormat)
     Alert.extra(f"{markdownChanges} items changed by markdown")
+    ApplyToBodyText(RemoveHTMLPassthroughComments)
     
 def SmartQuotes(text: str) -> tuple[str,int]:
     newText = Utils.SmartQuotes(text)
