@@ -96,4 +96,4 @@
 
 - 5.0.2 (October 2024 release) Fix Google indexing redirect error for index.html.
 
-- 5.1 (November 2024 release) All subtopics feature at least one excerpt. Annotations can be featured using a Fragment annotation. The first part of an excerpt can be featured using a Main Fragment annotation. Append Audio and Edited Audio annotations. and Review Database module estimates the optimal number of featured excerpts. Search for qTags and aTags. '!' search operator. Use Javascript to improve the tag drilldown interface.
+- 5.1 (November 2024 release) All subtopics feature at least one excerpt. Annotations can be featured using a Fragment annotation. The first part of an excerpt can be featured using a Main Fragment annotation. Append Audio and Edited Audio annotations. Review Database module estimates the optimal number of featured excerpts. Search for qTags and aTags using '//' as a prefix or suffix. '!' search operator. Use Javascript to improve the tag drilldown interface.

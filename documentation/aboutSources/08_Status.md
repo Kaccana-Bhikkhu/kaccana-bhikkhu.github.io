@@ -3,9 +3,10 @@
 # Status
 
 ## New in the November 2024 release:
-- All subtopics feature at least one excerpt.
+- All subtopics feature at least one excerpt, substantially improving the [Key topics page](../indexes/KeyTopicDetail.html).
 - Improved [tag hierarchy](../drilldown/root.html) interface.
-- One can feature only the best part of an excerpt using Fragment annotations.
+- Fragment annotations allow the Archive to feature only the best part of an excerpt.
+- Audio splicing allows joining non-contiguous audio clips and removing silence. 
 
 ## Content
 This release contains $!len(gDatabase["excerpts"])!$ excerpts from $!len(gDatabase["event"])!$ events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:

@@ -19,6 +19,7 @@ As of the November 2024 release, most important tags feature at least one excerp
  - Featured excerpts may be arranged logically, chronologically, or simplest to most in-depth.
  - You may suggest that closely-related tags in the same key topic (e.g. Continuity of mindfulness and Present moment awareness) be combined into a single tag cluster or that new tags should be added to key topics.
  - If an excellent answer follows a nearly inaudible question, we can amplify the question. Or better yet, amplify the question yourself and send the edited audio file.
+ - One can select only part of an excerpt to feature as a fragment.
 
 Please send your suggestions to [questionsandstories@abhayagiri.org](mailto:questionsandstories@abhayagiri.org). Additional support for suggesting featured excerpts may be provided if there is sufficient interest.
 
@@ -40,7 +41,7 @@ For example: “Master Hsu Yun and the Bandits,” 13:49 in the talk “Developi
 
 ----
 
-### Point out typos or tagging errors
+### Point out typos, tagging errors, or audio glitches
 There is so much potential material for the Archive that little proofreading has been done after typing in transcriptions. Thus typos are inevitable, and some tags intended for one excerpt might end up on another. There’s no need for the Archive to be as polished as a printed book, and it often quotes imperfectly phrased questions verbatim. Nevertheless, please let me know if you find any glitches.
 
 -----
