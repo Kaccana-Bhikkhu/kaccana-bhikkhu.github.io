@@ -7,6 +7,7 @@ import Database
 import Filter
 import Render
 import SplitMp3,Mp3DirectCut
+from Mp3DirectCut import TimeDeltaToStr,ToTimeDelta
 import Utils
 from typing import List, Iterator, Tuple, Callable, Any, TextIO
 from datetime import timedelta
@@ -957,7 +958,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             filename = noDiacritics
 
         try:
-            Mp3DirectCut.ToTimeDelta(duration)
+            ToTimeDelta(duration)
         except ValueError:
             Alert.error(filename,"in event",event,"has invalid duration:",repr(duration))
 
@@ -985,7 +986,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         except Mp3DirectCut.TimeError as error:
             Alert.error(excerpt,"generates time error:",error.args[0])
             return "0:00"
-        return Mp3DirectCut.TimeDeltaToStr(duration)
+        return TimeDeltaToStr(duration)
 
     def SplitAudioSourceText(text: str) -> tuple[str,str,str]:
         """Split an audio annotation of the form duration|filename|url into the tuple filename,url,duration.
@@ -1007,7 +1008,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         if altAudioAnnotation["kind"] == "Edited audio":
             clip = excerpt["clips"][0]
             if not duration:
-                duration = Mp3DirectCut.TimeDeltaToStr(clip.Duration(fileDuration=None))
+                duration = TimeDeltaToStr(clip.Duration(fileDuration=None))
             excerpt["startTimeInSession"] = clip.start
             excerpt["clips"][0] = clip._replace(start="0:00",end="")
             excerpt["duration"] = duration
@@ -1037,10 +1038,10 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
     for x in excerpts:
         try:
             if x["startTime"] != "Session":
-                startTime = Mp3DirectCut.ToTimeDelta(x["startTime"])
+                startTime = ToTimeDelta(x["startTime"])
                 if startTime is None:
                     deletedExcerptIDs.add(id(x))
-            endTime = Mp3DirectCut.ToTimeDelta(x["endTime"])
+            endTime = ToTimeDelta(x["endTime"])
         except Mp3DirectCut.ParseError:
             deletedExcerptIDs.add(id(x))
 
@@ -1054,7 +1055,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         if session["filename"]:
             AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
             try:
-                sessionDuration = Mp3DirectCut.ToTimeDelta(session["duration"])
+                sessionDuration = ToTimeDelta(session["duration"])
             except ValueError:
                 sessionDuration = None
         else:
@@ -1176,10 +1177,12 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
             if audioEdited and not relativeAudio:
                 Alert.error(excerpt,": Excerpts with edited audio must specify relative fragment times.")
             elif relativeAudio:
-                offsetTime = Mp3DirectCut.ToTimeDelta(excerpt["startTime"])
-                for key in ("startTime","endTime"):
-                    if fragmentExcerpt[key]:
-                        fragmentExcerpt[key] = Mp3DirectCut.TimeDeltaToStr(Mp3DirectCut.ToTimeDelta(fragmentExcerpt[key]) + offsetTime)
+                offsetTime = ToTimeDelta(excerpt["startTime"])
+                fragmentExcerpt["startTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["startTime"]) + offsetTime)
+                if fragmentExcerpt["endTime"]:
+                    fragmentExcerpt["endTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["endTime"]) + offsetTime)
+                elif excerpt["endTime"]:
+                    fragmentExcerpt["endTime"] = excerpt["endTime"]
             
             fragmentExcerpts.append(fragmentExcerpt)
 
