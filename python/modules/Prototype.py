@@ -896,7 +896,7 @@ class Formatter:
         self.excerptBoldTags = set() # Display these tags in boldface
         self.excerptOmitSessionTags = True # Omit tags already mentioned by the session heading
         self.excerptPreferStartTime = False # Display the excerpt start time instead of duration when available
-        self.excerptAttributeSource = False # Add a line after each excerpt linking to it source?
+        self.excerptAttributeSource = False # Add a line after each excerpt linking to its source?
             # Best used with showHeading = False
         self.showFTagOrder = () # Display {fTagOrder} before each excerpt
             # Helps to sort featured excerpts in the preview edition
@@ -1056,19 +1056,18 @@ class Formatter:
             
             itemsToJoin.append(Utils.ReformatDate(session['date']))
 
-            if linkSessionAudio and session['filename']:
-                audioLink = Mp3SessionLink(session)
-                itemsToJoin[-1] += ' ' + audioLink + '<br />'
-                    # The audio chip goes on a new line, so don't separate with a dash
-            
             a(' – '.join(itemsToJoin))
 
             if self.headingShowTags:
-                a(' ')
+                a.br()
                 tagStrings = []
                 for tag in session["tags"]:
                     tagStrings.append('[' + HtmlTagLink(tag) + ']')
                 a(' '.join(tagStrings))
+
+            if linkSessionAudio and session['filename']:
+                audioLink = Mp3SessionLink(session)
+                a(audioLink) 
         
         return str(a)
     
@@ -2127,7 +2126,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("Compact",Utils.PosixJoin(indexDir,"KeyTopics.html"),"Key topics")
-    yield menuItem.AddQuery("_keep_query")
+    yield menuItem.AddQuery("hideAll")
 
     def KeyTopicList(keyTopic: dict) -> tuple[str,str,str]:     
         clusterLinks = []
@@ -2172,11 +2171,11 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemo
     "Yield a page listing all topic headings."
 
     menuItem = Html.PageInfo("In detail",Utils.PosixJoin(indexDir,"KeyTopicDetail.html"),"Key topics")
-    yield menuItem.AddQuery("_keep_query")
+    yield menuItem.AddQuery("hideAll")
 
     a = Airium()
+    a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
     with a.div(Class="listing"):
-        a("Number of featured excerpts for each topic appears in parentheses.<br><br>")
         for topicCode,topic in gDatabase["keyTopic"].items():
             with a.p(id=topicCode):
                 if not printPage:
@@ -2280,12 +2279,23 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
         PrintTopics(indexDir,topicDir,False),
-        PrintTopics(indexDir,topicDir,True)
+        TagClusterPages("clusters"),
+        KeyTopicExcerptLists(indexDir,topicDir)
     ]
 
-    yield from basePage.AddMenuAndYieldPages(keyTopicMenu,**EXTRA_MENU_STYLE)
-    yield from TagClusterPages("clusters")
-    yield from KeyTopicExcerptLists(indexDir,topicDir)
+    if gOptions.uploadMirror == "preview": # Only insert Printable with memos in the preview build
+        keyTopicMenu.insert(4,PrintTopics(indexDir,topicDir,True))
+
+    for page in basePage.AddMenuAndYieldPages(keyTopicMenu,**SUBMENU_STYLE):
+        filename = page.info.file.split("/")[-1]
+        # Modify the pages after they are generated such that switching betweeen these two files does not close
+        # open topic tabs.
+        if filename in ("KeyTopics.html,KeyTopicDetail.html"):
+            for n,menuItem in enumerate(page.section["subMenu"].items):
+                if menuItem.file.endswith("?hideAll"):
+                    page.section["subMenu"].items[n] = menuItem._replace(file=menuItem.file.replace("hideAll","_keep_query"))
+
+        yield page
 
 def TagHierarchyMenu(indexDir:str, drilldownDir: str) -> Html.PageDescriptorMenuItem:
     """Create a submentu for the tag drilldown pages."""
