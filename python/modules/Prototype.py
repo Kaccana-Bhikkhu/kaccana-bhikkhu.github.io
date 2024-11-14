@@ -2122,6 +2122,22 @@ def TagClusterPages(topicDir: str):
 
         yield from TagSubsearchPages(tags,relevantExcerpts,basePage)
 
+def AddTopicButtons(page: Html.PageDesc) -> None:
+    """Add buttons to show and hide subtopics to this under-construction page."""
+
+    page.AppendContent(Html.Tag("button",{"type":"button",
+                                          "onclick":Utils.JavascriptLink(page.info.AddQuery("showAll").file)})("Expand all"))
+    page.AppendContent(Html.Tag("button",{"type":"button",
+                                          "onclick":Utils.JavascriptLink(page.info.AddQuery("hideAll").file)})("Contract all"))
+    
+    printableLinks = Html.Tag("a",{"href":Utils.PosixJoin("../indexes/KeyTopicDetail_print.html")})("Printable")
+    if gOptions.uploadMirror == "preview":
+        printableLinks += "&emsp;" + Html.Tag("a",{"href":Utils.PosixJoin("../indexes/KeyTopicMemos_print.html")})("Printable with memos")
+
+    page.AppendContent(Html.Tag("span",{"style":"float: right;"})(printableLinks))
+    page.AppendContent("<br><br>")
+
+
 def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem:
     "Yield a page listing all topic headings."
 
@@ -2153,13 +2169,7 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
                                         addMenu=False,betweenSections="\n")
 
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
-
-    page.AppendContent(Html.Tag("button",{"type":"button",
-                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("showAll").file)})("Expand all"))
-    page.AppendContent(Html.Tag("button",{"type":"button",
-                                          "onclick":Utils.JavascriptLink(menuItem.AddQuery("hideAll").file)})("Contract all"))
-    page.AppendContent("<br><br>")
-
+    AddTopicButtons(page)
     page.AppendContent(pageContent)
 
     page.keywords = ["Key topics"]
@@ -2235,11 +2245,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemo
     page = Html.PageDesc(menuItem._replace(title="Key topics"))
     
     if not printPage:
-        page.AppendContent(Html.Tag("button",{"type":"button",
-                                            "onclick":Utils.JavascriptLink(menuItem.AddQuery("showAll").file)})("Expand all"))
-        page.AppendContent(Html.Tag("button",{"type":"button",
-                                            "onclick":Utils.JavascriptLink(menuItem.AddQuery("hideAll").file)})("Contract all"))
-        page.AppendContent("<br><br>")
+        AddTopicButtons(page)
 
     page.AppendContent(str(a))
 
@@ -2248,7 +2254,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemo
 
     yield page
 
-def PrintTopics(indexDir: str,topicDir: str,progressMemos: bool) -> Html.PageDescriptorMenuItem:
+def PrintTopics(indexDir: str,topicDir: str,progressMemos:bool = False,yieldMenuItem:bool = True) -> Html.PageDescriptorMenuItem:
     "Yield a printable listing of all topic headings."
     menuEntry = "Printable"
     filename = "KeyTopicDetail_print.html"
@@ -2256,7 +2262,8 @@ def PrintTopics(indexDir: str,topicDir: str,progressMemos: bool) -> Html.PageDes
         filename = "KeyTopicMemos_print.html"
         menuEntry += " with memos"
     menuItem = Html.PageInfo(menuEntry,Utils.PosixJoin(indexDir,filename),"Key topics")
-    yield menuItem
+    if yieldMenuItem:
+        yield menuItem
 
     topicList = DetailedKeyTopics(indexDir,topicDir,printPage=True,progressMemos=progressMemos)
     _ = next(topicList)
@@ -2278,7 +2285,8 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     keyTopicMenu = [
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
-        PrintTopics(indexDir,topicDir,False),
+        PrintTopics(indexDir,topicDir,yieldMenuItem=False),
+        PrintTopics(indexDir,topicDir,progressMemos=True,yieldMenuItem=False),
         TagClusterPages("clusters"),
         KeyTopicExcerptLists(indexDir,topicDir)
     ]
