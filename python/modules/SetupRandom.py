@@ -13,12 +13,26 @@ def ExcerptEntry(excerpt:dict[str]) -> dict[str]:
     
     formatter = Prototype.Formatter()
     formatter.SetHeaderlessFormat()
-    html = formatter.FormatExcerpt(excerpt)
+    html = formatter.HtmlExcerptList([excerpt])
+
+    keyTopicTags = Database.KeyTopicTags()
+    topicTags = [tag for tag in excerpt["fTags"] if tag in keyTopicTags]
+
+    if topicTags:
+        tag = topicTags[0]
+        subtopic = gDatabase["subtopic"][gDatabase["tag"][tag]["partOfSubtopics"][0]]
+        isCluster = subtopic["subtags"] # A cluster has subtags; a regular tag doesn't
+        if isCluster:
+            tagDescription = f"tag cluster {Prototype.HtmlTagClusterLink(subtopic['tag'])}"
+        else:
+            tagDescription = f"tag {Prototype.HtmlTagLink(tag)}"
+
+        html += f"<hr><p>Featured in {tagDescription}, part of key topic {Prototype.HtmlKeyTopicLink(subtopic['topicCode'])}.</p>"
 
     return {
         "code": Database.ItemCode(excerpt),
         "text": excerpt["text"],
-        "fTag": excerpt["fTags"][0] if excerpt["fTags"] else "",
+        "fTag": topicTags[0] if topicTags else "",
         "html": html,
     }
 

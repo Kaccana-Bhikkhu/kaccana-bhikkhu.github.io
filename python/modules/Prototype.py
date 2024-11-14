@@ -2374,6 +2374,19 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     baseTagPage = Html.PageDesc()
     yield from baseTagPage.AddMenuAndYieldPages(tagMenu,**SUBMENU_STYLE)
 
+def Homepage():
+    """Return a single menu item for the homepage."""
+    """Create the Search menu item and its associated submenus."""
+
+    homepageName = "homepage.html"
+    homepageTemplate = Utils.PosixJoin(gOptions.prototypeDir,"templates",homepageName)
+    homepage = Utils.ReadFile(homepageTemplate)
+    
+    pageInfo = Html.PageInfo("Home",homepageName,"The Ajahn Pasanno Question and Story Archive")
+    yield pageInfo
+    yield (pageInfo, homepage)
+
+
 SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching"}
 
 def WriteSitemapURL(pagePath:str,xml:Airium) -> None:
@@ -2504,10 +2517,10 @@ def main():
 
     indexDir ="indexes"
     mainMenu = []
+    mainMenu.append(Homepage())
     technicalMenu = list(DocumentationMenu("technical"))
     technicalMenu[0] = technicalMenu[0]._replace(title="Technical")
     mainMenu.append(DocumentationMenu("about",
-                                      specialFirstItem=Html.PageInfo("About","homepage.html","The Ajahn Pasanno Question and Story Archive"),
                                       extraItems=[technicalMenu]))
     mainMenu.append(DocumentationMenu("misc",makeMenu=False))
 

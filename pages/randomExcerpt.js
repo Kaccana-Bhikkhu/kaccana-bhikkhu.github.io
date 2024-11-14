@@ -1,68 +1,60 @@
-import {configureLinks,frameSearch,setFrameSearch} from './frame.js';
+import {configureLinks} from './frame.js';
 
 const DEBUG = false;
 
 let gDatabase = null; // The global database, loaded from assets/RandomExcerpts.json
 
+let currentExcerpt = 0; // The excerpt currently displayed
+
+function displayExcerpt() {
+    // Display the html code for current excerpt
+
+    let excerptCount = gDatabase.excerpts.length;
+    let excerptToDisplay = ((currentExcerpt % excerptCount) + excerptCount) % excerptCount
+
+    let displayArea = document.getElementById("random-excerpt");
+    displayArea.innerHTML = gDatabase.excerpts[excerptToDisplay].html;
+    configureLinks(displayArea,"indexes/homepage.html");
+
+    let titleArea = document.getElementById("date-title");
+    let title = "Today's featured excerpt:"
+    if (currentExcerpt > 0)
+        title = `Random excerpt (${currentExcerpt}):`;
+    else if (currentExcerpt < 0) {
+        let pastDate = new Date();
+        pastDate.setDate(pastDate.getDate() + currentExcerpt);
+        title = `Excerpt featured on ${pastDate.toDateString()}:`;
+    }
+
+    titleArea.innerHTML = title;
+}
+
 export async function loadHomepage() {
     // Called when the search page is loaded. Load the random excerpt database
     // and configure the forward and back buttons
 
-    for (let kind of "xg") {
-        let searchButton = document.getElementById(`search-${kind}-button`);
-        if (!searchButton)
-            return; // Exit if it's a non-search page.
-        searchButton.onclick = () => { searchButtonClick(kind); }
-    }
+    let prevButton = document.getElementById("random-prev");
+    if (!prevButton)
+        return; // Exit if the previous excerpt button isn't found.
+    let nextButton = document.getElementById("random-next");
 
-    let params = frameSearch();
-    let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
-    if (!query)
-        document.getElementById("search-text").focus();
-
-    // Execute a function when the user presses a key on the keyboard
-    // https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
-    document.getElementById("search-text").addEventListener("keydown", function(event) {
-        // If the user presses the "Enter" key on the keyboard
-        if (event.key === "Enter") {
-            // Cancel the default action, if needed
-            event.preventDefault();
-            // Trigger the button element with a click
-            document.getElementById("search-x-button").click();
-        }
-    });
+    prevButton.onclick = () => { displayNextExcerpt(-1); };
+    nextButton.onclick = () => { displayNextExcerpt(1); };
 
     if (!gDatabase) {
-        await fetch('./assets/SearchDatabase.json')
+        await fetch('./assets/RandomExcerpts.json')
         .then((response) => response.json())
         .then((json) => {
             gDatabase = json; 
-            console.log("Loaded search database.");
-            for (let code in gDatabase["searches"]) {
-                if (code == "x")
-                    gSearchers[code] = new ExcerptSearcher(gDatabase.searches[code]);
-                else
-                    gSearchers[code] = new Searcher(gDatabase.searches[code]);
-            }
+            console.log("Loaded random excerpt database.");
         });
-
     }
-
-    searchFromURL();
+    displayNextExcerpt(0);
 }
 
-function searchButtonClick(searchKind) {
-    // Read the search bar text, push the updated URL to history, and run a search.
-    let query = frame.querySelector('#search-text').value;
-    console.log("Called runFromURLSearch. Query:",query,"Kind:",searchKind);
+function displayNextExcerpt(increment) {
+    // display the next or previous (increment = -1) random excerpt
+    currentExcerpt += increment;
 
-    let search = new URLSearchParams({q : encodeURIComponent(query),search : searchKind});
-    history.pushState({},"",location.href); // First push a new history frame
-    setFrameSearch(search); // Then replace the history with the search query
-
-    /* let newURL = new URL(location.href);
-    newURL.search = `?q=${encodeURIComponent(query)}&search=${searchKind}`
-    history.pushState({}, "",newURL.href); */
-
-    searchFromURL();
+    displayExcerpt(currentExcerpt);
 }
