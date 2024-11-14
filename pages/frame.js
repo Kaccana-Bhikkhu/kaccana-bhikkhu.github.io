@@ -1,5 +1,6 @@
 import posix from "./path.js";
 import { loadSearchPage } from "./search.js";
+import { loadHomepage } from "./randomExcerpt.js";
 import { loadToggleView } from "./toggle-view.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
@@ -126,6 +127,7 @@ async function changeURL(pUrl,scrollTo = null) {
 
 			configureLinks(frame,resultUrl);
 			loadSearchPage();
+			loadHomepage();
 			loadToggleView();
 			if (scrollTo && Object.hasOwn(scrollTo,"scrollX") && Object.hasOwn(scrollTo,"scrollY"))
 				window.scrollTo(scrollTo.scrollX,scrollTo.scrollY)

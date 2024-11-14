@@ -100,7 +100,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
             return newDB,opSet
     
     requireSpreadsheetDB = {'ReviewDatabase','DownloadFiles','SplitMp3','Link','Render'}
-    requireRenderedDB = {'Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks'}
+    requireRenderedDB = {'Document','Prototype','SetupSearch','SetupRandom','TagMp3','PrepareUpload','CheckLinks'}
 
     if 'Render' in opSet: # Render requires link in all cases
         opSet.add('Link')
@@ -124,7 +124,8 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','ReviewDatabase','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks']
+moduleList = ['DownloadCSV','ParseCSV','ReviewDatabase','DownloadFiles','SplitMp3','Link','Render',
+              'Document','Prototype','SetupSearch','SetupRandom','TagMp3','PrepareUpload','CheckLinks']
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']
@@ -149,8 +150,7 @@ parser.add_argument('--defaults',type=str,default='python/config/Default.args,py
 parser.add_argument("--args",type=str,action="append",default=[],help="Read arguments from an .args file")
 parser.add_argument('--skip',type=str,default='',help='A comma-separated list of operations to skip')
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
-parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
-parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
+parser.add_argument('--spreadsheetDatabase',type=str,default='pages/assets/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: pages/assets/SpreadsheetDatabase.json')
 parser.add_argument('--multithread',**Utils.STORE_TRUE,help="Multithread some operations")
 parser.add_argument('--dumpArgs',**Utils.STORE_TRUE,help="Print the argument parser arguments and exit")
 
