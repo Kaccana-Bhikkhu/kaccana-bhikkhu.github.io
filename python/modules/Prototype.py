@@ -2376,7 +2376,6 @@ def TagMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
 
 def Homepage():
     """Return a single menu item for the homepage."""
-    """Create the Search menu item and its associated submenus."""
 
     homepageName = "homepage.html"
     homepageTemplate = Utils.PosixJoin(gOptions.prototypeDir,"templates",homepageName)

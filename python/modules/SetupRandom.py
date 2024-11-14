@@ -18,7 +18,7 @@ def ExcerptEntry(excerpt:dict[str]) -> dict[str]:
     keyTopicTags = Database.KeyTopicTags()
     topicTags = [tag for tag in excerpt["fTags"] if tag in keyTopicTags]
 
-    if topicTags:
+    if topicTags: # Since we select only featured excerpts from key topic tags, this should always be true
         tag = topicTags[0]
         subtopic = gDatabase["subtopic"][gDatabase["tag"][tag]["partOfSubtopics"][0]]
         isCluster = subtopic["subtags"] # A cluster has subtags; a regular tag doesn't
