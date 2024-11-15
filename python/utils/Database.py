@@ -180,10 +180,10 @@ def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
 
     return teacherDictCache.get(teacherRef,None)
 
-"""Return a dictionary of excerpts that can be referenced as:
-ExcerptDict()[event][sessionNumber][fileNumber]"""
 @lru_cache(maxsize=None)
 def ExcerptDict() -> dict[str,dict[int,dict[int,dict[str]]]]:
+    """Return a dictionary of excerpts that can be referenced as:
+    ExcerptDict()[event][sessionNumber][fileNumber]"""
     excerptDict = defaultdict(lambda: defaultdict(defaultdict))
     for x in gDatabase["excerpts"]:
         excerptDict[x["event"]][x["sessionNumber"]][x["fileNumber"]] = x

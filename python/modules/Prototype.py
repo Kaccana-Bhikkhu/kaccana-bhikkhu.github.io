@@ -7,7 +7,7 @@ from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
 import Mp3DirectCut
 import Database, ReviewDatabase
-import Utils, Alert, Filter, ParseCSV, Document, Render
+import Utils, Alert, Filter, ParseCSV, Document, Render, SetupRandom
 import Html2 as Html
 from datetime import timedelta
 import re, copy, itertools
@@ -2378,12 +2378,21 @@ def Homepage():
     """Return a single menu item for the homepage."""
 
     homepageName = "homepage.html"
-    homepageTemplate = Utils.PosixJoin(gOptions.prototypeDir,"templates",homepageName)
-    homepage = Utils.ReadFile(homepageTemplate)
-    
+    template = pyratemp.Template(filename=Utils.PosixJoin(gOptions.prototypeDir,"templates",homepageName))
+
+    try:
+        event,session,fileNumber = Database.ParseItemCode(gOptions.homepageDefaultExcerpt)
+        defaultExcerpt = Database.ExcerptDict()[event][session][fileNumber]
+        excerptHtml = SetupRandom.ExcerptEntry(defaultExcerpt)["html"]
+    except (KeyError,ValueError):
+        Alert.error(f"Unable to parse or find excerpt code {repr(gOptions.homepageDefaultExcerpt)} specified by --homepageDefaultExcerpt.")
+        excerptHtml = ""
+
+    html = str(template(noscriptExcerptHtml=excerptHtml))
+
     pageInfo = Html.PageInfo("Home",homepageName,"The Ajahn Pasanno Question and Story Archive")
     yield pageInfo
-    yield (pageInfo, homepage)
+    yield (pageInfo, html)
 
 
 SUBPAGE_SUFFIXES = {"qtag","atag","quote","text","reading","story","reference","from","by","meditation","teaching"}

@@ -63,6 +63,7 @@ def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
     parser.add_argument('--randomExcerptDatabase',type=str,default="pages/assets/RandomExcerpts.json",help="Random excerpt database file path.")
     parser.add_argument('--randomExcerptCount',type=int,default=0,help="Include only this many random excerpts in the database.")
+    parser.add_argument('--homepageDefaultExcerpt',type=str,default="WR2018-2_S03_F01",help="Item code of exerpt to embed in homepage.html.")
     # parser.add_argument('--option',**Utils.STORE_TRUE,help='This is an option.')
 
 def ParseArguments() -> None:
