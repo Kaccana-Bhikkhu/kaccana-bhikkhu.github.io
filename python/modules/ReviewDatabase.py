@@ -9,7 +9,7 @@ import Database, Filter
 import Utils, Database, Alert
 import FileRegister
 import ParseCSV
-from typing import Generator, Iterable
+from typing import Iterable
 from collections import defaultdict
 
 @lru_cache(maxsize=None)
@@ -235,33 +235,41 @@ def CheckRelatedTags() -> None:
         if overlap:
             Alert .caution(tagInfo,"related tags",overlap,"are already mentioned as subtags or supertags.")
 
-def FeaturedExcerptSummary(subtopicOrTag: str) -> str:
+def FeaturedExcerptSummary(subtopicOrTag: str,printHeading: bool = False,printFTag: bool = False) -> str:
     """Return a list of this subtopic's featured excerpts in tab separated values format."""
+    lines = []
+    if printHeading:
+        columns = ["fTagOrder","code","duration","kind","text"]
+        if printFTag:
+            columns[1:1] = ["fTag","topic"]
+        lines.append("\t".join(columns))
+
     subtopicOrTag = gDatabase["subtopic"].get(subtopicOrTag,None) or gDatabase["tag"].get(subtopicOrTag)
-    tags = [subtopicOrTag["tag"]] + list(subtopicOrTag.get("subtags",()))
+    if "topicCode" in subtopicOrTag:
+        tags = [subtopicOrTag["tag"]] + list(subtopicOrTag["subtags"])
+    else:
+        tags = [subtopicOrTag["tag"]]
     featuredExcerpts = Filter.FTag(tags)(gDatabase["excerpts"])
     featuredExcerpts = sorted(featuredExcerpts,key=lambda x: Database.FTagOrder(x,tags))
-    lines = []
     for x in featuredExcerpts:
+        fTagAndOrder = Database.FTagAndOrder(x,tags)
         items = [
-            str(Database.FTagOrder(x,tags)),
+            str(fTagAndOrder[1]),
             Database.ItemCode(x),
             x["duration"],
             x["kind"],
             Utils.EllideText(x["text"],70)
         ]
+        if printFTag:
+            subtopic = gDatabase["tag"][fTagAndOrder[0]].get("partOfSubtopics",(0,))[0]
+            topic = gDatabase["subtopic"][subtopic]["topicCode"] if subtopic else ""
+            items[1:1] = [fTagAndOrder[0],topic]
         lines.append("\t".join(items))
     return "\n".join(lines)
 
-def SubtopicsAndTags() -> Generator[str]:
-    "Iterate over all subtopics and then over all tags not in subtopics"
-    yield from gDatabase["subtopic"].values()
-    keyTopicTags = Database.KeyTopicTags()
-    yield from (tag for tag in gDatabase["tag"].values() if tag["tag"] not in keyTopicTags)
-
 def CheckFTagOrder() -> None:
     """Print alerts when there is ambiguity sorting featured excerpts."""
-    for subtopicOrTag in SubtopicsAndTags():
+    for subtopicOrTag in Database.SubtopicsAndTags():
         tags = [subtopicOrTag["tag"]]
         if "topicCode" in subtopicOrTag: # Is this a subtopic?
             tags += list(subtopicOrTag.get("subtags",()))

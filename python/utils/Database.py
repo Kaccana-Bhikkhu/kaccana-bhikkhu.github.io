@@ -6,11 +6,12 @@ import json, re, itertools
 import Html2 as Html
 import Link
 from Prototype import gDatabase
+from ReviewDatabase import gDatabase
 import SplitMp3
 import Utils
 import Alert
 import Filter
-from ParseCSV import ExcerptFlag
+from ParseCSV import ExcerptFlag, TagFlag
 from functools import lru_cache
 
 
@@ -152,6 +153,12 @@ def KeyTopicTags() -> dict[str,None]:
         for tag in subtopic["subtags"]:
             returnValue[tag] = None
     return returnValue
+
+def SubtopicsAndTags() -> Generator[str]:
+    "Iterate over all subtopics and then over all tags not in subtopics"
+    yield from gDatabase["subtopic"].values()
+    keyTopicTags = KeyTopicTags()
+    yield from (tag for tag in gDatabase["tag"].values() if tag["tag"] not in keyTopicTags and TagFlag.VIRTUAL not in tag["flags"])
 
 def ParentTagListEntry(listIndex: int) -> dict|None:
     "Return a the entry in gDatabase['tagDisplayList'] that corresponds to this tag's parent tag."
@@ -445,17 +452,21 @@ def SubtagIterator(tagOrSubtopic:dict[str]) -> Generator[str]:
     yield tagOrSubtopic["tag"]
     yield from tagOrSubtopic.get("subtags",())
 
-def FTagOrder(excerpt: dict,tags: Iterable[str]) -> int:
-    """Return the fTagOrder number of the excerpt x.
-    tags is a list of tags to attempt to get the fTag order from"""
+def FTagAndOrder(excerpt: dict,fTags: Iterable[str]) -> tuple[str,int]:
+    """Return the tuple (fTag,fTagOrder) for the first matching fTag in fTags."""
     
-    for tag in tags:
+    for tag in fTags:
         try:
             fTagIndex = excerpt["fTags"].index(tag)
-            return excerpt["fTagOrder"][fTagIndex]
+            return excerpt["fTags"][fTagIndex],excerpt["fTagOrder"][fTagIndex]
         except (ValueError, IndexError):
             pass
-    return 999
+    return "",999
+
+def FTagOrder(excerpt: dict,fTags: Iterable[str]) -> int:
+    """Return fTagOrder of the first matching fTag in fTags."""
+    
+    return FTagAndOrder(excerpt,fTags)[1]
 
 
     
