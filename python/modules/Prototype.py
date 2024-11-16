@@ -2285,14 +2285,12 @@ def KeyTopicMenu(indexDir: str) -> Html.PageDescriptorMenuItem:
     keyTopicMenu = [
         CompactKeyTopics(indexDir,topicDir),
         DetailedKeyTopics(indexDir,topicDir),
+        [Html.PageInfo("About key topics","about/04_Overview.html#key-topics-and-tag-clusters")],
         PrintTopics(indexDir,topicDir,yieldMenuItem=False),
         PrintTopics(indexDir,topicDir,progressMemos=True,yieldMenuItem=False),
         TagClusterPages("clusters"),
         KeyTopicExcerptLists(indexDir,topicDir)
     ]
-
-    if gOptions.uploadMirror == "preview": # Only insert Printable with memos in the preview build
-        keyTopicMenu.insert(4,PrintTopics(indexDir,topicDir,True))
 
     for page in basePage.AddMenuAndYieldPages(keyTopicMenu,**SUBMENU_STYLE):
         filename = page.info.file.split("/")[-1]
