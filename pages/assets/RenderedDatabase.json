@@ -89,7 +89,7 @@
       "fileNumber": 3,
       "kind": "Teaching",
       "flags": "0",
-      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Part 1.",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:).",
       "teachers": [
         "AChah"
       ],
@@ -98,7 +98,78 @@
         {
           "kind": "Read by",
           "flags": "0",
-          "text": "Thai audio with English translation read by {teachers}.",
+          "text": "Thai audio with English translation. Read by {teachers}.",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "0:00",
+          "endTime": "11:00",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Reference",
+          "flags": "",
+          "text": "\"Living with the Cobra,\" Collected Teachings p. 233.",
+          "tags": [],
+          "indentLevel": 1,
+          "body": "<b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a></em>, <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271\" target=\"_blank\">p. 233</a>."
+        }
+      ],
+      "tags": [
+        "Thai audio",
+        "Ajahn Chah",
+        "Similes",
+        "Moods of the mind",
+        "Heedfulness",
+        "Continuity of mindfulness",
+        "Cessation of Suffering",
+        "Dispassion",
+        "Nibbāna",
+        "Unconditioned"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "$",
+          "6:35",
+          "19:47"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "0:00",
+          "11:00"
+        ]
+      ],
+      "duration": "24:12",
+      "mirror": "local",
+      "body": "<b>Teachings</b> to Marjorie by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>. Thai audio with English translation. Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "attribution": ""
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4,
+      "fileNumber": 4,
+      "kind": "Teaching",
+      "flags": "0om",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), English only.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
           "teachers": [
             "Kittisaro"
           ],
@@ -114,36 +185,817 @@
           "body": "<b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a></em>, <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271\" target=\"_blank\">p. 233</a>."
         },
         {
-          "kind": "Other",
+          "kind": "Fragment",
           "flags": "",
-          "text": "Continued in [Part 2](excerpt:Chah2001_S13_F01).",
-          "teachers": [],
-          "tags": [],
+          "startTime": "",
+          "endTime": "",
+          "text": "",
           "indentLevel": 1,
-          "body": "Continued in <a href=\"../events/Chah2001.html#Chah2001_S13_F01\">Part 2</a>."
+          "body": ""
+        },
+        {
+          "kind": "Teaching",
+          "flags": "",
+          "text": "Maintain mindfulness throughout the day and night.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Continuity of mindfulness"
+          ],
+          "indentLevel": 1,
+          "body": "Maintain mindfulness throughout the day and night."
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "There's just suffering arising and passing away.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Suffering",
+            "Impermanence"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Quote:</b>  “There’s just suffering arising and passing away.” "
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "You'll want to make an end of things.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Dispassion",
+            "Cessation"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Quote:</b>  “You’ll want to make an end of things.” "
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "This is the nature of enlightenment. It's he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Liberation",
+            "Nibbāna",
+            "Similes",
+            "Cessation",
+            "Saṃsāra"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Quote:</b>  “This is the nature of enlightenment. It’s he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.” "
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "[](player:Chah2001_S02_F09)",
+          "indentLevel": 1,
+          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S02_F09.mp3\" title=\"Remembering Ajahn Chah Weekend, S2 E4.5\" data-duration=\"130\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S02_F09.mp3\" download=\"Remembering Ajahn Chah Weekend, S2 E4.5.mp3\">Download audio</a> (2:10)</audio-chip>"
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "If the tears don't come, we don't really accept truth.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Suffering",
+            "Truth"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Quote:</b>  “If the tears don’t come, we don’t really accept truth.” "
+        },
+        {
+          "kind": "Note",
+          "flags": "-",
+          "text": "\"Living with the Cobra\" omits this quote and other more personal aspects of Ajahn Chah's teaching to Marjorie.",
+          "indentLevel": 2,
+          "body": "<b>Note</b>: “Living with the Cobra” omits this quote and other more personal aspects of Ajahn Chah’s teaching to Marjorie."
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "10:16",
+          "endTime": "11:02",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "11:54",
+          "endTime": "12:44",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "14:13",
+          "endTime": "15:46",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "16:48",
+          "endTime": "18:01.5",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "18:52",
+          "endTime": "19:49",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "1:36.2",
+          "endTime": "3:21",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "4:09",
+          "endTime": "4:46",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "5:41",
+          "endTime": "6:28",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "8:50",
+          "endTime": "11:00",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
         }
       ],
       "tags": [
-        "Thai audio",
         "Ajahn Chah",
         "Similes",
         "Moods of the mind",
         "Heedfulness",
         "Continuity of mindfulness",
-        "Cessation of Suffering"
+        "Cessation of Suffering",
+        "Dispassion",
+        "Nibbāna",
+        "Unconditioned"
+      ],
+      "qTagCount": 1,
+      "clips": [
+        [
+          "$",
+          "7:57",
+          "9:09"
+        ],
+        [
+          "$",
+          "10:16",
+          "11:02"
+        ],
+        [
+          "$",
+          "11:54",
+          "12:44"
+        ],
+        [
+          "$",
+          "14:13",
+          "15:46"
+        ],
+        [
+          "$",
+          "16:48",
+          "18:01.5"
+        ],
+        [
+          "$",
+          "18:52",
+          "19:49"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "1:36.2",
+          "3:21"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "4:09",
+          "4:46"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "5:41",
+          "6:28"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "8:50",
+          "11:00"
+        ]
+      ],
+      "duration": "11:50",
+      "fragmentFTags": [
+        "Continuity of mindfulness",
+        "Impermanence",
+        "Dispassion",
+        "Cessation",
+        "Nibbāna",
+        "Suffering"
+      ],
+      "mirror": "local",
+      "body": "<b>Teachings</b> to Marjorie by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>, English only. {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "teachers2": [
+        "Kittisaro"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.1,
+      "fileNumber": 5,
+      "kind": "Teaching",
+      "flags": "f",
+      "text": "Maintain mindfulness throughout the day and night.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Continuity of mindfulness"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Continuity of mindfulness",
+        "Ajahn Chah",
+        "Mindfulness",
+        "Postures",
+        "Clear comprehension",
+        "Discernment"
       ],
       "qTagCount": 2,
       "clips": [
         [
           "$",
-          "6:23",
-          "19:47"
+          "10:16",
+          "11:02"
         ]
       ],
-      "duration": "13:24",
+      "duration": "0:46",
       "mirror": "local",
-      "body": "<b>Teachings</b> to Marjorie by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>, Part 1. Thai audio with English translation read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "body": "Maintain mindfulness throughout the day and night.{attribution} {attribution2}",
+      "attribution": " <b>Teaching</b> by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.",
+      "attribution2": "Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "teachers2": [
+        "Kittisaro"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.2,
+      "fileNumber": 6,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "There's just suffering arising and passing away.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Impermanence"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Suffering",
+        "Impermanence",
+        "Ajahn Chah",
+        "Mindfulness",
+        "Clear comprehension",
+        "Discernment",
+        "Birth",
+        "Death",
+        "Continuity of mindfulness"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "$",
+          "14:13",
+          "15:46"
+        ]
+      ],
+      "duration": "1:33",
+      "mirror": "local",
+      "body": "<b>Quote:</b>  “There’s just suffering arising and passing away.” {attribution} {attribution2}",
+      "attribution": " — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.",
+      "attribution2": "Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "teachers2": [
+        "Kittisaro"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.3,
+      "fileNumber": 7,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "You'll want to make an end of things.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Dispassion",
+        "Cessation"
+      ],
+      "fTagOrder": [
+        80,
+        80
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Dispassion",
+        "Cessation",
+        "Ajahn Chah",
+        "Impermanence",
+        "Relinquishment",
+        "Direct experience",
+        "Self-identity view"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "$",
+          "16:48",
+          "18:01.5"
+        ]
+      ],
+      "duration": "1:13",
+      "mirror": "local",
+      "body": "<b>Quote:</b>  “You’ll want to make an end of things.” {attribution} {attribution2}",
+      "attribution": " — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.",
+      "attribution2": "Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "teachers2": [
+        "Kittisaro"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.4,
+      "fileNumber": 8,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "This is the nature of enlightenment. It's he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Nibbāna"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Alternate audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "4:09",
+          "endTime": "4:46",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "5:41",
+          "endTime": "6:28",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Liberation",
+        "Nibbāna",
+        "Similes",
+        "Cessation",
+        "Ajahn Chah",
+        "Saṃsāra",
+        "Dispassion",
+        "Discernment",
+        "Relinquishment",
+        "Delusion",
+        "Unwholesome Roots",
+        "Happiness",
+        "Unconditioned"
+      ],
+      "qTagCount": 6,
+      "clips": [
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "1:36.2",
+          "3:21"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "4:09",
+          "4:46"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "5:41",
+          "6:28"
+        ]
+      ],
+      "duration": "3:08",
+      "mirror": "local",
+      "body": "<b>Quote:</b>  “This is the nature of enlightenment. It’s he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.” {attribution} {attribution2}",
+      "attribution": " — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.",
+      "attribution2": "Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "teachers2": [
+        "Kittisaro"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.5,
+      "fileNumber": 9,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "If the tears don't come, we don't really accept truth.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Suffering"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Alternate audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Suffering",
+        "Truth",
+        "Ajahn Chah",
+        "Compassion",
+        "Wat Pah Pong",
+        "Cessation of Suffering"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "8:50",
+          "11:00"
+        ]
+      ],
+      "duration": "2:10",
+      "mirror": "local",
+      "body": "<b>Quote:</b>  “If the tears don’t come, we don’t really accept truth.” {attribution} {attribution2}",
+      "attribution": " — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.",
+      "attribution2": "Read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
+      "teachers2": [
+        "Kittisaro"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 5,
+      "fileNumber": 10,
+      "kind": "Teaching",
+      "flags": "0o",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Thai only.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "9:09",
+          "endTime": "10:14",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "11:02",
+          "endTime": "11:50",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "12:44",
+          "endTime": "14:10",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "15:46",
+          "endTime": "16:45",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "18:00",
+          "endTime": "18:49",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "0:00",
+          "endTime": "1:36.2",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "3:21",
+          "endTime": "4:06",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "4:46",
+          "endTime": "5:39",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "6:28",
+          "endTime": "8:50",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Thai audio",
+        "Ajahn Chah"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "$",
+          "6:35",
+          "7:54"
+        ],
+        [
+          "$",
+          "9:09",
+          "10:14"
+        ],
+        [
+          "$",
+          "11:02",
+          "11:50"
+        ],
+        [
+          "$",
+          "12:44",
+          "14:10"
+        ],
+        [
+          "$",
+          "15:46",
+          "16:45"
+        ],
+        [
+          "$",
+          "18:00",
+          "18:49"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "0:00",
+          "1:36.2"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "3:21",
+          "4:06"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "4:46",
+          "5:39"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "6:28",
+          "8:50"
+        ]
+      ],
+      "duration": "12:02",
+      "mirror": "local",
+      "body": "<b>Teachings</b> to Marjorie by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>, Thai only.",
       "attribution": ""
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 6,
+      "fileNumber": 11,
+      "kind": "Recollection",
+      "flags": "3",
+      "text": "Context of \"Teachings to Marjorie.\"",
+      "teachers": [
+        "AA"
+      ],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Alternate audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Wat Pah Pong",
+        "Ajahn Chah"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "11:03",
+          "11:32"
+        ]
+      ],
+      "duration": "0:29",
+      "mirror": "local",
+      "body": "Context of “Teachings to Marjorie.”{attribution}",
+      "attribution": " <b>Recollection</b> by <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>."
     },
     {
       "event": "Chah2001",
@@ -205,7 +1057,7 @@
       "duration": "1:37",
       "mirror": "local",
       "body": "<b>Quote:</b>  “I met Ajahn Chah through the eyes and hearts of those who lived with him.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>."
     },
     {
       "event": "Chah2001",
@@ -239,8 +1091,8 @@
       ],
       "duration": "2:01",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “The language of wisdom is the language of the heart.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>."
+      "body": "<b>Quote:</b>  “The language of wisdom is the language of the heart.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>."
     },
     {
       "event": "Chah2001",
@@ -402,7 +1254,7 @@
       "duration": "1:08",
       "mirror": "local",
       "body": "<b>Quote:</b>  “I never lived with him, so I never got the chance to get disillusioned with him.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>."
     },
     {
       "event": "Chah2001",
@@ -440,7 +1292,7 @@
             "Dispassion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “We talk about things to develop and thigs to give up, but there’s really nothing to develop and nothing to give up.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “We talk about things to develop and thigs to give up, but there’s really nothing to develop and nothing to give up.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Reference",
@@ -539,7 +1391,7 @@
       "duration": "1:59",
       "mirror": "local",
       "body": "<b>Quote:</b>  “I feel incredibly indebted to Ajahn Chah.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>."
     },
     {
       "event": "Chah2001",
@@ -651,7 +1503,7 @@
       "duration": "2:16",
       "mirror": "local",
       "body": "<b>Quote:</b>  “He made sense out of monasticism.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
     },
     {
       "event": "Chah2001",
@@ -686,7 +1538,7 @@
       "duration": "1:14",
       "mirror": "local",
       "body": "<b>Quote:</b>  “I think with any Westerner, we’re so full of ourselves when we go [to Asia]. We want to get enlightened....” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
     },
     {
       "event": "Chah2001",
@@ -885,7 +1737,7 @@
             "Patience"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Your practice now is patience.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Your practice now is patience.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Story",
@@ -997,7 +1849,7 @@
             "Sequence of training"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you want to stay here, you have to be here for five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you want to stay here, you have to be here for five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -1070,7 +1922,7 @@
       "duration": "3:13",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Ajahn Chah was a wonderful teacher, but more important, he was a trainer. He trained people how to live.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "Chah2001",
@@ -1251,7 +2103,7 @@
       "duration": "0:43",
       "mirror": "local",
       "body": "<b>Quote:</b>  “He really didn’t give us a lot of room to feed or problems and our neuroses and our desires and our attachments....That was an extraordinary gift.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "Chah2001",
@@ -1366,7 +2218,7 @@
             "Naturalness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Nibbāna is complete normality.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Nibbāna is complete normality.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -1942,7 +2794,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Reflection",
@@ -2056,7 +2908,7 @@
       "duration": "1:04",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Living with Ajahn Chah wasn’t easy.” {attribution}",
-      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>"
+      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -2085,7 +2937,7 @@
             "Knowledge and vision"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “How do you call yourself a disciple of Ajahn Mun when you only spent seven days with him?” – “If a person with good eyes comes close to something, he sees it.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “How do you call yourself a disciple of Ajahn Mun when you only spent seven days with him?” – “If a person with good eyes comes close to something, he sees it.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -2105,7 +2957,7 @@
       "duration": "1:36",
       "mirror": "local",
       "body": "<b>Quote:</b>  “The years [Ajahn Chah] took up his ascetic practices were something of a golden age.” {attribution}",
-      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>"
+      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -2336,7 +3188,7 @@
       "duration": "0:53",
       "mirror": "local",
       "body": "<b>Quote:</b>  “I thought of him as the world’s most compassionate sadist.” {attribution}",
-      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>"
+      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -2371,7 +3223,7 @@
       "duration": "1:06",
       "mirror": "local",
       "body": "<b>Quote:</b>  “In an instant he could put you in a space where you just let go of everything, your anger, your worry, your anxiety–the things you thought you had to do a lot of work to get through and get rid of.” {attribution}",
-      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>"
+      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -2408,7 +3260,7 @@
       "duration": "1:40",
       "mirror": "local",
       "body": "<b>Quote:</b>  “He taught different people differently....He gave us what we needed.” {attribution}",
-      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>"
+      "attribution": " — <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -2875,7 +3727,7 @@
             "Teaching Dhamma"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Ajahn Chah had this most amazing disrespect for time.”  — <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>"
+          "body": "<b>Quote:</b>  “Ajahn Chah had this most amazing disrespect for time.”  — <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>."
         }
       ],
       "tags": [
@@ -3051,120 +3903,6 @@
     },
     {
       "event": "Chah2001",
-      "sessionNumber": 13,
-      "excerptNumber": 1,
-      "fileNumber": 1,
-      "kind": "Teaching",
-      "flags": "0",
-      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Part 2.",
-      "teachers": [
-        "AChah"
-      ],
-      "fTags": [],
-      "annotations": [
-        {
-          "kind": "Read by",
-          "flags": "0",
-          "text": "Thai audio with English translation read by {teachers}.",
-          "teachers": [
-            "Kittisaro"
-          ],
-          "indentLevel": 1,
-          "body": ""
-        },
-        {
-          "kind": "Other",
-          "flags": "",
-          "text": "Continued from [Part 1](excerpt:Chah2001_S02_F03).",
-          "teachers": [],
-          "tags": [],
-          "indentLevel": 1,
-          "body": "Continued from <a href=\"../events/Chah2001.html#Chah2001_S02_F03\">Part 1</a>."
-        },
-        {
-          "kind": "Reference",
-          "flags": "",
-          "text": "\"Living with the Cobra,\" Collected Teachings p. 233.",
-          "tags": [],
-          "indentLevel": 1,
-          "body": "<b>Reference</b>: “Living with the Cobra,” <em>Collected Teachings of <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a></em>, <a href=\"https://www.abhayagiri.org/media/books/Chah_The_Collected_Teachings_of_Ajahn_Chah.pdf#page=271\" target=\"_blank\">p. 233</a>."
-        },
-        {
-          "kind": "Quote",
-          "flags": "",
-          "text": "If the tears don't come, we don't really accept truth.",
-          "teachers": [
-            "AChah"
-          ],
-          "tags": [
-            "Suffering",
-            "Truth",
-            "Wat Pah Pong"
-          ],
-          "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If the tears don’t come, we don’t really accept truth.” "
-        },
-        {
-          "kind": "Note",
-          "flags": "-",
-          "text": "\"Living with the Cobra\" omits this quote and other more personal aspects of Ajahn Chah's teaching to Marjorie.",
-          "indentLevel": 2,
-          "body": "<b>Note</b>: “Living with the Cobra” omits this quote and other more personal aspects of Ajahn Chah’s teaching to Marjorie."
-        }
-      ],
-      "tags": [
-        "Thai audio",
-        "Ajahn Chah",
-        "Dispassion",
-        "Nibbāna",
-        "Unconditioned",
-        "Cessation of Suffering"
-      ],
-      "qTagCount": 2,
-      "clips": [
-        [
-          "$",
-          "0:00",
-          "11:00"
-        ]
-      ],
-      "duration": "11:00",
-      "mirror": "local",
-      "body": "<b>Teachings</b> to Marjorie by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>, Part 2. Thai audio with English translation read by <a href=\"../teachers/kittisaro.html\">Kittisaro</a>.",
-      "attribution": ""
-    },
-    {
-      "event": "Chah2001",
-      "sessionNumber": 13,
-      "excerptNumber": 2,
-      "fileNumber": 2,
-      "kind": "Recollection",
-      "flags": "3",
-      "text": "Context of \"Living with the Cobra.\"",
-      "teachers": [
-        "AA"
-      ],
-      "fTags": [],
-      "annotations": [],
-      "tags": [
-        "Wat Pah Pong",
-        "Ajahn Chah"
-      ],
-      "qTagCount": 2,
-      "clips": [
-        [
-          "$",
-          "11:03",
-          ""
-        ]
-      ],
-      "duration": "0:31",
-      "mirror": "local",
-      "body": "Context of “Living with the Cobra.”{attribution}",
-      "attribution": " <b>Recollection</b> by <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>."
-    },
-    {
-      "event": "Chah2001",
       "sessionNumber": 14,
       "excerptNumber": 1,
       "fileNumber": 1,
@@ -3324,7 +4062,7 @@
             "Appropriate attention"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you’ve been listening to this and you think this is good or you think this is bad, then you haven’t been listening properly.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you’ve been listening to this and you think this is good or you think this is bad, then you haven’t been listening properly.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -3694,8 +4432,8 @@
       ],
       "duration": "2:28",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “These Five Precepts are the basis for human existence. If people could only do this, never mind talking about enlightenment, we would have a world without much trouble.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “These Five Precepts are the basis for human existence. If people could only do this, never mind talking about enlightenment, we would have a world without much trouble.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -3728,8 +4466,8 @@
       ],
       "duration": "0:53",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Mindfulness is a jewel. Having mindfulness is like being near to the Buddha or being near to God.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “Mindfulness is a jewel. Having mindfulness is like being near to the Buddha or being near to God.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -3771,8 +4509,8 @@
       ],
       "duration": "1:09",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “We think that this is my family, this is my home village, this is my country, and others are [not]. That’s just a delusion.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “We think that this is my family, this is my home village, this is my country, and others are [not]. That’s just a delusion.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -3819,8 +4557,8 @@
         "Technology"
       ],
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Everybody worships knowledge. Not many people worship virtue.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> at Insight Meditation Center{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “Everybody worships knowledge. Not many people worship virtue.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> at Insight Meditation Center.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -3858,8 +4596,8 @@
       ],
       "duration": "0:41",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Everybody worships knowledge. Not many people worship virtue.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> at Insight Meditation Center{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “Everybody worships knowledge. Not many people worship virtue.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> at Insight Meditation Center.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -3890,8 +4628,8 @@
       ],
       "duration": "0:59",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Is the boulder heavy? ... Is a lemon sour?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “Is the boulder heavy? ... Is a lemon sour?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -3938,8 +4676,8 @@
       ],
       "duration": "2:59",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “If you see one monkey, you can understand the nature of monkeys.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “If you see one monkey, you can understand the nature of monkeys.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -4119,7 +4857,7 @@
             "Liberation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “It’s the suffering that awakens you.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “It’s the suffering that awakens you.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -4280,7 +5018,7 @@
       "duration": "1:31",
       "mirror": "local",
       "body": "<b>Quote:</b>  “When I saw Luang Por Chah when he had his stroke, I felt an almost unbearable sense of grief and loss. Then I remembered, ‘This is the way it is.’” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
     },
     {
       "event": "Chah2001",
@@ -4705,7 +5443,7 @@
             "Women in Buddhism"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Does anyone find having nuns around difficult?” – “Yes.” – “Well, you can go then.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Does anyone find having nuns around difficult?” – “Yes.” – “Well, you can go then.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Story",
@@ -4915,7 +5653,7 @@
             "Not-self"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “He didn’t respond to the external cues but went to the heart and grabbed you in that way.”  — <a href=\"../teachers/thanissara.html\">Ṭhānissarā</a>"
+          "body": "<b>Quote:</b>  “He didn’t respond to the external cues but went to the heart and grabbed you in that way.”  — <a href=\"../teachers/thanissara.html\">Ṭhānissarā</a>."
         }
       ],
       "tags": [
@@ -4997,7 +5735,7 @@
             "Personality"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The special thing about Luang Por Chah was that he was at ease and completely himself.”  — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+          "body": "<b>Quote:</b>  “The special thing about Luang Por Chah was that he was at ease and completely himself.”  — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
         },
         {
           "kind": "Response",
@@ -5832,8 +6570,8 @@
       ],
       "duration": "2:17",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “I hope you’re not afraid of suffering.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “I hope you’re not afraid of suffering.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -5883,7 +6621,7 @@
             "Continuity of mindfulness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Everything you do in your life in this monastery is a chance to awaken.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Everything you do in your life in this monastery is a chance to awaken.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -5954,8 +6692,8 @@
       ],
       "duration": "2:44",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “This is as cold as it gets.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “This is as cold as it gets.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -6194,7 +6932,7 @@
       "duration": "0:39",
       "mirror": "local",
       "body": "<b>Quote:</b>  “He just accepted life on its own terms from this place in the center.” {attribution}",
-      "attribution": " — <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>"
+      "attribution": " — <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -6228,8 +6966,8 @@
       ],
       "duration": "1:04",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “The Eightfold Path is here within us. Two eyes, two ears, two nostrils, a tongue, and a body.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “The Eightfold Path is here within us. Two eyes, two ears, two nostrils, a tongue, and a body.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -6287,8 +7025,8 @@
       ],
       "duration": "1:22",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Look at others 10% of the time and look at yourself 90%; that’s about the right measure.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “Look at others 10% of the time and look at yourself 90%; that’s about the right measure.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -6571,7 +7309,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “We human beings are constantly in combat, at war to escape the fact of being limited by so many circumstances that we can’t control...”” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “We human beings are constantly in combat, at war to escape the fact of being limited by so many circumstances that we can’t control...”” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Indirect quote",
@@ -6589,7 +7327,7 @@
             "Liberation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Doubts are natural.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Doubts are natural.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Indirect quote",
@@ -6604,7 +7342,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The desire mind is like children.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The desire mind is like children.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Story",
@@ -6723,8 +7461,8 @@
       ],
       "duration": "1:19",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “What is the Buddha?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “What is the Buddha?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -6794,8 +7532,8 @@
       ],
       "duration": "0:39",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “The mind, the heart, will become still in any surroundings, like a clear forest pool...” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “The mind, the heart, will become still in any surroundings, like a clear forest pool...” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -6926,7 +7664,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Wanting your parents to understand is suffering.” — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+          "body": "<b>Quote:</b>  “Wanting your parents to understand is suffering.” — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
         },
         {
           "kind": "Indirect quote",
@@ -6941,7 +7679,7 @@
             "Unwholesome Roots"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The Communists you really need to be concerned about, the ones who can really hurt you, are the ones who hide inside your own heart.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The Communists you really need to be concerned about, the ones who can really hurt you, are the ones who hide inside your own heart.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -7120,8 +7858,8 @@
       ],
       "duration": "1:24",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “You’ve been studying your whole lives, and what good has it done you?” — Ajahn Chah{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
+      "body": "<b>Quote:</b>  “You’ve been studying your whole lives, and what good has it done you?” — Ajahn Chah.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/paul-breiter.html\">Paul Breiter</a>."
     },
     {
       "event": "Chah2001",
@@ -7248,7 +7986,7 @@
             "Language"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Good morning, Mr. Dum.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Good morning, Mr. Dum.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Indirect quote",
@@ -7267,7 +8005,7 @@
             "Unwholesome Roots"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I’m going to disrobe. I want you to find me a nice girl.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “I’m going to disrobe. I want you to find me a nice girl.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -7637,7 +8375,7 @@
       "duration": "0:35",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Luang Por Chah always allowed margins for differences and for practice.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
     },
     {
       "event": "Chah2001",
@@ -7885,8 +8623,8 @@
       ],
       "duration": "1:23",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Don’t you say that so lightly–old age, sickness, and death.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “Don’t you say that so lightly–old age, sickness, and death.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -8065,8 +8803,8 @@
       ],
       "duration": "1:20",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “If I’ve developed any wisdom, it’s because I had such gigantic defilements.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>."
+      "body": "<b>Quote:</b>  “If I’ve developed any wisdom, it’s because I had such gigantic defilements.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>."
     },
     {
       "event": "Chah2001",
@@ -8169,7 +8907,7 @@
             "Proliferation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “There’s nothing more to it than that except what your mind adds to it.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “There’s nothing more to it than that except what your mind adds to it.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -8321,7 +9059,7 @@
             "Fierce/direct teaching"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Maybe she’s right.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Sumedho"
+          "body": "<b>Quote:</b>  “Maybe she’s right.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Sumedho."
         }
       ],
       "tags": [
@@ -8462,7 +9200,7 @@
             "Ajahn Chah"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The sawdust of water.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The sawdust of water.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -8544,7 +9282,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you cry a little bit, it’s good. If you cry a lot, you’re a fool.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you cry a little bit, it’s good. If you cry a lot, you’re a fool.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -8712,8 +9450,8 @@
       ],
       "duration": "2:03",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “You’re strong. Now you need to make your heart as strong as your body.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/joseph-kappel.html\">Joseph Kappel</a>."
+      "body": "<b>Quote:</b>  “You’re strong. Now you need to make your heart as strong as your body.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/joseph-kappel.html\">Joseph Kappel</a>."
     },
     {
       "event": "Chah2001",
@@ -9002,7 +9740,7 @@
             "Death"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Don’t doctors die also?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Don’t doctors die also?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -9021,7 +9759,7 @@
       "duration": "1:23",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Ajahn Chah was a terrible patient.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "Chah2001",
@@ -9108,7 +9846,7 @@
             "Views"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “People in the world are attached to status. People in the religion are attached to their views.” — Thai saying"
+          "body": "<b>Quote:</b>  “People in the world are attached to status. People in the religion are attached to their views.” — Thai saying."
         }
       ],
       "tags": [
@@ -9269,8 +10007,8 @@
       ],
       "duration": "3:05",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “You’re living of the karma of the Buddha.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
+      "body": "<b>Quote:</b>  “You’re living of the karma of the Buddha.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/jack-kornfield.html\">Jack Kornfield</a>."
     },
     {
       "event": "Chah2001",
@@ -9551,7 +10289,7 @@
       "duration": "0:41",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Luang Por Chah was always pointing us beyond the limitations of ourself.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
     },
     {
       "event": "Chah2001",
@@ -9684,7 +10422,7 @@
       "duration": "0:12",
       "mirror": "local",
       "body": "<b>Quote:</b>  “It looks like there’s a veritable blizzard of questions. That’s always encouraging.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "Metta2008",
@@ -9713,7 +10451,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Samatha-vipassanā is like a green mango and a ripe mango. Same mango.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Samatha-vipassanā is like a green mango and a ripe mango. Same mango.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -9812,7 +10550,7 @@
             "Recollection/Death"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I practice dying.” — The Dalai Lama"
+          "body": "<b>Quote:</b>  “I practice dying.” — The Dalai Lama."
         }
       ],
       "tags": [
@@ -10084,7 +10822,7 @@
       "duration": "0:21",
       "mirror": "local",
       "body": "<b>Quote:</b>  “I appreciate people’s questions. I enjoy the questions, and I never quite know what’s going to come out when people present a question. It’s interesting to me as well.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "Metta2008",
@@ -10866,7 +11604,7 @@
             "Clinging"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “We respond to teachings on liberation and Nibbāna with a curious sense of fear and trepidation.” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a> speaking about Ajahn Mun"
+          "body": "<b>Quote:</b>  “We respond to teachings on liberation and Nibbāna with a curious sense of fear and trepidation.” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a> speaking about Ajahn Mun."
         }
       ],
       "tags": [
@@ -11225,7 +11963,7 @@
             "Insight Meditation Society"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Buddhism hasn’t come to America yet.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Buddhism hasn’t come to America yet.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -11642,7 +12380,7 @@
             "Sequence of training"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Quote",
@@ -11952,7 +12690,7 @@
             "Posture/Sitting"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “That looks like a farang [Western] Buddha. It looks very tense.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “That looks like a farang [Western] Buddha. It looks very tense.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -13104,7 +13842,7 @@
             "Sequence of training"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Other",
@@ -13601,7 +14339,7 @@
             "Knowledge and vision"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “I dedicate my body and mind, my whole life, to the practice of the Lord Buddha’s teachings in their entirety. I will realize the truth in this lifetime … I will let go of everything and follow the teachings. No matter how much suffering and difficulty I have to endure I will persevere, otherwise there will be no end to my doubts. I will make this life as even and continuous as a single day and night. I will abandon attachments to mind and body and follow the Buddha’s teachings until I know their truth for myself.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Reference",
@@ -14237,8 +14975,8 @@
       ],
       "duration": "0:47",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “I sacrificed my life for the Dhamma because I had faith in the reality of enlightenment and the path to get there.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “I sacrificed my life for the Dhamma because I had faith in the reality of enlightenment and the path to get there.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2010",
@@ -14333,7 +15071,7 @@
             "Saṅgha"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The Buddha set up the foundation 2,500 years ago with just one baht.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The Buddha set up the foundation 2,500 years ago with just one baht.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -14463,7 +15201,7 @@
             "Culture/Thailand"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Nowadays there aren’t any tudong monks left. There’s only taludong (through the forest) monks.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Nowadays there aren’t any tudong monks left. There’s only taludong (through the forest) monks.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -14630,7 +15368,7 @@
             "Thai sects"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Mahānikāya needs good monks as well.” — <a href=\"../teachers/ajahn-mun.html\">Ajahn Mun</a> to Ajahn Chah"
+          "body": "<b>Quote:</b>  “Mahānikāya needs good monks as well.” — <a href=\"../teachers/ajahn-mun.html\">Ajahn Mun</a> to Ajahn Chah."
         }
       ],
       "tags": [
@@ -14793,7 +15531,7 @@
             "Blame and praise"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Where is the good person? He lies within us. If we’re good, then wherever we go, the goodness stays with us.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Where is the good person? He lies within us. If we’re good, then wherever we go, the goodness stays with us.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -15514,7 +16252,7 @@
             "Death"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Nibbāna lies on the shores of death.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Nibbāna lies on the shores of death.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -15585,7 +16323,7 @@
             "Patience"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Patient endurance is the general of practice.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Patient endurance is the general of practice.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -15920,7 +16658,7 @@
             "Culture/West"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “You mean to say there are no kind people in America?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Sumedho"
+          "body": "<b>Quote:</b>  “You mean to say there are no kind people in America?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Sumedho."
         }
       ],
       "tags": [
@@ -16145,8 +16883,8 @@
       ],
       "duration": "1:05",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, ‘Is there a cell phone signal?’” — anonymous{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “In the old days, tudong monks would show up at the monastery and ask about almsfood routes, toilets, and meetings. Now the first thing tudong monks ask is, ‘Is there a cell phone signal?’” — anonymous.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -16178,8 +16916,8 @@
       ],
       "duration": "2:08",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Instead of going tudong, monks go taludong (through the forest).” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “Instead of going tudong, monks go taludong (through the forest).” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -16236,7 +16974,7 @@
             "Disrobing"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “People who ordain quickly disrobe quickly.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “People who ordain quickly disrobe quickly.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Story",
@@ -16415,7 +17153,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “All you need to do is create a cage of mindfulness around [unskillful habits].” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “All you need to do is create a cage of mindfulness around [unskillful habits].” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Follow-up",
@@ -16702,7 +17440,7 @@
             "Right Effort"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.” — Ajahn Tongrat"
+          "body": "<b>Quote:</b>  “If the kilesa (defilements) come at you high, then you duck, and if they come at you low, then you jump over them.” — Ajahn Tongrat."
         }
       ],
       "tags": [
@@ -16756,7 +17494,7 @@
             "Sequence of training"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Pasanno"
+          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Pasanno."
         }
       ],
       "tags": [
@@ -17070,8 +17808,8 @@
       ],
       "duration": "1:03",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “You fall down, you get up, you crawl along. ” —  <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “You fall down, you get up, you crawl along. ” —  <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -17177,8 +17915,8 @@
       ],
       "duration": "2:31",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “You’re inspired, and you put forth effort. You’re depressed and fed up, and you put forth effort. You’re rested, and you put forth effort. You’re tired, and you put forth effort. ” —  <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “You’re inspired, and you put forth effort. You’re depressed and fed up, and you put forth effort. You’re rested, and you put forth effort. You’re tired, and you put forth effort. ” —  <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -17419,7 +18157,7 @@
       ],
       "mirror": "local",
       "body": "<b>Quote:</b>  “It all comes back to that simple quality of mindfulness. From the mindfulness, then the different qualities of practice that we need to rely on are cultivated.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "SRD2011",
@@ -18342,7 +19080,7 @@
             "Delusion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Sometimes you don’t want to look at intention too closely because you’ll convince yourself of anything.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “Sometimes you don’t want to look at intention too closely because you’ll convince yourself of anything.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -18514,7 +19252,7 @@
             "Teaching Dhamma"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I’ve been an abbot for thirty years, and I’m quite happy. One of the reasons I’m happy is I don’t feel I have to go and convince anybody of anything.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “I’ve been an abbot for thirty years, and I’m quite happy. One of the reasons I’m happy is I don’t feel I have to go and convince anybody of anything.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -19026,7 +19764,7 @@
             "Impermanence"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The basis of Right View is knowing that this cup is a broken glass.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The basis of Right View is knowing that this cup is a broken glass.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -19502,8 +20240,8 @@
       ],
       "duration": "0:38",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Different people will be comfortable at different degrees of contentment and ability to live simply.” — <a href=\"../teachers/p-a-payutto.html\">P. A. Payutto</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “Different people will be comfortable at different degrees of contentment and ability to live simply.” — <a href=\"../teachers/p-a-payutto.html\">P. A. Payutto</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2013-1",
@@ -19898,7 +20636,7 @@
       "duration": "0:31",
       "mirror": "local",
       "body": "<b>Quote:</b>  “The Buddha’s function was not to make grand pronouncements that apply universally, everywhere, all the time. He gave guidelines to relfect a variety of circumstances, personal effects, social effects, and then make a decision from there.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2013-1",
@@ -20399,7 +21137,7 @@
             "Right Livelihood"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Maybe it would be better phrased ‘Right-enough livelihood.’”  — <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>"
+          "body": "<b>Quote:</b>  “Maybe it would be better phrased ‘Right-enough livelihood.’”  — <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
         },
         {
           "kind": "Story",
@@ -21189,7 +21927,7 @@
             "Patience"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I don’t teach you guys much. Just be patient.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “I don’t teach you guys much. Just be patient.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -21776,7 +22514,7 @@
             "Right Effort"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Practice is really easy. If the defilements come at you high, you duck, and if they come at you low, you jump over them.” — Ajahn Tongrat"
+          "body": "<b>Quote:</b>  “Practice is really easy. If the defilements come at you high, you duck, and if they come at you low, you jump over them.” — Ajahn Tongrat."
         }
       ],
       "tags": [
@@ -26464,7 +27202,7 @@
             "Mindfulness of breathing"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “In daily life, in contact with the world, do you still breathe?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “In daily life, in contact with the world, do you still breathe?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Fragment",
@@ -29504,7 +30242,7 @@
             "Culture/West"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Those farangs, they really like teeth.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Those farangs, they really like teeth.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -29753,7 +30491,7 @@
             "Ardency"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you invite visitors into your home [the mind] and they just make a mess, then you want to close the door on them before they come in. You can’t be too polite.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you invite visitors into your home [the mind] and they just make a mess, then you want to close the door on them before they come in. You can’t be too polite.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -29875,7 +30613,7 @@
             "Gratitude"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If someone criticizes you, then you should raise your hands in añjāli and say ‘Sadhu!’ because you don’t have to hire them to do it for you!” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If someone criticizes you, then you should raise your hands in añjāli and say ‘Sadhu!’ because you don’t have to hire them to do it for you!” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -30233,7 +30971,7 @@
             "Recollection/Death"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “In the morning, a health friend. In the evening, a wisp of cremation smoke.” — unnamed Chan master."
+          "body": "<b>Quote:</b>  “In the morning, a health friend. In the evening, a wisp of cremation smoke.” — unnamed Chan master.."
         }
       ],
       "tags": [],
@@ -32132,7 +32870,7 @@
             "Delusion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The defilements have their wisdom also.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The defilements have their wisdom also.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -34489,7 +35227,7 @@
             "Self-identity view"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The characteristic of cessation is not just ending something and annihilating [it], but it’s being willing and able to stop. The nature of the mind is that it doesn’t like to stop. And it’s [through] that not stopping that we keep creating that sense of me.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “The characteristic of cessation is not just ending something and annihilating [it], but it’s being willing and able to stop. The nature of the mind is that it doesn’t like to stop. And it’s [through] that not stopping that we keep creating that sense of me.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -35090,7 +35828,7 @@
       "duration": "1:02",
       "mirror": "local",
       "body": "<b>Quote:</b>  “The take-away bit of the forest teachers or ethos is that we have everything within us....They are coming at it from all different angles, but the underlying thread is that theme of relying on and refining capabilities that we actually have. Sīla, samādhi, and pañña are not external to us.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "WR2014",
@@ -36024,7 +36762,7 @@
             "Faith"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Ajahn Dtun’s path is the path of wisdom...Ajahn Piak is gifted in samādhi. And I have very strong faith.” — <a href=\"../teachers/ajahn-anan.html\">Ajahn Anan</a>"
+          "body": "<b>Quote:</b>  “Ajahn Dtun’s path is the path of wisdom...Ajahn Piak is gifted in samādhi. And I have very strong faith.” — <a href=\"../teachers/ajahn-anan.html\">Ajahn Anan</a>."
         }
       ],
       "tags": [
@@ -38007,8 +38745,8 @@
       ],
       "duration": "0:31",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “In the future, the forest monks will be like village monks, and the village monks will be like lay people.” — Ajahn Tongrat{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “In the future, the forest monks will be like village monks, and the village monks will be like lay people.” — Ajahn Tongrat.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "WR2014",
@@ -38440,7 +39178,7 @@
             "Similes"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “Gold wrapped in a dirty rag.” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a> describing Ajahn Jia."
+          "body": "<b>Quote:</b>  “Gold wrapped in a dirty rag.” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a> describing Ajahn Jia.."
         },
         {
           "kind": "Recollection",
@@ -39916,7 +40654,7 @@
             "Relinquishment"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Do you give up?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Pasanno."
+          "body": "<b>Quote:</b>  “Do you give up?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Pasanno.."
         }
       ],
       "tags": [
@@ -40037,7 +40775,7 @@
             "Culture/Thailand"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Thank you. That was the most delicious meal I’ve had here.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to an anxious English donor."
+          "body": "<b>Quote:</b>  “Thank you. That was the most delicious meal I’ve had here.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to an anxious English donor.."
         }
       ],
       "tags": [
@@ -40466,7 +41204,7 @@
             "Right Concentration"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The qualities of the one pointed mind are vitakka, vicāra, pīti, sukha, and ekaggatā....It’s not one pointed excluding. It works together, it harmonizes, it’s balanced.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The qualities of the one pointed mind are vitakka, vicāra, pīti, sukha, and ekaggatā....It’s not one pointed excluding. It works together, it harmonizes, it’s balanced.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -40528,8 +41266,8 @@
       ],
       "duration": "1:04",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “The qualities of the one pointed mind are vitakka, vicāra, pīti, sukha, and ekaggatā....It’s not one pointed excluding. It works together, it harmonizes, it’s balanced.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “The qualities of the one pointed mind are vitakka, vicāra, pīti, sukha, and ekaggatā....It’s not one pointed excluding. It works together, it harmonizes, it’s balanced.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "WR2014",
@@ -40949,8 +41687,8 @@
       ],
       "duration": "1:03",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “The art of the pause.” — <a href=\"../teachers/ajahn-sucitto.html\">Ajahn Sucitto</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “The art of the pause.” — <a href=\"../teachers/ajahn-sucitto.html\">Ajahn Sucitto</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2014-1",
@@ -42019,7 +42757,7 @@
             "Realms of existence"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “We live in a fairly limited concept of the world; it’s very material in the West. There’s a lot more happening than what we can see.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “We live in a fairly limited concept of the world; it’s very material in the West. There’s a lot more happening than what we can see.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -43707,7 +44445,7 @@
             "Knowing itself"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “An inward-staying unentangled knowing, all outward-going knowing cast aside.” — <a href=\"../teachers/upasika-kee-nanayon.html\">Upasikā Kee Nanayon</a>"
+          "body": "<b>Quote:</b>  “An inward-staying unentangled knowing, all outward-going knowing cast aside.” — <a href=\"../teachers/upasika-kee-nanayon.html\">Upasikā Kee Nanayon</a>."
         }
       ],
       "tags": [
@@ -43809,8 +44547,8 @@
       ],
       "duration": "0:44",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “There’s only two things you have to do in practice: know and let go.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “There’s only two things you have to do in practice: know and let go.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2014-2",
@@ -44161,7 +44899,7 @@
             "Practicing in accordance with Dhamma"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Practicing for Nibbāna is just another kind of desire.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Practicing for Nibbāna is just another kind of desire.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -44436,7 +45174,7 @@
             "Equanimity"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Lots of lovingkindness is really tiring. I’m putting more attention on equanimity.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>"
+          "body": "<b>Quote:</b>  “Lots of lovingkindness is really tiring. I’m putting more attention on equanimity.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>."
         }
       ],
       "tags": [
@@ -46134,7 +46872,7 @@
             "Discernment"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Pay attention to the difference between the mind and the objects of mind.” — <a href=\"../teachers/ajahn-mun.html\">Ajahn Mun</a>"
+          "body": "<b>Quote:</b>  “Pay attention to the difference between the mind and the objects of mind.” — <a href=\"../teachers/ajahn-mun.html\">Ajahn Mun</a>."
         }
       ],
       "tags": [
@@ -46292,7 +47030,7 @@
             "Wat Pah Nanachat"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “What are the mind states of an enlightened being?” “Only compassion.” — Ajahn Mahā Boowa"
+          "body": "<b>Quote:</b>  “What are the mind states of an enlightened being?” “Only compassion.” — Ajahn Mahā Boowa."
         }
       ],
       "tags": [
@@ -46449,7 +47187,7 @@
             "Investigation of states"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The teaching of the Buddha isn’t about language....The teaching of the Buddha is the language of experience.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “The teaching of the Buddha isn’t about language....The teaching of the Buddha is the language of experience.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -47688,7 +48426,7 @@
             "Buddho mantra"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If the mind is already clear and alert and imbued with the quality of knowing, you don’t have to be saying ‘Buddho.’ You’re already doing it.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If the mind is already clear and alert and imbued with the quality of knowing, you don’t have to be saying ‘Buddho.’ You’re already doing it.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -47912,7 +48650,7 @@
             "Mae Chee"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Now I’m an orphan.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Now I’m an orphan.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -48926,7 +49664,7 @@
             "Middle Path"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The Dhamma is neither tall nor short, black nor white; it’s just right (<em>por dee</em>)” — Ajahn Kinaree"
+          "body": "<b>Quote:</b>  “The Dhamma is neither tall nor short, black nor white; it’s just right (<em>por dee</em>)” — Ajahn Kinaree."
         }
       ],
       "tags": [
@@ -49325,7 +50063,7 @@
             "Compassion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “What is the mind of an enlightened being like?” — “Only compassion” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>"
+          "body": "<b>Quote:</b>  “What is the mind of an enlightened being like?” — “Only compassion” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>."
         },
         {
           "kind": "Sutta",
@@ -49563,7 +50301,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “When you’re falling down from a tree, you don’t have to count the branches. You just have to know that when you hit the bottom, it’s going to hurt.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “When you’re falling down from a tree, you don’t have to count the branches. You just have to know that when you hit the bottom, it’s going to hurt.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -50075,8 +50813,8 @@
       ],
       "duration": "2:03",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “What’s it like being the abbot of a big monastery?” — “I come out of my kuti and I do the things that I need to do, and then I go back to my kuti. And if some people want to call that being an abbot, well that’s their business.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a> and <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
+      "body": "<b>Quote:</b>  “What’s it like being the abbot of a big monastery?” — “I come out of my kuti and I do the things that I need to do, and then I go back to my kuti. And if some people want to call that being an abbot, well that’s their business.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a> and <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
     },
     {
       "event": "TG2014",
@@ -50303,7 +51041,7 @@
             "Relinquishment"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Practice is very simple. There’s only two things to do: know and let go.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Practice is very simple. There’s only two things to do: know and let go.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -54672,8 +55410,8 @@
       ],
       "duration": "3:02",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Do you still have anger?” “Yes, but I don’t take it.” — <a href=\"../teachers/ajahn-dune.html\">Ajahn Dune</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/debbie-stamp.html\">Debbie Stamp</a>."
+      "body": "<b>Quote:</b>  “Do you still have anger?” “Yes, but I don’t take it.” — <a href=\"../teachers/ajahn-dune.html\">Ajahn Dune</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/debbie-stamp.html\">Debbie Stamp</a>."
     },
     {
       "event": "WR2015",
@@ -55238,7 +55976,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Directed thought [vitakka] is like lifting up the object in the mind. Evaluation is then looking at it from different angles.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Directed thought [vitakka] is like lifting up the object in the mind. Evaluation is then looking at it from different angles.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -55971,8 +56709,8 @@
       ],
       "duration": "1:25",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href=\"../teachers/ajahn-sucitto.html\">Ajahn Sucitto</a>{attribution}",
-      "attribution": ". Quoted by Beth Steff."
+      "body": "<b>Quote:</b>  “How do I get me some of that non-grasping stuff?” — <a href=\"../teachers/ajahn-sucitto.html\">Ajahn Sucitto</a>.{attribution}",
+      "attribution": " Quoted by Beth Steff."
     },
     {
       "event": "WR2015",
@@ -57673,7 +58411,7 @@
             "Directed thought and evaluation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Contemplation gets really good when you stop thinking.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Contemplation gets really good when you stop thinking.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -61117,7 +61855,7 @@
             "Culture/India"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “One mile in India does not equal a mile in America.”  — <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>"
+          "body": "<b>Quote:</b>  “One mile in India does not equal a mile in America.”  — <a href=\"../teachers/ajahn-karunadhammo.html\">Ajahn Karuṇadhammo</a>."
         },
         {
           "kind": "Reference",
@@ -61324,7 +62062,7 @@
       "duration": "0:21",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Tudong should be something you’re learning from.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2015-1",
@@ -61451,7 +62189,7 @@
             "Thai"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Nowadays it’s hard to tudong because you <em>taludong</em> (go through the forest).” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Nowadays it’s hard to tudong because you <em>taludong</em> (go through the forest).” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -63012,7 +63750,7 @@
       "duration": "1:12",
       "mirror": "local",
       "body": "<b>Quote:</b>  “One of the things I often attend to is the juxtaposition of stillness and movement. It’s not that one is right and the other wrong. We can be still and really dull or the mind can move with clarity and acuity. But stillness and movement, what’s generating it, what’s pushing it? That bhavadiṭṭhi/vibhavadiṭṭhi is the engine behind it and the force behing the arising of a sense of self, a sense of me.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2015-2",
@@ -63570,7 +64308,7 @@
             "Idealism"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Don’t think you’re a ten-wheeled dump truck when all you are is a wheelbarrow.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Don’t think you’re a ten-wheeled dump truck when all you are is a wheelbarrow.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Commentary",
@@ -65201,7 +65939,7 @@
             "Relinquishment"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Only farangs [Westerners] go into meditation rock climbing! Does he contemplate the Four Noble Truths?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Only farangs [Westerners] go into meditation rock climbing! Does he contemplate the Four Noble Truths?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -65362,7 +66100,7 @@
             "Happiness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “You can actually give yourself permission to enjoy the meditation.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “You can actually give yourself permission to enjoy the meditation.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -65761,7 +66499,7 @@
       "duration": "0:25",
       "mirror": "local",
       "body": "<b>Quote:</b>  “There are a lot of confusing views and opinions about jhāna and meditation. It’s helpful to ask, ‘What’s the Buddha actually say? How does he put it?’ I have a lot more faith in him than in a lot of what’s out there.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2015-4",
@@ -66243,7 +66981,7 @@
             "Animal"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “You can sit on your cushion for a long time. Chickens sit for a long time, and they don’t get enlightened!” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “You can sit on your cushion for a long time. Chickens sit for a long time, and they don’t get enlightened!” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -66671,7 +67409,7 @@
             "Health"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Learn how to slow down and chew your food well.” — The Supreme Patriarch’s advice to new monks"
+          "body": "<b>Quote:</b>  “Learn how to slow down and chew your food well.” — The Supreme Patriarch’s advice to new monks."
         }
       ],
       "tags": [
@@ -67289,7 +68027,7 @@
             "Dependent origination"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “All you really need to know is that it’s going to hurt when you hit the bottom.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “All you really need to know is that it’s going to hurt when you hit the bottom.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -67344,7 +68082,7 @@
             "Determination"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If you want to stay here, you have to stay at least five years.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -69108,7 +69846,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “It’s just like teaching buffaloes.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “It’s just like teaching buffaloes.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Fragment",
@@ -69132,7 +69870,7 @@
             "Direct experience"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Dhamma is not about the words, about the concepts, about the ideas. It’s about the experience.” — Ajahn Chah"
+          "body": "<b>Quote:</b>  “Dhamma is not about the words, about the concepts, about the ideas. It’s about the experience.” — Ajahn Chah."
         }
       ],
       "tags": [
@@ -69198,8 +69936,8 @@
       ],
       "duration": "1:45",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “Dhamma is not about the words, about the concepts, about the ideas. It’s about the experience.” — Ajahn Chah{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “Dhamma is not about the words, about the concepts, about the ideas. It’s about the experience.” — Ajahn Chah.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "TG2015",
@@ -69801,7 +70539,7 @@
             "Unconditioned"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Outside of cause, beyond effect; outside of suffering, beyond happiness.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Outside of cause, beyond effect; outside of suffering, beyond happiness.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -70802,7 +71540,7 @@
             "Humor"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “That farang Buddha is really like a farang. He’s really tense and stressed.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “That farang Buddha is really like a farang. He’s really tense and stressed.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -70864,8 +71602,8 @@
       ],
       "duration": "2:56",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “That farang Buddha is really like a farang. He’s really tense and stressed.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “That farang Buddha is really like a farang. He’s really tense and stressed.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "TG2015",
@@ -72311,7 +73049,7 @@
             "Culture/Thailand"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “That’s really suffering. Tell them not to do that.” — Ajahn Paññānanda"
+          "body": "<b>Quote:</b>  “That’s really suffering. Tell them not to do that.” — Ajahn Paññānanda."
         },
         {
           "kind": "Reference",
@@ -72788,7 +73526,7 @@
             "Sickness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “That thing you learn in meditation—that you don’t lose.” — Ajahn Fuang"
+          "body": "<b>Quote:</b>  “That thing you learn in meditation—that you don’t lose.” — Ajahn Fuang."
         },
         {
           "kind": "Story",
@@ -72933,7 +73671,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “As a human being, I have the opportunity to learn from the past and move on to skillful action in the future. I don’t have to be like a dog that barfs stuff up and goes back and eats it again.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “As a human being, I have the opportunity to learn from the past and move on to skillful action in the future. I don’t have to be like a dog that barfs stuff up and goes back and eats it again.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         },
         {
           "kind": "Quote",
@@ -72949,7 +73687,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The not-self refrain, ‘This is not me, this is not mine, this is not what or who I am,’ is not an abdication of responsibility but an understanding, ‘This is the way I can put things down and move on, move past the things that are still creating suffering.’”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b>  “The not-self refrain, ‘This is not me, this is not mine, this is not what or who I am,’ is not an abdication of responsibility but an understanding, ‘This is the way I can put things down and move on, move past the things that are still creating suffering.’”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         },
         {
           "kind": "Sutta",
@@ -74170,7 +74908,7 @@
             "Culture/Natural environment"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “I’ve got nobody to blame anymore.” — A junior monk"
+          "body": "<b>Quote:</b>  “I’ve got nobody to blame anymore.” — A junior monk."
         }
       ],
       "tags": [
@@ -74779,7 +75517,7 @@
             "Mindfulness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “It’s like this.” — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>"
+          "body": "<b>Quote:</b>  “It’s like this.” — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>."
         }
       ],
       "tags": [
@@ -75597,7 +76335,7 @@
             "Liberation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “The Vinaya and the precepts are for holding on, and the Dhamma is for letting go. When you learn how to balance those two, then you will be free from dukkha.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Sumedho"
+          "body": "<b>Quote:</b>  “The Vinaya and the precepts are for holding on, and the Dhamma is for letting go. When you learn how to balance those two, then you will be free from dukkha.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Ajahn Sumedho."
         }
       ],
       "tags": [
@@ -76977,7 +77715,7 @@
             "Culture/Thailand"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “I don’t have any money, but I’m not poor.” — Por Am, a Wat Pah Pong lay supporter"
+          "body": "<b>Quote:</b>  “I don’t have any money, but I’m not poor.” — Por Am, a Wat Pah Pong lay supporter."
         },
         {
           "kind": "Recollection",
@@ -79869,7 +80607,7 @@
             "Directed thought and evaluation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Just that much.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Just that much.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -80184,7 +80922,7 @@
             "Delusion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Don’t believe your mind. It’s a liar and a cheat.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Don’t believe your mind. It’s a liar and a cheat.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -80203,7 +80941,7 @@
       "duration": "0:58",
       "mirror": "local",
       "body": "<b>Quote:</b>  “That person is making me suffer....If they would just smarten up and do what I like, then I would be happy. My life would be smooth and peaceful again, just like it always was before.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2017-3",
@@ -80338,7 +81076,7 @@
             "Sensual desire"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “There’s no known defense against cheesecake.” — <a href=\"../teachers/ajahn-sucitto.html\">Ajahn Sucitto</a>"
+          "body": "<b>Quote:</b>  “There’s no known defense against cheesecake.” — <a href=\"../teachers/ajahn-sucitto.html\">Ajahn Sucitto</a>."
         }
       ],
       "tags": [
@@ -80942,7 +81680,7 @@
             "Conflict"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Human beings. Those are beings with issues.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Human beings. Those are beings with issues.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -82393,7 +83131,7 @@
             "Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “As you’re falling out of a tree, you’re not counting the branches as you go down. All you know is that when you hit the bottom, it’s going to hurt.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “As you’re falling out of a tree, you’re not counting the branches as you go down. All you know is that when you hit the bottom, it’s going to hurt.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -82843,8 +83581,8 @@
       ],
       "duration": "3:37",
       "mirror": "local",
-      "body": "<b>Quote:</b> During the construction of a new hall, an engineer asks when it will be finished. “Tonight. Comes the evening, it’s finished. Tomorrow morning, I might do it again.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b> During the construction of a new hall, an engineer asks when it will be finished. “Tonight. Comes the evening, it’s finished. Tomorrow morning, I might do it again.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "WR2018-2",
@@ -83853,7 +84591,7 @@
             "Fierce/direct teaching"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “You don’t have to visit me! You know what to do already! It’s all right here (pointing at his heart).” — <a href=\"../teachers/ajahn-baen.html\">Ajahn Baen</a> to Ajahn Pasanno"
+          "body": "<b>Quote:</b>  “You don’t have to visit me! You know what to do already! It’s all right here (pointing at his heart).” — <a href=\"../teachers/ajahn-baen.html\">Ajahn Baen</a> to Ajahn Pasanno."
         }
       ],
       "tags": [
@@ -84931,7 +85669,7 @@
             "Admonishment/feedback"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Don’t admonish somebody before the meal.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Don’t admonish somebody before the meal.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -86477,8 +87215,8 @@
       ],
       "duration": "1:34",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “One of the main characteristics of Luang Por Chah was his loving kindness and compassion.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “One of the main characteristics of Luang Por Chah was his loving kindness and compassion.” — <a href=\"../teachers/ajahn-liem.html\">Ajahn Liem</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2018-1",
@@ -86685,7 +87423,7 @@
             "Culture/Thailand"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “You don’t have to worry about that, Dad. Thai Buddhism isn’t organized.” — Ajahn Siripañño"
+          "body": "<b>Quote:</b>  “You don’t have to worry about that, Dad. Thai Buddhism isn’t organized.” — Ajahn Siripañño."
         }
       ],
       "tags": [
@@ -86861,7 +87599,7 @@
             "Direct experience"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “Dhamma is the language of experience.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Dhamma is the language of experience.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -87294,7 +88032,7 @@
       "duration": "1:22",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Ajahn Chah tried to make practice into everything we were doing, whether we were monastics or laypeople.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2018-1",
@@ -87598,7 +88336,7 @@
             "Dhamma"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “It’s not possible to defeat the Dhamma, you know, and that’s why you fainted.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Por Am"
+          "body": "<b>Quote:</b>  “It’s not possible to defeat the Dhamma, you know, and that’s why you fainted.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a> to Por Am."
         }
       ],
       "tags": [
@@ -90548,7 +91286,7 @@
             "Perception"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “That whereby one is a conceiver of the world, a perceiver of the world, that is the world.” — <a href=\"https://sutta.readingfaithfully.org/?q=SN-35.116\" target=\"_blank\">SN 35.116</a>"
+          "body": "<b>Quote:</b>  “That whereby one is a conceiver of the world, a perceiver of the world, that is the world.” — <a href=\"https://sutta.readingfaithfully.org/?q=SN-35.116.\" target=\"_blank\">SN 35.116.</a>"
         }
       ],
       "tags": [
@@ -91211,8 +91949,8 @@
       ],
       "duration": "1:46",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “The kindest thing you can do for your parents is to not create them.” — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “The kindest thing you can do for your parents is to not create them.” — <a href=\"../teachers/ajahn-sumedho.html\">Ajahn Sumedho</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2019-4",
@@ -91247,7 +91985,7 @@
       "duration": "1:41",
       "mirror": "local",
       "body": "<b>Quote:</b>  “Learning how to be comfortable with dukkha...is a willingness to open the heart to the whole realm of experience. That’s an act of love.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2019-4",
@@ -91328,7 +92066,7 @@
             "Liberation"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Monks, do not be afraid of puñña.” — <a href=\"https://sutta.readingfaithfully.org/?q=Iti-22\" target=\"_blank\">Iti 22</a>"
+          "body": "<b>Quote:</b>  “Monks, do not be afraid of puñña.” — <a href=\"https://sutta.readingfaithfully.org/?q=Iti-22.\" target=\"_blank\">Iti 22.</a>"
         },
         {
           "kind": "Indirect quote",
@@ -91679,7 +92417,7 @@
             "Knowing itself"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Namo viññaṇa dhatu (Homage to the element of consciousness).” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Namo viññaṇa dhatu (Homage to the element of consciousness).” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -91727,7 +92465,7 @@
             "Impermanence"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Whatever is of the nature to arise is of the nature to cease.” — <a href=\"https://sutta.readingfaithfully.org/?q=SN-56.11:\" target=\"_blank\">SN 56.11:</a> Dhammacakkappavattana Sutta"
+          "body": "<b>Quote:</b>  “Whatever is of the nature to arise is of the nature to cease.” — <a href=\"https://sutta.readingfaithfully.org/?q=SN-56.11:\" target=\"_blank\">SN 56.11:</a> Dhammacakkappavattana Sutta."
         }
       ],
       "tags": [
@@ -92132,8 +92870,8 @@
       ],
       "duration": "1:24",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “If you want to succeed in your practice, you have to think a lot.... You have to think all the time about Dhamma.” — <a href=\"../teachers/ajahn-baen.html\">Ajahn Baen</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-naniko.html\">Ajahn Ñāṇiko</a>."
+      "body": "<b>Quote:</b>  “If you want to succeed in your practice, you have to think a lot.... You have to think all the time about Dhamma.” — <a href=\"../teachers/ajahn-baen.html\">Ajahn Baen</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-naniko.html\">Ajahn Ñāṇiko</a>."
     },
     {
       "event": "UD2019-5",
@@ -92346,8 +93084,8 @@
       ],
       "duration": "1:39",
       "mirror": "local",
-      "body": "<b>Quote:</b>  “We have to get out of the habit of being theives.” — <a href=\"../teachers/ajahn-buddhadasa.html\">Ajahn Buddhadāsa</a>{attribution}",
-      "attribution": ". Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "<b>Quote:</b>  “We have to get out of the habit of being theives.” — <a href=\"../teachers/ajahn-buddhadasa.html\">Ajahn Buddhadāsa</a>.{attribution}",
+      "attribution": " Quoted by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "UD2019-5",
@@ -94092,7 +94830,7 @@
             "Sense restraint"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b> When asked about his attainments as a monk, “I’m just really happy about all the things I didn’t do.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+          "body": "<b>Quote:</b> When asked about his attainments as a monk, “I’m just really happy about all the things I didn’t do.”  — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
         }
       ],
       "tags": [
@@ -94713,7 +95451,7 @@
             "Similes"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “You should appreciate all that Ajahn Sumedho has done. He’s been the tank that has prepared the way for all the rest of you.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “You should appreciate all that Ajahn Sumedho has done. He’s been the tank that has prepared the way for all the rest of you.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         },
         {
           "kind": "Comment",
@@ -94833,7 +95571,7 @@
             "Teaching Dhamma"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “If buffaloes can learn, surely these farangs [foreigners] can learn.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “If buffaloes can learn, surely these farangs [foreigners] can learn.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -95080,7 +95818,7 @@
             "Suchness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Everything is teaching us. Everything is a manifestation of Dhamma and truth.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Everything is teaching us. Everything is a manifestation of Dhamma and truth.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -95880,7 +96618,7 @@
             "Direct experience"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “It’s not a concept. It’s like are you on your bike or are you on the ground?”  — <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>"
+          "body": "<b>Quote:</b>  “It’s not a concept. It’s like are you on your bike or are you on the ground?”  — <a href=\"../teachers/ajahn-amaro.html\">Ajahn Amaro</a>."
         }
       ],
       "tags": [
@@ -97374,7 +98112,7 @@
             "Compassion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “What is the mind of an Arahant like?” – “Only compassion” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>"
+          "body": "<b>Quote:</b>  “What is the mind of an Arahant like?” – “Only compassion” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>."
         }
       ],
       "tags": [
@@ -97456,7 +98194,7 @@
             "Relinquishment"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Dhamma practice is not difficult. There are only two things you need to do: know and let go.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Dhamma practice is not difficult. There are only two things you need to do: know and let go.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -97929,7 +98667,7 @@
             "Self-identity view"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “A spark of merit is worth more than a mountain of effort.” — Tibetan saying"
+          "body": "<b>Quote:</b>  “A spark of merit is worth more than a mountain of effort.” — Tibetan saying."
         }
       ],
       "tags": [
@@ -98049,7 +98787,7 @@
             "Suchness"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “<em>Kae nun lae</em> (Thai) – It’s just this much.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “<em>Kae nun lae</em> (Thai) – It’s just this much.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -99042,7 +99780,7 @@
             "Compassion"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “What is the mind of an Arahant like?” – “Only compassion” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>"
+          "body": "<b>Quote:</b>  “What is the mind of an Arahant like?” – “Only compassion” — <a href=\"../teachers/ajahn-maha-boowa.html\">Ajahn Mahā Boowa</a>."
         }
       ],
       "tags": [
@@ -99532,7 +100270,7 @@
             "Impermanence"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Right view is knowing that this is a broken glass.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>"
+          "body": "<b>Quote:</b>  “Right view is knowing that this is a broken glass.” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>."
         }
       ],
       "tags": [
@@ -99728,7 +100466,7 @@
       "duration": "2:07",
       "mirror": "local",
       "body": "<b>Quote:</b>  “To me it’s much more faith that surrenders, that relinquishes, that’s willing to let go.” {attribution}",
-      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>"
+      "attribution": " — <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "Rishikesh2023",
@@ -99796,7 +100534,7 @@
             "Truth"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Did you come here to die?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>’s greeting to newcomers."
+          "body": "<b>Quote:</b>  “Did you come here to die?” — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>’s greeting to newcomers.."
         },
         {
           "kind": "Fragment",
@@ -100007,7 +100745,7 @@
             "Simplicity"
           ],
           "indentLevel": 2,
-          "body": "<b>Quote:</b>  “What renunciation gives is inexhaustible strength of simplicity.” — Martin Heidegger"
+          "body": "<b>Quote:</b>  “What renunciation gives is inexhaustible strength of simplicity.” — Martin Heidegger."
         }
       ],
       "tags": [
@@ -100117,7 +100855,7 @@
             "Cessation of Suffering"
           ],
           "indentLevel": 1,
-          "body": "<b>Quote:</b>  “Nibbāna is the reality of non-grasping.” — Ajahn Chah"
+          "body": "<b>Quote:</b>  “Nibbāna is the reality of non-grasping.” — Ajahn Chah."
         }
       ],
       "tags": [
@@ -100366,7 +101104,7 @@
       "website": "https://www.abhayagiri.org/20/#ajahn-chah-weekend",
       "description": "On April 28-29, 2001, over 200 people gathered in Portola Valley to honor the life and teachings of Ajahn Chah. Senior monastic disciples, former monks and nuns, and people who briefly encountered Ajahn Chah recollect their experiences of this great teacher.",
       "sessions": 35,
-      "excerpts": 214
+      "excerpts": 215
     },
     "Metta2008": {
       "title": "Metta Retreat",
@@ -101519,21 +102257,6 @@
         "Ajahn Chah"
       ],
       "rawDuration": "1106.207286"
-    },
-    {
-      "event": "Chah2001",
-      "sessionNumber": 13,
-      "date": "28/4/2001",
-      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-      "duration": "11:34",
-      "teachers": [
-        "AChah"
-      ],
-      "sessionTitle": "Teachings to Marjorie, Part 2",
-      "tags": [
-        "Ajahn Chah"
-      ],
-      "rawDuration": "694.3608163"
     },
     {
       "event": "Chah2001",
@@ -104977,6 +105700,13 @@
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2002%20-%20Welcome%20and%20Reflection%20by%20Ajahn%20Chah.mp3",
       "mirror": "remote"
     },
+    "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3": {
+      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+      "duration": "",
+      "event": "Chah2001",
+      "url": "",
+      "mirror": "local"
+    },
     "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3": {
       "filename": "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3",
       "duration": "17:57",
@@ -105045,13 +105775,6 @@
       "duration": "18:26",
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2012%20-%20Questions%20&%20Answers%201.mp3",
-      "mirror": "remote"
-    },
-    "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3": {
-      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-      "duration": "11:34",
-      "event": "Chah2001",
-      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2013%20-%20Teachings%20to%20Marjorie%20-%20Ajahn%20Chah.mp3",
       "mirror": "remote"
     },
     "Ajahn Chah Weekend - 14 - Ajahn Chah's Teachings by Thanissara.mp3": {
@@ -107218,7 +107941,7 @@
       "usageNotes": "A quote from the teacher him/herself.",
       "form": [
         "unimplemented",
-        "++Quote:++ $!prefix!$ “$!text!$” $!suffix!$|| — $!teachers!$",
+        "++Quote:++ $!prefix!$ “$!text!$” $!suffix!$|| — $!teachers!$.",
         "unimplemented"
       ],
       "body": [
@@ -107228,7 +107951,7 @@
       ],
       "attribution": [
         "",
-        " — $!teachers!$",
+        " — $!teachers!$.",
         ""
       ]
     },
@@ -107248,17 +107971,17 @@
       "usageNotes": "The teacher quoting someone else. If the person quoted is a teacher, they should get the first tag.",
       "form": [
         "unimplemented",
-        "++Quote:++ $!prefix!$ “$!text!$”$!' — ' if suffix else ''!$$!suffix!$||$!'.' if suffix else ''!$ Quoted by $!teachers!$.",
+        "++Quote:++ $!prefix!$ “$!text!$”$!' — ' if suffix else ''!$$!suffix!$$!'.' if suffix else ''!$|| Quoted by $!teachers!$.",
         "unimplemented"
       ],
       "body": [
         "unimplemented",
-        "<b>Quote:</b> $!prefix!$ “$!text!$”$!' — ' if suffix else ''!$$!suffix!${attribution}",
+        "<b>Quote:</b> $!prefix!$ “$!text!$”$!' — ' if suffix else ''!$$!suffix!$$!'.' if suffix else ''!${attribution}",
         "unimplemented"
       ],
       "attribution": [
         "",
-        "$!'.' if suffix else ''!$ Quoted by $!teachers!$.",
+        " Quoted by $!teachers!$.",
         ""
       ]
     },
@@ -107785,7 +108508,7 @@
       "appendToExcerpt": false,
       "inheritTeachersFrom": "",
       "exclude": false,
-      "usageNotes": "A fragment annotation indicates that the next annotation and its sub-annotations should be duplicated in a separate except following the main excerpt. The Fragment annotation itself is rendered as an audio player to play that excerpt.",
+      "usageNotes": "A fragment annotation indicates that the next annotation and its sub-annotations should be duplicated in a separate except following the main excerpt. The Fragment annotation itself is rendered as an audio player to play that excerpt unless text == 'noPlayer'.",
       "form": [
         "unimplemented",
         "unimplemented",
@@ -108073,8 +108796,8 @@
       "allowTag": true,
       "group": "Monastics",
       "lineage": "Root teachers",
-      "sessionCount": 2,
-      "excerptCount": 145,
+      "sessionCount": 1,
+      "excerptCount": 146,
       "htmlFile": "ajahn-chah.html"
     },
     "ALee": {
@@ -110085,7 +110808,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "postures.html",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "listIndex": 410
     },
     "Clear comprehension": {
@@ -110115,7 +110838,7 @@
       "partOfSubtopics": [
         "Right Mindfulness"
       ],
-      "excerptCount": 61,
+      "excerptCount": 62,
       "listIndex": 50
     },
     "Unattractiveness": {
@@ -110474,7 +111197,7 @@
         "Mindfulness"
       ],
       "subtopics": [],
-      "excerptCount": 100,
+      "excerptCount": 101,
       "fTagCount": 4,
       "listIndex": 51
     },
@@ -110638,7 +111361,7 @@
         "Happiness"
       ],
       "subtopics": [],
-      "excerptCount": 135,
+      "excerptCount": 136,
       "fTagCount": 4,
       "listIndex": 57
     },
@@ -110796,7 +111519,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "birth.html",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "listIndex": 64
     },
     "Ageing": {
@@ -110872,7 +111595,7 @@
       "subtopics": [],
       "eventCount": 1,
       "sessionCount": 2,
-      "excerptCount": 115,
+      "excerptCount": 116,
       "fTagCount": 3,
       "listIndex": 67
     },
@@ -110900,7 +111623,7 @@
       ],
       "subtopics": [],
       "excerptCount": 188,
-      "fTagCount": 2,
+      "fTagCount": 3,
       "listIndex": 268
     },
     "Pain": {
@@ -111069,8 +111792,8 @@
         "Dispassion"
       ],
       "subtopics": [],
-      "excerptCount": 21,
-      "fTagCount": 1,
+      "excerptCount": 22,
+      "fTagCount": 2,
       "listIndex": 145
     },
     "Cessation": {
@@ -111096,8 +111819,8 @@
       "partOfSubtopics": [
         "Dispassion"
       ],
-      "excerptCount": 30,
-      "fTagCount": 1,
+      "excerptCount": 31,
+      "fTagCount": 2,
       "listIndex": 146
     },
     "Relinquishment": {
@@ -111126,7 +111849,7 @@
         "Relinquishment"
       ],
       "subtopics": [],
-      "excerptCount": 158,
+      "excerptCount": 159,
       "fTagCount": 2,
       "listIndex": 147
     },
@@ -111182,7 +111905,7 @@
         "Liberation"
       ],
       "subtopics": [],
-      "excerptCount": 90,
+      "excerptCount": 91,
       "fTagCount": 1,
       "listIndex": 149
     },
@@ -111424,7 +112147,7 @@
         "Discernment"
       ],
       "subtopics": [],
-      "excerptCount": 134,
+      "excerptCount": 135,
       "fTagCount": 2,
       "listIndex": 102
     },
@@ -111561,7 +112284,7 @@
         "Compassion"
       ],
       "subtopics": [],
-      "excerptCount": 106,
+      "excerptCount": 107,
       "fTagCount": 4,
       "listIndex": 113
     },
@@ -112378,8 +113101,8 @@
         "Nibbāna"
       ],
       "subtopics": [],
-      "excerptCount": 34,
-      "fTagCount": 2,
+      "excerptCount": 35,
+      "fTagCount": 3,
       "listIndex": 660
     },
     "Heedfulness": {
@@ -112399,7 +113122,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "heedfulness.html",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "listIndex": 164
     },
     "Spiritual search": {
@@ -112718,7 +113441,7 @@
         "Unwholesome Roots"
       ],
       "subtopics": [],
-      "excerptCount": 56,
+      "excerptCount": 57,
       "fTagCount": 3,
       "listIndex": 179
     },
@@ -112801,7 +113524,7 @@
         "Delusion"
       ],
       "subtopics": [],
-      "excerptCount": 51,
+      "excerptCount": 52,
       "fTagCount": 2,
       "listIndex": 182
     },
@@ -113150,7 +113873,7 @@
         "Self-identity view"
       ],
       "subtopics": [],
-      "excerptCount": 139,
+      "excerptCount": 140,
       "fTagCount": 3,
       "listIndex": 200
     },
@@ -114087,8 +114810,8 @@
         "Impermanence"
       ],
       "subtopics": [],
-      "excerptCount": 84,
-      "fTagCount": 2,
+      "excerptCount": 85,
+      "fTagCount": 3,
       "listIndex": 267
     },
     "Not-self": {
@@ -114330,7 +115053,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "moods-of-the-mind.html",
-      "excerptCount": 4,
+      "excerptCount": 5,
       "listIndex": 280
     },
     "Emotion": {
@@ -116185,8 +116908,8 @@
         "Continuity of mindfulness"
       ],
       "subtopics": [],
-      "excerptCount": 45,
-      "fTagCount": 3,
+      "excerptCount": 46,
+      "fTagCount": 4,
       "listIndex": 421
     },
     "Present moment awareness": {
@@ -116253,7 +116976,7 @@
         "Direct experience"
       ],
       "subtopics": [],
-      "excerptCount": 36,
+      "excerptCount": 37,
       "fTagCount": 1,
       "listIndex": 424
     },
@@ -116559,7 +117282,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "similes.html",
-      "excerptCount": 87,
+      "excerptCount": 88,
       "listIndex": 462
     },
     "Symbolism": {
@@ -116819,8 +117542,8 @@
       ],
       "subtopics": [],
       "eventCount": 3,
-      "sessionCount": 38,
-      "excerptCount": 577,
+      "sessionCount": 37,
+      "excerptCount": 578,
       "fTagCount": 7,
       "listIndex": 473
     },
@@ -120464,7 +121187,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "samsara.html",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "listIndex": 643
     },
     "Realms of existence": {
@@ -120891,7 +121614,7 @@
       "partOfSubtopics": [
         "Nibbāna"
       ],
-      "excerptCount": 17,
+      "excerptCount": 18,
       "fTagCount": 1,
       "listIndex": 663
     },
@@ -125718,9 +126441,9 @@
       "flags": "",
       "name": "Non-cruelty",
       "pali": "avihiṃsā",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "subsumed": true,
-      "text": "Non-cruelty [avihiṃsā] see Compassion (106)",
+      "text": "Non-cruelty [avihiṃsā] see Compassion (107)",
       "tag": "Compassion"
     },
     {
@@ -126052,9 +126775,9 @@
       "flags": "",
       "name": "Four Postures",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Four Postures (10)",
+      "text": "Four Postures (11)",
       "tag": "Postures"
     },
     {
@@ -126063,9 +126786,9 @@
       "flags": "",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -126208,9 +126931,9 @@
       "flags": "0*",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -126219,9 +126942,9 @@
       "flags": "0*",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -126287,9 +127010,9 @@
       "flags": "*",
       "name": "Happiness",
       "pali": "sukha",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": false,
-      "text": "Happiness (135) [sukha]",
+      "text": "Happiness (136) [sukha]",
       "tag": "Happiness"
     },
     {
@@ -126368,9 +127091,9 @@
       "flags": "*",
       "name": "Birth",
       "pali": "jāti",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "subsumed": false,
-      "text": "Birth (12) [jāti]",
+      "text": "Birth (13) [jāti]",
       "tag": "Birth"
     },
     {
@@ -126401,9 +127124,9 @@
       "flags": "*",
       "name": "Death",
       "pali": "maraṇa",
-      "excerptCount": 115,
+      "excerptCount": 116,
       "subsumed": false,
-      "text": "Death (115) [maraṇa]",
+      "text": "Death (116) [maraṇa]",
       "tag": "Death"
     },
     {
@@ -126515,9 +127238,9 @@
       "flags": "",
       "name": "Dispassion",
       "pali": "virāga",
-      "excerptCount": 21,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Dispassion (21) [virāga]",
+      "text": "Dispassion (22) [virāga]",
       "tag": "Dispassion"
     },
     {
@@ -126526,9 +127249,9 @@
       "flags": "",
       "name": "Cessation",
       "pali": "nirodha",
-      "excerptCount": 30,
+      "excerptCount": 31,
       "subsumed": false,
-      "text": "Cessation (30) [nirodha]",
+      "text": "Cessation (31) [nirodha]",
       "tag": "Cessation"
     },
     {
@@ -126537,9 +127260,9 @@
       "flags": "",
       "name": "Relinquishment",
       "pali": "paṭinissagga",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "subsumed": false,
-      "text": "Relinquishment (158) [paṭinissagga]",
+      "text": "Relinquishment (159) [paṭinissagga]",
       "tag": "Relinquishment"
     },
     {
@@ -126559,9 +127282,9 @@
       "flags": "",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 90,
+      "excerptCount": 91,
       "subsumed": false,
-      "text": "Liberation (90) [vimutti]",
+      "text": "Liberation (91) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -126729,9 +127452,9 @@
       "flags": "",
       "name": "Investigation",
       "pali": "vīmaṃsā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": true,
-      "text": "Investigation [vīmaṃsā] see Discernment (134)",
+      "text": "Investigation [vīmaṃsā] see Discernment (135)",
       "tag": "Discernment"
     },
     {
@@ -126775,9 +127498,9 @@
       "flags": "",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -126797,9 +127520,9 @@
       "flags": "*",
       "name": "Discernment",
       "pali": "paññā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": false,
-      "text": "Discernment (134) [paññā]",
+      "text": "Discernment (135) [paññā]",
       "tag": "Discernment"
     },
     {
@@ -126821,9 +127544,9 @@
       "flags": "",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -126922,9 +127645,9 @@
       "flags": "*",
       "name": "Compassion",
       "pali": "karuṇā",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "subsumed": false,
-      "text": "Compassion (106) [karuṇā]",
+      "text": "Compassion (107) [karuṇā]",
       "tag": "Compassion"
     },
     {
@@ -127093,9 +127816,9 @@
       "flags": "",
       "name": "Discernment",
       "pali": "paññā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": false,
-      "text": "Discernment (134) [paññā]",
+      "text": "Discernment (135) [paññā]",
       "tag": "Discernment"
     },
     {
@@ -127150,9 +127873,9 @@
       "flags": "",
       "name": "Discernment",
       "pali": "paññā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": false,
-      "text": "Discernment (134) [paññā]",
+      "text": "Discernment (135) [paññā]",
       "tag": "Discernment"
     },
     {
@@ -127232,7 +127955,7 @@
       "text": "Progress of insight (18)",
       "tag": "Progress of insight",
       "subtagCount": 9,
-      "subtagExcerptCount": 373
+      "subtagExcerptCount": 374
     },
     {
       "level": 3,
@@ -127284,9 +128007,9 @@
       "flags": "*",
       "name": "Dispassion",
       "pali": "virāga",
-      "excerptCount": 21,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Dispassion (21) [virāga]",
+      "text": "Dispassion (22) [virāga]",
       "tag": "Dispassion"
     },
     {
@@ -127295,9 +128018,9 @@
       "flags": "*",
       "name": "Cessation",
       "pali": "nirodha",
-      "excerptCount": 30,
+      "excerptCount": 31,
       "subsumed": false,
-      "text": "Cessation (30) [nirodha]",
+      "text": "Cessation (31) [nirodha]",
       "tag": "Cessation"
     },
     {
@@ -127306,9 +128029,9 @@
       "flags": "*",
       "name": "Relinquishment",
       "pali": "paṭinissagga",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "subsumed": false,
-      "text": "Relinquishment (158) [paṭinissagga]",
+      "text": "Relinquishment (159) [paṭinissagga]",
       "tag": "Relinquishment"
     },
     {
@@ -127328,9 +128051,9 @@
       "flags": "*",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 90,
+      "excerptCount": 91,
       "subsumed": false,
-      "text": "Liberation (90) [vimutti]",
+      "text": "Liberation (91) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -127344,7 +128067,7 @@
       "text": "Stages of awakening (31)",
       "tag": "Stages of awakening",
       "subtagCount": 13,
-      "subtagExcerptCount": 195
+      "subtagExcerptCount": 196
     },
     {
       "level": 3,
@@ -127490,9 +128213,9 @@
       "flags": "0C",
       "name": "Nibbāna",
       "pali": "Nibbāna",
-      "excerptCount": 34,
+      "excerptCount": 35,
       "subsumed": false,
-      "text": "Nibbāna (34)",
+      "text": "Nibbāna (35)",
       "tag": "Nibbāna"
     },
     {
@@ -127501,9 +128224,9 @@
       "flags": "",
       "name": "Heedfulness",
       "pali": "appamāda",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "subsumed": false,
-      "text": "Heedfulness (11) [appamāda]",
+      "text": "Heedfulness (12) [appamāda]",
       "tag": "Heedfulness"
     },
     {
@@ -127670,9 +128393,9 @@
       "flags": "",
       "name": "Three Unwholesome Roots",
       "pali": "ti-akusala-mūlā",
-      "excerptCount": 56,
+      "excerptCount": 57,
       "subsumed": false,
-      "text": "Three Unwholesome Roots (56) [ti-akusala-mūlā]",
+      "text": "Three Unwholesome Roots (57) [ti-akusala-mūlā]",
       "tag": "Unwholesome Roots",
       "subtagCount": 3,
       "subtagExcerptCount": 177
@@ -127705,9 +128428,9 @@
       "flags": "*",
       "name": "Delusion",
       "pali": "moha",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "subsumed": false,
-      "text": "Delusion (51) [moha]",
+      "text": "Delusion (52) [moha]",
       "tag": "Delusion"
     },
     {
@@ -127751,9 +128474,9 @@
       "flags": "h",
       "name": "Bias from delustion",
       "pali": "mohāgati",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "subsumed": true,
-      "text": "Bias from delustion [mohāgati] see Delusion (51)",
+      "text": "Bias from delustion [mohāgati] see Delusion (52)",
       "tag": "Delusion"
     },
     {
@@ -127911,9 +128634,9 @@
       "flags": "*",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 139,
+      "excerptCount": 140,
       "subsumed": false,
-      "text": "Self-identity view (139) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (140) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -128032,9 +128755,9 @@
       "flags": "",
       "name": "Defilement",
       "pali": "kilesa",
-      "excerptCount": 56,
+      "excerptCount": 57,
       "subsumed": true,
-      "text": "Defilement [kilesa] see Unwholesome Roots (56)",
+      "text": "Defilement [kilesa] see Unwholesome Roots (57)",
       "tag": "Unwholesome Roots"
     },
     {
@@ -128103,9 +128826,9 @@
       "flags": "",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 139,
+      "excerptCount": 140,
       "subsumed": false,
-      "text": "Self-identity view (139) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (140) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -128488,9 +129211,9 @@
       "flags": "",
       "name": "Pleasant feeling",
       "pali": "sukhā vedanā",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": true,
-      "text": "Pleasant feeling [sukhā vedanā] see Happiness (135)",
+      "text": "Pleasant feeling [sukhā vedanā] see Happiness (136)",
       "tag": "Happiness"
     },
     {
@@ -128635,9 +129358,9 @@
       "flags": "",
       "name": "Birth",
       "pali": "jāti",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "subsumed": false,
-      "text": "Birth (12) [jāti]",
+      "text": "Birth (13) [jāti]",
       "tag": "Birth"
     },
     {
@@ -128670,9 +129393,9 @@
       "flags": "*",
       "name": "Impermanence",
       "pali": "anicca",
-      "excerptCount": 84,
+      "excerptCount": 85,
       "subsumed": false,
-      "text": "Impermanence (84) [anicca]",
+      "text": "Impermanence (85) [anicca]",
       "tag": "Impermanence"
     },
     {
@@ -128815,9 +129538,9 @@
       "flags": "*",
       "name": "Moods of the mind",
       "pali": "Arom kong git <em>Thai</em>",
-      "excerptCount": 4,
+      "excerptCount": 5,
       "subsumed": false,
-      "text": "Moods of the mind (4) [Arom kong git <em>Thai</em>]",
+      "text": "Moods of the mind (5) [Arom kong git <em>Thai</em>]",
       "tag": "Moods of the mind"
     },
     {
@@ -129574,7 +130297,7 @@
       "text": "Meditation (74) [bhāvanā]",
       "tag": "Meditation",
       "subtagCount": 68,
-      "subtagExcerptCount": 1119
+      "subtagExcerptCount": 1120
     },
     {
       "level": 2,
@@ -129641,9 +130364,9 @@
       "flags": "",
       "name": "Four Postures",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Four Postures (10)",
+      "text": "Four Postures (11)",
       "tag": "Postures"
     },
     {
@@ -129652,9 +130375,9 @@
       "flags": "",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -129740,9 +130463,9 @@
       "flags": "0",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -129751,9 +130474,9 @@
       "flags": "0",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -129819,9 +130542,9 @@
       "flags": "",
       "name": "Happiness",
       "pali": "sukha",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": false,
-      "text": "Happiness (135) [sukha]",
+      "text": "Happiness (136) [sukha]",
       "tag": "Happiness"
     },
     {
@@ -129968,9 +130691,9 @@
       "flags": "",
       "name": "Compassion",
       "pali": "karuṇā",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "subsumed": false,
-      "text": "Compassion (106) [karuṇā]",
+      "text": "Compassion (107) [karuṇā]",
       "tag": "Compassion"
     },
     {
@@ -130293,9 +131016,9 @@
       "flags": "*",
       "name": "Four Postures",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Four Postures (10)",
+      "text": "Four Postures (11)",
       "tag": "Postures",
       "subtagCount": 6,
       "subtagExcerptCount": 72
@@ -130388,7 +131111,7 @@
       "text": "Meditation/Results (4)",
       "tag": "Meditation/Results",
       "subtagCount": 7,
-      "subtagExcerptCount": 185
+      "subtagExcerptCount": 186
     },
     {
       "level": 3,
@@ -130418,9 +131141,9 @@
       "flags": "",
       "name": "Continuity of mindfulness",
       "pali": "",
-      "excerptCount": 45,
+      "excerptCount": 46,
       "subsumed": false,
-      "text": "Continuity of mindfulness (45)",
+      "text": "Continuity of mindfulness (46)",
       "tag": "Continuity of mindfulness"
     },
     {
@@ -130451,9 +131174,9 @@
       "flags": "",
       "name": "Direct experience",
       "pali": "",
-      "excerptCount": 36,
+      "excerptCount": 37,
       "subsumed": false,
-      "text": "Direct experience (36)",
+      "text": "Direct experience (37)",
       "tag": "Direct experience"
     },
     {
@@ -130602,9 +131325,9 @@
       "flags": "",
       "name": "Birth",
       "pali": "jāti",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "subsumed": false,
-      "text": "Birth (12) [jāti]",
+      "text": "Birth (13) [jāti]",
       "tag": "Birth"
     },
     {
@@ -130635,9 +131358,9 @@
       "flags": "",
       "name": "Death",
       "pali": "maraṇa",
-      "excerptCount": 115,
+      "excerptCount": 116,
       "subsumed": false,
-      "text": "Death (115) [maraṇa]",
+      "text": "Death (116) [maraṇa]",
       "tag": "Death"
     },
     {
@@ -130738,9 +131461,9 @@
       "flags": "",
       "name": "Dispassion",
       "pali": "virāga",
-      "excerptCount": 21,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Dispassion (21) [virāga]",
+      "text": "Dispassion (22) [virāga]",
       "tag": "Dispassion"
     },
     {
@@ -130749,9 +131472,9 @@
       "flags": "",
       "name": "Cessation",
       "pali": "nirodha",
-      "excerptCount": 30,
+      "excerptCount": 31,
       "subsumed": false,
-      "text": "Cessation (30) [nirodha]",
+      "text": "Cessation (31) [nirodha]",
       "tag": "Cessation"
     },
     {
@@ -130760,9 +131483,9 @@
       "flags": "",
       "name": "Relinquishment",
       "pali": "paṭinissagga",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "subsumed": false,
-      "text": "Relinquishment (158) [paṭinissagga]",
+      "text": "Relinquishment (159) [paṭinissagga]",
       "tag": "Relinquishment"
     },
     {
@@ -130782,9 +131505,9 @@
       "flags": "",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 90,
+      "excerptCount": 91,
       "subsumed": false,
-      "text": "Liberation (90) [vimutti]",
+      "text": "Liberation (91) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -130881,9 +131604,9 @@
       "flags": "",
       "name": "Similes",
       "pali": "opammā",
-      "excerptCount": 87,
+      "excerptCount": 88,
       "subsumed": false,
-      "text": "Similes (87) [opammā]",
+      "text": "Similes (88) [opammā]",
       "tag": "Similes"
     },
     {
@@ -130954,7 +131677,7 @@
       "text": "Teachers (24)",
       "tag": "Teachers",
       "subtagCount": 127,
-      "subtagExcerptCount": 1015
+      "subtagExcerptCount": 1016
     },
     {
       "level": 2,
@@ -130967,7 +131690,7 @@
       "text": "Monastic teachers (2)",
       "tag": "Monastic teachers",
       "subtagCount": 107,
-      "subtagExcerptCount": 982
+      "subtagExcerptCount": 983
     },
     {
       "level": 3,
@@ -130980,7 +131703,7 @@
       "text": "Thai Forest Tradition (80)",
       "tag": "Thai Forest Tradition",
       "subtagCount": 83,
-      "subtagExcerptCount": 966
+      "subtagExcerptCount": 967
     },
     {
       "level": 4,
@@ -131010,9 +131733,9 @@
       "flags": "",
       "name": "Ajahn Chah Subhaddo",
       "pali": "",
-      "excerptCount": 577,
+      "excerptCount": 578,
       "subsumed": false,
-      "text": "Ajahn Chah Subhaddo (577)",
+      "text": "Ajahn Chah Subhaddo (578)",
       "tag": "Ajahn Chah"
     },
     {
@@ -132414,7 +133137,7 @@
       "text": "Monasteries (10)",
       "tag": "Monasteries",
       "subtagCount": 41,
-      "subtagExcerptCount": 326
+      "subtagExcerptCount": 325
     },
     {
       "level": 2,
@@ -132427,7 +133150,7 @@
       "text": "Ajahn Chah monasteries (2)",
       "tag": "Ajahn Chah monasteries",
       "subtagCount": 22,
-      "subtagExcerptCount": 303
+      "subtagExcerptCount": 302
     },
     {
       "level": 3,
@@ -132440,7 +133163,7 @@
       "text": "Thai Ajahn Chah monasteries (23)",
       "tag": "Thai Ajahn Chah monasteries",
       "subtagCount": 11,
-      "subtagExcerptCount": 187
+      "subtagExcerptCount": 186
     },
     {
       "level": 4,
@@ -132926,9 +133649,9 @@
       "flags": "",
       "name": "Saṃsāra",
       "pali": "Saṃsāra",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Saṃsāra (14)",
+      "text": "Saṃsāra (15)",
       "tag": "Saṃsāra"
     },
     {
@@ -133057,7 +133780,7 @@
       "text": "Nature of mind (38)",
       "tag": "Nature of mind",
       "subtagCount": 4,
-      "subtagExcerptCount": 77
+      "subtagExcerptCount": 78
     },
     {
       "level": 3,
@@ -133076,9 +133799,9 @@
       "flags": "",
       "name": "Moods of the mind",
       "pali": "Arom kong git <em>Thai</em>",
-      "excerptCount": 4,
+      "excerptCount": 5,
       "subsumed": false,
-      "text": "Moods of the mind (4) [Arom kong git <em>Thai</em>]",
+      "text": "Moods of the mind (5) [Arom kong git <em>Thai</em>]",
       "tag": "Moods of the mind"
     },
     {
@@ -133120,12 +133843,12 @@
       "flags": "*C",
       "name": "Nibbāna",
       "pali": "Nibbāna",
-      "excerptCount": 34,
+      "excerptCount": 35,
       "subsumed": false,
-      "text": "Nibbāna (34)",
+      "text": "Nibbāna (35)",
       "tag": "Nibbāna",
       "subtagCount": 3,
-      "subtagExcerptCount": 53
+      "subtagExcerptCount": 54
     },
     {
       "level": 3,
@@ -133155,9 +133878,9 @@
       "flags": "",
       "name": "The Unconditioned/Ultimate Truth",
       "pali": "asaṅkhata",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": false,
-      "text": "The Unconditioned/Ultimate Truth (17) [asaṅkhata]",
+      "text": "The Unconditioned/Ultimate Truth (18) [asaṅkhata]",
       "tag": "Unconditioned"
     },
     {
@@ -134902,9 +135625,9 @@
       "flags": "",
       "name": "Pleasure",
       "pali": "sukha",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": true,
-      "text": "Pleasure [sukha] see Happiness (135)",
+      "text": "Pleasure [sukha] see Happiness (136)",
       "tag": "Happiness"
     },
     {
@@ -137845,8 +138568,8 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/impermanence.html",
-      "excerptCount": 84,
-      "fTagCount": 2
+      "excerptCount": 85,
+      "fTagCount": 3
     },
     "Suffering": {
       "tag": "Suffering",
@@ -137858,7 +138581,7 @@
       "subtags": {},
       "htmlPath": "tags/suffering.html",
       "excerptCount": 188,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Fear": {
       "tag": "Fear",
@@ -137907,7 +138630,7 @@
         "Recollection/Death": "+"
       },
       "htmlPath": "clusters/death.html",
-      "excerptCount": 129,
+      "excerptCount": 130,
       "fTagCount": 5
     },
     "Grief": {
@@ -138219,7 +138942,7 @@
         "Clear comprehension": "+"
       },
       "htmlPath": "clusters/right-mindfulness.html",
-      "excerptCount": 148,
+      "excerptCount": 149,
       "fTagCount": 5
     },
     "Right Concentration": {
@@ -138326,8 +139049,8 @@
         "Present moment awareness": "+"
       },
       "htmlPath": "clusters/continuity-of-mindfulness.html",
-      "excerptCount": 76,
-      "fTagCount": 3
+      "excerptCount": 77,
+      "fTagCount": 4
     },
     "Direct experience": {
       "tag": "Direct experience",
@@ -138338,7 +139061,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/direct-experience.html",
-      "excerptCount": 36,
+      "excerptCount": 37,
       "fTagCount": 1
     },
     "Knowing itself": {
@@ -138402,7 +139125,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/mindfulness.html",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "fTagCount": 4
     },
     "Concentration": {
@@ -138429,7 +139152,7 @@
         "Investigation of states": "+"
       },
       "htmlPath": "clusters/discernment.html",
-      "excerptCount": 186,
+      "excerptCount": 187,
       "fTagCount": 5
     },
     "Desire": {
@@ -138465,7 +139188,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/happiness.html",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "fTagCount": 4
     },
     "Gratitude": {
@@ -138489,7 +139212,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/compassion.html",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "fTagCount": 4
     },
     "Equanimity": {
@@ -138515,7 +139238,7 @@
         "Unskillful qualities": "+"
       },
       "htmlPath": "clusters/unwholesome-roots.html",
-      "excerptCount": 87,
+      "excerptCount": 88,
       "fTagCount": 3
     },
     "Hindrances": {
@@ -138603,7 +139326,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/delusion.html",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "fTagCount": 2
     },
     "Proliferation": {
@@ -138639,7 +139362,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/self-identity-view.html",
-      "excerptCount": 139,
+      "excerptCount": 140,
       "fTagCount": 3
     },
     "Conceit": {
@@ -138890,8 +139613,8 @@
         "Cessation": "+"
       },
       "htmlPath": "clusters/dispassion.html",
-      "excerptCount": 54,
-      "fTagCount": 2
+      "excerptCount": 55,
+      "fTagCount": 3
     },
     "Relinquishment": {
       "tag": "Relinquishment",
@@ -138902,7 +139625,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/relinquishment.html",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "fTagCount": 2
     },
     "Liberation": {
@@ -138916,7 +139639,7 @@
         "Release": "+"
       },
       "htmlPath": "clusters/liberation.html",
-      "excerptCount": 105,
+      "excerptCount": 106,
       "fTagCount": 1
     },
     "Stages of awakening": {
@@ -138950,8 +139673,8 @@
         "Recollection/Peace": "-"
       },
       "htmlPath": "clusters/nibbana.html",
-      "excerptCount": 54,
-      "fTagCount": 3
+      "excerptCount": 55,
+      "fTagCount": 4
     },
     "Teaching Dhamma": {
       "tag": "Teaching Dhamma",
@@ -139020,7 +139743,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/ajahn-chah.html",
-      "excerptCount": 577,
+      "excerptCount": 578,
       "fTagCount": 7
     },
     "Ajahn Sumedho": {
@@ -140114,7 +140837,7 @@
         "Grief"
       ],
       "excerptCount": 464,
-      "fTagCount": 17
+      "fTagCount": 19
     },
     "refuges": {
       "code": "refuges",
@@ -140180,7 +140903,7 @@
         "Right Mindfulness",
         "Right Concentration"
       ],
-      "excerptCount": 536,
+      "excerptCount": 537,
       "fTagCount": 31
     },
     "meditation": {
@@ -140201,8 +140924,8 @@
         "Knowing itself",
         "Long-term practice"
       ],
-      "excerptCount": 510,
-      "fTagCount": 24
+      "excerptCount": 511,
+      "fTagCount": 25
     },
     "skillful": {
       "code": "skillful",
@@ -140223,7 +140946,7 @@
         "Compassion",
         "Equanimity"
       ],
-      "excerptCount": 700,
+      "excerptCount": 701,
       "fTagCount": 34
     },
     "unskillful": {
@@ -140246,7 +140969,7 @@
         "Self-identity view",
         "Conceit"
       ],
-      "excerptCount": 612,
+      "excerptCount": 613,
       "fTagCount": 31
     },
     "perspectives": {
@@ -140301,8 +141024,8 @@
         "Stages of awakening",
         "Nibbāna"
       ],
-      "excerptCount": 350,
-      "fTagCount": 10
+      "excerptCount": 351,
+      "fTagCount": 12
     },
     "teachers": {
       "code": "teachers",
@@ -140319,7 +141042,7 @@
         "Ajahn Sumedho",
         "Ajahn Pasanno"
       ],
-      "excerptCount": 888,
+      "excerptCount": 889,
       "fTagCount": 29
     },
     "context": {

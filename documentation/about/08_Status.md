@@ -9,7 +9,7 @@
 - Audio splicing allows joining non-contiguous audio clips and removing silence. 
 
 ## Content
-This release contains 2327 excerpts from 46 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains 2337 excerpts from 46 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Tags are applied based on the transcriptions rather than the recordings themselves. Selected questions are annotated for the [2014](../../pages/events/TG2014.html), [2015](../../pages/events/TG2015.html), and [2016](../../pages/events/TG2016.html) retreats. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](../../pages/about/09_Want-to-help.html) for details.

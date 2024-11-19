@@ -135,6 +135,9 @@ class ClipTD(Clip):
                 raise TimeError("The clip end time and the file duration cannot both be blank.")
             else:
                 return fileDuration - self.start
+    
+    def __eq__(self,other:Clip):
+        return self.file == other.file and self.start == other.start and self.end == other.end
 
 def TimeToCueStr(time):
     "Convert a timedelta object to the form MM:SS:hh, where hh is in hundreths of seconds"
@@ -348,7 +351,7 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
                 joinOps[outputFile] = clips
             else:
                 existingFilename = splitOps.get(clips[0],"")
-                if not existingFilename or existingFilename.startsWith(tempFilePrefix):
+                if not existingFilename or existingFilename.startswith(tempFilePrefix):
                         # If we haven't split clip before or it splits to a temporary file,
                     splitOps[clips[0]] = outputFile
                         # register a new splitOp or redirect an existing splitOp away from the temporary file.
@@ -388,7 +391,7 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
                 joined += AudioSegment.from_mp3(file)
             joined.export(outputFile,format="mp3",id3v2_version="4",bitrate=pydubBitrate)
             return
-        except OSError as error:
+        except (OSError,ModuleNotFoundError) as error:
             print(error.args[0]," occured when attempting to join ",fileList," with pydub. Will join using Mp3DirectCut.")
 
     if len(fileList) == 1:

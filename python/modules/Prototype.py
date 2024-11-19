@@ -997,7 +997,7 @@ class Formatter:
         
         tagStrings = []
         for n,tag in enumerate(annotation.get("tags",())):
-            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags) # - set(excerpt["fTags"]) - set(excerpt.get("fragmentFTags",()))
+            omitTags = tagsAlreadyPrinted.union(self.excerptOmitTags) - set(excerpt.get("fragmentFTags",())) # - set(excerpt["fTags"]) 
             
             text = tag
             if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):

@@ -81,7 +81,7 @@
       "fileNumber": 3,
       "kind": "Teaching",
       "flags": "0",
-      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Part 1.",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:).",
       "teachers": [
         "AChah"
       ],
@@ -90,7 +90,72 @@
         {
           "kind": "Read by",
           "flags": "0",
-          "text": "Thai audio with English translation read by {teachers}.",
+          "text": "Thai audio with English translation. Read by {teachers}.",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "0:00",
+          "endTime": "11:00",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Reference",
+          "flags": "",
+          "text": "\"Living with the Cobra,\" Collected Teachings p. 233.",
+          "tags": [],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Thai audio",
+        "Ajahn Chah",
+        "Similes",
+        "Moods of the mind",
+        "Heedfulness",
+        "Continuity of mindfulness",
+        "Cessation of Suffering",
+        "Dispassion",
+        "Nibbāna",
+        "Unconditioned"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "$",
+          "6:35",
+          "19:47"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "0:00",
+          "11:00"
+        ]
+      ],
+      "duration": "24:12"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4,
+      "fileNumber": 4,
+      "kind": "Teaching",
+      "flags": "0om",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), English only.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
           "teachers": [
             "Kittisaro"
           ],
@@ -104,32 +169,730 @@
           "indentLevel": 1
         },
         {
-          "kind": "Other",
+          "kind": "Fragment",
           "flags": "",
-          "text": "Continued in [Part 2](excerpt:Chah2001_S13_F01).",
-          "teachers": [],
-          "tags": [],
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Teaching",
+          "flags": "",
+          "text": "Maintain mindfulness throughout the day and night.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Continuity of mindfulness"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "There's just suffering arising and passing away.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Suffering",
+            "Impermanence"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "You'll want to make an end of things.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Dispassion",
+            "Cessation"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "This is the nature of enlightenment. It's he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Liberation",
+            "Nibbāna",
+            "Similes",
+            "Cessation",
+            "Saṃsāra"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "[](player:Chah2001_S02_F09)",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Quote",
+          "flags": "",
+          "text": "If the tears don't come, we don't really accept truth.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Suffering",
+            "Truth"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Note",
+          "flags": "-",
+          "text": "\"Living with the Cobra\" omits this quote and other more personal aspects of Ajahn Chah's teaching to Marjorie.",
+          "indentLevel": 2
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "10:16",
+          "endTime": "11:02",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "11:54",
+          "endTime": "12:44",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "14:13",
+          "endTime": "15:46",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "16:48",
+          "endTime": "18:01.5",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "18:52",
+          "endTime": "19:49",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "1:36.2",
+          "endTime": "3:21",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "4:09",
+          "endTime": "4:46",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "5:41",
+          "endTime": "6:28",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "8:50",
+          "endTime": "11:00",
+          "text": "",
           "indentLevel": 1
         }
       ],
       "tags": [
-        "Thai audio",
         "Ajahn Chah",
         "Similes",
         "Moods of the mind",
         "Heedfulness",
         "Continuity of mindfulness",
-        "Cessation of Suffering"
+        "Cessation of Suffering",
+        "Dispassion",
+        "Nibbāna",
+        "Unconditioned"
+      ],
+      "qTagCount": 1,
+      "clips": [
+        [
+          "$",
+          "7:57",
+          "9:09"
+        ],
+        [
+          "$",
+          "10:16",
+          "11:02"
+        ],
+        [
+          "$",
+          "11:54",
+          "12:44"
+        ],
+        [
+          "$",
+          "14:13",
+          "15:46"
+        ],
+        [
+          "$",
+          "16:48",
+          "18:01.5"
+        ],
+        [
+          "$",
+          "18:52",
+          "19:49"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "1:36.2",
+          "3:21"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "4:09",
+          "4:46"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "5:41",
+          "6:28"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "8:50",
+          "11:00"
+        ]
+      ],
+      "duration": "11:50",
+      "fragmentFTags": [
+        "Continuity of mindfulness",
+        "Impermanence",
+        "Dispassion",
+        "Cessation",
+        "Nibbāna",
+        "Suffering"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.1,
+      "fileNumber": 5,
+      "kind": "Teaching",
+      "flags": "f",
+      "text": "Maintain mindfulness throughout the day and night.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Continuity of mindfulness"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Continuity of mindfulness",
+        "Ajahn Chah",
+        "Mindfulness",
+        "Postures",
+        "Clear comprehension",
+        "Discernment"
       ],
       "qTagCount": 2,
       "clips": [
         [
           "$",
-          "6:23",
-          "19:47"
+          "10:16",
+          "11:02"
         ]
       ],
-      "duration": "13:24"
+      "duration": "0:46"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.2,
+      "fileNumber": 6,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "There's just suffering arising and passing away.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Impermanence"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Suffering",
+        "Impermanence",
+        "Ajahn Chah",
+        "Mindfulness",
+        "Clear comprehension",
+        "Discernment",
+        "Birth",
+        "Death",
+        "Continuity of mindfulness"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "$",
+          "14:13",
+          "15:46"
+        ]
+      ],
+      "duration": "1:33"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.3,
+      "fileNumber": 7,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "You'll want to make an end of things.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Dispassion",
+        "Cessation"
+      ],
+      "fTagOrder": [
+        80,
+        80
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Dispassion",
+        "Cessation",
+        "Ajahn Chah",
+        "Impermanence",
+        "Relinquishment",
+        "Direct experience",
+        "Self-identity view"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "$",
+          "16:48",
+          "18:01.5"
+        ]
+      ],
+      "duration": "1:13"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.4,
+      "fileNumber": 8,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "This is the nature of enlightenment. It's he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Nibbāna"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Alternate audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "4:09",
+          "endTime": "4:46",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "5:41",
+          "endTime": "6:28",
+          "text": "",
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Liberation",
+        "Nibbāna",
+        "Similes",
+        "Cessation",
+        "Ajahn Chah",
+        "Saṃsāra",
+        "Dispassion",
+        "Discernment",
+        "Relinquishment",
+        "Delusion",
+        "Unwholesome Roots",
+        "Happiness",
+        "Unconditioned"
+      ],
+      "qTagCount": 6,
+      "clips": [
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "1:36.2",
+          "3:21"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "4:09",
+          "4:46"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "5:41",
+          "6:28"
+        ]
+      ],
+      "duration": "3:08"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 4.5,
+      "fileNumber": 9,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "If the tears don't come, we don't really accept truth.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Suffering"
+      ],
+      "fTagOrder": [
+        80
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "Kittisaro"
+          ],
+          "indentLevel": 1
+        },
+        {
+          "kind": "Alternate audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Suffering",
+        "Truth",
+        "Ajahn Chah",
+        "Compassion",
+        "Wat Pah Pong",
+        "Cessation of Suffering"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "8:50",
+          "11:00"
+        ]
+      ],
+      "duration": "2:10"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 5,
+      "fileNumber": 10,
+      "kind": "Teaching",
+      "flags": "0o",
+      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Thai only.",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "9:09",
+          "endTime": "10:14",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "11:02",
+          "endTime": "11:50",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "12:44",
+          "endTime": "14:10",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "15:46",
+          "endTime": "16:45",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "18:00",
+          "endTime": "18:49",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "0:00",
+          "endTime": "1:36.2",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "3:21",
+          "endTime": "4:06",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "4:46",
+          "endTime": "5:39",
+          "text": "",
+          "indentLevel": 1
+        },
+        {
+          "kind": "Append audio",
+          "flags": "",
+          "startTime": "6:28",
+          "endTime": "8:50",
+          "text": "",
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Thai audio",
+        "Ajahn Chah"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "$",
+          "6:35",
+          "7:54"
+        ],
+        [
+          "$",
+          "9:09",
+          "10:14"
+        ],
+        [
+          "$",
+          "11:02",
+          "11:50"
+        ],
+        [
+          "$",
+          "12:44",
+          "14:10"
+        ],
+        [
+          "$",
+          "15:46",
+          "16:45"
+        ],
+        [
+          "$",
+          "18:00",
+          "18:49"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "0:00",
+          "1:36.2"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "3:21",
+          "4:06"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "4:46",
+          "5:39"
+        ],
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "6:28",
+          "8:50"
+        ]
+      ],
+      "duration": "12:02"
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 2,
+      "excerptNumber": 6,
+      "fileNumber": 11,
+      "kind": "Recollection",
+      "flags": "3",
+      "text": "Context of \"Teachings to Marjorie.\"",
+      "teachers": [
+        "AA"
+      ],
+      "fTags": [],
+      "annotations": [
+        {
+          "kind": "Alternate audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "indentLevel": 1
+        }
+      ],
+      "tags": [
+        "Wat Pah Pong",
+        "Ajahn Chah"
+      ],
+      "qTagCount": 2,
+      "clips": [
+        [
+          "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+          "11:03",
+          "11:32"
+        ]
+      ],
+      "duration": "0:29"
     },
     {
       "event": "Chah2001",
@@ -2742,109 +3505,6 @@
         ]
       ],
       "duration": "2:51"
-    },
-    {
-      "event": "Chah2001",
-      "sessionNumber": 13,
-      "excerptNumber": 1,
-      "fileNumber": 1,
-      "kind": "Teaching",
-      "flags": "0",
-      "text": "++Teachings++ to Marjorie by [Ajahn Chah](teacher:), Part 2.",
-      "teachers": [
-        "AChah"
-      ],
-      "fTags": [],
-      "annotations": [
-        {
-          "kind": "Read by",
-          "flags": "0",
-          "text": "Thai audio with English translation read by {teachers}.",
-          "teachers": [
-            "Kittisaro"
-          ],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Other",
-          "flags": "",
-          "text": "Continued from [Part 1](excerpt:Chah2001_S02_F03).",
-          "teachers": [],
-          "tags": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Reference",
-          "flags": "",
-          "text": "\"Living with the Cobra,\" Collected Teachings p. 233.",
-          "tags": [],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Quote",
-          "flags": "",
-          "text": "If the tears don't come, we don't really accept truth.",
-          "teachers": [
-            "AChah"
-          ],
-          "tags": [
-            "Suffering",
-            "Truth",
-            "Wat Pah Pong"
-          ],
-          "indentLevel": 1
-        },
-        {
-          "kind": "Note",
-          "flags": "-",
-          "text": "\"Living with the Cobra\" omits this quote and other more personal aspects of Ajahn Chah's teaching to Marjorie.",
-          "indentLevel": 2
-        }
-      ],
-      "tags": [
-        "Thai audio",
-        "Ajahn Chah",
-        "Dispassion",
-        "Nibbāna",
-        "Unconditioned",
-        "Cessation of Suffering"
-      ],
-      "qTagCount": 2,
-      "clips": [
-        [
-          "$",
-          "0:00",
-          "11:00"
-        ]
-      ],
-      "duration": "11:00"
-    },
-    {
-      "event": "Chah2001",
-      "sessionNumber": 13,
-      "excerptNumber": 2,
-      "fileNumber": 2,
-      "kind": "Recollection",
-      "flags": "3",
-      "text": "Context of \"Living with the Cobra.\"",
-      "teachers": [
-        "AA"
-      ],
-      "fTags": [],
-      "annotations": [],
-      "tags": [
-        "Wat Pah Pong",
-        "Ajahn Chah"
-      ],
-      "qTagCount": 2,
-      "clips": [
-        [
-          "$",
-          "11:03",
-          ""
-        ]
-      ],
-      "duration": "0:31"
     },
     {
       "event": "Chah2001",
@@ -89917,7 +90577,7 @@
       "website": "https://www.abhayagiri.org/20/#ajahn-chah-weekend",
       "description": "On April 28-29, 2001, over 200 people gathered in Portola Valley to honor the life and teachings of Ajahn Chah. Senior monastic disciples, former monks and nuns, and people who briefly encountered Ajahn Chah recollect their experiences of this great teacher.",
       "sessions": 35,
-      "excerpts": 214
+      "excerpts": 215
     },
     "Metta2008": {
       "title": "Metta Retreat",
@@ -91070,21 +91730,6 @@
         "Ajahn Chah"
       ],
       "rawDuration": "1106.207286"
-    },
-    {
-      "event": "Chah2001",
-      "sessionNumber": 13,
-      "date": "28/4/2001",
-      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-      "duration": "11:34",
-      "teachers": [
-        "AChah"
-      ],
-      "sessionTitle": "Teachings to Marjorie, Part 2",
-      "tags": [
-        "Ajahn Chah"
-      ],
-      "rawDuration": "694.3608163"
     },
     {
       "event": "Chah2001",
@@ -94526,6 +95171,12 @@
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2002%20-%20Welcome%20and%20Reflection%20by%20Ajahn%20Chah.mp3"
     },
+    "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3": {
+      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
+      "duration": "",
+      "event": "Chah2001",
+      "url": ""
+    },
     "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3": {
       "filename": "Ajahn Chah Weekend - 03 - Legacy of Ajahn Chah by Ajahn Jitindriya.mp3",
       "duration": "17:57",
@@ -94585,12 +95236,6 @@
       "duration": "18:26",
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2012%20-%20Questions%20&%20Answers%201.mp3"
-    },
-    "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3": {
-      "filename": "Ajahn Chah Weekend - 13 - Teachings to Marjorie - Ajahn Chah.mp3",
-      "duration": "11:34",
-      "event": "Chah2001",
-      "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2013%20-%20Teachings%20to%20Marjorie%20-%20Ajahn%20Chah.mp3"
     },
     "Ajahn Chah Weekend - 14 - Ajahn Chah's Teachings by Thanissara.mp3": {
       "filename": "Ajahn Chah Weekend - 14 - Ajahn Chah's Teachings by Thanissara.mp3",
@@ -96377,7 +97022,7 @@
       "appendToExcerpt": false,
       "inheritTeachersFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "++Quote:++ {prefix} “{text}” {suffix}|| — {teachers}",
+      "form2": "++Quote:++ {prefix} “{text}” {suffix}|| — {teachers}.",
       "form3": "unimplemented",
       "exclude": false,
       "usageNotes": "A quote from the teacher him/herself."
@@ -96395,7 +97040,7 @@
       "appendToExcerpt": false,
       "inheritTeachersFrom": "Excerpt",
       "form1": "unimplemented",
-      "form2": "++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}||{'.' if suffix else ''} Quoted by {teachers}.",
+      "form2": "++Quote:++ {prefix} “{text}”{' — ' if suffix else ''}{suffix}{'.' if suffix else ''}|| Quoted by {teachers}.",
       "form3": "unimplemented",
       "exclude": false,
       "usageNotes": "The teacher quoting someone else. If the person quoted is a teacher, they should get the first tag."
@@ -96722,7 +97367,7 @@
       "form2": "unimplemented",
       "form3": "unimplemented",
       "exclude": false,
-      "usageNotes": "A fragment annotation indicates that the next annotation and its sub-annotations should be duplicated in a separate except following the main excerpt. The Fragment annotation itself is rendered as an audio player to play that excerpt."
+      "usageNotes": "A fragment annotation indicates that the next annotation and its sub-annotations should be duplicated in a separate except following the main excerpt. The Fragment annotation itself is rendered as an audio player to play that excerpt unless text == 'noPlayer'."
     },
     "Main fragment": {
       "kind": "Main fragment",
@@ -96935,8 +97580,8 @@
       "allowTag": true,
       "group": "Monastics",
       "lineage": "Root teachers",
-      "sessionCount": 2,
-      "excerptCount": 145,
+      "sessionCount": 1,
+      "excerptCount": 146,
       "htmlFile": "ajahn-chah.html"
     },
     "ALee": {
@@ -98947,7 +99592,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "postures.html",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "listIndex": 410
     },
     "Clear comprehension": {
@@ -98977,7 +99622,7 @@
       "partOfSubtopics": [
         "Right Mindfulness"
       ],
-      "excerptCount": 61,
+      "excerptCount": 62,
       "listIndex": 50
     },
     "Unattractiveness": {
@@ -99336,7 +99981,7 @@
         "Mindfulness"
       ],
       "subtopics": [],
-      "excerptCount": 100,
+      "excerptCount": 101,
       "fTagCount": 4,
       "listIndex": 51
     },
@@ -99500,7 +100145,7 @@
         "Happiness"
       ],
       "subtopics": [],
-      "excerptCount": 135,
+      "excerptCount": 136,
       "fTagCount": 4,
       "listIndex": 57
     },
@@ -99658,7 +100303,7 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "birth.html",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "listIndex": 64
     },
     "Ageing": {
@@ -99734,7 +100379,7 @@
       "subtopics": [],
       "eventCount": 1,
       "sessionCount": 2,
-      "excerptCount": 115,
+      "excerptCount": 116,
       "fTagCount": 3,
       "listIndex": 67
     },
@@ -99762,7 +100407,7 @@
       ],
       "subtopics": [],
       "excerptCount": 188,
-      "fTagCount": 2,
+      "fTagCount": 3,
       "listIndex": 268
     },
     "Pain": {
@@ -99931,8 +100576,8 @@
         "Dispassion"
       ],
       "subtopics": [],
-      "excerptCount": 21,
-      "fTagCount": 1,
+      "excerptCount": 22,
+      "fTagCount": 2,
       "listIndex": 145
     },
     "Cessation": {
@@ -99958,8 +100603,8 @@
       "partOfSubtopics": [
         "Dispassion"
       ],
-      "excerptCount": 30,
-      "fTagCount": 1,
+      "excerptCount": 31,
+      "fTagCount": 2,
       "listIndex": 146
     },
     "Relinquishment": {
@@ -99988,7 +100633,7 @@
         "Relinquishment"
       ],
       "subtopics": [],
-      "excerptCount": 158,
+      "excerptCount": 159,
       "fTagCount": 2,
       "listIndex": 147
     },
@@ -100044,7 +100689,7 @@
         "Liberation"
       ],
       "subtopics": [],
-      "excerptCount": 90,
+      "excerptCount": 91,
       "fTagCount": 1,
       "listIndex": 149
     },
@@ -100286,7 +100931,7 @@
         "Discernment"
       ],
       "subtopics": [],
-      "excerptCount": 134,
+      "excerptCount": 135,
       "fTagCount": 2,
       "listIndex": 102
     },
@@ -100423,7 +101068,7 @@
         "Compassion"
       ],
       "subtopics": [],
-      "excerptCount": 106,
+      "excerptCount": 107,
       "fTagCount": 4,
       "listIndex": 113
     },
@@ -101240,8 +101885,8 @@
         "Nibbāna"
       ],
       "subtopics": [],
-      "excerptCount": 34,
-      "fTagCount": 2,
+      "excerptCount": 35,
+      "fTagCount": 3,
       "listIndex": 660
     },
     "Heedfulness": {
@@ -101261,7 +101906,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "heedfulness.html",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "listIndex": 164
     },
     "Spiritual search": {
@@ -101580,7 +102225,7 @@
         "Unwholesome Roots"
       ],
       "subtopics": [],
-      "excerptCount": 56,
+      "excerptCount": 57,
       "fTagCount": 3,
       "listIndex": 179
     },
@@ -101663,7 +102308,7 @@
         "Delusion"
       ],
       "subtopics": [],
-      "excerptCount": 51,
+      "excerptCount": 52,
       "fTagCount": 2,
       "listIndex": 182
     },
@@ -102012,7 +102657,7 @@
         "Self-identity view"
       ],
       "subtopics": [],
-      "excerptCount": 139,
+      "excerptCount": 140,
       "fTagCount": 3,
       "listIndex": 200
     },
@@ -102949,8 +103594,8 @@
         "Impermanence"
       ],
       "subtopics": [],
-      "excerptCount": 84,
-      "fTagCount": 2,
+      "excerptCount": 85,
+      "fTagCount": 3,
       "listIndex": 267
     },
     "Not-self": {
@@ -103192,7 +103837,7 @@
       "copies": 2,
       "primaries": 1,
       "htmlFile": "moods-of-the-mind.html",
-      "excerptCount": 4,
+      "excerptCount": 5,
       "listIndex": 280
     },
     "Emotion": {
@@ -105047,8 +105692,8 @@
         "Continuity of mindfulness"
       ],
       "subtopics": [],
-      "excerptCount": 45,
-      "fTagCount": 3,
+      "excerptCount": 46,
+      "fTagCount": 4,
       "listIndex": 421
     },
     "Present moment awareness": {
@@ -105115,7 +105760,7 @@
         "Direct experience"
       ],
       "subtopics": [],
-      "excerptCount": 36,
+      "excerptCount": 37,
       "fTagCount": 1,
       "listIndex": 424
     },
@@ -105421,7 +106066,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "similes.html",
-      "excerptCount": 87,
+      "excerptCount": 88,
       "listIndex": 462
     },
     "Symbolism": {
@@ -105681,8 +106326,8 @@
       ],
       "subtopics": [],
       "eventCount": 3,
-      "sessionCount": 38,
-      "excerptCount": 577,
+      "sessionCount": 37,
+      "excerptCount": 578,
       "fTagCount": 7,
       "listIndex": 473
     },
@@ -109326,7 +109971,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "samsara.html",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "listIndex": 643
     },
     "Realms of existence": {
@@ -109753,7 +110398,7 @@
       "partOfSubtopics": [
         "Nibbāna"
       ],
-      "excerptCount": 17,
+      "excerptCount": 18,
       "fTagCount": 1,
       "listIndex": 663
     },
@@ -114515,9 +115160,9 @@
       "flags": "",
       "name": "Non-cruelty",
       "pali": "avihiṃsā",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "subsumed": true,
-      "text": "Non-cruelty [avihiṃsā] see Compassion (106)",
+      "text": "Non-cruelty [avihiṃsā] see Compassion (107)",
       "tag": "Compassion"
     },
     {
@@ -114849,9 +115494,9 @@
       "flags": "",
       "name": "Four Postures",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Four Postures (10)",
+      "text": "Four Postures (11)",
       "tag": "Postures"
     },
     {
@@ -114860,9 +115505,9 @@
       "flags": "",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -115005,9 +115650,9 @@
       "flags": "0*",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -115016,9 +115661,9 @@
       "flags": "0*",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -115084,9 +115729,9 @@
       "flags": "*",
       "name": "Happiness",
       "pali": "sukha",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": false,
-      "text": "Happiness (135) [sukha]",
+      "text": "Happiness (136) [sukha]",
       "tag": "Happiness"
     },
     {
@@ -115165,9 +115810,9 @@
       "flags": "*",
       "name": "Birth",
       "pali": "jāti",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "subsumed": false,
-      "text": "Birth (12) [jāti]",
+      "text": "Birth (13) [jāti]",
       "tag": "Birth"
     },
     {
@@ -115198,9 +115843,9 @@
       "flags": "*",
       "name": "Death",
       "pali": "maraṇa",
-      "excerptCount": 115,
+      "excerptCount": 116,
       "subsumed": false,
-      "text": "Death (115) [maraṇa]",
+      "text": "Death (116) [maraṇa]",
       "tag": "Death"
     },
     {
@@ -115312,9 +115957,9 @@
       "flags": "",
       "name": "Dispassion",
       "pali": "virāga",
-      "excerptCount": 21,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Dispassion (21) [virāga]",
+      "text": "Dispassion (22) [virāga]",
       "tag": "Dispassion"
     },
     {
@@ -115323,9 +115968,9 @@
       "flags": "",
       "name": "Cessation",
       "pali": "nirodha",
-      "excerptCount": 30,
+      "excerptCount": 31,
       "subsumed": false,
-      "text": "Cessation (30) [nirodha]",
+      "text": "Cessation (31) [nirodha]",
       "tag": "Cessation"
     },
     {
@@ -115334,9 +115979,9 @@
       "flags": "",
       "name": "Relinquishment",
       "pali": "paṭinissagga",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "subsumed": false,
-      "text": "Relinquishment (158) [paṭinissagga]",
+      "text": "Relinquishment (159) [paṭinissagga]",
       "tag": "Relinquishment"
     },
     {
@@ -115356,9 +116001,9 @@
       "flags": "",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 90,
+      "excerptCount": 91,
       "subsumed": false,
-      "text": "Liberation (90) [vimutti]",
+      "text": "Liberation (91) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -115526,9 +116171,9 @@
       "flags": "",
       "name": "Investigation",
       "pali": "vīmaṃsā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": true,
-      "text": "Investigation [vīmaṃsā] see Discernment (134)",
+      "text": "Investigation [vīmaṃsā] see Discernment (135)",
       "tag": "Discernment"
     },
     {
@@ -115572,9 +116217,9 @@
       "flags": "",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -115594,9 +116239,9 @@
       "flags": "*",
       "name": "Discernment",
       "pali": "paññā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": false,
-      "text": "Discernment (134) [paññā]",
+      "text": "Discernment (135) [paññā]",
       "tag": "Discernment"
     },
     {
@@ -115618,9 +116263,9 @@
       "flags": "",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -115719,9 +116364,9 @@
       "flags": "*",
       "name": "Compassion",
       "pali": "karuṇā",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "subsumed": false,
-      "text": "Compassion (106) [karuṇā]",
+      "text": "Compassion (107) [karuṇā]",
       "tag": "Compassion"
     },
     {
@@ -115890,9 +116535,9 @@
       "flags": "",
       "name": "Discernment",
       "pali": "paññā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": false,
-      "text": "Discernment (134) [paññā]",
+      "text": "Discernment (135) [paññā]",
       "tag": "Discernment"
     },
     {
@@ -115947,9 +116592,9 @@
       "flags": "",
       "name": "Discernment",
       "pali": "paññā",
-      "excerptCount": 134,
+      "excerptCount": 135,
       "subsumed": false,
-      "text": "Discernment (134) [paññā]",
+      "text": "Discernment (135) [paññā]",
       "tag": "Discernment"
     },
     {
@@ -116029,7 +116674,7 @@
       "text": "Progress of insight (18)",
       "tag": "Progress of insight",
       "subtagCount": 9,
-      "subtagExcerptCount": 373
+      "subtagExcerptCount": 374
     },
     {
       "level": 3,
@@ -116081,9 +116726,9 @@
       "flags": "*",
       "name": "Dispassion",
       "pali": "virāga",
-      "excerptCount": 21,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Dispassion (21) [virāga]",
+      "text": "Dispassion (22) [virāga]",
       "tag": "Dispassion"
     },
     {
@@ -116092,9 +116737,9 @@
       "flags": "*",
       "name": "Cessation",
       "pali": "nirodha",
-      "excerptCount": 30,
+      "excerptCount": 31,
       "subsumed": false,
-      "text": "Cessation (30) [nirodha]",
+      "text": "Cessation (31) [nirodha]",
       "tag": "Cessation"
     },
     {
@@ -116103,9 +116748,9 @@
       "flags": "*",
       "name": "Relinquishment",
       "pali": "paṭinissagga",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "subsumed": false,
-      "text": "Relinquishment (158) [paṭinissagga]",
+      "text": "Relinquishment (159) [paṭinissagga]",
       "tag": "Relinquishment"
     },
     {
@@ -116125,9 +116770,9 @@
       "flags": "*",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 90,
+      "excerptCount": 91,
       "subsumed": false,
-      "text": "Liberation (90) [vimutti]",
+      "text": "Liberation (91) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -116141,7 +116786,7 @@
       "text": "Stages of awakening (31)",
       "tag": "Stages of awakening",
       "subtagCount": 13,
-      "subtagExcerptCount": 195
+      "subtagExcerptCount": 196
     },
     {
       "level": 3,
@@ -116287,9 +116932,9 @@
       "flags": "0C",
       "name": "Nibbāna",
       "pali": "Nibbāna",
-      "excerptCount": 34,
+      "excerptCount": 35,
       "subsumed": false,
-      "text": "Nibbāna (34)",
+      "text": "Nibbāna (35)",
       "tag": "Nibbāna"
     },
     {
@@ -116298,9 +116943,9 @@
       "flags": "",
       "name": "Heedfulness",
       "pali": "appamāda",
-      "excerptCount": 11,
+      "excerptCount": 12,
       "subsumed": false,
-      "text": "Heedfulness (11) [appamāda]",
+      "text": "Heedfulness (12) [appamāda]",
       "tag": "Heedfulness"
     },
     {
@@ -116467,9 +117112,9 @@
       "flags": "",
       "name": "Three Unwholesome Roots",
       "pali": "ti-akusala-mūlā",
-      "excerptCount": 56,
+      "excerptCount": 57,
       "subsumed": false,
-      "text": "Three Unwholesome Roots (56) [ti-akusala-mūlā]",
+      "text": "Three Unwholesome Roots (57) [ti-akusala-mūlā]",
       "tag": "Unwholesome Roots",
       "subtagCount": 3,
       "subtagExcerptCount": 177
@@ -116502,9 +117147,9 @@
       "flags": "*",
       "name": "Delusion",
       "pali": "moha",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "subsumed": false,
-      "text": "Delusion (51) [moha]",
+      "text": "Delusion (52) [moha]",
       "tag": "Delusion"
     },
     {
@@ -116548,9 +117193,9 @@
       "flags": "h",
       "name": "Bias from delustion",
       "pali": "mohāgati",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "subsumed": true,
-      "text": "Bias from delustion [mohāgati] see Delusion (51)",
+      "text": "Bias from delustion [mohāgati] see Delusion (52)",
       "tag": "Delusion"
     },
     {
@@ -116708,9 +117353,9 @@
       "flags": "*",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 139,
+      "excerptCount": 140,
       "subsumed": false,
-      "text": "Self-identity view (139) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (140) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -116829,9 +117474,9 @@
       "flags": "",
       "name": "Defilement",
       "pali": "kilesa",
-      "excerptCount": 56,
+      "excerptCount": 57,
       "subsumed": true,
-      "text": "Defilement [kilesa] see Unwholesome Roots (56)",
+      "text": "Defilement [kilesa] see Unwholesome Roots (57)",
       "tag": "Unwholesome Roots"
     },
     {
@@ -116900,9 +117545,9 @@
       "flags": "",
       "name": "Self-identity view",
       "pali": "sakkāya-diṭṭhi",
-      "excerptCount": 139,
+      "excerptCount": 140,
       "subsumed": false,
-      "text": "Self-identity view (139) [sakkāya-diṭṭhi]",
+      "text": "Self-identity view (140) [sakkāya-diṭṭhi]",
       "tag": "Self-identity view"
     },
     {
@@ -117285,9 +117930,9 @@
       "flags": "",
       "name": "Pleasant feeling",
       "pali": "sukhā vedanā",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": true,
-      "text": "Pleasant feeling [sukhā vedanā] see Happiness (135)",
+      "text": "Pleasant feeling [sukhā vedanā] see Happiness (136)",
       "tag": "Happiness"
     },
     {
@@ -117432,9 +118077,9 @@
       "flags": "",
       "name": "Birth",
       "pali": "jāti",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "subsumed": false,
-      "text": "Birth (12) [jāti]",
+      "text": "Birth (13) [jāti]",
       "tag": "Birth"
     },
     {
@@ -117467,9 +118112,9 @@
       "flags": "*",
       "name": "Impermanence",
       "pali": "anicca",
-      "excerptCount": 84,
+      "excerptCount": 85,
       "subsumed": false,
-      "text": "Impermanence (84) [anicca]",
+      "text": "Impermanence (85) [anicca]",
       "tag": "Impermanence"
     },
     {
@@ -117612,9 +118257,9 @@
       "flags": "*",
       "name": "Moods of the mind",
       "pali": "Arom kong git <em>Thai</em>",
-      "excerptCount": 4,
+      "excerptCount": 5,
       "subsumed": false,
-      "text": "Moods of the mind (4) [Arom kong git <em>Thai</em>]",
+      "text": "Moods of the mind (5) [Arom kong git <em>Thai</em>]",
       "tag": "Moods of the mind"
     },
     {
@@ -118371,7 +119016,7 @@
       "text": "Meditation (74) [bhāvanā]",
       "tag": "Meditation",
       "subtagCount": 68,
-      "subtagExcerptCount": 1119
+      "subtagExcerptCount": 1120
     },
     {
       "level": 2,
@@ -118438,9 +119083,9 @@
       "flags": "",
       "name": "Four Postures",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Four Postures (10)",
+      "text": "Four Postures (11)",
       "tag": "Postures"
     },
     {
@@ -118449,9 +119094,9 @@
       "flags": "",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -118537,9 +119182,9 @@
       "flags": "0",
       "name": "Clear comprehension",
       "pali": "sampajañña",
-      "excerptCount": 61,
+      "excerptCount": 62,
       "subsumed": false,
-      "text": "Clear comprehension (61) [sampajañña]",
+      "text": "Clear comprehension (62) [sampajañña]",
       "tag": "Clear comprehension"
     },
     {
@@ -118548,9 +119193,9 @@
       "flags": "0",
       "name": "Mindfulness",
       "pali": "sati",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "subsumed": false,
-      "text": "Mindfulness (100) [sati]",
+      "text": "Mindfulness (101) [sati]",
       "tag": "Mindfulness"
     },
     {
@@ -118616,9 +119261,9 @@
       "flags": "",
       "name": "Happiness",
       "pali": "sukha",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": false,
-      "text": "Happiness (135) [sukha]",
+      "text": "Happiness (136) [sukha]",
       "tag": "Happiness"
     },
     {
@@ -118765,9 +119410,9 @@
       "flags": "",
       "name": "Compassion",
       "pali": "karuṇā",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "subsumed": false,
-      "text": "Compassion (106) [karuṇā]",
+      "text": "Compassion (107) [karuṇā]",
       "tag": "Compassion"
     },
     {
@@ -119090,9 +119735,9 @@
       "flags": "*",
       "name": "Four Postures",
       "pali": "",
-      "excerptCount": 10,
+      "excerptCount": 11,
       "subsumed": false,
-      "text": "Four Postures (10)",
+      "text": "Four Postures (11)",
       "tag": "Postures",
       "subtagCount": 6,
       "subtagExcerptCount": 72
@@ -119185,7 +119830,7 @@
       "text": "Meditation/Results (4)",
       "tag": "Meditation/Results",
       "subtagCount": 7,
-      "subtagExcerptCount": 185
+      "subtagExcerptCount": 186
     },
     {
       "level": 3,
@@ -119215,9 +119860,9 @@
       "flags": "",
       "name": "Continuity of mindfulness",
       "pali": "",
-      "excerptCount": 45,
+      "excerptCount": 46,
       "subsumed": false,
-      "text": "Continuity of mindfulness (45)",
+      "text": "Continuity of mindfulness (46)",
       "tag": "Continuity of mindfulness"
     },
     {
@@ -119248,9 +119893,9 @@
       "flags": "",
       "name": "Direct experience",
       "pali": "",
-      "excerptCount": 36,
+      "excerptCount": 37,
       "subsumed": false,
-      "text": "Direct experience (36)",
+      "text": "Direct experience (37)",
       "tag": "Direct experience"
     },
     {
@@ -119399,9 +120044,9 @@
       "flags": "",
       "name": "Birth",
       "pali": "jāti",
-      "excerptCount": 12,
+      "excerptCount": 13,
       "subsumed": false,
-      "text": "Birth (12) [jāti]",
+      "text": "Birth (13) [jāti]",
       "tag": "Birth"
     },
     {
@@ -119432,9 +120077,9 @@
       "flags": "",
       "name": "Death",
       "pali": "maraṇa",
-      "excerptCount": 115,
+      "excerptCount": 116,
       "subsumed": false,
-      "text": "Death (115) [maraṇa]",
+      "text": "Death (116) [maraṇa]",
       "tag": "Death"
     },
     {
@@ -119535,9 +120180,9 @@
       "flags": "",
       "name": "Dispassion",
       "pali": "virāga",
-      "excerptCount": 21,
+      "excerptCount": 22,
       "subsumed": false,
-      "text": "Dispassion (21) [virāga]",
+      "text": "Dispassion (22) [virāga]",
       "tag": "Dispassion"
     },
     {
@@ -119546,9 +120191,9 @@
       "flags": "",
       "name": "Cessation",
       "pali": "nirodha",
-      "excerptCount": 30,
+      "excerptCount": 31,
       "subsumed": false,
-      "text": "Cessation (30) [nirodha]",
+      "text": "Cessation (31) [nirodha]",
       "tag": "Cessation"
     },
     {
@@ -119557,9 +120202,9 @@
       "flags": "",
       "name": "Relinquishment",
       "pali": "paṭinissagga",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "subsumed": false,
-      "text": "Relinquishment (158) [paṭinissagga]",
+      "text": "Relinquishment (159) [paṭinissagga]",
       "tag": "Relinquishment"
     },
     {
@@ -119579,9 +120224,9 @@
       "flags": "",
       "name": "Liberation",
       "pali": "vimutti",
-      "excerptCount": 90,
+      "excerptCount": 91,
       "subsumed": false,
-      "text": "Liberation (90) [vimutti]",
+      "text": "Liberation (91) [vimutti]",
       "tag": "Liberation"
     },
     {
@@ -119678,9 +120323,9 @@
       "flags": "",
       "name": "Similes",
       "pali": "opammā",
-      "excerptCount": 87,
+      "excerptCount": 88,
       "subsumed": false,
-      "text": "Similes (87) [opammā]",
+      "text": "Similes (88) [opammā]",
       "tag": "Similes"
     },
     {
@@ -119751,7 +120396,7 @@
       "text": "Teachers (24)",
       "tag": "Teachers",
       "subtagCount": 127,
-      "subtagExcerptCount": 1015
+      "subtagExcerptCount": 1016
     },
     {
       "level": 2,
@@ -119764,7 +120409,7 @@
       "text": "Monastic teachers (2)",
       "tag": "Monastic teachers",
       "subtagCount": 107,
-      "subtagExcerptCount": 982
+      "subtagExcerptCount": 983
     },
     {
       "level": 3,
@@ -119777,7 +120422,7 @@
       "text": "Thai Forest Tradition (80)",
       "tag": "Thai Forest Tradition",
       "subtagCount": 83,
-      "subtagExcerptCount": 966
+      "subtagExcerptCount": 967
     },
     {
       "level": 4,
@@ -119807,9 +120452,9 @@
       "flags": "",
       "name": "Ajahn Chah Subhaddo",
       "pali": "",
-      "excerptCount": 577,
+      "excerptCount": 578,
       "subsumed": false,
-      "text": "Ajahn Chah Subhaddo (577)",
+      "text": "Ajahn Chah Subhaddo (578)",
       "tag": "Ajahn Chah"
     },
     {
@@ -121211,7 +121856,7 @@
       "text": "Monasteries (10)",
       "tag": "Monasteries",
       "subtagCount": 41,
-      "subtagExcerptCount": 326
+      "subtagExcerptCount": 325
     },
     {
       "level": 2,
@@ -121224,7 +121869,7 @@
       "text": "Ajahn Chah monasteries (2)",
       "tag": "Ajahn Chah monasteries",
       "subtagCount": 22,
-      "subtagExcerptCount": 303
+      "subtagExcerptCount": 302
     },
     {
       "level": 3,
@@ -121237,7 +121882,7 @@
       "text": "Thai Ajahn Chah monasteries (23)",
       "tag": "Thai Ajahn Chah monasteries",
       "subtagCount": 11,
-      "subtagExcerptCount": 187
+      "subtagExcerptCount": 186
     },
     {
       "level": 4,
@@ -121723,9 +122368,9 @@
       "flags": "",
       "name": "Saṃsāra",
       "pali": "Saṃsāra",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Saṃsāra (14)",
+      "text": "Saṃsāra (15)",
       "tag": "Saṃsāra"
     },
     {
@@ -121854,7 +122499,7 @@
       "text": "Nature of mind (38)",
       "tag": "Nature of mind",
       "subtagCount": 4,
-      "subtagExcerptCount": 77
+      "subtagExcerptCount": 78
     },
     {
       "level": 3,
@@ -121873,9 +122518,9 @@
       "flags": "",
       "name": "Moods of the mind",
       "pali": "Arom kong git <em>Thai</em>",
-      "excerptCount": 4,
+      "excerptCount": 5,
       "subsumed": false,
-      "text": "Moods of the mind (4) [Arom kong git <em>Thai</em>]",
+      "text": "Moods of the mind (5) [Arom kong git <em>Thai</em>]",
       "tag": "Moods of the mind"
     },
     {
@@ -121917,12 +122562,12 @@
       "flags": "*C",
       "name": "Nibbāna",
       "pali": "Nibbāna",
-      "excerptCount": 34,
+      "excerptCount": 35,
       "subsumed": false,
-      "text": "Nibbāna (34)",
+      "text": "Nibbāna (35)",
       "tag": "Nibbāna",
       "subtagCount": 3,
-      "subtagExcerptCount": 53
+      "subtagExcerptCount": 54
     },
     {
       "level": 3,
@@ -121952,9 +122597,9 @@
       "flags": "",
       "name": "The Unconditioned/Ultimate Truth",
       "pali": "asaṅkhata",
-      "excerptCount": 17,
+      "excerptCount": 18,
       "subsumed": false,
-      "text": "The Unconditioned/Ultimate Truth (17) [asaṅkhata]",
+      "text": "The Unconditioned/Ultimate Truth (18) [asaṅkhata]",
       "tag": "Unconditioned"
     },
     {
@@ -123699,9 +124344,9 @@
       "flags": "",
       "name": "Pleasure",
       "pali": "sukha",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "subsumed": true,
-      "text": "Pleasure [sukha] see Happiness (135)",
+      "text": "Pleasure [sukha] see Happiness (136)",
       "tag": "Happiness"
     },
     {
@@ -124315,9 +124960,9 @@
       "startDate": "28/4/2001",
       "teachers": "ASumedho;AP;AA;ASundara;AJitindriya;JKornfield;JKappel;PBreiter;Kittisaro;Thanissara",
       "sessions": 36,
-      "excerpts": 221,
-      "answersListenedTo": 221,
-      "tagsApplied": 1653,
+      "excerpts": 248,
+      "answersListenedTo": 248,
+      "tagsApplied": 1705,
       "invalidTags": 0,
       "duration": "10:49:27"
     },
@@ -127161,8 +127806,8 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/impermanence.html",
-      "excerptCount": 84,
-      "fTagCount": 2
+      "excerptCount": 85,
+      "fTagCount": 3
     },
     "Suffering": {
       "tag": "Suffering",
@@ -127174,7 +127819,7 @@
       "subtags": {},
       "htmlPath": "tags/suffering.html",
       "excerptCount": 188,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Fear": {
       "tag": "Fear",
@@ -127223,7 +127868,7 @@
         "Recollection/Death": "+"
       },
       "htmlPath": "clusters/death.html",
-      "excerptCount": 129,
+      "excerptCount": 130,
       "fTagCount": 5
     },
     "Grief": {
@@ -127535,7 +128180,7 @@
         "Clear comprehension": "+"
       },
       "htmlPath": "clusters/right-mindfulness.html",
-      "excerptCount": 148,
+      "excerptCount": 149,
       "fTagCount": 5
     },
     "Right Concentration": {
@@ -127642,8 +128287,8 @@
         "Present moment awareness": "+"
       },
       "htmlPath": "clusters/continuity-of-mindfulness.html",
-      "excerptCount": 76,
-      "fTagCount": 3
+      "excerptCount": 77,
+      "fTagCount": 4
     },
     "Direct experience": {
       "tag": "Direct experience",
@@ -127654,7 +128299,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/direct-experience.html",
-      "excerptCount": 36,
+      "excerptCount": 37,
       "fTagCount": 1
     },
     "Knowing itself": {
@@ -127718,7 +128363,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/mindfulness.html",
-      "excerptCount": 100,
+      "excerptCount": 101,
       "fTagCount": 4
     },
     "Concentration": {
@@ -127745,7 +128390,7 @@
         "Investigation of states": "+"
       },
       "htmlPath": "clusters/discernment.html",
-      "excerptCount": 186,
+      "excerptCount": 187,
       "fTagCount": 5
     },
     "Desire": {
@@ -127781,7 +128426,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/happiness.html",
-      "excerptCount": 135,
+      "excerptCount": 136,
       "fTagCount": 4
     },
     "Gratitude": {
@@ -127805,7 +128450,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/compassion.html",
-      "excerptCount": 106,
+      "excerptCount": 107,
       "fTagCount": 4
     },
     "Equanimity": {
@@ -127831,7 +128476,7 @@
         "Unskillful qualities": "+"
       },
       "htmlPath": "clusters/unwholesome-roots.html",
-      "excerptCount": 87,
+      "excerptCount": 88,
       "fTagCount": 3
     },
     "Hindrances": {
@@ -127919,7 +128564,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/delusion.html",
-      "excerptCount": 51,
+      "excerptCount": 52,
       "fTagCount": 2
     },
     "Proliferation": {
@@ -127955,7 +128600,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/self-identity-view.html",
-      "excerptCount": 139,
+      "excerptCount": 140,
       "fTagCount": 3
     },
     "Conceit": {
@@ -128206,8 +128851,8 @@
         "Cessation": "+"
       },
       "htmlPath": "clusters/dispassion.html",
-      "excerptCount": 54,
-      "fTagCount": 2
+      "excerptCount": 55,
+      "fTagCount": 3
     },
     "Relinquishment": {
       "tag": "Relinquishment",
@@ -128218,7 +128863,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/relinquishment.html",
-      "excerptCount": 158,
+      "excerptCount": 159,
       "fTagCount": 2
     },
     "Liberation": {
@@ -128232,7 +128877,7 @@
         "Release": "+"
       },
       "htmlPath": "clusters/liberation.html",
-      "excerptCount": 105,
+      "excerptCount": 106,
       "fTagCount": 1
     },
     "Stages of awakening": {
@@ -128266,8 +128911,8 @@
         "Recollection/Peace": "-"
       },
       "htmlPath": "clusters/nibbana.html",
-      "excerptCount": 54,
-      "fTagCount": 3
+      "excerptCount": 55,
+      "fTagCount": 4
     },
     "Teaching Dhamma": {
       "tag": "Teaching Dhamma",
@@ -128336,7 +128981,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/ajahn-chah.html",
-      "excerptCount": 577,
+      "excerptCount": 578,
       "fTagCount": 7
     },
     "Ajahn Sumedho": {
@@ -129437,7 +130082,7 @@
         "Grief"
       ],
       "excerptCount": 464,
-      "fTagCount": 17
+      "fTagCount": 19
     },
     "refuges": {
       "code": "refuges",
@@ -129503,7 +130148,7 @@
         "Right Mindfulness",
         "Right Concentration"
       ],
-      "excerptCount": 536,
+      "excerptCount": 537,
       "fTagCount": 31
     },
     "meditation": {
@@ -129524,8 +130169,8 @@
         "Knowing itself",
         "Long-term practice"
       ],
-      "excerptCount": 510,
-      "fTagCount": 24
+      "excerptCount": 511,
+      "fTagCount": 25
     },
     "skillful": {
       "code": "skillful",
@@ -129546,7 +130191,7 @@
         "Compassion",
         "Equanimity"
       ],
-      "excerptCount": 700,
+      "excerptCount": 701,
       "fTagCount": 34
     },
     "unskillful": {
@@ -129569,7 +130214,7 @@
         "Self-identity view",
         "Conceit"
       ],
-      "excerptCount": 612,
+      "excerptCount": 613,
       "fTagCount": 31
     },
     "perspectives": {
@@ -129624,8 +130269,8 @@
         "Stages of awakening",
         "Nibbāna"
       ],
-      "excerptCount": 350,
-      "fTagCount": 10
+      "excerptCount": 351,
+      "fTagCount": 12
     },
     "teachers": {
       "code": "teachers",
@@ -129642,7 +130287,7 @@
         "Ajahn Sumedho",
         "Ajahn Pasanno"
       ],
-      "excerptCount": 888,
+      "excerptCount": 889,
       "fTagCount": 29
     },
     "context": {

@@ -133,9 +133,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ExportAudio",
-                "--buildOnly",
-                "clusters"
+                "SplitMp3",
+                "--linkCheckLevel",
+                "3",
+                "--events",
+                "Chah2001"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

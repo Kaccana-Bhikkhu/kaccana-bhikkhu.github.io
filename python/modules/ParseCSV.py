@@ -939,7 +939,7 @@ def NumberExcerpts(excerpts: dict[str]) -> None:
             lastSession = x["sessionNumber"]
         else:
             if ExcerptFlag.FRAGMENT in x["flags"]:
-                xNumber += 0.1  # Fragments have fractional excerpt numbers
+                xNumber = round(xNumber + 0.1,1)  # Fragments have fractional excerpt numbers
             else:
                 xNumber = int(xNumber) + 1
         
@@ -967,7 +967,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         # Check if duration and url match with an existing audio source; prefer the old values if they conflict
         existingSource = database["audioSource"].get(filename,None) or source
         for key in source:
-            if key != "event" and existingSource[key] and existingSource[key] != source[key]:
+            if key != "event" and existingSource[key] and source[key] and existingSource[key] != source[key]:
                 Alert.warning(f"Audio file {filename} in event {event}: {key} ({source[key]}) does not match url given previously ({existingSource[key]}). Will use the old value.")
             source[key] = existingSource[key] or source[key]
 
@@ -1186,7 +1186,9 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
             
             fragmentExcerpts.append(fragmentExcerpt)
 
-        if not mainFragment: # Main fragments don't display a player
+        if fragmentAnnotation["text"].lower() == "noplayer":
+            fragmentAnnotation["text"] = ""
+        elif not mainFragment: # Main fragments don't display a player
             fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
         nextFileNumber += 1
     
