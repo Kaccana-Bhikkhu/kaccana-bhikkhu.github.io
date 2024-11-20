@@ -98,12 +98,6 @@ export function configureLinks(frame,url) {
 				history.pushState({}, "", newFullUrl);
 				event.preventDefault(); // Don't follow the href link
 				await changeURL(url);
-
-				if (!url.endsWith("#_keep_scroll")) {
-					window.scrollTo(0, 0);
-					if (url.includes("#"))
-						delayedScroll(url.split("#")[1])
-				}
 			});
 		}
 	});
@@ -131,6 +125,14 @@ async function changeURL(pUrl,scrollTo = null) {
 			loadToggleView();
 			if (scrollTo && Object.hasOwn(scrollTo,"scrollX") && Object.hasOwn(scrollTo,"scrollY"))
 				window.scrollTo(scrollTo.scrollX,scrollTo.scrollY)
+			else {
+				if (!pUrl.endsWith("#_keep_scroll")) {
+					if (pUrl.includes("#"))
+						delayedScroll(pUrl.split("#")[1])
+					else
+						window.scrollTo(0, 0);
+				}
+			}
 		});
 }
 
@@ -158,12 +160,7 @@ if (frame) {
 	let url = new URL(location.href)
 	// Skip changeURL for local files and robots loading index.html (url.hash == '')
 	if (url.protocol != "file:" && (!isBotUserAgent || url.hash)) {
-		changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-			let urlHash = decodeURIComponent(location.hash);
-			if (urlHash.slice(1).includes("#")) {
-				delayedScroll(urlHash.slice(1).split("#")[1]);
-			}
-		});
+		changeURL(location.hash.slice(1) || frame.dataset.url);
 
 		addEventListener("popstate", (event) => {
 			changeURL(location.hash.slice(1) || frame.dataset.url,event.state);
