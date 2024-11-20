@@ -82,6 +82,17 @@ class AudioChip extends HTMLElement {
 		const button = document.createElement("button");
 		button.classList.add("play");
 
+		/* let titleWithLink = this.title;
+		if (true) {
+			titleWithLink = `<a href="#events/Madison2023.html#Madison2023_S02_F18">${this.title}</a>`
+		} */
+
+		let titleWithLink = this.title;
+		if (this.dataset.titlelink) {
+			titleWithLink = `<a href="#${this.dataset.titlelink}">${this.title}</a>`
+			console.log("Title link:",this.dataset.titlelink, titleWithLink)
+		}
+
 		let loaded = loadAudio;
 		this.audio.addEventListener("canplaythrough", () => {
 			loaded = true;
@@ -89,7 +100,7 @@ class AudioChip extends HTMLElement {
 		button.addEventListener("click", () => {
 			if (loaded) {
 				console.log("audio loaded");
-				playAudio(this.title, this.audio);
+				playAudio(titleWithLink, this.audio);
 			} else {
 				this.audio.load();
 				console.log("waiting for audio loading");
@@ -98,7 +109,7 @@ class AudioChip extends HTMLElement {
 					"canplaythrough",
 					(cb = () => {
 						console.log("starting");
-						playAudio(this.title, this.audio);
+						playAudio(titleWithLink, this.audio);
 						this.audio.removeEventListener("canplaythrough", cb);
 					})
 				);

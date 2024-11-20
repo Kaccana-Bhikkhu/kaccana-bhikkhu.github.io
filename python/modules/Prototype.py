@@ -780,32 +780,36 @@ def PlayerTitle(item:dict) -> str:
     return " ".join(titleItems)
     
 
-def AudioIcon(hyperlink: str,title: str,dataDuration:str = "") -> str:
+def AudioIcon(hyperlink: str,title: str,titleLink:str = "",dataDuration:str = "") -> str:
     "Return an audio icon with the given hyperlink"
     filename = title + ".mp3"
 
     a = Airium(source_minify=True)
-    durationDict = {}
+    dataDict = {}
     if dataDuration:
-        durationDict = {"data-duration": str(Mp3DirectCut.ToTimeDelta(dataDuration).seconds)}
-    with a.get_tag_('audio-chip')(src = hyperlink, title = title, **durationDict):
+        dataDict["data-duration"] = str(Mp3DirectCut.ToTimeDelta(dataDuration).seconds)
+    if titleLink:
+        dataDict["data-titlelink"] = titleLink
+    with a.get_tag_('audio-chip')(src = hyperlink, title = title, **dataDict):
         with a.a(href = hyperlink,download=filename):
             a(f"Download audio")
         a(f" ({dataDuration})")
 	
     return str(a)
 
-def Mp3ExcerptLink(excerpt: dict,**kwArgs) -> str:
+def Mp3ExcerptLink(excerpt: dict) -> str:
     """Return an html-formatted audio icon linking to a given excerpt.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
     
-    return AudioIcon(Database.Mp3Link(excerpt),title=PlayerTitle(excerpt),dataDuration = excerpt["duration"],**kwArgs)
+    excerptLink = f"events/{excerpt['event']}.html#{Database.ItemCode(Database.FragmentSource(excerpt))}"
+    return AudioIcon(Database.Mp3Link(excerpt),title=PlayerTitle(excerpt),titleLink=excerptLink,dataDuration = excerpt["duration"])
     
-def Mp3SessionLink(session: dict,**kwArgs) -> str:
+def Mp3SessionLink(session: dict) -> str:
     """Return an html-formatted audio icon linking to a given session.
     Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
-        
-    return AudioIcon(Database.Mp3Link(session),title=PlayerTitle(session),dataDuration = session["duration"],**kwArgs)
+    
+    sessionLink = f"events/{session['event']}.html#{Database.ItemCode(session)}"
+    return AudioIcon(Database.Mp3Link(session),title=PlayerTitle(session),titleLink=sessionLink,dataDuration = session["duration"])
     
 def TeacherLink(teacher:str) -> str:
     "Return a link to a given teacher page. Return an empty string if the teacher doesn't have a page."
@@ -917,12 +921,12 @@ class Formatter:
         self.excerptNumbers = not headerless
         self.excerptAttributeSource = headerless
 
-    def FormatExcerpt(self,excerpt:dict,**kwArgs) -> str:
+    def FormatExcerpt(self,excerpt:dict) -> str:
         "Return excerpt formatted in html according to our stored settings."
         
         a = Airium(source_minify=True)
         
-        a(Mp3ExcerptLink(excerpt,**kwArgs))
+        a(Mp3ExcerptLink(excerpt))
         a.br()
         a(' ')
         if self.excerptNumbers:

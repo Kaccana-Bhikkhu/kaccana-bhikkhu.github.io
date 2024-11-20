@@ -54,6 +54,15 @@ def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
     for key,group in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"],int(x["excerptNumber"]))):
         yield list(group)
 
+def FragmentSource(excerpt: dict[str]) -> dict[str]:
+    """If this excerpt is a fragment, return its source. If not, return the excerpt itself."""
+
+    excerptDict = ExcerptDict()
+    while (excerpt["excerptNumber"] != int(excerpt["excerptNumber"])):
+        excerpt = excerptDict[excerpt["event"]][excerpt["sessionNumber"]][excerpt["fileNumber"] - 1]
+    
+    return excerpt
+
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
 
@@ -93,7 +102,6 @@ def ItemCitation(item: dict) -> str:
 
     event = item.get("event",item.get("code",None))
     session = item.get("sessionNumber",None)
-    fileNumber = item.get("fileNumber",None)
 
     eventName = gDatabase["event"][event]["title"]
     if not re.search(r"[0-9]{4}",eventName):
@@ -105,10 +113,7 @@ def ItemCitation(item: dict) -> str:
         parts.append(Html.Tag("a",{"href":EventLink(event,session)})(f"Session {session}"))
     excerptNumber = item.get("excerptNumber",None)
     if excerptNumber:
-        newExcerptNumber = excerptNumber
-        while (newExcerptNumber != int(newExcerptNumber)) and fileNumber > 0: # If this is a fragment, look backward for the source excerpt
-            fileNumber -= 1
-            newExcerptNumber = FindExcerpt(event,session,fileNumber)["excerptNumber"]
+        fileNumber = FragmentSource(item)["fileNumber"]
         parts.append(Html.Tag("a",{"href":EventLink(event,session,fileNumber)})(f"Excerpt {excerptNumber}"))
     return ", ".join(parts)
 
