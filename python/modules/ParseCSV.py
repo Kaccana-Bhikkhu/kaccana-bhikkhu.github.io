@@ -1016,6 +1016,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 
     def ProcessAppendAudio(excerpt: dict[str],appendAudioAnnotations: list[dict[str]]):
         """Add clips to an excerpt that contains Append audio or Cut audio annotations."""
+        audioStart = Mp3DirectCut.ToTimeDelta(excerpt["clips"][0].start)
         for annotation in appendAudioAnnotations:
             if annotation["kind"] == "Append audio":
                 filename,url,duration = SplitAudioSourceText(annotation["text"])
@@ -1026,9 +1027,13 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                     filename = excerpt["clips"][-1].file
                 
                 excerpt["clips"].append(SplitMp3.Clip(filename,annotation["startTime"],annotation["endTime"]))
+                audioStart = Mp3DirectCut.ToTimeDelta(annotation["startTime"])
             elif annotation["kind"] == "Cut audio":
                 try:
-                    excerpt["clips"][-1:] = excerpt["clips"][-1].Cut(annotation["startTime"],annotation["endTime"])
+                    cut = [annotation["startTime"],annotation["endTime"]]
+                    if ExcerptFlag.RELATIVE_AUDIO in annotation["flags"]:
+                        cut = [Mp3DirectCut.TimeDeltaToStr(audioStart + Mp3DirectCut.ToTimeDelta(time)) for time in cut]
+                    excerpt["clips"][-1:] = excerpt["clips"][-1].Cut(*cut)
                 except (Mp3DirectCut.ParseError,Mp3DirectCut.TimeError) as error:
                     Alert.error(annotation,"to",excerpt,"produces error:",error.args[0])
 
