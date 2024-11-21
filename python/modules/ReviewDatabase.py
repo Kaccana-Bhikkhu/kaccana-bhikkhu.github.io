@@ -34,7 +34,7 @@ def SignificantSubtagsWithoutFTags() -> set[str]:
 
     tags = set()
     for subtopic in gDatabase["subtopic"].values():
-        if subtopic["reviewed"]:
+        if subtopic["status"] == "Reviewed":
             continue
         for tagName in Database.SubtagIterator(subtopic):
             tag = gDatabase["tag"][tagName]
@@ -84,6 +84,20 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
     difference = min(tagOrSubtopic["fTagCount"] - minFTags,0) or max(tagOrSubtopic["fTagCount"] - maxFTags,0)
 
     return minFTags,maxFTags,difference
+
+def FTagStatusCode(tagOrSubtopic: dict[str]) -> str:
+    """Return a one-character code indicating the status of this tag or subtopic's featured excerpts."""
+
+    _,_,diffFTag = OptimalFTagCount(tagOrSubtopic)
+    if tagOrSubtopic.get("status","") == "Reviewed":
+        prefixChar = "☑"
+    elif tagOrSubtopic.get("fTagCount",0) == 0:
+        prefixChar = "∅"
+    else:
+        prefixChar = "⊟☐⊞"[(diffFTag > 0) - (diffFTag < 0) + 1]
+        if diffFTag == 0 and tagOrSubtopic.get("status","") == "Sorted":
+            prefixChar = "⊡"
+    return prefixChar
 
 def VerifyListCounts() -> None:
     # Check that the number of items in each numbered tag list matches the supertag item count
@@ -300,11 +314,13 @@ def LogReviewedFTags() -> None:
     
     with FileRegister.HashWriter(directory) as writer:
         for subtopic in gDatabase["subtopic"].values():
-            if subtopic["reviewed"]:
-                writer.WriteTextFile(Utils.PosixJoin("subtopics",subtopic["tag"] + ".tsv"),LogFile(subtopic))
+            if subtopic["status"] == "Reviewed":
+                filename = Utils.RemoveDiacritics(subtopic["tag"]).replace("/","-") + ".tsv"
+                writer.WriteTextFile(Utils.PosixJoin("subtopics",filename),LogFile(subtopic))
         for tag in gDatabase["tag"].values():
             if tag["tag"] in gDatabase["reviewedTag"]:
-                writer.WriteTextFile(Utils.PosixJoin("tags",tag["tag"] + ".tsv"),LogFile(tag))
+                filename = Utils.RemoveDiacritics(tag["tag"]).replace("/","-") + ".tsv"
+                writer.WriteTextFile(Utils.PosixJoin("tags",filename),LogFile(tag))
 
 def NeedsAudioEditing() -> None:
     "Print which excerpts need audio editing."
@@ -316,7 +332,7 @@ def NeedsAudioEditing() -> None:
     
     audioEditing = [x for x in gDatabase["excerpts"] if ParseCSV.ExcerptFlag.AUDIO_EDITING in x["flags"]]
     if audioEditing:
-        Alert.notice("The following",len(amplifyQuestions),"excerpts need audio editing:",lineSpacing=0)
+        Alert.notice("The following",len(audioEditing),"excerpts need audio editing:",lineSpacing=0)
         print("\n".join(Database.ItemRepr(x) for x in audioEditing))
         print()
 

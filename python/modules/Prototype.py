@@ -2208,12 +2208,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemo
                         fTagCount = gDatabase['subtopic'][subtopic].get('fTagCount',0)
                         minFTag,maxFTag,diffFTag = ReviewDatabase.OptimalFTagCount(gDatabase["subtopic"][subtopic])
                         
-                        if gDatabase["subtopic"][subtopic]["reviewed"]:
-                            prefixChar = "☑"
-                        elif fTagCount == 0:
-                            prefixChar = "∅"
-                        else:
-                            prefixChar = "⊟☐⊞"[(diffFTag > 0) - (diffFTag < 0) + 1]
+                        prefixChar = ReviewDatabase.FTagStatusCode(gDatabase["subtopic"][subtopic])
                         
                         if prefixChar and printPage:
                             a(f"{prefixChar} ")
