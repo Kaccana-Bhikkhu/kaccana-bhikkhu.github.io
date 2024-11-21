@@ -20,7 +20,7 @@ Session #,Kind,Flags,Start time,End time,Text,Teachers,QTag1,QTag2,QTag3,QTag4,A
 2,Quote,,,,There's just suffering arising and passing away.,AChah,Suffering,Impermanence,,,,,,,,,,,
 2,Fragment,,,,noPlayer,,,,,,,,,,,,,,
 2,Quote,,,,You'll want to make an end of things.,AChah,Dispassion,Cessation,,,,,,,,,,,
-2,Fragment,,,,noPlayer,,,,,,,,,,,,,,
+2,Fragment,,,,,,,,,,,,,,,,,,
 2,Quote,,,,"This is the nature of enlightenment. It's he extinguishing of fire, the cooling of that which was hot. This is peace. This is the end of saṃsāra, the cycle of birth and death.",AChah,Liberation,Nibbāna,Similes,Cessation,,,,,,,,,
 2,Extra tags,,,,,,Saṃsāra,,,,,,,,,,,,
 2,Fragment,,,,,,,,,,,,,,,,,,
@@ -122,16 +122,23 @@ Session #,Kind,Flags,Start time,End time,Text,Teachers,QTag1,QTag2,QTag3,QTag4,A
 6,Indirect quote,,,,Nibbāna is complete normality.|Ajahn Chah,,Ajahn Chah,Nibbāna,Naturalness,,,,,,,,,,
 6,Chanting,0,2:51,4:06,Chanting instructions|| by {teachers}.,ASundara,Chanting,,,,Mindfulness of breathing,,,,,,,,
 7,Chanting,,Session,,"on Buddha, Dhamma and Saṇgha.",,Three Refuges,Nibbāna,,,,,,,,,,,
-8,Reading,,Session,,"""Meditation"" from Living Dhamma pp. 50-53.",,,,,,,,,,,,,,
+8,Reading,m,0:00,,"""Meditation"" from Living Dhamma pp. 50-53.",,,,,,,,,,,,,,
 8,Read by,,,,,AJitindriya,,,,,,,,,,,,,
 8,Reflection,3,,,"""Cultivate the tree right from the seed.""",,Similes,,,,Practicing in accordance with Dhamma,,,,,,,,
 8,Reflection,3,,,"""To practice in a way that's peaceful means to place the mind neither too high or too low, but at the point of balance.""",,Middle Path,,,,Ajahn Chah,,,,,,,,
 8,Reflection,3,,,"""So many teachers, so many teachings.""",,Teachers,Doubt,Meditation/Techniques,,,,,,,,,,
 8,Teaching,3,,,"""Where there is knowing, there is no need to think.""",,Knowing itself,Directed thought and evaluation,Tranquility,Mindfulness,Discernment,Proliferation,,,,,,,
-8,Teaching,3,,,"""Resolve that right now is the time for training the mind and nothing else.""",,Ardency,Determination,Mindfulness of breathing,Body scanning,Relinquishment,Sense restraint,Tranquility,,,,,,
-8,Teaching,3,,,"""Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.""",,Doubt,Mindfulness,Knowing itself,Continuity of mindfulness,Restlessness and worry,Heedfulness,Concentration,Directed thought and evaluation,Feeling,,,,
-8,Extra tags,,,,,,Mindfulness of breathing,,,,,,,,,,,,
+8,Fragment,,,,,,,,,,,,,,,,,,
+8,Teaching,0,,,"""Resolve that right now is the time for training the mind and nothing else.""",,Ardency,,Mindfulness of breathing,Body scanning,Relinquishment,Sense restraint,Tranquility,,,,,,
+8,Fragment,,,,,,,,,,,,,,,,,,
+8,Teaching,3,,,"""Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.""",,Doubt,Mindfulness,Knowing itself,Continuity of mindfulness,Restlessness and worry,Heedfulness,Concentration,Feeling,Mindfulness of breathing,,,,
 8,Simile,-,,,Chicken in a coop.,,Similes,Concentration,,,,,,,,,,,
+8,Meditation instruction,f0,2:34,6:08,"Meditation instructions from {teachers}: ""Resolve that right now is the time for training the mind and nothing else.""",,Ardency,Meditation,Mindfulness of breathing,,Body scanning,Relinquishment,Sense restraint,Tranquility,,,,Meditation,70
+8,Read by,,,,,AJitindriya,,,,,,,,,,,,,
+8,Quote,f,6:08,9:13,"""Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.""",,Doubt,Mindfulness,Knowing itself,Continuity of mindfulness,Heedfulness,Concentration,Feeling,Mindfulness of breathing,,,,Mindfulness,70
+8,Extra tags,,,,,,Restlessness and worry,,,,,,,,,,,,
+8,Read by,,,,,AJitindriya,,,,,,,,,,,,,
+8,Simile,,,,Chicken in a coop.,,Similes,Concentration,,,,,,,,,,,
 9,Other,,0:08,,[Ajahn Amaro](teacher:) introduces Paul Breiter and Joseph Kappel.,AA,Paul Breiter,Joseph Kappel,,,Ajahn Amaro,Aruna Ratanagiri,History/Western Buddhist monasticism,Wat Pah Nanachat,,,,,
 9,Story,,5:56,,Ajahn Chah's early life.,,,,,,Culture/Thailand,Truth,Leadership,Ajahn Jayasaro,,,,,
 9,Reading,,8:35,,from the [draft biography](): Young Chah plays at being a monk.,,,,,,Ajahn Jayasaro,Almsfood,Five Precepts,,,,,,
@@ -174,7 +181,7 @@ Session #,Kind,Flags,Start time,End time,Text,Teachers,QTag1,QTag2,QTag3,QTag4,A
 11,Main fragment,r,0:33,0:58.5,,,Teaching Dhamma,Ajahn Chah,,,Trust,,,,,,,Teaching Dhamma,70
 11,Teaching,0,11:24,12:35,"Most people celebrate birth, but people should be crying. When people die, everyone grieves and sorrows, but they should be celebrating. ++Teaching++ of [Ajahn Chah](teacher:) recollected by [Joseph Kappel](teacher:).",,Birth,Grief,Death,Happiness,Fierce/direct teaching,,,,,,,,
 11,Recollection,3,12:43,14:33,Ajahn Chah could be with people where they are.,,Compassion,Present moment awareness,,,,,,,,,,,
-11,Recollection,3o,14:32,16:22,Ajahn Chah emphasized sīla and precepts when teaching in the West.,,Virtue,Five Precepts,Teaching Dhamma,Culture/West,Communal harmony,Meditation,Sensual desire,Long-term practice,,,,Virtue,90
+11,Recollection,3o,14:32.5,16:22,Ajahn Chah emphasized sīla and precepts when teaching in the West.,,Virtue,Five Precepts,Teaching Dhamma,Culture/West,Communal harmony,Meditation,Sensual desire,Long-term practice,,,,Virtue,90
 11,Reflection,o,16:21,,Jumping off the Saṅgha ocean liner.,,Saṅgha,Similes,Joseph Kappel,Disrobing,Faith,Five Precepts,Ajahn Chah,,,Yes,,,
 11,Reflection,0,18:03,,[Ajahn Amaro](teacher:) introduces Paul Breiter and Joseph Kappel.,,,,,,,,,,,,,,
 12,,,0:39,,What is the daily schedule like?,AA;JKappel,Monastic routine,,,,Wat Pah Nanachat,Ajahn Amaro,Joseph Kappel,,,,,Wat Pah Nanachat,140
@@ -314,7 +321,7 @@ Session #,Kind,Flags,Start time,End time,Text,Teachers,QTag1,QTag2,QTag3,QTag4,A
 26,Story,,33:33,,"""It's like a big hospital....I hope you get well soon.""",,Humor,,,,Insight Meditation Society,Meditation retreats,Ardency,Posture/Walking,,,,,
 26,Quote,,34:23,,He just accepted life on its own terms from this place in the center.,,Equanimity,Truth,Dignity,,Present moment awareness,Knowledge and vision,Relinquishment,,,,,,
 26,Indirect quote,,35:02,,"The Eightfold Path is here within us. Two eyes, two ears, two nostrils, a tongue, and a body.|Ajahn Chah",,Ajahn Chah,Eightfold Path,Sense bases,,Heart/mind,Buddha,Dhamma,Four Noble Truths,,,,,
-26,Indirect quote,,36:06,37:28,Look at others 10% of the time and look at yourself 90%; that's about the right measure.|Ajahn Chah,,Ajahn Chah,Judgementalism,Admonishment/feedback,Discernment,Idealism,Conventions,Heart/mind,Vinaya,,,,Judgementalism,180
+26,Indirect quote,,36:06,37:28,Look at others 10% of the time and look at yourself 90%; that's about the right measure.|Ajahn Chah,,Ajahn Chah,Judgementalism,Admonishment/feedback,Discernment,Idealism,Conventions,Heart/mind,Vinaya,,,,Judgementalism,70
 26,Story,,,,Ajahn Chah's teacher eats sloppily.,,Ajahn Chah,Teachers,Food,Vinaya,Suffering,,,,,,,,
 26,Story,o,37:27,,Jack Kornfield ask Ajahn Chah for permission to leave Wat Pah Pong.,,Jack Kornfield,Monastic life,Wat Pah Pong,,Culture/Other Theravāda traditions,Seclusion,Meditation,Work,Teachers,,,,
 26,Extra tags,,,,,,,,,,Liberation,,,,,,,,
@@ -390,7 +397,7 @@ Session #,Kind,Flags,Start time,End time,Text,Teachers,QTag1,QTag2,QTag3,QTag4,A
 32,Reflection,3,8:41,18:55,Ajahn Chah's illness: his last teaching.,PBreiter,Sickness,Teaching Dhamma,,,Paul Breiter,Health care,Grief,Ajahn Pasanno,Respect for elders,,,,
 32,Extra tags,,,,,,,,,,Monastic life,Saṅgha,Upatakh,Almsfood,Mutual lay/Saṅgha support,,,,
 32,Story,,18:58,21:59,Ajahn Anando tries to heal Ajahn Chah.,AA,Ajahn Anando,Health care,,,Ajahn Sumedho,Sickness,Fierce/direct teaching,,,,,,
-32,Indirect quote,,22:01,,"If I've developed any wisdom, it's because I had such gigantic defilements.|Ajahn Chah",AA,Ajahn Chah,Discernment,Unwholesome Roots,,Hindrances,Restlessness and worry,Aversion,Doubt,Sensual desire,,,Hindrances,200
+32,Indirect quote,,22:01,,"If I've developed any wisdom, it's because I had such gigantic defilements.|Ajahn Chah",AA,Ajahn Chah,Discernment,Unwholesome Roots,,Hindrances,Restlessness and worry,Aversion,Doubt,Sensual desire,,,Hindrances,110
 32,Story,,23:21,,Ajahn Chah vows not to look at a woman for the duration of the Rains Retreat.,AA,Determination,Sensual desire,Sense restraint,Rains retreat,Discernment,,,,,,,Sensual desire,90
 32,Story,,25:51,28:04,Ajahn Chah hallucinates female sexual organs for ten days.,AA,Sensual desire,Mental illness,,,Ajahn Kinaree,Posture/Walking,Determination,Patience,Rebirth,,,,
 32,Story,,28:07,,"When asked about the potential for sacred sexuality, Ajahn Chah picks his nose.",AA,Sensual desire,Fierce/direct teaching,,,Insight Meditation Society,,,,,,,,

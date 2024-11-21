@@ -257,9 +257,9 @@
           "flags": "",
           "startTime": "",
           "endTime": "",
-          "text": "",
+          "text": "[](player:Chah2001_S02_F08)",
           "indentLevel": 1,
-          "body": ""
+          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S02_F08.mp3\" title=\"Remembering Ajahn Chah Weekend, S2 E4.4\" data-title-link=\"events/Chah2001.html#Chah2001_S02_F04\" data-duration=\"188\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S02_F08.mp3\" download=\"Remembering Ajahn Chah Weekend, S2 E4.4.mp3\">Download audio</a> (3:08)</audio-chip>"
         },
         {
           "kind": "Quote",
@@ -285,7 +285,7 @@
           "endTime": "",
           "text": "[](player:Chah2001_S02_F09)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S02_F09.mp3\" title=\"Remembering Ajahn Chah Weekend, S2 E4.5\" data-duration=\"130\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S02_F09.mp3\" download=\"Remembering Ajahn Chah Weekend, S2 E4.5.mp3\">Download audio</a> (2:10)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S02_F09.mp3\" title=\"Remembering Ajahn Chah Weekend, S2 E4.5\" data-title-link=\"events/Chah2001.html#Chah2001_S02_F04\" data-duration=\"130\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S02_F09.mp3\" download=\"Remembering Ajahn Chah Weekend, S2 E4.5.mp3\">Download audio</a> (2:10)</audio-chip>"
         },
         {
           "kind": "Quote",
@@ -2298,10 +2298,10 @@
     {
       "event": "Chah2001",
       "sessionNumber": 8,
-      "excerptNumber": 0,
-      "fileNumber": 0,
+      "excerptNumber": 1,
+      "fileNumber": 1,
       "kind": "Reading",
-      "flags": "",
+      "flags": "m",
       "text": "\"Meditation\" from Living Dhamma pp. 50-53.",
       "teachers": [
         "AChah"
@@ -2380,15 +2380,23 @@
           "body": "“Where there is knowing, there is no need to think.”"
         },
         {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "[](player:Chah2001_S08_F02)",
+          "indentLevel": 1,
+          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S08_F02.mp3\" title=\"Remembering Ajahn Chah Weekend, S8 E1.1\" data-title-link=\"events/Chah2001.html#Chah2001_S08_F01\" data-duration=\"214\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S08_F02.mp3\" download=\"Remembering Ajahn Chah Weekend, S8 E1.1.mp3\">Download audio</a> (3:34)</audio-chip>"
+        },
+        {
           "kind": "Teaching",
-          "flags": "3",
+          "flags": "0",
           "text": "\"Resolve that right now is the time for training the mind and nothing else.\"",
           "teachers": [
             "AChah"
           ],
           "tags": [
             "Ardency",
-            "Determination",
             "Mindfulness of breathing",
             "Body scanning",
             "Relinquishment",
@@ -2397,6 +2405,15 @@
           ],
           "indentLevel": 1,
           "body": "“Resolve that right now is the time for training the mind and nothing else.”"
+        },
+        {
+          "kind": "Fragment",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
+          "text": "[](player:Chah2001_S08_F03)",
+          "indentLevel": 1,
+          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S08_F03.mp3\" title=\"Remembering Ajahn Chah Weekend, S8 E1.2\" data-title-link=\"events/Chah2001.html#Chah2001_S08_F01\" data-duration=\"185\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S08_F03.mp3\" download=\"Remembering Ajahn Chah Weekend, S8 E1.2.mp3\">Download audio</a> (3:05)</audio-chip>"
         },
         {
           "kind": "Teaching",
@@ -2413,7 +2430,6 @@
             "Restlessness and worry",
             "Heedfulness",
             "Concentration",
-            "Directed thought and evaluation",
             "Feeling",
             "Mindfulness of breathing"
           ],
@@ -2439,9 +2455,148 @@
         "Meditation"
       ],
       "qTagCount": 1,
+      "clips": [
+        [
+          "$",
+          "0:00",
+          ""
+        ]
+      ],
       "duration": "9:25",
+      "fragmentFTags": [
+        "Meditation",
+        "Mindfulness"
+      ],
+      "mirror": "local",
       "body": "<b>Reading:</b> “Meditation” from <em>Living Dhamma</em> by <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>, <a href=\"https://www.abhayagiri.org/media/books/chah_living_dhamma.pdf#page=53\" target=\"_blank\">pp. 50-53</a>. {attribution2}",
       "attribution": "",
+      "attribution2": "Read by <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>.",
+      "teachers2": [
+        "AJitindriya"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 8,
+      "excerptNumber": 1.1,
+      "fileNumber": 2,
+      "kind": "Meditation instruction",
+      "flags": "f0",
+      "text": "Meditation instructions from {teachers}: \"Resolve that right now is the time for training the mind and nothing else.\"",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Meditation"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AJitindriya"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        }
+      ],
+      "tags": [
+        "Ardency",
+        "Meditation",
+        "Mindfulness of breathing",
+        "Body scanning",
+        "Relinquishment",
+        "Sense restraint",
+        "Tranquility"
+      ],
+      "qTagCount": 3,
+      "clips": [
+        [
+          "$",
+          "2:34",
+          "6:08"
+        ]
+      ],
+      "duration": "3:34",
+      "mirror": "local",
+      "body": "Meditation instructions from <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>: “Resolve that right now is the time for training the mind and nothing else.” {attribution2}",
+      "attribution": "",
+      "attribution2": "Read by <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>.",
+      "teachers2": [
+        "AJitindriya"
+      ]
+    },
+    {
+      "event": "Chah2001",
+      "sessionNumber": 8,
+      "excerptNumber": 1.2,
+      "fileNumber": 3,
+      "kind": "Quote",
+      "flags": "f",
+      "text": "\"Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.\"",
+      "teachers": [
+        "AChah"
+      ],
+      "fTags": [
+        "Mindfulness"
+      ],
+      "fTagOrder": [
+        70
+      ],
+      "annotations": [
+        {
+          "kind": "Read by",
+          "flags": "",
+          "text": "",
+          "teachers": [
+            "AJitindriya"
+          ],
+          "indentLevel": 1,
+          "body": ""
+        },
+        {
+          "kind": "Simile",
+          "flags": "",
+          "text": "Chicken in a coop.",
+          "teachers": [
+            "AChah"
+          ],
+          "tags": [
+            "Similes",
+            "Concentration"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Simile:</b> Chicken in a coop."
+        }
+      ],
+      "tags": [
+        "Doubt",
+        "Mindfulness",
+        "Knowing itself",
+        "Continuity of mindfulness",
+        "Meditation",
+        "Restlessness and worry",
+        "Heedfulness",
+        "Concentration",
+        "Feeling",
+        "Mindfulness of breathing"
+      ],
+      "qTagCount": 6,
+      "clips": [
+        [
+          "$",
+          "6:08",
+          "9:13"
+        ]
+      ],
+      "duration": "3:05",
+      "mirror": "local",
+      "body": "<b>Quote:</b>  ““Sometimes there may be doubt, so you must have sati, to be the one who knows, continually following and examining the agitated mind.”” {attribution} {attribution2}",
+      "attribution": " — <a href=\"../teachers/ajahn-chah.html\">Ajahn Chah</a>.",
       "attribution2": "Read by <a href=\"../teachers/ajahn-jitindriya.html\">Ajahn Jitindriyā</a>.",
       "teachers2": [
         "AJitindriya"
@@ -3622,11 +3777,11 @@
       "clips": [
         [
           "$",
-          "14:32",
+          "14:32.5",
           "16:22"
         ]
       ],
-      "duration": "1:50",
+      "duration": "1:49",
       "mirror": "local",
       "body": "Ajahn Chah emphasized sīla and precepts when teaching in the West.{attribution}",
       "attribution": " <b>Recollection</b> by <a href=\"../teachers/joseph-kappel.html\">Joseph Kappel</a>."
@@ -5696,7 +5851,7 @@
           "endTime": "5:39.5",
           "text": "[](player:Chah2001_S20_F03)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S20_F03.mp3\" title=\"Remembering Ajahn Chah Weekend, S20 E2.1\" data-duration=\"230\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S20_F03.mp3\" download=\"Remembering Ajahn Chah Weekend, S20 E2.1.mp3\">Download audio</a> (3:50)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Chah2001/Chah2001_S20_F03.mp3\" title=\"Remembering Ajahn Chah Weekend, S20 E2.1\" data-title-link=\"events/Chah2001.html#Chah2001_S20_F02\" data-duration=\"230\"><a href=\"../../audio/excerpts/Chah2001/Chah2001_S20_F03.mp3\" download=\"Remembering Ajahn Chah Weekend, S20 E2.1.mp3\">Download audio</a> (3:50)</audio-chip>"
         },
         {
           "kind": "Story",
@@ -6984,7 +7139,7 @@
         "Judgementalism"
       ],
       "fTagOrder": [
-        180
+        70
       ],
       "annotations": [
         {
@@ -8780,7 +8935,7 @@
         "Hindrances"
       ],
       "fTagOrder": [
-        200
+        110
       ],
       "annotations": [],
       "tags": [
@@ -10726,11 +10881,11 @@
       "clips": [
         [
           "$",
-          "41:00",
+          "41:23",
           "50:55"
         ]
       ],
-      "duration": "9:55",
+      "duration": "9:32",
       "mirror": "local",
       "body": "“When there is a lot of pain in the body, it is difficult to maintain “right effort,” yet sometimes through patient endurance the pain lessens or dissipates. Could you speak about right effort and the connection between right effort and samadhi?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -11202,7 +11357,7 @@
           "endTime": "8:13",
           "text": "[](player:Metta2008_S02_F11)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Metta2008/Metta2008_S02_F11.mp3\" title=\"Metta Retreat, S2 E10.1\" data-duration=\"114\"><a href=\"../../audio/excerpts/Metta2008/Metta2008_S02_F11.mp3\" download=\"Metta Retreat, S2 E10.1.mp3\">Download audio</a> (1:54)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Metta2008/Metta2008_S02_F11.mp3\" title=\"Metta Retreat, S2 E10.1\" data-title-link=\"events/Metta2008.html#Metta2008_S02_F10\" data-duration=\"114\"><a href=\"../../audio/excerpts/Metta2008/Metta2008_S02_F11.mp3\" download=\"Metta Retreat, S2 E10.1.mp3\">Download audio</a> (1:54)</audio-chip>"
         },
         {
           "kind": "Recollection",
@@ -12997,11 +13152,9 @@
         "AP"
       ],
       "fTags": [
-        "Aversion",
-        "Fierce/direct teaching"
+        "Aversion"
       ],
       "fTagOrder": [
-        200,
         200
       ],
       "annotations": [
@@ -17874,10 +18027,10 @@
         [
           "$",
           "12:37",
-          "17:24"
+          "17:25"
         ]
       ],
-      "duration": "4:47",
+      "duration": "4:48",
       "mirror": "local",
       "body": "<b>Story:</b> Ajahn Chah struggles through lust with patience.{attribution}",
       "attribution": " Told by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -18083,7 +18236,7 @@
           "endTime": "2:13",
           "text": "[](player:SRD2011_S03_F11)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/SRD2011/SRD2011_S03_F11.mp3\" title=\"Tudong Stories at Spirit Rock, S3 E10.1\" data-duration=\"88\"><a href=\"../../audio/excerpts/SRD2011/SRD2011_S03_F11.mp3\" download=\"Tudong Stories at Spirit Rock, S3 E10.1.mp3\">Download audio</a> (1:28)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/SRD2011/SRD2011_S03_F11.mp3\" title=\"Tudong Stories at Spirit Rock, S3 E10.1\" data-title-link=\"events/SRD2011.html#SRD2011_S03_F10\" data-duration=\"88\"><a href=\"../../audio/excerpts/SRD2011/SRD2011_S03_F11.mp3\" download=\"Tudong Stories at Spirit Rock, S3 E10.1.mp3\">Download audio</a> (1:28)</audio-chip>"
         },
         {
           "kind": "Reflection",
@@ -19411,12 +19564,7 @@
       "flags": "",
       "text": "You spoke about suffusing the body with extreme well-being. But I've been in states like that and my body seems to disappear.",
       "teachers": [],
-      "fTags": [
-        "Rapture"
-      ],
-      "fTagOrder": [
-        130
-      ],
+      "fTags": [],
       "annotations": [
         {
           "kind": "Response",
@@ -27182,7 +27330,7 @@
       "excerptNumber": 5,
       "fileNumber": 5,
       "kind": "Question",
-      "flags": "",
+      "flags": "m",
       "text": "You said you have to adjust and think about contemplating. But how can you do that in your working time?",
       "teachers": [
         "AP"
@@ -27206,12 +27354,12 @@
         },
         {
           "kind": "Fragment",
-          "flags": "r",
-          "startTime": "2:57.4",
-          "endTime": "5:12",
+          "flags": "",
+          "startTime": "",
+          "endTime": "",
           "text": "[](player:BIA2013_S01_F06)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/BIA2013/BIA2013_S01_F06.mp3\" title=\"New Year, New Life, S1 E5.1\" data-duration=\"135\"><a href=\"../../audio/excerpts/BIA2013/BIA2013_S01_F06.mp3\" download=\"New Year, New Life, S1 E5.1.mp3\">Download audio</a> (2:15)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/BIA2013/BIA2013_S01_F06.mp3\" title=\"New Year, New Life, S1 E5.1\" data-title-link=\"events/BIA2013.html#BIA2013_S01_F05\" data-duration=\"134\"><a href=\"../../audio/excerpts/BIA2013/BIA2013_S01_F06.mp3\" download=\"New Year, New Life, S1 E5.1.mp3\">Download audio</a> (2:14)</audio-chip>"
         },
         {
           "kind": "Follow-up",
@@ -27278,10 +27426,22 @@
       "sessionNumber": 1,
       "excerptNumber": 5.1,
       "fileNumber": 6,
+      "kind": "Question",
+      "flags": "f",
+      "text": "In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.",
+      "teachers": [
+        "AP"
+      ],
+      "fTags": [
+        "News"
+      ],
+      "fTagOrder": [
+        150
+      ],
       "annotations": [
         {
           "kind": "Quote",
-          "flags": "-",
+          "flags": "",
           "text": "I don't care. Not in the sense that I don't think it's serious or that it's not a problem. But I don't care in the sense that I don't want to be getting involved in whatever side people are working themselves up about, because the problem is much deeper than that. We have to pay attention to the deeper problem, both in the human condition and politically.",
           "teachers": [
             "AP"
@@ -27295,18 +27455,6 @@
           "body": "<b>Quote:</b>  “I don’t care. Not in the sense that I don’t think it’s serious or that it’s not a problem. But I don’t care in the sense that I don’t want to be getting involved in whatever side people are working themselves up about, because the problem is much deeper than that. We have to pay attention to the deeper problem, both in the human condition and politically.” "
         }
       ],
-      "kind": "Follow-up",
-      "flags": "f",
-      "teachers": [
-        "AP"
-      ],
-      "text": "In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.",
-      "fTags": [
-        "News"
-      ],
-      "fTagOrder": [
-        150
-      ],
       "tags": [
         "News",
         "Conflict",
@@ -27315,18 +27463,18 @@
         "Politics and society",
         "Proliferation"
       ],
-      "qTagCount": 4,
+      "qTagCount": 3,
       "clips": [
         [
           "$",
-          "22:08",
+          "22:08.4",
           "24:23"
         ]
       ],
-      "duration": "2:15",
+      "duration": "2:14",
       "mirror": "local",
-      "body": "<b>Follow-up:</b> “In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.”{attribution}",
-      "attribution": " Aswered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+      "body": "“In Bangkok, there is lots of news that makes people crazy and divisive. When you see this news, you feel upset and angry.” {attribution}",
+      "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
     },
     {
       "event": "BIA2013",
@@ -30462,10 +30610,10 @@
         "AP"
       ],
       "fTags": [
-        "Fierce/direct teaching"
+        "Teaching Dhamma"
       ],
       "fTagOrder": [
-        300
+        160
       ],
       "annotations": [
         {
@@ -41189,7 +41337,7 @@
           "endTime": "",
           "text": "[](player:WR2014_S57_F09)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/WR2014/WR2014_S57_F09.mp3\" title=\"Abhayagiri 2014 Winter Retreat, S57 E8.1\" data-duration=\"64\"><a href=\"../../audio/excerpts/WR2014/WR2014_S57_F09.mp3\" download=\"Abhayagiri 2014 Winter Retreat, S57 E8.1.mp3\">Download audio</a> (1:04)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/WR2014/WR2014_S57_F09.mp3\" title=\"Abhayagiri 2014 Winter Retreat, S57 E8.1\" data-title-link=\"events/WR2014.html#WR2014_S57_F08\" data-duration=\"64\"><a href=\"../../audio/excerpts/WR2014/WR2014_S57_F09.mp3\" download=\"Abhayagiri 2014 Winter Retreat, S57 E8.1.mp3\">Download audio</a> (1:04)</audio-chip>"
         },
         {
           "kind": "Indirect quote",
@@ -41249,7 +41397,7 @@
         "Unification"
       ],
       "fTagOrder": [
-        170
+        80
       ],
       "tags": [
         "Ajahn Chah",
@@ -42089,7 +42237,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Heedfulness"
+      ],
+      "fTagOrder": [
+        100
+      ],
       "annotations": [],
       "tags": [
         "Heedfulness",
@@ -42099,19 +42252,17 @@
         "Mindfulness",
         "Discernment",
         "Mindfulness of mind",
-        "Right Effort",
-        "Happiness",
-        "Spaciousness"
+        "Right Effort"
       ],
       "qTagCount": 3,
       "clips": [
         [
           "$",
-          "49:24",
+          "49:31",
           "51:50"
         ]
       ],
-      "duration": "2:26",
+      "duration": "2:19",
       "mirror": "local",
       "body": "“The suttas say ‘The wise protect their diligence as their greatest treasure.’ How does one protect one’s diligence?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -42161,10 +42312,10 @@
         [
           "$",
           "51:55",
-          "55:20"
+          "55:22"
         ]
       ],
-      "duration": "3:25",
+      "duration": "3:27",
       "mirror": "local",
       "body": "“Is there a meditation practice to use with someone who is dying?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -42178,7 +42329,12 @@
       "flags": "s",
       "text": "about uncertainty, impermanence, and denial of the reality of one's own death.",
       "teachers": [],
-      "fTags": [],
+      "fTags": [
+        "Impermanence"
+      ],
+      "fTagOrder": [
+        90
+      ],
       "annotations": [
         {
           "kind": "Response",
@@ -42204,11 +42360,11 @@
       "clips": [
         [
           "$",
-          "55:20",
+          "55:22",
           "57:14"
         ]
       ],
-      "duration": "1:54",
+      "duration": "1:52",
       "mirror": "local",
       "body": "<b>Comments</b> about uncertainty, impermanence, and denial of the reality of one’s own death.",
       "attribution": ""
@@ -42455,7 +42611,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Animal"
+      ],
+      "fTagOrder": [
+        200
+      ],
       "annotations": [
         {
           "kind": "Sutta",
@@ -42495,7 +42656,12 @@
       "flags": "2",
       "text": "As a Westerner who hasn't participated in dedication of merit until this winter–it's worth trying.",
       "teachers": [],
-      "fTags": [],
+      "fTags": [
+        "Merit"
+      ],
+      "fTagOrder": [
+        95
+      ],
       "annotations": [],
       "tags": [
         "Culture/West",
@@ -42526,7 +42692,12 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Merit"
+      ],
+      "fTagOrder": [
+        120
+      ],
       "annotations": [
         {
           "kind": "Story",
@@ -46280,7 +46451,7 @@
         "Tudong"
       ],
       "fTagOrder": [
-        1001
+        70
       ],
       "annotations": [],
       "tags": [
@@ -46295,10 +46466,10 @@
         [
           "$",
           "27:34",
-          "29:42"
+          "29:43"
         ]
       ],
-      "duration": "2:08",
+      "duration": "2:09",
       "mirror": "local",
       "body": "“How does tudong help you on the spiritual path?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -46309,7 +46480,7 @@
       "excerptNumber": 10,
       "fileNumber": 10,
       "kind": "Question",
-      "flags": "Q",
+      "flags": "Qo",
       "text": "Is there a requirement for monks in the Forest Tradition to walk tudong?",
       "teachers": [
         "AP"
@@ -46318,7 +46489,7 @@
         "Tudong"
       ],
       "fTagOrder": [
-        180
+        75
       ],
       "annotations": [
         {
@@ -47318,7 +47489,7 @@
           "endTime": "17:05",
           "text": "[](player:TG2014_S01_F04)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/TG2014/TG2014_S01_F04.mp3\" title=\"2014 Thanksgiving Monastic Retreat, S1 E3.1\" data-duration=\"346\"><a href=\"../../audio/excerpts/TG2014/TG2014_S01_F04.mp3\" download=\"2014 Thanksgiving Monastic Retreat, S1 E3.1.mp3\">Download audio</a> (5:46)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/TG2014/TG2014_S01_F04.mp3\" title=\"2014 Thanksgiving Monastic Retreat, S1 E3.1\" data-title-link=\"events/TG2014.html#TG2014_S01_F03\" data-duration=\"346\"><a href=\"../../audio/excerpts/TG2014/TG2014_S01_F04.mp3\" download=\"2014 Thanksgiving Monastic Retreat, S1 E3.1.mp3\">Download audio</a> (5:46)</audio-chip>"
         },
         {
           "kind": "Story",
@@ -48532,7 +48703,7 @@
         "Rapture"
       ],
       "fTagOrder": [
-        100
+        120
       ],
       "annotations": [
         {
@@ -48867,7 +49038,7 @@
         "Rebirth"
       ],
       "fTagOrder": [
-        100
+        140
       ],
       "annotations": [],
       "tags": [
@@ -49511,8 +49682,8 @@
         "Relinquishment"
       ],
       "fTagOrder": [
-        100,
-        100
+        80,
+        150
       ],
       "annotations": [
         {
@@ -50012,7 +50183,7 @@
         "Personality"
       ],
       "fTagOrder": [
-        100,
+        120,
         100
       ],
       "annotations": [
@@ -50112,12 +50283,7 @@
         "AP"
       ],
       "text": "It seems that suffering in the lives of many people, my own included, comes from feeling unworthy or unlovable. Would you have any thoughts on why so many people feel that way and what will help to let go of this feeling? Thank you!",
-      "fTags": [
-        "Guilt/shame/inadequacy"
-      ],
-      "fTagOrder": [
-        100
-      ],
+      "fTags": [],
       "annotations": [],
       "tags": [
         "Guilt/shame/inadequacy",
@@ -50731,7 +50897,7 @@
           "endTime": "8:00",
           "text": "[](player:TG2014_S06_F03)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/TG2014/TG2014_S06_F03.mp3\" title=\"2014 Thanksgiving Monastic Retreat, S6 E2.1\" data-duration=\"123\"><a href=\"../../audio/excerpts/TG2014/TG2014_S06_F03.mp3\" download=\"2014 Thanksgiving Monastic Retreat, S6 E2.1.mp3\">Download audio</a> (2:03)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/TG2014/TG2014_S06_F03.mp3\" title=\"2014 Thanksgiving Monastic Retreat, S6 E2.1\" data-title-link=\"events/TG2014.html#TG2014_S06_F02\" data-duration=\"123\"><a href=\"../../audio/excerpts/TG2014/TG2014_S06_F03.mp3\" download=\"2014 Thanksgiving Monastic Retreat, S6 E2.1.mp3\">Download audio</a> (2:03)</audio-chip>"
         },
         {
           "kind": "Indirect quote",
@@ -51505,7 +51671,7 @@
         "Right Mindfulness"
       ],
       "fTagOrder": [
-        100
+        70
       ],
       "annotations": [
         {
@@ -54354,10 +54520,12 @@
         "AKd"
       ],
       "fTags": [
-        "Right Mindfulness"
+        "Right Mindfulness",
+        "Mindfulness of body"
       ],
       "fTagOrder": [
-        150
+        130,
+        120
       ],
       "annotations": [
         {
@@ -56011,7 +56179,7 @@
         "Directed thought and evaluation"
       ],
       "fTagOrder": [
-        120
+        100
       ],
       "annotations": [
         {
@@ -59036,7 +59204,7 @@
         "Jhāna"
       ],
       "fTagOrder": [
-        130
+        200
       ],
       "annotations": [],
       "tags": [
@@ -64602,7 +64770,7 @@
       "tags": [
         "Guilt/shame/inadequacy",
         "Judgementalism",
-        "Idealism",
+        "Perfectionism",
         "Desire",
         "Contentment",
         "Discernment",
@@ -64613,11 +64781,11 @@
       "clips": [
         [
           "$",
-          "20:14",
+          "20:32",
           "26:54"
         ]
       ],
-      "duration": "6:40",
+      "duration": "6:22",
       "mirror": "local",
       "body": "“A lot of my life has been based on guilt, punishment, achievement, feeling driven, and perfectionism. Recently I experienced the reverse of this. Perfectionism is mixed up with wholesome desire. Could you respond?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -66823,12 +66991,7 @@
       "teachers": [
         "AP"
       ],
-      "fTags": [
-        "Jhāna"
-      ],
-      "fTagOrder": [
-        1001
-      ],
+      "fTags": [],
       "annotations": [],
       "tags": [
         "Buddha/Biography",
@@ -66912,7 +67075,7 @@
         "Jhāna"
       ],
       "fTagOrder": [
-        125
+        180
       ],
       "annotations": [
         {
@@ -67482,7 +67645,7 @@
           "endTime": "21:57",
           "text": "[](player:TG2015_S01_F07)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S01_F07.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S1 E6.1\" data-duration=\"204\"><a href=\"../../audio/excerpts/TG2015/TG2015_S01_F07.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S1 E6.1.mp3\">Download audio</a> (3:24)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S01_F07.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S1 E6.1\" data-title-link=\"events/TG2015.html#TG2015_S01_F06\" data-duration=\"204\"><a href=\"../../audio/excerpts/TG2015/TG2015_S01_F07.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S1 E6.1.mp3\">Download audio</a> (3:24)</audio-chip>"
         },
         {
           "kind": "Teaching",
@@ -67501,14 +67664,14 @@
         },
         {
           "kind": "Commentary",
-          "flags": "",
+          "flags": "-",
           "text": "Path of Purification p. 139: Similes for pīti and sukha.",
           "tags": [
             "Similes",
             "Rapture",
             "Happiness"
           ],
-          "indentLevel": 1,
+          "indentLevel": 2,
           "body": "<b>Commentary:</b> <em>Path of Purification</em> by Bhikkhu Ñāṇamoli, <a href=\"https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=197\" target=\"_blank\">p. 139</a>: Similes for pīti and sukha."
         }
       ],
@@ -67543,7 +67706,20 @@
       "sessionNumber": 1,
       "excerptNumber": 6.1,
       "fileNumber": 7,
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Commentary",
+          "flags": "-",
+          "text": "Path of Purification p. 139: Similes for pīti and sukha.",
+          "tags": [
+            "Similes",
+            "Rapture",
+            "Happiness"
+          ],
+          "indentLevel": 1,
+          "body": "<b>Commentary:</b> <em>Path of Purification</em> by Bhikkhu Ñāṇamoli, <a href=\"https://www.accesstoinsight.org/lib/authors/nanamoli/PathofPurification2011.pdf#page=197\" target=\"_blank\">p. 139</a>: Similes for pīti and sukha."
+        }
+      ],
       "kind": "Teaching",
       "flags": "f",
       "teachers": [
@@ -67555,8 +67731,8 @@
         "Rapture"
       ],
       "fTagOrder": [
-        150,
-        150
+        160,
+        130
       ],
       "tags": [
         "Rapture",
@@ -68406,12 +68582,10 @@
       ],
       "text": "Could you offer a bit of advice on how to deal with the apparent dichotomy between seeing people (including myself) as real & solid (for example when sending them metta), and the doctrine of no-self whereby there is no such imagined solidity at all – just an ever-changing combination of the khandas?",
       "fTags": [
-        "Middle Path",
         "Not-self"
       ],
       "fTagOrder": [
-        100,
-        1001
+        110
       ],
       "annotations": [],
       "tags": [
@@ -68770,7 +68944,7 @@
           "endTime": "8:48",
           "text": "[](player:TG2015_S04_F02)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S04_F02.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S4 E1.1\" data-duration=\"247\"><a href=\"../../audio/excerpts/TG2015/TG2015_S04_F02.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S4 E1.1.mp3\">Download audio</a> (4:07)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S04_F02.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S4 E1.1\" data-title-link=\"events/TG2015.html#TG2015_S04_F01\" data-duration=\"247\"><a href=\"../../audio/excerpts/TG2015/TG2015_S04_F02.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S4 E1.1.mp3\">Download audio</a> (4:07)</audio-chip>"
         },
         {
           "kind": "Teaching",
@@ -69169,7 +69343,7 @@
         "Volitional formations"
       ],
       "fTagOrder": [
-        100
+        110
       ],
       "annotations": [
         {
@@ -69294,7 +69468,7 @@
       ],
       "fTagOrder": [
         100,
-        1001
+        180
       ],
       "annotations": [],
       "tags": [
@@ -69544,7 +69718,7 @@
         "Sense bases"
       ],
       "fTagOrder": [
-        100,
+        90,
         100
       ],
       "annotations": [],
@@ -69681,12 +69855,10 @@
       "text": "Is there a distinction between observing the mind and observing what arises?",
       "fTags": [
         "Knowing itself",
-        "Buddha",
         "Liberation"
       ],
       "fTagOrder": [
         100,
-        1001,
         100
       ],
       "annotations": [],
@@ -69855,7 +70027,7 @@
           "endTime": "5:57.5",
           "text": "[](player:TG2015_S05_F03)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S05_F03.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S5 E2.1\" data-duration=\"105\"><a href=\"../../audio/excerpts/TG2015/TG2015_S05_F03.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S5 E2.1.mp3\">Download audio</a> (1:45)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S05_F03.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S5 E2.1\" data-title-link=\"events/TG2015.html#TG2015_S05_F02\" data-duration=\"105\"><a href=\"../../audio/excerpts/TG2015/TG2015_S05_F03.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S5 E2.1.mp3\">Download audio</a> (1:45)</audio-chip>"
         },
         {
           "kind": "Indirect quote",
@@ -70460,7 +70632,7 @@
         "Cause of Suffering"
       ],
       "fTagOrder": [
-        1001
+        150
       ],
       "annotations": [],
       "tags": [
@@ -71521,7 +71693,7 @@
           "endTime": "44:09",
           "text": "[](player:TG2015_S07_F12)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S07_F12.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S7 E11.1\" data-duration=\"176\"><a href=\"../../audio/excerpts/TG2015/TG2015_S07_F12.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S7 E11.1.mp3\">Download audio</a> (2:56)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/TG2015/TG2015_S07_F12.mp3\" title=\"2015 Thanksgiving Monastic Retreat, S7 E11.1\" data-title-link=\"events/TG2015.html#TG2015_S07_F11\" data-duration=\"176\"><a href=\"../../audio/excerpts/TG2015/TG2015_S07_F12.mp3\" download=\"2015 Thanksgiving Monastic Retreat, S7 E11.1.mp3\">Download audio</a> (2:56)</audio-chip>"
         },
         {
           "kind": "Indirect quote",
@@ -72660,7 +72832,7 @@
         "Buddho mantra"
       ],
       "fTagOrder": [
-        100
+        110
       ],
       "annotations": [],
       "tags": [
@@ -74105,7 +74277,7 @@
         "Sickness"
       ],
       "fTagOrder": [
-        1001
+        150
       ],
       "annotations": [],
       "tags": [
@@ -74295,7 +74467,7 @@
         "Generosity"
       ],
       "fTagOrder": [
-        100,
+        120,
         80
       ],
       "annotations": [
@@ -74370,7 +74542,7 @@
         "Unwholesome Roots"
       ],
       "fTagOrder": [
-        100
+        200
       ],
       "annotations": [],
       "tags": [
@@ -75192,7 +75364,7 @@
         "Dependent origination"
       ],
       "fTagOrder": [
-        100,
+        120,
         100
       ],
       "annotations": [
@@ -75328,7 +75500,7 @@
       "fTagOrder": [
         100,
         100,
-        100
+        120
       ],
       "annotations": [
         {
@@ -75346,6 +75518,15 @@
           ],
           "indentLevel": 1,
           "body": "<b>Teaching:</b> The three papañcadhammas."
+        },
+        {
+          "kind": "Cut audio",
+          "flags": "r",
+          "startTime": "0:15",
+          "endTime": "0:25.4",
+          "text": "",
+          "indentLevel": 1,
+          "body": ""
         }
       ],
       "tags": [
@@ -75363,11 +75544,16 @@
       "clips": [
         [
           "$",
-          "18:06",
+          "18:07",
+          "18:22"
+        ],
+        [
+          "$",
+          "18:32",
           "23:18"
         ]
       ],
-      "duration": "5:12",
+      "duration": "5:01",
       "mirror": "local",
       "body": "“Please talk about fixed views and the nine conceits.” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -75379,42 +75565,6 @@
       "fileNumber": 7,
       "kind": "Question",
       "flags": "",
-      "text": "You mentioned nekkhamma early in the retreat. It stuck with me and has been most useful - renouncing expectations and desires in the retreat. It seems to be the antidote to craving, wanting. Where else is it used in the Dhamma?",
-      "teachers": [
-        "AP"
-      ],
-      "fTags": [],
-      "annotations": [],
-      "tags": [
-        "Renunciation",
-        "Craving",
-        "Perfections",
-        "Eightfold Path",
-        "Right Intention",
-        "Sensual desire",
-        "Goodwill",
-        "Compassion"
-      ],
-      "qTagCount": 2,
-      "clips": [
-        [
-          "$",
-          "23:23",
-          "25:31"
-        ]
-      ],
-      "duration": "2:08",
-      "mirror": "local",
-      "body": "“You mentioned nekkhamma early in the retreat. It stuck with me and has been most useful - renouncing expectations and desires in the retreat. It seems to be the antidote to craving, wanting. Where else is it used in the Dhamma?” {attribution}",
-      "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
-    },
-    {
-      "event": "TG2016",
-      "sessionNumber": 3,
-      "excerptNumber": 8,
-      "fileNumber": 8,
-      "kind": "Question",
-      "flags": "",
       "text": "Would you have some suggestions on working with shame? As an emotion, it feels very “sticky” and probably the hardest one for me to work with. It seems like it is deeply rooted in my mind (probably thanks to Christianity). Is it true that Thai people have an easier time with it than westerners? Is an antidote to shame self-compassion?",
       "teachers": [
         "AP"
@@ -75423,7 +75573,7 @@
         "Guilt/shame/inadequacy"
       ],
       "fTagOrder": [
-        100
+        110
       ],
       "annotations": [],
       "tags": [
@@ -75451,8 +75601,8 @@
     {
       "event": "TG2016",
       "sessionNumber": 3,
-      "excerptNumber": 9,
-      "fileNumber": 9,
+      "excerptNumber": 8,
+      "fileNumber": 8,
       "kind": "Question",
       "flags": "",
       "text": "Would you please speak a little bit more about “mindfulness” and the “sati” factor, since it seems to me that most, if not all, things register in consciousness. For example, “discursive” thoughts are registered in consciousness just as thoughts and we are aware of the thoughts themselves. What distinguishes “mindfulness” from lack of mindfulness during this process?",
@@ -75547,8 +75697,8 @@
     {
       "event": "TG2016",
       "sessionNumber": 3,
-      "excerptNumber": 10,
-      "fileNumber": 10,
+      "excerptNumber": 9,
+      "fileNumber": 9,
       "kind": "Question",
       "flags": "",
       "text": "I have a moral dilemma to ask you about. Someone I know, let’s call him Henry (who is also a Buddhist) recently went to the pet store and saw this “bearded dragon” lizard which he felt sorry for and so he bought it and brought it home. Normally, this would be a good thing since it was Henry’s intention to simply take care of the lizard and give it a good home, since the lizard looked sad and miserable at the pet store. Unfortunately, the lizard diet requires that he be fed live baby crickets for hi protein needs. Apparently lizards can’t eat dead things and need some protein for their normal growth. I told Henry that this is really bad, especially for Henry’s karma and the poor crickets. So I told Henry to set the lizard into the wild and let it survive on its own. Henry says that according to his research, 90% of lizards bred in captivity die in the wild. So Henry cannot, in good conscience, set the lizard into the wild, basically giving him a death sentence. Henry does not want this since he cares for the lizard. I then told Henry to give the lizard away to another family. Henry says that this will also cause someone else to have bad karma since the lizard’s dietary needs will be the same. There seems to be no good solution. Would you please comment?",
@@ -75578,8 +75728,8 @@
     {
       "event": "TG2016",
       "sessionNumber": 3,
-      "excerptNumber": 11,
-      "fileNumber": 11,
+      "excerptNumber": 10,
+      "fileNumber": 10,
       "kind": "Question",
       "flags": "",
       "text": "How would you describe romantic love? And how do you know if it is real or wishful thinking?",
@@ -75638,8 +75788,8 @@
     {
       "event": "TG2016",
       "sessionNumber": 3,
-      "excerptNumber": 12,
-      "fileNumber": 12,
+      "excerptNumber": 11,
+      "fileNumber": 11,
       "kind": "Question",
       "flags": "",
       "text": "How do I deal with the mind which loves someone who doesn’t love back? The mind (heart) and the brain are very hard to function normally. The thought of this suffering is overwhelming in my entire daily routines.",
@@ -75679,8 +75829,8 @@
     {
       "event": "TG2016",
       "sessionNumber": 3,
-      "excerptNumber": 13,
-      "fileNumber": 13,
+      "excerptNumber": 12,
+      "fileNumber": 12,
       "kind": "Question",
       "flags": "",
       "text": "I am wondering if you could talk about spiritual bypass? What is it? How do you know if you’ve done it? And how do you disentangle from it?",
@@ -75735,8 +75885,8 @@
     {
       "event": "TG2016",
       "sessionNumber": 3,
-      "excerptNumber": 14,
-      "fileNumber": 14,
+      "excerptNumber": 13,
+      "fileNumber": 13,
       "kind": "Question",
       "flags": "",
       "text": "I remember reading some stories of Ajahn Chah teaching lay people about herbal medicines. I know some Tibetan monks practice medicine. Is there such a tradition in Thailand? Are there any stores of Ajahn Chah healing people physically with traditional medicines?",
@@ -76925,7 +77075,7 @@
         "Jhāna"
       ],
       "fTagOrder": [
-        120
+        90
       ],
       "annotations": [
         {
@@ -78308,11 +78458,9 @@
         "AP"
       ],
       "fTags": [
-        "Ardency",
         "Right Effort"
       ],
       "fTagOrder": [
-        100,
         100
       ],
       "annotations": [
@@ -81604,6 +81752,15 @@
       ],
       "annotations": [
         {
+          "kind": "Fragment",
+          "flags": "r",
+          "startTime": "5:46",
+          "endTime": "7:47.5",
+          "text": "[](player:Teen2017_S00_F02)",
+          "indentLevel": 1,
+          "body": "<audio-chip src=\"../../audio/excerpts/Teen2017/Teen2017_S00_F02.mp3\" title=\"Teen Weekend 2017, E1.1\" data-title-link=\"events/Teen2017.html#Teen2017_S00_F01\" data-duration=\"121\"><a href=\"../../audio/excerpts/Teen2017/Teen2017_S00_F02.mp3\" download=\"Teen Weekend 2017, E1.1.mp3\">Download audio</a> (2:01)</audio-chip>"
+        },
+        {
           "kind": "Story",
           "flags": "",
           "text": "Ajahn Pasanno's first visit to Wat Pah Pong.",
@@ -81645,6 +81802,9 @@
         ]
       ],
       "duration": "11:45",
+      "fragmentFTags": [
+        "Wat Pah Pong"
+      ],
       "mirror": "local",
       "body": "“What meaningful impact do Buddhist monks have on the community?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -81652,8 +81812,48 @@
     {
       "event": "Teen2017",
       "sessionNumber": 0,
-      "excerptNumber": 2,
+      "excerptNumber": 1.1,
       "fileNumber": 2,
+      "annotations": [],
+      "kind": "Story",
+      "flags": "f",
+      "teachers": [
+        "AP"
+      ],
+      "text": "Ajahn Pasanno's first visit to Wat Pah Pong.",
+      "fTags": [
+        "Wat Pah Pong"
+      ],
+      "fTagOrder": [
+        90
+      ],
+      "tags": [
+        "Ajahn Pasanno",
+        "Wat Pah Pong",
+        "Saṅgha",
+        "Temporary ordination",
+        "Lunar observance days",
+        "Mutual lay/Saṅgha support",
+        "Thai Ajahn Chah monasteries"
+      ],
+      "qTagCount": 4,
+      "clips": [
+        [
+          "$",
+          "23:20",
+          "25:21"
+        ]
+      ],
+      "duration": "2:01",
+      "mirror": "local",
+      "body": "<b>Story:</b> Ajahn Pasanno’s first visit to Wat Pah Pong.{attribution}",
+      "attribution": " Told by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
+    },
+    {
+      "event": "Teen2017",
+      "sessionNumber": 0,
+      "excerptNumber": 2,
+      "fileNumber": 3,
       "kind": "Question",
       "flags": "",
       "text": "How closely do you and the other monks live together?",
@@ -81664,7 +81864,7 @@
         "Communal harmony"
       ],
       "fTagOrder": [
-        150
+        130
       ],
       "annotations": [
         {
@@ -81712,7 +81912,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 3,
-      "fileNumber": 3,
+      "fileNumber": 4,
       "kind": "Question",
       "flags": "",
       "text": "When you first ordained, you were just starting to learn about Buddhism. What changed that made you want to dive in?",
@@ -81758,7 +81958,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 4,
-      "fileNumber": 4,
+      "fileNumber": 5,
       "kind": "Question",
       "flags": "",
       "text": "Will we get to see your kuti today?",
@@ -81806,7 +82006,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 5,
-      "fileNumber": 5,
+      "fileNumber": 6,
       "kind": "Question",
       "flags": "",
       "text": "What was the hardest thing to give up?",
@@ -81852,7 +82052,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 6,
-      "fileNumber": 6,
+      "fileNumber": 7,
       "kind": "Question",
       "flags": "",
       "text": "In a Latin American country, the government privatized the water supply and passed a law making it illegal to collect rainwater. Everyone had to buy their water from Nestlé. Does this count as taking what is not given?",
@@ -81885,7 +82085,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 7,
-      "fileNumber": 7,
+      "fileNumber": 8,
       "kind": "Question",
       "flags": "",
       "text": "I have doubts about the concept of personal property. How does activism following the Five Precepts work in a country whose water supply has been bought out by private interests?",
@@ -81937,7 +82137,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 8,
-      "fileNumber": 8,
+      "fileNumber": 9,
       "kind": "Question",
       "flags": "",
       "text": "If you could give your younger self one piece of information, what would it be?",
@@ -81968,7 +82168,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 9,
-      "fileNumber": 9,
+      "fileNumber": 10,
       "kind": "Question",
       "flags": "",
       "text": "What were you like when you were 18?",
@@ -82001,7 +82201,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 10,
-      "fileNumber": 10,
+      "fileNumber": 11,
       "kind": "Comment",
       "flags": "",
       "text": "I haven't heard any Buddhist teachers talk about wholesome romantic relationships.",
@@ -82055,7 +82255,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 11,
-      "fileNumber": 11,
+      "fileNumber": 12,
       "kind": "Question",
       "flags": "",
       "text": "Can you talk about your environmental work in Thailand? What qualities of heart and inner strength help us live without being completely overwhelmed?",
@@ -82116,7 +82316,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 12,
-      "fileNumber": 12,
+      "fileNumber": 13,
       "kind": "Question",
       "flags": "Q",
       "text": "What is the most important thing we can do to help the next generation in terms of the environment?",
@@ -82153,7 +82353,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 13,
-      "fileNumber": 13,
+      "fileNumber": 14,
       "kind": "Story",
       "flags": "",
       "text": "Ajahn Pasanno teaches communication skills to Thai villagers.",
@@ -82187,18 +82387,20 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 14,
-      "fileNumber": 14,
+      "fileNumber": 15,
       "kind": "Question",
-      "flags": "",
+      "flags": "Q",
       "text": "What are the biggest misconceptions about being ordained?",
       "teachers": [
         "AP"
       ],
       "fTags": [
-        "Selfishness"
+        "Selfishness",
+        "Monastic life"
       ],
       "fTagOrder": [
-        130
+        90,
+        90
       ],
       "annotations": [
         {
@@ -82238,7 +82440,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 15,
-      "fileNumber": 15,
+      "fileNumber": 16,
       "kind": "Question",
       "flags": "",
       "text": "What was your greatest desire as a kid?",
@@ -82270,7 +82472,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 16,
-      "fileNumber": 16,
+      "fileNumber": 17,
       "kind": "Question",
       "flags": "",
       "text": "Are there monastics who wander around the world without any home base or destination?",
@@ -82281,7 +82483,7 @@
         "Tudong"
       ],
       "fTagOrder": [
-        80
+        110
       ],
       "annotations": [],
       "tags": [
@@ -82316,7 +82518,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 17,
-      "fileNumber": 17,
+      "fileNumber": 18,
       "kind": "Question",
       "flags": "",
       "text": "Have you broken any precepts where only you know if you broke them?",
@@ -82364,7 +82566,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 18,
-      "fileNumber": 18,
+      "fileNumber": 19,
       "kind": "Question",
       "flags": "",
       "text": "For the sake of the precepts, what's the definition of gossip?",
@@ -82395,7 +82597,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 19,
-      "fileNumber": 19,
+      "fileNumber": 20,
       "kind": "Question",
       "flags": "",
       "text": "Does gossip include talking about someone who is not present for entertainment value?",
@@ -82432,7 +82634,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 20,
-      "fileNumber": 20,
+      "fileNumber": 21,
       "kind": "Question",
       "flags": "",
       "text": "Is the point of the precepts to create as much well-being and as little pain in your environment as possible?",
@@ -82470,7 +82672,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 21,
-      "fileNumber": 21,
+      "fileNumber": 22,
       "kind": "Question",
       "flags": "",
       "text": "Is the philosophy of this community totally against fun?",
@@ -82504,7 +82706,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 22,
-      "fileNumber": 22,
+      "fileNumber": 23,
       "kind": "Comment",
       "flags": "",
       "text": "Some of the things that monastics avoid due to their precepts can be really beautiful.",
@@ -82544,7 +82746,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 23,
-      "fileNumber": 23,
+      "fileNumber": 24,
       "kind": "Question",
       "flags": "",
       "text": "Apart from cheating in a relationship or sexual assault, what is sexual misconduct?",
@@ -82579,7 +82781,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 24,
-      "fileNumber": 24,
+      "fileNumber": 25,
       "kind": "Question",
       "flags": "",
       "text": "When all of the solar panels will be put in, how much of the monastery's energy needs will be met?",
@@ -82609,7 +82811,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 25,
-      "fileNumber": 25,
+      "fileNumber": 26,
       "kind": "Question",
       "flags": "",
       "text": "When's your birthday?",
@@ -82638,7 +82840,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 26,
-      "fileNumber": 26,
+      "fileNumber": 27,
       "kind": "Question",
       "flags": "",
       "text": "Do the monks give each other massages?",
@@ -82669,7 +82871,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 27,
-      "fileNumber": 27,
+      "fileNumber": 28,
       "kind": "Question",
       "flags": "",
       "text": "What do you think of our president right now?",
@@ -82699,7 +82901,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 28,
-      "fileNumber": 28,
+      "fileNumber": 29,
       "kind": "Question",
       "flags": "",
       "text": "What precepts don't most people know about that have a big effect on your life?",
@@ -82738,7 +82940,7 @@
       "event": "Teen2017",
       "sessionNumber": 0,
       "excerptNumber": 29,
-      "fileNumber": 29,
+      "fileNumber": 30,
       "kind": "Question",
       "flags": "",
       "text": "Do monastics talk with each other about the precepts they have broken or having wrong thoughts?",
@@ -84306,7 +84508,7 @@
       ],
       "fTagOrder": [
         120,
-        120
+        90
       ],
       "annotations": [],
       "tags": [
@@ -84773,7 +84975,7 @@
         "Teachers"
       ],
       "fTagOrder": [
-        1001
+        110
       ],
       "annotations": [
         {
@@ -87921,12 +88123,17 @@
       "excerptNumber": 16,
       "fileNumber": 16,
       "kind": "Question",
-      "flags": "",
+      "flags": "Q",
       "text": "Can you speak about regret?",
       "teachers": [
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Guilt/shame/inadequacy"
+      ],
+      "fTagOrder": [
+        80
+      ],
       "annotations": [
         {
           "kind": "Story",
@@ -90800,7 +91007,7 @@
       "excerptNumber": 1,
       "fileNumber": 1,
       "kind": "Question",
-      "flags": "",
+      "flags": "Q",
       "text": "In Canada, medical assistance in death is legal. As an old person who will be sick and dying not too far off, it raises the question: If I got to the point where I felt even with good palliative and hospice care, I couldn't withstand the pain any longer, it's an option. But what about the first precept of not taking life?",
       "teachers": [
         "AP"
@@ -96016,13 +96223,18 @@
       "excerptNumber": 11,
       "fileNumber": 11,
       "kind": "Question",
-      "flags": "",
+      "flags": "Q",
       "text": "What could I to to help myself fear death less?",
       "teachers": [
         "ANy",
         "AP"
       ],
-      "fTags": [],
+      "fTags": [
+        "Fear"
+      ],
+      "fTagOrder": [
+        160
+      ],
       "annotations": [
         {
           "kind": "Cut audio",
@@ -98424,7 +98636,7 @@
       "excerptNumber": 2,
       "fileNumber": 2,
       "kind": "Question",
-      "flags": "",
+      "flags": "Q",
       "text": "Early on in practice, I learned that practicing sīla (virtue) leads to the bliss of the blamelessness life and creates the conditions for samādhi. What is the Pāli word that translates to 'the bliss of the blameless life?'",
       "teachers": [
         "AP"
@@ -98435,7 +98647,7 @@
       ],
       "fTagOrder": [
         140,
-        180
+        130
       ],
       "annotations": [
         {
@@ -99966,7 +100178,7 @@
         "Children"
       ],
       "fTagOrder": [
-        100
+        120
       ],
       "annotations": [
         {
@@ -100568,10 +100780,10 @@
         [
           "$",
           "46:12",
-          "51:05"
+          "51:06"
         ]
       ],
-      "duration": "4:53",
+      "duration": "4:54",
       "mirror": "local",
       "body": "“Can you be a Buddhist and yet an I-don’t-know agnostic about reincarnation?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -101255,7 +101467,7 @@
         "Nibbāna"
       ],
       "fTagOrder": [
-        100
+        80
       ],
       "annotations": [
         {
@@ -101341,10 +101553,10 @@
         [
           "$",
           "30:26",
-          "32:26"
+          "33:26"
         ]
       ],
-      "duration": "2:00",
+      "duration": "3:00",
       "mirror": "local",
       "body": "“What exactly is reborn in Buddhist teachings?” {attribution}",
       "attribution": " Answered by <a href=\"../teachers/ajahn-pasanno.html\">Ajahn Pasanno</a>."
@@ -101481,7 +101693,7 @@
         "Impermanence"
       ],
       "fTagOrder": [
-        1001
+        110
       ],
       "annotations": [
         {
@@ -101537,7 +101749,7 @@
           "endTime": "15:16",
           "text": "[](player:Rishikesh2023_S01_F04)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S01_F04.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S1 E3.1\" data-duration=\"129\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S01_F04.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S1 E3.1.mp3\">Download audio</a> (2:09)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S01_F04.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S1 E3.1\" data-title-link=\"events/Rishikesh2023.html#Rishikesh2023_S01_F03\" data-duration=\"129\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S01_F04.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S1 E3.1.mp3\">Download audio</a> (2:09)</audio-chip>"
         },
         {
           "kind": "Reflection",
@@ -101660,7 +101872,7 @@
         "Leadership"
       ],
       "fTagOrder": [
-        100
+        80
       ],
       "tags": [
         "Leadership",
@@ -101978,7 +102190,7 @@
           "endTime": "3:27.1",
           "text": "[](player:Rishikesh2023_S02_F02)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F02.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E1.1\" data-duration=\"127\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F02.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E1.1.mp3\">Download audio</a> (2:07)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F02.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E1.1\" data-title-link=\"events/Rishikesh2023.html#Rishikesh2023_S02_F01\" data-duration=\"127\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F02.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E1.1.mp3\">Download audio</a> (2:07)</audio-chip>"
         },
         {
           "kind": "Quote",
@@ -102149,7 +102361,7 @@
           "endTime": "13:43.5",
           "text": "[](player:Rishikesh2023_S02_F05)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F05.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1\" data-duration=\"97\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F05.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1.mp3\">Download audio</a> (1:37)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F05.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1\" data-title-link=\"events/Rishikesh2023.html#Rishikesh2023_S02_F04\" data-duration=\"97\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S02_F05.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S2 E3.1.mp3\">Download audio</a> (1:37)</audio-chip>"
         },
         {
           "kind": "Indirect quote",
@@ -102422,7 +102634,7 @@
           "endTime": "16:35",
           "text": "[](player:Rishikesh2023_S04_F02)",
           "indentLevel": 1,
-          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S04_F02.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S4 E1.1\" data-duration=\"321\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S04_F02.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S4 E1.1.mp3\">Download audio</a> (5:21)</audio-chip>"
+          "body": "<audio-chip src=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S04_F02.mp3\" title=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S4 E1.1\" data-title-link=\"events/Rishikesh2023.html#Rishikesh2023_S04_F01\" data-duration=\"321\"><a href=\"../../audio/excerpts/Rishikesh2023/Rishikesh2023_S04_F02.mp3\" download=\"Interreligious Retreat-Seminar on Dhamma and Non-duality, S4 E1.1.mp3\">Download audio</a> (5:21)</audio-chip>"
         },
         {
           "kind": "Teaching",
@@ -102613,7 +102825,7 @@
         "Teachers"
       ],
       "fTagOrder": [
-        1001
+        80
       ],
       "annotations": [
         {
@@ -102710,7 +102922,7 @@
       "website": "https://www.abhayagiri.org/20/#ajahn-chah-weekend",
       "description": "On April 28-29, 2001, over 200 people gathered in Portola Valley to honor the life and teachings of Ajahn Chah. Senior monastic disciples, former monks and nuns, and people who briefly encountered Ajahn Chah recollect their experiences of this great teacher.",
       "sessions": 35,
-      "excerpts": 215
+      "excerpts": 216
     },
     "Metta2008": {
       "title": "Metta Retreat",
@@ -103263,7 +103475,7 @@
       "website": "https://www.abhayagiri.org/talks/collections/2/34-the-gradual-path-thanksgiving-retreat-2016",
       "description": "A classic ten-day Thanksgiving Retreat held at the Angela Center before it closed due to fire damage.",
       "sessions": 8,
-      "excerpts": 123
+      "excerpts": 122
     },
     "UD2017-2": {
       "title": "Two Kinds of Thought and the Removal of Distracting Thoughts",
@@ -110982,7 +111194,7 @@
       "lineage": "Western disciples of Ajahn Chah",
       "eventCount": 46,
       "sessionCount": 215,
-      "excerptCount": 1821,
+      "excerptCount": 1820,
       "htmlFile": "ajahn-pasanno.html"
     },
     "AVira": {
@@ -111746,7 +111958,7 @@
       "subtopics": [],
       "eventCount": 1,
       "excerptCount": 28,
-      "fTagCount": 4,
+      "fTagCount": 3,
       "listIndex": 1
     },
     "Eightfold Path": {
@@ -111780,7 +111992,7 @@
         "Eightfold Path"
       ],
       "subtopics": [],
-      "excerptCount": 51,
+      "excerptCount": 50,
       "fTagCount": 1,
       "listIndex": 2
     },
@@ -111834,7 +112046,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "right-intention.html",
-      "excerptCount": 22,
+      "excerptCount": 21,
       "listIndex": 4
     },
     "Renunciation": {
@@ -111860,7 +112072,7 @@
         "Renunciation"
       ],
       "subtopics": [],
-      "excerptCount": 21,
+      "excerptCount": 20,
       "fTagCount": 3,
       "listIndex": 5
     },
@@ -112436,7 +112648,7 @@
       "subtopics": [],
       "eventCount": 1,
       "excerptCount": 79,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 34
     },
     "Mindfulness of breathing": {
@@ -112857,7 +113069,7 @@
         "Right Mindfulness"
       ],
       "excerptCount": 39,
-      "fTagCount": 2,
+      "fTagCount": 1,
       "listIndex": 49
     },
     "Mindfulness": {
@@ -112885,7 +113097,7 @@
       ],
       "subtopics": [],
       "excerptCount": 101,
-      "fTagCount": 4,
+      "fTagCount": 5,
       "listIndex": 51
     },
     "Right Concentration": {
@@ -112946,7 +113158,7 @@
       "eventCount": 1,
       "sessionCount": 2,
       "excerptCount": 72,
-      "fTagCount": 4,
+      "fTagCount": 3,
       "listIndex": 53
     },
     "Seclusion": {
@@ -113024,7 +113236,7 @@
         "Right Concentration"
       ],
       "excerptCount": 32,
-      "fTagCount": 3,
+      "fTagCount": 2,
       "listIndex": 107
     },
     "Happiness": {
@@ -113048,7 +113260,7 @@
         "Happiness"
       ],
       "subtopics": [],
-      "excerptCount": 138,
+      "excerptCount": 137,
       "fTagCount": 4,
       "listIndex": 57
     },
@@ -113946,7 +114158,7 @@
       ],
       "subtopics": [],
       "eventCount": 2,
-      "excerptCount": 128,
+      "excerptCount": 127,
       "fTagCount": 3,
       "listIndex": 112
     },
@@ -113971,7 +114183,7 @@
         "Compassion"
       ],
       "subtopics": [],
-      "excerptCount": 107,
+      "excerptCount": 106,
       "fTagCount": 4,
       "listIndex": 113
     },
@@ -114301,7 +114513,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "perfections.html",
-      "excerptCount": 11,
+      "excerptCount": 10,
       "listIndex": 129
     },
     "Patience": {
@@ -114373,7 +114585,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "determination.html",
-      "excerptCount": 30,
+      "excerptCount": 29,
       "listIndex": 137
     },
     "Progress of insight": {
@@ -114810,6 +115022,7 @@
       "primaries": 0,
       "htmlFile": "heedfulness.html",
       "excerptCount": 12,
+      "fTagCount": 1,
       "listIndex": 164
     },
     "Spiritual search": {
@@ -114899,7 +115112,7 @@
       "primaries": 0,
       "htmlFile": "merit.html",
       "excerptCount": 45,
-      "fTagCount": 2,
+      "fTagCount": 4,
       "listIndex": 169
     },
     "Forgiveness": {
@@ -115385,7 +115598,7 @@
       ],
       "subtopics": [],
       "sessionCount": 1,
-      "excerptCount": 57,
+      "excerptCount": 56,
       "fTagCount": 3,
       "listIndex": 194
     },
@@ -115748,7 +115961,7 @@
       ],
       "subtopics": [],
       "eventCount": 1,
-      "excerptCount": 54,
+      "excerptCount": 53,
       "fTagCount": 1,
       "listIndex": 255
     },
@@ -115827,7 +116040,7 @@
       "partOfSubtopics": [
         "Conceit"
       ],
-      "excerptCount": 14,
+      "excerptCount": 15,
       "listIndex": 220
     },
     "Jealousy": {
@@ -116519,7 +116732,7 @@
       ],
       "subtopics": [],
       "excerptCount": 88,
-      "fTagCount": 3,
+      "fTagCount": 4,
       "listIndex": 268
     },
     "Not-self": {
@@ -116872,7 +117085,7 @@
       ],
       "subtopics": [],
       "excerptCount": 75,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 286
     },
     "Idealism": {
@@ -116892,7 +117105,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "idealism.html",
-      "excerptCount": 39,
+      "excerptCount": 38,
       "fTagCount": 1,
       "listIndex": 287
     },
@@ -116993,7 +117206,7 @@
       ],
       "subtopics": [],
       "excerptCount": 51,
-      "fTagCount": 4,
+      "fTagCount": 3,
       "listIndex": 291
     },
     "Buddha/Biography": {
@@ -117847,6 +118060,7 @@
       "eventCount": 5,
       "sessionCount": 1,
       "excerptCount": 75,
+      "fTagCount": 1,
       "listIndex": 347
     },
     "Meditation/General advice": {
@@ -118660,7 +118874,7 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "spaciousness.html",
-      "excerptCount": 22,
+      "excerptCount": 21,
       "listIndex": 424
     },
     "Direct experience": {
@@ -118796,7 +119010,7 @@
       "subtopics": [],
       "sessionCount": 1,
       "excerptCount": 138,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 429
     },
     "Gradual Teaching": {
@@ -118947,7 +119161,7 @@
         "Teachers"
       ],
       "excerptCount": 39,
-      "fTagCount": 3,
+      "fTagCount": 1,
       "listIndex": 461
     },
     "Stories": {
@@ -122009,7 +122223,7 @@
       ],
       "subtopics": [],
       "excerptCount": 102,
-      "fTagCount": 2,
+      "fTagCount": 3,
       "listIndex": 604
     },
     "Wat Tam Saeng Pet": {
@@ -123133,6 +123347,7 @@
         "Realms of existence"
       ],
       "excerptCount": 22,
+      "fTagCount": 1,
       "listIndex": 654
     },
     "Hell": {
@@ -124992,7 +125207,7 @@
       "eventCount": 1,
       "sessionCount": 9,
       "excerptCount": 175,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 754
     },
     "Monastic life/Motivation": {
@@ -128180,7 +128395,7 @@
       "text": "Skillful qualities (67) [kusalā dhammā]",
       "tag": "Skillful qualities",
       "subtagCount": 128,
-      "subtagExcerptCount": 1718
+      "subtagExcerptCount": 1717
     },
     {
       "level": 2,
@@ -128199,12 +128414,12 @@
       "flags": "*",
       "name": "Noble Eightfold Path",
       "pali": "ariya aṭṭaṅgika magga",
-      "excerptCount": 51,
+      "excerptCount": 50,
       "subsumed": false,
-      "text": "Noble Eightfold Path (51) [ariya aṭṭaṅgika magga]",
+      "text": "Noble Eightfold Path (50) [ariya aṭṭaṅgika magga]",
       "tag": "Eightfold Path",
       "subtagCount": 51,
-      "subtagExcerptCount": 1097
+      "subtagExcerptCount": 1096
     },
     {
       "level": 3,
@@ -128223,12 +128438,12 @@
       "flags": "",
       "name": "Right Intention",
       "pali": "sammā-saṅkappa",
-      "excerptCount": 22,
+      "excerptCount": 21,
       "subsumed": false,
-      "text": "Right Intention (22) [sammā-saṅkappa]",
+      "text": "Right Intention (21) [sammā-saṅkappa]",
       "tag": "Right Intention",
       "subtagCount": 3,
-      "subtagExcerptCount": 234
+      "subtagExcerptCount": 233
     },
     {
       "level": 4,
@@ -128236,9 +128451,9 @@
       "flags": "*",
       "name": "Renunciation",
       "pali": "nekkhamma",
-      "excerptCount": 21,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Renunciation (21) [nekkhamma]",
+      "text": "Renunciation (20) [nekkhamma]",
       "tag": "Renunciation"
     },
     {
@@ -128247,9 +128462,9 @@
       "flags": "",
       "name": "Non-ill-will",
       "pali": "abyāpāda",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "subsumed": true,
-      "text": "Non-ill-will [abyāpāda] see Goodwill (128)",
+      "text": "Non-ill-will [abyāpāda] see Goodwill (127)",
       "tag": "Goodwill"
     },
     {
@@ -128258,9 +128473,9 @@
       "flags": "",
       "name": "Non-cruelty",
       "pali": "avihiṃsā",
-      "excerptCount": 107,
+      "excerptCount": 106,
       "subsumed": true,
-      "text": "Non-cruelty [avihiṃsā] see Compassion (107)",
+      "text": "Non-cruelty [avihiṃsā] see Compassion (106)",
       "tag": "Compassion"
     },
     {
@@ -128775,7 +128990,7 @@
       "text": "Right Concentration (24) [sammā-samādhi]",
       "tag": "Right Concentration",
       "subtagCount": 9,
-      "subtagExcerptCount": 393
+      "subtagExcerptCount": 392
     },
     {
       "level": 4,
@@ -128827,9 +129042,9 @@
       "flags": "*",
       "name": "Happiness",
       "pali": "sukha",
-      "excerptCount": 138,
+      "excerptCount": 137,
       "subsumed": false,
-      "text": "Happiness (138) [sukha]",
+      "text": "Happiness (137) [sukha]",
       "tag": "Happiness"
     },
     {
@@ -128887,7 +129102,7 @@
       "text": "Four Noble Truths (47) [cattāri ariya-saccāni]",
       "tag": "Four Noble Truths",
       "subtagCount": 20,
-      "subtagExcerptCount": 748
+      "subtagExcerptCount": 747
     },
     {
       "level": 3,
@@ -129001,7 +129216,7 @@
       "text": "Noble Truth of the Cause of Suffering (31) [dukkha-samudaya ariya-sacca]",
       "tag": "Cause of Suffering",
       "subtagCount": 3,
-      "subtagExcerptCount": 119
+      "subtagExcerptCount": 118
     },
     {
       "level": 4,
@@ -129009,9 +129224,9 @@
       "flags": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": true,
-      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (57)",
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (56)",
       "tag": "Sensual desire"
     },
     {
@@ -129110,9 +129325,9 @@
       "flags": "*",
       "name": "Noble Truth of the Path to the Cessation of Suffering",
       "pali": "dukkha-nirodha-gāminī paṭipadā ariya-sacca",
-      "excerptCount": 51,
+      "excerptCount": 50,
       "subsumed": true,
-      "text": "Noble Truth of the Path to the Cessation of Suffering [dukkha-nirodha-gāminī paṭipadā ariya-sacca] see Eightfold Path (51)",
+      "text": "Noble Truth of the Path to the Cessation of Suffering [dukkha-nirodha-gāminī paṭipadā ariya-sacca] see Eightfold Path (50)",
       "tag": "Eightfold Path"
     },
     {
@@ -129126,7 +129341,7 @@
       "text": "Aids to Awakening (3) [bodhipakkhiyādhammā]",
       "tag": "Aids to Awakening",
       "subtagCount": 6,
-      "subtagExcerptCount": 206
+      "subtagExcerptCount": 205
     },
     {
       "level": 3,
@@ -129200,9 +129415,9 @@
       "flags": "8",
       "name": "Noble Eightfold Path",
       "pali": "ariya aṭṭaṅgika magga",
-      "excerptCount": 51,
+      "excerptCount": 50,
       "subsumed": false,
-      "text": "Noble Eightfold Path (51) [ariya aṭṭaṅgika magga]",
+      "text": "Noble Eightfold Path (50) [ariya aṭṭaṅgika magga]",
       "tag": "Eightfold Path"
     },
     {
@@ -129443,7 +129658,7 @@
       "text": "Divine Abidings (24) [brahmavihārā]",
       "tag": "Divine Abidings",
       "subtagCount": 4,
-      "subtagExcerptCount": 255
+      "subtagExcerptCount": 254
     },
     {
       "level": 3,
@@ -129451,9 +129666,9 @@
       "flags": "*",
       "name": "Goodwill",
       "pali": "mettā",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "subsumed": false,
-      "text": "Goodwill (128) [mettā]",
+      "text": "Goodwill (127) [mettā]",
       "tag": "Goodwill"
     },
     {
@@ -129462,9 +129677,9 @@
       "flags": "*",
       "name": "Compassion",
       "pali": "karuṇā",
-      "excerptCount": 107,
+      "excerptCount": 106,
       "subsumed": false,
-      "text": "Compassion (107) [karuṇā]",
+      "text": "Compassion (106) [karuṇā]",
       "tag": "Compassion"
     },
     {
@@ -129644,12 +129859,12 @@
       "flags": "",
       "name": "Ten Perfections",
       "pali": "dasa pāramiyo",
-      "excerptCount": 11,
+      "excerptCount": 10,
       "subsumed": false,
-      "text": "Ten Perfections (11) [dasa pāramiyo]",
+      "text": "Ten Perfections (10) [dasa pāramiyo]",
       "tag": "Perfections",
       "subtagCount": 10,
-      "subtagExcerptCount": 522
+      "subtagExcerptCount": 521
     },
     {
       "level": 3,
@@ -129679,9 +129894,9 @@
       "flags": "",
       "name": "Renunciation",
       "pali": "nekkhamma",
-      "excerptCount": 21,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Renunciation (21) [nekkhamma]",
+      "text": "Renunciation (20) [nekkhamma]",
       "tag": "Renunciation"
     },
     {
@@ -129734,9 +129949,9 @@
       "flags": "",
       "name": "Determination",
       "pali": "adhiṭṭhāna",
-      "excerptCount": 30,
+      "excerptCount": 29,
       "subsumed": false,
-      "text": "Determination (30) [adhiṭṭhāna]",
+      "text": "Determination (29) [adhiṭṭhāna]",
       "tag": "Determination"
     },
     {
@@ -129745,9 +129960,9 @@
       "flags": "",
       "name": "Goodwill",
       "pali": "mettā",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "subsumed": false,
-      "text": "Goodwill (128) [mettā]",
+      "text": "Goodwill (127) [mettā]",
       "tag": "Goodwill"
     },
     {
@@ -130202,7 +130417,7 @@
       "text": "Unskillful qualities (35) [akusalā dhammā]",
       "tag": "Unskillful qualities",
       "subtagCount": 38,
-      "subtagExcerptCount": 721
+      "subtagExcerptCount": 720
     },
     {
       "level": 2,
@@ -130318,7 +130533,7 @@
       "text": "Outflows (5) [āsava]",
       "tag": "Outflows",
       "subtagCount": 4,
-      "subtagExcerptCount": 128
+      "subtagExcerptCount": 127
     },
     {
       "level": 3,
@@ -130326,9 +130541,9 @@
       "flags": "",
       "name": "Sensuality",
       "pali": "kāmāsava",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": true,
-      "text": "Sensuality [kāmāsava] see Sensual desire (57)",
+      "text": "Sensuality [kāmāsava] see Sensual desire (56)",
       "tag": "Sensual desire"
     },
     {
@@ -130375,7 +130590,7 @@
       "text": "Five Hindrances (29) [pañca nīvaraṇāni]",
       "tag": "Hindrances",
       "subtagCount": 5,
-      "subtagExcerptCount": 204
+      "subtagExcerptCount": 203
     },
     {
       "level": 3,
@@ -130383,9 +130598,9 @@
       "flags": "*",
       "name": "Sensual desire",
       "pali": "kāmacchanda",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": false,
-      "text": "Sensual desire (57) [kāmacchanda]",
+      "text": "Sensual desire (56) [kāmacchanda]",
       "tag": "Sensual desire"
     },
     {
@@ -130443,7 +130658,7 @@
       "text": "Ten Fetters (3) [dasa saṃyojanā]",
       "tag": "Fetters",
       "subtagCount": 10,
-      "subtagExcerptCount": 311
+      "subtagExcerptCount": 310
     },
     {
       "level": 3,
@@ -130484,9 +130699,9 @@
       "flags": "",
       "name": "Sensual desire",
       "pali": "kāmacchanda",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": false,
-      "text": "Sensual desire (57) [kāmacchanda]",
+      "text": "Sensual desire (56) [kāmacchanda]",
       "tag": "Sensual desire"
     },
     {
@@ -130588,7 +130803,7 @@
       "text": "Proliferation (108) [papañca]",
       "tag": "Proliferation",
       "subtagCount": 3,
-      "subtagExcerptCount": 215
+      "subtagExcerptCount": 214
     },
     {
       "level": 3,
@@ -130596,9 +130811,9 @@
       "flags": "",
       "name": "Craving",
       "pali": "taṇhā",
-      "excerptCount": 54,
+      "excerptCount": 53,
       "subsumed": false,
-      "text": "Craving (54) [taṇhā]",
+      "text": "Craving (53) [taṇhā]",
       "tag": "Craving"
     },
     {
@@ -130676,9 +130891,9 @@
       "flags": "",
       "name": "Perfectionism",
       "pali": "",
-      "excerptCount": 14,
+      "excerptCount": 15,
       "subsumed": false,
-      "text": "Perfectionism (14)",
+      "text": "Perfectionism (15)",
       "tag": "Perfectionism"
     },
     {
@@ -130803,7 +131018,7 @@
       "tag": "",
       "virtualTag": "Indeterminate qualities",
       "subtagCount": 47,
-      "subtagExcerptCount": 925
+      "subtagExcerptCount": 923
     },
     {
       "level": 2,
@@ -130952,7 +131167,7 @@
       "text": "Dependent origination (24) [paticca-samuppāda]",
       "tag": "Dependent origination",
       "subtagCount": 20,
-      "subtagExcerptCount": 629
+      "subtagExcerptCount": 627
     },
     {
       "level": 3,
@@ -131031,7 +131246,7 @@
       "text": "Feeling (52) [vedanā]",
       "tag": "Feeling",
       "subtagCount": 3,
-      "subtagExcerptCount": 206
+      "subtagExcerptCount": 205
     },
     {
       "level": 4,
@@ -131039,9 +131254,9 @@
       "flags": "",
       "name": "Pleasant feeling",
       "pali": "sukhā vedanā",
-      "excerptCount": 138,
+      "excerptCount": 137,
       "subsumed": true,
-      "text": "Pleasant feeling [sukhā vedanā] see Happiness (138)",
+      "text": "Pleasant feeling [sukhā vedanā] see Happiness (137)",
       "tag": "Happiness"
     },
     {
@@ -131072,12 +131287,12 @@
       "flags": "*",
       "name": "Craving",
       "pali": "taṇhā",
-      "excerptCount": 54,
+      "excerptCount": 53,
       "subsumed": false,
-      "text": "Craving (54) [taṇhā]",
+      "text": "Craving (53) [taṇhā]",
       "tag": "Craving",
       "subtagCount": 3,
-      "subtagExcerptCount": 137
+      "subtagExcerptCount": 136
     },
     {
       "level": 4,
@@ -131085,9 +131300,9 @@
       "flags": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": true,
-      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (57)",
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (56)",
       "tag": "Sensual desire"
     },
     {
@@ -131123,7 +131338,7 @@
       "text": "Clinging (95) [upādāna]",
       "tag": "Clinging",
       "subtagCount": 4,
-      "subtagExcerptCount": 194
+      "subtagExcerptCount": 193
     },
     {
       "level": 4,
@@ -131131,9 +131346,9 @@
       "flags": "h",
       "name": "Sensuality-clinging",
       "pali": "kāmupādāna",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": true,
-      "text": "Sensuality-clinging [kāmupādāna] see Sensual desire (57)",
+      "text": "Sensuality-clinging [kāmupādāna] see Sensual desire (56)",
       "tag": "Sensual desire"
     },
     {
@@ -131434,9 +131649,9 @@
       "flags": "",
       "name": "Idealism",
       "pali": "",
-      "excerptCount": 39,
+      "excerptCount": 38,
       "subsumed": false,
-      "text": "Idealism (39)",
+      "text": "Idealism (38)",
       "tag": "Idealism"
     },
     {
@@ -132125,7 +132340,7 @@
       "text": "Meditation (75) [bhāvanā]",
       "tag": "Meditation",
       "subtagCount": 68,
-      "subtagExcerptCount": 1132
+      "subtagExcerptCount": 1131
     },
     {
       "level": 2,
@@ -132318,7 +132533,7 @@
       "text": "Right Concentration (24) [sammā-samādhi]",
       "tag": "Right Concentration",
       "subtagCount": 8,
-      "subtagExcerptCount": 349
+      "subtagExcerptCount": 348
     },
     {
       "level": 3,
@@ -132370,9 +132585,9 @@
       "flags": "",
       "name": "Happiness",
       "pali": "sukha",
-      "excerptCount": 138,
+      "excerptCount": 137,
       "subsumed": false,
-      "text": "Happiness (138) [sukha]",
+      "text": "Happiness (137) [sukha]",
       "tag": "Happiness"
     },
     {
@@ -132419,7 +132634,7 @@
       "text": "Meditation/Techniques (15)",
       "tag": "Meditation/Techniques",
       "subtagCount": 19,
-      "subtagExcerptCount": 481
+      "subtagExcerptCount": 480
     },
     {
       "level": 3,
@@ -132500,7 +132715,7 @@
       "text": "Divine Abidings (24) [brahmavihārā]",
       "tag": "Divine Abidings",
       "subtagCount": 4,
-      "subtagExcerptCount": 255
+      "subtagExcerptCount": 254
     },
     {
       "level": 4,
@@ -132508,9 +132723,9 @@
       "flags": "",
       "name": "Goodwill",
       "pali": "mettā",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "subsumed": false,
-      "text": "Goodwill (128) [mettā]",
+      "text": "Goodwill (127) [mettā]",
       "tag": "Goodwill"
     },
     {
@@ -132519,9 +132734,9 @@
       "flags": "",
       "name": "Compassion",
       "pali": "karuṇā",
-      "excerptCount": 107,
+      "excerptCount": 106,
       "subsumed": false,
-      "text": "Compassion (107) [karuṇā]",
+      "text": "Compassion (106) [karuṇā]",
       "tag": "Compassion"
     },
     {
@@ -132792,7 +133007,7 @@
       "text": "Four Protective Meditations (2) [caturārakkhā bhāvanā]",
       "tag": "Protective Meditations",
       "subtagCount": 4,
-      "subtagExcerptCount": 247
+      "subtagExcerptCount": 246
     },
     {
       "level": 3,
@@ -132833,9 +133048,9 @@
       "flags": "",
       "name": "Goodwill",
       "pali": "",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "subsumed": false,
-      "text": "Goodwill (128)",
+      "text": "Goodwill (127)",
       "tag": "Goodwill"
     },
     {
@@ -132939,7 +133154,7 @@
       "text": "Meditation/Results (4)",
       "tag": "Meditation/Results",
       "subtagCount": 7,
-      "subtagExcerptCount": 191
+      "subtagExcerptCount": 190
     },
     {
       "level": 3,
@@ -132991,9 +133206,9 @@
       "flags": "",
       "name": "Spaciousness",
       "pali": "",
-      "excerptCount": 22,
+      "excerptCount": 21,
       "subsumed": false,
-      "text": "Spaciousness (22)",
+      "text": "Spaciousness (21)",
       "tag": "Spaciousness"
     },
     {
@@ -133051,7 +133266,7 @@
       "text": "Teaching Dhamma (138)",
       "tag": "Teaching Dhamma",
       "subtagCount": 38,
-      "subtagExcerptCount": 1005
+      "subtagExcerptCount": 1004
     },
     {
       "level": 2,
@@ -133064,7 +133279,7 @@
       "text": "The Gradual Teaching (18) [anupubbikathā]",
       "tag": "Gradual Teaching",
       "subtagCount": 24,
-      "subtagExcerptCount": 798
+      "subtagExcerptCount": 797
     },
     {
       "level": 3,
@@ -133105,9 +133320,9 @@
       "flags": "",
       "name": "Danger of sensual pleasure",
       "pali": "kāmānaṃ ādīnava",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": true,
-      "text": "Danger of sensual pleasure [kāmānaṃ ādīnava] see Sensual desire (57)",
+      "text": "Danger of sensual pleasure [kāmānaṃ ādīnava] see Sensual desire (56)",
       "tag": "Sensual desire"
     },
     {
@@ -133116,9 +133331,9 @@
       "flags": "",
       "name": "Renunciation",
       "pali": "nekkhama",
-      "excerptCount": 21,
+      "excerptCount": 20,
       "subsumed": false,
-      "text": "Renunciation (21) [nekkhama]",
+      "text": "Renunciation (20) [nekkhama]",
       "tag": "Renunciation"
     },
     {
@@ -133132,7 +133347,7 @@
       "text": "Four Noble Truths (47) [cattāri ariya-saccāni]",
       "tag": "Four Noble Truths",
       "subtagCount": 19,
-      "subtagExcerptCount": 667
+      "subtagExcerptCount": 666
     },
     {
       "level": 4,
@@ -133235,7 +133450,7 @@
       "text": "Noble Truth of the Cause of Suffering (31) [dukkha-samudaya ariya-sacca]",
       "tag": "Cause of Suffering",
       "subtagCount": 3,
-      "subtagExcerptCount": 119
+      "subtagExcerptCount": 118
     },
     {
       "level": 5,
@@ -133243,9 +133458,9 @@
       "flags": "",
       "name": "Craving for sensuality",
       "pali": "kāma-taṇhā",
-      "excerptCount": 57,
+      "excerptCount": 56,
       "subsumed": true,
-      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (57)",
+      "text": "Craving for sensuality [kāma-taṇhā] see Sensual desire (56)",
       "tag": "Sensual desire"
     },
     {
@@ -133344,9 +133559,9 @@
       "flags": "",
       "name": "Noble Truth of the Path to the Cessation of Suffering",
       "pali": "dukkha-nirodha-gāminī paṭipadā ariya-sacca",
-      "excerptCount": 51,
+      "excerptCount": 50,
       "subsumed": true,
-      "text": "Noble Truth of the Path to the Cessation of Suffering [dukkha-nirodha-gāminī paṭipadā ariya-sacca] see Eightfold Path (51)",
+      "text": "Noble Truth of the Path to the Cessation of Suffering [dukkha-nirodha-gāminī paṭipadā ariya-sacca] see Eightfold Path (50)",
       "tag": "Eightfold Path"
     },
     {
@@ -136384,7 +136599,7 @@
       "text": "Renunciant practice (2)",
       "tag": "Renunciant practice",
       "subtagCount": 76,
-      "subtagExcerptCount": 885
+      "subtagExcerptCount": 884
     },
     {
       "level": 2,
@@ -136740,7 +136955,7 @@
       "text": "Monastic life (175) [brahmacariyā]",
       "tag": "Monastic life",
       "subtagCount": 48,
-      "subtagExcerptCount": 759
+      "subtagExcerptCount": 758
     },
     {
       "level": 3,
@@ -136900,7 +137115,7 @@
       "text": "Saṅgha (62)",
       "tag": "Saṅgha",
       "subtagCount": 10,
-      "subtagExcerptCount": 379
+      "subtagExcerptCount": 378
     },
     {
       "level": 4,
@@ -136935,7 +137150,7 @@
       "text": "Six Principles of Cordiality (1) [cha dhammā sārāṇīyā]",
       "tag": "Principles of Cordiality",
       "subtagCount": 4,
-      "subtagExcerptCount": 281
+      "subtagExcerptCount": 280
     },
     {
       "level": 5,
@@ -136943,9 +137158,9 @@
       "flags": "3h",
       "name": "Acts of goodwill by body, speech, and mind",
       "pali": "",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "subsumed": true,
-      "text": "Acts of goodwill by body, speech, and mind see Goodwill (128)",
+      "text": "Acts of goodwill by body, speech, and mind see Goodwill (127)",
       "tag": "Goodwill"
     },
     {
@@ -137308,7 +137523,7 @@
       "text": "Everyday life practice (35)",
       "tag": "Everyday life",
       "subtagCount": 68,
-      "subtagExcerptCount": 735
+      "subtagExcerptCount": 734
     },
     {
       "level": 2,
@@ -137469,7 +137684,7 @@
       "text": "Eight Worldly Conditions (4) [aṭṭha lokadhammā]",
       "tag": "Worldly Conditions",
       "subtagCount": 5,
-      "subtagExcerptCount": 170
+      "subtagExcerptCount": 169
     },
     {
       "level": 3,
@@ -137510,9 +137725,9 @@
       "flags": "",
       "name": "Pleasure",
       "pali": "sukha",
-      "excerptCount": 138,
+      "excerptCount": 137,
       "subsumed": true,
-      "text": "Pleasure [sukha] see Happiness (138)",
+      "text": "Pleasure [sukha] see Happiness (137)",
       "tag": "Happiness"
     },
     {
@@ -140454,7 +140669,7 @@
       "subtags": {},
       "htmlPath": "tags/impermanence.html",
       "excerptCount": 88,
-      "fTagCount": 3
+      "fTagCount": 4
     },
     "Suffering": {
       "tag": "Suffering",
@@ -140478,7 +140693,7 @@
       "subtags": {},
       "htmlPath": "tags/fear.html",
       "excerptCount": 75,
-      "fTagCount": 1
+      "fTagCount": 2
     },
     "Sickness": {
       "tag": "Sickness",
@@ -140555,7 +140770,7 @@
       },
       "htmlPath": "clusters/buddha.html",
       "excerptCount": 78,
-      "fTagCount": 5
+      "fTagCount": 4
     },
     "Dhamma": {
       "tag": "Dhamma",
@@ -140624,7 +140839,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/goodwill.html",
-      "excerptCount": 128,
+      "excerptCount": 127,
       "fTagCount": 3
     },
     "Virtue": {
@@ -140668,7 +140883,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/renunciation.html",
-      "excerptCount": 21,
+      "excerptCount": 20,
       "fTagCount": 3
     },
     "Four Noble Truths": {
@@ -140729,7 +140944,7 @@
       "subtags": {},
       "htmlPath": "tags/middle-path.html",
       "excerptCount": 28,
-      "fTagCount": 4
+      "fTagCount": 3
     },
     "Eightfold Path": {
       "tag": "Eightfold Path",
@@ -140740,7 +140955,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/eightfold-path.html",
-      "excerptCount": 51,
+      "excerptCount": 50,
       "fTagCount": 1
     },
     "Right View": {
@@ -140828,7 +141043,7 @@
       },
       "htmlPath": "clusters/right-mindfulness.html",
       "excerptCount": 149,
-      "fTagCount": 5
+      "fTagCount": 4
     },
     "Right Concentration": {
       "tag": "Right Concentration",
@@ -140847,7 +141062,7 @@
       },
       "htmlPath": "clusters/right-concentration.html",
       "excerptCount": 171,
-      "fTagCount": 9
+      "fTagCount": 7
     },
     "Meditation": {
       "tag": "Meditation",
@@ -140861,7 +141076,7 @@
       },
       "htmlPath": "clusters/meditation.html",
       "excerptCount": 97,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Mindfulness of body": {
       "tag": "Mindfulness of body",
@@ -140873,7 +141088,7 @@
       "subtags": {},
       "htmlPath": "tags/mindfulness-of-body.html",
       "excerptCount": 79,
-      "fTagCount": 1
+      "fTagCount": 2
     },
     "Mindfulness of breathing": {
       "tag": "Mindfulness of breathing",
@@ -141011,7 +141226,7 @@
       "subtags": {},
       "htmlPath": "tags/mindfulness.html",
       "excerptCount": 101,
-      "fTagCount": 4
+      "fTagCount": 5
     },
     "Concentration": {
       "tag": "Concentration",
@@ -141073,7 +141288,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/happiness.html",
-      "excerptCount": 138,
+      "excerptCount": 137,
       "fTagCount": 4
     },
     "Gratitude": {
@@ -141097,7 +141312,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/compassion.html",
-      "excerptCount": 107,
+      "excerptCount": 106,
       "fTagCount": 4
     },
     "Equanimity": {
@@ -141149,7 +141364,7 @@
         "Greed": "+"
       },
       "htmlPath": "clusters/sensual-desire.html",
-      "excerptCount": 68,
+      "excerptCount": 67,
       "fTagCount": 3
     },
     "Aversion": {
@@ -141348,7 +141563,7 @@
       },
       "htmlPath": "clusters/realms-of-existence.html",
       "excerptCount": 123,
-      "fTagCount": 4
+      "fTagCount": 5
     },
     "Dependent origination": {
       "tag": "Dependent origination",
@@ -141455,7 +141670,7 @@
       "progressMemo": "",
       "subtags": {},
       "htmlPath": "tags/craving.html",
-      "excerptCount": 54,
+      "excerptCount": 53,
       "fTagCount": 1
     },
     "Clinging": {
@@ -141577,7 +141792,7 @@
       },
       "htmlPath": "clusters/teaching-dhamma.html",
       "excerptCount": 172,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Teachers": {
       "tag": "Teachers",
@@ -141593,7 +141808,7 @@
       },
       "htmlPath": "clusters/teachers.html",
       "excerptCount": 92,
-      "fTagCount": 6
+      "fTagCount": 4
     },
     "Buddha/Biography": {
       "tag": "Buddha/Biography",
@@ -141726,7 +141941,7 @@
       },
       "htmlPath": "clusters/monastic-life.html",
       "excerptCount": 264,
-      "fTagCount": 5
+      "fTagCount": 6
     },
     "Monastic life/Motivation": {
       "tag": "Monastic life/Motivation",
@@ -141865,7 +142080,7 @@
       "subtags": {},
       "htmlPath": "tags/wat-pah-pong.html",
       "excerptCount": 102,
-      "fTagCount": 2
+      "fTagCount": 3
     },
     "Wat Pah Nanachat": {
       "tag": "Wat Pah Nanachat",
@@ -142722,7 +142937,7 @@
         "Grief"
       ],
       "excerptCount": 470,
-      "fTagCount": 19
+      "fTagCount": 21
     },
     "refuges": {
       "code": "refuges",
@@ -142737,7 +142952,7 @@
         "Saṅgha"
       ],
       "excerptCount": 229,
-      "fTagCount": 14
+      "fTagCount": 13
     },
     "foundations": {
       "code": "foundations",
@@ -142753,7 +142968,7 @@
         "Precepts",
         "Renunciation"
       ],
-      "excerptCount": 352,
+      "excerptCount": 351,
       "fTagCount": 19
     },
     "truths": {
@@ -142788,8 +143003,8 @@
         "Right Mindfulness",
         "Right Concentration"
       ],
-      "excerptCount": 537,
-      "fTagCount": 31
+      "excerptCount": 536,
+      "fTagCount": 28
     },
     "meditation": {
       "code": "meditation",
@@ -142810,7 +143025,7 @@
         "Long-term practice"
       ],
       "excerptCount": 518,
-      "fTagCount": 25
+      "fTagCount": 27
     },
     "skillful": {
       "code": "skillful",
@@ -142831,8 +143046,8 @@
         "Compassion",
         "Equanimity"
       ],
-      "excerptCount": 708,
-      "fTagCount": 34
+      "excerptCount": 707,
+      "fTagCount": 35
     },
     "unskillful": {
       "code": "unskillful",
@@ -142854,7 +143069,7 @@
         "Self-identity view",
         "Conceit"
       ],
-      "excerptCount": 618,
+      "excerptCount": 617,
       "fTagCount": 31
     },
     "perspectives": {
@@ -142872,7 +143087,7 @@
         "Realms of existence"
       ],
       "excerptCount": 384,
-      "fTagCount": 16
+      "fTagCount": 17
     },
     "origination": {
       "code": "origination",
@@ -142893,7 +143108,7 @@
         "Clinging",
         "Becoming"
       ],
-      "excerptCount": 322,
+      "excerptCount": 321,
       "fTagCount": 15
     },
     "fruits": {
@@ -142928,7 +143143,7 @@
         "Ajahn Pasanno"
       ],
       "excerptCount": 906,
-      "fTagCount": 29
+      "fTagCount": 28
     },
     "context": {
       "code": "context",
@@ -142963,7 +143178,7 @@
         "Women's monastic forms"
       ],
       "excerptCount": 598,
-      "fTagCount": 30
+      "fTagCount": 31
     },
     "monasteries": {
       "code": "monasteries",
@@ -142977,7 +143192,7 @@
         "Abhayagiri"
       ],
       "excerptCount": 273,
-      "fTagCount": 7
+      "fTagCount": 8
     },
     "everyday": {
       "code": "everyday",
