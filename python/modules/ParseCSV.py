@@ -1032,7 +1032,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 try:
                     cut = [annotation["startTime"],annotation["endTime"]]
                     if ExcerptFlag.RELATIVE_AUDIO in annotation["flags"]:
-                        cut = [Mp3DirectCut.TimeDeltaToStr(audioStart + Mp3DirectCut.ToTimeDelta(time)) for time in cut]
+                        cut = [Mp3DirectCut.TimeDeltaToStr(audioStart + Mp3DirectCut.ToTimeDelta(time),decimal=True) for time in cut]
                     excerpt["clips"][-1:] = excerpt["clips"][-1].Cut(*cut)
                 except (Mp3DirectCut.ParseError,Mp3DirectCut.TimeError) as error:
                     Alert.error(annotation,"to",excerpt,"produces error:",error.args[0])
@@ -1183,9 +1183,9 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
                 Alert.error(excerpt,": Excerpts with edited audio must specify relative fragment times.")
             elif relativeAudio:
                 offsetTime = ToTimeDelta(excerpt["startTime"])
-                fragmentExcerpt["startTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["startTime"]) + offsetTime)
+                fragmentExcerpt["startTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["startTime"]) + offsetTime,decimal=True)
                 if fragmentExcerpt["endTime"]:
-                    fragmentExcerpt["endTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["endTime"]) + offsetTime)
+                    fragmentExcerpt["endTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["endTime"]) + offsetTime,decimal=True)
                 elif excerpt["endTime"]:
                     fragmentExcerpt["endTime"] = excerpt["endTime"]
             

@@ -62,19 +62,21 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     raise ParseError(f"{repr(time)} cannot be converted to a time.")
 
 
-def TimeDeltaToStr(time: timedelta) -> str:
-    "Convert a timedelta object to the form [HH:]MM:SS"
+def TimeDeltaToStr(time: timedelta,decimal:bool = False) -> str:
+    """Convert a timedelta object to the form [HH:]MM:SS or [HH:]MM:SS[.sss] if decimal is True."""
 
-    seconds = (time.days * 24 * 60 * 60) + time.seconds
+    seconds = int(time.total_seconds())
 
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = seconds % 60
 
+    decimalPart = f"{0.000001* time.microseconds:f}".strip("0").rstrip(".") if decimal else ""
+
     if hours:
-        return f"{hours}:{minutes:02d}:{seconds:02d}"
+        return f"{hours}:{minutes:02d}:{seconds:02d}{decimalPart}"
     else:
-        return f"{minutes}:{seconds:02d}"
+        return f"{minutes}:{seconds:02d}{decimalPart}"
 
 
 class Clip(NamedTuple):
