@@ -780,16 +780,18 @@ def PlayerTitle(item:dict) -> str:
     return " ".join(titleItems)
     
 
-def AudioIcon(hyperlink: str,title: str,titleLink:str = "",dataDuration:str = "") -> str:
+def AudioIcon(hyperlink: str,title: str,titleLink:str = "",dataDuration:str = "",downloadAs:str = "") -> str:
     "Return an audio icon with the given hyperlink"
     filename = title + ".mp3"
 
     a = Airium(source_minify=True)
     dataDict = {}
+    if titleLink:
+        dataDict["data-title-link"] = titleLink
     if dataDuration:
         dataDict["data-duration"] = str(Mp3DirectCut.ToTimeDelta(dataDuration).seconds)
-    if titleLink:
-        dataDict["data-titlelink"] = titleLink
+    if downloadAs:
+        dataDict["download-as"] = downloadAs
     with a.get_tag_('audio-chip')(src = hyperlink, title = title, **dataDict):
         with a.a(href = hyperlink,download=filename):
             a(f"Download audio")
@@ -798,18 +800,20 @@ def AudioIcon(hyperlink: str,title: str,titleLink:str = "",dataDuration:str = ""
     return str(a)
 
 def Mp3ExcerptLink(excerpt: dict) -> str:
-    """Return an html-formatted audio icon linking to a given excerpt.
-    Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
+    """Return an html-formatted audio icon linking to a given excerpt."""
     
     excerptLink = f"events/{excerpt['event']}.html#{Database.ItemCode(Database.FragmentSource(excerpt))}"
     return AudioIcon(Database.Mp3Link(excerpt),title=PlayerTitle(excerpt),titleLink=excerptLink,dataDuration = excerpt["duration"])
     
 def Mp3SessionLink(session: dict) -> str:
-    """Return an html-formatted audio icon linking to a given session.
-    Make the simplifying assumption that our html file lives in a subdirectory of home/prototype"""
+    """Return an html-formatted audio icon linking to a given session."""
     
     sessionLink = f"events/{session['event']}.html#{Database.ItemCode(session)}"
-    return AudioIcon(Database.Mp3Link(session),title=PlayerTitle(session),titleLink=sessionLink,dataDuration = session["duration"])
+    return AudioIcon(Database.Mp3Link(session),
+                     title=PlayerTitle(session),
+                     titleLink = sessionLink,
+                     dataDuration = session["duration"],
+                     downloadAs = session["filename"])
     
 def TeacherLink(teacher:str) -> str:
     "Return a link to a given teacher page. Return an empty string if the teacher doesn't have a page."

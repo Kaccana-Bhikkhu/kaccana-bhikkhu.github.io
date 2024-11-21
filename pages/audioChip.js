@@ -82,15 +82,9 @@ class AudioChip extends HTMLElement {
 		const button = document.createElement("button");
 		button.classList.add("play");
 
-		/* let titleWithLink = this.title;
-		if (true) {
-			titleWithLink = `<a href="#events/Madison2023.html#Madison2023_S02_F18">${this.title}</a>`
-		} */
-
 		let titleWithLink = this.title;
-		if (this.dataset.titlelink) {
-			titleWithLink = `<a href="#${this.dataset.titlelink}">${this.title}</a>`
-			console.log("Title link:",this.dataset.titlelink, titleWithLink)
+		if (this.dataset.titleLink) {
+			titleWithLink = `<a href="#${this.dataset.titleLink}">${this.title}</a>`
 		}
 
 		let loaded = loadAudio;
@@ -127,7 +121,10 @@ class AudioChip extends HTMLElement {
 		const download = document.createElement("a");
 		download.title = "Download";
 		download.href = src;
-		download.download = this.title + ".mp3";
+		if (this.dataset.downloadAs)
+			download.download = this.dataset.downloadAs;
+		else
+			download.download = this.title + ".mp3";
 		// download.target = "_blank";
 
 		const style = document.createElement("style");
