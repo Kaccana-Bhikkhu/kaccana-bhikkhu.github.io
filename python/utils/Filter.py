@@ -194,6 +194,20 @@ class Category(Filter):
         
         return self.negate
 
+class Flags(Filter):
+    """A filter that passes items which contain any of a specified list of flags.
+    Does not match flags in annotations."""
+
+    def __init__(self,passFlags:str) -> None:
+        super().__init__()
+        self.passFlags = passFlags
+    
+    def Match(self, item):
+        if any(char in self.passFlags for char in item.get("flags","")):
+            return not self.negate
+    
+        return self.negate
+
 class FilterGroup(Filter):
     """A group of filters to operate on items using boolean operations.
     The default group passes items which match all filters e.g And."""
@@ -204,7 +218,7 @@ class FilterGroup(Filter):
     
     def Match(self, item: dict) -> bool:
         for filter in self.subFilters:
-            if not filter.match(item):
+            if not filter.Match(item):
                 return self.negate
         
         return not self.negate

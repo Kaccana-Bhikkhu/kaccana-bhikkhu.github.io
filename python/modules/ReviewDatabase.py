@@ -62,7 +62,7 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
     if subtopic:
         minFTags = bisect.bisect_right((6,18,54,144,384,1024),tagOrSubtopic["excerptCount"])
     else:
-        minFTags = bisect.bisect_right((10,25,60,150,400,1065),tagOrSubtopic["excerptCount"])
+        minFTags = bisect.bisect_right((12,30,72,180,480,1278),tagOrSubtopic["excerptCount"])
     maxFTags = bisect.bisect_right((4,8,16,32,80,200,500,1250),tagOrSubtopic["excerptCount"])
 
     # Then add fTags to subtopics with many significant subtags
@@ -249,10 +249,10 @@ def CheckRelatedTags() -> None:
         if overlap:
             Alert .caution(tagInfo,"related tags",overlap,"are already mentioned as subtags or supertags.")
 
-def FeaturedExcerptSummary(subtopicOrTag: str,printHeading: bool = False,printFTag: bool = False) -> str:
+def FeaturedExcerptSummary(subtopicOrTag: str,header: bool = False,printFTag: bool = False) -> str:
     """Return a list of this subtopic's featured excerpts in tab separated values format."""
     lines = []
-    if printHeading:
+    if header:
         columns = ["fTagOrder","code","duration","kind","text"]
         if printFTag:
             columns[1:1] = ["fTag","topic"]
