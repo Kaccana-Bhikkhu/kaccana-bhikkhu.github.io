@@ -198,10 +198,10 @@ def AuditNames() -> None:
         alertItems = [[n["name"] for n in namesWithDate],f"all have date {date}."]
         duplicateSupertags = Utils.Duplicates(n["supertag"] for n in namesWithDate if n["supertag"])
         for s in duplicateSupertags:
-            alertItems.append(f"This will cause arbitrary sort order under supertag {s}.")
+            alertItems.append(f"This will cause ambiguous sort order under supertag {s}.")
         duplicateGroups = Utils.Duplicates(n["group"] for n in namesWithDate if n["group"])
         for g in duplicateGroups:
-            alertItems.append(f"This will cause arbitrary sort order in teacher group {g}.")
+            alertItems.append(f"This will cause ambiguous sort order in teacher group {g}.")
 
         if len(alertItems) > 2:
             Alert.caution(*alertItems)

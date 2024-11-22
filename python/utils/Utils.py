@@ -34,7 +34,7 @@ def ExtendUnique(dest: list, source: Iterable) -> list:
     return dest
 
 def Duplicates(source: Iterable) -> list:
-    "Return a list of the item which appear more than once in source."
+    "Return a list of the items which appear more than once in source."
     itemCount = Counter(source)
     return [item for item,count in itemCount.items() if count > 1]
 
