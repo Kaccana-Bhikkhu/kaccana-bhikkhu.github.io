@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import os
+import os, time
 from typing import List, Iterator, Iterable, Tuple, Callable
 from airium import Airium
 import Mp3DirectCut
@@ -2544,10 +2544,18 @@ def main():
     
     with (open(gOptions.urlList if gOptions.urlList else os.devnull,"w") as urlListFile,
             FileRegister.HashWriter(gOptions.prototypeDir,"assets/HashCache.json",exactDates=True) as writer):
-        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
-            WritePage(newPage,writer)
-            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
         
+        startTime = time.perf_counter()
+        pageWriteTime = 0.0
+        for newPage in basePage.AddMenuAndYieldPages(mainMenu,**MAIN_MENU_STYLE):
+            pageWriteStart = time.perf_counter()
+            WritePage(newPage,writer)
+            pageWriteTime += time.perf_counter() - pageWriteStart
+            print(f"{gOptions.info.cannonicalURL}{newPage.info.file}",file=urlListFile)
+    
+        Alert.extra(f"Prototype main build loop took {time.perf_counter() - startTime:.3f} seconds.")
+        Alert.extra(f"File writing time: {pageWriteTime:.3f} seconds.")
+
         writer.WriteTextFile("sitemap.xml",XmlSitemap(writer))
         WriteIndexPage(writer)
         WriteRedirectPages(writer)
