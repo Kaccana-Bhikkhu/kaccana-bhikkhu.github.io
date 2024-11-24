@@ -1191,7 +1191,17 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
             return mp3Link[0]
 
     if len(menuItems) > 1:
-        yield from basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>\n"),highlight={"class":"active"})
+        # Figure out which section in page contains the Menu object and copy it to the end of the page
+        menuSection = basePage.numberedSections # The Menu object will be placed in the next available numbered section
+        if not basePage.section[menuSection - 1]:
+            menuSection -= 1 # unless the last section is blank.
+        
+        for page in basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>\n"),highlight={"class":"active"}):
+            page.AppendContent("<hr>")
+            bottomMenu = copy.deepcopy(basePage.section[menuSection])
+            bottomMenu.menu_keepScroll = False
+            page.AppendContent(bottomMenu) # Duplicate the page menu at the bottom of the page
+            yield page
     else:
         clone = basePage.Clone()
         clone.AppendContent(menuItems[0][1][1])

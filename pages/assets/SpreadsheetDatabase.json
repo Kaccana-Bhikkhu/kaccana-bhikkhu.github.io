@@ -86522,7 +86522,14 @@
       "teachers": [
         "ASd"
       ],
-      "fTags": [],
+      "fTags": [
+        "Devotional practice",
+        "Buddha"
+      ],
+      "fTagOrder": [
+        90,
+        160
+      ],
       "annotations": [
         {
           "kind": "Sutta",
@@ -90376,7 +90383,7 @@
         {
           "kind": "Vinaya",
           "flags": "",
-          "text": "Conditions for skillful admonishment in the [Buddhist Monastic Code's discussion](BMC 1 p. 198) of [Bhikkhu Saṇghādisesa 8](buss 8).",
+          "text": "Conditions for skillful admonishment in the Buddhist Monastic Code's [discussion](BMC 1 p. 198) of [Bhikkhu Saṇghādisesa 8](buss 8).",
           "tags": [
             "Admonishment/feedback",
             "Right Speech"
@@ -90454,7 +90461,16 @@
       "fTagOrder": [
         150
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Cut audio",
+          "flags": "r",
+          "startTime": "0:20.7",
+          "endTime": "0:27.6",
+          "text": "",
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Not-self",
         "Rebirth",
@@ -90475,10 +90491,15 @@
         [
           "$",
           "26:46",
+          "27:06.7"
+        ],
+        [
+          "$",
+          "27:13.6",
           "36:45"
         ]
       ],
-      "duration": "9:59"
+      "duration": "9:52"
     },
     {
       "event": "Kathina2021",
@@ -108406,7 +108427,7 @@
       ],
       "subtopics": [],
       "excerptCount": 53,
-      "fTagCount": 3,
+      "fTagCount": 4,
       "listIndex": 292
     },
     "Buddha/Biography": {
@@ -108580,6 +108601,7 @@
       "primaries": 0,
       "htmlFile": "devotional-practice.html",
       "excerptCount": 28,
+      "fTagCount": 1,
       "listIndex": 298
     },
     "Ceremony/ritual": {
@@ -130174,8 +130196,8 @@
       "startDate": "09/06/2021",
       "teachers": "AP;AA;ASd;AKd;ANy",
       "sessions": 12,
-      "excerpts": 154,
-      "answersListenedTo": 154,
+      "excerpts": 155,
+      "answersListenedTo": 155,
       "tagsApplied": 578,
       "invalidTags": 0,
       "duration": "8:56:47"
@@ -132696,7 +132718,7 @@
       },
       "htmlPath": "clusters/buddha.html",
       "excerptCount": 80,
-      "fTagCount": 4
+      "fTagCount": 5
     },
     "Dhamma": {
       "tag": "Dhamma",
@@ -134889,7 +134911,7 @@
         "Saṅgha"
       ],
       "excerptCount": 237,
-      "fTagCount": 13
+      "fTagCount": 14
     },
     "foundations": {
       "code": "foundations",
