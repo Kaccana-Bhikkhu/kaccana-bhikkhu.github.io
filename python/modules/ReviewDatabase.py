@@ -308,6 +308,13 @@ def LogReviewedFTags() -> None:
         "Return the contents of the log file for this subtopic or tag."
         fileLines = ["\t".join(("fTagOrder","excerpt","duration","kind","text")),
             FeaturedExcerptSummary(subtopicOrTag["tag"])]
+        
+        fTagCount = subtopicOrTag.get("fTagCount",0)
+        minFTag,maxFTag,diffFTag = OptimalFTagCount(subtopicOrTag)
+
+        fileLines.append("")
+        fileLines.append(f"{fTagCount} featured excerpts; {minFTag}-{maxFTag} optimal.")
+
         if "displayAs" in subtopicOrTag:
             fileLines += ["","Subtopic tags:",subtopicOrTag["tag"]] + list(subtopicOrTag["subtags"].keys())
         return "\n".join(fileLines)
