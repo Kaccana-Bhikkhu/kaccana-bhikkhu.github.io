@@ -537,15 +537,12 @@ function searchButtonClick(searchKind) {
     history.pushState({},"",location.href); // First push a new history frame
     setFrameSearch(search); // Then replace the history with the search query
 
-    /* let newURL = new URL(location.href);
-    newURL.search = `?q=${encodeURIComponent(query)}&search=${searchKind}`
-    history.pushState({}, "",newURL.href); */
-
     searchFromURL();
 }
 
 let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
 let gSearchers = { // A dictionary of searchers by item code
     "x": new ExcerptSearcher(),
-    "g": new Searcher("g","tag")
+    "g": new Searcher("g","tag"),
+    "t": new Searcher("t","teacher"),
 };

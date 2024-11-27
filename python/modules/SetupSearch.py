@@ -158,11 +158,11 @@ def TagBlob(tagName:str) -> str:
         blob = blob.replace("]","]+") # add "+" after each tag closure.
     return blob
 
+def AlphabetizeName(string: str) -> str:
+    return Utils.RemoveDiacritics(string).lower()
+
 def TagBlobs() -> Iterator[dict]:
     """Return a blob for each tag, sorted alphabetically."""
-
-    def AlphabetizeName(string: str) -> str:
-        return Utils.RemoveDiacritics(string).lower()
 
     alphabetizedTags = [(AlphabetizeName(tag["fullTag"]),tag["tag"]) for tag in gDatabase["tag"].values() 
                         if tag["htmlFile"] and not ParseCSV.TagFlag.HIDE in tag["flags"]]
@@ -172,6 +172,20 @@ def TagBlobs() -> Iterator[dict]:
         yield {
             "blobs": [TagBlob(tag)],
             "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True,flags=Prototype.TagDescriptionFlag.SHOW_STAR)
+        }
+
+def TeacherBlobs() -> Iterator[dict]:
+    """Return a blob for each teacher, sorted alphabetically."""
+
+    teachersWithPages = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
+
+    alphabetizedTeachers = Prototype.AlphabetizedTeachers(teachersWithPages)
+
+    for name,teacher in alphabetizedTeachers:
+        yield {
+            "blobs": [(Enclose(Blobify((teacher["fullName"],)))),"{}"],
+            "html": re.sub("(^<p>|</p>$)","",Prototype.TeacherDescription(teacher,name)).strip()
+                # Remove the paragraph markers added by TeacherDescription
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict]) -> None:
@@ -209,6 +223,7 @@ def main() -> None:
     optimizedDB = {"searches": {}}
 
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
+    AddSearch(optimizedDB["searches"],"t","teacher",TeacherBlobs())
     AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts())
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 

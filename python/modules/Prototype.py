@@ -1755,8 +1755,8 @@ def TeacherDescription(teacher: dict,nameStr: str = "") -> str:
         nameStr = teacher['fullName']
     return f"<p> {href.Wrap(nameStr)} ({teacher['excerptCount']}) </p>"
 
-def ListTeachersAlphabetical(teachers: list[dict]) -> str:
-    """Return html code listing teachers alphabetically."""
+def AlphabetizedTeachers(teachers: list[dict]) -> list[str,dict]:
+    """Sort these teachers alphabetically by name. Return a list of tuples (alphabetizedName,teacherDict)"""
     
     prefixes = sorted(list(p for p in gDatabase["prefix"] if not p.endswith("/")),key=len,reverse=True)
         # Sort prefixes so the longest prefix matches first, and eliminate prefixes ending in / which don't apply to names
@@ -1773,7 +1773,11 @@ def ListTeachersAlphabetical(teachers: list[dict]) -> str:
             return string
 
     alphabetized = sorted((AlphabetizeName(t["fullName"]),t) for t in teachers)
-    return "\n".join(TeacherDescription(t,name) for name,t in alphabetized)
+    return alphabetized
+
+def ListTeachersAlphabetical(teachers: list[dict]) -> str:
+    """Return html code listing teachers alphabetically."""
+    return "\n".join(TeacherDescription(t,name) for name,t in AlphabetizedTeachers(teachers))
 
 def TeacherDate(teacher:dict) -> float:
     "Return a teacher's date for sorting purposes."
