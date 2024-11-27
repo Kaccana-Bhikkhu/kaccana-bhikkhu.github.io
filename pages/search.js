@@ -21,9 +21,6 @@ Object.keys(PALI_DIACRITICS).forEach((letter) => {
 
 const DEBUG = false;
 
-let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
-let gSearchers = {}; // A dictionary of searchers by item code
-
 export function regExpEscape(literal_string) {
     return literal_string.replace(/[-[\]{}()*+!<>=:?.\/\\^$|#\s,]/g, '\\$&');
 }
@@ -35,12 +32,17 @@ export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
     // fill the search bar with the URL query string and run a search.
 
-    for (let kind of "xg") {
-        let searchButton = document.getElementById(`search-${kind}-button`);
-        if (!searchButton)
-            return; // Exit if it's a non-search page.
-        searchButton.onclick = () => { searchButtonClick(kind); }
+    let searchButtonsFound = 0;
+    for (let searchCode in gSearchers) {
+        let searchButton = document.getElementById(`search-${searchCode}-button`);
+        if (searchButton) {
+            searchButton.onclick = () => { searchButtonClick(searchCode); }
+            searchButtonsFound += 1;
+        }
     }
+
+    if (!searchButtonsFound)
+        return;
 
     let params = frameSearch();
     let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
@@ -65,11 +67,8 @@ export async function loadSearchPage() {
         .then((json) => {
             gDatabase = json; 
             console.log("Loaded search database.");
-            for (let code in gDatabase["searches"]) {
-                if (code == "x")
-                    gSearchers[code] = new ExcerptSearcher(gDatabase.searches[code]);
-                else
-                    gSearchers[code] = new Searcher(gDatabase.searches[code]);
+            for (let code in gSearchers) {
+                gSearchers[code].loadItemsFomDatabase(gDatabase)
             }
         });
 
@@ -378,24 +377,29 @@ class Searcher {
     code; // a one-letter code to identify the search.
     name; // the name of the search, e.g. "Tag"
     plural; // the plural name of the search.
-    prefix; // html prefix of each search result.
-    suffix; // hmtl suffix of each search result.
-    separator; // the html code to separate each displayed search result.
-    itemsPerPage; // The number of items to display per page. 
-        // For the base class searcher, this is the number of items to display before the user clicks "Show all"
-    showAtFirst; // The number of items to display at first in a multi-search
-    divClass; // Enlcose the search results in a <div> tag with this class.
-    items; // A list of items of the form:
+    prefix = "<p>"; // html prefix of each search result.
+    suffix = "</p>"; // hmtl suffix of each search result.
+    separator = ""; // the html code to separate each displayed search result.
+    itemsPerPage = null; // The number of items to display per page.
+        // itemsPerPage = null displays all items regardless of length.
+        // The base class Searcher displays only one page.
+    divClass = "listing"; // Enlcose the search results in a <div> tag with this class.
+    items = []; // A list of items of the form:
         // database[n].blobs: an array of search blobs to match
         // database[n].html: the html code to display this item when found
     query = null; // A searchQuery object describing the search
     foundItems = []; // The items we have found.
     
-    constructor(databaseItem) {
-        // Build this search from an entry in the search database
-        for (let element in databaseItem) {
-            this[element] = databaseItem[element];
-        }
+    constructor(code,name) {
+        // Configure a search with a given code and name
+        this.code = code;
+        this.name = name;
+        this.plural = this.name + "s";
+    }
+
+    loadItemsFomDatabase(database) {
+        // Called after SearchDatabase.json is loaded to prepare for searching
+        this.items = database.searches[this.code].items;
     }
 
     search(searchQuery) {
@@ -405,7 +409,8 @@ class Searcher {
     }
 
     renderItems(startItem = 0,endItem = null) {
-        // Return a string of the found items.
+        // Convert a list of items to html code by concatenating their html attributes
+        // Display strings in boldTextItems in bold.
 
         if (endItem == null)
             endItem = undefined;
@@ -457,12 +462,27 @@ class Searcher {
 
 export class ExcerptSearcher extends Searcher {
     // Specialised search object for excerpts
-    // sessionHeader;   // Contains rendered headers for each session.
-                        // Its value is set in the base class constructor function.
-                        // If we prototype the variable here, that overwrites the value set by the base class constructor.
-                    
+    code = "x"; // a one-letter code to identify the search.
+    name = "excerpt"; // the name of the search, e.g. "Tag"
+    plural = "excerpts"; // the plural name of the search.
+    prefix = ""; // html prefix of each search result.
+    suffix = ""; // hmtl suffix of each search result.
+    separator = "<hr>"; // the html code to separate each displayed search result.
+    itemsPerPage = 100; // The number of items to display per page.
+        // itemsPerPage = 0 displays all items regardless of length.
+        // The base class Searcher displays only one page.
+    divClass = "main"; // Enlcose the search results in a <div> tag with this class.
+    sessionHeader = {};   // Contains rendered headers for each session.
+
+    loadItemsFomDatabase(database) {
+        // Called after SearchDatabase.json is loaded to prepare for searching
+        super.loadItemsFomDatabase(database);
+        this.sessionHeader = database.searches[this.code].sessionHeader;
+    }
+
     renderItems(startItem = 0,endItem = null) {
-        // Convert a list of excerpts to html code by concatenating their html attributes
+        // Convert a list of excerpts to html code by concatenating their html attributes and
+        // inserting session headers where needed.
         // Display strings in boldTextItems in bold.
 
         if (endItem == null)
@@ -523,3 +543,9 @@ function searchButtonClick(searchKind) {
 
     searchFromURL();
 }
+
+let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
+let gSearchers = { // A dictionary of searchers by item code
+    "x": new ExcerptSearcher(),
+    "g": new Searcher("g","tag")
+};

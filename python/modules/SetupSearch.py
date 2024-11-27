@@ -174,7 +174,7 @@ def TagBlobs() -> Iterator[dict]:
             "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True,flags=Prototype.TagDescriptionFlag.SHOW_STAR)
         } 
 
-def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict]) -> None:
     """Add the search (tags, teachers, etc.) to searchList.
     code: a one-letter code to identify the search.
     name: the name of the search.
@@ -188,14 +188,7 @@ def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Itera
     searchList[code] = {
         "code": code,
         "name": name,
-        "plural": name + "s" if plural == "s" else plural,
-        "prefix": wrapper.prefix,
-        "suffix": wrapper.suffix,
-        "separator": "",
         "items": [b for b in blobsAndHtml],
-        "itemsPerPage": None,
-        "showAtFirst": 5,
-        "divClass": "listing"
     }
 
 def AddArguments(parser) -> None:
@@ -216,8 +209,7 @@ def main() -> None:
     optimizedDB = {"searches": {}}
 
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
-    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper())
-    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "main")
+    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts())
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 
     optimizedDB["blobDict"] = list(gBlobDict.values())
