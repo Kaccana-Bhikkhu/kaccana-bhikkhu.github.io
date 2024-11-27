@@ -378,6 +378,26 @@ function clearSearchResults(message) {
         messageFrame.style.display = "none";
 }
 
+function displaySearchResults(message,searchResults) {
+    // Display the 
+
+    let messageFrame = document.getElementById('message');
+    let instructionsFrame = document.getElementById('instructions');
+    let resultsFrame = document.getElementById('results');
+
+    instructionsFrame.style.display = "none";
+
+    resultsFrame.innerHTML = searchResults;
+    configureLinks(resultsFrame,location.hash.slice(1));
+    loadToggleView(resultsFrame);
+
+    if (message) {
+        messageFrame.innerHTML = message;
+        messageFrame.style.display = "block";
+    } else
+        messageFrame.style.display = "none";
+}
+
 class Searcher {
     code; // a one-letter code to identify the search.
     name; // the name of the search, e.g. "Tag"
@@ -389,6 +409,7 @@ class Searcher {
         // itemsPerPage = null displays all items regardless of length.
         // The base class Searcher displays only one page.
     divClass = "listing"; // Enlcose the search results in a <div> tag with this class.
+    multiSearchHeading = false; // Should we display a heading to match TruncatedSearcher?
     items = []; // A list of items of the form:
         // database[n].blobs: an array of search blobs to match
         // database[n].html: the html code to display this item when found
@@ -429,40 +450,51 @@ class Searcher {
 
     searchHtmlResults() {
         // Return an html string containing the search results.
+        // Returns an empty string if the search didn't find anything.
+        if (this.foundItems.length > 0) {
+            let heading = "";
+            if (this.multiSearchHeading)
+                heading = `\n<h3>${this.foundItemsHeader()}</h3>`;
+            return `<div class="${this.divClass}" id="results-${this.code}">${heading}\n${this.renderItems(0,this.itemsPerPage)}\n</div>`;
+        } else
+            return "";
+    }
 
-        return `<div class="${this.divClass}" id="results-${this.code}">\n${this.renderItems(0,this.itemsPerPage)}\n</div>`;
+    foundItemsString() {
+        // Returns a string describing the found items in th form "27 tags"
+        // Returns "" if no items were found.
+        if (this.foundItems.length > 0)
+            return `${this.foundItems.length} ${this.foundItems.length > 1 ? this.plural : this.name}`;
+        else
+            return "";
+    }
+
+    foundItemsHeader() {
+        // Returns a string describing the found items in the form "Tags (27):"
+        // Returns "" if no items were found.
+
+        if (this.foundItems.length > 0)
+            return `${capitalizeFirstLetter(this.plural)} (${this.foundItems.length}):`;
+        else
+            return "";
     }
 
     showResults(message = "") {
-        // excerpts are the excerpts to display
-        // searcher is the search query object.
+        // Display the results of this search in the main window.
         // message is an optional message to display.
-        let messageFrame = document.getElementById('message');
-        let instructionsFrame = document.getElementById('instructions');
-        let resultsFrame = document.getElementById('results');
-
+        
         if (this.foundItems.length > 0) {
-            message += `Found ${this.foundItems.length} ${this.foundItems.length > 1 ? this.plural : this.name}`;
+            message += `Found ${this.foundItemsString()}`;
             if (this.itemsPerPage && this.foundItems.length > this.itemsPerPage)
                 message += `. Showing only the first ${this.itemsPerPage}:`;
             else
                 message += ":"
-            instructionsFrame.style.display = "none";
 
-            resultsFrame.innerHTML = this.searchHtmlResults();
-            configureLinks(resultsFrame,location.hash.slice(1));
-            loadToggleView(resultsFrame);
+            displaySearchResults(message,this.searchHtmlResults());
         } else {
             message += `No ${this.plural} found.`
-            instructionsFrame.style.display = "block";
-            resultsFrame.innerHTML = "";
+            clearSearchResults(message);
         }
-
-        if (message) {
-            messageFrame.innerHTML = message;
-            messageFrame.style.display = "block";
-        } else
-            messageFrame.style.display = "none";
     }
 }
 
@@ -479,10 +511,10 @@ class TruncatedSearcher extends Searcher {
     }
 
     searchHtmlResults() {
-        // Append 
+        if (this.foundItems.length == 0)
+            return "";
 
-        let header = `${capitalizeFirstLetter(this.plural)} (${this.foundItems.length}):`
-        let resultsId = `search-results-${this.code}`;
+        let resultsId = `results-${this.code}`;
 
         let firstItems = "";
         let moreItems = "";
@@ -501,7 +533,7 @@ class TruncatedSearcher extends Searcher {
         
         return ` 
         <div class="${this.divClass}" id="results-${this.code}">
-        <h3><a><i class="fa fa-minus-square toggle-view" id="${resultsId}"></i></a> ${header} </h3>
+        <h3><a><i class="fa fa-minus-square toggle-view" id="${resultsId}"></i></a> ${this.foundItemsHeader()}</h3>
         <div id="${resultsId}.b">
         ${firstItems} 
         ${moreItems}
@@ -554,6 +586,68 @@ export class ExcerptSearcher extends Searcher {
     }
 }
 
+class MultiSearcher {
+    // Conduct multiple searches with the same search query
+    // Uses duck typing to behave like a Searcher without inheriting from it.
+
+    code; // a one-letter code to identify the search.
+    separator = "<hr>"; // the html code to separate each displayed search.
+    query = null; // a searchQuery object describing the search
+    searches = []; // a list of Searcher objects describing what to search for
+
+    constructor(code, ...searches) {
+        this.code = code;
+        this.searches = searches;
+    }
+
+    loadItemsFomDatabase(database) {
+        for (let s of this.searches) {
+            s.loadItemsFomDatabase(database);
+        }
+    }
+
+    search(searchQuery) {
+        console.log("Multisearch.");
+        this.query = searchQuery;
+        for (let s of this.searches) {
+            s.search(searchQuery);
+        }
+    }
+
+    successfulSearches() {
+        // Returns the number of searches that found anything.
+        let successful = 0;
+        for (let s of this.searches) {
+            if (s.foundItems.length > 0)
+                successful += 1;
+        }
+        return successful;
+    }
+
+    showResults(message = "") {
+        // Show the results of all our searches combined.
+        // message is an optional message to display.
+        
+        if (this.successfulSearches()) {
+            let searchMessages = this.searches.map((s) => s.foundItemsString());
+            searchMessages = searchMessages.filter((s) => s.length > 0);
+            if (searchMessages.length > 2)
+                message += `Found ${searchMessages.slice(0,-1).join(", ")}, and ${searchMessages[searchMessages.length - 1]}.`;
+            else if (searchMessages.length > 1)
+                message += `Found ${searchMessages[0]} and ${searchMessages[1]}.`;
+            else
+                message += `Found ${searchMessages[0]}.`;
+
+            let searchResults = this.searches.map((s) => s.searchHtmlResults());
+            searchResults = searchResults.filter((s) => s.length > 0);
+            displaySearchResults(message,searchResults);
+        } else {
+            message += `No items found.`
+            clearSearchResults(message);
+        }
+    }
+}
+
 function searchFromURL() {
     // Find excerpts matching the search query from the page URL.
     if (!gDatabase) {
@@ -594,6 +688,12 @@ function searchButtonClick(searchKind) {
 let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
 let gSearchers = { // A dictionary of searchers by item code
     "x": new ExcerptSearcher(),
-    "g": new TruncatedSearcher("g","tag",5),
+    "g": new Searcher("g","tag"),
     "t": new Searcher("t","teacher"),
+    "all": new MultiSearcher("all",
+        new TruncatedSearcher("g","tag",5),
+        new TruncatedSearcher("t","teacher",5),
+        new ExcerptSearcher()
+    )
 };
+gSearchers.all.searches[2].multiSearchHeading = true;
