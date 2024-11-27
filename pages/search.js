@@ -1,4 +1,5 @@
 import {configureLinks,frameSearch,setFrameSearch} from './frame.js';
+import { loadToggleView } from './toggle-view.js';
 
 const TEXT_DELIMITERS = "][{}<>^";
 const METADATA_DELIMITERS = "#&@";
@@ -27,6 +28,10 @@ export function regExpEscape(literal_string) {
 
 const ESCAPED_HTML_CHARS = regExpEscape(SPECIAL_SEARCH_CHARS);
 const MATCH_END_DELIMITERS = new RegExp(`^\\\\[${regExpEscape(TEXT_DELIMITERS)}]+|\\\\[${regExpEscape(TEXT_DELIMITERS)}]+$`,"g");
+
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
 
 export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
@@ -422,8 +427,8 @@ class Searcher {
         return rendered.join(this.separator);
     }
 
-    singleSearchHtmlResults() {
-        // Return an html string containing the search results when displaying only this search.
+    searchHtmlResults() {
+        // Return an html string containing the search results.
 
         return `<div class="${this.divClass}" id="results-${this.code}">\n${this.renderItems(0,this.itemsPerPage)}\n</div>`;
     }
@@ -444,8 +449,9 @@ class Searcher {
                 message += ":"
             instructionsFrame.style.display = "none";
 
-            resultsFrame.innerHTML = this.singleSearchHtmlResults();
+            resultsFrame.innerHTML = this.searchHtmlResults();
             configureLinks(resultsFrame,location.hash.slice(1));
+            loadToggleView(resultsFrame);
         } else {
             message += `No ${this.plural} found.`
             instructionsFrame.style.display = "block";
@@ -457,6 +463,51 @@ class Searcher {
             messageFrame.style.display = "block";
         } else
             messageFrame.style.display = "none";
+    }
+}
+
+class TruncatedSearcher extends Searcher {
+    // A Searcher that shows only a few results to begin with followed by "Show all...".
+    // The whole search can be hidden using a toggle-view object.
+    // Displays its own header e.g. "Teachers (2):", so it's intended to be used with MultiSearcher.
+
+    truncateAt; // Truncate the initial view if there are more than this many items
+
+    constructor(code,name,truncateAt) {
+        super(code,name);
+        this.truncateAt = truncateAt;
+    }
+
+    searchHtmlResults() {
+        // Append 
+
+        let header = `${capitalizeFirstLetter(this.plural)} (${this.foundItems.length}):`
+        let resultsId = `search-results-${this.code}`;
+
+        let firstItems = "";
+        let moreItems = "";
+        if (this.foundItems.length > this.truncateAt) {
+            firstItems = this.renderItems(0,this.truncateAt - 1);
+            let moreItemsBody = this.renderItems(this.truncateAt);
+            moreItems = ` 
+            <a class="toggle-view hide-self" id="${resultsId}-more"><i>Show all ${this.foundItems.length}...</i></a>
+            <div class="no-padding" id="${resultsId}-more.b" style="display:none;">
+            ${moreItemsBody}
+            </div>
+            `;
+        } else {
+            firstItems = this.renderItems();
+        }
+        
+        return ` 
+        <div class="${this.divClass}" id="results-${this.code}">
+        <h3><a><i class="fa fa-minus-square toggle-view" id="${resultsId}"></i></a> ${header} </h3>
+        <div id="${resultsId}.b">
+        ${firstItems} 
+        ${moreItems}
+        </div>
+        </div>
+        `;
     }
 }
 
@@ -543,6 +594,6 @@ function searchButtonClick(searchKind) {
 let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
 let gSearchers = { // A dictionary of searchers by item code
     "x": new ExcerptSearcher(),
-    "g": new Searcher("g","tag"),
+    "g": new TruncatedSearcher("g","tag",5),
     "t": new Searcher("t","teacher"),
 };

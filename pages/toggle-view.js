@@ -15,12 +15,17 @@ function setVisible(element,newVisible,changeURL) {
     if (newVisible == isVisible)
         return;
 
-    if (body.style.display == "none") {
+    if (element.classList.contains("hide-self")) { // Hide ourselves when showing the body
         body.style.display = "block";
-        element.className = "fa fa-minus-square toggle-view";
+        element.style.display = "none";
     } else {
-        body.style.display = "none";
-        element.className = "fa fa-plus-square toggle-view";
+        if (body.style.display == "none") {
+            body.style.display = "block";
+            element.className = "fa fa-minus-square toggle-view";
+        } else {
+            body.style.display = "none";
+            element.className = "fa fa-plus-square toggle-view";
+        }
     }
 
     if (changeURL) {
@@ -39,14 +44,16 @@ function setVisible(element,newVisible,changeURL) {
     }
 }
 
-export function loadToggleView() {
+export function loadToggleView(frame) {
     let params = frameSearch()
     let initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
     let toggled = (params.get("toggle") || "").split(".");
     if (toggled[0] == "")
         toggled.splice(0,1);
 
-    let togglers = document.getElementsByClassName("toggle-view");
+    if (!frame)
+        frame = document;
+    let togglers = frame.getElementsByClassName("toggle-view");
     for (let t of togglers) {
         if (toggled.indexOf(t.id) == -1)
             setVisible(t,initView);
