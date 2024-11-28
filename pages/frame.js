@@ -24,9 +24,12 @@ export function frameSearch(hash = null) {
 		return new URLSearchParams("");
 }
 
-export function setFrameSearch(params) {
+export function setFrameSearch(params,modifyLocation = null) {
 	// params: the URLSearchParams object to set the frame search to
-	let url = new URL(location)
+	// modifyLocation: if provided, use this instead of the current location and return the modified URL hash
+	// instead of calling replaceState.
+
+	let url = new URL(modifyLocation || location);
 	let hash = url.hash;
 
 	if (hash.includes("?")) {
@@ -36,8 +39,14 @@ export function setFrameSearch(params) {
 		parts[1] += "?" + params.toString();
 		hash = parts.join("#");
 	}
+
 	url.hash = hash;
-	history.replaceState(history.state,"",url);
+	if (modifyLocation) {
+		return url.toString();
+	} else {
+		url.hash = hash;
+		history.replaceState(history.state,"",url);
+	}
 }
 
 function pageText(r,url) {

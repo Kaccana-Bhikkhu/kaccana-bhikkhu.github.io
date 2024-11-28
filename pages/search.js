@@ -33,6 +33,10 @@ function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
+function nbsp(count) {
+    return "&nbsp;".repeat(count);
+}
+
 export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
     // fill the search bar with the URL query string and run a search.
@@ -379,7 +383,7 @@ function clearSearchResults(message) {
 }
 
 function displaySearchResults(message,searchResults) {
-    // Display the 
+    // Display the seach results in the various html frames
 
     let messageFrame = document.getElementById('message');
     let instructionsFrame = document.getElementById('instructions');
@@ -409,12 +413,13 @@ class Searcher {
         // itemsPerPage = null displays all items regardless of length.
         // The base class Searcher displays only one page.
     divClass = "listing"; // Enlcose the search results in a <div> tag with this class.
-    multiSearchHeading = false; // Should we display a heading to match TruncatedSearcher?
+    multiSearchHeading = false; // Should we display a heading for use with MultiSearcher?
     items = []; // A list of items of the form:
         // database[n].blobs: an array of search blobs to match
         // database[n].html: the html code to display this item when found
     query = null; // A searchQuery object describing the search
     foundItems = []; // The items we have found.
+    multiSearcher = null; // Set to the multisearcher object we are part of.
     
     constructor(code,name) {
         // Configure a search with a given code and name
@@ -441,14 +446,14 @@ class Searcher {
         if (endItem == null)
             endItem = undefined;
         let rendered = [];
-        for (let item of this.foundItems.slice(0,endItem)) {
+        for (let item of this.foundItems.slice(startItem,endItem)) {
             rendered.push(this.prefix + this.query.displayMatchesInBold(item.html) + this.suffix);
         }
 
         return rendered.join(this.separator);
     }
 
-    searchHtmlResults() {
+    htmlSearchResults() {
         // Return an html string containing the search results.
         // Returns an empty string if the search didn't find anything.
         if (this.foundItems.length > 0) {
@@ -490,11 +495,17 @@ class Searcher {
             else
                 message += ":"
 
-            displaySearchResults(message,this.searchHtmlResults());
+            displaySearchResults(message,this.htmlSearchResults());
+            this.configureResultsFrame(document.getElementById('results'));
         } else {
             message += `No ${this.plural} found.`
             clearSearchResults(message);
         }
+    }
+
+    configureResultsFrame(frame) {
+        // Called to configure javascript links, etc. within the search results frame.
+        // There's nothing to do in the Searcher base class.
     }
 }
 
@@ -510,7 +521,7 @@ class TruncatedSearcher extends Searcher {
         this.truncateAt = truncateAt;
     }
 
-    searchHtmlResults() {
+    htmlSearchResults() {
         if (this.foundItems.length == 0)
             return "";
 
@@ -543,7 +554,92 @@ class TruncatedSearcher extends Searcher {
     }
 }
 
-export class ExcerptSearcher extends Searcher {
+class PagedSearcher extends Searcher {
+    // Extends Searcher to show multiple pages instead of just one.
+
+    constructor(code,name,itemsPerPage) {
+        super(code,name);
+        this.itemsPerPage = itemsPerPage;
+    }
+
+    htmlSearchResults() {
+        // Provide a multi-page view of these excerpts.
+        if (!this.foundItems.length)
+            return "";
+
+        let pageCount = Math.ceil(this.foundItems.length / this.itemsPerPage);
+        if (pageCount == 1) {
+            return super.htmlSearchResults();
+        }
+
+        let heading = "";
+        if (this.multiSearchHeading)
+            heading = `\n<h3>${this.foundItemsHeader()}</h3>`;
+
+        const pageNumberParam = `${this.code}Page`;
+        let params = frameSearch(location.hash);
+        let currentPage = 1;
+        if (params.has(pageNumberParam))
+            currentPage = Number(params.get(pageNumberParam));
+
+        let pageMenu = "";
+        if (pageCount > 0) {
+            let pageNumbers = [...Array(pageCount).keys().map((n) => (n+1))];
+            let pageLinks = pageNumbers.map((n) => {
+                let newParams = frameSearch(location.hash);
+                newParams.set(pageNumberParam,String(n));
+                return `<a href="${setFrameSearch(newParams,location)}"${n == currentPage ? 'class="active"' : ''}>${n}</a>`;
+            });
+
+            pageMenu = `\n<p class="page-list">Page:&emsp;${pageLinks.join("&emsp;")}</p>`;
+        }
+
+        let rendered = this.renderItems((currentPage - 1) * this.itemsPerPage,currentPage * this.itemsPerPage);
+        return `<div class="${this.divClass}" id="results-${this.code}">${heading}${pageMenu}\n${rendered}\n${pageMenu}</div>`;
+    }
+
+    showResults(message = "") {
+        // Display the results of this search in the main window.
+        // message is an optional message to display.
+        
+        if (this.foundItems.length > 0) {
+            message += `Found ${this.foundItemsString()}:`;
+            displaySearchResults(message,this.htmlSearchResults());
+            this.configureResultsFrame(document.getElementById('results'));
+        } else {
+            message += `No ${this.plural} found.`
+            clearSearchResults(message);
+        }
+    }
+
+    configureResultsFrame(resultsFrame) {
+        // Set click listeners to the page menus so we don't have to redo the search.
+        let secondMenu = false;
+        for (let menu of resultsFrame.getElementsByClassName("page-list")) {
+            for (let item of menu.getElementsByTagName("a")) {
+                item.scrollToTop = secondMenu;
+                item.addEventListener("click", (event) => {
+                    let pageNumber = event.target.innerHTML;
+                    let params = frameSearch(location.hash);
+                    params.set(`${this.code}Page`,pageNumber);
+                    setFrameSearch(params);
+                    if (this.multiSearcher)
+                        this.multiSearcher.showResults();
+                    else
+                        this.showResults();
+                    if (event.target.scrollToTop) {
+                        let resultsFrame = document.getElementById(`results-${this.code}`);
+                        resultsFrame.scrollIntoView();
+                    }
+                    event.preventDefault();
+                });
+            }
+            secondMenu = true;
+        }
+    }
+}
+
+export class ExcerptSearcher extends PagedSearcher {
     // Specialised search object for excerpts
     code = "x"; // a one-letter code to identify the search.
     name = "excerpt"; // the name of the search, e.g. "Tag"
@@ -574,7 +670,7 @@ export class ExcerptSearcher extends Searcher {
         let bits = [];
         let lastSession = null;
 
-        for (const x of this.foundItems.slice(0,endItem)) {
+        for (const x of this.foundItems.slice(startItem,endItem)) {
             if (x.session != lastSession) {
                 bits.push(this.sessionHeader[x.session]);
                 lastSession = x.session;
@@ -598,6 +694,10 @@ class MultiSearcher {
     constructor(code, ...searches) {
         this.code = code;
         this.searches = searches;
+        for (let s of this.searches) {
+            s.multiSearchHeading = true;
+            s.multiSearcher = this;
+        }
     }
 
     loadItemsFomDatabase(database) {
@@ -638,9 +738,16 @@ class MultiSearcher {
             else
                 message += `Found ${searchMessages[0]}.`;
 
-            let searchResults = this.searches.map((s) => s.searchHtmlResults());
+            let searchResults = this.searches.map((s) => s.htmlSearchResults());
             searchResults = searchResults.filter((s) => s.length > 0);
-            displaySearchResults(message,searchResults);
+            searchResults.unshift(""); // Append an extra separator at the beginning
+            displaySearchResults(message,searchResults.join(this.separator));
+
+            for (let s of this.searches) {
+                let resultFrame = document.getElementById(`results-${s.code}`);
+                if (resultFrame)
+                    s.configureResultsFrame(resultFrame);
+            }
         } else {
             message += `No items found.`
             clearSearchResults(message);
@@ -696,4 +803,3 @@ let gSearchers = { // A dictionary of searchers by item code
         new ExcerptSearcher()
     )
 };
-gSearchers.all.searches[2].multiSearchHeading = true;
