@@ -182,8 +182,12 @@ def TeacherBlobs() -> Iterator[dict]:
     alphabetizedTeachers = Prototype.AlphabetizedTeachers(teachersWithPages)
 
     for name,teacher in alphabetizedTeachers:
+        if teacher["fullName"] == teacher["attributionName"]:
+            blobSource = (teacher["fullName"],)
+        else:
+            blobSource = (teacher["fullName"],teacher["attributionName"])
         yield {
-            "blobs": [(Enclose(Blobify((teacher["fullName"],)))),"{}"],
+            "blobs": [Enclose(Blobify(blobSource),"{}")],
             "html": re.sub("(^<p>|</p>$)","",Prototype.TeacherDescription(teacher,name)).strip()
                 # Remove the paragraph markers added by TeacherDescription
         } 
