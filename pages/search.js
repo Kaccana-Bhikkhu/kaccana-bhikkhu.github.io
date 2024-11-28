@@ -797,9 +797,11 @@ let gSearchers = { // A dictionary of searchers by item code
     "x": new ExcerptSearcher(),
     "g": new Searcher("g","tag"),
     "t": new Searcher("t","teacher"),
+    "e": new Searcher("e","event"),
     "all": new MultiSearcher("all",
         new TruncatedSearcher("g","tag",5),
         new TruncatedSearcher("t","teacher",5),
+        new TruncatedSearcher("e","event",3),
         new ExcerptSearcher()
     )
 };

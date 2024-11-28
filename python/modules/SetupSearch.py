@@ -74,18 +74,17 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
         if blob:
             yield blob
 
+def AllNames(teachers:Iterable[str]) -> Iterator[str]:
+    "Yield the names of teachers; include full and attribution names if they differ"
+    teacherDB = gDatabase["teacher"]
+    for t in teachers:
+        yield teacherDB[t]["fullName"]
+        if teacherDB[t]["attributionName"] != teacherDB[t]["fullName"]:
+            yield teacherDB[t]["attributionName"]
+
 def ExcerptBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
-    teacherDB = gDatabase["teacher"]
-
-    def AllNames(teachers:Iterable[str]) -> Iterator[str]:
-        "Yield the names of teachers; include full and attribution names if they differ"
-        for t in teachers:
-            yield teacherDB[t]["fullName"]
-            if teacherDB[t]["attributionName"] != teacherDB[t]["fullName"]:
-                yield teacherDB[t]["attributionName"]
-
     for item in Filter.AllItems(excerpt):
         aTags = item.get("tags",[])
         if item is excerpt:
@@ -182,14 +181,46 @@ def TeacherBlobs() -> Iterator[dict]:
     alphabetizedTeachers = Prototype.AlphabetizedTeachers(teachersWithPages)
 
     for name,teacher in alphabetizedTeachers:
-        if teacher["fullName"] == teacher["attributionName"]:
-            blobSource = (teacher["fullName"],)
-        else:
-            blobSource = (teacher["fullName"],teacher["attributionName"])
         yield {
-            "blobs": [Enclose(Blobify(blobSource),"{}")],
+            "blobs": [Enclose(Blobify(AllNames([teacher["teacher"]])),"{}")],
             "html": re.sub("(^<p>|</p>$)","",Prototype.TeacherDescription(teacher,name)).strip()
                 # Remove the paragraph markers added by TeacherDescription
+        }
+
+def EventBlob(event: dict[str],listedTeachers: list[str]) -> str:
+    """Return a search blob for this event."""
+    titles = [event["title"]]
+    if event["subtitle"]:
+        titles.append(event["subtitle"])
+
+    bits = [
+        Enclose(Blobify(titles),"^"),
+        Enclose(Blobify(AllNames(listedTeachers)),"{}"),
+        Enclose(Blobify(event["tags"]),"[]"),
+        "|",
+        Enclose(Blobify([re.sub("\W","",event["venue"])]),"&"),
+        Enclose(Blobify([event["code"]]),"@")
+    ]
+    return "".join(bits)
+
+def EventBlobs() -> Iterator[dict]:
+    """Return a blob for each event."""
+    for event in gDatabase["event"].values():
+        sessionTeachers = set()
+        for session in Database.SessionDict()[event["code"]].values():
+            sessionTeachers.update(session["teachers"])
+        listedTeachers = sorted(set(event["teachers"]) & sessionTeachers)
+
+        tagString = "".join(f'[{Prototype.HtmlTagLink(tag)}]' for tag in event["tags"])
+
+        lines = [
+            f"{Database.ItemCitation(event)}{': ' + event['subtitle'] if event['subtitle'] else ''} {tagString}",
+            Prototype.ItemList([gDatabase["teacher"][t]["attributionName"] for t in listedTeachers])
+        ]
+
+        yield {
+            "blobs": [EventBlob(event,listedTeachers)],
+            "html": "<br>".join(lines)
         } 
 
 def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict]) -> None:
@@ -228,6 +259,7 @@ def main() -> None:
 
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
     AddSearch(optimizedDB["searches"],"t","teacher",TeacherBlobs())
+    AddSearch(optimizedDB["searches"],"e","event",EventBlobs())
     AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts())
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 

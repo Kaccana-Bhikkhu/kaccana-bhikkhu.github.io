@@ -133,7 +133,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "ReviewDatabase",
+                "SetupSearch",
                 "--linkCheckLevel",
                 "3",
                 "--events",
