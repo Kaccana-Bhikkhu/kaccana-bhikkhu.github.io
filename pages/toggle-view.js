@@ -44,6 +44,11 @@ function setVisible(element,newVisible,changeURL) {
     }
 }
 
+function clickListener(event) {
+    event.preventDefault();
+    setVisible(this,"toggle",true);
+}
+
 export function loadToggleView(frame) {
     let params = frameSearch()
     let initView = params.has("showAll") ? true : (params.has("hideAll") ? false : null)
@@ -61,9 +66,7 @@ export function loadToggleView(frame) {
             setVisible(t,"toggle");
         else
             setVisible(t,!initView);
-        t.addEventListener("click", function(event) {
-            event.preventDefault();
-            setVisible(this,"toggle",true);
-        });
+        t.removeEventListener("click", clickListener); // Remove the listener first so we don't add it twice.
+        t.addEventListener("click", clickListener);
     }
 }
