@@ -209,7 +209,7 @@ def EventBlobs() -> Iterator[dict]:
         sessionTeachers = set()
         for session in Database.SessionDict()[event["code"]].values():
             sessionTeachers.update(session["teachers"])
-        listedTeachers = sorted(set(event["teachers"]) & sessionTeachers)
+        listedTeachers = [teacherCode for teacherCode in event["teachers"] if teacherCode in sessionTeachers]
 
         tagString = "".join(f'[{Prototype.HtmlTagLink(tag)}]' for tag in event["tags"])
 
