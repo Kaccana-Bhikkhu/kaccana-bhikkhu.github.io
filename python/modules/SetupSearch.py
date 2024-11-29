@@ -141,6 +141,19 @@ def SessionHeader() -> dict[str,str]:
 def AlphabetizeName(string: str) -> str:
     return Utils.RemoveDiacritics(string).lower()
 
+def KeyTopicBlobs() -> Iterator[dict]:
+    """Return a blob for each key topic."""
+
+    for topic in gDatabase["keyTopic"].values():
+        yield {
+            "blobs": ["".join([
+                Enclose(Blobify([topic["topic"]]),"^"),
+                Enclose(Blobify([topic["pali"]]),"<>")
+                ])],
+            "html": re.sub(r"\)$",f"{Prototype.FA_STAR})",Prototype.HtmlKeyTopicLink(topic["code"],count=True))
+                # Add a star before the last parenthesis to indicate these are featured excerpts.
+        }
+
 def SubtopicBlob(subtopic:str) -> str:
     "Make a search blob from this subtopic."
 
@@ -296,6 +309,7 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     optimizedDB = {"searches": {}}
 
+    AddSearch(optimizedDB["searches"],"k","key topic",KeyTopicBlobs())
     AddSearch(optimizedDB["searches"],"b","subtopic",SubtopicBlobs())
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
     AddSearch(optimizedDB["searches"],"t","teacher",TeacherBlobs())

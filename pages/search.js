@@ -457,10 +457,13 @@ class Searcher {
         // Return an html string containing the search results.
         // Returns an empty string if the search didn't find anything.
         if (this.foundItems.length > 0) {
+            let items = this.renderItems(0,this.itemsPerPage);
             let heading = "";
-            if (this.multiSearchHeading)
+            if (this.multiSearchHeading) { // Match the formatting of TruncatedSearcher
                 heading = `\n<h3>${this.foundItemsHeader()}</h3>`;
-            return `<div class="${this.divClass}" id="results-${this.code}">${heading}\n${this.renderItems(0,this.itemsPerPage)}\n</div>`;
+                items = `<div id="results-${this.code}.b">\n` + items + `\n</div>`
+            }
+            return `<div class="${this.divClass}" id="results-${this.code}">${heading}\n${items}\n</div>`;
         } else
             return "";
     }
@@ -798,12 +801,15 @@ let gDatabase = null; // The global database, loaded from assets/SearchDatabase.
 let gSearchers = { // A dictionary of searchers by item code
     "x": new ExcerptSearcher(),
     "multi-tag": new MultiSearcher("multi-tag",
+        new Searcher("k","key topic"),
         new Searcher("b","subtopic"),
         new Searcher("g","tag")
     ),
     "t": new Searcher("t","teacher"),
     "e": new Searcher("e","event"),
     "all": new MultiSearcher("all",
+        new TruncatedSearcher("k","key topic",3),
+        new TruncatedSearcher("b","subtopic",5),
         new TruncatedSearcher("g","tag",5),
         new TruncatedSearcher("t","teacher",5),
         new TruncatedSearcher("e","event",3),
