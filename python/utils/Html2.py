@@ -452,7 +452,7 @@ def ToggleListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,s
             headingID = textHeading
         headingID = Utils.slugify(headingID)
 
-        htmlBody = Tag("div",{"id":headingID + ".b"})(htmlBody)
+        htmlBody = Tag("div",{"id":headingID + ".b","class":"no-padding"})(htmlBody)
 
         return htmlHeading,htmlBody,headingID,textHeading
 

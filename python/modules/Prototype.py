@@ -147,34 +147,34 @@ def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> s
     return returnValue
 
     
-def HtmlTagClusterLink(cluster:str,text:str = "",link=True,count=False) -> str:
-    "Return a link to the specified tag cluster."
+def HtmlSubtopicLink(subtopic:str,text:str = "",link=True,count=False) -> str:
+    "Return a link to the specified subtopic."
 
     if not text:
-        text = gDatabase["subtopic"][cluster]["displayAs"]
+        text = gDatabase["subtopic"][subtopic]["displayAs"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["subtopic"][cluster]["htmlPath"])})(text)
+        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["subtopic"][subtopic]["htmlPath"])})(text)
     else:
         returnValue = text
-    if count and gDatabase['subtopic'][cluster]['fTagCount']:
-        returnValue += f" ({gDatabase['subtopic'][cluster]['fTagCount']})"
+    if count and gDatabase['subtopic'][subtopic]['fTagCount']:
+        returnValue += f" ({gDatabase['subtopic'][subtopic]['fTagCount']})"
     return returnValue
 
-def HtmlClusterTagList(cluster:dict,summarize:int = 0,group:bool = False,showStar = False) -> str:
+def HtmlSubtopicTagList(subtopic:dict,summarize:int = 0,group:bool = False,showStar = False) -> str:
     """Return a list of tags in the given cluster.
     summarize: Don't list subtags if the total number of tags exceeds this value.
     group: Use the form: Tag1 (Subtag1, Subtag2), Tag2 (Subtag3)..."""
 
-    subordinateTags = sum(1 for flag in cluster["subtags"].values() if flag == ParseCSV.KeyTagFlag.SUBORDINATE_TAG)
-    listSubtags = (summarize and len(cluster["subtags"]) + 1 <= summarize) or subordinateTags < 2
+    subordinateTags = sum(1 for flag in subtopic["subtags"].values() if flag == ParseCSV.KeyTagFlag.SUBORDINATE_TAG)
+    listSubtags = (summarize and len(subtopic["subtags"]) + 1 <= summarize) or subordinateTags < 2
     bits = []
-    for tag,flag in itertools.chain([(cluster["tag"],ParseCSV.KeyTagFlag.PEER_TAG)],cluster["subtags"].items()):
+    for tag,flag in itertools.chain([(subtopic["tag"],ParseCSV.KeyTagFlag.PEER_TAG)],subtopic["subtags"].items()):
         if listSubtags or flag == ParseCSV.KeyTagFlag.PEER_TAG:
             bits.append(HtmlTagLink(tag,showStar=showStar))
     
     if not listSubtags:
-        bits.append(f"and {len(cluster['subtags']) + 1 - len(bits)} subtags")
+        bits.append(f"and {len(subtopic['subtags']) + 1 - len(bits)} subtags")
 
     return ", ".join(bits)
 
@@ -432,7 +432,7 @@ def TagDescription(tag: dict,fullTag:bool = False,flags: str = "",listAs: str = 
     if not listAs and fullTag:
         listAs = tag["fullTag"] if fullTag else tag["tag"]
     if TagDescriptionFlag.SHOW_STAR and not TagDescriptionFlag.NO_COUNT:
-        listAs += f'&nbsp{FA_STAR}/'
+        listAs += f'&nbsp;{FA_STAR}/'
     tagStr = HtmlTagLink(tag['tag'],fullTag,text = listAs,link=link)
     if TagDescriptionFlag.PALI_FIRST in flags:
         tagStr = '[' + tagStr + ']'
@@ -984,7 +984,7 @@ class Formatter:
 
             text = tag
             if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
-                text += f'&nbsp{FA_STAR}'
+                text += f'&nbsp;{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
                     # Add ? to uncertain fTags; "?" * -N = ""
             if tag in self.excerptBoldTags: # Always print boldface tags
@@ -1009,7 +1009,7 @@ class Formatter:
             
             text = tag
             if tag in excerpt["fTags"] or tag in excerpt.get("fragmentFTags",()):
-                text += f'&nbsp{FA_STAR}'
+                text += f'&nbsp;{FA_STAR}'
                 text += "?" * min(Database.FTagOrder(excerpt,[tag]) - 1000,10 if gOptions.draftFTags in ("mark","number") else 0)
             if tag in self.excerptBoldTags: # Always print boldface tags
                 tagStrings.append(f'<b>[{HtmlTagLink(tag,text=text)}]</b>')
@@ -1196,7 +1196,7 @@ def MultiPageExcerptList(basePage: Html.PageDesc,excerpts: List[dict],formatter:
         if not basePage.section[menuSection - 1]:
             menuSection -= 1 # unless the last section is blank.
         
-        for page in basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: ' + 2*"&nbsp","</p>\n"),highlight={"class":"active"}):
+        for page in basePage.AddMenuAndYieldPages(menuItems,wrapper=Html.Wrapper('<p class="page-list">Page: &emsp; ',"</p>\n"),highlight={"class":"active"}):
             page.AppendContent("<hr>")
             bottomMenu = copy.deepcopy(basePage.section[menuSection])
             bottomMenu.menu_keepScroll = False
@@ -1335,7 +1335,7 @@ def AllExcerpts(pageDir: str) -> Html.PageDescriptorMenuItem:
 
                 with a.a(href = f"../{pageToLink}"):
                     a(tag)
-                a(f" ({count}){'&nbsp' * 4} ")
+                a(f" ({count})&emsp; ")
 
         page.AppendContent(str(a))
 
@@ -1425,7 +1425,7 @@ def ListEventsBySubject(events: list[dict]) -> str:
             listItem = (ListLinkedTags("",tags,lastJoinStr = " and "),
                         Html.Tag("p")(Database.ItemCitation(gDatabase["event"][e])),
                         "-".join(tags),
-                        (" and ".join(tags) if len(tags) <= 2 else tags[0] + ", etc.").replace(" ","&nbsp"))
+                        (" and ".join(tags) if len(tags) <= 2 else tags[0] + ", etc.").replace(" ","&nbsp;"))
             eventListByTags.append(listItem)
             
     
@@ -1647,7 +1647,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(TagBreadCrumbs(tagInfo))
             for subtopic in gDatabase["tag"][tag].get("partOfSubtopics",()):
                 if len(gDatabase["subtopic"][subtopic]["subtags"]) > 0:
-                    a(f"Part of tag cluster {HtmlTagClusterLink(subtopic)} in key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
+                    a(f"Part of tag cluster {HtmlSubtopicLink(subtopic)} in key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
                 else:
                     a(f"Part of key topic {HtmlKeyTopicLink(gDatabase['subtopic'][subtopic]['topicCode'])}")
                 a.br()
@@ -1669,7 +1669,7 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
         a.hr()
         
         tagPlusPali = TagDescription(tagInfo,fullTag=True,flags=TagDescriptionFlag.NO_COUNT,link = False)
-        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp" + tagPlusPali)
+        pageInfo = Html.PageInfo(tag,Utils.PosixJoin(tagPageDir,tagInfo["htmlFile"]),DrilldownIconLink(tag,iconWidth = 20) + " &nbsp;" + tagPlusPali)
         basePage = Html.PageDesc(pageInfo)
         basePage.AppendContent(str(a))
         basePage.keywords = ["Tag",tagInfo["fullTag"]]
@@ -1896,7 +1896,7 @@ def AddTableOfContents(sessions: list[dict],a: Airium) -> None:
             squish = Airium(source_minify = True) # Temporarily eliminate whitespace in html code to fix minor glitches
             squish("Sessions:")
             for s in sessions:
-                squish(" " + 3*"&nbsp")
+                squish(" &emsp;")
                 with squish.a(href = f"#{Database.ItemCode(s)}"):
                     squish(str(s['sessionNumber']))
             
@@ -2033,7 +2033,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
     for topicNumber,topic in enumerate(gDatabase["keyTopic"].values()):
         link = Html.Tag("a",{"href": Utils.PosixJoin("../",topicDetailPage.AddQuery(f"hideAll&toggle={topic['code']}").file + "#" + topic["code"]),"title":"Show in key topic list"})
         listIconLink = link(Html.Tag("img",dict(src="../assets/text-bullet-list-tree.svg",width=20)).prefix)
-        info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),listIconLink + "&nbsp Featured excerpts about " + topic["topic"])
+        info = Html.PageInfo(topic["topic"],Utils.PosixJoin(topicDir,topic["listFile"]),listIconLink + "&nbsp; Featured excerpts about " + topic["topic"])
         page = Html.PageDesc(info)
         page.AppendContent("Featured excerpts about " + topic["topic"],section="citationTitle")
         page.keywords = ["Key topics",topic["topic"]]
@@ -2067,7 +2067,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
             if firstExcerpt:
                 lines = []
                 if clusterInfo["subtags"]:
-                    lines.append("Cluster includes: " + HtmlClusterTagList(clusterInfo,summarize=5)) #  + "<br>\n<br>\n"
+                    lines.append("Cluster includes: " + HtmlSubtopicTagList(clusterInfo,summarize=5)) #  + "<br>\n<br>\n"
                 relatedEvents = list(Filter.Tag([clusterInfo["tag"]] + list(clusterInfo["subtags"]))(gDatabase["event"].values()))
                 if relatedEvents:
                     lines.append("Related events: " + ", ".join(Database.ItemCitation(e) for e in relatedEvents))
@@ -2077,7 +2077,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
                     excerptHtml += "<br>\n".join(lines)
 
             if gOptions.draftFTags == "number":
-                formatter.showFTagOrder = [tag] + list(gDatabase["subtopic"][tag]["subtags"].keys())
+                formatter.showFTagOrder = list(Database.SubtagIterator(gDatabase["subtopic"][tag]))
             if excerpt:
                 excerptHtml += formatter.HtmlExcerptList([excerpt])
             else:
@@ -2089,7 +2089,7 @@ def KeyTopicExcerptLists(indexDir: str, topicDir: str):
             isCluster = bool(clusterInfo["subtags"])
             heading = "Tag cluster: " if isCluster else "Tag: "
             text = clusterInfo["displayAs"] if isCluster else tag
-            heading += HtmlTagClusterLink(tag,text=text).replace(".html","-relevant.html")
+            heading += HtmlSubtopicLink(tag,text=text).replace(".html","-relevant.html")
             if not isCluster and clusterInfo["displayAs"] != tag:
                 heading = f"{clusterInfo['displayAs']} ({heading})"
             return heading,excerptHtml,gDatabase["tag"][tag]["htmlFile"].replace(".html",""),clusterInfo["displayAs"]
@@ -2131,7 +2131,7 @@ def TagClusterPages(topicDir: str):
             a(f"Part of key topic {HtmlKeyTopicLink(clusterInfo['topicCode'])}")
             a.br()
             a(ListLinkedTags("Includes tag",tags))
-            relatedClusters = [HtmlTagClusterLink(c) for c in clusterInfo["related"]]
+            relatedClusters = [HtmlSubtopicLink(c) for c in clusterInfo["related"]]
             a(TitledList("See also",relatedClusters,plural=""))
         
         a.hr()
@@ -2175,10 +2175,10 @@ def CompactKeyTopics(indexDir: str,topicDir: str) -> Html.PageDescriptorMenuItem
                 link = Utils.PosixJoin("../",topicDir,keyTopic["listFile"]) + "#" + gDatabase["tag"][tag]["htmlFile"].replace(".html","")
             text = gDatabase["subtopic"][tag]["displayAs"]
             #if gDatabase["subtopic"][tag]["fTagCount"]:
-            #    text += f'&nbsp{FA_STAR}'
+            #    text += f'&nbsp;{FA_STAR}'
             clusterLinks.append(Html.Tag("a",{"href":link})(text))
 
-        clusterList = Html.Tag("p",{"style":"margin-left: 2em;"})("&nbsp&nbsp ".join(clusterLinks))
+        clusterList = Html.Tag("p",{"style":"margin-left: 2em;"})(" &emsp; ".join(clusterLinks))
 
         if keyTopic["shortNote"]:
             clusterList = "\n".join([clusterList,Html.Tag("p",{"style":"margin-left: 2em;"})(keyTopic["shortNote"])])
@@ -2215,10 +2215,10 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemo
                         pass
                 with a.span(style="text-decoration: underline;" if printPage else ""):
                     a(HtmlKeyTopicLink(topicCode,count=True))
-            with a.div(id=topicCode + ".b"):
+            with a.div(id=topicCode + ".b",Class="no-padding"):
                 for subtopic in topic["subtopics"]:
                     with a.p(style="margin-left: 2em;"):
-                        subtags = [subtopic] + list(gDatabase["subtopic"][subtopic]["subtags"].keys())
+                        subtags = list(Database.SubtagIterator(gDatabase["subtopic"][subtopic]))
                         fTagCount = gDatabase['subtopic'][subtopic].get('fTagCount',0)
                         minFTag,maxFTag,diffFTag = ReviewDatabase.OptimalFTagCount(gDatabase["subtopic"][subtopic])
                         
@@ -2227,7 +2227,7 @@ def DetailedKeyTopics(indexDir: str,topicDir: str,printPage = False,progressMemo
                         if prefixChar and printPage:
                             a(f"{prefixChar} ")
                         with a.strong() if len(subtags) > 1 else nullcontext(0):
-                            a(HtmlTagClusterLink(subtopic))
+                            a(HtmlSubtopicLink(subtopic))
                         
                         parenthetical = str(fTagCount)
                         if printPage:
