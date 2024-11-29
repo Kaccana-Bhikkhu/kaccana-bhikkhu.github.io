@@ -597,6 +597,7 @@ def CollectKeyTopics(database:dict[str]) -> None:
             currentKeyTopic = {
                 "code": subtopic["topicCode"],
                 "topic": subtopic["keyTopic"],
+                "pali": subtopic["keyTopicPali"],
                 "shortNote": subtopic["shortNote"],
                 "longNote": subtopic["longNote"],
                 "listFile": subtopic["topicCode"] + ".html",
@@ -622,7 +623,7 @@ def CollectKeyTopics(database:dict[str]) -> None:
 
             if not subtopic["displayAs"]:
                 subtopic["displayAs"] = subtopic["tag"]
-            for key in ("shortNote","longNote","keyTopic","flags"):
+            for key in ("shortNote","longNote","keyTopic","keyTopicPali","flags"):
                 subtopic.pop(key,None)
             
             currentKeyTopic["subtopics"].append(subtopic["tag"])

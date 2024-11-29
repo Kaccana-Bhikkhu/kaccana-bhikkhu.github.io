@@ -1,6 +1,6 @@
 """Functions for reading and writing the json databases used in QSArchive."""
 
-from collections.abc import Iterable, Generator
+from collections.abc import Iterable
 from collections import defaultdict
 import json, re, itertools
 import Html2 as Html
@@ -30,7 +30,7 @@ def LoadDatabase(filename: str) -> dict:
     
     return newDB
 
-def RemoveFragments(excerpts: Iterable[dict[str]]) -> Generator[dict[str]]:
+def RemoveFragments(excerpts: Iterable[dict[str]]) -> Iterable[dict[str]]:
     """Yield these excerpts but skip fragments if their source excerpt is present."""
 
     lastNonFragment = ()
@@ -47,7 +47,7 @@ def CountExcerpts(excerpts: Iterable[dict[str]],countSessionExcerpts:bool = Fals
 
     return sum(1 for x in RemoveFragments(excerpts) if x["fileNumber"] or countSessionExcerpts)
 
-def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
+def GroupFragments(excerpts: Iterable[dict[str]]) -> Iterable[list[dict[str]]]:
     """Yield lists containing non-fragment excerpts followed by their fragments."""
     
     # Fragments share the integral part of their excerpt number with their source.
@@ -159,7 +159,7 @@ def KeyTopicTags() -> dict[str,None]:
             returnValue[tag] = None
     return returnValue
 
-def SubtopicsAndTags() -> Generator[str]:
+def SubtopicsAndTags() -> Iterable[str]:
     "Iterate over all subtopics and then over all tags not in subtopics"
     yield from gDatabase["subtopic"].values()
     keyTopicTags = KeyTopicTags()
@@ -461,10 +461,11 @@ def SubsumesTags() -> dict:
 
     return subsumesTags
 
-def SubtagIterator(tagOrSubtopic:dict[str]) -> Generator[str]:
-    "Yield this items subtags."
+def SubtagIterator(tagOrSubtopic:dict[str]) -> Iterable[str]:
+    "Yield the subtags of a subtopic or the tag of a tag."
     yield tagOrSubtopic["tag"]
-    yield from tagOrSubtopic.get("subtags",())
+    if "topicCode" in tagOrSubtopic:
+        yield from tagOrSubtopic.get("subtags",())
 
 def FTagAndOrder(excerpt: dict,fTags: Iterable[str]) -> tuple[str,int]:
     """Return the tuple (fTag,fTagOrder) for the first matching fTag in fTags."""

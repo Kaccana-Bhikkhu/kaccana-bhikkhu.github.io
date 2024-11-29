@@ -797,7 +797,10 @@ function searchButtonClick(searchKind) {
 let gDatabase = null; // The global database, loaded from assets/SearchDatabase.json
 let gSearchers = { // A dictionary of searchers by item code
     "x": new ExcerptSearcher(),
-    "g": new Searcher("g","tag"),
+    "multi-tag": new MultiSearcher("multi-tag",
+        new Searcher("b","subtopic"),
+        new Searcher("g","tag")
+    ),
     "t": new Searcher("t","teacher"),
     "e": new Searcher("e","event"),
     "all": new MultiSearcher("all",

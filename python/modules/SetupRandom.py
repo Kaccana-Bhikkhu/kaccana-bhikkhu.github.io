@@ -23,7 +23,7 @@ def ExcerptEntry(excerpt:dict[str]) -> dict[str]:
         subtopic = gDatabase["subtopic"][gDatabase["tag"][tag]["partOfSubtopics"][0]]
         isCluster = subtopic["subtags"] # A cluster has subtags; a regular tag doesn't
         if isCluster:
-            tagDescription = f"tag cluster {Prototype.HtmlTagClusterLink(subtopic['tag'])}"
+            tagDescription = f"tag cluster {Prototype.HtmlSubtopicLink(subtopic['tag'])}"
         else:
             tagDescription = f"tag {Prototype.HtmlTagLink(tag)}"
 

@@ -138,6 +138,48 @@ def SessionHeader() -> dict[str,str]:
     
     return returnValue
 
+def AlphabetizeName(string: str) -> str:
+    return Utils.RemoveDiacritics(string).lower()
+
+def SubtopicBlob(subtopic:str) -> str:
+    "Make a search blob from this subtopic."
+
+    subtopic = gDatabase["subtopic"][subtopic]
+    bits = [
+        Enclose(Blobify(Database.SubtagIterator(subtopic)),"[]"),
+        Enclose(Blobify([subtopic["pali"]]),"<>"),
+        Enclose(Blobify([subtopic["displayAs"]]),"^"),
+    ]
+    blob = "".join(bits)
+    return blob
+
+def SubtopicBlobs() -> Iterator[dict]:
+    """Return a blob for each subtopic, sorted alphabetically."""
+
+    alphabetizedSubtopics = [(AlphabetizeName(subtopic["displayAs"]),subtopic["tag"]) for subtopic in gDatabase["subtopic"].values()]
+    alphabetizedSubtopics.sort()
+
+    for _,subtopic in alphabetizedSubtopics:
+        s = gDatabase["subtopic"][subtopic]
+
+        if s["fTagCount"]:
+            fTagStr = f"{s['fTagCount']}{Prototype.FA_STAR}/"
+        else:
+            fTagStr = ""
+        relevantCount = Database.CountExcerpts(Filter.MostRelevant(Database.SubtagIterator(s))(gDatabase["excerpts"]),countSessionExcerpts=True)
+        
+        htmlParts = [
+            Prototype.HtmlSubtopicLink(subtopic).replace(".html","-relevant.html"),
+            f"({fTagStr}{relevantCount})"
+        ]
+        if s["pali"]:
+            htmlParts.insert(1,f"({s['pali']})")
+
+        yield {
+            "blobs": [SubtopicBlob(subtopic)],
+            "html": " ".join(htmlParts)
+        }
+
 def TagBlob(tagName:str) -> str:
     "Make a search blob from this tag."
 
@@ -156,9 +198,6 @@ def TagBlob(tagName:str) -> str:
     if "topicHeading" in gDatabase["tag"][tagName]: # If this tag is listed under a key topic,
         blob = blob.replace("]","]+") # add "+" after each tag closure.
     return blob
-
-def AlphabetizeName(string: str) -> str:
-    return Utils.RemoveDiacritics(string).lower()
 
 def TagBlobs() -> Iterator[dict]:
     """Return a blob for each tag, sorted alphabetically."""
@@ -257,6 +296,7 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     optimizedDB = {"searches": {}}
 
+    AddSearch(optimizedDB["searches"],"b","subtopic",SubtopicBlobs())
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
     AddSearch(optimizedDB["searches"],"t","teacher",TeacherBlobs())
     AddSearch(optimizedDB["searches"],"e","event",EventBlobs())
