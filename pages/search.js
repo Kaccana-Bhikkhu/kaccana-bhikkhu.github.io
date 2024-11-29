@@ -419,7 +419,7 @@ class Searcher {
         // database[n].html: the html code to display this item when found
     query = null; // A searchQuery object describing the search
     foundItems = []; // The items we have found.
-    multiSearcher = null; // Set to the multisearcher object we are part of.
+    multiSearcher = null; // Set to the MultiSearcher object we are part of.
     
     constructor(code,name) {
         // Configure a search with a given code and name
@@ -670,6 +670,9 @@ export class ExcerptSearcher extends PagedSearcher {
         let bits = [];
         let lastSession = null;
 
+        if (this.multiSearchHeading && (this.foundItems.length <= this.itemsPerPage))
+            bits.push("<br/>");
+
         for (const x of this.foundItems.slice(startItem,endItem)) {
             if (x.session != lastSession) {
                 bits.push(this.sessionHeader[x.session]);
@@ -740,8 +743,7 @@ class MultiSearcher {
 
             let searchResults = this.searches.map((s) => s.htmlSearchResults());
             searchResults = searchResults.filter((s) => s.length > 0);
-            searchResults.unshift(""); // Append an extra separator at the beginning
-            displaySearchResults(message,searchResults.join(this.separator));
+            displaySearchResults(message,'<hr style="margin-top: 0px;">' + searchResults.join(this.separator));
 
             for (let s of this.searches) {
                 let resultFrame = document.getElementById(`results-${s.code}`);

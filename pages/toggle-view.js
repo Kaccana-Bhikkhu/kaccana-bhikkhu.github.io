@@ -66,7 +66,7 @@ export function loadToggleView(frame) {
             setVisible(t,"toggle");
         else
             setVisible(t,!initView);
-        t.removeEventListener("click", clickListener); // Remove the listener first so we don't add it twice.
+        // t.removeEventListener("click", clickListener); // Remove the listener first so we don't add it twice.
         t.addEventListener("click", clickListener);
     }
 }

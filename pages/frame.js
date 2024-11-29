@@ -129,9 +129,9 @@ async function changeURL(pUrl,scrollTo = null) {
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
 
 			configureLinks(frame,resultUrl);
-			loadSearchPage();
-			loadHomepage();
 			loadToggleView();
+			loadSearchPage(); // loadSearchPage() and loadHomepage() modify the DOM and are responsible for calling
+			loadHomepage(); // configureLinks() and loadToggleView() on any elements they add.
 			if (scrollTo && Object.hasOwn(scrollTo,"scrollX") && Object.hasOwn(scrollTo,"scrollY"))
 				window.scrollTo(scrollTo.scrollX,scrollTo.scrollY)
 			else {
