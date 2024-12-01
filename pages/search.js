@@ -66,7 +66,7 @@ export async function loadSearchPage() {
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
-            document.getElementById("search-x-button").click();
+            document.getElementById("search-all-button").click();
         }
     });
 
