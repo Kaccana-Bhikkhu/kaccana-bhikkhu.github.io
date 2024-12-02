@@ -22870,7 +22870,7 @@
         "Unattractiveness"
       ],
       "fTagOrder": [
-        110
+        150
       ],
       "annotations": [
         {
@@ -47463,7 +47463,7 @@
       ],
       "fTagOrder": [
         100,
-        100
+        160
       ],
       "annotations": [
         {
@@ -104968,9 +104968,7 @@
       "glosses": [],
       "related": [],
       "flags": "*",
-      "subtags": [
-        "Gladdening the mind"
-      ],
+      "subtags": [],
       "supertags": [
         "Meditation/Techniques",
         "Mindfulness of body",
@@ -105066,10 +105064,13 @@
       "copies": 4,
       "primaries": 1,
       "htmlFile": "unattractiveness.html",
+      "partOfSubtopics": [
+        "Mindfulness of body"
+      ],
       "sessionCount": 3,
       "excerptCount": 34,
       "fTagCount": 1,
-      "listIndex": 377
+      "listIndex": 376
     },
     "Elements": {
       "tag": "Elements",
@@ -105091,10 +105092,13 @@
       "copies": 3,
       "primaries": 1,
       "htmlFile": "elements.html",
+      "partOfSubtopics": [
+        "Mindfulness of body"
+      ],
       "sessionCount": 3,
       "excerptCount": 24,
       "fTagCount": 1,
-      "listIndex": 378
+      "listIndex": 377
     },
     "Recollection/Death": {
       "tag": "Recollection/Death",
@@ -109593,7 +109597,7 @@
       ],
       "excerptCount": 13,
       "fTagCount": 1,
-      "listIndex": 390
+      "listIndex": 389
     },
     "Dhamma": {
       "tag": "Dhamma",
@@ -110352,6 +110356,7 @@
         "Foundations of Mindfulness",
         "Right Concentration",
         "Meditation/Techniques",
+        "Gladdening the mind",
         "Calming meditation",
         "Insight meditation",
         "Recollection",
@@ -110434,28 +110439,6 @@
       "excerptCount": 15,
       "listIndex": 374
     },
-    "Gladdening the mind": {
-      "tag": "Gladdening the mind",
-      "pali": "abhippamodaya citta",
-      "fullTag": "Gladdening the mind",
-      "fullPali": "abhippamodaya citta",
-      "number": "",
-      "alternateTranslations": [],
-      "glosses": [],
-      "related": [],
-      "flags": "",
-      "subtags": [],
-      "supertags": [
-        "Mindfulness of breathing"
-      ],
-      "copies": 1,
-      "primaries": 0,
-      "htmlFile": "gladdening-the-mind.html",
-      "eventCount": 1,
-      "excerptCount": 43,
-      "fTagCount": 2,
-      "listIndex": 376
-    },
     "Perception of light": {
       "tag": "Perception of light",
       "pali": "āloka-saññā",
@@ -110474,7 +110457,7 @@
       "primaries": 0,
       "htmlFile": "perception-of-light.html",
       "excerptCount": 4,
-      "listIndex": 379
+      "listIndex": 378
     },
     "Kasiṇa": {
       "tag": "Kasiṇa",
@@ -110494,7 +110477,7 @@
       "primaries": 0,
       "htmlFile": "kasina.html",
       "excerptCount": 2,
-      "listIndex": 380
+      "listIndex": 379
     },
     "Visualization": {
       "tag": "Visualization",
@@ -110514,7 +110497,7 @@
       "primaries": 0,
       "htmlFile": "visualization.html",
       "excerptCount": 13,
-      "listIndex": 386
+      "listIndex": 385
     },
     "Body scanning": {
       "tag": "Body scanning",
@@ -110533,8 +110516,11 @@
       "copies": 1,
       "primaries": 0,
       "htmlFile": "body-scanning.html",
+      "partOfSubtopics": [
+        "Mindfulness of body"
+      ],
       "excerptCount": 11,
-      "listIndex": 387
+      "listIndex": 386
     },
     "Noting": {
       "tag": "Noting",
@@ -110554,7 +110540,7 @@
       "primaries": 0,
       "htmlFile": "noting.html",
       "excerptCount": 5,
-      "listIndex": 388
+      "listIndex": 387
     },
     "Mantra": {
       "tag": "Mantra",
@@ -110576,7 +110562,7 @@
       "primaries": 0,
       "htmlFile": "mantra.html",
       "excerptCount": 7,
-      "listIndex": 389
+      "listIndex": 388
     },
     "Hua tou": {
       "tag": "Hua tou",
@@ -110596,7 +110582,7 @@
       "primaries": 0,
       "htmlFile": "hua-tou.html",
       "excerptCount": 2,
-      "listIndex": 391
+      "listIndex": 390
     },
     "Sound of silence": {
       "tag": "Sound of silence",
@@ -110616,7 +110602,7 @@
       "primaries": 0,
       "htmlFile": "sound-of-silence.html",
       "excerptCount": 3,
-      "listIndex": 392
+      "listIndex": 391
     },
     "Movement meditation": {
       "tag": "Movement meditation",
@@ -110636,6 +110622,28 @@
       "primaries": 0,
       "htmlFile": "movement-meditation.html",
       "excerptCount": 6,
+      "listIndex": 392
+    },
+    "Gladdening the mind": {
+      "tag": "Gladdening the mind",
+      "pali": "abhippamodaya citta",
+      "fullTag": "Gladdening the mind",
+      "fullPali": "abhippamodaya citta",
+      "number": "",
+      "alternateTranslations": [],
+      "glosses": [],
+      "related": [],
+      "flags": "",
+      "subtags": [],
+      "supertags": [
+        "Meditation"
+      ],
+      "copies": 1,
+      "primaries": 0,
+      "htmlFile": "gladdening-the-mind.html",
+      "eventCount": 1,
+      "excerptCount": 43,
+      "fTagCount": 2,
       "listIndex": 393
     },
     "Calming meditation": {
@@ -113244,7 +113252,7 @@
       "primaries": 0,
       "htmlFile": "ajahn-utane.html",
       "excerptCount": 2,
-      "listIndex": 557
+      "listIndex": 558
     },
     "Ajahn Supah": {
       "tag": "Ajahn Supah",
@@ -113545,7 +113553,7 @@
       "primaries": 0,
       "htmlFile": "mae-chee-sansanee.html",
       "excerptCount": 1,
-      "listIndex": 558
+      "listIndex": 557
     },
     "Western teachers": {
       "tag": "Western teachers",
@@ -113869,7 +113877,7 @@
       "primaries": 0,
       "htmlFile": "pa-auk-sayadaw.html",
       "excerptCount": 2,
-      "listIndex": 575
+      "listIndex": 576
     },
     "Preah Mahāghosānanda": {
       "tag": "Preah Mahāghosānanda",
@@ -113909,7 +113917,7 @@
       "primaries": 0,
       "htmlFile": "bhante-gunaratana.html",
       "excerptCount": 3,
-      "listIndex": 574
+      "listIndex": 575
     },
     "Bhikkhu Bodhi": {
       "tag": "Bhikkhu Bodhi",
@@ -113929,7 +113937,7 @@
       "primaries": 0,
       "htmlFile": "bhikkhu-bodhi.html",
       "excerptCount": 8,
-      "listIndex": 576
+      "listIndex": 577
     },
     "Ven. Analayo": {
       "tag": "Ven. Analayo",
@@ -113949,7 +113957,7 @@
       "primaries": 0,
       "htmlFile": "ven-analayo.html",
       "excerptCount": 4,
-      "listIndex": 578
+      "listIndex": 579
     },
     "Ayya Tāthalokā": {
       "tag": "Ayya Tāthalokā",
@@ -113969,7 +113977,7 @@
       "primaries": 0,
       "htmlFile": "ayya-tathaloka.html",
       "excerptCount": 1,
-      "listIndex": 577
+      "listIndex": 578
     },
     "Bhante Dharmawara": {
       "tag": "Bhante Dharmawara",
@@ -113989,7 +113997,7 @@
       "primaries": 0,
       "htmlFile": "bhante-dharmawara.html",
       "excerptCount": 1,
-      "listIndex": 579
+      "listIndex": 574
     },
     "Mahāyāna monastics": {
       "tag": "Mahāyāna monastics",
@@ -114684,7 +114692,7 @@
       "primaries": 0,
       "htmlFile": "wat-tam-saeng-pet.html",
       "excerptCount": 7,
-      "listIndex": 612
+      "listIndex": 613
     },
     "Wat Keuan": {
       "tag": "Wat Keuan",
@@ -114704,7 +114712,7 @@
       "primaries": 0,
       "htmlFile": "wat-keuan.html",
       "excerptCount": 9,
-      "listIndex": 613
+      "listIndex": 614
     },
     "Wat Pah Nanachat": {
       "tag": "Wat Pah Nanachat",
@@ -114729,7 +114737,7 @@
       "subtopics": [],
       "excerptCount": 66,
       "fTagCount": 2,
-      "listIndex": 615
+      "listIndex": 616
     },
     "Wat Fah Krahm": {
       "tag": "Wat Fah Krahm",
@@ -114749,7 +114757,7 @@
       "primaries": 0,
       "htmlFile": "wat-fah-krahm.html",
       "excerptCount": 4,
-      "listIndex": 616
+      "listIndex": 617
     },
     "Wat Pah Supattaram": {
       "tag": "Wat Pah Supattaram",
@@ -114769,7 +114777,7 @@
       "primaries": 0,
       "htmlFile": "wat-pah-supattaram.html",
       "excerptCount": 1,
-      "listIndex": 614
+      "listIndex": 615
     },
     "Wat Pahk Kut Wai": {
       "tag": "Wat Pahk Kut Wai",
@@ -114809,7 +114817,7 @@
       "primaries": 0,
       "htmlFile": "wat-pah-boon-lorm.html",
       "excerptCount": 1,
-      "listIndex": 617
+      "listIndex": 618
     },
     "Wat Pu Deng Dang": {
       "tag": "Wat Pu Deng Dang",
@@ -114829,7 +114837,7 @@
       "primaries": 0,
       "htmlFile": "wat-pu-deng-dang.html",
       "excerptCount": 1,
-      "listIndex": 621
+      "listIndex": 612
     },
     "Dtao Dum": {
       "tag": "Dtao Dum",
@@ -114849,7 +114857,7 @@
       "primaries": 0,
       "htmlFile": "dtao-dum.html",
       "excerptCount": 11,
-      "listIndex": 618
+      "listIndex": 619
     },
     "Poo Jum Gom": {
       "tag": "Poo Jum Gom",
@@ -114869,7 +114877,7 @@
       "primaries": 0,
       "htmlFile": "poo-jum-gom.html",
       "excerptCount": 4,
-      "listIndex": 619
+      "listIndex": 620
     },
     "Anandagiri": {
       "tag": "Anandagiri",
@@ -114889,7 +114897,7 @@
       "primaries": 0,
       "htmlFile": "anandagiri.html",
       "excerptCount": 1,
-      "listIndex": 620
+      "listIndex": 621
     },
     "Western Ajahn Chah monasteries": {
       "tag": "Western Ajahn Chah monasteries",
@@ -115372,7 +115380,7 @@
       "htmlFile": "city-of-ten-thousand-buddhas.html",
       "excerptCount": 8,
       "fTagCount": 1,
-      "listIndex": 644
+      "listIndex": 645
     },
     "Three Conditions Monastery": {
       "tag": "Three Conditions Monastery",
@@ -115392,7 +115400,7 @@
       "primaries": 0,
       "htmlFile": "three-conditions-monastery.html",
       "excerptCount": 1,
-      "listIndex": 647
+      "listIndex": 644
     },
     "Abhayagiri (Sri Lanka)": {
       "tag": "Abhayagiri (Sri Lanka)",
@@ -115432,7 +115440,7 @@
       "primaries": 0,
       "htmlFile": "dhammadharini-monastery.html",
       "excerptCount": 3,
-      "listIndex": 645
+      "listIndex": 646
     },
     "Karuna Buddhist Vihara": {
       "tag": "Karuna Buddhist Vihara",
@@ -115452,7 +115460,7 @@
       "primaries": 0,
       "htmlFile": "karuna-buddhist-vihara.html",
       "excerptCount": 1,
-      "listIndex": 646
+      "listIndex": 647
     },
     "Christian monasteries": {
       "tag": "Christian monasteries",
@@ -125089,8 +125097,8 @@
       "subsumed": false,
       "text": "Meditation/Techniques (15)",
       "tag": "Meditation/Techniques",
-      "subtagCount": 19,
-      "subtagExcerptCount": 502
+      "subtagCount": 18,
+      "subtagExcerptCount": 473
     },
     {
       "level": 3,
@@ -125101,20 +125109,7 @@
       "excerptCount": 130,
       "subsumed": false,
       "text": "Mindfulness of breathing (130) [ānāpānasati]",
-      "tag": "Mindfulness of breathing",
-      "subtagCount": 1,
-      "subtagExcerptCount": 170
-    },
-    {
-      "level": 4,
-      "indexNumber": "",
-      "flags": "",
-      "name": "Gladdening the mind",
-      "pali": "abhippamodaya citta",
-      "excerptCount": 43,
-      "subsumed": false,
-      "text": "Gladdening the mind (43) [abhippamodaya citta]",
-      "tag": "Gladdening the mind"
+      "tag": "Mindfulness of breathing"
     },
     {
       "level": 3,
@@ -125306,6 +125301,17 @@
       "subsumed": false,
       "text": "Movement meditation (6)",
       "tag": "Movement meditation"
+    },
+    {
+      "level": 2,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Gladdening the mind",
+      "pali": "abhippamodaya citta",
+      "excerptCount": 43,
+      "subsumed": false,
+      "text": "Gladdening the mind (43) [abhippamodaya citta]",
+      "tag": "Gladdening the mind"
     },
     {
       "level": 2,
@@ -127143,23 +127149,23 @@
       "level": 6,
       "indexNumber": "",
       "flags": "",
-      "name": "Ajahn Utane Kalyāno",
-      "pali": "",
-      "excerptCount": 2,
-      "subsumed": false,
-      "text": "Ajahn Utane Kalyāno (2)",
-      "tag": "Ajahn Utane"
-    },
-    {
-      "level": 6,
-      "indexNumber": "",
-      "flags": "",
       "name": "Mae Chee Sansanee",
       "pali": "",
       "excerptCount": 1,
       "subsumed": false,
       "text": "Mae Chee Sansanee (1)",
       "tag": "Mae Chee Sansanee"
+    },
+    {
+      "level": 6,
+      "indexNumber": "",
+      "flags": "",
+      "name": "Ajahn Utane Kalyāno",
+      "pali": "",
+      "excerptCount": 2,
+      "subsumed": false,
+      "text": "Ajahn Utane Kalyāno (2)",
+      "tag": "Ajahn Utane"
     },
     {
       "level": 5,
@@ -127337,6 +127343,17 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Bhante Dharmawara",
+      "pali": "",
+      "excerptCount": 1,
+      "subsumed": false,
+      "text": "Bhante Dharmawara (1)",
+      "tag": "Bhante Dharmawara"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "Bhante Gunaratana",
       "pali": "",
       "excerptCount": 3,
@@ -127387,17 +127404,6 @@
       "subsumed": false,
       "text": "Venerable Analayo (4)",
       "tag": "Ven. Analayo"
-    },
-    {
-      "level": 4,
-      "indexNumber": "",
-      "flags": "",
-      "name": "Bhante Dharmawara",
-      "pali": "",
-      "excerptCount": 1,
-      "subsumed": false,
-      "text": "Bhante Dharmawara (1)",
-      "tag": "Bhante Dharmawara"
     },
     {
       "level": 3,
@@ -127767,6 +127773,17 @@
       "level": 4,
       "indexNumber": "",
       "flags": "",
+      "name": "Wat Pu Deng Dang",
+      "pali": "",
+      "excerptCount": 1,
+      "subsumed": false,
+      "text": "Wat Pu Deng Dang (1)",
+      "tag": "Wat Pu Deng Dang"
+    },
+    {
+      "level": 4,
+      "indexNumber": "",
+      "flags": "",
       "name": "Wat Tam Saeng Pet",
       "pali": "",
       "excerptCount": 7,
@@ -127861,17 +127878,6 @@
       "subsumed": false,
       "text": "Anandagiri Monastery (1)",
       "tag": "Anandagiri"
-    },
-    {
-      "level": 4,
-      "indexNumber": "",
-      "flags": "",
-      "name": "Wat Pu Deng Dang",
-      "pali": "",
-      "excerptCount": 1,
-      "subsumed": false,
-      "text": "Wat Pu Deng Dang (1)",
-      "tag": "Wat Pu Deng Dang"
     },
     {
       "level": 3,
@@ -128131,6 +128137,17 @@
       "level": 3,
       "indexNumber": "",
       "flags": "",
+      "name": "Three Conditions Monastery",
+      "pali": "",
+      "excerptCount": 1,
+      "subsumed": false,
+      "text": "Three Conditions Monastery (1)",
+      "tag": "Three Conditions Monastery"
+    },
+    {
+      "level": 3,
+      "indexNumber": "",
+      "flags": "",
       "name": "City of Ten Thousand Buddhas",
       "pali": "",
       "excerptCount": 8,
@@ -128159,17 +128176,6 @@
       "subsumed": false,
       "text": "Karuna Buddhist Vihara (1)",
       "tag": "Karuna Buddhist Vihara"
-    },
-    {
-      "level": 3,
-      "indexNumber": "",
-      "flags": "",
-      "name": "Three Conditions Monastery",
-      "pali": "",
-      "excerptCount": 1,
-      "subsumed": false,
-      "text": "Three Conditions Monastery (1)",
-      "tag": "Three Conditions Monastery"
     },
     {
       "level": 2,
@@ -132364,6 +132370,18 @@
       "tweak": "",
       "duplicate": ""
     },
+    "Mae Chee Sansanee": {
+      "fullName": "Mae Chee Sansanee",
+      "alphabetize": "",
+      "alphabetize2": "",
+      "sortBy": "1980.18",
+      "exactDate": "",
+      "knownMonth": "",
+      "knownYear": "",
+      "estimatedYear": "1980",
+      "tweak": "",
+      "duplicate": ""
+    },
     "Ajahn Koon Aggadhammo": {
       "fullName": "Ajahn Koon Aggadhammo",
       "alphabetize": "",
@@ -132757,6 +132775,18 @@
       "knownMonth": "",
       "knownYear": "",
       "estimatedYear": "",
+      "tweak": "",
+      "duplicate": ""
+    },
+    "Bhante Dharmawara": {
+      "fullName": "Bhante Dharmawara",
+      "alphabetize": "",
+      "alphabetize2": "",
+      "sortBy": "1935.18",
+      "exactDate": "",
+      "knownMonth": "",
+      "knownYear": "",
+      "estimatedYear": "1935",
       "tweak": "",
       "duplicate": ""
     },
@@ -133180,6 +133210,18 @@
       "tweak": "",
       "duplicate": ""
     },
+    "Wat Pu Deng Dang": {
+      "fullName": "Wat Pu Deng Dang",
+      "alphabetize": "",
+      "alphabetize2": "",
+      "sortBy": "1961.18",
+      "exactDate": "",
+      "knownMonth": "",
+      "knownYear": "",
+      "estimatedYear": "1961",
+      "tweak": "",
+      "duplicate": ""
+    },
     "Wat Tam Saeng Pet": {
       "fullName": "Wat Tam Saeng Pet",
       "alphabetize": "",
@@ -133501,6 +133543,18 @@
       "knownMonth": "",
       "knownYear": "",
       "estimatedYear": "-150",
+      "tweak": "",
+      "duplicate": ""
+    },
+    "Three Conditions Monastery": {
+      "fullName": "Three Conditions Monastery",
+      "alphabetize": "",
+      "alphabetize2": "",
+      "sortBy": "1933.18",
+      "exactDate": "",
+      "knownMonth": "",
+      "knownYear": "1933",
+      "estimatedYear": "",
       "tweak": "",
       "duplicate": ""
     },
@@ -134202,13 +134256,17 @@
       "displayAs": "Mindfulness of body",
       "pali": "kāyagatā-sati",
       "related": [],
-      "status": "",
+      "status": "Reviewed",
       "topicCode": "meditation",
       "progressMemo": "",
-      "subtags": {},
-      "htmlPath": "tags/mindfulness-of-body.html",
-      "excerptCount": 88,
-      "fTagCount": 4
+      "subtags": {
+        "Unattractiveness": "+",
+        "Elements": "+",
+        "Body scanning": "+"
+      },
+      "htmlPath": "clusters/mindfulness-of-body.html",
+      "excerptCount": 139,
+      "fTagCount": 6
     },
     "Mindfulness of breathing": {
       "tag": "Mindfulness of breathing",
@@ -136249,8 +136307,8 @@
         "Knowing itself",
         "Long-term practice"
       ],
-      "excerptCount": 542,
-      "fTagCount": 31
+      "excerptCount": 580,
+      "fTagCount": 33
     },
     "skillful": {
       "code": "skillful",
