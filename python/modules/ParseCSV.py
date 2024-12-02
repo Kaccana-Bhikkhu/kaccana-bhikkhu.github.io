@@ -1626,6 +1626,7 @@ def main():
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             if not event.startswith("Test") or gOptions.includeTestEvent:
                 LoadEventFile(gDatabase,event,gOptions.csvDir)
+    ListifyKey(gDatabase["event"],"series")
     excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
     gUnattributedTeachers.pop("Anon",None)
     if gUnattributedTeachers:

@@ -836,12 +836,15 @@ def EventDateStr(event: dict) -> str:
 def EventSeriesAndDateStr(event: dict) -> str:
     "Return a string describing the event series and date"
     joinItems = []
-    series = event["series"]
+    series = event["series"][0]
     if series != "Other":
         if series == "Other retreats":
             series = "Retreat"
         if series != "Q&ampA sessions" or event["sessions"] == 1: # Don't remove the s for multiple Q&A sessions
-            series = re.sub(r's$','',series)
+            if series.endswith("ies"):
+                series = re.sub(r'ies$','y',series)
+            else:
+                series = re.sub(r's$','',series)
         joinItems.append(series)
     joinItems.append(EventDateStr(event))
     return ", ".join(joinItems)
@@ -1435,26 +1438,31 @@ def ListEventsBySeries(events: list[dict]) -> str:
     """Return html code listing these events by series."""
 
     prevSeries = None
+    seriesList = list(gDatabase["series"])
 
-    def SeriesIndex(event: dict) -> int:
+    def SeriesIndex(eventWithSeries: tuple[str,dict[str]]) -> int:
         "Return the index of the series of this event for sorting purposes"
-        return list(gDatabase["series"]).index(event["series"])
+        return seriesList.index(eventWithSeries[0])
     
-    def LinkToAboutSeries(event: dict) -> tuple[str,str,str]:
-        htmlHeading = event["series"]
+    def LinkToAboutSeries(eventWithSeries: tuple[str,dict[str]]) -> tuple[str,str,str]:
+        htmlHeading = eventWithSeries[0]
         
         nonlocal prevSeries
         description = ""
-        if event["series"] != prevSeries:
-            description = gDatabase["series"][event["series"]]["description"]
+        if eventWithSeries[0] != prevSeries:
+            description = gDatabase["series"][eventWithSeries[0]]["description"]
             if description:
                 description = Html.Tag("p",{"class":"smaller"})(description)
-            prevSeries = event["series"]
+            prevSeries = eventWithSeries[0]
             
-        return htmlHeading,description + EventDescription(event,showMonth=True),event["series"]
+        return htmlHeading,description + EventDescription(eventWithSeries[1],showMonth=True),eventWithSeries[0]
 
-    eventsSorted = sorted(events,key=SeriesIndex)
-    return str(Html.ListWithHeadings(eventsSorted,LinkToAboutSeries))
+    eventsWithSeries: list[tuple[str,dict[str]]] = []
+    for e in events:
+        for s in e["series"]:
+            eventsWithSeries.append((s,e))
+    eventsWithSeries = sorted(eventsWithSeries,key=SeriesIndex)
+    return str(Html.ListWithHeadings(eventsWithSeries,LinkToAboutSeries))
 
 def ListEventsByYear(events: list[dict]) -> str:
     """Return html code listing these events by series."""

@@ -133,11 +133,11 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch",
+                "Prototype",
                 "--linkCheckLevel",
                 "3",
-                "--events",
-                "Chah2001"
+                "--buildOnly",
+                "events"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
