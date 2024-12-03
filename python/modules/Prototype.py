@@ -1671,7 +1671,8 @@ def TagPages(tagPageDir: str) -> Iterator[Html.PageAugmentorType]:
             a(ListLinkedTags("Also a subtag of",
                              (t for t in tagInfo['supertags'] if Database.TagLookup(t) != mainParent),
                              plural="",lastJoinStr=" and ",titleEnd=" "))
-            a(ListLinkedTags("Subtag",tagInfo['subtags']))
+            subsumedTags = [t["tag"] for t in subsumesTags.get(tag,())]
+            a(ListLinkedTags("Subtag",[t for t in tagInfo['subtags'] if t not in subsumedTags]))
             a(ListLinkedTags("See also",tagInfo['related'],plural = ""))
             a(ExcerptDurationStr(relevantExcerpts,countEvents=False,countSessions=False))
         a.hr()
