@@ -229,6 +229,8 @@ def RegexMatchAny(strings: Iterable[str],capturingGroup = True,literal = False):
 
     if literal:
         strings = [re.escape(s) for s in strings]
+    else:
+        strings = list(strings)
     if strings:
         if capturingGroup:
             return r"(" + r"|".join(strings) + r")"

@@ -185,17 +185,17 @@ def ListLinkedTags(title:str, tags:Iterable[str],*args,**kwargs) -> str:
     return TitledList(title,linkedTags,*args,**kwargs)
 
 gAllTeacherRegex = ""
-def LinkTeachersInText(text: str,specificTeachers:Iterable[str] = ()) -> str:
+def LinkTeachersInText(text: str,specificTeachers:Iterable[str]|None = None) -> str:
     """Search text for the names of teachers with teacher pages and add hyperlinks accordingly."""
 
     global gAllTeacherRegex
     if not gAllTeacherRegex:
         gAllTeacherRegex = Utils.RegexMatchAny(t["attributionName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
     
-    if specificTeachers:
-        teacherRegex = Utils.RegexMatchAny(t["attributionName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
-    else:
+    if specificTeachers is None:
         teacherRegex = gAllTeacherRegex
+    else:
+        teacherRegex = Utils.RegexMatchAny(gDatabase["teacher"][t]["attributionName"] for t in specificTeachers if gDatabase["teacher"][t]["htmlFile"])
 
     def HtmlTeacherLink(matchObject: re.Match) -> str:
         teacher = Database.TeacherLookup(matchObject[1])
@@ -1043,10 +1043,17 @@ class Formatter:
                 if session["sessionNumber"] > 0:
                     a(", ")
             
+            teachersToList = session["teachers"]
             if session["sessionNumber"] > 0:
                 sessionTitle = f'Session {session["sessionNumber"]}'
                 if self.headingShowSessionTitle and session["sessionTitle"]:
-                    sessionTitle += ': ' + session["sessionTitle"]
+                    sessionName = session["sessionTitle"]
+                    teachersToList = [t for t in teachersToList if
+                                      gDatabase["teacher"][t]["attributionName"] not in sessionName and 
+                                      gDatabase["teacher"][t]["fullName"] not in sessionName]
+                        # Don't duplicate teacher names mentioned in the session title.
+                    sessionName = LinkTeachersInText(sessionName,session["teachers"])
+                    sessionTitle += ': ' + sessionName
             else:
                 sessionTitle = ""
             
@@ -1060,7 +1067,7 @@ class Formatter:
             if self.headingShowEvent or sessionTitle:
                 itemsToJoin.append("") # add an initial - if we've already printed part of the heading
             
-            teacherList = ListLinkedTeachers(session["teachers"],lastJoinStr = " and ")
+            teacherList = ListLinkedTeachers(teachersToList,lastJoinStr = " and ")
             
             if teacherList and self.headingShowTeacher:
                 itemsToJoin.append(teacherList)
