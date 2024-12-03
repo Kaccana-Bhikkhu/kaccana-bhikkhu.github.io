@@ -240,6 +240,15 @@ def AuditNames() -> None:
 
     Alert.info("Wrote",len(nameList),"names to assets/NameAudit.csv.") """
 
+def CheckAttributions() -> None:
+    """Give warnings for unattributed excerpts and annotations."""
+
+    kind = gDatabase["kind"]
+    for x in gDatabase["excerpts"]:
+        for item in Filter.AllItems(x):
+            if item["kind"] == "Other" and not item["teachers"]:
+                Alert.caution(item,"takes teachers but does not have any.")
+
 def CheckRelatedTags() -> None:
     """Print alerts if related tags are duplicated elsewhere in the tag info page."""
     for tagInfo in gDatabase["tag"].values():
@@ -377,6 +386,7 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     VerifyListCounts()
     AuditNames()
+    # CheckAttributions()
     CheckRelatedTags()
     CheckFTagOrder()
     LogReviewedFTags()
