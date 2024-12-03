@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 import os, json, re
-import Database
+import Database, SetupRandom
 import Utils, Alert, ParseCSV, Prototype, Filter
 import Html2 as Html
 from typing import Iterable, Iterator, Callable
@@ -317,6 +317,7 @@ def main() -> None:
     AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts())
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 
+    optimizedDB["searches"]["random"] = {"items":SetupRandom.RemakeRandomExcerpts(shuffle=False)}
     optimizedDB["blobDict"] = list(gBlobDict.values())
 
     Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))

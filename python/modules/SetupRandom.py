@@ -42,11 +42,12 @@ def FeaturedExcerptEntries() -> list[dict[str]]:
     keyTopicFilter = Filter.FTag(Database.KeyTopicTags().keys())
     return [ExcerptEntry(x) for x in keyTopicFilter(gDatabase["excerpts"])]
 
-def RemakeRandomExcerpts(maxLength:int = 0) -> dict[str]:
+def RemakeRandomExcerpts(maxLength:int = 0,shuffle = True) -> dict[str]:
     """Return a completely new random excerpt dictionary"""
 
     entries = FeaturedExcerptEntries()
-    random.shuffle(entries)
+    if shuffle:
+        random.shuffle(entries)
     if maxLength:
         entries = entries[:maxLength]
     

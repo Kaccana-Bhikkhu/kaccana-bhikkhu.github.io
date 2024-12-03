@@ -760,6 +760,37 @@ class MultiSearcher {
     }
 }
 
+class RandomSearcher extends Searcher {
+    // A search interface that returns a random excerpt regardless of the search input.
+
+    constructor() {
+        super("random","random excerpt");
+    }
+
+    search(searchQuery) {
+        // Check to see if a random excerpt has already been generated
+        let params = frameSearch();
+        let itemNumber = params.has("random") ? Number(decodeURIComponent(params.get("random"))) : -1;
+
+        if (itemNumber < 0) {// if not, then make one
+            itemNumber = Math.floor(Math.random() * this.items.excerpts.length);
+            params.set("random",String(itemNumber));
+            setFrameSearch(params);
+        }
+        this.foundItems = [this.items.excerpts[itemNumber]];
+    }
+
+    renderItems(startItem=0,endItem=null) {
+        // Return our single found item
+        return this.foundItems[0].html;
+    }
+
+    showResults(message="") {
+        // Don't display a message
+        displaySearchResults("<br>",this.htmlSearchResults())
+    }
+}
+
 function searchFromURL() {
     // Find excerpts matching the search query from the page URL.
     if (!gDatabase) {
@@ -769,10 +800,12 @@ function searchFromURL() {
 
     let params = frameSearch();
     let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
+    let searchWhat = params.has("search") ? decodeURIComponent(params.get("search")) : "";
+
     console.log("Called searchFromURL. Query:",query);
     frame.querySelector('#search-text').value = query;
 
-    if (!query.trim()) {
+    if (!query.trim() && searchWhat != "random") {
         clearSearchResults();
         return;
     }
@@ -814,5 +847,6 @@ let gSearchers = { // A dictionary of searchers by item code
         new TruncatedSearcher("t","teacher",5),
         new TruncatedSearcher("e","event",3),
         new ExcerptSearcher()
-    )
+    ),
+    "random": new RandomSearcher()
 };
