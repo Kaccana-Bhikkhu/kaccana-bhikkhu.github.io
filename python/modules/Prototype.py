@@ -150,11 +150,16 @@ def HtmlKeyTopicLink(headingCode:str,text:str = "",link=True,count = False) -> s
 def HtmlSubtopicLink(subtopic:str,text:str = "",link=True,count=False) -> str:
     "Return a link to the specified subtopic."
 
+    isTag = subtopic not in gDatabase["subtopic"]
     if not text:
-        text = gDatabase["subtopic"][subtopic]["displayAs"]
+        text = subtopic if isTag else gDatabase["subtopic"][subtopic]["displayAs"]
 
     if link:
-        returnValue = Html.Tag("a",{"href":Utils.PosixJoin("../",gDatabase["subtopic"][subtopic]["htmlPath"])})(text)
+        if isTag:
+            htmlPath = Utils.PosixJoin("../tags/",gDatabase["tag"][subtopic]["htmlFile"])
+        else:
+            htmlPath = Utils.PosixJoin("../",gDatabase["subtopic"][subtopic]["htmlPath"])
+        returnValue = Html.Tag("a",{"href":htmlPath})(text)
     else:
         returnValue = text
     if count and gDatabase['subtopic'][subtopic]['fTagCount']:
