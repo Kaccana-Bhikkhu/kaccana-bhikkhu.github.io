@@ -97,6 +97,19 @@ class Filter:
             (trueList if self.Match(item) else falseList).append(item)
         
         return trueList,falseList
+    
+    def FilterAnnotations(self,excerpt: dict[str]) -> dict[str]:
+        """Return an excerpt with only annotations that pass this filter.
+        Returns excerpt itself if all annotations pass."""
+
+        newAnnotations = [a for a in excerpt["annotations"] if self.Match(a)]
+        if len(newAnnotations) < len(excerpt["annotations"]):
+            newExcerpt = copy.copy(excerpt)
+            newExcerpt["annotations"] = newAnnotations
+            return newExcerpt
+        else:
+            return excerpt
+
 
 "Returns whether the dict matches our filter function."
 

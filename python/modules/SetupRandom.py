@@ -7,6 +7,7 @@ import os, json
 import random
 from typing import NamedTuple, Iterable
 import Utils, Alert, Prototype, Filter, Database
+import Filter
 
 def ExcerptEntry(excerpt:dict[str]) -> dict[str]:
     """Return a dictionary containing the information needed to display this excerpt on the front page."""
@@ -40,7 +41,11 @@ def FeaturedExcerptEntries() -> list[dict[str]]:
     """Return a list of entries corresponding to featured excerpts in key topics."""
 
     keyTopicFilter = Filter.FTag(Database.KeyTopicTags().keys())
-    return [ExcerptEntry(x) for x in keyTopicFilter(gDatabase["excerpts"])]
+    featuredExcerpts =  [x for x in keyTopicFilter(gDatabase["excerpts"])]
+
+    removeFragments = Filter.Kind(Filter.InverseSet(["Fragment"]))
+    featuredExcerpts = [removeFragments.FilterAnnotations(x) for x in featuredExcerpts]
+    return [ExcerptEntry(x) for x in featuredExcerpts]
 
 def RemakeRandomExcerpts(maxLength:int = 0,shuffle = True) -> dict[str]:
     """Return a completely new random excerpt dictionary"""

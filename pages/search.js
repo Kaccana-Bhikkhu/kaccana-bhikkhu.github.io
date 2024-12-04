@@ -37,6 +37,10 @@ function nbsp(count) {
     return "&nbsp;".repeat(count);
 }
 
+function modulus(numerator,denominator) {
+    return ((numerator % denominator) + denominator) % denominator;
+}
+
 export async function loadSearchPage() {
     // Called when a search page is loaded. Load the database, configure the search button,
     // fill the search bar with the URL query string and run a search.
@@ -762,22 +766,44 @@ class MultiSearcher {
 
 class RandomSearcher extends Searcher {
     // A search interface that returns a random excerpt regardless of the search input.
+    randomExcerptNumber = 0;
 
     constructor() {
         super("random","random excerpt");
     }
 
-    search(searchQuery) {
-        // Check to see if a random excerpt has already been generated
-        let params = frameSearch();
-        let itemNumber = params.has("random") ? Number(decodeURIComponent(params.get("random"))) : -1;
+    search(searchQuery,pressedRandomButton) {
+        // Priority #1: Featured excerpt from search query.
+        // #N means display featured excerpt number N.
+        let itemNumber = document.getElementById('search-text').value.match(/#[0-9]+$/);
+        if (itemNumber) {
+            itemNumber = Number(itemNumber[0].slice(1));
 
-        if (itemNumber < 0) {// if not, then make one
-            itemNumber = Math.floor(Math.random() * this.items.excerpts.length);
+            let prevRandomNumber = document.getElementById("message").innerHTML.match(/#[0-9]+:$/);
+            if (prevRandomNumber) {
+                prevRandomNumber = Number(prevRandomNumber[0].slice(1,-1));
+                if ((itemNumber == prevRandomNumber) && pressedRandomButton) { // Generate a new random number if the query matches what we're already displaying.
+                    itemNumber = 0;
+                    document.getElementById('search-text').value = "";
+                }
+            }
+        }
+
+        let params = frameSearch();
+        // Priority #2: Featured excerpt from ?random=N URL params.
+        if (!itemNumber) {
+            itemNumber = params.has("random") ? Number(decodeURIComponent(params.get("random"))) : 0;
+        }
+
+        if (!itemNumber) {// If neither are specified, then generate a new one
+            itemNumber = Math.floor(Math.random() * this.items.excerpts.length) + 1;
             params.set("random",String(itemNumber));
             setFrameSearch(params);
         }
-        this.foundItems = [this.items.excerpts[itemNumber]];
+        itemNumber = modulus(itemNumber - 1,this.items.excerpts.length) + 1;
+
+        this.randomExcerptNumber = itemNumber;
+        this.foundItems = [this.items.excerpts[itemNumber - 1]];
     }
 
     renderItems(startItem=0,endItem=null) {
@@ -786,8 +812,7 @@ class RandomSearcher extends Searcher {
     }
 
     showResults(message="") {
-        // Don't display a message
-        displaySearchResults("<br>",this.htmlSearchResults())
+        displaySearchResults(`Featured excerpt #${this.randomExcerptNumber}:`,this.htmlSearchResults())
     }
 }
 
@@ -800,12 +825,18 @@ function searchFromURL() {
 
     let params = frameSearch();
     let query = params.has("q") ? decodeURIComponent(params.get("q")) : "";
-    let searchWhat = params.has("search") ? decodeURIComponent(params.get("search")) : "";
+    let searchKind = params.has("search") ? decodeURIComponent(params.get("search")) : "all";
+
+    if (/#[0-9]+$/.test(query.trim())) { // '#NN' selects a specific featured excerpt.
+        gSearchers["random"].search("",searchKind == "random");
+        gSearchers["random"].showResults();
+        return;
+    }
 
     console.log("Called searchFromURL. Query:",query);
     frame.querySelector('#search-text').value = query;
 
-    if (!query.trim() && searchWhat != "random") {
+    if (!query.trim() && searchKind != "random") {
         clearSearchResults();
         return;
     }
@@ -813,7 +844,6 @@ function searchFromURL() {
     let searchGroups = new SearchQuery(query);
     console.log(searchGroups);
 
-    let searchKind = params.has("search") ? decodeURIComponent(params.get("search")) : "x";
     gSearchers[searchKind].search(searchGroups);
     gSearchers[searchKind].showResults();
 }
