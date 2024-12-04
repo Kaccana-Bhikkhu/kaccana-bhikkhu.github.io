@@ -534,7 +534,7 @@ class TruncatedSearcher extends Searcher {
         let moreItems = "";
         if (this.foundItems.length > this.truncateAt) {
             firstItems = this.renderItems(0,this.truncateAt - 1);
-            let moreItemsBody = this.renderItems(this.truncateAt);
+            let moreItemsBody = this.renderItems(this.truncateAt - 1);
             moreItems = ` 
             <a class="toggle-view hide-self" id="${resultsId}-more"><i>Show all ${this.foundItems.length}...</i></a>
             <div class="no-padding" id="${resultsId}-more.b" style="display:none;">
