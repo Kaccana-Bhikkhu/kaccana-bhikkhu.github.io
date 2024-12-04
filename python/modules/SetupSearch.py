@@ -41,7 +41,7 @@ gBlobDict = {}
 gInputChars:set[str] = set()
 gOutputChars:set[str] = set()
 gNonSearchableTeacherRegex = None
-def Blobify(items: Iterable[str]) -> Iterator[str]:
+def Blobify(items: Iterable[str],alphanumericOnly = False) -> Iterator[str]:
     """Convert strings to lowercase, remove diacritics, special characters, 
     remove html tags, ++ markers, and Markdown hyperlinks, and normalize whitespace.
     Also remove teacher names who haven't given search consent."""
@@ -67,7 +67,9 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
     for item in items:
         gInputChars.update(item)
         blob = re.sub(gNonSearchableTeacherRegex,"",RawBlobify(item)) # Remove nonconsenting teachers
-        blob = re.sub(r"\s+"," ",blob.strip()) # Normalize whitespace again
+        blob = re.sub(r"\s+"," ",blob.strip()) # Normalize or remove whitespace
+        if alphanumericOnly:
+            blob = re.sub(r"\W","",blob.strip()) # Remove all non-alphanumeric characters
         gOutputChars.update(blob)
         if gOptions.debug:
             gBlobDict[item] = blob
@@ -100,8 +102,8 @@ def ExcerptBlobs(excerpt: dict) -> list[str]:
             "//",
             Enclose(Blobify(aTags),"[]"),
             "|",
-            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
-            Enclose(Blobify([re.sub("\W","",gDatabase["kind"][item["kind"]]["category"])]),"&")
+            Enclose(Blobify([item["kind"]],alphanumericOnly=True),"#"),
+            Enclose(Blobify([gDatabase["kind"][item["kind"]]["category"]],alphanumericOnly=True),"&")
         ]
         if item is excerpt:
             bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
@@ -250,7 +252,8 @@ def EventBlob(event: dict[str],listedTeachers: list[str]) -> str:
         Enclose(Blobify(AllNames(listedTeachers)),"{}"),
         Enclose(Blobify(event["tags"]),"[]"),
         "|",
-        Enclose(Blobify([re.sub("\W","",event["venue"])]),"&"),
+        Enclose(Blobify(event["series"],alphanumericOnly=True),"#"),
+        Enclose(Blobify([event["venue"]],alphanumericOnly=True),"&"),
         Enclose(Blobify([event["code"]]),"@")
     ]
     return "".join(bits)
