@@ -1008,7 +1008,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         duration = altAudioAnnotation["endTime"] or duration # Duration usually comes from endTime
         if altAudioAnnotation["kind"] == "Edited audio":
             clip = excerpt["clips"][0]
-            if not duration:
+            if not duration and clip.end:
                 duration = TimeDeltaToStr(clip.Duration(fileDuration=None))
             excerpt["startTimeInSession"] = clip.start
             excerpt["clips"][0] = clip._replace(start="0:00",end="")
@@ -1079,7 +1079,6 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             else:
                 audioSource = "$"
 
-            # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
             endTime = x["endTime"]
             if startTime == "Session":
@@ -1091,6 +1090,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                     deletedExcerptIDs.add(id(x))
                 continue
             
+            
             x["clips"] = [SplitMp3.Clip(audioSource,startTime,endTime)]
             if altAudioList:
                 ProcessAltAudio(x,altAudioList[0])
@@ -1098,7 +1098,8 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             appendAudioList = [a for a in x["annotations"] if a["kind"] in ("Append audio","Cut audio")]
             if appendAudioList:
                 ProcessAppendAudio(x,appendAudioList)
-        
+
+        # Calculate the duration of each excerpt and handle overlapping excerpts
         # Excerpts without an end time end when the next non-fragment excerpt starts
         for xf1,xf2 in itertools.pairwise(Database.GroupFragments(sessionExcerpts)):
             if "clips" not in xf1[0]: # Skip the session excerpt
@@ -1114,6 +1115,15 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                         x["clips"][-1] = lastClip._replace(end=nextClip.start)
                     if "startTimeInSession" in nextExcerpt and lastClip.file == "$":
                         x["clips"][-1] = lastClip._replace(end=nextExcerpt["startTimeInSession"])
+                    
+                    editedAudioList = [a for a in x["annotations"] if a["kind"] == "Edited audio"]
+                    if editedAudioList:
+                        filename,url,duration = SplitAudioSourceText(editedAudioList[0]["text"])
+                        if not database["audioSource"][filename]["duration"]:
+                            nextClipStart = nextExcerpt.get("startTimeInSession","") or nextClip.start
+                            originalExcerptDuration = Mp3DirectCut.ToTimeDelta(nextClipStart) - Mp3DirectCut.ToTimeDelta(x["startTimeInSession"])
+                            originalExcerptDuration = timedelta(seconds=round(originalExcerptDuration.total_seconds()))
+                            database["audioSource"][filename]["duration"] = Mp3DirectCut.TimeDeltaToStr(originalExcerptDuration)
 
                 endTime = lastClip.ToClipTD().end
                 if sameFile and endTime and endTime > nextClip.ToClipTD().start:

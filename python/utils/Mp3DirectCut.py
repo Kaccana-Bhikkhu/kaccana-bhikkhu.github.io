@@ -91,6 +91,11 @@ class Clip(NamedTuple):
     def Duration(self,fileDuration:TimeSpec|None) -> timedelta:
         return self.ToClipTD().Duration(ToTimeDelta(fileDuration))
 
+    def WholeFile(self) -> bool:
+        "Does this clip include the entire audio file?"
+        selfTD = self.ToClipTD()
+        return selfTD.start == timedelta(0) and selfTD.end is None
+
     def Cut(self,cutStart: TimeSpec,cutEnd: TimeSpec) -> list[Clip]:
         """Return a list of two Clips corresponding to this clip with the specified bit removed.
         Raises TimeError unless self.start < cutStart < cutEnd < self.end."""
@@ -261,7 +266,17 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
 
-    clipsRemaining = [clip.ToClipTD() for clip in clips]
+    if outputDir is None:
+        outputDir = os.path.split(file)[0]
+
+    # Use a simple copy operation for clips that specify the entire file duration.
+    wholeFileClips:list[Clip] = []
+    clipsRemaining:list[Clip] = []
+    for clip in clips:
+        (wholeFileClips if clip.WholeFile() else clipsRemaining).append(clip.ToClipTD())
+    for clip in wholeFileClips:
+        Join([file],os.path.join(outputDir,clip.file))
+
     clipsRemaining.sort(key = lambda clip:clip.start)
     while clipsRemaining:
         lastClipEnd = timedelta(0)
@@ -412,4 +427,6 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
         SinglePassSplit(tempFile,[ClipTD(filename,timedelta(0),None)],dir)
         os.remove(tempFile)
     else:
+        if os.path.exists(outputFile):
+            os.remove(outputFile)
         os.rename(tempFile,outputFile)

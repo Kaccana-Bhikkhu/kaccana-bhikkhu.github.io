@@ -133,9 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupSearch",
-                "--buildOnly",
-                "events"
+                "SplitMp3",
+                "--events",
+                "SRD2010"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
