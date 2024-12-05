@@ -4108,7 +4108,7 @@
       "excerptNumber": 2,
       "fileNumber": 2,
       "kind": "Indirect quote",
-      "flags": "E",
+      "flags": "",
       "text": "These Five Precepts are the basis for human existence. If people could only do this, never mind talking about enlightenment, we would have a world without much trouble.|Ajahn Chah",
       "teachers": [
         "PBreiter"
@@ -4119,7 +4119,16 @@
       "fTagOrder": [
         120
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "2:10",
+          "text": "Chah2001_S15_F02.mp3",
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Ajahn Chah",
         "Five Precepts",
@@ -4133,12 +4142,13 @@
       "qTagCount": 5,
       "clips": [
         [
-          "$",
-          "6:14",
-          "8:42"
+          "Chah2001_S15_F02.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "2:28"
+      "startTimeInSession": "6:14",
+      "duration": "2:10"
     },
     {
       "event": "Chah2001",
@@ -5220,7 +5230,7 @@
       "excerptNumber": 1,
       "fileNumber": 1,
       "kind": "Question",
-      "flags": "E",
+      "flags": "",
       "text": "How did Ajahn Chah relate to the lay community around him and tailor the Dharma to their own circumstances?",
       "teachers": [
         "ASumedho",
@@ -5233,6 +5243,14 @@
         120
       ],
       "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "4:09",
+          "text": "Chah2001_S20_F01.mp3",
+          "indentLevel": 1
+        },
         {
           "kind": "Story",
           "flags": "",
@@ -5280,12 +5298,13 @@
       "qTagCount": 4,
       "clips": [
         [
-          "$",
-          "0:15",
-          "4:56"
+          "Chah2001_S20_F01.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "4:41"
+      "startTimeInSession": "0:15",
+      "duration": "4:09"
     },
     {
       "event": "Chah2001",
@@ -23279,7 +23298,7 @@
       "excerptNumber": 13,
       "fileNumber": 13,
       "kind": "Question",
-      "flags": "E",
+      "flags": "",
       "teachers": [
         "AP"
       ],
@@ -23290,7 +23309,16 @@
       "fTagOrder": [
         110
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "4:45",
+          "text": "TG2013_S06_F13.mp3",
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Goodwill",
         "Ill-will",
@@ -23301,12 +23329,13 @@
       "qTagCount": 3,
       "clips": [
         [
-          "$",
-          "29:52",
-          "35:22"
+          "TG2013_S06_F13.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "5:30"
+      "startTimeInSession": "29:52",
+      "duration": "4:45"
     },
     {
       "event": "TG2013",
@@ -23732,7 +23761,7 @@
       "excerptNumber": 9,
       "fileNumber": 9,
       "kind": "Question",
-      "flags": "E",
+      "flags": "",
       "teachers": [
         "AP"
       ],
@@ -23744,6 +23773,14 @@
         150
       ],
       "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "2:28",
+          "text": "TG2013_S07_F09.mp3",
+          "indentLevel": 1
+        },
         {
           "kind": "Sutta",
           "flags": "",
@@ -23765,12 +23802,13 @@
       "qTagCount": 4,
       "clips": [
         [
-          "$",
-          "19:14",
-          "22:19"
+          "TG2013_S07_F09.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "3:05"
+      "startTimeInSession": "19:14",
+      "duration": "2:28"
     },
     {
       "event": "TG2013",
@@ -32902,7 +32940,7 @@
       "excerptNumber": 4,
       "fileNumber": 4,
       "kind": "Quote",
-      "flags": "E",
+      "flags": "",
       "text": "The take-away bit of the forest teachers or ethos is that we have everything within us....They are coming at it from all different angles, but the underlying thread is that theme of relying on and refining capabilities that we actually have. Sīla, samādhi, and pañña are not external to us.",
       "teachers": [
         "AP"
@@ -32913,7 +32951,16 @@
       "fTagOrder": [
         80
       ],
-      "annotations": [],
+      "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "0:50",
+          "text": "WR2014_S42_F04.mp3",
+          "indentLevel": 1
+        }
+      ],
       "tags": [
         "Thai Forest Tradition",
         "Self-reliance",
@@ -32922,12 +32969,13 @@
       "qTagCount": 3,
       "clips": [
         [
-          "$",
-          "35:58",
-          "37:00"
+          "WR2014_S42_F04.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "1:02"
+      "startTimeInSession": "35:58",
+      "duration": "0:50"
     },
     {
       "event": "WR2014",
@@ -34732,7 +34780,7 @@
       "excerptNumber": 2,
       "fileNumber": 2,
       "kind": "Question",
-      "flags": "E",
+      "flags": "",
       "text": "Would you be willing to talk about the difference between mindfulness, bare knowing, and the one who knows?",
       "teachers": [
         "AP"
@@ -34744,6 +34792,14 @@
         200
       ],
       "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "5:29",
+          "text": "WR2014_S48_F02.mp3",
+          "indentLevel": 1
+        },
         {
           "kind": "Sutta",
           "flags": "",
@@ -34767,12 +34823,13 @@
       "qTagCount": 3,
       "clips": [
         [
-          "$",
-          "28:59",
-          "35:19"
+          "WR2014_S48_F02.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "6:20"
+      "startTimeInSession": "28:59",
+      "duration": "5:29"
     },
     {
       "event": "WR2014",
@@ -67351,7 +67408,7 @@
       "excerptNumber": 9,
       "fileNumber": 9,
       "kind": "Question",
-      "flags": "E",
+      "flags": "",
       "text": "I like the translations 'conscience' and 'concern' for hiri and otappa. Having done unskillful actions in the past that create suffering, and being aware of the tendency to personalize, how can it be over and done?",
       "teachers": [
         "AP",
@@ -67364,6 +67421,14 @@
         150
       ],
       "annotations": [
+        {
+          "kind": "Edited audio",
+          "flags": "",
+          "startTime": "",
+          "endTime": "5:08",
+          "text": "UD2016-2_S02_F09.mp3",
+          "indentLevel": 1
+        },
         {
           "kind": "Quote",
           "flags": "",
@@ -67418,12 +67483,13 @@
       "qTagCount": 6,
       "clips": [
         [
-          "$",
-          "1:00:35",
-          "1:05:59"
+          "UD2016-2_S02_F09.mp3",
+          "0:00",
+          ""
         ]
       ],
-      "duration": "5:24"
+      "startTimeInSession": "1:00:35",
+      "duration": "5:08"
     },
     {
       "event": "UD2016-2",
@@ -103022,6 +103088,12 @@
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2015%20-%20Ajahn%20Chah's%20Teachings%20by%20Paul%20Breiter.mp3"
     },
+    "Chah2001_S15_F02.mp3": {
+      "filename": "Chah2001_S15_F02.mp3",
+      "duration": "2:10",
+      "event": "Chah2001",
+      "url": ""
+    },
     "Ajahn Chah Weekend - 16 - Ajahn Chah's Teachings by Ajahn Sumedho.mp3": {
       "filename": "Ajahn Chah Weekend - 16 - Ajahn Chah's Teachings by Ajahn Sumedho.mp3",
       "duration": "20:56",
@@ -103051,6 +103123,12 @@
       "duration": "15:14",
       "event": "Chah2001",
       "url": "https://www.abhayagiri.org/20/DVD/Audio/Ajahn%20Chah%20Weekend/Ajahn%20Chah%20Weekend%20-%2020%20-%20Questions%20&%20Answers%202%20-%20Ajahn%20Chah's%20Teachings.mp3"
+    },
+    "Chah2001_S20_F01.mp3": {
+      "filename": "Chah2001_S20_F01.mp3",
+      "duration": "4:09",
+      "event": "Chah2001",
+      "url": ""
     },
     "Ajahn Chah Weekend - 21 - Questions & Answers 3 - Monastic Life and Rules.mp3": {
       "filename": "Ajahn Chah Weekend - 21 - Questions & Answers 3 - Monastic Life and Rules.mp3",
@@ -103388,11 +103466,23 @@
       "event": "TG2013",
       "url": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2013%20Thanksgiving%20Retreat/Audio/AP_11_28_2013_Monastic_Retreat_eve_Questions_and_Answers_6.mp3"
     },
+    "TG2013_S06_F13.mp3": {
+      "filename": "TG2013_S06_F13.mp3",
+      "duration": "4:45",
+      "event": "TG2013",
+      "url": ""
+    },
     "AP_11_29_2013_Monastic_Retreat_eve_Questions_and_Answers_7.mp3": {
       "filename": "AP_11_29_2013_Monastic_Retreat_eve_Questions_and_Answers_7.mp3",
       "duration": "1:21:24",
       "event": "TG2013",
       "url": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2013%20Thanksgiving%20Retreat/Audio/AP_11_29_2013_Monastic_Retreat_eve_Questions_and_Answers_7.mp3"
+    },
+    "TG2013_S07_F09.mp3": {
+      "filename": "TG2013_S07_F09.mp3",
+      "duration": "2:28",
+      "event": "TG2013",
+      "url": ""
     },
     "AP_11_30_2013_Monastic_Retreat_eve_Questions_and_Answers_8.mp3": {
       "filename": "AP_11_30_2013_Monastic_Retreat_eve_Questions_and_Answers_8.mp3",
@@ -103652,6 +103742,12 @@
       "event": "WR2014",
       "url": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/AN_03_04_2014_Winter_Retreat_Readings-Dhamma-Truth_of_Samatha-Vipassana_for_the_Nuclear_Age.mp3"
     },
+    "WR2014_S42_F04.mp3": {
+      "filename": "WR2014_S42_F04.mp3",
+      "duration": "0:50",
+      "event": "WR2014",
+      "url": ""
+    },
     "Kassapo_03_05_2014_Winter_Retreat_Readings-Straightening_Out_Your_Views.mp3": {
       "filename": "Kassapo_03_05_2014_Winter_Retreat_Readings-Straightening_Out_Your_Views.mp3",
       "duration": "34:37",
@@ -103687,6 +103783,12 @@
       "duration": "49:32",
       "event": "WR2014",
       "url": "https://www.abhayagiri.org/media/discs/APasannoRetreats/2014%20Thai%20Forest%20Tradition/Audio/Pamutto_03_12_2104_Winter_Retreat_Readings-Conversations_with_Ajahn_Piak.mp3"
+    },
+    "WR2014_S48_F02.mp3": {
+      "filename": "WR2014_S48_F02.mp3",
+      "duration": "5:29",
+      "event": "WR2014",
+      "url": ""
     },
     "Khemako_03_13_2014_Winter_Retreat_Readings-Singular_Quality_of_Ordinary_Monk.mp3": {
       "filename": "Khemako_03_13_2014_Winter_Retreat_Readings-Singular_Quality_of_Ordinary_Monk.mp3",
@@ -104335,6 +104437,12 @@
       "duration": "1:43:30",
       "event": "UD2016-2",
       "url": "https://www.abhayagiri.org/media/audio/AP_06_25_2016_Upasika_Day_Suttas_2_Responding_to_the_Human_Situation.mp3"
+    },
+    "UD2016-2_S02_F09.mp3": {
+      "filename": "UD2016-2_S02_F09.mp3",
+      "duration": "5:08",
+      "event": "UD2016-2",
+      "url": ""
     },
     "04 2016-11-19 AP Questions and Answers 1.mp3": {
       "filename": "04 2016-11-19 AP Questions and Answers 1.mp3",
@@ -133811,7 +133919,7 @@
       "startDate": "22/11/2013",
       "teachers": "AP;AKd;ANy;DS",
       "sessions": 8,
-      "excerpts": 174,
+      "excerpts": 176,
       "answersListenedTo": 37,
       "tagsApplied": 483,
       "invalidTags": 0,
@@ -133833,8 +133941,8 @@
       "startDate": "06/01/2014",
       "teachers": "AP;AbhSangha",
       "sessions": 56,
-      "excerpts": 618,
-      "answersListenedTo": 618,
+      "excerpts": 620,
+      "answersListenedTo": 620,
       "tagsApplied": 1706,
       "invalidTags": 0,
       "duration": "36:51:18"

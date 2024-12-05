@@ -20,11 +20,13 @@ def CopyExcerptAudio(excerpt: dict[str],path: str) -> None:
     else:
         Alert.warning("Could not copy audio file for",excerpt)
 
-def ExportFeaturedExcerptsBySubtopic(catalog: TextIO) -> None:
+def ExportFeaturedExcerptsBySubtopic(catalog: TextIO) -> int:
     """Copy the audio files for featured excerpts into a directory structure organized by subtopic.
-    The --exportFTagFilter options specify with subtopics and tags to export."""
+    The --exportFTagFilter options specify with subtopics and tags to export.
+    Returns the number of excerpts exported."""
 
     firstCluster = True
+    exportCount = 0
     for subtopicOrTag in Database.SubtopicsAndTags():
         summary = ReviewDatabase.FeaturedExcerptSummary(subtopicOrTag["tag"],header=firstCluster,printFTag=True)
         if summary:
@@ -42,10 +44,12 @@ def ExportFeaturedExcerptsBySubtopic(catalog: TextIO) -> None:
         if not featuredExcerpts:
             continue
         featuredExcerpts = sorted(featuredExcerpts,key=lambda x: Database.FTagOrder(x,tags))
-        
+        exportCount += len(featuredExcerpts)
+
         path = Utils.PosixJoin(gOptions.exportPath,"subtopics" if isSubtopic else "tags",Utils.slugify(subtopicOrTag["tag"]))
         for excerpt in featuredExcerpts:
             CopyExcerptAudio(excerpt,path)
+    return exportCount
 
 def CatalogLine(excerpt: dict[str], header:bool=False) -> str:
     """Return one line of a .tsv catalog file corresponding to excerpt.
@@ -64,19 +68,23 @@ def CatalogLine(excerpt: dict[str], header:bool=False) -> str:
     
     return "\n".join(lines)
 
-def ExportExcerpts(catalog: TextIO) -> None:
-    """Export excerpts specified by the various --exportFilter options."""
+def ExportExcerpts(catalog: TextIO) -> int:
+    """Export excerpts specified by the various --exportFilter options.
+    Returns the number of excerpts exported"""
 
     filters = []
     if gOptions.exportFilterFlags:
         filters.append(Filter.Flags(gOptions.exportFilterFlags))
     
     firstLine = True
+    exportCount = 0
     for excerpt in Filter.And(*filters).Apply(gDatabase["excerpts"]):
         print(CatalogLine(excerpt,header=firstLine),file=catalog)
         firstLine = False
 
         CopyExcerptAudio(excerpt,gOptions.exportPath)
+        exportCount += 1
+    return exportCount
 
 def AddArguments(parser) -> None:
     "Add command-line arguments used by this module"
@@ -102,6 +110,11 @@ def main() -> None:
                 exportMode = "flat"
 
         if exportMode == "subtopic":
-            ExportFeaturedExcerptsBySubtopic(catalog)
+            count = ExportFeaturedExcerptsBySubtopic(catalog)
         else:
-            ExportExcerpts(catalog)
+            count = ExportExcerpts(catalog)
+    
+    if gOptions.exportCatalogOnly:
+        Alert.info("Created catalog file listing",count,"excerpts.")
+    else:
+        Alert.info("Exported",count,"excerpts to",gOptions.exportPath,".")
