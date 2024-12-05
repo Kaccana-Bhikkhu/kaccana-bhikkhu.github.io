@@ -44,6 +44,7 @@ class ExcerptFlag(StrEnum):
     FRAGMENT = "f"          # This excerpt is a fragment of the excerpt above it.
     MANUAL_FRAGMENTS = "m"  # Don't automatically extract fragments from this excerpt.
     RELATIVE_AUDIO = "r"    # Interpret Cut Audio and Fragment times relative to excerpt start time.
+    ZERO_MARGIN = "z"       # Annotations have zero leftmost margins - useful for videos
         # These flags are informational only:
     AMPLIFY_QUESTION = "Q"  # The question needs to be amplified
     AUDIO_EDITING = "E"     # Would benefit from audio editing

@@ -48375,12 +48375,17 @@
       "teachers": [
         "AKd"
       ],
-      "fTags": [],
+      "fTags": [
+        "Unattractiveness"
+      ],
+      "fTagOrder": [
+        600
+      ],
       "annotations": [
         {
           "kind": "Other",
-          "flags": "",
-          "text": "<video width=\"640\" height=\"480\" controls>\n    <source src=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_14_2015_Thirty-two_Parts_Slideshow_1.mp4\" type=\"video/mp4\">\n    <a href=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_14_2015_Thirty-two_Parts_Slideshow_1.mp4\">Video</a> of the slideshow.\n</video>",
+          "flags": "z",
+          "text": "<video width=\"100%\" controls>\n    <source src=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_14_2015_Thirty-two_Parts_Slideshow_1.mp4\" type=\"video/mp4\">\n    <a href=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_14_2015_Thirty-two_Parts_Slideshow_1.mp4\">Video</a> of the slideshow.\n</video>",
           "teachers": [],
           "tags": [],
           "indentLevel": 1
@@ -48585,8 +48590,8 @@
       "annotations": [
         {
           "kind": "Other",
-          "flags": "",
-          "text": "<video width=\"640\" height=\"480\" controls>\n    <source src=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_15_2015_Thirty-two_Parts_Slideshow_2.mp4\" type=\"video/mp4\">\n    <a href=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_15_2015_Thirty-two_Parts_Slideshow_2.mp4\">Video</a> of the slideshow.\n</video>",
+          "flags": "z",
+          "text": "<video width=\"100%\" controls>\n    <source src=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_15_2015_Thirty-two_Parts_Slideshow_2.mp4\" type=\"video/mp4\">\n    <a href=\"https://www.abhayagiri.org/media/discs/2015WinterRetreat/Video/AKd_01_15_2015_Thirty-two_Parts_Slideshow_2.mp4\">Video</a> of the slideshow.\n</video>",
           "teachers": [],
           "tags": [],
           "indentLevel": 1
@@ -107705,7 +107710,7 @@
       ],
       "sessionCount": 3,
       "excerptCount": 34,
-      "fTagCount": 1,
+      "fTagCount": 2,
       "listIndex": 376
     },
     "Elements": {
@@ -137156,7 +137161,7 @@
       },
       "htmlPath": "clusters/mindfulness-of-body.html",
       "excerptCount": 140,
-      "fTagCount": 6
+      "fTagCount": 7
     },
     "Mindfulness of breathing": {
       "tag": "Mindfulness of breathing",
@@ -139198,7 +139203,7 @@
         "Long-term practice"
       ],
       "excerptCount": 583,
-      "fTagCount": 33
+      "fTagCount": 34
     },
     "skillful": {
       "code": "skillful",

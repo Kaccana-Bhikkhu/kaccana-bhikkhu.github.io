@@ -1141,8 +1141,11 @@ class Formatter:
                     if not x["fileNumber"] and not x["body"] and not hasMultipleAnnotations:
                         # If a single annotation follows a blank session excerpt, don't indent and add [Session] in front of it
                         indentLevel = 0
+                    if ParseCSV.ExcerptFlag.ZERO_MARGIN in annotation['flags']:
+                        indentLevel = 0
+
                     with a.p(style = f"margin-left: {tabLength * indentLevel}{tabMeasurement};"):
-                        if not indentLevel:
+                        if not indentLevel and not ParseCSV.ExcerptFlag.ZERO_MARGIN in annotation['flags']:
                             a(f"[{Html.Tag('span',{'style':'text-decoration: underline;'})('Session')}]")
                         a(localFormatter.FormatAnnotation(x,annotation,tagsAlreadyPrinted))
                     tagsAlreadyPrinted.update(annotation.get("tags",()))

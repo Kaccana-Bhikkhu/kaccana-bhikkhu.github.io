@@ -41,6 +41,7 @@ def FeaturedExcerptEntries() -> list[dict[str]]:
     """Return a list of entries corresponding to featured excerpts in key topics."""
 
     keyTopicFilter = Filter.FTag(Database.KeyTopicTags().keys())
+    keyTopicFilter = Filter.And(keyTopicFilter,Filter.MaxFTagOrder(500))
     featuredExcerpts =  [x for x in keyTopicFilter(gDatabase["excerpts"])]
 
     removeFragments = Filter.Kind(Filter.InverseSet(["Fragment"]))

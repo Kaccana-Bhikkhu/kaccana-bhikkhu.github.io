@@ -152,6 +152,21 @@ class QTag(Tag):
 
         return self.negate
     
+class MaxFTagOrder(Filter):
+    """A class that passes featured excerpts having fTagOrder less than a specified value."""
+
+    def __init__(self,maxOrder:int) -> None:
+        super().__init__()
+        self.maxOrder = maxOrder
+    
+    def Match(self, excerpt: dict) -> bool:
+        if not excerpt["fTags"]:
+            return self.negate
+        
+        if min(excerpt["fTagOrder"]) > self.maxOrder:
+            return self.negate
+        else:
+            return not self.negate
 class Teacher(Filter):
     "A filter that passes items containing a particular tag."
 
