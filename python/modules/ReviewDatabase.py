@@ -9,7 +9,7 @@ import Database, Filter
 import Utils, Database, Alert
 import FileRegister
 import ParseCSV
-from typing import Generator, Iterable
+from typing import Iterable
 from collections import defaultdict
 
 @lru_cache(maxsize=None)
@@ -34,7 +34,7 @@ def SignificantSubtagsWithoutFTags() -> set[str]:
 
     tags = set()
     for subtopic in gDatabase["subtopic"].values():
-        if subtopic["reviewed"]:
+        if subtopic["status"] == "Reviewed":
             continue
         for tagName in Database.SubtagIterator(subtopic):
             tag = gDatabase["tag"][tagName]
@@ -62,7 +62,7 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
     if subtopic:
         minFTags = bisect.bisect_right((6,18,54,144,384,1024),tagOrSubtopic["excerptCount"])
     else:
-        minFTags = bisect.bisect_right((10,25,60,150,400,1065),tagOrSubtopic["excerptCount"])
+        minFTags = bisect.bisect_right((12,30,72,180,480,1278),tagOrSubtopic["excerptCount"])
     maxFTags = bisect.bisect_right((4,8,16,32,80,200,500,1250),tagOrSubtopic["excerptCount"])
 
     # Then add fTags to subtopics with many significant subtags
@@ -84,6 +84,20 @@ def OptimalFTagCount(tagOrSubtopic: dict[str],database:dict[str] = {}) -> tuple[
     difference = min(tagOrSubtopic["fTagCount"] - minFTags,0) or max(tagOrSubtopic["fTagCount"] - maxFTags,0)
 
     return minFTags,maxFTags,difference
+
+def FTagStatusCode(tagOrSubtopic: dict[str]) -> str:
+    """Return a one-character code indicating the status of this tag or subtopic's featured excerpts."""
+
+    _,_,diffFTag = OptimalFTagCount(tagOrSubtopic)
+    if tagOrSubtopic.get("status","") == "Reviewed":
+        prefixChar = "☑"
+    elif tagOrSubtopic.get("fTagCount",0) == 0:
+        prefixChar = "∅"
+    else:
+        prefixChar = "⊟☐⊞"[(diffFTag > 0) - (diffFTag < 0) + 1]
+        if diffFTag == 0 and tagOrSubtopic.get("status","") == "Sorted":
+            prefixChar = "⊡"
+    return prefixChar
 
 def VerifyListCounts() -> None:
     # Check that the number of items in each numbered tag list matches the supertag item count
@@ -184,10 +198,10 @@ def AuditNames() -> None:
         alertItems = [[n["name"] for n in namesWithDate],f"all have date {date}."]
         duplicateSupertags = Utils.Duplicates(n["supertag"] for n in namesWithDate if n["supertag"])
         for s in duplicateSupertags:
-            alertItems.append(f"This will cause arbitrary sort order under supertag {s}.")
+            alertItems.append(f"This will cause ambiguous sort order under supertag {s}.")
         duplicateGroups = Utils.Duplicates(n["group"] for n in namesWithDate if n["group"])
         for g in duplicateGroups:
-            alertItems.append(f"This will cause arbitrary sort order in teacher group {g}.")
+            alertItems.append(f"This will cause ambiguous sort order in teacher group {g}.")
 
         if len(alertItems) > 2:
             Alert.caution(*alertItems)
@@ -226,6 +240,15 @@ def AuditNames() -> None:
 
     Alert.info("Wrote",len(nameList),"names to assets/NameAudit.csv.") """
 
+def CheckAttributions() -> None:
+    """Give warnings for unattributed excerpts and annotations."""
+
+    kind = gDatabase["kind"]
+    for x in gDatabase["excerpts"]:
+        for item in Filter.AllItems(x):
+            if item["kind"] == "Other" and not item["teachers"]:
+                Alert.caution(item,"takes teachers but does not have any.")
+
 def CheckRelatedTags() -> None:
     """Print alerts if related tags are duplicated elsewhere in the tag info page."""
     for tagInfo in gDatabase["tag"].values():
@@ -235,33 +258,41 @@ def CheckRelatedTags() -> None:
         if overlap:
             Alert .caution(tagInfo,"related tags",overlap,"are already mentioned as subtags or supertags.")
 
-def FeaturedExcerptSummary(subtopicOrTag: str) -> str:
+def FeaturedExcerptSummary(subtopicOrTag: str,header: bool = False,printFTag: bool = False) -> str:
     """Return a list of this subtopic's featured excerpts in tab separated values format."""
+    lines = []
+    if header:
+        columns = ["fTagOrder","code","duration","kind","text"]
+        if printFTag:
+            columns[1:1] = ["fTag","topic"]
+        lines.append("\t".join(columns))
+
     subtopicOrTag = gDatabase["subtopic"].get(subtopicOrTag,None) or gDatabase["tag"].get(subtopicOrTag)
-    tags = [subtopicOrTag["tag"]] + list(subtopicOrTag.get("subtags",()))
+    if "topicCode" in subtopicOrTag:
+        tags = [subtopicOrTag["tag"]] + list(subtopicOrTag["subtags"])
+    else:
+        tags = [subtopicOrTag["tag"]]
     featuredExcerpts = Filter.FTag(tags)(gDatabase["excerpts"])
     featuredExcerpts = sorted(featuredExcerpts,key=lambda x: Database.FTagOrder(x,tags))
-    lines = []
     for x in featuredExcerpts:
+        fTagAndOrder = Database.FTagAndOrder(x,tags)
         items = [
-            str(Database.FTagOrder(x,tags)),
+            str(fTagAndOrder[1]),
             Database.ItemCode(x),
             x["duration"],
             x["kind"],
             Utils.EllideText(x["text"],70)
         ]
+        if printFTag:
+            subtopic = gDatabase["tag"][fTagAndOrder[0]].get("partOfSubtopics",(0,))[0]
+            topic = gDatabase["subtopic"][subtopic]["topicCode"] if subtopic else ""
+            items[1:1] = [fTagAndOrder[0],topic]
         lines.append("\t".join(items))
     return "\n".join(lines)
 
-def SubtopicsAndTags() -> Generator[str]:
-    "Iterate over all subtopics and then over all tags not in subtopics"
-    yield from gDatabase["subtopic"].values()
-    keyTopicTags = Database.KeyTopicTags()
-    yield from (tag for tag in gDatabase["tag"].values() if tag["tag"] not in keyTopicTags)
-
 def CheckFTagOrder() -> None:
     """Print alerts when there is ambiguity sorting featured excerpts."""
-    for subtopicOrTag in SubtopicsAndTags():
+    for subtopicOrTag in Database.SubtopicsAndTags():
         tags = [subtopicOrTag["tag"]]
         if "topicCode" in subtopicOrTag: # Is this a subtopic?
             tags += list(subtopicOrTag.get("subtags",()))
@@ -286,17 +317,26 @@ def LogReviewedFTags() -> None:
         "Return the contents of the log file for this subtopic or tag."
         fileLines = ["\t".join(("fTagOrder","excerpt","duration","kind","text")),
             FeaturedExcerptSummary(subtopicOrTag["tag"])]
+        
+        fTagCount = subtopicOrTag.get("fTagCount",0)
+        minFTag,maxFTag,diffFTag = OptimalFTagCount(subtopicOrTag)
+
+        fileLines.append("")
+        fileLines.append(f"{fTagCount} featured excerpts; {minFTag}-{maxFTag} optimal.")
+
         if "displayAs" in subtopicOrTag:
             fileLines += ["","Subtopic tags:",subtopicOrTag["tag"]] + list(subtopicOrTag["subtags"].keys())
         return "\n".join(fileLines)
     
     with FileRegister.HashWriter(directory) as writer:
         for subtopic in gDatabase["subtopic"].values():
-            if subtopic["reviewed"]:
-                writer.WriteTextFile(Utils.PosixJoin("subtopics",subtopic["tag"] + ".tsv"),LogFile(subtopic))
+            if subtopic["status"] == "Reviewed":
+                filename = Utils.RemoveDiacritics(subtopic["tag"]).replace("/","-") + ".tsv"
+                writer.WriteTextFile(Utils.PosixJoin("subtopics",filename),LogFile(subtopic))
         for tag in gDatabase["tag"].values():
             if tag["tag"] in gDatabase["reviewedTag"]:
-                writer.WriteTextFile(Utils.PosixJoin("tags",tag["tag"] + ".tsv"),LogFile(tag))
+                filename = Utils.RemoveDiacritics(tag["tag"]).replace("/","-") + ".tsv"
+                writer.WriteTextFile(Utils.PosixJoin("tags",filename),LogFile(tag))
 
 def NeedsAudioEditing() -> None:
     "Print which excerpts need audio editing."
@@ -308,7 +348,7 @@ def NeedsAudioEditing() -> None:
     
     audioEditing = [x for x in gDatabase["excerpts"] if ParseCSV.ExcerptFlag.AUDIO_EDITING in x["flags"]]
     if audioEditing:
-        Alert.notice("The following",len(amplifyQuestions),"excerpts need audio editing:",lineSpacing=0)
+        Alert.notice("The following",len(audioEditing),"excerpts need audio editing:",lineSpacing=0)
         print("\n".join(Database.ItemRepr(x) for x in audioEditing))
         print()
 
@@ -346,6 +386,7 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     VerifyListCounts()
     AuditNames()
+    # CheckAttributions()
     CheckRelatedTags()
     CheckFTagOrder()
     LogReviewedFTags()

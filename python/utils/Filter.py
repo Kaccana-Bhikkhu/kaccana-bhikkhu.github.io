@@ -97,6 +97,19 @@ class Filter:
             (trueList if self.Match(item) else falseList).append(item)
         
         return trueList,falseList
+    
+    def FilterAnnotations(self,excerpt: dict[str]) -> dict[str]:
+        """Return an excerpt with only annotations that pass this filter.
+        Returns excerpt itself if all annotations pass."""
+
+        newAnnotations = [a for a in excerpt["annotations"] if self.Match(a)]
+        if len(newAnnotations) < len(excerpt["annotations"]):
+            newExcerpt = copy.copy(excerpt)
+            newExcerpt["annotations"] = newAnnotations
+            return newExcerpt
+        else:
+            return excerpt
+
 
 "Returns whether the dict matches our filter function."
 
@@ -139,6 +152,21 @@ class QTag(Tag):
 
         return self.negate
     
+class MaxFTagOrder(Filter):
+    """A class that passes featured excerpts having fTagOrder less than a specified value."""
+
+    def __init__(self,maxOrder:int) -> None:
+        super().__init__()
+        self.maxOrder = maxOrder
+    
+    def Match(self, excerpt: dict) -> bool:
+        if not excerpt["fTags"]:
+            return self.negate
+        
+        if min(excerpt["fTagOrder"]) > self.maxOrder:
+            return self.negate
+        else:
+            return not self.negate
 class Teacher(Filter):
     "A filter that passes items containing a particular tag."
 
@@ -194,6 +222,20 @@ class Category(Filter):
         
         return self.negate
 
+class Flags(Filter):
+    """A filter that passes items which contain any of a specified list of flags.
+    Does not match flags in annotations."""
+
+    def __init__(self,passFlags:str) -> None:
+        super().__init__()
+        self.passFlags = passFlags
+    
+    def Match(self, item):
+        if any(char in self.passFlags for char in item.get("flags","")):
+            return not self.negate
+    
+        return self.negate
+
 class FilterGroup(Filter):
     """A group of filters to operate on items using boolean operations.
     The default group passes items which match all filters e.g And."""
@@ -204,7 +246,7 @@ class FilterGroup(Filter):
     
     def Match(self, item: dict) -> bool:
         for filter in self.subFilters:
-            if not filter.match(item):
+            if not filter.Match(item):
                 return self.negate
         
         return not self.negate

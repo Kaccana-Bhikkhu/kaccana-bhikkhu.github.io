@@ -1,16 +1,17 @@
 """Functions for reading and writing the json databases used in QSArchive."""
 
-from collections.abc import Iterable, Generator
+from collections.abc import Iterable
 from collections import defaultdict
 import json, re, itertools
 import Html2 as Html
 import Link
 from Prototype import gDatabase
+from ReviewDatabase import gDatabase
 import SplitMp3
 import Utils
 import Alert
 import Filter
-from ParseCSV import ExcerptFlag
+from ParseCSV import ExcerptFlag, TagFlag
 from functools import lru_cache
 
 
@@ -29,7 +30,7 @@ def LoadDatabase(filename: str) -> dict:
     
     return newDB
 
-def RemoveFragments(excerpts: Iterable[dict[str]]) -> Generator[dict[str]]:
+def RemoveFragments(excerpts: Iterable[dict[str]]) -> Iterable[dict[str]]:
     """Yield these excerpts but skip fragments if their source excerpt is present."""
 
     lastNonFragment = ()
@@ -46,12 +47,21 @@ def CountExcerpts(excerpts: Iterable[dict[str]],countSessionExcerpts:bool = Fals
 
     return sum(1 for x in RemoveFragments(excerpts) if x["fileNumber"] or countSessionExcerpts)
 
-def GroupFragments(excerpts: Iterable[dict[str]]) -> Generator[list[dict[str]]]:
+def GroupFragments(excerpts: Iterable[dict[str]]) -> Iterable[list[dict[str]]]:
     """Yield lists containing non-fragment excerpts followed by their fragments."""
     
     # Fragments share the integral part of their excerpt number with their source.
     for key,group in itertools.groupby(excerpts,lambda x: (x["event"],x["sessionNumber"],int(x["excerptNumber"]))):
         yield list(group)
+
+def FragmentSource(excerpt: dict[str]) -> dict[str]:
+    """If this excerpt is a fragment, return its source. If not, return the excerpt itself."""
+
+    excerptDict = ExcerptDict()
+    while (excerpt["excerptNumber"] != int(excerpt["excerptNumber"])):
+        excerpt = excerptDict[excerpt["event"]][excerpt["sessionNumber"]][excerpt["fileNumber"] - 1]
+    
+    return excerpt
 
 def FindSession(sessions:list, event:str ,sessionNum: int) -> dict:
     "Return the session specified by event and sessionNum."
@@ -92,7 +102,6 @@ def ItemCitation(item: dict) -> str:
 
     event = item.get("event",item.get("code",None))
     session = item.get("sessionNumber",None)
-    fileNumber = item.get("fileNumber",None)
 
     eventName = gDatabase["event"][event]["title"]
     if not re.search(r"[0-9]{4}",eventName):
@@ -104,10 +113,7 @@ def ItemCitation(item: dict) -> str:
         parts.append(Html.Tag("a",{"href":EventLink(event,session)})(f"Session {session}"))
     excerptNumber = item.get("excerptNumber",None)
     if excerptNumber:
-        newExcerptNumber = excerptNumber
-        while (newExcerptNumber != int(newExcerptNumber)) and fileNumber > 0: # If this is a fragment, look backward for the source excerpt
-            fileNumber -= 1
-            newExcerptNumber = FindExcerpt(event,session,fileNumber)["excerptNumber"]
+        fileNumber = FragmentSource(item)["fileNumber"]
         parts.append(Html.Tag("a",{"href":EventLink(event,session,fileNumber)})(f"Excerpt {excerptNumber}"))
     return ", ".join(parts)
 
@@ -153,6 +159,12 @@ def KeyTopicTags() -> dict[str,None]:
             returnValue[tag] = None
     return returnValue
 
+def SubtopicsAndTags() -> Iterable[str]:
+    "Iterate over all subtopics and then over all tags not in subtopics"
+    yield from gDatabase["subtopic"].values()
+    keyTopicTags = KeyTopicTags()
+    yield from (tag for tag in gDatabase["tag"].values() if tag["tag"] not in keyTopicTags and TagFlag.VIRTUAL not in tag["flags"])
+
 def ParentTagListEntry(listIndex: int) -> dict|None:
     "Return a the entry in gDatabase['tagDisplayList'] that corresponds to this tag's parent tag."
 
@@ -180,14 +192,23 @@ def TeacherLookup(teacherRef:str,teacherDictCache:dict = {}) -> str|None:
 
     return teacherDictCache.get(teacherRef,None)
 
-"""Return a dictionary of excerpts that can be referenced as:
-ExcerptDict()[event][sessionNumber][fileNumber]"""
 @lru_cache(maxsize=None)
 def ExcerptDict() -> dict[str,dict[int,dict[int,dict[str]]]]:
+    """Return a dictionary of excerpts that can be referenced as:
+    ExcerptDict()[eventCode][sessionNumber][fileNumber]"""
     excerptDict = defaultdict(lambda: defaultdict(defaultdict))
     for x in gDatabase["excerpts"]:
         excerptDict[x["event"]][x["sessionNumber"]][x["fileNumber"]] = x
     return excerptDict
+
+@lru_cache(maxsize=None)
+def SessionDict() -> dict[str,dict[int,dict[str]]]:
+    """Returns a dictionary of sessions that can be referenced as:
+    SessionDict()[eventCode][sessionNumber]"""
+    sessionDict = defaultdict(defaultdict)
+    for s in gDatabase["sessions"]:
+        sessionDict[s["event"]][s["sessionNumber"]] = s
+    return sessionDict
 
 def FindExcerpt(event: str, session: int|None, fileNumber: int|None) -> dict|None:
     "Return the excerpt that matches these parameters. Otherwise return None."
@@ -440,22 +461,27 @@ def SubsumesTags() -> dict:
 
     return subsumesTags
 
-def SubtagIterator(tagOrSubtopic:dict[str]) -> Generator[str]:
-    "Yield this items subtags."
+def SubtagIterator(tagOrSubtopic:dict[str]) -> Iterable[str]:
+    "Yield the subtags of a subtopic or the tag of a tag."
     yield tagOrSubtopic["tag"]
-    yield from tagOrSubtopic.get("subtags",())
+    if "topicCode" in tagOrSubtopic:
+        yield from tagOrSubtopic.get("subtags",())
 
-def FTagOrder(excerpt: dict,tags: Iterable[str]) -> int:
-    """Return the fTagOrder number of the excerpt x.
-    tags is a list of tags to attempt to get the fTag order from"""
+def FTagAndOrder(excerpt: dict,fTags: Iterable[str]) -> tuple[str,int]:
+    """Return the tuple (fTag,fTagOrder) for the first matching fTag in fTags."""
     
-    for tag in tags:
+    for tag in fTags:
         try:
             fTagIndex = excerpt["fTags"].index(tag)
-            return excerpt["fTagOrder"][fTagIndex]
+            return excerpt["fTags"][fTagIndex],excerpt["fTagOrder"][fTagIndex]
         except (ValueError, IndexError):
             pass
-    return 999
+    return "",999
+
+def FTagOrder(excerpt: dict,fTags: Iterable[str]) -> int:
+    """Return fTagOrder of the first matching fTag in fTags."""
+    
+    return FTagAndOrder(excerpt,fTags)[1]
 
 
     

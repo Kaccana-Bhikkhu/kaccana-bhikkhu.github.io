@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap">
     
 </head>
 <body>
@@ -56,10 +56,15 @@
 <input type="text" id="search-text" placeholder="Search for text..."/>
 
 <br><br>
+<button type="button" id="search-all-button">Search all</button>
 <button type="button" id="search-x-button">Search excerpts</button>
-<button type="button" id="search-g-button">Search tags</button>
+<!-- Extra search buttons clutter the interface.
+<button type="button" id="search-multi-tag-button">Search tags</button>
+<button type="button" id="search-t-button">Search teachers</button>
+<button type="button" id="search-e-button">Search events</button> -->
+<button type="button" id="search-random-button">Random featured excerpt</button>
 
-<p id="message"></p>
+<p id="message" style="display:none;"></p>
 
 <p id="instructions">
 Search excerpt text, teachers, and tags<br>
@@ -75,7 +80,7 @@ Search for teachers using braces: {Ajahn Karunadhammo}<br>
 
 <footer>
     <p id="copyright">&copy; 2024 Abhayagiri Buddhist Monastery – <a href="../about/12_License.html">License</a></p>
-    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Text search,” The Ajahn Pasanno Question and Story Archive, November 2024 release,
+    <p id="cite-as"><b>How to cite this page</b> (suggested style): “Text search,” The Ajahn Pasanno Question and Story Archive, December 2024 release,
       <a href="https://abhayagiri.org/questions/search/Text-search.html">https://abhayagiri.org/questions/search/Text-search.html</a>.</p>
 </footer>
 

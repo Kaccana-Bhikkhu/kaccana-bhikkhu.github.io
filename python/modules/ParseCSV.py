@@ -44,6 +44,7 @@ class ExcerptFlag(StrEnum):
     FRAGMENT = "f"          # This excerpt is a fragment of the excerpt above it.
     MANUAL_FRAGMENTS = "m"  # Don't automatically extract fragments from this excerpt.
     RELATIVE_AUDIO = "r"    # Interpret Cut Audio and Fragment times relative to excerpt start time.
+    ZERO_MARGIN = "z"       # Annotations have zero leftmost margins - useful for videos
         # These flags are informational only:
     AMPLIFY_QUESTION = "Q"  # The question needs to be amplified
     AUDIO_EDITING = "E"     # Would benefit from audio editing
@@ -313,9 +314,9 @@ def LoadTagsFile(database,tagFileName):
     rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
     
     # Redact tags for teachers who haven't given consent - teacher names are never abbreviated, so use fullTag
-    unallowedTags = [teacher["fullName"] for abbrev,teacher in database["teacher"].items() if not TeacherConsent(database["teacher"],[abbrev],"allowTag")]
-    redactedTags = [tag["fullTag"] for tag in rawTagList if tag["fullTag"] in unallowedTags]
-    rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTags]
+    unallowedTeachers = [teacher["fullName"] for abbrev,teacher in database["teacher"].items() if not TeacherConsent(database["teacher"],[abbrev],"allowTag")]
+    redactedTags = [tag["abbreviation"] or tag["fullTag"] for tag in rawTagList if tag["fullTag"] in unallowedTeachers]
+    rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTeachers]
 
     subsumedTags = {} # A dictionary of subsumed tags for future reference
     virtualHeadings = set() # Tags used only as list headers
@@ -597,6 +598,7 @@ def CollectKeyTopics(database:dict[str]) -> None:
             currentKeyTopic = {
                 "code": subtopic["topicCode"],
                 "topic": subtopic["keyTopic"],
+                "pali": subtopic["keyTopicPali"],
                 "shortNote": subtopic["shortNote"],
                 "longNote": subtopic["longNote"],
                 "listFile": subtopic["topicCode"] + ".html",
@@ -622,7 +624,7 @@ def CollectKeyTopics(database:dict[str]) -> None:
 
             if not subtopic["displayAs"]:
                 subtopic["displayAs"] = subtopic["tag"]
-            for key in ("shortNote","longNote","keyTopic","flags"):
+            for key in ("shortNote","longNote","keyTopic","keyTopicPali","flags"):
                 subtopic.pop(key,None)
             
             currentKeyTopic["subtopics"].append(subtopic["tag"])
@@ -939,7 +941,7 @@ def NumberExcerpts(excerpts: dict[str]) -> None:
             lastSession = x["sessionNumber"]
         else:
             if ExcerptFlag.FRAGMENT in x["flags"]:
-                xNumber += 0.1  # Fragments have fractional excerpt numbers
+                xNumber = round(xNumber + 0.1,1)  # Fragments have fractional excerpt numbers
             else:
                 xNumber = int(xNumber) + 1
         
@@ -967,7 +969,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         # Check if duration and url match with an existing audio source; prefer the old values if they conflict
         existingSource = database["audioSource"].get(filename,None) or source
         for key in source:
-            if key != "event" and existingSource[key] and existingSource[key] != source[key]:
+            if key != "event" and existingSource[key] and source[key] and existingSource[key] != source[key]:
                 Alert.warning(f"Audio file {filename} in event {event}: {key} ({source[key]}) does not match url given previously ({existingSource[key]}). Will use the old value.")
             source[key] = existingSource[key] or source[key]
 
@@ -1007,7 +1009,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         duration = altAudioAnnotation["endTime"] or duration # Duration usually comes from endTime
         if altAudioAnnotation["kind"] == "Edited audio":
             clip = excerpt["clips"][0]
-            if not duration:
+            if not duration and clip.end:
                 duration = TimeDeltaToStr(clip.Duration(fileDuration=None))
             excerpt["startTimeInSession"] = clip.start
             excerpt["clips"][0] = clip._replace(start="0:00",end="")
@@ -1016,6 +1018,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
 
     def ProcessAppendAudio(excerpt: dict[str],appendAudioAnnotations: list[dict[str]]):
         """Add clips to an excerpt that contains Append audio or Cut audio annotations."""
+        audioStart = Mp3DirectCut.ToTimeDelta(excerpt["clips"][0].start)
         for annotation in appendAudioAnnotations:
             if annotation["kind"] == "Append audio":
                 filename,url,duration = SplitAudioSourceText(annotation["text"])
@@ -1026,11 +1029,25 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                     filename = excerpt["clips"][-1].file
                 
                 excerpt["clips"].append(SplitMp3.Clip(filename,annotation["startTime"],annotation["endTime"]))
+                audioStart = Mp3DirectCut.ToTimeDelta(annotation["startTime"])
             elif annotation["kind"] == "Cut audio":
                 try:
-                    excerpt["clips"][-1:] = excerpt["clips"][-1].Cut(annotation["startTime"],annotation["endTime"])
+                    cut = [annotation["startTime"],annotation["endTime"]]
+                    if ExcerptFlag.RELATIVE_AUDIO in annotation["flags"]:
+                        cut = [Mp3DirectCut.TimeDeltaToStr(audioStart + Mp3DirectCut.ToTimeDelta(time),decimal=True) for time in cut]
+                    excerpt["clips"][-1:] = excerpt["clips"][-1].Cut(*cut)
                 except (Mp3DirectCut.ParseError,Mp3DirectCut.TimeError) as error:
                     Alert.error(annotation,"to",excerpt,"produces error:",error.args[0])
+
+    def CalcEditedAudioDuration(excerpt:dict[str],nextExcerptStartTime:str) -> None:
+        """If the duration of the Edited audio annotation to this excerpt is not already specified, 
+        set it to the time between the beginning of this excerpt and the start of the next one."""
+        editedAudiAnnotation = [a for a in excerpt["annotations"] if a["kind"] == "Edited audio"][0]
+        filename,url,duration = SplitAudioSourceText(editedAudiAnnotation["text"])
+        if not database["audioSource"][filename]["duration"]:
+            originalExcerptDuration = Mp3DirectCut.ToTimeDelta(nextExcerptStartTime) - Mp3DirectCut.ToTimeDelta(excerpt["startTimeInSession"])
+            originalExcerptDuration = timedelta(seconds=round(originalExcerptDuration.total_seconds()))
+            database["audioSource"][filename]["duration"] = Mp3DirectCut.TimeDeltaToStr(originalExcerptDuration)
 
 
     # First eliminate excerpts with fatal parsing errors.
@@ -1073,7 +1090,6 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             else:
                 audioSource = "$"
 
-            # Calculate the duration of each excerpt and handle overlapping excerpts
             startTime = x["startTime"]
             endTime = x["endTime"]
             if startTime == "Session":
@@ -1085,6 +1101,7 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                     deletedExcerptIDs.add(id(x))
                 continue
             
+            
             x["clips"] = [SplitMp3.Clip(audioSource,startTime,endTime)]
             if altAudioList:
                 ProcessAltAudio(x,altAudioList[0])
@@ -1092,27 +1109,36 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
             appendAudioList = [a for a in x["annotations"] if a["kind"] in ("Append audio","Cut audio")]
             if appendAudioList:
                 ProcessAppendAudio(x,appendAudioList)
-        
+
+        # Calculate the duration of each excerpt and handle overlapping excerpts
         # Excerpts without an end time end when the next non-fragment excerpt starts
         for xf1,xf2 in itertools.pairwise(Database.GroupFragments(sessionExcerpts)):
             if "clips" not in xf1[0]: # Skip the session excerpt
                 continue
             
             nextExcerpt = xf2[0]
-            nextClip = nextExcerpt["clips"][0]
+            if "startTimeInSession" in nextExcerpt:
+                nextClip = Mp3DirectCut.Clip("$",nextExcerpt["startTimeInSession"])
+            else:
+                nextClip = nextExcerpt["clips"][0]
             for x in xf1:
                 lastClip = x["clips"][-1]
                 sameFile = lastClip.file == nextClip.file
                 if not lastClip.end:
                     if sameFile:
                         x["clips"][-1] = lastClip._replace(end=nextClip.start)
-                    if "startTimeInSession" in nextExcerpt and lastClip.file == "$":
-                        x["clips"][-1] = lastClip._replace(end=nextExcerpt["startTimeInSession"])
+                    
+                    if "startTimeInSession" in x:
+                        CalcEditedAudioDuration(x,nextClip.start)
 
                 endTime = lastClip.ToClipTD().end
                 if sameFile and endTime and endTime > nextClip.ToClipTD().start:
                     if ExcerptFlag.OVERLAP not in nextExcerpt["flags"]:
                         Alert.warning(f"excerpt",nextExcerpt,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+        
+        # If a session ends with an Edited audio excerpt, calculate its duration.
+        if "startTimeInSession" in sessionExcerpts[-1]:
+            CalcEditedAudioDuration(sessionExcerpts[-1],session["duration"])
 
         for x in sessionExcerpts:
             if "clips" in x:
@@ -1178,15 +1204,17 @@ def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
                 Alert.error(excerpt,": Excerpts with edited audio must specify relative fragment times.")
             elif relativeAudio:
                 offsetTime = ToTimeDelta(excerpt["startTime"])
-                fragmentExcerpt["startTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["startTime"]) + offsetTime)
+                fragmentExcerpt["startTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["startTime"]) + offsetTime,decimal=True)
                 if fragmentExcerpt["endTime"]:
-                    fragmentExcerpt["endTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["endTime"]) + offsetTime)
+                    fragmentExcerpt["endTime"] = TimeDeltaToStr(ToTimeDelta(fragmentExcerpt["endTime"]) + offsetTime,decimal=True)
                 elif excerpt["endTime"]:
                     fragmentExcerpt["endTime"] = excerpt["endTime"]
             
             fragmentExcerpts.append(fragmentExcerpt)
 
-        if not mainFragment: # Main fragments don't display a player
+        if fragmentAnnotation["text"].lower() == "noplayer":
+            fragmentAnnotation["text"] = ""
+        elif not mainFragment: # Main fragments don't display a player
             fragmentAnnotation["text"] = f"[](player:{Database.ItemCode(event=excerpt['event'],session=excerpt['sessionNumber'],fileNumber=nextFileNumber)})"
         nextFileNumber += 1
     
@@ -1475,7 +1503,8 @@ def CountAndVerify(database):
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
-                item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
+                if "tags" in item:
+                    item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
         
         for x in excerptWithFragments:
             tagSet = Filter.AllTags(x)
@@ -1618,6 +1647,7 @@ def main():
         if not gOptions.parseOnlySpecifiedEvents or gOptions.events == "All" or event in gOptions.events:
             if not event.startswith("Test") or gOptions.includeTestEvent:
                 LoadEventFile(gDatabase,event,gOptions.csvDir)
+    ListifyKey(gDatabase["event"],"series")
     excludeAlert(f": {gRemovedExcerpts} excerpts and {gRemovedAnnotations} annotations in all.")
     gUnattributedTeachers.pop("Anon",None)
     if gUnattributedTeachers:

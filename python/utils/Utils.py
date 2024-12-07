@@ -34,7 +34,7 @@ def ExtendUnique(dest: list, source: Iterable) -> list:
     return dest
 
 def Duplicates(source: Iterable) -> list:
-    "Return a list of the item which appear more than once in source."
+    "Return a list of the items which appear more than once in source."
     itemCount = Counter(source)
     return [item for item,count in itemCount.items() if count > 1]
 
@@ -173,7 +173,7 @@ def SmartQuotes(s: str):
 
     # Find dumb double quotes coming directly after letters or punctuation,
     # and replace them with right double quotes.
-    s = re.sub(r'([a-zA-Z0-9.,?!;:)>/\'\"])"', r'\1”', s)
+    s = re.sub(r'([a-zA-Z0-9.,?!;:)>%/\'\"])"', r'\1”', s)
     # Find any remaining dumb double quotes and replace them with
     # left double quotes.
     s = s.replace('"', '“')
@@ -181,7 +181,7 @@ def SmartQuotes(s: str):
     # attributes (following =) and replace them with dumb quotes.
     s = re.sub(r'=“(.*?)”', r'="\1"', s)
     # Follow the same process with dumb/smart single quotes
-    s = re.sub(r"([a-zA-Z0-9.,?!;:)>/\"\'])'", r'\1’', s)
+    s = re.sub(r"([a-zA-Z0-9.,?!;:)>%/\"\'])'", r'\1’', s)
     s = s.replace("'", '‘')
     s = re.sub(r'=‘(.*?)’', r"='\1'", s)
     return s
@@ -229,6 +229,8 @@ def RegexMatchAny(strings: Iterable[str],capturingGroup = True,literal = False):
 
     if literal:
         strings = [re.escape(s) for s in strings]
+    else:
+        strings = list(strings)
     if strings:
         if capturingGroup:
             return r"(" + r"|".join(strings) + r")"

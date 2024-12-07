@@ -18,7 +18,7 @@
 --spreadsheetDatabase pages/assets/SpreadsheetDatabase.json
 
 // DownloadCSV options:
---spreadsheet "https://docs.google.com/spreadsheets/d/1kSbOLDDltkthyu6WceCvkEVN_NKeckG_WtCmqgpN-i0/"
+--spreadsheet "https://docs.google.com/spreadsheets/d/1CNwxKq2R-W_AeFlsHS0dSddOVt1I4318nNktN5-4aDw/"
 --summarySheetID 2007732801
 
 // ParseCSV options:
@@ -26,7 +26,7 @@
 // --includeTestEvent
 
 // SplitMp3 options:
-//--joinUsingPydub
+--joinUsingPydub
 
 // Link options:
 --mirror abhayagiri:https://www.abhayagiri.org/media/discs/questions/
@@ -41,8 +41,8 @@
 --renderedDatabase pages/assets/RenderedDatabase.json
 
 // Document options:
---info "releaseName:November 2024 release"
---info "releaseDate:November 13, 2024"
+--info "releaseName:December 2024 release"
+--info "releaseDate:December 7, 2024"
 --info "releaseYear:2024"
 --info "citationURL:https://abhayagiri.org/questions/"
 --info "cannonicalURL:https://www.abhayagiri.org/questions/"

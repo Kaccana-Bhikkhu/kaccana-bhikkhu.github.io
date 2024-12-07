@@ -201,7 +201,7 @@ class Mp3LengthChecker(RemoteURLChecker):
         expectedLengthStr = item.get("duration","0")
         expectedLength = Mp3DirectCut.ToTimeDelta(expectedLengthStr).total_seconds()
         diff = abs(length - expectedLength)
-        lengthStr = Mp3DirectCut.TimeDeltaToStr(timedelta(seconds=length))
+        lengthStr = Mp3DirectCut.TimeDeltaToStr(timedelta(seconds=length),decimal=True)
         
         data.seek(0)
         if diff >= self.invalidateDelta:

@@ -1,5 +1,6 @@
 import posix from "./path.js";
 import { loadSearchPage } from "./search.js";
+import { loadHomepage } from "./randomExcerpt.js";
 import { loadToggleView } from "./toggle-view.js";
 const { join, dirname } = posix;
 const frame = document.querySelector("div#frame");
@@ -23,9 +24,12 @@ export function frameSearch(hash = null) {
 		return new URLSearchParams("");
 }
 
-export function setFrameSearch(params) {
+export function setFrameSearch(params,modifyLocation = null) {
 	// params: the URLSearchParams object to set the frame search to
-	let url = new URL(location)
+	// modifyLocation: if provided, use this instead of the current location and return the modified URL hash
+	// instead of calling replaceState.
+
+	let url = new URL(modifyLocation || location);
 	let hash = url.hash;
 
 	if (hash.includes("?")) {
@@ -35,8 +39,14 @@ export function setFrameSearch(params) {
 		parts[1] += "?" + params.toString();
 		hash = parts.join("#");
 	}
+
 	url.hash = hash;
-	history.replaceState(history.state,"",url);
+	if (modifyLocation) {
+		return url.toString();
+	} else {
+		url.hash = hash;
+		history.replaceState(history.state,"",url);
+	}
 }
 
 function pageText(r,url) {
@@ -97,12 +107,6 @@ export function configureLinks(frame,url) {
 				history.pushState({}, "", newFullUrl);
 				event.preventDefault(); // Don't follow the href link
 				await changeURL(url);
-
-				if (!url.endsWith("#_keep_scroll")) {
-					window.scrollTo(0, 0);
-					if (url.includes("#"))
-						delayedScroll(url.split("#")[1])
-				}
 			});
 		}
 	});
@@ -125,10 +129,19 @@ async function changeURL(pUrl,scrollTo = null) {
 			frame.querySelector("#javascript-link")?.setAttribute("style","display:none;");
 
 			configureLinks(frame,resultUrl);
-			loadSearchPage();
 			loadToggleView();
+			loadSearchPage(); // loadSearchPage() and loadHomepage() modify the DOM and are responsible for calling
+			loadHomepage(); // configureLinks() and loadToggleView() on any elements they add.
 			if (scrollTo && Object.hasOwn(scrollTo,"scrollX") && Object.hasOwn(scrollTo,"scrollY"))
 				window.scrollTo(scrollTo.scrollX,scrollTo.scrollY)
+			else {
+				if (!pUrl.endsWith("#_keep_scroll")) {
+					if (pUrl.includes("#"))
+						delayedScroll(pUrl.split("#")[1])
+					else
+						window.scrollTo(0, 0);
+				}
+			}
 		});
 }
 
@@ -156,12 +169,7 @@ if (frame) {
 	let url = new URL(location.href)
 	// Skip changeURL for local files and robots loading index.html (url.hash == '')
 	if (url.protocol != "file:" && (!isBotUserAgent || url.hash)) {
-		changeURL(location.hash.slice(1) || frame.dataset.url).then(() => {
-			let urlHash = decodeURIComponent(location.hash);
-			if (urlHash.slice(1).includes("#")) {
-				delayedScroll(urlHash.slice(1).split("#")[1]);
-			}
-		});
+		changeURL(location.hash.slice(1) || frame.dataset.url);
 
 		addEventListener("popstate", (event) => {
 			changeURL(location.hash.slice(1) || frame.dataset.url,event.state);

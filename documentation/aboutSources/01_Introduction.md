@@ -1,4 +1,4 @@
-<!--TITLE:The Ajahn Pasanno Question and Story Archive-->
+<!--TITLE:About-->
 [](photo:AjahnPasanno.jpg)
 
 # Introduction

@@ -27,7 +27,8 @@ async function loadDatabase() {
         .then((json) => {
             gDatabase = json;
             showStatus(`Loaded search database. Keys: ${Object.keys(gDatabase)}`);
-            gSearcher = new ExcerptSearcher(gDatabase.searches["x"]);
+            gSearcher = new ExcerptSearcher();
+            gSearcher.loadItemsFomDatabase(gDatabase);
         });
     }
 }
@@ -99,8 +100,8 @@ function runUnitTests() {
         ['@UD2014-1 2',1,'All excerpts containing the digit 2 alone'],
         ['@UD2014-1 "*2*"',6,'All excerpts containing any digit 2'],
         ['Search for fTags'],
-        ['[Renunciation]+',4,'All [Renunciation] featured excerpts'],
-        ['[Renunciation] +',9,'All featured excerpts with tag [Renunciation]'],
+        ['[Renunciation]+',3,'All [Renunciation] featured excerpts'],
+        ['[Renunciation] +',8,'All featured excerpts with tag [Renunciation]'],
         ['Search for qTags and aTags'],
         ['@UD2014-1 [Merit]',9,'All excerpts with tag [Merit]'],
         ['@UD2014-1 [Merit]//',6,'All excerpts with qTag [Merit]'],

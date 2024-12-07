@@ -96,4 +96,8 @@
 
 - 5.0.2 (October 2024 release) Fix Google indexing redirect error for index.html.
 
-- 5.1 (November 2024 release) All subtopics feature at least one excerpt. Annotations can be featured using a Fragment annotation. The first part of an excerpt can be featured using a Main Fragment annotation. Append Audio and Edited Audio annotations. Review Database module estimates the optimal number of featured excerpts. Search for qTags and aTags using '//' as a prefix or suffix. '!' search operator. Use Javascript to improve the tag drilldown interface.
+- 5.1 (November 2024 release) All subtopics feature at least one excerpt. Annotations can be featured using a Fragment annotation. The first part of an excerpt can be featured using a Main Fragment annotation. Append Audio and Edited Audio annotations. Review Database module estimates the optimal number of featured excerpts. Search for qTags and aTags using '//' as a prefix or suffix. '!' search not operator. Use Javascript to improve the tag drilldown interface. Listened in detail to some excerpts from TG2016.
+
+- 5.2 Home page displays random key excerpts. ExportAudio module copies excerpt audio files to an external directory. Both new features are alpha quality in this version.
+
+- 5.3 (December 2024 release) Search all button. Random excerpt generation moved to search page. Added events: Abhayagiri Anniversaries 2016 (partial), 2021, and 2025; Practice and Study Day 2023. Listened in detail to some excerpts from TG2013. Reviewed and edited audio for many featured excerpts. 

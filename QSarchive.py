@@ -99,13 +99,13 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
         else:
             return newDB,opSet
     
-    requireSpreadsheetDB = {'ReviewDatabase','DownloadFiles','SplitMp3','Link','Render'}
-    requireRenderedDB = {'Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks'}
+    requireSpreadsheetDBset = set(requireSpreadsheetDB)
+    requireRenderedDBset = set(requireRenderedDB)
 
     if 'Render' in opSet: # Render requires link in all cases
         opSet.add('Link')
-    if opSet.intersection(requireRenderedDB):
-        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDB) and \
+    if opSet.intersection(requireRenderedDBset):
+        if 'ParseCSV' not in opSet and not opSet.intersection(requireSpreadsheetDBset) and \
                       not Utils.DependenciesModified(clOptions.renderedDatabase,[clOptions.spreadsheetDatabase]):
             try:
                 newDB = Database.LoadDatabase(clOptions.renderedDatabase)
@@ -114,7 +114,7 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
                 pass
         opSet.update(['Link','Render'])
     
-    if 'ParseCSV' not in opSet and opSet.intersection(requireSpreadsheetDB):
+    if 'ParseCSV' not in opSet and opSet.intersection(requireSpreadsheetDBset):
         try:
             newDB = Database.LoadDatabase(clOptions.spreadsheetDatabase)
             return newDB,opSet
@@ -124,7 +124,10 @@ def LoadDatabaseAndAddMissingOps(opSet: set[str]) -> Tuple[dict,set[str]]:
     return newDB,opSet
 
 # The list of code modules/ops to implement
-moduleList = ['DownloadCSV','ParseCSV','ReviewDatabase','DownloadFiles','SplitMp3','Link','Render','Document','Prototype','SetupSearch','TagMp3','PrepareUpload','CheckLinks']
+requireSpreadsheetDB = ['ReviewDatabase','DownloadFiles','SplitMp3','ExportAudio','Link','Render']
+requireRenderedDB = ['Document','Prototype','SetupSearch','SetupRandom','TagMp3','PrepareUpload','CheckLinks']
+moduleList = ['DownloadCSV','ParseCSV'] + requireSpreadsheetDB + requireRenderedDB
+optionalModules = {'ExportAudio'} # These aren't included in All
 
 modules = {modName:importlib.import_module(modName) for modName in moduleList}
 priorityInitialization = ['Link']
@@ -149,8 +152,7 @@ parser.add_argument('--defaults',type=str,default='python/config/Default.args,py
 parser.add_argument("--args",type=str,action="append",default=[],help="Read arguments from an .args file")
 parser.add_argument('--skip',type=str,default='',help='A comma-separated list of operations to skip')
 parser.add_argument('--events',type=str,default='All',help='A comma-separated list of event codes to process; Default: All')
-parser.add_argument('--spreadsheetDatabase',type=str,default='prototype/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: prototype/SpreadsheetDatabase.json')
-parser.add_argument('--optimizedDatabase',type=str,default='Database.json',help='Database optimised for Javascript web code; Default: Database.json')
+parser.add_argument('--spreadsheetDatabase',type=str,default='pages/assets/SpreadsheetDatabase.json',help='Database created from the csv files; keys match spreadsheet headings; Default: pages/assets/SpreadsheetDatabase.json')
 parser.add_argument('--multithread',**Utils.STORE_TRUE,help="Multithread some operations")
 parser.add_argument('--dumpArgs',**Utils.STORE_TRUE,help="Print the argument parser arguments and exit")
 
@@ -225,7 +227,7 @@ if clOptions.events != 'All':
         # clOptions.events is now either the string 'All' or a list of strings
 
 if clOptions.ops.strip() == 'All':
-    opSet = set(moduleList)
+    opSet = set(moduleList) - optionalModules
 else:
     opSet = set(verb.strip() for verb in clOptions.ops.split(','))
 

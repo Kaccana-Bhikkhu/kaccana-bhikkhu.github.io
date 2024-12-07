@@ -94,7 +94,7 @@ class FileRegister():
     def UpdatedOnDisk(self,fileName,checkDetailedContents = False) -> bool:
         """Check whether the file has been modified on disk.
         If checkDetailedContents, call ReadRecordFromDisk and compare.
-        Otherwise, if self.excactDates, compare the file modified date with the cache.
+        Otherwise, if self.exactDates, compare the file modified date with the cache.
         If neither of these are the case, return False if the file exists.
         If fileName is not in the cache, return True if the file exists."""
 

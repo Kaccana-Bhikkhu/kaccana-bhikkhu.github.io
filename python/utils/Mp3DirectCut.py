@@ -62,19 +62,21 @@ def ToTimeDelta(time: TimeSpec) -> timedelta|None:
     raise ParseError(f"{repr(time)} cannot be converted to a time.")
 
 
-def TimeDeltaToStr(time: timedelta) -> str:
-    "Convert a timedelta object to the form [HH:]MM:SS"
+def TimeDeltaToStr(time: timedelta,decimal:bool = False) -> str:
+    """Convert a timedelta object to the form [HH:]MM:SS or [HH:]MM:SS[.sss] if decimal is True."""
 
-    seconds = (time.days * 24 * 60 * 60) + time.seconds
+    seconds = int(time.total_seconds())
 
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = seconds % 60
 
+    decimalPart = f"{0.000001* time.microseconds:f}".strip("0").rstrip(".") if decimal else ""
+
     if hours:
-        return f"{hours}:{minutes:02d}:{seconds:02d}"
+        return f"{hours}:{minutes:02d}:{seconds:02d}{decimalPart}"
     else:
-        return f"{minutes}:{seconds:02d}"
+        return f"{minutes}:{seconds:02d}{decimalPart}"
 
 
 class Clip(NamedTuple):
@@ -88,6 +90,11 @@ class Clip(NamedTuple):
     
     def Duration(self,fileDuration:TimeSpec|None) -> timedelta:
         return self.ToClipTD().Duration(ToTimeDelta(fileDuration))
+
+    def WholeFile(self) -> bool:
+        "Does this clip include the entire audio file?"
+        selfTD = self.ToClipTD()
+        return selfTD.start == timedelta(0) and selfTD.end is None
 
     def Cut(self,cutStart: TimeSpec,cutEnd: TimeSpec) -> list[Clip]:
         """Return a list of two Clips corresponding to this clip with the specified bit removed.
@@ -135,6 +142,9 @@ class ClipTD(Clip):
                 raise TimeError("The clip end time and the file duration cannot both be blank.")
             else:
                 return fileDuration - self.start
+    
+    def __eq__(self,other:Clip):
+        return self.file == other.file and self.start == other.start and self.end == other.end
 
 def TimeToCueStr(time):
     "Convert a timedelta object to the form MM:SS:hh, where hh is in hundreths of seconds"
@@ -256,7 +266,17 @@ def Split(file:str, clips:list[Clip],outputDir:str = None,deleteCueFile:str = Tr
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
 
-    clipsRemaining = [clip.ToClipTD() for clip in clips]
+    if outputDir is None:
+        outputDir = os.path.split(file)[0]
+
+    # Use a simple copy operation for clips that specify the entire file duration.
+    wholeFileClips:list[Clip] = []
+    clipsRemaining:list[Clip] = []
+    for clip in clips:
+        (wholeFileClips if clip.WholeFile() else clipsRemaining).append(clip.ToClipTD())
+    for clip in wholeFileClips:
+        Join([file],os.path.join(outputDir,clip.file))
+
     clipsRemaining.sort(key = lambda clip:clip.start)
     while clipsRemaining:
         lastClipEnd = timedelta(0)
@@ -348,7 +368,7 @@ def MultiFileSplitJoin(fileClips:dict[str,list[Clip]],inputDir:str = ".",outputD
                 joinOps[outputFile] = clips
             else:
                 existingFilename = splitOps.get(clips[0],"")
-                if not existingFilename or existingFilename.startsWith(tempFilePrefix):
+                if not existingFilename or existingFilename.startswith(tempFilePrefix):
                         # If we haven't split clip before or it splits to a temporary file,
                     splitOps[clips[0]] = outputFile
                         # register a new splitOp or redirect an existing splitOp away from the temporary file.
@@ -388,7 +408,7 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
                 joined += AudioSegment.from_mp3(file)
             joined.export(outputFile,format="mp3",id3v2_version="4",bitrate=pydubBitrate)
             return
-        except OSError as error:
+        except (OSError,ModuleNotFoundError) as error:
             print(error.args[0]," occured when attempting to join ",fileList," with pydub. Will join using Mp3DirectCut.")
 
     if len(fileList) == 1:
@@ -407,4 +427,6 @@ def Join(fileList: List[str],outputFile: str,heal = True) -> None:
         SinglePassSplit(tempFile,[ClipTD(filename,timedelta(0),None)],dir)
         os.remove(tempFile)
     else:
+        if os.path.exists(outputFile):
+            os.remove(outputFile)
         os.rename(tempFile,outputFile)

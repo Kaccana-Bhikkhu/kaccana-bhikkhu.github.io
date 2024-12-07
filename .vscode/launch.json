@@ -133,9 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Prototype",
-                "--buildOnly",
-                "clusters"
+                "SetupRandom",
+                "--events",
+                "SRD2010"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

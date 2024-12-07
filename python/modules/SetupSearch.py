@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 import os, json, re
-import Database
+import Database, SetupRandom
 import Utils, Alert, ParseCSV, Prototype, Filter
 import Html2 as Html
 from typing import Iterable, Iterator, Callable
@@ -41,7 +41,7 @@ gBlobDict = {}
 gInputChars:set[str] = set()
 gOutputChars:set[str] = set()
 gNonSearchableTeacherRegex = None
-def Blobify(items: Iterable[str]) -> Iterator[str]:
+def Blobify(items: Iterable[str],alphanumericOnly = False) -> Iterator[str]:
     """Convert strings to lowercase, remove diacritics, special characters, 
     remove html tags, ++ markers, and Markdown hyperlinks, and normalize whitespace.
     Also remove teacher names who haven't given search consent."""
@@ -67,25 +67,26 @@ def Blobify(items: Iterable[str]) -> Iterator[str]:
     for item in items:
         gInputChars.update(item)
         blob = re.sub(gNonSearchableTeacherRegex,"",RawBlobify(item)) # Remove nonconsenting teachers
-        blob = re.sub(r"\s+"," ",blob.strip()) # Normalize whitespace again
+        blob = re.sub(r"\s+"," ",blob.strip()) # Normalize or remove whitespace
+        if alphanumericOnly:
+            blob = re.sub(r"\W","",blob.strip()) # Remove all non-alphanumeric characters
         gOutputChars.update(blob)
         if gOptions.debug:
             gBlobDict[item] = blob
         if blob:
             yield blob
 
+def AllNames(teachers:Iterable[str]) -> Iterator[str]:
+    "Yield the names of teachers; include full and attribution names if they differ"
+    teacherDB = gDatabase["teacher"]
+    for t in teachers:
+        yield teacherDB[t]["fullName"]
+        if teacherDB[t]["attributionName"] != teacherDB[t]["fullName"]:
+            yield teacherDB[t]["attributionName"]
+
 def ExcerptBlobs(excerpt: dict) -> list[str]:
     """Create a list of search strings corresponding to the items in excerpt."""
     returnValue = []
-    teacherDB = gDatabase["teacher"]
-
-    def AllNames(teachers:Iterable[str]) -> Iterator[str]:
-        "Yield the names of teachers; include full and attribution names if they differ"
-        for t in teachers:
-            yield teacherDB[t]["fullName"]
-            if teacherDB[t]["attributionName"] != teacherDB[t]["fullName"]:
-                yield teacherDB[t]["attributionName"]
-
     for item in Filter.AllItems(excerpt):
         aTags = item.get("tags",[])
         if item is excerpt:
@@ -101,8 +102,8 @@ def ExcerptBlobs(excerpt: dict) -> list[str]:
             "//",
             Enclose(Blobify(aTags),"[]"),
             "|",
-            Enclose(Blobify([re.sub("\W","",item["kind"])]),"#"),
-            Enclose(Blobify([re.sub("\W","",gDatabase["kind"][item["kind"]]["category"])]),"&")
+            Enclose(Blobify([item["kind"]],alphanumericOnly=True),"#"),
+            Enclose(Blobify([gDatabase["kind"][item["kind"]]["category"]],alphanumericOnly=True),"&")
         ]
         if item is excerpt:
             bits.append(Enclose(Blobify([excerpt["event"] + f"@s{excerpt['sessionNumber']:02d}"]),"@"))
@@ -139,6 +140,61 @@ def SessionHeader() -> dict[str,str]:
     
     return returnValue
 
+def AlphabetizeName(string: str) -> str:
+    return Utils.RemoveDiacritics(string).lower()
+
+def KeyTopicBlobs() -> Iterator[dict]:
+    """Return a blob for each key topic."""
+
+    for topic in gDatabase["keyTopic"].values():
+        yield {
+            "blobs": ["".join([
+                Enclose(Blobify([topic["topic"]]),"^"),
+                Enclose(Blobify([topic["pali"]]),"<>")
+                ])],
+            "html": re.sub(r"\)$",f"{Prototype.FA_STAR})",Prototype.HtmlKeyTopicLink(topic["code"],count=True))
+                # Add a star before the last parenthesis to indicate these are featured excerpts.
+        }
+
+def SubtopicBlob(subtopic:str) -> str:
+    "Make a search blob from this subtopic."
+
+    subtopic = gDatabase["subtopic"][subtopic]
+    bits = [
+        Enclose(Blobify(Database.SubtagIterator(subtopic)),"[]"),
+        Enclose(Blobify([subtopic["pali"]]),"<>"),
+        Enclose(Blobify([subtopic["displayAs"]]),"^"),
+    ]
+    blob = "".join(bits)
+    return blob
+
+def SubtopicBlobs() -> Iterator[dict]:
+    """Return a blob for each subtopic, sorted alphabetically."""
+
+    alphabetizedSubtopics = [(AlphabetizeName(subtopic["displayAs"]),subtopic["tag"]) for subtopic in gDatabase["subtopic"].values()]
+    alphabetizedSubtopics.sort()
+
+    for _,subtopic in alphabetizedSubtopics:
+        s = gDatabase["subtopic"][subtopic]
+
+        if s["fTagCount"]:
+            fTagStr = f"{s['fTagCount']}{Prototype.FA_STAR}/"
+        else:
+            fTagStr = ""
+        relevantCount = Database.CountExcerpts(Filter.MostRelevant(Database.SubtagIterator(s))(gDatabase["excerpts"]),countSessionExcerpts=True)
+        
+        htmlParts = [
+            Prototype.HtmlSubtopicLink(subtopic).replace(".html","-relevant.html"),
+            f"({fTagStr}{relevantCount})"
+        ]
+        if s["pali"]:
+            htmlParts.insert(1,f"({s['pali']})")
+
+        yield {
+            "blobs": [SubtopicBlob(subtopic)],
+            "html": " ".join(htmlParts)
+        }
+
 def TagBlob(tagName:str) -> str:
     "Make a search blob from this tag."
 
@@ -161,9 +217,6 @@ def TagBlob(tagName:str) -> str:
 def TagBlobs() -> Iterator[dict]:
     """Return a blob for each tag, sorted alphabetically."""
 
-    def AlphabetizeName(string: str) -> str:
-        return Utils.RemoveDiacritics(string).lower()
-
     alphabetizedTags = [(AlphabetizeName(tag["fullTag"]),tag["tag"]) for tag in gDatabase["tag"].values() 
                         if tag["htmlFile"] and not ParseCSV.TagFlag.HIDE in tag["flags"]]
     alphabetizedTags.sort()
@@ -172,9 +225,60 @@ def TagBlobs() -> Iterator[dict]:
         yield {
             "blobs": [TagBlob(tag)],
             "html": Prototype.TagDescription(gDatabase["tag"][tag],fullTag=True,drilldownLink=True,flags=Prototype.TagDescriptionFlag.SHOW_STAR)
+        }
+
+def TeacherBlobs() -> Iterator[dict]:
+    """Return a blob for each teacher, sorted alphabetically."""
+
+    teachersWithPages = [t for t in gDatabase["teacher"].values() if t["htmlFile"]]
+
+    alphabetizedTeachers = Prototype.AlphabetizedTeachers(teachersWithPages)
+
+    for name,teacher in alphabetizedTeachers:
+        yield {
+            "blobs": [Enclose(Blobify(AllNames([teacher["teacher"]])),"{}")],
+            "html": re.sub("(^<p>|</p>$)","",Prototype.TeacherDescription(teacher,name)).strip()
+                # Remove the paragraph markers added by TeacherDescription
+        }
+
+def EventBlob(event: dict[str],listedTeachers: list[str]) -> str:
+    """Return a search blob for this event."""
+    titles = [event["title"]]
+    if event["subtitle"]:
+        titles.append(event["subtitle"])
+
+    bits = [
+        Enclose(Blobify(titles),"^"),
+        Enclose(Blobify(AllNames(listedTeachers)),"{}"),
+        Enclose(Blobify(event["tags"]),"[]"),
+        "|",
+        Enclose(Blobify(event["series"],alphanumericOnly=True),"#"),
+        Enclose(Blobify([event["venue"]],alphanumericOnly=True),"&"),
+        Enclose(Blobify([event["code"]]),"@")
+    ]
+    return "".join(bits)
+
+def EventBlobs() -> Iterator[dict]:
+    """Return a blob for each event."""
+    for event in gDatabase["event"].values():
+        sessionTeachers = set()
+        for session in Database.SessionDict()[event["code"]].values():
+            sessionTeachers.update(session["teachers"])
+        listedTeachers = [teacherCode for teacherCode in event["teachers"] if teacherCode in sessionTeachers]
+
+        tagString = "".join(f'[{Prototype.HtmlTagLink(tag)}]' for tag in event["tags"])
+
+        lines = [
+            f"{Database.ItemCitation(event)}{': ' + event['subtitle'] if event['subtitle'] else ''} {tagString}",
+            Prototype.ItemList([gDatabase["teacher"][t]["attributionName"] for t in listedTeachers])
+        ]
+
+        yield {
+            "blobs": [EventBlob(event,listedTeachers)],
+            "html": "<br>".join(lines)
         } 
 
-def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict],wrapper:Html.Wrapper = Html.Tag("p"),plural:str = "s") -> None:
+def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Iterator[dict]) -> None:
     """Add the search (tags, teachers, etc.) to searchList.
     code: a one-letter code to identify the search.
     name: the name of the search.
@@ -188,14 +292,7 @@ def AddSearch(searchList: dict[str,dict],code: str,name: str,blobsAndHtml: Itera
     searchList[code] = {
         "code": code,
         "name": name,
-        "plural": name + "s" if plural == "s" else plural,
-        "prefix": wrapper.prefix,
-        "suffix": wrapper.suffix,
-        "separator": "",
         "items": [b for b in blobsAndHtml],
-        "itemsPerPage": None,
-        "showAtFirst": 5,
-        "divClass": "listing"
     }
 
 def AddArguments(parser) -> None:
@@ -215,11 +312,15 @@ gDatabase:dict[str] = {} # These globals are overwritten by QSArchive.py, but we
 def main() -> None:
     optimizedDB = {"searches": {}}
 
+    AddSearch(optimizedDB["searches"],"k","key topic",KeyTopicBlobs())
+    AddSearch(optimizedDB["searches"],"b","subtopic",SubtopicBlobs())
     AddSearch(optimizedDB["searches"],"g","tag",TagBlobs())
-    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts(),wrapper = Html.Wrapper())
-    optimizedDB["searches"]["x"].update(separator="<hr>",itemsPerPage=100,divClass = "main")
+    AddSearch(optimizedDB["searches"],"t","teacher",TeacherBlobs())
+    AddSearch(optimizedDB["searches"],"e","event",EventBlobs())
+    AddSearch(optimizedDB["searches"],"x","excerpt",OptimizedExcerpts())
     optimizedDB["searches"]["x"]["sessionHeader"] = SessionHeader()
 
+    optimizedDB["searches"]["random"] = {"items":SetupRandom.RemakeRandomExcerpts(shuffle=False)}
     optimizedDB["blobDict"] = list(gBlobDict.values())
 
     Alert.debug("Removed these chars:","".join(sorted(gInputChars - gOutputChars)))

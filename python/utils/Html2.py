@@ -94,11 +94,12 @@ class Menu(Renderable):
     menu_separator:int|str
     menu_wrapper:Wrapper
     menu_highlightTags:Wrapper
+    menu_keepScroll: bool
 
-    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = 6,highlight:dict=dict(style="font-weight:bold;text-decoration: underline;",),wrapper:Wrapper = Wrapper()) -> None:
+    def __init__(self,items: list[PageInfo],highlightedItem:int|None = None,separator:int|str = " &emsp; ",highlight:dict=dict(style="font-weight:bold;text-decoration: underline;",),wrapper:Wrapper = Wrapper()) -> None:
         """items: a list of PageInfo objects containing the menu text (title) and html link (file) of each menu item.
         highlightedItem: which (if any) of the menu items is highlighted.
-        separator: html code between each menu item; defaults to 6 spaces.
+        separator: html code between each menu item; defaults to an em space.
         wrapper: text to insert before and after the menu.
         highlight: a dictionary of attributes to apply to the highlighted menu item.
         """
@@ -107,6 +108,7 @@ class Menu(Renderable):
         self.menu_separator = separator
         self.menu_wrapper = wrapper
         self.menu_highlight = highlight
+        self.menu_keepScroll = True
     
     def __str__(self) -> str:
         """Return an html string corresponding to the rendered menu."""
@@ -117,7 +119,7 @@ class Menu(Renderable):
         menuLinks = []
         for n,item in enumerate(self.items):
             if RelativeLink(item.file):
-                link = {"href": "../" + item.file + ("" if "#" in item.file else "#_keep_scroll")}
+                link = {"href": "../" + item.file + ("" if ("#" in item.file or not self.menu_keepScroll) else "#_keep_scroll")}
                     # Render relative links as if the file is at directory depth 1.
                     # PageDesc.RenderWithTemplate will later account for the true directory depth.
                     # Keep the scroll position if the link doesn't specify a bookmark.
@@ -307,7 +309,7 @@ class PageDesc(Renderable):
         menuGenerators: An iterable (often a list) of generator functions, each of which describes a menu item and its associated pages.
             Each generator function takes a PageDesc object describing the page constructed up to this point.
             Each generator function (optionally) first yields a PageInfo object containing the menu title and link.
-            Next it yields a series of PageDesc objects which have been cloned from basePage plus the menu with additional material added.
+            Next it yields a series of PageDesc objects which have been cloned from basePage plus the menu.
             An empty generator means that no menu item is generated.
         AddMenuAndYieldPages is a simpler version of this function."""
         
@@ -450,7 +452,7 @@ def ToggleListWithHeadings(items: list[T],itemRenderer: Callable[[T],tuple[str,s
             headingID = textHeading
         headingID = Utils.slugify(headingID)
 
-        htmlBody = Tag("div",{"id":headingID + ".b"})(htmlBody)
+        htmlBody = Tag("div",{"id":headingID + ".b","class":"no-padding"})(htmlBody)
 
         return htmlHeading,htmlBody,headingID,textHeading
 

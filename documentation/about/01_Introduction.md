@@ -1,4 +1,4 @@
-<!--TITLE:The Ajahn Pasanno Question and Story Archive-->
+<!--TITLE:About-->
 <!--HTML <img src="../../pages/images/photos/AjahnPasanno.jpg" alt="" class="cover" title="" align="bottom" width="200" border="0"/> -->
 
 # Introduction
