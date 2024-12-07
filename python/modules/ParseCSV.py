@@ -314,9 +314,9 @@ def LoadTagsFile(database,tagFileName):
     rawTagList = [tag for tag in rawTagList if FirstValidValue(tag,namePreference)]
     
     # Redact tags for teachers who haven't given consent - teacher names are never abbreviated, so use fullTag
-    unallowedTags = [teacher["fullName"] for abbrev,teacher in database["teacher"].items() if not TeacherConsent(database["teacher"],[abbrev],"allowTag")]
-    redactedTags = [tag["fullTag"] for tag in rawTagList if tag["fullTag"] in unallowedTags]
-    rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTags]
+    unallowedTeachers = [teacher["fullName"] for abbrev,teacher in database["teacher"].items() if not TeacherConsent(database["teacher"],[abbrev],"allowTag")]
+    redactedTags = [tag["abbreviation"] or tag["fullTag"] for tag in rawTagList if tag["fullTag"] in unallowedTeachers]
+    rawTagList = [tag for tag in rawTagList if tag["fullTag"] not in unallowedTeachers]
 
     subsumedTags = {} # A dictionary of subsumed tags for future reference
     virtualHeadings = set() # Tags used only as list headers
@@ -1503,7 +1503,8 @@ def CountAndVerify(database):
         
         if tagsToRemove:
             for item in Filter.AllItems(x):
-                item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
+                if "tags" in item:
+                    item["tags"] = [t for t in item["tags"] if t not in tagsToRemove]
         
         for x in excerptWithFragments:
             tagSet = Filter.AllTags(x)
