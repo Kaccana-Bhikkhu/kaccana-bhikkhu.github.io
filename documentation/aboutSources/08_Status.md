@@ -10,7 +10,7 @@
 - More featured excerpts including [Ajahn Chah's teaching to Marjorie](excerpt:Chah2001_S02_F03)
 
 ## Content
-This release contains $!len(gDatabase["excerpts"])!$ excerpts from $!len(gDatabase["event"])!$ events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:
+This release contains $!len(gDatabase["excerpts"])!$ excerpts from $!len(gDatabase["event"])!$ events, comprising over 130 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 456 transcribed pages, of which 378 have been entered into the Archive. The detailed status of transcription is as follows:
 
 ### Thanksgiving Retreats
 The Archive incorporates previously existing transcriptions of questions asked during the 2013-2016 Thanksgiving Retreats. Some questions have been listened to in detail, but many have been tagged based on the existing transcriptions alone. Untranscribed audio recordings of Ajahn Pasanno question and answer sessions are available for the 2010-2012 Thanksgiving Retreats. Question and answer sessions with other Abhayagiri teachers have been recorded for four more Thanksgiving Retreats. If you would like to help transcribe and tag these retreats, see [Want to help?](about:want-to-help) for details.
@@ -28,7 +28,7 @@ All 21 Upāsikā Days led by Ajahn Pasanno with recordings on abhayagiri.org are
 The Archive contains material from the 2016, 2021, and 2024 anniversaries.
 
 ### Other
-Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio. S
+Almost all teachers have given consent for their 2001 Ajahn Chah Conference audio.
 
 ## Known issues and limitations
 
