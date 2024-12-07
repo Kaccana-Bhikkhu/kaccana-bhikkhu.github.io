@@ -1039,6 +1039,16 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 except (Mp3DirectCut.ParseError,Mp3DirectCut.TimeError) as error:
                     Alert.error(annotation,"to",excerpt,"produces error:",error.args[0])
 
+    def CalcEditedAudioDuration(excerpt:dict[str],nextExcerptStartTime:str) -> None:
+        """If the duration of the Edited audio annotation to this excerpt is not already specified, 
+        set it to the time between the beginning of this excerpt and the start of the next one."""
+        editedAudiAnnotation = [a for a in excerpt["annotations"] if a["kind"] == "Edited audio"][0]
+        filename,url,duration = SplitAudioSourceText(editedAudiAnnotation["text"])
+        if not database["audioSource"][filename]["duration"]:
+            originalExcerptDuration = Mp3DirectCut.ToTimeDelta(nextExcerptStartTime) - Mp3DirectCut.ToTimeDelta(excerpt["startTimeInSession"])
+            originalExcerptDuration = timedelta(seconds=round(originalExcerptDuration.total_seconds()))
+            database["audioSource"][filename]["duration"] = Mp3DirectCut.TimeDeltaToStr(originalExcerptDuration)
+
 
     # First eliminate excerpts with fatal parsing errors.
     deletedExcerptIDs = set() # Ids of excerpts with fatal parsing errors
@@ -1107,29 +1117,28 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
                 continue
             
             nextExcerpt = xf2[0]
-            nextClip = nextExcerpt["clips"][0]
+            if "startTimeInSession" in nextExcerpt:
+                nextClip = Mp3DirectCut.Clip("$",nextExcerpt["startTimeInSession"])
+            else:
+                nextClip = nextExcerpt["clips"][0]
             for x in xf1:
                 lastClip = x["clips"][-1]
                 sameFile = lastClip.file == nextClip.file
                 if not lastClip.end:
                     if sameFile:
                         x["clips"][-1] = lastClip._replace(end=nextClip.start)
-                    if "startTimeInSession" in nextExcerpt and lastClip.file == "$":
-                        x["clips"][-1] = lastClip._replace(end=nextExcerpt["startTimeInSession"])
                     
-                    editedAudioList = [a for a in x["annotations"] if a["kind"] == "Edited audio"]
-                    if editedAudioList:
-                        filename,url,duration = SplitAudioSourceText(editedAudioList[0]["text"])
-                        if not database["audioSource"][filename]["duration"]:
-                            nextClipStart = nextExcerpt.get("startTimeInSession","") or nextClip.start
-                            originalExcerptDuration = Mp3DirectCut.ToTimeDelta(nextClipStart) - Mp3DirectCut.ToTimeDelta(x["startTimeInSession"])
-                            originalExcerptDuration = timedelta(seconds=round(originalExcerptDuration.total_seconds()))
-                            database["audioSource"][filename]["duration"] = Mp3DirectCut.TimeDeltaToStr(originalExcerptDuration)
+                    if "startTimeInSession" in x:
+                        CalcEditedAudioDuration(x,nextClip.start)
 
                 endTime = lastClip.ToClipTD().end
                 if sameFile and endTime and endTime > nextClip.ToClipTD().start:
                     if ExcerptFlag.OVERLAP not in nextExcerpt["flags"]:
                         Alert.warning(f"excerpt",nextExcerpt,"unexpectedly overlaps with the previous excerpt. This should be either changed or flagged with 'o'.")
+        
+        # If a session ends with an Edited audio excerpt, calculate its duration.
+        if "startTimeInSession" in sessionExcerpts[-1]:
+            CalcEditedAudioDuration(sessionExcerpts[-1],session["duration"])
 
         for x in sessionExcerpts:
             if "clips" in x:
