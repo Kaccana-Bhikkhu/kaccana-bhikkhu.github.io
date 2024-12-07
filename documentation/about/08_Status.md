@@ -4,10 +4,10 @@
 
 ## New in the December 2024 release:
 - [Search all](../search/Text-search.html) allows searching key topics, tags, teachers, events, and excerpts at the same time.
-- You can choose a [random featured excerpt](../search/Text-search.html?q=&search=random).
+- [Random featured excerpts](../search/Text-search.html?q=&search=random)
 - Material from Abhayagiri's [20th](../../pages/events/Anniversary2016.html), [25th](../../pages/events/Anniversary2021.html), and [28th](../../pages/events/Anniversary2024.html) anniversaries
 - [Practice and Study Day 2023](../../pages/events/PSD2023.html): Mindfulness of Breathing
-- More featured excerpts including [Ajahn Chah's teaching to Marjorie](../../pages/events/Chah2001.html#Chah2001_S02_F04)
+- More featured excerpts including [Ajahn Chah's teaching to Marjorie](../../pages/events/Chah2001.html#Chah2001_S02_F03)
 
 ## Content
 This release contains 2511 excerpts from 49 events, comprising over 110 hours of audio. Ajahn Kaccāna typically transcribes audio by hand and later types these transcriptions into the computer. As of this release there are 438 transcribed pages, of which 316 have been entered into the Archive. The detailed status of transcription is as follows:
