@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-import os, json
+import os, json, datetime
 import random
 from typing import NamedTuple, Iterable
 import Utils, Alert, Prototype, Filter, Database
@@ -48,6 +48,17 @@ def FeaturedExcerptEntries() -> list[dict[str]]:
     featuredExcerpts = [removeFragments.FilterAnnotations(x) for x in featuredExcerpts]
     return [ExcerptEntry(x) for x in featuredExcerpts]
 
+def Header() -> dict[str]:
+    """Return a dict describing the conditions under which the random excerpts were built."""
+
+    now = datetime.datetime.now().isoformat()
+    return {
+        "made": now,
+        "updated": now,
+        "mirrors": gOptions.mirrorUrl,
+        "excerptSources": gOptions.excerptMp3
+    }
+
 def RemakeRandomExcerpts(maxLength:int = 0,shuffle = True) -> dict[str]:
     """Return a completely new random excerpt dictionary"""
 
@@ -57,9 +68,7 @@ def RemakeRandomExcerpts(maxLength:int = 0,shuffle = True) -> dict[str]:
     if maxLength:
         entries = entries[:maxLength]
     
-    return {
-        "excerpts": entries
-    }
+    return dict(**Header(),excerpts=entries)
 
 def WriteDatabase(newDatabase: dict[str]) -> None:
     """Write newDatabase to the random excerpt .json file"""
