@@ -602,7 +602,10 @@ def Initialize() -> None:
         if itemType == ItemType.AUDIO_SOURCE:
             return Mp3LengthChecker() if level >= 4 else RemoteURLChecker()
         if itemType == ItemType.EXCERPT:
-            return Mp3ClipChecker(trustCache=False) if level >=3 else Mp3ClipChecker(trustCache=True)
+            if level >= 4:
+                return Mp3LengthChecker()
+            else:
+                return Mp3ClipChecker(trustCache=False) if level >=3 else Mp3ClipChecker(trustCache=True)
         if itemType == ItemType.REFERENCE:
             return RemoteURLChecker() if level >= 3 else LinkValidator()
         

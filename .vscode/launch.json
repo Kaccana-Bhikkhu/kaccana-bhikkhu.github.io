@@ -133,9 +133,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "SetupRandom",
+                "SplitMp3",
                 "--events",
-                "SRD2010"
+                "Chah2001",
             ],
             "console": "integratedTerminal",
             "justMyCode": true

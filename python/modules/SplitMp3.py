@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-import os, json, platform
+import os
+import subprocess
 import Database
 import Utils, Alert, Link, TagMp3, PrepareUpload
 import Mp3DirectCut
@@ -31,9 +32,15 @@ def main():
     """ Split the Q&A session mp3 files into individual excerpts.
     Read the beginning and end points from Database.json."""
     
-    if platform.system() != "Windows":
-        Alert.error(f"SplitMp3 requires Windows to run mp3DirectCut.exe. mp3 files cannot be split on {platform.system()}.")
-        return
+    try:
+        Mp3DirectCut.ConfigureMp3DirectCut()
+    except Mp3DirectCut.ExecutableNotFound as error:
+        processError = subprocess.call(f"{Mp3DirectCut.mp3spltCommand} -h",shell=True,stdout=subprocess.DEVNULL)
+        if processError:
+            Alert.error(f"Mp3DirectCut returns error {error}. Cannot find command {Mp3DirectCut.mp3spltCommand}. Mp3 files cannot be split.")
+            return
+        else:        
+            Alert.notice(f"Cannot find Mp3DirectCut executable. Will use {Mp3DirectCut.mp3spltCommand}.")
     
     Mp3DirectCut.joinUsingPydub = gOptions.joinUsingPydub
 
@@ -71,7 +78,7 @@ def main():
                     sourceFile = session["filename"]
                 source = gDatabase["audioSource"].get(sourceFile,None)
                 if source:
-                    clips[index] = clips[index]._replace(file=Utils.PosixToWindows(Link.URL(source,"local")))
+                    clips[index] = clips[index]._replace(file=Link.URL(source,"local"))
                 else:
                     Alert.error(f"Cannot find source file '{sourceFile}' for",excerpt,". Will not split this excerpt.")
                     allFilesFound = False
@@ -110,7 +117,7 @@ def main():
         for sources,clipsDict in Mp3DirectCut.GroupBySourceFiles(excerptClipsDict):
             # Invoke Mp3DirectCut on each group of clips:
             try:
-                Mp3DirectCut.MultiFileSplitJoin(clipsDict,outputDir=Utils.PosixToWindows(outputDir))
+                Mp3DirectCut.MultiFileSplitJoin(clipsDict,outputDir=outputDir)
             except Mp3DirectCut.ExecutableNotFound as err:
                 Alert.error(err)
                 Alert.status("Continuing to next module.")
