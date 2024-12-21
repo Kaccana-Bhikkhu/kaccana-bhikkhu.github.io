@@ -950,7 +950,7 @@ def NumberExcerpts(excerpts: dict[str]) -> None:
 def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> None:
     """For excerpts in a given event, convert startTime and endTime keys into the clips key.
     Add audio sources from sessions (and eventually audio annotations) to database["audioSource"]
-    Eventually this function will scan for Alternate audio, Edited audio, Append audio, and Cut audio annotations for extended functionality."""
+    Process Alternate audio, Edited audio, Append audio, and Cut audio annotations."""
     
     def AddAudioSource(filename:str, duration:str, event: str, url: str) -> None:
         """Add an audio source to database["audioSource"]."""
@@ -1143,6 +1143,14 @@ def CreateClips(excerpts: list[dict], sessions: list[dict], database: dict) -> N
         for x in sessionExcerpts:
             if "clips" in x:
                 x["duration"] = ExcerptDuration(x,sessionDuration)
+    
+    for session in sessions:
+        # Add information about session audio files that are not used directly
+        # The presence of remoteMp3Url key means we haven't processed this session yet
+        if "remoteMp3Url" in session and session["filename"] in database["audioSource"]:
+            AddAudioSource(session["filename"],session["duration"],session["event"],session["remoteMp3Url"])
+            del session["remoteMp3Url"]
+
 
 def ProcessFragments(excerpt: dict[str]) -> list[dict[str]]:
     """Process the fragments in excerpt and return a list to add to the event."""
