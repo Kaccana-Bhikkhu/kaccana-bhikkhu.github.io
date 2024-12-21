@@ -11,7 +11,16 @@ from Mp3DirectCut import Clip, ClipTD
 from typing import List, Union, NamedTuple
 from datetime import timedelta
 
-Mp3DirectCut.SetExecutable(Utils.PosixToWindows(Utils.PosixJoin('tools','Mp3DirectCut')))
+Mp3DirectCut.SetExecutable(Utils.PosixToNative(Utils.PosixJoin('tools','Mp3DirectCut')))
+
+def NativeFilePaths(clipsDict: dict[str,list[Clip]]) -> dict[str,list[Clip]]:
+    """Convert the clip file names to native file paths."""
+
+    returnValue:dict[str,list[Clip]] = {}
+    for outputFile,clipList in clipsDict.items():
+        newClipList = [c._replace(file=Utils.PosixToNative(c.file)) for c in clipList]
+        returnValue[outputFile] = newClipList
+    return returnValue
 
 def AddArguments(parser):
     "Add command-line arguments used by this module"
@@ -117,7 +126,8 @@ def main():
         for sources,clipsDict in Mp3DirectCut.GroupBySourceFiles(excerptClipsDict):
             # Invoke Mp3DirectCut on each group of clips:
             try:
-                Mp3DirectCut.MultiFileSplitJoin(clipsDict,outputDir=outputDir)
+                nativeClipsDict = NativeFilePaths(clipsDict)
+                Mp3DirectCut.MultiFileSplitJoin(nativeClipsDict,outputDir=Utils.PosixToNative(outputDir))
             except Mp3DirectCut.ExecutableNotFound as err:
                 Alert.error(err)
                 Alert.status("Continuing to next module.")

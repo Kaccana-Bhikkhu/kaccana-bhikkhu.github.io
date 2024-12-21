@@ -13,7 +13,7 @@ executableDir = 'mp3DirectCut'
 joinUsingPydub = False
 pydubBitrate = "64k"
 
-mp3spltCommand = "mp3splt -q -f"
+mp3spltCommand = "mp3splt -Q -f"
 class Mp3CutError(Exception):
     "Raised if mp3DirectCut returns with an error code"
     pass
@@ -186,7 +186,6 @@ def RawMp3DirectCut(programName: str,file:str,splitPoints: list[timedelta],delet
     cueFileName = fileNameBase + '.cue'
     
     cueFilePath = os.path.join(directory,cueFileName)
-    cueFilePath = cueFilePath.replace('/','\\')
     with open(cueFilePath,'w', encoding='utf-8') as cueFile:
         print('TITLE "(Title N.N.)"',file=cueFile)
         print(f'FILE "{originalFileName}" MP3',file=cueFile)

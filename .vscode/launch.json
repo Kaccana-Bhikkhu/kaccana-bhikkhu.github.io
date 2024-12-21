@@ -133,11 +133,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/QSArchive.py",
             "args": [
-                "Link",
-                "--linkCheckLevel",
-                "sessionMp3:4",
-                "--sessionMp3",
-                "local"
+                "SplitMp3"
             ],
             "console": "integratedTerminal",
             "justMyCode": true
