@@ -1,6 +1,9 @@
 import posix from "./path.js";
 const { join, dirname } = posix;
 const absoluteURLRegex = "^(//|[a-z+]+:)"
+const triggerOnce = {
+	once: true,
+  };
 
 const css = `
 	.wrapper {
@@ -87,26 +90,29 @@ class AudioChip extends HTMLElement {
 			titleWithLink = `<a href="#${this.dataset.titleLink}">${this.title}</a>`
 		}
 
-		let loaded = loadAudio;
-		this.audio.addEventListener("canplaythrough", () => {
-			loaded = true;
-		});
 		button.addEventListener("click", () => {
-			if (loaded) {
-				console.log("audio loaded");
+			if (this.audio.readyState >= 3) {
+				console.log("audio already loaded; begin playing");
 				playAudio(titleWithLink, this.audio);
 			} else {
-				this.audio.load();
-				console.log("waiting for audio loading");
 				let cb;
 				this.audio.addEventListener(
-					"canplaythrough",
+					"canplay",
 					(cb = () => {
-						console.log("starting");
+						console.log("canplay event triggered; begin playing");
 						playAudio(titleWithLink, this.audio);
-						this.audio.removeEventListener("canplaythrough", cb);
+						this.audio.removeEventListener("canplay", cb);
 					})
 				);
+				this.audio.addEventListener(
+					"canplaythrough",
+					(() => {
+						console.log("canplaythrough event triggered");
+					}),
+					triggerOnce
+				);
+				this.audio.load();
+				console.log("waiting for audio loading");
 			}
 		});
 
