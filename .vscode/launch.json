@@ -128,6 +128,21 @@
             "justMyCode": true
         },
         {
+            "name": "QuickBuild",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/QSArchive.py",
+            "args": [
+                "DownloadCSV,SplitMp3,Prototype",
+                "--buildOnly",
+                "events",
+                "--linkCheckLevel",
+                "excerptMp3:3"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "Testing",
             "type": "debugpy",
             "request": "launch",
