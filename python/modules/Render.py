@@ -236,7 +236,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         if quotedTeacher:
             parts = re.split(Utils.RegexMatchAny([gDatabase["teacher"][quotedTeacher]["attributionName"]]),item["body"])
             if len(parts) > 1:
-                parts[-2] = Prototype.LinkTeachersInText(parts[-2])
+                parts[-2] = Prototype.LinkTeachersInText(parts[-2],[quotedTeacher])
                 item["body"] = "".join(parts)
 
 def RenderExcerpts() -> None:
@@ -362,7 +362,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
             returnValue = f"{reference['title']}"
 
         if reference['attribution']:
-            returnValue += " " + Prototype.LinkTeachersInText(reference['attribution'])
+            returnValue += " " + Prototype.LinkTeachersInText(reference['attribution'],reference['author'])
         
         if not url and reference["remoteUrl"]:
             returnValue += " " + reference["remoteUrl"]
@@ -409,7 +409,7 @@ def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
 
         items = [reference['title'],f", [{matchObject[2]}]({url})"]
         if reference["attribution"]:
-            items.insert(1," " + Prototype.LinkTeachersInText(reference['attribution']))
+            items.insert(1," " + Prototype.LinkTeachersInText(reference['attribution'],reference['author']))
         return "".join(items)
 
     def ReferenceForm4(bodyStr: str) -> tuple[str,int]:

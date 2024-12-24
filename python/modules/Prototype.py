@@ -195,7 +195,9 @@ def LinkTeachersInText(text: str,specificTeachers:Iterable[str]|None = None) -> 
 
     global gAllTeacherRegex
     if not gAllTeacherRegex:
-        gAllTeacherRegex = Utils.RegexMatchAny(t["attributionName"] for t in gDatabase["teacher"].values() if t["htmlFile"])
+        teacherList = sorted((t["attributionName"] for t in gDatabase["teacher"].values() if t["htmlFile"]),key=lambda s: -len(s))
+            # Put longest items first so that Ajahn Chah Sangha doesn't match Ajahn Chah
+        gAllTeacherRegex = Utils.RegexMatchAny(teacherList)
     
     if specificTeachers is None:
         teacherRegex = gAllTeacherRegex
