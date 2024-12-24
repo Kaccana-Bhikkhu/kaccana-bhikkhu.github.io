@@ -591,7 +591,7 @@ class PagedSearcher extends Searcher {
 
         let pageMenu = "";
         if (pageCount > 0) {
-            let pageNumbers = [...Array(pageCount).keys().map((n) => (n+1))];
+            let pageNumbers = [...Array(pageCount).keys()].map((n) => (n+1));
             let pageLinks = pageNumbers.map((n) => {
                 let newParams = frameSearch(location.hash);
                 newParams.set(pageNumberParam,String(n));
