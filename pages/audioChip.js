@@ -95,19 +95,11 @@ class AudioChip extends HTMLElement {
 				console.log("audio already loaded; begin playing");
 				playAudio(titleWithLink, this.audio);
 			} else {
-				let cb;
 				this.audio.addEventListener(
 					"canplay",
-					(cb = () => {
+					(() => {
 						console.log("canplay event triggered; begin playing");
 						playAudio(titleWithLink, this.audio);
-						this.audio.removeEventListener("canplay", cb);
-					})
-				);
-				this.audio.addEventListener(
-					"canplaythrough",
-					(() => {
-						console.log("canplaythrough event triggered");
 					}),
 					triggerOnce
 				);
