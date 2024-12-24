@@ -313,7 +313,6 @@ def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
 
 def LinkKnownReferences(ApplyToFunction:Callable = ApplyToBodyText) -> None:
     """Search for references of the form [abbreviation]() OR abbreviation page|p. N, add author and link information.
-    If the excerpt is a reading, make the author the teacher.
     ApplyToFunction allows us to apply these same operations to other collections of text (e.g. documentation)"""
 
     def ParsePageNumber(text: str) -> int|None:

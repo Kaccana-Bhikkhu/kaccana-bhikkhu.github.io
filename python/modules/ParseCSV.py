@@ -874,7 +874,8 @@ def AddAnnotation(database: dict, excerpt: dict,annotation: dict) -> None:
         for teacher in set(annotation["teachers"]) - set(teacherList):
             gUnattributedTeachers[teacher] += 1
 
-        if annotation["kind"] == "Reading":
+        # If the annotation is a reading and the teacher is not specified, make the author the teacher.
+        if annotation["kind"] == "Reading" and not annotation["teachers"]:
             AppendUnique(teacherList,ReferenceAuthors(annotation["text"]))
 
         annotation["teachers"] = teacherList
@@ -1350,7 +1351,8 @@ def LoadEventFile(database,eventName,directory):
             elif defaultTeacher != "None":
                 x["teachers"] = list(ourSession["teachers"]) # Make a copy to prevent subtle errors
         
-        if x["kind"] == "Reading":
+        # If the excerpt is a reading and the teacher is not specified, make the author the teacher.
+        if x["kind"] == "Reading" and not x["teachers"]:
             AppendUnique(x["teachers"],ReferenceAuthors(x["text"]))
         
         if x["sessionNumber"] != lastSession:
