@@ -59,7 +59,7 @@ def ApplyToBodyText(transform: Callable[...,Tuple[str,int]],passItemAsSecondArgu
     return changeCount
     
 
-def ExtractAnnotation(form: str) -> Tuple[str,str]:
+def ExtractAttribution(form: str) -> Tuple[str,str]:
     """Split the form into body and attribution parts, which are separated by ||.
     Example: Story|| told by @!teachers!@||: @!text!@ ->
     body = Story||{attribution}||:: @!text!@
@@ -89,7 +89,7 @@ def PrepareTemplates():
         kind["body"] = []; kind["attribution"] = []
         for form in kind["form"]:
             
-            body, attribution = ExtractAnnotation(form)
+            body, attribution = ExtractAttribution(form)
             kind["body"].append(body)
             kind["attribution"].append(attribution)
 
@@ -161,7 +161,7 @@ def RenderItem(item: dict,container: dict|None = None) -> None:
         bodyTemplateStr = kind["body"][formNumber]
         attributionTemplateStr = kind["attribution"][formNumber]
     else:
-        bodyTemplateStr,attributionTemplateStr = ExtractAnnotation(FStringToPyratemp(item["text"]))
+        bodyTemplateStr,attributionTemplateStr = ExtractAttribution(FStringToPyratemp(item["text"]))
     
     if ParseCSV.ExcerptFlag.UNQUOTE in item["flags"]: # This flag indicates no quotes
         bodyTemplateStr = re.sub('[“”]','',bodyTemplateStr) # Templates should use only double smart quotes
@@ -302,7 +302,7 @@ def LinkSuttas(ApplyToFunction:Callable = ApplyToBodyText):
 def ReferenceMatchRegExs(referenceDB: dict[dict]) -> tuple[str]:
     escapedTitles = [re.escape(abbrev) for abbrev in referenceDB]
     titleRegex = Utils.RegexMatchAny(escapedTitles)
-    pageReference = r'(?:pages?|pp?\.)\s+-?[0-9]+(?:\-[0-9]+)?' 
+    pageReference = r'(?:pages?|pp?\.)\s+-?[0-9]+(?:[-–][0-9]+)?' 
 
     refForm2 = r'\[' + titleRegex + r'\]\((' + pageReference + ')?\)'
     refForm3 = r'\]\(' + titleRegex + r'(\s+' + pageReference + ')?\)'
