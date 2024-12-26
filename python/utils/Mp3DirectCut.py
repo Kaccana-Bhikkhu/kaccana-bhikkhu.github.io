@@ -265,6 +265,9 @@ def SinglePassSplit(file:str, clips:list[ClipTD],outputDir:str = None,deleteCueF
     outputDir - move the splith mp3 files here; defaults to same directory as file
     deleteCueFile - delete cue file when finished?"""
     
+    if not os.path.isfile(file):
+        raise Mp3CutError(f"Source file {file} not found.")
+
     trackNum = 1
     prevClipEnd = timedelta(seconds = 0)
     splitPoints:list[timedelta] = [prevClipEnd]
